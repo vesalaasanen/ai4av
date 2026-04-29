@@ -20,7 +20,7 @@ Every exported spec repeats `license: ODbL-1.0` in front matter so copied single
 
 ## ai4av.net And GitHub
 
-`ai4av.net` is the product surface. This repository is the cloneable catalog and closed-test contribution queue. GitHub Pages may serve the static fallback at `catalog.ai4av.net` after DNS is configured.
+`ai4av.net` is the product surface. This repository is the cloneable catalog and closed-test contribution queue. GitHub Pages may serve the static fallback at `catalog.ai4av.net` after DNS is configured and the repository is public or the GitHub plan supports Pages for private repositories.
 
 ## Contributions
 
@@ -31,3 +31,5 @@ We do not accept copied driver databases, raw command dumps, private manuals, or
 ## Local Catalog
 
 After an export, open `site/index.html` directly in a browser. The site reads `site/catalog-index.json`, which is generated from the canonical Markdown specs.
+
+For closed testing while the repo is private, clone the repository and open `site/index.html` locally. Pages may not be available for private repositories on every GitHub plan.
