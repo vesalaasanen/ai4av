@@ -1,0 +1,36 @@
+name: Suggest device
+description: Queue a missing device or family for maintainer review.
+title: "Suggest: <manufacturer> <model/family>"
+labels: ["needs-review", "source-needed"]
+body:
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer
+    validations:
+      required: true
+  - type: input
+    id: model_family
+    attributes:
+      label: Model or family
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Official source URL
+      description: Link to public manufacturer documentation where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What integration or workflow needs this spec?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Do not paste copied driver data, private manuals, credentials, or customer/site details.

@@ -1,0 +1,230 @@
+---
+schema_version: ai4av-public-spec-v1
+device_id: tinkerlist/cuez-automator
+entity_id: tinkerlist_cuez_automator
+spec_id: admin/tinkerlist-cuez-automator
+revision: 1
+author: admin
+title: "TinkerList Cuez Automator Control Spec"
+status: published
+manufacturer: TinkerList
+manufacturer_key: tinkerlist
+model_family: "Cuez Automator"
+aliases: []
+compatible_with:
+  manufacturers:
+    - TinkerList
+  models:
+    - "Cuez Automator"
+  firmware: "\"\" # UNRESOLVED: firmware version not stated, only minimum build 2024.10.28-0"
+  hardware_revisions: []
+  protocol_versions: []
+  required_options: []
+source_urls: []
+source_documents:
+  - title: tinkerlist_cuez_automator_companion.refined.md
+    url: ""
+    stage: verification-ledger
+    content_type: unknown
+    checked_at: 2026-04-27T10:34:49.590Z
+retrieved_at: 2026-04-27T10:34:49.590Z
+last_checked_at: 2026-04-27T10:34:49.590Z
+generator: ai4av-public-catalog-export/1
+generated_at: 2026-04-29T00:00:00.000Z
+firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated, only minimum build 2024.10.28-0"
+protocol_coverage: []
+known_gaps: []
+declared_confidence: low
+verification:
+  verdict: verified
+  checked_at: 2026-04-27T10:34:49.590Z
+  matched_actions: 13
+  action_count: 13
+  confidence: high
+  summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source."
+derived_from:
+  - vendor_manual
+license: ODbL-1.0
+created_at: 2026-04-27
+---
+
+# TinkerList Cuez Automator Control Spec
+
+## Summary
+REST API control interface for TinkerList Cuez Automator show-control software. All endpoints are HTTP GET. Base URL `http://localhost:7070`. No authentication described. Controls rundown triggers, step buttons, CuezDeck buttons, and macros.
+
+<!-- UNRESOLVED: UDP/OSC not supported; only HTTP REST endpoints documented -->
+
+## Transport
+```yaml
+protocols:
+  - http
+addressing:
+  base_url: http://localhost:7070
+  port: 7070  # stated in source
+auth:
+  type: none  # inferred: no auth procedure in source
+```
+
+## Traits
+```yaml
+- routable   # trigger-based navigation through rundown elements
+- queryable # GET endpoints return JSON data (buttons, macros)
+```
+
+## Actions
+```yaml
+- id: trigger_next
+  label: Trigger Next
+  kind: action
+  params: []
+
+- id: trigger_next_trigger
+  label: Trigger Next Trigger
+  kind: action
+  params: []
+
+- id: trigger_previous
+  label: Trigger Previous
+  kind: action
+  params: []
+
+- id: trigger_previous_trigger
+  label: Trigger Previous Trigger
+  kind: action
+  params: []
+
+- id: trigger_step_0
+  label: Re-trigger Current Element
+  kind: action
+  params: []
+
+- id: trigger_first_trigger
+  label: Trigger First Element
+  kind: action
+  params: []
+
+- id: trigger_step_index
+  label: Trigger Step by Index
+  kind: action
+  params:
+    - name: index
+      type: integer
+      description: Step index (0-based)
+
+- id: list_buttons
+  label: List CuezDeck Buttons
+  kind: action
+  params: []
+
+- id: trigger_button
+  label: Trigger CuezDeck Button
+  kind: action
+  params:
+    - name: buttonID
+      type: string
+      description: Button identifier
+
+- id: button_on
+  label: Switch Button On
+  kind: action
+  params:
+    - name: buttonID
+      type: string
+      description: Button identifier
+
+- id: button_off
+  label: Switch Button Off
+  kind: action
+  params:
+    - name: buttonID
+      type: string
+      description: Button identifier
+
+- id: list_macros
+  label: List Macros
+  kind: action
+  params: []
+
+- id: trigger_macro
+  label: Trigger Macro
+  kind: action
+  params:
+    - name: macroID
+      type: string
+      description: Macro identifier
+```
+
+## Feedbacks
+```yaml
+- id: button_list
+  label: CuezDeck Button List
+  type: array
+  description: GET /api/trigger/button/ returns JSON array with id fields
+
+- id: macro_list
+  label: Macro List
+  type: array
+  description: GET /api/macro/ returns JSON array with id fields
+```
+
+## Variables
+```yaml
+# UNRESOLVED: no settable variables documented
+```
+
+## Events
+```yaml
+# UNRESOLVED: no unsolicited event notifications documented
+```
+
+## Macros
+```yaml
+- id: macro_trigger
+  label: Trigger Macro by ID
+  description: GET /api/macro/{macroID} fires macro by id
+```
+
+## Safety
+```yaml
+confirmation_required_for: []
+interlocks: []
+```
+
+## Notes
+Automator API operates exclusively on localhost. Minimum stable build: `2024.10.28-0`. All endpoints use HTTP GET with no payload. No authentication or encryption documented.
+<!-- UNRESOLVED: port number 7070 assumed from base_url; no explicit TCP port statement -->
+<!-- UNRESOLVED: CuezDeck button IDs not enumerated in source -->
+<!-- UNRESOLVED: macro ID format not specified in source -->
+
+## Provenance
+
+```yaml
+source_urls: []
+source_documents:
+  - title: tinkerlist_cuez_automator_companion.refined.md
+    url: ""
+    stage: verification-ledger
+    content_type: unknown
+    checked_at: 2026-04-27T10:34:49.590Z
+retrieved_at: 2026-04-27T10:34:49.590Z
+last_checked_at: 2026-04-27T10:34:49.590Z
+generator: ai4av-public-catalog-export/1
+```
+
+## Verification Summary
+
+```yaml
+verdict: verified
+checked_at: 2026-04-27T10:34:49.590Z
+matched_actions: 13
+action_count: 13
+confidence: high
+summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source."
+```
+
+## Known Gaps
+
+```yaml
+[]
+```

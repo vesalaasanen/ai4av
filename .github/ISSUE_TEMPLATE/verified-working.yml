@@ -1,0 +1,42 @@
+name: Verified working
+description: Report field verification for an existing spec.
+title: "Verified: <spec id>"
+labels: ["needs-review", "verification"]
+body:
+  - type: input
+    id: spec_id
+    attributes:
+      label: Spec ID
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware/protocol version
+  - type: textarea
+    id: command_subset
+    attributes:
+      label: Command subset tested
+      description: List IDs or categories tested.
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - pass
+        - partial
+        - fail
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Device, transport, control system, and setup details. Do not include customer/site private information.
+  - type: input
+    id: evidence_link
+    attributes:
+      label: Evidence link
+      description: Optional public link to logs, screenshots, or test notes.
