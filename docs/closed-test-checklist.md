@@ -8,7 +8,7 @@
 - Every exported spec has `license: ODbL-1.0`.
 - Static catalog builds locally.
 - Static catalog can browse/search exported specs.
-- If GitHub Pages is unavailable for the private repo plan, testers can clone and open `site/index.html` locally.
+- If GitHub Pages is unavailable for the private repo plan, testers can clone and serve the repo over a local HTTP server (e.g. `python3 -m http.server`) — opening `site/index.html` directly via `file://` leaves the catalog blank because the index JSON is loaded with `fetch()`.
 - Issue forms render correctly.
 - Suggest / Correct / Verify issue submissions are understandable.
 - No private scraper internals, provider details, local host details, raw cache, credentials, or customer data are present.
