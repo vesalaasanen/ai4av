@@ -21,3 +21,9 @@
 - Public docs clearly explain what is open and what is maintained privately.
 - Domain plan is ready: `ai4av.net` app and `catalog.ai4av.net` static catalog.
 - Every closed-test failure has either a fix or an explicit Sprint 31 defer note.
+
+## Loop Evidence
+
+Recorded exercises of the Suggest / Correct / Verify loop:
+
+- Issue #1 — Suggest: Roku Streaming Device (ECP). Form rendered correctly, source URL validated as live, labels triaged to `needs-review` + `approved-scrape`, parked behind the private scraper run per `manual-maintainer-flow.md`.
