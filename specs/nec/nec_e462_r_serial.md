@@ -16,7 +16,7 @@ compatible_with:
     - NEC
   models:
     - E462-R
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -31,7 +31,7 @@ retrieved_at: 2026-04-26T20:44:22.255Z
 last_checked_at: 2026-04-26T20:44:22.255Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps:
   - "030-15 (LAMP ADJUST / LIGHT ADJUST)"

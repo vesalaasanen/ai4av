@@ -21,7 +21,7 @@ compatible_with:
     - "DPM 300H"
     - "DCM 100"
     - "DCM 300"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -48,7 +48,7 @@ retrieved_at: 2026-04-26T16:59:02.532Z
 last_checked_at: 2026-04-27T09:45:16.689Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

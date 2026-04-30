@@ -16,7 +16,7 @@ compatible_with:
     - Lectrosonics
   models:
     - AM16/12
-  firmware: "\"\" # UNRESOLVED: firmware version range not stated; crosspoint gain behavior differs between v1.x and v2.0+"
+  firmware: ""  # UNRESOLVED: firmware version range not stated; crosspoint gain behavior differs between v1.x and v2.0+
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -31,7 +31,7 @@ retrieved_at: 2026-04-25T20:54:50.455Z
 last_checked_at: 2026-04-25T20:54:50.455Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version range not stated; crosspoint gain behavior differs between v1.x and v2.0+"
+firmware_coverage: ""  # UNRESOLVED: firmware version range not stated; crosspoint gain behavior differs between v1.x and v2.0+
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

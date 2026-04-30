@@ -16,7 +16,7 @@ compatible_with:
     - Marantz
   models:
     - "VC6001 (North America)"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -32,7 +32,7 @@ retrieved_at: 2026-04-29T11:13:48.374Z
 last_checked_at: 2026-04-23T08:13:13.662Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps:
   - SR

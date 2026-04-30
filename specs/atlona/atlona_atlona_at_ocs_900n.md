@@ -16,7 +16,7 @@ compatible_with:
     - Atlona
   models:
     - AT-OCS-900N
-  firmware: "\"\" # UNRESOLVED: firmware version compatibility range not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version compatibility range not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -56,7 +56,7 @@ retrieved_at: 2026-04-29T10:47:28.463Z
 last_checked_at: 2026-04-22T19:25:36.829Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version compatibility range not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version compatibility range not stated in source
 protocol_coverage: []
 known_gaps:
   - export_config
