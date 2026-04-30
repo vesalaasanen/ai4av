@@ -30,6 +30,11 @@ We do not accept copied driver databases, raw command dumps, private manuals, or
 
 ## Local Catalog
 
-After an export, open `site/index.html` directly in a browser. The site reads `site/catalog-index.json`, which is generated from the canonical Markdown specs.
+After an export, serve the repository over HTTP and browse `site/index.html`. The site reads `site/catalog-index.json` via `fetch()`, which most browsers block under `file://`, so opening the HTML file directly will leave the catalog blank.
 
-For closed testing while the repo is private, clone the repository and open `site/index.html` locally. Pages may not be available for private repositories on every GitHub plan.
+```bash
+python3 -m http.server 8765
+# then open http://localhost:8765/site/
+```
+
+Any static server works (`npx serve`, `caddy file-server`, etc.) — pick whatever is convenient. For closed testing while the repo is private, clone the repository and serve it locally as above; GitHub Pages may not be available for private repositories on every GitHub plan.

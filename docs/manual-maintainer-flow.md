@@ -12,7 +12,7 @@ Public GitHub issues queue work only. Maintainers decide whether any private scr
 6. Build the static catalog index.
 7. Open a PR and close the issue with links to the PR and spec.
 
-For Sprint 30 closed testing, the repository is private. GitHub Pages may be unavailable depending on the plan; static catalog review can use a local clone and `site/index.html`.
+For Sprint 30 closed testing, the repository is private. GitHub Pages may be unavailable depending on the plan; static catalog review can use a local clone served over a local HTTP server (`python3 -m http.server` then `http://localhost:8000/site/`).
 
 ## Report Wrong Spec
 
