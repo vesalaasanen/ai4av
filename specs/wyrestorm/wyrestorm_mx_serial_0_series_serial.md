@@ -19,7 +19,7 @@ compatible_with:
     - MX-1616-HDBT-H2X
     - MX-1010-H2XC
     - MX-1616-H2XC
-  firmware: "\"\" # UNRESOLVED: specific firmware version compatibility not stated; some commands require 10x10 Main Board FW v1.3+ or 16x16 Main Board FW v1.4+"
+  firmware: ""  # UNRESOLVED: specific firmware version compatibility not stated; some commands require 10x10 Main Board FW v1.3+ or 16x16 Main Board FW v1.4+
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -34,7 +34,7 @@ retrieved_at: 2026-04-27T10:13:22.471Z
 last_checked_at: 2026-04-27T10:13:22.471Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: specific firmware version compatibility not stated; some commands require 10x10 Main Board FW v1.3+ or 16x16 Main Board FW v1.4+"
+firmware_coverage: ""  # UNRESOLVED: specific firmware version compatibility not stated; some commands require 10x10 Main Board FW v1.3+ or 16x16 Main Board FW v1.4+
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

@@ -23,7 +23,7 @@ compatible_with:
     - "ATW-T1402 (handheld microphone transmitter)"
     - "ATW-T1406 (boundary microphone transmitter)"
     - "ATW-T1407 (desk stand transmitter)"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -38,7 +38,7 @@ retrieved_at: 2026-04-23T15:15:10.686Z
 last_checked_at: 2026-04-23T15:15:10.686Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

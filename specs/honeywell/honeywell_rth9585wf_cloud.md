@@ -16,7 +16,7 @@ compatible_with:
     - Honeywell
   models:
     - RTH9585WF
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -54,7 +54,7 @@ retrieved_at: 2026-04-26T16:23:09.761Z
 last_checked_at: 2026-04-23T07:01:27.626Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps:
   - /devices/cameras

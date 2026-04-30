@@ -17,7 +17,7 @@ compatible_with:
   models:
     - AP20
     - AP25
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -32,7 +32,7 @@ retrieved_at: 2026-04-23T05:36:34.444Z
 last_checked_at: 2026-04-23T05:36:34.444Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

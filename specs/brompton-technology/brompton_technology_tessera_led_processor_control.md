@@ -21,7 +21,7 @@ compatible_with:
     - "Tessera T1"
     - "Tessera T8"
     - "Tessera SX40"
-  firmware: "\">=3.1.0\" # UNRESOLVED: minimum firmware for IP control stated as 3.1.0 in intro; API version is 3.5.2"
+  firmware: ">=3.1.0"  # UNRESOLVED: minimum firmware for IP control stated as 3.1.0 in intro; API version is 3.5.2
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -36,7 +36,7 @@ retrieved_at: 2026-04-23T15:27:25.830Z
 last_checked_at: 2026-04-23T15:27:25.830Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\">=3.1.0\" # UNRESOLVED: minimum firmware for IP control stated as 3.1.0 in intro; API version is 3.5.2"
+firmware_coverage: ">=3.1.0"  # UNRESOLVED: minimum firmware for IP control stated as 3.1.0 in intro; API version is 3.5.2
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

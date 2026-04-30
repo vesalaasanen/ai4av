@@ -16,7 +16,7 @@ compatible_with:
     - Sharp-NEC
   models:
     - "NP-P627UL Series"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -52,7 +52,7 @@ retrieved_at: 2026-04-29T10:09:32.506Z
 last_checked_at: 2026-04-25T21:56:02.981Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

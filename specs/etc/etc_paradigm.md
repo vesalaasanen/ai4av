@@ -16,7 +16,7 @@ compatible_with:
     - ETC
   models:
     - "Paradigm Processor (P ACP)"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated; PSAP version 6.0.0 stated"
+  firmware: ""  # UNRESOLVED: firmware version not stated; PSAP version 6.0.0 stated
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -31,7 +31,7 @@ retrieved_at: 2026-04-25T20:43:18.652Z
 last_checked_at: 2026-04-25T20:43:18.652Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated; PSAP version 6.0.0 stated"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated; PSAP version 6.0.0 stated
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low

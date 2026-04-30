@@ -16,7 +16,7 @@ compatible_with:
     - Marantz
   models:
     - "Marantz Universal Discrete Functions"
-  firmware: "\"\" # UNRESOLVED: firmware version not stated in source"
+  firmware: ""  # UNRESOLVED: firmware version not stated in source
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -32,7 +32,7 @@ retrieved_at: 2026-04-29T11:13:45.631Z
 last_checked_at: 2026-04-23T08:13:13.540Z
 generator: ai4av-public-catalog-export/1
 generated_at: 2026-04-29T00:00:00.000Z
-firmware_coverage: "\"\" # UNRESOLVED: firmware version not stated in source"
+firmware_coverage: ""  # UNRESOLVED: firmware version not stated in source
 protocol_coverage: []
 known_gaps: []
 declared_confidence: low
