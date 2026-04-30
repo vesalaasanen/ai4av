@@ -27,3 +27,4 @@
 Recorded exercises of the Suggest / Correct / Verify loop:
 
 - Issue #1 — Suggest: Roku Streaming Device (ECP). Form rendered correctly, source URL validated as live, labels triaged to `needs-review` + `approved-scrape`, parked behind the private scraper run per `manual-maintainer-flow.md`.
+- Issue #3 — Correct: malformed `firmware` / `firmware_coverage` front-matter quoting across 377 specs. Mechanically swept by PR #4 (378 files, 756 lines); generator-side defensive sanitizer added in `scripts/export-public-catalog.ts` to prevent regression on next export.
