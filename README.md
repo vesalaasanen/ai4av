@@ -10,6 +10,38 @@ The open parts are the catalog in `specs/` and the public skill/tooling shape; t
 - `docs/spec-format-v1.md` defines the public Markdown contract.
 - `.github/ISSUE_TEMPLATE/` contains issue queues for device suggestions and spec corrections.
 
+## Funding model
+
+AI4AV is sponsorware: open data, free to query, funded by sponsors whose work depends on broad and current AV device coverage. Sponsorship pays for ingestion, schema, and verification. There is no enterprise license and no paywall on the data.
+
+## Sponsors
+
+AI4AV is funded by individuals and companies who rely on the dataset. Sponsorship pays for spec ingestion, schema work, and verification, and keeps the data open.
+
+[Become a sponsor on GitHub Sponsors.](https://github.com/sponsors/vesalaasanen)
+
+<!--
+Sponsor tier subsections appear below in this order once there is at least one sponsor in that tier. Until a tier has a sponsor, omit the heading.
+
+### Manufacturer Partners
+Top placement, larger logos. AV equipment manufacturers whose products are covered in the database.
+[![Manufacturer Name](path/to/manufacturer-logo.png)](https://manufacturer-site.example)
+
+### Companies
+Standard logo size, below Partners.
+[![Company Name](path/to/company-logo.png)](https://company-site.example)
+
+### Power users
+Names (or company names), no logos.
+- Sponsor Name
+- Another Sponsor
+
+### Patrons (one-time, listed for one year)
+Names with listing expiration date for annual cleanup.
+- Sponsor Name (expires 2027-05-13)
+- Another Sponsor (expires 2027-06-01)
+-->
+
 ## Licenses
 
 - Catalog data under `specs/` is licensed under the Open Data Commons Open Database License 1.0. See `LICENSES/ODbL-1.0.txt`.
