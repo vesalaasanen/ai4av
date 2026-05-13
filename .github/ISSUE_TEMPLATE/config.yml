@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or private material
+    url: https://github.com/vesalaasanen/ai4av/security/policy
+    about: Do not post credentials, private docs, or customer/site details in public issues.
