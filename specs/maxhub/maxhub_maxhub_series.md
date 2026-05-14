@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sgp-cstore-pub.maxhub.com
+source_urls:
+  - "https://sgp-cstore-pub.maxhub.com/maxhub_global_public/software/v6/IFP%20V6%20RS-232%20&%20LAN%20Protocol%20%20Specification%20-0725.pdf"
 retrieved_at: 2026-04-26T18:17:06.345Z
 last_checked_at: 2026-04-27T09:04:48.432Z
 generated_at: 2026-04-27T09:04:48.432Z
@@ -380,6 +382,8 @@ Command format: 9 bytes — start (0x3A), machine ID (30 31 = machine 1), set/ge
 ```yaml
 source_domains:
   - sgp-cstore-pub.maxhub.com
+source_urls:
+  - "https://sgp-cstore-pub.maxhub.com/maxhub_global_public/software/v6/IFP%20V6%20RS-232%20&%20LAN%20Protocol%20%20Specification%20-0725.pdf"
 retrieved_at: 2026-04-26T18:17:06.345Z
 last_checked_at: 2026-04-27T09:04:48.432Z
 ```

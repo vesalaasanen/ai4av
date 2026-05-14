@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:54.054Z
-last_checked_at: 2026-04-23T15:23:26.260Z
-generated_at: 2026-04-23T15:23:26.260Z
+last_checked_at: 2026-05-14T18:17:14.675Z
+generated_at: 2026-05-14T18:17:14.675Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:23:26.260Z
-  matched_actions: 19
-  action_count: 19
+  checked_at: 2026-05-14T18:17:14.675Z
+  matched_actions: 18
+  action_count: 18
   confidence: high
   summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate."
 derived_from:
@@ -297,17 +299,19 @@ interlocks: []
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:54.054Z
-last_checked_at: 2026-04-23T15:23:26.260Z
+last_checked_at: 2026-05-14T18:17:14.675Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:23:26.260Z
-matched_actions: 19
-action_count: 19
+checked_at: 2026-05-14T18:17:14.675Z
+matched_actions: 18
+action_count: 18
 confidence: high
 summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate."
 ```

@@ -20,6 +20,11 @@ source_domains:
   - docs.dataminer.services
   - yumpu.com
   - github.com
+source_urls:
+  - https://support.rascular.com/pro-bel-sw-p-02-implementation-notes-2/
+  - https://docs.dataminer.services/connector/doc/Pro-Bel_SW-P-02.html
+  - https://www.yumpu.com/en/document/view/45593368/pro-bel-sw-p-02-interface-specifications-dhd-audiode
+  - https://github.com/bitfocus/companion-module-generic-swp02
 retrieved_at: 2026-04-29T23:57:03.635Z
 last_checked_at: 2026-04-27T14:52:18.031Z
 generated_at: 2026-04-27T14:52:18.031Z
@@ -499,6 +504,11 @@ source_domains:
   - docs.dataminer.services
   - yumpu.com
   - github.com
+source_urls:
+  - https://support.rascular.com/pro-bel-sw-p-02-implementation-notes-2/
+  - https://docs.dataminer.services/connector/doc/Pro-Bel_SW-P-02.html
+  - https://www.yumpu.com/en/document/view/45593368/pro-bel-sw-p-02-interface-specifications-dhd-audiode
+  - https://github.com/bitfocus/companion-module-generic-swp02
 retrieved_at: 2026-04-29T23:57:03.635Z
 last_checked_at: 2026-04-27T14:52:18.031Z
 ```

@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-04-23T15:32:54.262Z
-generated_at: 2026-04-23T15:32:54.262Z
+last_checked_at: 2026-05-14T18:17:15.197Z
+generated_at: 2026-05-14T18:17:15.197Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -28,9 +30,9 @@ known_gaps:
   - switch-multiple-variants-by-name
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:32:54.262Z
-  matched_actions: 26
-  action_count: 26
+  checked_at: 2026-05-14T18:17:15.197Z
+  matched_actions: 18
+  action_count: 18
   confidence: high
   summary: "All 26 spec actions verified against source literals; transport parameters confirmed verbatim; core API coverage is comprehensive."
 derived_from:
@@ -349,17 +351,19 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-04-23T15:32:54.262Z
+last_checked_at: 2026-05-14T18:17:15.197Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:32:54.262Z
-matched_actions: 26
-action_count: 26
+checked_at: 2026-05-14T18:17:15.197Z
+matched_actions: 18
+action_count: 18
 confidence: high
 summary: "All 26 spec actions verified against source literals; transport parameters confirmed verbatim; core API coverage is comprehensive."
 ```

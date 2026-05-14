@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - content-files.shure.com
+source_urls:
+  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-04-22T19:26:39.207Z
-generated_at: 2026-04-22T19:26:39.207Z
+last_checked_at: 2026-05-14T18:17:20.534Z
+generated_at: 2026-05-14T18:17:20.534Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -28,9 +30,9 @@ known_gaps:
   - "DIP switch preset configuration"
 verification:
   verdict: verified
-  checked_at: 2026-04-22T19:26:39.207Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:20.534Z
+  matched_actions: 49
+  action_count: 49
   confidence: high
   summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented."
 derived_from:
@@ -633,17 +635,19 @@ The P4800 uses standard Sysex (F0h...F7h) command format. Device ID is 0–15 se
 ```yaml
 source_domains:
   - content-files.shure.com
+source_urls:
+  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-04-22T19:26:39.207Z
+last_checked_at: 2026-05-14T18:17:20.534Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T19:26:39.207Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:20.534Z
+matched_actions: 49
+action_count: 49
 confidence: high
 summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented."
 ```

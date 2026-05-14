@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - raw.githubusercontent.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
+  - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-04-27T15:02:39.110Z
-generated_at: 2026-04-27T15:02:39.110Z
+last_checked_at: 2026-05-14T18:17:19.721Z
+generated_at: 2026-05-14T18:17:19.721Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:02:39.110Z
-  matched_actions: 167
-  action_count: 167
+  checked_at: 2026-05-14T18:17:19.721Z
+  matched_actions: 141
+  action_count: 141
   confidence: high
   summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage."
 derived_from:
@@ -1161,17 +1164,20 @@ RCP protocol uses ASCII commands with CRLF (\r\n) terminators. Command classes: 
 source_domains:
   - raw.githubusercontent.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
+  - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-04-27T15:02:39.110Z
+last_checked_at: 2026-05-14T18:17:19.721Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:02:39.110Z
-matched_actions: 167
-action_count: 167
+checked_at: 2026-05-14T18:17:19.721Z
+matched_actions: 141
+action_count: 141
 confidence: high
 summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage."
 ```

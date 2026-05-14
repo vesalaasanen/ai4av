@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:04.962Z
-last_checked_at: 2026-04-23T08:24:47.382Z
-generated_at: 2026-04-23T08:24:47.382Z
+last_checked_at: 2026-05-14T18:17:20.154Z
+generated_at: 2026-05-14T18:17:20.154Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:24:47.382Z
+  checked_at: 2026-05-14T18:17:20.154Z
   matched_actions: 38
-  action_count: 38
+  action_count: 47
   confidence: high
   summary: "All 38 spec actions found as literal command entries in source; transport parameters verified; spec fully represents the source command catalogue."
 derived_from:
@@ -317,17 +319,19 @@ Feedback response format: `FE 0F 60 20 [Flag1] [Flag2] [Char1]…[Char11] [Check
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:04.962Z
-last_checked_at: 2026-04-23T08:24:47.382Z
+last_checked_at: 2026-05-14T18:17:20.154Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:24:47.382Z
+checked_at: 2026-05-14T18:17:20.154Z
 matched_actions: 38
-action_count: 38
+action_count: 47
 confidence: high
 summary: "All 38 spec actions found as literal command entries in source; transport parameters verified; spec fully represents the source command catalogue."
 ```

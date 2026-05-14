@@ -15,18 +15,21 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-27T09:45:16.344Z
-last_checked_at: 2026-04-27T09:45:16.344Z
-generated_at: 2026-04-27T09:45:16.344Z
+source_domains:
+  - help.qsys.com
+source_urls:
+  - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:20.023Z
+generated_at: 2026-05-14T18:17:20.023Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:16.344Z
-  matched_actions: 37
-  action_count: 37
+  checked_at: 2026-05-14T18:17:20.023Z
+  matched_actions: 35
+  action_count: 35
   confidence: high
   summary: "All 37 spec actions map to documented QRC methods with matching wire tokens; transport parameters verified verbatim in source."
 derived_from:
@@ -613,18 +616,21 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-27T09:45:16.344Z
-last_checked_at: 2026-04-27T09:45:16.344Z
+source_domains:
+  - help.qsys.com
+source_urls:
+  - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:20.023Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:16.344Z
-matched_actions: 37
-action_count: 37
+checked_at: 2026-05-14T18:17:20.023Z
+matched_actions: 35
+action_count: 35
 confidence: high
 summary: "All 37 spec actions map to documented QRC methods with matching wire tokens; transport parameters verified verbatim in source."
 ```

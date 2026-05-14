@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - support.d-box.com
   - applicationmarket.crestron.com
+source_urls:
+  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
+  - https://applicationmarket.crestron.com/d-box-technologies-inc-odyssee-north-america/
 retrieved_at: 2026-04-29T17:31:52.762Z
-last_checked_at: 2026-04-30T09:39:47.792Z
-generated_at: 2026-04-30T09:39:47.792Z
+last_checked_at: 2026-05-14T18:17:15.134Z
+generated_at: 2026-05-14T18:17:15.134Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:39:47.792Z
-  matched_actions: 20
-  action_count: 20
+  checked_at: 2026-05-14T18:17:15.134Z
+  matched_actions: 9
+  action_count: 9
   confidence: high
   summary: "All 20 spec actions matched literally in source with identical mnemonics, parameters, and response structures."
 derived_from:
@@ -345,17 +348,20 @@ interlocks: []
 source_domains:
   - support.d-box.com
   - applicationmarket.crestron.com
+source_urls:
+  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
+  - https://applicationmarket.crestron.com/d-box-technologies-inc-odyssee-north-america/
 retrieved_at: 2026-04-29T17:31:52.762Z
-last_checked_at: 2026-04-30T09:39:47.792Z
+last_checked_at: 2026-05-14T18:17:15.134Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:39:47.792Z
-matched_actions: 20
-action_count: 20
+checked_at: 2026-05-14T18:17:15.134Z
+matched_actions: 9
+action_count: 9
 confidence: high
 summary: "All 20 spec actions matched literally in source with identical mnemonics, parameters, and response structures."
 ```

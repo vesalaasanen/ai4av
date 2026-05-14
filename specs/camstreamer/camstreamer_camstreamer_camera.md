@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - support.camstreamer.com
+source_urls:
+  - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
 last_checked_at: 2026-04-22T19:45:06.507Z
 generated_at: 2026-04-22T19:45:06.507Z
@@ -396,6 +398,8 @@ CamStreamer App license required; see https://support.camstreamer.com/hc/en-us/a
 ```yaml
 source_domains:
   - support.camstreamer.com
+source_urls:
+  - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
 last_checked_at: 2026-04-22T19:45:06.507Z
 ```

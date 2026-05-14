@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-04-26T12:40:36.974Z
-generated_at: 2026-04-26T12:40:36.974Z
+last_checked_at: 2026-05-14T18:17:15.725Z
+generated_at: 2026-05-14T18:17:15.725Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T12:40:36.974Z
-  matched_actions: 48
-  action_count: 48
+  checked_at: 2026-05-14T18:17:15.725Z
+  matched_actions: 45
+  action_count: 45
   confidence: high
   summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification."
 derived_from:
@@ -428,17 +430,19 @@ interlocks: []
 ```yaml
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-04-26T12:40:36.974Z
+last_checked_at: 2026-05-14T18:17:15.725Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T12:40:36.974Z
-matched_actions: 48
-action_count: 48
+checked_at: 2026-05-14T18:17:15.725Z
+matched_actions: 45
+action_count: 45
 confidence: high
 summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T22:42:13.413Z
-last_checked_at: 2026-04-23T15:17:09.370Z
-generated_at: 2026-04-23T15:17:09.370Z
+last_checked_at: 2026-05-14T18:17:14.346Z
+generated_at: 2026-05-14T18:17:14.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:17:09.370Z
-  matched_actions: 43
-  action_count: 43
+  checked_at: 2026-05-14T18:17:14.346Z
+  matched_actions: 38
+  action_count: 38
   confidence: high
   summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed."
 derived_from:
@@ -945,17 +947,19 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T22:42:13.413Z
-last_checked_at: 2026-04-23T15:17:09.370Z
+last_checked_at: 2026-05-14T18:17:14.346Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:17:09.370Z
-matched_actions: 43
-action_count: 43
+checked_at: 2026-05-14T18:17:14.346Z
+matched_actions: 38
+action_count: 38
 confidence: high
 summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed."
 ```

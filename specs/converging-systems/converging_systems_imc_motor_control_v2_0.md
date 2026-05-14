@@ -19,6 +19,8 @@ compatible_with:
   required_options: []
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-04-30T04:26:27.627Z
 last_checked_at: 2026-04-22T22:08:38.883Z
 generated_at: 2026-04-22T22:08:38.883Z
@@ -586,6 +588,8 @@ interlocks:
 ```yaml
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-04-30T04:26:27.627Z
 last_checked_at: 2026-04-22T22:08:38.883Z
 ```

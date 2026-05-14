@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+source_urls:
+  - https://docs-local.appbond.com/
+  - https://docs-local.appbond.com
 retrieved_at: 2026-04-29T13:04:25.772Z
 last_checked_at: 2026-04-30T09:32:22.191Z
 generated_at: 2026-04-30T09:32:22.191Z
@@ -535,6 +538,9 @@ interlocks: []
 ```yaml
 source_domains:
   - docs-local.appbond.com
+source_urls:
+  - https://docs-local.appbond.com/
+  - https://docs-local.appbond.com
 retrieved_at: 2026-04-29T13:04:25.772Z
 last_checked_at: 2026-04-30T09:32:22.191Z
 ```

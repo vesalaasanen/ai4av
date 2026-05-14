@@ -17,6 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.interactive-online.com
+source_urls:
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/cuescript-protocol
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/cgi-api
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/command-syntax
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/serial-ports
 retrieved_at: 2026-05-04T10:35:50.950Z
 last_checked_at: 2026-05-04T16:58:20.009Z
 generated_at: 2026-05-04T16:58:20.009Z
@@ -780,6 +785,11 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.interactive-online.com
+source_urls:
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/cuescript-protocol
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/cgi-api
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/command-syntax
+  - https://docs.interactive-online.com/cs2/1.0/en/topic/serial-ports
 retrieved_at: 2026-05-04T10:35:50.950Z
 last_checked_at: 2026-05-04T16:58:20.009Z
 ```

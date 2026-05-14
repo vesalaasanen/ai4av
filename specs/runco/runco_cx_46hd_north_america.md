@@ -19,6 +19,11 @@ source_domains:
   - hdtvsolutions.com
   - manualslib.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.hdtvsolutions.com/pdf/CX-40HD_CX-46HDmanual_1-1.pdf
+  - "https://www.manualslib.com/manual/315434/Runco-Crystal-Series-Cx-40hd.html#product-CX-46HD"
+  - https://applicationmarket.crestron.com/runco-cx-46hd-north-america/
+  - https://applicationmarket.crestron.com/content/Help/Runco/runco_cx-46hd_v1_0_help.pdf
 retrieved_at: 2026-04-29T21:59:40.595Z
 last_checked_at: 2026-04-30T09:48:23.226Z
 generated_at: 2026-04-30T09:48:23.226Z
@@ -268,6 +273,11 @@ source_domains:
   - hdtvsolutions.com
   - manualslib.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.hdtvsolutions.com/pdf/CX-40HD_CX-46HDmanual_1-1.pdf
+  - "https://www.manualslib.com/manual/315434/Runco-Crystal-Series-Cx-40hd.html#product-CX-46HD"
+  - https://applicationmarket.crestron.com/runco-cx-46hd-north-america/
+  - https://applicationmarket.crestron.com/content/Help/Runco/runco_cx-46hd_v1_0_help.pdf
 retrieved_at: 2026-04-29T21:59:40.595Z
 last_checked_at: 2026-04-30T09:48:23.226Z
 ```

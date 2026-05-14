@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:28.618Z
-generated_at: 2026-04-23T15:31:28.618Z
+last_checked_at: 2026-05-14T18:17:15.055Z
+generated_at: 2026-05-14T18:17:15.055Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:31:28.618Z
-  matched_actions: 106
-  action_count: 106
+  checked_at: 2026-05-14T18:17:15.055Z
+  matched_actions: 91
+  action_count: 91
   confidence: high
   summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved."
 derived_from:
@@ -1201,17 +1204,20 @@ Zoom position lookup tables for 12x and 20x optical zoom ratios are provided in 
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:28.618Z
+last_checked_at: 2026-05-14T18:17:15.055Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:31:28.618Z
-matched_actions: 106
-action_count: 106
+checked_at: 2026-05-14T18:17:15.055Z
+matched_actions: 91
+action_count: 91
 confidence: high
 summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved."
 ```

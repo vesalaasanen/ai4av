@@ -19,17 +19,22 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-04T05:45:44.147Z
-generated_at: 2026-05-04T05:45:44.147Z
+last_checked_at: 2026-05-14T18:17:15.509Z
+generated_at: 2026-05-14T18:17:15.509Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:45:44.147Z
+  checked_at: 2026-05-14T18:17:15.509Z
   matched_actions: 195
-  action_count: 195
+  action_count: 239
   confidence: high
   summary: "All 195 spec actions matched source commands; transport parameters verified."
 derived_from:
@@ -2027,17 +2032,22 @@ Default IP address: 192.168.0.100. TCP port: 7000.
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-04T05:45:44.147Z
+last_checked_at: 2026-05-14T18:17:15.509Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:45:44.147Z
+checked_at: 2026-05-14T18:17:15.509Z
 matched_actions: 195
-action_count: 195
+action_count: 239
 confidence: high
 summary: "All 195 spec actions matched source commands; transport parameters verified."
 ```

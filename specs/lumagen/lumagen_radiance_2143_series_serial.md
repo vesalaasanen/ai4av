@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - lumagen.com
+source_urls:
+  - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
 retrieved_at: 2026-05-04T18:03:24.592Z
-last_checked_at: 2026-04-23T08:06:15.635Z
-generated_at: 2026-04-23T08:06:15.635Z
+last_checked_at: 2026-05-14T18:17:17.709Z
+generated_at: 2026-05-14T18:17:17.709Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:06:15.635Z
+  checked_at: 2026-05-14T18:17:17.709Z
   matched_actions: 167
-  action_count: 167
+  action_count: 178
   confidence: high
   summary: "All 167 spec actions matched literally in source; transport fully verified; comprehensive coverage of Radiance 2143 control protocol."
 derived_from:
@@ -1875,17 +1877,19 @@ Power On/Off Message: RS-232 power message can control another device. Configure
 ```yaml
 source_domains:
   - lumagen.com
+source_urls:
+  - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
 retrieved_at: 2026-05-04T18:03:24.592Z
-last_checked_at: 2026-04-23T08:06:15.635Z
+last_checked_at: 2026-05-14T18:17:17.709Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:06:15.635Z
+checked_at: 2026-05-14T18:17:17.709Z
 matched_actions: 167
-action_count: 167
+action_count: 178
 confidence: high
 summary: "All 167 spec actions matched literally in source; transport fully verified; comprehensive coverage of Radiance 2143 control protocol."
 ```

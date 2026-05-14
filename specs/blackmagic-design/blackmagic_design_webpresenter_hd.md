@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - https://documents.blackmagicdesign.com/DeveloperManuals/WebPresenterEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:49.512Z
 last_checked_at: 2026-04-23T15:23:10.482Z
 generated_at: 2026-04-23T15:23:10.482Z
@@ -490,6 +492,8 @@ The Shutdown block (reboot/factory reset) is write-only and is never sent unsoli
 ```yaml
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - https://documents.blackmagicdesign.com/DeveloperManuals/WebPresenterEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:49.512Z
 last_checked_at: 2026-04-23T15:23:10.482Z
 ```

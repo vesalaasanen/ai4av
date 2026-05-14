@@ -23,6 +23,8 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-29T13:02:30.787Z
 last_checked_at: 2026-05-03T16:17:34.638Z
 generated_at: 2026-05-03T16:17:34.638Z
@@ -2200,6 +2202,8 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-29T13:02:30.787Z
 last_checked_at: 2026-05-03T16:17:34.638Z
 ```

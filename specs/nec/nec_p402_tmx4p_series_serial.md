@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:15:21.605Z
-generated_at: 2026-04-26T21:15:21.605Z
+last_checked_at: 2026-05-14T18:17:18.870Z
+generated_at: 2026-05-14T18:17:18.870Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:15:21.605Z
-  matched_actions: 61
-  action_count: 61
+  checked_at: 2026-05-14T18:17:18.870Z
+  matched_actions: 53
+  action_count: 53
   confidence: high
   summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation."
 derived_from:
@@ -645,17 +647,19 @@ Key codes for REMOTE KEY CODE: POWER ON=0200h, POWER OFF=0300h, MENU=0600h, UP=0
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:15:21.605Z
+last_checked_at: 2026-05-14T18:17:18.870Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:15:21.605Z
-matched_actions: 61
-action_count: 61
+checked_at: 2026-05-14T18:17:18.870Z
+matched_actions: 53
+action_count: 53
 confidence: high
 summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation."
 ```

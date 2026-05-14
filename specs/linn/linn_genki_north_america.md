@@ -18,17 +18,22 @@ compatible_with:
 source_domains:
   - docs.linn.co.uk
   - applicationmarket.crestron.com
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
+  - https://docs.linn.co.uk/wiki/index.php/RS232
+  - https://applicationmarket.crestron.com/linn-genki-north-america/
+  - https://docs.linn.co.uk/wiki
 retrieved_at: 2026-04-26T16:30:03.751Z
-last_checked_at: 2026-04-27T09:04:49.758Z
-generated_at: 2026-04-27T09:04:49.758Z
+last_checked_at: 2026-05-14T18:17:17.655Z
+generated_at: 2026-05-14T18:17:17.655Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:04:49.758Z
+  checked_at: 2026-05-14T18:17:17.655Z
   matched_actions: 65
-  action_count: 65
+  action_count: 68
   confidence: high
   summary: "All 65 spec actions match source command variants; transport verified."
 derived_from:
@@ -708,17 +713,22 @@ Command syntax uses ASCII delimiters: `#source_id#`, `@destination_id@`, `&group
 source_domains:
   - docs.linn.co.uk
   - applicationmarket.crestron.com
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
+  - https://docs.linn.co.uk/wiki/index.php/RS232
+  - https://applicationmarket.crestron.com/linn-genki-north-america/
+  - https://docs.linn.co.uk/wiki
 retrieved_at: 2026-04-26T16:30:03.751Z
-last_checked_at: 2026-04-27T09:04:49.758Z
+last_checked_at: 2026-05-14T18:17:17.655Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:04:49.758Z
+checked_at: 2026-05-14T18:17:17.655Z
 matched_actions: 65
-action_count: 65
+action_count: 68
 confidence: high
 summary: "All 65 spec actions match source command variants; transport verified."
 ```

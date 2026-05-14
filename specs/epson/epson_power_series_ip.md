@@ -49,17 +49,19 @@ compatible_with:
   required_options: []
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-05-04T05:49:55.090Z
-generated_at: 2026-05-04T05:49:55.090Z
+last_checked_at: 2026-05-14T18:17:15.771Z
+generated_at: 2026-05-14T18:17:15.771Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:49:55.090Z
-  matched_actions: 13
-  action_count: 13
+  checked_at: 2026-05-14T18:17:15.771Z
+  matched_actions: 9
+  action_count: 9
   confidence: high
   summary: "All 13 spec actions matched with correct wire literals and verified transport."
 derived_from:
@@ -250,17 +252,19 @@ notes: >
 ```yaml
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-05-04T05:49:55.090Z
+last_checked_at: 2026-05-14T18:17:15.771Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:49:55.090Z
-matched_actions: 13
-action_count: 13
+checked_at: 2026-05-14T18:17:15.771Z
+matched_actions: 9
+action_count: 9
 confidence: high
 summary: "All 13 spec actions matched with correct wire literals and verified transport."
 ```

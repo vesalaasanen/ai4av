@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - support.adder.com
+source_urls:
+  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
 retrieved_at: 2026-04-30T04:40:32.650Z
-last_checked_at: 2026-04-26T10:53:25.550Z
-generated_at: 2026-04-26T10:53:25.550Z
+last_checked_at: 2026-05-14T18:17:13.857Z
+generated_at: 2026-05-14T18:17:13.857Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T10:53:25.550Z
-  matched_actions: 30
-  action_count: 30
+  checked_at: 2026-05-14T18:17:13.857Z
+  matched_actions: 26
+  action_count: 26
   confidence: high
   summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source."
 derived_from:
@@ -573,17 +575,19 @@ interlocks: []
 ```yaml
 source_domains:
   - support.adder.com
+source_urls:
+  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
 retrieved_at: 2026-04-30T04:40:32.650Z
-last_checked_at: 2026-04-26T10:53:25.550Z
+last_checked_at: 2026-05-14T18:17:13.857Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T10:53:25.550Z
-matched_actions: 30
-action_count: 30
+checked_at: 2026-05-14T18:17:13.857Z
+matched_actions: 26
+action_count: 26
 confidence: high
 summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source."
 ```

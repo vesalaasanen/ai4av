@@ -26,6 +26,8 @@ compatible_with:
   required_options: []
 source_domains:
   - coolautomation.com
+source_urls:
+  - https://coolautomation.com/Lib/doc/prm/CoolAutomation-PRM-CoolMaster-v4.06.pdf
 retrieved_at: 2026-05-04T18:05:10.825Z
 last_checked_at: 2026-04-30T09:39:46.462Z
 generated_at: 2026-04-30T09:39:46.462Z
@@ -357,6 +359,8 @@ UID format: 3 characters — System Number (0-9, A-F for 10-15, or Z for central
 ```yaml
 source_domains:
   - coolautomation.com
+source_urls:
+  - https://coolautomation.com/Lib/doc/prm/CoolAutomation-PRM-CoolMaster-v4.06.pdf
 retrieved_at: 2026-05-04T18:05:10.825Z
 last_checked_at: 2026-04-30T09:39:46.462Z
 ```

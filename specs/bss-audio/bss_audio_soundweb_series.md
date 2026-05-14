@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - bssaudio.com
+source_urls:
+  - https://www.bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:32:58.671Z
 last_checked_at: 2026-04-23T15:27:31.348Z
 generated_at: 2026-04-23T15:27:31.348Z
@@ -317,6 +319,8 @@ interlocks: []
 ```yaml
 source_domains:
   - bssaudio.com
+source_urls:
+  - https://www.bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:32:58.671Z
 last_checked_at: 2026-04-23T15:27:31.348Z
 ```

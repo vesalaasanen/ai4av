@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://lectrosonics.com/wp-content/uploads/filr/7409/am1612man.pdf
 retrieved_at: 2026-04-30T04:33:13.083Z
-last_checked_at: 2026-04-25T20:54:50.455Z
-generated_at: 2026-04-25T20:54:50.455Z
+last_checked_at: 2026-05-14T18:17:17.364Z
+generated_at: 2026-05-14T18:17:17.364Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:54:50.455Z
-  matched_actions: 17
-  action_count: 17
+  checked_at: 2026-05-14T18:17:17.364Z
+  matched_actions: 8
+  action_count: 8
   confidence: high
   summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source."
 derived_from:
@@ -372,17 +374,19 @@ interlocks: []
 ```yaml
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://lectrosonics.com/wp-content/uploads/filr/7409/am1612man.pdf
 retrieved_at: 2026-04-30T04:33:13.083Z
-last_checked_at: 2026-04-25T20:54:50.455Z
+last_checked_at: 2026-05-14T18:17:17.364Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:54:50.455Z
-matched_actions: 17
-action_count: 17
+checked_at: 2026-05-14T18:17:17.364Z
+matched_actions: 8
+action_count: 8
 confidence: high
 summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source."
 ```

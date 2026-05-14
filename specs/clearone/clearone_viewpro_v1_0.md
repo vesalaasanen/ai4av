@@ -20,6 +20,11 @@ source_domains:
   - keydigital.org
   - applicationmarket.crestron.com
   - manualslib.com
+source_urls:
+  - https://kb.clearone.com
+  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
+  - "https://applicationmarket.crestron.com/content/Help/ClearOne/ClearOne%20Collaborate%20v1.1%20Help.pdf"
+  - https://www.manualslib.com/manual/1403893/Clearone-Converge-Pro-880.html
 retrieved_at: 2026-05-12T09:53:43.839Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 generated_at: 2026-04-26T11:42:14.624Z
@@ -614,6 +619,11 @@ source_domains:
   - keydigital.org
   - applicationmarket.crestron.com
   - manualslib.com
+source_urls:
+  - https://kb.clearone.com
+  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
+  - "https://applicationmarket.crestron.com/content/Help/ClearOne/ClearOne%20Collaborate%20v1.1%20Help.pdf"
+  - https://www.manualslib.com/manual/1403893/Clearone-Converge-Pro-880.html
 retrieved_at: 2026-05-12T09:53:43.839Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 ```

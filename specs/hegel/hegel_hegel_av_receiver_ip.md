@@ -21,6 +21,8 @@ compatible_with:
   required_options: []
 source_domains:
   - support.hegel.com
+source_urls:
+  - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
 retrieved_at: 2026-05-01T02:09:21.845Z
 last_checked_at: 2026-04-23T06:41:18.710Z
 generated_at: 2026-04-23T06:41:18.710Z
@@ -217,6 +219,8 @@ Input numbering varies by model (1–11 per Hegel Input Table). Volume range is 
 ```yaml
 source_domains:
   - support.hegel.com
+source_urls:
+  - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
 retrieved_at: 2026-05-01T02:09:21.845Z
 last_checked_at: 2026-04-23T06:41:18.710Z
 ```

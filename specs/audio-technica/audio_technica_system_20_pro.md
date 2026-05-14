@@ -24,17 +24,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-30T04:40:36.128Z
-last_checked_at: 2026-04-23T15:15:10.686Z
-generated_at: 2026-04-23T15:15:10.686Z
+last_checked_at: 2026-05-14T18:17:14.185Z
+generated_at: 2026-05-14T18:17:14.185Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:15:10.686Z
+  checked_at: 2026-05-14T18:17:14.185Z
   matched_actions: 152
-  action_count: 152
+  action_count: 165
   confidence: high
   summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set."
 derived_from:
@@ -1928,17 +1930,19 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-30T04:40:36.128Z
-last_checked_at: 2026-04-23T15:15:10.686Z
+last_checked_at: 2026-05-14T18:17:14.185Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:15:10.686Z
+checked_at: 2026-05-14T18:17:14.185Z
 matched_actions: 152
-action_count: 152
+action_count: 165
 confidence: high
 summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set."
 ```

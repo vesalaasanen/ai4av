@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - video-storm.com
+source_urls:
+  - http://www.video-storm.com/manuals/IrUSB_protocol.pdf
 retrieved_at: 2026-05-04T18:03:36.367Z
 last_checked_at: 2026-04-30T09:51:57.196Z
 generated_at: 2026-04-30T09:51:57.196Z
@@ -401,6 +403,8 @@ LED visibility can interfere with motion detection at high sensitivity — recom
 ```yaml
 source_domains:
   - video-storm.com
+source_urls:
+  - http://www.video-storm.com/manuals/IrUSB_protocol.pdf
 retrieved_at: 2026-05-04T18:03:36.367Z
 last_checked_at: 2026-04-30T09:51:57.196Z
 ```

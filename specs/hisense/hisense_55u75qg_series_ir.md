@@ -18,9 +18,12 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-03T19:58:52.517Z
-generated_at: 2026-05-03T19:58:52.517Z
+last_checked_at: 2026-05-14T18:17:16.150Z
+generated_at: 2026-05-14T18:17:16.150Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,9 +33,9 @@ known_gaps:
   - PSHF
 verification:
   verdict: verified
-  checked_at: 2026-05-03T19:58:52.517Z
-  matched_actions: 74
-  action_count: 74
+  checked_at: 2026-05-14T18:17:16.150Z
+  matched_actions: 43
+  action_count: 43
   confidence: high
   summary: "All 74 spec actions match source commands verbatim; transport matches; source has 4 extra command families (SPKM, B2BM, USBM, PSHF) within the 5-command threshold."
 derived_from:
@@ -955,17 +958,20 @@ RS-232 port must be enabled in the TV Custom Install menu (Quick Settings > ente
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-03T19:58:52.517Z
+last_checked_at: 2026-05-14T18:17:16.150Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T19:58:52.517Z
-matched_actions: 74
-action_count: 74
+checked_at: 2026-05-14T18:17:16.150Z
+matched_actions: 43
+action_count: 43
 confidence: high
 summary: "All 74 spec actions match source commands verbatim; transport matches; source has 4 extra command families (SPKM, B2BM, USBM, PSHF) within the 5-command threshold."
 ```

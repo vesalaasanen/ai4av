@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/olwcpmt4/ra4980-ra5580-rs232-manual-20150609-watermarked.pdf
+  - https://www.planar.com/media/uuoptbfm/ra4980-ra5580-user-manual-20150609-watermarked-rev.pdf
 retrieved_at: 2026-05-07T14:30:52.298Z
-last_checked_at: 2026-05-13T08:46:31.043Z
-generated_at: 2026-05-13T08:46:31.043Z
+last_checked_at: 2026-05-14T18:17:19.797Z
+generated_at: 2026-05-14T18:17:19.797Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-13T08:46:31.043Z
-  matched_actions: 147
-  action_count: 148
+  checked_at: 2026-05-14T18:17:19.797Z
+  matched_actions: 66
+  action_count: 66
   confidence: high
   summary: "All 147 spec actions matched to source command codes; transport parameters verified; no fabricated commands detected."
 derived_from:
@@ -1764,17 +1767,20 @@ Tiling frame compensation values 0-800 are sent as 2-byte big-endian. Scheduling
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/olwcpmt4/ra4980-ra5580-rs232-manual-20150609-watermarked.pdf
+  - https://www.planar.com/media/uuoptbfm/ra4980-ra5580-user-manual-20150609-watermarked-rev.pdf
 retrieved_at: 2026-05-07T14:30:52.298Z
-last_checked_at: 2026-05-13T08:46:31.043Z
+last_checked_at: 2026-05-14T18:17:19.797Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-13T08:46:31.043Z
-matched_actions: 147
-action_count: 148
+checked_at: 2026-05-14T18:17:19.797Z
+matched_actions: 66
+action_count: 66
 confidence: high
 summary: "All 147 spec actions matched to source command codes; transport parameters verified; no fabricated commands detected."
 ```

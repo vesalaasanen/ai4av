@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - socialstream.ninja
+source_urls:
+  - https://socialstream.ninja/api
 retrieved_at: 2026-04-30T04:45:54.854Z
 last_checked_at: 2026-04-23T08:27:21.223Z
 generated_at: 2026-04-23T08:27:21.223Z
@@ -484,6 +486,8 @@ WebSocket endpoint: wss://io.socialstream.ninja. HTTP base: https://io.socialstr
 ```yaml
 source_domains:
   - socialstream.ninja
+source_urls:
+  - https://socialstream.ninja/api
 retrieved_at: 2026-04-30T04:45:54.854Z
 last_checked_at: 2026-04-23T08:27:21.223Z
 ```

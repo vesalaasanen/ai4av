@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - gscs-b2c.lge.com
   - lg.com
+source_urls:
+  - "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000331602.pdf"
+  - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
 retrieved_at: 2026-05-04T23:49:31.345Z
 last_checked_at: 2026-05-05T05:41:27.583Z
 generated_at: 2026-05-05T05:41:27.583Z
@@ -387,6 +390,9 @@ Command format: `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where Command1 is
 source_domains:
   - gscs-b2c.lge.com
   - lg.com
+source_urls:
+  - "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000331602.pdf"
+  - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
 retrieved_at: 2026-05-04T23:49:31.345Z
 last_checked_at: 2026-05-05T05:41:27.583Z
 ```

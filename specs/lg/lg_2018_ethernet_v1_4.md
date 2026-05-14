@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-04-30T04:31:17.466Z
-last_checked_at: 2026-04-23T08:05:22.862Z
-generated_at: 2026-04-23T08:05:22.862Z
+last_checked_at: 2026-05-14T18:17:17.400Z
+generated_at: 2026-05-14T18:17:17.400Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:05:22.862Z
-  matched_actions: 33
-  action_count: 33
+  checked_at: 2026-05-14T18:17:17.400Z
+  matched_actions: 27
+  action_count: 27
   confidence: high
   summary: "All 27 control actions and 6 status queries match source commands verbatim with correct parameters; transport layer (port, encryption, auth) verified against protocol spec."
 derived_from:
@@ -408,17 +410,19 @@ SDDP (Control4) and SSDP (UPnP) supported for device discovery.
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-04-30T04:31:17.466Z
-last_checked_at: 2026-04-23T08:05:22.862Z
+last_checked_at: 2026-05-14T18:17:17.400Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:05:22.862Z
-matched_actions: 33
-action_count: 33
+checked_at: 2026-05-14T18:17:17.400Z
+matched_actions: 27
+action_count: 27
 confidence: high
 summary: "All 27 control actions and 6 status queries match source commands verbatim with correct parameters; transport layer (port, encryption, auth) verified against protocol spec."
 ```

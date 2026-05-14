@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
 last_checked_at: 2026-05-04T05:40:40.906Z
 generated_at: 2026-05-04T05:40:40.906Z
@@ -260,6 +262,8 @@ interlocks: []
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
 last_checked_at: 2026-05-04T05:40:40.906Z
 ```

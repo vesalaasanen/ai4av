@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-23T08:14:10.937Z
 generated_at: 2026-04-23T08:14:10.937Z
@@ -622,6 +624,8 @@ Baud rate is configurable (115200/38400/19200/9600/4800 bps) but defaults are no
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-23T08:14:10.937Z
 ```

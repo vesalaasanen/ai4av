@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - imaginecommunications.com
+source_urls:
+  - https://imaginecommunications.com/content/uploads/2024/11/VDCP_Protocol_Guide_Revision_20_20230531.pdf
 retrieved_at: 2026-04-30T04:46:15.174Z
 last_checked_at: 2026-04-25T21:06:26.422Z
 generated_at: 2026-04-25T21:06:26.422Z
@@ -855,6 +857,8 @@ VDCP is a master-slave protocol where the controller sends commands and the vide
 ```yaml
 source_domains:
   - imaginecommunications.com
+source_urls:
+  - https://imaginecommunications.com/content/uploads/2024/11/VDCP_Protocol_Guide_Revision_20_20230531.pdf
 retrieved_at: 2026-04-30T04:46:15.174Z
 last_checked_at: 2026-04-25T21:06:26.422Z
 ```

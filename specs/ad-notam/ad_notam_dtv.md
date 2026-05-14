@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.shopify.com
+source_urls:
+  - "https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf?v=1741266010"
 retrieved_at: 2026-04-29T21:04:16.985Z
-last_checked_at: 2026-04-27T08:57:41.920Z
-generated_at: 2026-04-27T08:57:41.920Z
+last_checked_at: 2026-05-14T18:17:13.839Z
+generated_at: 2026-05-14T18:17:13.839Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T08:57:41.920Z
+  checked_at: 2026-05-14T18:17:13.839Z
   matched_actions: 111
-  action_count: 111
+  action_count: 139
   confidence: high
   summary: "All 111 spec actions verified against source; transport parameters fully supported; command catalogue essentially complete."
 derived_from:
@@ -784,17 +786,19 @@ Command format: 9 bytes total — `&` header + 3-byte ID + `:` or `?` separator 
 ```yaml
 source_domains:
   - cdn.shopify.com
+source_urls:
+  - "https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf?v=1741266010"
 retrieved_at: 2026-04-29T21:04:16.985Z
-last_checked_at: 2026-04-27T08:57:41.920Z
+last_checked_at: 2026-05-14T18:17:13.839Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T08:57:41.920Z
+checked_at: 2026-05-14T18:17:13.839Z
 matched_actions: 111
-action_count: 111
+action_count: 139
 confidence: high
 summary: "All 111 spec actions verified against source; transport parameters fully supported; command catalogue essentially complete."
 ```

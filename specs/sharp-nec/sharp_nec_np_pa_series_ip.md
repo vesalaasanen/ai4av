@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
 last_checked_at: 2026-04-25T21:56:05.731Z
 generated_at: 2026-04-25T21:56:05.731Z
@@ -660,6 +662,8 @@ interlocks: []
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
 last_checked_at: 2026-04-25T21:56:05.731Z
 ```

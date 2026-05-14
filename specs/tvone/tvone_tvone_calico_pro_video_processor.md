@@ -18,6 +18,10 @@ compatible_with:
   required_options: []
 source_domains:
   - api.tvone.com
+source_urls:
+  - "https://api.tvone.com/products/c7-series/c7-pro-2200/tvONE CALICO PRO C7-PRO-2200 Commands_current.pdf"
+  - https://api.tvone.com/products/c7-series/c7-pro-2200/WebsocketAPI_CALICO_C7-PRO_current.pdf
+  - https://api.tvone.com/
 retrieved_at: 2026-04-30T19:35:53.603Z
 last_checked_at: 2026-05-01T00:09:24.904Z
 generated_at: 2026-05-01T00:09:24.904Z
@@ -1132,6 +1136,10 @@ interlocks:
 ```yaml
 source_domains:
   - api.tvone.com
+source_urls:
+  - "https://api.tvone.com/products/c7-series/c7-pro-2200/tvONE CALICO PRO C7-PRO-2200 Commands_current.pdf"
+  - https://api.tvone.com/products/c7-series/c7-pro-2200/WebsocketAPI_CALICO_C7-PRO_current.pdf
+  - https://api.tvone.com/
 retrieved_at: 2026-04-30T19:35:53.603Z
 last_checked_at: 2026-05-01T00:09:24.904Z
 ```

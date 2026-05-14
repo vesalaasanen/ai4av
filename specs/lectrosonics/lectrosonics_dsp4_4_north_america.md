@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-04-30T09:45:12.452Z
-generated_at: 2026-04-30T09:45:12.452Z
+last_checked_at: 2026-05-14T18:17:17.346Z
+generated_at: 2026-05-14T18:17:17.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:45:12.452Z
-  matched_actions: 18
-  action_count: 18
+  checked_at: 2026-05-14T18:17:17.346Z
+  matched_actions: 8
+  action_count: 8
   confidence: high
   summary: "All 18 spec actions matched source commands; transport parameters verified verbatim."
 derived_from:
@@ -252,17 +254,19 @@ Programmable I/O: pins 1-8 on the 15-pin D-Sub can be configured as inputs or ou
 ```yaml
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-04-30T09:45:12.452Z
+last_checked_at: 2026-05-14T18:17:17.346Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:45:12.452Z
-matched_actions: 18
-action_count: 18
+checked_at: 2026-05-14T18:17:17.346Z
+matched_actions: 8
+action_count: 8
 confidence: high
 summary: "All 18 spec actions matched source commands; transport parameters verified verbatim."
 ```

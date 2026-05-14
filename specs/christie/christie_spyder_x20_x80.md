@@ -18,17 +18,21 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-102024-02-christie-lit-man-instal-x80.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/christie-spyder-x80-brochure.pdf
 retrieved_at: 2026-04-29T23:11:34.856Z
-last_checked_at: 2026-04-30T09:39:41.263Z
-generated_at: 2026-04-30T09:39:41.263Z
+last_checked_at: 2026-05-14T18:17:14.990Z
+generated_at: 2026-05-14T18:17:14.990Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:39:41.263Z
+  checked_at: 2026-05-14T18:17:14.990Z
   matched_actions: 94
-  action_count: 94
+  action_count: 97
   confidence: high
   summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified."
 derived_from:
@@ -1609,17 +1613,21 @@ UDP packets require 10-byte header: `spyer` followed by four 0x00 bytes. Serial 
 ```yaml
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-102024-02-christie-lit-man-instal-x80.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/christie-spyder-x80-brochure.pdf
 retrieved_at: 2026-04-29T23:11:34.856Z
-last_checked_at: 2026-04-30T09:39:41.263Z
+last_checked_at: 2026-05-14T18:17:14.990Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:39:41.263Z
+checked_at: 2026-05-14T18:17:14.990Z
 matched_actions: 94
-action_count: 94
+action_count: 97
 confidence: high
 summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified."
 ```

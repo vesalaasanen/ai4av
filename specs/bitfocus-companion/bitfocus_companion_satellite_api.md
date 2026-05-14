@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - companion.free
+source_urls:
+  - https://companion.free/for-developers/Satellite-API
 retrieved_at: 2026-04-30T04:41:01.901Z
-last_checked_at: 2026-04-23T15:22:03.988Z
-generated_at: 2026-04-23T15:22:03.988Z
+last_checked_at: 2026-05-14T18:17:14.658Z
+generated_at: 2026-05-14T18:17:14.658Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:22:03.988Z
-  matched_actions: 25
-  action_count: 25
+  checked_at: 2026-05-14T18:17:14.658Z
+  matched_actions: 14
+  action_count: 14
   confidence: high
   summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete."
 derived_from:
@@ -364,17 +366,19 @@ interlocks: []
 ```yaml
 source_domains:
   - companion.free
+source_urls:
+  - https://companion.free/for-developers/Satellite-API
 retrieved_at: 2026-04-30T04:41:01.901Z
-last_checked_at: 2026-04-23T15:22:03.988Z
+last_checked_at: 2026-05-14T18:17:14.658Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:22:03.988Z
-matched_actions: 25
-action_count: 25
+checked_at: 2026-05-14T18:17:14.658Z
+matched_actions: 14
+action_count: 14
 confidence: high
 summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - turtleav.com
+source_urls:
+  - https://turtleav.com/wp-content/uploads/2025/04/Chazy-Control-API-.pdf
 retrieved_at: 2026-05-04T18:03:00.511Z
-last_checked_at: 2026-04-27T10:34:49.925Z
-generated_at: 2026-04-27T10:34:49.925Z
+last_checked_at: 2026-05-14T18:17:21.246Z
+generated_at: 2026-05-14T18:17:21.246Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:34:49.925Z
-  matched_actions: 220
-  action_count: 220
+  checked_at: 2026-05-14T18:17:21.246Z
+  matched_actions: 155
+  action_count: 155
   confidence: high
   summary: "All 220 spec actions match source command semantics; transport parameters verified verbatim; semantic-id convention applied consistently across the catalogue."
 derived_from:
@@ -1643,17 +1645,19 @@ GEN1 vs GEN2 differences: SS reboot/reset/mainencattr/subencattr/workmode/networ
 ```yaml
 source_domains:
   - turtleav.com
+source_urls:
+  - https://turtleav.com/wp-content/uploads/2025/04/Chazy-Control-API-.pdf
 retrieved_at: 2026-05-04T18:03:00.511Z
-last_checked_at: 2026-04-27T10:34:49.925Z
+last_checked_at: 2026-05-14T18:17:21.246Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:34:49.925Z
-matched_actions: 220
-action_count: 220
+checked_at: 2026-05-14T18:17:21.246Z
+matched_actions: 155
+action_count: 155
 confidence: high
 summary: "All 220 spec actions match source command semantics; transport parameters verified verbatim; semantic-id convention applied consistently across the catalogue."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T20:32:23.523Z
-generated_at: 2026-04-26T20:32:23.523Z
+last_checked_at: 2026-05-14T18:17:19.088Z
+generated_at: 2026-05-14T18:17:19.088Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T20:32:23.523Z
-  matched_actions: 53
-  action_count: 53
+  checked_at: 2026-05-14T18:17:19.088Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim."
 derived_from:
@@ -618,17 +620,19 @@ Some models require specific standby modes to receive commands via serial or LAN
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T20:32:23.523Z
+last_checked_at: 2026-05-14T18:17:19.088Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T20:32:23.523Z
-matched_actions: 53
-action_count: 53
+checked_at: 2026-05-14T18:17:19.088Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim."
 ```

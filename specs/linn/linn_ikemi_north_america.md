@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/b/b6/Ikemi_rs232_commands.PDF
 retrieved_at: 2026-04-30T04:32:36.626Z
-last_checked_at: 2026-04-23T08:06:15.850Z
-generated_at: 2026-04-23T08:06:15.850Z
+last_checked_at: 2026-05-14T18:17:17.671Z
+generated_at: 2026-05-14T18:17:17.671Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:06:15.850Z
+  checked_at: 2026-05-14T18:17:17.671Z
   matched_actions: 53
-  action_count: 53
+  action_count: 57
   confidence: high
   summary: "All 53 spec actions matched verbatim in source; baud_rate 9600 and serial protocol confirmed; comprehensive command coverage verified."
 derived_from:
@@ -477,17 +479,19 @@ Device acts as RS-232 slave; host must send command before any response. Initial
 ```yaml
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/b/b6/Ikemi_rs232_commands.PDF
 retrieved_at: 2026-04-30T04:32:36.626Z
-last_checked_at: 2026-04-23T08:06:15.850Z
+last_checked_at: 2026-05-14T18:17:17.671Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:06:15.850Z
+checked_at: 2026-05-14T18:17:17.671Z
 matched_actions: 53
-action_count: 53
+action_count: 57
 confidence: high
 summary: "All 53 spec actions matched verbatim in source; baud_rate 9600 and serial protocol confirmed; comprehensive command coverage verified."
 ```

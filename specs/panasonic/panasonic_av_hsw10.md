@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - eww.pass.panasonic.co.jp
+source_urls:
+  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-04-25T21:43:50.480Z
-generated_at: 2026-04-25T21:43:50.480Z
+last_checked_at: 2026-05-14T18:17:19.607Z
+generated_at: 2026-05-14T18:17:19.607Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:43:50.480Z
-  matched_actions: 21
-  action_count: 21
+  checked_at: 2026-05-14T18:17:19.607Z
+  matched_actions: 10
+  action_count: 10
   confidence: low
   summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage"
 derived_from:
@@ -560,17 +562,19 @@ interlocks: []
 ```yaml
 source_domains:
   - eww.pass.panasonic.co.jp
+source_urls:
+  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-04-25T21:43:50.480Z
+last_checked_at: 2026-05-14T18:17:19.607Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:43:50.480Z
-matched_actions: 21
-action_count: 21
+checked_at: 2026-05-14T18:17:19.607Z
+matched_actions: 10
+action_count: 10
 confidence: low
 summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage"
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - k.kramerav.com
+source_urls:
+  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
 retrieved_at: 2026-04-30T04:24:16.769Z
 last_checked_at: 2026-04-23T08:05:22.574Z
 generated_at: 2026-04-23T08:05:22.574Z
@@ -711,6 +713,8 @@ When bit 4 of byte 4 is set, "video" commands have universal meaning — all uni
 ```yaml
 source_domains:
   - k.kramerav.com
+source_urls:
+  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
 retrieved_at: 2026-04-30T04:24:16.769Z
 last_checked_at: 2026-04-23T08:05:22.574Z
 ```

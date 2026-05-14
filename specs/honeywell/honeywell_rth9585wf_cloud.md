@@ -18,6 +18,10 @@ compatible_with:
 source_domains:
   - developer.honeywellhome.com
   - github.com
+source_urls:
+  - https://developer.honeywellhome.com/api-methods
+  - "https://developer.honeywellhome.com/api-methods?field_smart_method_tags_tid=39"
+  - https://github.com/roy-bentley/enviracom/blob/main/docs/PROTOCOL.md
 retrieved_at: 2026-05-01T02:09:42.940Z
 last_checked_at: 2026-04-23T07:01:27.626Z
 generated_at: 2026-04-23T07:01:27.626Z
@@ -251,6 +255,10 @@ Cloud-only device — requires internet connectivity and Honeywell account. All 
 source_domains:
   - developer.honeywellhome.com
   - github.com
+source_urls:
+  - https://developer.honeywellhome.com/api-methods
+  - "https://developer.honeywellhome.com/api-methods?field_smart_method_tags_tid=39"
+  - https://github.com/roy-bentley/enviracom/blob/main/docs/PROTOCOL.md
 retrieved_at: 2026-05-01T02:09:42.940Z
 last_checked_at: 2026-04-23T07:01:27.626Z
 ```

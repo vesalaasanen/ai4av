@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+source_urls:
+  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-04-22T19:25:36.829Z
-generated_at: 2026-04-22T19:25:36.829Z
+last_checked_at: 2026-05-14T18:17:14.106Z
+generated_at: 2026-05-14T18:17:14.106Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -28,9 +30,9 @@ known_gaps:
   - upgrade
 verification:
   verdict: verified
-  checked_at: 2026-04-22T19:25:36.829Z
+  checked_at: 2026-05-14T18:17:14.106Z
   matched_actions: 16
-  action_count: 16
+  action_count: 30
   confidence: high
   summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented."
 derived_from:
@@ -664,17 +666,19 @@ interlocks: []
 ```yaml
 source_domains:
   - atlona.com
+source_urls:
+  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-04-22T19:25:36.829Z
+last_checked_at: 2026-05-14T18:17:14.106Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T19:25:36.829Z
+checked_at: 2026-05-14T18:17:14.106Z
 matched_actions: 16
-action_count: 16
+action_count: 30
 confidence: high
 summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented."
 ```

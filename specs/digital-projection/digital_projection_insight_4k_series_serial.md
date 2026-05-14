@@ -18,17 +18,22 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-01T00:09:21.998Z
-generated_at: 2026-05-01T00:09:21.998Z
+last_checked_at: 2026-05-14T18:17:15.561Z
+generated_at: 2026-05-14T18:17:15.561Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T00:09:21.998Z
+  checked_at: 2026-05-14T18:17:15.561Z
   matched_actions: 79
-  action_count: 79
+  action_count: 108
   confidence: high
   summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout."
 derived_from:
@@ -968,17 +973,22 @@ Gamma values 10-30 correspond to gamma 1.0-3.0.
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-01T00:09:21.998Z
+last_checked_at: 2026-05-14T18:17:15.561Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T00:09:21.998Z
+checked_at: 2026-05-14T18:17:15.561Z
 matched_actions: 79
-action_count: 79
+action_count: 108
 confidence: high
 summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout."
 ```

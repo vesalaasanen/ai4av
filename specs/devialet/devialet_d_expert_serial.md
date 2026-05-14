@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - devialet.com
+source_urls:
+  - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-05-01T01:56:41.364Z
-last_checked_at: 2026-04-25T20:38:06.543Z
-generated_at: 2026-04-25T20:38:06.543Z
+last_checked_at: 2026-05-14T18:17:15.467Z
+generated_at: 2026-05-14T18:17:15.467Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:38:06.543Z
-  matched_actions: 36
-  action_count: 36
+  checked_at: 2026-05-14T18:17:15.467Z
+  matched_actions: 25
+  action_count: 25
   confidence: high
   summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands."
 derived_from:
@@ -356,17 +358,19 @@ interlocks: []
 ```yaml
 source_domains:
   - devialet.com
+source_urls:
+  - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-05-01T01:56:41.364Z
-last_checked_at: 2026-04-25T20:38:06.543Z
+last_checked_at: 2026-05-14T18:17:15.467Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:38:06.543Z
-matched_actions: 36
-action_count: 36
+checked_at: 2026-05-14T18:17:15.467Z
+matched_actions: 25
+action_count: 25
 confidence: high
 summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands."
 ```

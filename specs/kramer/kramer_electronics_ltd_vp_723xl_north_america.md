@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - k.kramerav.com
+source_urls:
+  - https://k.kramerav.com/downloads/manuals/VP-719xl.pdf
+  - https://k.kramerav.com/downloads/protocols/protocol_3000_3.0_master_user.pdf
+  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
 retrieved_at: 2026-05-02T08:13:25.835Z
-last_checked_at: 2026-05-10T12:16:33.671Z
-generated_at: 2026-05-10T12:16:33.671Z
+last_checked_at: 2026-05-14T18:17:17.329Z
+generated_at: 2026-05-14T18:17:17.329Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-10T12:16:33.671Z
+  checked_at: 2026-05-14T18:17:17.329Z
   matched_actions: 119
-  action_count: 119
+  action_count: 192
   confidence: high
   summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings."
 derived_from:
@@ -2034,17 +2038,21 @@ The source documents two distinct RS-232 protocols. The **Old protocol** (all fi
 ```yaml
 source_domains:
   - k.kramerav.com
+source_urls:
+  - https://k.kramerav.com/downloads/manuals/VP-719xl.pdf
+  - https://k.kramerav.com/downloads/protocols/protocol_3000_3.0_master_user.pdf
+  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
 retrieved_at: 2026-05-02T08:13:25.835Z
-last_checked_at: 2026-05-10T12:16:33.671Z
+last_checked_at: 2026-05-14T18:17:17.329Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-10T12:16:33.671Z
+checked_at: 2026-05-14T18:17:17.329Z
 matched_actions: 119
-action_count: 119
+action_count: 192
 confidence: high
 summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings."
 ```

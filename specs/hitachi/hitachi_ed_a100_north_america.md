@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - support.maxellproav.com
+source_urls:
+  - https://support.maxellproav.com/wp-content/uploads/Support/OG/Hitachi_ED-A100_UM_Technical.pdf
 retrieved_at: 2026-04-30T04:24:57.970Z
-last_checked_at: 2026-04-23T07:01:27.705Z
-generated_at: 2026-04-23T07:01:27.705Z
+last_checked_at: 2026-05-14T18:17:16.762Z
+generated_at: 2026-05-14T18:17:16.762Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T07:01:27.705Z
+  checked_at: 2026-05-14T18:17:16.762Z
   matched_actions: 95
-  action_count: 95
+  action_count: 109
   confidence: high
   summary: "Every spec action matched to a literal command in the source protocol table; transport parameters verified; comprehensive coverage of all 95 actions in the ED-A100 command catalogue."
 derived_from:
@@ -1065,17 +1067,19 @@ Per-input volume controls (Computer1, Computer2, Component, S-Video, Video) each
 ```yaml
 source_domains:
   - support.maxellproav.com
+source_urls:
+  - https://support.maxellproav.com/wp-content/uploads/Support/OG/Hitachi_ED-A100_UM_Technical.pdf
 retrieved_at: 2026-04-30T04:24:57.970Z
-last_checked_at: 2026-04-23T07:01:27.705Z
+last_checked_at: 2026-05-14T18:17:16.762Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T07:01:27.705Z
+checked_at: 2026-05-14T18:17:16.762Z
 matched_actions: 95
-action_count: 95
+action_count: 109
 confidence: high
 summary: "Every spec action matched to a literal command in the source protocol table; transport parameters verified; comprehensive coverage of all 95 actions in the ED-A100 command catalogue."
 ```

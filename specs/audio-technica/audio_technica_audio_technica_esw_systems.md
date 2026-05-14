@@ -23,6 +23,8 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
 last_checked_at: 2026-05-03T16:28:17.924Z
 generated_at: 2026-05-03T16:28:17.924Z
@@ -1824,6 +1826,8 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
 last_checked_at: 2026-05-03T16:28:17.924Z
 ```

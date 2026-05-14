@@ -18,17 +18,21 @@ compatible_with:
   required_options: []
 source_domains:
   - pro.sony
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro.sony/s3/2022/09/03065933/VISCA_Command_List_v4.pdf
+  - https://pro.sony/ue_US/product-resources/knowledge-panel/command-list
 retrieved_at: 2026-05-05T02:55:26.796Z
-last_checked_at: 2026-05-05T05:41:55.614Z
-generated_at: 2026-05-05T05:41:55.614Z
+last_checked_at: 2026-05-14T18:17:20.764Z
+generated_at: 2026-05-14T18:17:20.764Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-05T05:41:55.614Z
-  matched_actions: 147
-  action_count: 147
+  checked_at: 2026-05-14T18:17:20.764Z
+  matched_actions: 109
+  action_count: 109
   confidence: high
   summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation."
 derived_from:
@@ -1700,17 +1704,21 @@ Camera IP setup uses a separate UDP discovery protocol on port 52380 (broadcast 
 ```yaml
 source_domains:
   - pro.sony
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro.sony/s3/2022/09/03065933/VISCA_Command_List_v4.pdf
+  - https://pro.sony/ue_US/product-resources/knowledge-panel/command-list
 retrieved_at: 2026-05-05T02:55:26.796Z
-last_checked_at: 2026-05-05T05:41:55.614Z
+last_checked_at: 2026-05-14T18:17:20.764Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T05:41:55.614Z
-matched_actions: 147
-action_count: 147
+checked_at: 2026-05-14T18:17:20.764Z
+matched_actions: 109
+action_count: 109
 confidence: high
 summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - downloads.biamp.com
+source_urls:
+  - https://downloads.biamp.com/assets/docs/default-source/manuals/spm522d_rs-232_control_manual.pdf
 retrieved_at: 2026-05-04T15:18:53.366Z
-last_checked_at: 2026-05-04T05:39:50.623Z
-generated_at: 2026-05-04T05:39:50.623Z
+last_checked_at: 2026-05-14T18:17:14.548Z
+generated_at: 2026-05-14T18:17:14.548Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:39:50.623Z
-  matched_actions: 24
-  action_count: 24
+  checked_at: 2026-05-14T18:17:14.548Z
+  matched_actions: 19
+  action_count: 19
   confidence: high
   summary: "All 24 spec actions map to documented source commands; transport parameters confirmed; no missing or drifted fields."
 derived_from:
@@ -484,17 +486,19 @@ interlocks: []
 ```yaml
 source_domains:
   - downloads.biamp.com
+source_urls:
+  - https://downloads.biamp.com/assets/docs/default-source/manuals/spm522d_rs-232_control_manual.pdf
 retrieved_at: 2026-05-04T15:18:53.366Z
-last_checked_at: 2026-05-04T05:39:50.623Z
+last_checked_at: 2026-05-14T18:17:14.548Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:39:50.623Z
-matched_actions: 24
-action_count: 24
+checked_at: 2026-05-14T18:17:14.548Z
+matched_actions: 19
+action_count: 19
 confidence: high
 summary: "All 24 spec actions map to documented source commands; transport parameters confirmed; no missing or drifted fields."
 ```

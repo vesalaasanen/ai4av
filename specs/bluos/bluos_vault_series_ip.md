@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - bluos.io
+source_urls:
+  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-03T07:12:55.041Z
 last_checked_at: 2026-04-26T11:29:13.284Z
 generated_at: 2026-04-26T11:29:13.284Z
@@ -433,6 +435,8 @@ Here's the spec:
 ```yaml
 source_domains:
   - bluos.io
+source_urls:
+  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-03T07:12:55.041Z
 last_checked_at: 2026-04-26T11:29:13.284Z
 ```

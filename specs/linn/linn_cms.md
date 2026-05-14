@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - http://docs.linn.co.uk/wiki/images/8/85/Classik_Movie_2005_RS232_Specification_v0111.pdf
+  - https://docs.linn.co.uk/wiki/index.php/RS232
+  - https://docs.linn.co.uk/wiki/index.php/Developer:Documentation
 retrieved_at: 2026-04-30T11:29:36.586Z
-last_checked_at: 2026-04-30T15:20:38.881Z
-generated_at: 2026-04-30T15:20:38.881Z
+last_checked_at: 2026-05-14T18:17:17.636Z
+generated_at: 2026-05-14T18:17:17.636Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:20:38.881Z
-  matched_actions: 127
-  action_count: 127
+  checked_at: 2026-05-14T18:17:17.636Z
+  matched_actions: 105
+  action_count: 105
   confidence: high
   summary: "All 127 spec actions matched source commands exactly."
 derived_from:
@@ -1027,17 +1031,21 @@ Response types: initial response `!` + final response `$Status_String$`, or unso
 ```yaml
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - http://docs.linn.co.uk/wiki/images/8/85/Classik_Movie_2005_RS232_Specification_v0111.pdf
+  - https://docs.linn.co.uk/wiki/index.php/RS232
+  - https://docs.linn.co.uk/wiki/index.php/Developer:Documentation
 retrieved_at: 2026-04-30T11:29:36.586Z
-last_checked_at: 2026-04-30T15:20:38.881Z
+last_checked_at: 2026-05-14T18:17:17.636Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:20:38.881Z
-matched_actions: 127
-action_count: 127
+checked_at: 2026-05-14T18:17:17.636Z
+matched_actions: 105
+action_count: 105
 confidence: high
 summary: "All 127 spec actions matched source commands exactly."
 ```

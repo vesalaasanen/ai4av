@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:01:47.326Z
-generated_at: 2026-04-26T21:01:47.326Z
+last_checked_at: 2026-05-14T18:17:18.771Z
+generated_at: 2026-05-14T18:17:18.771Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:01:47.326Z
-  matched_actions: 58
-  action_count: 58
+  checked_at: 2026-05-14T18:17:18.771Z
+  matched_actions: 48
+  action_count: 48
   confidence: high
   summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented."
 derived_from:
@@ -699,17 +701,19 @@ The NEC NP-V302H Series supports a comprehensive command set spanning power mana
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:01:47.326Z
+last_checked_at: 2026-05-14T18:17:18.771Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:01:47.326Z
-matched_actions: 58
-action_count: 58
+checked_at: 2026-05-14T18:17:18.771Z
+matched_actions: 48
+action_count: 48
 confidence: high
 summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented."
 ```

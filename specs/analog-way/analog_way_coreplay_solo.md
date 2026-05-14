@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - s3.eu-west-3.amazonaws.com
+source_urls:
+  - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/CorePlay/Common/API/CoreAPI+1.1.3+HTML/coreapi.html
 retrieved_at: 2026-05-08T15:20:40.281Z
-last_checked_at: 2026-05-08T15:39:05.973Z
-generated_at: 2026-05-08T15:39:05.973Z
+last_checked_at: 2026-05-14T18:17:13.952Z
+generated_at: 2026-05-14T18:17:13.952Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:39:05.973Z
-  matched_actions: 34
-  action_count: 34
+  checked_at: 2026-05-14T18:17:13.952Z
+  matched_actions: 33
+  action_count: 33
   confidence: high
   summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters."
 derived_from:
@@ -565,17 +567,19 @@ interlocks: []
 ```yaml
 source_domains:
   - s3.eu-west-3.amazonaws.com
+source_urls:
+  - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/CorePlay/Common/API/CoreAPI+1.1.3+HTML/coreapi.html
 retrieved_at: 2026-05-08T15:20:40.281Z
-last_checked_at: 2026-05-08T15:39:05.973Z
+last_checked_at: 2026-05-14T18:17:13.952Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:39:05.973Z
-matched_actions: 34
-action_count: 34
+checked_at: 2026-05-14T18:17:13.952Z
+matched_actions: 33
+action_count: 33
 confidence: high
 summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters."
 ```

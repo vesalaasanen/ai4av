@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - inogeni.com
+source_urls:
+  - https://www.inogeni.com/camtrack-api-documentation
 retrieved_at: 2026-04-30T04:35:13.400Z
 last_checked_at: 2026-04-24T14:43:53.922Z
 generated_at: 2026-04-24T14:43:53.922Z
@@ -237,6 +239,8 @@ interlocks:
 ```yaml
 source_domains:
   - inogeni.com
+source_urls:
+  - https://www.inogeni.com/camtrack-api-documentation
 retrieved_at: 2026-04-30T04:35:13.400Z
 last_checked_at: 2026-04-24T14:43:53.922Z
 ```

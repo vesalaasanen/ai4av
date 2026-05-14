@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - support.casio.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
+  - https://applicationmarket.crestron.com/casio-xj-sc210-north-america/
 retrieved_at: 2026-04-29T17:27:21.180Z
-last_checked_at: 2026-04-30T09:38:04.086Z
-generated_at: 2026-04-30T09:38:04.086Z
+last_checked_at: 2026-05-14T18:17:14.906Z
+generated_at: 2026-05-14T18:17:14.906Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:38:04.086Z
-  matched_actions: 18
-  action_count: 18
+  checked_at: 2026-05-14T18:17:14.906Z
+  matched_actions: 11
+  action_count: 11
   confidence: high
   summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage."
 derived_from:
@@ -268,17 +271,20 @@ notes: >
 source_domains:
   - support.casio.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
+  - https://applicationmarket.crestron.com/casio-xj-sc210-north-america/
 retrieved_at: 2026-04-29T17:27:21.180Z
-last_checked_at: 2026-04-30T09:38:04.086Z
+last_checked_at: 2026-05-14T18:17:14.906Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:38:04.086Z
-matched_actions: 18
-action_count: 18
+checked_at: 2026-05-14T18:17:14.906Z
+matched_actions: 11
+action_count: 11
 confidence: high
 summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage."
 ```

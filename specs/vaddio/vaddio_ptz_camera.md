@@ -21,17 +21,21 @@ compatible_with:
 source_domains:
   - fullcompass.com
   - manualslib.com
+source_urls:
+  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+  - https://www.manualslib.com/manual/3857357/Vaddio-Roboshot-30-Series.html
 retrieved_at: 2026-05-05T03:11:30.078Z
-last_checked_at: 2026-05-05T06:10:49.023Z
-generated_at: 2026-05-05T06:10:49.023Z
+last_checked_at: 2026-05-14T18:17:21.291Z
+generated_at: 2026-05-14T18:17:21.291Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-05T06:10:49.023Z
+  checked_at: 2026-05-14T18:17:21.291Z
   matched_actions: 31
-  action_count: 31
+  action_count: 32
   confidence: high
   summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source."
 derived_from:
@@ -623,17 +627,21 @@ Serial and Telnet share command semantics; Telnet provides human-readable comman
 source_domains:
   - fullcompass.com
   - manualslib.com
+source_urls:
+  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+  - https://www.manualslib.com/manual/3857357/Vaddio-Roboshot-30-Series.html
 retrieved_at: 2026-05-05T03:11:30.078Z
-last_checked_at: 2026-05-05T06:10:49.023Z
+last_checked_at: 2026-05-14T18:17:21.291Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T06:10:49.023Z
+checked_at: 2026-05-14T18:17:21.291Z
 matched_actions: 31
-action_count: 31
+action_count: 32
 confidence: high
 summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source."
 ```

@@ -15,18 +15,21 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-25T20:44:25.549Z
-last_checked_at: 2026-04-25T20:44:25.549Z
-generated_at: 2026-04-25T20:44:25.549Z
+source_domains:
+  - developers.google.com
+source_urls:
+  - https://developers.google.com/workspace/calendar/api/v3/reference
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:15.916Z
+generated_at: 2026-05-14T18:17:15.916Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:44:25.549Z
-  matched_actions: 38
-  action_count: 38
+  checked_at: 2026-05-14T18:17:15.916Z
+  matched_actions: 37
+  action_count: 37
   confidence: high
   summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands."
 derived_from:
@@ -566,18 +569,21 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-25T20:44:25.549Z
-last_checked_at: 2026-04-25T20:44:25.549Z
+source_domains:
+  - developers.google.com
+source_urls:
+  - https://developers.google.com/workspace/calendar/api/v3/reference
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:15.916Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:44:25.549Z
-matched_actions: 38
-action_count: 38
+checked_at: 2026-05-14T18:17:15.916Z
+matched_actions: 37
+action_count: 37
 confidence: high
 summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands."
 ```

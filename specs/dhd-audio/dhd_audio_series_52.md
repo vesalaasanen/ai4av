@@ -24,6 +24,8 @@ compatible_with:
   required_options: []
 source_domains:
   - developer.dhd.audio
+source_urls:
+  - https://developer.dhd.audio/docs/API/ECP/
 retrieved_at: 2026-04-30T04:41:08.337Z
 last_checked_at: 2026-04-25T20:38:13.401Z
 generated_at: 2026-04-25T20:38:13.401Z
@@ -516,6 +518,8 @@ Serial: max 3 retries, 80ms timeout per block, 100-block receive buffer.
 ```yaml
 source_domains:
   - developer.dhd.audio
+source_urls:
+  - https://developer.dhd.audio/docs/API/ECP/
 retrieved_at: 2026-04-30T04:41:08.337Z
 last_checked_at: 2026-04-25T20:38:13.401Z
 ```

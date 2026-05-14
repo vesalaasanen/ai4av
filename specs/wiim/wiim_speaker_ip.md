@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - wiimhome.com
+source_urls:
+  - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T15:17:31.886Z
 last_checked_at: 2026-04-27T10:13:21.152Z
 generated_at: 2026-04-27T10:13:21.152Z
@@ -355,6 +357,8 @@ interlocks: []
 ```yaml
 source_domains:
   - wiimhome.com
+source_urls:
+  - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T15:17:31.886Z
 last_checked_at: 2026-04-27T10:13:21.152Z
 ```

@@ -15,8 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-23T06:41:18.822Z
+source_domains:
+  - developers.google.com
+source_urls:
+  - https://developers.google.com/workspace/calendar/api/v3/reference
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-23T06:41:18.822Z
 generated_at: 2026-04-23T06:41:18.822Z
 firmware_coverage: "Not stated in source"
@@ -397,8 +400,11 @@ OAuth 2.0 Bearer token passed in `Authorization` header. Service accounts suppor
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-23T06:41:18.822Z
+source_domains:
+  - developers.google.com
+source_urls:
+  - https://developers.google.com/workspace/calendar/api/v3/reference
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-23T06:41:18.822Z
 ```
 

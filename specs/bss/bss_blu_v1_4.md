@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - bssaudio.com
+source_urls:
+  - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:34:55.903Z
 last_checked_at: 2026-04-23T05:35:29.891Z
 generated_at: 2026-04-23T05:35:29.891Z
@@ -287,6 +289,8 @@ Parameter scaling:
 ```yaml
 source_domains:
   - bssaudio.com
+source_urls:
+  - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:34:55.903Z
 last_checked_at: 2026-04-23T05:35:29.891Z
 ```

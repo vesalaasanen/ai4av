@@ -18,17 +18,21 @@ compatible_with:
   required_options: []
 source_domains:
   - marshall-usa.com
+source_urls:
+  - https://www.marshall-usa.com/pdf/CV420-30X_RS232_Commands.pdf
+  - https://www.marshall-usa.com/pdf/CV355-30X-IP_Manual_v1-2.pdf
+  - https://www.marshall-usa.com/pdf/RS232-Commands.pdf
 retrieved_at: 2026-04-30T14:24:28.133Z
-last_checked_at: 2026-04-30T15:22:11.206Z
-generated_at: 2026-04-30T15:22:11.206Z
+last_checked_at: 2026-05-14T18:17:18.110Z
+generated_at: 2026-05-14T18:17:18.110Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:22:11.206Z
+  checked_at: 2026-05-14T18:17:18.110Z
   matched_actions: 130
-  action_count: 130
+  action_count: 166
   confidence: high
   summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified."
 derived_from:
@@ -1655,17 +1659,21 @@ interlocks: []
 ```yaml
 source_domains:
   - marshall-usa.com
+source_urls:
+  - https://www.marshall-usa.com/pdf/CV420-30X_RS232_Commands.pdf
+  - https://www.marshall-usa.com/pdf/CV355-30X-IP_Manual_v1-2.pdf
+  - https://www.marshall-usa.com/pdf/RS232-Commands.pdf
 retrieved_at: 2026-04-30T14:24:28.133Z
-last_checked_at: 2026-04-30T15:22:11.206Z
+last_checked_at: 2026-05-14T18:17:18.110Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:22:11.206Z
+checked_at: 2026-05-14T18:17:18.110Z
 matched_actions: 130
-action_count: 130
+action_count: 166
 confidence: high
 summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified."
 ```

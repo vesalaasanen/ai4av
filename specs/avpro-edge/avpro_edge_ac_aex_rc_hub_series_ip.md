@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - files.avprosupply.com
+source_urls:
+  - https://files.avprosupply.com/files/attachments/508449/avpro-edge-ac-aex-rc-hub-manual.pdf
 retrieved_at: 2026-05-04T18:01:29.430Z
-last_checked_at: 2026-04-22T19:45:04.556Z
-generated_at: 2026-04-22T19:45:04.556Z
+last_checked_at: 2026-05-14T18:17:14.218Z
+generated_at: 2026-05-14T18:17:14.218Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-22T19:45:04.556Z
-  matched_actions: 44
-  action_count: 44
+  checked_at: 2026-05-14T18:17:14.218Z
+  matched_actions: 24
+  action_count: 24
   confidence: high
   summary: "All 44 spec actions match literal command tokens in the source."
 derived_from:
@@ -441,17 +443,19 @@ RS-232 uses 3-pin terminal block to DB9 (pins 2, 3, 5 only). Null modem cable re
 ```yaml
 source_domains:
   - files.avprosupply.com
+source_urls:
+  - https://files.avprosupply.com/files/attachments/508449/avpro-edge-ac-aex-rc-hub-manual.pdf
 retrieved_at: 2026-05-04T18:01:29.430Z
-last_checked_at: 2026-04-22T19:45:04.556Z
+last_checked_at: 2026-05-14T18:17:14.218Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T19:45:04.556Z
-matched_actions: 44
-action_count: 44
+checked_at: 2026-05-14T18:17:14.218Z
+matched_actions: 24
+action_count: 24
 confidence: high
 summary: "All 44 spec actions match literal command tokens in the source."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:22.333Z
-last_checked_at: 2026-04-23T07:01:27.477Z
-generated_at: 2026-04-23T07:01:27.477Z
+last_checked_at: 2026-05-14T18:17:16.881Z
+generated_at: 2026-05-14T18:17:16.881Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T07:01:27.477Z
+  checked_at: 2026-05-14T18:17:16.881Z
   matched_actions: 152
-  action_count: 152
+  action_count: 169
   confidence: high
   summary: "All 152 spec actions have literal ISCP command counterparts in source; transport parameters (9600 baud, port 60128) verified."
 derived_from:
@@ -1064,17 +1066,19 @@ ISCP message format: `!1XXY[parameter][CR]` where `!` is start char, `1` is unit
 ```yaml
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:22.333Z
-last_checked_at: 2026-04-23T07:01:27.477Z
+last_checked_at: 2026-05-14T18:17:16.881Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T07:01:27.477Z
+checked_at: 2026-05-14T18:17:16.881Z
 matched_actions: 152
-action_count: 152
+action_count: 169
 confidence: high
 summary: "All 152 spec actions have literal ISCP command counterparts in source; transport parameters (9600 baud, port 60128) verified."
 ```

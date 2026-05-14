@@ -19,17 +19,21 @@ source_domains:
   - fullcompass.com
   - res.cloudinary.com
   - aca.im
+source_urls:
+  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
+  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
+  - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-05-04T16:17:52.391Z
-generated_at: 2026-05-04T16:17:52.391Z
+last_checked_at: 2026-05-14T18:17:21.268Z
+generated_at: 2026-05-14T18:17:21.268Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:17:52.391Z
-  matched_actions: 41
-  action_count: 41
+  checked_at: 2026-05-14T18:17:21.268Z
+  matched_actions: 25
+  action_count: 25
   confidence: high
   summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed."
 derived_from:
@@ -678,17 +682,21 @@ source_domains:
   - fullcompass.com
   - res.cloudinary.com
   - aca.im
+source_urls:
+  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
+  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
+  - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-05-04T16:17:52.391Z
+last_checked_at: 2026-05-14T18:17:21.268Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:17:52.391Z
-matched_actions: 41
-action_count: 41
+checked_at: 2026-05-14T18:17:21.268Z
+matched_actions: 25
+action_count: 25
 confidence: high
 summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed."
 ```

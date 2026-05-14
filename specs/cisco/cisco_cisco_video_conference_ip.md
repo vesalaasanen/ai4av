@@ -18,17 +18,24 @@ compatible_with:
   required_options: []
 source_domains:
   - cisco.com
-retrieved_at: 2026-05-12T22:18:22.523Z
-last_checked_at: 2026-04-26T11:34:42.565Z
-generated_at: 2026-04-26T11:34:42.565Z
+  - developer.webex.com
+source_urls:
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
+  - https://developer.webex.com/docs/devices
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
+retrieved_at: 2026-05-14T15:10:26.520Z
+last_checked_at: 2026-05-14T18:17:15.020Z
+generated_at: 2026-05-14T18:17:15.020Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:34:42.565Z
-  matched_actions: 77
-  action_count: 77
+  checked_at: 2026-05-14T18:17:15.020Z
+  matched_actions: 60
+  action_count: 60
   confidence: high
   summary: "All 77 spec actions matched to source xCommand definitions with correct parameters and transport verified."
 derived_from:
@@ -929,17 +936,24 @@ interlocks:
 ```yaml
 source_domains:
   - cisco.com
-retrieved_at: 2026-05-12T22:18:22.523Z
-last_checked_at: 2026-04-26T11:34:42.565Z
+  - developer.webex.com
+source_urls:
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
+  - https://developer.webex.com/docs/devices
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
+retrieved_at: 2026-05-14T15:10:26.520Z
+last_checked_at: 2026-05-14T18:17:15.020Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:34:42.565Z
-matched_actions: 77
-action_count: 77
+checked_at: 2026-05-14T18:17:15.020Z
+matched_actions: 60
+action_count: 60
 confidence: high
 summary: "All 77 spec actions matched to source xCommand definitions with correct parameters and transport verified."
 ```

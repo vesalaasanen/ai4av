@@ -20,6 +20,8 @@ compatible_with:
   required_options: []
 source_domains:
   - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-05-04T18:02:41.348Z
 last_checked_at: 2026-04-25T20:44:23.596Z
 generated_at: 2026-04-25T20:44:23.596Z
@@ -492,6 +494,8 @@ interlocks:
 ```yaml
 source_domains:
   - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-05-04T18:02:41.348Z
 last_checked_at: 2026-04-25T20:44:23.596Z
 ```

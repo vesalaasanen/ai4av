@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:15.972Z
 last_checked_at: 2026-04-24T14:34:25.538Z
 generated_at: 2026-04-24T14:34:25.538Z
@@ -680,6 +682,8 @@ Lens position drive commands (7Fh/81h) continue until explicit Stop (00h) is sen
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:15.972Z
 last_checked_at: 2026-04-24T14:34:25.538Z
 ```

@@ -22,6 +22,12 @@ source_domains:
   - documents.blackmagicdesign.com
   - blackmagicdesign.com
   - github.com
+source_urls:
+  - "https://documents.blackmagicdesign.com/UserManuals/SmartViewManual.pdf?_v=1722841210000"
+  - https://documents.blackmagicdesign.com/UserManuals/SmartViewManual.pdf
+  - https://www.blackmagicdesign.com/products/smartview/techspecs
+  - https://www.blackmagicdesign.com/developer
+  - https://github.com/jscissr/smartview-client
 retrieved_at: 2026-05-05T01:53:54.252Z
 last_checked_at: 2026-05-05T06:10:41.042Z
 generated_at: 2026-05-05T06:10:41.042Z
@@ -245,6 +251,12 @@ source_domains:
   - documents.blackmagicdesign.com
   - blackmagicdesign.com
   - github.com
+source_urls:
+  - "https://documents.blackmagicdesign.com/UserManuals/SmartViewManual.pdf?_v=1722841210000"
+  - https://documents.blackmagicdesign.com/UserManuals/SmartViewManual.pdf
+  - https://www.blackmagicdesign.com/products/smartview/techspecs
+  - https://www.blackmagicdesign.com/developer
+  - https://github.com/jscissr/smartview-client
 retrieved_at: 2026-05-05T01:53:54.252Z
 last_checked_at: 2026-05-05T06:10:41.042Z
 ```

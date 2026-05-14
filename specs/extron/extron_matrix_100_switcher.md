@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - media.extron.com
+source_urls:
+  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-04-30T15:48:45.823Z
 last_checked_at: 2026-05-01T00:09:23.792Z
 generated_at: 2026-05-01T00:09:23.792Z
@@ -311,6 +313,8 @@ interlocks: []
 ```yaml
 source_domains:
   - media.extron.com
+source_urls:
+  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-04-30T15:48:45.823Z
 last_checked_at: 2026-05-01T00:09:23.792Z
 ```

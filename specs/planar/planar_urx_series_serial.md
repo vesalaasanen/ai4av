@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-05-01T07:51:48.359Z
-generated_at: 2026-05-01T07:51:48.359Z
+last_checked_at: 2026-05-14T18:17:19.930Z
+generated_at: 2026-05-14T18:17:19.930Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T07:51:48.359Z
-  matched_actions: 181
-  action_count: 181
+  checked_at: 2026-05-14T18:17:19.930Z
+  matched_actions: 111
+  action_count: 111
   confidence: high
   summary: "All 181 spec actions matched literal command codes in source RS-232 table; transport parameters verified verbatim; bidirectional coverage confirmed."
 derived_from:
@@ -1704,17 +1708,21 @@ RS-232C command protocol uses ASCII text format with OPCODE(MODIFIERS)OPERATOR[O
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-05-01T07:51:48.359Z
+last_checked_at: 2026-05-14T18:17:19.930Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T07:51:48.359Z
-matched_actions: 181
-action_count: 181
+checked_at: 2026-05-14T18:17:19.930Z
+matched_actions: 111
+action_count: 111
 confidence: high
 summary: "All 181 spec actions matched literal command codes in source RS-232 table; transport parameters verified verbatim; bidirectional coverage confirmed."
 ```

@@ -19,17 +19,19 @@ compatible_with:
   required_options: []
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-05-01T01:56:20.723Z
-last_checked_at: 2026-04-27T10:13:20.162Z
-generated_at: 2026-04-27T10:13:20.162Z
+last_checked_at: 2026-05-14T18:17:21.459Z
+generated_at: 2026-05-14T18:17:21.459Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:20.162Z
-  matched_actions: 31
-  action_count: 31
+  checked_at: 2026-05-14T18:17:21.459Z
+  matched_actions: 16
+  action_count: 16
   confidence: high
   summary: "All 31 spec commands and queries match the source protocol exactly; transport parameters verified against source; complete bidirectional coverage."
 derived_from:
@@ -470,17 +472,19 @@ interlocks: []
 ```yaml
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-05-01T01:56:20.723Z
-last_checked_at: 2026-04-27T10:13:20.162Z
+last_checked_at: 2026-05-14T18:17:21.459Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:20.162Z
-matched_actions: 31
-action_count: 31
+checked_at: 2026-05-14T18:17:21.459Z
+matched_actions: 16
+action_count: 16
 confidence: high
 summary: "All 31 spec commands and queries match the source protocol exactly; transport parameters verified against source; complete bidirectional coverage."
 ```

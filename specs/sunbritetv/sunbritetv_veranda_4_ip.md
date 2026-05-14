@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-04-23T08:28:31.226Z
-generated_at: 2026-04-23T08:28:31.226Z
+last_checked_at: 2026-05-14T18:17:21.089Z
+generated_at: 2026-05-14T18:17:21.089Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:28:31.226Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:21.089Z
+  matched_actions: 47
+  action_count: 47
   confidence: high
   summary: "All 50 spec actions matched literally in source table; transport parameters (9600,8,1,n) confirmed; no commands are missing or misshapen."
 derived_from:
@@ -310,17 +312,19 @@ Command prefix: 0x1B (ESC). All commands are single-byte ASCII following ESC. Se
 ```yaml
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-04-23T08:28:31.226Z
+last_checked_at: 2026-05-14T18:17:21.089Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:28:31.226Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:21.089Z
+matched_actions: 47
+action_count: 47
 confidence: high
 summary: "All 50 spec actions matched literally in source table; transport parameters (9600,8,1,n) confirmed; no commands are missing or misshapen."
 ```

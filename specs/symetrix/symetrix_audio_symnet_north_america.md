@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - d3b79pswu7f4ma.cloudfront.net
+source_urls:
+  - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
 retrieved_at: 2026-04-30T04:33:37.519Z
 last_checked_at: 2026-04-27T15:36:58.534Z
 generated_at: 2026-04-27T15:36:58.534Z
@@ -335,6 +337,8 @@ interlocks: []
 ```yaml
 source_domains:
   - d3b79pswu7f4ma.cloudfront.net
+source_urls:
+  - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
 retrieved_at: 2026-04-30T04:33:37.519Z
 last_checked_at: 2026-04-27T15:36:58.534Z
 ```

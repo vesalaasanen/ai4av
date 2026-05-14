@@ -38,17 +38,19 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:49.866Z
-last_checked_at: 2026-04-26T14:21:25.457Z
-generated_at: 2026-04-26T14:21:25.457Z
+last_checked_at: 2026-05-14T18:17:17.289Z
+generated_at: 2026-05-14T18:17:17.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T14:21:25.457Z
+  checked_at: 2026-05-14T18:17:17.289Z
   matched_actions: 171
-  action_count: 172
+  action_count: 313
   confidence: high
   summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source."
 derived_from:
@@ -2273,17 +2275,19 @@ interlocks: []
 ```yaml
 source_domains:
   - support.jvc.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:49.866Z
-last_checked_at: 2026-04-26T14:21:25.457Z
+last_checked_at: 2026-05-14T18:17:17.289Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T14:21:25.457Z
+checked_at: 2026-05-14T18:17:17.289Z
 matched_actions: 171
-action_count: 172
+action_count: 313
 confidence: high
 summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source."
 ```

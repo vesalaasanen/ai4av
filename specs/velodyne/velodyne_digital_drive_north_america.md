@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - velodyneacoustics.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
+  - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
 last_checked_at: 2026-04-27T10:13:18.285Z
 generated_at: 2026-04-27T10:13:18.285Z
@@ -244,6 +247,9 @@ Command format: `#` header, 3-4 ASCII chars command + params, `$` terminator. Al
 source_domains:
   - velodyneacoustics.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
+  - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
 last_checked_at: 2026-04-27T10:13:18.285Z
 ```

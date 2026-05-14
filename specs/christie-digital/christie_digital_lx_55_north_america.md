@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - christiedigital.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
+  - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-05-03T15:59:14.501Z
-generated_at: 2026-05-03T15:59:14.501Z
+last_checked_at: 2026-05-14T18:17:14.955Z
+generated_at: 2026-05-14T18:17:14.955Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-03T15:59:14.501Z
-  matched_actions: 190
-  action_count: 190
+  checked_at: 2026-05-14T18:17:14.955Z
+  matched_actions: 122
+  action_count: 122
   confidence: high
   summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim."
 derived_from:
@@ -1551,17 +1554,20 @@ interlocks:
 source_domains:
   - christiedigital.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
+  - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-05-03T15:59:14.501Z
+last_checked_at: 2026-05-14T18:17:14.955Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T15:59:14.501Z
-matched_actions: 190
-action_count: 190
+checked_at: 2026-05-14T18:17:14.955Z
+matched_actions: 122
+action_count: 122
 confidence: high
 summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim."
 ```

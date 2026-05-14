@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - benqimage.blob.core.windows.net
   - esupportdownload.benq.com
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
 last_checked_at: 2026-05-04T16:13:58.153Z
 generated_at: 2026-05-04T16:13:58.153Z
@@ -987,6 +990,9 @@ Source note: function availability varies by model (source, audio settings, aspe
 source_domains:
   - benqimage.blob.core.windows.net
   - esupportdownload.benq.com
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
 last_checked_at: 2026-05-04T16:13:58.153Z
 ```

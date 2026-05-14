@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - gobutton.app
+source_urls:
+  - https://gobutton.app/docs/Go_Button_3_Reference_Manual.pdf
+  - https://gobutton.app/docs/v3/working-with-your-show/osc-dictionary/
+  - https://gobutton.app/docs/v3/
 retrieved_at: 2026-04-29T23:42:56.952Z
-last_checked_at: 2026-04-27T14:49:24.164Z
-generated_at: 2026-04-27T14:49:24.164Z
+last_checked_at: 2026-05-14T18:17:15.884Z
+generated_at: 2026-05-14T18:17:15.884Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T14:49:24.164Z
-  matched_actions: 73
-  action_count: 73
+  checked_at: 2026-05-14T18:17:15.884Z
+  matched_actions: 70
+  action_count: 70
   confidence: high
   summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API."
 derived_from:
@@ -752,17 +756,21 @@ Legacy note: Go Button 3.2.0+ uses new default ports (53100/53101) vs. older ver
 ```yaml
 source_domains:
   - gobutton.app
+source_urls:
+  - https://gobutton.app/docs/Go_Button_3_Reference_Manual.pdf
+  - https://gobutton.app/docs/v3/working-with-your-show/osc-dictionary/
+  - https://gobutton.app/docs/v3/
 retrieved_at: 2026-04-29T23:42:56.952Z
-last_checked_at: 2026-04-27T14:49:24.164Z
+last_checked_at: 2026-05-14T18:17:15.884Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T14:49:24.164Z
-matched_actions: 73
-action_count: 73
+checked_at: 2026-05-14T18:17:15.884Z
+matched_actions: 70
+action_count: 70
 confidence: high
 summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API."
 ```

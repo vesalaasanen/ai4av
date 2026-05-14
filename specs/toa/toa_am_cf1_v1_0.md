@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - toa.com.sg
   - go2.toa-global.com
+source_urls:
+  - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
+  - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
 last_checked_at: 2026-04-27T15:47:24.452Z
 generated_at: 2026-04-27T15:47:24.452Z
@@ -397,6 +400,9 @@ interlocks: []
 source_domains:
   - toa.com.sg
   - go2.toa-global.com
+source_urls:
+  - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
+  - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
 last_checked_at: 2026-04-27T15:47:24.452Z
 ```

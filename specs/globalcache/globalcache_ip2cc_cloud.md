@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-05-04T18:05:13.638Z
 last_checked_at: 2026-04-27T09:04:45.495Z
 generated_at: 2026-04-27T09:04:45.495Z
@@ -549,6 +551,8 @@ The Global Caché Unified TCP API spans multiple product families (GC-100, iTach
 ```yaml
 source_domains:
   - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-05-04T18:05:13.638Z
 last_checked_at: 2026-04-27T09:04:45.495Z
 ```

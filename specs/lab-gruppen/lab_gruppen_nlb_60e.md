@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - prodgsystems.com
+source_urls:
+  - "https://prodgsystems.com/public/pdf/119_Third%20party%20integration%20protocol.pdf"
 retrieved_at: 2026-04-30T04:36:28.729Z
 last_checked_at: 2026-04-25T20:54:49.416Z
 generated_at: 2026-04-25T20:54:49.416Z
@@ -289,6 +291,8 @@ Error format: `ERROR! <description>`. Possible errors: parse failure, VDN does n
 ```yaml
 source_domains:
   - prodgsystems.com
+source_urls:
+  - "https://prodgsystems.com/public/pdf/119_Third%20party%20integration%20protocol.pdf"
 retrieved_at: 2026-04-30T04:36:28.729Z
 last_checked_at: 2026-04-25T20:54:49.416Z
 ```

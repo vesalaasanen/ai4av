@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:16:19.452Z
-generated_at: 2026-04-25T21:16:19.452Z
+last_checked_at: 2026-05-14T18:17:18.359Z
+generated_at: 2026-05-14T18:17:18.359Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:16:19.452Z
-  matched_actions: 42
-  action_count: 42
+  checked_at: 2026-05-14T18:17:18.359Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage."
 derived_from:
@@ -485,17 +487,19 @@ The NEC C861Q-AVT2 Series supports dual transport control: RS-232C serial and wi
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:16:19.452Z
+last_checked_at: 2026-05-14T18:17:18.359Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:16:19.452Z
-matched_actions: 42
-action_count: 42
+checked_at: 2026-05-14T18:17:18.359Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage."
 ```

@@ -17,6 +17,12 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+source_urls:
+  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
+  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
+  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
+  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
+  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
 retrieved_at: 2026-04-30T10:17:04.860Z
 last_checked_at: 2026-04-23T15:12:38.271Z
 generated_at: 2026-04-23T15:12:38.271Z
@@ -405,6 +411,12 @@ interlocks: []
 ```yaml
 source_domains:
   - atlona.com
+source_urls:
+  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
+  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
+  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
+  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
+  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
 retrieved_at: 2026-04-30T10:17:04.860Z
 last_checked_at: 2026-04-23T15:12:38.271Z
 ```

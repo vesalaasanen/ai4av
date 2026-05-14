@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - support.tesmart.com
+source_urls:
+  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
 retrieved_at: 2026-05-05T02:35:43.321Z
 last_checked_at: 2026-05-10T12:18:55.972Z
 generated_at: 2026-05-10T12:18:55.972Z
@@ -574,6 +576,8 @@ Certain commands require specific firmware versions: `clear_pin_to_drive_admin` 
 ```yaml
 source_domains:
   - support.tesmart.com
+source_urls:
+  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
 retrieved_at: 2026-05-05T02:35:43.321Z
 last_checked_at: 2026-05-10T12:18:55.972Z
 ```

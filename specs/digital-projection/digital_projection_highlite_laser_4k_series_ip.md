@@ -17,17 +17,22 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-01T07:51:47.374Z
-generated_at: 2026-05-01T07:51:47.374Z
+last_checked_at: 2026-05-14T18:17:15.544Z
+generated_at: 2026-05-14T18:17:15.544Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T07:51:47.374Z
+  checked_at: 2026-05-14T18:17:15.544Z
   matched_actions: 159
-  action_count: 159
+  action_count: 227
   confidence: high
   summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage."
 derived_from:
@@ -1930,17 +1935,22 @@ interlocks:
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-01T07:51:47.374Z
+last_checked_at: 2026-05-14T18:17:15.544Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T07:51:47.374Z
+checked_at: 2026-05-14T18:17:15.544Z
 matched_actions: 159
-action_count: 159
+action_count: 227
 confidence: high
 summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage."
 ```

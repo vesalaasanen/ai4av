@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:21:22.269Z
-generated_at: 2026-04-25T21:21:22.269Z
+last_checked_at: 2026-05-14T18:17:18.686Z
+generated_at: 2026-05-14T18:17:18.686Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:21:22.269Z
+  checked_at: 2026-05-14T18:17:18.686Z
   matched_actions: 48
-  action_count: 48
+  action_count: 52
   confidence: high
   summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication."
 derived_from:
@@ -501,17 +503,19 @@ interlocks:
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:21:22.269Z
+last_checked_at: 2026-05-14T18:17:18.686Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:21:22.269Z
+checked_at: 2026-05-14T18:17:18.686Z
 matched_actions: 48
-action_count: 48
+action_count: 52
 confidence: high
 summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication."
 ```

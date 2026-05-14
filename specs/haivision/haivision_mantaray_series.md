@@ -18,6 +18,10 @@ compatible_with:
 source_domains:
   - doc.haivision.com
   - aca.im
+source_urls:
+  - "https://doc.haivision.com/__attachments/15171865/Furnace6.6%20API%20Integrator%27s%20Guide.pdf?inst-v=1b9ce571-bddd-4c75-83b6-fccbfd064a21"
+  - https://aca.im/driver_docs/Haivision/furnace_api.pdf
+  - https://doc.haivision.com/
 retrieved_at: 2026-05-05T06:00:56.364Z
 last_checked_at: 2026-05-08T15:40:56.725Z
 generated_at: 2026-05-08T15:40:56.725Z
@@ -749,6 +753,10 @@ interlocks: []
 source_domains:
   - doc.haivision.com
   - aca.im
+source_urls:
+  - "https://doc.haivision.com/__attachments/15171865/Furnace6.6%20API%20Integrator%27s%20Guide.pdf?inst-v=1b9ce571-bddd-4c75-83b6-fccbfd064a21"
+  - https://aca.im/driver_docs/Haivision/furnace_api.pdf
+  - https://doc.haivision.com/
 retrieved_at: 2026-05-05T06:00:56.364Z
 last_checked_at: 2026-05-08T15:40:56.725Z
 ```

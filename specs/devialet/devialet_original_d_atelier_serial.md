@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - devialet.com
+source_urls:
+  - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-05-01T01:56:41.364Z
 last_checked_at: 2026-04-25T20:38:08.456Z
 generated_at: 2026-04-25T20:38:08.456Z
@@ -419,6 +421,8 @@ interlocks:
 ```yaml
 source_domains:
   - devialet.com
+source_urls:
+  - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-05-01T01:56:41.364Z
 last_checked_at: 2026-04-25T20:38:08.456Z
 ```

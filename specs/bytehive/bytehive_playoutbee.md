@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.playoutbee.com
+source_urls:
+  - https://docs.playoutbee.com/api
 retrieved_at: 2026-04-30T04:40:53.957Z
-last_checked_at: 2026-04-23T15:28:33.637Z
-generated_at: 2026-04-23T15:28:33.637Z
+last_checked_at: 2026-05-14T18:17:14.871Z
+generated_at: 2026-05-14T18:17:14.871Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:28:33.637Z
-  matched_actions: 34
-  action_count: 34
+  checked_at: 2026-05-14T18:17:14.871Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage."
 derived_from:
@@ -338,17 +340,19 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.playoutbee.com
+source_urls:
+  - https://docs.playoutbee.com/api
 retrieved_at: 2026-04-30T04:40:53.957Z
-last_checked_at: 2026-04-23T15:28:33.637Z
+last_checked_at: 2026-05-14T18:17:14.871Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:28:33.637Z
-matched_actions: 34
-action_count: 34
+checked_at: 2026-05-14T18:17:14.871Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage."
 ```

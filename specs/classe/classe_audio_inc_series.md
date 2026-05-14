@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - support.classeaudio.com
+source_urls:
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_SSP-300-600_RS232_Protocol.pdf
 retrieved_at: 2026-04-30T04:34:59.774Z
 last_checked_at: 2026-04-24T14:43:52.833Z
 generated_at: 2026-04-24T14:43:52.833Z
@@ -490,6 +492,8 @@ Address format: S300 for SSP-300, S600 for SSP-600. Address field and period del
 ```yaml
 source_domains:
   - support.classeaudio.com
+source_urls:
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_SSP-300-600_RS232_Protocol.pdf
 retrieved_at: 2026-04-30T04:34:59.774Z
 last_checked_at: 2026-04-24T14:43:52.833Z
 ```

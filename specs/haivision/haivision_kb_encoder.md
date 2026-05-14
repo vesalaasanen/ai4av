@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - doc.haivision.com
+source_urls:
+  - "https://doc.haivision.com/__attachments/14418392/KB5.9.2%20API%20Integrator's%20Reference.pdf"
+  - https://doc.haivision.com/KB/5.9.2/
 retrieved_at: 2026-04-29T23:56:12.709Z
 last_checked_at: 2026-05-03T15:37:15.786Z
 generated_at: 2026-05-03T15:37:15.786Z
@@ -620,6 +623,9 @@ interlocks: []
 ```yaml
 source_domains:
   - doc.haivision.com
+source_urls:
+  - "https://doc.haivision.com/__attachments/14418392/KB5.9.2%20API%20Integrator's%20Reference.pdf"
+  - https://doc.haivision.com/KB/5.9.2/
 retrieved_at: 2026-04-29T23:56:12.709Z
 last_checked_at: 2026-05-03T15:37:15.786Z
 ```

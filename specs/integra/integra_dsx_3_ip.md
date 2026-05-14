@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:53:42.933Z
-generated_at: 2026-04-26T13:53:42.933Z
+last_checked_at: 2026-05-14T18:17:16.986Z
+generated_at: 2026-05-14T18:17:16.986Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,9 +39,9 @@ known_gaps:
   - XCH
 verification:
   verdict: verified
-  checked_at: 2026-04-26T13:53:42.933Z
-  matched_actions: 124
-  action_count: 124
+  checked_at: 2026-05-14T18:17:16.986Z
+  matched_actions: 104
+  action_count: 104
   confidence: high
   summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands."
 derived_from:
@@ -1184,17 +1186,19 @@ interlocks:
 ```yaml
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:53:42.933Z
+last_checked_at: 2026-05-14T18:17:16.986Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T13:53:42.933Z
-matched_actions: 124
-action_count: 124
+checked_at: 2026-05-14T18:17:16.986Z
+matched_actions: 104
+action_count: 104
 confidence: high
 summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands."
 ```

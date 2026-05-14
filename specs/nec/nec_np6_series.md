@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:49.979Z
 last_checked_at: 2026-04-23T08:15:05.299Z
 generated_at: 2026-04-23T08:15:05.299Z
@@ -503,6 +505,8 @@ Command protocol: binary with header `20h 88h <ID1> <ID2> 0Ch <DATA> <CKS>`. Res
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:49.979Z
 last_checked_at: 2026-04-23T08:15:05.299Z
 ```

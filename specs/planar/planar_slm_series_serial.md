@@ -18,17 +18,21 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:23:33.543Z
-generated_at: 2026-04-26T22:23:33.543Z
+last_checked_at: 2026-05-14T18:17:19.814Z
+generated_at: 2026-05-14T18:17:19.814Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:23:33.543Z
-  matched_actions: 92
-  action_count: 92
+  checked_at: 2026-05-14T18:17:19.814Z
+  matched_actions: 81
+  action_count: 81
   confidence: high
   summary: "All 92 spec actions found verbatim in source command table; transport parameters (baud, bits, port) confirmed; bidirectional coverage verified."
 derived_from:
@@ -1133,17 +1137,21 @@ Command code table includes 80 entries covering display, audio, network, input r
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:23:33.543Z
+last_checked_at: 2026-05-14T18:17:19.814Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:23:33.543Z
-matched_actions: 92
-action_count: 92
+checked_at: 2026-05-14T18:17:19.814Z
+matched_actions: 81
+action_count: 81
 confidence: high
 summary: "All 92 spec actions found verbatim in source command table; transport parameters (baud, bits, port) confirmed; bidirectional coverage verified."
 ```

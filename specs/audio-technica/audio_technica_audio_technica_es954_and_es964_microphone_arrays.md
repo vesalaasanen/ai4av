@@ -20,6 +20,9 @@ compatible_with:
 source_domains:
   - audio-technica.com
   - docs.audio-technica.com
+source_urls:
+  - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-04T15:16:41.162Z
 last_checked_at: 2026-05-08T15:39:07.488Z
 generated_at: 2026-05-08T15:39:07.488Z
@@ -1150,6 +1153,9 @@ Command format: `Command␣HandshakeSelect␣DeviceID␣UnitID␣ContinueSelect�
 source_domains:
   - audio-technica.com
   - docs.audio-technica.com
+source_urls:
+  - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-04T15:16:41.162Z
 last_checked_at: 2026-05-08T15:39:07.488Z
 ```

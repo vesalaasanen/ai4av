@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.269Z
-last_checked_at: 2026-04-23T15:15:27.323Z
-generated_at: 2026-04-23T15:15:27.323Z
+last_checked_at: 2026-05-14T18:17:14.278Z
+generated_at: 2026-05-14T18:17:14.278Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:15:27.323Z
-  matched_actions: 36
-  action_count: 36
+  checked_at: 2026-05-14T18:17:14.278Z
+  matched_actions: 21
+  action_count: 21
   confidence: high
   summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified."
 derived_from:
@@ -544,17 +546,19 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.269Z
-last_checked_at: 2026-04-23T15:15:27.323Z
+last_checked_at: 2026-05-14T18:17:14.278Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:15:27.323Z
-matched_actions: 36
-action_count: 36
+checked_at: 2026-05-14T18:17:14.278Z
+matched_actions: 21
+action_count: 21
 confidence: high
 summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified."
 ```

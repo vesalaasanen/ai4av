@@ -18,17 +18,21 @@ compatible_with:
 source_domains:
   - esoteric.jp
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.0.pdf
+  - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
+  - https://applicationmarket.crestron.com/content/Help/Esoteric_Audio/i__ux-1__ux-1limited__ux-1pi__ux-3pi_v1_0_help.pdf
 retrieved_at: 2026-05-04T23:34:40.994Z
-last_checked_at: 2026-05-05T05:40:02.479Z
-generated_at: 2026-05-05T05:40:02.479Z
+last_checked_at: 2026-05-14T18:17:15.804Z
+generated_at: 2026-05-14T18:17:15.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-05T05:40:02.479Z
-  matched_actions: 47
-  action_count: 47
+  checked_at: 2026-05-14T18:17:15.804Z
+  matched_actions: 35
+  action_count: 35
   confidence: high
   summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim."
 derived_from:
@@ -465,17 +469,21 @@ timing:
 source_domains:
   - esoteric.jp
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.0.pdf
+  - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
+  - https://applicationmarket.crestron.com/content/Help/Esoteric_Audio/i__ux-1__ux-1limited__ux-1pi__ux-3pi_v1_0_help.pdf
 retrieved_at: 2026-05-04T23:34:40.994Z
-last_checked_at: 2026-05-05T05:40:02.479Z
+last_checked_at: 2026-05-14T18:17:15.804Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T05:40:02.479Z
-matched_actions: 47
-action_count: 47
+checked_at: 2026-05-14T18:17:15.804Z
+matched_actions: 35
+action_count: 35
 confidence: high
 summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim."
 ```

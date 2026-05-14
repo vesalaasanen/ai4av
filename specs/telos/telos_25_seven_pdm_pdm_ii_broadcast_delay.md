@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - telosalliance-uat.s3.amazonaws.com
+source_urls:
+  - https://telosalliance-uat.s3.amazonaws.com/public/25-Seven/PDM/25Seven-Manual-PDM-2.4a-C1914012.pdf
 retrieved_at: 2026-04-30T01:59:33.876Z
 last_checked_at: 2026-04-30T09:50:55.105Z
 generated_at: 2026-04-30T09:50:55.105Z
@@ -286,6 +288,8 @@ interlocks: []
 ```yaml
 source_domains:
   - telosalliance-uat.s3.amazonaws.com
+source_urls:
+  - https://telosalliance-uat.s3.amazonaws.com/public/25-Seven/PDM/25Seven-Manual-PDM-2.4a-C1914012.pdf
 retrieved_at: 2026-04-30T01:59:33.876Z
 last_checked_at: 2026-04-30T09:50:55.105Z
 ```

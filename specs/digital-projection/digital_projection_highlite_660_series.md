@@ -32,6 +32,11 @@ compatible_with:
 source_domains:
   - digitalprojection.co.uk
   - applicationmarket.crestron.com
+source_urls:
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
+  - https://applicationmarket.crestron.com/digital-projection-highlite-660-series/
+  - https://applicationmarket.crestron.com/content/Help/Digital_Projection/digital_projection_hl660_v1_0_help_file.pdf
+  - "http://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
 last_checked_at: 2026-05-01T07:51:46.401Z
 generated_at: 2026-05-01T07:51:46.401Z
@@ -1214,6 +1219,11 @@ HIGHlite 660 Series supports both Section A commands (38,400 baud serial) and Se
 source_domains:
   - digitalprojection.co.uk
   - applicationmarket.crestron.com
+source_urls:
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
+  - https://applicationmarket.crestron.com/digital-projection-highlite-660-series/
+  - https://applicationmarket.crestron.com/content/Help/Digital_Projection/digital_projection_hl660_v1_0_help_file.pdf
+  - "http://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
 last_checked_at: 2026-05-01T07:51:46.401Z
 ```

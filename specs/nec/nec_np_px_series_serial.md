@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:22:36.322Z
-generated_at: 2026-04-25T21:22:36.322Z
+last_checked_at: 2026-05-14T18:17:18.666Z
+generated_at: 2026-05-14T18:17:18.666Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:22:36.322Z
-  matched_actions: 53
-  action_count: 53
+  checked_at: 2026-05-14T18:17:18.666Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 53 spec actions matched verbatim to NEC PX serial source; transport parameters verified; complete command-level fidelity."
 derived_from:
@@ -475,17 +477,19 @@ Input terminal codes, aspect values, and eco mode values vary significantly by m
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:22:36.322Z
+last_checked_at: 2026-05-14T18:17:18.666Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:22:36.322Z
-matched_actions: 53
-action_count: 53
+checked_at: 2026-05-14T18:17:18.666Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 53 spec actions matched verbatim to NEC PX serial source; transport parameters verified; complete command-level fidelity."
 ```

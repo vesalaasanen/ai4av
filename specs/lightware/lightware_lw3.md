@@ -19,6 +19,12 @@ source_domains:
   - archive.lightware.com
   - go.lightware.com
   - academy.lightware.com
+source_urls:
+  - https://archive.lightware.com/pub/media/lightware/filedownloader/file/Lightware_s_Open_API_Environment_v1.pdf
+  - https://go.lightware.com/ucx-s-hum
+  - https://go.lightware.com/ucx-s-pum
+  - https://academy.lightware.com/courses/device-control-methods-protocols-level-3
+  - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-04-30T00:07:53.976Z
 last_checked_at: 2026-04-27T09:04:50.206Z
 generated_at: 2026-04-27T09:04:50.206Z
@@ -332,6 +338,12 @@ source_domains:
   - archive.lightware.com
   - go.lightware.com
   - academy.lightware.com
+source_urls:
+  - https://archive.lightware.com/pub/media/lightware/filedownloader/file/Lightware_s_Open_API_Environment_v1.pdf
+  - https://go.lightware.com/ucx-s-hum
+  - https://go.lightware.com/ucx-s-pum
+  - https://academy.lightware.com/courses/device-control-methods-protocols-level-3
+  - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-04-30T00:07:53.976Z
 last_checked_at: 2026-04-27T09:04:50.206Z
 ```

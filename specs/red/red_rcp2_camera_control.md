@@ -19,17 +19,19 @@ compatible_with:
   required_options: []
 source_domains:
   - red.com
+source_urls:
+  - "https://www.red.com/SSP%20Applications/Red@SuiteCentric/SCA%20Kilimanjaro/documents/910-0046_Rev-T___RED_ENG__RED_Command_Protocol_Reference_Guide.pdf"
 retrieved_at: 2026-05-07T14:21:13.719Z
-last_checked_at: 2026-05-08T15:43:15.579Z
-generated_at: 2026-05-08T15:43:15.579Z
+last_checked_at: 2026-05-14T18:17:20.040Z
+generated_at: 2026-05-14T18:17:20.040Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:43:15.579Z
-  matched_actions: 47
-  action_count: 47
+  checked_at: 2026-05-14T18:17:20.040Z
+  matched_actions: 31
+  action_count: 31
   confidence: high
   summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112)."
 derived_from:
@@ -621,17 +623,19 @@ interlocks:
 ```yaml
 source_domains:
   - red.com
+source_urls:
+  - "https://www.red.com/SSP%20Applications/Red@SuiteCentric/SCA%20Kilimanjaro/documents/910-0046_Rev-T___RED_ENG__RED_Command_Protocol_Reference_Guide.pdf"
 retrieved_at: 2026-05-07T14:21:13.719Z
-last_checked_at: 2026-05-08T15:43:15.579Z
+last_checked_at: 2026-05-14T18:17:20.040Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:43:15.579Z
-matched_actions: 47
-action_count: 47
+checked_at: 2026-05-14T18:17:20.040Z
+matched_actions: 31
+action_count: 31
 confidence: high
 summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112)."
 ```

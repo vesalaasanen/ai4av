@@ -20,17 +20,19 @@ compatible_with:
   required_options: []
 source_domains:
   - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-30T02:55:48.096Z
-last_checked_at: 2026-04-27T15:49:41.764Z
-generated_at: 2026-04-27T15:49:41.764Z
+last_checked_at: 2026-05-14T18:17:21.602Z
+generated_at: 2026-05-14T18:17:21.602Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:49:41.764Z
+  checked_at: 2026-05-14T18:17:21.602Z
   matched_actions: 42
-  action_count: 42
+  action_count: 60
   confidence: high
   summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation."
 derived_from:
@@ -786,17 +788,19 @@ Command termination requires `<CR><LF>` (carriage return + line feed). Commands 
 ```yaml
 source_domains:
   - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-30T02:55:48.096Z
-last_checked_at: 2026-04-27T15:49:41.764Z
+last_checked_at: 2026-05-14T18:17:21.602Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:49:41.764Z
+checked_at: 2026-05-14T18:17:21.602Z
 matched_actions: 42
-action_count: 42
+action_count: 60
 confidence: high
 summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation."
 ```

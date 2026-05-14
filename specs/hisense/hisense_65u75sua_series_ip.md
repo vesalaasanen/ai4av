@@ -18,9 +18,12 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-23T06:51:20.966Z
-generated_at: 2026-04-23T06:51:20.966Z
+last_checked_at: 2026-05-14T18:17:16.455Z
+generated_at: 2026-05-14T18:17:16.455Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,9 +41,9 @@ known_gaps:
   - TUNR
 verification:
   verdict: verified
-  checked_at: 2026-04-23T06:51:20.966Z
+  checked_at: 2026-05-14T18:17:16.455Z
   matched_actions: 28
-  action_count: 28
+  action_count: 29
   confidence: high
   summary: "All 28 spec actions matched in source with proper command codes; transport parameters verified; bidirectional coverage confirmed."
 derived_from:
@@ -495,17 +498,20 @@ Volume range is configurable (0-100 default). The TV must have RS-232 port enabl
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-23T06:51:20.966Z
+last_checked_at: 2026-05-14T18:17:16.455Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T06:51:20.966Z
+checked_at: 2026-05-14T18:17:16.455Z
 matched_actions: 28
-action_count: 28
+action_count: 29
 confidence: high
 summary: "All 28 spec actions matched in source with proper command codes; transport parameters verified; bidirectional coverage confirmed."
 ```

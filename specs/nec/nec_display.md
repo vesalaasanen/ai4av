@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-30T00:18:04.588Z
-last_checked_at: 2026-04-26T20:04:55.905Z
-generated_at: 2026-04-26T20:04:55.905Z
+last_checked_at: 2026-05-14T18:17:18.396Z
+generated_at: 2026-05-14T18:17:18.396Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T20:04:55.905Z
-  matched_actions: 51
-  action_count: 51
+  checked_at: 2026-05-14T18:17:18.396Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage."
 derived_from:
@@ -1062,17 +1064,19 @@ interlocks:
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-30T00:18:04.588Z
-last_checked_at: 2026-04-26T20:04:55.905Z
+last_checked_at: 2026-05-14T18:17:18.396Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T20:04:55.905Z
-matched_actions: 51
-action_count: 51
+checked_at: 2026-05-14T18:17:18.396Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage."
 ```

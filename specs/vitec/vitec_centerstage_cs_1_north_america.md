@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - curtpalme.com
   - applicationmarket.crestron.com
+source_urls:
+  - "https://www.curtpalme.com/docs/CenterStage1&2_UserGuide.pdf"
+  - https://applicationmarket.crestron.com/vitec-centerstage-cs-1-north-america/
 retrieved_at: 2026-04-29T20:24:50.290Z
 last_checked_at: 2026-04-27T10:13:19.474Z
 generated_at: 2026-04-27T10:13:19.474Z
@@ -271,6 +274,9 @@ No handshaking pins used.
 source_domains:
   - curtpalme.com
   - applicationmarket.crestron.com
+source_urls:
+  - "https://www.curtpalme.com/docs/CenterStage1&2_UserGuide.pdf"
+  - https://applicationmarket.crestron.com/vitec-centerstage-cs-1-north-america/
 retrieved_at: 2026-04-29T20:24:50.290Z
 last_checked_at: 2026-04-27T10:13:19.474Z
 ```

@@ -23,6 +23,10 @@ compatible_with:
 source_domains:
   - assets.aten.com
   - aten.com
+source_urls:
+  - https://assets.aten.com/product/manual/vm_restful_api_2021-08-05.pdf
+  - https://www.aten.com/global/en/products/professional-audiovideo/video-matrix-switches/vm3200/
+  - https://assets.aten.com/product/manual/vm3200-vm3250-user-manual-w.pdf
 retrieved_at: 2026-04-30T13:45:39.922Z
 last_checked_at: 2026-04-27T08:57:42.659Z
 generated_at: 2026-04-27T08:57:42.659Z
@@ -643,6 +647,10 @@ Audio volume control only on VM1600A/VM3200/VM3250.
 source_domains:
   - assets.aten.com
   - aten.com
+source_urls:
+  - https://assets.aten.com/product/manual/vm_restful_api_2021-08-05.pdf
+  - https://www.aten.com/global/en/products/professional-audiovideo/video-matrix-switches/vm3200/
+  - https://assets.aten.com/product/manual/vm3200-vm3250-user-manual-w.pdf
 retrieved_at: 2026-04-30T13:45:39.922Z
 last_checked_at: 2026-04-27T08:57:42.659Z
 ```

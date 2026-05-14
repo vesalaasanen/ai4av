@@ -18,17 +18,21 @@ compatible_with:
 source_domains:
   - tascam.com
   - tascam.eu
+source_urls:
+  - https://tascam.com/wp-content/uploads/downloads/products/tascam/bd-mp1/rs232c_ethernet_protocol_bd-mp1_v0104_en.pdf
+  - https://www.tascam.eu/en/docs/BD-MP1_RS-232C_Ethernet_v104.pdf
+  - https://www.tascam.eu/en/docs/BD-MP1MKII_RS-232C_Ethernet_v100.pdf
 retrieved_at: 2026-04-30T01:50:10.712Z
-last_checked_at: 2026-05-04T10:21:28.256Z
-generated_at: 2026-05-04T10:21:28.256Z
+last_checked_at: 2026-05-14T18:17:21.189Z
+generated_at: 2026-05-14T18:17:21.189Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:21:28.256Z
-  matched_actions: 71
-  action_count: 71
+  checked_at: 2026-05-14T18:17:21.189Z
+  matched_actions: 46
+  action_count: 46
   confidence: high
   summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols."
 derived_from:
@@ -722,17 +726,21 @@ interlocks:
 source_domains:
   - tascam.com
   - tascam.eu
+source_urls:
+  - https://tascam.com/wp-content/uploads/downloads/products/tascam/bd-mp1/rs232c_ethernet_protocol_bd-mp1_v0104_en.pdf
+  - https://www.tascam.eu/en/docs/BD-MP1_RS-232C_Ethernet_v104.pdf
+  - https://www.tascam.eu/en/docs/BD-MP1MKII_RS-232C_Ethernet_v100.pdf
 retrieved_at: 2026-04-30T01:50:10.712Z
-last_checked_at: 2026-05-04T10:21:28.256Z
+last_checked_at: 2026-05-14T18:17:21.189Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:21:28.256Z
-matched_actions: 71
-action_count: 71
+checked_at: 2026-05-14T18:17:21.189Z
+matched_actions: 46
+action_count: 46
 confidence: high
 summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols."
 ```

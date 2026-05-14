@@ -20,6 +20,11 @@ source_domains:
   - calrec.com
   - github.com
   - support.rascular.com
+source_urls:
+  - https://docs.dataminer.services/connector/doc/Pro-Bel_SW-P-08.html
+  - https://calrec.com/wp-content/uploads/2014/05/SW-P-08.pdf
+  - https://github.com/bitfocus/companion-module-generic-swp08/blob/main/companion/HELP.md
+  - https://support.rascular.com/pro-bel-sw-p-08-implementation-notes/
 retrieved_at: 2026-04-29T23:48:35.677Z
 last_checked_at: 2026-04-30T09:41:55.599Z
 generated_at: 2026-04-30T09:41:55.599Z
@@ -337,6 +342,11 @@ source_domains:
   - calrec.com
   - github.com
   - support.rascular.com
+source_urls:
+  - https://docs.dataminer.services/connector/doc/Pro-Bel_SW-P-08.html
+  - https://calrec.com/wp-content/uploads/2014/05/SW-P-08.pdf
+  - https://github.com/bitfocus/companion-module-generic-swp08/blob/main/companion/HELP.md
+  - https://support.rascular.com/pro-bel-sw-p-08-implementation-notes/
 retrieved_at: 2026-04-29T23:48:35.677Z
 last_checked_at: 2026-04-30T09:41:55.599Z
 ```

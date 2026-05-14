@@ -19,6 +19,10 @@ source_domains:
   - api.visualproductions.nl
   - manualslib.com
   - visualproductions.nl
+source_urls:
+  - https://api.visualproductions.nl/api/download/6762f3e65aaf91d36672e771
+  - https://www.manualslib.com/manual/1950022/Visual-Productions-Timecore.html
+  - https://www.visualproductions.nl/products/timecore
 retrieved_at: 2026-04-30T02:41:51.990Z
 last_checked_at: 2026-05-04T10:21:28.186Z
 generated_at: 2026-05-04T10:21:28.186Z
@@ -291,6 +295,10 @@ source_domains:
   - api.visualproductions.nl
   - manualslib.com
   - visualproductions.nl
+source_urls:
+  - https://api.visualproductions.nl/api/download/6762f3e65aaf91d36672e771
+  - https://www.manualslib.com/manual/1950022/Visual-Productions-Timecore.html
+  - https://www.visualproductions.nl/products/timecore
 retrieved_at: 2026-04-30T02:41:51.990Z
 last_checked_at: 2026-05-04T10:21:28.186Z
 ```

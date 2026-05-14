@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - docs2.hubitat.com
+source_urls:
+  - https://docs2.hubitat.com/en/apps/maker-api
 retrieved_at: 2026-05-03T09:18:51.697Z
 last_checked_at: 2026-04-25T20:45:36.528Z
 generated_at: 2026-04-25T20:45:36.528Z
@@ -286,6 +288,8 @@ The access token provides full control over all authorized devices — treat it 
 ```yaml
 source_domains:
   - docs2.hubitat.com
+source_urls:
+  - https://docs2.hubitat.com/en/apps/maker-api
 retrieved_at: 2026-05-03T09:18:51.697Z
 last_checked_at: 2026-04-25T20:45:36.528Z
 ```

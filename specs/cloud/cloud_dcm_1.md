@@ -17,6 +17,12 @@ compatible_with:
   required_options: []
 source_domains:
   - cloud.co.uk
+source_urls:
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20Serial%20Control%20Protocol%20V1.5.pdf"
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20Serial%20Control%20Protocol%20V1.3.pdf"
+  - https://www.cloud.co.uk/uploads/2022/01/1f38e0365af3a821bd511b42fc60eb8c.pdf
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20&%20DCM1e_Datasheet_EN.pdf"
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1_DCM1e%20FAQ_V1.pdf"
 retrieved_at: 2026-04-29T17:33:38.526Z
 last_checked_at: 2026-04-30T09:39:44.971Z
 generated_at: 2026-04-30T09:39:44.971Z
@@ -692,6 +698,12 @@ RS-232 pass-through commands (C, H, T) and boot loader commands (B) require V1.0
 ```yaml
 source_domains:
   - cloud.co.uk
+source_urls:
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20Serial%20Control%20Protocol%20V1.5.pdf"
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20Serial%20Control%20Protocol%20V1.3.pdf"
+  - https://www.cloud.co.uk/uploads/2022/01/1f38e0365af3a821bd511b42fc60eb8c.pdf
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20&%20DCM1e_Datasheet_EN.pdf"
+  - "https://www.cloud.co.uk/uploads/2022/01/DCM1_DCM1e%20FAQ_V1.pdf"
 retrieved_at: 2026-04-29T17:33:38.526Z
 last_checked_at: 2026-04-30T09:39:44.971Z
 ```

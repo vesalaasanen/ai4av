@@ -21,6 +21,8 @@ compatible_with:
   required_options: []
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
 last_checked_at: 2026-04-22T19:42:10.647Z
 generated_at: 2026-04-22T19:42:10.647Z
@@ -640,6 +642,8 @@ IP control uses port 50000 per the Network Settings menu. AMX DDDP discovery pro
 ```yaml
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
 last_checked_at: 2026-04-22T19:42:10.647Z
 ```

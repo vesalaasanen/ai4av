@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - developers.castr.com
+source_urls:
+  - https://developers.castr.com/docs/embed-player-api
 retrieved_at: 2026-05-03T15:15:34.477Z
 last_checked_at: 2026-05-03T15:26:41.058Z
 generated_at: 2026-05-03T15:26:41.058Z
@@ -307,6 +309,8 @@ interlocks: []
 ```yaml
 source_domains:
   - developers.castr.com
+source_urls:
+  - https://developers.castr.com/docs/embed-player-api
 retrieved_at: 2026-05-03T15:15:34.477Z
 last_checked_at: 2026-05-03T15:26:41.058Z
 ```

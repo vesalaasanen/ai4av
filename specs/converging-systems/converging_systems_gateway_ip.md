@@ -19,6 +19,9 @@ compatible_with:
   required_options: []
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-05-01T01:56:36.458Z
 last_checked_at: 2026-04-23T15:31:22.907Z
 generated_at: 2026-04-23T15:31:22.907Z
@@ -315,6 +318,9 @@ interlocks: []
 ```yaml
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-05-01T01:56:36.458Z
 last_checked_at: 2026-04-23T15:31:22.907Z
 ```

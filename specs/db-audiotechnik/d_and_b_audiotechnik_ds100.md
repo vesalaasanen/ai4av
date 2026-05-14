@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - dbaudio.com
+source_urls:
+  - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
 retrieved_at: 2026-05-04T18:05:42.070Z
-last_checked_at: 2026-04-26T11:46:52.013Z
-generated_at: 2026-04-26T11:46:52.013Z
+last_checked_at: 2026-05-14T18:17:15.116Z
+generated_at: 2026-05-14T18:17:15.116Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:46:52.013Z
-  matched_actions: 68
-  action_count: 68
+  checked_at: 2026-05-14T18:17:15.116Z
+  matched_actions: 55
+  action_count: 55
   confidence: high
   summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage."
 derived_from:
@@ -751,17 +753,19 @@ OSC wildcards supported: `?` (single char), `*` (any sequence), `[range]` (chara
 ```yaml
 source_domains:
   - dbaudio.com
+source_urls:
+  - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
 retrieved_at: 2026-05-04T18:05:42.070Z
-last_checked_at: 2026-04-26T11:46:52.013Z
+last_checked_at: 2026-05-14T18:17:15.116Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:46:52.013Z
-matched_actions: 68
-action_count: 68
+checked_at: 2026-05-14T18:17:15.116Z
+matched_actions: 55
+action_count: 55
 confidence: high
 summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage."
 ```

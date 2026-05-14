@@ -22,17 +22,19 @@ compatible_with:
   required_options: []
 source_domains:
   - dl.bromptontech.com
+source_urls:
+  - https://dl.bromptontech.com/tessera/docs/TesseraIPControlAPI3_5_2_r2.pdf
 retrieved_at: 2026-04-30T04:40:56.854Z
-last_checked_at: 2026-04-23T15:27:25.830Z
-generated_at: 2026-04-23T15:27:25.830Z
+last_checked_at: 2026-05-14T18:17:14.840Z
+generated_at: 2026-05-14T18:17:14.840Z
 firmware_coverage: ">=3.1.0"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:27:25.830Z
-  matched_actions: 30
-  action_count: 78
+  checked_at: 2026-05-14T18:17:14.840Z
+  matched_actions: 24
+  action_count: 24
   confidence: high
   summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed."
 derived_from:
@@ -980,17 +982,19 @@ interlocks:
 ```yaml
 source_domains:
   - dl.bromptontech.com
+source_urls:
+  - https://dl.bromptontech.com/tessera/docs/TesseraIPControlAPI3_5_2_r2.pdf
 retrieved_at: 2026-04-30T04:40:56.854Z
-last_checked_at: 2026-04-23T15:27:25.830Z
+last_checked_at: 2026-05-14T18:17:14.840Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:27:25.830Z
-matched_actions: 30
-action_count: 78
+checked_at: 2026-05-14T18:17:14.840Z
+matched_actions: 24
+action_count: 24
 confidence: high
 summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed."
 ```

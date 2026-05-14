@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - etcconnect.com
+source_urls:
+  - "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737519244"
 retrieved_at: 2026-04-30T04:41:10.249Z
-last_checked_at: 2026-04-25T20:43:18.652Z
-generated_at: 2026-04-25T20:43:18.652Z
+last_checked_at: 2026-05-14T18:17:15.835Z
+generated_at: 2026-05-14T18:17:15.835Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:43:18.652Z
-  matched_actions: 46
-  action_count: 46
+  checked_at: 2026-05-14T18:17:15.835Z
+  matched_actions: 39
+  action_count: 39
   confidence: high
   summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands."
 derived_from:
@@ -645,17 +647,19 @@ interlocks: []
 ```yaml
 source_domains:
   - etcconnect.com
+source_urls:
+  - "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737519244"
 retrieved_at: 2026-04-30T04:41:10.249Z
-last_checked_at: 2026-04-25T20:43:18.652Z
+last_checked_at: 2026-05-14T18:17:15.835Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:43:18.652Z
-matched_actions: 46
-action_count: 46
+checked_at: 2026-05-14T18:17:15.835Z
+matched_actions: 39
+action_count: 39
 confidence: high
 summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands."
 ```

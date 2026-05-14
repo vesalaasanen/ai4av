@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - nuheat.com
+source_urls:
+  - https://www.nuheat.com/products/thermostats/developer-api
 retrieved_at: 2026-05-04T18:03:56.871Z
 last_checked_at: 2026-04-23T08:17:55.062Z
 generated_at: 2026-04-23T08:17:55.062Z
@@ -221,6 +223,8 @@ Thermostat supports two operating modes: Auto (schedule-based) and Manual (direc
 ```yaml
 source_domains:
   - nuheat.com
+source_urls:
+  - https://www.nuheat.com/products/thermostats/developer-api
 retrieved_at: 2026-05-04T18:03:56.871Z
 last_checked_at: 2026-04-23T08:17:55.062Z
 ```

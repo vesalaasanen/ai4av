@@ -17,6 +17,10 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
 last_checked_at: 2026-04-30T09:46:46.044Z
 generated_at: 2026-04-30T09:46:46.044Z
@@ -939,6 +943,10 @@ interlocks:
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
 last_checked_at: 2026-04-30T09:46:46.044Z
 ```

@@ -18,17 +18,22 @@ compatible_with:
 source_domains:
   - docs.vdo.ninja
   - sdk.vdo.ninja
+source_urls:
+  - https://docs.vdo.ninja/advanced-settings/api-and-midi-parameters/api/api-reference
+  - https://docs.vdo.ninja/advanced-settings/api-and-midi-parameters/api
+  - https://sdk.vdo.ninja/docs/api-reference.html
+  - https://sdk.vdo.ninja
 retrieved_at: 2026-04-30T02:39:35.358Z
-last_checked_at: 2026-04-30T09:50:57.366Z
-generated_at: 2026-04-30T09:50:57.366Z
+last_checked_at: 2026-05-14T18:17:21.319Z
+generated_at: 2026-05-14T18:17:21.319Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:50:57.366Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:21.319Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 50 spec actions matched literally in source; transport parameters verified."
 derived_from:
@@ -503,17 +508,22 @@ WebSocket connection timeout ~1 minute; need reconnect logic and rejoin after ti
 source_domains:
   - docs.vdo.ninja
   - sdk.vdo.ninja
+source_urls:
+  - https://docs.vdo.ninja/advanced-settings/api-and-midi-parameters/api/api-reference
+  - https://docs.vdo.ninja/advanced-settings/api-and-midi-parameters/api
+  - https://sdk.vdo.ninja/docs/api-reference.html
+  - https://sdk.vdo.ninja
 retrieved_at: 2026-04-30T02:39:35.358Z
-last_checked_at: 2026-04-30T09:50:57.366Z
+last_checked_at: 2026-05-14T18:17:21.319Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:50:57.366Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:21.319Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 50 spec actions matched literally in source; transport parameters verified."
 ```

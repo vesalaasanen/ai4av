@@ -18,17 +18,21 @@ compatible_with:
 source_domains:
   - bssaudio.com
   - help.harmanpro.com
+source_urls:
+  - https://bssaudio.com/en/support_downloads
+  - https://help.harmanpro.com/soundweb-london-third-party-control
+  - https://help.harmanpro.com/bss
 retrieved_at: 2026-04-30T15:15:19.077Z
-last_checked_at: 2026-04-30T15:19:07.787Z
-generated_at: 2026-04-30T15:19:07.787Z
+last_checked_at: 2026-05-14T18:17:14.856Z
+generated_at: 2026-05-14T18:17:14.856Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:19:07.787Z
-  matched_actions: 14
-  action_count: 14
+  checked_at: 2026-05-14T18:17:14.856Z
+  matched_actions: 9
+  action_count: 9
   confidence: high
   summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified."
 derived_from:
@@ -316,17 +320,21 @@ Parameter ID (2 bytes):   Specific parameter within object
 source_domains:
   - bssaudio.com
   - help.harmanpro.com
+source_urls:
+  - https://bssaudio.com/en/support_downloads
+  - https://help.harmanpro.com/soundweb-london-third-party-control
+  - https://help.harmanpro.com/bss
 retrieved_at: 2026-04-30T15:15:19.077Z
-last_checked_at: 2026-04-30T15:19:07.787Z
+last_checked_at: 2026-05-14T18:17:14.856Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:19:07.787Z
-matched_actions: 14
-action_count: 14
+checked_at: 2026-05-14T18:17:14.856Z
+matched_actions: 9
+action_count: 9
 confidence: high
 summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified."
 ```

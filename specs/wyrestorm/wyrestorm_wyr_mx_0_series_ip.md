@@ -20,6 +20,8 @@ compatible_with:
   required_options: []
 source_domains:
   - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-01T00:40:25.191Z
 last_checked_at: 2026-04-27T10:13:23.183Z
 generated_at: 2026-04-27T10:13:23.183Z
@@ -762,6 +764,8 @@ interlocks: []
 ```yaml
 source_domains:
   - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-01T00:40:25.191Z
 last_checked_at: 2026-04-27T10:13:23.183Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-05-06T17:19:59.024Z
 generated_at: 2026-05-06T17:19:59.024Z
@@ -597,6 +599,8 @@ During media playback or recording, all commands except Power (`ka`) and Key (`m
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-05-06T17:19:59.024Z
 ```

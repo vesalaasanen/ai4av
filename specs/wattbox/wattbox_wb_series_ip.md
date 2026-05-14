@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-05-01T01:56:20.723Z
 last_checked_at: 2026-04-27T10:13:20.712Z
 generated_at: 2026-04-27T10:13:20.712Z
@@ -420,6 +422,8 @@ interlocks: []
 ```yaml
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-05-01T01:56:20.723Z
 last_checked_at: 2026-04-27T10:13:20.712Z
 ```

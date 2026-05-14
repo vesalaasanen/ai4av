@@ -23,6 +23,9 @@ compatible_with:
 source_domains:
   - docs.connect.panasonic.com
   - portal.7thsense.one
+source_urls:
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/CQ1_U_SerialCommandList.pdf
+  - https://portal.7thsense.one/medialon-help/mxmPanasonicDisplayTH.html
 retrieved_at: 2026-05-05T02:54:10.121Z
 last_checked_at: 2026-05-05T05:41:49.532Z
 generated_at: 2026-05-05T05:41:49.532Z
@@ -342,6 +345,9 @@ interlocks: []
 source_domains:
   - docs.connect.panasonic.com
   - portal.7thsense.one
+source_urls:
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/CQ1_U_SerialCommandList.pdf
+  - https://portal.7thsense.one/medialon-help/mxmPanasonicDisplayTH.html
 retrieved_at: 2026-05-05T02:54:10.121Z
 last_checked_at: 2026-05-05T05:41:49.532Z
 ```

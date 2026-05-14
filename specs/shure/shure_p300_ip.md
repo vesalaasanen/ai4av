@@ -19,17 +19,23 @@ source_domains:
   - shure.com
   - content-files.shure.com
   - pubs.shure.com
+source_urls:
+  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
+  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
+  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
+  - https://pubs.shure.com/command-strings/MXW/en-US
+  - https://www.shure.com/en-US/docs/commandstrings/P300
 retrieved_at: 2026-04-30T13:38:16.296Z
-last_checked_at: 2026-04-30T15:23:25.124Z
-generated_at: 2026-04-30T15:23:25.124Z
+last_checked_at: 2026-05-14T18:17:20.513Z
+generated_at: 2026-05-14T18:17:20.513Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:23:25.124Z
-  matched_actions: 68
-  action_count: 68
+  checked_at: 2026-05-14T18:17:20.513Z
+  matched_actions: 32
+  action_count: 32
   confidence: high
   summary: "All 68 spec actions matched verbatim; transport verified."
 derived_from:
@@ -1157,17 +1163,23 @@ source_domains:
   - shure.com
   - content-files.shure.com
   - pubs.shure.com
+source_urls:
+  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
+  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
+  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
+  - https://pubs.shure.com/command-strings/MXW/en-US
+  - https://www.shure.com/en-US/docs/commandstrings/P300
 retrieved_at: 2026-04-30T13:38:16.296Z
-last_checked_at: 2026-04-30T15:23:25.124Z
+last_checked_at: 2026-05-14T18:17:20.513Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:23:25.124Z
-matched_actions: 68
-action_count: 68
+checked_at: 2026-05-14T18:17:20.513Z
+matched_actions: 32
+action_count: 32
 confidence: high
 summary: "All 68 spec actions matched verbatim; transport verified."
 ```

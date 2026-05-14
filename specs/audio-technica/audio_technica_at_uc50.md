@@ -18,6 +18,9 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/us/atuc_50_atuc_ir_ip_control_protocol_en_web_190531.pdf
+  - https://docs.audio-technica.com/eu/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-29T22:52:59.393Z
 last_checked_at: 2026-05-03T15:35:30.550Z
 generated_at: 2026-05-03T15:35:30.550Z
@@ -1199,6 +1202,9 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/us/atuc_50_atuc_ir_ip_control_protocol_en_web_190531.pdf
+  - https://docs.audio-technica.com/eu/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-29T22:52:59.393Z
 last_checked_at: 2026-05-03T15:35:30.550Z
 ```

@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - lexicondsp.pl
   - lexicon.com
+source_urls:
+  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-05-04T15:17:03.082Z
-last_checked_at: 2026-04-30T09:45:13.542Z
-generated_at: 2026-04-30T09:45:13.542Z
+last_checked_at: 2026-05-14T18:17:17.381Z
+generated_at: 2026-05-14T18:17:17.381Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:45:13.542Z
-  matched_actions: 54
-  action_count: 54
+  checked_at: 2026-05-14T18:17:17.381Z
+  matched_actions: 53
+  action_count: 53
   confidence: high
   summary: "All 54 spec actions matched to distinct source commands; transport parameters verified."
 derived_from:
@@ -788,17 +791,20 @@ Dual-zone control. Zone 1 is master; zone 2 is secondary. All commands include z
 source_domains:
   - lexicondsp.pl
   - lexicon.com
+source_urls:
+  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-05-04T15:17:03.082Z
-last_checked_at: 2026-04-30T09:45:13.542Z
+last_checked_at: 2026-05-14T18:17:17.381Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:45:13.542Z
-matched_actions: 54
-action_count: 54
+checked_at: 2026-05-14T18:17:17.381Z
+matched_actions: 53
+action_count: 53
 confidence: high
 summary: "All 54 spec actions matched to distinct source commands; transport parameters verified."
 ```

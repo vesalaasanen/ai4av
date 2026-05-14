@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - downloads.canon.com
+source_urls:
+  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:02.664Z
-last_checked_at: 2026-04-26T11:30:58.896Z
-generated_at: 2026-04-26T11:30:58.896Z
+last_checked_at: 2026-05-14T18:17:14.891Z
+generated_at: 2026-05-14T18:17:14.891Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:30:58.896Z
-  matched_actions: 90
-  action_count: 90
+  checked_at: 2026-05-14T18:17:14.891Z
+  matched_actions: 48
+  action_count: 48
   confidence: high
   summary: "All 90 spec actions matched source commands literally; transport parameters verified."
 derived_from:
@@ -973,17 +975,19 @@ interlocks: []
 ```yaml
 source_domains:
   - downloads.canon.com
+source_urls:
+  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:02.664Z
-last_checked_at: 2026-04-26T11:30:58.896Z
+last_checked_at: 2026-05-14T18:17:14.891Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:30:58.896Z
-matched_actions: 90
-action_count: 90
+checked_at: 2026-05-14T18:17:14.891Z
+matched_actions: 48
+action_count: 48
 confidence: high
 summary: "All 90 spec actions matched source commands literally; transport parameters verified."
 ```

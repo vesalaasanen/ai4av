@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
 last_checked_at: 2026-04-23T15:23:28.509Z
 generated_at: 2026-04-23T15:23:28.509Z
@@ -229,6 +231,8 @@ Output numbers are 01-08. EDID input selection uses 00 for ALL, 01-08 for indivi
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
 last_checked_at: 2026-04-23T15:23:28.509Z
 ```

@@ -21,17 +21,20 @@ compatible_with:
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:34.680Z
-generated_at: 2026-04-23T15:31:34.680Z
+last_checked_at: 2026-05-14T18:17:15.085Z
+generated_at: 2026-05-14T18:17:15.085Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:31:34.680Z
+  checked_at: 2026-05-14T18:17:15.085Z
   matched_actions: 90
-  action_count: 90
+  action_count: 95
   confidence: high
   summary: "All 90 spec actions matched literally to VISCA command table; transport parameters verified; comprehensive coverage of control commands."
 derived_from:
@@ -735,17 +738,20 @@ VISCA protocol over TCP (port 5500) or serial RS-232 (9600 bps). Default static 
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:34.680Z
+last_checked_at: 2026-05-14T18:17:15.085Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:31:34.680Z
+checked_at: 2026-05-14T18:17:15.085Z
 matched_actions: 90
-action_count: 90
+action_count: 95
 confidence: high
 summary: "All 90 spec actions matched literally to VISCA command table; transport parameters verified; comprehensive coverage of control commands."
 ```

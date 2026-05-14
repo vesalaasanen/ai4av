@@ -30,17 +30,19 @@ compatible_with:
   required_options: []
 source_domains:
   - birddog.tv
+source_urls:
+  - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:40.994Z
-last_checked_at: 2026-04-23T15:21:53.998Z
-generated_at: 2026-04-23T15:21:53.998Z
+last_checked_at: 2026-05-14T18:17:14.628Z
+generated_at: 2026-05-14T18:17:14.628Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:21:53.998Z
-  matched_actions: 58
-  action_count: 58
+  checked_at: 2026-05-14T18:17:14.628Z
+  matched_actions: 31
+  action_count: 31
   confidence: high
   summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete."
 derived_from:
@@ -1217,17 +1219,19 @@ interlocks: []
 ```yaml
 source_domains:
   - birddog.tv
+source_urls:
+  - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:40.994Z
-last_checked_at: 2026-04-23T15:21:53.998Z
+last_checked_at: 2026-05-14T18:17:14.628Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:21:53.998Z
-matched_actions: 58
-action_count: 58
+checked_at: 2026-05-14T18:17:14.628Z
+matched_actions: 31
+action_count: 31
 confidence: high
 summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete."
 ```

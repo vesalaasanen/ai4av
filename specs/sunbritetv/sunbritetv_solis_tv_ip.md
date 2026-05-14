@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-04-23T08:27:21.524Z
-generated_at: 2026-04-23T08:27:21.524Z
+last_checked_at: 2026-05-14T18:17:21.070Z
+generated_at: 2026-05-14T18:17:21.070Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:27:21.524Z
+  checked_at: 2026-05-14T18:17:21.070Z
   matched_actions: 45
-  action_count: 45
+  action_count: 46
   confidence: high
   summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented."
 derived_from:
@@ -354,17 +356,19 @@ Command prefix: ESC (0x1B). Response format: command in brackets (e.g., [PWRON],
 ```yaml
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-04-23T08:27:21.524Z
+last_checked_at: 2026-05-14T18:17:21.070Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:27:21.524Z
+checked_at: 2026-05-14T18:17:21.070Z
 matched_actions: 45
-action_count: 45
+action_count: 46
 confidence: high
 summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - support.tesmart.com
+source_urls:
+  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
 retrieved_at: 2026-05-05T02:35:43.321Z
 last_checked_at: 2026-05-10T12:18:55.027Z
 generated_at: 2026-05-10T12:18:55.027Z
@@ -471,6 +473,8 @@ All endpoints use `POST /api/1/vehicles/{vin}/command/{command_name}`. VIN must 
 ```yaml
 source_domains:
   - support.tesmart.com
+source_urls:
+  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
 retrieved_at: 2026-05-05T02:35:43.321Z
 last_checked_at: 2026-05-10T12:18:55.027Z
 ```

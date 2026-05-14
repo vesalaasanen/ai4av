@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - downloads.canon.com
+source_urls:
+  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:04.493Z
 last_checked_at: 2026-04-23T15:28:50.519Z
 generated_at: 2026-04-23T15:28:50.519Z
@@ -270,6 +272,8 @@ interlocks: []
 ```yaml
 source_domains:
   - downloads.canon.com
+source_urls:
+  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:04.493Z
 last_checked_at: 2026-04-23T15:28:50.519Z
 ```

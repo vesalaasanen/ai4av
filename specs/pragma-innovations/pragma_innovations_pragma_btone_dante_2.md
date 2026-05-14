@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - pragma.swiss
+source_urls:
+  - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
 last_checked_at: 2026-04-23T08:19:05.055Z
 generated_at: 2026-04-23T08:19:05.055Z
@@ -412,6 +414,8 @@ Command terminator: `<CR><LF>` (0x0D). Minimum idle time between commands: 1.5s.
 ```yaml
 source_domains:
   - pragma.swiss
+source_urls:
+  - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
 last_checked_at: 2026-04-23T08:19:05.055Z
 ```

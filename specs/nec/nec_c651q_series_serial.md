@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-05-13T09:18:00.633Z
 generated_at: 2026-05-13T09:18:00.633Z
@@ -701,6 +703,8 @@ Serial communication uses 9-byte command format with checksum. Multi-baud rate s
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-05-13T09:18:00.633Z
 ```

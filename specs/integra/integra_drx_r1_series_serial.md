@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:49:59.416Z
-generated_at: 2026-04-26T13:49:59.416Z
+last_checked_at: 2026-05-14T18:17:16.965Z
+generated_at: 2026-05-14T18:17:16.965Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,9 +36,9 @@ known_gaps:
   - CDS
 verification:
   verdict: verified
-  checked_at: 2026-04-26T13:49:59.416Z
-  matched_actions: 145
-  action_count: 145
+  checked_at: 2026-05-14T18:17:16.965Z
+  matched_actions: 96
+  action_count: 96
   confidence: high
   summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals."
 derived_from:
@@ -1893,17 +1895,19 @@ The TUNER/XM/SIRIUS/HD Radio function is shared between MAIN and ZONE sides. Zon
 ```yaml
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:49:59.416Z
+last_checked_at: 2026-05-14T18:17:16.965Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T13:49:59.416Z
-matched_actions: 145
-action_count: 145
+checked_at: 2026-05-14T18:17:16.965Z
+matched_actions: 96
+action_count: 96
 confidence: high
 summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals."
 ```

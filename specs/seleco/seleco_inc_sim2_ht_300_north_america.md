@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - usermanual.wiki
+source_urls:
+  - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-04-27T09:45:18.146Z
-generated_at: 2026-04-27T09:45:18.146Z
+last_checked_at: 2026-05-14T18:17:20.212Z
+generated_at: 2026-05-14T18:17:20.212Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:18.146Z
+  checked_at: 2026-05-14T18:17:20.212Z
   matched_actions: 87
-  action_count: 87
+  action_count: 93
   confidence: high
   summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes."
 derived_from:
@@ -684,17 +686,19 @@ Packet header: `BE EF` (0xEFBE little-endian sync marker), Packet Type byte, Pay
 ```yaml
 source_domains:
   - usermanual.wiki
+source_urls:
+  - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-04-27T09:45:18.146Z
+last_checked_at: 2026-05-14T18:17:20.212Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:18.146Z
+checked_at: 2026-05-14T18:17:20.212Z
 matched_actions: 87
-action_count: 87
+action_count: 93
 confidence: high
 summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes."
 ```

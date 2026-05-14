@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
 retrieved_at: 2026-04-30T04:33:16.764Z
-last_checked_at: 2026-04-25T21:07:31.358Z
-generated_at: 2026-04-25T21:07:31.358Z
+last_checked_at: 2026-05-14T18:17:17.767Z
+generated_at: 2026-05-14T18:17:17.767Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:07:31.358Z
-  matched_actions: 43
-  action_count: 43
+  checked_at: 2026-05-14T18:17:17.767Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 43 spec actions matched verbatim command codes in source; transport port 5080 and baud 9600 verified."
 derived_from:
@@ -549,17 +551,19 @@ interlocks:
 ```yaml
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
 retrieved_at: 2026-04-30T04:33:16.764Z
-last_checked_at: 2026-04-25T21:07:31.358Z
+last_checked_at: 2026-05-14T18:17:17.767Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:07:31.358Z
-matched_actions: 43
-action_count: 43
+checked_at: 2026-05-14T18:17:17.767Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 43 spec actions matched verbatim command codes in source; transport port 5080 and baud 9600 verified."
 ```

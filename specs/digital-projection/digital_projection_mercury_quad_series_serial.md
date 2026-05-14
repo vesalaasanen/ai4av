@@ -17,17 +17,22 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-04T07:04:18.821Z
-generated_at: 2026-05-04T07:04:18.821Z
+last_checked_at: 2026-05-14T18:17:15.596Z
+generated_at: 2026-05-14T18:17:15.596Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T07:04:18.821Z
+  checked_at: 2026-05-14T18:17:15.596Z
   matched_actions: 176
-  action_count: 176
+  action_count: 204
   confidence: high
   summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified."
 derived_from:
@@ -1795,17 +1800,22 @@ interlocks:
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+source_urls:
+  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
+  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
+  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-05-04T07:04:18.821Z
+last_checked_at: 2026-05-14T18:17:15.596Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T07:04:18.821Z
+checked_at: 2026-05-14T18:17:15.596Z
 matched_actions: 176
-action_count: 176
+action_count: 204
 confidence: high
 summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified."
 ```

@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.videodevices.com
+source_urls:
+  - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
 last_checked_at: 2026-04-27T15:30:54.587Z
 generated_at: 2026-04-27T15:30:54.587Z
@@ -466,6 +468,8 @@ interlocks: []
 ```yaml
 source_domains:
   - cdn.videodevices.com
+source_urls:
+  - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
 last_checked_at: 2026-04-27T15:30:54.587Z
 ```

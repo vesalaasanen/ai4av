@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:32:07.102Z
-generated_at: 2026-04-26T21:32:07.102Z
+last_checked_at: 2026-05-14T18:17:19.290Z
+generated_at: 2026-05-14T18:17:19.290Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:32:07.102Z
+  checked_at: 2026-05-14T18:17:19.290Z
   matched_actions: 49
-  action_count: 49
+  action_count: 50
   confidence: high
   summary: "All 49 spec actions matched source; transport verified"
 derived_from:
@@ -628,17 +630,19 @@ Serial cable is cross-pinned (null modem). TCP port 7142 stated for LAN control.
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-26T21:32:07.102Z
+last_checked_at: 2026-05-14T18:17:19.290Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:32:07.102Z
+checked_at: 2026-05-14T18:17:19.290Z
 matched_actions: 49
-action_count: 49
+action_count: 50
 confidence: high
 summary: "All 49 spec actions matched source; transport verified"
 ```

@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - keydigital.com
   - manualslib.com
+source_urls:
+  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
+  - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-04-30T09:43:27.109Z
-generated_at: 2026-04-30T09:43:27.109Z
+last_checked_at: 2026-05-14T18:17:17.309Z
+generated_at: 2026-05-14T18:17:17.309Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:43:27.109Z
-  matched_actions: 18
-  action_count: 18
+  checked_at: 2026-05-14T18:17:17.309Z
+  matched_actions: 16
+  action_count: 16
   confidence: high
   summary: "All 18 spec actions match source commands verbatim; transport parameters verified; source catalogue fully represented."
 derived_from:
@@ -263,17 +266,20 @@ interlocks: []
 source_domains:
   - keydigital.com
   - manualslib.com
+source_urls:
+  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
+  - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-04-30T09:43:27.109Z
+last_checked_at: 2026-05-14T18:17:17.309Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:43:27.109Z
-matched_actions: 18
-action_count: 18
+checked_at: 2026-05-14T18:17:17.309Z
+matched_actions: 16
+action_count: 16
 confidence: high
 summary: "All 18 spec actions match source commands verbatim; transport parameters verified; source catalogue fully represented."
 ```

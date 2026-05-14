@@ -18,6 +18,12 @@ compatible_with:
 source_domains:
   - documents.televic.digital
   - tcs-static.azurewebsites.net
+source_urls:
+  - "https://documents.televic.digital/conference/index.php/s/BdAEL5dGA4KQkGX/download/Connecting%20D-Cerno%20AE%20With%20Third-Party%20DSP.pdf"
+  - "https://documents.televic.digital/conference/index.php/s/HW2RLc6ifDY9tDJ/download/API%20Document%20for%206.11.pdf"
+  - https://documents.televic.digital/conference/index.php/s/mdA6btNwtN4dBtr/download/TCS_ConfigurationManual_PlixusWebServer_en-US.pdf
+  - https://tcs-static.azurewebsites.net/dcerno-customer-api/D-Cerno1.6/index.html
+  - https://documents.televic.digital/conference/index.php/s/2xDZzyeteSfpYz9/download/TCS_CrestronInstallationGuide_v1.0.pdf
 retrieved_at: 2026-04-30T02:00:56.363Z
 last_checked_at: 2026-04-27T10:13:16.685Z
 generated_at: 2026-04-27T10:13:16.685Z
@@ -212,6 +218,12 @@ interlocks: []
 source_domains:
   - documents.televic.digital
   - tcs-static.azurewebsites.net
+source_urls:
+  - "https://documents.televic.digital/conference/index.php/s/BdAEL5dGA4KQkGX/download/Connecting%20D-Cerno%20AE%20With%20Third-Party%20DSP.pdf"
+  - "https://documents.televic.digital/conference/index.php/s/HW2RLc6ifDY9tDJ/download/API%20Document%20for%206.11.pdf"
+  - https://documents.televic.digital/conference/index.php/s/mdA6btNwtN4dBtr/download/TCS_ConfigurationManual_PlixusWebServer_en-US.pdf
+  - https://tcs-static.azurewebsites.net/dcerno-customer-api/D-Cerno1.6/index.html
+  - https://documents.televic.digital/conference/index.php/s/2xDZzyeteSfpYz9/download/TCS_CrestronInstallationGuide_v1.0.pdf
 retrieved_at: 2026-04-30T02:00:56.363Z
 last_checked_at: 2026-04-27T10:13:16.685Z
 ```

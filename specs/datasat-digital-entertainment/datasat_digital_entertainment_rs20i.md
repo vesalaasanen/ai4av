@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - datasatdigital.com
+source_urls:
+  - https://www.datasatdigital.com/download/53/rs20i/207628/tn-h413-01-rev-b1-rs20i-control.pdf
 retrieved_at: 2026-05-04T15:21:18.866Z
 last_checked_at: 2026-05-01T07:34:53.969Z
 generated_at: 2026-05-01T07:34:53.969Z
@@ -534,6 +536,8 @@ Command format: `@COMMAND <arg1> <arg2><CR>` (carriage return terminator). Read/
 ```yaml
 source_domains:
   - datasatdigital.com
+source_urls:
+  - https://www.datasatdigital.com/download/53/rs20i/207628/tn-h413-01-rev-b1-rs20i-control.pdf
 retrieved_at: 2026-05-04T15:21:18.866Z
 last_checked_at: 2026-05-01T07:34:53.969Z
 ```

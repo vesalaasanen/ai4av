@@ -15,8 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-27T14:43:53.278Z
+source_domains:
+  - definitivetechnology.com
+source_urls:
+  - https://www.definitivetechnology.com/on/demandware.static/-/Library-Sites-definitive_northamerica_shared/default/dwddd37399/downloads/heos_cli_protocolspecification-version-116.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-27T14:43:53.278Z
 generated_at: 2026-04-27T14:43:53.278Z
 firmware_coverage: "Not stated in source"
@@ -671,8 +674,11 @@ Command format: `heos://command_group/command?attr1=val1&attr2=val2\r\n`. delimi
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-27T14:43:53.278Z
+source_domains:
+  - definitivetechnology.com
+source_urls:
+  - https://www.definitivetechnology.com/on/demandware.static/-/Library-Sites-definitive_northamerica_shared/default/dwddd37399/downloads/heos_cli_protocolspecification-version-116.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-27T14:43:53.278Z
 ```
 

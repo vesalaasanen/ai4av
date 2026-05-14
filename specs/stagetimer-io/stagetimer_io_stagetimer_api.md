@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - stagetimer.io
+source_urls:
+  - https://stagetimer.io/docs/api-v1/
+  - https://stagetimer.io/docs/integration-with-streamdeck-companion/
 retrieved_at: 2026-04-30T01:44:44.758Z
-last_checked_at: 2026-04-27T15:34:16.699Z
-generated_at: 2026-04-27T15:34:16.699Z
+last_checked_at: 2026-05-14T18:17:21.000Z
+generated_at: 2026-05-14T18:17:21.000Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:34:16.699Z
-  matched_actions: 46
-  action_count: 46
+  checked_at: 2026-05-14T18:17:21.000Z
+  matched_actions: 44
+  action_count: 44
   confidence: high
   summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters."
 derived_from:
@@ -832,17 +835,20 @@ All endpoints use GET requests with query parameters. Timestamps returned as Uni
 ```yaml
 source_domains:
   - stagetimer.io
+source_urls:
+  - https://stagetimer.io/docs/api-v1/
+  - https://stagetimer.io/docs/integration-with-streamdeck-companion/
 retrieved_at: 2026-04-30T01:44:44.758Z
-last_checked_at: 2026-04-27T15:34:16.699Z
+last_checked_at: 2026-05-14T18:17:21.000Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:34:16.699Z
-matched_actions: 46
-action_count: 46
+checked_at: 2026-05-14T18:17:21.000Z
+matched_actions: 44
+action_count: 44
 confidence: high
 summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters."
 ```

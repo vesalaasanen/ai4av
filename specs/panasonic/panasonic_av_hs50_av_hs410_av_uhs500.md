@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - eww.pass.panasonic.co.jp
+source_urls:
+  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-UHS500_InterfaceGuide(DVQP2369XA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:51.350Z
-last_checked_at: 2026-04-26T21:59:55.714Z
-generated_at: 2026-04-26T21:59:55.714Z
+last_checked_at: 2026-05-14T18:17:19.586Z
+generated_at: 2026-05-14T18:17:19.586Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:59:55.714Z
-  matched_actions: 28
-  action_count: 28
+  checked_at: 2026-05-14T18:17:19.586Z
+  matched_actions: 20
+  action_count: 20
   confidence: high
   summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered."
 derived_from:
@@ -469,17 +471,19 @@ PinP target mapping varies by format and option board: 2K mode uses KEY2; 4K wit
 ```yaml
 source_domains:
   - eww.pass.panasonic.co.jp
+source_urls:
+  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-UHS500_InterfaceGuide(DVQP2369XA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:51.350Z
-last_checked_at: 2026-04-26T21:59:55.714Z
+last_checked_at: 2026-05-14T18:17:19.586Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:59:55.714Z
-matched_actions: 28
-action_count: 28
+checked_at: 2026-05-14T18:17:19.586Z
+matched_actions: 20
+action_count: 20
 confidence: high
 summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered."
 ```

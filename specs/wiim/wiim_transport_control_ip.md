@@ -17,18 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - wiimhome.com
+source_urls:
+  - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T15:17:31.886Z
-last_checked_at: 2026-05-04T10:21:28.087Z
-generated_at: 2026-05-04T10:21:28.087Z
+last_checked_at: 2026-05-14T18:17:21.515Z
+generated_at: 2026-05-14T18:17:21.515Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - setPlayerCmd:hex_playlist
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:21:28.087Z
-  matched_actions: 33
-  action_count: 33
+  checked_at: 2026-05-14T18:17:21.515Z
+  matched_actions: 23
+  action_count: 23
   confidence: high
   summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage."
 derived_from:
@@ -365,17 +367,19 @@ interlocks: []
 ```yaml
 source_domains:
   - wiimhome.com
+source_urls:
+  - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T15:17:31.886Z
-last_checked_at: 2026-05-04T10:21:28.087Z
+last_checked_at: 2026-05-14T18:17:21.515Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:21:28.087Z
-matched_actions: 33
-action_count: 33
+checked_at: 2026-05-14T18:17:21.515Z
+matched_actions: 23
+action_count: 23
 confidence: high
 summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage."
 ```

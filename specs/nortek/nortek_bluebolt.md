@@ -22,17 +22,19 @@ compatible_with:
   required_options: []
 source_domains:
   - classic.mybluebolt.com
+source_urls:
+  - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-04-30T04:41:42.766Z
-last_checked_at: 2026-04-25T21:41:02.881Z
-generated_at: 2026-04-25T21:41:02.881Z
+last_checked_at: 2026-05-14T18:17:19.326Z
+generated_at: 2026-05-14T18:17:19.326Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:41:02.881Z
-  matched_actions: 36
-  action_count: 36
+  checked_at: 2026-05-14T18:17:19.326Z
+  matched_actions: 13
+  action_count: 13
   confidence: low
   summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage"
 derived_from:
@@ -453,17 +455,19 @@ interlocks: []
 ```yaml
 source_domains:
   - classic.mybluebolt.com
+source_urls:
+  - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-04-30T04:41:42.766Z
-last_checked_at: 2026-04-25T21:41:02.881Z
+last_checked_at: 2026-05-14T18:17:19.326Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:41:02.881Z
-matched_actions: 36
-action_count: 36
+checked_at: 2026-05-14T18:17:19.326Z
+matched_actions: 13
+action_count: 13
 confidence: low
 summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage"
 ```

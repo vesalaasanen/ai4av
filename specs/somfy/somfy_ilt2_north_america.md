@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:09.724Z
-last_checked_at: 2026-04-27T09:45:20.946Z
-generated_at: 2026-04-27T09:45:20.946Z
+last_checked_at: 2026-05-14T18:17:20.631Z
+generated_at: 2026-05-14T18:17:20.631Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:20.946Z
-  matched_actions: 19
-  action_count: 19
+  checked_at: 2026-05-14T18:17:20.631Z
+  matched_actions: 8
+  action_count: 8
   confidence: high
   summary: "All 19 spec actions matched source SDN protocol commands; transport verified; bidirectional protocol coverage complete."
 derived_from:
@@ -357,17 +359,19 @@ Addressing modes: Point-to-point (DEST@ = specific NodeID), Group (DEST@ = 00000
 ```yaml
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:09.724Z
-last_checked_at: 2026-04-27T09:45:20.946Z
+last_checked_at: 2026-05-14T18:17:20.631Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:20.946Z
-matched_actions: 19
-action_count: 19
+checked_at: 2026-05-14T18:17:20.631Z
+matched_actions: 8
+action_count: 8
 confidence: high
 summary: "All 19 spec actions matched source SDN protocol commands; transport verified; bidirectional protocol coverage complete."
 ```

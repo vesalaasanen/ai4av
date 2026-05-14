@@ -21,17 +21,20 @@ compatible_with:
 source_domains:
   - 2150.com
   - customremotecontrol.com
+source_urls:
+  - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
+  - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-04-30T15:20:35.619Z
-generated_at: 2026-04-30T15:20:35.619Z
+last_checked_at: 2026-05-14T18:17:15.900Z
+generated_at: 2026-05-14T18:17:15.900Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:20:35.619Z
+  checked_at: 2026-05-14T18:17:15.900Z
   matched_actions: 143
-  action_count: 143
+  action_count: 199
   confidence: high
   summary: "All 143 spec commands match literal source tokens; transport verified."
 derived_from:
@@ -1314,17 +1317,20 @@ Remote control codes (51-70) do not function when remote control is prohibited v
 source_domains:
   - 2150.com
   - customremotecontrol.com
+source_urls:
+  - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
+  - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-04-30T15:20:35.619Z
+last_checked_at: 2026-05-14T18:17:15.900Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:20:35.619Z
+checked_at: 2026-05-14T18:17:15.900Z
 matched_actions: 143
-action_count: 143
+action_count: 199
 confidence: high
 summary: "All 143 spec commands match literal source tokens; transport verified."
 ```

@@ -18,6 +18,10 @@ compatible_with:
 source_domains:
   - mcintoshlabs.com
   - raw.githubusercontent.com
+source_urls:
+  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
+  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
 retrieved_at: 2026-05-04T15:10:09.003Z
 last_checked_at: 2026-04-25T21:10:09.769Z
 generated_at: 2026-04-25T21:10:09.769Z
@@ -477,6 +481,10 @@ interlocks:
 source_domains:
   - mcintoshlabs.com
   - raw.githubusercontent.com
+source_urls:
+  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
+  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
 retrieved_at: 2026-05-04T15:10:09.003Z
 last_checked_at: 2026-04-25T21:10:09.769Z
 ```

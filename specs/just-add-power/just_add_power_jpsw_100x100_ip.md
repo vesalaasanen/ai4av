@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - support.justaddpower.com
+source_urls:
+  - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
+  - https://support.justaddpower.com/kb/article/379/
 retrieved_at: 2026-05-12T09:53:32.970Z
 last_checked_at: 2026-05-12T14:58:21.408Z
 generated_at: 2026-05-12T14:58:21.408Z
@@ -194,6 +197,9 @@ interlocks: []
 ```yaml
 source_domains:
   - support.justaddpower.com
+source_urls:
+  - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
+  - https://support.justaddpower.com/kb/article/379/
 retrieved_at: 2026-05-12T09:53:32.970Z
 last_checked_at: 2026-05-12T14:58:21.408Z
 ```

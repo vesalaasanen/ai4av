@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.denon.com
+source_urls:
+  - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
 last_checked_at: 2026-04-30T09:41:51.893Z
 generated_at: 2026-04-30T09:41:51.893Z
@@ -477,6 +479,8 @@ Net audio presets (NSP1/NSP2/NSP3) store and recall 20-character names in UTF-8.
 ```yaml
 source_domains:
   - assets.denon.com
+source_urls:
+  - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
 last_checked_at: 2026-04-30T09:41:51.893Z
 ```

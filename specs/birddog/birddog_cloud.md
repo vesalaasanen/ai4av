@@ -19,6 +19,11 @@ source_domains:
   - birddog.tv
   - manuals.plus
   - documenter.getpostman.com
+source_urls:
+  - https://birddog.tv/AV/API/
+  - https://birddog.tv/api/
+  - https://manuals.plus/m/e8f518c03db0bca2ddfb3f1deae0e3dd8202ba271f516c06c8a765a57f210d6d
+  - https://documenter.getpostman.com/view/29602224/2sAYHxn45i
 retrieved_at: 2026-04-29T22:54:38.555Z
 last_checked_at: 2026-04-27T14:38:49.272Z
 generated_at: 2026-04-27T14:38:49.272Z
@@ -1016,6 +1021,11 @@ source_domains:
   - birddog.tv
   - manuals.plus
   - documenter.getpostman.com
+source_urls:
+  - https://birddog.tv/AV/API/
+  - https://birddog.tv/api/
+  - https://manuals.plus/m/e8f518c03db0bca2ddfb3f1deae0e3dd8202ba271f516c06c8a765a57f210d6d
+  - https://documenter.getpostman.com/view/29602224/2sAYHxn45i
 retrieved_at: 2026-04-29T22:54:38.555Z
 last_checked_at: 2026-04-27T14:38:49.272Z
 ```

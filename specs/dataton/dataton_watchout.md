@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:41:03.688Z
-last_checked_at: 2026-04-23T15:32:50.465Z
-generated_at: 2026-04-23T15:32:50.465Z
+last_checked_at: 2026-05-14T18:17:15.180Z
+generated_at: 2026-05-14T18:17:15.180Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:32:50.465Z
-  matched_actions: 26
-  action_count: 26
+  checked_at: 2026-05-14T18:17:15.180Z
+  matched_actions: 19
+  action_count: 19
   confidence: high
   summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift."
 derived_from:
@@ -347,17 +349,19 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:41:03.688Z
-last_checked_at: 2026-04-23T15:32:50.465Z
+last_checked_at: 2026-05-14T18:17:15.180Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:32:50.465Z
-matched_actions: 26
-action_count: 26
+checked_at: 2026-05-14T18:17:15.180Z
+matched_actions: 19
+action_count: 19
 confidence: high
 summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift."
 ```

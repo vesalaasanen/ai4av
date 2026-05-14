@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-05-06T17:19:31.281Z
-generated_at: 2026-05-06T17:19:31.281Z
+last_checked_at: 2026-05-14T18:17:14.729Z
+generated_at: 2026-05-14T18:17:14.729Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-06T17:19:31.281Z
-  matched_actions: 14
-  action_count: 14
+  checked_at: 2026-05-14T18:17:14.729Z
+  matched_actions: 13
+  action_count: 13
   confidence: high
   summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified."
 derived_from:
@@ -270,17 +272,19 @@ interlocks: []
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-05-06T17:19:31.281Z
+last_checked_at: 2026-05-14T18:17:14.729Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-06T17:19:31.281Z
-matched_actions: 14
-action_count: 14
+checked_at: 2026-05-14T18:17:14.729Z
+matched_actions: 13
+action_count: 13
 confidence: high
 summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
 retrieved_at: 2026-04-30T04:25:07.876Z
-last_checked_at: 2026-04-26T22:56:46.252Z
-generated_at: 2026-04-26T22:56:46.252Z
+last_checked_at: 2026-05-14T18:17:21.419Z
+generated_at: 2026-05-14T18:17:21.419Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:56:46.252Z
-  matched_actions: 112
-  action_count: 112
+  checked_at: 2026-05-14T18:17:21.419Z
+  matched_actions: 96
+  action_count: 96
   confidence: high
   summary: "All 112 spec actions matched source; transport parameters verified; comprehensive command coverage confirmed."
 derived_from:
@@ -748,17 +750,19 @@ interlocks:
 ```yaml
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
 retrieved_at: 2026-04-30T04:25:07.876Z
-last_checked_at: 2026-04-26T22:56:46.252Z
+last_checked_at: 2026-05-14T18:17:21.419Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:56:46.252Z
-matched_actions: 112
-action_count: 112
+checked_at: 2026-05-14T18:17:21.419Z
+matched_actions: 96
+action_count: 96
 confidence: high
 summary: "All 112 spec actions matched source; transport parameters verified; comprehensive command coverage confirmed."
 ```

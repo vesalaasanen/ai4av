@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - cf.tascam.com
+source_urls:
+  - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
 retrieved_at: 2026-04-30T01:50:57.652Z
-last_checked_at: 2026-04-27T10:13:16.189Z
-generated_at: 2026-04-27T10:13:16.189Z
+last_checked_at: 2026-05-14T18:17:21.207Z
+generated_at: 2026-05-14T18:17:21.207Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:16.189Z
-  matched_actions: 38
-  action_count: 38
+  checked_at: 2026-05-14T18:17:21.207Z
+  matched_actions: 26
+  action_count: 26
   confidence: high
   summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified."
 derived_from:
@@ -383,17 +385,19 @@ Commands require 100ms minimum interval. Machine ID fixed at 0; non-zero IDs are
 ```yaml
 source_domains:
   - cf.tascam.com
+source_urls:
+  - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
 retrieved_at: 2026-04-30T01:50:57.652Z
-last_checked_at: 2026-04-27T10:13:16.189Z
+last_checked_at: 2026-05-14T18:17:21.207Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:16.189Z
-matched_actions: 38
-action_count: 38
+checked_at: 2026-05-14T18:17:21.207Z
+matched_actions: 26
+action_count: 26
 confidence: high
 summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - keydigital.com
+source_urls:
+  - "https://keydigital.com/Control%20Mods%20Codes/HD%20Leeza/RS-232/HDLEEZA_RS232%20Command%20Protocol.pdf"
 retrieved_at: 2026-05-04T15:19:04.150Z
 last_checked_at: 2026-05-04T06:03:28.006Z
 generated_at: 2026-05-04T06:03:28.006Z
@@ -414,6 +416,8 @@ interlocks: []
 ```yaml
 source_domains:
   - keydigital.com
+source_urls:
+  - "https://keydigital.com/Control%20Mods%20Codes/HD%20Leeza/RS-232/HDLEEZA_RS232%20Command%20Protocol.pdf"
 retrieved_at: 2026-05-04T15:19:04.150Z
 last_checked_at: 2026-05-04T06:03:28.006Z
 ```

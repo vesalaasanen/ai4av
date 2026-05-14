@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - vicreo-listener.com
+source_urls:
+  - https://www.vicreo-listener.com
 retrieved_at: 2026-04-30T02:33:47.521Z
 last_checked_at: 2026-04-30T14:54:07.573Z
 generated_at: 2026-04-30T14:54:07.573Z
@@ -348,6 +350,8 @@ Modifier keys supported: alt, command (Windows key), ctrl, shift. Platform restr
 ```yaml
 source_domains:
   - vicreo-listener.com
+source_urls:
+  - https://www.vicreo-listener.com
 retrieved_at: 2026-04-30T02:33:47.521Z
 last_checked_at: 2026-04-30T14:54:07.573Z
 ```

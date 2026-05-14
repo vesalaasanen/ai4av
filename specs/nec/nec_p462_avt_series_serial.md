@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-25T21:29:37.346Z
 generated_at: 2026-04-25T21:29:37.346Z
@@ -497,6 +499,8 @@ Command format: 20h 88h <ID1> <ID2> 0Ch <DATA01>-<DATA12> <CKS>. All multi-byte 
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-25T21:29:37.346Z
 ```

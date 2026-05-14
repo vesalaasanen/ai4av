@@ -24,6 +24,8 @@ compatible_with:
   required_options: []
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - https://documents.blackmagicdesign.com/DeveloperManuals/HyperDeckEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:45.767Z
 last_checked_at: 2026-04-23T15:22:09.404Z
 generated_at: 2026-04-23T15:22:09.404Z
@@ -971,6 +973,8 @@ The HyperDeck protocol is line-oriented text over TCP. Commands use a `{command}
 ```yaml
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - https://documents.blackmagicdesign.com/DeveloperManuals/HyperDeckEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:45.767Z
 last_checked_at: 2026-04-23T15:22:09.404Z
 ```

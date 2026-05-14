@@ -25,6 +25,11 @@ compatible_with:
   required_options: []
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
+  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
+  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
+  - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
 retrieved_at: 2026-05-01T01:59:50.755Z
 last_checked_at: 2026-04-30T09:49:35.722Z
 generated_at: 2026-04-30T09:49:35.722Z
@@ -204,6 +209,11 @@ Command format: all commands wrapped in STX (0x02) and ETX (0x03) with colon-sep
 ```yaml
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
+  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
+  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
+  - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
 retrieved_at: 2026-05-01T01:59:50.755Z
 last_checked_at: 2026-04-30T09:49:35.722Z
 ```

@@ -18,6 +18,11 @@ compatible_with:
 source_domains:
   - convergingsystems.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/bric/bric_programmerstoolkit_V0100.pdf
+  - https://www.convergingsystems.com/bin/doc/bric/bric_manual_full_V0306.pdf
+  - https://applicationmarket.crestron.com/content/Help/Stewart_Filmscreen/stewart_filmscreen_bric_v1_0_help.pdf
+  - https://applicationmarket.crestron.com/stewart-filmscreen-corporation-bric-north-america/
 retrieved_at: 2026-05-04T12:21:35.188Z
 last_checked_at: 2026-05-04T16:17:49.759Z
 generated_at: 2026-05-04T16:17:49.759Z
@@ -222,6 +227,11 @@ Command syntax: `#XXYY↵` where `XX` = unit address (01–04, factory default 0
 source_domains:
   - convergingsystems.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/bric/bric_programmerstoolkit_V0100.pdf
+  - https://www.convergingsystems.com/bin/doc/bric/bric_manual_full_V0306.pdf
+  - https://applicationmarket.crestron.com/content/Help/Stewart_Filmscreen/stewart_filmscreen_bric_v1_0_help.pdf
+  - https://applicationmarket.crestron.com/stewart-filmscreen-corporation-bric-north-america/
 retrieved_at: 2026-05-04T12:21:35.188Z
 last_checked_at: 2026-05-04T16:17:49.759Z
 ```

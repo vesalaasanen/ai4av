@@ -21,6 +21,8 @@ compatible_with:
   required_options: []
 source_domains:
   - symetrixinc.com
+source_urls:
+  - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
 last_checked_at: 2026-04-27T10:13:14.101Z
 generated_at: 2026-04-27T10:13:14.101Z
@@ -338,6 +340,8 @@ interlocks: []
 ```yaml
 source_domains:
   - symetrixinc.com
+source_urls:
+  - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
 last_checked_at: 2026-04-27T10:13:14.101Z
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - community.xibo.org.uk
+source_urls:
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-12T09:53:48.647Z
-last_checked_at: 2026-05-13T08:46:22.469Z
-generated_at: 2026-05-13T08:46:22.469Z
+last_checked_at: 2026-05-14T18:17:19.703Z
+generated_at: 2026-05-14T18:17:19.703Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-13T08:46:22.469Z
+  checked_at: 2026-05-14T18:17:19.703Z
   matched_actions: 108
-  action_count: 108
+  action_count: 117
   confidence: high
   summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol."
 derived_from:
@@ -1456,17 +1458,19 @@ interlocks:
 ```yaml
 source_domains:
   - community.xibo.org.uk
+source_urls:
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-12T09:53:48.647Z
-last_checked_at: 2026-05-13T08:46:22.469Z
+last_checked_at: 2026-05-14T18:17:19.703Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-13T08:46:22.469Z
+checked_at: 2026-05-14T18:17:19.703Z
 matched_actions: 108
-action_count: 108
+action_count: 117
 confidence: high
 summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol."
 ```

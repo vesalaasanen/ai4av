@@ -28,18 +28,20 @@ compatible_with:
   required_options: []
 source_domains:
   - pubs.shure.com
+source_urls:
+  - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-04-30T04:45:53.234Z
-last_checked_at: 2026-04-23T08:25:59.213Z
-generated_at: 2026-04-23T08:25:59.213Z
+last_checked_at: 2026-05-14T18:17:20.490Z
+generated_at: 2026-05-14T18:17:20.490Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "TX_DEVICE_ID (charger-only variant)"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:25:59.213Z
-  matched_actions: 48
-  action_count: 48
+  checked_at: 2026-05-14T18:17:20.490Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented."
 derived_from:
@@ -709,17 +711,19 @@ External mute selection required for echo canceller applications. LED control re
 ```yaml
 source_domains:
   - pubs.shure.com
+source_urls:
+  - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-04-30T04:45:53.234Z
-last_checked_at: 2026-04-23T08:25:59.213Z
+last_checked_at: 2026-05-14T18:17:20.490Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:25:59.213Z
-matched_actions: 48
-action_count: 48
+checked_at: 2026-05-14T18:17:20.490Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented."
 ```

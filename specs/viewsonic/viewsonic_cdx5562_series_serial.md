@@ -17,17 +17,23 @@ compatible_with:
   required_options: []
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
+  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
 retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-04-29T11:21:31.073Z
-generated_at: 2026-04-29T11:21:31.073Z
+last_checked_at: 2026-05-14T18:17:21.380Z
+generated_at: 2026-05-14T18:17:21.380Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-29T11:21:31.073Z
-  matched_actions: 61
-  action_count: 62
+  checked_at: 2026-05-14T18:17:21.380Z
+  matched_actions: 36
+  action_count: 36
   confidence: high
   summary: "All 61 verifiable spec commands matched literally in source tables; transport parameters verified verbatim; complete coverage of source command catalogue."
 derived_from:
@@ -715,17 +721,23 @@ notes: >-
 ```yaml
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
+  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
 retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-04-29T11:21:31.073Z
+last_checked_at: 2026-05-14T18:17:21.380Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-29T11:21:31.073Z
-matched_actions: 61
-action_count: 62
+checked_at: 2026-05-14T18:17:21.380Z
+matched_actions: 36
+action_count: 36
 confidence: high
 summary: "All 61 verifiable spec commands matched literally in source tables; transport parameters verified verbatim; complete coverage of source command catalogue."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - ampetronic.com
+source_urls:
+  - https://www.ampetronic.com/wp-content/uploads/UP39808-4-C-Series-Protocol-Guide.pdf
 retrieved_at: 2026-04-30T04:36:26.602Z
 last_checked_at: 2026-04-30T09:30:14.169Z
 generated_at: 2026-04-30T09:30:14.169Z
@@ -888,6 +890,8 @@ interlocks: []
 ```yaml
 source_domains:
   - ampetronic.com
+source_urls:
+  - https://www.ampetronic.com/wp-content/uploads/UP39808-4-C-Series-Protocol-Guide.pdf
 retrieved_at: 2026-04-30T04:36:26.602Z
 last_checked_at: 2026-04-30T09:30:14.169Z
 ```

@@ -25,6 +25,12 @@ source_domains:
   - extron.com
   - manualslib.com
   - portal.7thsense.one
+source_urls:
+  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
+  - https://www.extron.com/download/files/userman/Matrix_3200-6400_Audio.pdf
+  - https://www.manualslib.com/manual/789689/Extron-Electronics-Matrix-3200-Series.html
+  - https://www.extron.com/article/tech92
+  - https://portal.7thsense.one/medialon-help/mxmExtron6400.html
 retrieved_at: 2026-04-30T03:38:46.180Z
 last_checked_at: 2026-04-30T14:44:40.236Z
 generated_at: 2026-04-30T14:44:40.236Z
@@ -727,6 +733,12 @@ source_domains:
   - extron.com
   - manualslib.com
   - portal.7thsense.one
+source_urls:
+  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
+  - https://www.extron.com/download/files/userman/Matrix_3200-6400_Audio.pdf
+  - https://www.manualslib.com/manual/789689/Extron-Electronics-Matrix-3200-Series.html
+  - https://www.extron.com/article/tech92
+  - https://portal.7thsense.one/medialon-help/mxmExtron6400.html
 retrieved_at: 2026-04-30T03:38:46.180Z
 last_checked_at: 2026-04-30T14:44:40.236Z
 ```

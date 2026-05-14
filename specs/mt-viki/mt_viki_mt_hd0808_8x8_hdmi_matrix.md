@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - mt-viki.net
+source_urls:
+  - https://www.mt-viki.net/wp-content/uploads/2022/10/MT-HD4X4-MT-HD0808-MT-HD1616-User-Manual.pdf
+  - https://www.mt-viki.net/download/
 retrieved_at: 2026-04-30T14:17:03.133Z
 last_checked_at: 2026-04-30T15:22:12.346Z
 generated_at: 2026-04-30T15:22:12.346Z
@@ -194,6 +197,9 @@ interlocks: []
 ```yaml
 source_domains:
   - mt-viki.net
+source_urls:
+  - https://www.mt-viki.net/wp-content/uploads/2022/10/MT-HD4X4-MT-HD0808-MT-HD1616-User-Manual.pdf
+  - https://www.mt-viki.net/download/
 retrieved_at: 2026-04-30T14:17:03.133Z
 last_checked_at: 2026-04-30T15:22:12.346Z
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:39:02.588Z
-generated_at: 2026-04-25T21:39:02.588Z
+last_checked_at: 2026-05-14T18:17:19.253Z
+generated_at: 2026-05-14T18:17:19.253Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:39:02.588Z
-  matched_actions: 48
-  action_count: 48
+  checked_at: 2026-05-14T18:17:19.253Z
+  matched_actions: 28
+  action_count: 28
   confidence: low
   summary: "All 48 spec actions matched source commands; transport verified"
 derived_from:
@@ -542,17 +544,19 @@ Input terminal values, aspect mode values, eco mode values, and audio select val
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:39:02.588Z
+last_checked_at: 2026-05-14T18:17:19.253Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:39:02.588Z
-matched_actions: 48
-action_count: 48
+checked_at: 2026-05-14T18:17:19.253Z
+matched_actions: 28
+action_count: 28
 confidence: low
 summary: "All 48 spec actions matched source commands; transport verified"
 ```

@@ -20,17 +20,21 @@ source_domains:
   - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
   - business.sharpusa.com
+source_urls:
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
+  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-04-30T15:23:24.197Z
-generated_at: 2026-04-30T15:23:24.197Z
+last_checked_at: 2026-05-14T18:17:20.447Z
+generated_at: 2026-05-14T18:17:20.447Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:23:24.197Z
-  matched_actions: 97
-  action_count: 97
+  checked_at: 2026-05-14T18:17:20.447Z
+  matched_actions: 69
+  action_count: 69
   confidence: high
   summary: "All 97 spec actions matched literally; full coverage verified."
 derived_from:
@@ -1071,17 +1075,21 @@ source_domains:
   - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
   - business.sharpusa.com
+source_urls:
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
+  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-04-30T15:23:24.197Z
+last_checked_at: 2026-05-14T18:17:20.447Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:23:24.197Z
-matched_actions: 97
-action_count: 97
+checked_at: 2026-05-14T18:17:20.447Z
+matched_actions: 69
+action_count: 69
 confidence: high
 summary: "All 97 spec actions matched literally; full coverage verified."
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
+source_urls:
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:43.669Z
-last_checked_at: 2026-04-24T14:38:26.531Z
-generated_at: 2026-04-24T14:38:26.531Z
+last_checked_at: 2026-05-14T18:17:17.238Z
+generated_at: 2026-05-14T18:17:17.238Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-24T14:38:26.531Z
+  checked_at: 2026-05-14T18:17:17.238Z
   matched_actions: 159
-  action_count: 159
+  action_count: 225
   confidence: high
   summary: "All actions, feedback values, and transport parameters verified against source RS-232C/LAN control guide. Spec correctly notes model not explicitly listed in source."
 derived_from:
@@ -1088,17 +1090,19 @@ interlocks: []
 ```yaml
 source_domains:
   - support.jvc.com
+source_urls:
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:43.669Z
-last_checked_at: 2026-04-24T14:38:26.531Z
+last_checked_at: 2026-05-14T18:17:17.238Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-24T14:38:26.531Z
+checked_at: 2026-05-14T18:17:17.238Z
 matched_actions: 159
-action_count: 159
+action_count: 225
 confidence: high
 summary: "All actions, feedback values, and transport parameters verified against source RS-232C/LAN control guide. Spec correctly notes model not explicitly listed in source."
 ```

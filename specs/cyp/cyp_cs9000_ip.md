@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - cypeurope.com
+source_urls:
+  - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
 retrieved_at: 2026-05-04T18:02:47.388Z
-last_checked_at: 2026-04-23T15:31:37.104Z
-generated_at: 2026-04-23T15:31:37.104Z
+last_checked_at: 2026-05-14T18:17:15.101Z
+generated_at: 2026-05-14T18:17:15.101Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:31:37.104Z
+  checked_at: 2026-05-14T18:17:15.101Z
   matched_actions: 68
-  action_count: 68
+  action_count: 69
   confidence: high
   summary: "All 68 spec actions matched verbatim in source; transport parameters (port 23, baud 19200) verified; bidirectional coverage confirmed."
 derived_from:
@@ -741,17 +743,19 @@ interlocks: []
 ```yaml
 source_domains:
   - cypeurope.com
+source_urls:
+  - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
 retrieved_at: 2026-05-04T18:02:47.388Z
-last_checked_at: 2026-04-23T15:31:37.104Z
+last_checked_at: 2026-05-14T18:17:15.101Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:31:37.104Z
+checked_at: 2026-05-14T18:17:15.101Z
 matched_actions: 68
-action_count: 68
+action_count: 69
 confidence: high
 summary: "All 68 spec actions matched verbatim in source; transport parameters (port 23, baud 19200) verified; bidirectional coverage confirmed."
 ```

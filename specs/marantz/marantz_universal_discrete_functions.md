@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:45.631Z
-last_checked_at: 2026-04-23T08:13:13.540Z
-generated_at: 2026-04-23T08:13:13.540Z
+last_checked_at: 2026-05-14T18:17:18.001Z
+generated_at: 2026-05-14T18:17:18.001Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:13:13.540Z
-  matched_actions: 700
-  action_count: 700
+  checked_at: 2026-05-14T18:17:18.001Z
+  matched_actions: 678
+  action_count: 678
   confidence: high
   summary: "All 700 spec actions matched literal command mnemonics in source; transport parameters (port 23, 9600 baud) verified verbatim; comprehensive bidirectional coverage of Marantz discrete protocol."
 derived_from:
@@ -3397,17 +3399,19 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:45.631Z
-last_checked_at: 2026-04-23T08:13:13.540Z
+last_checked_at: 2026-05-14T18:17:18.001Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:13:13.540Z
-matched_actions: 700
-action_count: 700
+checked_at: 2026-05-14T18:17:18.001Z
+matched_actions: 678
+action_count: 678
 confidence: high
 summary: "All 700 spec actions matched literal command mnemonics in source; transport parameters (port 23, 9600 baud) verified verbatim; comprehensive bidirectional coverage of Marantz discrete protocol."
 ```

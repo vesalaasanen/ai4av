@@ -19,18 +19,22 @@ source_domains:
   - sunbritetv.com
   - snapav.com
   - manualslib.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
+  - https://www.manualslib.com/manual/734396/Sunbritetv-3220hd.html
 retrieved_at: 2026-04-29T19:17:26.248Z
-last_checked_at: 2026-04-27T15:35:34.509Z
-generated_at: 2026-04-27T15:35:34.509Z
+last_checked_at: 2026-05-14T18:17:21.023Z
+generated_at: 2026-05-14T18:17:21.023Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Input 2 - NA"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:35:34.509Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:21.023Z
+  matched_actions: 49
+  action_count: 49
   confidence: high
   summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded."
 derived_from:
@@ -398,17 +402,21 @@ source_domains:
   - sunbritetv.com
   - snapav.com
   - manualslib.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
+  - https://www.manualslib.com/manual/734396/Sunbritetv-3220hd.html
 retrieved_at: 2026-04-29T19:17:26.248Z
-last_checked_at: 2026-04-27T15:35:34.509Z
+last_checked_at: 2026-05-14T18:17:21.023Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:35:34.509Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:21.023Z
+matched_actions: 49
+action_count: 49
 confidence: high
 summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded."
 ```

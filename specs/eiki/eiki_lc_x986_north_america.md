@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - eiki.com
+source_urls:
+  - "https://www.eiki.com/download/lc-x986-rs-232-basic-serial-commands/?wpdmdl=4661&ind=68b9e2f94fce3&refresh=1995b0e4&filename=LC-X986-RS-232-basic-serial-commands.pdf"
+  - "https://www.eiki.com/download/lc-x986-owners-manual/?wpdmdl=5446&ind=68cd9c4b1ade8&refresh=322b39de&filename=LC-X986-owners-manual.pdf"
 retrieved_at: 2026-05-04T11:22:36.315Z
-last_checked_at: 2026-05-04T16:14:01.229Z
-generated_at: 2026-05-04T16:14:01.229Z
+last_checked_at: 2026-05-14T18:17:15.630Z
+generated_at: 2026-05-14T18:17:15.630Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:14:01.229Z
-  matched_actions: 51
-  action_count: 51
+  checked_at: 2026-05-14T18:17:15.630Z
+  matched_actions: 46
+  action_count: 46
   confidence: high
   summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue."
 derived_from:
@@ -482,17 +485,20 @@ Command delimiter: CR (0x0D) only — NO LF. Minimum command interval: 100+ ms. 
 ```yaml
 source_domains:
   - eiki.com
+source_urls:
+  - "https://www.eiki.com/download/lc-x986-rs-232-basic-serial-commands/?wpdmdl=4661&ind=68b9e2f94fce3&refresh=1995b0e4&filename=LC-X986-RS-232-basic-serial-commands.pdf"
+  - "https://www.eiki.com/download/lc-x986-owners-manual/?wpdmdl=5446&ind=68cd9c4b1ade8&refresh=322b39de&filename=LC-X986-owners-manual.pdf"
 retrieved_at: 2026-05-04T11:22:36.315Z
-last_checked_at: 2026-05-04T16:14:01.229Z
+last_checked_at: 2026-05-14T18:17:15.630Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:14:01.229Z
-matched_actions: 51
-action_count: 51
+checked_at: 2026-05-14T18:17:15.630Z
+matched_actions: 46
+action_count: 46
 confidence: high
 summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue."
 ```

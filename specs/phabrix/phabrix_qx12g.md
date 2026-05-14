@@ -18,17 +18,20 @@ compatible_with:
   required_options: []
 source_domains:
   - leaderphabrix.com
+source_urls:
+  - https://leaderphabrix.com/products/qx/
+  - https://leaderphabrix.com/contact-support/phabrix-product-software/
 retrieved_at: 2026-04-30T00:45:34.864Z
-last_checked_at: 2026-04-30T09:46:44.085Z
-generated_at: 2026-04-30T09:46:44.085Z
+last_checked_at: 2026-05-14T18:17:19.660Z
+generated_at: 2026-05-14T18:17:19.660Z
 firmware_coverage: "\"5.4\""
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:46:44.085Z
+  checked_at: 2026-05-14T18:17:19.660Z
   matched_actions: 47
-  action_count: 47
+  action_count: 51
   confidence: high
   summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed."
 derived_from:
@@ -1103,17 +1106,20 @@ interlocks: []
 ```yaml
 source_domains:
   - leaderphabrix.com
+source_urls:
+  - https://leaderphabrix.com/products/qx/
+  - https://leaderphabrix.com/contact-support/phabrix-product-software/
 retrieved_at: 2026-04-30T00:45:34.864Z
-last_checked_at: 2026-04-30T09:46:44.085Z
+last_checked_at: 2026-05-14T18:17:19.660Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:46:44.085Z
+checked_at: 2026-05-14T18:17:19.660Z
 matched_actions: 47
-action_count: 47
+action_count: 51
 confidence: high
 summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed."
 ```

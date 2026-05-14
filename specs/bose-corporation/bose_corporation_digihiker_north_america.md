@@ -42,17 +42,20 @@ compatible_with:
 source_domains:
   - assets.boseprofessional.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
+  - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-04-30T15:19:06.019Z
-generated_at: 2026-04-30T15:19:06.019Z
+last_checked_at: 2026-05-14T18:17:14.822Z
+generated_at: 2026-05-14T18:17:14.822Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:19:06.019Z
-  matched_actions: 63
-  action_count: 63
+  checked_at: 2026-05-14T18:17:14.822Z
+  matched_actions: 39
+  action_count: 39
   confidence: high
   summary: "All 39 actions and 24 feedback entries matched source commands; all transport values verified."
 derived_from:
@@ -838,17 +841,20 @@ interlocks:
 source_domains:
   - assets.boseprofessional.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
+  - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-04-30T15:19:06.019Z
+last_checked_at: 2026-05-14T18:17:14.822Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:19:06.019Z
-matched_actions: 63
-action_count: 63
+checked_at: 2026-05-14T18:17:14.822Z
+matched_actions: 39
+action_count: 39
 confidence: high
 summary: "All 39 actions and 24 feedback entries matched source commands; all transport values verified."
 ```

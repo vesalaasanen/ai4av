@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - enstatic.kiloview.com
+source_urls:
+  - https://enstatic.kiloview.com/wp-content/uploads/2026/03/N60N50-API-EN.pdf
 retrieved_at: 2026-04-30T04:41:23.663Z
 last_checked_at: 2026-04-25T20:53:42.415Z
 generated_at: 2026-04-25T20:53:42.415Z
@@ -702,6 +704,8 @@ interlocks: []
 ```yaml
 source_domains:
   - enstatic.kiloview.com
+source_urls:
+  - https://enstatic.kiloview.com/wp-content/uploads/2026/03/N60N50-API-EN.pdf
 retrieved_at: 2026-04-30T04:41:23.663Z
 last_checked_at: 2026-04-25T20:53:42.415Z
 ```

@@ -19,6 +19,8 @@ compatible_with:
   required_options: []
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-04-30T04:45:56.854Z
 last_checked_at: 2026-04-23T08:27:21.235Z
 generated_at: 2026-04-23T08:27:21.235Z
@@ -376,6 +378,8 @@ WB-150/250 do not support `?OutletPowerStatus` or `?PowerStatus`. SSH requires f
 ```yaml
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-04-30T04:45:56.854Z
 last_checked_at: 2026-04-23T08:27:21.235Z
 ```

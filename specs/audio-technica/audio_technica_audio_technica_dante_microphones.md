@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ATND1061_IP_Control_Specifications_V4_EN_web_240114.pdf
 retrieved_at: 2026-05-03T15:32:41.864Z
-last_checked_at: 2026-05-04T10:17:34.147Z
-generated_at: 2026-05-04T10:17:34.147Z
+last_checked_at: 2026-05-14T18:17:14.154Z
+generated_at: 2026-05-14T18:17:14.154Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:17:34.147Z
-  matched_actions: 99
-  action_count: 99
+  checked_at: 2026-05-14T18:17:14.154Z
+  matched_actions: 93
+  action_count: 93
   confidence: high
   summary: "All 99 spec actions found with matching identifiers in source; transport parameters verified; semantic-id convention used throughout."
 derived_from:
@@ -1076,17 +1078,19 @@ Command format: `{command} {handshake} {model_id} {unit_no} {continue} {params} 
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ATND1061_IP_Control_Specifications_V4_EN_web_240114.pdf
 retrieved_at: 2026-05-03T15:32:41.864Z
-last_checked_at: 2026-05-04T10:17:34.147Z
+last_checked_at: 2026-05-14T18:17:14.154Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:17:34.147Z
-matched_actions: 99
-action_count: 99
+checked_at: 2026-05-14T18:17:14.154Z
+matched_actions: 93
+action_count: 93
 confidence: high
 summary: "All 99 spec actions found with matching identifiers in source; transport parameters verified; semantic-id convention used throughout."
 ```

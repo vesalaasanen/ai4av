@@ -22,6 +22,9 @@ compatible_with:
 source_domains:
   - support.allen-heath.com
   - allen-heath.com
+source_urls:
+  - https://support.allen-heath.com/hc/en-gb/articles/45146889174801-Avantis-MIDI-TCP-IP-Protocol
+  - https://www.allen-heath.com/content/uploads/2023/06/Qu_MIDI_Protocol_V1.9.pdf
 retrieved_at: 2026-05-04T17:32:11.098Z
 last_checked_at: 2026-04-22T22:08:00.086Z
 generated_at: 2026-04-22T22:08:00.086Z
@@ -618,6 +621,9 @@ interlocks: []
 source_domains:
   - support.allen-heath.com
   - allen-heath.com
+source_urls:
+  - https://support.allen-heath.com/hc/en-gb/articles/45146889174801-Avantis-MIDI-TCP-IP-Protocol
+  - https://www.allen-heath.com/content/uploads/2023/06/Qu_MIDI_Protocol_V1.9.pdf
 retrieved_at: 2026-05-04T17:32:11.098Z
 last_checked_at: 2026-04-22T22:08:00.086Z
 ```

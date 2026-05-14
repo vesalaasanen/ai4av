@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:41:32.014Z
-last_checked_at: 2026-05-04T16:08:48.073Z
-generated_at: 2026-05-04T16:08:48.073Z
+last_checked_at: 2026-05-14T18:17:20.100Z
+generated_at: 2026-05-14T18:17:20.100Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:08:48.073Z
+  checked_at: 2026-05-14T18:17:20.100Z
   matched_actions: 52
-  action_count: 52
+  action_count: 64
   confidence: high
   summary: "All 52 spec actions matched source commands verbatim; transport parameters confirmed in connection settings table."
 derived_from:
@@ -496,17 +498,19 @@ interlocks: []
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:41:32.014Z
-last_checked_at: 2026-05-04T16:08:48.073Z
+last_checked_at: 2026-05-14T18:17:20.100Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:08:48.073Z
+checked_at: 2026-05-14T18:17:20.100Z
 matched_actions: 52
-action_count: 52
+action_count: 64
 confidence: high
 summary: "All 52 spec actions matched source commands verbatim; transport parameters confirmed in connection settings table."
 ```

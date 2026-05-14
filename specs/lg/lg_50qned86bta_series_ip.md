@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T21:02:37.338Z
-generated_at: 2026-04-25T21:02:37.338Z
+last_checked_at: 2026-05-14T18:17:17.551Z
+generated_at: 2026-05-14T18:17:17.551Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:02:37.338Z
-  matched_actions: 47
-  action_count: 47
+  checked_at: 2026-05-14T18:17:17.551Z
+  matched_actions: 26
+  action_count: 26
   confidence: high
   summary: "All 26 actions and 21 feedback read-commands match source commands exactly; transport parameters verified; complete coverage of documented protocol."
 derived_from:
@@ -478,17 +480,19 @@ interlocks: []
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T21:02:37.338Z
+last_checked_at: 2026-05-14T18:17:17.551Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:02:37.338Z
-matched_actions: 47
-action_count: 47
+checked_at: 2026-05-14T18:17:17.551Z
+matched_actions: 26
+action_count: 26
 confidence: high
 summary: "All 26 actions and 21 feedback read-commands match source commands exactly; transport parameters verified; complete coverage of documented protocol."
 ```

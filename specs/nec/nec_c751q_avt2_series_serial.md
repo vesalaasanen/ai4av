@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:16:17.734Z
-generated_at: 2026-04-25T21:16:17.734Z
+last_checked_at: 2026-05-14T18:17:18.323Z
+generated_at: 2026-05-14T18:17:18.323Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:16:17.734Z
+  checked_at: 2026-05-14T18:17:18.323Z
   matched_actions: 47
-  action_count: 47
+  action_count: 53
   confidence: high
   summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage."
 derived_from:
@@ -615,17 +617,19 @@ Carbon savings values returned in kilogram (max 99999kg) and milligram (max 9999
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:16:17.734Z
+last_checked_at: 2026-05-14T18:17:18.323Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:16:17.734Z
+checked_at: 2026-05-14T18:17:18.323Z
 matched_actions: 47
-action_count: 47
+action_count: 53
 confidence: high
 summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage."
 ```

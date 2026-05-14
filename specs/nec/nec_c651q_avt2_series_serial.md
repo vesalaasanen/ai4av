@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-05-04T06:08:33.230Z
-generated_at: 2026-05-04T06:08:33.230Z
+last_checked_at: 2026-05-14T18:17:18.306Z
+generated_at: 2026-05-14T18:17:18.306Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T06:08:33.230Z
+  checked_at: 2026-05-14T18:17:18.306Z
   matched_actions: 45
-  action_count: 45
+  action_count: 53
   confidence: high
   summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage."
 derived_from:
@@ -686,17 +688,19 @@ Checksum (CKS) is calculated as low-order byte of sum of all preceding bytes.
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-05-04T06:08:33.230Z
+last_checked_at: 2026-05-14T18:17:18.306Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T06:08:33.230Z
+checked_at: 2026-05-14T18:17:18.306Z
 matched_actions: 45
-action_count: 45
+action_count: 53
 confidence: high
 summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage."
 ```

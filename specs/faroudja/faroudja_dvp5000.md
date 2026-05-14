@@ -15,8 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-27T09:04:42.512Z
+source_domains:
+  - biggerhammer.net
+source_urls:
+  - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-27T09:04:42.512Z
 generated_at: 2026-04-27T09:04:42.512Z
 firmware_coverage: "Not stated in source"
@@ -322,8 +325,11 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-27T09:04:42.512Z
+source_domains:
+  - biggerhammer.net
+source_urls:
+  - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-27T09:04:42.512Z
 ```
 

@@ -19,9 +19,11 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-04-23T15:19:25.936Z
-generated_at: 2026-04-23T15:19:25.936Z
+last_checked_at: 2026-05-14T18:17:14.378Z
+generated_at: 2026-05-14T18:17:14.378Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,9 +41,9 @@ known_gaps:
   - signal.subscribe
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:19:25.936Z
-  matched_actions: 40
-  action_count: 40
+  checked_at: 2026-05-14T18:17:14.378Z
+  matched_actions: 23
+  action_count: 23
   confidence: high
   summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set."
 derived_from:
@@ -527,17 +529,19 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-04-23T15:19:25.936Z
+last_checked_at: 2026-05-14T18:17:14.378Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:19:25.936Z
-matched_actions: 40
-action_count: 40
+checked_at: 2026-05-14T18:17:14.378Z
+matched_actions: 23
+action_count: 23
 confidence: high
 summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set."
 ```

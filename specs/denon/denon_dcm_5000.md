@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:22.437Z
 last_checked_at: 2026-04-22T22:11:15.626Z
 generated_at: 2026-04-22T22:11:15.626Z
@@ -488,6 +490,8 @@ The document references multiple AVR models (X1100, S700, S770, X4100, 2014 AVR 
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:22.437Z
 last_checked_at: 2026-04-22T22:11:15.626Z
 ```

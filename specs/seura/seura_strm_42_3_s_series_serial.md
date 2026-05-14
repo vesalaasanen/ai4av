@@ -17,17 +17,22 @@ compatible_with:
   required_options: []
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
+  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
+  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
+  - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
 retrieved_at: 2026-05-01T01:59:50.755Z
-last_checked_at: 2026-05-03T13:04:56.253Z
-generated_at: 2026-05-03T13:04:56.253Z
+last_checked_at: 2026-05-14T18:17:20.266Z
+generated_at: 2026-05-14T18:17:20.266Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-03T13:04:56.253Z
-  matched_actions: 68
-  action_count: 68
+  checked_at: 2026-05-14T18:17:20.266Z
+  matched_actions: 58
+  action_count: 58
   confidence: high
   summary: "All 68 spec actions matched literally in source; transport parameters verified; full command set represented."
 derived_from:
@@ -707,17 +712,22 @@ interlocks: []
 ```yaml
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
+  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
+  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
+  - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
 retrieved_at: 2026-05-01T01:59:50.755Z
-last_checked_at: 2026-05-03T13:04:56.253Z
+last_checked_at: 2026-05-14T18:17:20.266Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T13:04:56.253Z
-matched_actions: 68
-action_count: 68
+checked_at: 2026-05-14T18:17:20.266Z
+matched_actions: 58
+action_count: 58
 confidence: high
 summary: "All 68 spec actions matched literally in source; transport parameters verified; full command set represented."
 ```

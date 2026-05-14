@@ -20,6 +20,10 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
+  - https://docs.linn.co.uk/wiki/index.php/Developer:LPEC
+  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:34.983Z
 last_checked_at: 2026-04-23T08:06:15.911Z
 generated_at: 2026-04-23T08:06:15.911Z
@@ -259,6 +263,10 @@ PIN numbers may change after reboot if recently altered.
 ```yaml
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
+  - https://docs.linn.co.uk/wiki/index.php/Developer:LPEC
+  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:34.983Z
 last_checked_at: 2026-04-23T08:06:15.911Z
 ```

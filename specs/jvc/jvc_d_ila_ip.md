@@ -39,17 +39,22 @@ compatible_with:
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-25T20:52:02.825Z
-generated_at: 2026-04-25T20:52:02.825Z
+last_checked_at: 2026-05-14T18:17:17.138Z
+generated_at: 2026-05-14T18:17:17.138Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:52:02.825Z
-  matched_actions: 192
-  action_count: 192
+  checked_at: 2026-05-14T18:17:17.138Z
+  matched_actions: 124
+  action_count: 124
   confidence: high
   summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified."
 derived_from:
@@ -1104,17 +1109,22 @@ interlocks:
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-25T20:52:02.825Z
+last_checked_at: 2026-05-14T18:17:17.138Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:52:02.825Z
-matched_actions: 192
-action_count: 192
+checked_at: 2026-05-14T18:17:17.138Z
+matched_actions: 124
+action_count: 124
 confidence: high
 summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified."
 ```

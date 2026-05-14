@@ -16,8 +16,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-04-25T21:50:03.475Z
+source_domains:
+  - files.screeninnovations.com
+source_urls:
+  - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-25T21:50:03.475Z
 generated_at: 2026-04-25T21:50:03.475Z
 firmware_coverage: "Not stated in source"
@@ -225,8 +228,11 @@ IP address default (without DHCP): 169.254.169.254.
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-04-25T21:50:03.475Z
+source_domains:
+  - files.screeninnovations.com
+source_urls:
+  - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-04-25T21:50:03.475Z
 ```
 

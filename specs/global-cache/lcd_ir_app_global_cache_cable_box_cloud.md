@@ -15,8 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-05-10T12:44:14.737Z
+source_domains:
+  - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-05-10T12:44:14.737Z
 generated_at: 2026-05-10T12:44:14.737Z
 firmware_coverage: "Not stated in source"
@@ -273,8 +276,11 @@ Key characteristics:
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-05-10T12:44:14.737Z
+source_domains:
+  - globalcache.com
+source_urls:
+  - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-05-10T12:44:14.737Z
 ```
 

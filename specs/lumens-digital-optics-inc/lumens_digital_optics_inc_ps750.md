@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - res.cloudinary.com
+source_urls:
+  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/Lumens/PS750/ps750_doc_6.pdf"
 retrieved_at: 2026-04-30T04:36:37.918Z
 last_checked_at: 2026-04-25T21:07:30.503Z
 generated_at: 2026-04-25T21:07:30.503Z
@@ -753,6 +755,8 @@ interlocks: []
 ```yaml
 source_domains:
   - res.cloudinary.com
+source_urls:
+  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/Lumens/PS750/ps750_doc_6.pdf"
 retrieved_at: 2026-04-30T04:36:37.918Z
 last_checked_at: 2026-04-25T21:07:30.503Z
 ```

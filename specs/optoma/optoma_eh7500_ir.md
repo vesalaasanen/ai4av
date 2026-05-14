@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - optomaeurope.com
+source_urls:
+  - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
 retrieved_at: 2026-05-02T12:10:27.190Z
-last_checked_at: 2026-04-26T21:59:54.955Z
-generated_at: 2026-04-26T21:59:54.955Z
+last_checked_at: 2026-05-14T18:17:19.549Z
+generated_at: 2026-05-14T18:17:19.549Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:59:54.955Z
-  matched_actions: 164
-  action_count: 164
+  checked_at: 2026-05-14T18:17:19.549Z
+  matched_actions: 162
+  action_count: 162
   confidence: high
   summary: "All 164 spec actions matched their source command equivalents; transport parameters verified against RS-232 protocol specification."
 derived_from:
@@ -1142,17 +1144,19 @@ Projector ID (XX) in commands ranges from 00-99; XX=00 broadcasts to all project
 ```yaml
 source_domains:
   - optomaeurope.com
+source_urls:
+  - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
 retrieved_at: 2026-05-02T12:10:27.190Z
-last_checked_at: 2026-04-26T21:59:54.955Z
+last_checked_at: 2026-05-14T18:17:19.549Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:59:54.955Z
-matched_actions: 164
-action_count: 164
+checked_at: 2026-05-14T18:17:19.549Z
+matched_actions: 162
+action_count: 162
 confidence: high
 summary: "All 164 spec actions matched their source command equivalents; transport parameters verified against RS-232 protocol specification."
 ```

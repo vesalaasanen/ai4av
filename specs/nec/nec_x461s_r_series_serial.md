@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-26T21:36:05.610Z
 generated_at: 2026-04-26T21:36:05.610Z
@@ -562,6 +564,8 @@ Command encoding: All commands use hex notation with parameters ID1 (control ID)
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-26T21:36:05.610Z
 ```

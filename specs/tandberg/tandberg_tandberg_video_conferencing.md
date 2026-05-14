@@ -18,9 +18,17 @@ compatible_with:
   required_options: []
 source_domains:
   - cisco.com
-retrieved_at: 2026-05-04T15:34:18.452Z
-last_checked_at: 2026-04-27T15:45:46.105Z
-generated_at: 2026-04-27T15:45:46.105Z
+  - usermanual.wiki
+  - manualsdir.com
+  - manualmachine.com
+source_urls:
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
+  - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
+  - https://www.manualsdir.com/manuals/213271/tandberg-mxp.html
+  - https://manualmachine.com/tandberg/mxp/464245-user-manual/
+retrieved_at: 2026-05-13T15:28:13.056Z
+last_checked_at: 2026-05-14T18:17:21.166Z
+generated_at: 2026-05-14T18:17:21.166Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,9 +46,9 @@ known_gaps:
   - "xCommand UserManagement"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:45:46.105Z
+  checked_at: 2026-05-14T18:17:21.166Z
   matched_actions: 29
-  action_count: 29
+  action_count: 39
   confidence: high
   summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively."
 derived_from:
@@ -640,17 +648,25 @@ interlocks: []
 ```yaml
 source_domains:
   - cisco.com
-retrieved_at: 2026-05-04T15:34:18.452Z
-last_checked_at: 2026-04-27T15:45:46.105Z
+  - usermanual.wiki
+  - manualsdir.com
+  - manualmachine.com
+source_urls:
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
+  - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
+  - https://www.manualsdir.com/manuals/213271/tandberg-mxp.html
+  - https://manualmachine.com/tandberg/mxp/464245-user-manual/
+retrieved_at: 2026-05-13T15:28:13.056Z
+last_checked_at: 2026-05-14T18:17:21.166Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:45:46.105Z
+checked_at: 2026-05-14T18:17:21.166Z
 matched_actions: 29
-action_count: 29
+action_count: 39
 confidence: high
 summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively."
 ```

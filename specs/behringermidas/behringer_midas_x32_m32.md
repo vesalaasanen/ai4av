@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - web.archive.org
+source_urls:
+  - "https://web.archive.org/web/20190312114524/https://behringerwiki.musictribe.com/index.php?title=OSC_Remote_Protocol"
 retrieved_at: 2026-04-30T04:40:39.256Z
-last_checked_at: 2026-04-23T15:19:42.315Z
-generated_at: 2026-04-23T15:19:42.315Z
+last_checked_at: 2026-05-14T18:17:14.428Z
+generated_at: 2026-05-14T18:17:14.428Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:19:42.315Z
-  matched_actions: 30
-  action_count: 30
+  checked_at: 2026-05-14T18:17:14.428Z
+  matched_actions: 22
+  action_count: 22
   confidence: high
   summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved."
 derived_from:
@@ -386,17 +388,19 @@ Reverbs (Hall, Plate, Ambience, Rich Plate, Room, Chamber, Vintage Room, Gated, 
 ```yaml
 source_domains:
   - web.archive.org
+source_urls:
+  - "https://web.archive.org/web/20190312114524/https://behringerwiki.musictribe.com/index.php?title=OSC_Remote_Protocol"
 retrieved_at: 2026-04-30T04:40:39.256Z
-last_checked_at: 2026-04-23T15:19:42.315Z
+last_checked_at: 2026-05-14T18:17:14.428Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:19:42.315Z
-matched_actions: 30
-action_count: 30
+checked_at: 2026-05-14T18:17:14.428Z
+matched_actions: 22
+action_count: 22
 confidence: high
 summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved."
 ```

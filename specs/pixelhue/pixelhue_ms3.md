@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - en-pixelhue001.oss-us-east-1.aliyuncs.com
+source_urls:
+  - "https://en-pixelhue001.oss-us-east-1.aliyuncs.com/Specifications/Pilot%20MS3%20Pro%20Multimedia%20Playback%20Software%20Control%20Protocol-V2.5.0.pdf"
 retrieved_at: 2026-04-30T04:45:41.485Z
 last_checked_at: 2026-04-25T21:43:52.466Z
 generated_at: 2026-04-25T21:43:52.466Z
@@ -363,6 +365,8 @@ UDP data reporting port 18961 is fixed and cannot be changed. Online and offline
 ```yaml
 source_domains:
   - en-pixelhue001.oss-us-east-1.aliyuncs.com
+source_urls:
+  - "https://en-pixelhue001.oss-us-east-1.aliyuncs.com/Specifications/Pilot%20MS3%20Pro%20Multimedia%20Playback%20Software%20Control%20Protocol-V2.5.0.pdf"
 retrieved_at: 2026-04-30T04:45:41.485Z
 last_checked_at: 2026-04-25T21:43:52.466Z
 ```

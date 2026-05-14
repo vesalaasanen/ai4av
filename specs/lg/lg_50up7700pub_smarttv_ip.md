@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-26T15:54:57.546Z
-generated_at: 2026-04-26T15:54:57.546Z
+last_checked_at: 2026-05-14T18:17:17.569Z
+generated_at: 2026-05-14T18:17:17.569Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T15:54:57.546Z
-  matched_actions: 34
-  action_count: 34
+  checked_at: 2026-05-14T18:17:17.569Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 34 spec actions matched literally against source; all transport parameters verified verbatim in refined manual."
 derived_from:
@@ -451,17 +453,19 @@ interlocks:
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-26T15:54:57.546Z
+last_checked_at: 2026-05-14T18:17:17.569Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T15:54:57.546Z
-matched_actions: 34
-action_count: 34
+checked_at: 2026-05-14T18:17:17.569Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 34 spec actions matched literally against source; all transport parameters verified verbatim in refined manual."
 ```

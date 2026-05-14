@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:58:36.229Z
-generated_at: 2026-04-25T20:58:36.229Z
+last_checked_at: 2026-05-14T18:17:17.535Z
+generated_at: 2026-05-14T18:17:17.535Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:58:36.229Z
+  checked_at: 2026-05-14T18:17:17.535Z
   matched_actions: 27
-  action_count: 33
+  action_count: 27
   confidence: high
   summary: "All 27 spec actions matched literal wire tokens; all transport values (9600 baud, telnet/9761) verified verbatim."
 derived_from:
@@ -642,17 +644,19 @@ interlocks:
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:58:36.229Z
+last_checked_at: 2026-05-14T18:17:17.535Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:58:36.229Z
+checked_at: 2026-05-14T18:17:17.535Z
 matched_actions: 27
-action_count: 33
+action_count: 27
 confidence: high
 summary: "All 27 spec actions matched literal wire tokens; all transport values (9600 baud, telnet/9761) verified verbatim."
 ```

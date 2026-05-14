@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - download.beckhoff.com
+source_urls:
+  - https://download.beckhoff.com/download/document/automation/twincat3/TwinCAT_3_ADS_INTRO_EN.pdf
 retrieved_at: 2026-04-30T03:46:29.152Z
-last_checked_at: 2026-04-30T14:29:27.981Z
-generated_at: 2026-04-30T14:29:27.981Z
+last_checked_at: 2026-05-14T18:17:14.413Z
+generated_at: 2026-05-14T18:17:14.413Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T14:29:27.981Z
+  checked_at: 2026-05-14T18:17:14.413Z
   matched_actions: 69
-  action_count: 69
+  action_count: 72
   confidence: high
   summary: "All 69 spec actions matched source verbatim; transport ports confirmed."
 derived_from:
@@ -1034,17 +1036,19 @@ NC entities use offset index groups: `0xN000 + ID` where N encodes entity type (
 ```yaml
 source_domains:
   - download.beckhoff.com
+source_urls:
+  - https://download.beckhoff.com/download/document/automation/twincat3/TwinCAT_3_ADS_INTRO_EN.pdf
 retrieved_at: 2026-04-30T03:46:29.152Z
-last_checked_at: 2026-04-30T14:29:27.981Z
+last_checked_at: 2026-05-14T18:17:14.413Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T14:29:27.981Z
+checked_at: 2026-05-14T18:17:14.413Z
 matched_actions: 69
-action_count: 69
+action_count: 72
 confidence: high
 summary: "All 69 spec actions matched source verbatim; transport ports confirmed."
 ```

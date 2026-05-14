@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-04T05:14:44.460Z
-generated_at: 2026-05-04T05:14:44.460Z
+last_checked_at: 2026-05-14T18:17:14.232Z
+generated_at: 2026-05-14T18:17:14.232Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,9 +37,9 @@ known_gaps:
   - authenticate
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:14:44.460Z
-  matched_actions: 31
-  action_count: 31
+  checked_at: 2026-05-14T18:17:14.232Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 31 spec actions match source JSON-RPC methods; transport fully verified; comprehensive coverage of power, image control, optics, and system management commands."
 derived_from:
@@ -688,17 +690,19 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-04T05:14:44.460Z
+last_checked_at: 2026-05-14T18:17:14.232Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:14:44.460Z
-matched_actions: 31
-action_count: 31
+checked_at: 2026-05-14T18:17:14.232Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 31 spec actions match source JSON-RPC methods; transport fully verified; comprehensive coverage of power, image control, optics, and system management commands."
 ```

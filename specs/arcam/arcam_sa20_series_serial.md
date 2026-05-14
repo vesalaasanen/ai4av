@@ -21,17 +21,19 @@ compatible_with:
   required_options: []
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
-last_checked_at: 2026-04-23T15:12:30.924Z
-generated_at: 2026-04-23T15:12:30.924Z
+last_checked_at: 2026-05-14T18:17:14.091Z
+generated_at: 2026-05-14T18:17:14.091Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:12:30.924Z
-  matched_actions: 79
-  action_count: 79
+  checked_at: 2026-05-14T18:17:14.091Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 79 spec action IDs matched with literal opcode counterparts in source; transport parameters (38400 baud, port 50000) verified; shapes agree on value ranges, enum codes, and parameter counts."
 derived_from:
@@ -893,17 +895,19 @@ Response: `<St=0x21> <Zn> <Cc> <Ac> <Dl> <Data...> <Et=0x0D>`
 ```yaml
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
-last_checked_at: 2026-04-23T15:12:30.924Z
+last_checked_at: 2026-05-14T18:17:14.091Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:12:30.924Z
-matched_actions: 79
-action_count: 79
+checked_at: 2026-05-14T18:17:14.091Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 79 spec action IDs matched with literal opcode counterparts in source; transport parameters (38400 baud, port 50000) verified; shapes agree on value ranges, enum codes, and parameter counts."
 ```

@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-04T05:51:38.295Z
-generated_at: 2026-05-04T05:51:38.295Z
+last_checked_at: 2026-05-14T18:17:16.438Z
+generated_at: 2026-05-14T18:17:16.438Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:51:38.295Z
-  matched_actions: 90
-  action_count: 90
+  checked_at: 2026-05-14T18:17:16.438Z
+  matched_actions: 72
+  action_count: 72
   confidence: high
   summary: "All 90 spec actions match RS-232 source commands; transport fully verified."
 derived_from:
@@ -612,17 +615,20 @@ Protocol is case-sensitive ASCII. RS-232 port must be enabled via on-screen Cust
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-04T05:51:38.295Z
+last_checked_at: 2026-05-14T18:17:16.438Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:51:38.295Z
-matched_actions: 90
-action_count: 90
+checked_at: 2026-05-14T18:17:16.438Z
+matched_actions: 72
+action_count: 72
 confidence: high
 summary: "All 90 spec actions match RS-232 source commands; transport fully verified."
 ```

@@ -21,6 +21,10 @@ compatible_with:
 source_domains:
   - docs.meyersound.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://docs.meyersound.com/products/en/programming-guide---galileo-galaxy.html
+  - https://docs.meyersound.com/products/en/user-guide---galileo-galaxy.html
+  - https://applicationmarket.crestron.com/meyer-sound-galileo/
 retrieved_at: 2026-04-26T18:21:57.350Z
 last_checked_at: 2026-04-27T09:45:14.158Z
 generated_at: 2026-04-27T09:45:14.158Z
@@ -550,6 +554,10 @@ interlocks: []
 source_domains:
   - docs.meyersound.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://docs.meyersound.com/products/en/programming-guide---galileo-galaxy.html
+  - https://docs.meyersound.com/products/en/user-guide---galileo-galaxy.html
+  - https://applicationmarket.crestron.com/meyer-sound-galileo/
 retrieved_at: 2026-04-26T18:21:57.350Z
 last_checked_at: 2026-04-27T09:45:14.158Z
 ```

@@ -18,17 +18,22 @@ compatible_with:
   required_options: []
 source_domains:
   - ametekesp.com
+source_urls:
+  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
+  - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
+  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
+  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
 retrieved_at: 2026-05-01T02:09:11.359Z
-last_checked_at: 2026-04-27T10:13:13.154Z
-generated_at: 2026-04-27T10:13:13.154Z
+last_checked_at: 2026-05-14T18:17:21.112Z
+generated_at: 2026-05-14T18:17:21.112Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:13.154Z
-  matched_actions: 38
-  action_count: 38
+  checked_at: 2026-05-14T18:17:21.112Z
+  matched_actions: 18
+  action_count: 18
   confidence: high
   summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete."
 derived_from:
@@ -698,17 +703,22 @@ interlocks:
 ```yaml
 source_domains:
   - ametekesp.com
+source_urls:
+  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
+  - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
+  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
+  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
 retrieved_at: 2026-05-01T02:09:11.359Z
-last_checked_at: 2026-04-27T10:13:13.154Z
+last_checked_at: 2026-05-14T18:17:21.112Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:13.154Z
-matched_actions: 38
-action_count: 38
+checked_at: 2026-05-14T18:17:21.112Z
+matched_actions: 18
+action_count: 18
 confidence: high
 summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete."
 ```

@@ -18,6 +18,11 @@ compatible_with:
 source_domains:
   - docs.chamsys.co.uk
   - secure.chamsys.co.uk
+source_urls:
+  - https://docs.chamsys.co.uk/magicq/_exports/magicq.pdf
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_network.html
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_commands.html
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_serial.html
 retrieved_at: 2026-04-29T23:09:54.537Z
 last_checked_at: 2026-04-30T09:38:05.971Z
 generated_at: 2026-04-30T09:38:05.971Z
@@ -213,6 +218,11 @@ ChamSys Remote Ethernet Protocol is an open protocol — no permission required 
 source_domains:
   - docs.chamsys.co.uk
   - secure.chamsys.co.uk
+source_urls:
+  - https://docs.chamsys.co.uk/magicq/_exports/magicq.pdf
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_network.html
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_commands.html
+  - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_serial.html
 retrieved_at: 2026-04-29T23:09:54.537Z
 last_checked_at: 2026-04-30T09:38:05.971Z
 ```

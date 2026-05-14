@@ -17,6 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
+  - https://www.convergingsystems.com/bin/doc/ddk/ddk_v2_3_w1_cs-bus.pdf
+  - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
+  - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
 last_checked_at: 2026-04-30T09:49:39.963Z
 generated_at: 2026-04-30T09:49:39.963Z
@@ -533,6 +538,11 @@ interlocks:
 ```yaml
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
+  - https://www.convergingsystems.com/bin/doc/ddk/ddk_v2_3_w1_cs-bus.pdf
+  - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
+  - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
 last_checked_at: 2026-04-30T09:49:39.963Z
 ```

@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - cdn.shopify.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
+  - https://applicationmarket.crestron.com/ad-notam-dfu/
 retrieved_at: 2026-04-29T20:56:19.246Z
-last_checked_at: 2026-04-27T08:57:41.540Z
-generated_at: 2026-04-27T08:57:41.540Z
+last_checked_at: 2026-05-14T18:17:13.822Z
+generated_at: 2026-05-14T18:17:13.822Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T08:57:41.540Z
+  checked_at: 2026-05-14T18:17:13.822Z
   matched_actions: 143
-  action_count: 143
+  action_count: 161
   confidence: high
   summary: "All 143 spec actions match source commands; transport parameters verified; comprehensive coverage of source command catalogue."
 derived_from:
@@ -1100,17 +1103,20 @@ IR remote commands generate RS-232 ACK messages.
 source_domains:
   - cdn.shopify.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
+  - https://applicationmarket.crestron.com/ad-notam-dfu/
 retrieved_at: 2026-04-29T20:56:19.246Z
-last_checked_at: 2026-04-27T08:57:41.540Z
+last_checked_at: 2026-05-14T18:17:13.822Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T08:57:41.540Z
+checked_at: 2026-05-14T18:17:13.822Z
 matched_actions: 143
-action_count: 143
+action_count: 161
 confidence: high
 summary: "All 143 spec actions match source commands; transport parameters verified; comprehensive coverage of source command catalogue."
 ```

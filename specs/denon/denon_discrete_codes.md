@@ -16,17 +16,19 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:25.322Z
-last_checked_at: 2026-04-23T15:37:59.915Z
-generated_at: 2026-04-23T15:37:59.915Z
+last_checked_at: 2026-05-14T18:17:15.332Z
+generated_at: 2026-05-14T18:17:15.332Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:37:59.915Z
+  checked_at: 2026-05-14T18:17:15.332Z
   matched_actions: 45
-  action_count: 45
+  action_count: 56
   confidence: high
   summary: "Every spec action matched literal source commands; all transport values verified in source; comprehensive coverage of AVR protocol."
 derived_from:
@@ -684,17 +686,19 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:25.322Z
-last_checked_at: 2026-04-23T15:37:59.915Z
+last_checked_at: 2026-05-14T18:17:15.332Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:37:59.915Z
+checked_at: 2026-05-14T18:17:15.332Z
 matched_actions: 45
-action_count: 45
+action_count: 56
 confidence: high
 summary: "Every spec action matched literal source commands; all transport values verified in source; comprehensive coverage of AVR protocol."
 ```

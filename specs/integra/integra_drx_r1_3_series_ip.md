@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:46:38.053Z
-generated_at: 2026-04-26T13:46:38.053Z
+last_checked_at: 2026-05-14T18:17:16.949Z
+generated_at: 2026-05-14T18:17:16.949Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T13:46:38.053Z
+  checked_at: 2026-05-14T18:17:16.949Z
   matched_actions: 132
-  action_count: 132
+  action_count: 141
   confidence: high
   summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete."
 derived_from:
@@ -1416,17 +1418,19 @@ interlocks:
 ```yaml
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-04-26T13:46:38.053Z
+last_checked_at: 2026-05-14T18:17:16.949Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T13:46:38.053Z
+checked_at: 2026-05-14T18:17:16.949Z
 matched_actions: 132
-action_count: 132
+action_count: 141
 confidence: high
 summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete."
 ```

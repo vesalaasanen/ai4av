@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:55.596Z
 last_checked_at: 2026-04-23T08:23:34.612Z
 generated_at: 2026-04-23T08:23:34.612Z
@@ -313,6 +315,8 @@ interlocks: []
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:55.596Z
 last_checked_at: 2026-04-23T08:23:34.612Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-04-30T04:36:36.133Z
 last_checked_at: 2026-04-26T19:43:03.893Z
 generated_at: 2026-04-26T19:43:03.893Z
@@ -564,6 +566,8 @@ interlocks: []
 ```yaml
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-04-30T04:36:36.133Z
 last_checked_at: 2026-04-26T19:43:03.893Z
 ```

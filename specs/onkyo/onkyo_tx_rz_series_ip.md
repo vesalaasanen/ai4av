@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-05-04T16:23:20.505Z
-last_checked_at: 2026-04-25T21:42:42.793Z
-generated_at: 2026-04-25T21:42:42.793Z
+last_checked_at: 2026-05-14T18:17:19.455Z
+generated_at: 2026-05-14T18:17:19.455Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,9 +39,9 @@ known_gaps:
   - TSB
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:42:42.793Z
+  checked_at: 2026-05-14T18:17:19.455Z
   matched_actions: 72
-  action_count: 72
+  action_count: 74
   confidence: low
   summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol"
 derived_from:
@@ -959,17 +961,19 @@ interlocks:
 ```yaml
 source_domains:
   - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-05-04T16:23:20.505Z
-last_checked_at: 2026-04-25T21:42:42.793Z
+last_checked_at: 2026-05-14T18:17:19.455Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:42:42.793Z
+checked_at: 2026-05-14T18:17:19.455Z
 matched_actions: 72
-action_count: 72
+action_count: 74
 confidence: low
 summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol"
 ```

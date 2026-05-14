@@ -20,6 +20,11 @@ source_domains:
   - s3-us-west-1.amazonaws.com
   - applicationmarket.crestron.com
   - mybluebolt.com
+source_urls:
+  - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
+  - https://s3-us-west-1.amazonaws.com/corebrands-resources/products/BLUEBOLT-CV2/pdf_BlueBOLT-CV2_manual.pdf
+  - https://applicationmarket.crestron.com/panamax-m4320-pro-north-america/
+  - https://www.mybluebolt.com/developers
 retrieved_at: 2026-04-26T19:14:16.343Z
 last_checked_at: 2026-04-27T09:45:14.928Z
 generated_at: 2026-04-27T09:45:14.928Z
@@ -461,6 +466,11 @@ source_domains:
   - s3-us-west-1.amazonaws.com
   - applicationmarket.crestron.com
   - mybluebolt.com
+source_urls:
+  - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
+  - https://s3-us-west-1.amazonaws.com/corebrands-resources/products/BLUEBOLT-CV2/pdf_BlueBOLT-CV2_manual.pdf
+  - https://applicationmarket.crestron.com/panamax-m4320-pro-north-america/
+  - https://www.mybluebolt.com/developers
 retrieved_at: 2026-04-26T19:14:16.343Z
 last_checked_at: 2026-04-27T09:45:14.928Z
 ```

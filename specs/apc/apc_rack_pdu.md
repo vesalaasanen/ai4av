@@ -19,6 +19,10 @@ source_domains:
   - usermanual.wiki
   - ckm-content.se.com
   - se.com
+source_urls:
+  - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
+  - https://ckm-content.se.com/ckmContent/sfc/servlet.shepherd/document/download/0691H00000GejKSQAZ
+  - https://www.se.com/us/en/product-range/61799-apc-netshelter-switched-rack-pdus/
 retrieved_at: 2026-04-29T22:37:54.944Z
 last_checked_at: 2026-04-30T14:19:54.487Z
 generated_at: 2026-04-30T14:19:54.487Z
@@ -605,6 +609,10 @@ source_domains:
   - usermanual.wiki
   - ckm-content.se.com
   - se.com
+source_urls:
+  - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
+  - https://ckm-content.se.com/ckmContent/sfc/servlet.shepherd/document/download/0691H00000GejKSQAZ
+  - https://www.se.com/us/en/product-range/61799-apc-netshelter-switched-rack-pdus/
 retrieved_at: 2026-04-29T22:37:54.944Z
 last_checked_at: 2026-04-30T14:19:54.487Z
 ```

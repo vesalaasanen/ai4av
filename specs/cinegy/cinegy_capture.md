@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - open.cinegy.com
+source_urls:
+  - https://open.cinegy.com/products/capture/25.10/capture-rest-api/
 retrieved_at: 2026-04-30T04:41:00.285Z
-last_checked_at: 2026-04-23T15:30:07.089Z
-generated_at: 2026-04-23T15:30:07.089Z
+last_checked_at: 2026-05-14T18:17:15.005Z
+generated_at: 2026-05-14T18:17:15.005Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:30:07.089Z
-  matched_actions: 15
-  action_count: 15
+  checked_at: 2026-05-14T18:17:15.005Z
+  matched_actions: 8
+  action_count: 8
   confidence: high
   summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved."
 derived_from:
@@ -302,17 +304,19 @@ interlocks: []
 ```yaml
 source_domains:
   - open.cinegy.com
+source_urls:
+  - https://open.cinegy.com/products/capture/25.10/capture-rest-api/
 retrieved_at: 2026-04-30T04:41:00.285Z
-last_checked_at: 2026-04-23T15:30:07.089Z
+last_checked_at: 2026-05-14T18:17:15.005Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:30:07.089Z
-matched_actions: 15
-action_count: 15
+checked_at: 2026-05-14T18:17:15.005Z
+matched_actions: 8
+action_count: 8
 confidence: high
 summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved."
 ```

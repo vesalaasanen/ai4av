@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - static.roland.com
+source_urls:
+  - https://static.roland.com/assets/media/pdf/VR-400UHD_Control_eng01_W.pdf
 retrieved_at: 2026-05-04T17:23:56.946Z
 last_checked_at: 2026-05-05T05:41:50.750Z
 generated_at: 2026-05-05T05:41:50.750Z
@@ -564,6 +566,8 @@ Commands use ASCII format: `set,<category>,<ID>,<Sub-ID>,<Value>[lf]`. LF = ASCI
 ```yaml
 source_domains:
   - static.roland.com
+source_urls:
+  - https://static.roland.com/assets/media/pdf/VR-400UHD_Control_eng01_W.pdf
 retrieved_at: 2026-05-04T17:23:56.946Z
 last_checked_at: 2026-05-05T05:41:50.750Z
 ```

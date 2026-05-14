@@ -19,6 +19,11 @@ source_domains:
   - toacanada.com
   - toaelectronics.com
   - toa-products.com
+source_urls:
+  - https://www.toacanada.com/toa-assets/9000M2_PROTOCOL_MANUAL_EN.pdf
+  - "https://www.toaelectronics.com/en-us/downloads?product_number=M-9000M2"
+  - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
+  - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
 last_checked_at: 2026-04-30T15:23:26.169Z
 generated_at: 2026-04-30T15:23:26.169Z
@@ -363,6 +368,11 @@ source_domains:
   - toacanada.com
   - toaelectronics.com
   - toa-products.com
+source_urls:
+  - https://www.toacanada.com/toa-assets/9000M2_PROTOCOL_MANUAL_EN.pdf
+  - "https://www.toaelectronics.com/en-us/downloads?product_number=M-9000M2"
+  - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
+  - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
 last_checked_at: 2026-04-30T15:23:26.169Z
 ```

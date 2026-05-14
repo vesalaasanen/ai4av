@@ -19,6 +19,11 @@ source_domains:
   - esupportdownload.benq.com
   - benqimage.blob.core.windows.net
   - benq.eu
+source_urls:
+  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
+  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
 retrieved_at: 2026-04-29T15:29:17.103Z
 last_checked_at: 2026-05-05T05:39:58.748Z
 generated_at: 2026-05-05T05:39:58.748Z
@@ -743,6 +748,11 @@ source_domains:
   - esupportdownload.benq.com
   - benqimage.blob.core.windows.net
   - benq.eu
+source_urls:
+  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
+  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
 retrieved_at: 2026-04-29T15:29:17.103Z
 last_checked_at: 2026-05-05T05:39:58.748Z
 ```

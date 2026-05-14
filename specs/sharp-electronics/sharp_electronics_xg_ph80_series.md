@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - files.sharpusa.com
   - business.sharpusa.com
+source_urls:
+  - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/Manuals/hom_man_XVZ30000.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/mon_man_PNE421_471.pdf
 retrieved_at: 2026-05-04T17:32:47.674Z
-last_checked_at: 2026-04-27T15:13:40.187Z
-generated_at: 2026-04-27T15:13:40.187Z
+last_checked_at: 2026-05-14T18:17:20.289Z
+generated_at: 2026-05-14T18:17:20.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:13:40.187Z
+  checked_at: 2026-05-14T18:17:20.289Z
   matched_actions: 49
-  action_count: 49
+  action_count: 50
   confidence: high
   summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented."
 derived_from:
@@ -510,17 +513,20 @@ Serial supports selectable baud rates (115200/38400/19200/9600/4800). Source doe
 source_domains:
   - files.sharpusa.com
   - business.sharpusa.com
+source_urls:
+  - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/Manuals/hom_man_XVZ30000.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/mon_man_PNE421_471.pdf
 retrieved_at: 2026-05-04T17:32:47.674Z
-last_checked_at: 2026-04-27T15:13:40.187Z
+last_checked_at: 2026-05-14T18:17:20.289Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:13:40.187Z
+checked_at: 2026-05-14T18:17:20.289Z
 matched_actions: 49
-action_count: 49
+action_count: 50
 confidence: high
 summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented."
 ```

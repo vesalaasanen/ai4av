@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:53.622Z
 last_checked_at: 2026-04-23T15:17:15.384Z
 generated_at: 2026-04-23T15:17:15.384Z
@@ -811,6 +813,8 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:53.622Z
 last_checked_at: 2026-04-23T15:17:15.384Z
 ```

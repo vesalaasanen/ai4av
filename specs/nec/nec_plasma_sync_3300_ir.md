@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-23T08:15:05.440Z
-generated_at: 2026-04-23T08:15:05.440Z
+last_checked_at: 2026-05-14T18:17:18.960Z
+generated_at: 2026-05-14T18:17:18.960Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:15:05.440Z
-  matched_actions: 53
-  action_count: 53
+  checked_at: 2026-05-14T18:17:18.960Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented."
 derived_from:
@@ -656,17 +658,19 @@ Serial baud rate is configurable (115200/38400/19200/9600/4800 bps) — no singl
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-23T08:15:05.440Z
+last_checked_at: 2026-05-14T18:17:18.960Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:15:05.440Z
-matched_actions: 53
-action_count: 53
+checked_at: 2026-05-14T18:17:18.960Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented."
 ```

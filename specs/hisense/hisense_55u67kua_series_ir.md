@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-01T07:34:55.737Z
-generated_at: 2026-05-01T07:34:55.737Z
+last_checked_at: 2026-05-14T18:17:16.125Z
+generated_at: 2026-05-14T18:17:16.125Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T07:34:55.737Z
-  matched_actions: 65
-  action_count: 65
+  checked_at: 2026-05-14T18:17:16.125Z
+  matched_actions: 64
+  action_count: 64
   confidence: high
   summary: "All 65 spec actions matched; transport verified; full catalogue coverage."
 derived_from:
@@ -664,17 +667,20 @@ IR discrete codes use Pronto CCF format; hex codes in 04FB[DATA][~DATA] format.
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-01T07:34:55.737Z
+last_checked_at: 2026-05-14T18:17:16.125Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T07:34:55.737Z
-matched_actions: 65
-action_count: 65
+checked_at: 2026-05-14T18:17:16.125Z
+matched_actions: 64
+action_count: 64
 confidence: high
 summary: "All 65 spec actions matched; transport verified; full catalogue coverage."
 ```

@@ -17,18 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - support.modulo-pi.com
+source_urls:
+  - https://support.modulo-pi.com/modulo-player-manual/1/en/topic/tcp-ip-external-control-protocol
 retrieved_at: 2026-05-04T17:33:34.629Z
-last_checked_at: 2026-05-04T07:04:28.366Z
-generated_at: 2026-05-04T07:04:28.366Z
+last_checked_at: 2026-05-14T18:17:18.179Z
+generated_at: 2026-05-14T18:17:18.179Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "setPlayListProperty (not implemented)"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T07:04:28.366Z
-  matched_actions: 49
-  action_count: 49
+  checked_at: 2026-05-14T18:17:18.179Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed."
 derived_from:
@@ -518,17 +520,19 @@ The `userKeyValue?key?value\n` command is listed but appears to be both a setter
 ```yaml
 source_domains:
   - support.modulo-pi.com
+source_urls:
+  - https://support.modulo-pi.com/modulo-player-manual/1/en/topic/tcp-ip-external-control-protocol
 retrieved_at: 2026-05-04T17:33:34.629Z
-last_checked_at: 2026-05-04T07:04:28.366Z
+last_checked_at: 2026-05-14T18:17:18.179Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T07:04:28.366Z
-matched_actions: 49
-action_count: 49
+checked_at: 2026-05-14T18:17:18.179Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed."
 ```

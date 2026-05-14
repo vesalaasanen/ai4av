@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - gnuralnetdatastorage.s3.amazonaws.com
+source_urls:
+  - "https://gnuralnetdatastorage.s3.amazonaws.com/Gnural-Documentation/LiveToAir%20Macro%20Documentation.pdf"
 retrieved_at: 2026-04-30T04:41:19.155Z
 last_checked_at: 2026-04-25T20:44:24.583Z
 generated_at: 2026-04-25T20:44:24.583Z
@@ -318,6 +320,8 @@ The Live To Air HTTP API uses query parameters `Command` and `Payload` on the `/
 ```yaml
 source_domains:
   - gnuralnetdatastorage.s3.amazonaws.com
+source_urls:
+  - "https://gnuralnetdatastorage.s3.amazonaws.com/Gnural-Documentation/LiveToAir%20Macro%20Documentation.pdf"
 retrieved_at: 2026-04-30T04:41:19.155Z
 last_checked_at: 2026-04-25T20:44:24.583Z
 ```

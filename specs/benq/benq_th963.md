@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - benqimage.blob.core.windows.net
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
 retrieved_at: 2026-05-08T15:21:30.302Z
-last_checked_at: 2026-05-08T15:40:54.496Z
-generated_at: 2026-05-08T15:40:54.496Z
+last_checked_at: 2026-05-14T18:17:14.514Z
+generated_at: 2026-05-14T18:17:14.514Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:40:54.496Z
-  matched_actions: 89
-  action_count: 89
+  checked_at: 2026-05-14T18:17:14.514Z
+  matched_actions: 54
+  action_count: 54
   confidence: high
   summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim."
 derived_from:
@@ -766,17 +768,19 @@ interlocks: []
 ```yaml
 source_domains:
   - benqimage.blob.core.windows.net
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
 retrieved_at: 2026-05-08T15:21:30.302Z
-last_checked_at: 2026-05-08T15:40:54.496Z
+last_checked_at: 2026-05-14T18:17:14.514Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:40:54.496Z
-matched_actions: 89
-action_count: 89
+checked_at: 2026-05-14T18:17:14.514Z
+matched_actions: 54
+action_count: 54
 confidence: high
 summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim."
 ```

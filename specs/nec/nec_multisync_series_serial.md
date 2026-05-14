@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-26T20:49:45.736Z
 generated_at: 2026-04-26T20:49:45.736Z
@@ -641,6 +643,8 @@ Key code 02h = POWER ON, 03h = POWER OFF via remote control emulation.
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
 last_checked_at: 2026-04-26T20:49:45.736Z
 ```

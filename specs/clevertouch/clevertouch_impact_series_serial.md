@@ -18,7 +18,9 @@ compatible_with:
   required_options: []
 source_domains:
   - old.support.clevertouch.com
-retrieved_at: 2026-05-04T18:03:53.072Z
+source_urls:
+  - "https://old.support.clevertouch.com/Support/RS232%20code%20for%20Clevertouch%20Plus.pdf"
+retrieved_at: 2026-05-14T15:06:43.923Z
 last_checked_at: 2026-05-04T16:13:59.277Z
 generated_at: 2026-05-04T16:13:59.277Z
 firmware_coverage: "Not stated in source"
@@ -633,7 +635,9 @@ interlocks: []
 ```yaml
 source_domains:
   - old.support.clevertouch.com
-retrieved_at: 2026-05-04T18:03:53.072Z
+source_urls:
+  - "https://old.support.clevertouch.com/Support/RS232%20code%20for%20Clevertouch%20Plus.pdf"
+retrieved_at: 2026-05-14T15:06:43.923Z
 last_checked_at: 2026-05-04T16:13:59.277Z
 ```
 

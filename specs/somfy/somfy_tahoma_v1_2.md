@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:14.635Z
-last_checked_at: 2026-04-27T10:13:03.490Z
-generated_at: 2026-04-27T10:13:03.490Z
+last_checked_at: 2026-05-14T18:17:20.685Z
+generated_at: 2026-05-14T18:17:20.685Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:03.490Z
-  matched_actions: 20
-  action_count: 20
+  checked_at: 2026-05-14T18:17:20.685Z
+  matched_actions: 8
+  action_count: 8
   confidence: high
   summary: "All 20 spec actions matched to source commands; transport parameters verified; comprehensive protocol coverage achieved."
 derived_from:
@@ -411,17 +413,19 @@ The SDN protocol uses a binary message format with 11-byte minimum and 32-byte m
 ```yaml
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:14.635Z
-last_checked_at: 2026-04-27T10:13:03.490Z
+last_checked_at: 2026-05-14T18:17:20.685Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:03.490Z
-matched_actions: 20
-action_count: 20
+checked_at: 2026-05-14T18:17:20.685Z
+matched_actions: 8
+action_count: 8
 confidence: high
 summary: "All 20 spec actions matched to source commands; transport parameters verified; comprehensive protocol coverage achieved."
 ```

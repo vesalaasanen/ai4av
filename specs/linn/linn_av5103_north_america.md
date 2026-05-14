@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:32.379Z
 last_checked_at: 2026-04-23T08:06:15.828Z
 generated_at: 2026-04-23T08:06:15.828Z
@@ -353,6 +355,8 @@ Poll command enables auto-detection of daisy-chained Linn RS-232 devices.
 ```yaml
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:32.379Z
 last_checked_at: 2026-04-23T08:06:15.828Z
 ```

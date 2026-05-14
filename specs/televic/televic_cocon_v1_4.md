@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - documents.televic.digital
+source_urls:
+  - "https://documents.televic.digital/conference/index.php/s/HW2RLc6ifDY9tDJ/download/API%20Document%20for%206.11.pdf"
 retrieved_at: 2026-04-30T04:32:41.058Z
-last_checked_at: 2026-04-30T09:50:53.989Z
-generated_at: 2026-04-30T09:50:53.989Z
+last_checked_at: 2026-05-14T18:17:21.227Z
+generated_at: 2026-05-14T18:17:21.227Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:50:53.989Z
+  checked_at: 2026-05-14T18:17:21.227Z
   matched_actions: 62
-  action_count: 62
+  action_count: 64
   confidence: high
   summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified."
 derived_from:
@@ -933,17 +935,19 @@ interlocks: []
 ```yaml
 source_domains:
   - documents.televic.digital
+source_urls:
+  - "https://documents.televic.digital/conference/index.php/s/HW2RLc6ifDY9tDJ/download/API%20Document%20for%206.11.pdf"
 retrieved_at: 2026-04-30T04:32:41.058Z
-last_checked_at: 2026-04-30T09:50:53.989Z
+last_checked_at: 2026-05-14T18:17:21.227Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:50:53.989Z
+checked_at: 2026-05-14T18:17:21.227Z
 matched_actions: 62
-action_count: 62
+action_count: 64
 confidence: high
 summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified."
 ```

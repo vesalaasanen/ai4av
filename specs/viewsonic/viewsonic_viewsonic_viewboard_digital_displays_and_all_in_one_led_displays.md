@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
 retrieved_at: 2026-04-30T04:25:10.156Z
-last_checked_at: 2026-04-23T08:29:48.090Z
-generated_at: 2026-04-23T08:29:48.090Z
+last_checked_at: 2026-05-14T18:17:21.437Z
+generated_at: 2026-05-14T18:17:21.437Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:29:48.090Z
-  matched_actions: 39
-  action_count: 39
+  checked_at: 2026-05-14T18:17:21.437Z
+  matched_actions: 38
+  action_count: 38
   confidence: high
   summary: "All 39 spec commands verified against source with exact command codes; transport parameters confirmed verbatim."
 derived_from:
@@ -477,17 +479,19 @@ interlocks: []
 ```yaml
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
 retrieved_at: 2026-04-30T04:25:10.156Z
-last_checked_at: 2026-04-23T08:29:48.090Z
+last_checked_at: 2026-05-14T18:17:21.437Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:29:48.090Z
-matched_actions: 39
-action_count: 39
+checked_at: 2026-05-14T18:17:21.437Z
+matched_actions: 38
+action_count: 38
 confidence: high
 summary: "All 39 spec commands verified against source with exact command codes; transport parameters confirmed verbatim."
 ```

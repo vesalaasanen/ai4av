@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-05-04T15:10:58.851Z
-last_checked_at: 2026-04-23T15:30:01.678Z
-generated_at: 2026-04-23T15:30:01.678Z
+last_checked_at: 2026-05-14T18:17:14.922Z
+generated_at: 2026-05-14T18:17:14.922Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:30:01.678Z
+  checked_at: 2026-05-14T18:17:14.922Z
   matched_actions: 77
-  action_count: 77
+  action_count: 101
   confidence: high
   summary: "All 77 spec actions matched literally in source; transport parameters verified; comprehensive coverage of E-Series command set."
 derived_from:
@@ -1145,17 +1148,20 @@ interlocks: []
 ```yaml
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-05-04T15:10:58.851Z
-last_checked_at: 2026-04-23T15:30:01.678Z
+last_checked_at: 2026-05-14T18:17:14.922Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:30:01.678Z
+checked_at: 2026-05-14T18:17:14.922Z
 matched_actions: 77
-action_count: 77
+action_count: 101
 confidence: high
 summary: "All 77 spec actions matched literally in source; transport parameters verified; comprehensive coverage of E-Series command set."
 ```

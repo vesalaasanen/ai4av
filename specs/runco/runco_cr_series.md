@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - hdtvsolutions.com
+source_urls:
+  - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
+  - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
 last_checked_at: 2026-04-30T09:48:21.302Z
 generated_at: 2026-04-30T09:48:21.302Z
@@ -538,6 +541,9 @@ Spec generated. 48 actions (20 direct serial + 28 key emulation). RS-232 only, 1
 ```yaml
 source_domains:
   - hdtvsolutions.com
+source_urls:
+  - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
+  - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
 last_checked_at: 2026-04-30T09:48:21.302Z
 ```

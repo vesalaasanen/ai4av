@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - meridian-audio.info
+source_urls:
+  - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
 retrieved_at: 2026-05-04T18:01:40.170Z
-last_checked_at: 2026-04-25T21:10:10.626Z
-generated_at: 2026-04-25T21:10:10.626Z
+last_checked_at: 2026-05-14T18:17:18.146Z
+generated_at: 2026-05-14T18:17:18.146Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:10:10.626Z
-  matched_actions: 55
-  action_count: 55
+  checked_at: 2026-05-14T18:17:18.146Z
+  matched_actions: 50
+  action_count: 50
   confidence: high
   summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim."
 derived_from:
@@ -580,17 +582,19 @@ interlocks: []
 ```yaml
 source_domains:
   - meridian-audio.info
+source_urls:
+  - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
 retrieved_at: 2026-05-04T18:01:40.170Z
-last_checked_at: 2026-04-25T21:10:10.626Z
+last_checked_at: 2026-05-14T18:17:18.146Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:10:10.626Z
-matched_actions: 55
-action_count: 55
+checked_at: 2026-05-14T18:17:18.146Z
+matched_actions: 50
+action_count: 50
 confidence: high
 summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim."
 ```

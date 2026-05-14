@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - simaudio.com
+source_urls:
+  - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
 retrieved_at: 2026-05-04T18:02:29.791Z
 last_checked_at: 2026-04-27T09:45:19.554Z
 generated_at: 2026-04-27T09:45:19.554Z
@@ -334,6 +336,8 @@ interlocks: []
 ```yaml
 source_domains:
   - simaudio.com
+source_urls:
+  - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
 retrieved_at: 2026-05-04T18:02:29.791Z
 last_checked_at: 2026-04-27T09:45:19.554Z
 ```

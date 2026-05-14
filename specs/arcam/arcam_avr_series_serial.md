@@ -21,17 +21,19 @@ compatible_with:
   required_options: []
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-05-12T18:52:17.888Z
-last_checked_at: 2026-04-23T15:11:12.470Z
-generated_at: 2026-04-23T15:11:12.470Z
+last_checked_at: 2026-05-14T18:17:14.061Z
+generated_at: 2026-05-14T18:17:14.061Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:11:12.470Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:14.061Z
+  matched_actions: 33
+  action_count: 33
   confidence: high
   summary: "All 50 spec actions match source opcodes with correct transport parameters (38400 baud, port 50000, serial framing verified)."
 derived_from:
@@ -800,17 +802,19 @@ interlocks:
 ```yaml
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-05-12T18:52:17.888Z
-last_checked_at: 2026-04-23T15:11:12.470Z
+last_checked_at: 2026-05-14T18:17:14.061Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:11:12.470Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:14.061Z
+matched_actions: 33
+action_count: 33
 confidence: high
 summary: "All 50 spec actions match source opcodes with correct transport parameters (38400 baud, port 50000, serial framing verified)."
 ```

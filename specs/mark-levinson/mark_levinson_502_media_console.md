@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - marklevinson.com
+source_urls:
+  - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-05-02T22:40:36.688Z
-generated_at: 2026-05-02T22:40:36.688Z
+last_checked_at: 2026-05-14T18:17:18.075Z
+generated_at: 2026-05-14T18:17:18.075Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -27,9 +29,9 @@ known_gaps:
   - WAIT_TEST
 verification:
   verdict: verified
-  checked_at: 2026-05-02T22:40:36.688Z
-  matched_actions: 105
-  action_count: 105
+  checked_at: 2026-05-14T18:17:18.075Z
+  matched_actions: 63
+  action_count: 63
   confidence: high
   summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified."
 derived_from:
@@ -962,17 +964,19 @@ interlocks:
 ```yaml
 source_domains:
   - marklevinson.com
+source_urls:
+  - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-05-02T22:40:36.688Z
+last_checked_at: 2026-05-14T18:17:18.075Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-02T22:40:36.688Z
-matched_actions: 105
-action_count: 105
+checked_at: 2026-05-14T18:17:18.075Z
+matched_actions: 63
+action_count: 63
 confidence: high
 summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified."
 ```

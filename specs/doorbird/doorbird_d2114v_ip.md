@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - doorbird.com
+source_urls:
+  - https://www.doorbird.com/downloads/api_lan.pdf
+  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:18.464Z
 last_checked_at: 2026-04-23T06:39:48.080Z
 generated_at: 2026-04-23T06:39:48.080Z
@@ -467,6 +470,9 @@ interlocks:
 ```yaml
 source_domains:
   - doorbird.com
+source_urls:
+  - https://www.doorbird.com/downloads/api_lan.pdf
+  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:18.464Z
 last_checked_at: 2026-04-23T06:39:48.080Z
 ```

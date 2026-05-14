@@ -19,17 +19,21 @@ compatible_with:
 source_domains:
   - mcintoshlabs.com
   - raw.githubusercontent.com
+source_urls:
+  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
+  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
 retrieved_at: 2026-05-04T15:10:09.003Z
-last_checked_at: 2026-04-25T21:10:08.936Z
-generated_at: 2026-04-25T21:10:08.936Z
+last_checked_at: 2026-05-14T18:17:18.130Z
+generated_at: 2026-05-14T18:17:18.130Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:10:08.936Z
-  matched_actions: 73
-  action_count: 73
+  checked_at: 2026-05-14T18:17:18.130Z
+  matched_actions: 49
+  action_count: 49
   confidence: high
   summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified."
 derived_from:
@@ -838,17 +842,21 @@ interlocks:
 source_domains:
   - mcintoshlabs.com
   - raw.githubusercontent.com
+source_urls:
+  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
+  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
 retrieved_at: 2026-05-04T15:10:09.003Z
-last_checked_at: 2026-04-25T21:10:08.936Z
+last_checked_at: 2026-05-14T18:17:18.130Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:10:08.936Z
-matched_actions: 73
-action_count: 73
+checked_at: 2026-05-14T18:17:18.130Z
+matched_actions: 49
+action_count: 49
 confidence: high
 summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified."
 ```

@@ -18,17 +18,21 @@ compatible_with:
 source_domains:
   - extron.com
   - media.extron.com
+source_urls:
+  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
+  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
+  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-05-01T02:11:30.714Z
-last_checked_at: 2026-04-25T20:44:22.600Z
-generated_at: 2026-04-25T20:44:22.600Z
+last_checked_at: 2026-05-14T18:17:15.869Z
+generated_at: 2026-05-14T18:17:15.869Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:44:22.600Z
-  matched_actions: 99
-  action_count: 99
+  checked_at: 2026-05-14T18:17:15.869Z
+  matched_actions: 74
+  action_count: 74
   confidence: high
   summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage."
 derived_from:
@@ -1268,17 +1272,21 @@ interlocks: []
 source_domains:
   - extron.com
   - media.extron.com
+source_urls:
+  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
+  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
+  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-05-01T02:11:30.714Z
-last_checked_at: 2026-04-25T20:44:22.600Z
+last_checked_at: 2026-05-14T18:17:15.869Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:44:22.600Z
-matched_actions: 99
-action_count: 99
+checked_at: 2026-05-14T18:17:15.869Z
+matched_actions: 74
+action_count: 74
 confidence: high
 summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage."
 ```

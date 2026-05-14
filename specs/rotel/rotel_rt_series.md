@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:03.083Z
 last_checked_at: 2026-04-23T08:24:47.244Z
 generated_at: 2026-04-23T08:24:47.244Z
@@ -239,6 +241,8 @@ interlocks: []
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:03.083Z
 last_checked_at: 2026-04-23T08:24:47.244Z
 ```

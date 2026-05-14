@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - datasatdigital.com
+source_urls:
+  - https://www.datasatdigital.com/download/55/ap25/2762/tn-h413_rev-d_ap20-ap25-remote-command-api.pdf
 retrieved_at: 2026-04-30T04:35:03.888Z
-last_checked_at: 2026-04-23T05:36:34.444Z
-generated_at: 2026-04-23T05:36:34.444Z
+last_checked_at: 2026-05-14T18:17:15.165Z
+generated_at: 2026-05-14T18:17:15.165Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T05:36:34.444Z
+  checked_at: 2026-05-14T18:17:15.165Z
   matched_actions: 13
-  action_count: 15
+  action_count: 13
   confidence: high
   summary: "All 13 actionable spec commands found verbatim in source with matching parameter shapes and transport details."
 derived_from:
@@ -239,17 +241,19 @@ Serial config: user selects baud rate in menu System -> Automation -> Serial. Se
 ```yaml
 source_domains:
   - datasatdigital.com
+source_urls:
+  - https://www.datasatdigital.com/download/55/ap25/2762/tn-h413_rev-d_ap20-ap25-remote-command-api.pdf
 retrieved_at: 2026-04-30T04:35:03.888Z
-last_checked_at: 2026-04-23T05:36:34.444Z
+last_checked_at: 2026-05-14T18:17:15.165Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T05:36:34.444Z
+checked_at: 2026-05-14T18:17:15.165Z
 matched_actions: 13
-action_count: 15
+action_count: 13
 confidence: high
 summary: "All 13 actionable spec commands found verbatim in source with matching parameter shapes and transport details."
 ```

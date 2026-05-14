@@ -34,17 +34,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.google.com
+source_urls:
+  - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-05-04T15:16:46.093Z
-last_checked_at: 2026-04-25T20:45:34.318Z
-generated_at: 2026-04-25T20:45:34.318Z
+last_checked_at: 2026-05-14T18:17:15.933Z
+generated_at: 2026-05-14T18:17:15.933Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:45:34.318Z
-  matched_actions: 58
-  action_count: 58
+  checked_at: 2026-05-14T18:17:15.933Z
+  matched_actions: 33
+  action_count: 33
   confidence: high
   summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented."
 derived_from:
@@ -648,17 +650,19 @@ interlocks: []
 ```yaml
 source_domains:
   - docs.google.com
+source_urls:
+  - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-05-04T15:16:46.093Z
-last_checked_at: 2026-04-25T20:45:34.318Z
+last_checked_at: 2026-05-14T18:17:15.933Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:45:34.318Z
-matched_actions: 58
-action_count: 58
+checked_at: 2026-05-14T18:17:15.933Z
+matched_actions: 33
+action_count: 33
 confidence: high
 summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented."
 ```

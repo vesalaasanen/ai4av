@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - powersoft.com
+source_urls:
+  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
+  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
 retrieved_at: 2026-05-04T15:19:12.837Z
 last_checked_at: 2026-04-25T21:50:00.781Z
 generated_at: 2026-04-25T21:50:00.781Z
@@ -366,6 +369,9 @@ interlocks:
 ```yaml
 source_domains:
   - powersoft.com
+source_urls:
+  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
+  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
 retrieved_at: 2026-05-04T15:19:12.837Z
 last_checked_at: 2026-04-25T21:50:00.781Z
 ```

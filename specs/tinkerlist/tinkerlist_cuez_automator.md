@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - intercom.help
   - documenter.getpostman.com
+source_urls:
+  - https://intercom.help/cuez/en/articles/10320001-how-can-i-use-the-automator-api
+  - https://documenter.getpostman.com/view/9730337/2s9YeA8tGV
 retrieved_at: 2026-04-30T02:09:11.445Z
 last_checked_at: 2026-04-27T10:34:49.590Z
 generated_at: 2026-04-27T10:34:49.590Z
@@ -192,6 +195,9 @@ Automator API operates exclusively on localhost. Minimum stable build: `2024.10.
 source_domains:
   - intercom.help
   - documenter.getpostman.com
+source_urls:
+  - https://intercom.help/cuez/en/articles/10320001-how-can-i-use-the-automator-api
+  - https://documenter.getpostman.com/view/9730337/2s9YeA8tGV
 retrieved_at: 2026-04-30T02:09:11.445Z
 last_checked_at: 2026-04-27T10:34:49.590Z
 ```

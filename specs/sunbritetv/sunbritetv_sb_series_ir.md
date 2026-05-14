@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-05-04T10:21:27.872Z
-generated_at: 2026-05-04T10:21:27.872Z
+last_checked_at: 2026-05-14T18:17:21.049Z
+generated_at: 2026-05-14T18:17:21.049Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:21:27.872Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:21.049Z
+  matched_actions: 49
+  action_count: 49
   confidence: high
   summary: "All 50 spec actions matched literally against source hex codes and transport parameters verified; complete bidirectional coverage."
 derived_from:
@@ -456,17 +458,19 @@ Numeric key commands (0-9, minus, channel return) return no response (marked "na
 ```yaml
 source_domains:
   - sunbritetv.com
+source_urls:
+  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T15:18:20.447Z
-last_checked_at: 2026-05-04T10:21:27.872Z
+last_checked_at: 2026-05-14T18:17:21.049Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:21:27.872Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:21.049Z
+matched_actions: 49
+action_count: 49
 confidence: high
 summary: "All 50 spec actions matched literally against source hex codes and transport parameters verified; complete bidirectional coverage."
 ```

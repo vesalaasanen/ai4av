@@ -19,6 +19,9 @@ compatible_with:
 source_domains:
   - keydigital.com
   - keydigital.org
+source_urls:
+  - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
+  - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
 retrieved_at: 2026-05-12T09:53:33.248Z
 last_checked_at: 2026-05-08T15:43:08.354Z
 generated_at: 2026-05-08T15:43:08.354Z
@@ -401,6 +404,9 @@ Network default: IP 192.168.0.239, port 23 (Telnet). MAC address shown in STA ou
 source_domains:
   - keydigital.com
   - keydigital.org
+source_urls:
+  - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
+  - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
 retrieved_at: 2026-05-12T09:53:33.248Z
 last_checked_at: 2026-05-08T15:43:08.354Z
 ```

@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-23T08:15:05.164Z
-generated_at: 2026-04-23T08:15:05.164Z
+last_checked_at: 2026-05-14T18:17:19.306Z
+generated_at: 2026-05-14T18:17:19.306Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:15:05.164Z
-  matched_actions: 52
-  action_count: 52
+  checked_at: 2026-05-14T18:17:19.306Z
+  matched_actions: 32
+  action_count: 32
   confidence: high
   summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented."
 derived_from:
@@ -449,17 +451,19 @@ The source appendix "Supplementary Information by Command" (input terminal value
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-23T08:15:05.164Z
+last_checked_at: 2026-05-14T18:17:19.306Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:15:05.164Z
-matched_actions: 52
-action_count: 52
+checked_at: 2026-05-14T18:17:19.306Z
+matched_actions: 32
+action_count: 32
 confidence: high
 summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented."
 ```

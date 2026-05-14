@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - primare.net
+source_urls:
+  - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-04-30T10:34:35.871Z
 last_checked_at: 2026-04-30T15:28:13.625Z
 generated_at: 2026-04-30T15:28:13.625Z
@@ -233,6 +235,8 @@ Command format: `!1<command>.<value><CR><LF>` (ASCII) or prefix `21 31` followed
 ```yaml
 source_domains:
   - primare.net
+source_urls:
+  - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-04-30T10:34:35.871Z
 last_checked_at: 2026-04-30T15:28:13.625Z
 ```

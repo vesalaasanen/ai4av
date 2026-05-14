@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-26T13:02:03.767Z
-generated_at: 2026-04-26T13:02:03.767Z
+last_checked_at: 2026-05-14T18:17:16.378Z
+generated_at: 2026-05-14T18:17:16.378Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T13:02:03.767Z
-  matched_actions: 100
-  action_count: 100
+  checked_at: 2026-05-14T18:17:16.378Z
+  matched_actions: 44
+  action_count: 44
   confidence: high
   summary: "All 72 spec actions and 28 feedbacks have exact wire-literal matches in source; RS-232 9600 baud 8-N-1 confirmed; bidirectional coverage complete."
 derived_from:
@@ -591,17 +594,20 @@ ACK values: OKAY, EROR, WAIT
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-26T13:02:03.767Z
+last_checked_at: 2026-05-14T18:17:16.378Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T13:02:03.767Z
-matched_actions: 100
-action_count: 100
+checked_at: 2026-05-14T18:17:16.378Z
+matched_actions: 44
+action_count: 44
 confidence: high
 summary: "All 72 spec actions and 28 feedbacks have exact wire-literal matches in source; RS-232 9600 baud 8-N-1 confirmed; bidirectional coverage complete."
 ```

@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-05-08T15:40:55.553Z
-generated_at: 2026-05-08T15:40:55.553Z
+last_checked_at: 2026-05-14T18:17:15.789Z
+generated_at: 2026-05-14T18:17:15.789Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -27,9 +29,9 @@ known_gaps:
   - "SOURCE C3"
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:40:55.553Z
-  matched_actions: 49
-  action_count: 49
+  checked_at: 2026-05-14T18:17:15.789Z
+  matched_actions: 43
+  action_count: 43
   confidence: high
   summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict."
 derived_from:
@@ -418,17 +420,19 @@ interlocks: []
 ```yaml
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-05-08T15:40:55.553Z
+last_checked_at: 2026-05-14T18:17:15.789Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:40:55.553Z
-matched_actions: 49
-action_count: 49
+checked_at: 2026-05-14T18:17:15.789Z
+matched_actions: 43
+action_count: 43
 confidence: high
 summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict."
 ```

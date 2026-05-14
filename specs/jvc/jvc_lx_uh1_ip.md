@@ -18,17 +18,22 @@ compatible_with:
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-25T20:53:39.891Z
-generated_at: 2026-04-25T20:53:39.891Z
+last_checked_at: 2026-05-14T18:17:17.271Z
+generated_at: 2026-05-14T18:17:17.271Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:53:39.891Z
-  matched_actions: 78
-  action_count: 78
+  checked_at: 2026-05-14T18:17:17.271Z
+  matched_actions: 62
+  action_count: 62
   confidence: high
   summary: "All 78 spec actions matched literally in source; transport parameters verified; command set fully represented."
 derived_from:
@@ -826,17 +831,22 @@ interlocks: []
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-25T20:53:39.891Z
+last_checked_at: 2026-05-14T18:17:17.271Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:53:39.891Z
-matched_actions: 78
-action_count: 78
+checked_at: 2026-05-14T18:17:17.271Z
+matched_actions: 62
+action_count: 62
 confidence: high
 summary: "All 78 spec actions matched literally in source; transport parameters verified; command set fully represented."
 ```

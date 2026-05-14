@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+source_urls:
+  - https://docs-local.appbond.com/
+  - https://docs-local.appbond.com
 retrieved_at: 2026-04-29T13:04:25.772Z
-last_checked_at: 2026-04-30T14:35:57.060Z
-generated_at: 2026-04-30T14:35:57.060Z
+last_checked_at: 2026-05-14T18:17:14.785Z
+generated_at: 2026-05-14T18:17:14.785Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T14:35:57.060Z
+  checked_at: 2026-05-14T18:17:14.785Z
   matched_actions: 167
-  action_count: 167
+  action_count: 182
   confidence: high
   summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified."
 derived_from:
@@ -1701,17 +1704,20 @@ Device signal encoding: CQ format or hex. CQ uses `0`/`1` for single bits, `C`-`
 ```yaml
 source_domains:
   - docs-local.appbond.com
+source_urls:
+  - https://docs-local.appbond.com/
+  - https://docs-local.appbond.com
 retrieved_at: 2026-04-29T13:04:25.772Z
-last_checked_at: 2026-04-30T14:35:57.060Z
+last_checked_at: 2026-05-14T18:17:14.785Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T14:35:57.060Z
+checked_at: 2026-05-14T18:17:14.785Z
 matched_actions: 167
-action_count: 167
+action_count: 182
 confidence: high
 summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified."
 ```

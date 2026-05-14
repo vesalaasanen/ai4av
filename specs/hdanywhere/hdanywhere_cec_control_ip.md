@@ -36,6 +36,8 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.google.com
+source_urls:
+  - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-05-04T15:16:46.093Z
 last_checked_at: 2026-04-25T20:45:33.313Z
 generated_at: 2026-04-25T20:45:33.313Z
@@ -640,6 +642,8 @@ interlocks:
 ```yaml
 source_domains:
   - docs.google.com
+source_urls:
+  - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-05-04T15:16:46.093Z
 last_checked_at: 2026-04-25T20:45:33.313Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - keydigital.com
+source_urls:
+  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
 retrieved_at: 2026-04-30T13:01:42.709Z
 last_checked_at: 2026-04-30T15:20:36.891Z
 generated_at: 2026-04-30T15:20:36.891Z
@@ -215,6 +217,8 @@ interlocks: []
 ```yaml
 source_domains:
   - keydigital.com
+source_urls:
+  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
 retrieved_at: 2026-04-30T13:01:42.709Z
 last_checked_at: 2026-04-30T15:20:36.891Z
 ```

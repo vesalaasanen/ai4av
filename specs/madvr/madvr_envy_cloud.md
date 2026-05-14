@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T17:32:06.925Z
-last_checked_at: 2026-04-27T09:04:51.656Z
-generated_at: 2026-04-27T09:04:51.656Z
+last_checked_at: 2026-05-14T18:17:17.785Z
+generated_at: 2026-05-14T18:17:17.785Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:04:51.656Z
-  matched_actions: 89
-  action_count: 89
+  checked_at: 2026-05-14T18:17:17.785Z
+  matched_actions: 57
+  action_count: 57
   confidence: high
   summary: "All 89 spec action ids match documented source commands; transport verified (TCP port 44077, no auth)."
 derived_from:
@@ -826,17 +828,19 @@ Settings/configuration pages enumerated via EnumSettingPages/EnumConfigPages, op
 ```yaml
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T17:32:06.925Z
-last_checked_at: 2026-04-27T09:04:51.656Z
+last_checked_at: 2026-05-14T18:17:17.785Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:04:51.656Z
-matched_actions: 89
-action_count: 89
+checked_at: 2026-05-14T18:17:17.785Z
+matched_actions: 57
+action_count: 57
 confidence: high
 summary: "All 89 spec action ids match documented source commands; transport verified (TCP port 44077, no auth)."
 ```

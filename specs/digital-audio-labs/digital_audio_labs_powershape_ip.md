@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalaudio.com
+source_urls:
+  - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
 retrieved_at: 2026-05-04T18:03:06.286Z
 last_checked_at: 2026-04-24T14:41:25.165Z
 generated_at: 2026-04-24T14:41:25.165Z
@@ -733,6 +735,8 @@ Network port supports one client via Telnet. IP address assignment: DHCP/BOOTP, 
 ```yaml
 source_domains:
   - digitalaudio.com
+source_urls:
+  - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
 retrieved_at: 2026-05-04T18:03:06.286Z
 last_checked_at: 2026-04-24T14:41:25.165Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - audioresearch.com
+source_urls:
+  - https://audioresearch.com/new_website/wp-content/uploads/2024/11/DSPre-Manual.pdf
 retrieved_at: 2026-04-30T04:32:54.782Z
 last_checked_at: 2026-04-23T15:12:39.639Z
 generated_at: 2026-04-23T15:12:39.639Z
@@ -413,6 +415,8 @@ notes:
 ```yaml
 source_domains:
   - audioresearch.com
+source_urls:
+  - https://audioresearch.com/new_website/wp-content/uploads/2024/11/DSPre-Manual.pdf
 retrieved_at: 2026-04-30T04:32:54.782Z
 last_checked_at: 2026-04-23T15:12:39.639Z
 ```

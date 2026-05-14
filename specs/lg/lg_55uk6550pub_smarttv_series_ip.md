@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-04-25T21:04:57.113Z
 generated_at: 2026-04-25T21:04:57.113Z
@@ -534,6 +536,8 @@ interlocks:
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-04-25T21:04:57.113Z
 ```

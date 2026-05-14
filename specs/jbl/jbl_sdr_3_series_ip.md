@@ -20,6 +20,8 @@ compatible_with:
   required_options: []
 source_domains:
   - jblsynthesis.com
+source_urls:
+  - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw51dc9ad1/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-05-04T15:16:58.823Z
 last_checked_at: 2026-04-30T09:43:25.819Z
 generated_at: 2026-04-30T09:43:25.819Z
@@ -819,6 +821,8 @@ interlocks: []
 ```yaml
 source_domains:
   - jblsynthesis.com
+source_urls:
+  - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw51dc9ad1/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-05-04T15:16:58.823Z
 last_checked_at: 2026-04-30T09:43:25.819Z
 ```

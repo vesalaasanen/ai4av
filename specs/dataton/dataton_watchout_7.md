@@ -18,6 +18,10 @@ compatible_with:
 source_domains:
   - docs.dataton.com
   - knowledge.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
+  - https://knowledge.dataton.com/migration/knowledge/watchout-display-control-protocol
+  - https://docs.dataton.com/watchout-7/
 retrieved_at: 2026-04-29T23:27:46.172Z
 last_checked_at: 2026-04-27T14:41:59.431Z
 generated_at: 2026-04-27T14:41:59.431Z
@@ -348,6 +352,10 @@ HTTP API ports: 3019 (operative), 3017 (node management), 3023 (asset manager). 
 source_domains:
   - docs.dataton.com
   - knowledge.dataton.com
+source_urls:
+  - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
+  - https://knowledge.dataton.com/migration/knowledge/watchout-display-control-protocol
+  - https://docs.dataton.com/watchout-7/
 retrieved_at: 2026-04-29T23:27:46.172Z
 last_checked_at: 2026-04-27T14:41:59.431Z
 ```

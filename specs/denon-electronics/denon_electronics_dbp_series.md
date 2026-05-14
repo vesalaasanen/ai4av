@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - assets.denon.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://assets.denon.com/documentmaster/ap/418_dbp2010ci_2010_protocol_v310.pdf
+  - https://applicationmarket.crestron.com/content/Help/Denon/denon_dbp-4010ud_v1_0_help.pdf
 retrieved_at: 2026-05-04T22:58:43.331Z
 last_checked_at: 2026-05-05T06:10:41.965Z
 generated_at: 2026-05-05T06:10:41.965Z
@@ -462,6 +465,9 @@ Protocol is half-duplex. BCC checksum computed over CC + PC0...PCn + ETX fields,
 source_domains:
   - assets.denon.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://assets.denon.com/documentmaster/ap/418_dbp2010ci_2010_protocol_v310.pdf
+  - https://applicationmarket.crestron.com/content/Help/Denon/denon_dbp-4010ud_v1_0_help.pdf
 retrieved_at: 2026-05-04T22:58:43.331Z
 last_checked_at: 2026-05-05T06:10:41.965Z
 ```

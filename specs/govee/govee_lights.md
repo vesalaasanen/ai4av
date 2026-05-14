@@ -19,6 +19,8 @@ compatible_with:
   required_options: []
 source_domains:
   - developer.govee.com
+source_urls:
+  - https://developer.govee.com/reference/get-you-devices
 retrieved_at: 2026-04-30T04:41:17.184Z
 last_checked_at: 2026-04-25T20:45:32.359Z
 generated_at: 2026-04-25T20:45:32.359Z
@@ -307,6 +309,8 @@ interlocks: []
 ```yaml
 source_domains:
   - developer.govee.com
+source_urls:
+  - https://developer.govee.com/reference/get-you-devices
 retrieved_at: 2026-04-30T04:41:17.184Z
 last_checked_at: 2026-04-25T20:45:32.359Z
 ```

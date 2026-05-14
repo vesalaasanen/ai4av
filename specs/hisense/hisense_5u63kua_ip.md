@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-26T12:56:11.490Z
-generated_at: 2026-04-26T12:56:11.490Z
+last_checked_at: 2026-05-14T18:17:16.249Z
+generated_at: 2026-05-14T18:17:16.249Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T12:56:11.490Z
-  matched_actions: 54
-  action_count: 54
+  checked_at: 2026-05-14T18:17:16.249Z
+  matched_actions: 45
+  action_count: 45
   confidence: high
   summary: "All 54 spec actions and transport parameters verified against RS-232 command reference in source document."
 derived_from:
@@ -592,17 +595,20 @@ Ethernet/IP control documented but TCP port number not stated in source — seri
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-04-26T12:56:11.490Z
+last_checked_at: 2026-05-14T18:17:16.249Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T12:56:11.490Z
-matched_actions: 54
-action_count: 54
+checked_at: 2026-05-14T18:17:16.249Z
+matched_actions: 45
+action_count: 45
 confidence: high
 summary: "All 54 spec actions and transport parameters verified against RS-232 command reference in source document."
 ```

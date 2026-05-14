@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.425Z
-last_checked_at: 2026-04-26T11:03:33.587Z
-generated_at: 2026-04-26T11:03:33.587Z
+last_checked_at: 2026-05-14T18:17:14.248Z
+generated_at: 2026-05-14T18:17:14.248Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:03:33.587Z
-  matched_actions: 33
-  action_count: 33
+  checked_at: 2026-05-14T18:17:14.248Z
+  matched_actions: 31
+  action_count: 31
   confidence: high
   summary: "All 33 spec actions matched verbatim in source; transport parameters confirmed; complete coverage of documented JSON-RPC 2.0 and RS-232 protocol."
 derived_from:
@@ -627,17 +629,19 @@ The protocol is JSON-RPC 2.0. All requests carry a `jsonrpc: "2.0"` member. Resp
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.425Z
-last_checked_at: 2026-04-26T11:03:33.587Z
+last_checked_at: 2026-05-14T18:17:14.248Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:03:33.587Z
-matched_actions: 33
-action_count: 33
+checked_at: 2026-05-14T18:17:14.248Z
+matched_actions: 31
+action_count: 31
 confidence: high
 summary: "All 33 spec actions matched verbatim in source; transport parameters confirmed; complete coverage of documented JSON-RPC 2.0 and RS-232 protocol."
 ```

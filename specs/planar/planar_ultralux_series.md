@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-05-02T22:40:39.087Z
-generated_at: 2026-05-02T22:40:39.087Z
+last_checked_at: 2026-05-14T18:17:19.854Z
+generated_at: 2026-05-14T18:17:19.854Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-02T22:40:39.087Z
-  matched_actions: 44
-  action_count: 44
+  checked_at: 2026-05-14T18:17:19.854Z
+  matched_actions: 29
+  action_count: 29
   confidence: high
   summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified."
 derived_from:
@@ -467,17 +469,19 @@ interlocks: []
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-05-02T22:40:39.087Z
+last_checked_at: 2026-05-14T18:17:19.854Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-02T22:40:39.087Z
-matched_actions: 44
-action_count: 44
+checked_at: 2026-05-14T18:17:19.854Z
+matched_actions: 29
+action_count: 29
 confidence: high
 summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified."
 ```

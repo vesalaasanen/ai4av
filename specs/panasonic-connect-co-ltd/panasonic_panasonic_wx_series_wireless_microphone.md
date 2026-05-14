@@ -23,6 +23,10 @@ source_domains:
   - na.panasonic.com
   - applicationmarket.crestron.com
   - connect.na.panasonic.com
+source_urls:
+  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
+  - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
+  - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
 last_checked_at: 2026-05-04T08:04:40.870Z
 generated_at: 2026-05-04T08:04:40.870Z
@@ -621,6 +625,10 @@ source_domains:
   - na.panasonic.com
   - applicationmarket.crestron.com
   - connect.na.panasonic.com
+source_urls:
+  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
+  - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
+  - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
 last_checked_at: 2026-05-04T08:04:40.870Z
 ```

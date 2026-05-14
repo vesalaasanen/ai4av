@@ -18,6 +18,10 @@ compatible_with:
   required_options: []
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - "https://storage.googleapis.com/sandbox1-anthemav/an/MRX%20SLM%20-%20IP%20Control%20Specification-20251208145419790.pdf"
+  - https://storage.googleapis.com/sandbox1-anthemav/an/STR-IP-RS232-20251205192153957.xlsx
+  - https://storage.googleapis.com/sandbox1-anthemav/an/MRX-x40-AVM-70-90-IP-RS-232-v5-20251202184749251.xls
 retrieved_at: 2026-05-01T01:55:27.136Z
 last_checked_at: 2026-04-22T19:42:09.572Z
 generated_at: 2026-04-22T19:42:09.572Z
@@ -510,6 +514,10 @@ interlocks:
 ```yaml
 source_domains:
   - storage.googleapis.com
+source_urls:
+  - "https://storage.googleapis.com/sandbox1-anthemav/an/MRX%20SLM%20-%20IP%20Control%20Specification-20251208145419790.pdf"
+  - https://storage.googleapis.com/sandbox1-anthemav/an/STR-IP-RS232-20251205192153957.xlsx
+  - https://storage.googleapis.com/sandbox1-anthemav/an/MRX-x40-AVM-70-90-IP-RS-232-v5-20251202184749251.xls
 retrieved_at: 2026-05-01T01:55:27.136Z
 last_checked_at: 2026-04-22T19:42:09.572Z
 ```

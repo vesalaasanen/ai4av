@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - ptzprotocols.com
   - portal.7thsense.one
+source_urls:
+  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
+  - https://portal.7thsense.one/medialon-help/mxmPhilipsLTC8300.html
 retrieved_at: 2026-04-30T14:19:23.110Z
-last_checked_at: 2026-04-30T15:28:15.212Z
-generated_at: 2026-04-30T15:28:15.212Z
+last_checked_at: 2026-05-14T18:17:19.684Z
+generated_at: 2026-05-14T18:17:19.684Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:28:15.212Z
+  checked_at: 2026-05-14T18:17:19.684Z
   matched_actions: 121
-  action_count: 121
+  action_count: 135
   confidence: high
   summary: "All 121 spec actions match documented CCL commands; transport verbatim."
 derived_from:
@@ -1279,17 +1282,20 @@ interlocks:
 source_domains:
   - ptzprotocols.com
   - portal.7thsense.one
+source_urls:
+  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
+  - https://portal.7thsense.one/medialon-help/mxmPhilipsLTC8300.html
 retrieved_at: 2026-04-30T14:19:23.110Z
-last_checked_at: 2026-04-30T15:28:15.212Z
+last_checked_at: 2026-05-14T18:17:19.684Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:28:15.212Z
+checked_at: 2026-05-14T18:17:19.684Z
 matched_actions: 121
-action_count: 121
+action_count: 135
 confidence: high
 summary: "All 121 spec actions match documented CCL commands; transport verbatim."
 ```

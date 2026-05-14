@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - ad-notam.com
+source_urls:
+  - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
+  - https://www.ad-notam.com/attachment/741/download/td_dfu_rs232-protocol_v4-1_ascii-format_20150901.pdf
 retrieved_at: 2026-05-04T15:17:36.583Z
-last_checked_at: 2026-05-04T16:13:56.683Z
-generated_at: 2026-05-04T16:13:56.683Z
+last_checked_at: 2026-05-14T18:17:13.878Z
+generated_at: 2026-05-14T18:17:13.878Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:13:56.683Z
+  checked_at: 2026-05-14T18:17:13.878Z
   matched_actions: 51
-  action_count: 51
+  action_count: 57
   confidence: high
   summary: "All 51 spec actions found in source command table with matching mnemonics; transport parameters (baud, parity, flow control) fully verified in source."
 derived_from:
@@ -506,17 +509,20 @@ Value ranges (numeric levels): volume/brightness/contrast/saturation/sharpness/b
 ```yaml
 source_domains:
   - ad-notam.com
+source_urls:
+  - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
+  - https://www.ad-notam.com/attachment/741/download/td_dfu_rs232-protocol_v4-1_ascii-format_20150901.pdf
 retrieved_at: 2026-05-04T15:17:36.583Z
-last_checked_at: 2026-05-04T16:13:56.683Z
+last_checked_at: 2026-05-14T18:17:13.878Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:13:56.683Z
+checked_at: 2026-05-14T18:17:13.878Z
 matched_actions: 51
-action_count: 51
+action_count: 57
 confidence: high
 summary: "All 51 spec actions found in source command table with matching mnemonics; transport parameters (baud, parity, flow control) fully verified in source."
 ```

@@ -20,17 +20,23 @@ compatible_with:
   required_options: []
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
+  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
 retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-04-30T15:28:14.408Z
-generated_at: 2026-04-30T15:28:14.408Z
+last_checked_at: 2026-05-14T18:17:21.400Z
+generated_at: 2026-05-14T18:17:21.400Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:28:14.408Z
-  matched_actions: 38
-  action_count: 38
+  checked_at: 2026-05-14T18:17:21.400Z
+  matched_actions: 26
+  action_count: 26
   confidence: high
   summary: "All 38 spec actions matched literally; transport verified."
 derived_from:
@@ -601,17 +607,23 @@ interlocks:
 ```yaml
 source_domains:
   - viewsonicglobal.com
+source_urls:
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
+  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
+  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
+  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
 retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-04-30T15:28:14.408Z
+last_checked_at: 2026-05-14T18:17:21.400Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:28:14.408Z
-matched_actions: 38
-action_count: 38
+checked_at: 2026-05-14T18:17:21.400Z
+matched_actions: 26
+action_count: 26
 confidence: high
 summary: "All 38 spec actions matched literally; transport verified."
 ```

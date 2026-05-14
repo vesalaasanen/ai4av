@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - benqimage.blob.core.windows.net
   - manualslib.com
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://www.manualslib.com/manual/2887673/Benq-Rs232.html
 retrieved_at: 2026-05-01T01:21:07.107Z
-last_checked_at: 2026-05-01T07:51:45.435Z
-generated_at: 2026-05-01T07:51:45.435Z
+last_checked_at: 2026-05-14T18:17:14.532Z
+generated_at: 2026-05-14T18:17:14.532Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T07:51:45.435Z
-  matched_actions: 90
-  action_count: 90
+  checked_at: 2026-05-14T18:17:14.532Z
+  matched_actions: 66
+  action_count: 66
   confidence: high
   summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified."
 derived_from:
@@ -967,17 +970,20 @@ interlocks: []
 source_domains:
   - benqimage.blob.core.windows.net
   - manualslib.com
+source_urls:
+  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://www.manualslib.com/manual/2887673/Benq-Rs232.html
 retrieved_at: 2026-05-01T01:21:07.107Z
-last_checked_at: 2026-05-01T07:51:45.435Z
+last_checked_at: 2026-05-14T18:17:14.532Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T07:51:45.435Z
-matched_actions: 90
-action_count: 90
+checked_at: 2026-05-14T18:17:14.532Z
+matched_actions: 66
+action_count: 66
 confidence: high
 summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - apart-audio.info
+source_urls:
+  - https://apart-audio.info/cat/istochniki_signalov/pr1000/PR1000R_Manual_eng.pdf
 retrieved_at: 2026-04-30T04:34:45.173Z
 last_checked_at: 2026-04-27T08:57:42.307Z
 generated_at: 2026-04-27T08:57:42.307Z
@@ -202,6 +204,8 @@ Default serial settings: baud 19200, echo on, CR on, BS on, valfb on. Frequency 
 ```yaml
 source_domains:
   - apart-audio.info
+source_urls:
+  - https://apart-audio.info/cat/istochniki_signalov/pr1000/PR1000R_Manual_eng.pdf
 retrieved_at: 2026-04-30T04:34:45.173Z
 last_checked_at: 2026-04-27T08:57:42.307Z
 ```

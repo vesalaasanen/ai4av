@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-04-23T15:24:34.952Z
-generated_at: 2026-04-23T15:24:34.952Z
+last_checked_at: 2026-05-14T18:17:14.693Z
+generated_at: 2026-05-14T18:17:14.693Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:24:34.952Z
-  matched_actions: 20
-  action_count: 20
+  checked_at: 2026-05-14T18:17:14.693Z
+  matched_actions: 19
+  action_count: 19
   confidence: high
   summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed."
 derived_from:
@@ -301,17 +303,19 @@ interlocks: []
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-04-23T15:24:34.952Z
+last_checked_at: 2026-05-14T18:17:14.693Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:24:34.952Z
-matched_actions: 20
-action_count: 20
+checked_at: 2026-05-14T18:17:14.693Z
+matched_actions: 19
+action_count: 19
 confidence: high
 summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed."
 ```

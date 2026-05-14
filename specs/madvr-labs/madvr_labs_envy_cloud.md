@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T18:04:28.149Z
 last_checked_at: 2026-04-25T21:07:32.193Z
 generated_at: 2026-04-25T21:07:32.193Z
@@ -721,6 +723,8 @@ Profile system uses hierarchical IDs: profileGroupId_profileId (e.g., "customPro
 ```yaml
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T18:04:28.149Z
 last_checked_at: 2026-04-25T21:07:32.193Z
 ```

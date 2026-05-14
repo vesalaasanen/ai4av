@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-04-23T08:24:47.493Z
-generated_at: 2026-04-23T08:24:47.493Z
+last_checked_at: 2026-05-14T18:17:20.137Z
+generated_at: 2026-05-14T18:17:20.137Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:24:47.493Z
+  checked_at: 2026-05-14T18:17:20.137Z
   matched_actions: 151
-  action_count: 151
+  action_count: 159
   confidence: high
   summary: "All 151 spec actions matched to hex commands in source; transport parameters (19200 baud, 8 bits, no parity, 1 stop) verified."
 derived_from:
@@ -776,17 +778,19 @@ interlocks: []
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-04-23T08:24:47.493Z
+last_checked_at: 2026-05-14T18:17:20.137Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:24:47.493Z
+checked_at: 2026-05-14T18:17:20.137Z
 matched_actions: 151
-action_count: 151
+action_count: 159
 confidence: high
 summary: "All 151 spec actions matched to hex commands in source; transport parameters (19200 baud, 8 bits, no parity, 1 stop) verified."
 ```

@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - rakocontrols.com
+source_urls:
+  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-04-30T04:28:54.023Z
 last_checked_at: 2026-04-26T22:32:30.100Z
 generated_at: 2026-04-26T22:32:30.100Z
@@ -266,6 +268,8 @@ RAV232 is unidirectional (transmit only); RAV232+ is bidirectional and receives 
 ```yaml
 source_domains:
   - rakocontrols.com
+source_urls:
+  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-04-30T04:28:54.023Z
 last_checked_at: 2026-04-26T22:32:30.100Z
 ```

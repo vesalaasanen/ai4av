@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
 last_checked_at: 2026-04-26T22:51:42.920Z
 generated_at: 2026-04-26T22:51:42.920Z
@@ -616,6 +618,8 @@ Power commands (015, 016) block other commands during execution — no pipelinin
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
 last_checked_at: 2026-04-26T22:51:42.920Z
 ```

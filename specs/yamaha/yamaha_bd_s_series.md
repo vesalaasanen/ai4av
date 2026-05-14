@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - avsforum.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
+  - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
 last_checked_at: 2026-05-12T14:58:23.763Z
 generated_at: 2026-05-12T14:58:23.763Z
@@ -442,6 +445,9 @@ interlocks:
 source_domains:
   - avsforum.com
   - applicationmarket.crestron.com
+source_urls:
+  - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
+  - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
 last_checked_at: 2026-05-12T14:58:23.763Z
 ```

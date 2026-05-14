@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - hive.run
+source_urls:
+  - https://hive.run/knowledge-base/files/resources/UDP_Command_List.pdf
 retrieved_at: 2026-04-30T04:41:21.039Z
-last_checked_at: 2026-04-25T20:45:35.435Z
-generated_at: 2026-04-25T20:45:35.435Z
+last_checked_at: 2026-05-14T18:17:16.780Z
+generated_at: 2026-05-14T18:17:16.780Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:45:35.435Z
+  checked_at: 2026-05-14T18:17:16.780Z
   matched_actions: 63
-  action_count: 63
+  action_count: 72
   confidence: high
   summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API."
 derived_from:
@@ -1185,17 +1187,19 @@ interlocks: []
 ```yaml
 source_domains:
   - hive.run
+source_urls:
+  - https://hive.run/knowledge-base/files/resources/UDP_Command_List.pdf
 retrieved_at: 2026-04-30T04:41:21.039Z
-last_checked_at: 2026-04-25T20:45:35.435Z
+last_checked_at: 2026-05-14T18:17:16.780Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:45:35.435Z
+checked_at: 2026-05-14T18:17:16.780Z
 matched_actions: 63
-action_count: 63
+action_count: 72
 confidence: high
 summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API."
 ```

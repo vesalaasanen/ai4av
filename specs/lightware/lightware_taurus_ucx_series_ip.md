@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - archive.lightware.com
   - go.lightware.com
+source_urls:
+  - https://archive.lightware.com/pub/media/lightware/filedownloader/file/Lightware_s_Open_API_Environment_v1.pdf
+  - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-05-04T15:17:11.619Z
 last_checked_at: 2026-04-23T08:05:22.856Z
 generated_at: 2026-04-23T08:05:22.856Z
@@ -331,6 +334,9 @@ LW2 protocol uses `{command}` syntax with `(response)` on success. LW3 uses tree
 source_domains:
   - archive.lightware.com
   - go.lightware.com
+source_urls:
+  - https://archive.lightware.com/pub/media/lightware/filedownloader/file/Lightware_s_Open_API_Environment_v1.pdf
+  - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-05-04T15:17:11.619Z
 last_checked_at: 2026-04-23T08:05:22.856Z
 ```

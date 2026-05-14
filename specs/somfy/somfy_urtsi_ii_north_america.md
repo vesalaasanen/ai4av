@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:16.971Z
-last_checked_at: 2026-04-27T15:21:47.971Z
-generated_at: 2026-04-27T15:21:47.971Z
+last_checked_at: 2026-05-14T18:17:20.726Z
+generated_at: 2026-05-14T18:17:20.726Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:21:47.971Z
-  matched_actions: 30
-  action_count: 30
+  checked_at: 2026-05-14T18:17:20.726Z
+  matched_actions: 18
+  action_count: 18
   confidence: high
   summary: "All 30 spec commands matched verbatim in source; transport parameters verified; full protocol coverage."
 derived_from:
@@ -507,17 +509,19 @@ interlocks: []
 ```yaml
 source_domains:
   - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:16.971Z
-last_checked_at: 2026-04-27T15:21:47.971Z
+last_checked_at: 2026-05-14T18:17:20.726Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:21:47.971Z
-matched_actions: 30
-action_count: 30
+checked_at: 2026-05-14T18:17:20.726Z
+matched_actions: 18
+action_count: 18
 confidence: high
 summary: "All 30 spec commands matched verbatim in source; transport parameters verified; full protocol coverage."
 ```

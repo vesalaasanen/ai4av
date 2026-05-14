@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - support.casio.com
   - manualmachine.com
+source_urls:
+  - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
+  - https://manualmachine.com/casio/rs232c/1402409-user-manual/
 retrieved_at: 2026-04-30T11:49:52.748Z
 last_checked_at: 2026-04-30T15:19:09.033Z
 generated_at: 2026-04-30T15:19:09.033Z
@@ -183,6 +186,9 @@ Device returns "?" for unrecognized commands. Commands outside valid range (e.g.
 source_domains:
   - support.casio.com
   - manualmachine.com
+source_urls:
+  - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
+  - https://manualmachine.com/casio/rs232c/1402409-user-manual/
 retrieved_at: 2026-04-30T11:49:52.748Z
 last_checked_at: 2026-04-30T15:19:09.033Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - content-files.shure.com
+source_urls:
+  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
 retrieved_at: 2026-04-30T04:28:59.697Z
 last_checked_at: 2026-04-23T08:25:59.202Z
 generated_at: 2026-04-23T08:25:59.202Z
@@ -475,6 +477,8 @@ interlocks: []
 ```yaml
 source_domains:
   - content-files.shure.com
+source_urls:
+  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
 retrieved_at: 2026-04-30T04:28:59.697Z
 last_checked_at: 2026-04-23T08:25:59.202Z
 ```

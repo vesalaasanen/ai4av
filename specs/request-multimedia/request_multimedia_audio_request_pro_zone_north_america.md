@@ -18,17 +18,20 @@ compatible_with:
   required_options: []
 source_domains:
   - request.com
+source_urls:
+  - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v220.pdf"
+  - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v190.pdf"
 retrieved_at: 2026-04-26T19:49:18.840Z
-last_checked_at: 2026-04-27T09:45:17.419Z
-generated_at: 2026-04-27T09:45:17.419Z
+last_checked_at: 2026-05-14T18:17:20.062Z
+generated_at: 2026-05-14T18:17:20.062Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:17.419Z
-  matched_actions: 149
-  action_count: 149
+  checked_at: 2026-05-14T18:17:20.062Z
+  matched_actions: 120
+  action_count: 120
   confidence: high
   summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim."
 derived_from:
@@ -847,17 +850,20 @@ When volume is FFh (mute), analog output is silenced. 00h = volume down all the 
 ```yaml
 source_domains:
   - request.com
+source_urls:
+  - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v220.pdf"
+  - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v190.pdf"
 retrieved_at: 2026-04-26T19:49:18.840Z
-last_checked_at: 2026-04-27T09:45:17.419Z
+last_checked_at: 2026-05-14T18:17:20.062Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:17.419Z
-matched_actions: 149
-action_count: 149
+checked_at: 2026-05-14T18:17:20.062Z
+matched_actions: 120
+action_count: 120
 confidence: high
 summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim."
 ```

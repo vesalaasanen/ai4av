@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:26:34.169Z
-generated_at: 2026-04-26T22:26:34.169Z
+last_checked_at: 2026-05-14T18:17:19.779Z
+generated_at: 2026-05-14T18:17:19.779Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:26:34.169Z
-  matched_actions: 105
-  action_count: 105
+  checked_at: 2026-05-14T18:17:19.779Z
+  matched_actions: 104
+  action_count: 104
   confidence: high
   summary: "All 105 spec actions matched to source command tokens; transport parameters (19200 baud, port 23, RS-232/TCP/SSH) verified verbatim in protocol reference."
 derived_from:
@@ -1346,17 +1350,21 @@ Network monitoring: NETWORK.PING for connectivity test, NOTIFICATION.EMAIL for e
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:26:34.169Z
+last_checked_at: 2026-05-14T18:17:19.779Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:26:34.169Z
-matched_actions: 105
-action_count: 105
+checked_at: 2026-05-14T18:17:19.779Z
+matched_actions: 104
+action_count: 104
 confidence: high
 summary: "All 105 spec actions matched to source command tokens; transport parameters (19200 baud, port 23, RS-232/TCP/SSH) verified verbatim in protocol reference."
 ```

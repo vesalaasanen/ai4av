@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T17:32:06.925Z
 last_checked_at: 2026-04-30T09:43:21.937Z
 generated_at: 2026-04-30T09:43:21.937Z
@@ -609,6 +611,8 @@ interlocks:
 ```yaml
 source_domains:
   - madvrenvy.com
+source_urls:
+  - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-05-04T17:32:06.925Z
 last_checked_at: 2026-04-30T09:43:21.937Z
 ```

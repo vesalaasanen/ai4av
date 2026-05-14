@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - usa.canon.com
+source_urls:
+  - https://www.usa.canon.com/support/p/bu-45h
 retrieved_at: 2026-04-30T04:33:00.884Z
 last_checked_at: 2026-04-23T15:28:39.241Z
 generated_at: 2026-04-23T15:28:39.241Z
@@ -608,6 +610,8 @@ interlocks: []
 ```yaml
 source_domains:
   - usa.canon.com
+source_urls:
+  - https://www.usa.canon.com/support/p/bu-45h
 retrieved_at: 2026-04-30T04:33:00.884Z
 last_checked_at: 2026-04-23T15:28:39.241Z
 ```

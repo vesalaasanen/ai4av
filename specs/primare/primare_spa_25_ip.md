@@ -17,17 +17,20 @@ compatible_with:
   required_options: []
 source_domains:
   - primare.net
+source_urls:
+  - https://primare.net/wp-content/uploads/2022/09/SPA25-RS232-Command-list-2023-02-23.pdf
+  - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-05-04T15:12:58.449Z
-last_checked_at: 2026-04-25T21:50:02.643Z
-generated_at: 2026-04-25T21:50:02.643Z
+last_checked_at: 2026-05-14T18:17:19.988Z
+generated_at: 2026-05-14T18:17:19.988Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:50:02.643Z
+  checked_at: 2026-05-14T18:17:19.988Z
   matched_actions: 54
-  action_count: 54
+  action_count: 59
   confidence: low
   summary: "All 54 spec actions matched source commands; transport parameters verified verbatim; source fully represented"
 derived_from:
@@ -572,17 +575,20 @@ interlocks: []
 ```yaml
 source_domains:
   - primare.net
+source_urls:
+  - https://primare.net/wp-content/uploads/2022/09/SPA25-RS232-Command-list-2023-02-23.pdf
+  - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-05-04T15:12:58.449Z
-last_checked_at: 2026-04-25T21:50:02.643Z
+last_checked_at: 2026-05-14T18:17:19.988Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:50:02.643Z
+checked_at: 2026-05-14T18:17:19.988Z
 matched_actions: 54
-action_count: 54
+action_count: 59
 confidence: low
 summary: "All 54 spec actions matched source commands; transport parameters verified verbatim; source fully represented"
 ```

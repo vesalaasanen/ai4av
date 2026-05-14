@@ -18,6 +18,9 @@ compatible_with:
 source_domains:
   - proaudioinc.com
   - justaddpower.happyfox.com
+source_urls:
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
 retrieved_at: 2026-04-30T12:05:07.146Z
 last_checked_at: 2026-04-30T15:20:37.926Z
 generated_at: 2026-04-30T15:20:37.926Z
@@ -495,6 +498,9 @@ interlocks:
 source_domains:
   - proaudioinc.com
   - justaddpower.happyfox.com
+source_urls:
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
 retrieved_at: 2026-04-30T12:05:07.146Z
 last_checked_at: 2026-04-30T15:20:37.926Z
 ```

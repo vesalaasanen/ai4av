@@ -38,17 +38,19 @@ compatible_with:
   required_options: []
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-04-25T20:43:14.601Z
-generated_at: 2026-04-25T20:43:14.601Z
+last_checked_at: 2026-05-14T18:17:15.741Z
+generated_at: 2026-05-14T18:17:15.741Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:43:14.601Z
-  matched_actions: 11
-  action_count: 11
+  checked_at: 2026-05-14T18:17:15.741Z
+  matched_actions: 9
+  action_count: 9
   confidence: high
   summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete."
 derived_from:
@@ -240,17 +242,19 @@ notes: >
 ```yaml
 source_domains:
   - files.support.epson.com
+source_urls:
+  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-03T09:03:33.104Z
-last_checked_at: 2026-04-25T20:43:14.601Z
+last_checked_at: 2026-05-14T18:17:15.741Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:43:14.601Z
-matched_actions: 11
-action_count: 11
+checked_at: 2026-05-14T18:17:15.741Z
+matched_actions: 9
+action_count: 9
 confidence: high
 summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete."
 ```

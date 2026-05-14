@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:34:57.871Z
-last_checked_at: 2026-04-23T05:36:22.005Z
-generated_at: 2026-04-23T05:36:22.005Z
+last_checked_at: 2026-05-14T18:17:14.938Z
+generated_at: 2026-05-14T18:17:14.938Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T05:36:22.005Z
-  matched_actions: 136
-  action_count: 136
+  checked_at: 2026-05-14T18:17:14.938Z
+  matched_actions: 113
+  action_count: 113
   confidence: high
   summary: "All 136 spec actions match source commands verbatim; transport parameters verified; comprehensive protocol coverage."
 derived_from:
@@ -1156,17 +1158,19 @@ Modifiers `n` (next) and `p` (previous) available on many commands for cycling v
 ```yaml
 source_domains:
   - christiedigital.com
+source_urls:
+  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:34:57.871Z
-last_checked_at: 2026-04-23T05:36:22.005Z
+last_checked_at: 2026-05-14T18:17:14.938Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T05:36:22.005Z
-matched_actions: 136
-action_count: 136
+checked_at: 2026-05-14T18:17:14.938Z
+matched_actions: 113
+action_count: 113
 confidence: high
 summary: "All 136 spec actions match source commands verbatim; transport parameters verified; comprehensive protocol coverage."
 ```

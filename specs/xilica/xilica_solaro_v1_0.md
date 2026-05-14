@@ -18,6 +18,11 @@ compatible_with:
 source_domains:
   - cdn.xilica.com
   - support.xilica.com
+source_urls:
+  - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
+  - https://support.xilica.com/en/articles/3940994
+  - https://support.xilica.com/en/articles/3942338
+  - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
 last_checked_at: 2026-04-30T09:52:01.935Z
 generated_at: 2026-04-30T09:52:01.935Z
@@ -412,6 +417,11 @@ note: >-
 source_domains:
   - cdn.xilica.com
   - support.xilica.com
+source_urls:
+  - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
+  - https://support.xilica.com/en/articles/3940994
+  - https://support.xilica.com/en/articles/3942338
+  - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
 last_checked_at: 2026-04-30T09:52:01.935Z
 ```

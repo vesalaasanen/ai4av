@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - audio-technica.com
   - docs.audio-technica.com
+source_urls:
+  - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-04T15:16:41.162Z
-last_checked_at: 2026-04-23T15:12:45.782Z
-generated_at: 2026-04-23T15:12:45.782Z
+last_checked_at: 2026-05-14T18:17:14.121Z
+generated_at: 2026-05-14T18:17:14.121Z
 firmware_coverage: "1.0.5 or later"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:12:45.782Z
-  matched_actions: 129
-  action_count: 129
+  checked_at: 2026-05-14T18:17:14.121Z
+  matched_actions: 57
+  action_count: 57
   confidence: high
   summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented."
 derived_from:
@@ -1306,17 +1309,20 @@ interlocks: []
 source_domains:
   - audio-technica.com
   - docs.audio-technica.com
+source_urls:
+  - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-04T15:16:41.162Z
-last_checked_at: 2026-04-23T15:12:45.782Z
+last_checked_at: 2026-05-14T18:17:14.121Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:12:45.782Z
-matched_actions: 129
-action_count: 129
+checked_at: 2026-05-14T18:17:14.121Z
+matched_actions: 57
+action_count: 57
 confidence: high
 summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented."
 ```

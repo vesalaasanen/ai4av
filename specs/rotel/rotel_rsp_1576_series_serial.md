@@ -18,17 +18,23 @@ compatible_with:
   required_options: []
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
+  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:04.962Z
-last_checked_at: 2026-04-23T08:23:34.590Z
-generated_at: 2026-04-23T08:23:34.590Z
+last_checked_at: 2026-05-14T18:17:20.117Z
+generated_at: 2026-05-14T18:17:20.117Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:23:34.590Z
+  checked_at: 2026-05-14T18:17:20.117Z
   matched_actions: 54
-  action_count: 54
+  action_count: 71
   confidence: high
   summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected."
 derived_from:
@@ -509,17 +515,23 @@ commands but not in source selection action table; possible documentation gap. -
 ```yaml
 source_domains:
   - rotel.com
+source_urls:
+  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
+  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
+  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:04.962Z
-last_checked_at: 2026-04-23T08:23:34.590Z
+last_checked_at: 2026-05-14T18:17:20.117Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:23:34.590Z
+checked_at: 2026-05-14T18:17:20.117Z
 matched_actions: 54
-action_count: 54
+action_count: 71
 confidence: high
 summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected."
 ```

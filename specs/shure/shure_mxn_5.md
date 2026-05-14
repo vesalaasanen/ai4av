@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - shure.com
+source_urls:
+  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
 retrieved_at: 2026-04-30T01:18:53.215Z
 last_checked_at: 2026-04-30T14:54:06.582Z
 generated_at: 2026-04-30T14:54:06.582Z
@@ -472,6 +474,8 @@ All messages are ASCII. GET/SET/REP/SAMPLE command types documented. Device send
 ```yaml
 source_domains:
   - shure.com
+source_urls:
+  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
 retrieved_at: 2026-04-30T01:18:53.215Z
 last_checked_at: 2026-04-30T14:54:06.582Z
 ```

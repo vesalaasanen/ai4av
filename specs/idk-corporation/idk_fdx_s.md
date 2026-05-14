@@ -21,17 +21,20 @@ compatible_with:
 source_domains:
   - idkav.com
   - manualslib.com
+source_urls:
+  - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
+  - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-04-30T09:43:24.153Z
-generated_at: 2026-04-30T09:43:24.153Z
+last_checked_at: 2026-05-14T18:17:16.796Z
+generated_at: 2026-05-14T18:17:16.796Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:43:24.153Z
-  matched_actions: 50
-  action_count: 50
+  checked_at: 2026-05-14T18:17:16.796Z
+  matched_actions: 37
+  action_count: 37
   confidence: high
   summary: "All 50 spec actions matched source commands; all transport values verified in source."
 derived_from:
@@ -634,17 +637,20 @@ Channel counts by model: FDX-S08U (8ch/2 boards), FDX-S16U (16ch/4 boards), FDX-
 source_domains:
   - idkav.com
   - manualslib.com
+source_urls:
+  - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
+  - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-04-30T09:43:24.153Z
+last_checked_at: 2026-05-14T18:17:16.796Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:43:24.153Z
-matched_actions: 50
-action_count: 50
+checked_at: 2026-05-14T18:17:16.796Z
+matched_actions: 37
+action_count: 37
 confidence: high
 summary: "All 50 spec actions matched source commands; all transport values verified in source."
 ```

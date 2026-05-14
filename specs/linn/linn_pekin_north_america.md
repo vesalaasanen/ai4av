@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-05-04T06:06:39.404Z
-generated_at: 2026-05-04T06:06:39.404Z
+last_checked_at: 2026-05-14T18:17:17.689Z
+generated_at: 2026-05-14T18:17:17.689Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T06:06:39.404Z
+  checked_at: 2026-05-14T18:17:17.689Z
   matched_actions: 59
-  action_count: 59
+  action_count: 60
   confidence: high
   summary: "All 59 spec actions matched to explicit source commands; complete bidirectional coverage of documented command set."
 derived_from:
@@ -552,17 +554,19 @@ interlocks:
 ```yaml
 source_domains:
   - docs.linn.co.uk
+source_urls:
+  - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-05-04T06:06:39.404Z
+last_checked_at: 2026-05-14T18:17:17.689Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T06:06:39.404Z
+checked_at: 2026-05-14T18:17:17.689Z
 matched_actions: 59
-action_count: 59
+action_count: 60
 confidence: high
 summary: "All 59 spec actions matched to explicit source commands; complete bidirectional coverage of documented command set."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:26.819Z
 last_checked_at: 2026-04-23T08:07:12.714Z
 generated_at: 2026-04-23T08:07:12.714Z
@@ -353,6 +355,8 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:26.819Z
 last_checked_at: 2026-04-23T08:07:12.714Z
 ```

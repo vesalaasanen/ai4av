@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - purelandsupply.com
+source_urls:
+  - "https://www.purelandsupply.com/Images/OwnersManuals/Runco/RUNCO%20RS-1100.pdf"
 retrieved_at: 2026-04-29T22:04:46.886Z
 last_checked_at: 2026-04-30T09:48:25.048Z
 generated_at: 2026-04-30T09:48:25.048Z
@@ -468,6 +470,8 @@ Commands must be UPPERCASE ASCII strings framed with X prefix/suffix (e.g., X001
 ```yaml
 source_domains:
   - purelandsupply.com
+source_urls:
+  - "https://www.purelandsupply.com/Images/OwnersManuals/Runco/RUNCO%20RS-1100.pdf"
 retrieved_at: 2026-04-29T22:04:46.886Z
 last_checked_at: 2026-04-30T09:48:25.048Z
 ```

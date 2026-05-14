@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - aca.im
+source_urls:
+  - https://aca.im/driver_docs/Symetrix/SymNet_Composer_control_prot_2.0.pdf
 retrieved_at: 2026-05-07T07:59:05.079Z
 last_checked_at: 2026-05-08T15:46:56.395Z
 generated_at: 2026-05-08T15:46:56.395Z
@@ -428,6 +430,8 @@ Commands terminated by `<CR>` (ASCII 13). Command format: `<COMMAND> <PARAM1> <P
 ```yaml
 source_domains:
   - aca.im
+source_urls:
+  - https://aca.im/driver_docs/Symetrix/SymNet_Composer_control_prot_2.0.pdf
 retrieved_at: 2026-05-07T07:59:05.079Z
 last_checked_at: 2026-05-08T15:46:56.395Z
 ```

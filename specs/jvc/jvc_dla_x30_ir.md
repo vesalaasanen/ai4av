@@ -18,17 +18,22 @@ compatible_with:
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-23T08:04:32.329Z
-generated_at: 2026-04-23T08:04:32.329Z
+last_checked_at: 2026-05-14T18:17:17.254Z
+generated_at: 2026-05-14T18:17:17.254Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:04:32.329Z
+  checked_at: 2026-05-14T18:17:17.254Z
   matched_actions: 109
-  action_count: 109
+  action_count: 174
   confidence: high
   summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete."
 derived_from:
@@ -1329,17 +1334,22 @@ interlocks: []
 source_domains:
   - support.jvc.com
   - snapav.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
+  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
 retrieved_at: 2026-04-30T04:26:48.085Z
-last_checked_at: 2026-04-23T08:04:32.329Z
+last_checked_at: 2026-05-14T18:17:17.254Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:04:32.329Z
+checked_at: 2026-05-14T18:17:17.254Z
 matched_actions: 109
-action_count: 109
+action_count: 174
 confidence: high
 summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete."
 ```

@@ -17,17 +17,21 @@ compatible_with:
   required_options: []
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
 retrieved_at: 2026-05-01T01:55:36.443Z
-last_checked_at: 2026-04-29T09:45:55.550Z
-generated_at: 2026-04-29T09:45:55.550Z
+last_checked_at: 2026-05-14T18:17:14.597Z
+generated_at: 2026-05-14T18:17:14.597Z
 firmware_coverage: 3.0.4.8
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-29T09:45:55.550Z
-  matched_actions: 21
-  action_count: 21
+  checked_at: 2026-05-14T18:17:14.597Z
+  matched_actions: 14
+  action_count: 14
   confidence: high
   summary: "All 21 spec actions match source wire tokens literally."
 derived_from:
@@ -400,17 +404,21 @@ interlocks: []
 ```yaml
 source_domains:
   - snapav.com
+source_urls:
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
 retrieved_at: 2026-05-01T01:55:36.443Z
-last_checked_at: 2026-04-29T09:45:55.550Z
+last_checked_at: 2026-05-14T18:17:14.597Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-29T09:45:55.550Z
-matched_actions: 21
-action_count: 21
+checked_at: 2026-05-14T18:17:14.597Z
+matched_actions: 14
+action_count: 14
 confidence: high
 summary: "All 21 spec actions match source wire tokens literally."
 ```

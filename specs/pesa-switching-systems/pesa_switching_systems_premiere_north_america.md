@@ -27,17 +27,19 @@ compatible_with:
   required_options: []
 source_domains:
   - broadcastrepo.com
+source_urls:
+  - "https://www.broadcastrepo.com/Manuals/Pesa/Control%20Systems/PESA%20CPULink%20Protocol%20No.%201%20(P1),%20Rev%20C.pdf"
 retrieved_at: 2026-04-30T04:33:18.676Z
-last_checked_at: 2026-04-25T21:43:51.498Z
-generated_at: 2026-04-25T21:43:51.498Z
+last_checked_at: 2026-05-14T18:17:19.642Z
+generated_at: 2026-05-14T18:17:19.642Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:43:51.498Z
-  matched_actions: 15
-  action_count: 15
+  checked_at: 2026-05-14T18:17:19.642Z
+  matched_actions: 9
+  action_count: 9
   confidence: low
   summary: "All 15 spec actions matched literals in source; all transport parameters verified; complete CPU Link Protocol No. 1 coverage"
 derived_from:
@@ -313,17 +315,19 @@ interlocks: []
 ```yaml
 source_domains:
   - broadcastrepo.com
+source_urls:
+  - "https://www.broadcastrepo.com/Manuals/Pesa/Control%20Systems/PESA%20CPULink%20Protocol%20No.%201%20(P1),%20Rev%20C.pdf"
 retrieved_at: 2026-04-30T04:33:18.676Z
-last_checked_at: 2026-04-25T21:43:51.498Z
+last_checked_at: 2026-05-14T18:17:19.642Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:43:51.498Z
-matched_actions: 15
-action_count: 15
+checked_at: 2026-05-14T18:17:19.642Z
+matched_actions: 9
+action_count: 9
 confidence: low
 summary: "All 15 spec actions matched literals in source; all transport parameters verified; complete CPU Link Protocol No. 1 coverage"
 ```

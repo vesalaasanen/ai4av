@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - downloads.biamp.com
+source_urls:
+  - "https://downloads.biamp.com/assets/docs/default-source/discontinued/pmx84-rs-232-control-manual.pdf?sfvrsn=9af2bc3e_6"
 retrieved_at: 2026-04-30T04:32:56.764Z
 last_checked_at: 2026-04-26T11:21:13.968Z
 generated_at: 2026-04-26T11:21:13.968Z
@@ -432,6 +434,8 @@ notes: |
 ```yaml
 source_domains:
   - downloads.biamp.com
+source_urls:
+  - "https://downloads.biamp.com/assets/docs/default-source/discontinued/pmx84-rs-232-control-manual.pdf?sfvrsn=9af2bc3e_6"
 retrieved_at: 2026-04-30T04:32:56.764Z
 last_checked_at: 2026-04-26T11:21:13.968Z
 ```

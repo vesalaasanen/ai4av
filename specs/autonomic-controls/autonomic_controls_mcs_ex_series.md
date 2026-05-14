@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - autonomic.atlassian.net
+source_urls:
+  - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
 retrieved_at: 2026-04-30T04:34:49.227Z
-last_checked_at: 2026-04-22T22:08:15.014Z
-generated_at: 2026-04-22T22:08:15.014Z
+last_checked_at: 2026-05-14T18:17:14.200Z
+generated_at: 2026-05-14T18:17:14.200Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-22T22:08:15.014Z
+  checked_at: 2026-05-14T18:17:14.200Z
   matched_actions: 56
-  action_count: 56
+  action_count: 57
   confidence: high
   summary: "All 56 spec actions matched verbatim in source; transport params verified; bidirectional coverage confirmed."
 derived_from:
@@ -601,17 +603,19 @@ TCP port 5004 for socket/telnet control. HTTP JSON API at port 5005 for art requ
 ```yaml
 source_domains:
   - autonomic.atlassian.net
+source_urls:
+  - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
 retrieved_at: 2026-04-30T04:34:49.227Z
-last_checked_at: 2026-04-22T22:08:15.014Z
+last_checked_at: 2026-05-14T18:17:14.200Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T22:08:15.014Z
+checked_at: 2026-05-14T18:17:14.200Z
 matched_actions: 56
-action_count: 56
+action_count: 57
 confidence: high
 summary: "All 56 spec actions matched verbatim in source; transport params verified; bidirectional coverage confirmed."
 ```

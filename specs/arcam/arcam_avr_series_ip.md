@@ -21,17 +21,19 @@ compatible_with:
   required_options: []
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-05-12T18:52:17.888Z
-last_checked_at: 2026-04-23T15:11:09.160Z
-generated_at: 2026-04-23T15:11:09.160Z
+last_checked_at: 2026-05-14T18:17:14.042Z
+generated_at: 2026-05-14T18:17:14.042Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:11:09.160Z
+  checked_at: 2026-05-14T18:17:14.042Z
   matched_actions: 50
-  action_count: 69
+  action_count: 50
   confidence: high
   summary: "Every spec action matched verbatim with source commands; transport parameters confirmed; command catalogue fully represented; bidirectional coverage complete."
 derived_from:
@@ -886,17 +888,19 @@ note: "Commands 0xF0-0xFF are reserved for test functions and must never be used
 ```yaml
 source_domains:
   - arcam.co.uk
+source_urls:
+  - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-05-12T18:52:17.888Z
-last_checked_at: 2026-04-23T15:11:09.160Z
+last_checked_at: 2026-05-14T18:17:14.042Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:11:09.160Z
+checked_at: 2026-05-14T18:17:14.042Z
 matched_actions: 50
-action_count: 69
+action_count: 50
 confidence: high
 summary: "Every spec action matched verbatim with source commands; transport parameters confirmed; command catalogue fully represented; bidirectional coverage complete."
 ```

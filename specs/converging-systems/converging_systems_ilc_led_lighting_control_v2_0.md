@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:25.869Z
 last_checked_at: 2026-04-22T19:45:07.514Z
 generated_at: 2026-04-22T19:45:07.514Z
@@ -261,6 +263,8 @@ interlocks: []
 ```yaml
 source_domains:
   - convergingsystems.com
+source_urls:
+  - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:25.869Z
 last_checked_at: 2026-04-22T19:45:07.514Z
 ```

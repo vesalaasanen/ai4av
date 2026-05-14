@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://www.lectrosonics.com/wp-content/uploads/filr/7421/av62man.pdf
 retrieved_at: 2026-04-29T16:53:22.425Z
 last_checked_at: 2026-04-30T09:45:11.427Z
 generated_at: 2026-04-30T09:45:11.427Z
@@ -346,6 +348,8 @@ Multi-drop RS-232 bus: address range 128-254. Data bytes 0-127; values >127 are 
 ```yaml
 source_domains:
   - lectrosonics.com
+source_urls:
+  - https://www.lectrosonics.com/wp-content/uploads/filr/7421/av62man.pdf
 retrieved_at: 2026-04-29T16:53:22.425Z
 last_checked_at: 2026-04-30T09:45:11.427Z
 ```

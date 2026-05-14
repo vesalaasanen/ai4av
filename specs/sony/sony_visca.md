@@ -21,17 +21,22 @@ source_domains:
   - pro.sony
   - sony.com
   - github.com
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://www.sony.com/electronics/support/res/manuals/E042/3230148ee903c204b912cca5c2c3f5aa/E0421001M.pdf
+  - https://www.sony.com/electronics/support/res/manuals/E776/ba2eb983d7ce445ab18afc783c068418/E7761001M.pdf
+  - https://github.com/bitfocus/companion-module-sony-visca
 retrieved_at: 2026-04-30T03:14:34.194Z
-last_checked_at: 2026-04-27T10:13:05.587Z
-generated_at: 2026-04-27T10:13:05.587Z
+last_checked_at: 2026-05-14T18:17:20.805Z
+generated_at: 2026-05-14T18:17:20.805Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:05.587Z
+  checked_at: 2026-05-14T18:17:20.805Z
   matched_actions: 84
-  action_count: 84
+  action_count: 89
   confidence: high
   summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage."
 derived_from:
@@ -833,17 +838,22 @@ source_domains:
   - pro.sony
   - sony.com
   - github.com
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://www.sony.com/electronics/support/res/manuals/E042/3230148ee903c204b912cca5c2c3f5aa/E0421001M.pdf
+  - https://www.sony.com/electronics/support/res/manuals/E776/ba2eb983d7ce445ab18afc783c068418/E7761001M.pdf
+  - https://github.com/bitfocus/companion-module-sony-visca
 retrieved_at: 2026-04-30T03:14:34.194Z
-last_checked_at: 2026-04-27T10:13:05.587Z
+last_checked_at: 2026-05-14T18:17:20.805Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:05.587Z
+checked_at: 2026-05-14T18:17:20.805Z
 matched_actions: 84
-action_count: 84
+action_count: 89
 confidence: high
 summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage."
 ```

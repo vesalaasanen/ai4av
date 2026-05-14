@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-04-23T15:34:43.974Z
-generated_at: 2026-04-23T15:34:43.974Z
+last_checked_at: 2026-05-14T18:17:15.264Z
+generated_at: 2026-05-14T18:17:15.264Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,9 +39,9 @@ known_gaps:
   - PSFH
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:34:43.974Z
+  checked_at: 2026-05-14T18:17:15.264Z
   matched_actions: 106
-  action_count: 106
+  action_count: 109
   confidence: high
   summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope."
 derived_from:
@@ -1053,17 +1055,19 @@ interlocks: []
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-04-23T15:34:43.974Z
+last_checked_at: 2026-05-14T18:17:15.264Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:34:43.974Z
+checked_at: 2026-05-14T18:17:15.264Z
 matched_actions: 106
-action_count: 106
+action_count: 109
 confidence: high
 summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope."
 ```

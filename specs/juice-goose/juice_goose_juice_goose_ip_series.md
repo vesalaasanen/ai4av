@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - juicegoose.com
+source_urls:
+  - https://www.juicegoose.com/resources/manuals/ip-series-manual-rev-6-2023/download
 retrieved_at: 2026-04-30T04:33:08.696Z
-last_checked_at: 2026-04-25T20:52:01.851Z
-generated_at: 2026-04-25T20:52:01.851Z
+last_checked_at: 2026-05-14T18:17:17.120Z
+generated_at: 2026-05-14T18:17:17.120Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:52:01.851Z
-  matched_actions: 21
-  action_count: 21
+  checked_at: 2026-05-14T18:17:17.120Z
+  matched_actions: 20
+  action_count: 20
   confidence: high
   summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented."
 derived_from:
@@ -335,17 +337,19 @@ interlocks:
 ```yaml
 source_domains:
   - juicegoose.com
+source_urls:
+  - https://www.juicegoose.com/resources/manuals/ip-series-manual-rev-6-2023/download
 retrieved_at: 2026-04-30T04:33:08.696Z
-last_checked_at: 2026-04-25T20:52:01.851Z
+last_checked_at: 2026-05-14T18:17:17.120Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:52:01.851Z
-matched_actions: 21
-action_count: 21
+checked_at: 2026-05-14T18:17:17.120Z
+matched_actions: 20
+action_count: 20
 confidence: high
 summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented."
 ```

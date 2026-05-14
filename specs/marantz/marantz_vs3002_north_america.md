@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:54.096Z
-last_checked_at: 2026-04-23T08:13:13.645Z
-generated_at: 2026-04-23T08:13:13.645Z
+last_checked_at: 2026-05-14T18:17:18.055Z
+generated_at: 2026-05-14T18:17:18.055Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:13:13.645Z
+  checked_at: 2026-05-14T18:17:18.055Z
   matched_actions: 60
-  action_count: 60
+  action_count: 66
   confidence: high
   summary: "Every spec action matched literally in source commands; transport parameters (port 23, baud 9600) confirmed; full command coverage achieved."
 derived_from:
@@ -671,17 +673,19 @@ No password or login required for any control interface.
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:54.096Z
-last_checked_at: 2026-04-23T08:13:13.645Z
+last_checked_at: 2026-05-14T18:17:18.055Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:13:13.645Z
+checked_at: 2026-05-14T18:17:18.055Z
 matched_actions: 60
-action_count: 60
+action_count: 66
 confidence: high
 summary: "Every spec action matched literally in source commands; transport parameters (port 23, baud 9600) confirmed; full command coverage achieved."
 ```

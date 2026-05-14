@@ -19,17 +19,21 @@ source_domains:
   - manualsdir.com
   - mans.io
   - manualslib.com
+source_urls:
+  - "https://www.manualsdir.com/manuals/202495/runco-vx-2000d.html?page=77"
+  - https://mans.io/files/viewer/2563745/40
+  - https://www.manualslib.com/manual/515002/Runco-Rs232.html
 retrieved_at: 2026-04-29T22:01:18.063Z
-last_checked_at: 2026-04-27T09:45:17.767Z
-generated_at: 2026-04-27T09:45:17.767Z
+last_checked_at: 2026-05-14T18:17:20.172Z
+generated_at: 2026-05-14T18:17:20.172Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:17.767Z
+  checked_at: 2026-05-14T18:17:20.172Z
   matched_actions: 57
-  action_count: 57
+  action_count: 88
   confidence: high
   summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim."
 derived_from:
@@ -761,17 +765,21 @@ source_domains:
   - manualsdir.com
   - mans.io
   - manualslib.com
+source_urls:
+  - "https://www.manualsdir.com/manuals/202495/runco-vx-2000d.html?page=77"
+  - https://mans.io/files/viewer/2563745/40
+  - https://www.manualslib.com/manual/515002/Runco-Rs232.html
 retrieved_at: 2026-04-29T22:01:18.063Z
-last_checked_at: 2026-04-27T09:45:17.767Z
+last_checked_at: 2026-05-14T18:17:20.172Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:17.767Z
+checked_at: 2026-05-14T18:17:20.172Z
 matched_actions: 57
-action_count: 57
+action_count: 88
 confidence: high
 summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim."
 ```

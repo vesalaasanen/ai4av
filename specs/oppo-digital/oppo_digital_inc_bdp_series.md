@@ -18,17 +18,21 @@ compatible_with:
 source_domains:
   - oppodigital.com
   - download.oppodigital.com
+source_urls:
+  - https://www.oppodigital.com/Download/BDP83/BDP83_RS232_Protocol.pdf
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-04-27T14:53:59.929Z
-generated_at: 2026-04-27T14:53:59.929Z
+last_checked_at: 2026-05-14T18:17:19.502Z
+generated_at: 2026-05-14T18:17:19.502Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T14:53:59.929Z
+  checked_at: 2026-05-14T18:17:19.502Z
   matched_actions: 60
-  action_count: 60
+  action_count: 80
   confidence: high
   summary: "All 60 spec actions matched literal command tokens in source; transport parameters verified; complete bidirectional coverage of BDP-83 command set."
 derived_from:
@@ -526,17 +530,21 @@ RS-232C DCE device, female DB9. Pin 2=TXD, Pin 3=RXD, Pin 5=GND. Max command/res
 source_domains:
   - oppodigital.com
   - download.oppodigital.com
+source_urls:
+  - https://www.oppodigital.com/Download/BDP83/BDP83_RS232_Protocol.pdf
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-04-27T14:53:59.929Z
+last_checked_at: 2026-05-14T18:17:19.502Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T14:53:59.929Z
+checked_at: 2026-05-14T18:17:19.502Z
 matched_actions: 60
-action_count: 60
+action_count: 80
 confidence: high
 summary: "All 60 spec actions matched literal command tokens in source; transport parameters verified; complete bidirectional coverage of BDP-83 command set."
 ```

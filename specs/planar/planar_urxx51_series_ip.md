@@ -18,17 +18,21 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:32:32.300Z
-generated_at: 2026-04-26T22:32:32.300Z
+last_checked_at: 2026-05-14T18:17:19.948Z
+generated_at: 2026-05-14T18:17:19.948Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:32:32.300Z
-  matched_actions: 116
-  action_count: 116
+  checked_at: 2026-05-14T18:17:19.948Z
+  matched_actions: 104
+  action_count: 104
   confidence: high
   summary: "All 116 spec actions have literal matches in the source command catalogue with consistent shapes and modifiers; transport parameters fully verified."
 derived_from:
@@ -1892,17 +1896,21 @@ interlocks:
 ```yaml
 source_domains:
   - planar.com
+source_urls:
+  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
+  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-04-26T22:32:32.300Z
+last_checked_at: 2026-05-14T18:17:19.948Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:32:32.300Z
-matched_actions: 116
-action_count: 116
+checked_at: 2026-05-14T18:17:19.948Z
+matched_actions: 104
+action_count: 104
 confidence: high
 summary: "All 116 spec actions have literal matches in the source command catalogue with consistent shapes and modifiers; transport parameters fully verified."
 ```

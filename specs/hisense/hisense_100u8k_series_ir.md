@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-04T05:53:26.291Z
-generated_at: 2026-05-04T05:53:26.291Z
+last_checked_at: 2026-05-14T18:17:16.031Z
+generated_at: 2026-05-14T18:17:16.031Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:53:26.291Z
-  matched_actions: 232
-  action_count: 232
+  checked_at: 2026-05-14T18:17:16.031Z
+  matched_actions: 161
+  action_count: 161
   confidence: high
   summary: "All 232 actions matched source; transport verified."
 derived_from:
@@ -1481,17 +1484,20 @@ Power on via RS-232 requires enabling Power On Command in Custom Install menu be
 source_domains:
   - hisense-b2b.com
   - assets.hisense-usa.com
+source_urls:
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-04T05:53:26.291Z
+last_checked_at: 2026-05-14T18:17:16.031Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:53:26.291Z
-matched_actions: 232
-action_count: 232
+checked_at: 2026-05-14T18:17:16.031Z
+matched_actions: 161
+action_count: 161
 confidence: high
 summary: "All 232 actions matched source; transport verified."
 ```

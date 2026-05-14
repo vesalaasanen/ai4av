@@ -16,18 +16,21 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-05-01T07:34:58.067Z
-last_checked_at: 2026-05-01T07:34:58.067Z
-generated_at: 2026-05-01T07:34:58.067Z
+source_domains:
+  - download.oppodigital.com
+source_urls:
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:19.480Z
+generated_at: 2026-05-14T18:17:19.480Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-01T07:34:58.067Z
+  checked_at: 2026-05-14T18:17:19.480Z
   matched_actions: 72
-  action_count: 72
+  action_count: 99
   confidence: high
   summary: "Every spec action matched verbatim; transport verified; comprehensive coverage."
 derived_from:
@@ -685,18 +688,21 @@ Host must wait for response before sending next command. If no response received
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-05-01T07:34:58.067Z
-last_checked_at: 2026-05-01T07:34:58.067Z
+source_domains:
+  - download.oppodigital.com
+source_urls:
+  - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:19.480Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T07:34:58.067Z
+checked_at: 2026-05-14T18:17:19.480Z
 matched_actions: 72
-action_count: 72
+action_count: 99
 confidence: high
 summary: "Every spec action matched verbatim; transport verified; comprehensive coverage."
 ```

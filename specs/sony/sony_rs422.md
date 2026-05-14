@@ -21,17 +21,22 @@ source_domains:
   - github.com
   - belle-nuit.com
   - drastic.tv
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://github.com/hideakitai/Sony9PinRemote
+  - https://belle-nuit.com/archives/9pin.html
+  - https://www.drastic.tv/support-59/legacysoftwarehardware/37-miscellaneous-legacy/180-vvcr-422-serial-protocol
 retrieved_at: 2026-04-30T04:24:12.329Z
-last_checked_at: 2026-04-30T09:49:39.024Z
-generated_at: 2026-04-30T09:49:39.024Z
+last_checked_at: 2026-05-14T18:17:20.786Z
+generated_at: 2026-05-14T18:17:20.786Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:49:39.024Z
+  checked_at: 2026-05-14T18:17:20.786Z
   matched_actions: 111
-  action_count: 111
+  action_count: 122
   confidence: high
   summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified."
 derived_from:
@@ -1365,17 +1370,22 @@ source_domains:
   - github.com
   - belle-nuit.com
   - drastic.tv
+source_urls:
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://github.com/hideakitai/Sony9PinRemote
+  - https://belle-nuit.com/archives/9pin.html
+  - https://www.drastic.tv/support-59/legacysoftwarehardware/37-miscellaneous-legacy/180-vvcr-422-serial-protocol
 retrieved_at: 2026-04-30T04:24:12.329Z
-last_checked_at: 2026-04-30T09:49:39.024Z
+last_checked_at: 2026-05-14T18:17:20.786Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:49:39.024Z
+checked_at: 2026-05-14T18:17:20.786Z
 matched_actions: 111
-action_count: 111
+action_count: 122
 confidence: high
 summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified."
 ```

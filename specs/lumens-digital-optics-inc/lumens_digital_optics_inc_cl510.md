@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS132%20-%20CL510,V02%20RS-232%20command%20set_1_0.pdf"
+  - "https://www.mylumens.com/Download/CL510,V01%20RS-232%20command%20set_1_2.pdf"
 retrieved_at: 2026-04-26T18:08:49.991Z
 last_checked_at: 2026-04-27T09:04:43.502Z
 generated_at: 2026-04-27T09:04:43.502Z
@@ -629,6 +632,9 @@ ACK=00, NAK=01, IGNORE=02 per command response table.
 ```yaml
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS132%20-%20CL510,V02%20RS-232%20command%20set_1_0.pdf"
+  - "https://www.mylumens.com/Download/CL510,V01%20RS-232%20command%20set_1_2.pdf"
 retrieved_at: 2026-04-26T18:08:49.991Z
 last_checked_at: 2026-04-27T09:04:43.502Z
 ```

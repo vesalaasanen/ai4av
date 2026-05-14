@@ -21,6 +21,8 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.sennheiser.com
+source_urls:
+  - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
 last_checked_at: 2026-05-08T15:46:54.824Z
 generated_at: 2026-05-08T15:46:54.824Z
@@ -1401,6 +1403,8 @@ interlocks:
 ```yaml
 source_domains:
   - assets.sennheiser.com
+source_urls:
+  - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
 last_checked_at: 2026-05-08T15:46:54.824Z
 ```

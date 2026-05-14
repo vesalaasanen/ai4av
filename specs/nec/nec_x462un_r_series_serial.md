@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:36:48.069Z
-generated_at: 2026-04-25T21:36:48.069Z
+last_checked_at: 2026-05-14T18:17:19.142Z
+generated_at: 2026-05-14T18:17:19.142Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:36:48.069Z
+  checked_at: 2026-05-14T18:17:19.142Z
   matched_actions: 52
-  action_count: 52
+  action_count: 53
   confidence: high
   summary: "All 52 spec actions matched directly to source commands with correct transport parameters."
 derived_from:
@@ -584,17 +586,19 @@ Serial supports 5 baud rates; host must match device configuration. During power
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:36:48.069Z
+last_checked_at: 2026-05-14T18:17:19.142Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:36:48.069Z
+checked_at: 2026-05-14T18:17:19.142Z
 matched_actions: 52
-action_count: 52
+action_count: 53
 confidence: high
 summary: "All 52 spec actions matched directly to source commands with correct transport parameters."
 ```

@@ -18,6 +18,10 @@ compatible_with:
 source_domains:
   - uniqueautomation.eu
   - applicationmarket.crestron.com
+source_urls:
+  - https://uniqueautomation.eu/wp-content/uploads/2021/05/steamomatic_protocol.pdf
+  - https://applicationmarket.crestron.com/content/Help/Unique_Automation/uniqueautomationsteamomaticv1.0help.pdf
+  - https://applicationmarket.crestron.com/unique-automation-steamomatic/
 retrieved_at: 2026-04-29T19:58:45.047Z
 last_checked_at: 2026-04-30T09:50:56.242Z
 generated_at: 2026-04-30T09:50:56.242Z
@@ -216,6 +220,10 @@ Color index maps to real color via appendix (not included in source). State code
 source_domains:
   - uniqueautomation.eu
   - applicationmarket.crestron.com
+source_urls:
+  - https://uniqueautomation.eu/wp-content/uploads/2021/05/steamomatic_protocol.pdf
+  - https://applicationmarket.crestron.com/content/Help/Unique_Automation/uniqueautomationsteamomaticv1.0help.pdf
+  - https://applicationmarket.crestron.com/unique-automation-steamomatic/
 retrieved_at: 2026-04-29T19:58:45.047Z
 last_checked_at: 2026-04-30T09:50:56.242Z
 ```

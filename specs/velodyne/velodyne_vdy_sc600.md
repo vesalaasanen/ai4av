@@ -17,6 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - velodyneacoustics.com
+source_urls:
+  - http://velodyneacoustics.com/pdf/sc-600/SC-600AmpManual.pdf
+  - https://www.velodyneacoustics.com/pdf/sc-600/SC-602AmpManual.pdf
 retrieved_at: 2026-04-30T19:30:46.975Z
 last_checked_at: 2026-05-01T00:09:26.025Z
 generated_at: 2026-05-01T00:09:26.025Z
@@ -255,6 +258,9 @@ Serial port: FEMALE DB-9 connector. IN port: Pin 2=TX, Pin 3=RX, Pin 5=GND. OUT 
 ```yaml
 source_domains:
   - velodyneacoustics.com
+source_urls:
+  - http://velodyneacoustics.com/pdf/sc-600/SC-600AmpManual.pdf
+  - https://www.velodyneacoustics.com/pdf/sc-600/SC-602AmpManual.pdf
 retrieved_at: 2026-04-30T19:30:46.975Z
 last_checked_at: 2026-05-01T00:09:26.025Z
 ```

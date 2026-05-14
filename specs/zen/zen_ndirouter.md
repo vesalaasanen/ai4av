@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - ndistuff.uk
+source_urls:
+  - https://www.ndistuff.uk/downloads/ZEN_NDI_Router_protocol3b.pdf
 retrieved_at: 2026-04-30T02:59:33.344Z
-last_checked_at: 2026-04-27T10:13:23.539Z
-generated_at: 2026-04-27T10:13:23.539Z
+last_checked_at: 2026-05-14T18:17:21.647Z
+generated_at: 2026-05-14T18:17:21.647Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:23.539Z
-  matched_actions: 25
-  action_count: 25
+  checked_at: 2026-05-14T18:17:21.647Z
+  matched_actions: 15
+  action_count: 15
   confidence: high
   summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage."
 derived_from:
@@ -303,17 +305,19 @@ Some commands tagged `<v1.4>` or `<v1.41>` or `<v1.52>` — minimum version requ
 ```yaml
 source_domains:
   - ndistuff.uk
+source_urls:
+  - https://www.ndistuff.uk/downloads/ZEN_NDI_Router_protocol3b.pdf
 retrieved_at: 2026-04-30T02:59:33.344Z
-last_checked_at: 2026-04-27T10:13:23.539Z
+last_checked_at: 2026-05-14T18:17:21.647Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:23.539Z
-matched_actions: 25
-action_count: 25
+checked_at: 2026-05-14T18:17:21.647Z
+matched_actions: 15
+action_count: 15
 confidence: high
 summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage."
 ```

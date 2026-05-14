@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - atlasied.com
+source_urls:
+  - https://www.atlasied.com/ATS006993-B-AZM4-AZM8-3rd-Party-Control.pdf
 retrieved_at: 2026-04-29T17:13:54.183Z
 last_checked_at: 2026-04-30T09:30:17.149Z
 generated_at: 2026-04-30T09:30:17.149Z
@@ -493,6 +495,8 @@ interlocks: []
 ```yaml
 source_domains:
   - atlasied.com
+source_urls:
+  - https://www.atlasied.com/ATS006993-B-AZM4-AZM8-3rd-Party-Control.pdf
 retrieved_at: 2026-04-29T17:13:54.183Z
 last_checked_at: 2026-04-30T09:30:17.149Z
 ```

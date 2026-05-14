@@ -38,17 +38,19 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:41.240Z
-last_checked_at: 2026-04-23T07:01:27.655Z
-generated_at: 2026-04-23T07:01:27.655Z
+last_checked_at: 2026-05-14T18:17:17.155Z
+generated_at: 2026-05-14T18:17:17.155Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T07:01:27.655Z
+  checked_at: 2026-05-14T18:17:17.155Z
   matched_actions: 161
-  action_count: 161
+  action_count: 265
   confidence: high
   summary: "All 161 spec actions matched directly to source commands; transport parameters verified from RS-232 protocol spec."
 derived_from:
@@ -1310,17 +1312,19 @@ Infrared control format: 73 (hex) followed by ASCII hex value of command. Code A
 ```yaml
 source_domains:
   - support.jvc.com
+source_urls:
+  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:41.240Z
-last_checked_at: 2026-04-23T07:01:27.655Z
+last_checked_at: 2026-05-14T18:17:17.155Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T07:01:27.655Z
+checked_at: 2026-05-14T18:17:17.155Z
 matched_actions: 161
-action_count: 161
+action_count: 265
 confidence: high
 summary: "All 161 spec actions matched directly to source commands; transport parameters verified from RS-232 protocol spec."
 ```

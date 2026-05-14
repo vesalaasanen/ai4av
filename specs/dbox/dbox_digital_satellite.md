@@ -15,18 +15,21 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-retrieved_at: 2026-05-04T10:17:35.766Z
-last_checked_at: 2026-05-04T10:17:35.766Z
-generated_at: 2026-05-04T10:17:35.766Z
+source_domains:
+  - support.d-box.com
+source_urls:
+  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:15.214Z
+generated_at: 2026-05-14T18:17:15.214Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:17:35.766Z
-  matched_actions: 20
-  action_count: 20
+  checked_at: 2026-05-14T18:17:15.214Z
+  matched_actions: 9
+  action_count: 9
   confidence: high
   summary: "All 20 spec actions match source commands with correct parameters; transport values verified against protocol documentation."
 derived_from:
@@ -231,18 +234,21 @@ Command block uses STX (02h) start, ETX (03h) end, RS (1Eh) separator. Target nu
 ## Provenance
 
 ```yaml
-source_domains: []
-retrieved_at: 2026-05-04T10:17:35.766Z
-last_checked_at: 2026-05-04T10:17:35.766Z
+source_domains:
+  - support.d-box.com
+source_urls:
+  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
+retrieved_at: 2026-05-13T16:00:00.000Z
+last_checked_at: 2026-05-14T18:17:15.214Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:17:35.766Z
-matched_actions: 20
-action_count: 20
+checked_at: 2026-05-14T18:17:15.214Z
+matched_actions: 9
+action_count: 9
 confidence: high
 summary: "All 20 spec actions match source commands with correct parameters; transport values verified against protocol documentation."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - codaaudio.cn
+source_urls:
+  - https://www.codaaudio.cn/uploads/soft/LINUS_Control_v2.9.1_Third_Party_Control.pdf
 retrieved_at: 2026-04-29T23:14:25.650Z
 last_checked_at: 2026-04-27T14:40:22.749Z
 generated_at: 2026-04-27T14:40:22.749Z
@@ -278,6 +280,8 @@ interlocks: []
 ```yaml
 source_domains:
   - codaaudio.cn
+source_urls:
+  - https://www.codaaudio.cn/uploads/soft/LINUS_Control_v2.9.1_Third_Party_Control.pdf
 retrieved_at: 2026-04-29T23:14:25.650Z
 last_checked_at: 2026-04-27T14:40:22.749Z
 ```

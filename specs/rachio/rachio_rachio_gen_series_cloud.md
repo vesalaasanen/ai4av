@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - rachio.readme.io
+source_urls:
+  - https://rachio.readme.io/reference
 retrieved_at: 2026-05-04T18:03:58.635Z
 last_checked_at: 2026-04-27T15:11:48.990Z
 generated_at: 2026-04-27T15:11:48.990Z
@@ -472,6 +474,8 @@ Smart irrigation system supports zones, schedules, rain delays. Smart Hose Timer
 ```yaml
 source_domains:
   - rachio.readme.io
+source_urls:
+  - https://rachio.readme.io/reference
 retrieved_at: 2026-05-04T18:03:58.635Z
 last_checked_at: 2026-04-27T15:11:48.990Z
 ```

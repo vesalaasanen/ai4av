@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-05-04T07:04:13.172Z
-generated_at: 2026-05-04T07:04:13.172Z
+last_checked_at: 2026-05-14T18:17:15.280Z
+generated_at: 2026-05-14T18:17:15.280Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T07:04:13.172Z
-  matched_actions: 632
-  action_count: 632
+  checked_at: 2026-05-14T18:17:15.280Z
+  matched_actions: 463
+  action_count: 463
   confidence: high
   summary: "All 632 semantic-id actions matched to source commands; transport parameters verified verbatim in protocol specification."
 derived_from:
@@ -2686,17 +2688,19 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+source_urls:
+  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-05-04T07:04:13.172Z
+last_checked_at: 2026-05-14T18:17:15.280Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T07:04:13.172Z
-matched_actions: 632
-action_count: 632
+checked_at: 2026-05-14T18:17:15.280Z
+matched_actions: 463
+action_count: 463
 confidence: high
 summary: "All 632 semantic-id actions matched to source commands; transport parameters verified verbatim in protocol specification."
 ```

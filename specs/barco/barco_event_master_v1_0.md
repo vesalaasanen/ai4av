@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.514Z
-last_checked_at: 2026-04-23T15:17:06.537Z
-generated_at: 2026-04-23T15:17:06.537Z
+last_checked_at: 2026-05-14T18:17:14.329Z
+generated_at: 2026-05-14T18:17:14.329Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:17:06.537Z
-  matched_actions: 36
-  action_count: 36
+  checked_at: 2026-05-14T18:17:14.329Z
+  matched_actions: 25
+  action_count: 25
   confidence: high
   summary: "All 36 spec actions matched to JSON-RPC methods in source; transport parameters verbatim; comprehensive source coverage confirms command fidelity."
 derived_from:
@@ -636,17 +638,19 @@ Authentication is optional for normal end-user operations. A numeric pass code i
 ```yaml
 source_domains:
   - audiogeneral.com
+source_urls:
+  - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.514Z
-last_checked_at: 2026-04-23T15:17:06.537Z
+last_checked_at: 2026-05-14T18:17:14.329Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:17:06.537Z
-matched_actions: 36
-action_count: 36
+checked_at: 2026-05-14T18:17:14.329Z
+matched_actions: 25
+action_count: 25
 confidence: high
 summary: "All 36 spec actions matched to JSON-RPC methods in source; transport parameters verbatim; comprehensive source coverage confirms command fidelity."
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-04-25T21:03:54.453Z
 generated_at: 2026-04-25T21:03:54.453Z
@@ -321,6 +323,8 @@ Set ID range: 1-99; use 0 for broadcast (all devices) — ACK checking disabled 
 ```yaml
 source_domains:
   - raw.githubusercontent.com
+source_urls:
+  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-05-04T18:02:55.956Z
 last_checked_at: 2026-04-25T21:03:54.453Z
 ```

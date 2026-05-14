@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.shopify.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0859/9181/7492/files/iboot-pdu_restful_api_V251007W.pdf
 retrieved_at: 2026-05-04T18:04:24.181Z
-last_checked_at: 2026-04-26T11:49:05.324Z
-generated_at: 2026-04-26T11:49:05.324Z
+last_checked_at: 2026-05-14T18:17:15.150Z
+generated_at: 2026-05-14T18:17:15.150Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:49:05.324Z
-  matched_actions: 46
-  action_count: 46
+  checked_at: 2026-05-14T18:17:15.150Z
+  matched_actions: 33
+  action_count: 33
   confidence: high
   summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API."
 derived_from:
@@ -777,17 +779,19 @@ Outlet cycle time: 1-99 seconds. Initial state on reboot: on, off, or last (rest
 ```yaml
 source_domains:
   - cdn.shopify.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0859/9181/7492/files/iboot-pdu_restful_api_V251007W.pdf
 retrieved_at: 2026-05-04T18:04:24.181Z
-last_checked_at: 2026-04-26T11:49:05.324Z
+last_checked_at: 2026-05-14T18:17:15.150Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:49:05.324Z
-matched_actions: 46
-action_count: 46
+checked_at: 2026-05-14T18:17:15.150Z
+matched_actions: 33
+action_count: 33
 confidence: high
 summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API."
 ```

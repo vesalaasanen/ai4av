@@ -21,17 +21,19 @@ compatible_with:
   required_options: []
 source_domains:
   - wolfvision.com
+source_urls:
+  - https://wolfvision.com/wolf/serial_ceiling32.pdf
 retrieved_at: 2026-04-30T04:32:44.618Z
-last_checked_at: 2026-04-23T08:29:48.574Z
-generated_at: 2026-04-23T08:29:48.574Z
+last_checked_at: 2026-05-14T18:17:21.576Z
+generated_at: 2026-05-14T18:17:21.576Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:29:48.574Z
-  matched_actions: 114
-  action_count: 114
+  checked_at: 2026-05-14T18:17:21.576Z
+  matched_actions: 111
+  action_count: 111
   confidence: high
   summary: "All 114 spec actions match source commands; transport (115200 baud, 8N1, serial) verified verbatim."
 derived_from:
@@ -803,17 +805,19 @@ Newer hardware (serial >=1009412 VZ-C12², >=1011797 VZ-C32) supports extended W
 ```yaml
 source_domains:
   - wolfvision.com
+source_urls:
+  - https://wolfvision.com/wolf/serial_ceiling32.pdf
 retrieved_at: 2026-04-30T04:32:44.618Z
-last_checked_at: 2026-04-23T08:29:48.574Z
+last_checked_at: 2026-05-14T18:17:21.576Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:29:48.574Z
-matched_actions: 114
-action_count: 114
+checked_at: 2026-05-14T18:17:21.576Z
+matched_actions: 111
+action_count: 111
 confidence: high
 summary: "All 114 spec actions match source commands; transport (115200 baud, 8N1, serial) verified verbatim."
 ```

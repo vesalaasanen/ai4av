@@ -18,6 +18,8 @@ compatible_with:
   required_options: []
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - "https://documents.blackmagicdesign.com/DeveloperManuals/VideohubEthernetProtocol.pdf?_v=1698822010000"
 retrieved_at: 2026-04-30T04:40:47.751Z
 last_checked_at: 2026-04-26T11:24:40.262Z
 generated_at: 2026-04-26T11:24:40.262Z
@@ -390,6 +392,8 @@ Routing changes are acknowledged with `ACK` or `NAK` and confirmed via the subse
 ```yaml
 source_domains:
   - documents.blackmagicdesign.com
+source_urls:
+  - "https://documents.blackmagicdesign.com/DeveloperManuals/VideohubEthernetProtocol.pdf?_v=1698822010000"
 retrieved_at: 2026-04-30T04:40:47.751Z
 last_checked_at: 2026-04-26T11:24:40.262Z
 ```

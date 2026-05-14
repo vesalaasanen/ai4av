@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - cdn.shopify.com
   - configurator.ad-notam.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
+  - https://configurator.ad-notam.com/service-support/product-support/notifications-technical-notes/control-integration
 retrieved_at: 2026-05-04T12:52:29.149Z
-last_checked_at: 2026-04-27T08:57:41.148Z
-generated_at: 2026-04-27T08:57:41.148Z
+last_checked_at: 2026-05-14T18:17:13.793Z
+generated_at: 2026-05-14T18:17:13.793Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T08:57:41.148Z
-  matched_actions: 72
-  action_count: 72
+  checked_at: 2026-05-14T18:17:13.793Z
+  matched_actions: 57
+  action_count: 57
   confidence: high
   summary: "All 72 spec actions matched source commands literally; transport parameters verified; full coverage of documented RS-232 protocol."
 derived_from:
@@ -526,17 +529,20 @@ Baud rate defaults to 38400 but is configurable via OSD menu to 9600 or 19200.
 source_domains:
   - cdn.shopify.com
   - configurator.ad-notam.com
+source_urls:
+  - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
+  - https://configurator.ad-notam.com/service-support/product-support/notifications-technical-notes/control-integration
 retrieved_at: 2026-05-04T12:52:29.149Z
-last_checked_at: 2026-04-27T08:57:41.148Z
+last_checked_at: 2026-05-14T18:17:13.793Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T08:57:41.148Z
-matched_actions: 72
-action_count: 72
+checked_at: 2026-05-14T18:17:13.793Z
+matched_actions: 57
+action_count: 57
 confidence: high
 summary: "All 72 spec actions matched source commands literally; transport parameters verified; full coverage of documented RS-232 protocol."
 ```

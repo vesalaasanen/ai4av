@@ -18,17 +18,19 @@ compatible_with:
   required_options: []
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
 retrieved_at: 2026-04-30T04:33:14.844Z
-last_checked_at: 2026-04-25T21:07:28.759Z
-generated_at: 2026-04-25T21:07:28.759Z
+last_checked_at: 2026-05-14T18:17:17.747Z
+generated_at: 2026-05-14T18:17:17.747Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:07:28.759Z
-  matched_actions: 65
-  action_count: 65
+  checked_at: 2026-05-14T18:17:17.747Z
+  matched_actions: 46
+  action_count: 46
   confidence: high
   summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol."
 derived_from:
@@ -715,17 +717,19 @@ interlocks: []
 ```yaml
 source_domains:
   - mylumens.com
+source_urls:
+  - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
 retrieved_at: 2026-04-30T04:33:14.844Z
-last_checked_at: 2026-04-25T21:07:28.759Z
+last_checked_at: 2026-05-14T18:17:17.747Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:07:28.759Z
-matched_actions: 65
-action_count: 65
+checked_at: 2026-05-14T18:17:17.747Z
+matched_actions: 46
+action_count: 46
 confidence: high
 summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol."
 ```

@@ -22,6 +22,10 @@ compatible_with:
   required_options: []
 source_domains:
   - help.qsys.com
+source_urls:
+  - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Overview.htm
+  - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
+  - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
 last_checked_at: 2026-04-27T09:45:16.689Z
 generated_at: 2026-04-27T09:45:16.689Z
@@ -217,6 +221,10 @@ DPM 100/100H/300/300H include GPI inputs (6 contact closure inputs). DCM 100/300
 ```yaml
 source_domains:
   - help.qsys.com
+source_urls:
+  - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Overview.htm
+  - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
+  - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
 last_checked_at: 2026-04-27T09:45:16.689Z
 ```

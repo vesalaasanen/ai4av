@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - usermanual.wiki
+source_urls:
+  - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
 retrieved_at: 2026-04-30T04:34:47.223Z
-last_checked_at: 2026-04-22T22:08:06.722Z
-generated_at: 2026-04-22T22:08:06.722Z
+last_checked_at: 2026-05-14T18:17:14.007Z
+generated_at: 2026-05-14T18:17:14.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-22T22:08:06.722Z
-  matched_actions: 35
-  action_count: 35
+  checked_at: 2026-05-14T18:17:14.007Z
+  matched_actions: 19
+  action_count: 19
   confidence: high
   summary: "All 35 spec actions matched literally in the source document with correct syntax, parameters, and transport details verified."
 derived_from:
@@ -499,17 +501,19 @@ Log-on required: username + password. After three consecutive failed attempts, f
 ```yaml
 source_domains:
   - usermanual.wiki
+source_urls:
+  - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
 retrieved_at: 2026-04-30T04:34:47.223Z
-last_checked_at: 2026-04-22T22:08:06.722Z
+last_checked_at: 2026-05-14T18:17:14.007Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T22:08:06.722Z
-matched_actions: 35
-action_count: 35
+checked_at: 2026-05-14T18:17:14.007Z
+matched_actions: 19
+action_count: 19
 confidence: high
 summary: "All 35 spec actions matched literally in the source document with correct syntax, parameters, and transport details verified."
 ```

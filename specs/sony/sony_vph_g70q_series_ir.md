@@ -23,17 +23,21 @@ source_domains:
   - sony.com
   - pro.sony
   - pro-bravia.sony.net
+source_urls:
+  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
 retrieved_at: 2026-04-30T04:31:02.425Z
-last_checked_at: 2026-05-04T16:17:29.682Z
-generated_at: 2026-05-04T16:17:29.682Z
+last_checked_at: 2026-05-14T18:17:20.823Z
+generated_at: 2026-05-14T18:17:20.823Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:17:29.682Z
-  matched_actions: 151
-  action_count: 151
+  checked_at: 2026-05-14T18:17:20.823Z
+  matched_actions: 127
+  action_count: 127
   confidence: high
   summary: "All 151 spec actions have literal CMD1/CMD2 matches in source command tables; all transport parameters verified against protocol manual."
 derived_from:
@@ -1194,17 +1198,21 @@ source_domains:
   - sony.com
   - pro.sony
   - pro-bravia.sony.net
+source_urls:
+  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
+  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
 retrieved_at: 2026-04-30T04:31:02.425Z
-last_checked_at: 2026-05-04T16:17:29.682Z
+last_checked_at: 2026-05-14T18:17:20.823Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:17:29.682Z
-matched_actions: 151
-action_count: 151
+checked_at: 2026-05-14T18:17:20.823Z
+matched_actions: 127
+action_count: 127
 confidence: high
 summary: "All 151 spec actions have literal CMD1/CMD2 matches in source command tables; all transport parameters verified against protocol manual."
 ```

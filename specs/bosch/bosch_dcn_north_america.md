@@ -19,17 +19,20 @@ compatible_with:
 source_domains:
   - assets.catalog.boschbuildingtechnologies.com
   - resources.keenfinity.tech
+source_urls:
+  - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OI_Operation_Manual_enUS_12284426251.pdf
+  - https://resources.keenfinity.tech/public/documents/LBB_4187_00_QRC_Quick_Installation_Guide_enUS_13259287819.pdf
 retrieved_at: 2026-04-26T16:48:40.552Z
-last_checked_at: 2026-04-27T09:04:49.329Z
-generated_at: 2026-04-27T09:04:49.329Z
+last_checked_at: 2026-05-14T18:17:14.805Z
+generated_at: 2026-05-14T18:17:14.805Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:04:49.329Z
-  matched_actions: 247
-  action_count: 247
+  checked_at: 2026-05-14T18:17:14.805Z
+  matched_actions: 123
+  action_count: 123
   confidence: high
   summary: "All 247 spec actions match source function IDs in Appendix B; transport parameters verified; complete bidirectional coverage confirmed."
 derived_from:
@@ -1218,17 +1221,20 @@ interlocks: []
 source_domains:
   - assets.catalog.boschbuildingtechnologies.com
   - resources.keenfinity.tech
+source_urls:
+  - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OI_Operation_Manual_enUS_12284426251.pdf
+  - https://resources.keenfinity.tech/public/documents/LBB_4187_00_QRC_Quick_Installation_Guide_enUS_13259287819.pdf
 retrieved_at: 2026-04-26T16:48:40.552Z
-last_checked_at: 2026-04-27T09:04:49.329Z
+last_checked_at: 2026-05-14T18:17:14.805Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:04:49.329Z
-matched_actions: 247
-action_count: 247
+checked_at: 2026-05-14T18:17:14.805Z
+matched_actions: 123
+action_count: 123
 confidence: high
 summary: "All 247 spec actions match source function IDs in Appendix B; transport parameters verified; complete bidirectional coverage confirmed."
 ```

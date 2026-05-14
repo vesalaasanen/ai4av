@@ -17,17 +17,19 @@ compatible_with:
   required_options: []
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-04-23T15:27:20.698Z
-generated_at: 2026-04-23T15:27:20.698Z
+last_checked_at: 2026-05-14T18:17:14.765Z
+generated_at: 2026-05-14T18:17:14.765Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:27:20.698Z
-  matched_actions: 15
-  action_count: 15
+  checked_at: 2026-05-14T18:17:14.765Z
+  matched_actions: 13
+  action_count: 13
   confidence: high
   summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented."
 derived_from:
@@ -287,17 +289,19 @@ interlocks: []
 ```yaml
 source_domains:
   - blustream.com.au
+source_urls:
+  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:59.348Z
-last_checked_at: 2026-04-23T15:27:20.698Z
+last_checked_at: 2026-05-14T18:17:14.765Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:27:20.698Z
-matched_actions: 15
-action_count: 15
+checked_at: 2026-05-14T18:17:14.765Z
+matched_actions: 13
+action_count: 13
 confidence: high
 summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented."
 ```

@@ -19,6 +19,10 @@ source_domains:
   - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
   - business.sharpusa.com
+source_urls:
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
+  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
 last_checked_at: 2026-04-23T08:25:58.852Z
 generated_at: 2026-04-23T08:25:58.852Z
@@ -441,6 +445,10 @@ source_domains:
   - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
   - business.sharpusa.com
+source_urls:
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
+  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
 last_checked_at: 2026-04-23T08:25:58.852Z
 ```

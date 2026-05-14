@@ -18,6 +18,10 @@ compatible_with:
   required_options: []
 source_domains:
   - pubs.shure.com
+source_urls:
+  - https://pubs.shure.com/command-strings/MXA910
+  - https://pubs.shure.com/command-strings/MXA920
+  - https://pubs.shure.com
 retrieved_at: 2026-05-05T02:33:44.507Z
 last_checked_at: 2026-05-05T05:41:54.471Z
 generated_at: 2026-05-05T05:41:54.471Z
@@ -1127,6 +1131,10 @@ interlocks: []
 ```yaml
 source_domains:
   - pubs.shure.com
+source_urls:
+  - https://pubs.shure.com/command-strings/MXA910
+  - https://pubs.shure.com/command-strings/MXA920
+  - https://pubs.shure.com
 retrieved_at: 2026-05-05T02:33:44.507Z
 last_checked_at: 2026-05-05T05:41:54.471Z
 ```

@@ -17,6 +17,8 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.sennheiser.com
+source_urls:
+  - "https://assets.sennheiser.com/download/assets/QG_ADNMediaCtrlProtocol_A02_EN.pdf/1f94ac1ce7b811f0bce7beb43c66122a?attachment=true"
 retrieved_at: 2026-04-30T04:31:23.636Z
 last_checked_at: 2026-04-26T22:46:41.052Z
 generated_at: 2026-04-26T22:46:41.052Z
@@ -747,6 +749,8 @@ Device requires ~45 second warm-up after startup before TCP connection is accept
 ```yaml
 source_domains:
   - assets.sennheiser.com
+source_urls:
+  - "https://assets.sennheiser.com/download/assets/QG_ADNMediaCtrlProtocol_A02_EN.pdf/1f94ac1ce7b811f0bce7beb43c66122a?attachment=true"
 retrieved_at: 2026-04-30T04:31:23.636Z
 last_checked_at: 2026-04-26T22:46:41.052Z
 ```

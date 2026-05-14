@@ -20,6 +20,9 @@ compatible_with:
 source_domains:
   - lexicondsp.pl
   - lexicon.com
+source_urls:
+  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-05-04T15:17:03.082Z
 last_checked_at: 2026-04-30T09:45:14.540Z
 generated_at: 2026-04-30T09:45:14.540Z
@@ -940,6 +943,9 @@ Zone number 0x01 = master zone (zone 1), 0x02 = zone 2. All commands without exp
 source_domains:
   - lexicondsp.pl
   - lexicon.com
+source_urls:
+  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-05-04T15:17:03.082Z
 last_checked_at: 2026-04-30T09:45:14.540Z
 ```

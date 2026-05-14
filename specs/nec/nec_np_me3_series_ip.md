@@ -35,17 +35,19 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:20:06.274Z
-generated_at: 2026-04-25T21:20:06.274Z
+last_checked_at: 2026-05-14T18:17:18.521Z
+generated_at: 2026-05-14T18:17:18.521Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:20:06.274Z
-  matched_actions: 53
-  action_count: 53
+  checked_at: 2026-05-14T18:17:18.521Z
+  matched_actions: 28
+  action_count: 28
   confidence: high
   summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage."
 derived_from:
@@ -752,17 +754,19 @@ For NP-ME360X/ME310X/ME270X:
 ```yaml
 source_domains:
   - sharpdisplays.eu
+source_urls:
+  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-04-25T21:20:06.274Z
+last_checked_at: 2026-05-14T18:17:18.521Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:20:06.274Z
-matched_actions: 53
-action_count: 53
+checked_at: 2026-05-14T18:17:18.521Z
+matched_actions: 28
+action_count: 28
 confidence: high
 summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage."
 ```

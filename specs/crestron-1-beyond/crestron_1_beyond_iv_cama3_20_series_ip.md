@@ -18,17 +18,20 @@ compatible_with:
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:32.043Z
-generated_at: 2026-04-23T15:31:32.043Z
+last_checked_at: 2026-05-14T18:17:15.070Z
+generated_at: 2026-05-14T18:17:15.070Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:31:32.043Z
+  checked_at: 2026-05-14T18:17:15.070Z
   matched_actions: 80
-  action_count: 80
+  action_count: 83
   confidence: high
   summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified."
 derived_from:
@@ -984,17 +987,20 @@ Pan speed range: 0x01 (low) to 0x18 (high, 24). Tilt speed range: 0x01 (low) to 
 source_domains:
   - docs.crestron.com
   - crestron.com
+source_urls:
+  - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
+  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-05-01T02:00:50.953Z
-last_checked_at: 2026-04-23T15:31:32.043Z
+last_checked_at: 2026-05-14T18:17:15.070Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:31:32.043Z
+checked_at: 2026-05-14T18:17:15.070Z
 matched_actions: 80
-action_count: 80
+action_count: 83
 confidence: high
 summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified."
 ```

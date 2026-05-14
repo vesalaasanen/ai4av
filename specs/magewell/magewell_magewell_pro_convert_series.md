@@ -25,6 +25,8 @@ compatible_with:
   required_options: []
 source_domains:
   - magewell.com
+source_urls:
+  - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
 retrieved_at: 2026-04-30T04:36:41.443Z
 last_checked_at: 2026-04-30T14:47:51.509Z
 generated_at: 2026-04-30T14:47:51.509Z
@@ -1080,6 +1082,8 @@ interlocks: []
 ```yaml
 source_domains:
   - magewell.com
+source_urls:
+  - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
 retrieved_at: 2026-04-30T04:36:41.443Z
 last_checked_at: 2026-04-30T14:47:51.509Z
 ```

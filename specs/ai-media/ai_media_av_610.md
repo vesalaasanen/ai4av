@@ -19,6 +19,10 @@ compatible_with:
 source_domains:
   - ai-media.tv
   - customersupport.ai-media.tv
+source_urls:
+  - https://www.ai-media.tv/wp-content/uploads/Manual-Lexi-Viewer-AV-610.pdf
+  - https://customersupport.ai-media.tv/hc/en-us/articles/29782084872084-AV610-CaptionPort-Manual
+  - https://customersupport.ai-media.tv/hc/en-us
 retrieved_at: 2026-04-30T14:26:19.357Z
 last_checked_at: 2026-04-30T15:19:04.652Z
 generated_at: 2026-04-30T15:19:04.652Z
@@ -216,6 +220,10 @@ Serial port 1 supports RS-232, RS-422, RS-422 Sony; port 2 supports RS-232 only.
 source_domains:
   - ai-media.tv
   - customersupport.ai-media.tv
+source_urls:
+  - https://www.ai-media.tv/wp-content/uploads/Manual-Lexi-Viewer-AV-610.pdf
+  - https://customersupport.ai-media.tv/hc/en-us/articles/29782084872084-AV610-CaptionPort-Manual
+  - https://customersupport.ai-media.tv/hc/en-us
 retrieved_at: 2026-04-30T14:26:19.357Z
 last_checked_at: 2026-04-30T15:19:04.652Z
 ```

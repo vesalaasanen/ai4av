@@ -21,17 +21,19 @@ compatible_with:
   required_options: []
 source_domains:
   - wolfvision.com
+source_urls:
+  - https://wolfvision.com/wolf/serial_ceiling32.pdf
 retrieved_at: 2026-04-30T04:32:42.910Z
-last_checked_at: 2026-04-23T08:29:48.488Z
-generated_at: 2026-04-23T08:29:48.488Z
+last_checked_at: 2026-05-14T18:17:21.537Z
+generated_at: 2026-05-14T18:17:21.537Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:29:48.488Z
-  matched_actions: 124
-  action_count: 124
+  checked_at: 2026-05-14T18:17:21.537Z
+  matched_actions: 105
+  action_count: 105
   confidence: high
   summary: "All 124 spec actions match literal command tokens in source tables; all transport parameters verified with verbatim baud rate, data bits, parity, and stopbit values."
 derived_from:
@@ -647,17 +649,19 @@ Serial-only device. No IP, Telnet, HTTP, or网络 control. Default baud 115200; 
 ```yaml
 source_domains:
   - wolfvision.com
+source_urls:
+  - https://wolfvision.com/wolf/serial_ceiling32.pdf
 retrieved_at: 2026-04-30T04:32:42.910Z
-last_checked_at: 2026-04-23T08:29:48.488Z
+last_checked_at: 2026-05-14T18:17:21.537Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:29:48.488Z
-matched_actions: 124
-action_count: 124
+checked_at: 2026-05-14T18:17:21.537Z
+matched_actions: 105
+action_count: 105
 confidence: high
 summary: "All 124 spec actions match literal command tokens in source tables; all transport parameters verified with verbatim baud rate, data bits, parity, and stopbit values."
 ```

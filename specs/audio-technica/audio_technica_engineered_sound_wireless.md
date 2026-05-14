@@ -23,17 +23,19 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-04-30T04:40:34.498Z
-last_checked_at: 2026-04-23T15:12:47.038Z
-generated_at: 2026-04-23T15:12:47.038Z
+last_checked_at: 2026-05-14T18:17:14.169Z
+generated_at: 2026-05-14T18:17:14.169Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:12:47.038Z
-  matched_actions: 94
-  action_count: 94
+  checked_at: 2026-05-14T18:17:14.169Z
+  matched_actions: 63
+  action_count: 63
   confidence: high
   summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed."
 derived_from:
@@ -1201,17 +1203,19 @@ Error codes: 01=Syntax error, 02=Invalid command, 04=Parameter error, 90=Busy, 9
 ```yaml
 source_domains:
   - docs.audio-technica.com
+source_urls:
+  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-04-30T04:40:34.498Z
-last_checked_at: 2026-04-23T15:12:47.038Z
+last_checked_at: 2026-05-14T18:17:14.169Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:12:47.038Z
-matched_actions: 94
-action_count: 94
+checked_at: 2026-05-14T18:17:14.169Z
+matched_actions: 63
+action_count: 63
 confidence: high
 summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed."
 ```

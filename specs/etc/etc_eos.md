@@ -29,17 +29,20 @@ compatible_with:
 source_domains:
   - support.etcconnect.com
   - christielites.com
+source_urls:
+  - https://support.etcconnect.com/ETC/Consoles/Eos_Family/Software_and_Programming/Eos_Family_Serial_Command_Syntax
+  - https://www.christielites.com/file_uploads/EosFamily_ShowControl_UserGuide_RevC.pdf
 retrieved_at: 2026-04-30T13:59:45.626Z
-last_checked_at: 2026-04-30T15:20:34.196Z
-generated_at: 2026-04-30T15:20:34.196Z
+last_checked_at: 2026-05-14T18:17:15.819Z
+generated_at: 2026-05-14T18:17:15.819Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:20:34.196Z
-  matched_actions: 93
-  action_count: 93
+  checked_at: 2026-05-14T18:17:15.819Z
+  matched_actions: 82
+  action_count: 82
   confidence: high
   summary: "All 93 spec actions verified against source; port 3032 confirmed."
 derived_from:
@@ -1065,17 +1068,20 @@ interlocks: []
 source_domains:
   - support.etcconnect.com
   - christielites.com
+source_urls:
+  - https://support.etcconnect.com/ETC/Consoles/Eos_Family/Software_and_Programming/Eos_Family_Serial_Command_Syntax
+  - https://www.christielites.com/file_uploads/EosFamily_ShowControl_UserGuide_RevC.pdf
 retrieved_at: 2026-04-30T13:59:45.626Z
-last_checked_at: 2026-04-30T15:20:34.196Z
+last_checked_at: 2026-05-14T18:17:15.819Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:20:34.196Z
-matched_actions: 93
-action_count: 93
+checked_at: 2026-05-14T18:17:15.819Z
+matched_actions: 82
+action_count: 82
 confidence: high
 summary: "All 93 spec actions verified against source; port 3032 confirmed."
 ```
