@@ -1,6 +1,6 @@
 # Contributing
 
-AI4AV accepts public contributions through a manual maintainer queue.
+AI4AV accepts public contributions through a manual maintainer queue. The only input from external contributors is GitHub issues.
 
 ## What To Submit
 
@@ -11,20 +11,16 @@ AI4AV accepts public contributions through a manual maintainer queue.
 
 Do not paste copied driver files, private protocol manuals, NDA material, raw scraped catalogs, credentials, customer site details, or large command dumps from another database. Link to public manufacturer material where possible.
 
-## Manual Maintainer Flow
+## No Pull Requests
 
-1. Maintainer triages the issue and applies `needs-review`.
-2. If the source is public and appropriate, maintainer applies `approved-scrape`.
-3. Maintainer runs the private scraper/export manually outside GitHub issue automation.
-4. Maintainer opens a catalog PR with the changed Markdown spec and generated static index.
-5. Maintainer closes the issue with links to the PR and exported spec.
+This repository does not accept pull requests. The catalog is generated from a private maintenance pipeline; external changes cannot be merged here. Any PR opened against this repo is closed automatically by `.github/workflows/close-prs.yml` with a pointer back to the issue templates above.
+
+If you spotted something wrong, please file an issue instead.
+
+## What Happens After You File An Issue
+
+1. A maintainer triages the issue and applies labels.
+2. If the source is public and appropriate, the maintainer runs the private scraper/export outside GitHub.
+3. The maintainer commits the resulting spec change directly to `main` and closes the issue with a link to the commit.
 
 Public issue bodies are untrusted input. No public issue directly starts scraper execution.
-
-## DCO
-
-By contributing, you certify that you have the right to submit the contribution under this repository's licenses. Add a Developer Certificate of Origin sign-off to commits:
-
-```text
-Signed-off-by: Your Name <you@example.com>
-```

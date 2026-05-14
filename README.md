@@ -57,6 +57,8 @@ Every exported spec repeats `license: ODbL-1.0` in front matter so copied single
 
 Use GitHub issues to suggest a device or report a spec error. Public issues only queue maintainer review; they do not trigger scraper runs.
 
+This repository does not accept pull requests — the catalog is generated from a private maintenance pipeline. Any PR is closed automatically. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 We do not accept copied driver databases, raw command dumps, private manuals, or user-scraped catalogs. Link to published manufacturer documentation instead.
 
 ### Finding the Spec ID

@@ -50,15 +50,14 @@ nothing, say so.
 
 ```bash
 eval $(python3 - <<'PYEOF'
-import json, pathlib, uuid
+import json, pathlib
 cfg_path = pathlib.Path.home() / ".ai4av_config"
 cfg = json.loads(cfg_path.read_text()) if cfg_path.exists() else {}
-if "client_id" not in cfg:
-    cfg["client_id"] = str(uuid.uuid4())
-    cfg_path.write_text(json.dumps(cfg, indent=2))
 api_key  = cfg.get("api_key", "")
-url      = cfg.get("url", "https://rare-bandicoot-208.eu-west-1.convex.cloud")
-print(f"AI4AV_CLIENT_ID={cfg['client_id']}")
+# Default points at the public Convex HTTP endpoint domain (*.convex.site).
+# The anonymous rate-limit bucket is keyed server-side from the request IP, so
+# no client-side identifier is needed.
+url      = cfg.get("url", "https://rare-bandicoot-208.eu-west-1.convex.site")
 print(f"AI4AV_KEY={api_key}")
 print(f"AI4AV_URL={url}")
 PYEOF
@@ -75,9 +74,8 @@ From the user's message extract:
 - `protocol` — optional hint (`rs232`, `tcp`, `http`, etc.)
 
 ```bash
-AI4AV_ARGS=$(python3 - "$AI4AV_KEY" "$AI4AV_CLIENT_ID" <<'PYEOF'
-import json, sys
-api_key, client_id = sys.argv[1], sys.argv[2]
+AI4AV_ARGS=$(python3 - <<'PYEOF'
+import json
 a = {}
 mfr    = "<<MANUFACTURER_KEY>>"
 model  = "<<MODEL_OR_EMPTY>>"
@@ -89,8 +87,6 @@ if model:  a["model"]           = model
 if family: a["family"]          = family
 if dtype:  a["deviceType"]      = dtype
 if proto:  a["protocol"]        = proto
-if api_key:   a["apiKey"]   = api_key
-else:         a["clientId"] = client_id
 print(json.dumps(a))
 PYEOF
 )
@@ -99,40 +95,51 @@ PYEOF
 ### Step 3 — Call the API and print a summary
 
 ```bash
-AI4AV_RESPONSE=$(curl -sf -X POST "${AI4AV_URL}/api/action" \
+AI4AV_AUTH=()
+if [ -n "$AI4AV_KEY" ]; then AI4AV_AUTH=(-H "Authorization: Bearer ${AI4AV_KEY}"); fi
+AI4AV_HTTP=$(curl -sf -w "\n%{http_code}" -X POST "${AI4AV_URL}/api/skill/lookup" \
   -H "Content-Type: application/json" \
-  -d "{\"path\":\"publicSkillPayloadActions:lookupSkillSpec\",\"args\":${AI4AV_ARGS},\"format\":\"json\"}" \
-  || echo '{"_curl_error":true}')
-python3 - "$AI4AV_RESPONSE" <<'PYEOF'
+  "${AI4AV_AUTH[@]}" \
+  -d "${AI4AV_ARGS}" \
+  || printf '\n000')
+AI4AV_CODE="${AI4AV_HTTP##*$'\n'}"
+AI4AV_BODY="${AI4AV_HTTP%$'\n'*}"
+python3 - "$AI4AV_CODE" "$AI4AV_BODY" <<'PYEOF'
 import json, sys
-raw = sys.argv[1]
+code, raw = sys.argv[1], sys.argv[2]
 try:
-    d = json.loads(raw)
+    d = json.loads(raw) if raw else {}
 except Exception:
+    print("STATUS: curl_error"); print(f"MESSAGE: invalid JSON (http={code})"); sys.exit(0)
+# Rate-limited or auth errors come through as HTTP-level errors with an
+# `error`/`message` body. Skill-lookup outcomes (exact_match, candidate_list,
+# not_found, etc.) come through with HTTP 200 and a `status` field.
+if code == "429" or d.get("error") == "rate_limit_exceeded":
+    print("STATUS: rate_limited")
+    print(f"MESSAGE: {d.get('message', 'Rate limit exceeded.')}")
+    sys.exit(0)
+if code in ("401",) or d.get("error") == "auth_invalid":
+    print("STATUS: error")
+    print(f"MESSAGE: {d.get('message', 'Invalid API key. Re-register at ai4av.net.')}")
+    sys.exit(0)
+if code == "000":
     print("STATUS: curl_error"); sys.exit(0)
-if d.get("_curl_error"):
-    print("STATUS: curl_error"); sys.exit(0)
-inner = d.get("value") if isinstance(d.get("value"), dict) else None
-if inner:
-    status = inner.get("status", "error")
-    msg    = inner.get("message", "")
-else:
-    err = d.get("errorMessage", "")
-    status = "rate_limited" if ("rate_limit" in err or "per day" in err) else "error"
-    msg = err
+if not code.startswith("2"):
+    print("STATUS: error"); print(f"MESSAGE: HTTP {code}: {d.get('message', raw[:200])}"); sys.exit(0)
+status = d.get("status", "error")
 print(f"STATUS: {status}")
 if status in ("not_found", "rate_limited"):
-    print(f"MESSAGE: {msg}")
+    print(f"MESSAGE: {d.get('message','')}")
 elif status == "unknown_manufacturer":
-    print(f"MESSAGE: {inner.get('message','')}")
+    print(f"MESSAGE: {d.get('message','')}")
 elif status == "candidate_list":
-    for c in (inner.get("candidates") or [])[:20]:
+    for c in (d.get("candidates") or [])[:20]:
         print(f"  - {c.get('displayName')} [{c.get('qualityTier')}] specId={c.get('specId')}")
 elif status == "exact_match":
-    payload = inner.get("payload", {})
+    payload = d.get("payload", {})
     print(json.dumps(payload, indent=2)[:6000])
 elif status == "error":
-    print(f"MESSAGE: {msg}")
+    print(f"MESSAGE: {d.get('message','')}")
 PYEOF
 ```
 

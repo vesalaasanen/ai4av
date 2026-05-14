@@ -26,6 +26,7 @@ Public specs keep the existing AI4AV structured Markdown fields and add public c
 - `aliases`
 - `compatible_with`
 - `source_domains`
+- `source_urls` (optional for already-generated specs; emitted by the current export path)
 - `retrieved_at`
 - `last_checked_at`
 - `generator`
@@ -59,3 +60,7 @@ The parser may ignore unknown public front matter while older internal tooling c
 ## Migration
 
 The schema is versioned by `schema_version`. Breaking changes require a new schema version and a migration note. Internal Convex or scraper schemas may evolve independently as long as the exported Markdown contract remains stable.
+
+## Source URL Coverage
+
+As of the 2026-05-13 export path, regenerated public specs include both source domains and direct source URLs. `source_domains` is the short trust signal used by catalog indexes; `source_urls` carries the public documentation links used for "see the source" surfaces. The export joins source evidence by family/entity identifiers and may include manual provenance aliases where older ledgers used transport-specific suffixes such as `_ip`, `_serial`, `_cloud`, or `_ir`.

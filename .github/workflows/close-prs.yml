@@ -1,0 +1,43 @@
+name: Close pull requests
+
+# This repository does not accept external pull requests. The catalog is
+# generated from a private maintenance pipeline; merging an external PR would
+# bypass the IP / source-policy controls that the issue-only flow exists to
+# enforce. Any opened or reopened PR is closed immediately with a pointer back
+# to the issue templates.
+#
+# Uses pull_request_target so the workflow has the permissions needed to
+# comment + close. PR code is never checked out, so this is safe.
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close PR with canned message
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = context.payload.pull_request.number;
+            const { owner, repo } = context.repo;
+            const body = [
+              "Thanks for the interest — this repo doesn't accept pull requests.",
+              "",
+              "The catalog is generated from a private maintenance pipeline, so external changes can't be merged here. See [`CONTRIBUTING.md`](../blob/main/CONTRIBUTING.md) for the policy.",
+              "",
+              "If you spotted a missing device or a spec error, please file an issue instead:",
+              "",
+              "- [Suggest a device](../issues/new?template=suggest-device.yml)",
+              "- [Report a wrong spec](../issues/new?template=report-wrong-spec.yml)",
+              "",
+              "Closing this PR.",
+            ].join("\n");
+            await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            await github.rest.pulls.update({ owner, repo, pull_number: issue_number, state: "closed" });
