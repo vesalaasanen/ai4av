@@ -63,7 +63,7 @@ print('Installed ->', dest)
 Then tell the user:
 
 > **Skill installed.** Restart your AI agent so it can load the new skill.
-> Example prompt: `Use $ai4av-lookup to download the verified control spec for Christie Spyder X20.`
+> Example prompt: `/ai4av-lookup download the verified control spec for Christie Spyder X20`
 > In Claude Code, `/ai4av-lookup build me a source and volume control web app for my LG OLED series TV` also works.
 >
 > To get 50 lookups/day instead of 3, register a free API key at **ai4av.net**.
@@ -198,7 +198,7 @@ Read the `STATUS:` line printed above and compose a **natural language reply**. 
 
 - **`not_found` or `rate_limited`** with "per day" in the message: Say you've hit the daily anonymous limit and give these exact instructions:
   - Resets at UTC midnight
-  - Get 50 lookups/day free: register at **ai4av.net**, then ask your agent to use `$ai4av-lookup` to save `YOUR_KEY` (or run `/ai4av-lookup save-key YOUR_KEY` in Claude Code)
+  - Get 50 lookups/day free: register at **ai4av.net**, then run `/ai4av-lookup save-key YOUR_KEY`
 
 - **`not_found`** without rate-limit message: The device isn't in the catalog yet. Suggest requesting it at ai4av.net.
 
@@ -243,11 +243,6 @@ Or paste the raw text of this file to your assistant and say "install this
 skill." The skill supports Claude Code, Codex, and compatible AI-agent runtimes.
 
 **To save an API key** (get one free at ai4av.net), type:
-```
-Use $ai4av-lookup to save this API key: YOUR_KEY_HERE
-```
-
-Claude Code users can also run:
 ```
 /ai4av-lookup save-key YOUR_KEY_HERE
 ```

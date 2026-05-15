@@ -1,4 +1,4 @@
 interface:
   display_name: "AI4AV Lookup"
   short_description: "Look up AV control specs by device"
-  default_prompt: "Use $ai4av-lookup to find the control spec for a manufacturer and model."
+  default_prompt: "/ai4av-lookup find the control spec for a manufacturer and model."
