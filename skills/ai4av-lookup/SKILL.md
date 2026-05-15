@@ -10,24 +10,61 @@ allowed-tools: Bash
 
 ## If You Are Installing This Skill
 
-If the user pasted this text to you and asked to install the skill — do this now,
-no confirmation needed:
+Install this skill as a normal AI-agent skill folder named `ai4av-lookup`.
+It is usable from Claude Code, Codex, and other systems that load Markdown
+skills.
+
+For Codex, use the Skill Installer with this GitHub path:
+
+```
+https://github.com/vesalaasanen/ai4av/tree/main/skills/ai4av-lookup
+```
+
+If no installer is available, copy this folder to the agent's configured skills
+directory:
+
+- Codex: `$CODEX_HOME/skills/ai4av-lookup`, or `~/.codex/skills/ai4av-lookup`
+  when `CODEX_HOME` is unset.
+- Claude Code: `~/.claude/skills/ai4av-lookup`.
+- Other agents: the configured skill/plugin directory for that runtime.
+
+Codex install command:
+
+```bash
+python3 -c "
+import os, urllib.request, pathlib
+base = 'https://raw.githubusercontent.com/vesalaasanen/ai4av/main/skills/ai4av-lookup'
+home = pathlib.Path.home()
+root = pathlib.Path(os.environ.get('CODEX_HOME', home / '.codex'))
+dest = root / 'skills' / 'ai4av-lookup'
+for rel in ('SKILL.md', 'agents/openai.yaml'):
+    path = dest / rel
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(urllib.request.urlopen(f'{base}/{rel}').read())
+print('Installed ->', dest)
+"
+```
+
+Claude Code install command:
 
 ```bash
 python3 -c "
 import urllib.request, pathlib
-url = 'https://raw.githubusercontent.com/vesalaasanen/ai4av/main/skills/ai4av-lookup/SKILL.md'
-dest = pathlib.Path.home() / '.claude' / 'skills' / 'ai4av-lookup' / 'SKILL.md'
-dest.parent.mkdir(parents=True, exist_ok=True)
-dest.write_bytes(urllib.request.urlopen(url).read())
+base = 'https://raw.githubusercontent.com/vesalaasanen/ai4av/main/skills/ai4av-lookup'
+dest = pathlib.Path.home() / '.claude' / 'skills' / 'ai4av-lookup'
+for rel in ('SKILL.md', 'agents/openai.yaml'):
+    path = dest / rel
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(urllib.request.urlopen(f'{base}/{rel}').read())
 print('Installed ->', dest)
 "
 ```
 
 Then tell the user:
 
-> **Skill installed.** Start a new Claude Code session and type `/ai4av-lookup <device>`.
-> Example: `/ai4av-lookup QSC Core 110f`
+> **Skill installed.** Restart your AI agent so it can load the new skill.
+> Example prompt: `Use $ai4av-lookup to find the control spec for Christie Spyder X20.`
+> In Claude Code, `/ai4av-lookup Christie Spyder X20` also works.
 >
 > To get 50 lookups/day instead of 3, register a free API key at **ai4av.net**.
 
@@ -67,6 +104,7 @@ PYEOF
 ### Step 2 — Build lookup args
 
 From the user's message extract:
+- `specId` — exact spec id, if the user picked one from a candidate list
 - `manufacturerKey` — lowercase, spaces to hyphens (e.g. `qsc`, `allen-heath`, `barco`)
 - `model` — specific model string if given
 - `family` — product family if no specific model
@@ -77,11 +115,13 @@ From the user's message extract:
 AI4AV_ARGS=$(python3 - <<'PYEOF'
 import json
 a = {}
+specid = "<<SPEC_ID_OR_EMPTY>>"
 mfr    = "<<MANUFACTURER_KEY>>"
 model  = "<<MODEL_OR_EMPTY>>"
 family = "<<FAMILY_OR_EMPTY>>"
 dtype  = "<<DEVICE_TYPE_OR_EMPTY>>"
 proto  = "<<PROTOCOL_OR_EMPTY>>"
+if specid: a["specId"]          = specid
 if mfr:    a["manufacturerKey"] = mfr
 if model:  a["model"]           = model
 if family: a["family"]          = family
@@ -153,7 +193,7 @@ Read the `STATUS:` line printed above and compose a **natural language reply**. 
 
 - **`not_found` or `rate_limited`** with "per day" in the message: Say you've hit the daily anonymous limit and give these exact instructions:
   - Resets at UTC midnight
-  - Get 50 lookups/day free: register at **ai4av.net**, then run `/ai4av-lookup save-key YOUR_KEY`
+  - Get 50 lookups/day free: register at **ai4av.net**, then ask your agent to use `$ai4av-lookup` to save `YOUR_KEY` (or run `/ai4av-lookup save-key YOUR_KEY` in Claude Code)
 
 - **`not_found`** without rate-limit message: The device isn't in the catalog yet. Suggest requesting it at ai4av.net.
 
@@ -165,9 +205,10 @@ Read the `STATUS:` line printed above and compose a **natural language reply**. 
 
 ---
 
-## Save API Key (invoked as `/ai4av-lookup save-key <key>`)
+## Save API Key
 
-If the user invokes `/ai4av-lookup save-key <key>`, save the key to `~/.ai4av_config`:
+If the user asks this skill to save an AI4AV API key, save the key to
+`~/.ai4av_config`:
 
 ```bash
 python3 - "<<KEY>>" <<'PYEOF'
@@ -187,16 +228,21 @@ Then confirm: "API key saved. Your next lookup will use the registered 50/day qu
 
 ## Install
 
-Share the raw URL of this file with your AI assistant and ask it to install the skill:
+Share the GitHub path with your AI assistant and ask it to install the skill:
 
 ```
-https://raw.githubusercontent.com/vesalaasanen/ai4av/main/skills/ai4av-lookup/SKILL.md
+https://github.com/vesalaasanen/ai4av/tree/main/skills/ai4av-lookup
 ```
 
-Or paste the raw text of this file to your assistant and say "install this skill."
-No terminal commands required — works on Windows, Mac, and Linux.
+Or paste the raw text of this file to your assistant and say "install this
+skill." The skill supports Claude Code, Codex, and compatible AI-agent runtimes.
 
 **To save an API key** (get one free at ai4av.net), type:
+```
+Use $ai4av-lookup to save this API key: YOUR_KEY_HERE
+```
+
+Claude Code users can also run:
 ```
 /ai4av-lookup save-key YOUR_KEY_HERE
 ```

@@ -67,4 +67,4 @@ The spec-error issue form asks for a Spec ID. It looks like `admin/<slug>` (e.g.
 
 - The first line of any spec's YAML frontmatter (`spec_id: admin/...`).
 - The spec's URL on the published catalog.
-- The `specId=` line printed by the `ai4av-lookup` Claude Code skill when it returns a candidate match.
+- The `specId=` line printed by the `ai4av-lookup` skill when it returns a candidate match in Claude Code, Codex, or another compatible AI agent.
