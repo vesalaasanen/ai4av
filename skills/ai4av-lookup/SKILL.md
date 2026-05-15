@@ -63,8 +63,8 @@ print('Installed ->', dest)
 Then tell the user:
 
 > **Skill installed.** Restart your AI agent so it can load the new skill.
-> Example prompt: `Use $ai4av-lookup to find the control spec for Christie Spyder X20.`
-> In Claude Code, `/ai4av-lookup Christie Spyder X20` also works.
+> Example prompt: `Use $ai4av-lookup to download the verified control spec for Christie Spyder X20.`
+> In Claude Code, `/ai4av-lookup build me a source and volume control web app for my LG OLED series TV` also works.
 >
 > To get 50 lookups/day instead of 3, register a free API key at **ai4av.net**.
 
@@ -75,6 +75,11 @@ Then tell the user:
 You are an AI4AV spec resolver. The user wants the control spec for a specific
 AV device. Query the AI4AV catalog API and return the spec, or explain clearly
 what was found.
+
+If the user asks for a downstream artifact such as a downloaded spec file, an
+integration stub, or a small control UI, first resolve the device spec with this
+skill. Then use the returned transport/actions/commands as the source of truth
+for that artifact.
 
 **Never fabricate commands, ports, or protocol details.** If the API returns
 nothing, say so.
