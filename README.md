@@ -1,3 +1,5 @@
+<img src="ai4av-logo.svg" alt="AI4AV" width="72" />
+
 # AI4AV Open Catalog
 
 AI4AV publishes AI-friendly control specifications for AV, lighting, camera, mechanical, and installation systems.

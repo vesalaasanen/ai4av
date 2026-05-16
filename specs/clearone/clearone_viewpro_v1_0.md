@@ -18,14 +18,12 @@ compatible_with:
 source_domains:
   - kb.clearone.com
   - keydigital.org
-  - applicationmarket.crestron.com
-  - manualslib.com
+  - officeplusuae.com
 source_urls:
   - https://kb.clearone.com
   - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - "https://applicationmarket.crestron.com/content/Help/ClearOne/ClearOne%20Collaborate%20v1.1%20Help.pdf"
-  - https://www.manualslib.com/manual/1403893/Clearone-Converge-Pro-880.html
-retrieved_at: 2026-05-12T09:53:43.839Z
+  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
+retrieved_at: 2026-05-15T09:22:58.682Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 generated_at: 2026-04-26T11:42:14.624Z
 firmware_coverage: "Not stated in source"
@@ -617,14 +615,12 @@ interlocks: []
 source_domains:
   - kb.clearone.com
   - keydigital.org
-  - applicationmarket.crestron.com
-  - manualslib.com
+  - officeplusuae.com
 source_urls:
   - https://kb.clearone.com
   - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - "https://applicationmarket.crestron.com/content/Help/ClearOne/ClearOne%20Collaborate%20v1.1%20Help.pdf"
-  - https://www.manualslib.com/manual/1403893/Clearone-Converge-Pro-880.html
-retrieved_at: 2026-05-12T09:53:43.839Z
+  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
+retrieved_at: 2026-05-15T09:22:58.682Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 ```
 

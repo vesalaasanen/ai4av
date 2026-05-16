@@ -25,7 +25,7 @@ source_urls:
   - https://developer.webex.com/docs/devices
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T15:10:26.520Z
+retrieved_at: 2026-05-14T22:56:18.279Z
 last_checked_at: 2026-05-14T18:17:15.020Z
 generated_at: 2026-05-14T18:17:15.020Z
 firmware_coverage: "Not stated in source"
@@ -943,7 +943,7 @@ source_urls:
   - https://developer.webex.com/docs/devices
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T15:10:26.520Z
+retrieved_at: 2026-05-14T22:56:18.279Z
 last_checked_at: 2026-05-14T18:17:15.020Z
 ```
 
