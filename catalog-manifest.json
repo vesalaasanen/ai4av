@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-05-16T13:26:53.330Z",
-  "spec_count": 641,
+  "generated_at": "2026-05-18T12:27:27.998Z",
+  "spec_count": 673,
   "specs": [
     {
       "specId": "admin/ad_notam-cs_101",
@@ -432,6 +432,27 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "99031f709ca7f87370dc64aab45db48365781ca979f7e6504b3f9daa5100f828"
+    },
+    {
+      "specId": "admin/arcam-sr250-series",
+      "deviceId": "arcam/sr250",
+      "title": "Arcam SR250 Series Control Spec",
+      "manufacturer": "Arcam",
+      "manufacturerKey": "arcam",
+      "displayName": "SR250",
+      "models": [
+        "SR250",
+        "AVR390",
+        "AVR550",
+        "AVR850",
+        "AV860"
+      ],
+      "revision": 1,
+      "path": "specs/arcam/arcam_sr250_series_ip.md",
+      "actionCount": 60,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a384b8324f84d0d3f6890fc1c9e830d369d2914c390a36b9febbb8f089e5e8a8"
     },
     {
       "specId": "admin/arylic-a31-platform-tcp-api",
@@ -1596,6 +1617,250 @@
       "contentHash": "1c1df865cfac5ecb23fc975dcf4891c86992bfdcc5e343f4c4df44c184b73622"
     },
     {
+      "specId": "admin/bluos-b160s",
+      "deviceId": "bluos/b160s",
+      "title": "BluOS B160S Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "B160S",
+      "models": [
+        "B160S"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_b160s_ip.md",
+      "actionCount": 33,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "541ad021c9125aa471d45429444fd944cc56be4bd968f1e4fca9813388927a76"
+    },
+    {
+      "specId": "admin/bluos-b160s-volume-control",
+      "deviceId": "bluos/b160s",
+      "title": "BluOS B160S Volume Control Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "B160S",
+      "models": [
+        "B160S"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_b160s_volume_control_ip.md",
+      "actionCount": 34,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fc2e5d6138085a9d4028765a54e5ce82e34e498a923451da90b6836d90e920ec"
+    },
+    {
+      "specId": "admin/bluos-b400s-ip",
+      "deviceId": "bluos/b400s",
+      "title": "BluOS B400S Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "B400S",
+      "models": [
+        "B400S"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_b400s_ip.md",
+      "actionCount": 39,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "921eec1a931ba195f3b756b1b7bd2db3446dd50ab9931e887e400c51eb0a256e"
+    },
+    {
+      "specId": "admin/bluos-bluos-player",
+      "deviceId": "bluos/bluos-player",
+      "title": "BluOS Player Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS Player",
+      "models": [
+        "BluOS Player"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bluos_player_ip.md",
+      "actionCount": 36,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e278ccf52d26d71f839edf36e96ca7d9d45670fe9ecfaf2e957c0c3eb7e39786"
+    },
+    {
+      "specId": "admin/bluos-volume-control",
+      "deviceId": "bluos/bluos-player-general-bluesound-nad-electronics-dali-loudspeakers-and-others",
+      "title": "BluOS Volume Control Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS Player (general — Bluesound, NAD Electronics, DALI Loudspeakers, and others)",
+      "models": [
+        "BluOS Player (general — Bluesound, NAD Electronics, DALI Loudspeakers, and others)"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bluos_volume_control_ip.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fdc291f3efb390310457014c11062b37057585b40b14b939f9c2479b7919330b"
+    },
+    {
+      "specId": "admin/bluos-bsp-series-ip",
+      "deviceId": "bluos/bsp-series",
+      "title": "BluOS BSP Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BSP Series",
+      "models": [
+        "BSP Series"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bsp_series_ip.md",
+      "actionCount": 32,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0cdb2ccdca19689329094749184990c69afd7f72f4e998406e69fed416bdd7a5"
+    },
+    {
+      "specId": "admin/bluos-bsw150-ip",
+      "deviceId": "bluos/bsw150",
+      "title": "BluOS BSW150 Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BSW150",
+      "models": [
+        "BSW150"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bsw150_ip.md",
+      "actionCount": 34,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0ae9a3a5796933af0febb0308ffaa63f67882ef2106003a0b36826c185eec4d7"
+    },
+    {
+      "specId": "admin/bluos-bsw150-volume-control",
+      "deviceId": "bluos/bsw150-volume-control",
+      "title": "BluOS BSW150 Volume Control Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BSW150 Volume Control",
+      "models": [
+        "BSW150 Volume Control"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bsw150_volume_control_ip.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d896be9dfd670cc014cc52d18441eaf81d679f2f38d61a8b45bf02d78ce2ef96"
+    },
+    {
+      "specId": "admin/bluos-c-658-volume-control",
+      "deviceId": "bluos/c-658",
+      "title": "BluOS C 658 Volume Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "C 658",
+      "models": [
+        "C 658"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_c_658_volume_control_ip.md",
+      "actionCount": 31,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0facbc6cbed7616cf0a122e4a80f7ade6a132ffef7ec3555a61d296d677701ce"
+    },
+    {
+      "specId": "admin/bluos-c-700-volume-control",
+      "deviceId": "bluos/c-700",
+      "title": "BluOS C 700 Volume Control Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "C 700",
+      "models": [
+        "C 700"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_c_700_volume_control_ip.md",
+      "actionCount": 34,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "361162ca7f00da68cd172eaf230b402bfb4ac1c26f30a2d8795266cf3b3eb197"
+    },
+    {
+      "specId": "admin/bluos-ci-series-ip",
+      "deviceId": "bluos/bluos-ci-series",
+      "title": "BluOS CI Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS CI Series",
+      "models": [
+        "BluOS CI Series",
+        "CI580"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_ci_series_ip.md",
+      "actionCount": 32,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f2fee839c1bf6be9f6bb0526030dca68a8926e8e9159f83c74964a66a3a5f9fd"
+    },
+    {
+      "specId": "admin/bluos-m10-v-series-ip",
+      "deviceId": "bluos/bluos-m10-v-series",
+      "title": "BluOS M10 V Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS M10 V Series",
+      "models": [
+        "BluOS M10 V Series"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_m10_v_series_ip.md",
+      "actionCount": 36,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "617f9371bc2c6239ce010db701f77082ea60e035e730dacc0a41ce2740a04658"
+    },
+    {
+      "specId": "admin/bluos-m33-volume-control",
+      "deviceId": "bluos/bluos-m33",
+      "title": "BluOS M33 Volume Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS M33",
+      "models": [
+        "BluOS M33",
+        "Bluesound players",
+        "NAD Electronics players",
+        "DALI Loudspeakers players"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_m33_volume_control_ip.md",
+      "actionCount": 31,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ab8a8ff5345ecba49785584de48eabede84aae1cdc2dda1781e3ec222e724fb4"
+    },
+    {
+      "specId": "admin/bluos-pulse-series-ip",
+      "deviceId": "bluos/pulse",
+      "title": "BluOS Pulse Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "PULSE",
+      "models": [
+        "PULSE",
+        "Bluesound PULSE",
+        "NAD CI580"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_pulse_series_ip.md",
+      "actionCount": 34,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "952584c997ec7c7a9f9bd87dff78a148af0a6a1bb9e2ded9fafdbb461c49ab49"
+    },
+    {
       "specId": "admin/bluos-vault-series",
       "deviceId": "bluos/vault-series",
       "title": "BluOS Vault Series Control Spec",
@@ -1767,6 +2032,23 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "2579b522b305c4797e3798536737488229c689231479df126e383edaacc0151c"
+    },
+    {
+      "specId": "admin/blustream-pro-series",
+      "deviceId": "blustream/cmx88ab",
+      "title": "Blustream PRO Series Control Spec",
+      "manufacturer": "Blustream",
+      "manufacturerKey": "blustream",
+      "displayName": "CMX88AB",
+      "models": [
+        "CMX88AB"
+      ],
+      "revision": 1,
+      "path": "specs/blustream/blustream_pro_series_ip.md",
+      "actionCount": 14,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ae43e68fa3d75b6acd612cc004be9daac8cb74c08ae079d87fd05fd29446cf08"
     },
     {
       "specId": "admin/bond_bridge-device",
@@ -4947,6 +5229,41 @@
       "contentHash": "c0e561bb84ad3da0060343e6635979d368e00faf0ab47e74a7f6ac9092f610f7"
     },
     {
+      "specId": "admin/integra-dtr-series",
+      "deviceId": "integra/dtr-series",
+      "title": "Integra DTR Series Control Spec",
+      "manufacturer": "Integra",
+      "manufacturerKey": "integra",
+      "displayName": "DTR Series",
+      "models": [
+        "DTR Series"
+      ],
+      "revision": 1,
+      "path": "specs/integra/integra_dtr_series_serial.md",
+      "actionCount": 135,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "708c862a0c6c13daa5677c130d4df5ec2a9baec33fd85c06d2bedd36f34ee1d0"
+    },
+    {
+      "specId": "admin/integra-dtx-8-9-series-ip",
+      "deviceId": "integra/dtx-8-9",
+      "title": "Integra DTX-8.9 Series Control Spec",
+      "manufacturer": "Integra",
+      "manufacturerKey": "integra",
+      "displayName": "DTX-8.9",
+      "models": [
+        "DTX-8.9",
+        "DTR-8.9"
+      ],
+      "revision": 1,
+      "path": "specs/integra/integra_dtx_8_9_series_ip.md",
+      "actionCount": 126,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a08f8c13f114b90ff09c7184ab4ecc149f85f73dd28ba1419da943188a308bbe"
+    },
+    {
       "specId": "admin/integra-ht-d03",
       "deviceId": "integra/ht-d03",
       "title": "Integra HT-D03 Control Spec",
@@ -4962,6 +5279,23 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "5e4a07ef538726723a25c910fbeb6316bc8b47ee5a7142e0504e22ff51809520"
+    },
+    {
+      "specId": "admin/integra-ht-l05",
+      "deviceId": "integra/ht-l05",
+      "title": "Integra HT-L05 Control Spec",
+      "manufacturer": "Integra",
+      "manufacturerKey": "integra",
+      "displayName": "HT-L05",
+      "models": [
+        "HT-L05"
+      ],
+      "revision": 1,
+      "path": "specs/integra/integra_ht_l05_ip.md",
+      "actionCount": 98,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "5f94c64fb85ed52f42510850c495fd163a9c5e31fb920826768d00726a97e359"
     },
     {
       "specId": "admin/integra-tun-3-7-north-america",
@@ -7058,6 +7392,40 @@
       "contentHash": "c11389809363b5e98f06f46afb34c0895641f7664adc6f2f32e04f4bba871cfd"
     },
     {
+      "specId": "admin/nad-m17-v2-series-ip",
+      "deviceId": "nad/nad-m17-v2-series",
+      "title": "NAD M17 V2 Series Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD M17 V2 Series",
+      "models": [
+        "NAD M17 V2 Series"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_m17_v2_series_ip.md",
+      "actionCount": 33,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "38ffdddc6b9f34d2ba30ae69d09974af9d949f70b6c6ff21f52468ba9cf09145"
+    },
+    {
+      "specId": "admin/nad-m17-v2i-multizone-series-ip",
+      "deviceId": "nad/nad-m17-v2i-multizone-series",
+      "title": "NAD M17 V2i MultiZone Series Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD M17 V2i MultiZone Series",
+      "models": [
+        "NAD M17 V2i MultiZone Series"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_m17_v2i_multizone_series_ip.md",
+      "actionCount": 35,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ec1efc41ad2ed1085323f8d1a98265743ce44a9e830cd474167e10b16cbb2789"
+    },
+    {
       "specId": "admin/nad-t758-with-volume-series",
       "deviceId": "nad/t758-with-volume-series",
       "title": "NAD T758 (with Volume) Series Control Spec",
@@ -7073,6 +7441,40 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "77a25084d5f94b185a1aaa3cf95db9b2a34694c0e817c9c9d22a8df2de3c3aa1"
+    },
+    {
+      "specId": "admin/nad-t777-with-volume-series",
+      "deviceId": "nad/nad-t777-with-volume-series",
+      "title": "NAD T777 (with Volume) Series Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD T777 (with Volume) Series",
+      "models": [
+        "NAD T777 (with Volume) Series"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_t777_with_volume_series_serial.md",
+      "actionCount": 31,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "53a23caa585ebb19a2ed758b001f63c35f964fe52221d2a2867474df6673c4e6"
+    },
+    {
+      "specId": "admin/nad-t778-with-volume-series",
+      "deviceId": "nad/nad-t778-with-volume-series",
+      "title": "NAD T778 (with Volume) Series Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD T778 (with Volume) Series",
+      "models": [
+        "NAD T778 (with Volume) Series"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_t778_with_volume_series_ip.md",
+      "actionCount": 37,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "79b5fcd77defc7ab3146f926c177d5c6af457c0b5b8e0014c50062f24870eaa7"
     },
     {
       "specId": "admin/nec-1020",
@@ -9105,6 +9507,23 @@
       "contentHash": "f8f8091425e892e4cdcddb0c35194c809e3c5980aed5819e9072739813d93565"
     },
     {
+      "specId": "admin/onkyo-tx-rz-series",
+      "deviceId": "onkyo/tx-rz-series",
+      "title": "Onkyo TX-RZ Series Control Spec",
+      "manufacturer": "Onkyo",
+      "manufacturerKey": "onkyo",
+      "displayName": "TX-RZ Series",
+      "models": [
+        "TX-RZ Series"
+      ],
+      "revision": 1,
+      "path": "specs/onkyo/onkyo_tx_rz_series_serial.md",
+      "actionCount": 139,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d0ce754e75abba0e20d90afa87709a7892f5a1b2a5567123439d88ec4cae5ff0"
+    },
+    {
       "specId": "admin/oppo-bdp-103-105",
       "deviceId": "oppo-digital-inc/bdp-103",
       "title": "Oppo BDP-10X Control Spec",
@@ -10525,6 +10944,27 @@
       "contentHash": "f8b393f9dade3cd9cf58c1e9524ee4bcd2a124b935738ca2b1d7cd34330ba04c"
     },
     {
+      "specId": "admin/somfy-sdn-rs485-iptoserial",
+      "deviceId": "somfy/somfy-rs485-rts-transmitter-nodetype-05h",
+      "title": "Somfy SDN RS485 IP-to-Serial Control Spec",
+      "manufacturer": "Somfy",
+      "manufacturerKey": "somfy",
+      "displayName": "Somfy RS485 RTS Transmitter (NodeType 05h)",
+      "models": [
+        "Somfy RS485 RTS Transmitter (NodeType 05h)",
+        "Somfy Ø30 DC Serie RS485 (NodeType 02h)",
+        "Somfy Glydea RS485 (NodeType 06h)",
+        "Somfy Ø50 AC Serie RS485 (NodeType 07h)",
+        "Somfy Ø50 DC Serie RS485 (NodeType 08h)"
+      ],
+      "revision": 1,
+      "path": "specs/somfy/somfy_ci_somfy_rts_iptoserial_serial.md",
+      "actionCount": 21,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "bfe83dcdef99662425b4231b3e37aa02cbafe3c820a06436f7fbb7c7abd149c4"
+    },
+    {
       "specId": "admin/somfy-ci-somfy-rts-series",
       "deviceId": "somfy/ci-somfy-rts-series",
       "title": "Somfy CI-Somfy-RTS Series Control Spec",
@@ -10559,6 +10999,23 @@
       "contentHash": "a2f93085bf5db78c000c1c60c21b4dee1ec92fb0b5a759d79137195bd8cd40e6"
     },
     {
+      "specId": "admin/somfy-ilt2-serial",
+      "deviceId": "somfy/ilt2",
+      "title": "Somfy ILT2 Control Spec",
+      "manufacturer": "Somfy",
+      "manufacturerKey": "somfy",
+      "displayName": "ILT2",
+      "models": [
+        "ILT2"
+      ],
+      "revision": 1,
+      "path": "specs/somfy/somfy_ilt2_serial.md",
+      "actionCount": 21,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "458ca58a9c862b2a8c7a624488b2f65f4ffa76359357781aa7f2dcb6869add80"
+    },
+    {
       "specId": "admin/somfy-mylink-v1-2",
       "deviceId": "somfy/mylink-v1-2",
       "title": "Somfy myLink v1.2 Control Spec",
@@ -10574,6 +11031,44 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "cd790ab0339c4029a04155e2868942f72f9f3f2eaa127ce9059166616a37c2a4"
+    },
+    {
+      "specId": "admin/somfy-rts-6300554-serial",
+      "deviceId": "somfy/rts-6300554",
+      "title": "Somfy RTS 6300554 Control Spec",
+      "manufacturer": "Somfy",
+      "manufacturerKey": "somfy",
+      "displayName": "RTS 6300554",
+      "models": [
+        "RTS 6300554"
+      ],
+      "revision": 1,
+      "path": "specs/somfy/somfy_rts_6300554_serial.md",
+      "actionCount": 21,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8687b736d15a3e144e97b95b9816cec4264cd657accb16d3cdc6a483e27a9f8a"
+    },
+    {
+      "specId": "admin/somfy-sdn-series",
+      "deviceId": "somfy/somfy-sdn-series-rs485",
+      "title": "Somfy SDN Series Control Spec",
+      "manufacturer": "Somfy",
+      "manufacturerKey": "somfy",
+      "displayName": "Somfy SDN Series RS485",
+      "models": [
+        "Somfy SDN Series RS485",
+        "Ø30 DC Serie RS485",
+        "Glydea RS485",
+        "Ø50 AC Serie RS485",
+        "Ø50 DC Serie RS485"
+      ],
+      "revision": 1,
+      "path": "specs/somfy/somfy_sdn_series_serial.md",
+      "actionCount": 21,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ff4b192aa019f4e6a3050fbdce47128027e3cfc6ecd27d9c7b4cf23e59796a4e"
     },
     {
       "specId": "admin/somfy-somfy-connect-uai-plus",
@@ -11791,6 +12286,26 @@
       "contentHash": "2ec0a754b25c1a8d635a9d0021e1b267c5a5c4bded86e5878fb1265f36fb8ff3"
     },
     {
+      "specId": "admin/wyrestorm-mxv-series",
+      "deviceId": "wyrestorm/mx-1010-hdbt-h2x",
+      "title": "Wyrestorm MXV Series Control Spec",
+      "manufacturer": "Wyrestorm",
+      "manufacturerKey": "wyrestorm",
+      "displayName": "MX-1010-HDBT-H2X",
+      "models": [
+        "MX-1010-HDBT-H2X",
+        "MX-1616-HDBT-H2X",
+        "MX-1010-H2XC",
+        "MX-1616-H2XC"
+      ],
+      "revision": 1,
+      "path": "specs/wyrestorm/wyrestorm_mxv_series_ip.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d2c21be7da18cccbc2f278c669ad82e66ef04434ff4ad9f7ba80246d4598e00c"
+    },
+    {
       "specId": "admin/wyrestorm-wyr-mx-0-series",
       "deviceId": "wyrestorm/mx-1010-hdbt-h2x",
       "title": "Wyrestorm WYR-MX-0 Series Control Spec",
@@ -11809,6 +12324,66 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "3c3712f2a81d2ff14f13975a11754322d619654e10a253b11e1952d234512581"
+    },
+    {
+      "specId": "admin/wyrestorm-wyr-mx-0-series",
+      "deviceId": "wyrestorm/mx-1010-hdbt-h2x",
+      "title": "Wyrestorm WYR-MX-0 Series Control Spec",
+      "manufacturer": "Wyrestorm",
+      "manufacturerKey": "wyrestorm",
+      "displayName": "MX-1010-HDBT-H2X",
+      "models": [
+        "MX-1010-HDBT-H2X",
+        "MX-1616-HDBT-H2X",
+        "MX-1010-H2XC",
+        "MX-1616-H2XC"
+      ],
+      "revision": 1,
+      "path": "specs/wyrestorm/wyrestorm_wyr_mx_0_series_serial.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "851b58a6f9010093bbb3d56d9c1b7498d0d97209bb6cde5e057a97eb6dd7cf72"
+    },
+    {
+      "specId": "admin/wyrestorm-wyr-mxv-0-series",
+      "deviceId": "wyrestorm/mx-1010-hdbt-h2x",
+      "title": "Wyrestorm WYR-MXV-0 Series Control Spec",
+      "manufacturer": "Wyrestorm",
+      "manufacturerKey": "wyrestorm",
+      "displayName": "MX-1010-HDBT-H2X",
+      "models": [
+        "MX-1010-HDBT-H2X",
+        "MX-1616-HDBT-H2X",
+        "MX-1010-H2XC",
+        "MX-1616-H2XC"
+      ],
+      "revision": 1,
+      "path": "specs/wyrestorm/wyrestorm_wyr_mxv_0_series_ip.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "10ec7bbb8b2f5f374e63c4f07d144f9ceb7d1f1799c187f98a509f2d5d14e441"
+    },
+    {
+      "specId": "admin/wyrestorm-av-switcher",
+      "deviceId": "wyrestorm/mx-1010-hdbt-h2x",
+      "title": "Wyrestorm H2X/H2XC Matrix Switcher Control Spec",
+      "manufacturer": "Wyrestorm",
+      "manufacturerKey": "wyrestorm",
+      "displayName": "MX-1010-HDBT-H2X",
+      "models": [
+        "MX-1010-HDBT-H2X",
+        "MX-1616-HDBT-H2X",
+        "MX-1010-H2XC",
+        "MX-1616-H2XC"
+      ],
+      "revision": 1,
+      "path": "specs/wyrestorm/wyrestorm_wyrestorm_av_switcher_ip.md",
+      "actionCount": 29,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "4f6f0d9d425a4b41e6348f0c2178c71f0b068be7dcb9e9e323bd6005cbd8c177"
     },
     {
       "specId": "admin/xilica-solaro-v1-0",

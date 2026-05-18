@@ -112,9 +112,17 @@ From the user's message extract:
 - `specId` — exact spec id, if the user picked one from a candidate list
 - `manufacturerKey` — lowercase, spaces to hyphens (e.g. `qsc`, `allen-heath`, `barco`)
 - `model` — specific model string if given
-- `family` — product family if no specific model
+- `family` — product family **only when no specific model is known**
 - `deviceType` — optional hint (`amplifier`, `projector`, `matrix`, etc.)
 - `protocol` — optional hint (`rs232`, `tcp`, `http`, etc.)
+
+**Query as narrowly as is reliable, no narrower.** Prefer `manufacturerKey` +
+`model`. Leave `deviceType` and `protocol` **empty unless the user explicitly
+named them** — never infer them from the device category. `deviceType` is only
+a soft ranking hint server-side, but `protocol` is a hard filter, so a wrong
+protocol guess hides the correct spec. If a lookup returns `not_found`,
+`too_vague`, `candidate_list`, or `ambiguous` with candidates, pick from those
+candidates (re-run with `specId=<chosen>`) instead of guessing more hints.
 
 ```bash
 AI4AV_ARGS=$(python3 - <<'PYEOF'
@@ -173,18 +181,24 @@ if not code.startswith("2"):
     print("STATUS: error"); print(f"MESSAGE: HTTP {code}: {d.get('message', raw[:200])}"); sys.exit(0)
 status = d.get("status", "error")
 print(f"STATUS: {status}")
-if status in ("not_found", "rate_limited"):
-    print(f"MESSAGE: {d.get('message','')}")
-elif status == "unknown_manufacturer":
-    print(f"MESSAGE: {d.get('message','')}")
-elif status == "candidate_list":
-    for c in (d.get("candidates") or [])[:20]:
-        print(f"  - {c.get('displayName')} [{c.get('qualityTier')}] specId={c.get('specId')}")
-elif status == "exact_match":
+# A misspelled manufacturer that was auto-corrected to a real one.
+if d.get("correctedManufacturerKey"):
+    print(f"CORRECTED: manufacturer read as '{d['correctedManufacturerKey']}'")
+# Print the message whenever the server sent one, for any status.
+message = d.get("message", "")
+if message:
+    print(f"MESSAGE: {message}")
+# Several statuses (candidate_list, ambiguous, not_found, too_vague) carry a
+# `candidates` array — always surface it so the model can pick instead of
+# re-guessing the query.
+for c in (d.get("candidates") or [])[:20]:
+    print(f"  - {c.get('displayName')} [{c.get('qualityTier')}] specId={c.get('specId')}")
+# "Did you mean" manufacturer suggestions for an unrecognized manufacturer.
+for s in (d.get("suggestions") or [])[:5]:
+    print(f"  ? did you mean: {s.get('manufacturerKey')} ({s.get('specCount')} verified specs)")
+if status == "exact_match":
     payload = d.get("payload", {})
     print(json.dumps(payload, indent=2)[:6000])
-elif status == "error":
-    print(f"MESSAGE: {d.get('message','')}")
 PYEOF
 ```
 
@@ -192,19 +206,23 @@ PYEOF
 
 Read the `STATUS:` line printed above and compose a **natural language reply**. Do NOT run more commands or echo anything — just write your response text.
 
+If a `CORRECTED:` line is present, the manufacturer name was misspelled and
+auto-corrected — tell the user which spelling you used (e.g. "I read *panasonik*
+as **panasonic**") so they can confirm it.
+
 - **`exact_match`**: Present the spec in readable form. Include transport type, connection details (port, baud rate, etc.), and the command table. Note the quality tier (S = source-verified, A = AI-generated).
 
-- **`candidate_list`**: List the devices found (name, tier, specId). Ask the user to pick one or be more specific, then re-run with `specId=<chosen>`.
+- **`candidate_list`** or **`ambiguous`**: List the devices found (name, tier, specId). Ask the user to pick one or be more specific, then re-run with `specId=<chosen>`.
 
 - **`not_found` or `rate_limited`** with "per day" in the message: Say you've hit the daily anonymous limit and give these exact instructions:
   - Resets at UTC midnight
   - Get 50 lookups/day free: register at **ai4av.net**, then run `/ai4av-lookup save-key YOUR_KEY`
 
-- **`not_found`** without rate-limit message: The device isn't in the catalog yet. Suggest requesting it at ai4av.net.
+- **`not_found`** without rate-limit message: No verified spec matched the exact constraints. If candidates were listed above, present them and offer to re-run with `specId=<chosen>`. If there were none, the device isn't in the verified catalog yet — suggest requesting it at ai4av.net.
 
-- **`unknown_manufacturer`**: The manufacturer wasn't recognized. Suggest trying a shorter name or different spelling.
+- **`unknown_manufacturer`**: No source-verified spec exists for that manufacturer in the lookup catalog. If `? did you mean` suggestions are listed, present them ("did you mean **crestron**?") and offer to re-run with the corrected manufacturer. If there are no suggestions, the device may still appear in the broader catalog at **ai4av.net/devices** (which also lists unverified specs) — suggest the user check there or request verification.
 
-- **`too_vague`**: Ask the user for the manufacturer name.
+- **`too_vague`**: If candidates were listed above, present them and ask the user to pick one. Otherwise ask for the manufacturer name.
 
 - **`error`** or **`curl_error`**: The API is unreachable or returned an unexpected error. Show the message if there is one; suggest checking internet connection.
 
