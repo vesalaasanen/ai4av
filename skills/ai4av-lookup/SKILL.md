@@ -150,7 +150,7 @@ PYEOF
 ```bash
 AI4AV_AUTH=()
 if [ -n "$AI4AV_KEY" ]; then AI4AV_AUTH=(-H "Authorization: Bearer ${AI4AV_KEY}"); fi
-AI4AV_HTTP=$(curl -sf -w "\n%{http_code}" -X POST "${AI4AV_URL}/api/skill/lookup" \
+AI4AV_HTTP=$(curl -s -w "\n%{http_code}" -X POST "${AI4AV_URL}/api/skill/lookup" \
   -H "Content-Type: application/json" \
   "${AI4AV_AUTH[@]}" \
   -d "${AI4AV_ARGS}" \

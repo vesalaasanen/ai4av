@@ -19,12 +19,14 @@ compatible_with:
 source_domains:
   - agneovo.com
   - resource.datavideo.com
+  - github.com
   - dtvideolabs.com
 source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/09/TBX-2201_RS232_CommandList.pdf
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
+  - "https://github.com/RoseOO/datavideo-dvip-docs/raw/refs/heads/master/SE1200MU/Datavideo%20SE-1200%20Ethernet%20Control%20Protocol_E1%2020190710.pdf"
   - https://www.dtvideolabs.com/user-guide-playbackproplus
-retrieved_at: 2026-05-14T23:07:15.160Z
+retrieved_at: 2026-05-18T06:31:11.014Z
 last_checked_at: 2026-05-15T21:32:07.924Z
 generated_at: 2026-05-15T21:32:07.924Z
 firmware_coverage: "Not stated in source"
@@ -582,12 +584,14 @@ interlocks:
 source_domains:
   - agneovo.com
   - resource.datavideo.com
+  - github.com
   - dtvideolabs.com
 source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/09/TBX-2201_RS232_CommandList.pdf
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
+  - "https://github.com/RoseOO/datavideo-dvip-docs/raw/refs/heads/master/SE1200MU/Datavideo%20SE-1200%20Ethernet%20Control%20Protocol_E1%2020190710.pdf"
   - https://www.dtvideolabs.com/user-guide-playbackproplus
-retrieved_at: 2026-05-14T23:07:15.160Z
+retrieved_at: 2026-05-18T06:31:11.014Z
 last_checked_at: 2026-05-15T21:32:07.924Z
 ```
 

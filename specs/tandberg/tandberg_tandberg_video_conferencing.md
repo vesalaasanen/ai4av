@@ -19,14 +19,11 @@ compatible_with:
 source_domains:
   - cisco.com
   - usermanual.wiki
-  - manualsdir.com
-  - manualmachine.com
 source_urls:
   - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
+  - https://usermanual.wiki/Document/tandbergmxpreferenceuserguideforsystemintegratorsf8.1653454696.pdf
   - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
-  - https://www.manualsdir.com/manuals/213271/tandberg-mxp.html
-  - https://manualmachine.com/tandberg/mxp/464245-user-manual/
-retrieved_at: 2026-05-13T15:28:13.056Z
+retrieved_at: 2026-05-18T17:04:01.469Z
 last_checked_at: 2026-05-14T18:17:21.166Z
 generated_at: 2026-05-14T18:17:21.166Z
 firmware_coverage: "Not stated in source"
@@ -649,14 +646,11 @@ interlocks: []
 source_domains:
   - cisco.com
   - usermanual.wiki
-  - manualsdir.com
-  - manualmachine.com
 source_urls:
   - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
+  - https://usermanual.wiki/Document/tandbergmxpreferenceuserguideforsystemintegratorsf8.1653454696.pdf
   - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
-  - https://www.manualsdir.com/manuals/213271/tandberg-mxp.html
-  - https://manualmachine.com/tandberg/mxp/464245-user-manual/
-retrieved_at: 2026-05-13T15:28:13.056Z
+retrieved_at: 2026-05-18T17:04:01.469Z
 last_checked_at: 2026-05-14T18:17:21.166Z
 ```
 
