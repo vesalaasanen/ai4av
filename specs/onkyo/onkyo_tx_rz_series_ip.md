@@ -19,7 +19,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-04T16:23:20.505Z
+retrieved_at: 2026-05-21T15:18:18.496Z
 last_checked_at: 2026-05-14T18:17:19.455Z
 generated_at: 2026-05-14T18:17:19.455Z
 firmware_coverage: "Not stated in source"
@@ -963,7 +963,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-04T16:23:20.505Z
+retrieved_at: 2026-05-21T15:18:18.496Z
 last_checked_at: 2026-05-14T18:17:19.455Z
 ```
 

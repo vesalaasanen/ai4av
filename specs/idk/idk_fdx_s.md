@@ -1,7 +1,7 @@
 ---
 spec_id: admin/idk-fdx-s
 schema_version: ai4av-public-spec-v1
-revision: 1
+revision: 2
 title: "IDK Corporation FDX-S Control Spec"
 manufacturer: IDK
 model_family: FDX-S08U
@@ -26,18 +26,18 @@ source_urls:
   - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
   - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-05-14T18:17:16.796Z
-generated_at: 2026-05-14T18:17:16.796Z
+last_checked_at: 2026-05-21T10:50:41.108Z
+generated_at: 2026-05-21T10:50:41.108Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps: []
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.796Z
-  matched_actions: 37
-  action_count: 37
+  checked_at: 2026-05-21T10:50:41.108Z
+  matched_actions: 112
+  action_count: 112
   confidence: high
-  summary: "All 50 spec actions matched source commands; all transport values verified in source."
+  summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source."
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -494,6 +494,887 @@ auth:
     - name: channel
       type: integer
       description: "1 to n=OUT1 to OUTn, 101 to 100+n=IN1 to INn"
+
+- id: output_aspect_ratio
+  label: Output Aspect Ratio for Sink Device
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: aspect
+      type: integer
+      description: "0=RESOLUTION [Default], 1=4:3, 2=5:3, 3=5:4, 4=16:9, 5=16:10, -2=No scan conversion output board installed (response only)"
+
+- id: output_image_size_position
+  label: Output Image Size/Image Position
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: h_zoom
+      type: integer
+      description: "Horizontal image size 2000 to 210000 = 20.00% to 2100.00% [Default] 10000 (100.00%)"
+    - name: v_zoom
+      type: integer
+      description: "Vertical image size 2000 to 210000 = 20.00% to 2100.00% [Default] 10000 (100.00%)"
+    - name: h_posi
+      type: integer
+      description: "Horizontal image position -210000 to +210000 = -2100.00% to +2100.00% [Default] +0"
+    - name: v_posi
+      type: integer
+      description: "Vertical image position -210000 to +210000 = -2100.00% to +2100.00% [Default] +0"
+
+- id: output_background_color
+  label: Output Background Color
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: b_red
+      type: integer
+      description: Background color Red 0-255 [Default] 0
+    - name: b_green
+      type: integer
+      description: Background color Green 0-255 [Default] 0
+    - name: b_blue
+      type: integer
+      description: Background color Blue 0-255 [Default] 0
+    - name: m_red
+      type: integer
+      description: Blank color Red 0-255 [Default] 0
+    - name: m_green
+      type: integer
+      description: Blank color Green 0-255 [Default] 0
+    - name: m_blue
+      type: integer
+      description: Blank color Blue 0-255 [Default] 0
+
+- id: output_test_pattern
+  label: Output Test Pattern
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: pattern
+      type: integer
+      description: "0=OFF [Default], 1=COLOR BAR, 2=16 STEP GRAY, 3=256 STEP GRAY, 4=WHITE RASTER, 5=RED RASTER, 6=GREEN RASTER, 7=BLUE RASTER, 8=CROSS HATCH, 9=VERTICAL STRIPE, 10=OUTPUT FRAME"
+
+- id: output_videowall_config
+  label: Output Videowall Configuration/Image Position
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: h_type
+      type: integer
+      description: "Videowall horizontal screen number 0=Not control, 1 to 20=1 to 20 screens [Default] 1"
+    - name: v_type
+      type: integer
+      description: "Videowall vertical screen number 0=Not control, 1 to 20=1 to 20 screens [Default] 1"
+    - name: h_posi
+      type: integer
+      description: "Videowall horizontal image position 0=Not control, 1 to 20=1 to 20 from left [Default] 1"
+    - name: v_posi
+      type: integer
+      description: "Videowall vertical image position 0=Not control, 1 to 20=1 to 20 from top [Default] 1"
+
+- id: output_frame_delay
+  label: Output Frame Delay
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: delay
+      type: integer
+      description: "0=OFF (No frame delay) [Default], 1=1 frame delay, 2=-1 frame delay"
+
+- id: output_sync_mode
+  label: Output Synchronization Mode
+  kind: action
+  params:
+    - name: slot_1
+      type: integer
+      description: Output board 1 (1 to x=Output board 1 to Output board x)
+    - name: mode_1
+      type: integer
+      description: "0=THROUGH [Default], 1=FOLLOWER, 2=LEADER A, 3=LEADER B, 4=LEADER C, 5=LEADER D"
+
+- id: output_video_sync
+  label: Output Video Synchronization
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "0=OFF [Default], 1=ON"
+
+- id: output_settings
+  label: Output Settings
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: auto
+      type: integer
+      description: "Output resolution mode 0=Resolution specified by resolution param, 1=Auto [Default]"
+    - name: resolution
+      type: integer
+      description: "Output resolution 1=VGA, 3=XGA, 4=WXGA, 5=WXGA(1280x800), 7=SXGA, 15=VESAHD, 16=WUXGA, 18=WQHD, 26=1080p 50Hz, 27=1080p 59.94Hz, 37=1080p 60Hz, 50-57=2160p 3840x2160, 60-67=4096x2160"
+    - name: aspect
+      type: integer
+      description: "Aspect ratio for sink 0=RESOLUTION [Default], 1=4:3, 2=5:3, 3=5:4, 4=16:9, 5=16:10, 6=256:135"
+    - name: pattern
+      type: integer
+      description: "Test pattern 0=OFF [Default], 1=COLOR BAR, 2=16 STEP GRAY, 3=256 STEP GRAY, 4=100% WHITE RASTER, 5=100% RED RASTER, 6=100% GREEN RASTER, 7=100% BLUE RASTER, 8=CROSS HATCH, 9=VERTICAL STRIPE, 10=OUTPUT FRAME"
+    - name: h_zoom
+      type: integer
+      description: "Horizontal image size 2000 to 210000 = 20.00% to 2100.00% [Default] 10000"
+    - name: v_zoom
+      type: integer
+      description: "Vertical image size 2000 to 210000 = 20.00% to 2100.00% [Default] 10000"
+    - name: h_posi
+      type: integer
+      description: "Horizontal image position -210000 to +210000 [Default] +0"
+    - name: v_posi
+      type: integer
+      description: "Vertical image position -210000 to +210000 [Default] +0"
+    - name: m_red
+      type: integer
+      description: Blank color Red 0-255 [Default] 0
+    - name: m_green
+      type: integer
+      description: Blank color Green 0-255 [Default] 0
+    - name: m_blue
+      type: integer
+      description: Blank color Blue 0-255 [Default] 0
+    - name: b_red
+      type: integer
+      description: Background color Red 0-255 [Default] 0
+    - name: b_green
+      type: integer
+      description: Background color Green 0-255 [Default] 0
+    - name: b_blue
+      type: integer
+      description: Background color Blue 0-255 [Default] 0
+    - name: c_red
+      type: integer
+      description: Output contrast Red 0-200 [Default] 100
+    - name: c_green
+      type: integer
+      description: Output contrast Green 0-200 [Default] 100
+    - name: c_blue
+      type: integer
+      description: Output contrast Blue 0-200 [Default] 100
+    - name: brightness
+      type: integer
+      description: Output brightness 0-200 [Default] 100
+    - name: mode
+      type: integer
+      description: "Effect mode 0=CUT, 1=FADE OUT-IN [Default], 2=FREEZE"
+    - name: hdcp
+      type: integer
+      description: "HDCP output 0=HDCP 2.2 priority, 1=HDCP 1.4 encrypted, 2=HDCP encrypted only if input has HDCP, 3=HDCP not encrypted"
+
+- id: output_no_signal_sync_disable
+  label: Disable Synchronous Signal Output When No Video Input
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: time
+      type: integer
+      description: "Time before sync signal stopped: 4=OFF (continue output) [Default], 5 to 60=5 sec. to 60 sec."
+
+- id: output_no_input_video
+  label: Output Video for When No Input Video
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
+    - name: video
+      type: integer
+      description: "0=BACK COLOR [Default], 1 to 4=BITMAP1 to BITMAP4"
+
+- id: output_format
+  label: Output Format
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: mode_1
+      type: integer
+      description: "0=AUTO [Default], 1=DVI, 2=HDMI YCbCr 4:4:4, 3=HDMI YCbCr 4:2:2, 4=HDMI RGB, 5=HDMI YCbCr 4:2:0 (4K@60/59.94/50 only)"
+
+- id: output_deep_color
+  label: Output Deep Color
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: color_1
+      type: integer
+      description: "Color depth 0=24 bit/pixel (8 bit/component) [Default], 1=30 bit/pixel (10 bit/component), 2=36 bit/pixel (12 bit/component)"
+
+- id: output_transition_effect
+  label: Output Video Transition Effect
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "0=CUT, 1=FADE OUT-IN [Default], 2=FREEZE"
+
+- id: output_sink_edid_check
+  label: Output Sink Device EDID Check
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: mode_1
+      type: integer
+      description: "0=In case of EDID load error treat sink as DVI device [Default], 1=Treat as HDMI device without SCDC, 2=Always treat as HDMI device without SCDC, 3=Treat as HDMI device with SCDC on error, 4=Always treat as HDMI device with SCDC"
+
+- id: output_hot_plug_duration
+  label: Output Hot Plug Ignoring Duration
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: mask_1
+      type: integer
+      description: "Hot plug ignoring duration 1=OFF [Default], 2 to 15=2 sec. to 15 sec."
+
+- id: output_sdi_format_conversion
+  label: SDI Output Format Conversion
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: conv_1
+      type: integer
+      description: "0=OFF (outputs color space as input), 1=ON (converts to YCbCr 4:2:2 10 bit standard format) [Default]"
+
+- id: output_sdi_gearbox_mode
+  label: SDI Output Gearbox Mode
+  kind: action
+  params:
+    - name: slot_1
+      type: integer
+      description: Output board (0=All output boards, 1 to m=Output board 1 to m)
+    - name: mode_1
+      type: integer
+      description: "1=Single link signal output [Default], 2=3G dual link signal output, 3=6G dual link signal output, 4=3G quad link signal output"
+
+- id: input_aspect_ratio
+  label: Input Aspect Ratio
+  kind: action
+  params:
+    - name: in_ch
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+    - name: aspect
+      type: integer
+      description: "0=AUTO [Default], 1=FULL, 2=4:3, 3=5:3, 4=5:4, 5=16:9, 6=16:10, 7=16:9 LETTER BOX"
+
+- id: input_settings
+  label: Input Settings
+  kind: action
+  params:
+    - name: in_ch
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+    - name: h_size
+      type: integer
+      description: "Horizontal active area [dot] -100 to +100 [Default] +0"
+    - name: v_size
+      type: integer
+      description: "Vertical active area [line] -30 to +30 [Default] +0"
+    - name: h_posi
+      type: integer
+      description: "Horizontal start position [dot] -100 to +100 [Default] +0"
+    - name: v_posi
+      type: integer
+      description: "Vertical start position [line] -30 to +30 [Default] +0"
+    - name: aspect
+      type: integer
+      description: "Aspect ratio 0=AUTO [Default], 1=FULL, 2=4:3, 3=5:3, 4=5:4, 5=16:9, 6=16:10, 7=16:9 LETTER BOX"
+    - name: red
+      type: integer
+      description: Input contrast Red 0-200 [Default] 100
+    - name: green
+      type: integer
+      description: Input contrast Green 0-200 [Default] 100
+    - name: blue
+      type: integer
+      description: Input contrast Blue 0-200 [Default] 100
+    - name: brightness
+      type: integer
+      description: Input brightness 0-200 [Default] 100
+    - name: sharpness
+      type: integer
+      description: "Sharpness -5 to 15 [Default] 0"
+    - name: hue
+      type: integer
+      description: Hue 0-359 [Default] 0
+    - name: saturation
+      type: integer
+      description: Saturation 0-200 [Default] 100
+
+- id: input_no_signal_monitoring
+  label: Input No-Signal Monitoring
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: time_1
+      type: integer
+      description: "No-signal input monitoring time 0=OFF, 3 to 15=3 sec. to 15 sec. [Default] 10 sec."
+
+- id: input_hdcp
+  label: HDCP Input
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: hdcp_1
+      type: integer
+      description: "HDCP input 0=DISABLE, 1=HDCP 1.4, 2=HDCP 2.2 [Default]"
+
+- id: input_3g_sdi_dual_stream
+  label: 3G-SDI Dual Stream
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: select_1
+      type: integer
+      description: "Input video 1=Video stream 1 [Default], 2=Video stream 2"
+
+- id: input_sdi_gearbox_mode
+  label: SDI Input Gearbox Mode
+  kind: action
+  params:
+    - name: slot_1
+      type: integer
+      description: Input board (0=All input boards, 1 to m=Input board 1 to m)
+    - name: mode_1
+      type: integer
+      description: "0=Determines automatically by CH-A input payload ID, 1=Single link signal input [Default], 2=3G dual link signal input, 3=6G dual link signal input, 4=3G quad link signal input"
+
+- id: input_timing_start_position
+  label: Input Horizontal/Vertical Start Position
+  kind: action
+  params:
+    - name: in_ch
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+    - name: h_posi
+      type: integer
+      description: "Horizontal start position [dot] -100 to +100 [Default] +0"
+    - name: v_posi
+      type: integer
+      description: "Vertical start position [line] -30 to +30 [Default] +0"
+
+- id: input_timing_active_area
+  label: Input Horizontal/Vertical Active Area
+  kind: action
+  params:
+    - name: in_ch
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+    - name: h_size
+      type: integer
+      description: "Horizontal active area [dot] -100 to +100 [Default] +0"
+    - name: v_size
+      type: integer
+      description: "Vertical active area [line] -30 to +30 [Default] +0"
+
+- id: output_audio_setting
+  label: Output Audio Setting (Multiview)
+  kind: action
+  params:
+    - name: out_ch_1
+      type: integer
+      description: Output channel (0=All output channels, 1 to n=OUT1 to OUTn)
+    - name: window_1
+      type: integer
+      description: "Audio selection window 1 to 4=Window A to Window D [Default] Window A"
+
+- id: output_sdi_audio_group
+  label: SDI Output Audio Group
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: primary_1
+      type: integer
+      description: "Primary audio 1=Audio group 1 (1ch to 4ch) [Default], 2=Audio group 2 (5ch to 8ch), 3=Audio group 3 (9ch to 12ch), 4=Audio group 4 (13ch to 16ch)"
+    - name: secondary_1
+      type: integer
+      description: "Secondary audio 1=Audio group 1, 2=Audio group 2 [Default], 3=Audio group 3, 4=Audio group 4"
+
+- id: input_audio_stable_wait
+  label: Input Stable Audio Input Wait
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: wait_1
+      type: integer
+      description: "Waiting time 0=OFF, 1=SHORT, 2=MID [Default], 3=LONG"
+
+- id: input_sdi_audio_group
+  label: SDI Input Audio Group
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: primary_1
+      type: integer
+      description: "Primary audio 1=Audio group 1 (1ch to 4ch) [Default], 2=Audio group 2 (5ch to 8ch), 3=Audio group 3 (9ch to 12ch), 4=Audio group 4 (13ch to 16ch)"
+    - name: secondary_1
+      type: integer
+      description: "Secondary audio 2=Audio group 2 [Default], 1=Audio group 1, 3=Audio group 3, 4=Audio group 4"
+
+- id: edid_copy
+  label: Copy EDID
+  kind: action
+  params:
+    - name: out
+      type: integer
+      description: Channel to read EDID from (1 to n=OUT1 to OUTn; 12G-SDI output channel cannot be selected)
+    - name: number
+      type: integer
+      description: "Destination memory number 1 to 4=Destination 1 to Destination 4"
+
+- id: edid_external_channel
+  label: EDID External Channel
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: out_1
+      type: integer
+      description: "External EDID output channel 1 to n=OUT1 to OUTn [Default] 1"
+
+- id: edid_frame_rate
+  label: EDID Frame Rate
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: mode_1
+      type: integer
+      description: "0=60 Hz/30 Hz [Default], 1=50 Hz/25 Hz"
+
+- id: edid_deep_color
+  label: EDID Deep Color
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: color_1
+      type: integer
+      description: "0=24 bit/pixel (8 bit/component) [Default], 1=30 bit/pixel (10 bit/component), 2=36 bit/pixel (12 bit/component)"
+
+- id: edid_audio_format
+  label: EDID Audio Format
+  kind: action
+  params:
+    - name: in
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+    - name: format_1
+      type: integer
+      description: "Audio format 0=LPCM, 1=AC-3/Dolby Digital, 2=AAC, 3=Dolby Digital Plus, 4=DTS, 5=DTS-HD, 6=Dolby TrueHD"
+    - name: frequency_1
+      type: integer
+      description: "Maximum sampling frequency 0=OFF (Not output), 1=32 kHz, 2=44.1 kHz, 3=48 kHz, 4=88.2 kHz, 5=96 kHz, 6=176.4 kHz, 7=192 kHz"
+
+- id: edid_speaker_config
+  label: EDID Speaker Configuration
+  kind: action
+  params:
+    - name: in_1
+      type: integer
+      description: Input channel (0=All inputs, 1 to n=IN1 to INn)
+    - name: ch_1
+      type: integer
+      description: "Speaker configuration 0=LR [Default], 1=2.1 channel surround sound, 2=5.1 channel surround sound, 3=7.1 channel surround sound"
+
+- id: crosspoint_recall
+  label: Recall Crosspoint Memory
+  kind: action
+  params:
+    - name: memory
+      type: integer
+      description: Crosspoint memory number 1-32
+
+- id: crosspoint_save
+  label: Save Crosspoint Memory
+  kind: action
+  params:
+    - name: memory
+      type: integer
+      description: Crosspoint memory number 1-32
+    - name: name
+      type: string
+      description: Memory name (up to 10 characters from ASCII code 0x20 to 0x7D, optional)
+
+- id: crosspoint_save_extended
+  label: Save Crosspoint Memory (Extended)
+  kind: action
+  params:
+    - name: memory
+      type: integer
+      description: Crosspoint memory number 1-32
+    - name: name
+      type: string
+      description: Memory name (up to 10 characters from ASCII code 0x20 to 0x7D, optional)
+
+- id: crosspoint_edit
+  label: Edit Crosspoint Memory
+  kind: action
+  params:
+    - name: memory
+      type: integer
+      description: Crosspoint memory number 1-32
+    - name: v_1
+      type: integer
+      description: "Input channel selected for output channel -1=Not controlled [Default], 0=OFF, 1 to n=IN1 to INn"
+
+- id: preset_memory_matching
+  label: Preset Memory Number Matching I/O Channel Status
+  kind: query
+  params: []
+
+- id: bitmap_image_output
+  label: Bitmap Image Output
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: mode_1
+      type: integer
+      description: "0=OFF [Default], 1 to 4=BITMAP1 to BITMAP4"
+
+- id: bitmap_background_color
+  label: Bitmap Background Color
+  kind: action
+  params:
+    - name: ch
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: bitmap
+      type: integer
+      description: "Bitmap number 0=ALL BITMAPS, 1=BITMAP1, 2=BITMAP2, 3=BITMAP3, 4=BITMAP4"
+    - name: red
+      type: integer
+      description: Background color Red 0-255 [Default] 0
+    - name: green
+      type: integer
+      description: Background color Green 0-255 [Default] 0
+    - name: blue
+      type: integer
+      description: Background color Blue 0-255 [Default] 0
+
+- id: bitmap_aspect_ratio
+  label: Bitmap Aspect Ratio
+  kind: action
+  params:
+    - name: ch
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: bitmap
+      type: integer
+      description: "Bitmap number 0=ALL BITMAPS, 1=BITMAP1, 2=BITMAP2, 3=BITMAP3, 4=BITMAP4"
+    - name: aspect
+      type: integer
+      description: "0=AUTO [Default], 1=FULL, 2=THROUGH"
+
+- id: bitmap_image_position
+  label: Bitmap Image Position
+  kind: action
+  params:
+    - name: ch
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: bitmap
+      type: integer
+      description: "Bitmap number 0=ALL BITMAPS, 1=BITMAP1, 2=BITMAP2, 3=BITMAP3, 4=BITMAP4"
+    - name: position
+      type: integer
+      description: "0=CENTER [Default], 1=TOP-LEFT, 2=BOTTOM-LEFT, 3=TOP-RIGHT, 4=BOTTOM-RIGHT"
+
+- id: bitmap_startup_output
+  label: Start-up Bitmap Output
+  kind: action
+  params:
+    - name: out_1
+      type: integer
+      description: Output channel (0=All outputs, 1 to n=OUT1 to OUTn)
+    - name: mode_1
+      type: integer
+      description: "0=OFF [Default], 1 to 4=BITMAP1 to BITMAP4"
+
+- id: multiwindow_window_size_position
+  label: Multi Window Size/Window Position
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (1 to n=OUT1 to OUTn)
+    - name: h_zoom
+      type: integer
+      description: "Horizontal image size 500 to 40000=5.00% to 400.00% [Default] 5000 (50.00%)"
+    - name: v_zoom
+      type: integer
+      description: "Vertical image size 500 to 40000=5.00% to 400.00% [Default] 5000 (50.00%)"
+    - name: h_posi
+      type: integer
+      description: "Horizontal image position -40000 to +10000=-400.00% to +100.00% [Default] +0 (0.00%)"
+    - name: v_posi
+      type: integer
+      description: "Vertical image position -40000 to +10000=-400.00% to +100.00% [Default] +0 (0.00%)"
+
+- id: multiwindow_image_size_position
+  label: Multi Window Image Size/Image Position
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (1 to n=OUT1 to OUTn)
+    - name: h_zoom
+      type: integer
+      description: "Horizontal image size 2000 to 40000=20.00% to 400.00% [Default] 10000 (100.00%)"
+    - name: v_zoom
+      type: integer
+      description: "Vertical image size 2000 to 40000=20.00% to 400.00% [Default] 10000 (100.00%)"
+    - name: h_posi
+      type: integer
+      description: "Horizontal image position -40000 to +10000=-400.00% to +100.00% [Default] +0 (0.00%)"
+    - name: v_posi
+      type: integer
+      description: "Vertical image position -40000 to +10000=-400.00% to +100.00% [Default] +0 (0.00%)"
+
+- id: multiwindow_background_color
+  label: Multi Window Background Color
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (1 to n=OUT1 to OUTn)
+    - name: red
+      type: integer
+      description: Background color Red 0-255 [Default] 0
+    - name: green
+      type: integer
+      description: Background color Green 0-255 [Default] 0
+    - name: blue
+      type: integer
+      description: Background color Blue 0-255 [Default] 0
+
+- id: multiwindow_layer_order
+  label: Multi Window Layer Order
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Channel of output board (1 to n=OUT1 to OUTn)
+    - name: window_a
+      type: integer
+      description: "Window A layer order 1 to 4=Front to back [Default] 1"
+    - name: window_b
+      type: integer
+      description: "Window B layer order 1 to 4=Front to back [Default] 2"
+    - name: window_c
+      type: integer
+      description: "Window C layer order 1 to 4=Front to back [Default] 3"
+    - name: window_d
+      type: integer
+      description: "Window D layer order 1 to 4=Front to back [Default] 4"
+
+- id: multiwindow_transition_effect
+  label: Multi Window Video Transition Effect
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "Fade out/Fade in 0=OFF, 1=ON [Default]"
+
+- id: multiwindow_on_off
+  label: Multi Window ON/OFF
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "0=OFF, 1=ON [Default]"
+
+- id: multiwindow_overlay_text_position
+  label: Multi Window Overlay Text Position
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: position
+      type: integer
+      description: "0=OFF, 1=TOP-LEFT [Default], 2=TOP-CENTER, 3=TOP-RIGHT, 4=BOTTOM-LEFT, 5=BOTTOM-CENTER, 6=BOTTOM-RIGHT"
+
+- id: multiwindow_overlay_text_size
+  label: Multi Window Overlay Text Size
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "0=SMALL, 1=LARGE [Default]"
+
+- id: multiwindow_border_size
+  label: Multi Window Border Size
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (1 to n=OUT1 to OUTn)
+    - name: width
+      type: integer
+      description: "Window border size 0 to 15=0 pixel to 15 pixels [Default] 0 pixel"
+
+- id: multiwindow_border_color
+  label: Multi Window Border Color
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output window (1 to n=OUT1 to OUTn)
+    - name: red
+      type: integer
+      description: Window border color Red 0-255 [Default] 0
+    - name: green
+      type: integer
+      description: Window border color Green 0-255 [Default] 0
+    - name: blue
+      type: integer
+      description: Window border color Blue 0-255 [Default] 0
+
+- id: multiwindow_sync_mode
+  label: Multi Window Synchronous Mode
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Output channel (0=All outputs for setting only, 1 to n=OUT1 to OUTn)
+    - name: mode
+      type: integer
+      description: "Synchronous mode of Window D 0=OFF, 1=ON [Default]"
+
+- id: multiwindow_memory_recall
+  label: Recall Multi Window Memory
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Channel of output board (1 to n=OUT1 to OUTn)
+    - name: preset
+      type: integer
+      description: Multi window memory number 1-10
+
+- id: multiwindow_memory_save
+  label: Save Multi Window Memory
+  kind: action
+  params:
+    - name: out_ch
+      type: integer
+      description: Channel of output board (1 to n=OUT1 to OUTn)
+    - name: preset
+      type: integer
+      description: Multi window memory number 1-10
+    - name: name
+      type: string
+      description: Memory name (up to 10 characters from ASCII code 0x20 to 0x7D, optional)
+
+- id: front_panel_group_lock
+  label: Grouping Front Panel Security Lockout
+  kind: action
+  params:
+    - name: channel
+      type: integer
+      description: "INPUT SELECT buttons, OUTPUT SELECT buttons, I/O channel selection buttons 0=Not locked, 1=Locked [Default]"
+    - name: menu
+      type: integer
+      description: "MENU/ENTER button, Navigation buttons 0=Not locked, 1=Locked [Default]"
+    - name: preset
+      type: integer
+      description: "PRESET LOAD button 0=Not locked, 1=Locked [Default]"
+
+- id: mac_address_read
+  label: Get MAC Address
+  kind: query
+  params: []
+
+- id: hdbaset_information
+  label: HDBaseT Information
+  kind: query
+  params:
+    - name: ch
+      type: integer
+      description: "I/O channels 1 to n=OUT1 to OUTn, 101 to 100+n=IN1 to INn"
+    - name: mode
+      type: integer
+      description: "Target information 0=All statuses, 1=Video signal information, 2=Link status, 3=Connection between source and sink devices, 4=Device type, 5=Version ID, 6=Operation mode, 7=Connected device type, 8=Connected version ID, 9=Operation mode of remote device, 10=Category cable length, 11=Bit error rate, 12=Video signal quality, 13=Maximum video signal quality, 14=Video signal residual gap, 15=Maximum video signal residual gap"
+
+- id: input_signal_status_detailed
+  label: Input Signal Status Detailed (Per Channel)
+  kind: query
+  params:
+    - name: in
+      type: integer
+      description: Input channel (1 to n=IN1 to INn)
+
+- id: output_signal_status_detailed
+  label: Output Signal Status Detailed (Per Channel)
+  kind: query
+  params:
+    - name: out
+      type: integer
+      description: Output channel (1 to n=OUT1 to OUTn)
 ```
 
 ## Feedbacks
@@ -642,18 +1523,18 @@ source_urls:
   - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
   - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-05-14T18:17:16.796Z
+last_checked_at: 2026-05-21T10:50:41.108Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.796Z
-matched_actions: 37
-action_count: 37
+checked_at: 2026-05-21T10:50:41.108Z
+matched_actions: 112
+action_count: 112
 confidence: high
-summary: "All 50 spec actions matched source commands; all transport values verified in source."
+summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source."
 ```
 
 ## Known Gaps

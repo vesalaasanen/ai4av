@@ -22,7 +22,9 @@ source_domains:
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
   - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
-retrieved_at: 2026-05-12T09:53:33.248Z
+  - https://www.keydigital.com/KDMS-Pro.html
+  - "https://keydigital.org/web/content/167616?download=true"
+retrieved_at: 2026-05-22T16:37:30.119Z
 last_checked_at: 2026-05-08T15:43:08.354Z
 generated_at: 2026-05-08T15:43:08.354Z
 firmware_coverage: "Not stated in source"
@@ -407,7 +409,9 @@ source_domains:
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
   - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
-retrieved_at: 2026-05-12T09:53:33.248Z
+  - https://www.keydigital.com/KDMS-Pro.html
+  - "https://keydigital.org/web/content/167616?download=true"
+retrieved_at: 2026-05-22T16:37:30.119Z
 last_checked_at: 2026-05-08T15:43:08.354Z
 ```
 

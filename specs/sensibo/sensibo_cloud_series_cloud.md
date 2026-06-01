@@ -19,7 +19,7 @@ source_domains:
   - support.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
-retrieved_at: 2026-05-14T10:39:18.298Z
+retrieved_at: 2026-05-27T14:00:29.234Z
 last_checked_at: 2026-05-18T16:51:18.196Z
 generated_at: 2026-05-18T16:51:18.196Z
 firmware_coverage: "Not stated in source"
@@ -335,7 +335,7 @@ source_domains:
   - support.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
-retrieved_at: 2026-05-14T10:39:18.298Z
+retrieved_at: 2026-05-27T14:00:29.234Z
 last_checked_at: 2026-05-18T16:51:18.196Z
 ```
 

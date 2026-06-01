@@ -19,13 +19,14 @@ compatible_with:
 source_domains:
   - assets.lutron.com
   - lutron.com
+  - github.com
 source_urls:
   - https://assets.lutron.com/a/documents/040249.pdf
   - "https://www.lutron.com/TechnicalDocumentLibrary/HWI%20RS232%20Protocol.pdf"
   - https://assets.lutron.com/a/documents/rs232protocolcommandset.040196d.pdf
+  - https://github.com/alxgmpr/lutron-protocols/blob/main/docs/protocols/leap.md
   - "https://assets.lutron.com/a/documents/hwqs%20rs-232%20ethernet%20integration.pdf"
-  - https://assets.lutron.com/a/documents/grx-ci-rs232.pdf
-retrieved_at: 2026-05-17T22:52:38.283Z
+retrieved_at: 2026-05-22T16:52:23.071Z
 last_checked_at: 2026-05-18T16:36:40.339Z
 generated_at: 2026-05-18T16:36:40.339Z
 firmware_coverage: "Not stated in source"
@@ -541,13 +542,14 @@ Command format: `:[command][parameters]<CR>` (colon prefix, carriage return exec
 source_domains:
   - assets.lutron.com
   - lutron.com
+  - github.com
 source_urls:
   - https://assets.lutron.com/a/documents/040249.pdf
   - "https://www.lutron.com/TechnicalDocumentLibrary/HWI%20RS232%20Protocol.pdf"
   - https://assets.lutron.com/a/documents/rs232protocolcommandset.040196d.pdf
+  - https://github.com/alxgmpr/lutron-protocols/blob/main/docs/protocols/leap.md
   - "https://assets.lutron.com/a/documents/hwqs%20rs-232%20ethernet%20integration.pdf"
-  - https://assets.lutron.com/a/documents/grx-ci-rs232.pdf
-retrieved_at: 2026-05-17T22:52:38.283Z
+retrieved_at: 2026-05-22T16:52:23.071Z
 last_checked_at: 2026-05-18T16:36:40.339Z
 ```
 
