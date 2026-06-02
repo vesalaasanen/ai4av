@@ -1,6 +1,6 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-01T10:02:40.176Z",
+  "generated_at": "2026-06-02T08:20:13.349Z",
   "spec_count": 885,
   "specs": [
     {
@@ -1879,7 +1879,7 @@
       "actionCount": 26,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "b07b050867d14b5deaf774f689266daa3e976983411cdd1c864564b48a93bbc5"
+      "contentHash": "1283da565acc3ea052bf31def6f4b35648e2a82918bfec9a6de14de484f76877"
     },
     {
       "specId": "admin/benq-e_series",

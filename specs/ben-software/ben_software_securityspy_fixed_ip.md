@@ -20,7 +20,7 @@ source_domains:
 source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
   - https://bensoftware.com/securityspy/web-server-spec.html
-retrieved_at: 2026-05-19T23:06:59.898Z
+retrieved_at: 2026-06-01T10:59:21.972Z
 last_checked_at: 2026-05-20T06:13:43.198Z
 generated_at: 2026-05-20T06:13:43.198Z
 firmware_coverage: "\""
@@ -917,7 +917,7 @@ source_domains:
 source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
   - https://bensoftware.com/securityspy/web-server-spec.html
-retrieved_at: 2026-05-19T23:06:59.898Z
+retrieved_at: 2026-06-01T10:59:21.972Z
 last_checked_at: 2026-05-20T06:13:43.198Z
 ```
 
