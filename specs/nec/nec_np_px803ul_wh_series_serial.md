@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:38.787Z
 last_checked_at: 2026-05-14T18:17:18.686Z
 generated_at: 2026-05-14T18:17:18.686Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user"
+  - "settable parameters that are not discrete actions are covered by"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macros described in source"
+  - "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
+  - "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
+  - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.686Z
   matched_actions: 48
   action_count: 52
-  confidence: high
-  summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication."
+  confidence: medium
+  summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -505,7 +512,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:38.787Z
 last_checked_at: 2026-05-14T18:17:18.686Z
 ```
 
@@ -516,14 +523,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.686Z
 matched_actions: 48
 action_count: 52
-confidence: high
-summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication."
+confidence: medium
+summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user"
+- "settable parameters that are not discrete actions are covered by"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macros described in source"
+- "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
+- "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
+- "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
 ```
 
 ---

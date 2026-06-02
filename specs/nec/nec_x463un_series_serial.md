@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:30.963Z
 last_checked_at: 2026-05-14T18:17:19.218Z
 generated_at: 2026-05-14T18:17:19.218Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value tables (Appendix) are partially documented; some values vary by model"
+  - "hardware flow control pins present (RTS/CTS) but usage not documented"
+  - "source does not describe unsolicited event notifications from projector"
+  - "safety warnings for lamp replacement, temperature limits, or dust accumulation not found in source"
+  - "serial hardware flow control (RTS/CTS) — pins present on DB-9 but no usage documented"
+  - "HDBaseT standby mode — mentioned as available for some models but not detailed"
+  - "maximum command rate / inter-command delay not stated in source"
+  - "response timeout values not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.218Z
   matched_actions: 51
   action_count: 53
-  confidence: high
-  summary: "All 51 spec actions matched exactly to source commands with correct transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 51 spec actions matched exactly to source commands with correct transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -671,7 +679,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:30.963Z
 last_checked_at: 2026-05-14T18:17:19.218Z
 ```
 
@@ -682,14 +690,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.218Z
 matched_actions: 51
 action_count: 53
-confidence: high
-summary: "All 51 spec actions matched exactly to source commands with correct transport parameters verified verbatim."
+confidence: medium
+summary: "All 51 spec actions matched exactly to source commands with correct transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value tables (Appendix) are partially documented; some values vary by model"
+- "hardware flow control pins present (RTS/CTS) but usage not documented"
+- "source does not describe unsolicited event notifications from projector"
+- "safety warnings for lamp replacement, temperature limits, or dust accumulation not found in source"
+- "serial hardware flow control (RTS/CTS) — pins present on DB-9 but no usage documented"
+- "HDBaseT standby mode — mentioned as available for some models but not detailed"
+- "maximum command rate / inter-command delay not stated in source"
+- "response timeout values not documented"
 ```
 
 ---

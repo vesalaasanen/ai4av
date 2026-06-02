@@ -27,14 +27,20 @@ last_checked_at: 2026-05-14T18:17:14.955Z
 generated_at: 2026-05-14T18:17:14.955Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source covers LX37/40/45/50/55 as a family — LX-55-specific differences not called out"
+  - "no TCP/IP or network control documented in this source; Network Viewer (Input 4) mentioned but protocol unspecified"
+  - "source does not specify whether power-off confirmation or safety interlock sequences are required beyond timing delays"
+  - "firmware version compatibility not stated in source"
+  - "no network/TCP control protocol documented; Input 4 (Network Viewer) mentioned but no network command syntax provided"
+  - "source doc title references LX37/40/45/50/55 but filename suggested LX500 — family applicability confirmed by Table 3 command list"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.955Z
   matched_actions: 122
   action_count: 122
-  confidence: high
-  summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim."
+  confidence: medium
+  summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1569,14 +1575,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.955Z
 matched_actions: 122
 action_count: 122
-confidence: high
-summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim."
+confidence: medium
+summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source covers LX37/40/45/50/55 as a family — LX-55-specific differences not called out"
+- "no TCP/IP or network control documented in this source; Network Viewer (Input 4) mentioned but protocol unspecified"
+- "source does not specify whether power-off confirmation or safety interlock sequences are required beyond timing delays"
+- "firmware version compatibility not stated in source"
+- "no network/TCP control protocol documented; Input 4 (Network Viewer) mentioned but no network command syntax provided"
+- "source doc title references LX37/40/45/50/55 but filename suggested LX500 — family applicability confirmed by Table 3 command list"
 ```
 
 ---

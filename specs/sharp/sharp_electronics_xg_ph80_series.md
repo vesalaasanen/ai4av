@@ -17,24 +17,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - files.sharpusa.com
   - business.sharpusa.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/Manuals/hom_man_XVZ30000.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/mon_man_PNE421_471.pdf
-retrieved_at: 2026-05-04T17:32:47.674Z
+  - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
+  - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
+  - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
+retrieved_at: 2026-05-14T18:17:20.289Z
 last_checked_at: 2026-05-14T18:17:20.289Z
 generated_at: 2026-05-14T18:17:20.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN wireless not documented; Appendix referenced but not included"
+  - "source lists 115200/38400/19200/9600/4800 selectable; default not stated"
+  - "Appendix referenced but not included; input terminal values, aspect values,"
+  - "no unsolicited event messages documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal values, aspect ratio values, light mode values, signal type values, base model type values not populated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.289Z
   matched_actions: 49
   action_count: 50
-  confidence: high
-  summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented."
+  confidence: medium
+  summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -512,12 +519,13 @@ Serial supports selectable baud rates (115200/38400/19200/9600/4800). Source doe
 
 ```yaml
 source_domains:
-  - files.sharpusa.com
   - business.sharpusa.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/Manuals/hom_man_XVZ30000.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/mon_man_PNE421_471.pdf
-retrieved_at: 2026-05-04T17:32:47.674Z
+  - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
+  - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
+  - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
+retrieved_at: 2026-05-14T18:17:20.289Z
 last_checked_at: 2026-05-14T18:17:20.289Z
 ```
 
@@ -528,14 +536,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.289Z
 matched_actions: 49
 action_count: 50
-confidence: high
-summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented."
+confidence: medium
+summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN wireless not documented; Appendix referenced but not included"
+- "source lists 115200/38400/19200/9600/4800 selectable; default not stated"
+- "Appendix referenced but not included; input terminal values, aspect values,"
+- "no unsolicited event messages documented in source"
+- "no multi-step macro sequences documented in source"
+- "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal values, aspect ratio values, light mode values, signal type values, base model type values not populated"
 ```
 
 ---

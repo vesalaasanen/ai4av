@@ -16,22 +16,40 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - lg.com
+  - justaddpower.com
+  - scribd.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.lg.com/us/business/download/resources/BT00001837/UV340C-U_Install_Manual_170825.pdf
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
+retrieved_at: 2026-05-14T18:17:17.417Z
 last_checked_at: 2026-05-14T18:17:17.417Z
 generated_at: 2026-05-14T18:17:17.417Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port for direct IP control not stated in source; only Crestron integration port (41794) is mentioned"
+  - "USB-to-Serial converter chip requirement noted (PL2303) but no further control implications documented"
+  - "flow control not stated; wiring diagrams show both 3-wire and 7-wire configs"
+  - "TCP port for direct IP control not stated in source; Crestron uses 41794 but that is protocol-specific"
+  - "all settable parameters are represented as actions above."
+  - "no unsolicited notification protocol documented in source."
+  - "no multi-step sequences described in source."
+  - "no formal safety interlock sequences or power-on sequencing requirements documented beyond the above behavioral notes."
+  - "TCP/IP port for direct LG IP control not stated; only Crestron port documented"
+  - "maximum command rate / minimum interval between commands not documented"
+  - "maximum simultaneous connection count not documented"
+  - "exact key code mapping for the Key (mc) command — source lists hex codes but most are labeled generically as \"R/C Button\""
+  - "equalizer data bitfield encoding is described but exact frequency bands per step are not fully specified"
+  - "tune command behavior differs significantly by geographic region; full parameter sets for Japan models not completely documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.417Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue represented."
+  confidence: medium
+  summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue represented. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -778,10 +796,14 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - lg.com
+  - justaddpower.com
+  - scribd.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.lg.com/us/business/download/resources/BT00001837/UV340C-U_Install_Manual_170825.pdf
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
+retrieved_at: 2026-05-14T18:17:17.417Z
 last_checked_at: 2026-05-14T18:17:17.417Z
 ```
 
@@ -792,14 +814,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.417Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue represented."
+confidence: medium
+summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue represented. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port for direct IP control not stated in source; only Crestron integration port (41794) is mentioned"
+- "USB-to-Serial converter chip requirement noted (PL2303) but no further control implications documented"
+- "flow control not stated; wiring diagrams show both 3-wire and 7-wire configs"
+- "TCP port for direct IP control not stated in source; Crestron uses 41794 but that is protocol-specific"
+- "all settable parameters are represented as actions above."
+- "no unsolicited notification protocol documented in source."
+- "no multi-step sequences described in source."
+- "no formal safety interlock sequences or power-on sequencing requirements documented beyond the above behavioral notes."
+- "TCP/IP port for direct LG IP control not stated; only Crestron port documented"
+- "maximum command rate / minimum interval between commands not documented"
+- "maximum simultaneous connection count not documented"
+- "exact key code mapping for the Key (mc) command — source lists hex codes but most are labeled generically as \"R/C Button\""
+- "equalizer data bitfield encoding is described but exact frequency bands per step are not fully specified"
+- "tune command behavior differs significantly by geographic region; full parameter sets for Japan models not completely documented"
 ```
 
 ---

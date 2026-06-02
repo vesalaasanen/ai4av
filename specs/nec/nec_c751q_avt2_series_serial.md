@@ -19,19 +19,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:36.196Z
 last_checked_at: 2026-05-14T18:17:18.323Z
 generated_at: 2026-05-14T18:17:18.323Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal code values vary across NEC model families; appendix provides common values but some entries show alternative codes (e.g., HDMI: A1h or 1Ah)"
+  - "selectable 115200/38400/19200/9600/4800 bps - no single default stated"
+  - "RTS/CTS hardware handshaking noted in pinout but flow_control setting not documented"
+  - "no discrete settable parameter commands separate from Actions above."
+  - "no unsolicited event notifications documented. All communication"
+  - "no multi-step macro sequences documented in source."
+  - "no explicit safety warnings for voltage, current, or physical hazards stated in source."
+  - "aspect mode values vary by model (appendix shows multiple codes for same modes, e.g., ZOOM=07h or 08h, FULL=09h or 10h)"
+  - "input terminal hex codes vary significantly across NEC model families; appendix lists common values but some entries show alternatives"
+  - "eco mode hex codes vary across models (e.g., NORMAL=00h or 01h, ECO=02h or 03h)"
+  - "flow_control setting not documented despite RTS/CTS pinout being specified"
+  - "CONTROL ID (ID1) and MODEL CODE (ID2) values are model-specific and not stated in this document"
+  - "default serial baud rate not stated — must be configured from the documented options (115200/38400/19200/9600/4800)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.323Z
   matched_actions: 47
   action_count: 53
-  confidence: high
-  summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage."
+  confidence: medium
+  summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -619,7 +632,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:36.196Z
 last_checked_at: 2026-05-14T18:17:18.323Z
 ```
 
@@ -630,14 +643,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.323Z
 matched_actions: 47
 action_count: 53
-confidence: high
-summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage."
+confidence: medium
+summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal code values vary across NEC model families; appendix provides common values but some entries show alternative codes (e.g., HDMI: A1h or 1Ah)"
+- "selectable 115200/38400/19200/9600/4800 bps - no single default stated"
+- "RTS/CTS hardware handshaking noted in pinout but flow_control setting not documented"
+- "no discrete settable parameter commands separate from Actions above."
+- "no unsolicited event notifications documented. All communication"
+- "no multi-step macro sequences documented in source."
+- "no explicit safety warnings for voltage, current, or physical hazards stated in source."
+- "aspect mode values vary by model (appendix shows multiple codes for same modes, e.g., ZOOM=07h or 08h, FULL=09h or 10h)"
+- "input terminal hex codes vary significantly across NEC model families; appendix lists common values but some entries show alternatives"
+- "eco mode hex codes vary across models (e.g., NORMAL=00h or 01h, ECO=02h or 03h)"
+- "flow_control setting not documented despite RTS/CTS pinout being specified"
+- "CONTROL ID (ID1) and MODEL CODE (ID2) values are model-specific and not stated in this document"
+- "default serial baud rate not stated — must be configured from the documented options (115200/38400/19200/9600/4800)"
 ```
 
 ---

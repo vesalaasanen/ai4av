@@ -18,23 +18,37 @@ compatible_with:
   required_options: []
 source_domains:
   - autonomic.atlassian.net
-  - autonomic-controls.com
+  - snapav.com
 source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
-  - http://www.autonomic-controls.com/documents/mcs30/mcs_3.0_IP_Control_Protocol.pdf
-retrieved_at: 2026-05-27T13:17:08.272Z
+  - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:24:29.182Z
 last_checked_at: 2026-05-27T15:34:22.045Z
 generated_at: 2026-05-27T15:34:22.045Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "protocol version not explicitly stated (document is version 2.6)"
+  - "number of output instances/zone configuration not stated"
+  - "no continuously settable numeric variables beyond SetVolume (already an action)."
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "protocol version not explicitly stated"
+  - "number of supported output instances/zone configuration not stated"
+  - "maximum number of input/output triggers not specified"
+  - "Shuffle command mentioned (ShuffleAvailable/Shuffle events) but not documented with syntax"
+  - "Repeat command mentioned (RepeatAvailable/Repeat events) but not documented with syntax"
+  - "SetStars command mentioned but not documented with syntax"
+  - "Back command mentioned (Back event) but only partially documented (\"Back <int>\")"
+  - "SetPickListCount command mentioned but not fully documented"
+  - "Referenced older PDF (mcs_3.0_IP_Control_Protocol.pdf) may contain additional commands not covered here"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:34:22.045Z
   matched_actions: 66
   action_count: 66
-  confidence: high
-  summary: "All 66 spec actions have literal wire-token matches in the source document; transport parameters (ports, URLs, protocols) are verified verbatim; spec represents the complete MMS-2A command catalogue."
+  confidence: medium
+  summary: "All 66 spec actions have literal wire-token matches in the source document; transport parameters (ports, URLs, protocols) are verified verbatim; spec represents the complete MMS-2A command catalogue. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1031,11 +1045,11 @@ interlocks: []
 ```yaml
 source_domains:
   - autonomic.atlassian.net
-  - autonomic-controls.com
+  - snapav.com
 source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
-  - http://www.autonomic-controls.com/documents/mcs30/mcs_3.0_IP_Control_Protocol.pdf
-retrieved_at: 2026-05-27T13:17:08.272Z
+  - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:24:29.182Z
 last_checked_at: 2026-05-27T15:34:22.045Z
 ```
 
@@ -1046,14 +1060,27 @@ verdict: verified
 checked_at: 2026-05-27T15:34:22.045Z
 matched_actions: 66
 action_count: 66
-confidence: high
-summary: "All 66 spec actions have literal wire-token matches in the source document; transport parameters (ports, URLs, protocols) are verified verbatim; spec represents the complete MMS-2A command catalogue."
+confidence: medium
+summary: "All 66 spec actions have literal wire-token matches in the source document; transport parameters (ports, URLs, protocols) are verified verbatim; spec represents the complete MMS-2A command catalogue. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "protocol version not explicitly stated (document is version 2.6)"
+- "number of output instances/zone configuration not stated"
+- "no continuously settable numeric variables beyond SetVolume (already an action)."
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "protocol version not explicitly stated"
+- "number of supported output instances/zone configuration not stated"
+- "maximum number of input/output triggers not specified"
+- "Shuffle command mentioned (ShuffleAvailable/Shuffle events) but not documented with syntax"
+- "Repeat command mentioned (RepeatAvailable/Repeat events) but not documented with syntax"
+- "SetStars command mentioned but not documented with syntax"
+- "Back command mentioned (Back event) but only partially documented (\"Back <int>\")"
+- "SetPickListCount command mentioned but not fully documented"
+- "Referenced older PDF (mcs_3.0_IP_Control_Protocol.pdf) may contain additional commands not covered here"
 ```
 
 ---

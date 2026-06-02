@@ -16,609 +16,607 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T02:51:47.177Z
 last_checked_at: 2026-04-26T19:40:52.030Z
 generated_at: 2026-04-26T19:40:52.030Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "IP/Telnet control section is documented as \"For USA only\" in the source; behavior on non-USA firmware not stated."
+  - "source documents no unsolicited notifications or asynchronous"
+  - "source does not document any multi-step sequences. The Key"
+  - "source does not document any high-voltage interlocks or"
+  - "firmware version compatibility not stated; behavior of IP control on non-USA firmware not stated; full key-code list is exhaustive but some codes are model-dependent (e.g. 3D, Soccer, REC, AutoConfig)."
 verification:
   verdict: verified
   checked_at: 2026-04-26T19:40:52.030Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source."
+  confidence: medium
+  summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-18
+created_at: 2026-06-02
 ---
 
 # LG 86QNED90UQA Control Spec
 
 ## Summary
-LG 86QNED90UQA 4K QNED TV supporting RS-232C serial and TCP/IP (Telnet) control interfaces. Serial uses 9600 bps 8N1 ASCII protocol with crossed cable. IP control connects via Telnet on port 9761. Supports power, picture, audio, channel, input routing, and 3D commands.
+LG 86QNED90UQA 4K MiniLED television with RS-232C serial (DE9 or 3.5mm phone-jack) and IP/Telnet (port 9761) control. This spec covers the ASCII command set, the supplementary key-code IR-emulation table, the communication parameters, and the model-dependent commands documented in the owner manual.
 
-<!-- UNRESOLVED: ISM Method (j p) is documented but applies only to Plasma TV models; this QNED model may not support it -->
+<!-- UNRESOLVED: IP/Telnet control section is documented as "For USA only" in the source; behavior on non-USA firmware not stated. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
   - tcp
-addressing:
-  port: 9761  # inferred: TCP port stated for Telnet IP control
 serial:
   baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
+  flow_control: none
+addressing:
+  port: 9761  # Telnet port stated in source for IP Control section
 auth:
-  type: none  # inferred: no auth procedure in source for RS-232C; IP control uses setup password (828) to enable feature but no per-command auth
+  type: password  # IP control uses 3-digit password (default 828); RS-232C has no auth
+  notes: "RS-232C transport: no authentication. IP/Telnet transport: 3-digit numeric password, default 828, configurable via Password Change submenu in IP Control Setup."
 ```
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable       # inferred from Power (ka) command and POWER off IP command
+- routable        # inferred from Input select (xb) and INPUT_SELECT IP commands
+- queryable       # inferred from FF status-read transmissions and OK/NG acknowledgement protocol
+- levelable       # inferred from volume / bass / treble / brightness / contrast / sharpness / color / tint / backlight commands
 ```
 
 ## Actions
+
+### RS-232C (Serial)
+
 ```yaml
 - id: power
   label: Power
   kind: action
+  command: "ka {data}"   # e.g. "ka 00 00 01" → power on with Set ID 1
   params:
-    - name: state
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-      description: "00: Power Off, 01: Power On"
-
+      values: [00, 01]
+      description: "00 = Power Off, 01 = Power On"
+- id: power_query
+  label: Power Status Query
+  kind: query
+  command: "ka {setid} FF"   # "ka 00 FF" with Set ID 0x00
+  params: []
 - id: aspect_ratio
   label: Aspect Ratio
   kind: action
+  command: "kc {data}"
   params:
-    - name: ratio
+    - name: data
       type: enum
-      values:
-        - "01"
-        - "02"
-        - "04"
-        - "05"
-        - "06"
-        - "07"
-        - "09"
-        - "0B"
-        - "0C"
-        - "10"
-        - "11"
-        - "12"
-        - "13"
-        - "14"
-        - "15"
-        - "16"
-        - "17"
-        - "18"
-        - "19"
-        - "1A"
-        - "1B"
-        - "1C"
-        - "1D"
-        - "1E"
-        - "1F"
-      description: "01: Normal, 02: Wide, 04: Zoom, 05: Zoom 2, 06: Original, 07: 14:9, 09: Just Scan, 0B: Full Wide, 0C: 21:9, 10-1F: Cinema Zoom 1-16"
-
+      values: ["01", "02", "04", "05", "06", "07", "09", "0B", "0C", "10-1F"]
+      description: "01=Normal, 02=16:9, 04=Zoom, 05=Zoom2, 06=Set by Program/Original, 07=14:9, 09=Just Scan, 0B=Full Wide (LATAM), 0C=21:9, 10-1F=Cinema Zoom 1-16"
 - id: screen_mute
   label: Screen Mute
   kind: action
+  command: "kd {data}"
   params:
-    - name: mode
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-        - "10"
-      description: "00: Off, 01: Screen mute on, 10: Video mute on"
-
+      values: ["00", "01", "10"]
+      description: "00=Screen mute off (picture on, video mute off), 01=Screen mute on (picture off), 10=Video mute on"
 - id: volume_mute
   label: Volume Mute
   kind: action
+  command: "ke {data}"
   params:
-    - name: state
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-      description: "00: Mute on, 01: Mute off"
-
+      values: ["00", "01"]
+      description: "00=Volume mute on, 01=Volume mute off"
 - id: volume_control
   label: Volume Control
   kind: action
+  command: "kf {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Volume level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (transmitted as 00-64 hex)"
 - id: contrast
   label: Contrast
   kind: action
+  command: "kg {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Contrast level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: brightness
   label: Brightness
   kind: action
+  command: "kh {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Brightness level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: color
   label: Color/Colour
   kind: action
+  command: "ki {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Color level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: tint
   label: Tint
   kind: action
+  command: "kj {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Tint level 0-100 (Red 0 to Green 100 decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0=Red, 100=Green (00-64 hex)"
 - id: sharpness
   label: Sharpness
   kind: action
+  command: "kk {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 50
-      description: "Sharpness level 0-50 (decimal). Note: RS-232C uses 0-32 hex range."
-
+      description: "0-50 decimal (00-32 hex)"
 - id: osd_select
   label: OSD Select
   kind: action
+  command: "kl {data}"
   params:
-    - name: state
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-      description: "00: OSD off, 01: OSD on"
-
+      values: ["00", "01"]
+      description: "00=OSD off, 01=OSD on"
 - id: remote_control_lock
   label: Remote Control Lock Mode
   kind: action
+  command: "km {data}"
   params:
-    - name: state
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-      description: "00: Lock off, 01: Lock on"
-
+      values: ["00", "01"]
+      description: "00=Lock off, 01=Lock on"
 - id: treble
   label: Treble
   kind: action
+  command: "kr {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Treble level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: bass
   label: Bass
   kind: action
+  command: "ks {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Bass level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: balance
   label: Balance
   kind: action
+  command: "kt {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Balance level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: color_temperature
   label: Color Temperature
   kind: action
+  command: "xu {data}"
   params:
-    - name: level
+    - name: data
       type: integer
-      min: 0
-      max: 100
-      description: "Color temperature 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
+      description: "0-100 decimal (00-64 hex)"
 - id: ism_method
   label: ISM Method
   kind: action
+  command: "jp {data}"
   params:
-    - name: mode
+    - name: data
       type: enum
-      values:
-        - "02"
-        - "08"
-        - "20"
-      description: "02: Orbiter, 08: Normal, 20: Color Wash"
-  note: "Only Plasma TV models; QNED models may not support this command"
-
+      values: ["02", "08", "20"]
+      description: "02=Orbiter, 08=Normal, 20=Color Wash. Plasma TV only - not applicable to QNED."
 - id: equalizer
   label: Equalizer
   kind: action
+  command: "jv {data}"
   params:
-    - name: band
-      type: integer
-      min: 1
-      max: 5
-      description: "Frequency band 1-5"
-    - name: step
-      type: integer
-      min: 0
-      max: 20
-      description: "Step value 0-20 decimal"
-
+    - name: data
+      type: string
+      description: "1-byte value: bits 7-5 select frequency band (1st-5th), bits 4-0 select step (0-20). E.g. 5th band, step 20 = 10010101 = 0x95. Adjustable when sound mode is EQ-adjustable."
 - id: energy_saving
   label: Energy Saving
   kind: action
+  command: "jq {data}"
   params:
-    - name: level
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-        - "02"
-        - "03"
-        - "04"
-        - "05"
-      description: "00: Off, 01: Minimum, 02: Medium, 03: Maximum, 04: Auto, 05: Screen off"
-
+      values: ["00", "01", "02", "03", "04", "05"]
+      description: "00=Off, 01=Minimum, 02=Medium, 03=Maximum, 04=Auto (LCD/LED), 05=Screen off"
 - id: tune_command
   label: Tune Command
   kind: action
+  command: "ma {data00} {data01} {data02}"
   params:
-    - name: channel_data
-      type: object
-      description: "Channel tuning data (varies by region and signal type)"
-    - name: input_source
-      type: enum
-      values:
-        - "00"
-        - "01"
-        - "02"
-        - "06"
-        - "10"
-        - "20"
-        - "22"
-        - "26"
-        - "40"
-        - "46"
-        - "66"
-        - "80"
-      description: "Channel input source type"
-
-- id: channel_add_delete
-  label: Channel Add/Delete
-  kind: action
-  params:
-    - name: action
-      type: enum
-      values:
-        - "00"
-        - "01"
-      description: "00: Delete/Skip, 01: Add"
-
-- id: key
-  label: Key
-  kind: action
-  params:
-    - name: code
+    - name: data00
       type: string
-      description: "IR remote key code (hexadecimal). See key code table."
-
-- id: backlight_control
-  label: Backlight Control
+      description: "High byte channel data (00-27 hex)"
+    - name: data01
+      type: string
+      description: "Low byte channel data (00-0F hex)"
+    - name: data02
+      type: string
+      description: "Input source: 00=ATV Antenna, 80=CATV, 10=DTV Antenna, 40=SDTV Satellite, 90=CADTV, a0=CA-Radio, 20=Antenna Radio, 50=S-Radio"
+- id: tune_command_extended
+  label: Tune Command (Major/Minor)
   kind: action
+  command: "ma 0 {data00} {data01} {data02} {data03} {data04} {data05}"
   params:
-    - name: level
-      type: integer
-      min: 0
-      max: 100
-      description: "Backlight level 0-100 (decimal). Note: RS-232C uses 0-64 hex range."
-
-- id: input_select
-  label: Input Select
+    - name: data00
+      type: string
+      description: "Physical channel number (don't care for digital)"
+    - name: data01
+      type: string
+      description: "Major channel high byte"
+    - name: data02
+      type: string
+      description: "Major channel low byte"
+    - name: data03
+      type: string
+      description: "Minor channel high byte"
+    - name: data04
+      type: string
+      description: "Minor channel low byte"
+    - name: data05
+      type: string
+      description: "Input source: 00=ATV, 01=CATV, 02=DTV Antenna, 06=CADTV Physical, 22=DTV Antenna (no physical), 26=CADTV (no physical), 46=CADTV Physical/Major only, 66=CADTV Major only, 07=BS, 08=CS1, 09=CS2"
+- id: channel_add_del
+  label: Channel Add/Del(Skip)
   kind: action
+  command: "mb {data}"
   params:
-    - name: source
+    - name: data
       type: enum
-      values:
-        - "00"
-        - "01"
-        - "02"
-        - "03"
-        - "04"
-        - "10"
-        - "11"
-        - "20"
-        - "21"
-        - "40"
-        - "41"
-        - "60"
-        - "90"
-        - "91"
-        - "92"
-        - "93"
-      description: "00: DTV, 01: CADTV, 02: Satellite DTV, 03: ISDB-CS1, 04: ISDB-CS2, 10: ATV, 11: CATV, 20: AV/AV1, 21: AV2, 40: Component1, 41: Component2, 60: RGB, 90-93: HDMI1-4"
-
+      values: ["00", "01"]
+      description: "00=Del(ATSC/ISDB)/Skip(DVB), 01=Add"
+- id: key
+  label: IR Key Code Send
+  kind: action
+  command: "mc {keycode}"
+  params:
+    - name: keycode
+      type: string
+      description: "Two-character hex IR key code from the KEY CODES table (e.g. 08=Power, 09=Mute, 0B=Input, 44=OK, 43=Menu/Settings)"
+- id: backlight
+  label: Control Backlight / Panel Light
+  kind: action
+  command: "mg {data}"
+  params:
+    - name: data
+      type: integer
+      description: "0-100 decimal (00-64 hex). Controls backlight on LED/LCD, panel light on others."
+- id: input_select
+  label: Input Select (Main)
+  kind: action
+  command: "xb {data}"
+  params:
+    - name: data
+      type: enum
+      values: ["00", "01", "02", "03", "04", "10", "11", "20", "21", "40", "41", "60", "90", "91", "92", "93"]
+      description: "00=DTV, 01=CADTV, 02=Satellite DTV, 03=ISDB-CS1, 04=ISDB-CS2, 10=ATV, 11=CATV, 20=AV/AV1, 21=AV2, 40=Component1, 41=Component2, 60=RGB, 90=HDMI1, 91=HDMI2, 92=HDMI3, 93=HDMI4"
 - id: auto_configure
   label: Auto Configure
   kind: action
+  command: "ju {data}"
   params:
-    - name: state
+    - name: data
       type: enum
-      values:
-        - "01"
-      description: "01: Execute auto configure"
-  note: "Works only in RGB (PC) mode"
-- id: three_d
-  label: 3D
+      values: ["01"]
+      description: "01=To set Auto Configure. Works only in RGB (PC) mode."
+```
+
+### IP / Telnet (Port 9761, USA only)
+
+```yaml
+- id: ip_power
+  label: IP Power
   kind: action
+  command: "POWER off"
+  params:
+    - name: action
+      type: enum
+      values: ["on", "off"]
+      description: "POWER on | POWER off"
+- id: ip_aspect_ratio
+  label: IP Aspect Ratio
+  kind: action
+  command: "ASPECT_RATIO {mode}"
   params:
     - name: mode
       type: enum
-      values: ["00","01","02","03"]
-      description: "00=3D On, 01=3D Off, 02=3D to 2D, 03=2D to 3D"
-    - name: pattern
-      type: enum
-      values: ["00","01","02","03","04","05"]
-      description: "00=Top and Bottom, 01=Side by Side, 02=Check Board, 03=Frame Sequential, 04=Column interleaving, 05=Row interleaving"
-    - name: eye_sequence
-      type: enum
-      values: ["00","01"]
-      description: "00=Right to Left, 01=Left to Right"
-    - name: depth
-      type: integer
-      min: 0
-      max: 20
-      description: "3D Depth: 0-20 decimal (hex 00-14). Only when 3D Mode is Manual."
-  note: "Only 3D models."
-
-- id: extended_3d
-  label: Extended 3D
+      values: ["4by3", "16by9", "setbyoriginal"]
+- id: ip_screen_mute
+  label: IP Screen Mute
   kind: action
+  command: "SCREEN_MUTE {mode}"
   params:
-    - name: option
+    - name: mode
       type: enum
-      values: ["00","01","02","06","07","08","09"]
-      description: "00=3D Picture Correction, 01=3D Depth, 02=3D Viewpoint, 06=3D Color Correction, 07=3D Sound Zooming, 08=Normal Image View, 09=3D Mode (Genre)"
-    - name: value
-      type: string
-      description: "Value range depends on option. See source for per-option semantics."
-  note: "Only 3D models."
+      values: ["screenmuteon", "videomuteon", "allmuteoff"]
+- id: ip_volume_mute
+  label: IP Volume Mute
+  kind: action
+  command: "VOLUME_MUTE {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: ["on", "off"]
+- id: ip_volume_control
+  label: IP Volume Control
+  kind: action
+  command: "VOLUME_CONTROL {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_contrast
+  label: IP Contrast
+  kind: action
+  command: "PICTURE_CONTRAST {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_brightness
+  label: IP Brightness
+  kind: action
+  command: "PICTURE_BRIGHTNESS {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_color
+  label: IP Color/Colour
+  kind: action
+  command: "PICTURE_COLOUR {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_tint
+  label: IP Tint
+  kind: action
+  command: "PICTURE_TINT {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_sharpness
+  label: IP Sharpness
+  kind: action
+  command: "PICTURE_SHARPNESS {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-50 decimal"
+- id: ip_osd_select
+  label: IP OSD Select
+  kind: action
+  command: "OSD_SELECT {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: ["on", "off"]
+- id: ip_remote_lock
+  label: IP Remote Control Lock
+  kind: action
+  command: "REMOTECONTROLER_LOCK {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: ["on", "off"]
+- id: ip_balance
+  label: IP Balance
+  kind: action
+  command: "AUDIO_BALANCE {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_color_temperature
+  label: IP Color Temperature
+  kind: action
+  command: "PICTURE_COLOUR_TEMPERATURE {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal"
+- id: ip_equalizer
+  label: IP Equalizer
+  kind: action
+  command: "AUDIO_EQUALIZER {band} {step}"
+  params:
+    - name: band
+      type: integer
+      description: "1-5 frequency band"
+    - name: step
+      type: integer
+      description: "0-20 step. Precondition: All settings > sound > sound mode settings > Equalizer on"
+- id: ip_energy_saving
+  label: IP Energy Saving
+  kind: action
+  command: "ENERGY_SAVING {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: ["screenoff", "maximum", "medium", "minimum", "off"]
+- id: ip_tune_atsc_atv
+  label: IP Tune (ATSC/ATV)
+  kind: action
+  command: "CHANNEL_SETTING_ATSC_ATV {channel} {source}"
+  params:
+    - name: channel
+      type: integer
+      description: "Channel number"
+    - name: source
+      type: enum
+      values: ["antenna", "cable"]
+- id: ip_tune_atsc_dtv_phy
+  label: IP Tune (ATSC DTV Physical)
+  kind: action
+  command: "CHANNEL_SETTING_ATSC_DTV {channel} cablenotphy"
+  params:
+    - name: channel
+      type: integer
+      description: "Channel number (cable, not using physical)"
+- id: ip_tune_atsc_dtv_majmin
+  label: IP Tune (ATSC DTV Major/Minor)
+  kind: action
+  command: "CHANNEL_SETTING_ATSC_DTV {major} {minor} {source}notphy"
+  params:
+    - name: major
+      type: integer
+      description: "Major channel number"
+    - name: minor
+      type: integer
+      description: "Minor channel number"
+    - name: source
+      type: enum
+      values: ["antenna", "cable"]
+- id: ip_channel_add_del
+  label: IP Channel Add/Del
+  kind: action
+  command: "CHANNEL_ADD_DELETE {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: ["add", "delete"]
+- id: ip_key_action
+  label: IP Key Action
+  kind: action
+  command: "KEY_ACTION {key}"
+  params:
+    - name: key
+      type: enum
+      values: [exit, channelup, channeldown, volumeup, volumedown, arrowright, arrowleft, volumemute, deviceinput, sleepreserve, livetv, previouschannel, favoritechannel, teletext, teletextoption, returnback, avmode, captionsubtitle, arrowup, arrowdown, myapp, settingmenu, ok, quickmenu, videomode, audiomode, channellist, bluebutton, yellowbutton, greenbutton, redbutton, aspectratio, audiodescription, programmorder, userguide, smarthome, simplelink, fastforward, rewind, programminfo, programguide, play, slowplay, soccerscreen, record, "3d", autoconfig, app, screenbright, number0, number1, number2, number3, number4, number5, number6, number7, number8, number9]
+- id: ip_backlight
+  label: IP Backlight
+  kind: action
+  command: "PICTURE_BACKLIGHT {level}"
+  params:
+    - name: level
+      type: integer
+      description: "0-100 decimal. Precondition: All settings > picture > Energy Saving off"
+- id: ip_input_select
+  label: IP Input Select
+  kind: action
+  command: "INPUT_SELECT {input}"
+  params:
+    - name: input
+      type: enum
+      values: [dtv, atv, cadtv, catv, avav1, component1, hdmi1, hdmi2, hdmi3]
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_state
-  label: Power State
-  type: enum
-  values:
-    - "00"
-    - "01"
-  description: "00: Off, 01: On"
+# RS-232C acknowledgement format:
+# [Command2][ ][Set ID][ ][OK][Data][x]   → success, returns data
+# [Command2][ ][Set ID][ ][NG][Data][x]   → error
+# NG Data 00 = Illegal Code
+#
+# All set commands can be queried by sending data = 0xFF; the set returns
+# the current state in the OK Acknowledgement.
 
-- id: volume_mute_state
-  label: Volume Mute State
-  type: enum
-  values:
-    - "00"
-    - "01"
-  description: "00: Mute on, 01: Mute off"
+- id: ok_acknowledgement
+  type: string
+  description: "OK Acknowledgement: [Command2][Space][SetID][Space]OK[Data]x - returned on successful command. Data is the current state when reading (FF was sent)."
+- id: ng_acknowledgement
+  type: string
+  description: "NG Acknowledgement: [Command2][Space][SetID][Space]NG[Data]x - returned on illegal code or communication error. Data 00 = Illegal Code."
 
-- id: volume_level
-  label: Volume Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: contrast_level
-  label: Contrast Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: brightness_level
-  label: Brightness Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: color_level
-  label: Color Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: tint_level
-  label: Tint Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: sharpness_level
-  label: Sharpness Level
-  type: integer
-  min: 0
-  max: 50
-
-- id: osd_state
-  label: OSD State
-  type: enum
-  values:
-    - "00"
-    - "01"
-
-- id: remote_lock_state
-  label: Remote Control Lock State
-  type: enum
-  values:
-    - "00"
-    - "01"
-
-- id: treble_level
-  label: Treble Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: bass_level
-  label: Bass Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: balance_level
-  label: Balance Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: color_temperature_level
-  label: Color Temperature Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: energy_saving_level
-  label: Energy Saving Level
-  type: enum
-  values:
-    - "00"
-    - "01"
-    - "02"
-    - "03"
-    - "04"
-    - "05"
-
-- id: backlight_level
-  label: Backlight Level
-  type: integer
-  min: 0
-  max: 100
-
-- id: input_source_state
-  label: Input Source State
-  type: enum
-  values:
-    - "00"
-    - "01"
-    - "02"
-    - "03"
-    - "04"
-    - "10"
-    - "11"
-    - "20"
-    - "21"
-    - "40"
-    - "41"
-    - "60"
-    - "90"
-    - "91"
-    - "92"
-    - "93"
-
-- id: tune_response
-  label: Tune Response
-  type: object
-  description: "Channel tune acknowledgement with data bytes"
-
-- id: ack_response
-  label: ACK/NG Response
-  type: enum
-  values:
-    - OK
-    - NG
-  description: "OK acknowledgement or NG with error code"
+# IP/Telnet acknowledgements:
+- id: ip_ok
+  type: string
+  description: "OK - printed when IP command is accepted"
+- id: ip_ng
+  type: string
+  description: "NG - printed when IP command is rejected"
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no standalone settable parameters separate from actions identified in source
+# Queryable state (all returned via the same OK Acknowledgement with the
+# corresponding command letter when data 0xFF is sent):
+- id: set_id
+  type: integer
+  description: "Set ID 1-99 (decimal 1-99, hex 0x00-0x63). Set to 0x00 to broadcast to all connected sets."
+- id: power_state
+  type: integer
+  description: "00 = Power Off, 01 = Power On (via ka FF query)"
+- id: volume_state
+  type: integer
+  description: "0-100 (00-64 hex) (via kf FF query)"
+- id: input_state
+  type: integer
+  description: "Input source code (via xb FF query) - same enum as input_select action data"
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented in source
+# UNRESOLVED: source documents no unsolicited notifications or asynchronous
+# event strings. All TV→host traffic is in response to a host query.
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macros documented in source
+# UNRESOLVED: source does not document any multi-step sequences. The Key
+# command (mc / KEY_ACTION) can emit any IR remote button, so multi-step
+# sequences can be constructed client-side, but the source does not specify
+# any canned macros.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks:
-  - description: "When main power is off and on (plug-off and plug-in, after 20-30 seconds), external control lock is released"
-  - description: "In standby mode (DC off by off timer or 'ka', 'mc' command), if key lock is on, TV will not turn on by power on key of IR and Local Key"
-  - description: "During playing or recording media, all commands except Power (ka) and Key (mc) are not executed and treated as NG"
+  - "Remote control lock (km 01) disables front-panel and IR control. When main power is cycled (plug-off and plug-in, after 20-30 seconds), the external control lock is released. In standby mode with key lock on, the TV will not turn on via IR or local key power."
+# UNRESOLVED: source does not document any high-voltage interlocks or
+# power-on sequencing requirements specific to this model.
 ```
 
 ## Notes
-- RS-232C protocol uses ASCII codes with carriage return (0x0D) terminator and space (0x20) separator
-- Set ID range: 1-99 (decimal), transmitted as 0x00-0x63 (hexadecimal). Set ID 0 controls all connected sets
-- For read queries (feedback), transmit data as FF
-- RS-232C uses 0-64 range for most parameters; IP control uses 0-100 range
-- With RS-232C cable, TV can communicate "ka command" in power-on or power-off status. With USB-to-Serial converter cable, the command works only if TV is on
-- IP control requires enabling via TV menu (Settings > IP Control Setup) with password 828
-- IP control uses Telnet on port 9761
-- 3D commands (x t, x v) are model-dependent; this QNED model documentation suggests 3D support may be included
-<!-- UNRESOLVED: ISM Method command (j p) is documented but is for Plasma TV only; presence in this document may indicate copy from generic template or actual Plasma support -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: exact Set ID configuration mechanism for IP control not detailed -->
+- Communication code is ASCII. Transmission terminates with Carriage Return (0x0D). Spaces are 0x20.
+- Use a crossed (reverse) RS-232C cable. RS-232C pinout: TV side pin 2 = RXD, pin 3 = TXD, pin 5 = GND (D-Sub 9); phone-jack variant: TV tip = TXD, ring = RXD, sleeve = GND.
+- Set ID range 1-99 (decimal), indicated as hex 0x01-0x63 on the wire; 0x00 = broadcast to all sets.
+- With RS-232C cable, the `ka` (Power) command works in both power-on and power-off states. With USB-to-Serial converter (PL2303, VID 0x0557, PID 0x2008), the command works only when TV is on.
+- During media playback or recording, all commands except Power (ka) and Key (mc) return NG.
+- 3D commands (xt, xv) and ISM Method (jp) are model-dependent. The 86QNED90UQA is not a 3D or plasma model; these commands are documented for completeness but will return NG on this model.
+- IP/Telnet control (port 9761) is documented as "For USA only" in the source. Default password 828; configurable via Password Change in the IP Control Setup menu (entered by holding Settings 5 s, then 828 + OK on the Live TV screen). WOL (Wake On LAN) power-on requires the "Mobile TV On" submenu enabled and a companion mobile app.
+- Key code 0x4C is available on ATSC/ISDB models only.
+
+<!-- UNRESOLVED: firmware version compatibility not stated; behavior of IP control on non-USA firmware not stated; full key-code list is exhaustive but some codes are model-dependent (e.g. 3D, Soccer, REC, AutoConfig). -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T02:51:47.177Z
 last_checked_at: 2026-04-26T19:40:52.030Z
 ```
 
@@ -629,14 +627,18 @@ verdict: verified
 checked_at: 2026-04-26T19:40:52.030Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source."
+confidence: medium
+summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "IP/Telnet control section is documented as \"For USA only\" in the source; behavior on non-USA firmware not stated."
+- "source documents no unsolicited notifications or asynchronous"
+- "source does not document any multi-step sequences. The Key"
+- "source does not document any high-voltage interlocks or"
+- "firmware version compatibility not stated; behavior of IP control on non-USA firmware not stated; full key-code list is exhaustive but some codes are model-dependent (e.g. 3D, Soccer, REC, AutoConfig)."
 ```
 
 ---

@@ -25,14 +25,19 @@ last_checked_at: 2026-05-14T18:17:14.428Z
 generated_at: 2026-05-14T18:17:14.428Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical connection specifications (Ethernet speed, Wi-Fi support) not stated"
+  - "no safety warnings or interlock procedures in source"
+  - "physical dimensions, power requirements, port pinouts not in source"
+  - "firmware version compatibility not stated"
+  - "specific command syntax for power on/off not detailed"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.428Z
   matched_actions: 22
   action_count: 22
-  confidence: high
-  summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved."
+  confidence: medium
+  summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -401,14 +406,18 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.428Z
 matched_actions: 22
 action_count: 22
-confidence: high
-summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved."
+confidence: medium
+summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical connection specifications (Ethernet speed, Wi-Fi support) not stated"
+- "no safety warnings or interlock procedures in source"
+- "physical dimensions, power requirements, port pinouts not in source"
+- "firmware version compatibility not stated"
+- "specific command syntax for power on/off not detailed"
 ```
 
 ---

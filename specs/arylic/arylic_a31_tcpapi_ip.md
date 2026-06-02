@@ -19,21 +19,30 @@ source_domains:
   - developer.arylic.com
 source_urls:
   - https://developer.arylic.com/tcpapi/
-  - https://developer.arylic.com/uartapi/
-  - https://developer.arylic.com/httpapi/
-retrieved_at: 2026-05-15T03:37:14.439Z
+retrieved_at: 2026-05-15T00:32:24.701Z
 last_checked_at: 2026-05-15T21:12:42.635Z
 generated_at: 2026-05-15T21:12:42.635Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "BP10XX platform passthrough commands reference a separate UART API document not included here"
+  - "no input source switching command found — only PLM+GET for querying current source"
+  - "binary packet checksum algorithm stated but no per-command byte-level encoding table"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings or power-on sequencing found in source"
+  - "BP10XX platform extended passthrough commands reference a separate UART API at https://developer.arylic.com/uartapi not included in this source"
+  - "SendKey parameter values not documented"
+  - "MaxVolume value range not documented"
+  - "Virtual Bass INT/ENH parameter ranges not documented"
+  - "firmware version compatibility not stated"
+  - "precise checksum calculation for binary packet — source says \"sum of all payload bytes\" but no worked example beyond MCU+VOL+050"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:12:42.635Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX."
+  confidence: medium
+  summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -611,9 +620,7 @@ source_domains:
   - developer.arylic.com
 source_urls:
   - https://developer.arylic.com/tcpapi/
-  - https://developer.arylic.com/uartapi/
-  - https://developer.arylic.com/httpapi/
-retrieved_at: 2026-05-15T03:37:14.439Z
+retrieved_at: 2026-05-15T00:32:24.701Z
 last_checked_at: 2026-05-15T21:12:42.635Z
 ```
 
@@ -624,14 +631,24 @@ verdict: verified
 checked_at: 2026-05-15T21:12:42.635Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX."
+confidence: medium
+summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "BP10XX platform passthrough commands reference a separate UART API document not included here"
+- "no input source switching command found — only PLM+GET for querying current source"
+- "binary packet checksum algorithm stated but no per-command byte-level encoding table"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings or power-on sequencing found in source"
+- "BP10XX platform extended passthrough commands reference a separate UART API at https://developer.arylic.com/uartapi not included in this source"
+- "SendKey parameter values not documented"
+- "MaxVolume value range not documented"
+- "Virtual Bass INT/ENH parameter ranges not documented"
+- "firmware version compatibility not stated"
+- "precise checksum calculation for binary packet — source says \"sum of all payload bytes\" but no worked example beyond MCU+VOL+050"
 ```
 
 ---

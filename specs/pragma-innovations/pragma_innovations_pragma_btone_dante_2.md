@@ -24,14 +24,21 @@ last_checked_at: 2026-04-23T08:19:05.055Z
 generated_at: 2026-04-23T08:19:05.055Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Dante-specific control commands not documented in source"
+  - "no input/output routing commands in source"
+  - "no volume/gain controls in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Dante network configuration commands not in source"
+  - "firmware version compatibility not stated"
+  - "binary command encoding not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:19:05.055Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage."
+  confidence: medium
+  summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -427,14 +434,20 @@ verdict: verified
 checked_at: 2026-04-23T08:19:05.055Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage."
+confidence: medium
+summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Dante-specific control commands not documented in source"
+- "no input/output routing commands in source"
+- "no volume/gain controls in source"
+- "no safety warnings or interlock procedures in source"
+- "Dante network configuration commands not in source"
+- "firmware version compatibility not stated"
+- "binary command encoding not documented"
 ```
 
 ---

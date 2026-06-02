@@ -24,14 +24,19 @@ last_checked_at: 2026-04-23T15:19:32.508Z
 generated_at: 2026-04-23T15:19:32.508Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific pass code value not disclosed in source"
+  - "no explicit safety warnings or interlock procedures found in source beyond state-transition notes above"
+  - "authentication pass code value not disclosed"
+  - "specific model variants or firmware compatibility not stated"
+  - "DMX/RDM protocol details not covered in this companion document"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:19:32.508Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified."
+  confidence: medium
+  summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -558,14 +563,18 @@ verdict: verified
 checked_at: 2026-04-23T15:19:32.508Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified."
+confidence: medium
+summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific pass code value not disclosed in source"
+- "no explicit safety warnings or interlock procedures found in source beyond state-transition notes above"
+- "authentication pass code value not disclosed"
+- "specific model variants or firmware compatibility not stated"
+- "DMX/RDM protocol details not covered in this companion document"
 ```
 
 ---

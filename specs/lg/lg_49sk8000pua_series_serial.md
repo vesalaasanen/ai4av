@@ -16,22 +16,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+retrieved_at: 2026-04-26T14:25:43.948Z
 last_checked_at: 2026-04-26T14:25:43.948Z
 generated_at: 2026-04-26T14:25:43.948Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware versions compatible not stated"
+  - "TCP/IP control listed as \"For USA only\" — availability in other regions unclear"
+  - "flow control not stated; cable spec says \"crossed (reverse)\""
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit power-on sequencing or safety interlock procedures beyond above"
+  - "TCP/IP control availability outside USA not confirmed"
+  - "maximum concurrent TCP connection count not stated"
+  - "flow control method for serial not stated"
+  - "ISM Method (jp) is documented as Plasma TV only — applicability to this LED model unclear"
+  - "3D commands (xt, xv) applicability to this specific model not confirmed"
 verification:
   verdict: verified
   checked_at: 2026-04-26T14:25:43.948Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified."
+  confidence: medium
+  summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -525,10 +538,12 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+retrieved_at: 2026-04-26T14:25:43.948Z
 last_checked_at: 2026-04-26T14:25:43.948Z
 ```
 
@@ -539,14 +554,24 @@ verdict: verified
 checked_at: 2026-04-26T14:25:43.948Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified."
+confidence: medium
+summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware versions compatible not stated"
+- "TCP/IP control listed as \"For USA only\" — availability in other regions unclear"
+- "flow control not stated; cable spec says \"crossed (reverse)\""
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences described in source"
+- "no explicit power-on sequencing or safety interlock procedures beyond above"
+- "TCP/IP control availability outside USA not confirmed"
+- "maximum concurrent TCP connection count not stated"
+- "flow control method for serial not stated"
+- "ISM Method (jp) is documented as Plasma TV only — applicability to this LED model unclear"
+- "3D commands (xt, xv) applicability to this specific model not confirmed"
 ```
 
 ---

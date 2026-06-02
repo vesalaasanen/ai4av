@@ -19,19 +19,34 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:23.445Z
 last_checked_at: 2026-04-25T21:56:05.731Z
 generated_at: 2026-04-25T21:56:05.731Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific NP-PA sub-models not enumerated — source references many legacy NP-*/NP-M* models in supplementary tables but no explicit NP-PA model list"
+  - "input terminal hex codes for NP-PA series specifically not in the supplementary table — only legacy model codes listed"
+  - "eco mode values for NP-PA series specifically not in the supplementary table"
+  - "aspect values for NP-PA series specifically not in the supplementary table"
+  - "source lists 115200/38400/19200/9600/4800 but does not state a default"
+  - "flow control not stated; full duplex mentioned"
+  - "no unsolicited notification protocol described in source"
+  - "no multi-step sequences described in source"
+  - "interlock switch open bit exists in error status (DATA09 Bit1) but no interlock"
+  - "input terminal hex codes specific to NP-PA series models not in supplementary tables"
+  - "aspect value mapping specific to NP-PA series not in supplementary tables"
+  - "eco mode value mapping specific to NP-PA series not in supplementary tables"
+  - "standby mode settings for NP-PA series specifically not in supplementary tables"
+  - "sub input values for PIP/PbP not documented — references appendix not included in refined source"
+  - "base model type values not documented — references appendix not included in refined source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:56:05.731Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match literal command bytes in source; transport parameters verified; comprehensive coverage of all source commands."
+  confidence: medium
+  summary: "All 53 spec actions match literal command bytes in source; transport parameters verified; comprehensive coverage of all source commands. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -664,7 +679,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:23.445Z
 last_checked_at: 2026-04-25T21:56:05.731Z
 ```
 
@@ -675,14 +690,28 @@ verdict: verified
 checked_at: 2026-04-25T21:56:05.731Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match literal command bytes in source; transport parameters verified; comprehensive coverage of all source commands."
+confidence: medium
+summary: "All 53 spec actions match literal command bytes in source; transport parameters verified; comprehensive coverage of all source commands. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific NP-PA sub-models not enumerated — source references many legacy NP-*/NP-M* models in supplementary tables but no explicit NP-PA model list"
+- "input terminal hex codes for NP-PA series specifically not in the supplementary table — only legacy model codes listed"
+- "eco mode values for NP-PA series specifically not in the supplementary table"
+- "aspect values for NP-PA series specifically not in the supplementary table"
+- "source lists 115200/38400/19200/9600/4800 but does not state a default"
+- "flow control not stated; full duplex mentioned"
+- "no unsolicited notification protocol described in source"
+- "no multi-step sequences described in source"
+- "interlock switch open bit exists in error status (DATA09 Bit1) but no interlock"
+- "input terminal hex codes specific to NP-PA series models not in supplementary tables"
+- "aspect value mapping specific to NP-PA series not in supplementary tables"
+- "eco mode value mapping specific to NP-PA series not in supplementary tables"
+- "standby mode settings for NP-PA series specifically not in supplementary tables"
+- "sub input values for PIP/PbP not documented — references appendix not included in refined source"
+- "base model type values not documented — references appendix not included in refined source"
 ```
 
 ---

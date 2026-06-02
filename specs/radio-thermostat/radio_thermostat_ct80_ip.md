@@ -28,14 +28,20 @@ last_checked_at: 2026-05-31T07:05:35.657Z
 generated_at: 2026-05-31T07:05:35.657Z
 firmware_coverage: 1.04.82+
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific TCP port number not stated; device uses DHCP for IP assignment"
+  - "no unsolicited notifications documented; device only responds to HTTP requests"
+  - "no explicit multi-step macros documented"
+  - "TCP port number not stated in source — device uses DHCP for IP assignment"
+  - "unsolicited event notifications not documented — polling model only"
+  - "binary protocol encodings not applicable — JSON over HTTP"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:05:35.657Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions match source endpoints exactly; transport parameters verified; comprehensive HTTP REST API coverage confirmed."
+  confidence: medium
+  summary: "All 44 spec actions match source endpoints exactly; transport parameters verified; comprehensive HTTP REST API coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -683,14 +689,19 @@ verdict: verified
 checked_at: 2026-05-31T07:05:35.657Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions match source endpoints exactly; transport parameters verified; comprehensive HTTP REST API coverage confirmed."
+confidence: medium
+summary: "All 44 spec actions match source endpoints exactly; transport parameters verified; comprehensive HTTP REST API coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific TCP port number not stated; device uses DHCP for IP assignment"
+- "no unsolicited notifications documented; device only responds to HTTP requests"
+- "no explicit multi-step macros documented"
+- "TCP port number not stated in source — device uses DHCP for IP assignment"
+- "unsolicited event notifications not documented — polling model only"
+- "binary protocol encodings not applicable — JSON over HTTP"
 ```
 
 ---

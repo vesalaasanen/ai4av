@@ -24,14 +24,20 @@ last_checked_at: 2026-04-23T08:27:21.223Z
 generated_at: 2026-04-23T08:27:21.223Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not explicitly stated; standard 443 assumed for WSS/HTTPS"
+  - "port number not stated in source"
+  - "no explicit multi-step macros described in source"
+  - "port number not explicitly stated in source"
+  - "firmware version compatibility not stated in source"
+  - "authentication token format not applicable (none required)"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:27:21.223Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API."
+  confidence: medium
+  summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -499,14 +505,19 @@ verdict: verified
 checked_at: 2026-04-23T08:27:21.223Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API."
+confidence: medium
+summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not explicitly stated; standard 443 assumed for WSS/HTTPS"
+- "port number not stated in source"
+- "no explicit multi-step macros described in source"
+- "port number not explicitly stated in source"
+- "firmware version compatibility not stated in source"
+- "authentication token format not applicable (none required)"
 ```
 
 ---

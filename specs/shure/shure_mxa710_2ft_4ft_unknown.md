@@ -18,27 +18,30 @@ compatible_with:
   required_options: []
 source_domains:
   - shure.com
-  - content-files.shure.com
   - pubs.shure.com
+  - techportal.shure.com
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+  - https://www.shure.com/en-US/docs/commandstrings/mxa710
+  - https://pubs.shure.com/command-strings/MXA310/en-US
+  - https://techportal.shure.com/en
+retrieved_at: 2026-05-13T21:20:49.541Z
 last_checked_at: 2026-05-18T17:04:26.397Z
 generated_at: 2026-05-18T17:04:26.397Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Dante audio transport details not documented in control spec"
+  - "no discrete settable parameters outside action scope identified beyond those in Actions"
+  - "no explicit multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Dante audio transport protocol details, device password/encryption key management, precise firmware version compatibility"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:04:26.397Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 49 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -677,15 +680,13 @@ REBOOT command does not send acknowledgement.
 ```yaml
 source_domains:
   - shure.com
-  - content-files.shure.com
   - pubs.shure.com
+  - techportal.shure.com
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+  - https://www.shure.com/en-US/docs/commandstrings/mxa710
+  - https://pubs.shure.com/command-strings/MXA310/en-US
+  - https://techportal.shure.com/en
+retrieved_at: 2026-05-13T21:20:49.541Z
 last_checked_at: 2026-05-18T17:04:26.397Z
 ```
 
@@ -696,14 +697,18 @@ verdict: verified
 checked_at: 2026-05-18T17:04:26.397Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 49 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Dante audio transport details not documented in control spec"
+- "no discrete settable parameters outside action scope identified beyond those in Actions"
+- "no explicit multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "Dante audio transport protocol details, device password/encryption key management, precise firmware version compatibility"
 ```
 
 ---

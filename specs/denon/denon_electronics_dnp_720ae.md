@@ -1,5 +1,5 @@
 ---
-spec_id: admin/denon_electronics-dnp_720ae
+spec_id: admin/denon-electronics-dnp-720ae
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Denon Electronics DNP-720AE Control Spec"
@@ -12,6 +12,7 @@ compatible_with:
     - "Denon Electronics"
   models:
     - DNP-720AE
+    - "DNP-720AE SE"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -21,40 +22,45 @@ source_domains:
 source_urls:
   - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
-last_checked_at: 2026-04-30T09:41:51.893Z
-generated_at: 2026-04-30T09:41:51.893Z
+last_checked_at: 2026-06-02T00:05:15.164Z
+generated_at: 2026-06-02T00:05:15.164Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version not stated; protocol version (Ver.8.0.0) is a document revision, not a device firmware version"
+  - "no settable scalar variables distinct from discrete actions in the source"
+  - "no multi-step sequences described in source"
+  - "source contains no safety warnings, interlock procedures, or"
+  - "MU/MV command parameter sets not enumerated in supplied source; firmware version not stated; 9L, 9N, 9O, 9P, 9Q, 9R, 9S, 9T, 9U, 9V NS codes not listed in source (only 90-94, 9A-9M, 9W shown)."
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:41:51.893Z
-  matched_actions: 47
-  action_count: 47
-  confidence: high
-  summary: "All 47 spec actions matched verbatim to source commands; transport parameters verified."
+  checked_at: 2026-06-02T00:05:15.164Z
+  matched_actions: 60
+  action_count: 60
+  confidence: medium
+  summary: "All 60 spec actions matched with exact wire-level commands; transport parameters (TCP port 23, baud 9600, 8/N/1) verified verbatim in source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-29
+created_at: 2026-06-02
 ---
 
 # Denon Electronics DNP-720AE Control Spec
 
 ## Summary
-Network audio player with RS-232C and Ethernet (TCP/Telnet) control interfaces. Supports power control, input selection across multiple sources (Tuner, USB, iPod, network services), analog tuner control, favorite management, and network audio navigation. Command format: ASCII CODE 2 chars + parameter + CR (0x0D). Max data length: 135 bytes.
+Network audio player (DNP-720AE / DNP-720AE SE) controlled via the Denon SYSTEM control protocol. Source declares the application terminal as Ethernet (TCP port 23, ASCII commands terminated with CR 0x0D). RS-232C connector pinout and serial config are documented in the source for reference, but the application model uses Ethernet.
 
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+<!-- UNRESOLVED: firmware version not stated; protocol version (Ver.8.0.0) is a document revision, not a device firmware version -->
 
 ## Transport
 ```yaml
 protocols:
-  - serial
   - tcp
+  - serial
 addressing:
-  port: 23  # TCP port 23 (telnet) - stated in source
+  port: 23  # TCP port 23 (telnet), per source
 serial:
-  baud_rate: 9600  # 9600bps - stated in source
+  baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -65,415 +71,464 @@ auth:
 
 ## Traits
 ```yaml
-- powerable      # inferred from PWON/PWSTANDBY commands
-- routable       # inferred from SI (input selection) commands
-- queryable      # inferred from ? request commands (PW?, SI?, etc.)
-- levelable      # inferred from MV (master volume) command present
+- powerable  # inferred from PWON / PWSTANDBY commands
+- routable   # inferred from SI (input select) commands
+- queryable  # inferred from PW?, SI?, FV?, TM?, TFAN?, TPAN? query commands
 ```
 
 ## Actions
 ```yaml
 - id: power_on
-  label: Power On
+  label: Power ON
   kind: action
+  command: "PWON<CR>"
   params: []
 
 - id: power_standby
-  label: Power Standby
+  label: Power STANDBY
   kind: action
+  command: "PWSTANDBY<CR>"
   params: []
 
-- id: query_power_state
-  label: Query Power State
-  kind: action
+- id: power_status_query
+  label: Power Status Query
+  kind: query
+  command: "PW?<CR>"
   params: []
 
-- id: select_input
-  label: Select Input Source
+- id: select_input_tuner
+  label: Select Input TUNER
   kind: action
-  params:
-    - name: source
-      type: enum
-      values:
-        - TUNER
-        - RHAPSODY
-        - NAPSTER
-        - PANDORA
-        - LASTFM
-        - IRADIO
-        - SERVER
-        - USB
+  command: "SITUNER<CR>"
+  params: []
 
-- id: query_input
-  label: Query Input Source
+- id: select_input_rhapsody
+  label: Select Input RHAPSODY
   kind: action
+  command: "SIRHAPSODY<CR>"
+  params: []
+
+- id: select_input_napster
+  label: Select Input NAPSTER
+  kind: action
+  command: "SINAPSTER<CR>"
+  params: []
+
+- id: select_input_pandora
+  label: Select Input PANDORA
+  kind: action
+  command: "SIPANDORA<CR>"
+  params: []
+
+- id: select_input_lastfm
+  label: Select Input LASTFM
+  kind: action
+  command: "SILASTFM<CR>"
+  params: []
+
+- id: select_input_iradio
+  label: Select Input IRADIO
+  kind: action
+  command: "SIIRADIO<CR>"
+  params: []
+
+- id: select_input_server
+  label: Select Input SERVER
+  kind: action
+  command: "SISERVER<CR>"
+  params: []
+
+- id: select_input_usb
+  label: Select Input USB
+  kind: action
+  command: "SIUSB<CR>"
+  params: []
+
+- id: select_input_query
+  label: Current Input Query
+  kind: query
+  command: "SI?<CR>"
   params: []
 
 - id: favorite_direct
-  label: Favorite Direct Change
+  label: FAVORITE Direct Change
   kind: action
+  command: "FV{favorite_no}<CR>"
   params:
-    - name: number
+    - name: favorite_no
       type: integer
-      description: Favorite number (1-99)
+      description: Two or three ASCII characters for FAVORITE number (per source: "uses two or three ASCII characters")
 
-- id: query_favorite_list
-  label: Query Favorite List
-  kind: action
+- id: favorite_query
+  label: FAVORITE List Query
+  kind: query
+  command: "FV ?<CR>"
   params: []
 
 - id: tuner_frequency_up
-  label: Tuner Frequency Up
+  label: TUNER Frequency UP
   kind: action
+  command: "TFANUP<CR>"
   params: []
 
 - id: tuner_frequency_down
-  label: Tuner Frequency Down
+  label: TUNER Frequency DOWN
   kind: action
+  command: "TFANDOWN<CR>"
   params: []
 
 - id: tuner_frequency_set
-  label: Set Tuner Frequency
+  label: TUNER Frequency Set
   kind: action
+  command: "TFAN{freq}<CR>"
   params:
-    - name: frequency
+    - name: freq
       type: string
-      description: 6-digit frequency (AN******). AM: ******.00 kHz, FM: ****.** MHz
+      description: "6-digit frequency. >050000 = AM (kHz). <050000 = FM (MHz). Example: TFAN105000 = 1050.00 kHz AM"
 
-- id: query_tuner_frequency
-  label: Query Tuner Frequency
-  kind: action
+- id: tuner_frequency_query
+  label: TUNER Frequency Query
+  kind: query
+  command: "TFAN?<CR>"
   params: []
 
 - id: tuner_preset_up
-  label: Tuner Preset Up
+  label: TUNER Preset UP
   kind: action
+  command: "TPANUP<CR>"
   params: []
 
 - id: tuner_preset_down
-  label: Tuner Preset Down
+  label: TUNER Preset DOWN
   kind: action
+  command: "TPANDOWN<CR>"
   params: []
 
 - id: tuner_preset_set
-  label: Set Tuner Preset
+  label: TUNER Preset Direct
   kind: action
+  command: "TPAN{preset_no}<CR>"
   params:
-    - name: preset
-      type: integer
-      description: Preset number (1-50)
+    - name: preset_no
+      type: string
+      description: "Two-character preset number (e.g. TPAN50 = PRESET No.50)"
+
+- id: tuner_preset_query
+  label: TUNER Preset Query
+  kind: query
+  command: "TPAN?<CR>"
+  params: []
 
 - id: tuner_preset_memory
-  label: Tuner Preset Memory
+  label: TUNER Preset Memory
   kind: action
+  command: "TPANMEM{preset_no}<CR>"
   params:
-    - name: preset
-      type: integer
-      description: Preset number to store (e.g. 05)
+    - name: preset_no
+      type: string
+      description: "Two-digit preset slot to store into (e.g. TPANMEM05)"
 
-- id: query_tuner_preset
-  label: Query Tuner Preset
+- id: tuner_band_am
+  label: TUNER Band AM
   kind: action
+  command: "TMANAM<CR>"
   params: []
 
-- id: tuner_band_select
-  label: Set Tuner Band
+- id: tuner_band_fm
+  label: TUNER Band FM
   kind: action
-  params:
-    - name: band
-      type: enum
-      values:
-        - AM
-        - FM
-
-- id: tuner_tuning_mode
-  label: Set Tuner Tuning Mode
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values:
-        - AUTO
-        - MANUAL
-
-- id: query_tuner_band_mode
-  label: Query Tuner Band and Mode
-  kind: action
+  command: "TMANFM<CR>"
   params: []
 
-- id: cursor_up
-  label: Cursor Up
-  kind: action
+- id: tuner_band_query
+  label: TUNER Band/Mode Query
+  kind: query
+  command: "TM?<CR>"
   params: []
 
-- id: cursor_down
-  label: Cursor Down
+- id: tuner_mode_auto
+  label: TUNER Mode AUTO
   kind: action
+  command: "TMANAUTO<CR>"
   params: []
 
-- id: cursor_left
-  label: Cursor Left
+- id: tuner_mode_manual
+  label: TUNER Mode MANUAL
   kind: action
+  command: "TMANMANUAL<CR>"
   params: []
 
-- id: cursor_right
-  label: Cursor Right
+- id: menu_cursor_up
+  label: Menu Cursor Up
   kind: action
+  command: "MNCUP<CR>"
   params: []
 
-- id: cursor_enter
-  label: Cursor Enter
+- id: menu_cursor_down
+  label: Menu Cursor Down
   kind: action
+  command: "MNCDN<CR>"
+  params: []
+
+- id: menu_cursor_left
+  label: Menu Cursor Left
+  kind: action
+  command: "MNCLT<CR>"
+  params: []
+
+- id: menu_cursor_right
+  label: Menu Cursor Right
+  kind: action
+  command: "MNCRT<CR>"
+  params: []
+
+- id: menu_enter
+  label: Menu Enter
+  kind: action
+  command: "MNENT<CR>"
   params: []
 
 - id: favorite_on
-  label: Favorite On
+  label: FAVORITE ON
   kind: action
+  command: "MNFAV ON<CR>"
   params: []
 
 - id: favorite_off
-  label: Favorite Off
+  label: FAVORITE OFF
   kind: action
+  command: "MNFAV OFF<CR>"
   params: []
 
-- id: net_cursor_up
+- id: ns_cursor_up
   label: Network Cursor Up
   kind: action
+  command: "NS90<CR>"
   params: []
 
-- id: net_cursor_down
+- id: ns_cursor_down
   label: Network Cursor Down
   kind: action
+  command: "NS91<CR>"
   params: []
 
-- id: net_cursor_left
+- id: ns_cursor_left
   label: Network Cursor Left
   kind: action
+  command: "NS92<CR>"
   params: []
 
-- id: net_cursor_right
+- id: ns_cursor_right
   label: Network Cursor Right
   kind: action
+  command: "NS93<CR>"
   params: []
 
-- id: net_enter
+- id: ns_enter
   label: Network Enter (Play/Pause)
   kind: action
+  command: "NS94<CR>"
   params: []
 
-- id: net_play
+- id: ns_play
   label: Network Play
   kind: action
+  command: "NS9A<CR>"
   params: []
 
-- id: net_pause
+- id: ns_pause
   label: Network Pause
   kind: action
+  command: "NS9B<CR>"
   params: []
 
-- id: net_stop
+- id: ns_stop
   label: Network Stop
   kind: action
+  command: "NS9C<CR>"
   params: []
 
-- id: net_skip_plus
+- id: ns_skip_plus
   label: Network Skip Plus
   kind: action
+  command: "NS9D<CR>"
   params: []
 
-- id: net_skip_minus
+- id: ns_skip_minus
   label: Network Skip Minus
   kind: action
+  command: "NS9E<CR>"
   params: []
 
-- id: net_repeat_one
+- id: ns_repeat_one
   label: Network Repeat One
   kind: action
+  command: "NS9H<CR>"
   params: []
 
-- id: net_repeat_all
+- id: ns_repeat_all
   label: Network Repeat All
   kind: action
+  command: "NS9I<CR>"
   params: []
 
-- id: net_repeat_off
+- id: ns_repeat_off
   label: Network Repeat Off
   kind: action
+  command: "NS9J<CR>"
   params: []
 
-- id: net_random_on
-  label: Network Random On / Shuffle Songs
+- id: ns_random_repeat_all
+  label: Network Random On / Repeat All
   kind: action
+  command: "NS9K<CR>"
   params: []
 
-- id: net_random_off
-  label: Network Random Off / Shuffle Off
+- id: ns_random_off
+  label: Network Random Off
   kind: action
+  command: "NS9M<CR>"
   params: []
 
-- id: net_browse_mode_toggle
-  label: Toggle Browse Mode / Remote Mode
+- id: ns_browse_remote_toggle
+  label: Browse Mode / Remote Mode Toggle (iPod Direct)
   kind: action
+  command: "NS9W<CR>"
   params: []
 
-- id: net_preset_call
-  label: Net Audio Preset Call
+- id: ns_preset1_call
+  label: Net Audio Preset 1 Call
   kind: action
-  params:
-    - name: preset
-      type: enum
-      values:
-        - P1
-        - P2
-        - P3
-
-- id: net_preset_memory
-  label: Net Audio Preset Memory
-  kind: action
-  params:
-    - name: preset
-      type: enum
-      values:
-        - P1 MEM
-        - P2 MEM
-        - P3 MEM
-
-- id: query_net_preset_status
-  label: Query Net Audio Preset Status
-  kind: action
+  command: "NSP1<CR>"
   params: []
 
-- id: query_onscreen_display
-  label: Query Onscreen Display Information
+- id: ns_preset2_call
+  label: Net Audio Preset 2 Call
   kind: action
+  command: "NSP2<CR>"
   params: []
 
-- id: net_direct_character_search
+- id: ns_preset3_call
+  label: Net Audio Preset 3 Call
+  kind: action
+  command: "NSP3<CR>"
+  params: []
+
+- id: ns_preset1_memory
+  label: Net Audio Preset 1 Memory
+  kind: action
+  command: "NSP1 MEM<CR>"
+  params: []
+
+- id: ns_preset2_memory
+  label: Net Audio Preset 2 Memory
+  kind: action
+  command: "NSP2 MEM<CR>"
+  params: []
+
+- id: ns_preset3_memory
+  label: Net Audio Preset 3 Memory
+  kind: action
+  command: "NSP3 MEM<CR>"
+  params: []
+
+- id: ns_preset_status
+  label: Net Audio Preset 1-3 Status (UTF-8)
+  kind: query
+  command: "NSP<CR>"
+  params: []
+
+- id: ns_onscreen_info
+  label: Request Onscreen Display Information
+  kind: query
+  command: "NSE<CR>"
+  params: []
+
+- id: ns_direct_char_search
   label: Direct Character Search
   kind: action
+  command: "NSD{char}<CR>"
   params:
-    - name: characters
+    - name: char
       type: string
-      description: "Characters 0-9, A-Z"
-
-# UNRESOLVED: PS command listed in source but parameter table not provided
+      description: "Single character 0-9 or A-Z (except iPod Direct)"
 ```
 
 ## Feedbacks
 ```yaml
 - id: power_state
-  label: Power State
   type: enum
-  values:
-    - ON
-    - STANDBY
+  values: [on, standby]
+  notes: "Device emits EVENT PWON<CR> or PWSTANDBY<CR> on power state change; PW?<CR> query returns the same."
 
-- id: input_source
-  label: Input Source
+- id: current_input
   type: enum
-  values:
-    - TUNER
-    - RHAPSODY
-    - NAPSTER
-    - PANDORA
-    - LASTFM
-    - IRADIO
-    - SERVER
-    - USB
+  values: [tuner, rhapsody, napster, pandora, lastfm, iradio, server, usb]
+  notes: "Device emits SItoken<CR> EVENT on input change; SI?<CR> query returns it."
 
-- id: favorite_response
-  label: Favorite Response
+- id: favorite_name
   type: string
-  description: "35-byte fixed format: aaaa_??????? where aaaa=favorite No., _ = null, ? = don't care"
+  notes: "EVENT FV + favorite_no + 35-byte fixed payload: char count + null + name (UTF-8). See source page 13 for layout."
+  example: "FV25FM-87.50MHz<CR>"
 
 - id: tuner_frequency
-  label: Tuner Frequency
   type: string
-  description: "6 digits. AM: ****.** kHz, FM: ****.** MHz"
+  notes: "EVENT TFAN******<CR> on frequency change. 6 digits, >050000 = AM kHz, <050000 = FM MHz."
 
 - id: tuner_preset
-  label: Tuner Preset
   type: string
-  description: "Preset number and memory"
+  notes: "EVENT TPANA1<CR> example. PRESET number A-prefixed in the source's example."
 
 - id: tuner_band_mode
-  label: Tuner Band and Mode
-  type: string
-  description: "ANAM/ANFM/ANAUTO/ANMANUAL"
+  type: enum
+  values: [anam, anfm, anauto, anmanual]
+  notes: "EVENT TMANAM / TMANFM / TMANAUTO / TMANMANUAL on band/mode change."
 
-- id: net_preset_status
-  label: Net Audio Preset Status
-  type: string
-  description: "NSP01-03 with 20-digit preset name, UTF-8 encoded"
-
-- id: onscreen_display
-  label: Onscreen Display Information
+- id: ns_preset_status
   type: object
-  properties:
-    - line0: string (Display Line 1, UTF-8, MAX 95 bytes)
-    - line1: string (Display Line 2)
-    - line2: string (Display Line 3)
-    - line3: string (Display Line 4)
-    - line4: string (Display Line 5)
-    - line5: string (Display Line 6)
-    - line6: string (Display Line 7)
-    - line7: string (Display Line 8)
-    - line8: string (Display Line 9)
+  notes: "EVENT NSP01<20-digit name><CR> through NSP03<20-digit name><CR> for presets 1-3 (UTF-8)."
+
+- id: ns_onscreen_lines
+  type: object
+  notes: "EVENT NSE0 through NSE8 (9 lines) of 96-byte fixed UTF-8 payload each, returned in response to NSE<CR>. Format: <marker><95 chars max>_<?...>. See source page 15."
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete settable parameters found in source (MV volume command exists
-# but volume level parameter range not explicitly stated - treated as action, not variable)
+# UNRESOLVED: no settable scalar variables distinct from discrete actions in the source
 ```
 
 ## Events
 ```yaml
-# Device sends EVENT messages when state changes. EVENT format identical to COMMAND format.
-# UNRESOLVED: full event list not explicitly enumerated in source. Observed events:
-#   - PW (power state change)
-#   - SI (input source change)
-#   - TF (tuner frequency change)
-#   - TP (tuner preset change)
-#   - TM (tuner band/mode change)
-#   - FV (favorite name change)
-#   - NS (network audio state changes)
-#   - NSE (onscreen display updates)
+# The source documents unsolicited EVENT messages. They share the COMMAND+PARAMETER+CR
+# format and represent state-change notifications. See Feedbacks section for the
+# enumerated EVENTs (PW, SI, FV, TF, TP, TM, NS preset status, NSE lines).
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step macros described in source
+# UNRESOLVED: no multi-step sequences described in source
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - label: "Power-on delay required"
-    description: "Wait 1 second before sending next command after PWON (power on) command."
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements. Note K) in the source says "wait 1 second
+# before next command after PWON" but that is a timing note, not a safety interlock.
 ```
 
 ## Notes
-Command structure: `[COMMAND][PARAMETER]<CR>` where CR = 0x0D. ASCII characters 0x20–0x7F only. Max 135 bytes per message.
-
-Timing constraint: wait 1 second after PWON before sending next command.
-
-Half-duplex: device can receive COMMAND during EVENT transmission. RESPONSE format identical to EVENT format.
-
-Query commands: append `?` before `<CR>` to request current state. Example: `SI?<CR>` returns current input source.
-
-Network audio commands (NS) use 2-character hex parameters (e.g., 90=up, 91=down, 94=enter/play, 9A=play, 9B=pause, 9C=stop, 9D=skip+, 9E=skip-, 9H=repeat one, 9I=repeat all, 9J=repeat off, 9K=random on, 9M=random off, 9W=browse/remote toggle).
-
-Tuner commands (TF, TP, TM) require INPUT source to be set to TUNER.
-
-Net audio presets (NSP1/NSP2/NSP3) store and recall 20-character names in UTF-8.
-
-<!-- UNRESOLVED: PS command (parameter 2 ASCII chars) referenced but full parameter table not provided in source -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: Ethernet cable type (straight vs cross) not definitively stated in source -->
-<!-- UNRESOLVED: full unsolicited event catalog not enumerated — only observed events documented -->
-<!-- UNRESOLVED: NSD direct character search parameter format (0-9, A-Z range) noted but full behavior not detailed -->
+- Application model DNP720AE(SE) declares "Application terminal: Ethernet". The RS-232C connector spec (Section Ⅰ) is included in the source for reference but the device's control interface is TCP port 23.
+- All commands are ASCII CODE + parameter + CR (0x0D). Allowed character range: 0x20 to 0x7F. 0x0D is used only as the terminator.
+- Maximum data length: 135 bytes per message.
+- RESPONSE must be returned within 200 ms of receiving a request command (COMMAND+?+CR).
+- Power-on sequencing: wait 1 second after PWON before sending the next COMMAND.
+- TF/TP/TM commands only operate when the input source is TUNER.
+- Source is document version "Ver.8.0.0" of the Denon SYSTEM control protocol; do not confuse with device firmware version.
+- The document mentions MU and MV commands in the protocol overview (mute and master volume) but does not list their parameter values in the supplied source — they are referenced but not enumerated.
+<!-- UNRESOLVED: MU/MV command parameter sets not enumerated in supplied source; firmware version not stated; 9L, 9N, 9O, 9P, 9Q, 9R, 9S, 9T, 9U, 9V NS codes not listed in source (only 90-94, 9A-9M, 9W shown). -->
 
 ## Provenance
 
@@ -483,24 +538,28 @@ source_domains:
 source_urls:
   - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
-last_checked_at: 2026-04-30T09:41:51.893Z
+last_checked_at: 2026-06-02T00:05:15.164Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:41:51.893Z
-matched_actions: 47
-action_count: 47
-confidence: high
-summary: "All 47 spec actions matched verbatim to source commands; transport parameters verified."
+checked_at: 2026-06-02T00:05:15.164Z
+matched_actions: 60
+action_count: 60
+confidence: medium
+summary: "All 60 spec actions matched with exact wire-level commands; transport parameters (TCP port 23, baud 9600, 8/N/1) verified verbatim in source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version not stated; protocol version (Ver.8.0.0) is a document revision, not a device firmware version"
+- "no settable scalar variables distinct from discrete actions in the source"
+- "no multi-step sequences described in source"
+- "source contains no safety warnings, interlock procedures, or"
+- "MU/MV command parameter sets not enumerated in supplied source; firmware version not stated; 9L, 9N, 9O, 9P, 9Q, 9R, 9S, 9T, 9U, 9V NS codes not listed in source (only 90-94, 9A-9M, 9W shown)."
 ```
 
 ---

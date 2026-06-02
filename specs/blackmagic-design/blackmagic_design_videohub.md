@@ -31,13 +31,19 @@ known_gaps:
   - "VIDEO INPUT STATUS"
   - "VIDEO OUTPUT STATUS"
   - "SERIAL PORT STATUS"
+  - "specific model variants (e.g., Universal Videohub, Workgroup Videohub) not enumerated in source beyond Smart Videohub example"
+  - "power commands not described in source"
+  - "no safety warnings or interlock procedures explicitly stated in source beyond port locking behavior"
+  - "power on/off commands not described in source"
+  - "compatible_with.models limited to Smart Videohub example; other Videohub models (Universal, Workgroup) confirmed present by protocol blocks but not explicitly enumerated"
+  - "firmware compatibility range not stated beyond Videohub 4.9.1"
 verification:
   verdict: verified
   checked_at: 2026-04-26T11:24:40.262Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions match source commands with correct parameters and transport details verified."
+  confidence: medium
+  summary: "All 14 spec actions match source commands with correct parameters and transport details verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -405,8 +411,8 @@ verdict: verified
 checked_at: 2026-04-26T11:24:40.262Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions match source commands with correct parameters and transport details verified."
+confidence: medium
+summary: "All 14 spec actions match source commands with correct parameters and transport details verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -417,6 +423,12 @@ summary: "All 14 spec actions match source commands with correct parameters and 
 - "VIDEO INPUT STATUS"
 - "VIDEO OUTPUT STATUS"
 - "SERIAL PORT STATUS"
+- "specific model variants (e.g., Universal Videohub, Workgroup Videohub) not enumerated in source beyond Smart Videohub example"
+- "power commands not described in source"
+- "no safety warnings or interlock procedures explicitly stated in source beyond port locking behavior"
+- "power on/off commands not described in source"
+- "compatible_with.models limited to Smart Videohub example; other Videohub models (Universal, Workgroup) confirmed present by protocol blocks but not explicitly enumerated"
+- "firmware compatibility range not stated beyond Videohub 4.9.1"
 ```
 
 ---

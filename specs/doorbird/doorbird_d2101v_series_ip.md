@@ -1,16 +1,16 @@
 ---
-spec_id: admin/doorbird-d2101v_series
+spec_id: admin/doorbird-d2101v-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Doorbird D2101V Series Control Spec"
-manufacturer: Doorbird
-model_family: "D2101V Series"
+title: "DoorBird D2101V Series Control Spec"
+manufacturer: DoorBird
+model_family: "DoorBird D2101V Series"
 aliases: []
 compatible_with:
   manufacturers:
-    - Doorbird
+    - DoorBird
   models:
-    - "D2101V Series"
+    - "DoorBird D2101V Series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -19,485 +19,530 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
-last_checked_at: 2026-04-23T05:36:57.929Z
-generated_at: 2026-04-23T05:36:57.929Z
+retrieved_at: 2026-04-30T04:32:20.460Z
+last_checked_at: 2026-06-02T00:05:15.898Z
+generated_at: 2026-06-02T00:05:15.898Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility ranges (per-command minimums noted in source but no overall range for the D2101V Series specifically)"
+  - "no multi-step macro sequences documented in source."
+  - "no voltage / current / power sequencing requirements stated in source."
+  - "Source does not explicitly call out \"D2101V\" by model name — refined doc covers the general LAN-2-LAN API for \"DoorBird and BirdGuard\" with examples referencing D101/D21x/D10x/D11x. D2101V firmware version range, supported video resolutions specific to D2101V, and any D2101V-specific endpoints (vs. D11x or D10x) are UNRESOLVED."
+  - "Voltage, current, power consumption, fault-recovery sequences not in source."
+  - "No explicit timeouts for HTTP keep-alive, monitor.cgi stream maximum duration, or session retry behavior."
 verification:
   verdict: verified
-  checked_at: 2026-04-23T05:36:57.929Z
-  matched_actions: 25
-  action_count: 25
-  confidence: high
-  summary: "All 25 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage confirmed."
+  checked_at: 2026-06-02T00:05:15.898Z
+  matched_actions: 27
+  action_count: 27
+  confidence: medium
+  summary: "All 27 spec actions verified as literal matches in source; all transport parameters (HTTP/HTTPS 80/443, RTSP 554/8557, SIP 5060, UDP 6524/35344) confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
-# Doorbird D2101V Series Control Spec
+# DoorBird D2101V Series Control Spec
 
 ## Summary
-The Doorbird D2101V Series is a video door station with IP-based control via HTTP CGI endpoints on port 80 (HTTP) and 443 (HTTPS), RTSP video streaming, SIP telephony support, and UDP event broadcasts for monitoring doorbell, motion, and sensor events.
-<!-- UNRESOLVED: specific model variants (D2101V, D2101FV, etc.) not enumerated in source -->
+DoorBird D2101V Series IP Video Door Station. LAN-2-LAN HTTP/HTTPS API on TCP 80/443 (`/bha-api/`) for door control, live image/video, audio receive/transmit, history, favorites, schedules, SIP control. RTSP video on TCP 554 and 8557. Encrypted event monitoring via UDP broadcasts on ports 6524 and 35344.
+
+<!-- UNRESOLVED: firmware version compatibility ranges (per-command minimums noted in source but no overall range for the D2101V Series specifically) -->
 
 ## Transport
 ```yaml
 protocols:
+  - http
   - tcp
   - udp
 addressing:
+  base_url: "http://<device-ip>/bha-api/"
   port: 80
-  base_url: http://<device-ip>/bha-api/
+  https_port: 443
+  rtsp_port: 554
+  rtsp_over_http_port: 8557
+  sip_port: 5060
+  udp_event_ports: [6524, 35344]
 auth:
-  type: basic  # stated: Basic or Digest authentication per RFC 2617
+  type: basic_or_digest  # RFC 2617; alternative plaintext params http-user/http-password supported
+  rate_limit: "1 concurrent connection per second; IP/user locked 1 minute on extensive bad credentials (HTTP 423)"
 ```
 
 ## Traits
 ```yaml
-queryable: true
-levelable: true
+- powerable     # inferred from restart.cgi command
+- queryable     # inferred from info.cgi, sip.cgi?action=status, schedule.cgi GET, favorites.cgi GET
+- routable      # inferred from open-door.cgi r=<relay> parameter
+- streamable    # inferred from video.cgi, audio-receive.cgi, audio-transmit.cgi, RTSP endpoints
 ```
 
 ## Actions
 ```yaml
-- id: open_door
-  label: Open Door
+- id: get_session
+  label: Create Session ID
   kind: action
+  command: "GET /bha-api/getsession.cgi"
+  params: []
+  notes: "Returns SESSIONID (10-minute validity) and NOTIFICATION_ENCRYPTION_KEY (32-64 bytes, ChaCha20 uses first 32). Requires valid user."
+
+- id: invalidate_session
+  label: Invalidate Session ID
+  kind: action
+  command: "GET /bha-api/getsession.cgi?invalidate={session_id}"
+  params:
+    - name: session_id
+      type: string
+      description: Existing session-id to invalidate
+
+- id: live_video_stream
+  label: Live Video MJPEG Stream
+  kind: action
+  command: "GET /bha-api/video.cgi"
+  params: []
+  notes: "Multipart MJPEG, up to 8 fps. 204 if no permission. Optional sessionid=<id> param for unencrypted credential-free streaming."
+
+- id: live_image
+  label: Live Image JPEG
+  kind: query
+  command: "GET /bha-api/image.cgi"
+  params: []
+  notes: "Single JPEG snapshot. 204 if no permission."
+
+- id: open_door
+  label: Open Door / Trigger Relay
+  kind: action
+  command: "GET /bha-api/open-door.cgi?r={relay}"
   params:
     - name: relay
       type: string
-      required: false
-      description: "Relay to trigger, e.g. '1' or 'gggaaa@1' (DoorControllerID@relay)"
-  http_path: /bha-api/open-door.cgi
-  http_method: GET
+      description: Optional. "1" | "2" | "<doorcontrollerID>@<relay>" (e.g. "gggaaa@1"). Omit to trigger physical relay 1.
+  notes: "Energize door opener/alarm output relay. 204 if no permission."
 
 - id: light_on
   label: Light On
   kind: action
+  command: "GET /bha-api/light-on.cgi"
   params: []
-  http_path: /bha-api/light-on.cgi
-  http_method: GET
+  notes: "Energize light relay. 204 if no permission."
 
-- id: restart
-  label: Restart Device
-  kind: action
-  params: []
-  http_path: /bha-api/restart.cgi
-  http_method: GET
-
-- id: get_session
-  label: Get Session ID
-  kind: action
-  params: []
-  http_path: /bha-api/getsession.cgi
-  http_method: GET
-
-- id: invalidate_session
-  label: Invalidate Session
-  kind: action
-  params:
-    - name: invalidate
-      type: string
-      required: true
-      description: Session ID to invalidate
-  http_path: /bha-api/getsession.cgi
-  http_method: GET
-
-- id: get_video
-  label: Live Video Stream (MJPEG)
-  kind: action
-  params: []
-  http_path: /bha-api/video.cgi
-  http_method: GET
-
-- id: get_image
-  label: Live Image (JPEG)
-  kind: action
-  params: []
-  http_path: /bha-api/image.cgi
-  http_method: GET
-
-- id: get_history_image
-  label: History Image
-  kind: action
+- id: history_image
+  label: History Image Request
+  kind: query
+  command: "GET /bha-api/history.cgi?index={index}&event={event}"
   params:
     - name: index
       type: integer
-      required: true
-      description: Index of history image (1 = latest)
+      description: 1..50, where 1 is latest
     - name: event
       type: string
-      required: false
-      description: "Event type: doorbell or motionsensor"
-  http_path: /bha-api/history.cgi
-  http_method: GET
+      description: "Optional. 'doorbell' | 'motionsensor'. Defaults to doorbell history."
+  notes: "Returns cloud-stored JPEG. 204 if no permission."
 
 - id: monitor_events
-  label: Monitor Events (Multipart Stream)
-  kind: action
+  label: Monitor Events Stream
+  kind: query
+  command: "GET /bha-api/monitor.cgi?ring={events}"
   params:
-    - name: ring
+    - name: events
       type: string
-      required: true
-      description: "Event types to monitor: doorbell,motionsensor"
-  http_path: /bha-api/monitor.cgi
-  http_method: GET
+      description: "Comma-separated. 'doorbell' and/or 'motionsensor'."
+  notes: "Continuous multipart text stream of state changes (H/L). Max 8 concurrent streams; 509 when exhausted."
 
 - id: audio_receive
-  label: Receive Live Audio (G.711 μ-law)
+  label: Live Audio Receive
   kind: action
+  command: "GET /bha-api/audio-receive.cgi"
   params: []
-  http_path: /bha-api/audio-receive.cgi
-  http_method: GET
+  notes: "G.711 µ-law, 8000 Hz. 204 if no permission."
 
 - id: audio_transmit
-  label: Transmit Live Audio (G.711 μ-law)
+  label: Live Audio Transmit
   kind: action
-  params: []
-  http_path: /bha-api/audio-transmit.cgi
-  http_method: POST
+  command: "POST /bha-api/audio-transmit.cgi"
+  params:
+    - name: body
+      type: binary
+      description: G.711 µ-law audio stream, Content-Type audio/basic
+  notes: "Only one talker at a time. Client must implement AEC/ANR."
 
-- id: get_info
-  label: Device Info
-  kind: action
+- id: info_query
+  label: Device Info Query
+  kind: query
+  command: "GET /bha-api/info.cgi"
   params: []
-  http_path: /bha-api/info.cgi
-  http_method: GET
+  notes: "JSON. Returns FIRMWARE, BUILD_NUMBER, PRIMARY_MAC_ADDR, RELAYS[], DEVICE-TYPE. RELAYS field requires firmware 000108+."
 
 - id: list_favorites
   label: List Favorites
-  kind: action
+  kind: query
+  command: "GET /bha-api/favorites.cgi"
   params: []
-  http_path: /bha-api/favorites.cgi
-  http_method: GET
+  notes: "Requires API-Operator permission. JSON. Firmware 000110+."
 
 - id: save_favorite
-  label: Add or Change Favorite
+  label: Add/Change Favorite
   kind: action
+  command: "GET /bha-api/favorites.cgi?action=save&type={type}&title={title}&value={value}&id={id}"
   params:
-    - name: action
-      type: string
-      required: true
-      description: Fixed value "save"
     - name: type
       type: string
-      required: true
-      description: "sip or http"
+      description: "sip" | "http"
     - name: title
       type: string
-      required: true
-      description: Name or short description
+      description: Name/short description
     - name: value
       type: string
-      required: true
-      description: URL or SIP target
+      description: URL (http/https) or SIP target, may include credentials
     - name: id
       type: integer
-      required: false
-      description: ID of existing favorite to change
-  http_path: /bha-api/favorites.cgi
-  http_method: POST
+      description: Optional. Omit to create new; provide to update existing.
+  notes: "Response header 'favoriteid' returns new id on add. Type cannot be switched on update."
 
-- id: delete_favorite
+- id: remove_favorite
   label: Delete Favorite
   kind: action
+  command: "GET /bha-api/favorites.cgi?action=remove&type={type}&id={id}"
   params:
-    - name: action
-      type: string
-      required: true
-      description: Fixed value "remove"
     - name: type
       type: string
-      required: true
-      description: "sip or http"
+      description: "sip" | "http"
     - name: id
       type: integer
-      required: true
       description: ID of favorite to delete
-  http_path: /bha-api/favorites.cgi
-  http_method: POST
 
 - id: list_schedules
   label: List Schedules
-  kind: action
+  kind: query
+  command: "GET /bha-api/schedule.cgi"
   params: []
-  http_path: /bha-api/schedule.cgi
-  http_method: GET
+  notes: "Requires API-Operator permission. JSON. Firmware 000110+."
 
-- id: add_schedule
-  label: Add or Update Schedule
+- id: save_schedule
+  label: Add/Update Schedule Entry
   kind: action
+  command: "POST /bha-api/schedule.cgi"
   params:
-    - name: input
-      type: string
-      required: true
-      description: "doorbell, motion, rfid, or fingerprint"
-    - name: param
-      type: string
-      required: false
-      description: Doorbell number, transponder ID, or fingerprint ID
-    - name: output
+    - name: body
       type: json
-      required: true
-      description: JSON array of output action configurations
-  http_path: /bha-api/schedule.cgi
-  http_method: POST
+      description: 'JSON object {input, param, output:[{event, param, enabled, schedule:{once|from-to|weekdays}}]}. input: doorbell|motion|rfid|fingerprint. event: notify|sip|relay|http.'
+  notes: "One request per input type. Time unit seconds; weekday starts Sunday 0:00; max 604799; start times multiples of 1800."
 
-- id: delete_schedule
+- id: remove_schedule
   label: Delete Schedule Entry
   kind: action
+  command: "GET /bha-api/schedule.cgi?action=remove&input={input}&param={param}"
   params:
-    - name: action
-      type: string
-      required: true
-      description: Fixed value "remove"
     - name: input
       type: string
-      required: true
-      description: "doorbell, motion, or rfid"
+      description: "doorbell" | "motion" | "rfid"
     - name: param
       type: string
-      required: false
-      description: Doorbell number or transponder ID
-  http_path: /bha-api/schedule.cgi
-  http_method: GET
+      description: doorbell-number / transponder-id / fingerprint-id
 
-- id: sip_register
-  label: SIP Registration
+- id: restart_device
+  label: Restart Device
   kind: action
+  command: "GET /bha-api/restart.cgi"
+  params: []
+  notes: "No diagnostic sound after this restart. 503 if busy (firmware update)."
+
+- id: sip_registration
+  label: SIP Proxy Registration
+  kind: action
+  command: "GET /bha-api/sip.cgi?action=registration&user={user}&password={password}&url={url}"
   params:
     - name: user
       type: string
-      required: true
-      description: SIP proxy authentication user
+      description: SIP proxy auth user
     - name: password
       type: string
-      required: true
-      description: SIP proxy authentication password
+      description: SIP proxy auth password
     - name: url
       type: string
-      required: true
-      description: SIP proxy IP/hostname
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+      description: IP/hostname of SIP proxy
+  notes: "Requires API-Operator permission. Not required for P2P calls."
 
 - id: sip_makecall
   label: SIP Make Call
   kind: action
+  command: "GET /bha-api/sip.cgi?action=makecall&url={url}"
   params:
     - name: url
       type: string
-      required: true
-      description: SIP URL to call
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+      description: SIP URL to call (e.g. sip:108@192.168.123.22)
+  notes: "Requires API-Operator permission. Auto-hangup after 180 seconds. One simultaneous SIP call only."
 
 - id: sip_hangup
   label: SIP Hangup
   kind: action
+  command: "GET /bha-api/sip.cgi?action=hangup"
   params: []
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+  notes: "Requires API-Operator permission. 200 even when no call ongoing."
 
 - id: sip_settings
   label: SIP Settings
   kind: action
+  command: "GET /bha-api/sip.cgi?action=settings&{param}={value}"
   params:
     - name: enable
       type: integer
-      required: false
-      description: "0..1, enable SIP after reboot"
+      description: 0..1, default 0. Enable SIP after reboot.
     - name: mic_volume
       type: integer
-      required: false
-      description: "1..100, microphone volume"
+      description: 1..100, default 33
     - name: spk_volume
       type: integer
-      required: false
-      description: "1..100, speaker volume"
+      description: 1..100, default 70
     - name: dtmf
       type: integer
-      required: false
-      description: "0..1, enable DTMF support"
+      description: 0..1, default 0
+    - name: autocall_doorbell_url
+      type: string
+      description: "DEPRECATED - use schedule.cgi. SIP URL or 'none'."
     - name: relay1_passcode
       type: integer
-      required: false
-      description: "0..99999999, pincode for door relay"
+      description: 0..99999999, DTMF pincode for relay
     - name: incoming_call_enable
       type: integer
-      required: false
-      description: "0..1, enable incoming calls"
+      description: 0..1, default 0
     - name: incoming_call_user
       type: string
-      required: false
-      description: Allowed SIP user, e.g. "sip:10.0.0.1:5060"
+      description: Allowed SIP user (e.g. sip:10.0.0.1:5060)
     - name: anc
       type: integer
-      required: false
-      description: "0..1, acoustic noise cancellation"
+      description: 0..1, default 1
     - name: ring_time_limit
       type: integer
-      required: false
-      description: "10..300, max ringing time in seconds"
+      description: 10..300, default 300
     - name: call_time_limit
       type: integer
-      required: false
-      description: "30..300, max call duration in seconds"
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+      description: 30..300, default 300
+  notes: "Requires API-Operator permission. Parameters may be set individually."
 
 - id: sip_status
-  label: SIP Status
-  kind: action
+  label: SIP Status Query
+  kind: query
+  command: "GET /bha-api/sip.cgi?action=status"
   params: []
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+  notes: "Requires API-Operator permission. JSON with LASTERRORCODE/LASTERRORTEXT."
 
 - id: sip_reset
   label: SIP Settings Reset
   kind: action
+  command: "GET /bha-api/sip.cgi?action=reset"
   params: []
-  http_path: /bha-api/sip.cgi
-  http_method: GET
+  notes: "Resets registration and settings (except license). Hangs up any ongoing call. Requires API-Operator permission."
 
-- id: rtsp_video
-  label: RTSP Video Stream
+- id: rtsp_stream_default
+  label: RTSP Live Video (Default)
   kind: action
-  params:
-    - name: resolution
-      type: string
-      required: false
-      description: "media.amp (default), /720p/media.amp, or /1080p/media.amp"
-  http_path: rtsp://<device-ip>:<port>/mpeg/media.amp
-  http_method: GET
+  command: "rtsp://<device-ip>:554/mpeg/media.amp"
+  params: []
+  notes: "MPEG4 H.264, up to 12 fps. Also reachable on TCP 8557 (RTSP-over-HTTP). Standard RTSP auth only."
+
+- id: rtsp_stream_720p
+  label: RTSP Live Video (720p)
+  kind: action
+  command: "rtsp://<device-ip>:554/mpeg/720p/media.amp"
+  params: []
+  notes: "Supported by D10x/D21x from firmware 129."
+
+- id: rtsp_stream_1080p
+  label: RTSP Live Video (1080p)
+  kind: action
+  command: "rtsp://<device-ip>:554/mpeg/1080p/media.amp"
+  params: []
+  notes: "Per source: supported by D11x only. Listed here verbatim from source."
 ```
 
 ## Feedbacks
 ```yaml
-- id: return_code
-  type: enum
-  values:
-    - "1"
-    - "0"
-  description: "JSON return code: 1 = success, 0 = error"
-
-- id: http_status
-  type: enum
-  values:
-    - "200"
-    - "204"
-    - "400"
-    - "401"
-    - "423"
-    - "500"
-    - "503"
-    - "507"
-  description: HTTP response status codes
-
-- id: sip_error
+- id: session_id
   type: string
-  description: "LASTERRORCODE and LASTERRORTEXT from sip.cgi status response"
+  source: "getsession.cgi BHA.SESSIONID"
+  description: 10-minute valid session token
+
+- id: notification_encryption_key
+  type: string
+  source: "getsession.cgi BHA.NOTIFICATION_ENCRYPTION_KEY"
+  description: 32-64 byte key for ChaCha20-Poly1305 decryption of UDP events
+
+- id: firmware_version
+  type: string
+  source: "info.cgi BHA.VERSION[0].FIRMWARE"
+  description: e.g. "000109"
+
+- id: build_number
+  type: string
+  source: "info.cgi BHA.VERSION[0].BUILD_NUMBER"
+
+- id: primary_mac_addr
+  type: string
+  source: "info.cgi BHA.VERSION[0].PRIMARY_MAC_ADDR"
+  description: Available from firmware 000108
+
+- id: relays
+  type: array
+  source: "info.cgi BHA.VERSION[0].RELAYS"
+  description: 'List of physical and paired controller relays, e.g. ["1", "2", "gggaaa@1", "gggaaa@2"]. Available from firmware 000108.'
+
+- id: device_type
+  type: string
+  source: "info.cgi BHA.VERSION[0].DEVICE-TYPE"
+  description: e.g. "DoorBird D101"
+
+- id: monitor_doorbell_state
+  type: enum
+  values: [H, L]
+  source: "monitor.cgi 'doorbell:H' / 'doorbell:L' multipart frame"
+
+- id: monitor_motion_state
+  type: enum
+  values: [H, L]
+  source: "monitor.cgi 'motionsensor:H' / 'motionsensor:L' multipart frame"
+
+- id: sip_last_error_code
+  type: string
+  source: "sip.cgi?action=status LASTERRORCODE"
+  description: '"200" indicates successful registration'
+
+- id: sip_last_error_text
+  type: string
+  source: "sip.cgi?action=status LASTERRORTEXT"
+
+- id: favorites_list
+  type: object
+  source: "favorites.cgi JSON response"
+  description: "{sip: {id: {title, value}}, http: {id: {title, value}}}"
+
+- id: schedules_list
+  type: array
+  source: "schedule.cgi JSON response"
+  description: Array of schedule objects {input, param, output[]}
 ```
 
 ## Variables
 ```yaml
-- id: mic_volume
-  type: integer
-  range: 1..100
-  default: 33
-  description: Microphone volume for SIP calls
-
-- id: spk_volume
-  type: integer
-  range: 1..100
-  default: 70
-  description: Speaker volume for SIP calls
-
 - id: sip_enable
-  type: boolean
-  description: Enable or disable SIP registration after reboot
+  type: integer
+  range: [0, 1]
+  default: 0
+  set_via: "sip.cgi?action=settings&enable=<v>"
+
+- id: sip_mic_volume
+  type: integer
+  range: [1, 100]
+  default: 33
+  set_via: "sip.cgi?action=settings&mic_volume=<v>"
+
+- id: sip_spk_volume
+  type: integer
+  range: [1, 100]
+  default: 70
+  set_via: "sip.cgi?action=settings&spk_volume=<v>"
 
 - id: sip_dtmf
-  type: boolean
-  description: Enable or disable DTMF support
+  type: integer
+  range: [0, 1]
+  default: 0
+  set_via: "sip.cgi?action=settings&dtmf=<v>"
+
+- id: sip_relay1_passcode
+  type: integer
+  range: [0, 99999999]
+  set_via: "sip.cgi?action=settings&relay1_passcode=<v>"
+
+- id: sip_incoming_call_enable
+  type: integer
+  range: [0, 1]
+  default: 0
+  set_via: "sip.cgi?action=settings&incoming_call_enable=<v>"
+
+- id: sip_incoming_call_user
+  type: string
+  set_via: "sip.cgi?action=settings&incoming_call_user=<v>"
 
 - id: sip_anc
-  type: boolean
-  default: true
-  description: Enable or disable acoustic noise cancellation
+  type: integer
+  range: [0, 1]
+  default: 1
+  set_via: "sip.cgi?action=settings&anc=<v>"
 
 - id: sip_ring_time_limit
   type: integer
-  range: 10..300
+  range: [10, 300]
   default: 300
-  description: Maximum ringing time in seconds
+  set_via: "sip.cgi?action=settings&ring_time_limit=<v>"
 
 - id: sip_call_time_limit
   type: integer
-  range: 30..300
+  range: [30, 300]
   default: 300
-  description: Maximum call duration in seconds
+  set_via: "sip.cgi?action=settings&call_time_limit=<v>"
 ```
 
 ## Events
 ```yaml
-- id: doorbell_event
-  type: string
-  description: Doorbell press event, received via UDP broadcast on ports 6524 and 35344
-
-- id: motion_event
-  type: string
-  description: Motion sensor trigger event
-
-- id: rfid_event
-  type: string
-  description: RFID transponder event
-
-- id: keypad_event
-  type: string
-  description: Keypad code event
-
-- id: fingerprint_event
-  type: string
-  description: Fingerprint scan event
+- id: udp_event_broadcast
+  transport: UDP
+  ports: [6524, 35344]
+  description: "Encrypted event broadcasts sent for every user/connected device when an event occurs. Plus keep-alive broadcasts every 7 seconds (skip these)."
+  packet_format:
+    ident: "0xDE 0xAD 0xBE (3 bytes)"
+    version: "0x02 (1 byte) - current; 0x01 deprecated (ChaCha20-Poly1305 with Argon2i)"
+    nonce: "8 bytes (version 0x02)"
+    ciphertext: "34 bytes (version 0x02), ChaCha20-Poly1305 encrypted"
+  decrypted_payload:
+    intercom_id: "6-byte string (first 6 chars of username)"
+    event: "8-byte string, 'doorbell' or 'motion ' (space-padded); doorbell number for doorbell events"
+    timestamp: "4-byte Unix timestamp (long)"
+  algorithm: ChaCha20-Poly1305
+  key_source: NOTIFICATION_ENCRYPTION_KEY from getsession.cgi (first 32 bytes used)
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step macros documented in source
+# UNRESOLVED: no multi-step macro sequences documented in source.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
+confirmation_required_for:
+  - open_door
+  - light_on
+  - restart_device
+  - sip_reset
 interlocks:
-  - description: "Door opening requires user to watch live image; returns HTTP 204 if no 'watch always' permission and no recent ring event"
-    requires_permission: watch_always
-  - description: "Audio transmission requires AEC/ANR on client side (not provided by device)"
-  - description: "SIP call auto-terminates after 180 seconds"
-  - description: "RTSP/video stream may be interrupted when official DoorBird App requests the stream"
+  - "Open door / light / live audio-video require 'watch always' permission OR a ring event within the last 5 minutes (1 minute for live image); else HTTP 204."
+  - "Favorites / schedules / SIP CGIs require 'API-Operator' permission; misuse can change global settings for other users."
+  - "1 concurrent API connection per second; IP/user locked 1 minute on extensive wrong-credential use (HTTP 423)."
+  - "Device handles only ONE simultaneous audio/video call; second consumer is rejected (HTTP 503)."
+  - "Official DoorBird App has precedence and may interrupt any LANAPI video/audio/RTSP stream at any time."
+  - "Each SIP call auto-hangs-up 180 seconds after initiation. Wait min 3 seconds between SIP requests."
+# UNRESOLVED: no voltage / current / power sequencing requirements stated in source.
 ```
 
 ## Notes
-- HTTP API base path: `/bha-api/`
-- HTTPS available on port 443 with self-signed certificate
-- RTSP video on port 554; RTSP-over-HTTP on port 8557
-- SIP uses port 5060
-- UDP event broadcasts on ports 6524 and 35344 (ChaCha20-Poly1305 encrypted v2 protocol)
-- Session ID valid for 10 minutes, obtained via `getsession.cgi`
-- Favorites and schedules require firmware 000110 or higher; info.cgi includes relay config from firmware 000108
-- Video streaming not available over HTTPS in LAN; must use HTTP with session ID for secure video
-- `monitor.cgi` supports up to 8 concurrent streams; returns HTTP 509 when all busy
-- API rate limit: 1 concurrent connection per second; excessive auth failures block IP for 1 minute (HTTP 423)
-- Audio codec for API: G.711 μ-law at 8000 Hz sampling
-<!-- UNRESOLVED: full command table for all CGI endpoints not enumerated in source -->
-<!-- UNRESOLVED: relay contact ratings or electrical specifications not stated -->
-<!-- UNRESOLVED: specific D2101V model variants (e.g., D2101V, D2101FV) not distinguished -->
+- All HTTP paths under `/bha-api/`. HTTPS on TCP 443 uses pre-installed self-signed certificate (CAs do not issue for IP addresses); video/audio streaming endpoints are HTTP-only in LAN — use temporary `sessionid` parameter from `getsession.cgi` to avoid sending credentials in plaintext.
+- Authentication: RFC 2617 Basic or Digest, OR plaintext `http-user` / `http-password` query parameters (less secure).
+- HTTP status code semantics:
+  - 200 OK
+  - 204 No data / no permission for requested resource
+  - 400 Parameter missing or invalid
+  - 401 Authentication required
+  - 423 Locked (1-minute lockout from credential abuse)
+  - 503 Busy (line in use OR firmware update in progress)
+  - 507 Size limit exceeded (favorites/schedules)
+  - 509 Streams exhausted (monitor.cgi)
+- Audio codec for HTTP audio: G.711 µ-law, 8000 Hz mono. Client MUST do AEC/ANR.
+- Event monitoring v1 (ChaCha20-Poly1305 with Argon2i) is deprecated; integrators should use v2.
+- Device discovery via Apple Bonjour `_http._tcp` mDNS.
+- Schedule weekday time unit: seconds since Sunday 0:00 UTC, max 604799, start times multiples of 1800 (30-minute slices).
+<!-- UNRESOLVED: Source does not explicitly call out "D2101V" by model name — refined doc covers the general LAN-2-LAN API for "DoorBird and BirdGuard" with examples referencing D101/D21x/D10x/D11x. D2101V firmware version range, supported video resolutions specific to D2101V, and any D2101V-specific endpoints (vs. D11x or D10x) are UNRESOLVED. -->
+<!-- UNRESOLVED: Voltage, current, power consumption, fault-recovery sequences not in source. -->
+<!-- UNRESOLVED: No explicit timeouts for HTTP keep-alive, monitor.cgi stream maximum duration, or session retry behavior. -->
 
 ## Provenance
 
@@ -506,26 +551,30 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
-last_checked_at: 2026-04-23T05:36:57.929Z
+retrieved_at: 2026-04-30T04:32:20.460Z
+last_checked_at: 2026-06-02T00:05:15.898Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T05:36:57.929Z
-matched_actions: 25
-action_count: 25
-confidence: high
-summary: "All 25 spec actions matched verbatim in source; transport parameters verified; bidirectional coverage confirmed."
+checked_at: 2026-06-02T00:05:15.898Z
+matched_actions: 27
+action_count: 27
+confidence: medium
+summary: "All 27 spec actions verified as literal matches in source; all transport parameters (HTTP/HTTPS 80/443, RTSP 554/8557, SIP 5060, UDP 6524/35344) confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility ranges (per-command minimums noted in source but no overall range for the D2101V Series specifically)"
+- "no multi-step macro sequences documented in source."
+- "no voltage / current / power sequencing requirements stated in source."
+- "Source does not explicitly call out \"D2101V\" by model name — refined doc covers the general LAN-2-LAN API for \"DoorBird and BirdGuard\" with examples referencing D101/D21x/D10x/D11x. D2101V firmware version range, supported video resolutions specific to D2101V, and any D2101V-specific endpoints (vs. D11x or D10x) are UNRESOLVED."
+- "Voltage, current, power consumption, fault-recovery sequences not in source."
+- "No explicit timeouts for HTTP keep-alive, monitor.cgi stream maximum duration, or session retry behavior."
 ```
 
 ---

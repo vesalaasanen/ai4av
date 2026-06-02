@@ -27,14 +27,20 @@ last_checked_at: 2026-05-05T05:41:54.471Z
 generated_at: 2026-05-05T05:41:54.471Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "some commands are firmware-version-gated (v2.0, v3.0, v4.0, v4.5) but exact compatibility matrix not fully documented"
+  - "no multi-step sequences described in source"
+  - "exact firmware version where MXA910-S model variant diverges in behavior, if any"
+  - "connection keepalive/timeout behavior not documented"
+  - "maximum concurrent TCP connections not stated"
+  - "command rate limits or throttling not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-05T05:41:54.471Z
   matched_actions: 96
   action_count: 96
-  confidence: high
-  summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1146,14 +1152,19 @@ verdict: verified
 checked_at: 2026-05-05T05:41:54.471Z
 matched_actions: 96
 action_count: 96
-confidence: high
-summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete."
+confidence: medium
+summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "some commands are firmware-version-gated (v2.0, v3.0, v4.0, v4.5) but exact compatibility matrix not fully documented"
+- "no multi-step sequences described in source"
+- "exact firmware version where MXA910-S model variant diverges in behavior, if any"
+- "connection keepalive/timeout behavior not documented"
+- "maximum concurrent TCP connections not stated"
+- "command rate limits or throttling not stated"
 ```
 
 ---

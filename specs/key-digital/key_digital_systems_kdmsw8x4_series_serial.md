@@ -18,22 +18,33 @@ compatible_with:
   required_options: []
 source_domains:
   - keydigital.com
+  - manualslib.com
 source_urls:
-  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
-  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
-retrieved_at: 2026-05-04T15:19:02.622Z
+  - "https://www.keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
+  - "https://www.manualslib.com/manual/359867/Key-Digital-Kd-Msw8x4.html?page=12"
+  - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=13"
+retrieved_at: 2026-05-22T11:39:23.903Z
 last_checked_at: 2026-05-26T20:03:35.068Z
 generated_at: 2026-05-26T20:03:35.068Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no power on/off commands in source"
+  - "flow control not stated in source"
+  - "no discrete settable parameters beyond discrete actions"
+  - "no unsolicited event notifications documented"
+  - "no multi-step sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "flow control (hardware) not stated in source"
+  - "termination details not stated in source"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-26T20:03:35.068Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions matched to source commands with correct shapes and transport parameters fully supported in source."
+  confidence: medium
+  summary: "All 12 spec actions matched to source commands with correct shapes and transport parameters fully supported in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -201,10 +212,12 @@ Total muted period = twice the interval. Output mode must be set correctly for m
 ```yaml
 source_domains:
   - keydigital.com
+  - manualslib.com
 source_urls:
-  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
-  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
-retrieved_at: 2026-05-04T15:19:02.622Z
+  - "https://www.keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
+  - "https://www.manualslib.com/manual/359867/Key-Digital-Kd-Msw8x4.html?page=12"
+  - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=13"
+retrieved_at: 2026-05-22T11:39:23.903Z
 last_checked_at: 2026-05-26T20:03:35.068Z
 ```
 
@@ -215,14 +228,22 @@ verdict: verified
 checked_at: 2026-05-26T20:03:35.068Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions matched to source commands with correct shapes and transport parameters fully supported in source."
+confidence: medium
+summary: "All 12 spec actions matched to source commands with correct shapes and transport parameters fully supported in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no power on/off commands in source"
+- "flow control not stated in source"
+- "no discrete settable parameters beyond discrete actions"
+- "no unsolicited event notifications documented"
+- "no multi-step sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "flow control (hardware) not stated in source"
+- "termination details not stated in source"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

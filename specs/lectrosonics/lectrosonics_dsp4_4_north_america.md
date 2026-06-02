@@ -25,14 +25,22 @@ last_checked_at: 2026-05-14T18:17:17.346Z
 generated_at: 2026-05-14T18:17:17.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no IP, HTTP, or network control protocol documented — serial only"
+  - "no standalone parameter variables documented beyond the action/feedback commands above"
+  - "no unsolicited event notifications documented - host polling only"
+  - "no multi-step macro sequences documented"
+  - "no command timing, latency, or throughput specifications"
+  - "no power specifications"
+  - "no firmware upgrade procedure"
+  - "no error code dictionary beyond general protocol framing"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.346Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 18 spec actions matched source commands; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 18 spec actions matched source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -267,14 +275,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.346Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 18 spec actions matched source commands; transport parameters verified verbatim."
+confidence: medium
+summary: "All 18 spec actions matched source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no IP, HTTP, or network control protocol documented — serial only"
+- "no standalone parameter variables documented beyond the action/feedback commands above"
+- "no unsolicited event notifications documented - host polling only"
+- "no multi-step macro sequences documented"
+- "no command timing, latency, or throughput specifications"
+- "no power specifications"
+- "no firmware upgrade procedure"
+- "no error code dictionary beyond general protocol framing"
 ```
 
 ---

@@ -17,14 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - "https://esupportdownload.benq.com/esupport/PUBLIC%20DISPLAY%20PRODUCT/Control%20Protocols/PL4901/RS232&LAN%20Command%20List_v20200331_Others.pdf"
+  - https://esupportdownload.benq.com/esupport/PDP/UserManual/PDP_um_User_Manual_20150624_081512_BenQ_PL550_EN.pdf
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:25:52.600Z
 last_checked_at: 2026-05-20T07:45:26.160Z
 generated_at: 2026-05-20T07:45:26.160Z
 firmware_coverage: "Not stated in source"
@@ -34,13 +33,23 @@ known_gaps:
   - standbynet
   - standbymic
   - ltim2
+  - "HDBaseT transport details not fully specified in source"
+  - "baud rate selectable at runtime; not fixed"
+  - "no unsolicited notification messages described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "Lamp2Hour support=\"No\" in source — dual-lamp status not available on this model"
+  - "Mic. volume commands all have Support=\"No\" — microphone audio not supported"
+  - "Network standby, microphone standby, broadcast, AMX discovery, projection login code commands all have Support=\"No\""
+  - "HDBaseT transport specifics beyond serial settings not detailed in source"
+  - "voltage/current/power specifications not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T07:45:26.160Z
   matched_actions: 86
   action_count: 86
-  confidence: high
-  summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source."
+  confidence: medium
+  summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -666,14 +675,13 @@ Command format: `<CR>*key=value#<CR>` for serial; `<CR>` optional for LAN. Illeg
 ```yaml
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - "https://esupportdownload.benq.com/esupport/PUBLIC%20DISPLAY%20PRODUCT/Control%20Protocols/PL4901/RS232&LAN%20Command%20List_v20200331_Others.pdf"
+  - https://esupportdownload.benq.com/esupport/PDP/UserManual/PDP_um_User_Manual_20150624_081512_BenQ_PL550_EN.pdf
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:25:52.600Z
 last_checked_at: 2026-05-20T07:45:26.160Z
 ```
 
@@ -684,8 +692,8 @@ verdict: verified
 checked_at: 2026-05-20T07:45:26.160Z
 matched_actions: 86
 action_count: 86
-confidence: high
-summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source."
+confidence: medium
+summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -695,6 +703,16 @@ summary: "All 86 spec actions match source commands verbatim; transport verified
 - standbynet
 - standbymic
 - ltim2
+- "HDBaseT transport details not fully specified in source"
+- "baud rate selectable at runtime; not fixed"
+- "no unsolicited notification messages described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "Lamp2Hour support=\"No\" in source — dual-lamp status not available on this model"
+- "Mic. volume commands all have Support=\"No\" — microphone audio not supported"
+- "Network standby, microphone standby, broadcast, AMX discovery, projection login code commands all have Support=\"No\""
+- "HDBaseT transport specifics beyond serial settings not detailed in source"
+- "voltage/current/power specifications not stated in source"
 ```
 
 ---

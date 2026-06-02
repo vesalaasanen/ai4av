@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-27T05:53:06.772Z
 last_checked_at: 2026-05-31T06:46:46.907Z
 generated_at: 2026-05-31T06:46:46.907Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit details not in source"
+  - "source documents discrete commands rather than settable variables."
+  - "no unsolicited event notifications described in source."
+  - "no multi-step macro sequences documented in source."
+  - "Appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, sub input values, base model type codes). Source refers to Appendix but Appendix content not present in document."
+  - "wireless LAN unit specifications not in source."
+  - "specific model code (ID2) varies per model — not stated in source."
+  - "authentication credentials or token format — none in source."
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:46:46.907Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions map one-to-one to source commands; transport parameters verified; complete coverage."
+  confidence: medium
+  summary: "All 53 spec actions map one-to-one to source commands; transport parameters verified; complete coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -549,7 +557,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-27T05:53:06.772Z
 last_checked_at: 2026-05-31T06:46:46.907Z
 ```
 
@@ -560,14 +568,21 @@ verdict: verified
 checked_at: 2026-05-31T06:46:46.907Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions map one-to-one to source commands; transport parameters verified; complete coverage."
+confidence: medium
+summary: "All 53 spec actions map one-to-one to source commands; transport parameters verified; complete coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit details not in source"
+- "source documents discrete commands rather than settable variables."
+- "no unsolicited event notifications described in source."
+- "no multi-step macro sequences documented in source."
+- "Appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, sub input values, base model type codes). Source refers to Appendix but Appendix content not present in document."
+- "wireless LAN unit specifications not in source."
+- "specific model code (ID2) varies per model — not stated in source."
+- "authentication credentials or token format — none in source."
 ```
 
 ---

@@ -16,22 +16,39 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-04-25T20:58:37.209Z
 last_checked_at: 2026-04-25T20:58:37.209Z
 generated_at: 2026-04-25T20:58:37.209Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact connector type (DE9 vs phone jack) for this specific model not stated"
+  - "Network IP Control section marked \"For USA only\" — applicability to other regions unclear"
+  - "flow control not stated in source"
+  - "Network IP Control requires enabling via TV menu with password 828; not traditional auth but a setup prerequisite"
+  - "power on command not documented for IP control\""
+  - "IP control feedback/query format not documented in source"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences explicitly described in source"
+  - "no power-on sequencing requirements stated"
+  - "Network IP Control marked \"For USA only\" — applicability to other regions unclear"
+  - "exact connector type for RS-232C on this specific model (DE9 vs phone jack vs USB-only)"
+  - "IP power-on command not documented; only \"POWER off\" shown"
+  - "WOL (Wake On LAN) power-on mentioned but no protocol details provided"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:58:37.209Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage."
+  confidence: medium
+  summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -726,10 +743,14 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-04-25T20:58:37.209Z
 last_checked_at: 2026-04-25T20:58:37.209Z
 ```
 
@@ -740,14 +761,26 @@ verdict: verified
 checked_at: 2026-04-25T20:58:37.209Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage."
+confidence: medium
+summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact connector type (DE9 vs phone jack) for this specific model not stated"
+- "Network IP Control section marked \"For USA only\" — applicability to other regions unclear"
+- "flow control not stated in source"
+- "Network IP Control requires enabling via TV menu with password 828; not traditional auth but a setup prerequisite"
+- "power on command not documented for IP control\""
+- "IP control feedback/query format not documented in source"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences explicitly described in source"
+- "no power-on sequencing requirements stated"
+- "Network IP Control marked \"For USA only\" — applicability to other regions unclear"
+- "exact connector type for RS-232C on this specific model (DE9 vs phone jack vs USB-only)"
+- "IP power-on command not documented; only \"POWER off\" shown"
+- "WOL (Wake On LAN) power-on mentioned but no protocol details provided"
 ```
 
 ---

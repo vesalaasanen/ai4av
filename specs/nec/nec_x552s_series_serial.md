@@ -15,23 +15,33 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-06T17:20:02.972Z
 last_checked_at: 2026-05-06T17:20:02.972Z
 generated_at: 2026-05-06T17:20:02.972Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "full list of supported input terminals for all models not provided; Appendix references external supplementary information"
+  - "flow control not explicitly stated; RTS/CTS pins present per pin assignment table"
+  - "audio select request command not found in source; audio select values documented only for SET command [319-10]"
+  - "the protocol uses setter/query commands rather than discrete settable variables."
+  - "no unsolicited event notifications described in source."
+  - "no explicit multi-step macro sequences described in source."
+  - "no explicit safety warnings or interlock procedures in source."
+  - "full Appendix tables (input terminal hex codes by model, aspect values, eco mode values, signal type codes) not included in source excerpt — these are referenced as external appendix"
+  - "HDBaseT standby mode support mentioned but not detailed"
+  - "which specific standby mode the X552S requires for serial/LAN command reception"
+  - "flow control configuration (hardware flow control pins are mapped in pin assignment but never referenced in communication conditions)"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-06T17:20:02.972Z
   matched_actions: 54
   action_count: 54
-  confidence: high
-  summary: "All 54 spec actions verified against numbered command reference; audio_select_request marked UNRESOLVED in spec correctly reflects source omission of a Request variant."
+  confidence: medium
+  summary: "All 54 spec actions verified against numbered command reference; audio_select_request marked UNRESOLVED in spec correctly reflects source omission of a Request variant. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -597,11 +607,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-06T17:20:02.972Z
 last_checked_at: 2026-05-06T17:20:02.972Z
 ```
 
@@ -612,14 +620,25 @@ verdict: verified
 checked_at: 2026-05-06T17:20:02.972Z
 matched_actions: 54
 action_count: 54
-confidence: high
-summary: "All 54 spec actions verified against numbered command reference; audio_select_request marked UNRESOLVED in spec correctly reflects source omission of a Request variant."
+confidence: medium
+summary: "All 54 spec actions verified against numbered command reference; audio_select_request marked UNRESOLVED in spec correctly reflects source omission of a Request variant. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "full list of supported input terminals for all models not provided; Appendix references external supplementary information"
+- "flow control not explicitly stated; RTS/CTS pins present per pin assignment table"
+- "audio select request command not found in source; audio select values documented only for SET command [319-10]"
+- "the protocol uses setter/query commands rather than discrete settable variables."
+- "no unsolicited event notifications described in source."
+- "no explicit multi-step macro sequences described in source."
+- "no explicit safety warnings or interlock procedures in source."
+- "full Appendix tables (input terminal hex codes by model, aspect values, eco mode values, signal type codes) not included in source excerpt — these are referenced as external appendix"
+- "HDBaseT standby mode support mentioned but not detailed"
+- "which specific standby mode the X552S requires for serial/LAN command reception"
+- "flow control configuration (hardware flow control pins are mapped in pin assignment but never referenced in communication conditions)"
+- "model-specific source not located"
 ```
 
 ---

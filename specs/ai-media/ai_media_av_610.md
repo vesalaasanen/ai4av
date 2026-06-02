@@ -28,14 +28,26 @@ last_checked_at: 2026-04-30T15:19:04.652Z
 generated_at: 2026-04-30T15:19:04.652Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "USB control not documented in source"
+  - "telnet port configured via web UI, value not stated in source"
+  - "flow control not stated in source"
+  - "powerable, routable, levelable not evidenced in source excerpt"
+  - "response format for commands not documented in source excerpt"
+  - "no settable parameters in source excerpt"
+  - "unsolicited notifications not documented in source"
+  - "multi-step sequences not explicitly documented"
+  - "telnet port number not stated — configured via web interface"
+  - "command response strings not documented in source"
+  - "USB control protocol not documented"
+  - "GPI/GPO command syntax not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:19:04.652Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched source command reference."
+  confidence: medium
+  summary: "All 14 spec actions matched source command reference. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -235,14 +247,25 @@ verdict: verified
 checked_at: 2026-04-30T15:19:04.652Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched source command reference."
+confidence: medium
+summary: "All 14 spec actions matched source command reference. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "USB control not documented in source"
+- "telnet port configured via web UI, value not stated in source"
+- "flow control not stated in source"
+- "powerable, routable, levelable not evidenced in source excerpt"
+- "response format for commands not documented in source excerpt"
+- "no settable parameters in source excerpt"
+- "unsolicited notifications not documented in source"
+- "multi-step sequences not explicitly documented"
+- "telnet port number not stated — configured via web interface"
+- "command response strings not documented in source"
+- "USB control protocol not documented"
+- "GPI/GPO command syntax not documented"
 ```
 
 ---

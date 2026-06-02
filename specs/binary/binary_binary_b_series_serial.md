@@ -18,22 +18,26 @@ compatible_with:
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+retrieved_at: 2026-04-30T04:24:50.218Z
 last_checked_at: 2026-05-14T18:17:14.580Z
 generated_at: 2026-05-14T18:17:14.580Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact product family scope unclear — source title says \"B-660-MTRX-8x8\" but user refers to \"Binary B Series\"; other B-Series models may share this command set"
+  - "no unsolicited notification events documented in source; all responses appear to be command-reply only"
+  - "no safety warnings or interlock procedures found in source"
+  - "EDID presets 21-27 descriptions incomplete in source — only listed in parameter range but details not fully documented"
+  - "no information on command timing, rate limiting, or connection keep-alive for Telnet"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.580Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -517,10 +521,8 @@ interlocks: []
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+retrieved_at: 2026-04-30T04:24:50.218Z
 last_checked_at: 2026-05-14T18:17:14.580Z
 ```
 
@@ -531,14 +533,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.580Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact product family scope unclear — source title says \"B-660-MTRX-8x8\" but user refers to \"Binary B Series\"; other B-Series models may share this command set"
+- "no unsolicited notification events documented in source; all responses appear to be command-reply only"
+- "no safety warnings or interlock procedures found in source"
+- "EDID presets 21-27 descriptions incomplete in source — only listed in parameter range but details not fully documented"
+- "no information on command timing, rate limiting, or connection keep-alive for Telnet"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

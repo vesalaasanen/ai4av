@@ -27,14 +27,18 @@ last_checked_at: 2026-05-01T00:09:24.904Z
 generated_at: 2026-05-01T00:09:24.904Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "data_bits, parity, stop_bits not stated in source for RS-232"
+  - "RS-232 data_bits, parity, stop_bits, flow_control not stated"
+  - "firmware version compatibility range not stated"
+  - "exact set of module card types that ship with each chassis variant not fully enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-01T00:09:24.904Z
   matched_actions: 72
   action_count: 72
-  confidence: high
-  summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved."
+  confidence: medium
+  summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1151,14 +1155,17 @@ verdict: verified
 checked_at: 2026-05-01T00:09:24.904Z
 matched_actions: 72
 action_count: 72
-confidence: high
-summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved."
+confidence: medium
+summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "data_bits, parity, stop_bits not stated in source for RS-232"
+- "RS-232 data_bits, parity, stop_bits, flow_control not stated"
+- "firmware version compatibility range not stated"
+- "exact set of module card types that ship with each chassis variant not fully enumerated"
 ```
 
 ---

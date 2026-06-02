@@ -19,19 +19,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:31.161Z
 last_checked_at: 2026-05-14T18:17:19.201Z
 generated_at: 2026-05-14T18:17:19.201Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal codes in Appendix reference external appendix not included in this source; aspect and eco mode value tables partially populated from available hex codes"
+  - "eco mode value table varies by model; see Appendix"
+  - "no discrete Variables section applicable - all parameters use action commands."
+  - "no unsolicited event notifications documented in source."
+  - "no multi-step macro sequences documented in source."
+  - "no explicit safety warnings or confirmation dialogs documented beyond command-blocking behavior."
+  - "complete input terminal code table (Appendix) — only partial codes available in this source"
+  - "eco mode value cross-reference by model not included in this source"
+  - "base model type codes not enumerated in this source"
+  - "sub input selection signal type values for PIP/PBP not fully documented"
+  - "firmware version compatibility not stated"
+  - "TCP keepalive or connection maintenance requirements not documented"
+  - "command timing / inter-command delay requirements not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.201Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched literally with source hex codes; transport parameters verified; full functional command set represented."
+  confidence: medium
+  summary: "All 53 spec actions matched literally with source hex codes; transport parameters verified; full functional command set represented. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -656,7 +669,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:31.161Z
 last_checked_at: 2026-05-14T18:17:19.201Z
 ```
 
@@ -667,14 +680,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.201Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched literally with source hex codes; transport parameters verified; full functional command set represented."
+confidence: medium
+summary: "All 53 spec actions matched literally with source hex codes; transport parameters verified; full functional command set represented. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal codes in Appendix reference external appendix not included in this source; aspect and eco mode value tables partially populated from available hex codes"
+- "eco mode value table varies by model; see Appendix"
+- "no discrete Variables section applicable - all parameters use action commands."
+- "no unsolicited event notifications documented in source."
+- "no multi-step macro sequences documented in source."
+- "no explicit safety warnings or confirmation dialogs documented beyond command-blocking behavior."
+- "complete input terminal code table (Appendix) — only partial codes available in this source"
+- "eco mode value cross-reference by model not included in this source"
+- "base model type codes not enumerated in this source"
+- "sub input selection signal type values for PIP/PBP not fully documented"
+- "firmware version compatibility not stated"
+- "TCP keepalive or connection maintenance requirements not documented"
+- "command timing / inter-command delay requirements not stated"
 ```
 
 ---

@@ -19,19 +19,30 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - https://cdn.shopify.com/s/files/1/0859/9181/7492/files/iboot-pdu_restful_api_V251007W.pdf
-retrieved_at: 2026-05-04T18:04:24.181Z
+retrieved_at: 2026-04-30T04:34:14.497Z
 last_checked_at: 2026-05-14T18:17:15.150Z
 generated_at: 2026-05-14T18:17:15.150Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port not stated in source, default HTTP(S) ports assumed implicit"
+  - "serial RS-232 control not documented in this source"
+  - "webhook payload format beyond trigger flags not specified"
+  - "no explicit event emission documentation; webhook triggers described but not the outbound event format"
+  - "sequence definition format not documented in source"
+  - "no explicit safety interlock procedures in source"
+  - "TCP port number not explicitly stated; only implicit through HTTP(S)"
+  - "RS-232 serial control protocol not in source"
+  - "firmware version range/compatibility not stated"
+  - "email attachment/content format not documented"
+  - "sequence definition schema not in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.150Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API."
+  confidence: medium
+  summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -781,7 +792,7 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - https://cdn.shopify.com/s/files/1/0859/9181/7492/files/iboot-pdu_restful_api_V251007W.pdf
-retrieved_at: 2026-05-04T18:04:24.181Z
+retrieved_at: 2026-04-30T04:34:14.497Z
 last_checked_at: 2026-05-14T18:17:15.150Z
 ```
 
@@ -792,14 +803,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.150Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API."
+confidence: medium
+summary: "All 46 spec actions matched to source endpoints; transport parameters verified; spec comprehensively covers documented API. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port not stated in source, default HTTP(S) ports assumed implicit"
+- "serial RS-232 control not documented in this source"
+- "webhook payload format beyond trigger flags not specified"
+- "no explicit event emission documentation; webhook triggers described but not the outbound event format"
+- "sequence definition format not documented in source"
+- "no explicit safety interlock procedures in source"
+- "TCP port number not explicitly stated; only implicit through HTTP(S)"
+- "RS-232 serial control protocol not in source"
+- "firmware version range/compatibility not stated"
+- "email attachment/content format not documented"
+- "sequence definition schema not in source"
 ```
 
 ---

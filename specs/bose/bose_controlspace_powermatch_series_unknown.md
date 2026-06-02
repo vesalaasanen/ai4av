@@ -20,24 +20,30 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.boseprofessional.com
-  - assets.bosecreative.com
 source_urls:
   - https://assets.boseprofessional.com/m/4998082f60dfee56/original/ControlSpace-Serial-Protocol-v5-13.pdf
-  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
-  - https://assets.bosecreative.com/m/496577402d128874/original/SoundTouch-Web-API.pdf
-retrieved_at: 2026-05-16T00:42:17.003Z
+  - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
+  - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
+retrieved_at: 2026-05-15T03:21:05.516Z
 last_checked_at: 2026-05-20T07:59:18.642Z
 generated_at: 2026-05-20T07:59:18.642Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "auto-standby time commands listed for MSA12X only; PM uses Parameter Sets"
+  - "no multi-step macro sequences explicitly defined in source."
+  - "firmware version compatibility ranges not stated in source"
+  - "maximum command rate / throttle limits not stated"
+  - "binary protocol variant not documented (ASCII only)"
+  - "exact signal level conversion formula for PM outputs (hex to dBV max) — described as 0.5dB steps from -60.0 to 0.0 dBV"
+  - "MSA12X and Endpoint commands omitted from this spec — they use UDP port 49494, not TCP port 10055"
 verification:
   verdict: verified
   checked_at: 2026-05-20T07:59:18.642Z
   matched_actions: 64
   action_count: 64
-  confidence: high
-  summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP."
+  confidence: medium
+  summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -631,12 +637,11 @@ notes: >
 ```yaml
 source_domains:
   - assets.boseprofessional.com
-  - assets.bosecreative.com
 source_urls:
   - https://assets.boseprofessional.com/m/4998082f60dfee56/original/ControlSpace-Serial-Protocol-v5-13.pdf
-  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
-  - https://assets.bosecreative.com/m/496577402d128874/original/SoundTouch-Web-API.pdf
-retrieved_at: 2026-05-16T00:42:17.003Z
+  - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
+  - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
+retrieved_at: 2026-05-15T03:21:05.516Z
 last_checked_at: 2026-05-20T07:59:18.642Z
 ```
 
@@ -647,14 +652,20 @@ verdict: verified
 checked_at: 2026-05-20T07:59:18.642Z
 matched_actions: 64
 action_count: 64
-confidence: high
-summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP."
+confidence: medium
+summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "auto-standby time commands listed for MSA12X only; PM uses Parameter Sets"
+- "no multi-step macro sequences explicitly defined in source."
+- "firmware version compatibility ranges not stated in source"
+- "maximum command rate / throttle limits not stated"
+- "binary protocol variant not documented (ASCII only)"
+- "exact signal level conversion formula for PM outputs (hex to dBV max) — described as 0.5dB steps from -60.0 to 0.0 dBV"
+- "MSA12X and Endpoint commands omitted from this spec — they use UDP port 49494, not TCP port 10055"
 ```
 
 ---

@@ -19,54 +19,63 @@ source_domains:
   - cypeurope.com
 source_urls:
   - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
-retrieved_at: 2026-05-04T18:02:47.388Z
-last_checked_at: 2026-05-14T18:17:15.101Z
-generated_at: 2026-05-14T18:17:15.101Z
+retrieved_at: 2026-04-30T04:31:10.266Z
+last_checked_at: 2026-06-02T00:05:12.137Z
+generated_at: 2026-06-02T00:05:12.137Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device-class identity (TX vs RX vs controller) not explicit in refined excerpt; AVoIP product role inferred from command syntax."
+  - "no volume/gain/brightness commands in refined source"
+  - "response payload formats for each query command not detailed in refined source excerpt beyond parameter echo."
+  - "not applicable - all settable state is exposed via discrete actions above."
+  - "unsolicited device-initiated notifications not described in refined source."
+  - "macro storage location and edit commands not in refined source. Only `set macro N run` and `get all macro name` are documented."
+  - "no safety warnings, interlocks, or power-sequencing procedures in refined source."
+  - "exact response payload schema per query command not in source; firmware version compatibility not stated; specific video wall preset / macro configuration authoring commands not in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.101Z
-  matched_actions: 68
-  action_count: 69
-  confidence: high
-  summary: "All 68 spec actions matched verbatim in source; transport parameters (port 23, baud 19200) verified; bidirectional coverage confirmed."
+  checked_at: 2026-06-02T00:05:12.137Z
+  matched_actions: 70
+  action_count: 70
+  confidence: medium
+  summary: "All 70 spec actions matched verbatim to source command table; transport parameters (port 23, baud 19200, 8 data bits, no parity, 1 stop bit) verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-16
+created_at: 2026-06-02
 ---
 
 # CYP CS9000 Control Spec
 
 ## Summary
-CYP CS9000 is an AVoIP (HDMI over IP) transmitter/receiver system supporting video, audio, IR, USB, and serial routing over TCP/IP networks. Control is available via Telnet (TCP port 23) and RS-232 serial. Both control interfaces share the same command set.
+CYP CS9000 AVoIP control endpoint. Spec covers serial (RS-232/RS-422/RS-485) and Telnet (TCP port 23) ASCII command interface for managing transmitters/receivers, video/audio/USB/IR/serial routing, video wall presets, macros, and LAN configuration.
 
-<!-- UNRESOLVED: power consumption, thermal specs, and physical dimensions not stated -->
+<!-- UNRESOLVED: device-class identity (TX vs RX vs controller) not explicit in refined excerpt; AVoIP product role inferred from command syntax. -->
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
   - serial
+  - tcp
 addressing:
-  port: 23  # default Telnet port; source states "port 23"
-auth:
-  type: none  # inferred: no auth procedure in source
+  port: 23
 serial:
-  baud_rate: 19200  # default; source states "Baud Rate: 19200"
+  baud_rate: 19200
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
+auth:
+  type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable     # set system reboot, set factory default present
-- routable      # video/audio/uart/ir/usb routing commands present
-- queryable     # get commands returning state present
+- powerable       # inferred: set system reboot / set all N1 system reboot
+- routable        # inferred: video/audio/uart/ir/usb route commands present
+- queryable       # inferred: extensive get command set
+- levelable       # UNRESOLVED: no volume/gain/brightness commands in refined source
 ```
 
 ## Actions
@@ -74,614 +83,670 @@ serial:
 - id: help
   label: Show Full Command List
   kind: action
+  command: "help"
   params: []
 
 - id: help_command
-  label: Show Command Details
+  label: Show Command Help
   kind: action
+  command: "help {command}"
   params:
     - name: command
       type: string
-      description: Command name
+      description: Command name to describe
+
+- id: list_commands
+  label: List Commands
+  kind: action
+  command: "?"
+  params: []
 
 - id: get_fw_ver
   label: Get Firmware Version
-  kind: action
+  kind: query
+  command: "get fw ver"
   params: []
 
 - id: get_command_ver
   label: Get Command Version
-  kind: action
+  kind: query
+  command: "get command ver"
   params: []
 
 - id: get_model_name
   label: Get Model Name
-  kind: action
+  kind: query
+  command: "get model name"
   params: []
 
 - id: get_model_type
   label: Get Model Type
-  kind: action
+  kind: query
+  command: "get model type"
   params: []
 
-- id: get_mac
-  label: Get MAC Address
-  kind: action
+- id: get_mac_addr
+  label: Get LAN MAC Address
+  kind: query
+  command: "get mac {port} addr"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: set_factory_default
-  label: Factory Default Reset
+  label: Factory Reset
   kind: action
+  command: "set factory default"
   params: []
 
 - id: set_factory_ipconfig_default
-  label: Reset Network Settings to Factory Defaults
+  label: Reset Network to Factory
   kind: action
+  command: "set factory ipconfig default"
   params: []
 
 - id: set_system_reboot
-  label: Reboot Unit
+  label: System Reboot
   kind: action
+  command: "set system reboot"
   params: []
 
 - id: get_lan_ipconfig
-  label: Get LAN Port IP Configuration
-  kind: action
+  label: Get LAN IP Config
+  kind: query
+  command: "get lan {port} ipconfig"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: set_lan_ip_mode
-  label: Set LAN Port IP Mode
+  label: Set LAN IP Mode
   kind: action
+  command: "set lan {port} ip mode {mode}"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
     - name: mode
       type: string
-      enum: [Static, DHCP]
-      description: IP assignment mode
+      description: Static or DHCP
 
 - id: get_lan_ip_mode
-  label: Get LAN Port IP Mode
-  kind: action
+  label: Get LAN IP Mode
+  kind: query
+  command: "get lan {port} ip mode"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: get_lan_ipaddr
-  label: Get LAN Port IP Address
-  kind: action
+  label: Get LAN IP Address
+  kind: query
+  command: "get lan {port} ipaddr"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: get_lan_netmask
-  label: Get LAN Port Netmask
-  kind: action
+  label: Get LAN Netmask
+  kind: query
+  command: "get lan {port} netmask"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: get_lan_gateway
-  label: Get LAN Port Gateway
-  kind: action
+  label: Get LAN Gateway
+  kind: query
+  command: "get lan {port} gateway"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: set_lan_static_ipaddr
-  label: Set LAN Port Static IP Address
+  label: Set Static IP Address
   kind: action
+  command: "set lan {port} static ipaddr {ip}"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
-    - name: ipaddr
+      description: LAN port (1 or 2)
+    - name: ip
       type: string
-      description: IP address (x.x.x.x format)
+      description: X.X.X.X (0-255)
 
 - id: get_lan_static_ipaddr
-  label: Get LAN Port Static IP Address
-  kind: action
+  label: Get Static IP Address
+  kind: query
+  command: "get lan {port} static ipaddr"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: set_lan_static_netmask
-  label: Set LAN Port Static Netmask
+  label: Set Static Netmask
   kind: action
+  command: "set lan {port} static netmask {netmask}"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
     - name: netmask
       type: string
-      description: Netmask (x.x.x.x format)
+      description: X.X.X.X (0-255)
 
 - id: get_lan_static_netmask
-  label: Get LAN Port Static Netmask
-  kind: action
+  label: Get Static Netmask
+  kind: query
+  command: "get lan {port} static netmask"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: set_lan_static_gateway
-  label: Set LAN Port Static Gateway
+  label: Set Static Gateway
   kind: action
+  command: "set lan {port} static gateway {gateway}"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
     - name: gateway
       type: string
-      description: Gateway address (x.x.x.x format)
+      description: X.X.X.X (0-255)
 
 - id: get_lan_static_gateway
-  label: Get LAN Port Static Gateway
-  kind: action
+  label: Get Static Gateway
+  kind: query
+  command: "get lan {port} static gateway"
   params:
-    - name: lan_port
+    - name: port
       type: integer
-      description: LAN port number (1 or 2)
+      description: LAN port (1 or 2)
 
 - id: get_uart_list
-  label: List Available Serial Ports
-  kind: action
+  label: List Serial Ports
+  kind: query
+  command: "get uart list"
   params: []
 
 - id: set_uart_reset
-  label: Reset Serial Port to Factory Defaults
+  label: Reset Serial Port Settings
   kind: action
+  command: "set uart {port} reset"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
 
-- id: set_uart_mode
-  label: Set Control Output Serial Port Mode
+- id: set_uart_2_mode
+  label: Set 5-pin Serial Mode
   kind: action
+  command: "set uart 2 mode {mode}"
   params:
     - name: mode
       type: integer
-      enum: [0, 1, 2, 3]
-      description: "0=Disabled, 1=RS-232, 2=RS-422, 3=RS-485"
+      description: 0=Disabled, 1=RS-232, 2=RS-422, 3=RS-485
 
-- id: get_uart_mode
-  label: Get Control Output Serial Port Mode
-  kind: action
+- id: get_uart_2_mode
+  label: Get 5-pin Serial Mode
+  kind: query
+  command: "get uart 2 mode"
   params: []
 
 - id: set_uart_baudrate
-  label: Set Serial Port Baud Rate
+  label: Set Serial Baud Rate
   kind: action
+  command: "set uart {port} baudrate {baudrate}"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
     - name: baudrate
       type: integer
-      enum: [2400, 4800, 9600, 19200, 38400, 57600, 115200]
-      description: Baud rate in bps
+      description: 2400|4800|9600|19200|38400|57600|115200
 
 - id: get_uart_baudrate
-  label: Get Serial Port Baud Rate
-  kind: action
+  label: Get Serial Baud Rate
+  kind: query
+  command: "get uart {port} baudrate"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
 
-- id: set_uart_stopbit
-  label: Set Serial Port Stop Bits
+- id: set_uart_stop_bit
+  label: Set Serial Stop Bits
   kind: action
+  command: "set uart {port} stop bit {stop_bit}"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
-    - name: stop_bits
+      description: 1 (3-pin) or 2 (5-pin)
+    - name: stop_bit
       type: integer
-      enum: [1, 2]
-      description: Number of stop bits
+      description: 1 or 2
 
-- id: get_uart_stopbit
-  label: Get Serial Port Stop Bits
-  kind: action
+- id: get_uart_stop_bit
+  label: Get Serial Stop Bits
+  kind: query
+  command: "get uart {port} stop bit"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
 
-- id: set_uart_databit
-  label: Set Serial Port Data Bits
+- id: set_uart_data_bit
+  label: Set Serial Data Bits
   kind: action
+  command: "set uart {port} data bit {data_bit}"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
-    - name: data_bits
+      description: 1 (3-pin) or 2 (5-pin)
+    - name: data_bit
       type: integer
-      enum: [7, 8]
-      description: Number of data bits
+      description: 7 or 8
 
-- id: get_uart_databit
-  label: Get Serial Port Data Bits
-  kind: action
+- id: get_uart_data_bit
+  label: Get Serial Data Bits
+  kind: query
+  command: "get uart {port} data bit"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
 
 - id: set_uart_parity
-  label: Set Serial Port Parity
+  label: Set Serial Parity
   kind: action
+  command: "set uart {port} parity {parity}"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
     - name: parity
       type: integer
-      enum: [0, 1, 2]
-      description: "0=None, 1=Odd, 2=Even"
+      description: 0=None, 1=Odd, 2=Even
 
 - id: get_uart_parity
-  label: Get Serial Port Parity
-  kind: action
+  label: Get Serial Parity
+  kind: query
+  command: "get uart {port} parity"
   params:
-    - name: uart
+    - name: port
       type: integer
-      description: Serial port (1=3-pin, 2=5-pin)
+      description: 1 (3-pin) or 2 (5-pin)
 
-- id: set_uart_command
-  label: Transmit Command via Control Output Serial Port
+- id: set_uart_2_command
+  label: Transmit Data via 5-pin Serial
   kind: action
+  command: "set uart 2 command [{data}]"
   params:
-    - name: command_data
+    - name: data
       type: string
-      description: ASCII command data (use \x prefix for hex bytes)
+      description: ASCII text; prefix hex octets with \x (e.g. \x0D for CR)
 
 - id: set_all_system_reboot
   label: Reboot All Detected Devices
   kind: action
+  command: "set all {type} system reboot"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX, DEVICES]
-      description: Device type to reboot
+      description: TX|RX|DEVICES
 
 - id: get_timing
   label: Get Video Timing
-  kind: action
+  kind: query
+  command: "get {type} {id} timing"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: get_deep_color
-  label: Get Deep Color Status
-  kind: action
+  label: Get Bit Depth
+  kind: query
+  command: "get {type} {id} deep color"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: get_color_space
   label: Get Color Space
-  kind: action
+  kind: query
+  command: "get {type} {id} color space"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: get_hdcp_status
   label: Get HDCP Status
-  kind: action
+  kind: query
+  command: "get {type} {id} hdcp status"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: get_edid_info
-  label: Get EDID Information
-  kind: action
+  label: Get EDID Info
+  kind: query
+  command: "get {type} {id} edid info"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: get_device_status
   label: Get Device Status
-  kind: action
+  kind: query
+  command: "get {type} {id} device status"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: set_nickname
-  label: Set Device Nickname
+  label: Set AVoIP Device Nickname
   kind: action
+  command: "set {type} {id} nickname {nickname}"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
     - name: nickname
       type: string
-      description: ASCII nickname string
+      description: ASCII string
 
 - id: get_nickname
-  label: Get Device Nickname
-  kind: action
+  label: Get AVoIP Device Nickname
+  kind: query
+  command: "get {type} {id} nickname"
   params:
-    - name: device_type
+    - name: type
       type: string
-      enum: [TX, RX]
-      description: Device type
-    - name: device_id
+      description: TX or RX
+    - name: id
       type: integer
       description: Device ID (1-256)
 
 - id: set_rx_stop_feature
-  label: Set AVoIP Stop Feature on Receiver
+  label: Enable/Disable RX Stop Feature
   kind: action
+  command: "set rx {id} stop feature {channel} {state}"
   params:
-    - name: receiver_id
+    - name: id
       type: integer
       description: Receiver device ID (1-256)
-    - name: feature
+    - name: channel
       type: string
-      enum: [video, audio, ir, usb, serial]
-      description: Feature type to stop
+      description: video|audio|ir|usb|serial
     - name: state
       type: string
-      enum: [ON, OFF]
-      description: Enable or disable
+      description: ON or OFF
 
 - id: get_rx_stop_feature
-  label: Get AVoIP Stop Feature Setting
-  kind: action
+  label: Get RX Stop Feature Setting
+  kind: query
+  command: "get rx {id} stop feature {channel}"
   params:
-    - name: receiver_id
+    - name: id
       type: integer
       description: Receiver device ID (1-256)
-    - name: feature
+    - name: channel
       type: string
-      enum: [video, audio, ir, usb, serial]
-      description: Feature type
+      description: video|audio|ir|usb|serial
 
 - id: set_all_rx_video_route_tx
-  label: Route Transmitter to All Receivers (Video)
+  label: Route TX to All RX Video
   kind: action
+  command: "set all rx video route tx {tx_id}"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: set_rx_group_video_route_tx
-  label: Route Transmitter to Receiver Group (Video)
+  label: Route TX to RX Group Video
   kind: action
+  command: "set rx group {group_id} video route tx {tx_id}"
   params:
     - name: group_id
       type: integer
       description: Group ID (1-256)
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: set_rx_video_route_tx
-  label: Route Transmitter to Receiver (Video)
+  label: Route TX to RX Video
   kind: action
+  command: "set rx {rx_id} video route tx {tx_id}"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: get_rx_video_route_tx
-  label: Get Current Video Route
-  kind: action
+  label: Get RX Video Route
+  kind: query
+  command: "get rx {rx_id} video route tx"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
 
 - id: set_all_rx_audio_route_tx
-  label: Route Transmitter to All Receivers (Audio)
+  label: Route TX Audio to All RX
   kind: action
+  command: "set all rx audio route tx {tx_id}"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: set_rx_audio_route_tx
-  label: Route Transmitter to Receiver (Audio)
+  label: Route TX Audio to RX
   kind: action
+  command: "set rx {rx_id} audio route tx {tx_id}"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: get_rx_audio_route_tx
-  label: Get Current Audio Route
-  kind: action
+  label: Get RX Audio Route
+  kind: query
+  command: "get rx {rx_id} audio route tx"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
 
 - id: set_tx_audio_source
-  label: Set Transmitter Audio Source
+  label: Set TX Audio Source
   kind: action
+  command: "set tx {tx_id} audio source {source}"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
     - name: source
       type: integer
-      enum: [1, 2]
-      description: "1=HDMI audio input, 2=Analogue audio input"
+      description: 1=HDMI, 2=Analogue
 
 - id: get_tx_audio_source
-  label: Get Transmitter Audio Source
-  kind: action
+  label: Get TX Audio Source
+  kind: query
+  command: "get tx {tx_id} audio source"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: set_all_rx_uart_route_tx
-  label: Route Transmitter Serial to All Receivers (UART)
+  label: Route TX UART to All RX
   kind: action
+  command: "set all rx uart route tx {tx_id}"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
-      description: Transmitter device ID (1-128)
+      description: Transmitter device ID (Tx pin, 1-128)
 
 - id: set_rx_uart_route_tx
-  label: Route Transmitter Serial to Receiver (UART)
+  label: Route RX UART to TX
   kind: action
+  command: "set rx {rx_id} uart route tx {tx_id}"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
-      description: Receiver device ID (1-256)
-    - name: transmitter_id
+      description: Receiver device ID (Rx pin, 1-256)
+    - name: tx_id
       type: integer
-      description: Transmitter device ID (1-128)
+      description: Transmitter device ID (Tx pin, 1-128)
 
 - id: get_rx_uart_route_tx
-  label: Get Current UART Route
-  kind: action
+  label: Get RX UART Route
+  kind: query
+  command: "get rx {rx_id} uart route tx"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
 
 - id: set_all_rx_ir_route_tx
-  label: Route Transmitter IR to All Receivers
+  label: Route TX IR to All RX
   kind: action
+  command: "set all rx ir route tx {tx_id}"
   params:
-    - name: transmitter_id
+    - name: tx_id
       type: integer
-      description: Transmitter device ID (1-128)
+      description: Transmitter device ID (IR input, 1-128)
 
 - id: set_rx_ir_route_tx
-  label: Route Transmitter IR to Receiver
+  label: Route TX IR to RX
   kind: action
+  command: "set rx {rx_id} ir route tx {tx_id}"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
-      description: Receiver device ID (1-256)
-    - name: transmitter_id
+      description: Receiver device ID (IR output, 1-256)
+    - name: tx_id
       type: integer
-      description: Transmitter device ID (1-128)
+      description: Transmitter device ID (IR input, 1-128)
 
 - id: get_rx_ir_route_tx
-  label: Get Current IR Route
-  kind: action
+  label: Get RX IR Route
+  kind: query
+  command: "get rx {rx_id} ir route tx"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
 
 - id: set_rx_usb_route_tx
-  label: Route USB Device to Transmitter Host
+  label: Route RX USB to TX USB Host
   kind: action
+  command: "set rx {rx_id} usb route tx {tx_id}"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
-      description: Receiver device ID (1-256)
-    - name: transmitter_id
+      description: Receiver device ID (USB device, 1-256)
+    - name: tx_id
       type: integer
-      description: Transmitter device ID (1-128)
+      description: Transmitter device ID (USB host, 1-128)
 
 - id: get_rx_usb_route_tx
-  label: Get Current USB Route
-  kind: action
+  label: Get RX USB Route
+  kind: query
+  command: "get rx {rx_id} usb route tx"
   params:
-    - name: receiver_id
+    - name: rx_id
       type: integer
       description: Receiver device ID (1-256)
 
 - id: get_all_rx_group_info
-  label: Get All Receiver Group Information
-  kind: action
+  label: Get All Group Info
+  kind: query
+  command: "get all rx group info"
   params: []
 
 - id: get_all_video_wall_preset_info
-  label: Get All Video Wall Preset Information
-  kind: action
+  label: Get All Video Wall Preset Info
+  kind: query
+  command: "get all video wall preset info"
   params: []
 
 - id: get_all_macro_name
   label: Get All Macro Names
-  kind: action
+  kind: query
+  command: "get all macro name"
   params: []
 
 - id: set_macro_run
-  label: Execute Macro
+  label: Run Macro
   kind: action
+  command: "set macro {macro_id} run"
   params:
     - name: macro_id
       type: integer
       description: Macro ID (1-256)
 
 - id: set_video_wall_preset_route_tx
-  label: Execute Video Wall Configuration
+  label: Apply Video Wall Preset
   kind: action
+  command: "set video wall preset {preset_id} route tx {tx_id}"
   params:
-    - name: video_wall_group_id
+    - name: preset_id
       type: integer
       description: Video wall group ID (1-256)
-    - name: transmitter_id
+    - name: tx_id
       type: integer
       description: Transmitter device ID (1-128)
 
 - id: run_roaming_preset
-  label: Execute Roaming Preset
+  label: Run Roaming Preset
   kind: action
+  command: "run roaming preset {preset_id}"
   params:
     - name: preset_id
       type: integer
@@ -690,53 +755,35 @@ serial:
 
 ## Feedbacks
 ```yaml
-# All get commands return responses. Specific response formats not documented.
-# UNRESOLVED: response string formats not stated in source
+# UNRESOLVED: response payload formats for each query command not detailed in refined source excerpt beyond parameter echo.
 ```
 
 ## Variables
 ```yaml
-# Network settings (via set_lan_* and get_lan_* commands):
-#   - ip_mode: [Static, DHCP]
-#   - ipaddr: string (x.x.x.x)
-#   - netmask: string (x.x.x.x)
-#   - gateway: string (x.x.x.x)
-#
-# Serial port settings (via set_uart_* and get_uart_* commands):
-#   - baud_rate: [2400, 4800, 9600, 19200, 38400, 57600, 115200]
-#   - data_bits: [7, 8]
-#   - stop_bits: [1, 2]
-#   - parity: [0=None, 1=Odd, 2=Even]
-#   - mode: [0=Disabled, 1=RS-232, 2=RS-422, 3=RS-485] (5-pin port only)
+# UNRESOLVED: not applicable - all settable state is exposed via discrete actions above.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented in source
+# UNRESOLVED: unsolicited device-initiated notifications not described in refined source.
 ```
 
 ## Macros
 ```yaml
-# Macros are user-defined; names retrieved via get_all_macro_name
-# UNRESOLVED: macro creation/definition commands not in source
+# UNRESOLVED: macro storage location and edit commands not in refined source. Only `set macro N run` and `get all macro name` are documented.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: no safety warnings, interlocks, or power-sequencing procedures in refined source.
 ```
 
 ## Notes
-- Commands are not case-sensitive and must be followed by a carriage return (CR or `\x0D`) to execute.
-- Hex data can be transmitted via `set uart 2 command` using `\x` prefix for hex byte pairs.
-- Unit defaults to DHCP mode; IP address can be verified via HDMI output or RS-232.
-- Default Telnet port is 23; changes with IP address.
-- Device supports two LAN ports for AVoIP.
-<!-- UNRESOLVED: video wall preset creation commands not stated in source -->
-<!-- UNRESOLVED: roaming preset creation/definition commands not stated in source -->
-<!-- UNRESOLVED: HDCP encryption/authentication details not stated in source -->
+Commands not case-sensitive. Must terminate with carriage return (CR). Default unit IP via DHCP; current IP viewable on HDMI output or via RS-232. Telnet default port 23; changeable. 5-pin serial port mode-switchable between RS-232/RS-422/RS-485 (port 2); 3-pin port is RS-232 only. LAN has 2 ports (1, 2). Two serial ports: 1=3-pin (RS-232), 2=5-pin (multi-mode).
+
+<!-- UNRESOLVED: exact response payload schema per query command not in source; firmware version compatibility not stated; specific video wall preset / macro configuration authoring commands not in source. -->
 
 ## Provenance
 
@@ -745,25 +792,32 @@ source_domains:
   - cypeurope.com
 source_urls:
   - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
-retrieved_at: 2026-05-04T18:02:47.388Z
-last_checked_at: 2026-05-14T18:17:15.101Z
+retrieved_at: 2026-04-30T04:31:10.266Z
+last_checked_at: 2026-06-02T00:05:12.137Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.101Z
-matched_actions: 68
-action_count: 69
-confidence: high
-summary: "All 68 spec actions matched verbatim in source; transport parameters (port 23, baud 19200) verified; bidirectional coverage confirmed."
+checked_at: 2026-06-02T00:05:12.137Z
+matched_actions: 70
+action_count: 70
+confidence: medium
+summary: "All 70 spec actions matched verbatim to source command table; transport parameters (port 23, baud 19200, 8 data bits, no parity, 1 stop bit) verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device-class identity (TX vs RX vs controller) not explicit in refined excerpt; AVoIP product role inferred from command syntax."
+- "no volume/gain/brightness commands in refined source"
+- "response payload formats for each query command not detailed in refined source excerpt beyond parameter echo."
+- "not applicable - all settable state is exposed via discrete actions above."
+- "unsolicited device-initiated notifications not described in refined source."
+- "macro storage location and edit commands not in refined source. Only `set macro N run` and `get all macro name` are documented."
+- "no safety warnings, interlocks, or power-sequencing procedures in refined source."
+- "exact response payload schema per query command not in source; firmware version compatibility not stated; specific video wall preset / macro configuration authoring commands not in source."
 ```
 
 ---

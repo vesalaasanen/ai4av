@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-27T05:49:05.925Z
 last_checked_at: 2026-05-31T06:46:46.189Z
 generated_at: 2026-05-31T06:46:46.189Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input setting values are incomplete."
+  - "firmware version compatibility not stated in source"
+  - "wireless LAN communication conditions not stated (refers to wireless LAN unit manual)"
+  - "RTS/CTS pins wired but flow control mode not stated"
+  - "source does not document unsolicited notification events"
+  - "source does not document multi-step macro sequences"
+  - "flow control mode not stated despite RTS/CTS pins being wired"
+  - "wireless LAN communication conditions not stated"
+  - "Appendix parameter value tables not included in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:46:46.189Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions verified against source with matching wire-level commands; transport parameters confirmed; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 53 spec actions verified against source with matching wire-level commands; transport parameters confirmed; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -763,7 +772,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-27T05:49:05.925Z
 last_checked_at: 2026-05-31T06:46:46.189Z
 ```
 
@@ -774,14 +783,22 @@ verdict: verified
 checked_at: 2026-05-31T06:46:46.189Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions verified against source with matching wire-level commands; transport parameters confirmed; bidirectional coverage complete."
+confidence: medium
+summary: "All 53 spec actions verified against source with matching wire-level commands; transport parameters confirmed; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input setting values are incomplete."
+- "firmware version compatibility not stated in source"
+- "wireless LAN communication conditions not stated (refers to wireless LAN unit manual)"
+- "RTS/CTS pins wired but flow control mode not stated"
+- "source does not document unsolicited notification events"
+- "source does not document multi-step macro sequences"
+- "flow control mode not stated despite RTS/CTS pins being wired"
+- "wireless LAN communication conditions not stated"
+- "Appendix parameter value tables not included in source"
 ```
 
 ---

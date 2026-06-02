@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:14.794Z
 last_checked_at: 2026-04-25T21:33:32.686Z
 generated_at: 2026-04-25T21:33:32.686Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "HDBaseT, SDI, USB, and viewer input terminal control details are referenced in Appendix tables but full command sequences for these inputs are not documented in the source"
+  - "flow control not specified in source"
+  - "Commands 053-3 through 053-11 lack complete parameter tables for reference lens memory profile selection"
+  - "Response format for SETTING REQUEST (078-1) base model type field not decoded - values are model-specific"
+  - "No standalone settable parameters found that are not discrete actions."
+  - "No unsolicited event/notification mechanism described in source."
+  - "No multi-step macro sequences described in source."
+  - "no explicit safety warnings, interlock procedures, or power-on sequencing"
+  - "HDBaseT standby mode details not documented"
+  - "SDI, USB, VIEWER full command sequences not documented (only listed in input terminal appendix)"
+  - "Audio select terminal codes vary by model — DATA01 values not fully specified"
+  - "Flow control configuration for RS-232 not stated in source"
+  - "Timing constraints between commands not specified (minimum intervals, etc.)"
+  - "Which models support Lamp 2 commands not enumerated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:33:32.686Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched to distinct source commands with correct semantics; all transport parameters present in source."
+  confidence: medium
+  summary: "All 53 spec actions matched to distinct source commands with correct semantics; all transport parameters present in source. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -747,7 +761,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:14.794Z
 last_checked_at: 2026-04-25T21:33:32.686Z
 ```
 
@@ -758,14 +772,27 @@ verdict: verified
 checked_at: 2026-04-25T21:33:32.686Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched to distinct source commands with correct semantics; all transport parameters present in source."
+confidence: medium
+summary: "All 53 spec actions matched to distinct source commands with correct semantics; all transport parameters present in source. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "HDBaseT, SDI, USB, and viewer input terminal control details are referenced in Appendix tables but full command sequences for these inputs are not documented in the source"
+- "flow control not specified in source"
+- "Commands 053-3 through 053-11 lack complete parameter tables for reference lens memory profile selection"
+- "Response format for SETTING REQUEST (078-1) base model type field not decoded - values are model-specific"
+- "No standalone settable parameters found that are not discrete actions."
+- "No unsolicited event/notification mechanism described in source."
+- "No multi-step macro sequences described in source."
+- "no explicit safety warnings, interlock procedures, or power-on sequencing"
+- "HDBaseT standby mode details not documented"
+- "SDI, USB, VIEWER full command sequences not documented (only listed in input terminal appendix)"
+- "Audio select terminal codes vary by model — DATA01 values not fully specified"
+- "Flow control configuration for RS-232 not stated in source"
+- "Timing constraints between commands not specified (minimum intervals, etc.)"
+- "Which models support Lamp 2 commands not enumerated in source"
 ```
 
 ---

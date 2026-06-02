@@ -18,22 +18,29 @@ compatible_with:
 source_domains:
   - shinybowusa.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://shinybowusa.com/PDF/RS232_V1.0.pdf
+  - https://shinybowusa.com/PDF/RS232_V2.0.pdf
+retrieved_at: 2026-05-21T22:06:27.193Z
 last_checked_at: 2026-05-31T21:22:46.847Z
 generated_at: 2026-05-31T21:22:46.847Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "applies to all devices except SB-5688 per source"
+  - "no discrete settable parameters other than routing actions"
+  - "no unsolicited event descriptions in source"
+  - "no explicit multi-step sequences described"
+  - "no safety warnings or interlock procedures in source"
+  - "lock commands change status via RS-232 only per source"
+  - "firmware version not stated"
+  - "SB-5688 excluded per source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:22:46.847Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched control commands in source; transport parameters verbatim; source catalogue fully represented."
+  confidence: medium
+  summary: "All 10 spec actions matched control commands in source; transport parameters verbatim; source catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -230,10 +237,9 @@ Reset sets all destinations to Source 1.
 source_domains:
   - shinybowusa.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://shinybowusa.com/PDF/RS232_V1.0.pdf
+  - https://shinybowusa.com/PDF/RS232_V2.0.pdf
+retrieved_at: 2026-05-21T22:06:27.193Z
 last_checked_at: 2026-05-31T21:22:46.847Z
 ```
 
@@ -244,14 +250,21 @@ verdict: verified
 checked_at: 2026-05-31T21:22:46.847Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched control commands in source; transport parameters verbatim; source catalogue fully represented."
+confidence: medium
+summary: "All 10 spec actions matched control commands in source; transport parameters verbatim; source catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "applies to all devices except SB-5688 per source"
+- "no discrete settable parameters other than routing actions"
+- "no unsolicited event descriptions in source"
+- "no explicit multi-step sequences described"
+- "no safety warnings or interlock procedures in source"
+- "lock commands change status via RS-232 only per source"
+- "firmware version not stated"
+- "SB-5688 excluded per source"
 ```
 
 ---

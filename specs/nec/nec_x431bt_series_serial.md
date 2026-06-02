@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:20.529Z
 last_checked_at: 2026-05-14T18:17:19.088Z
 generated_at: 2026-05-14T18:17:19.088Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model variants within X431BT series not distinguished in source"
+  - "firmware version compatibility not stated"
+  - "HDBaseT standby mode only mentioned for some models"
+  - "no discrete settable parameters beyond action commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macros described in source"
+  - "no explicit safety warnings or interlock procedures beyond command timing notes"
+  - "standby mode requirements for specific X431BT models not stated"
+  - "input terminal values vary by model (documented in appendix as common values)"
+  - "aspect values vary by model (documented in appendix as common values)"
+  - "eco mode values vary by model (documented in appendix as common values)"
+  - "selection signal type values vary by model (documented in appendix as common values)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.088Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim."
+  confidence: medium
+  summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -622,7 +634,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:20.529Z
 last_checked_at: 2026-05-14T18:17:19.088Z
 ```
 
@@ -633,14 +645,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.088Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim."
+confidence: medium
+summary: "All 53 spec actions verified against source; transport parameters confirmed verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model variants within X431BT series not distinguished in source"
+- "firmware version compatibility not stated"
+- "HDBaseT standby mode only mentioned for some models"
+- "no discrete settable parameters beyond action commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macros described in source"
+- "no explicit safety warnings or interlock procedures beyond command timing notes"
+- "standby mode requirements for specific X431BT models not stated"
+- "input terminal values vary by model (documented in appendix as common values)"
+- "aspect values vary by model (documented in appendix as common values)"
+- "eco mode values vary by model (documented in appendix as common values)"
+- "selection signal type values vary by model (documented in appendix as common values)"
 ```
 
 ---

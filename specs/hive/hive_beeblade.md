@@ -24,14 +24,27 @@ last_checked_at: 2026-05-14T18:17:16.780Z
 generated_at: 2026-05-14T18:17:16.780Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact hardware capabilities, number of layers supported, maximum resolution, codec support details not stated"
+  - "no separate variable definitions in source beyond the action parameters"
+  - "no unsolicited notification mechanism described in source."
+  - "no multi-step sequences explicitly described in source."
+  - "source warns \"PLEASE BACKUP YOUR JSON FILES BEFORE EDITING THEM AS YOU"
+  - "number of supported layers not stated"
+  - "UDP message format/encoding details not specified (raw text, binary framing, etc.)"
+  - "maximum UDP message size not stated"
+  - "error handling / response format for invalid commands not documented"
+  - "whether device sends responses to SetPatchDouble commands not stated"
+  - "FX per-effect parameter meanings not documented beyond numeric range"
+  - "complete list of JSON settings file paths and their schemas not provided"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.780Z
   matched_actions: 63
   action_count: 72
-  confidence: high
-  summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API."
+  confidence: medium
+  summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1200,14 +1213,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.780Z
 matched_actions: 63
 action_count: 72
-confidence: high
-summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API."
+confidence: medium
+summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact hardware capabilities, number of layers supported, maximum resolution, codec support details not stated"
+- "no separate variable definitions in source beyond the action parameters"
+- "no unsolicited notification mechanism described in source."
+- "no multi-step sequences explicitly described in source."
+- "source warns \"PLEASE BACKUP YOUR JSON FILES BEFORE EDITING THEM AS YOU"
+- "number of supported layers not stated"
+- "UDP message format/encoding details not specified (raw text, binary framing, etc.)"
+- "maximum UDP message size not stated"
+- "error handling / response format for invalid commands not documented"
+- "whether device sends responses to SetPatchDouble commands not stated"
+- "FX per-effect parameter meanings not documented beyond numeric range"
+- "complete list of JSON settings file paths and their schemas not provided"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

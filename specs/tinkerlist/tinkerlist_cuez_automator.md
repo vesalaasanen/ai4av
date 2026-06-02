@@ -26,14 +26,20 @@ last_checked_at: 2026-04-27T10:34:49.590Z
 generated_at: 2026-04-27T10:34:49.590Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "UDP/OSC not supported; only HTTP REST endpoints documented"
+  - "no settable variables documented"
+  - "no unsolicited event notifications documented"
+  - "port number 7070 assumed from base_url; no explicit TCP port statement"
+  - "CuezDeck button IDs not enumerated in source"
+  - "macro ID format not specified in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T10:34:49.590Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source."
+  confidence: medium
+  summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -209,14 +215,19 @@ verdict: verified
 checked_at: 2026-04-27T10:34:49.590Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source."
+confidence: medium
+summary: "All 13 spec actions match documented endpoints one-to-one with correct parameter shapes and transport verified against source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "UDP/OSC not supported; only HTTP REST endpoints documented"
+- "no settable variables documented"
+- "no unsolicited event notifications documented"
+- "port number 7070 assumed from base_url; no explicit TCP port statement"
+- "CuezDeck button IDs not enumerated in source"
+- "macro ID format not specified in source"
 ```
 
 ---

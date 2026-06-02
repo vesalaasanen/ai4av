@@ -16,25 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - extron.com
   - media.extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
   - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+retrieved_at: 2026-04-30T04:26:37.366Z
 last_checked_at: 2026-05-14T18:17:15.869Z
 generated_at: 2026-05-14T18:17:15.869Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port number for Telnet not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "maximum concurrent TCP connections not stated"
+  - "TCP port number not stated in source"
+  - "command symbol not in source\""
+  - "no continuous settable parameters distinct from actions found in source"
+  - "no multi-step sequences explicitly defined in source"
+  - "no explicit safety warnings or interlock procedures in source."
+  - "Telnet escape character conflict with SIS Esc key — source notes Ctrl+] is Telnet escape, Esc key is SIS Escape"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.869Z
   matched_actions: 74
   action_count: 74
-  confidence: high
-  summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage."
+  confidence: medium
+  summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1270,13 +1276,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - extron.com
   - media.extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
   - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+retrieved_at: 2026-04-30T04:26:37.366Z
 last_checked_at: 2026-05-14T18:17:15.869Z
 ```
 
@@ -1287,14 +1290,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.869Z
 matched_actions: 74
 action_count: 74
-confidence: high
-summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage."
+confidence: medium
+summary: "All 99 spec actions matched literals in source; transport parameters documented and verified; comprehensive command coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port number for Telnet not stated in source"
+- "firmware version compatibility not stated in source"
+- "maximum concurrent TCP connections not stated"
+- "TCP port number not stated in source"
+- "command symbol not in source\""
+- "no continuous settable parameters distinct from actions found in source"
+- "no multi-step sequences explicitly defined in source"
+- "no explicit safety warnings or interlock procedures in source."
+- "Telnet escape character conflict with SIS Esc key — source notes Ctrl+] is Telnet escape, Esc key is SIS Escape"
 ```
 
 ---

@@ -15,23 +15,29 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - heimkinoraum.de
-source_urls:
-  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:17.893Z
 last_checked_at: 2026-05-14T18:17:17.893Z
 generated_at: 2026-05-14T18:17:17.893Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific Marantz model numbers not stated in source (document title references Denon but protocol applies to Marantz AV receivers)"
+  - "firmware version compatibility not stated in source"
+  - "no explicit multi-step macro sequences documented in source"
+  - "no other safety warnings or interlock procedures stated in source"
+  - "specific Marantz model numbers covered by this protocol not stated in source"
+  - "protocol version not stated in source"
+  - "exact list of Marantz models that share this Denon protocol not stated"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.893Z
   matched_actions: 102
   action_count: 128
-  confidence: high
-  summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set."
+  confidence: medium
+  summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1218,11 +1224,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - heimkinoraum.de
-source_urls:
-  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:17.893Z
 last_checked_at: 2026-05-14T18:17:17.893Z
 ```
 
@@ -1233,14 +1237,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.893Z
 matched_actions: 102
 action_count: 128
-confidence: high
-summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set."
+confidence: medium
+summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific Marantz model numbers not stated in source (document title references Denon but protocol applies to Marantz AV receivers)"
+- "firmware version compatibility not stated in source"
+- "no explicit multi-step macro sequences documented in source"
+- "no other safety warnings or interlock procedures stated in source"
+- "specific Marantz model numbers covered by this protocol not stated in source"
+- "protocol version not stated in source"
+- "exact list of Marantz models that share this Denon protocol not stated"
+- "model-specific source not located"
 ```
 
 ---

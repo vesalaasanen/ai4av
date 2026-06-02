@@ -15,23 +15,26 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:02:06.937Z
 last_checked_at: 2026-05-16T23:02:06.937Z
 generated_at: 2026-05-16T23:02:06.937Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 / serial control not documented in this source (BluOS CI API only). Firmware version compatibility ranges not stated. Authentication credentials not mentioned."
+  - "The BluOS API uses long polling rather than push notifications."
+  - "no multi-step sequences described explicitly in source beyond the two-step"
+  - "RS-232/serial control, Telnet control, and any non-HTTP control interface are not covered in the source document. Firmware version compatibility ranges beyond the inputIndex/inputTypeIndex distinction are not stated. Authentication mechanisms are not mentioned (assumed none)."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T23:02:06.937Z
   matched_actions: 35
   action_count: 35
-  confidence: high
-  summary: "All 35 spec actions have verbatim path matches in the BluOS CI API source; shapes agree; transport confirmed."
+  confidence: medium
+  summary: "All 35 spec actions have verbatim path matches in the BluOS CI API source; shapes agree; transport confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -617,11 +620,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:02:06.937Z
 last_checked_at: 2026-05-16T23:02:06.937Z
 ```
 
@@ -632,14 +633,18 @@ verdict: verified
 checked_at: 2026-05-16T23:02:06.937Z
 matched_actions: 35
 action_count: 35
-confidence: high
-summary: "All 35 spec actions have verbatim path matches in the BluOS CI API source; shapes agree; transport confirmed."
+confidence: medium
+summary: "All 35 spec actions have verbatim path matches in the BluOS CI API source; shapes agree; transport confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 / serial control not documented in this source (BluOS CI API only). Firmware version compatibility ranges not stated. Authentication credentials not mentioned."
+- "The BluOS API uses long polling rather than push notifications."
+- "no multi-step sequences described explicitly in source beyond the two-step"
+- "RS-232/serial control, Telnet control, and any non-HTTP control interface are not covered in the source document. Firmware version compatibility ranges beyond the inputIndex/inputTypeIndex distinction are not stated. Authentication mechanisms are not mentioned (assumed none)."
+- "model-specific source not located"
 ```
 
 ---

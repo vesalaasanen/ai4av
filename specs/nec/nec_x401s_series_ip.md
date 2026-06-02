@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:17.865Z
 last_checked_at: 2026-05-14T18:17:19.071Z
 generated_at: 2026-05-14T18:17:19.071Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "standalone model name not confirmed in source — spec derived from generic NEC projector command reference BDT140013 Rev 7.1"
+  - "RTS/CTS pins present in pinout but flow control mode not specified"
+  - "no discrete settable parameters identified that are not Actions"
+  - "no unsolicited event/notification format described in source"
+  - "no explicit multi-step sequences described in source"
+  - "no explicit safety warnings for high voltage, laser, or lamp replacement procedures in source"
+  - "complete input terminal code table not provided — appendix references \"Supplementary Information by Command\" not included in source"
+  - "base model type values not enumerated in source"
+  - "aspect mode hex codes vary (some have dual codes) — noted in appendix"
+  - "eco mode hex codes vary by model — appendix shows multiple possible values"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.071Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 43 spec actions matched source commands literally; transport parameters verified verbatim; no command-level drift detected."
+  confidence: medium
+  summary: "All 43 spec actions matched source commands literally; transport parameters verified verbatim; no command-level drift detected. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -658,7 +668,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:17.865Z
 last_checked_at: 2026-05-14T18:17:19.071Z
 ```
 
@@ -669,14 +679,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.071Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 43 spec actions matched source commands literally; transport parameters verified verbatim; no command-level drift detected."
+confidence: medium
+summary: "All 43 spec actions matched source commands literally; transport parameters verified verbatim; no command-level drift detected. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "standalone model name not confirmed in source — spec derived from generic NEC projector command reference BDT140013 Rev 7.1"
+- "RTS/CTS pins present in pinout but flow control mode not specified"
+- "no discrete settable parameters identified that are not Actions"
+- "no unsolicited event/notification format described in source"
+- "no explicit multi-step sequences described in source"
+- "no explicit safety warnings for high voltage, laser, or lamp replacement procedures in source"
+- "complete input terminal code table not provided — appendix references \"Supplementary Information by Command\" not included in source"
+- "base model type values not enumerated in source"
+- "aspect mode hex codes vary (some have dual codes) — noted in appendix"
+- "eco mode hex codes vary by model — appendix shows multiple possible values"
 ```
 
 ---

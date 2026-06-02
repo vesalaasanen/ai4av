@@ -2,15 +2,15 @@
 spec_id: admin/wattbox-wb-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "WattBox WB Series Control Spec"
+title: "WattBox WB Series IP Control Spec"
 manufacturer: WattBox
-model_family: WB-800-IPVM-6
+model_family: "WB Series"
 aliases: []
 compatible_with:
   manufacturers:
     - WattBox
   models:
-    - WB-800-IPVM-6
+    - "WB Series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -19,403 +19,394 @@ source_domains:
   - snapav.com
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
-retrieved_at: 2026-05-01T01:56:20.723Z
-last_checked_at: 2026-04-27T10:13:20.712Z
-generated_at: 2026-04-27T10:13:20.712Z
+retrieved_at: 2026-04-30T04:26:15.169Z
+last_checked_at: 2026-06-02T07:06:56.278Z
+generated_at: 2026-06-02T07:06:56.278Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "WB150/250 omit OutletPowerStatus and PowerStatus (per source notes). Per-outlet outlet count not stated; example response shows 12 outlets but real count is model-dependent."
+  - "source does not state a baud_rate for serial"
+  - "source does not document multi-step sequences"
+  - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
+  - "full set of supported WB Series models and per-model outlet counts not stated."
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:20.712Z
-  matched_actions: 18
-  action_count: 18
-  confidence: high
-  summary: "All 18 spec actions match source commands; transport parameters verified; comprehensive coverage achieved."
+  checked_at: 2026-06-02T07:06:56.278Z
+  matched_actions: 30
+  action_count: 30
+  confidence: medium
+  summary: "All 30 spec actions matched literally in source; transport parameters verified; no fabrications or shape mismatches. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-15
+created_at: 2026-06-02
 ---
 
-# WattBox WB Series Control Spec
+# WattBox WB Series IP Control Spec
 
 ## Summary
-The WattBox WB Series is an IP-controllable power strip with individual outlet control. It supports Telnet (port 23) and SSH (port 22) for TCP/IP control, with username/password authentication required. The device exposes query commands for status monitoring and control commands for outlet management, power scheduling, and network configuration.
+IP-controllable power conditioner family from WattBox (SnapAV). Spec covers Telnet/SSH integration protocol v2.4 rev20210527: ASCII command set for outlet control, scheduling, host monitoring, network config, and UPS status.
 
-<!-- UNRESOLVED: WB-150/250 models do not support per-outlet power status or system power status queries -->
+<!-- UNRESOLVED: WB150/250 omit OutletPowerStatus and PowerStatus (per source notes). Per-outlet outlet count not stated; example response shows 12 outlets but real count is model-dependent. -->
 
 ## Transport
 ```yaml
 protocols:
   - tcp
 addressing:
-  port: 23  # Telnet; SSH available on port 22 (firmware 1.3.0.4+)
+  port: 23
+serial:
+  null  # UNRESOLVED: source does not state a baud_rate for serial
 auth:
-  type: password  # username/password required; SSH password limited to 13 characters
-connection_limit: 10  # maximum simultaneous connections stated in source
+  type: password  # source: "login prompt... third-party system must provide a valid username and password"
 ```
 
 ## Traits
 ```yaml
-- powerable       # !OutletSet=OUTLET,ON/OFF/TOGGLE/RESET present
-- queryable       # multiple ? commands returning state present
-- routable        # scheduling and host monitoring commands present
+- powerable       # outlet ON/OFF/TOGGLE/RESET
+- routable        # !OutletModeSet (Enabled/Disabled/Reset Only) and !OutletRebootSet (Any host timeout / All selected hosts timeout)
+- queryable       # extensive ? queries
 ```
 
 ## Actions
 ```yaml
-- id: outlet_set
-  label: Set Outlet State
-  kind: action
+- id: firmware_query
+  label: Firmware Version Query
+  kind: query
+  command: "?Firmware\n"
+  params: []
+- id: hostname_query
+  label: Hostname Query
+  kind: query
+  command: "?Hostname\n"
+  params: []
+- id: service_tag_query
+  label: Service Tag Query
+  kind: query
+  command: "?ServiceTag\n"
+  params: []
+- id: model_query
+  label: Model Number Query
+  kind: query
+  command: "?Model\n"
+  params: []
+- id: outlet_count_query
+  label: Outlet Count Query
+  kind: query
+  command: "?OutletCount\n"
+  params: []
+- id: outlet_status_query
+  label: Outlet States Query
+  kind: query
+  command: "?OutletStatus\n"
+  params: []
+- id: outlet_power_status_query
+  label: Outlet Power Status Query
+  kind: query
+  command: "?OutletPowerStatus={outlet}\n"
   params:
     - name: outlet
       type: integer
-      description: Outlet number (1-based); use 0 to reset all outlets
-    - name: action
-      type: string
-      enum: [ON, OFF, TOGGLE, RESET]
-      description: Desired action
-    - name: delay
-      type: integer
-      required: false
-      description: Delay in seconds (1-600) for RESET action override
-
+      description: Outlet number (1-based). Not supported on WB150/250.
+- id: power_status_query
+  label: System Power Status Query
+  kind: query
+  command: "?PowerStatus\n"
+  params: []
+- id: auto_reboot_query
+  label: Auto Reboot Status Query
+  kind: query
+  command: "?AutoReboot\n"
+  params: []
+- id: outlet_name_query
+  label: Outlet Names Query
+  kind: query
+  command: "?OutletName\n"
+  params: []
+- id: ups_status_query
+  label: UPS Status Query
+  kind: query
+  command: "?UPSStatus\n"
+  params: []
+- id: ups_connection_query
+  label: UPS Connection Query
+  kind: query
+  command: "?UPSConnection\n"
+  params: []
 - id: outlet_name_set
   label: Set Outlet Name
   kind: action
+  command: "!OutletNameSet={outlet},{name}\n"
   params:
     - name: outlet
       type: integer
-      description: Outlet number (1-based)
     - name: name
       type: string
-      description: New outlet name
-
 - id: outlet_name_set_all
   label: Set All Outlet Names
   kind: action
+  command: "!OutletNameSetAll={name1},{name2},{name3},{name4},{name5},{name6},{name7},{name8},{name9},{name10},{name11},{name12}\n"
+  params: []
+  notes: Source shows 12-slot example; outlet count is model-dependent. Brackets required around every NAME.
+- id: outlet_set
+  label: Set Outlet State
+  kind: action
+  command: "!OutletSet={outlet},{action},{delay}\n"
   params:
-    - name: names
-      type: array
-      items:
-        type: string
-      description: Array of outlet names in order (Outlet 1 first)
-
+    - name: outlet
+      type: integer
+    - name: action
+      type: enum
+      values: [ON, OFF, TOGGLE, RESET]
+    - name: delay
+      type: integer
+      description: Optional, 1-600 seconds. Applies to RESET only. Omit for other actions.
 - id: outlet_power_on_delay_set
   label: Set Outlet Power-On Delay
   kind: action
+  command: "!OutletPowerOnDelaySet={outlet},{delay}\n"
   params:
     - name: outlet
       type: integer
-      description: Outlet number (1-based)
     - name: delay
       type: integer
-      description: Delay in seconds (1-600)
-
+      description: 1-600 seconds
 - id: outlet_mode_set
-  label: Set Outlet Mode
+  label: Set Outlet Operating Mode
   kind: action
+  command: "!OutletModeSet={outlet},{mode}\n"
   params:
     - name: outlet
       type: integer
-      description: Outlet number (1-based)
     - name: mode
-      type: integer
-      enum: [0, 1, 2]
-      description: "0=Enabled, 1=Disabled, 2=Reset Only"
-
+      type: enum
+      values: [0, 1, 2]
+      description: 0=Enabled, 1=Disabled, 2=Reset Only
 - id: outlet_reboot_set
-  label: Set Outlet Reboot Behavior
+  label: Set Outlet Reboot Operation
   kind: action
+  command: "!OutletRebootSet={op1},{op2},{op3},{op4},{op5},{op6},{op7},{op8},{op9},{op10},{op11},{op12}\n"
   params:
-    - name: behaviors
-      type: array
-      items:
-        type: integer
-      description: "Array of 12 outlet behaviors: 0=(Any host timeout) Or, 1=(All hosts timeout) And"
-
+    - name: op_n
+      type: enum
+      values: [0, 1]
+      description: One per outlet; 0=Any selected host timeout, 1=All selected hosts timeout
 - id: auto_reboot_set
-  label: Set Auto Reboot State
+  label: Set Auto Reboot
   kind: action
+  command: "!AutoReboot={state}\n"
   params:
     - name: state
-      type: integer
-      enum: [0, 1]
-      description: "0=Disabled, 1=Enabled"
-
+      type: enum
+      values: [0, 1]
+      description: 0=Disabled, 1=Enabled
 - id: auto_reboot_timeout_set
   label: Set Auto Reboot Timeout Settings
   kind: action
+  command: "!AutoRebootTimeoutSet={timeout},{count},{ping_delay},{reboot_attempts}\n"
   params:
     - name: timeout
       type: integer
-      description: Timeout in seconds (1-60)
+      description: 1-60 seconds
     - name: count
       type: integer
-      description: Consecutive time-outs before auto-reboot (1-10)
+      description: 1-10
     - name: ping_delay
       type: integer
-      description: Retry delay in minutes (1-30)
+      description: 1-30 minutes
     - name: reboot_attempts
       type: integer
-      description: "Reboot attempts (0=unlimited, 1-10)"
-
+      description: 0=unlimited, 1-10
 - id: firmware_update
-  label: Update Firmware
+  label: Firmware Update
   kind: action
+  command: "!FirmwareUpdate={url}\n"
   params:
     - name: url
       type: string
-      description: Full URL path to firmware upgrade file
-
+      description: Full path to upgrade file. Device shuts down after OK response.
 - id: reboot
   label: Reboot Device
   kind: action
+  command: "!Reboot\n"
   params: []
-
 - id: account_set
-  label: Set Account Credentials
+  label: Set Login Credentials
   kind: action
+  command: "!AccountSet={user},{pass}\n"
   params:
     - name: user
       type: string
-      description: Username
     - name: pass
       type: string
-      description: Password
-
 - id: network_set
-  label: Set Network Settings
+  label: Set Network Configuration
   kind: action
+  command: "!NetworkSet={host},{ip},{subnet},{gateway},{dns1},{dns2}\n"
   params:
     - name: host
       type: string
       description: Hostname
     - name: ip
       type: string
-      required: false
-      description: Static IP (omit to use DHCP)
+      description: Omit (with following fields) for DHCP
     - name: subnet
       type: string
-      required: false
-      description: Subnet mask
     - name: gateway
       type: string
-      required: false
-      description: Gateway
     - name: dns1
       type: string
-      required: false
-      description: Primary DNS
     - name: dns2
       type: string
-      required: false
-      description: Secondary DNS
-
+      description: Optional; auto-fills 8.8.8.8
 - id: schedule_add
   label: Add Schedule
   kind: action
+  command: "!ScheduleAdd={name},{outlets},{action},{freq},{days_or_date},{time}\n"
   params:
     - name: name
       type: string
-      description: Schedule name
     - name: outlets
-      type: array
-      items:
-        type: integer
-      description: Array of outlet numbers
+      type: string
+      description: Bracketed array, e.g. {1,2,3}
     - name: action
-      type: integer
-      enum: [0, 1, 2]
-      description: "0=Off, 1=On, 2=Reset"
-    - name: frequency
-      type: integer
-      enum: [0, 1]
-      description: "0=Once, 1=Recurring"
+      type: enum
+      values: [0, 1, 2]
+      description: 0=Off, 1=On, 2=Reset
+    - name: freq
+      type: enum
+      values: [0, 1]
+      description: 0=Once, 1=Recurring
     - name: days_or_date
       type: string
-      description: "Recurring: 7-char array {s,m,t,w,t,f,s} with 0/1; Once: yyyy/mm/dd"
+      description: Recurring: 7-element day array, e.g. {0,1,0,1,0,1,0}. Once: {yyyy/mm/dd}.
     - name: time
       type: string
-      description: "24-hour time hh:mm"
-
+      description: hh:mm 24-hour, e.g. 13:30
 - id: host_add
-  label: Add Host to Monitor
+  label: Add Monitored Host
   kind: action
+  command: "!HostAdd={name},{ip},{outlets}\n"
   params:
     - name: name
       type: string
-      description: Host name
     - name: ip
       type: string
       description: Website or IP address to test
     - name: outlets
-      type: array
-      items:
-        type: integer
-      description: Array of outlet numbers tied to this host
-
+      type: string
+      description: Bracketed array of outlet numbers, e.g. {1,2}
 - id: set_telnet
-  label: Enable/Disable Telnet Service
+  label: Enable/Disable Telnet
   kind: action
+  command: "!SetTelnet={mode}\n"
   params:
     - name: mode
-      type: integer
-      enum: [0, 1]
-      description: "0=Disabled, 1=Enabled; reboot required"
-
+      type: enum
+      values: [0, 1]
+      description: 0=Disabled, 1=Enabled. Reboot required.
 - id: web_server_set
   label: Enable/Disable Web Server
   kind: action
+  command: "!WebServerSet={mode}\n"
   params:
     - name: mode
-      type: integer
-      enum: [0, 1]
-      description: "0=Disabled, 1=Enabled; reboot required; requires firmware 2.0+"
-
+      type: enum
+      values: [0, 1]
+      description: 0=Disabled, 1=Enabled. Requires firmware 2.0. Reboot required.
 - id: set_sddp
   label: Enable/Disable SDDP Broadcasting
   kind: action
+  command: "!SetSDDP={mode}\n"
   params:
     - name: mode
-      type: integer
-      enum: [0, 1]
-      description: "0=Disabled, 1=Enabled; requires firmware 2.0+"
-
+      type: enum
+      values: [0, 1]
+      description: 0=Disabled, 1=Enabled. Requires firmware 2.0.
 - id: exit
   label: Close Session
   kind: action
+  command: "!Exit\n"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: firmware
-  label: Firmware Version
+- id: ok
   type: string
-
-- id: hostname
-  label: Hostname
+  description: "Success acknowledgement. Literal: OK"
+- id: error
   type: string
-
-- id: service_tag
-  label: Service Tag
-  type: string
-
-- id: model
-  label: Model Number
-  type: string
-
-- id: outlet_count
-  label: Outlet Count
-  type: integer
-
-- id: outlet_status
-  label: Outlet States
-  type: string
-  description: "Comma-separated array of outlet states: 0=off, 1=on; array index = outlet number"
-
-- id: outlet_power_status
-  label: Outlet Power Status
-  type: object
-  description: "Requires firmware 1.3.0.4+; not supported on WB-150/250"
-  properties:
-    - name: outlet
-      type: integer
-    - name: watts
-      type: number
-    - name: amps
-      type: number
-    - name: volts
-      type: number
-
-- id: power_status
-  label: Power Status
-  type: object
-  description: "Not supported on WB-150/250"
-  properties:
-    - name: amps
-      type: number
-    - name: watts
-      type: number
-    - name: volts
-      type: number
-    - name: safe_voltage_status
-      type: integer
-
-- id: auto_reboot
-  label: Auto Reboot Status
-  type: enum
-  values: [0, 1]
-  description: "0=Disabled, 1=Enabled"
-
-- id: outlet_names
-  label: Outlet Names
+  description: "Literal: #Error - invalid command or internal device error"
+- id: outlet_status_response
   type: array
-  items:
-    type: string
-  description: "Array of outlet names in order"
-
-- id: ups_status
-  label: UPS Status
+  description: "Comma-separated outlet states, 0=off/1=on. Index = outlet number."
+- id: outlet_power_status_response
   type: object
-  description: "Only if UPS attached"
-  properties:
-    - name: battery_charge_percent
-      type: integer
-    - name: battery_load_percent
-      type: integer
-    - name: battery_health
-      type: string
-      enum: [Good, Bad]
-    - name: power_lost
-      type: boolean
-    - name: battery_runtime_minutes
-      type: integer
-    - name: alarm_enabled
-      type: boolean
-    - name: alarm_muted
-      type: boolean
-
-- id: ups_connection
-  label: UPS Connection Status
+  description: "1.01 watts, 0.02 amps, 116.50 volts. WB150/250 unsupported."
+- id: power_status_response
+  type: object
+  description: "amps, watts, volts, safe_voltage_status (0/1). WB150/250 unsupported."
+- id: ups_status_response
+  type: object
+  description: "battery_charge%, battery_load%, battery_health, power_lost, battery_runtime_min, alarm_enabled, alarm_muted"
+- id: ups_connection_response
   type: enum
   values: [0, 1]
   description: "0=Disconnected, 1=Connected"
-
-- id: error
-  label: Error
+- id: auto_reboot_response
+  type: enum
+  values: [0, 1]
+  description: "0=Disabled, 1=Enabled"
+- id: outlet_count_response
+  type: integer
+- id: outlet_name_response
+  type: array
+  description: "Bracketed comma-delimited outlet names. Source example shows 12 outlets."
+- id: firmware_response
   type: string
-  description: "Returned when invalid command received or internal device error; see device log for details"
+- id: hostname_response
+  type: string
+- id: service_tag_response
+  type: string
+- id: model_response
+  type: string
+```
+
+## Variables
+```yaml
+# No settable scalar parameters exist outside Actions. Remove section if not applicable.
+```
+
+## Events
+```yaml
+- id: unsolicited
+  type: string
+  description: "Messages prefixed with ~ (unsolicited). Source does not document specific event payloads."
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences described in source
+# UNRESOLVED: source does not document multi-step sequences
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for:
-  - "!FirmwareUpdate"  # device goes offline during update
-  - "!Reboot"           # device goes offline during reboot
-  - "!NetworkSet"      # device may come back at different IP after reboot
-  - "!AccountSet"      # client disconnects and must reconnect with new credentials
+confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety interlock procedures stated in source
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or power-on sequencing requirements
 ```
 
 ## Notes
-- Message prefix conventions: `?` = request, `!` = control, `#` = error, `~` = unsolicited, `\n` = end of command (0x0A)
-- Maximum simultaneous connections: 10
-- SSH support requires firmware 1.3.0.4+
-- Web server and SDDP commands require firmware 2.0+
-- Per-outlet power status and system power status queries not supported on WB-150/250 models
-- SSH password has 13-character limit
-- Network settings change causes device reboot; device may return at different IP
-- Firmware update and reboot commands cause client connection loss until device comes back online
-<!-- UNRESOLVED: voltage/current/power specifications not independently verified -->
+- Protocol: Telnet port 23 or SSH port 22. SSH requires firmware 1.3.0.4+ and a 13-character password limit.
+- Message format: ASCII, `\n` (0x0A) terminator. Prefixes: `?` request, `!` control, `#` error, `~` unsolicited.
+- Max 10 simultaneous connections.
+- Web server and SDDP commands require firmware 2.0.
+- Network/Reboot/AccountSet/SetTelnet/SetWebServer changes disconnect the client; reconnect required.
+- WB150/250 lack per-outlet power and system power status queries.
+- Default credentials in source example: `wattbox`/`wattbox`.
+<!-- UNRESOLVED: full set of supported WB Series models and per-model outlet counts not stated. -->
 
 ## Provenance
 
@@ -424,25 +415,29 @@ source_domains:
   - snapav.com
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
-retrieved_at: 2026-05-01T01:56:20.723Z
-last_checked_at: 2026-04-27T10:13:20.712Z
+retrieved_at: 2026-04-30T04:26:15.169Z
+last_checked_at: 2026-06-02T07:06:56.278Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:20.712Z
-matched_actions: 18
-action_count: 18
-confidence: high
-summary: "All 18 spec actions match source commands; transport parameters verified; comprehensive coverage achieved."
+checked_at: 2026-06-02T07:06:56.278Z
+matched_actions: 30
+action_count: 30
+confidence: medium
+summary: "All 30 spec actions matched literally in source; transport parameters verified; no fabrications or shape mismatches. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "WB150/250 omit OutletPowerStatus and PowerStatus (per source notes). Per-outlet outlet count not stated; example response shows 12 outlets but real count is model-dependent."
+- "source does not state a baud_rate for serial"
+- "source does not document multi-step sequences"
+- "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
+- "full set of supported WB Series models and per-model outlet counts not stated."
 ```
 
 ---

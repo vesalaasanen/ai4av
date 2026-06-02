@@ -2,62 +2,63 @@
 spec_id: admin/barco-dp2k-10sx
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Barco DP2K 10sX Control Spec"
+title: "Barco DP2K-10sX Control Spec"
 manufacturer: Barco
-model_family: "DP2K 10sX"
+model_family: DP2K-10sX
 aliases: []
 compatible_with:
   manufacturers:
     - Barco
   models:
-    - "DP2K 10sX"
+    - DP2K-10sX
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-14T21:35:59.224Z
-generated_at: 2026-05-14T21:35:59.224Z
+retrieved_at: 2026-05-14T11:37:52.209Z
+last_checked_at: 2026-06-01T23:12:20.487Z
+generated_at: 2026-06-01T23:12:20.487Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - environment.getalarminfo
-  - illumination.laser.getserialnumber
-  - image.color.p7.custom.copypresettocustom
-  - image.color.p7.custom.resetpreset
-  - image.color.p7.custom.resettonative
-  - image.color.rgbmode.nextrgbmode
+  - "full property/method catalogue is dynamic; introspect for exact model config"
+  - "projector IP/host not stated; pattern is http://<address>/api/..."
+  - "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
+  - "- firmware compatibility range not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:35:59.224Z
-  matched_actions: 43
-  action_count: 48
-  confidence: high
-  summary: "All 43 spec actions matched documented methods/properties; transport parameters fully verified verbatim; spec covers canonical API surface."
+  checked_at: 2026-06-01T23:12:20.487Z
+  matched_actions: 33
+  action_count: 33
+  confidence: medium
+  summary: "All 33 spec actions match verbatim JSON-RPC methods, RS-232 command, and HTTP endpoints documented in the source; transport (port 9090, baud 19200, serial params) confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-14
+created_at: 2026-06-02
 ---
 
-# Barco DP2K 10sX Control Spec
+# Barco DP2K-10sX Control Spec
 
 ## Summary
-Barco DP2K 10sX laser projector with JSON-RPC 2.0 API over TCP (port 9090) and RS-232 serial. Supports power on/off, source routing, illumination control, picture settings, warp/blend/blacklevel file upload, environment monitoring, and signal change notifications. Authentication optional for normal user access; higher access levels require pass code.
+The Barco DP2K-10sX is a Pulse-series DLP cinema projector. This spec covers the Pulse JSON-RPC 2.0 control API exposed over TCP port 9090, the RS-232 serial wake-up interface, and the HTTP file endpoints under `/api/`.
 
-<!-- UNRESOLVED: full property set depends on installed peripherals and lens options; introspection recommended -->
+<!-- UNRESOLVED: full property/method catalogue is dynamic; introspect for exact model config -->
 
 ## Transport
 ```yaml
 protocols:
   - tcp
   - serial
+  - http
 addressing:
-  port: 9090  # TCP port stated in source
+  port: 9090
+  base_url: ""  # UNRESOLVED: projector IP/host not stated; pattern is http://<address>/api/...
 serial:
   baud_rate: 19200
   data_bits: 8
@@ -65,638 +66,522 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: optional  # source describes optional auth; normal user access skips auth
+  type: passcode  # source: "authenticate" method with numeric "code"; required for elevated access, skippable for end-user level
 ```
 
 ## Traits
 ```yaml
-# inferred from documented commands:
-# - powerable: system.poweron / system.poweroff
-# - queryable: property.get calls returning state values
-# - routable: image.window.main.source set/get, source/connector listing
-# - levelable: brightness, contrast, saturation, sharpness, gamma, illumination power
+- powerable       # inferred from system.poweron / system.poweroff methods
+- routable        # inferred from image.window.main.source property
+- queryable       # inferred from property.get / property.subscribe methods
+- levelable       # inferred from illumination.sources.laser.power and image.brightness/contrast/gamma/saturation/sharpness properties
+- observable      # inferred from property.changed / signal.callback notifications
 ```
 
 ## Actions
 ```yaml
-# Power
-- id: system_poweron
-  label: Power On
-  kind: action
-  params: []
-- id: system_poweroff
-  label: Power Off
-  kind: action
-  params: []
-
-# Source routing
-- id: property_set
-  label: Set Property Value
-  kind: action
-  params:
-    - name: property
-      type: string
-      description: Object.property name (dot notation)
-    - name: value
-      type: string
-      description: New value for the property
-- id: property_get
-  label: Get Property Value
-  kind: action
-  params:
-    - name: property
-      type: string
-      description: Object.property name to read
-- id: image_source_list
-  label: List Available Sources
-  kind: action
-  params: []
-- id: image_connector_list
-  label: List Available Connectors
-  kind: action
-  params: []
-
-# Subscription management
-- id: property_subscribe
-  label: Subscribe to Property Changes
-  kind: action
-  params:
-    - name: property
-      type: string
-      description: Property name to observe
-- id: property_unsubscribe
-  label: Unsubscribe from Property Changes
-  kind: action
-  params:
-    - name: property
-      type: string
-      description: Property name to stop observing
-- id: signal_subscribe
-  label: Subscribe to Signal
-  kind: action
-  params:
-    - name: signal
-      type: string
-      description: Signal name to subscribe to
-- id: signal_unsubscribe
-  label: Unsubscribe from Signal
-  kind: action
-  params:
-    - name: signal
-      type: string
-      description: Signal name to unsubscribe from
-
-# Introspection
-- id: introspect
-  label: Introspect Object
-  kind: action
-  params:
-    - name: object
-      type: string
-      description: Object name to introspect (dot notation)
-    - name: recursive
-      type: boolean
-      description: Recursive introspection (default true)
-
-# Authentication
+# --- Authentication ---
 - id: authenticate
   label: Authenticate Session
   kind: action
+  command: '{"jsonrpc":"2.0","method":"authenticate","params":{"id":1,"code":98765}}'
   params:
     - name: code
       type: integer
-      description: Pass code for elevated access level
+      description: Secret pass code for elevated access level
 
-# Environment
-- id: environment_getcontrolblocks
-  label: Get Environment Sensors
+# --- System power ---
+- id: system_poweron
+  label: System Power On
   kind: action
+  command: '{"jsonrpc":"2.0","method":"system.poweron"}'
+  params: []
+- id: system_poweroff
+  label: System Power Off
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"system.poweroff"}'
+  params: []
+- id: serial_wake_from_eco
+  label: Wake Projector from ECO (RS-232)
+  kind: action
+  command: ":POWR1\r"
+  params: []
+  notes: ASCII string on the RS-232 serial port; wakes projector from ECO mode.
+
+# --- Generic property get/set ---
+- id: property_set
+  label: Set Property Value
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"{property}","value":{value}}}'
+  params:
+    - name: property
+      type: string
+      description: Dot-notation property path (e.g. "image.window.main.source")
+    - name: value
+      type: string
+      description: Value to assign; type depends on the target property
+- id: property_get
+  label: Get Property Value
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"property.get","params":{"property":"{property}"}}'
+  params:
+    - name: property
+      type: string
+      description: Dot-notation property path
+- id: property_subscribe
+  label: Subscribe to Property Changes
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.subscribe","params":{"property":"{property}"}}'
+  params:
+    - name: property
+      type: string
+      description: Single property path, or array of property paths
+- id: property_unsubscribe
+  label: Unsubscribe from Property Changes
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":"{property}"}}'
+  params:
+    - name: property
+      type: string
+      description: Single property path, or array of property paths
+
+# --- Generic signal subscribe ---
+- id: signal_subscribe
+  label: Subscribe to Signal
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":"{signal}"}}'
+  params:
+    - name: signal
+      type: string
+      description: Signal name (e.g. "modelupdated") or array of names
+- id: signal_unsubscribe
+  label: Unsubscribe from Signal
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":"{signal}"}}'
+  params:
+    - name: signal
+      type: string
+      description: Signal name or array of names
+
+# --- Introspection ---
+- id: introspect_recursive
+  label: Introspect Object (Recursive)
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"introspect","params":{"object":"{object}","recursive":true},"id":1}'
+  params:
+    - name: object
+      type: string
+      description: Object name in dot notation; empty introspects everything
+- id: introspect_nonrecursive
+  label: Introspect Object (One Level)
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"introspect","params":{"object":"{object}","recursive":false},"id":2}'
+  params:
+    - name: object
+      type: string
+      description: Object name in dot notation
+
+# --- LED control ---
+- id: ledctrl_blink
+  label: Blink Status LED
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"ledctrl.blink","params":{"id":3,"led":"{led}","color":"{color}","period":{period}}}'
+  params:
+    - name: led
+      type: string
+      description: LED identifier (e.g. "systemstatus")
+    - name: color
+      type: string
+      description: LED color (e.g. "red")
+    - name: period
+      type: integer
+      description: Blink period
+
+# --- Sources / connectors ---
+- id: image_source_list
+  label: List Available Sources
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.source.list","id":1}'
+  params: []
+- id: image_connector_list
+  label: List Available Connectors
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.connector.list","id":3}'
+  params: []
+- id: image_source_listconnectors
+  label: List Connectors Used by Source
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.source.{source}.listconnectors","id":4}'
+  params:
+    - name: source
+      type: string
+      description: Source object name (e.g. "displayport1") derived by lowercasing and stripping non-word characters from the source label
+
+# --- Illumination ---
+- id: illumination_clo_engage
+  label: Engage CLO at Current Light Level
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"illumination.clo.engage"}'
+  params: []
+- id: illumination_laser_getserialnumber
+  label: Get Laser Serial Number
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"illumination.laser.getserialnumber"}'
+  params: []
+
+# --- Image / color ---
+- id: image_color_p7_custom_copypresettocustom
+  label: Copy P7 Preset to Custom
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"image.color.p7.custom.copypresettocustom","params":{"presetname":"{presetname}"}}'
+  params:
+    - name: presetname
+      type: string
+      description: Preset name to copy
+- id: image_color_p7_custom_resetpreset
+  label: Reset P7 Preset to Default
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"image.color.p7.custom.resetpreset","params":{"presetname":"{presetname}"}}'
+  params:
+    - name: presetname
+      type: string
+      description: Preset name to reset
+- id: image_color_p7_custom_resettonative
+  label: Reset P7 Color to Native
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"image.color.p7.custom.resettonative"}'
+  params: []
+- id: image_color_rgbmode_nextrgbmode
+  label: Cycle to Next RGB Mode
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"image.color.rgbmode.nextrgbmode"}'
+  params: []
+
+# --- Environment ---
+- id: environment_getcontrolblocks
+  label: Get Environment Sensor Blocks
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"{type}","valuetype":"{valuetype}"}}'
   params:
     - name: type
       type: string
-      description: Sensor type (Sensor, Filter, Controller, Actuator, Alarm, GenericBlock)
+      description: Sensor type (e.g. "Sensor")
     - name: valuetype
       type: string
-      description: Value type (Temperature, Speed, Voltage, Current, Power, etc.)
-
-# Illumination
-- id: illumination_state_get
-  label: Get Illumination State
-  kind: action
-  params: []
-- id: illumination_sources_laser_power_get
-  label: Get Laser Power Level
-  kind: action
-  params: []
-- id: illumination_sources_laser_power_set
-  label: Set Laser Power Level
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Power level in percent
-- id: illumination_clo_engage
-  label: Engage Constant Light Output
-  kind: action
+      description: Sensor value type (e.g. "Temperature", "Speed", "Voltage", "Power")
+- id: environment_getalarminfo
+  label: Get Alarm Info
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"environment.getalarminfo"}'
   params: []
 
-# Picture settings
-- id: image_brightness_get
-  label: Get Brightness
-  kind: action
-  params: []
-- id: image_brightness_set
-  label: Set Brightness
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Brightness value (-1 to 1, normalized; 0 = default)
-- id: image_contrast_get
-  label: Get Contrast
-  kind: action
-  params: []
-- id: image_contrast_set
-  label: Set Contrast
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Contrast value (0 to 2, normalized; 1 = default)
-- id: image_saturation_get
-  label: Get Saturation
-  kind: action
-  params: []
-- id: image_saturation_set
-  label: Set Saturation
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Saturation value (0 to 2, normalized; 1 = default)
-- id: image_sharpness_get
-  label: Get Sharpness
-  kind: action
-  params: []
-- id: image_sharpness_set
-  label: Set Sharpness
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Sharpness value (-2 to 8)
-- id: image_gamma_get
-  label: Get Gamma
-  kind: action
-  params: []
-- id: image_gamma_set
-  label: Set Gamma
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Gamma value (1 to 3; default 2.2)
-
-# Warp/blend/blacklevel file operations
-- id: image_processing_warp_enable_set
-  label: Enable/Disable Warp
-  kind: action
-  params:
-    - name: value
-      type: boolean
-      description: true to enable warp
-- id: image_processing_warp_file_enable_set
-  label: Enable/Disable File Warp
-  kind: action
-  params:
-    - name: value
-      type: boolean
-- id: image_processing_warp_file_selected_set
-  label: Select Warp File
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: Filename of warp grid XML
-- id: image_processing_blend_file_enable_set
-  label: Enable/Disable File Blend
-  kind: action
-  params:
-    - name: value
-      type: boolean
-- id: image_processing_blend_file_selected_set
-  label: Select Blend File
-  kind: action
-  params:
-    - name: value
-      type: string
-- id: image_processing_blacklevel_file_enable_set
-  label: Enable/Disable Black Level Correction
-  kind: action
-  params:
-    - name: value
-      type: boolean
-- id: image_processing_blacklevel_file_selected_set
-  label: Select Black Level File
-  kind: action
-  params:
-    - name: value
-      type: string
-
-# Optics
-- id: optics_shutter_target_set
-  label: Set Shutter Target
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Open" or "Closed"
-- id: optics_zoom_position_get
-  label: Get Zoom Position
-  kind: action
-  params: []
-- id: optics_focus_position_get
-  label: Get Focus Position
-  kind: action
-  params: []
-- id: optics_lensshift_horizontal_position_get
-  label: Get Lens Shift Horizontal Position
-  kind: action
-  params: []
-- id: optics_lensshift_vertical_position_get
-  label: Get Lens Shift Vertical Position
-  kind: action
-  params: []
-
-# ECO mode
-- id: system_eco_enable_set
-  label: Enable/Disable ECO Mode
-  kind: action
-  params:
-    - name: value
-      type: boolean
-- id: system_standby_enable_set
-  label: Enable/Disable Standby Mode
-  kind: action
-  params:
-    - name: value
-      type: boolean
-
-# DMX
-- id: dmx_listmodes
-  label: List DMX Modes
-  kind: action
-  params: []
-- id: dmx_listchannels
-  label: List DMX Channels
-  kind: action
-  params:
-    - name: mode
-      type: string
-      description: DMX mode name
-- id: dmx_startchannel_set
-  label: Set DMX Start Channel
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Start channel (1-512)
-- id: dmx_shutdown_set
-  label: Set DMX Shutdown
-  kind: action
-  params:
-    - name: value
-      type: boolean
-
-# Firmware
+# --- Firmware ---
 - id: firmware_listcomponents
   label: List Firmware Components
-  kind: action
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"firmware.listcomponents"}'
   params: []
 - id: firmware_listcomponentversionstatus
-  label: List Component Version Status
-  kind: action
+  label: List Firmware Component Version Status
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"firmware.listcomponentversionstatus"}'
   params: []
 - id: firmware_schedulecomponentupgrade
-  label: Schedule Component Upgrade
+  label: Schedule Component Upgrade at Next Reboot
   kind: action
+  command: '{"jsonrpc":"2.0","method":"firmware.schedulecomponentupgrade"}'
+  params: []
+
+# --- DMX ---
+- id: dmx_listmodes
+  label: List DMX Modes
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"dmx.listmodes"}'
+  params: []
+- id: dmx_listchannels
+  label: List DMX Channel Names
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"dmx.listchannels"}'
+  params: []
+
+# --- HTTP file endpoints ---
+- id: upload_warp_grid
+  label: Upload Warp Grid File (HTTP)
+  kind: action
+  command: 'curl -X POST -F file=@warp.xml http://<address>/api/image/processing/warp/file/transfer'
   params:
-    - name: component
+    - name: address
       type: string
-      description: Component name
+      description: Projector IP/hostname
+- id: upload_blend_mask
+  label: Upload Blend Mask Image (HTTP)
+  kind: action
+  command: 'curl -X POST -F file=@mask.png http://<address>/api/image/processing/blend/file/transfer'
+  params:
+    - name: address
+      type: string
+      description: Projector IP/hostname
+- id: upload_blacklevel_mask
+  label: Upload Black Level Mask (HTTP)
+  kind: action
+  command: 'curl -X POST -F file=@blacklevel.png http://<address>/api/image/processing/blacklevel/file/transfer'
+  params:
+    - name: address
+      type: string
+      description: Projector IP/hostname
+- id: download_file
+  label: Download File from Projector (HTTP)
+  kind: action
+  command: 'curl -O -J http://<address>/api/<endpoint>'
+  params:
+    - name: address
+      type: string
+      description: Projector IP/hostname
+    - name: endpoint
+      type: string
+      description: File endpoint path (e.g. "image/processing/warp/file/transfer")
 ```
 
 ## Feedbacks
 ```yaml
-# Property change notifications (unsolicited)
-- id: property_changed
-  type: notification
-  description: Fired when any subscribed property value changes. Payload contains array of {property: value} pairs.
-- id: signal_callback
-  type: notification
-  description: Fired when a subscribed signal is emitted. Payload contains array of {signal: args} pairs.
-
-# Queryable state enums
 - id: system_state
   type: enum
-  values:
-    - boot
-    - eco
-    - standby
-    - ready
-    - conditioning
-    - on
-    - deconditioning
-    - service
-    - error
-  description: Projector operational state
-
+  values: [boot, eco, standby, ready, conditioning, on, service, deconditioning, error]
+  source_property: system.state
 - id: illumination_state
   type: enum
-  values:
-    - "On"
-    - "Off"
-
-- id: optics_shutter_position
-  type: enum
-  values:
-    - Open
-    - Closed
-
+  values: [On, Off]
+  source_property: illumination.state
 - id: environment_alarmstate
   type: enum
-  values:
-    - Fatal
-    - Error
-    - Alert
-    - Warning
-    - Ok
-
-- id: network_device_lan_state
+  values: [Fatal, Error, Alert, Warning, Ok]
+  source_property: environment.alarmstate
+- id: network_lan_state
   type: enum
-  values:
-    - CONNECTED
-    - DISCONNECTED
-
-- id: image_orientation
+  values: [CONNECTED, DISCONNECTED]
+  source_property: network.device.lan.state
+- id: optics_shutter_position
   type: enum
-  values:
-    - DESKTOP_FRONT
-    - DESKTOP_REAR
-    - CEILING_FRONT
-    - CEILING_REAR
-
-- id: image_scalingmode
+  values: [Open, Closed]
+  source_property: optics.shutter.position
+- id: optics_shutter_target
   type: enum
-  values:
-    - Fill
-    - OneToOne
-    - FillScreen
-    - Stretch
+  values: [Open, Closed]
+  source_property: optics.shutter.target
+- id: detected_signal
+  type: object
+  description: Signal info dict (active, name, resolutions, frequencies, scan, color_space, etc.) per connector; see image.connector.<name>.detectedsignal
 ```
 
 ## Variables
 ```yaml
-# Illuminations power - laser
-- id: illumination_sources_laser_power
+- id: illumination_laser_power
+  property: illumination.sources.laser.power
   type: float
-  access: READ_WRITE
+  access: RW
   description: Target laser power in percent
-  range: [0, 100]
-- id: illumination_sources_laser_minpower
+  range:
+    min: 0
+    max: 100
+  notes: min/max dynamic; lens and lens position may affect
+- id: illumination_laser_minpower
+  property: illumination.sources.laser.minpower
   type: float
-  access: READ_ONLY
-  description: Minimum power in percent (dynamic, varies with lens)
-- id: illumination_sources_laser_maxpower
+  access: R
+  description: Minimum laser power in percent
+- id: illumination_laser_maxpower
+  property: illumination.sources.laser.maxpower
   type: float
-  access: READ_ONLY
-  description: Maximum power in percent (dynamic, varies with lens)
-
-# Picture
+  access: R
+  description: Maximum laser power in percent
 - id: image_brightness
+  property: image.brightness
   type: float
-  access: READ_WRITE
-  description: Image brightness (-1 to 1; 0 = default)
+  access: RW
+  range: {min: -1, max: 1, step: 0.01}
+  description: Normalized brightness/offset; 0 default, 1 = 100% offset
 - id: image_contrast
+  property: image.contrast
   type: float
-  access: READ_WRITE
-  description: Image contrast (0 to 2; 1 = default)
-- id: image_saturation
-  type: float
-  access: READ_WRITE
-  description: Image saturation (0 to 2; 1 = default)
-- id: image_sharpness
-  type: integer
-  access: READ_WRITE
-  description: Image sharpness (-2 to 8)
+  access: RW
+  range: {min: 0, max: 2, step: 0.01}
+  description: Normalized contrast/gain; 1 default
 - id: image_gamma
+  property: image.gamma
   type: float
-  access: READ_WRITE
-  description: Image gamma (1 to 3; default 2.2)
-
-# Source
+  access: RW
+  range: {min: 1, max: 3, step: 0.1}
+  description: Gamma; 2.2 default
+- id: image_saturation
+  property: image.saturation
+  type: float
+  access: RW
+  range: {min: 0, max: 2, step: 0.01}
+  description: Normalized color saturation; 1 default
+- id: image_sharpness
+  property: image.sharpness
+  type: integer
+  access: RW
+  range: {min: -2, max: 8, step: 1}
+  description: Normalized image sharpness
+- id: image_orientation
+  property: image.orientation
+  type: enum
+  access: RW
+  values: [DESKTOP_FRONT, DESKTOP_REAR, CEILING_FRONT, CEILING_REAR]
 - id: image_window_main_source
+  property: image.window.main.source
   type: string
-  access: READ_WRITE
-  description: Active source name for main window (e.g. "DisplayPort 1", "HDMI")
-
-# Window geometry
-- id: image_window_main_position
-  type: object
-  access: READ_WRITE
-  description: Window position {x: int, y: int}
-- id: image_window_main_size
-  type: object
-  access: READ_WRITE
-  description: Window size {width: int, height: int}
-
-# Network
-- id: network_device_lan_ip4config
-  type: object
-  access: READ_ONLY
-  description: IP v4 config {address, mask, gateway, nameservers}
-
-# Optics positions
+  access: RW
+  description: Active source label (e.g. "DisplayPort 1", "HDMI")
+- id: image_window_main_scalingmode
+  property: image.window.main.scalingmode
+  type: enum
+  access: RW
+  values: [Fill, OneToOne, FillScreen, Stretch]
 - id: optics_zoom_position
+  property: optics.zoom.position
   type: integer
-  access: READ_ONLY
-  description: Current zoom position
+  access: RW
 - id: optics_focus_position
+  property: optics.focus.position
   type: integer
-  access: READ_ONLY
-  description: Current focus position
+  access: RW
 - id: optics_lensshift_horizontal_position
+  property: optics.lensshift.horizontal.position
   type: integer
-  access: READ_ONLY
-  description: Current horizontal lens shift
+  access: RW
 - id: optics_lensshift_vertical_position
+  property: optics.lensshift.vertical.position
   type: integer
-  access: READ_ONLY
-  description: Current vertical lens shift
-
-# DMX
+  access: RW
 - id: dmx_mode
+  property: dmx.mode
   type: string
-  access: READ_WRITE
-  description: Current DMX mode
+  access: RW
 - id: dmx_startchannel
+  property: dmx.startchannel
   type: integer
-  access: READ_WRITE
-  description: DMX start channel [1-512]
+  access: RW
+  range: {min: 1, max: 512}
 - id: dmx_shutdown
+  property: dmx.shutdown
   type: boolean
-  access: READ_WRITE
-  description: DMX shutdown enabled/disabled
-
-# System
+  access: RW
 - id: system_standby_enable
+  property: system.standby.enable
   type: boolean
-  access: READ_WRITE
-  description: Standby state enable/disable
+  access: RW
 - id: system_eco_enable
+  property: system.eco.enable
   type: boolean
-  access: READ_WRITE
-  description: ECO mode enable/disable
-
-# Signal detection (per connector)
-- id: image_connector_detectedsignal
-  type: object
-  access: READ_ONLY
-  description: >
-    Detected signal info per connector. Properties: active (bool), name (string),
-    resolutions, sync timing, pixel_rate, scan, bits_per_component, color_space,
-    signal_range, chroma_sampling, gamma_type, color_primaries, mastering_luminance,
-    content_aspect_ratio, is_stereo, stereo_mode
-
-# File warp/blend/blacklevel
+  access: RW
 - id: image_processing_warp_enable
+  property: image.processing.warp.enable
   type: boolean
-  access: READ_WRITE
-  description: Global warp enable
-- id: image_processing_warp_file_enable
-  type: boolean
-  access: READ_WRITE
-  description: File warp enable
+  access: RW
 - id: image_processing_warp_file_selected
+  property: image.processing.warp.file.selected
   type: string
-  access: READ_WRITE
-  description: Selected warp file name
-- id: image_processing_blend_file_enable
-  type: boolean
-  access: READ_WRITE
-  description: File blend enable
+  access: RW
 - id: image_processing_blend_file_selected
-  type: string
-  access: READ_WRITE
-  description: Selected blend file name
-- id: image_processing_blacklevel_file_enable
-  type: boolean
-  access: READ_WRITE
-  description: Black level correction enable
+  property: image.processing.blend.file.selected
+  type: array
+  access: RW
+  items: string
 - id: image_processing_blacklevel_file_selected
+  property: image.processing.blacklevel.file.selected
   type: string
-  access: READ_WRITE
-  description: Selected black level file name
+  access: RW
 ```
 
 ## Events
 ```yaml
-# modelupdated - triggered when object structure changes (objects added/removed)
+- id: property_changed
+  description: Server-pushed notification of property value changes; received via property.changed method
+  payload: '{"jsonrpc":"2.0","method":"property.changed","params":{"property":[{"objectname.propertyname":value}]}}'
+- id: signal_callback
+  description: Server-pushed notification of emitted signals
+  payload: '{"jsonrpc":"2.0","method":"signal.callback","params":{"signal":[{"objectname.signalname":{arg1:..,arg2:..}}]}}'
 - id: modelupdated
-  description: Fired when the object tree changes (new objects added or removed)
-
-# property.changed - see Feedbacks section above
-# signal.callback - see Feedbacks section above
+  description: Signal fired when introspectable object structure changes (objects added/removed)
+- id: introspect_objectchanged
+  description: Signal fired when a specific introspected object is added (isnew=true) or removed (isnew=false)
 ```
 
 ## Macros
 ```yaml
-# Source switching (documented as common task)
-# 1. Call image_source_list to get available sources
-# 2. Translate source name: remove non-word chars, lowercase (e.g. "DisplayPort 1" → "displayport1")
-# 3. Call property.set with property="image.window.main.source" and value=<source-name>
-
-# Signal monitoring (documented as common task)
-# 1. Call image_source_list
-# 2. Translate each source name to object name
-# 3. For each source, call image.source.<name>.listconnectors
-# 4. For each connector, subscribe to image.connector.<name>.detectedsignal
-# 5. Implement property.changed listener to receive notifications
-
-# ECO wakeup sequence (documented)
-# 1. Send WoL packet with projector MAC address, OR
-# 2. Use remote control power button, OR
-# 3. On RS-232: send ASCII ":POWR1\r"
-
-# Warp file upload workflow (documented)
-# 1. HTTP POST warp XML to /api/image/processing/warp/file/transfer
-# 2. property.set image.processing.warp.file.selected = "warp.xml"
-# 3. property.set image.processing.warp.file.enable = true
-
-# Black level mask upload workflow (documented)
-# 1. HTTP POST grayscale PNG to /api/image/processing/blacklevel/file/transfer
-# 2. property.set image.processing.blacklevel.file.selected = "blacklevel.png"
-# 3. property.set image.processing.blacklevel.file.enable = true
+- id: enable_warp_from_file
+  description: Enable warping from a grid file (4-step sequence from source)
+  steps:
+    - id: upload_warp_grid
+    - id: property_set image.processing.warp.file.selected = "warp.xml"
+    - id: property_set image.processing.warp.file.enable = true
+    - id: property_set image.processing.warp.enable = true
+- id: enable_blend_mask
+  description: Apply an uploaded blend mask (3-step sequence)
+  steps:
+    - id: upload_blend_mask
+    - id: property_set image.processing.blend.file.selected = ["mask.png"]
+    - id: property_set image.processing.blend.file.enable = true
+- id: enable_blacklevel_mask
+  description: Apply an uploaded black level mask (3-step sequence)
+  steps:
+    - id: upload_blacklevel_mask
+    - id: property_set image.processing.blacklevel.file.selected = "blacklevel.png"
+    - id: property_set image.processing.blacklevel.file.enable = true
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no explicit safety interlock procedures in source
-# ECO mode wakeup note: sending power on to already-on projector or transitioning projector is no-op (doc states "nothing will happen")
-# Best practice: verify state before power on/off (check system.state is standby/ready before poweron, on before poweroff)
+# UNRESOLVED: source contains no explicit safety warnings, interlocks, or power-on sequencing requirements.
+# Implicit guidance only: "verify system.state is standby or ready before issuing system.poweron" and
+# "verify system.state is on before issuing system.poweroff" - these are operational hints, not safety interlocks.
 ```
 
 ## Notes
-JSON-RPC 2.0 over TCP port 9090 or RS-232 19200 8N1. Authentication optional; normal user access works without auth. Higher access levels require pass code in authenticate request. All API calls are JSON-RPC 2.0 with named parameters.
+All requests/responses are JSON-RPC 2.0 over TCP/9090; param position is irrelevant (named params). Best practice: wait for `property.set` confirmation before sending the same property again to avoid flooding. `system.poweron` / `system.poweroff` return `null` result, not an error. ECO-mode wake requires either Wake-on-LAN (MAC), the keypad/remote, or the RS-232 string `:POWR1\r` on the serial port. The API surface is dynamic and depends on connected peripherals (e.g. motorized lens, DMX mode); use `introspect` to enumerate the live model.
 
-Best practice for property.set: wait for confirmation before setting same property again — flooding server without waiting may reduce performance.
-
-API is dynamic — available objects/methods/properties vary by projector configuration (e.g., motorized lens options, DMX mode). Introspection API recommended to discover exact available surface.
-
-Available sources and connectors vary by model. Source name translation rule: remove non-word chars + lowercase (JavaScript: `sourceName.replace(/\W/g, '').toLowerCase()`).
-
-File upload uses HTTP POST to `/api/<path>/file/transfer`. Download uses HTTP GET on same endpoint. Warp, blend, and blacklevel mask files supported (PNG/JPEG/TIFF grayscale, 8-bit or 16-bit).
-
-Supported mask resolutions: WUXGA 1920×1200, WQXGA 1280×800, 4K 1280×800, 4K Cinemascope 1280×540.
-
-<!-- UNRESOLVED: full peripheral-driven property set (motorized lens, DMX extended channels, etc.) — requires introspection at runtime -->
-<!-- UNRESOLVED: firmware version compatibility — not stated in source -->
-<!-- UNRESOLVED: fault behavior and error recovery sequences — not documented in source -->
-<!-- UNRESOLVED: voltage/current/power specifications — not stated in source -->
+<!-- UNRESOLVED:
+- firmware compatibility range not stated
+- exact set of available connectors/sources varies by model — enumerated in source as a non-exhaustive example list (DVI 1/2, DisplayPort 1/2, Dual DVI, Dual DisplayPort, Dual Head DVI, Dual Head DisplayPort, HDBaseT, HDMI, SDI)
+- HTTP base URL host/port not stated (only pattern: http://<address>/api/...)
+- lens model affects available properties
+- projector address resolution (DHCP/static) not specified in this document
+-->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-14T21:35:59.224Z
+retrieved_at: 2026-05-14T11:37:52.209Z
+last_checked_at: 2026-06-01T23:12:20.487Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:35:59.224Z
-matched_actions: 43
-action_count: 48
-confidence: high
-summary: "All 43 spec actions matched documented methods/properties; transport parameters fully verified verbatim; spec covers canonical API surface."
+checked_at: 2026-06-01T23:12:20.487Z
+matched_actions: 33
+action_count: 33
+confidence: medium
+summary: "All 33 spec actions match verbatim JSON-RPC methods, RS-232 command, and HTTP endpoints documented in the source; transport (port 9090, baud 19200, serial params) confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- environment.getalarminfo
-- illumination.laser.getserialnumber
-- image.color.p7.custom.copypresettocustom
-- image.color.p7.custom.resetpreset
-- image.color.p7.custom.resettonative
-- image.color.rgbmode.nextrgbmode
+- "full property/method catalogue is dynamic; introspect for exact model config"
+- "projector IP/host not stated; pattern is http://<address>/api/..."
+- "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
+- "- firmware compatibility range not stated"
 ```
 
 ---

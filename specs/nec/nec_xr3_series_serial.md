@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-26T17:30:04.884Z
 last_checked_at: 2026-05-31T06:53:00.459Z
 generated_at: 2026-05-31T06:53:00.459Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN control not detailed in source — see operation manual of wireless LAN unit"
+  - "hardware flow control not explicitly stated; pin assignment shows RTS/CTS but no explicit configuration command"
+  - "no standalone Variables section in source - parameters set via dedicated SET actions"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "wireless LAN unit specification — see operation manual of wireless LAN unit"
+  - "input terminal numeric codes — see Appendix \"Supplementary Information by Command\""
+  - "aspect ratio values — see Appendix \"Supplementary Information by Command\""
+  - "eco mode numeric values — see Appendix \"Supplementary Information by Command\""
+  - "sub input setting values — see Appendix \"Supplementary Information by Command\""
+  - "base model type values — see Appendix \"Supplementary Information by Command\""
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:53:00.459Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec action IDs matched one-to-one to source command definitions; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 53 spec action IDs matched one-to-one to source command definitions; transport parameters verified verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -525,7 +537,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-26T17:30:04.884Z
 last_checked_at: 2026-05-31T06:53:00.459Z
 ```
 
@@ -536,14 +548,25 @@ verdict: verified
 checked_at: 2026-05-31T06:53:00.459Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec action IDs matched one-to-one to source command definitions; transport parameters verified verbatim."
+confidence: medium
+summary: "All 53 spec action IDs matched one-to-one to source command definitions; transport parameters verified verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN control not detailed in source — see operation manual of wireless LAN unit"
+- "hardware flow control not explicitly stated; pin assignment shows RTS/CTS but no explicit configuration command"
+- "no standalone Variables section in source - parameters set via dedicated SET actions"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "wireless LAN unit specification — see operation manual of wireless LAN unit"
+- "input terminal numeric codes — see Appendix \"Supplementary Information by Command\""
+- "aspect ratio values — see Appendix \"Supplementary Information by Command\""
+- "eco mode numeric values — see Appendix \"Supplementary Information by Command\""
+- "sub input setting values — see Appendix \"Supplementary Information by Command\""
+- "base model type values — see Appendix \"Supplementary Information by Command\""
 ```
 
 ---

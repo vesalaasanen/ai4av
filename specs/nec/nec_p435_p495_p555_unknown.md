@@ -21,19 +21,34 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:04:30.965Z
 last_checked_at: 2026-05-18T16:38:00.767Z
 generated_at: 2026-05-18T16:38:00.767Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific input terminal values are in an Appendix not included in the refined source"
+  - "eco mode values are in an Appendix not included in the refined source"
+  - "aspect values are in an Appendix not included in the refined source"
+  - "sub input values for PIP/PbyP are in an Appendix not included in the refined source"
+  - "source lists 115200/38400/19200/9600/4800 as options but does not state a default"
+  - "flow control not stated (full duplex noted but hardware/software flow control unspecified)"
+  - "variables with continuous ranges (brightness, contrast, volume, etc.) have adjustment commands"
+  - "baud rate default not stated (multiple options listed)"
+  - "flow control setting not stated"
+  - "input terminal byte values (Appendix not in refined source)"
+  - "eco mode byte values (Appendix not in refined source)"
+  - "aspect ratio byte values (Appendix not in refined source)"
+  - "sub input byte values for PIP/PbyP (Appendix not in refined source)"
+  - "gain adjustment numeric ranges (queryable but not stated)"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:38:00.767Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 action hex sequences verified against source; transport parameters and command shapes confirmed."
+  confidence: medium
+  summary: "All 28 action hex sequences verified against source; transport parameters and command shapes confirmed. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -587,7 +602,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:04:30.965Z
 last_checked_at: 2026-05-18T16:38:00.767Z
 ```
 
@@ -598,14 +613,28 @@ verdict: verified
 checked_at: 2026-05-18T16:38:00.767Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 action hex sequences verified against source; transport parameters and command shapes confirmed."
+confidence: medium
+summary: "All 28 action hex sequences verified against source; transport parameters and command shapes confirmed. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific input terminal values are in an Appendix not included in the refined source"
+- "eco mode values are in an Appendix not included in the refined source"
+- "aspect values are in an Appendix not included in the refined source"
+- "sub input values for PIP/PbyP are in an Appendix not included in the refined source"
+- "source lists 115200/38400/19200/9600/4800 as options but does not state a default"
+- "flow control not stated (full duplex noted but hardware/software flow control unspecified)"
+- "variables with continuous ranges (brightness, contrast, volume, etc.) have adjustment commands"
+- "baud rate default not stated (multiple options listed)"
+- "flow control setting not stated"
+- "input terminal byte values (Appendix not in refined source)"
+- "eco mode byte values (Appendix not in refined source)"
+- "aspect ratio byte values (Appendix not in refined source)"
+- "sub input byte values for PIP/PbyP (Appendix not in refined source)"
+- "gain adjustment numeric ranges (queryable but not stated)"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

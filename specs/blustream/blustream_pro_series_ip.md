@@ -19,19 +19,33 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-05-07T06:41:15.747Z
 last_checked_at: 2026-05-16T19:56:01.261Z
 generated_at: 2026-05-16T19:56:01.261Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port number for Telnet/raw socket control not stated in source (only web browser interface mentioned; Telnet port not specified)"
+  - "Web browser interface HTTP port not stated in source"
+  - "port number not stated in source (Telnet/raw TCP port not specified)"
+  - "exact STATUS response syntax/format not stated in source"
+  - "exact response format not stated in source"
+  - "no settable parameter variables beyond discrete action commands found in source"
+  - "no unsolicited notification events described in source"
+  - "no multi-step macro sequences described in source"
+  - "no power-on sequencing requirements or additional interlocks stated in source"
+  - "TCP/IP Telnet control port not specified in source"
+  - "HTTP port for web browser interface not specified in source"
+  - "Exact STATUS command response format not documented in source"
+  - "Maximum command response timeout or retry behavior not stated in source"
+  - "Firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:56:01.261Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded."
+  confidence: medium
+  summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -298,7 +312,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-05-07T06:41:15.747Z
 last_checked_at: 2026-05-16T19:56:01.261Z
 ```
 
@@ -309,14 +323,27 @@ verdict: verified
 checked_at: 2026-05-16T19:56:01.261Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded."
+confidence: medium
+summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port number for Telnet/raw socket control not stated in source (only web browser interface mentioned; Telnet port not specified)"
+- "Web browser interface HTTP port not stated in source"
+- "port number not stated in source (Telnet/raw TCP port not specified)"
+- "exact STATUS response syntax/format not stated in source"
+- "exact response format not stated in source"
+- "no settable parameter variables beyond discrete action commands found in source"
+- "no unsolicited notification events described in source"
+- "no multi-step macro sequences described in source"
+- "no power-on sequencing requirements or additional interlocks stated in source"
+- "TCP/IP Telnet control port not specified in source"
+- "HTTP port for web browser interface not specified in source"
+- "Exact STATUS command response format not documented in source"
+- "Maximum command response timeout or retry behavior not stated in source"
+- "Firmware version compatibility not stated in source"
 ```
 
 ---

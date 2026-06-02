@@ -29,14 +29,23 @@ last_checked_at: 2026-04-27T14:38:49.272Z
 generated_at: 2026-04-27T14:38:49.272Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "supported model list incomplete — source lists \"BirdDog Products\" generically; exact model names vary by product family"
+  - "source does not enumerate individual variables separately from action params"
+  - "no unsolicited notification endpoints described in source"
+  - "no explicit multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing described in source"
+  - "ColourMatrix, Detail, Gamma, AdvancedSettings, ExternalSettings, Silicon-2 endpoints not populated — source truncated at line 2000"
+  - "BirdDog Cloud specific model name not confirmed — source refers to general \"BirdDog Products\""
+  - "serial/RS-232 not supported — HTTP only"
+  - "UDP transport for NDI stated in Txpm/rxpm param docs but base_url shows only HTTP; UDP mode not independently confirmed"
 verification:
   verdict: verified
   checked_at: 2026-04-27T14:38:49.272Z
   matched_actions: 43
   action_count: 43
-  confidence: high
-  summary: "All 43 actions matched verbatim to source API methods; transport params confirmed; no extra commands in source."
+  confidence: medium
+  summary: "All 43 actions matched verbatim to source API methods; transport params confirmed; no extra commands in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1037,14 +1046,22 @@ verdict: verified
 checked_at: 2026-04-27T14:38:49.272Z
 matched_actions: 43
 action_count: 43
-confidence: high
-summary: "All 43 actions matched verbatim to source API methods; transport params confirmed; no extra commands in source."
+confidence: medium
+summary: "All 43 actions matched verbatim to source API methods; transport params confirmed; no extra commands in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "supported model list incomplete — source lists \"BirdDog Products\" generically; exact model names vary by product family"
+- "source does not enumerate individual variables separately from action params"
+- "no unsolicited notification endpoints described in source"
+- "no explicit multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing described in source"
+- "ColourMatrix, Detail, Gamma, AdvancedSettings, ExternalSettings, Silicon-2 endpoints not populated — source truncated at line 2000"
+- "BirdDog Cloud specific model name not confirmed — source refers to general \"BirdDog Products\""
+- "serial/RS-232 not supported — HTTP only"
+- "UDP transport for NDI stated in Txpm/rxpm param docs but base_url shows only HTTP; UDP mode not independently confirmed"
 ```
 
 ---

@@ -16,22 +16,39 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.happyfox.com
+  - justaddpower.com
+  - files.remotecentral.com
+  - github.com
+  - rticontrol.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+  - https://github.com/WesSouza/lgtv-ip-control
+  - https://www.rticontrol.com/pub/media/wysiwyg/dealer/technote/LG_Direct-App_Integration_.pdf
+retrieved_at: 2026-05-14T18:17:17.433Z
 last_checked_at: 2026-05-14T18:17:17.433Z
 generated_at: 2026-05-14T18:17:17.433Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP addressing (port, connection mode) not documented in source despite device reportedly supporting IP control"
+  - "firmware version compatibility not stated"
+  - "TCP port not stated in source"
+  - "no unsolicited notification events described in source"
+  - "no multi-step sequences described in source"
+  - "source does not contain explicit safety warnings or interlock procedures"
+  - "TCP/IP port and connection mode not documented in source"
+  - "command timing constraints or inter-command delays not stated"
+  - "maximum cable length or daisy-chain topology limits not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.433Z
   matched_actions: 22
   action_count: 22
-  confidence: high
-  summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -608,10 +625,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.happyfox.com
+  - justaddpower.com
+  - files.remotecentral.com
+  - github.com
+  - rticontrol.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+  - https://github.com/WesSouza/lgtv-ip-control
+  - https://www.rticontrol.com/pub/media/wysiwyg/dealer/technote/LG_Direct-App_Integration_.pdf
+retrieved_at: 2026-05-14T18:17:17.433Z
 last_checked_at: 2026-05-14T18:17:17.433Z
 ```
 
@@ -622,14 +647,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.433Z
 matched_actions: 22
 action_count: 22
-confidence: high
-summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented."
+confidence: medium
+summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP addressing (port, connection mode) not documented in source despite device reportedly supporting IP control"
+- "firmware version compatibility not stated"
+- "TCP port not stated in source"
+- "no unsolicited notification events described in source"
+- "no multi-step sequences described in source"
+- "source does not contain explicit safety warnings or interlock procedures"
+- "TCP/IP port and connection mode not documented in source"
+- "command timing constraints or inter-command delays not stated"
+- "maximum cable length or daisy-chain topology limits not stated"
 ```
 
 ---

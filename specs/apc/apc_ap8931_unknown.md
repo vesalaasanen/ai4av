@@ -1,5 +1,5 @@
 ---
-spec_id: admin/apc-ap8931-switched-rack-pdu
+spec_id: admin/apc-ap8931
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "APC AP8931 Switched Rack PDU Control Spec"
@@ -17,572 +17,666 @@ compatible_with:
   required_options: []
 source_domains:
   - usermanual.wiki
+  - iportal.se.com
+  - manuals.zedt.eu
+  - manualmachine.com
+  - mouser.com
 source_urls:
   - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
-retrieved_at: 2026-05-04T15:20:52.311Z
-last_checked_at: 2026-05-20T04:57:01.566Z
-generated_at: 2026-05-20T04:57:01.566Z
+  - https://iportal.se.com/Contents/docs/UPS-PMAR-9LLM9N_R1_EN.PDF
+  - http://manuals.zedt.eu/apc-sua-ups/UPS-Link_Protocol_Specification.pdf
+  - https://manualmachine.com/apc/ap8941/392271-user-manual/
+  - https://www.mouser.com/datasheet/3/187/8/AP8931_document.pdf
+retrieved_at: 2026-05-14T10:59:22.676Z
+last_checked_at: 2026-06-01T23:12:07.651Z
+generated_at: 2026-06-01T23:12:07.651Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port numbers for Telnet/SSH not stated in source. Serial data bits / parity / stop bits / flow control not stated."
+  - "Telnet and SSH TCP port numbers not stated in source"
+  - "port number not stated in source"
+  - "data_bits, parity, stop_bits, flow_control not stated in source"
+  - "no CLI command shown in source to read or set this value; presumably configured via web UI."
+  - "source does not describe unsolicited notifications the PDU sends."
+  - "source does not describe multi-step macro sequences. The CLI"
+  - "voltage/current/power specifications not stated in source. No"
+  - "TCP port numbers for Telnet/SSH not stated in source (do not assume 22/23). Serial data bits, parity, stop bits, flow control not stated (do not assume 8N1). Firmware version compatibility range not stated. Source does not document unsolicited event notifications or macro scripting. The `current` command may be unsupported on AP8931 per source note."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T04:57:01.566Z
-  matched_actions: 28
-  action_count: 28
-  confidence: high
-  summary: "All 28 spec actions found in source with correct semantics; transport parameters (9600 baud, Telnet/SSH/serial) verified; bidirectional coverage complete."
+  checked_at: 2026-06-01T23:12:07.651Z
+  matched_actions: 36
+  action_count: 36
+  confidence: medium
+  summary: "All 36 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-14
+created_at: 2026-06-02
 ---
 
 # APC AP8931 Switched Rack PDU Control Spec
 
 ## Summary
+The APC AP8931 is a NetShelter Switched Rack PDU providing eight NEMA 5-15 outlets with individual switching, current monitoring, and remote management. This spec covers the CLI command interface, which is accessible via Telnet, SSH (v1 or v2), or serial connection at 9600 baud. Authenticated users can switch outlets on/off, reboot them, query status and power readings, manage local user accounts, and configure alarm thresholds.
 
-The APC AP8931 is a 1U Switched Rack PDU with 8 NEMA 5-15 outlets, controllable via Telnet/SSH CLI (TCP) and RS-232 serial. The CLI uses plain-text commands with structured responses (`OK` for success, `E###` for errors). Authentication is username/password; no default credentials are stated in the source.
-
-<!-- UNRESOLVED: Telnet/SSH port number not stated in source. HTTP/HTTPS management interface not documented in this CLI guide. -->
+<!-- UNRESOLVED: TCP port numbers for Telnet/SSH not stated in source. Serial data bits / parity / stop bits / flow control not stated. -->
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
-  - serial
+  - tcp      # Telnet and SSH v1/v2
+  - serial   # RS-232 console
+# UNRESOLVED: Telnet and SSH TCP port numbers not stated in source
 addressing:
-  port: null  # UNRESOLVED: Telnet/SSH port number not stated in source
+  port: null  # UNRESOLVED: port number not stated in source
 serial:
-  baud_rate: 9600  # stated: "Serial default baud rate: 9600"
-  data_bits: null  # UNRESOLVED
-  parity: null  # UNRESOLVED
-  stop_bits: null  # UNRESOLVED
-  flow_control: null  # UNRESOLVED
+  baud_rate: 9600
+  # UNRESOLVED: data_bits, parity, stop_bits, flow_control not stated in source
 auth:
-  type: null  # UNRESOLVED: user/password authentication described, but no auth type token specified in source
-  # Note: source describes username/password log-on, but does not specify a protocol-level auth mechanism (e.g., Basic, Digest, SSH key)
+  type: password  # source requires user name and password at log-on
+  prompt:
+    user: "User Name"
+    password: "Password"
+  notes: "Append space + -c to password when not using a KVM. Three failed attempts lock further log-on for two minutes. Default inactivity logout 3 minutes (configurable 1-10)."
 ```
 
 ## Traits
 ```yaml
-# Inferred from source command examples:
-# - powerable:    off, on, reboot commands present
-# - routable:     assign/unassign commands for outlet access control present
-# - queryable:    status, power, current, list commands present
-# - levelable:    powerondelay, poweroffdelay, rebootduration for sequencing control
+- powerable       # on/off/reboot commands per outlet
+- routable        # outlet status query, outlet group listing
+- queryable       # current, power, status, ver queries
 ```
 
 ## Actions
 ```yaml
 - id: adduser
-  label: Add User
+  label: Add Outlet User
   kind: action
+  command: "adduser {user_name}"
   params:
     - name: user_name
       type: string
-      description: "1-10 printable ASCII characters"
-  access: administrator
+      description: 1-10 printable ASCII characters
+  access: Administrator
+  notes: Prompts for password interactively; returns `OK Password: _password_ Re-enter password: _password_ User name and password set for user _user_name_.`
 
 - id: assign
   label: Assign Outlets to User
   kind: action
+  command: "assign {outlet_or_range}[,{outlet_or_range} ...] {user_name}"
   params:
-    - name: outlets
+    - name: outlet_or_range
       type: string
-      description: "Outlet number(s) or range(s), e.g. 1-3,5,7"
+      description: Outlet number, name, or hyphen-separated range (e.g. 1-3,5,7)
     - name: user_name
       type: string
-      description: "User already configured in local database"
-  access: administrator
+      description: Outlet user configured in local database
+  access: Administrator
 
 - id: deluser
-  label: Delete User
+  label: Delete Outlet User
   kind: action
+  command: "deluser {user_name}"
   params:
     - name: user_name
       type: string
-      description: "1-10 printable ASCII characters"
-  access: administrator
+      description: 1-10 printable ASCII characters
+  access: Administrator
 
 - id: passwd
   label: Change Password
   kind: action
+  command: "passwd [{user_name}]"
   params:
     - name: user_name
       type: string
-      required: false
-      description: "Omit to change own password; specify to change another user's (admin only)"
-  access: all account types (own password); administrator (another user)
+      description: Optional. Omit to change own password; admin only may specify other user
+  access: All account types (self) / Administrator (other)
+  notes: Prompts interactively for new password; 1-10 printable ASCII characters.
 
 - id: unassign
   label: Unassign Outlets from User
   kind: action
+  command: "unassign {outlet_or_range}[,{outlet_or_range} ...] {user_name}"
   params:
-    - name: outlets
+    - name: outlet_or_range
       type: string
-      description: "Outlet number(s) or range(s)"
+      description: Outlet number, name, or hyphen-separated range
     - name: user_name
       type: string
-  access: administrator
+      description: Outlet user configured in local database
+  access: Administrator
 
 - id: whoami
   label: Who Am I
-  kind: action
+  kind: query
+  command: "whoami"
   params: []
 
 - id: off
-  label: Turn Outlet Off
+  label: Turn Outlet(s) Off
   kind: action
+  command: "off {all|outlet_or_range}[,{outlet_or_range} ...]"
   params:
-    - name: outlets
+    - name: target
       type: string
-      description: "all | outlet number(s) | range(s) | outlet name (quotation marks required for names with spaces)"
-  access: all account types with outlet access
+      description: '`all` or outlet number/name/range (e.g. 1,5-7 or "Web Server")'
+  access: Outlet user with assigned outlets
 
 - id: on
-  label: Turn Outlet On
+  label: Turn Outlet(s) On
   kind: action
+  command: "on {all|outlet_or_range}[,{outlet_or_range} ...]"
   params:
-    - name: outlets
+    - name: target
       type: string
-      description: "all | outlet number(s) | range(s) | outlet name (quotation marks required for names with spaces)"
-  access: all account types with outlet access
+      description: '`all` or outlet number/name/range (e.g. 1,5-7 or "Web Server")'
+  access: Outlet user with assigned outlets
+
+- id: outletgroups
+  label: List Outlet Sync Groups
+  kind: query
+  command: "outletgroups"
+  params: []
+
+- id: poweroffdelay_read
+  label: Read Power-Off Delay
+  kind: query
+  command: "poweroffdelay [{outlet_or_range}[,{outlet_or_range} ...]]"
+  params:
+    - name: target
+      type: string
+      description: Optional. Outlet number/name/range; omit to read all accessible outlets.
+
+- id: poweroffdelay_set
+  label: Set Power-Off Delay
+  kind: action
+  command: "poweroffdelay {outlet_or_range}[,{outlet_or_range} ...] {time|never}"
+  params:
+    - name: target
+      type: string
+      description: Outlet number/name/range
+    - name: time
+      type: string
+      description: Delay in seconds, or `never` to keep outlet on
+  access: Outlet user with assigned outlets
+
+- id: powerondelay_read
+  label: Read Power-On Delay
+  kind: query
+  command: "powerondelay [{outlet_or_range}[,{outlet_or_range} ...]]"
+  params:
+    - name: target
+      type: string
+      description: Optional. Outlet number/name/range; omit to read all accessible outlets.
+
+- id: powerondelay_set
+  label: Set Power-On Delay
+  kind: action
+  command: "powerondelay {outlet_or_range}[,{outlet_or_range} ...] {time|never}"
+  params:
+    - name: target
+      type: string
+      description: Outlet number/name/range
+    - name: time
+      type: string
+      description: Delay in seconds, or `never` to keep outlet off
+  access: Outlet user with assigned outlets
 
 - id: reboot
-  label: Reboot Outlet
+  label: Reboot Outlet(s)
   kind: action
+  command: "reboot {all|outlet_or_range}[,{outlet_or_range} ...]"
   params:
-    - name: outlets
+    - name: target
       type: string
-      description: "all | outlet number(s) | range(s) | outlet name (quotation marks required for names with spaces)"
-  access: all account types with outlet access
-  note: "CLI does not wait for reboot to complete before returning prompt"
+      description: '`all` or outlet number/name/range'
+  access: Outlet user with assigned outlets
+  notes: Removes then restores power. CLI does not wait for completion.
 
-- id: powerondelay
-  label: Set/Get Power-On Delay
-  kind: action
-  params:
-    - name: outlets
-      type: string
-      description: "Outlet number(s) or range(s)"
-    - name: time
-      type: string
-      required: false
-      description: "Seconds (integer) or 'never' (to keep outlet off); omit to read current delay"
-  access: all account types with outlet access
-
-- id: poweroffdelay
-  label: Set/Get Power-Off Delay
-  kind: action
-  params:
-    - name: outlets
-      type: string
-      description: "Outlet number(s) or range(s)"
-    - name: time
-      type: string
-      required: false
-      description: "Seconds (integer) or 'never' (to keep outlet on); omit to read current delay"
-  access: all account types with outlet access
-
-- id: rebootduration
-  label: Set/Get Reboot Duration
-  kind: action
-  params:
-    - name: outlets
-      type: string
-      description: "Outlet number(s) or range(s)"
-    - name: time
-      type: string
-      required: false
-      description: "Seconds; omit to read current duration"
-  access: all account types with outlet access
-
-- id: name
-  label: Name Outlet or System
-  kind: action
-  params:
-    - name: outlet
-      type: string
-      description: "Outlet number or 'master' for PDU system name"
-    - name: new_name
-      type: string
-      description: "Up to 23 printable ASCII characters; enclose in quotes if contains spaces"
-  access: administrator, device manager
-
-- id: lowloadwarning
-  label: Set/Get Low-Load Warning Threshold
-  kind: action
-  params:
-    - name: phase_number
-      type: integer
-      required: false
-      description: "Phase 1, 2, or 3 (default: 1); omit to read"
-    - name: current
-      type: number
-      required: false
-      description: "Threshold in amps; required to set"
-  access: administrator, device manager
-
-- id: nearoverloadwarning
-  label: Set/Get Near-Overload Warning Threshold
-  kind: action
-  params:
-    - name: phase_number
-      type: integer
-      required: false
-      description: "Phase 1, 2, or 3 (default: 1); omit to read"
-    - name: current
-      type: number
-      required: false
-      description: "Threshold in amps; required to set"
-  access: administrator, device manager
-
-- id: overloadalarm
-  label: Set/Get Overload Alarm Threshold
-  kind: action
-  params:
-    - name: phase_number
-      type: integer
-      required: false
-      description: "Phase 1, 2, or 3 (default: 1); omit to read"
-    - name: current
-      type: number
-      required: false
-      description: "Threshold in amps; required to set"
-  access: administrator, device manager
-
-- id: overloadrestriction
-  label: Set/Get Overload Restriction
-  kind: action
-  params:
-    - name: phase_number
-      type: integer
-      required: false
-      description: "Phase 1, 2, or 3 (default: 1); omit to read"
-    - name: setting
-      type: string
-      required: false
-      description: "'on' or 'off'; required to set"
-  access: administrator, device manager
-
-- id: pducoldstartdelay
-  label: Set/Get PDU Cold-Start Delay
-  kind: action
-  params:
-    - name: time
-      type: string
-      required: false
-      description: "Seconds (0-300) or 'never' (keep outlets off until explicitly turned on); omit to read"
-  access: administrator, device manager
-
-- id: reset_defaults_pdu
-  label: Reset PDU to Defaults
-  kind: action
-  params: []
-  access: administrator
-  note: "Resets only PDU-specific and outlet configuration parameters; does not affect network or user settings"
-
-- id: uploadini
-  label: Upload INI File via XMODEM
-  kind: action
-  params: []
-  access: administrator, device manager
-  note: "Serial-only; transfers at selectable baud rate (2400/9600/19200/38400); after transfer, if baud rate changed from default 9600, must reset to default to re-establish communication"
-
-- id: exit
-  label: Log Off
-  kind: action
-  params: []
-  synonyms: [logout, logoff, quit, bye]
-- id: outletgroups
-  label: List Outlet Synchronization Groups
+- id: rebootduration_read
+  label: Read Reboot Duration
   kind: query
-  params: []
-  note: "Lists outlet synchronization groups; includes remote PDU info when inter-PDU synchronization is enabled"
+  command: "rebootduration [{outlet_or_range}[,{outlet_or_range} ...]]"
+  params:
+    - name: target
+      type: string
+      description: Optional. Outlet number/name/range; omit to read all accessible outlets.
+
+- id: rebootduration_set
+  label: Set Reboot Duration
+  kind: action
+  command: "rebootduration {outlet_or_range}[,{outlet_or_range} ...]: {time}"
+  params:
+    - name: target
+      type: string
+      description: Outlet number/name/range, colon-separated from time
+    - name: time
+      type: integer
+      description: Seconds the outlet remains off before restarting
+  access: Outlet user with assigned outlets
 
 - id: status
-  label: Read Outlet Status
+  label: Outlet Status
   kind: query
+  command: "status {outlet_or_range}[,{outlet_or_range} ...]"
   params:
-    - name: outlets
+    - name: target
       type: string
-      description: "Outlet name or number, range, or 'all'; e.g. 1,5-7 or \"Web Server\""
-  access: all account types with outlet access
+      description: Outlet number/name/range
+  notes: Output line format `_outlet_number_ : _outlet_status_ : _outlet_name_`. Trailing `*` on status indicates pending control action.
 
 - id: current
-  label: Read Total Current Draw
+  label: Total Current Draw
   kind: query
+  command: "current"
   params: []
-  access: all account types with CLI access
-  note: "Output is single value in amps for single-phase/banked PDUs; T1/T2/T3 breakdown for 3-phase PDUs"
+  notes: Single-phase/banked PDU output: `_current_ A`. 3-phase PDU output: `T1: _current_ A / T2: _current_ A / T3: _current_ A`. Source notes "the Switched Rack PDU does not track its total current draw" - command may not be supported on this model.
 
 - id: list
   label: List Users and Outlet Assignments
   kind: query
+  command: "list"
   params: []
-  access: administrator, device manager, outlet user
-  note: "Output varies by auth method (Local vs RADIUS) and account type"
+  access: Administrator, device manager, outlet user
+
+- id: lowloadwarning_read
+  label: Read Low-Load Warning Threshold
+  kind: query
+  command: "lowloadwarning [{phase_number}]"
+  params:
+    - name: phase_number
+      type: integer
+      description: Optional. 1, 2, or 3. Default 1.
+
+- id: lowloadwarning_set
+  label: Set Low-Load Warning Threshold
+  kind: action
+  command: "lowloadwarning {phase_number} {current}"
+  params:
+    - name: phase_number
+      type: integer
+      description: 1, 2, or 3
+    - name: current
+      type: number
+      description: Threshold in amps
+  access: Administrator or device manager
+
+- id: name
+  label: Assign Name to Outlet or PDU
+  kind: action
+  command: "name {outlet|master} {new_name}"
+  params:
+    - name: target
+      type: string
+      description: 'Outlet number, or the string `master` to set the PDU system name'
+    - name: new_name
+      type: string
+      description: Up to 23 printable ASCII characters; quote if contains spaces
+  access: Administrator or device manager
+
+- id: nearoverloadwarning_read
+  label: Read Near-Overload Warning Threshold
+  kind: query
+  command: "nearoverloadwarning [{phase_number}]"
+  params:
+    - name: phase_number
+      type: integer
+      description: Optional. 1, 2, or 3. Default 1.
+
+- id: nearoverloadwarning_set
+  label: Set Near-Overload Warning Threshold
+  kind: action
+  command: "nearoverloadwarning {phase_number} {current}"
+  params:
+    - name: phase_number
+      type: integer
+      description: 1, 2, or 3
+    - name: current
+      type: number
+      description: Threshold in amps
+  access: Administrator or device manager
+
+- id: overloadalarm_read
+  label: Read Overload Alarm Threshold
+  kind: query
+  command: "overloadalarm [{phase_number}]"
+  params:
+    - name: phase_number
+      type: integer
+      description: Optional. 1, 2, or 3. Default 1.
+
+- id: overloadalarm_set
+  label: Set Overload Alarm Threshold
+  kind: action
+  command: "overloadalarm {phase_number} {current}"
+  params:
+    - name: phase_number
+      type: integer
+      description: 1, 2, or 3
+    - name: current
+      type: number
+      description: Threshold in amps
+  access: Administrator or device manager
+
+- id: overloadrestriction_read
+  label: Read Overload Restriction
+  kind: query
+  command: "overloadrestriction [{phase_number}]"
+  params:
+    - name: phase_number
+      type: integer
+      description: Optional. 1, 2, or 3. Default 1.
+
+- id: overloadrestriction_set
+  label: Set Overload Restriction
+  kind: action
+  command: "overloadrestriction {phase_number} {setting}"
+  params:
+    - name: phase_number
+      type: integer
+      description: 1, 2, or 3
+    - name: setting
+      type: string
+      description: '`on` or `off` (not case-sensitive). When `on`, prevents outlets from turning on while overload threshold is violated.'
+  access: Administrator or device manager
+
+- id: pducoldstartdelay_read
+  label: Read PDU Cold-Start Delay
+  kind: query
+  command: "pducoldstartdelay"
+  params: []
+
+- id: pducoldstartdelay_set
+  label: Set PDU Cold-Start Delay
+  kind: action
+  command: "pducoldstartdelay {time|never}"
+  params:
+    - name: time
+      type: string
+      description: Seconds (0-300), or `never` to keep outlets off until explicit `on` command
+  access: Administrator or device manager
 
 - id: power
-  label: Read Total Power Usage
+  label: Total Power Usage
   kind: query
+  command: "power"
   params: []
-  access: all account types with CLI access
-  note: "Output format: _power_in_volt-amps_ VA _power_in_watts_ W"
+  notes: Output `_power_in_volt-amps_ VA _power_in_watts_ W`.
 
-- id: ver
-  label: Display PDU Version and Configuration Info
-  kind: query
+- id: exit
+  label: Exit CLI
+  kind: action
+  command: "{exit|logout|logoff|quit|bye}"
   params: []
-  access: all account types with CLI access
-  note: "Output includes AOS firmware version, PDU firmware version, model number, outlet count, max current, phase configuration"
 
 - id: help
-  label: Display Help
+  label: CLI Help
   kind: query
+  command: "help|? [{command}]"
   params:
     - name: command
       type: string
-      required: false
-      description: "Name of the command for which help will be provided; omit to list all available commands"
-  access: all account types with CLI access
+      description: Optional. Command name; omit to list all available commands.
+
+- id: reset_defaults_pdu
+  label: Reset PDU Defaults
+  kind: action
+  command: "reset_defaults_pdu"
+  params: []
+  access: Administrator
+  notes: Resets only PDU and outlet configuration to defaults.
+
+- id: uploadini
+  label: Upload INI via XMODEM
+  kind: action
+  command: "uploadini"
+  params: []
+  access: Administrator or device manager
+  notes: Serial-only. XMODEM-CRC transfer. Offered baud rates: 2400, 9600, 19200, 38400. After upload with non-default baud, reset PDU baud to default 9600.
+
+- id: ver
+  label: Device Version Info
+  kind: query
+  command: "ver"
+  params: []
+  notes: Output `APC OS _AOS_firmware_version_ Switched Rack PDU _PDU_firmware_version_ Model: _model_number_ Outlets: _number_of_outlets_ Max Current: _maximum_load_current_ A Input Type: _phase_configuration_`.
 ```
 
 ## Feedbacks
 ```yaml
-- id: error_response
+- id: outlet_status
   type: enum
-  values:
-    - E100
-    - E101
-    - E102
-    - E103
-    - E104
-    - E200
-  description: "Error codes returned in format E[0-9][0-9][0-9]: Error message"
+  values: [on, off, "on*", "off*"]
+  description: From `status` command. Trailing `*` indicates a control action is pending.
+  source_line: "1:ON:Database Server"
 
-- id: success_response
-  type: string
-  description: "OK followed by command output for success"
+- id: outlet_status_lines
+  type: object
+  fields:
+    - outlet_number
+    - outlet_status
+    - outlet_name
+  description: One line per outlet from `status` query.
 
-- id: logon_banner
-  type: string
-  description: "If firmware not initialized: 'The Switched Rack PDU is still initializing. Please try again later.'"
+- id: current_draw
+  type: object
+  description: Total current draw from `current` command. Single-phase/banked: `_current_ A`. 3-phase: `T1`, `T2`, `T3` per-phase amps.
 
-- id: failed_logon
+- id: power_usage
   type: string
-  description: "After 3 consecutive failed logon attempts, further attempts are blocked for 2 minutes."
+  description: From `power` command. Format: `_power_in_volt-amps_ VA _power_in_watts_ W`.
+
+- id: whoami_user
+  type: string
+  description: Active user name from `whoami` command.
+
+- id: version_info
+  type: object
+  fields:
+    - aos_firmware_version
+    - pdu_firmware_version
+    - model_number
+    - number_of_outlets
+    - maximum_load_current
+    - phase_configuration
+  description: From `ver` command. phase_configuration is `Single`, `Banked`, or `3 Phase`.
+
+- id: command_error
+  type: object
+  fields:
+    - code
+    - message
+  description: Format `E[0-9][0-9][0-9]: Error message`. Known codes: E100 (command does not exist), E101 (invalid command arguments), E102 (user already exists), E103 (user does not exist), E104 (user does not have access), E200 (input error / 3-minute input timeout).
+
+- id: command_ok
+  type: string
+  description: Successful command response: `OK` followed by command output.
+
+- id: outlet_groups
+  type: string
+  description: From `outletgroups` command. Format `_group_name_ : _IP_address_of_local_PDU_ Outlets: _number_, _number... IP_address_of_remote_PDU_ Outlets: _number_, _number...`.
+
+- id: power_on_delay
+  type: object
+  description: From `powerondelay` query. Format `_outlet_number_ : _outlet_name_ : Power on delay is _time_ seconds.`
+
+- id: power_off_delay
+  type: object
+  description: From `poweroffdelay` query. Format `_outlet_number_ : _outlet_name_ : Power off delay is _time_ seconds.`
+
+- id: reboot_duration
+  type: object
+  description: From `rebootduration` query. Format `_outlet_number_ : _outlet_name_ : Reboot duration is _time_ seconds.`
+
+- id: coldstart_delay
+  type: object
+  description: From `pducoldstartdelay` query. Format `_PDU_name_: PDU coldstart delay is _time_ seconds.`
+
+- id: low_load_warning_threshold
+  type: object
+  description: From `lowloadwarning` query. Format `Low load warning threshold is _current_ A.`
+
+- id: near_overload_warning_threshold
+  type: object
+  description: From `nearoverloadwarning` query. Format `Near overload warning threshold is _current_ A.`
+
+- id: overload_alarm_threshold
+  type: object
+  description: From `overloadalarm` query. Format `Overload alarm threshold for _phase_number_ is _current_ A.`
+
+- id: overload_restriction
+  type: object
+  description: From `overloadrestriction` query. Format `Overload restriction is _setting_ for _phase_number_.`
+
+- id: user_listing
+  type: object
+  description: From `list` command. Format `OK Local: _user_: _outlet_number_, _outlet_number_ ...` and `OK Radius: _user_: _outlet_number_, _outlet_number_ ...`.
 ```
 
 ## Variables
 ```yaml
-- id: outlet_status
-  type: enum
-  values: [ON, OFF]
-  description: "Status of individual outlets; trailing asterisk (*) indicates control action pending"
-  readonly: true
-
-- id: power_usage
-  type: object
-  properties:
-    - name: volt_amps
-      type: number
-      unit: VA
-    - name: watts
-      type: number
-      unit: W
-  description: "Total PDU power usage (read via power command)"
-  readonly: true
-
-- id: total_current
-  type: object
-  description: "Total current draw in amps; for 3-phase PDUs includes T1/T2/T3 breakdown"
-  properties:
-    - name: T1
-      type: number
-      unit: A
-    - name: T2
-      type: number
-      unit: A
-    - name: T3
-      type: number
-      unit: A
-  readonly: true
-
-- id: outlet_name
-  type: string
-  description: "User-assigned name for an outlet or PDU system (master)"
-  readonly: false
-
-- id: power_on_delay
+- id: power_on_delay_seconds
   type: integer
-  unit: seconds
-  description: "Time PDU waits before restoring power to an outlet after a power-off command"
+  description: Seconds the PDU waits after a command before restoring power to an outlet. Set per outlet via `powerondelay`.
+  settable_via: powerondelay_set
 
-- id: power_off_delay
+- id: power_off_delay_seconds
   type: integer
-  unit: seconds
-  description: "Time PDU waits after an on-command before applying power to an outlet"
+  description: Seconds the PDU waits after a command before removing power from an outlet. Set per outlet via `poweroffdelay`.
+  settable_via: poweroffdelay_set
 
-- id: reboot_duration
+- id: reboot_duration_seconds
   type: integer
-  unit: seconds
-  description: "Duration an outlet remains off before auto-restart during reboot"
+  description: Seconds an outlet remains off during a reboot cycle.
+  settable_via: rebootduration_set
 
-- id: cold_start_delay
+- id: pdu_cold_start_delay_seconds
   type: integer
-  unit: seconds
-  description: "Time PDU delays applying power to outlets after AC is applied; 0-300 or never"
+  description: Seconds the PDU delays applying power to outlets after AC power is applied. Allowed 0-300.
+  settable_via: pducoldstartdelay_set
 
-- id: low_load_warning_threshold
+- id: low_load_warning_threshold_amps
   type: number
-  unit: A
-  description: "Per-phase low-load warning threshold in amps"
+  description: Low-load warning threshold per phase.
+  settable_via: lowloadwarning_set
 
-- id: near_overload_warning_threshold
+- id: near_overload_warning_threshold_amps
   type: number
-  unit: A
-  description: "Per-phase near-overload warning threshold in amps"
+  description: Near-overload warning threshold per phase.
+  settable_via: nearoverloadwarning_set
 
-- id: overload_alarm_threshold
+- id: overload_alarm_threshold_amps
   type: number
-  unit: A
-  description: "Per-phase overload alarm threshold in amps"
+  description: Overload alarm threshold per phase.
+  settable_via: overloadalarm_set
 
 - id: overload_restriction
   type: enum
   values: [on, off]
-  description: "When on, prevents outlets from turning on while overload alarm threshold is violated"
+  description: When `on`, prevents outlets from turning on while overload alarm threshold is violated.
+  settable_via: overloadrestriction_set
 
-- id: outlet_groups
+- id: outlet_name
   type: string
-  description: "Outlet synchronization groups; format: groupName : PDU_IP Outlets: n,n PDU_IP Outlets: n,n"
-  readonly: true
+  description: Per-outlet label, up to 23 printable ASCII characters.
+  settable_via: name
 
-- id: user_list
+- id: pdu_system_name
   type: string
-  description: "List of users and their assigned outlets; format varies based on auth method (Local vs RADIUS)"
-  readonly: true
+  description: System name for the PDU, set via `name master {new_name}`.
+  settable_via: name
 
-- id: pdu_info
-  type: object
-  description: "ver command output: APC OS version, PDU firmware, model, outlet count, max current, phase config"
-  properties:
-    - name: aos_version
-      type: string
-    - name: pdu_firmware_version
-      type: string
-    - name: model_number
-      type: string
-    - name: outlet_count
-      type: integer
-    - name: max_current
-      type: number
-      unit: A
-    - name: phase_configuration
-      type: string
-      enum: [Single, Banked, 3 Phase]
-  readonly: true
+- id: inactivity_logout_minutes
+  type: integer
+  description: Inactivity logout time. Default 3 minutes, configurable 1-10. UNRESOLVED: no CLI command shown in source to read or set this value; presumably configured via web UI.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: source does not document unsolicited notifications or push events from the PDU.
-# The CLI is strictly request/response; no asynchronous event messages are described.
+# UNRESOLVED: source does not describe unsolicited notifications the PDU sends.
+# Inactivity logout, overload alarm, and cold-start events may exist but are not
+# documented in the refined CLI excerpt.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: source does not describe multi-step macro/sequence commands.
-# The closest equivalent is the synchronized outlet group mechanism (outletgroups command)
-# which coordinates timing across multiple PDUs, but no explicit multi-step sequence
-# definition syntax is provided.
+# UNRESOLVED: source does not describe multi-step macro sequences. The CLI
+# itself does not include a macro language in the refined excerpt. Synchronized
+# outlet groups exist (see `outletgroups`) but are configured elsewhere.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - off  # turning off outlets cuts power to connected equipment
-  - on   # restoring power to outlets after a power-off sequence
-  - reboot  # cycling power to connected equipment
-interlocks: []
-# UNRESOLVED: no explicit interlock or sequencing safety procedures stated in source.
-# However, powerondelay/poweroffdelay/rebootduration provide configurable delay windows
-# that implicitly support staged power-on/off sequences for load management.
-# No explicit warnings about concurrent outlet switching under overload conditions.
+  - reset_defaults_pdu  # Resets PDU and outlet configuration to defaults
+interlocks:
+  - id: overload_restriction
+    description: When overload restriction is `on`, the PDU prevents outlets from turning on while the overload alarm threshold is violated. Source: `overloadrestriction` command description.
+  - id: application_init
+    description: While application firmware is initializing, CLI commands are rejected with `The Switched Rack PDU is still initializing. Please try again later.`
+  - id: logon_lockout
+    description: Three consecutive unsuccessful log-on attempts lock further attempts for two minutes. Source: log-on responses section.
+# UNRESOLVED: voltage/current/power specifications not stated in source. No
+# explicit safety warnings in the refined excerpt beyond the lockouts and
+# interlock procedures above.
 ```
 
 ## Notes
+- The refined source explicitly notes "the Switched Rack PDU does not track its total current draw" — the `current` command is documented but likely unsupported on this model class.
+- Log-off command accepts five aliases: `exit`, `logout`, `logoff`, `quit`, `bye`.
+- `uploadini` is serial-only and uses XMODEM-CRC. Transfer baud can be 2400, 9600, 19200, or 38400. After a non-default transfer baud, restore PDU baud to default 9600 to re-establish communication.
+- Trailing `*` on a `status` output indicates a control action is pending (in-flight on/off/reboot).
+- `-c` suffix on password: append a space then `-c` to the password when not using a KVM, per source log-on procedure.
+- Commands are case-insensitive for command keywords, case-sensitive for arguments unless noted.
+- The CLI uses single ASCII 0x20 space as delimiter; extra spaces are ignored.
+- Quoted strings: if a string value starts/ends with space or contains commas/semicolons, enclose in quotation marks. Reverse slant (`\`) is the only escape character.
 
-**Command syntax conventions:**
-- Space is the delimiter between command and arguments; extra spaces are ignored
-- Commands are case-insensitive; arguments are case-sensitive unless specified
-- Quote strings that contain spaces, commas, or semicolons; use reverse-slash as escape character
-- Do not use traditional escape sequences (`\n`, `\t`, etc.) — CLI does not recognize them
-
-**Authentication:**
-- Log-on requires username + password (followed by `-c` if not using KVM)
-- After 3 failed attempts, further attempts blocked for 2 minutes
-- Inactivity logout defaults to 3 minutes (configurable 1–10 minutes)
-
-**Error handling:**
-- Success: `OK` followed by command output
-- Errors: `E###` three-digit code + message text
-- E200: command expecting required user input (e.g., password) did not receive it within 3 minutes
-
-**CLI availability:**
-- If application firmware has not finished initializing, CLI returns: `The Switched Rack PDU is still initializing. Please try again later.`
-- If CLI is unavailable, the application layer does not start and `-c` option does not work
-
-**Serial configuration:**
-- Default baud rate: 9600 (explicitly stated)
-- Data bits, parity, stop bits, flow control: not stated in source
-
-**Outlet naming:**
-- Outlet names can contain spaces and require quotation marks in commands
-- System name (PDU-level) set via `name master <new_name>`
-
-**PDU cold-start delay:**
-- When set to `never`, outlets remain off after AC power is applied until explicitly turned on via `on` command
-- Range: 0–300 seconds
-
-<!-- UNRESOLVED: Telnet/SSH port number — source does not state default port (commonly 23 for Telnet, 22 for SSH but not confirmed). -->
-<!-- UNRESOLVED: Serial data bits, parity, stop bits — not stated in source. -->
-<!-- UNRESOLVED: Authentication protocol type (Basic, Digest, SSH key, etc.) — source describes username/password log-on but no protocol-level token format. -->
-<!-- UNRESOLVED: Unsolicited events/push notifications — CLI is strictly request/response per source. -->
-<!-- UNRESOLVED: HTTP/HTTPS management interface — not covered in this CLI reference guide. -->
-<!-- UNRESOLVED: Firmware version compatibility — not stated in source. -->
-```
-
-```markdown
+<!-- UNRESOLVED: TCP port numbers for Telnet/SSH not stated in source (do not assume 22/23). Serial data bits, parity, stop bits, flow control not stated (do not assume 8N1). Firmware version compatibility range not stated. Source does not document unsolicited event notifications or macro scripting. The `current` command may be unsupported on AP8931 per source note. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - usermanual.wiki
+  - iportal.se.com
+  - manuals.zedt.eu
+  - manualmachine.com
+  - mouser.com
 source_urls:
   - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
-retrieved_at: 2026-05-04T15:20:52.311Z
-last_checked_at: 2026-05-20T04:57:01.566Z
+  - https://iportal.se.com/Contents/docs/UPS-PMAR-9LLM9N_R1_EN.PDF
+  - http://manuals.zedt.eu/apc-sua-ups/UPS-Link_Protocol_Specification.pdf
+  - https://manualmachine.com/apc/ap8941/392271-user-manual/
+  - https://www.mouser.com/datasheet/3/187/8/AP8931_document.pdf
+retrieved_at: 2026-05-14T10:59:22.676Z
+last_checked_at: 2026-06-01T23:12:07.651Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T04:57:01.566Z
-matched_actions: 28
-action_count: 28
-confidence: high
-summary: "All 28 spec actions found in source with correct semantics; transport parameters (9600 baud, Telnet/SSH/serial) verified; bidirectional coverage complete."
+checked_at: 2026-06-01T23:12:07.651Z
+matched_actions: 36
+action_count: 36
+confidence: medium
+summary: "All 36 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port numbers for Telnet/SSH not stated in source. Serial data bits / parity / stop bits / flow control not stated."
+- "Telnet and SSH TCP port numbers not stated in source"
+- "port number not stated in source"
+- "data_bits, parity, stop_bits, flow_control not stated in source"
+- "no CLI command shown in source to read or set this value; presumably configured via web UI."
+- "source does not describe unsolicited notifications the PDU sends."
+- "source does not describe multi-step macro sequences. The CLI"
+- "voltage/current/power specifications not stated in source. No"
+- "TCP port numbers for Telnet/SSH not stated in source (do not assume 22/23). Serial data bits, parity, stop bits, flow control not stated (do not assume 8N1). Firmware version compatibility range not stated. Source does not document unsolicited event notifications or macro scripting. The `current` command may be unsupported on AP8931 per source note."
 ```
 
 ---

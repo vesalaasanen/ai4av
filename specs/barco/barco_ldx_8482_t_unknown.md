@@ -17,21 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:27:33.427Z
 last_checked_at: 2026-05-20T05:39:26.397Z
 generated_at: 2026-05-20T05:39:26.397Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware compatibility range not stated in source"
+  - "additional methods present in source but truncated/partial:"
+  - "variable ranges for zoom/focus/lensshift not stated in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing requirements stated in source."
+  - "firmware version compatibility not stated in source"
+  - "voltage/current/power specifications not stated in source"
+  - "fault behavior and error recovery sequences not stated in source"
+  - "precise variable ranges for optics (zoom/focus/lensshift) not stated in source"
+  - "all DMX channel definitions not provided in source (only listchannels method)"
+  - "authentication credential format beyond example code 98765 not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:39:26.397Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched literally in source; all transport parameters verified in RS232 table and API docs."
+  confidence: medium
+  summary: "All 49 spec actions matched literally in source; all transport parameters verified in RS232 table and API docs. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -703,9 +714,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:27:33.427Z
 last_checked_at: 2026-05-20T05:39:26.397Z
 ```
 
@@ -716,14 +728,23 @@ verdict: verified
 checked_at: 2026-05-20T05:39:26.397Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched literally in source; all transport parameters verified in RS232 table and API docs."
+confidence: medium
+summary: "All 49 spec actions matched literally in source; all transport parameters verified in RS232 table and API docs. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware compatibility range not stated in source"
+- "additional methods present in source but truncated/partial:"
+- "variable ranges for zoom/focus/lensshift not stated in source"
+- "no safety warnings, interlock procedures, or power-on sequencing requirements stated in source."
+- "firmware version compatibility not stated in source"
+- "voltage/current/power specifications not stated in source"
+- "fault behavior and error recovery sequences not stated in source"
+- "precise variable ranges for optics (zoom/focus/lensshift) not stated in source"
+- "all DMX channel definitions not provided in source (only listchannels method)"
+- "authentication credential format beyond example code 98765 not specified"
 ```
 
 ---

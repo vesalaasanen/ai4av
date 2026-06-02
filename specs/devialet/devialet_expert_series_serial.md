@@ -19,19 +19,26 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:33.051Z
 last_checked_at: 2026-05-14T18:17:15.490Z
 generated_at: 2026-05-14T18:17:15.490Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no settable parameters beyond discrete actions found in source"
+  - "no multi-step sequences described in source"
+  - "source mentions non-power commands only available when POWER=1,"
+  - "exact response format for all query commands not fully documented"
+  - "timing/delays between commands not specified"
+  - "trigger output configuration details not specified"
+  - "whether specific EXPERT Series models (120, 130, 220, 250, 440, 1000) differ in protocol"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.490Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 38 spec actions matched verbatim in source, all transport parameters verified, complete command coverage."
+  confidence: medium
+  summary: "All 38 spec actions matched verbatim in source, all transport parameters verified, complete command coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -355,7 +362,7 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:33.051Z
 last_checked_at: 2026-05-14T18:17:15.490Z
 ```
 
@@ -366,14 +373,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.490Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 38 spec actions matched verbatim in source, all transport parameters verified, complete command coverage."
+confidence: medium
+summary: "All 38 spec actions matched verbatim in source, all transport parameters verified, complete command coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no settable parameters beyond discrete actions found in source"
+- "no multi-step sequences described in source"
+- "source mentions non-power commands only available when POWER=1,"
+- "exact response format for all query commands not fully documented"
+- "timing/delays between commands not specified"
+- "trigger output configuration details not specified"
+- "whether specific EXPERT Series models (120, 130, 220, 250, 440, 1000) differ in protocol"
 ```
 
 ---

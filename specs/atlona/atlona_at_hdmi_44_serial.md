@@ -18,24 +18,30 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+retrieved_at: 2026-05-31T08:32:32.819Z
 last_checked_at: 2026-05-31T20:54:06.627Z
 generated_at: 2026-05-31T20:54:06.627Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input/output count not explicitly stated; inferred from routing command syntax (X, W,Y,Z pattern; group examples referencing outputs 4-6)"
+  - "flow control not stated in source"
+  - "COM port number not stated in source"
+  - "no standalone settable parameters outside of discrete routing actions"
+  - "no unsolicited notification protocol described in source"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings, interlock procedures, or power sequencing documented in source"
+  - "input/output count not explicitly stated in source; inferred from command syntax and group examples"
+  - "flow control (RTS/CTS, XON/XOFF) not stated in source"
+  - "unsolicited event/polling protocol not described in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:54:06.627Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions matched their source commands verbatim; transport parameters verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 24 spec actions matched their source commands verbatim; transport parameters verified; complete bidirectional coverage. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -350,12 +356,8 @@ Memory slots: 0 through 9 (10 total).
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+retrieved_at: 2026-05-31T08:32:32.819Z
 last_checked_at: 2026-05-31T20:54:06.627Z
 ```
 
@@ -366,14 +368,23 @@ verdict: verified
 checked_at: 2026-05-31T20:54:06.627Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions matched their source commands verbatim; transport parameters verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 24 spec actions matched their source commands verbatim; transport parameters verified; complete bidirectional coverage. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input/output count not explicitly stated; inferred from routing command syntax (X, W,Y,Z pattern; group examples referencing outputs 4-6)"
+- "flow control not stated in source"
+- "COM port number not stated in source"
+- "no standalone settable parameters outside of discrete routing actions"
+- "no unsolicited notification protocol described in source"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings, interlock procedures, or power sequencing documented in source"
+- "input/output count not explicitly stated in source; inferred from command syntax and group examples"
+- "flow control (RTS/CTS, XON/XOFF) not stated in source"
+- "unsolicited event/polling protocol not described in source"
 ```
 
 ---

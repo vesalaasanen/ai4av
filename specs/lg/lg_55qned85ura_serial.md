@@ -16,23 +16,33 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - manualslib.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
+  - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-04-25T21:04:54.769Z
 last_checked_at: 2026-04-25T21:04:54.769Z
 generated_at: 2026-04-25T21:04:54.769Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "m c"
+  - "IR remote section present but not part of serial control protocol"
+  - "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
+  - "no unsolicited event notifications described in source; device only responds to commands"
+  - "no explicit multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "IR remote codes section present but not applicable to RS-232C control"
+  - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:04:54.769Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec."
+  confidence: medium
+  summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -381,10 +391,13 @@ Hex value mapping for 0-100 range: 0=Step0, A=Step10, F=Step15, 10=Step16, 64=St
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - manualslib.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
+  - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-04-25T21:04:54.769Z
 last_checked_at: 2026-04-25T21:04:54.769Z
 ```
 
@@ -395,14 +408,21 @@ verdict: verified
 checked_at: 2026-04-25T21:04:54.769Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec."
+confidence: medium
+summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "m c"
+- "IR remote section present but not part of serial control protocol"
+- "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
+- "no unsolicited event notifications described in source; device only responds to commands"
+- "no explicit multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "IR remote codes section present but not applicable to RS-232C control"
+- "discrete IR power codes (C4, C5) documented but not part of serial protocol"
 ```
 
 ---

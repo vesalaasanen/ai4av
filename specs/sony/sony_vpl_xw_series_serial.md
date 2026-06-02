@@ -28,25 +28,42 @@ compatible_with:
   required_options: []
 source_domains:
   - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
 source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://www.sony.com/electronics/support/res/manuals/9932/68bf8c3b38750c56cb60dcb8f1dfa909/99327615M.pdf
+retrieved_at: 2026-04-30T10:44:24.769Z
 last_checked_at: 2026-05-14T18:17:20.945Z
 generated_at: 2026-05-14T18:17:20.945Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "the entity groups these models under \"VPL-XW Series\" but the source document titles them VPL-DX/DW/EX/EW; verify the entity grouping is correct"
+  - "RS-232C communication specifications (baud rate, data bits, parity, stop bits) section was truncated in the refined source"
+  - "complete item number list for all settable/gettable parameters not fully documented in source"
+  - "PJLink port number not stated in source"
+  - "PJLink port not stated in source"
+  - "communication specs section truncated in source"
+  - "complete set of RS-232C item numbers and their data values not fully documented in source"
+  - "complete SDCP item number list not fully documented in source"
+  - "PJLink AVMT parameter value mapping not specified in source excerpt"
+  - "complete list of power status values not fully documented"
+  - "exact response value mapping not documented in source"
+  - "exact response format not fully documented in source"
+  - "no continuous variable ranges documented in source excerpt"
+  - "no multi-step sequences described in source"
+  - "source does not describe safety interlocks or power sequencing requirements"
+  - "RS-232C communication specs (baud rate, data bits, parity, stop bits, flow control) — section 3-2 content was not available in refined source"
+  - "complete ITEM list for all settable/gettable parameters on RS-232C and SDCP"
+  - "PJLink AVMT command parameter and response value mappings"
+  - "PJLink LAMP ? response format"
+  - "PJLink INST ? response format"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.945Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 27 spec actions matched to source document; transport parameters verified; comprehensive protocol coverage."
+  confidence: medium
+  summary: "All 27 spec actions matched to source document; transport parameters verified; comprehensive protocol coverage. (20 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -387,13 +404,10 @@ interlocks: []
 ```yaml
 source_domains:
   - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
 source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://www.sony.com/electronics/support/res/manuals/9932/68bf8c3b38750c56cb60dcb8f1dfa909/99327615M.pdf
+retrieved_at: 2026-04-30T10:44:24.769Z
 last_checked_at: 2026-05-14T18:17:20.945Z
 ```
 
@@ -404,14 +418,33 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.945Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 27 spec actions matched to source document; transport parameters verified; comprehensive protocol coverage."
+confidence: medium
+summary: "All 27 spec actions matched to source document; transport parameters verified; comprehensive protocol coverage. (20 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "the entity groups these models under \"VPL-XW Series\" but the source document titles them VPL-DX/DW/EX/EW; verify the entity grouping is correct"
+- "RS-232C communication specifications (baud rate, data bits, parity, stop bits) section was truncated in the refined source"
+- "complete item number list for all settable/gettable parameters not fully documented in source"
+- "PJLink port number not stated in source"
+- "PJLink port not stated in source"
+- "communication specs section truncated in source"
+- "complete set of RS-232C item numbers and their data values not fully documented in source"
+- "complete SDCP item number list not fully documented in source"
+- "PJLink AVMT parameter value mapping not specified in source excerpt"
+- "complete list of power status values not fully documented"
+- "exact response value mapping not documented in source"
+- "exact response format not fully documented in source"
+- "no continuous variable ranges documented in source excerpt"
+- "no multi-step sequences described in source"
+- "source does not describe safety interlocks or power sequencing requirements"
+- "RS-232C communication specs (baud rate, data bits, parity, stop bits, flow control) — section 3-2 content was not available in refined source"
+- "complete ITEM list for all settable/gettable parameters on RS-232C and SDCP"
+- "PJLink AVMT command parameter and response value mappings"
+- "PJLink LAMP ? response format"
+- "PJLink INST ? response format"
 ```
 
 ---

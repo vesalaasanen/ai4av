@@ -37,13 +37,20 @@ firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "TX_DEVICE_ID (charger-only variant)"
+  - "no auth procedure in source"
+  - "all parameters are command-based GET/SET; no standalone variables"
+  - "no explicit multi-step macros in source"
+  - "populate if source contains safety warnings"
+  - "firmware version requirements not stated (REMOTE_LINK says v4.0+ but other commands unspecified)"
+  - "no power specifications in source"
+  - "authentication credentials not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.490Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented."
+  confidence: medium
+  summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -724,14 +731,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.490Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented."
+confidence: medium
+summary: "All 48 spec actions matched literally with correct parameters; transport (TCP port 2202) verified; command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "TX_DEVICE_ID (charger-only variant)"
+- "no auth procedure in source"
+- "all parameters are command-based GET/SET; no standalone variables"
+- "no explicit multi-step macros in source"
+- "populate if source contains safety warnings"
+- "firmware version requirements not stated (REMOTE_LINK says v4.0+ but other commands unspecified)"
+- "no power specifications in source"
+- "authentication credentials not stated"
 ```
 
 ---

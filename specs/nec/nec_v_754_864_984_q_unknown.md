@@ -21,19 +21,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:14:48.520Z
 last_checked_at: 2026-05-18T16:39:32.501Z
 generated_at: 2026-05-18T16:39:32.501Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub-input values for PIP are referenced but not enumerated"
+  - "firmware version compatibility not stated"
+  - "specific model-to-model command differences not documented"
+  - "flow control not stated (RTS/CTS pins present on connector)"
+  - "range not stated in source"
+  - "source does not describe unsolicited notifications from projector"
+  - "source does not describe multi-step sequences"
+  - "Appendix tables missing — input terminal hex codes, aspect values, eco mode values, base model type values, PIP sub-input values not available"
+  - "wireless LAN communication conditions not stated (deferred to wireless LAN unit manual)"
+  - "flow control setting not stated (RTS/CTS pins wired on D-SUB 9)"
+  - "default baud rate not stated"
+  - "exact command byte layouts for lens_control axis codes beyond 06h (Periphery Focus) — other axes may exist per model"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:39:32.501Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation."
+  confidence: medium
+  summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -612,7 +624,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:14:48.520Z
 last_checked_at: 2026-05-18T16:39:32.501Z
 ```
 
@@ -623,14 +635,25 @@ verdict: verified
 checked_at: 2026-05-18T16:39:32.501Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation."
+confidence: medium
+summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub-input values for PIP are referenced but not enumerated"
+- "firmware version compatibility not stated"
+- "specific model-to-model command differences not documented"
+- "flow control not stated (RTS/CTS pins present on connector)"
+- "range not stated in source"
+- "source does not describe unsolicited notifications from projector"
+- "source does not describe multi-step sequences"
+- "Appendix tables missing — input terminal hex codes, aspect values, eco mode values, base model type values, PIP sub-input values not available"
+- "wireless LAN communication conditions not stated (deferred to wireless LAN unit manual)"
+- "flow control setting not stated (RTS/CTS pins wired on D-SUB 9)"
+- "default baud rate not stated"
+- "exact command byte layouts for lens_control axis codes beyond 06h (Periphery Focus) — other axes may exist per model"
 ```
 
 ---

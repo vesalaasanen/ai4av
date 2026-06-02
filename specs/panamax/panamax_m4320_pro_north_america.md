@@ -36,73 +36,179 @@ known_gaps:
   - sendchild
   - sendfamily
   - sendsettings
+  - "M4320-PRO is not explicitly listed in the source device class table (Table 1 covers BB-RS232 and CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP). The device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
+  - "Source describes the BB-RS232 gateway protocol; the M4320-PRO is a newer Panamax BlueBOLT-enabled device and may share the same UDP port 57010 transport but this is not explicitly confirmed in the source for the M4320-PRO specifically."
+  - "these settings apply to the CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP"
+  - "no multi-step macro sequences are described in the source."
+  - "source does not contain explicit safety warnings, interlock procedures,"
+  - "device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
+  - "which subset of the BB-RS232 / SmartSequencer commands the M4320-PRO implements is not stated in the source."
+  - "voltage, current, and power measurement fields (<voltage>, <amperage>, <wattage>) are documented for SmartSequencer devices but their applicability to the M4320-PRO is not stated."
+  - "firmware version compatibility range not stated in source."
+  - "HDLC link and SmartLink-chain concepts (ntwkdevcnt, hdlcstate, ntwkpollstate, tfilestate) are specific to BB-RS232 gateway operation and may not be exposed by the M4320-PRO."
 verification:
   verdict: verified
   checked_at: 2026-04-27T09:45:14.928Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim."
+  confidence: medium
+  summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-26
+created_at: 2026-06-02
 ---
 
 # Panamax M4320-PRO Control Spec
 
 ## Summary
+The Panamax M4320-PRO is a 1U, 20A, 8-outlet IP-controlled power conditioner with BlueBOLT cloud management. This spec covers the BlueBOLT XML-over-UDP control protocol used by BlueBOLT-enabled devices for command, information, and event messaging on the local network.
 
-Panamax M4320-PRO is a 1RU, 20-amp, 8-outlet power conditioner with BlueBOLT programmable outlets and auto-reset. Control is available via BlueBOLT IP/Telnet (TCP) and RS-232 serial. The BlueBOLT BB-RS232 gateway protocol uses XML messages over UDP port 57010 for event subscriptions and command/response communication. HTTP web interface runs on port 80. No authentication/login procedure described in source.
-
-<!-- UNRESOLVED: M4320-PRO-specific command documentation not found; this spec derives from BB-RS232 gateway protocol which applies to BlueBOLT-enabled Panamax/Furman devices. Direct M4320-PRO outlet control commands may differ. -->
+<!-- UNRESOLVED: M4320-PRO is not explicitly listed in the source device class table (Table 1 covers BB-RS232 and CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP). The device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source. -->
+<!-- UNRESOLVED: Source describes the BB-RS232 gateway protocol; the M4320-PRO is a newer Panamax BlueBOLT-enabled device and may share the same UDP port 57010 transport but this is not explicitly confirmed in the source for the M4320-PRO specifically. -->
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
-  - serial
+  - udp
+  - http
 addressing:
-  base_url: http://{device_ip}  # inferred from HTTP interface on port 80
-  port: 80  # HTTP web server port stated in source
+  port: 57010  # UDP port for XML command, information, and event messaging
+  base_url: "http://<device-ip>/"  # built-in HTTP web interface for network configuration
 auth:
-  type: none  # inferred: no auth procedure in source
-udp:
-  port: 57010  # UDP port for XML command/event messaging, stated in source
-serial:
-  baud_rate: null  # UNRESOLVED: serial baud rate not stated for M4320-PRO
-  data_bits: null
-  parity: null
-  stop_bits: null
-  flow_control: null
+  type: none  # inferred: no auth procedure described in source
 ```
 
 ## Traits
 ```yaml
-- powerable       # inferred: sequence command supports power on/off
-- routable        # UNRESOLVED: outlet routing/switching commands present (switch_outlet, cycle_outlet)
-- queryable       # inferred: sendstatus, sendinfo queries present
+- powerable       # inferred from power on/off sequence and outlet switch commands
+- queryable       # inferred from sendinfo, sendstatus, sendchild, sendfamily, sendsettings queries
+- routable        # inferred from per-outlet switch and cycle commands
 ```
 
 ## Actions
 ```yaml
-- id: sequence
-  label: Sequence
+# --- BB-RS232 gateway-level queries (Section 1) ---
+
+- id: send_info
+  label: Send Information Query (BB-RS232)
+  kind: query
+  command: "<sendinfo/>"
+  params: []
+
+- id: send_status
+  label: Send Status Query (BB-RS232)
+  kind: query
+  command: "<sendstatus/>"
+  params: []
+
+- id: send_child
+  label: Send Child Query (BB-RS232)
+  kind: query
+  command: "<sendchild ndx=\"{ndx}\"/>"
+  params:
+    - name: ndx
+      type: integer
+      description: SmartLink index number, starting at 0
+
+- id: send_family
+  label: Send Family Query (BB-RS232)
+  kind: query
+  command: "<sendfamily/>"
+  params: []
+
+# --- BB-RS232 gateway-level commands (Section 2) ---
+
+- id: set_time
+  label: Set Time
   kind: action
-  description: Initiate power turn-on or turn-off sequence for all connected devices
+  command: "<settime>{unix_timestamp}</settime>"
+  params:
+    - name: unix_timestamp
+      type: integer
+      description: Number of seconds elapsed since January 1, 1970 (UNIX time)
+
+- id: set_timezone
+  label: Set Timezone
+  kind: action
+  command: |
+    <setzoneinfo>
+    <timezone>{offset}</timezone>
+    <dststart>{dst_start}</dststart>
+    <dstshift>{dst_shift}</dstshift>
+    <dstend>{dst_end}</dstend>
+    </setzoneinfo>
+  params:
+    - name: offset
+      type: integer
+      description: Seconds offset from UTC
+    - name: dst_start
+      type: integer
+      description: UNIX timestamp of DST start
+    - name: dst_shift
+      type: integer
+      description: Seconds to offset during DST (typically 3600)
+    - name: dst_end
+      type: integer
+      description: UNIX timestamp of DST end
+
+- id: enumerate
+  label: Enumerate
+  kind: action
+  command: "<enumerate/>"
+  params: []
+
+- id: roll_call
+  label: Roll Call
+  kind: action
+  command: "<rollcall/>"
+  params: []
+
+- id: reboot
+  label: Reboot
+  kind: action
+  command: "<reboot/>"
+  params: []
+
+- id: sequence
+  label: Power Sequence
+  kind: action
+  command: "<sequence>{action}</sequence>"
   params:
     - name: action
       type: integer
-      description: 1 = turn-on sequence; 0 = turn-off sequence
+      description: 0 = power turn-off sequence; 1 = power turn-on sequence
+
+# --- SmartSequencer device queries (Section 3) ---
+
+- id: send_info_device
+  label: Send Information Query (Device)
+  kind: query
+  command: "<sendinfo/>"
+  params: []
+
+- id: send_status_device
+  label: Send Status Query (Device)
+  kind: query
+  command: "<sendstatus/>"
+  params: []
+
+- id: send_settings
+  label: Send Settings Query (Device)
+  kind: query
+  command: "<sendsettings/>"
+  params: []
+
+# --- SmartSequencer device commands (Section 4) ---
 
 - id: switch_outlet
   label: Switch Outlet
   kind: action
-  description: Control individual outlet bank on a connected SmartLink device
+  command: "<outlet id=\"{n}\">{state}</outlet>"
   params:
-    - name: id
+    - name: n
       type: integer
-      description: Outlet bank number (1-based)
+      description: Outlet bank number
     - name: state
       type: integer
       description: 0 = OFF; 1 = ON
@@ -110,353 +216,375 @@ serial:
 - id: cycle_outlet
   label: Cycle Outlet
   kind: action
-  description: Power cycle an individual outlet. Outlet turns off then back on after 5 seconds.
+  command: "<cycleoutlet id=\"{n}\" delay=\"{t}\"/>"
   params:
-    - name: id
+    - name: n
       type: integer
-      description: Outlet bank number (1-based)
-    - name: delay
+      description: Outlet bank number
+    - name: t
       type: integer
-      required: false
-      description: Delay in seconds (1-254). Default 5 seconds if omitted.
+      description: Delay in seconds (1-254); defaults to 5 if omitted
 
-- id: enumerate
-  label: Enumerate
+- id: sequence_device
+  label: Device Power Sequence
   kind: action
-  description: Remove current device inventory and (re)discover connected SmartLink devices
-
-- id: rollcall
-  label: Roll Call
-  kind: action
-  description: Cause devices to report their SmartLink address without reassigning addresses
-
-- id: reboot
-  label: Reboot
-  kind: action
-  description: Reboot BB-RS232 gateway
-
-- id: set_time
-  label: Set Time
-  kind: action
-  description: Set internal clock to UNIX timestamp
+  command: "<sequence>{on_off}</sequence>"
   params:
-    - name: timestamp
+    - name: on_off
       type: integer
-      description: UNIX timestamp (seconds since Jan 1 1970)
-
-- id: set_timezone
-  label: Set Timezone
-  kind: action
-  description: Set time zone offset and DST parameters
-  params:
-    - name: timezone
-      type: integer
-      description: Offset from UTC in seconds (e.g., -28800 for PST)
-    - name: dststart
-      type: integer
-      description: UNIX timestamp for DST start
-    - name: dstshift
-      type: integer
-      description: DST offset in seconds (e.g., 3600)
-    - name: dstend
-      type: integer
-      description: UNIX timestamp for DST end
+      description: 0 = power turn-off sequence; 1 = power turn-on sequence
 
 - id: refresh_info
   label: Refresh Info
   kind: action
-  description: Force connected device to send updated system information
+  command: "<refreshinfo/>"
+  params: []
 
 - id: refresh_settings
   label: Refresh Settings
   kind: action
-  description: Force connected device to send updated settings information
+  command: "<refreshsettings/>"
+  params: []
+
+# --- Event manager (Section 5.1) ---
 
 - id: subscribe_events
-  label: Subscribe to Events
+  label: Subscribe to Event Messages
   kind: action
-  description: Subscribe to autonomous event messages from device
+  command: "<eventmgr><subscribe uri=\"ctrlsys://{ipaddr}:{port}\"/></eventmgr>"
   params:
-    - name: uri
+    - name: ipaddr
       type: string
-      description: Subscription URI (ctrlsys://IPADDR:PORT)
+      description: IP address that will receive event messages
+    - name: port
+      type: integer
+      description: UDP port that will receive event messages
 
 - id: unsubscribe_events
-  label: Unsubscribe from Events
+  label: Unsubscribe from Event Messages
   kind: action
+  command: "<eventmgr><unsubscribe uri=\"ctrlsys://{ipaddr}:{port}\"/></eventmgr>"
   params:
-    - name: uri
+    - name: ipaddr
       type: string
-      description: Subscription URI to remove
+      description: Subscribed IP address
+    - name: port
+      type: integer
+      description: Subscribed UDP port
 
-- id: event_ack
-  label: Event Acknowledgement
+- id: ack_event
+  label: Acknowledge Event
   kind: action
-  description: Acknowledge receipt of event message
+  command: "<eventmgr><ack evtid=\"{evtid}\" subsid=\"{subsid}\"/></eventmgr>"
   params:
     - name: evtid
       type: integer
-      description: Event ID to acknowledge
+      description: Event ID from the received event message
     - name: subsid
       type: integer
-      description: Subscriber ID
+      description: Subscriber ID assigned at subscription time
 ```
 
 ## Feedbacks
 ```yaml
-- id: sendinfo_response
-  label: Send Info Response
-  type: object
-  fields:
-    - sernum: Serial number
-    - fwver: Firmware version
-    - bootcodever: Boot loader firmware version
-    - ipaddr: IP address (32-bit decimal)
+- id: sernum
+  type: string
+  description: Device serial number (from <info><sernum>)
 
-- id: sendstatus_response
-  label: Send Status Response
-  type: object
-  fields:
-    - time: UNIX timestamp
-    - ntwkdevcnt: Count of SmartLink connected devices
-    - ntwkinvhash: Hash code of connected device inventory
-    - ntwkpollstate: Polling state (Furman use only)
-    - hdlcstate: HDLC link status (0x000 = no errors)
-    - tfilestate: Firmware update file state
+- id: fwver
+  type: string
+  description: Firmware version (from <info><fwver>)
 
-- id: device_info
-  label: Device Info
-  type: object
-  description: System info for connected SmartLink device
-  fields:
-    - sernum: Serial number
-    - fwver: Firmware version
-    - hwver: Hardware version
-    - sladdr: SmartLink address
+- id: bootcodever
+  type: string
+  description: Boot loader firmware version (from <info><bootcodever>)
 
-- id: device_status
-  label: Device Status
-  type: object
-  description: Status for connected SmartLink device (CN-xxxx series)
-  fields:
-    - voltage: Measured RMS line voltage (0.1Vac resolution)
-    - amperage: Total load current (0.01A resolution)
-    - wattage: Total power delivered (1W resolution)
-    - pwrva: Volt-amperes (1VA resolution)
-    - pwrfact: Power factor (0.01 resolution)
-    - remote: Remote sensing input logic level
-    - protok: Surge protection status (1 = OK, 0 = failed)
-    - smp: Series Mode Protection relay state (1 = on, 0 = off)
-    - overvolt: Overvoltage condition (1 = detected)
-    - undervolt: Undervoltage condition (1 = detected)
-    - pwrok: Normal power condition (1 = normal, 0 = fault)
-    - seqprog: Power sequence in progress (1 = active)
-    - outlet: Outlet bank states (id = bank number, value = 1 ON / 0 OFF)
+- id: ipaddr
+  type: string
+  description: IP address as 32-bit (base-10) decimal value (from <info><ipaddr>)
 
-- id: device_settings
-  label: Device Settings
-  type: object
-  description: Device configuration settings
-  fields:
-    - adj: Delay time adjustment percentage
-    - delay: Time delay set by DIP switches (seconds)
-    - totdelay: Total delay time = delay * adj
-    - mode: Remote input mode (0=12V off, 1=12V on, 2=Ground on, 3=MOM)
-    - seq: Sequence mode (1=Primary, 0=Secondary)
-    - alarm: Alarm input mode (1=NO, 0=NC)
-    - evs: Extreme Voltage Shutdown mode
-    - override: Remote override switch position
-    - evtsena: Events enabled (1=yes, 0=no)
+- id: ntwkdevcnt
+  type: integer
+  description: Count of SmartLink connected devices (from <status><ntwkdevcnt>)
 
-- id: sendchild_response
-  label: Send Child Response
-  type: object
-  description: Identifies individual device in SmartLink chain
-  fields:
-    - class: Device type/model class
-    - id: Device ID (serial number)
-    - sladdr: SmartLink address
+- id: ntwkinvhash
+  type: string
+  description: Hash code of connected devices; changes if device chain changes (from <status><ntwkinvhash>)
 
-- id: sendfamily_response
-  label: Send Family Response
-  type: object
-  description: Complete list of all connected devices grouped by type
-  fields:
-    - kids: Array of device IDs per class type
+- id: ntwkpollstate
+  type: integer
+  description: Polling state of device chain; for Furman Sound use only (from <status><ntwkpollstate>)
 
-- id: ack
-  label: Acknowledgement
+- id: hdlcstate
+  type: string
+  description: HDLC state with optional errs attribute indicating communication errors (from <status><hdlcstate>)
+
+- id: hdlclink
+  type: integer
+  description: HDLC link state; 1 = link up, 0 = link down (from <status><hdlclink>)
+
+- id: voltage
+  type: number
+  description: Measured RMS line voltage in 0.1Vac resolution (from <status><voltage>)
+
+- id: amperage
+  type: number
+  description: Measured total load current in 0.01A resolution (from <status><amperage>)
+
+- id: wattage
+  type: number
+  description: Measured total load power in 1W resolution (from <status><wattage>)
+
+- id: pwrva
+  type: number
+  description: Measured volt-amperes in 1VA resolution (from <status><pwrva>)
+
+- id: pwrfact
+  type: number
+  description: Measured power factor in 0.01 resolution (from <status><pwrfact>)
+
+- id: per_primary
+  type: number
+  description: Packet error rate for primary link, 0.00 to 1.00 (from <per id="1">)
+
+- id: per_secondary
+  type: number
+  description: Packet error rate for secondary link, 0.00 to 1.00 (from <per id="2">)
+
+- id: remote_input
+  type: integer
+  description: Logic level of remote sensing input (from <status><remote>)
+
+- id: surge_protection
+  type: integer
+  description: Surge protection circuit status; 1 = OK, 0 = no protection (from <status><protok>)
+
+- id: smp_relay
+  type: integer
+  description: Series Mode Protection power relay state; 1 = on, 0 = off (from <status><smp>)
+
+- id: secok
+  type: integer
+  description: Secondary SmartLink status; 1 = communicating, 0 = no response (from <status><secok>)
+
+- id: overvolt
+  type: integer
+  description: Overvoltage status; 1 = overvoltage detected, 0 = normal (from <status><overvolt>)
+
+- id: undervolt
+  type: integer
+  description: Undervoltage status; 1 = undervoltage detected, 0 = normal (from <status><undervolt>)
+
+- id: pwrok
+  type: integer
+  description: Normal power condition; 1 = power OK, 0 = power fault (from <status><pwrok>)
+
+- id: seqprog
+  type: integer
+  description: Power sequence status; 1 = sequence in progress, 0 = idle (from <status><seqprog>)
+
+- id: outlet_state
   type: object
-  description: Ack response when xid attribute included in command
-  fields:
-    - xid: Transaction ID matching the command
+  description: Per-outlet bank state; key is outlet id (n), value 0 = OFF, 1 = ON (from <outlet id="n">)
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: M4320-PRO specific settable parameters not detailed in BB-RS232 protocol spec.
-# Device settings (delay, mode, alarm, etc.) retrieved via sendsettings query but
-# no explicit set commands documented in source for these parameters.
+# Settings retrieved via <sendsettings/> query on SmartSequencer devices.
+# UNRESOLVED: these settings apply to the CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP
+# family documented in the source. Whether the M4320-PRO exposes the same <settings>
+# element is not stated in the source.
+
+- id: adj
+  type: number
+  description: Delay time adjustment percentage of time set by DIP switch (from <settings><adj>)
+
+- id: delay
+  type: integer
+  description: Time delay in seconds set by the DIP switches (from <settings><delay>)
+
+- id: totdelay
+  type: number
+  description: Total delay time = delay * adj (from <settings><totdelay>)
+
+- id: remote_input_mode
+  type: integer
+  description: Remote input operating mode: 0 = 12V off, 1 = 12V on, 2 = Ground on, 3 = MOM momentary (from <settings><mode>)
+
+- id: sequence_mode
+  type: integer
+  description: Sequence mode; 1 = Primary, 0 = Secondary (from <settings><seq>)
+
+- id: alarm_mode
+  type: integer
+  description: Alarm input mode; 1 = Normally Open, 0 = Normally Closed (from <settings><alarm>)
+
+- id: evs_mode
+  type: integer
+  description: Extreme Voltage Shutdown mode; CN-xxxx: 1 = automatic, 0 = manual; MP-xxxx: 1 = on, 0 = off (from <settings><evs>)
+
+- id: override
+  type: integer
+  description: Switch position for overriding remote commands; cnmp15/20: bypass 0=OFF, 1=ON; cn1800/2400/3600: Key 0=OFF, 1=ON, 2=REMOTE (from <settings><override>)
+
+- id: events_enabled
+  type: integer
+  description: Events enabled; 1 = enabled, 0 = disabled (from <settings><evtsena>)
 ```
 
 ## Events
 ```yaml
-# Autonomous notifications sent by device (requires subscription via eventmgr subscribe command)
+# All events share a common <event time="..." evtid="..." subsid="..."> envelope.
+# Events are repeated until acknowledged via the <eventmgr><ack> command or until
+# a ~20 minute timeout elapses.
 
-- id: seqdone
-  label: Sequence Done
-  description: Posted when power on/off sequence is initiated or completed
-  fields:
-    - seqdone: 1 = done; 0 = in process
-
-- id: outlet_state_change
-  label: Outlet State Change
-  description: Posted when any outlet bank turns ON or OFF
-  fields:
-    - outlet id: Bank number
-    - state: 0 = OFF, 1 = ON
-
-- id: undervolt_event
-  label: Under Voltage Event
-  description: Posted when device enters or exits undervoltage shutoff
-  fields:
-    - undervolt: 0 = normal, 1 = undervoltage condition
-
-- id: overvolt_event
-  label: Over Voltage Event
-  description: Posted when device enters or exits overvoltage shutoff
-  fields:
-    - overvolt: 0 = normal, 1 = overvoltage condition
-
-- id: powerok_event
-  label: Power OK Event
-  description: Posted when operating voltage enters or exits safe range
-  fields:
-    - powerok: 1 = normal, 0 = abnormal
-
-- id: alarm_event
-  label: Alarm Event
-  description: Posted when alarm input changes state
-  fields:
-    - alarm: 1 = active, 0 = no alarm
-
-- id: protectok_event
-  label: Protection OK Event
-  description: Indicates surge protection circuit status
-  fields:
-    - protectok: 1 = OK, 0 = failed
-
-- id: reset_event
-  label: Reset Event
-  description: Posted when device is in reset state
-  fields:
-    - reset: 1 = reset in progress, 0 = normal
+# --- BB-RS232 events (Section 6) ---
 
 - id: enum_event
-  label: Enumerate Event
-  description: Posted when device enumeration starts or ends
-  fields:
-    - phase: "start" or "end"
-    - err: error code ("timeout", "blocked", "no n,m...")
+  type: object
+  description: Enumerate started/ended notification
+  payload:
+    element: <enum phase="..." err="..."/>
+    phase: start | end
+    err: "timeout" | "blocked" | "no n,m..." (n,m = missing SmartLink addresses)
 
-- id: enumreqd_event
-  label: Enumerate Required Event
-  description: Posted when non-legitimate SmartLink address detected
-  fields:
-    - sladdr: Non-legitimate SmartLink address
+- id: enum_required_event
+  type: object
+  description: Non-legitimate SmartLink address detected; issue <enumerate/> to re-discover
+  payload:
+    element: <enumreqd sladdr="n"/>
 
 - id: roll_event
-  label: Roll Call Event
-  description: Posted during roll call operation
-  fields:
-    - phase: "start" or "end"
-    - err: error code
+  type: object
+  description: Roll call started/ended notification
+  payload:
+    element: <roll phase="..." err="..."/>
+    err: "timeout" | "blocked" | "dup n,m..." (duplicate SmartLink addresses)
 
 - id: objdestroy_event
-  label: Object Destroy Event
-  description: Posted when SmartLink device removed from inventory
-  fields:
-    - class: Device type
-    - id: Device serial number
-    - sladdr: SmartLink address
+  type: object
+  description: SmartLink device removed from internal inventory
+  payload:
+    element: <objdestroy class="..." id="..." sladdr="..."/>
 
 - id: objcreate_event
-  label: Object Create Event
-  description: Posted when SmartLink device added to inventory
-  fields:
-    - class: Device type
-    - id: Device serial number
-    - sladdr: SmartLink address
+  type: object
+  description: SmartLink device added to internal inventory
+  payload:
+    element: <objcreate class="..." id="..." sladdr="..."/>
 
 - id: devcnt_event
-  label: SmartSequencer Count Event
-  description: Posted indicating number of devices in SmartLink chain
-  fields:
-    - devcnt: Number of devices found
+  type: object
+  description: Number of devices on the SmartLink chain
+  payload:
+    element: <devcnt>n</devcnt>
 
 - id: ready_event
-  label: SmartSequencer Ready Event
-  description: Posted when all required data recorded in inventory
-  fields:
-    - class: Device type
-    - id: Device serial number
-    - sladdr: SmartLink address
+  type: object
+  description: All required data recorded in inventory for a device
+  payload:
+    element: <ready class="..." id="..." sladdr="..."/>
 
 - id: fwupgdreqd_event
-  label: Firmware Upgrade Required Event
-  description: Posted when firmware update is necessary
-  fields:
-    - class: Device type
-    - sladdr: SmartLink address
+  type: object
+  description: Firmware upgrade required for a device
+  payload:
+    element: <fwupgdreqd class="..." sladdr="..."/>
 
 - id: hdlclink_event
-  label: HDLC Link Event
-  description: Indicates status of HDLC link-level communication
-  fields:
-    - hdlclink: 1 = up, 0 = down
+  type: object
+  description: HDLC link status; 1 = link up, 0 = link down
+  payload:
+    element: <hdlclink>1|0</hdlclink>
 
-- id: schedfired_event
-  label: Scheduled Action Fired Event
-  description: Posted when BB-RS232 performs a scheduled operation
-  fields:
-    - day: Days of week bitmap (decimal)
-    - min: Minute of day (0-1439)
-    - executed_cmd: The command that was executed
+- id: scheduled_action_fired_event
+  type: object
+  description: Scheduled operation executed
+  payload:
+    element: <schedmgr><fre><day>...</day><min>...</min><command>...</command></fre></schedmgr>
+    daysofweek: "7-bit binary bitmap in decimal; bit 0 = Thursday, bits 1-6 = Fri-Wed"
+
+# --- SmartSequencer device events (Section 7) ---
+
+- id: seqdone_event
+  type: object
+  description: Power on/off sequence initiated or completed
+  payload:
+    element: <seqdone>1|0</seqdone>
+    state: "1 = sequence done, 0 = sequence in process"
+
+- id: outlet_state_change_event
+  type: object
+  description: Outlet bank turned ON->OFF or OFF->ON
+  payload:
+    element: <outlet id="n">1|0</outlet>
+
+- id: undervolt_event
+  type: object
+  description: Device entered or exited undervoltage shutoff mode
+  payload:
+    element: <undervolt>0|1</undervolt>
+
+- id: overvolt_event
+  type: object
+  description: Device entered or exited overvoltage shutoff mode
+  payload:
+    element: <overvolt>0|1</overvolt>
+
+- id: powerok_event
+  type: object
+  description: Operating voltage entered or exited the safe normal range
+  payload:
+    element: <powerok>1|0</powerok>
+
+- id: alarm_event
+  type: object
+  description: Alarm input changed; latched, must be cleared with the key on the primary unit
+  payload:
+    element: <alarm>1|0</alarm>
+
+- id: protectok_event
+  type: object
+  description: Surge protection circuit status changed
+  payload:
+    element: <protectok>1|0</protectok>
+
+- id: reset_event
+  type: object
+  description: Device entered or exited reset state
+  payload:
+    element: <reset>1|0</reset>
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: No multi-step macro sequences described in source for M4320-PRO
+# UNRESOLVED: no multi-step macro sequences are described in the source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - description: After receiving enumreqd event, issue enumerate command to re-discover devices
-    reference: Section 6.2
-# UNRESOLVED: M4320-PRO-specific safety warnings, interlock procedures, or power-on sequencing
-# requirements not explicitly stated in BB-RS232 protocol spec.
+interlocks: []
+# UNRESOLVED: source does not contain explicit safety warnings, interlock procedures,
+# or power-on sequencing requirements for the M4320-PRO. The <sequence> command and
+# Extreme Voltage Shutdown (<evs>) settings imply surge-protection behavior, but
+# the source does not state safety procedures for integrators.
 ```
 
 ## Notes
+All messages are XML, UTF-8, and must include the `<?xml version="1.0" ?>` declaration. The root element must be `<device class="..." id="...">`. The `class` is the device type per Table 1; the `id` is the MAC address (BB-RS232) or 14-digit serial number (Furman Contractor Series). Messages without the XML declaration or with the wrong root element are ignored. The M4320-PRO is not in the device class table in the source — the class string and id format for the M4320-PRO on this XML protocol must be confirmed against M4320-PRO-specific documentation.
 
-The BB-RS232 protocol spec covers the BlueBOLT gateway device and SmartLink-connected Contractor Series devices (CN-xxxx). The M4320-PRO is an 8-outlet BlueBOLT-programmable device — its specific command set may be a subset of the SmartSequencer™ device commands documented here.
+To receive unsolicited event messages, the control system must first send a `<eventmgr><subscribe uri="ctrlsys://IP:PORT"/></eventmgr>` command. Events are repeated every retransmission interval until acknowledged via `<eventmgr><ack evtid="..." subsid="..."/>` or until a ~20 minute timeout. Only one subscription per device is allowed.
 
-Key transport details from source:
-- HTTP web interface on port 80 (for network configuration)
-- UDP port 57010 for XML command/event messaging
-- TCP/Telnet for direct IP control (port not specified in source)
-- No authentication/login procedure described
+The optional `xid` attribute on `<command>` causes the device to return an `<ack xid="..."/>` element in its response, useful for matching replies to outstanding requests.
 
-Message format: All messages encapsulated in XML with `<device class="..." id="...">` envelope. Device class for BB-RS232 is `bb232`; identifier is MAC address. Three message types: command, info (query response), event (autonomous notification).
+The M4320-PRO is a Panamax (Nice North America) BlueBOLT-enabled product. The BB-RS232 protocol documented here is the local-network control protocol used by BlueBOLT gateway devices. The M4320-PRO may use a parallel XML-over-UDP protocol on UDP port 57010, or it may rely entirely on the BlueBOLT cloud REST API — the source does not state which transport the M4320-PRO exposes for direct local control. A separate, M4320-PRO-specific protocol document is required to confirm device class, identifier format, and the set of supported commands and status fields.
 
-The `<sendstatus/>` query on SmartSequencer devices returns real-time electrical measurements including voltage, amperage, wattage, power factor — confirming the M4320-PRO has power monitoring capabilities.
-
-<!-- UNRESOLVED: M4320-PRO specific outlet count (8 per spec) not reflected in BB-RS232 protocol — outlet id ranges are not bounded in command definitions. -->
-<!-- UNRESOLVED: Direct Telnet port number not stated in source — only HTTP port 80 stated for web config. -->
-<!-- UNRESOLVED: RS-232 serial configuration (baud rate, data bits, parity, stop bits) not stated in source for M4320-PRO. -->
-<!-- UNRESOLVED: BlueBOLT cloud authentication/credentials not applicable to local control. -->
+<!-- UNRESOLVED: device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source. -->
+<!-- UNRESOLVED: which subset of the BB-RS232 / SmartSequencer commands the M4320-PRO implements is not stated in the source. -->
+<!-- UNRESOLVED: voltage, current, and power measurement fields (<voltage>, <amperage>, <wattage>) are documented for SmartSequencer devices but their applicability to the M4320-PRO is not stated. -->
+<!-- UNRESOLVED: firmware version compatibility range not stated in source. -->
+<!-- UNRESOLVED: HDLC link and SmartLink-chain concepts (ntwkdevcnt, hdlcstate, ntwkpollstate, tfilestate) are specific to BB-RS232 gateway operation and may not be exposed by the M4320-PRO. -->
 
 ## Provenance
 
@@ -482,8 +610,8 @@ verdict: verified
 checked_at: 2026-04-27T09:45:14.928Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim."
+confidence: medium
+summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -494,6 +622,16 @@ summary: "All 13 spec actions matched literally to source commands; transport (p
 - sendchild
 - sendfamily
 - sendsettings
+- "M4320-PRO is not explicitly listed in the source device class table (Table 1 covers BB-RS232 and CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP). The device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
+- "Source describes the BB-RS232 gateway protocol; the M4320-PRO is a newer Panamax BlueBOLT-enabled device and may share the same UDP port 57010 transport but this is not explicitly confirmed in the source for the M4320-PRO specifically."
+- "these settings apply to the CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP"
+- "no multi-step macro sequences are described in the source."
+- "source does not contain explicit safety warnings, interlock procedures,"
+- "device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
+- "which subset of the BB-RS232 / SmartSequencer commands the M4320-PRO implements is not stated in the source."
+- "voltage, current, and power measurement fields (<voltage>, <amperage>, <wattage>) are documented for SmartSequencer devices but their applicability to the M4320-PRO is not stated."
+- "firmware version compatibility range not stated in source."
+- "HDLC link and SmartLink-chain concepts (ntwkdevcnt, hdlcstate, ntwkpollstate, tfilestate) are specific to BB-RS232 gateway operation and may not be exposed by the M4320-PRO."
 ```
 
 ---

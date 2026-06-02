@@ -18,21 +18,27 @@ compatible_with:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:26.315Z
 last_checked_at: 2026-04-23T06:39:48.080Z
 generated_at: 2026-04-23T06:39:48.080Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical serial/RS-232 not mentioned in source"
+  - "port number not stated for SIP (5060 inferred from typical SIP, not from source)"
+  - "no explicit multi-step macros described in source"
+  - "power sequencing, fault recovery - not stated in source"
+  - "physical RS-232 serial configuration not present in source"
+  - "firmware version compatibility ranges not stated"
+  - "voltage/power specifications not in source"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:39:48.080Z
   matched_actions: 23
   action_count: 24
-  confidence: high
-  summary: "All 23 distinct action paths match verbatim in source; transport (http/https/udp, base_url, basic_digest auth) confirmed; spec comprehensively represents documented API."
+  confidence: medium
+  summary: "All 23 distinct action paths match verbatim in source; transport (http/https/udp, base_url, basic_digest auth) confirmed; spec comprehensively represents documented API. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -471,9 +477,8 @@ interlocks:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:26.315Z
 last_checked_at: 2026-04-23T06:39:48.080Z
 ```
 
@@ -484,14 +489,20 @@ verdict: verified
 checked_at: 2026-04-23T06:39:48.080Z
 matched_actions: 23
 action_count: 24
-confidence: high
-summary: "All 23 distinct action paths match verbatim in source; transport (http/https/udp, base_url, basic_digest auth) confirmed; spec comprehensively represents documented API."
+confidence: medium
+summary: "All 23 distinct action paths match verbatim in source; transport (http/https/udp, base_url, basic_digest auth) confirmed; spec comprehensively represents documented API. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical serial/RS-232 not mentioned in source"
+- "port number not stated for SIP (5060 inferred from typical SIP, not from source)"
+- "no explicit multi-step macros described in source"
+- "power sequencing, fault recovery - not stated in source"
+- "physical RS-232 serial configuration not present in source"
+- "firmware version compatibility ranges not stated"
+- "voltage/power specifications not in source"
 ```
 
 ---

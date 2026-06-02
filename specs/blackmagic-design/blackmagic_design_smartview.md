@@ -33,14 +33,22 @@ last_checked_at: 2026-05-05T06:10:41.042Z
 generated_at: 2026-05-05T06:10:41.042Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "scope visualization features not fully documented in source excerpt"
+  - "input routing not present in excerpt"
+  - "network configuration variables stated but block structure implies"
+  - "source describes asynchronous state changes but does not enumerate"
+  - "no safety warnings or interlock procedures for power-on sequencing"
+  - "SmartScope-specific scope selection commands not fully documented"
+  - "audio channel selection parameters not documented"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-05T06:10:41.042Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented."
+  confidence: medium
+  summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -268,14 +276,21 @@ verdict: verified
 checked_at: 2026-05-05T06:10:41.042Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented."
+confidence: medium
+summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "scope visualization features not fully documented in source excerpt"
+- "input routing not present in excerpt"
+- "network configuration variables stated but block structure implies"
+- "source describes asynchronous state changes but does not enumerate"
+- "no safety warnings or interlock procedures for power-on sequencing"
+- "SmartScope-specific scope selection commands not fully documented"
+- "audio channel selection parameters not documented"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

@@ -37,19 +37,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:14.607Z
 last_checked_at: 2026-05-14T18:17:18.521Z
 generated_at: 2026-05-14T18:17:18.521Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variants within the NP-ME3 \"Series\" boundary are inferred from appendix tables; the source document covers many ME/MC series models beyond the ME3 group"
+  - "no firmware version compatibility ranges stated"
+  - "appendix \"Supplementary Information by Command\" references input terminal and eco mode values that vary by sub-model; full mapping is in source but partially captured here"
+  - "flow control not explicitly stated; RTS/CTS pins wired"
+  - "no unsolicited notification/event mechanism described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock procedures or power-on sequencing requirements stated"
+  - "exact NP-ME3 Series model boundary not clearly defined in source; models listed are inferred from appendix tables"
+  - "wireless LAN communication conditions not documented (refers to wireless LAN unit manual)"
+  - "full sub-input setting values for PIP/PBP not included (references appendix)"
+  - "display signal type mapping details not fully captured"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.521Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage."
+  confidence: medium
+  summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -756,7 +767,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:14.607Z
 last_checked_at: 2026-05-14T18:17:18.521Z
 ```
 
@@ -767,14 +778,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.521Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage."
+confidence: medium
+summary: "All 53 spec actions matched exactly with NEC ME3 IP source hex sequences; transport parameters verified; comprehensive protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variants within the NP-ME3 \"Series\" boundary are inferred from appendix tables; the source document covers many ME/MC series models beyond the ME3 group"
+- "no firmware version compatibility ranges stated"
+- "appendix \"Supplementary Information by Command\" references input terminal and eco mode values that vary by sub-model; full mapping is in source but partially captured here"
+- "flow control not explicitly stated; RTS/CTS pins wired"
+- "no unsolicited notification/event mechanism described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock procedures or power-on sequencing requirements stated"
+- "exact NP-ME3 Series model boundary not clearly defined in source; models listed are inferred from appendix tables"
+- "wireless LAN communication conditions not documented (refers to wireless LAN unit manual)"
+- "full sub-input setting values for PIP/PBP not included (references appendix)"
+- "display signal type mapping details not fully captured"
 ```
 
 ---

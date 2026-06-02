@@ -18,24 +18,33 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/AT-HD-SC-500_API.pdf
+retrieved_at: 2026-05-14T11:07:09.275Z
 last_checked_at: 2026-05-14T21:31:26.673Z
 generated_at: 2026-05-14T21:31:26.673Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "default serial baud rate not stated in source — only supported values listed"
+  - "firmware version compatibility range not stated"
+  - "default not stated; supported: 2400, 4800, 9600, 19200, 38400, 57600, 115200"
+  - "default not stated; supported: 7, 8"
+  - "default not stated; supported: None, Odd, Even"
+  - "default not stated; supported: 1, 2"
+  - "not stated in source"
+  - "no continuously-settable analog parameters beyond those covered by actions"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "default serial baud/data/parity/stop not stated"
+  - "no warm-up/power-on delay documented for the unit itself (LampCool refers to a connected projector)"
+  - "CEC command details beyond TrigCEC trigger not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:31:26.673Z
   matched_actions: 82
   action_count: 82
-  confidence: high
-  summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved."
+  confidence: medium
+  summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -899,12 +908,8 @@ interlocks: []
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/AT-HD-SC-500_API.pdf
+retrieved_at: 2026-05-14T11:07:09.275Z
 last_checked_at: 2026-05-14T21:31:26.673Z
 ```
 
@@ -915,14 +920,26 @@ verdict: verified
 checked_at: 2026-05-14T21:31:26.673Z
 matched_actions: 82
 action_count: 82
-confidence: high
-summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved."
+confidence: medium
+summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "default serial baud rate not stated in source — only supported values listed"
+- "firmware version compatibility range not stated"
+- "default not stated; supported: 2400, 4800, 9600, 19200, 38400, 57600, 115200"
+- "default not stated; supported: 7, 8"
+- "default not stated; supported: None, Odd, Even"
+- "default not stated; supported: 1, 2"
+- "not stated in source"
+- "no continuously-settable analog parameters beyond those covered by actions"
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences documented in source"
+- "default serial baud/data/parity/stop not stated"
+- "no warm-up/power-on delay documented for the unit itself (LampCool refers to a connected projector)"
+- "CEC command details beyond TrigCEC trigger not documented"
 ```
 
 ---

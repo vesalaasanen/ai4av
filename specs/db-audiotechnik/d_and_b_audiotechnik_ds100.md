@@ -19,19 +19,26 @@ source_domains:
   - dbaudio.com
 source_urls:
   - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
-retrieved_at: 2026-05-04T18:05:42.070Z
+retrieved_at: 2026-04-30T04:41:05.451Z
 last_checked_at: 2026-05-14T18:17:15.116Z
 generated_at: 2026-05-14T18:17:15.116Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 / serial control not mentioned in source"
+  - "TCP/IP control not mentioned in source"
+  - "populate from source, or remove section if not applicable"
+  - "DS100 does not send unsolicited OSC messages in this document"
+  - "no safety warnings or interlock procedures found in source"
+  - "specific firmware version compatibility not stated in source"
+  - "AES70/OCA protocol details not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.116Z
   matched_actions: 55
   action_count: 55
-  confidence: high
-  summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage."
+  confidence: medium
+  summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -755,7 +762,7 @@ source_domains:
   - dbaudio.com
 source_urls:
   - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
-retrieved_at: 2026-05-04T18:05:42.070Z
+retrieved_at: 2026-04-30T04:41:05.451Z
 last_checked_at: 2026-05-14T18:17:15.116Z
 ```
 
@@ -766,14 +773,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.116Z
 matched_actions: 55
 action_count: 55
-confidence: high
-summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage."
+confidence: medium
+summary: "All 68 spec actions match literal OSC paths in source with correct parameter ranges and types; transport parameters verified; full command catalogue coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 / serial control not mentioned in source"
+- "TCP/IP control not mentioned in source"
+- "populate from source, or remove section if not applicable"
+- "DS100 does not send unsolicited OSC messages in this document"
+- "no safety warnings or interlock procedures found in source"
+- "specific firmware version compatibility not stated in source"
+- "AES70/OCA protocol details not documented in source"
 ```
 
 ---

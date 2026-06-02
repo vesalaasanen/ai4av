@@ -36,19 +36,23 @@ source_domains:
   - docs.google.com
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
-retrieved_at: 2026-05-04T15:16:46.093Z
+retrieved_at: 2026-04-30T04:31:13.439Z
 last_checked_at: 2026-05-14T18:17:15.933Z
 generated_at: 2026-05-14T18:17:15.933Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS232 and IP control mentioned are for pass-through to attached devices, not MHUB matrix control. MHUB itself is controlled exclusively via HTTP REST API."
+  - "The document mentions UDP State broadcast on port 3000 but does not"
+  - "Macros (called \"Sequences\" in MHUB docs) are user-defined and stored"
+  - "No safety warnings or interlock procedures found in source."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.933Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented."
+  confidence: medium
+  summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -652,7 +656,7 @@ source_domains:
   - docs.google.com
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
-retrieved_at: 2026-05-04T15:16:46.093Z
+retrieved_at: 2026-04-30T04:31:13.439Z
 last_checked_at: 2026-05-14T18:17:15.933Z
 ```
 
@@ -663,14 +667,17 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.933Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented."
+confidence: medium
+summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS232 and IP control mentioned are for pass-through to attached devices, not MHUB matrix control. MHUB itself is controlled exclusively via HTTP REST API."
+- "The document mentions UDP State broadcast on port 3000 but does not"
+- "Macros (called \"Sequences\" in MHUB docs) are user-defined and stored"
+- "No safety warnings or interlock procedures found in source."
 ```
 
 ---

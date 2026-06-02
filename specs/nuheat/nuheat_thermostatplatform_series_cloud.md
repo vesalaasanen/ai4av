@@ -19,19 +19,25 @@ source_domains:
   - nuheat.com
 source_urls:
   - https://www.nuheat.com/products/thermostats/developer-api
-retrieved_at: 2026-05-04T18:03:56.871Z
+retrieved_at: 2026-04-30T04:32:49.752Z
 last_checked_at: 2026-04-23T08:17:55.062Z
 generated_at: 2026-04-23T08:17:55.062Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "local/RS-232 control not documented; cloud API only"
+  - "no discrete settable parameters other than thermostat state fields"
+  - "no multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "physical serial/RS-232 control not documented"
+  - "voltage/power specifications not in source"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:17:55.062Z
   matched_actions: 11
   action_count: 11
   confidence: low
-  summary: "All 11 actions matched; transport verified with base_url, OAuth2, 1-hour access token"
+  summary: "All 11 actions matched; transport verified with base_url, OAuth2, 1-hour access token (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -225,7 +231,7 @@ source_domains:
   - nuheat.com
 source_urls:
   - https://www.nuheat.com/products/thermostats/developer-api
-retrieved_at: 2026-05-04T18:03:56.871Z
+retrieved_at: 2026-04-30T04:32:49.752Z
 last_checked_at: 2026-04-23T08:17:55.062Z
 ```
 
@@ -237,13 +243,18 @@ checked_at: 2026-04-23T08:17:55.062Z
 matched_actions: 11
 action_count: 11
 confidence: low
-summary: "All 11 actions matched; transport verified with base_url, OAuth2, 1-hour access token"
+summary: "All 11 actions matched; transport verified with base_url, OAuth2, 1-hour access token (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "local/RS-232 control not documented; cloud API only"
+- "no discrete settable parameters other than thermostat state fields"
+- "no multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "physical serial/RS-232 control not documented"
+- "voltage/power specifications not in source"
 ```
 
 ---

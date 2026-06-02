@@ -19,19 +19,34 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:44.515Z
 last_checked_at: 2026-04-25T21:24:00.363Z
 generated_at: 2026-04-25T21:24:00.363Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific NP-V3 input terminal codes not listed in the supplementary tables; the manual covers many NEC models but NP-V3 is not explicitly enumerated in the appendix tables"
+  - "no authentication or password procedure documented"
+  - "protocol version not stated"
+  - "RTS/CTS pins wired but no flow control setting stated"
+  - "no unsolicited notification/event mechanism described in source."
+  - "no multi-step macro sequences described in source"
+  - "power-on sequencing requirements not fully documented"
+  - "interlock behavior details not fully documented"
+  - "NP-V3 Series not explicitly listed in the supplementary input terminal, aspect, or eco mode tables"
+  - "specific input terminal hex codes for NP-V3 models not confirmed"
+  - "specific eco mode values for NP-V3 models not confirmed"
+  - "specific aspect ratio values for NP-V3 models not confirmed"
+  - "standby mode requirements for NP-V3 to receive LAN commands not confirmed"
+  - "maximum concurrent connection count for TCP port 7142 not stated"
+  - "command response timeout not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:24:00.363Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched exact hex commands in NEC V3 IP source; transport params verified; no fabricated or drifted commands."
+  confidence: medium
+  summary: "All 50 spec actions matched exact hex commands in NEC V3 IP source; transport params verified; no fabricated or drifted commands. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -676,7 +691,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:44.515Z
 last_checked_at: 2026-04-25T21:24:00.363Z
 ```
 
@@ -687,14 +702,28 @@ verdict: verified
 checked_at: 2026-04-25T21:24:00.363Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched exact hex commands in NEC V3 IP source; transport params verified; no fabricated or drifted commands."
+confidence: medium
+summary: "All 50 spec actions matched exact hex commands in NEC V3 IP source; transport params verified; no fabricated or drifted commands. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific NP-V3 input terminal codes not listed in the supplementary tables; the manual covers many NEC models but NP-V3 is not explicitly enumerated in the appendix tables"
+- "no authentication or password procedure documented"
+- "protocol version not stated"
+- "RTS/CTS pins wired but no flow control setting stated"
+- "no unsolicited notification/event mechanism described in source."
+- "no multi-step macro sequences described in source"
+- "power-on sequencing requirements not fully documented"
+- "interlock behavior details not fully documented"
+- "NP-V3 Series not explicitly listed in the supplementary input terminal, aspect, or eco mode tables"
+- "specific input terminal hex codes for NP-V3 models not confirmed"
+- "specific eco mode values for NP-V3 models not confirmed"
+- "specific aspect ratio values for NP-V3 models not confirmed"
+- "standby mode requirements for NP-V3 to receive LAN commands not confirmed"
+- "maximum concurrent connection count for TCP port 7142 not stated"
+- "command response timeout not stated"
 ```
 
 ---

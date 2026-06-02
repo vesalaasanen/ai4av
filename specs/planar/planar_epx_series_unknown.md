@@ -17,23 +17,38 @@ compatible_with:
   required_options: []
 source_domains:
   - planar.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
-  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
-  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
-retrieved_at: 2026-04-30T04:27:27.764Z
+  - https://www.planar.com/media/437894/planar-ep-series-epx-series-rs232-user-guide_020-1347-01a.pdf
+  - https://www.planar.com/media/439776/ep-series-ultra-hd-lcd-displays-rs232-user-guide.pdf
+  - https://www.planar.com/media/437361/020-1347-00a-ep-series-ultra-hd-lcd-displays-rs232-user-manual_1-2018.pdf
+  - https://www.planar.com/support/discontinued-products/large-format-lcd-displays/
+  - https://applicationmarket.crestron.com/planar-ep-series-epxx14k/
+retrieved_at: 2026-05-28T08:59:34.234Z
 last_checked_at: 2026-05-31T07:03:05.848Z
 generated_at: 2026-05-31T07:03:05.848Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific EPX model numbers (e.g. EP5524K, EP6524K, EP7524K, EP8624K) not confirmed from this document alone"
+  - "no TCP/IP control protocol documented; only RS-232 serial"
+  - "flow control not stated in source"
+  - "no additional variables beyond those enumerated in Actions"
+  - "source does not document unsolicited notifications from the display"
+  - "source does not document multi-step macro sequences"
+  - "no explicit safety interlock procedures documented in source"
+  - "specific EPX model numbers covered by this RS-232 table not confirmed"
+  - "flow control setting not stated"
+  - "no TCP/IP control documented — serial only"
+  - "firmware version compatibility not stated"
+  - "no unsolicited event/notification protocol documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:03:05.848Z
   matched_actions: 136
   action_count: 136
-  confidence: high
-  summary: "All 136 spec actions matched wire-token opcodes found in source command tables; all transport parameters verified."
+  confidence: medium
+  summary: "All 136 spec actions matched wire-token opcodes found in source command tables; all transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1692,11 +1707,14 @@ interlocks: []
 ```yaml
 source_domains:
   - planar.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://www.planar.com/media/m1kna23m/020-1381-00b_lo-series-rs232-user-manual.pdf
-  - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
-  - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
-retrieved_at: 2026-04-30T04:27:27.764Z
+  - https://www.planar.com/media/437894/planar-ep-series-epx-series-rs232-user-guide_020-1347-01a.pdf
+  - https://www.planar.com/media/439776/ep-series-ultra-hd-lcd-displays-rs232-user-guide.pdf
+  - https://www.planar.com/media/437361/020-1347-00a-ep-series-ultra-hd-lcd-displays-rs232-user-manual_1-2018.pdf
+  - https://www.planar.com/support/discontinued-products/large-format-lcd-displays/
+  - https://applicationmarket.crestron.com/planar-ep-series-epxx14k/
+retrieved_at: 2026-05-28T08:59:34.234Z
 last_checked_at: 2026-05-31T07:03:05.848Z
 ```
 
@@ -1707,14 +1725,25 @@ verdict: verified
 checked_at: 2026-05-31T07:03:05.848Z
 matched_actions: 136
 action_count: 136
-confidence: high
-summary: "All 136 spec actions matched wire-token opcodes found in source command tables; all transport parameters verified."
+confidence: medium
+summary: "All 136 spec actions matched wire-token opcodes found in source command tables; all transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific EPX model numbers (e.g. EP5524K, EP6524K, EP7524K, EP8624K) not confirmed from this document alone"
+- "no TCP/IP control protocol documented; only RS-232 serial"
+- "flow control not stated in source"
+- "no additional variables beyond those enumerated in Actions"
+- "source does not document unsolicited notifications from the display"
+- "source does not document multi-step macro sequences"
+- "no explicit safety interlock procedures documented in source"
+- "specific EPX model numbers covered by this RS-232 table not confirmed"
+- "flow control setting not stated"
+- "no TCP/IP control documented — serial only"
+- "firmware version compatibility not stated"
+- "no unsolicited event/notification protocol documented"
 ```
 
 ---

@@ -16,23 +16,38 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - ptzprotocols.com
+  - community.xibo.org.uk
+  - images.philips.com
+  - usa.philips.com
+  - philips.com.my
+  - philips.ca
 source_urls:
-  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
-retrieved_at: 2026-05-04T18:06:29.645Z
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
+  - "https://images.philips.com/is/content/PhilipsConsumer/PDFDownloads/Central%20America/techincal-sheets/ODLI20180125_001-UPD-es_CE-EnvisionGateway_Data_Sheet_Sep_2014.pdf"
+  - https://www.usa.philips.com/c-w/support-home/support-software-and-drivers.html
+  - https://www.philips.com.my/c-w/support-home/support-software-and-drivers.html
+  - https://www.philips.ca/c-w/support-home/support-software-and-drivers.html
+retrieved_at: 2026-05-13T15:46:52.453Z
 last_checked_at: 2026-05-18T16:46:51.128Z
 generated_at: 2026-05-18T16:46:51.128Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "0xFE (MIC color calibration, Reserved for Future Use)"
+  - "specific firmware version compatibility not stated; applies to multiple platforms (Eagle, Himalaya, Dragon, Phoenix, QL, Challenger)"
+  - "variables that are persisted settings but not discrete actions."
+  - "no unsolicited event descriptions found in source."
+  - "no explicit multi-step macro sequences described in source."
+  - "no safety warnings or interlock procedures in source."
+  - "specific firmware versions where commands are available are marked TBC in source."
+  - "portrait orientation support varies by platform."
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:46:51.128Z
   matched_actions: 117
   action_count: 117
-  confidence: high
-  summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec."
+  confidence: medium
+  summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1317,10 +1332,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - ptzprotocols.com
+  - community.xibo.org.uk
+  - images.philips.com
+  - usa.philips.com
+  - philips.com.my
+  - philips.ca
 source_urls:
-  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
-retrieved_at: 2026-05-04T18:06:29.645Z
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
+  - "https://images.philips.com/is/content/PhilipsConsumer/PDFDownloads/Central%20America/techincal-sheets/ODLI20180125_001-UPD-es_CE-EnvisionGateway_Data_Sheet_Sep_2014.pdf"
+  - https://www.usa.philips.com/c-w/support-home/support-software-and-drivers.html
+  - https://www.philips.com.my/c-w/support-home/support-software-and-drivers.html
+  - https://www.philips.ca/c-w/support-home/support-software-and-drivers.html
+retrieved_at: 2026-05-13T15:46:52.453Z
 last_checked_at: 2026-05-18T16:46:51.128Z
 ```
 
@@ -1331,14 +1354,21 @@ verdict: verified
 checked_at: 2026-05-18T16:46:51.128Z
 matched_actions: 117
 action_count: 117
-confidence: high
-summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec."
+confidence: medium
+summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "0xFE (MIC color calibration, Reserved for Future Use)"
+- "specific firmware version compatibility not stated; applies to multiple platforms (Eagle, Himalaya, Dragon, Phoenix, QL, Challenger)"
+- "variables that are persisted settings but not discrete actions."
+- "no unsolicited event descriptions found in source."
+- "no explicit multi-step macro sequences described in source."
+- "no safety warnings or interlock procedures in source."
+- "specific firmware versions where commands are available are marked TBC in source."
+- "portrait orientation support varies by platform."
 ```
 
 ---

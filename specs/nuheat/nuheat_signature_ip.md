@@ -16,22 +16,42 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - nuheat.com
+  - api.mynuheat.com
 source_urls:
-  - https://www.nuheat.com/products/thermostats/developer-api
-retrieved_at: 2026-05-04T18:03:56.871Z
+  - https://api.mynuheat.com/swagger
+retrieved_at: 2026-05-28T08:59:20.919Z
 last_checked_at: 2026-05-31T06:54:51.127Z
 generated_at: 2026-05-31T06:54:51.127Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no schema details (field names, types, enums) provided in source — only endpoint paths and brief descriptions"
+  - "thermostat model fields (current temp, min/max setpoint range, operating modes) not documented"
+  - "error codes / HTTP status codes not documented"
+  - "rate limits not documented"
+  - "cannot confirm traits without schema/enum details"
+  - "date format not specified"
+  - "year format not specified"
+  - "request body schema (GroupUpdateModel) not documented"
+  - "request body schema (ScheduleModel) not documented"
+  - "request body schema (ThermostatUpdateModel) fields not documented"
+  - "eOperatingMode and eScheduleMode enum values not fully documented (Auto=1 noted)"
+  - "response schemas (ThermostatModel, GroupModel, ScheduleModel, etc.)"
+  - "settable parameters (SetPointTemp, Name, ScheduleMode, awayMode)"
+  - "no webhook or push notification system described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Authorize endpoint referenced (\"see Authorize endpoint\") but not documented"
+  - "no schema field definitions — spec cannot detail request/response bodies"
+  - "date/year parameter formats unknown"
+  - "eOperatingMode enum values (only Auto=1 known)"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:54:51.127Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 spec actions matched literally to source endpoints; transport verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 13 spec actions matched literally to source endpoints; transport verified; complete bidirectional coverage. (20 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -254,10 +274,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - nuheat.com
+  - api.mynuheat.com
 source_urls:
-  - https://www.nuheat.com/products/thermostats/developer-api
-retrieved_at: 2026-05-04T18:03:56.871Z
+  - https://api.mynuheat.com/swagger
+retrieved_at: 2026-05-28T08:59:20.919Z
 last_checked_at: 2026-05-31T06:54:51.127Z
 ```
 
@@ -268,14 +288,33 @@ verdict: verified
 checked_at: 2026-05-31T06:54:51.127Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 spec actions matched literally to source endpoints; transport verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 13 spec actions matched literally to source endpoints; transport verified; complete bidirectional coverage. (20 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no schema details (field names, types, enums) provided in source — only endpoint paths and brief descriptions"
+- "thermostat model fields (current temp, min/max setpoint range, operating modes) not documented"
+- "error codes / HTTP status codes not documented"
+- "rate limits not documented"
+- "cannot confirm traits without schema/enum details"
+- "date format not specified"
+- "year format not specified"
+- "request body schema (GroupUpdateModel) not documented"
+- "request body schema (ScheduleModel) not documented"
+- "request body schema (ThermostatUpdateModel) fields not documented"
+- "eOperatingMode and eScheduleMode enum values not fully documented (Auto=1 noted)"
+- "response schemas (ThermostatModel, GroupModel, ScheduleModel, etc.)"
+- "settable parameters (SetPointTemp, Name, ScheduleMode, awayMode)"
+- "no webhook or push notification system described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "Authorize endpoint referenced (\"see Authorize endpoint\") but not documented"
+- "no schema field definitions — spec cannot detail request/response bodies"
+- "date/year parameter formats unknown"
+- "eOperatingMode enum values (only Auto=1 known)"
 ```
 
 ---

@@ -27,14 +27,22 @@ last_checked_at: 2026-05-14T18:17:21.602Z
 generated_at: 2026-05-14T18:17:21.602Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility ranges not fully stated in source"
+  - "remove section if not applicable"
+  - "no unsolicited event notifications described in source"
+  - "populate if source describes multi-step sequences"
+  - "no safety warnings or interlock procedures stated in source"
+  - "firmware version compatibility ranges not fully enumerated for all commands"
+  - "authentication credentials for web UI not documented"
+  - "default username/password for IP interface not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.602Z
   matched_actions: 42
   action_count: 60
-  confidence: high
-  summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation."
+  confidence: medium
+  summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -801,14 +809,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.602Z
 matched_actions: 42
 action_count: 60
-confidence: high
-summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation."
+confidence: medium
+summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility ranges not fully stated in source"
+- "remove section if not applicable"
+- "no unsolicited event notifications described in source"
+- "populate if source describes multi-step sequences"
+- "no safety warnings or interlock procedures stated in source"
+- "firmware version compatibility ranges not fully enumerated for all commands"
+- "authentication credentials for web UI not documented"
+- "default username/password for IP interface not stated in source"
 ```
 
 ---

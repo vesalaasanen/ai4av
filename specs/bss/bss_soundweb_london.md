@@ -24,14 +24,24 @@ last_checked_at: 2026-04-23T15:27:33.891Z
 generated_at: 2026-04-23T15:27:33.891Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "BLU-Link, Dante, CobraNet, and AVB connections are not used for control (documented but out of scope)"
+  - "baud rate configured in Audio Architect Properties, not stated in source"
+  - "not stated in source"
+  - "parameter addresses (Node Address, Object ID, Parameter ID) are"
+  - "unsolicited parameter change notifications are sent to subscribers"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "full parameter ID enumeration for all processing objects not included in source"
+  - "message structure diagrams for SET, SET STRING, UNSUBSCRIBE, PRESET RECALL not reproduced from source"
+  - "specific Object ID values for each processing object type not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:27:33.891Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All nine spec actions matched opcodes in source; transport verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All nine spec actions matched opcodes in source; transport verified; source command catalogue fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -320,14 +330,23 @@ verdict: verified
 checked_at: 2026-04-23T15:27:33.891Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All nine spec actions matched opcodes in source; transport verified; source command catalogue fully represented."
+confidence: medium
+summary: "All nine spec actions matched opcodes in source; transport verified; source command catalogue fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "BLU-Link, Dante, CobraNet, and AVB connections are not used for control (documented but out of scope)"
+- "baud rate configured in Audio Architect Properties, not stated in source"
+- "not stated in source"
+- "parameter addresses (Node Address, Object ID, Parameter ID) are"
+- "unsolicited parameter change notifications are sent to subscribers"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "full parameter ID enumeration for all processing objects not included in source"
+- "message structure diagrams for SET, SET STRING, UNSUBSCRIBE, PRESET RECALL not reproduced from source"
+- "specific Object ID values for each processing object type not stated in source"
 ```
 
 ---

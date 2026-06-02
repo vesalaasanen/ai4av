@@ -1,5 +1,5 @@
 ---
-spec_id: admin/extron-dtp2crosspoint-82
+spec_id: admin/extron-dtp2-crosspoint-82
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Extron DTP2 CrossPoint 82 Control Spec"
@@ -11,6 +11,8 @@ compatible_with:
     - Extron
   models:
     - "DTP2 CrossPoint 82"
+    - "DTP2 CrossPoint 82 IPCP SA"
+    - "DTP2 CrossPoint 82 IPCP MA 70"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -18,1869 +20,1999 @@ compatible_with:
 source_domains:
   - extron.com
   - media.extron.com
+  - manua.ls
+  - manuals.ca
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/68-3438-01_D_DTP_2_CrossPoint_82.pdf
+  - https://media.extron.com/public/download/files/userman/68-3438-50_A_DTP2_CP_82_SUG.pdf
+  - https://media.extron.com/public/download/files/userman/IN180x_and_DTP2_CrossPoint_82.pdf
+  - https://www.manua.ls/extron/dtp2-crosspoint-82/manual
+  - https://www.manuals.ca/extron/dtp2-crosspoint-82/manual
+retrieved_at: 2026-05-17T16:50:14.802Z
 last_checked_at: 2026-05-20T11:56:12.371Z
 generated_at: 2026-05-20T11:56:12.371Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "control TCP port (Telnet/SSH) not stated explicitly in source; UART pass-through start port is 2000 for over-TP UART, which is a different feature"
+  - "flow control not stated in source; only baud/parity/data/stop documented as defaults"
+  - "control Telnet/SSH port not stated in source"
+  - "no multi-step macros documented in source"
+  - "no electrical or voltage interlocks documented (power/current ratings not in this excerpt)"
+  - "control TCP port (Telnet/SSH) — source describes Telnet/SSH access and a UART pass-through port (default 2000) but does not state the SIS control port number"
+  - "serial flow control — only baud/parity/data/stop documented as defaults"
+  - "firmware version compatibility ranges not stated in source"
+  - "full set of CEC predefined command strings — source lists examples (\"PwrOn\", \"PwrOff\", \"ShowMe\") but not the complete dictionary"
+  - "command response timing/latency characteristics not stated"
+  - "per-block soft limit ranges for individual OIDs not enumerated in this excerpt"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:56:12.371Z
   matched_actions: 250
   action_count: 250
-  confidence: high
-  summary: "All 250 spec actions matched; transport verified."
+  confidence: medium
+  summary: "All 250 spec actions matched; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-17
+created_at: 2026-06-02
 ---
 
 # Extron DTP2 CrossPoint 82 Control Spec
 
 ## Summary
-9x8 matrix switcher with HDMI, DisplayPort, DTP2/XTP inputs and HDMI/DTP2 outputs. SIS command set over RS-232, USB, Telnet, and SSH. Supports video/audio routing, EDID management, HDCP, picture adjustment, test patterns, presets, audio DSP, and CEC.
+Extron DTP2 CrossPoint 82 is an 8x2 4K/60 scaling presentation matrix switcher with DTP2/XTP/HDBaseT twisted-pair extension, audio DSP, and CEC. This spec covers the Extron SIS (Simple Instruction Set) control protocol over RS-232, USB, Telnet, and SSH as documented in the vendor SIS reference. Commands use ASCII; the escape character (rendered "E" in the source) is 0x1B and lines terminate with CR (and CR/LF in responses).
 
-<!-- UNRESOLVED: TCP port number for IP control not stated in source -->
+<!-- UNRESOLVED: control TCP port (Telnet/SSH) not stated explicitly in source; UART pass-through start port is 2000 for over-TP UART, which is a different feature -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
   - tcp
-addressing:
-  port: null  # UNRESOLVED: TCP port number not stated in source
-  default_ip: 192.168.254.254
 serial:
   baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
+  flow_control: none  # UNRESOLVED: flow control not stated in source; only baud/parity/data/stop documented as defaults
+addressing:
+  port: null  # UNRESOLVED: control Telnet/SSH port not stated in source
+  default_ip: 192.168.254.254
+  default_subnet: 255.255.255.0
+  default_gateway: 0.0.0.0
 auth:
-  type: null  # UNRESOLVED: source describes password-optional behavior; auth type not explicitly bounded
+  type: password
+  notes: "Factory-configured password for all accounts equals the device serial number; case-sensitive. After a factory reset (E ZQQQ }) the unit has no password. Login response is 'Login Administrator' or 'Login User'."
 ```
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- routable        # inferred from input-to-output tie commands
+- queryable       # inferred from numerous query commands (PWR, HDCP status, info, temperature, etc.)
+- levelable       # inferred from contrast/brightness/detail/gain/group-master commands
+- powerable       # inferred from power-save mode and DTP remote power commands
 ```
 
 ## Actions
 ```yaml
-- id: video_audio_tie
-  label: Tie Video and Audio
-  kind: action
-  params:
-    - name: input
-      type: integer
-      description: Input number (1=DisplayPort, 2-6=HDMI/DVI, 7-8=DTP2/XTP, 9=Aux audio)
-    - name: output
-      type: integer
-      description: Output number (1=HDMI/DVI out 1, 2=DTP2/XTP/HDBT out 2, 3=HDMI/DVI Loop out)
+# NOTE: In all commands below, "E" represents the ASCII escape character (0x1B) per the source
+# symbol definitions ("E = Escape"). "W" is interchangeable with E. "}" is CR (0x0D) with no LF.
+# Responses terminate with "]" which is CR/LF (0x0D 0x0A). Spaces in command strings are literal
+# spaces only where shown in the source tables. Upper- and lower-case are interchangeable.
 
-- id: video_tie
-  label: Tie Video Only
+# -------- Input Selection and Ties --------
+- id: tie_video_and_audio
+  label: Tie Video and Audio Input to Output
   kind: action
+  command: "{input}*{output}!"
   params:
-    - name: input
-      type: integer
-    - name: output
-      type: integer
+    - { name: input, type: integer, description: "1=DP1, 2-6=HDMI/DVI 2-6, 7-8=DTP2/XTP 7-8, 9=Aux audio (audio only)" }
+    - { name: output, type: integer, description: "1=HDMI/DVI out 1 unscaled, 2=DTP2/XTP/HDBT out 2 scaled, 3=HDMI/DVI Loop out" }
 
-- id: audio_tie
-  label: Tie Audio Only
+- id: tie_video_only
+  label: Tie Video Input to Output
   kind: action
+  command: "{input}*{output}%"
   params:
-    - name: input
-      type: integer
-    - name: output
-      type: integer
+    - { name: input, type: integer }
+    - { name: output, type: integer }
 
-- id: untie_all
-  label: Untie All Outputs
+- id: tie_audio_only
+  label: Tie Audio Input to Output
   kind: action
+  command: "{input}*{output}$"
+  params:
+    - { name: input, type: integer }
+    - { name: output, type: integer }
+
+- id: view_current_input
+  label: View Current Input on Output
+  kind: query
+  command: "{output}!"
+  params: [{ name: output, type: integer }]
+
+- id: view_video_input
+  label: View Video Input on Output
+  kind: query
+  command: "{output}%"
+  params: [{ name: output, type: integer }]
+
+- id: view_audio_input
+  label: View Audio Input on Output
+  kind: query
+  command: "{output}$"
+  params: [{ name: output, type: integer }]
+
+# -------- Untie --------
+- id: untie_all_outputs
+  label: Untie All Outputs (Video and Audio)
+  kind: action
+  command: "0*!"
   params: []
 
-- id: untie_output
-  label: Untie Output
+- id: untie_one_output
+  label: Untie One Output (Video and Audio)
   kind: action
-  params:
-    - name: output
-      type: integer
+  command: "0*{output}!"
+  params: [{ name: output, type: integer }]
 
-- id: untie_input
-  label: Untie Input
+- id: untie_one_input
+  label: Untie All Outputs From Input
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "{input}*0!"
+  params: [{ name: input, type: integer }]
 
-- id: set_loop_out_input
+# -------- Loop Out Tie --------
+- id: loop_out_set
   label: Set Loop Out Input
   kind: action
-  params:
-    - name: input
-      type: integer
-      description: Input number (7 or 8 only)
+  command: "E!{input}LOUT\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_loop_out_input
+- id: loop_out_view
   label: View Loop Out Input
-  kind: action
+  kind: query
+  command: "E LOUT\r"
   params: []
 
-- id: write_input_name
-  label: Write Input Name
+# -------- Video Input Name --------
+- id: video_input_name_set
+  label: Write Video Input Name
   kind: action
+  command: "E I{input}*{name}VNAM\r"
   params:
-    - name: input
-      type: integer
-    - name: name
-      type: string
-      description: Up to 32 characters, excluding , * |
+    - { name: input, type: integer }
+    - { name: name, type: string, description: "Up to 32 chars; excludes comma, *, |" }
 
-- id: view_input_name
-  label: View Input Name
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: video_input_name_view
+  label: View Video Input Name
+  kind: query
+  command: "E I{input}VNAM\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_detected_format
-  label: View Detected Input Format
-  kind: action
-  params:
-    - name: input
-      type: integer
+# -------- Input Video Format --------
+- id: input_video_format_view
+  label: View Detected Input Video Format
+  kind: query
+  command: "{input}*\\"
+  params: [{ name: input, type: integer }]
 
-- id: assign_edid
+# -------- Input EDID --------
+- id: edid_assign_input
   label: Assign EDID to Input
   kind: action
+  command: "E A{input}*{edid}EDID\r"
   params:
-    - name: input
-      type: integer
-    - name: edid
-      type: integer
-      description: EDID value (see EDID table)
+    - { name: input, type: integer }
+    - { name: edid, type: integer, description: "See EDID table; 10-76 default slots, 201-210 custom" }
 
-- id: view_assigned_edid
-  label: View Assigned EDID
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: edid_view_input
+  label: View EDID Assigned to Input
+  kind: query
+  command: "E A{input}EDID\r"
+  params: [{ name: input, type: integer }]
 
-- id: save_output_edid_to_slot
+- id: edid_save_from_output
   label: Save Output EDID to Custom Slot
   kind: action
+  command: "E S{output}*{edid}EDID\r"
   params:
-    - name: output
-      type: integer
-    - name: slot
-      type: integer
+    - { name: output, type: integer }
+    - { name: edid, type: integer }
 
-- id: view_edid_native_resolution
+- id: edid_view_native_resolution
   label: View EDID Native Resolution
-  kind: action
-  params:
-    - name: edid_slot
-      type: integer
+  kind: query
+  command: "E N{edid}EDID\r"
+  params: [{ name: edid, type: integer }]
 
-- id: export_edid
-  label: Export EDID File
+- id: edid_export
+  label: Export EDID to File
   kind: action
+  command: "E E{edid},{filename}EDID\r"
   params:
-    - name: edid_slot
-      type: integer
-    - name: filename
-      type: string
+    - { name: edid, type: integer, description: "201-210 for export" }
+    - { name: filename, type: string }
 
-- id: import_edid
-  label: Import EDID File
+- id: edid_import
+  label: Import EDID From File
   kind: action
+  command: "E I{edid},{filename}EDID\r"
   params:
-    - name: edid_slot
-      type: integer
-    - name: filename
-      type: string
+    - { name: edid, type: integer, description: "10-210 for import" }
+    - { name: filename, type: string }
 
-- id: enable_hdcp
-  label: Enable HDCP Support
+# -------- HDCP Authorized --------
+- id: hdcp_input_enable
+  label: Enable HDCP Support on Input
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E E{input}*1HDCP\r"
+  params: [{ name: input, type: integer }]
 
-- id: disable_hdcp
-  label: Disable HDCP Support
+- id: hdcp_input_disable
+  label: Disable HDCP Support on Input
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E E{input}*0HDCP\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_hdcp_status
-  label: View HDCP Status
+- id: hdcp_input_view_support
+  label: View HDCP Support Status on Input
+  kind: query
+  command: "E E{input}HDCP\r"
+  params: [{ name: input, type: integer }]
+
+# -------- Input Aspect Ratio --------
+- id: aspect_fill
+  label: Set Input Aspect Ratio to Fill
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*1ASPR\r"
+  params: [{ name: input, type: integer }]
 
-- id: set_aspect_fill
-  label: Set Aspect Ratio Fill
+- id: aspect_follow
+  label: Set Input Aspect Ratio to Follow
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*2ASPR\r"
+  params: [{ name: input, type: integer }]
 
-- id: set_aspect_follow
-  label: Set Aspect Ratio Follow
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: aspect_view
+  label: View Aspect Setting on Input
+  kind: query
+  command: "E{input}ASPR\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_aspect
-  label: View Aspect Ratio Setting
-  kind: action
-  params:
-    - name: input
-      type: integer
+# -------- Active Pixels and Lines --------
+- id: active_pixels_view
+  label: View Active Pixels on Input
+  kind: query
+  command: "E{input}APIX\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_active_pixels
-  label: View Active Pixels
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: active_lines_view
+  label: View Active Lines on Input
+  kind: query
+  command: "E{input}ALIN\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_active_lines
-  label: View Active Lines
-  kind: action
-  params:
-    - name: input
-      type: integer
-
+# -------- Film Mode Detection --------
 - id: film_mode_auto
-  label: Set Film Mode Auto
+  label: Enable Auto Film Mode Detection
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*1FILM\r"
+  params: [{ name: input, type: integer }]
 
 - id: film_mode_off
-  label: Set Film Mode Off
+  label: Disable Film Mode Detection
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*0FILM\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_film_mode
+- id: film_mode_view
   label: View Film Mode Setting
-  kind: action
-  params:
-    - name: input
-      type: integer
+  kind: query
+  command: "E{input}FILM\r"
+  params: [{ name: input, type: integer }]
 
+# -------- Freeze (Output) --------
 - id: freeze_enable
-  label: Enable Freeze
+  label: Freeze Output
   kind: action
+  command: "1*1F"
   params: []
 
 - id: freeze_disable
-  label: Disable Freeze
+  label: Unfreeze Output
   kind: action
+  command: "1*0F"
   params: []
 
-- id: view_freeze
+- id: freeze_view
   label: View Freeze Status
-  kind: action
+  kind: query
+  command: "1F"
   params: []
 
-- id: set_contrast
+# -------- Contrast --------
+- id: contrast_set
   label: Set Contrast
   kind: action
+  command: "E{input}*{value}CONT\r"
   params:
-    - name: input
-      type: integer
-    - name: value
-      type: integer
-      description: 0-127 (default 64)
+    - { name: input, type: integer }
+    - { name: value, type: integer, description: "0-127 (default 64)" }
 
-- id: increment_contrast
+- id: contrast_increment
   label: Increment Contrast
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}+CONT\r"
+  params: [{ name: input, type: integer }]
 
-- id: decrement_contrast
+- id: contrast_decrement
   label: Decrement Contrast
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}-CONT\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_contrast
+- id: contrast_view
   label: View Contrast
-  kind: action
-  params:
-    - name: input
-      type: integer
+  kind: query
+  command: "E{input}CONT\r"
+  params: [{ name: input, type: integer }]
 
-- id: set_brightness
+# -------- Brightness --------
+- id: brightness_set
   label: Set Brightness
   kind: action
+  command: "E{input}*{value}BRIT\r"
   params:
-    - name: input
-      type: integer
-    - name: value
-      type: integer
-      description: 0-127 (default 64)
+    - { name: input, type: integer }
+    - { name: value, type: integer, description: "0-127 (default 64)" }
 
-- id: increment_brightness
+- id: brightness_increment
   label: Increment Brightness
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}+BRIT\r"
+  params: [{ name: input, type: integer }]
 
-- id: decrement_brightness
+- id: brightness_decrement
   label: Decrement Brightness
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}-BRIT\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_brightness
+- id: brightness_view
   label: View Brightness
-  kind: action
-  params:
-    - name: input
-      type: integer
+  kind: query
+  command: "E{input}BRIT\r"
+  params: [{ name: input, type: integer }]
 
-- id: set_detail_level
+# -------- Detail Filter --------
+- id: detail_set
   label: Set Detail Level
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0-127 (default 64)
+  command: "E 1*{value}HDET\r"
+  params: [{ name: value, type: integer, description: "0-127" }]
 
-- id: increment_detail
+- id: detail_increment
   label: Increment Detail
   kind: action
+  command: "E 1+HDET\r"
   params: []
 
-- id: decrement_detail
+- id: detail_decrement
   label: Decrement Detail
   kind: action
+  command: "E 1-HDET\r"
   params: []
 
-- id: view_detail
-  label: View Detail Setting
-  kind: action
+- id: detail_view
+  label: View Detail Level
+  kind: query
+  command: "E 1HDET\r"
   params: []
 
-- id: set_h_position
+# -------- Horizontal Position (Image) --------
+- id: h_position_set
   label: Set Horizontal Position
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: -4096 to 4096
+  command: "E I1*{value}HCTR\r"
+  params: [{ name: value, type: integer, description: "-4096 to 4096" }]
 
-- id: increment_h_position
-  label: Shift Image Right
+- id: h_position_increment
+  label: Shift Image Right 1 Pixel
   kind: action
+  command: "E I1+HCTR\r"
   params: []
 
-- id: decrement_h_position
-  label: Shift Image Left
+- id: h_position_decrement
+  label: Shift Image Left 1 Pixel
   kind: action
+  command: "E I1-HCTR\r"
   params: []
 
-- id: view_h_position
+- id: h_position_view
   label: View Horizontal Position
-  kind: action
+  kind: query
+  command: "E I1 HCTR\r"
   params: []
 
-- id: set_v_position
+# -------- Vertical Position (Image) --------
+- id: v_position_set
   label: Set Vertical Position
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: -2400 to 2400
+  command: "E I1*{value}VCTR\r"
+  params: [{ name: value, type: integer, description: "-2400 to 2400" }]
 
-- id: increment_v_position
-  label: Shift Image Down
+- id: v_position_increment
+  label: Shift Image Down 1 Line
   kind: action
+  command: "E I1+VCTR\r"
   params: []
 
-- id: decrement_v_position
-  label: Shift Image Up
+- id: v_position_decrement
+  label: Shift Image Up 1 Line
   kind: action
+  command: "E I1-VCTR\r"
   params: []
 
-- id: view_v_position
+- id: v_position_view
   label: View Vertical Position
-  kind: action
+  kind: query
+  command: "E I1 VCTR\r"
   params: []
 
-- id: set_h_size
+# -------- Horizontal Size (Image) --------
+- id: h_size_set
   label: Set Horizontal Size
   kind: action
-  params:
-    - name: value
-      type: integer
+  command: "E I1*{value}HSIZ\r"
+  params: [{ name: value, type: integer, description: "10 to 2x max output res" }]
 
-- id: increment_h_size
-  label: Widen Image
+- id: h_size_increment
+  label: Widen Image 1 Pixel
   kind: action
+  command: "E I1+HSIZ\r"
   params: []
 
-- id: decrement_h_size
-  label: Narrow Image
+- id: h_size_decrement
+  label: Narrow Image 1 Pixel
   kind: action
+  command: "E I1-HSIZ\r"
   params: []
 
-- id: view_h_size
+- id: h_size_view
   label: View Horizontal Size
-  kind: action
+  kind: query
+  command: "E I1 HSIZ\r"
   params: []
 
-- id: set_v_size
+# -------- Vertical Size (Image) --------
+- id: v_size_set
   label: Set Vertical Size
   kind: action
-  params:
-    - name: value
-      type: integer
+  command: "E I1*{value}VSIZ\r"
+  params: [{ name: value, type: integer }]
 
-- id: increment_v_size
-  label: Make Image Taller
+- id: v_size_increment
+  label: Taller Image 1 Line
   kind: action
+  command: "E I1+VSIZ\r"
   params: []
 
-- id: decrement_v_size
-  label: Shorten Image
+- id: v_size_decrement
+  label: Shorten Image 1 Line
   kind: action
+  command: "E I1-VSIZ\r"
   params: []
 
-- id: view_v_size
+- id: v_size_view
   label: View Vertical Size
-  kind: action
+  kind: query
+  command: "E I1 VSIZ\r"
   params: []
 
-- id: set_image_position_size
-  label: Set Image Position and Size
+# -------- Compound Image Position and Size --------
+- id: compound_image_set
+  label: Set Compound Image Position and Size
   kind: action
+  command: "E 1,{h_pos}*{v_pos}*{h_size}*{v_size}XIMG\r"
   params:
-    - name: h_pos
-      type: integer
-    - name: v_pos
-      type: integer
-    - name: h_size
-      type: integer
-    - name: v_size
-      type: integer
+    - { name: h_pos, type: integer }
+    - { name: v_pos, type: integer }
+    - { name: h_size, type: integer }
+    - { name: v_size, type: integer }
 
-- id: view_image_position_size
-  label: View Image Position and Size
-  kind: action
+- id: compound_image_view
+  label: View Compound Image Position and Size
+  kind: query
+  command: "E 1 XIMG\r"
   params: []
 
-- id: unmute_output_video
-  label: Unmute Video Output
+# -------- Output Video Mute (per-output) --------
+- id: output_video_unmute
+  label: Unmute Output Video
   kind: action
-  params:
-    - name: output
-      type: integer
+  command: "{output}*0B"
+  params: [{ name: output, type: integer }]
 
-- id: mute_output_video
-  label: Mute Video Output
+- id: output_video_mute
+  label: Mute Output Video
   kind: action
-  params:
-    - name: output
-      type: integer
+  command: "{output}*1B"
+  params: [{ name: output, type: integer }]
 
-- id: mute_output_video_sync
-  label: Mute Video and Sync Output
+- id: output_video_mute_with_sync
+  label: Mute Output Video and Sync
   kind: action
-  params:
-    - name: output
-      type: integer
+  command: "{output}*2B"
+  params: [{ name: output, type: integer }]
 
-- id: view_output_mute
-  label: View Output Mute Status
-  kind: action
-  params:
-    - name: output
-      type: integer
+- id: output_video_mute_view
+  label: View Output Video Mute Status
+  kind: query
+  command: "{output}B"
+  params: [{ name: output, type: integer }]
 
-- id: mute_all_outputs
-  label: Mute All Outputs
+# -------- Video Mute All Outputs --------
+- id: all_outputs_mute
+  label: Mute Video All Outputs
   kind: action
+  command: "1B"
   params: []
 
-- id: mute_all_video_sync
-  label: Mute All Outputs Video and Sync
+- id: all_outputs_mute_with_sync
+  label: Mute Video and Sync All Outputs
   kind: action
+  command: "2B"
   params: []
 
-- id: unmute_all_outputs
+- id: all_outputs_unmute
   label: Unmute All Outputs
   kind: action
+  command: "0B"
   params: []
 
-- id: view_global_mute
-  label: View Global Mute Status
-  kind: action
+- id: all_outputs_mute_view
+  label: View Global Mute
+  kind: query
+  command: "B"
   params: []
 
-- id: set_output_rate
-  label: Set Output Rate
+# -------- Output Switcher Rate --------
+- id: output_rate_set
+  label: Set Output Rate (DTP2 Output 2)
   kind: action
-  params:
-    - name: rate
-      type: integer
+  command: "E 1*{rate}RATE\r"
+  params: [{ name: rate, type: integer, description: "EDID emulation table value" }]
 
-- id: view_output_rate
+- id: output_rate_view
   label: View Output Rate
-  kind: action
+  kind: query
+  command: "E 1 RATE\r"
   params: []
 
-- id: write_output_name
-  label: Write Output Name
+# -------- Video Output Name --------
+- id: video_output_name_set
+  label: Write Video Output Name
   kind: action
+  command: "E O{output}*{name}VNAM\r"
   params:
-    - name: output
-      type: integer
-    - name: name
-      type: string
+    - { name: output, type: integer }
+    - { name: name, type: string }
 
-- id: view_output_name
-  label: View Output Name
+- id: video_output_name_view
+  label: View Video Output Name
+  kind: query
+  command: "E O{output}VNAM\r"
+  params: [{ name: output, type: integer }]
+
+# -------- HDMI Output Format --------
+- id: hdmi_output_format_set
+  label: Set HDMI Output Colorspace and Format
   kind: action
+  command: "E{output}*{format}VTPO\r"
   params:
-    - name: output
-      type: integer
+    - { name: output, type: integer }
+    - { name: format, type: integer, description: "0=Auto,1=DVI,2=RGB Full,3=RGB Limited,5=YUV444 Lim,7=YUV422 Lim" }
 
-- id: set_hdmi_format
-  label: Set HDMI Output Format
-  kind: action
-  params:
-    - name: output
-      type: integer
-    - name: format
-      type: integer
-      description: "0=Auto, 1=DVI, 2=HDMI RGB Full, 3=HDMI RGB Limited, 5=HDMI YUV 444, 7=HDMI YUV 422"
-
-- id: view_hdmi_format
+- id: hdmi_output_format_view
   label: View HDMI Output Format
-  kind: action
-  params:
-    - name: output
-      type: integer
+  kind: query
+  command: "E{output}VTPO\r"
+  params: [{ name: output, type: integer }]
 
-- id: view_auto_hdmi_format
-  label: View Auto HDMI Output Format
-  kind: action
-  params:
-    - name: output
-      type: integer
+- id: hdmi_output_format_view_auto
+  label: View HDMI Output Auto Format Resolution
+  kind: query
+  command: "E{output}*VTPO\r"
+  params: [{ name: output, type: integer }]
 
-- id: set_video_bit_depth
+# -------- Video Bit Depth --------
+- id: bit_depth_set
   label: Set Video Bit Depth
   kind: action
+  command: "E V{output}*{depth}BITD\r"
   params:
-    - name: output
-      type: integer
-    - name: depth
-      type: integer
-      description: "0=Auto, 1=Force 8-bit"
+    - { name: output, type: integer }
+    - { name: depth, type: integer, description: "0=Auto,1=Force 8-bit (default)" }
 
-- id: view_video_bit_depth
+- id: bit_depth_view
   label: View Video Bit Depth
-  kind: action
-  params:
-    - name: output
-      type: integer
+  kind: query
+  command: "E V{output}BITD\r"
+  params: [{ name: output, type: integer }]
 
-- id: set_power_save
+# -------- Power Save --------
+- id: power_save_set
   label: Set Power Save Mode
   kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0=Full power, 1=Lowest, 2=Low"
+  command: "E{mode}PSAV\r"
+  params: [{ name: mode, type: integer, description: "0=Full (default),1=Lowest,2=Low" }]
 
-- id: view_power_save
+- id: power_save_view
   label: View Power Save Mode
-  kind: action
+  kind: query
+  command: "E PSAV\r"
   params: []
 
-- id: set_screen_saver_mode
+# -------- Screen Saver (DTP2 Output 2 only) --------
+- id: screen_saver_mode_set
   label: Set Screen Saver Mode
   kind: action
-  params:
-    - name: mode
-      type: integer
+  command: "E M1*{mode}SSAV\r"
+  params: [{ name: mode, type: integer, description: "Default 1 (black)" }]
 
-- id: view_screen_saver_mode
+- id: screen_saver_mode_view
   label: View Screen Saver Mode
-  kind: action
+  kind: query
+  command: "E M1 SSAV\r"
   params: []
 
-- id: set_screen_saver_duration
-  label: Set Screen Saver Duration
+- id: screen_saver_duration_set
+  label: Set Screen Saver Timeout
   kind: action
-  params:
-    - name: seconds
-      type: integer
-      description: 1-500 seconds, 501=Never (default)
+  command: "E T1*{seconds}SSAV\r"
+  params: [{ name: seconds, type: integer, description: "1-500 sec, 0=instant black, 501=never (default)" }]
 
-- id: view_screen_saver_duration
-  label: View Screen Saver Duration
-  kind: action
+- id: screen_saver_duration_view
+  label: View Screen Saver Timeout
+  kind: query
+  command: "E T1 SSAV\r"
   params: []
 
-- id: view_screen_saver_status
+- id: screen_saver_status_view
   label: View Screen Saver Status
-  kind: action
+  kind: query
+  command: "E S1 SSAV\r"
   params: []
 
-- id: set_osd_duration
+# -------- OSD Menu Duration --------
+- id: osd_duration_set
   label: Set OSD Menu Duration
   kind: action
-  params:
-    - name: seconds
-      type: integer
+  command: "E{seconds}MDUR\r"
+  params: [{ name: seconds, type: integer, description: "1-500 sec, 501=never" }]
 
-- id: view_osd_duration
+- id: osd_duration_view
   label: View OSD Menu Duration
-  kind: action
+  kind: query
+  command: "E MDUR\r"
   params: []
 
-- id: select_logo_file
-  label: Select Logo File
+# -------- Logos: User-Supplied Image --------
+- id: logo_image_assign
+  label: Assign Logo Image File to Slot
   kind: action
+  command: "E A{slot},{filename}LOGO\r"
   params:
-    - name: slot
-      type: integer
-      description: 1-16, 0=disabled, 101=No Signal, 201=HDCP
-    - name: filename
-      type: string
+    - { name: slot, type: integer, description: "1-16, 101=No Signal, 201=HDCP" }
+    - { name: filename, type: string }
 
-- id: view_logo_file
-  label: View Logo File
-  kind: action
-  params:
-    - name: slot
-      type: integer
+- id: logo_image_view
+  label: View Logo File Assigned to Slot
+  kind: query
+  command: "E A{slot}LOGO\r"
+  params: [{ name: slot, type: integer }]
 
-- id: clear_logo_slot
+# -------- Logos: Clear Slot --------
+- id: logo_slot_clear
   label: Clear Logo Slot
   kind: action
-  params:
-    - name: logo_slot
-      type: integer
-    - name: slot
-      type: integer
+  command: "E X3*{slot}PRST\r"
+  params: [{ name: slot, type: integer }]
 
-- id: write_logo_name
+# -------- Logo Name --------
+- id: logo_name_set
   label: Write Logo Name
   kind: action
+  command: "E L{slot},{name}UNAM\r"
   params:
-    - name: slot
-      type: integer
-    - name: name
-      type: string
+    - { name: slot, type: integer }
+    - { name: name, type: string }
 
-- id: view_logo_name
+- id: logo_name_view
   label: View Logo Name
-  kind: action
-  params:
-    - name: slot
-      type: integer
+  kind: query
+  command: "E L{slot}UNAM\r"
+  params: [{ name: slot, type: integer }]
 
-- id: view_logo_availability
+# -------- Logo Availability --------
+- id: logo_availability_view
   label: View Logo Availability
-  kind: action
+  kind: query
+  command: "E Q LOGO\r"
   params: []
 
-- id: disable_logo
-  label: Disable Logo
+# -------- Logo On or Off --------
+- id: logo_disable
+  label: Disable Current Logo
   kind: action
+  command: "E E1*0 LOGO\r"
   params: []
 
-- id: enable_logo
-  label: Enable Logo
+- id: logo_enable
+  label: Enable Logo From Slot
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E E1*{slot}LOGO\r"
+  params: [{ name: slot, type: integer }]
 
-- id: view_logo_status
-  label: View Logo Status
-  kind: action
+- id: logo_status_view
+  label: View Logo Slot Enabled
+  kind: query
+  command: "E E 1 LOGO\r"
   params: []
 
-- id: set_logo_h_position
-  label: Set Logo Horizontal Position
+# -------- Logo Horizontal Shift --------
+- id: logo_h_shift_set
+  label: Set Logo Horizontal Shift
   kind: action
+  command: "E L{slot}*{pos}HCTR\r"
   params:
-    - name: slot
-      type: integer
-    - name: value
-      type: integer
+    - { name: slot, type: integer }
+    - { name: pos, type: integer }
 
-- id: increment_logo_h_position
-  label: Shift Logo Right
+- id: logo_h_shift_increment
+  label: Shift Logo Right 1 Pixel
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E L{slot}+HCTR\r"
+  params: [{ name: slot, type: integer }]
 
-- id: decrement_logo_h_position
-  label: Shift Logo Left
+- id: logo_h_shift_decrement
+  label: Shift Logo Left 1 Pixel
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E L{slot}-HCTR\r"
+  params: [{ name: slot, type: integer }]
 
-- id: view_logo_h_position
-  label: View Logo Horizontal Position
+- id: logo_h_shift_view
+  label: View Logo Horizontal Shift
+  kind: query
+  command: "E L{slot}HCTR\r"
+  params: [{ name: slot, type: integer }]
+
+# -------- Logo Vertical Shift --------
+- id: logo_v_shift_set
+  label: Set Logo Vertical Shift
   kind: action
+  command: "E L{slot}*{pos}VCTR\r"
   params:
-    - name: slot
-      type: integer
+    - { name: slot, type: integer }
+    - { name: pos, type: integer, description: "+/- 2400 max" }
 
-- id: set_logo_v_position
-  label: Set Logo Vertical Position
+- id: logo_v_shift_increment
+  label: Shift Logo Down 1 Pixel
   kind: action
-  params:
-    - name: slot
-      type: integer
-    - name: value
-      type: integer
+  command: "E L{slot}+VCTR\r"
+  params: [{ name: slot, type: integer }]
 
-- id: increment_logo_v_position
-  label: Shift Logo Down
+- id: logo_v_shift_decrement
+  label: Shift Logo Up 1 Pixel
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E L{slot}-VCTR\r"
+  params: [{ name: slot, type: integer }]
 
-- id: decrement_logo_v_position
-  label: Shift Logo Up
-  kind: action
-  params:
-    - name: slot
-      type: integer
+- id: logo_v_shift_view
+  label: View Logo Vertical Shift
+  kind: query
+  command: "E L{slot}VCTR\r"
+  params: [{ name: slot, type: integer }]
 
-- id: view_logo_v_position
-  label: View Logo Vertical Position
-  kind: action
-  params:
-    - name: slot
-      type: integer
-
-- id: logo_key_effect_disabled
+# -------- Logo Key Effect --------
+- id: logo_key_disabled
   label: Disable Logo Key Effect
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E{slot}*0 LKEF\r"
+  params: [{ name: slot, type: integer }]
 
-- id: logo_key_effect_transparency
-  label: Set Logo Key Effect Transparency
+- id: logo_key_transparency
+  label: Enable Logo Key Transparency
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E{slot}*1 LKEF\r"
+  params: [{ name: slot, type: integer }]
 
-- id: logo_key_effect_rgb
-  label: Set Logo Key Effect RGB
+- id: logo_key_rgb
+  label: Enable Logo RGB Key
   kind: action
-  params:
-    - name: slot
-      type: integer
+  command: "E{slot}*2 LKEF\r"
+  params: [{ name: slot, type: integer }]
 
-- id: logo_key_effect_level
+- id: logo_key_level
+  label: Enable Logo Level Key
+  kind: action
+  command: "E{slot}*3 LKEF\r"
+  params: [{ name: slot, type: integer }]
+
+- id: logo_key_alpha
+  label: Enable Logo Alpha Key
+  kind: action
+  command: "E{slot}*4 LKEF\r"
+  params: [{ name: slot, type: integer }]
+
+- id: logo_key_view
+  label: View Logo Key Effect
+  kind: query
+  command: "E{slot}LKEF\r"
+  params: [{ name: slot, type: integer }]
+
+# -------- Logo Key Effect Level --------
+- id: logo_key_level_set
   label: Set Logo Key Effect Level
   kind: action
+  command: "E{slot}*{var}*{lvl}*LKEY\r"
   params:
-    - name: slot
-      type: integer
+    - { name: slot, type: integer }
+    - { name: var, type: integer, description: "Key effect variable selector" }
+    - { name: lvl, type: integer }
 
-- id: logo_key_effect_alpha
-  label: Set Logo Key Effect Alpha
-  kind: action
+- id: logo_key_level_view
+  label: View Logo Key Effect Level
+  kind: query
+  command: "E{slot}*{var}LKEY\r"
   params:
-    - name: slot
-      type: integer
+    - { name: slot, type: integer }
+    - { name: var, type: integer }
 
-- id: view_logo_key_effect
-  label: View Logo Key Effect
-  kind: action
-  params:
-    - name: slot
-      type: integer
-
-- id: set_logo_key_effect_level
-  label: Set Logo Key Effect Level Value
-  kind: action
-  params:
-    - name: slot
-      type: integer
-    - name: var
-      type: integer
-    - name: value
-      type: integer
-
-- id: view_logo_key_effect_level
-  label: View Logo Key Effect Level Value
-  kind: action
-  params:
-    - name: slot
-      type: integer
-    - name: var
-      type: integer
-
-- id: recall_input_preset
+# -------- Input Presets --------
+- id: input_preset_recall
   label: Recall Input Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
-      description: 1-16
+  command: "2*{preset}."
+  params: [{ name: preset, type: integer, description: "1-16" }]
 
-- id: save_input_preset
+- id: input_preset_save
   label: Save Input Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
-      description: 1-16
+  command: "2*{preset},"
+  params: [{ name: preset, type: integer }]
 
-- id: delete_input_preset
+- id: input_preset_delete
   label: Delete Input Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
+  command: "E X2*{preset}PRST\r"
+  params: [{ name: preset, type: integer }]
 
-- id: write_input_preset_name
+# -------- Input Preset Name --------
+- id: input_preset_name_set
   label: Write Input Preset Name
   kind: action
+  command: "E 2*{preset},{name}PNAM\r"
   params:
-    - name: preset
-      type: integer
-    - name: name
-      type: string
+    - { name: preset, type: integer }
+    - { name: name, type: string }
 
-- id: view_input_preset_name
+- id: input_preset_name_view
   label: View Input Preset Name
-  kind: action
-  params:
-    - name: preset
-      type: integer
+  kind: query
+  command: "E 2*{preset}PNAM\r"
+  params: [{ name: preset, type: integer }]
 
+# -------- Auto Memories --------
 - id: auto_memory_enable
-  label: Enable Auto Memory
+  label: Enable Auto Memory on Input
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*1 AMEM\r"
+  params: [{ name: input, type: integer }]
 
 - id: auto_memory_disable
-  label: Disable Auto Memory
+  label: Disable Auto Memory on Input
   kind: action
-  params:
-    - name: input
-      type: integer
+  command: "E{input}*0 AMEM\r"
+  params: [{ name: input, type: integer }]
 
-- id: view_auto_memory
-  label: View Auto Memory Setting
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: auto_memory_view
+  label: View Auto Memory Status
+  kind: query
+  command: "E{input}AMEM\r"
+  params: [{ name: input, type: integer }]
 
-- id: save_tie_preset
+# -------- Tie Presets --------
+- id: tie_preset_save
   label: Save Tie Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
-      description: 1-16
+  command: "5*{preset},"
+  params: [{ name: preset, type: integer, description: "1-16" }]
 
-- id: recall_tie_preset
+- id: tie_preset_recall
   label: Recall Tie Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
+  command: "5*{preset}."
+  params: [{ name: preset, type: integer }]
 
-- id: clear_tie_preset
+- id: tie_preset_clear
   label: Clear Tie Preset
   kind: action
-  params:
-    - name: preset
-      type: integer
+  command: "E X5*{preset}PRST\r"
+  params: [{ name: preset, type: integer }]
 
-- id: write_tie_preset_name
+- id: tie_preset_name_set
   label: Write Tie Preset Name
   kind: action
+  command: "E 5*{preset},{name}PNAM\r"
   params:
-    - name: preset
-      type: integer
-    - name: name
-      type: string
+    - { name: preset, type: integer }
+    - { name: name, type: string }
 
-- id: view_tie_preset_name
+- id: tie_preset_name_view
   label: View Tie Preset Name
-  kind: action
-  params:
-    - name: preset
-      type: integer
+  kind: query
+  command: "E 5*{preset}PNAM\r"
+  params: [{ name: preset, type: integer }]
 
-- id: set_audio_input_format
+# -------- Audio Input Format --------
+- id: audio_input_format_set
   label: Set Audio Input Format
   kind: action
+  command: "E I{input}*{format}AFMT\r"
   params:
-    - name: input
-      type: integer
-    - name: format
-      type: integer
-      description: "0=None, 1=Analog Aux, 2=LPCM-2Ch, 3=Multi-Ch, 4=LPCM-2Ch Auto Aux (default), 5=Multi-Ch Auto Aux"
+    - { name: input, type: integer }
+    - { name: format, type: integer, description: "0=None,1=Analog Aux,2=LPCM-2Ch,3=Multi-Ch,4=LPCM-2Ch Auto Aux,5=Multi-Ch Auto Aux" }
 
-- id: view_audio_input_format
+- id: audio_input_format_view
   label: View Audio Input Format
-  kind: action
-  params:
-    - name: input
-      type: integer
+  kind: query
+  command: "E I{input}AFMT\r"
+  params: [{ name: input, type: integer }]
 
-- id: write_audio_input_name
+# -------- Audio Input Name --------
+- id: audio_input_name_set
   label: Write Audio Input Name
   kind: action
+  command: "E I{audio_input}*{name}ANAM\r"
   params:
-    - name: input
-      type: integer
-    - name: name
-      type: string
+    - { name: audio_input, type: integer, description: "1-15 per audio input table" }
+    - { name: name, type: string }
 
-- id: view_audio_input_name
+- id: audio_input_name_view
   label: View Audio Input Name
-  kind: action
-  params:
-    - name: input
-      type: integer
+  kind: query
+  command: "E I{audio_input}ANAM\r"
+  params: [{ name: audio_input, type: integer }]
 
-- id: write_audio_output_name
+# -------- Audio Output Name --------
+- id: audio_output_name_set
   label: Write Audio Output Name
   kind: action
+  command: "E O{audio_output}*{name}ANAM\r"
   params:
-    - name: output
-      type: integer
-    - name: name
-      type: string
+    - { name: audio_output, type: integer, description: "1=HDMI1,2=TP2,3=Over DTP Analog,4=Line Out,5=Line Out 2,6=Line Out 3,7=Line Out 4" }
+    - { name: name, type: string }
 
-- id: view_audio_output_name
+- id: audio_output_name_view
   label: View Audio Output Name
-  kind: action
-  params:
-    - name: output
-      type: integer
+  kind: query
+  command: "E O{audio_output}ANAM\r"
+  params: [{ name: audio_output, type: integer }]
 
-- id: mute_audio_output
-  label: Mute Audio Output
+# -------- Audio Mute (output embedded) --------
+- id: audio_output_mute_set
+  label: Mute/Unmute Output Embedded Audio
   kind: action
+  command: "{output}*{state}ZAmt"
   params:
-    - name: output
-      type: integer
+    - { name: output, type: integer }
+    - { name: state, type: integer, description: "0=Unmuted,1=Muted" }
+  notes: "Z is rendered as escape character in source"
 
-- id: unmute_audio_output
-  label: Unmute Audio Output
-  kind: action
-  params:
-    - name: output
-      type: integer
+- id: audio_output_mute_view
+  label: View Output Audio Mute Status
+  kind: query
+  command: "{output}*ZAmt"
+  params: [{ name: output, type: integer }]
 
-- id: view_audio_output_mute
-  label: View Audio Output Mute Status
-  kind: action
-  params:
-    - name: output
-      type: integer
-
-- id: view_global_audio_mute
+- id: audio_global_mute_view
   label: View Global Audio Mute Status
-  kind: action
+  kind: query
+  command: "ZAmt"
   params: []
 
-- id: set_playback_file_slot
+# -------- Configure Playback --------
+- id: playback_assign_file
   label: Assign File to Playback Slot
   kind: action
+  command: "E A{slot},{filename}CPLY\r"
   params:
-    - name: slot
-      type: integer
-      description: 1-16
-    - name: filename
-      type: string
+    - { name: slot, type: integer, description: "1-16" }
+    - { name: filename, type: string }
 
-- id: set_playback_delay
-  label: Set Playback Delay
+- id: playback_delay_set
+  label: Set Playback Repeat Delay
   kind: action
+  command: "E D{slot}*{seconds}CPLY\r"
   params:
-    - name: slot
-      type: integer
-    - name: seconds
-      type: integer
-      description: 0-300 seconds
+    - { name: slot, type: integer }
+    - { name: seconds, type: integer, description: "0=no delay, 1-300 seconds" }
 
-- id: view_playback_delay
-  label: View Playback Delay
-  kind: action
-  params:
-    - name: slot
-      type: integer
+- id: playback_delay_view
+  label: View Playback Repeat Delay
+  kind: query
+  command: "E D{slot}CPLY\r"
+  params: [{ name: slot, type: integer }]
 
-- id: write_playback_name
+- id: playback_name_set
   label: Write Playback File Name
   kind: action
+  command: "E N{slot}*{name}CPLY\r"
   params:
-    - name: slot
-      type: integer
-    - name: name
-      type: string
+    - { name: slot, type: integer }
+    - { name: name, type: string }
 
-- id: view_playback_name
-  label: View Playback Name
+- id: playback_name_view
+  label: View Playback File Name
+  kind: query
+  command: "E N{slot}CPLY\r"
+  params: [{ name: slot, type: integer }]
+
+# -------- Playback Transport --------
+- id: playback_transport_set
+  label: Start/Stop Playback on Slot
   kind: action
+  command: "E{slot}*{state}PLAY\r"
   params:
-    - name: slot
-      type: integer
+    - { name: slot, type: integer }
+    - { name: state, type: integer, description: "0=Stop,1=Play" }
 
-- id: start_playback
-  label: Start Playback
-  kind: action
-  params:
-    - name: slot
-      type: integer
+- id: playback_slot_status_view
+  label: View Slot Playback Status
+  kind: query
+  command: "E{slot}PLAY\r"
+  params: [{ name: slot, type: integer }]
 
-- id: stop_playback
-  label: Stop Playback
-  kind: action
-  params:
-    - name: slot
-      type: integer
-
-- id: view_slot_status
-  label: View Playback Slot Status
-  kind: action
-  params:
-    - name: slot
-      type: integer
-
-- id: view_global_playback_status
-  label: View Global Playback Status
-  kind: action
+- id: playback_global_status_view
+  label: View Currently Playing Slot
+  kind: query
+  command: "E PLAY\r"
   params: []
 
-- id: set_test_pattern
+# -------- Test Pattern --------
+- id: test_pattern_set
   label: Set Test Pattern
   kind: action
-  params:
-    - name: pattern
-      type: integer
-      description: "0=Off (default), 1=Crop, 2=Alternating pixels, 3=Crosshatch, 4=Color Bars, 5=Grayscale, 6=Audio test"
+  command: "E 1*{pattern}TEST\r"
+  params: [{ name: pattern, type: integer, description: "0=Off,1=Crop,2=Alt pixels,3=Crosshatch,4=Color bars,5=Grayscale,6=Audio test" }]
 
-- id: view_test_pattern
+- id: test_pattern_view
   label: View Test Pattern
-  kind: action
+  kind: query
+  command: "E 1 TEST\r"
   params: []
 
-- id: set_switch_effect
+# -------- Switch Effects --------
+- id: switch_effect_set
   label: Set Output Switch Effect
   kind: action
-  params:
-    - name: effect
-      type: integer
-      description: "0=Cut through black, 1=Fade through black, 2=Seamless fade (default), 3=Seamless cut"
+  command: "E O1*{effect}SWEF\r"
+  params: [{ name: effect, type: integer, description: "0=Cut through black,1=Fade through black,2=Seamless fade (default),3=Seamless cut" }]
 
-- id: view_switch_effect
-  label: View Switch Effect
-  kind: action
+- id: switch_effect_view
+  label: View Output Switch Effect
+  kind: query
+  command: "E O1 SWEF\r"
   params: []
 
-- id: upstream_cut
-  label: Upstream Cut
+# -------- Upstream Video Switch Effects --------
+- id: upstream_effect_cut
+  label: Set Upstream Switch Effect Off (Cut)
   kind: action
+  command: "E U1*0 SWEF\r"
   params: []
 
-- id: upstream_seamless_cut
-  label: Upstream Seamless Cut
+- id: upstream_effect_seamless
+  label: Set Upstream Seamless Cut
   kind: action
+  command: "E U1*1 SWEF\r"
   params: []
 
-- id: view_upstream_switch_effect
+- id: upstream_effect_view
   label: View Upstream Switch Effect
-  kind: action
+  kind: query
+  command: "E U1 SWEF\r"
   params: []
 
-- id: view_signal_presence
-  label: View Video Signal Presence
-  kind: action
+# -------- Video Signal Presence --------
+- id: video_signal_presence_view
+  label: View Video Signal Presence All Inputs
+  kind: query
+  command: "E 0 LS\r"
   params: []
 
-- id: enable_front_panel_lock
-  label: Enable Front Panel Lock
+# -------- Front Panel Lock --------
+- id: front_panel_lock_set
+  label: Set Front Panel Lock Mode
   kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "1=Complete lockout, 2=Input/logos/volume only, 3=Input/logos only, 4=Volume only"
+  command: "{mode}X"
+  params: [{ name: mode, type: integer, description: "1=Full lockout,2=Input/logos/volume,3=Input/logos,4=Volume only" }]
 
-- id: disable_front_panel_lock
+- id: front_panel_unlock
   label: Disable Front Panel Lock
   kind: action
+  command: "0X"
   params: []
 
-- id: view_front_panel_lock
-  label: View Front Panel Lock Status
-  kind: action
+- id: front_panel_lock_view
+  label: View Front Panel Lock Mode
+  kind: query
+  command: "X"
   params: []
 
-- id: set_hdcp_output_mode
+# -------- HDCP Output Mode --------
+- id: hdcp_output_mode_set
   label: Set HDCP Output Mode
   kind: action
+  command: "E S{output}*{mode}HDCP\r"
   params:
-    - name: output
-      type: integer
-    - name: mode
-      type: integer
-      description: "0=Off, 1=Follow input (10s trial), 2=Encrypt output (10s trial), 3=Follow input (continuous), 4=Encrypt output (continuous)"
+    - { name: output, type: integer }
+    - { name: mode, type: integer, description: "0=Off,1=Follow input,2=Encrypt output,3=Follow input continuous,4=Encrypt output continuous" }
 
-- id: view_hdcp_output_mode
+- id: hdcp_output_mode_view
   label: View HDCP Output Mode
-  kind: action
-  params:
-    - name: output
-      type: integer
+  kind: query
+  command: "E S{output}HDCP\r"
+  params: [{ name: output, type: integer }]
 
-- id: set_hdcp_notification
-  label: Set HDCP Notification
+# -------- HDCP Notification --------
+- id: hdcp_notification_set
+  label: Set HDCP Notification Mode
   kind: action
+  command: "E N{output}*{mode}HDCP\r"
   params:
-    - name: output
-      type: integer
-    - name: mode
-      type: integer
-      description: "0=Black screen (default), 1=Green screen with OSD, 2=User image with black screen"
+    - { name: output, type: integer }
+    - { name: mode, type: integer, description: "0=Black,1=Green w/ OSD bug,2=User image" }
 
-- id: view_hdcp_notification
-  label: View HDCP Notification
+- id: hdcp_notification_view
+  label: View HDCP Notification Mode
+  kind: query
+  command: "E N{output}HDCP\r"
+  params: [{ name: output, type: integer }]
+
+# -------- HDCP Status --------
+- id: hdcp_input_status_query
+  label: Query Input HDCP Status
+  kind: query
+  command: "E I{input}HDCP\r"
+  params: [{ name: input, type: integer }]
+
+- id: hdcp_output_status_query
+  label: Query Output HDCP Status
+  kind: query
+  command: "E O{output}HDCP\r"
+  params: [{ name: output, type: integer }]
+
+# -------- Twisted Pair Protocol --------
+- id: tp_input_protocol_set
+  label: Set Input TP Protocol
   kind: action
+  command: "E I{input}*{protocol}HDBT\r"
   params:
-    - name: output
-      type: integer
+    - { name: input, type: integer, description: "7 or 8 only" }
+    - { name: protocol, type: integer, description: "0=DTP,1=XTP" }
 
-- id: query_hdcp_input
-  label: Query HDCP Status Input
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: tp_input_protocol_view
+  label: View Input TP Protocol
+  kind: query
+  command: "E I{input}HDBT\r"
+  params: [{ name: input, type: integer }]
 
-- id: query_hdcp_output
-  label: Query HDCP Status Output
+- id: tp_output_protocol_set
+  label: Set Output 2 TP Protocol
   kind: action
-  params:
-    - name: output
-      type: integer
+  command: "E O 2*{protocol}HDBT\r"
+  params: [{ name: protocol, type: integer, description: "0=DTP,1=XTP,2=HDBaseT" }]
 
-- id: set_input_tp_type
-  label: Set Input TP Type
-  kind: action
-  params:
-    - name: input
-      type: integer
-      description: "7 or 8 only"
-    - name: protocol
-      type: integer
-      description: "0=DTP (default), 1=XTP, 2=HDBaseT"
-
-- id: view_input_tp_type
-  label: View Input TP Type
-  kind: action
-  params:
-    - name: input
-      type: integer
-
-- id: set_output_tp_type
-  label: Set Output TP Type
-  kind: action
-  params:
-    - name: protocol
-      type: integer
-      description: "0=DTP (default), 1=XTP, 2=HDBaseT"
-
-- id: view_output_tp_type
-  label: View Output TP Type
-  kind: action
+- id: tp_output_protocol_view
+  label: View Output 2 TP Protocol
+  kind: query
+  command: "E O 2 HDBT\r"
   params: []
 
-- id: set_input_remote_power
-  label: Set Input Remote Power
+# -------- DTP Remote Power --------
+- id: dtp_input_power_set
+  label: Set Input DTP Remote Power
   kind: action
+  command: "E I{input}*{power}RPWR\r"
   params:
-    - name: input
-      type: integer
-      description: "7 or 8 only"
-    - name: power
-      type: integer
-      description: "0=Off (default), 1=DTP 12V, 2=DTP2 48V"
+    - { name: input, type: integer, description: "7 or 8 only" }
+    - { name: power, type: integer, description: "0=None,1=DTP 12VDC,2=DTP2 48VDC" }
 
-- id: view_input_remote_power
-  label: View Input Remote Power
-  kind: action
-  params:
-    - name: input
-      type: integer
+- id: dtp_input_power_view
+  label: View Input DTP Remote Power
+  kind: query
+  command: "E I{input}RPWR\r"
+  params: [{ name: input, type: integer }]
 
-- id: set_output_remote_power
-  label: Set Output Remote Power
+- id: dtp_output_power_set
+  label: Set Output 2 DTP Remote Power
   kind: action
-  params:
-    - name: power
-      type: integer
-      description: "0=Off (default), 1=DTP 12V, 2=DTP2 48V"
+  command: "E O 2*{power}RPWR\r"
+  params: [{ name: power, type: integer }]
 
-- id: view_output_remote_power
-  label: View Output Remote Power
-  kind: action
+- id: dtp_output_power_view
+  label: View Output 2 DTP Remote Power
+  kind: query
+  command: "E O 2 RPWR\r"
   params: []
 
-- id: system_reset
+# -------- Resets --------
+- id: reset_partial
   label: System Reset (Partial)
   kind: action
+  command: "E ZXXX\r"
   params: []
+  notes: "Resets all device settings to factory defaults"
 
-- id: absolute_system_reset
+- id: reset_absolute
   label: Absolute System Reset
   kind: action
+  command: "E ZQQQ\r"
   params: []
+  notes: "Resets all settings + DHCP/IP; removes factory serial-number passwords"
 
-- id: absolute_system_reset_retain_ip
-  label: Absolute System Reset Retain IP
+- id: reset_absolute_retain_ip
+  label: Absolute System Reset (Retain IP)
   kind: action
+  command: "E ZY\r"
   params: []
+  notes: "Like ZQQQ but retains IP/subnet/gateway/DHCP/port mapping"
 
 - id: erase_file
-  label: Erase File
+  label: Erase User File
   kind: action
-  params:
-    - name: filename
-      type: string
+  command: "E{filename}EF\r"
+  params: [{ name: filename, type: string }]
 
-- id: erase_directory
-  label: Erase Current Directory
+- id: erase_current_dir
+  label: Erase Current Directory and Files
   kind: action
+  command: "E /EF\r"
   params: []
 
-- id: erase_directory_recursive
+- id: erase_current_dir_recursive
   label: Erase Current Directory and Subdirectories
   kind: action
+  command: "E //EF\r"
   params: []
 
 - id: erase_flash
   label: Erase Flash Memory
   kind: action
+  command: "E ZFFF\r"
   params: []
 
-- id: set_serial_port_params
+# -------- Serial Port Configuration --------
+- id: serial_port_set
   label: Set Serial Port Parameters
   kind: action
+  command: "E{port}*{baud},{parity},{data},{stop}CP\r"
   params:
-    - name: port
-      type: integer
-      description: "1=Remote port, 7=UART IN7, 8=UART IN8, 9=UART OUT2"
-    - name: baud
-      type: integer
-      description: "300, 600, 1200, 1800, 2400, 3600, 4800, 7200, 9600 (default), 14400, 19200, 28800, 38400, 57600, 115200"
-    - name: parity
-      type: string
-      description: "Odd, Even, None (default), Mark, Space"
-    - name: data_bits
-      type: integer
-      description: "7 or 8 (default)"
-    - name: stop_bits
-      type: integer
-      description: "1 (default) or 2"
+    - { name: port, type: integer, description: "1=Remote 3-pole, 7=UART TP IN7, 8=UART TP IN8, 9=UART TP OUT2" }
+    - { name: baud, type: integer, description: "300-115200" }
+    - { name: parity, type: string, description: "O/E/N/M/S (first letter)" }
+    - { name: data, type: integer, description: "7 or 8" }
+    - { name: stop, type: integer, description: "1 or 2" }
 
-- id: view_serial_port_params
+- id: serial_port_view
   label: View Serial Port Parameters
-  kind: action
-  params:
-    - name: port
-      type: integer
-
-- id: set_uart_start_point
-  label: Set UART Start Point
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Default=2000
-
-- id: view_uart_start_point
-  label: View UART Start Point
-  kind: action
-  params: []
-
-- id: save_configuration
-  label: Save Unit Configuration
-  kind: action
-  params:
-    - name: slot
-      type: integer
-
-- id: set_dhcp_on
-  label: Enable DHCP
-  kind: action
-  params: []
-
-- id: set_dhcp_off
-  label: Disable DHCP
-  kind: action
-  params: []
-
-- id: view_dhcp_mode
-  label: View DHCP Mode
-  kind: action
-  params: []
-
-- id: set_ip_address
-  label: Set IP Address
-  kind: action
-  params:
-    - name: ip
-      type: string
-
-- id: view_ip_address
-  label: View IP Address
-  kind: action
-  params: []
-
-- id: set_subnet_mask
-  label: Set Subnet Mask
-  kind: action
-  params:
-    - name: mask
-      type: string
-
-- id: view_subnet_mask
-  label: View Subnet Mask
-  kind: action
-  params: []
-
-- id: set_gateway
-  label: Set Gateway IP Address
-  kind: action
-  params:
-    - name: gateway
-      type: string
-
-- id: view_gateway
-  label: View Gateway Address
-  kind: action
-  params: []
-
-- id: set_port_timeout
-  label: Set Port Timeout
-  kind: action
-  params:
-    - name: port
-      type: integer
-      description: 0=current, 1=global
-    - name: seconds
-      type: integer
-      description: Time in 10-second increments
-
-- id: view_port_timeout
-  label: View Port Timeout
-  kind: action
-  params:
-    - name: port
-      type: integer
-
-- id: view_global_port_timeout
-  label: View Global Port Timeout
-  kind: action
-  params: []
-
-- id: view_mac_address
-  label: View MAC Address
-  kind: action
-  params: []
-
-- id: set_lan_ip_all
-  label: Set LAN IP Subnet and Gateway
-  kind: action
-  params:
-    - name: ip
-      type: string
-    - name: prefix
-      type: integer
-      description: 0-31
-    - name: gateway
-      type: string
-
-- id: view_lan_ip_all
-  label: View All IP Settings
-  kind: action
-  params: []
-
-- id: reboot_network
-  label: Reboot Networking
-  kind: action
-  params: []
-
-- id: query_open_connections
-  label: Query Number of Open Connections
-  kind: action
-  params: []
-
-- id: set_unit_name
-  label: Set Unit Name
-  kind: action
-  params:
-    - name: name
-      type: string
-      description: Up to 63 characters, A-Z, 0-9, minus sign only
-
-- id: reset_unit_name
-  label: Reset Unit Name to Factory Default
-  kind: action
-  params: []
-
-- id: view_unit_name
-  label: View Unit Name
-  kind: action
-  params: []
-
-- id: enable_echo
-  label: Enable Echo (SIS over SSH)
-  kind: action
-  params: []
-
-- id: disable_echo
-  label: Disable Echo (SIS over SSH)
-  kind: action
-  params: []
-
-- id: view_echo_status
-  label: View Echo Status
-  kind: action
-  params: []
-
-- id: set_admin_password
-  label: Set Administrator Password
-  kind: action
-  params:
-    - name: password
-      type: string
-      description: 1-128 characters, case-sensitive
-
-- id: view_admin_password
-  label: View Administrator Password
-  kind: action
-  params: []
-
-- id: reset_admin_password
-  label: Reset Administrator Password
-  kind: action
-  params: []
-
-- id: set_user_password
-  label: Set User Password
-  kind: action
-  params:
-    - name: password
-      type: string
-
-- id: view_user_password
-  label: View User Password
-  kind: action
-  params: []
-
-- id: reset_user_password
-  label: Reset User Password
-  kind: action
-  params: []
-
-- id: set_group_fader
-  label: Set Group Fader
-  kind: action
-  params:
-    - name: group
-      type: integer
-      description: 1-10
-    - name: value
-      type: integer
-      description: Value in 0.1 dB steps
-
-- id: view_group_fader
-  label: View Group Fader
-  kind: action
-  params:
-    - name: group
-      type: integer
-
-- id: increment_group_fader
-  label: Increment Group Fader
-  kind: action
-  params:
-    - name: group
-      type: integer
-    - name: value
-      type: integer
-
-- id: decrement_group_fader
-  label: Decrement Group Fader
-  kind: action
-  params:
-    - name: group
-      type: integer
-    - name: value
-      type: integer
-
-- id: mute_group
-  label: Mute Group
-  kind: action
-  params:
-    - name: group
-      type: integer
-
-- id: unmute_group
-  label: Unmute Group
-  kind: action
-  params:
-    - name: group
-      type: integer
-
-- id: view_group_mute
-  label: View Group Mute Status
-  kind: action
-  params:
-    - name: group
-      type: integer
-
-- id: view_group_limits
-  label: View Group Soft Limits
-  kind: action
-  params:
-    - name: group
-      type: integer
-
-- id: dsp_set_gain
-  label: DSP Set Gain
-  kind: action
-  params:
-    - name: oid
-      type: integer
-      description: Object ID number
-    - name: value
-      type: integer
-      description: Gain in dB x10
-
-- id: dsp_view_gain
-  label: DSP View Gain
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_mute
-  label: DSP Audio Mute
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_unmute
-  label: DSP Audio Unmute
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_view_mute
-  label: DSP View Mute Status
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_phantom_enable
-  label: DSP Enable Phantom Power
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_phantom_disable
-  label: DSP Disable Phantom Power
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: dsp_view_phantom
-  label: DSP View Phantom Power Status
-  kind: action
-  params:
-    - name: oid
-      type: integer
-
-- id: cec_enable_output
-  label: Enable CEC on Output
-  kind: action
-  params:
-    - name: output
-      type: integer
-    - name: mode
-      type: integer
-      description: "0=Disable, 2=Enable insertion (unidirectional), 4=Enable insertion and publish (bidirectional)"
-
-- id: cec_enable_all_outputs
-  label: Enable CEC on All Outputs
-  kind: action
-  params:
-    - name: mode
-      type: integer
-
-- id: cec_view_output_status
-  label: View CEC Output Status
-  kind: action
-  params:
-    - name: output
-      type: integer
-
-- id: cec_send_command
-  label: Send CEC Command
-  kind: action
-  params:
-    - name: output
-      type: integer
-    - name: command
-      type: string
-      description: '"PwrOn", "PwrOff", or "ShowMe"'
-
-- id: cec_list_devices
-  label: List CEC Device Presence
-  kind: action
-  params: []
-
-- id: cec_rediscover
-  label: Rediscover CEC Device
-  kind: action
-  params:
-    - name: output
-      type: integer
-
-- id: cec_report_physical_address
-  label: Report CEC Physical Address
-  kind: action
-  params:
-    - name: output
-      type: integer
-
-- id: set_verbose_mode
-  label: Set Verbose Mode
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0=None (default LAN), 1=Verbose (default RS-232/USB), 2=Tagged responses, 3=Verbose and tagged"
-
-- id: view_verbose_mode
-  label: View Verbose Mode
-  kind: action
-  params: []
-- id: query_general_info
-  label: Query General Information
   kind: query
-  params:
-    - name: input
-      type: integer
+  command: "E{port}CP\r"
+  params: [{ name: port, type: integer }]
 
-- id: query_model_name
+- id: uart_start_set
+  label: Set UART Port Start Point
+  kind: action
+  command: "E{port}MD\r"
+  params: [{ name: port, type: integer, description: "Default 2000" }]
+
+- id: uart_start_view
+  label: View UART Port Start Point
+  kind: query
+  command: "E MD\r"
+  params: []
+
+# -------- Backup --------
+- id: config_backup
+  label: Backup Unit Configuration
+  kind: action
+  command: "E 1*{name}XF\r"
+  params: [{ name: name, type: string, description: "Backup file name" }]
+
+# -------- Information Requests --------
+- id: info_general
+  label: View General Input Information
+  kind: query
+  command: "{input}*I"
+  params: [{ name: input, type: integer }]
+
+- id: info_model_name
   label: Query Model Name
   kind: query
+  command: "1I"
   params: []
 
-- id: query_firmware_version
+- id: info_firmware_version
   label: Query Firmware Version
   kind: query
+  command: "Q"
   params: []
 
-- id: query_full_firmware_version
-  label: Query Full Firmware Version
+- id: info_firmware_full
+  label: Query Full Firmware Version with Build
   kind: query
+  command: "*Q"
   params: []
 
-- id: query_part_number
+- id: info_part_number
   label: Query Part Number
   kind: query
+  command: "N"
   params: []
 
-- id: query_unit_description
+- id: info_description
   label: Query Unit Description
   kind: query
+  command: "2I"
   params: []
 
-- id: view_internal_temperature
-  label: View Internal Temperature
+- id: info_temperature
+  label: View Internal Temperature (Celsius)
   kind: query
+  command: "E 20 STAT\r"
   params: []
+
+# -------- Verbose Mode --------
+- id: verbose_mode_set
+  label: Set Verbose Mode
+  kind: action
+  command: "E{mode}CV\r"
+  params: [{ name: mode, type: integer, description: "0=None,1=Verbose,2=Tagged queries,3=Verbose+tagged" }]
+
+- id: verbose_mode_view
+  label: View Verbose Mode
+  kind: query
+  command: "E CV\r"
+  params: []
+
+# -------- IP Setup --------
+- id: dhcp_set
+  label: Set DHCP Mode
+  kind: action
+  command: "E{state}DH\r"
+  params: [{ name: state, type: integer, description: "0=Disabled (default),1=Enabled" }]
+
+- id: dhcp_view
+  label: View DHCP Mode
+  kind: query
+  command: "E DH\r"
+  params: []
+
+- id: ip_address_set
+  label: Set IP Address
+  kind: action
+  command: "E{ip}CI\r"
+  params: [{ name: ip, type: string, description: "nnn.nnn.nnn.nnn" }]
+
+- id: ip_address_view
+  label: View IP Address
+  kind: query
+  command: "E CI\r"
+  params: []
+
+- id: subnet_mask_set
+  label: Set Subnet Mask
+  kind: action
+  command: "E{mask}CS\r"
+  params: [{ name: mask, type: string }]
+
+- id: subnet_mask_view
+  label: View Subnet Mask
+  kind: query
+  command: "E CS\r"
+  params: []
+
+- id: gateway_set
+  label: Set Gateway IP Address
+  kind: action
+  command: "E{gateway}CG\r"
+  params: [{ name: gateway, type: string }]
+
+- id: gateway_view
+  label: View Gateway IP Address
+  kind: query
+  command: "E CG\r"
+  params: []
+
+# -------- Port Timeout --------
+- id: port_timeout_set
+  label: Set Current Connection Port Timeout
+  kind: action
+  command: "E 0*{timeout}TC\r"
+  params: [{ name: timeout, type: integer, description: "Tens of seconds; 1-65000" }]
+
+- id: port_timeout_view
+  label: View Current Port Timeout
+  kind: query
+  command: "E 0 TC\r"
+  params: []
+
+- id: port_timeout_global_set
+  label: Set Global Port Timeout
+  kind: action
+  command: "E 1*{timeout}TC\r"
+  params: [{ name: timeout, type: integer }]
+
+- id: port_timeout_global_view
+  label: View Global Port Timeout
+  kind: query
+  command: "E 1 TC\r"
+  params: []
+
+- id: mac_address_view
+  label: View MAC Address
+  kind: query
+  command: "E CH\r"
+  params: []
+
+# -------- Combined LAN IP/Subnet/Gateway --------
+- id: lan_ip_combined_set
+  label: Set IP/Subnet/Gateway Combined
+  kind: action
+  command: "E 1*{ip}/{prefix}*{gateway}CISG\r"
+  params:
+    - { name: ip, type: string }
+    - { name: prefix, type: integer, description: "0-31" }
+    - { name: gateway, type: string }
+
+- id: lan_ip_combined_view
+  label: View Combined IP Settings
+  kind: query
+  command: "E 1 CISG\r"
+  params: []
+
+- id: network_reboot
+  label: Reboot Networking
+  kind: action
+  command: "E 2BOOT\r"
+  params: []
+  notes: "Required for TCP/IP setting changes to take effect"
+
+# -------- Open Connections --------
+- id: open_connections_view
+  label: Query Number of Open Connections
+  kind: query
+  command: "E CC\r"
+  params: []
+
+# -------- Unit Name --------
+- id: unit_name_set
+  label: Set Unit Name
+  kind: action
+  command: "E{name}CN\r"
+  params: [{ name: name, type: string, description: "Up to 63 chars: A-Z, 0-9, hyphen; must start with letter" }]
+
+- id: unit_name_reset_default
+  label: Reset Unit Name to Factory Default
+  kind: action
+  command: "E CN\r"
+  params: []
+  notes: "Source documents same syntax as view; empty name parameter triggers reset"
+
+- id: unit_name_view
+  label: View Unit Name
+  kind: query
+  command: "E CN\r"
+  params: []
+
+# -------- Echo for SIS over SSH --------
+- id: ssh_echo_enable
+  label: Enable Echo (SSH)
+  kind: action
+  command: "E 1 ECHO\r"
+  params: []
+
+- id: ssh_echo_disable
+  label: Disable Echo (SSH, Telnet-like)
+  kind: action
+  command: "E 0 ECHO\r"
+  params: []
+
+- id: ssh_echo_view
+  label: View Echo Status
+  kind: query
+  command: "E ECHO\r"
+  params: []
+
+# -------- Passwords --------
+- id: admin_password_set
+  label: Set Administrator Password
+  kind: action
+  command: "E{password}CA\r"
+  params: [{ name: password, type: string, description: "1-128 chars; no pipe" }]
+
+- id: admin_password_view
+  label: View Administrator Password (Masked)
+  kind: query
+  command: "E CA\r"
+  params: []
+
+- id: admin_password_clear
+  label: Clear Administrator Password
+  kind: action
+  command: "E CA\r"
+  params: []
+  notes: "Empty password parameter clears admin password (also clears user password)"
+
+- id: user_password_set
+  label: Set User Password
+  kind: action
+  command: "E{password}CU\r"
+  params: [{ name: password, type: string }]
+
+- id: user_password_view
+  label: View User Password (Masked)
+  kind: query
+  command: "E CU\r"
+  params: []
+
+- id: user_password_clear
+  label: Clear User Password
+  kind: action
+  command: "E CU\r"
+  params: []
+  notes: "Empty password parameter clears user password"
+
+# -------- Group Master SIS --------
+- id: group_master_limits_view
+  label: View Group Master Soft Limits
+  kind: query
+  command: "E L{group}GRPM\r"
+  params: [{ name: group, type: integer, description: "1-10 or alias in braces" }]
+
+- id: group_master_fader_set
+  label: Set Group Fader Value
+  kind: action
+  command: "E D{group}*{value}GRPM\r"
+  params:
+    - { name: group, type: integer }
+    - { name: value, type: integer, description: "0.1 dB resolution x10" }
+
+- id: group_master_fader_view
+  label: View Group Fader Value
+  kind: query
+  command: "E D{group}GRPM\r"
+  params: [{ name: group, type: integer }]
+
+- id: group_master_fader_increment
+  label: Increment Group Fader
+  kind: action
+  command: "E D{group}*{inc}+GRPM\r"
+  params:
+    - { name: group, type: integer }
+    - { name: inc, type: integer }
+
+- id: group_master_fader_decrement
+  label: Decrement Group Fader
+  kind: action
+  command: "E D{group}*{dec}-GRPM\r"
+  params:
+    - { name: group, type: integer }
+    - { name: dec, type: integer }
+
+- id: group_master_mute
+  label: Mute Group
+  kind: action
+  command: "E D{group}*1 GRPM\r"
+  params: [{ name: group, type: integer }]
+
+- id: group_master_unmute
+  label: Unmute Group
+  kind: action
+  command: "E D{group}*0 GRPM\r"
+  params: [{ name: group, type: integer }]
+
+- id: group_master_mute_view
+  label: View Group Mute Status
+  kind: query
+  command: "E D{group}GRPM\r"
+  params: [{ name: group, type: integer }]
+  notes: "Same syntax as view fader value; response context distinguishes"
+
+# -------- DSP SIS (output 2 only) --------
+- id: dsp_gain_set
+  label: Set Gain Level on OID
+  kind: action
+  command: "E G{oid}*{value}AU\r"
+  params:
+    - { name: oid, type: integer, description: "See OID table 30000-30017, 40100-40105, 60000-60011" }
+    - { name: value, type: integer, description: "Level in 0.1 dB steps (x10)" }
+
+- id: dsp_gain_view
+  label: View Gain Level on OID
+  kind: query
+  command: "E G{oid}AU\r"
+  params: [{ name: oid, type: integer }]
+
+- id: dsp_audio_mute
+  label: Mute Audio on OID
+  kind: action
+  command: "E M{oid}*1 AU\r"
+  params: [{ name: oid, type: integer }]
+
+- id: dsp_audio_unmute
+  label: Unmute Audio on OID
+  kind: action
+  command: "E M{oid}*0 AU\r"
+  params: [{ name: oid, type: integer }]
+
+- id: dsp_audio_mute_view
+  label: View Audio Mute Status on OID
+  kind: query
+  command: "E M{oid}AU\r"
+  params: [{ name: oid, type: integer }]
+
+- id: dsp_phantom_enable
+  label: Enable Phantom Power on OID
+  kind: action
+  command: "E Z{oid}*1 AU\r"
+  params: [{ name: oid, type: integer, description: "Only Mic/Line Inputs 1 and 2" }]
+
+- id: dsp_phantom_disable
+  label: Disable Phantom Power on OID
+  kind: action
+  command: "E Z{oid}*0 AU\r"
+  params: [{ name: oid, type: integer }]
+
+- id: dsp_phantom_view
+  label: View Phantom Power Status on OID
+  kind: query
+  command: "E Z{oid}AU\r"
+  params: [{ name: oid, type: integer }]
+
+# -------- CEC: Enable/Disable --------
+- id: cec_output_mode_set
+  label: Enable/Disable CEC on Output
+  kind: action
+  command: "E O{output}*{mode}CCEC\r"
+  params:
+    - { name: output, type: integer }
+    - { name: mode, type: integer, description: "0=Disabled,2=Insertion unidirectional,4=Bidirectional" }
+
+- id: cec_all_outputs_mode_set
+  label: Enable/Disable CEC on All Outputs
+  kind: action
+  command: "E O{mode}*CCEC\r"
+  params: [{ name: mode, type: integer }]
+
+- id: cec_output_status_view
+  label: View Output CEC Status
+  kind: query
+  command: "E O{output}CCEC\r"
+  params: [{ name: output, type: integer }]
+
+# -------- CEC: Send Commands --------
+- id: cec_send_predefined
+  label: Send CEC Predefined Command to Output
+  kind: action
+  command: "E O{output}*{command}DCEC\r"
+  params:
+    - { name: output, type: integer }
+    - { name: command, type: string, description: 'Quoted predefined action e.g. "PwrOn", "PwrOff", "ShowMe"' }
+
+- id: cec_send_raw
+  label: Send CEC Raw Data to Output
+  kind: action
+  command: "E O{output}*{data}DCEC\r"
+  params:
+    - { name: output, type: integer }
+    - { name: data, type: string, description: 'Percent-hex bytes e.g. %2A%07%FF' }
+
+- id: cec_broadcast_predefined
+  label: Broadcast CEC Predefined Command
+  kind: action
+  command: "E O{output}*15*{command}DCEC\r"
+  params:
+    - { name: output, type: integer }
+    - { name: command, type: string }
+
+- id: cec_broadcast_raw
+  label: Broadcast CEC Raw Data
+  kind: action
+  command: "E O{output}*15*{data}DCEC\r"
+  params:
+    - { name: output, type: integer }
+    - { name: data, type: string }
+
+# -------- CEC: Other --------
+- id: cec_list_devices
+  label: List CEC Device Presence
+  kind: query
+  command: "E LQ!CEC\r"
+  params: []
+
+- id: cec_rediscover_output
+  label: Rediscover CEC Device on Output
+  kind: action
+  command: "E O{output}QCEC\r"
+  params: [{ name: output, type: integer }]
+
+- id: cec_physical_address_view
+  label: View CEC Physical Address of Output
+  kind: query
+  command: "E O{output}PCEC\r"
+  params: [{ name: output, type: integer }]
 ```
 
 ## Feedbacks
 ```yaml
-# All responses are ASCII strings terminated with CR/LF (]).
-# Error codes: E01-E33 as defined in source.
+- id: tie_response
+  type: string
+  description: "Response to tie commands: 'In{input}*{output}' (audio+video), '*Vid' suffix for video, '*Aud' suffix for audio"
 
-- id: error_response
+- id: untie_response
+  type: string
+  description: "Response to untie: 'In00 All', 'Out{output} In00 All', 'Out00 In{input} All'"
+
+- id: video_mute_status
   type: enum
-  values:
-    - E01
-    - E10
-    - E11
-    - E12
-    - E13
-    - E14
-    - E17
-    - E22
-    - E24
-    - E25
-    - E28
-    - E33
-  description: Error responses
+  values: [0, 1, 2]
+  description: "0=Unmuted, 1=Muted video to black, 2=Muted video and sync"
 
-- id: switcher_message
-  type: string
-  description: Switcher-initiated messages (Reconfig, HplgO, HdcpI, HdcpO, IN00)
+- id: input_video_signal_type
+  type: enum
+  values: [0, 1, 2, 3]
+  description: "0=No signal, 1=DVI, 2=HDMI, 3=DisplayPort"
 
-- id: verbose_response
+- id: hdcp_status
+  type: enum
+  values: [0, 1, 2]
+  description: "0=No sink/source detected, 1=Detected but no HDCP, 2=Detected with HDCP"
+
+- id: hdcp_output_mode
+  type: enum
+  values: [0, 1, 2, 3, 4]
+  description: "0=Off, 1=Follow input, 2=Encrypt output, 3=Follow input continuous, 4=Encrypt output continuous"
+
+- id: aspect_ratio_setting
+  type: enum
+  values: [1, 2]
+  description: "1=Fill, 2=Follow"
+
+- id: power_save_mode
+  type: enum
+  values: [0, 1, 2]
+  description: "0=Full power (default), 1=Lowest, 2=Low"
+
+- id: front_panel_lock_status
+  type: enum
+  values: [0, 1, 2, 3, 4]
+  description: "0=Off, 1=Full lockout, 2=Input/logos/volume, 3=Input/logos, 4=Volume only"
+
+- id: video_signal_presence
+  type: bitmap
+  description: "Per-input signal status: 0=No signal, 1=Signal detected"
+
+- id: bit_depth_setting
+  type: enum
+  values: [0, 1]
+  description: "0=Auto, 1=Force 8-bit (default)"
+
+- id: tp_protocol_setting
+  type: enum
+  values: [0, 1, 2]
+  description: "0=DTP (default), 1=XTP, 2=HDBaseT (output only)"
+
+- id: dtp_remote_power_status
+  type: enum
+  values: [0, 1, 2]
+  description: "0=None (default), 1=DTP 12VDC, 2=DTP2 48VDC"
+
+- id: cec_status
+  type: enum
+  values: [0, 2, 3, 4, 5]
+  description: "0=Disabled, 2=Mode 2 no device, 3=Mode 2 with device, 4=Mode 4 no device, 5=Mode 4 with device"
+
+- id: cec_send_result
+  type: enum
+  values: [0, 1, 2]
+  description: "0=Failed NAK, 1=Success ACK, 2=Unable to send"
+
+- id: verbose_mode_state
+  type: enum
+  values: [0, 1, 2, 3]
+  description: "0=None (LAN default), 1=Verbose (RS-232/USB default), 2=Tagged queries, 3=Verbose+tagged"
+
+- id: model_name
   type: string
-  description: Tagged responses in verbose modes 2 and 3
+  description: "DTP2 CrossPoint 82 / DTP2 CrossPoint 82 IPCP SA / DTP2 CrossPoint 82 IPCP MA 70"
+
+- id: firmware_version
+  type: string
+  description: "Format: n.nn or n.nn.nnnn with build number"
+
+- id: part_number
+  type: string
+  description: "60-1615-01 (base), 60-1615-02 (IPCP SA), or full IPCP MA 70 part number"
+
+- id: internal_temperature_celsius
+  type: integer
+  description: "Two digits zero-padded; degrees Celsius"
+
+- id: mac_address
+  type: string
+  description: "Six pairs of hexadecimal characters"
+
+- id: open_connections_count
+  type: integer
+  description: "0 through maximum open connections"
+
+- id: dhcp_state
+  type: enum
+  values: [0, 1]
+  description: "0=Disabled (default), 1=Enabled"
+
+- id: login_response
+  type: enum
+  values: ["Login Administrator", "Login User"]
+  description: "Returned after successful password entry"
+
+- id: error_code
+  type: enum
+  values: ["E01", "E10", "E11", "E12", "E13", "E14", "E17", "E22", "E24", "E25", "E28", "E33"]
+  description: "E01=Invalid input, E10=Invalid command, E11=Invalid preset, E12=Invalid port, E13=Invalid value, E14=Not valid for configuration, E17=Invalid command for signal type, E22=Busy, E24=Privilege violation, E25=Device not present, E28=Bad filename, E33=Bad file type for logo"
 ```
 
 ## Variables
 ```yaml
-# All settable parameters are represented as Actions with explicit set/get pairs.
-# See Actions section for full enumeration.
+- id: contrast
+  type: integer
+  description: "Per-input contrast 0-127 (default 64)"
+
+- id: brightness
+  type: integer
+  description: "Per-input brightness 0-127 (default 64)"
+
+- id: detail_filter
+  type: integer
+  description: "Sharpness 0-127 (default 64)"
+
+- id: gain_level
+  type: integer
+  description: "DSP gain in 0.1 dB resolution (x10 multiplier), per OID"
+
+- id: group_master_fader
+  type: integer
+  description: "Group master fader value 0.1 dB resolution (x10)"
+
+- id: screen_saver_timeout
+  type: integer
+  description: "1-500 sec, 0=instant, 501=never (default)"
+
+- id: osd_menu_duration
+  type: integer
+  description: "1-500 sec, 501=never"
+
+- id: port_timeout
+  type: integer
+  description: "Tens of seconds; 1-65000 (default 30 = 300 sec)"
+
+- id: ip_address
+  type: string
+  description: "nnn.nnn.nnn.nnn (default 192.168.254.254)"
+
+- id: subnet_mask
+  type: string
+  description: "nnn.nnn.nnn.nnn (default 255.255.255.0)"
+
+- id: gateway_address
+  type: string
+  description: "nnn.nnn.nnn.nnn (default 0.0.0.0)"
+
+- id: unit_name
+  type: string
+  description: "Up to 63 chars A-Z 0-9 hyphen"
 ```
 
 ## Events
 ```yaml
-# Unsolicited messages the device sends:
 - id: reconfig
-  description: A change in the current input frequency was detected
-  params: []
+  description: "Sent when a change in current input frequency is detected"
+  payload: "Reconfig"
 
-- id: hotplug_event
-  description: Hot plug event detected on output
-  params:
-    - name: output
-      type: integer
-    - name: state
-      type: integer
-      description: 1=assertion, 0=de-assertion
+- id: hot_plug_output
+  description: "Hot plug event on an output"
+  payload: "HplgO{output}*{state}"
+  fields:
+    - { name: output, type: integer }
+    - { name: state, type: integer, description: "1=assertion, 0=de-assertion" }
 
 - id: hdcp_input_change
-  description: HDCP status change on input
-  params:
-    - name: input
-      type: integer
-    - name: status
-      type: integer
+  description: "Change in HDCP status of an input"
+  payload: "HdcpI{input}*{status}"
+  fields:
+    - { name: input, type: integer }
+    - { name: status, type: integer }
 
 - id: hdcp_output_change
-  description: HDCP status change on output
-  params:
-    - name: output
-      type: integer
-    - name: status
-      type: integer
+  description: "Change in HDCP status of an output"
+  payload: "HdcpO{output}*{status}"
+  fields:
+    - { name: output, type: integer }
+    - { name: status, type: integer }
 
 - id: sync_change
-  description: Sync change detected or removed on any input
-  params:
-    - name: inputs_status
-      type: string
-      description: Per-input video signal status (0=no signal, 1=signal detected)
+  description: "Sync detected or removed on any input (per-input bitmap)"
+  payload: "IN00 {status}*...*{status}"
+  fields:
+    - { name: status, type: bitmap, description: "Per-input video signal status 0/1" }
 
 - id: cec_received_data
-  description: CEC received data message (bidirectional mode)
-  params:
-    - name: output
-      type: integer
-    - name: address_byte
-      type: string
-    - name: data
-      type: string
-    - name: result
-      type: integer
+  description: "Asynchronous CEC received data in bidirectional mode"
+  payload: "DcecO{output}*{address_byte}{data}*{result}"
+  fields:
+    - { name: output, type: integer }
+    - { name: address_byte, type: string }
+    - { name: data, type: string }
+    - { name: result, type: integer }
 ```
 
 ## Macros
 ```yaml
-# Multi-step sequences from source:
-# None explicitly documented as macros.
-# However, the following compound operations are commonly used:
-# - Input preset save/recall includes multiple image parameters
-# - Tie preset save/recall includes full routing state
-# - Absolute system reset with/without IP retention are distinct multi-step procedures
+# UNRESOLVED: no multi-step macros documented in source
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks: []
-# UNRESOLVED: no explicit safety warnings or interlock procedures in source.
-# Note: HDCP encryption behavior may have legal implications for downstream device compatibility.
+confirmation_required_for:
+  - reset_absolute
+  - reset_absolute_retain_ip
+  - reset_partial
+  - erase_flash
+  - erase_current_dir
+  - erase_current_dir_recursive
+interlocks:
+  - id: network_reboot_required
+    description: "TCP/IP setting changes (DHCP, IP, subnet, gateway, port mapping) do not take effect until 'E 2BOOT }' is issued"
+  - id: admin_password_prereq_for_user
+    description: "A user password cannot be assigned if no administrative password exists (E14 error returned)"
+  - id: tp_remote_power_mode_lock
+    description: "Remote power is forced to Off in HDBT and XTP modes; attempting to change while not in DTP mode returns E14"
+notes:
+  - "Factory-configured passwords for all accounts equal the device serial number; case-sensitive"
+  - "Full factory reset (E ZQQQ }) removes serial-number passwords; unit then has no password"
+  - "DisplayPort Input 1 has HDCP Authorized permanently enabled"
+# UNRESOLVED: no electrical or voltage interlocks documented (power/current ratings not in this excerpt)
 ```
 
 ## Notes
-- Default IP: 192.168.254.254, subnet 255.255.255.0, gateway 0.0.0.0, DHCP off
-- Default RS-232: 9600 baud, 8 data bits, no parity, 1 stop bit
-- Factory default password = device serial number (case-sensitive)
-- Absolute system reset (E ZQQQ }) clears passwords to no password
-- Video is unmuted by default after power cycle
-- HDCP authorized is permanently enabled for DisplayPort IN1
-- Remote power forced off for HDBT and XTP modes
-- 4096x2160 rates available only for output resolution, not input EDID
-- 4:4:4 color sampling at scaled output rates available only to DTP2 Rx
-- CEC communication on DTP output requires standalone DTP or DTP2 receiver
-- Audio file slots 1-16, highest priority slot 1; lower priority requests during higher playback return E22 (Busy)
-- Auto Memory defaults to ON; settings automatically stored as presets
-- Input preset saveable values: Preset Name, Film Mode, Contrast, Brightness, Detail, H/V Position, H/V Size
-<!-- UNRESOLVED: TCP port number for IP control not stated in source — operator must determine port from device or network scan -->
-<!-- UNRESOLVED: flow control (RTS/CTS, XON/XOFF) for RS-232 not stated in source -->
-<!-- UNRESOLVED: UART start point default is 2000 but actual port numbers derived as IN7=2001, IN8=2002, OUT2=2003 — may conflict with well-known ports -->
-<!-- UNRESOLVED: firmware version ranges not stated in source -->
+- All command strings use the Extron SIS convention. In the source the escape character is rendered as "E"; the actual byte is 0x1B. The character "W" is interchangeable with E. The character "}" denotes carriage return (0x0D) with no LF; "]" denotes CR/LF in responses. The pipe "|" can substitute for "}". Spaces shown in the command tables are literal.
+- Response format varies with verbose mode (E CV}): mode 0 returns terse responses; modes 1-3 prepend the command mnemonic (e.g., "Vmt", "HdcpE", "GrpmD"). In verbose response mode the device also emits unsolicited responses for setting changes triggered by signal changes or other interfaces.
+- Audio DSP and Group Master commands apply only to the DTP2/XTP/HDBT output (output 2).
+- CEC bidirectional mode (4) generates asynchronous "DcecO..." messages from sink devices; control software must parse them out-of-band.
+- Three model variants share this command set: base (60-1615-01), IPCP SA (60-1615-02), and IPCP MA 70.
+- The "Z" character in Audio Mute commands (`{output}*{state}ZAmt`, `ZAmt`) is rendered ambiguously in the source PDF extraction. Implementers should consult the original Extron SIS reference for the exact byte; based on context it appears to be a literal letter Z rather than escape.
+
+<!-- UNRESOLVED: control TCP port (Telnet/SSH) — source describes Telnet/SSH access and a UART pass-through port (default 2000) but does not state the SIS control port number -->
+<!-- UNRESOLVED: serial flow control — only baud/parity/data/stop documented as defaults -->
+<!-- UNRESOLVED: firmware version compatibility ranges not stated in source -->
+<!-- UNRESOLVED: full set of CEC predefined command strings — source lists examples ("PwrOn", "PwrOff", "ShowMe") but not the complete dictionary -->
+<!-- UNRESOLVED: command response timing/latency characteristics not stated -->
+<!-- UNRESOLVED: per-block soft limit ranges for individual OIDs not enumerated in this excerpt -->
 
 ## Provenance
 
@@ -1888,11 +2020,15 @@ interlocks: []
 source_domains:
   - extron.com
   - media.extron.com
+  - manua.ls
+  - manuals.ca
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/68-3438-01_D_DTP_2_CrossPoint_82.pdf
+  - https://media.extron.com/public/download/files/userman/68-3438-50_A_DTP2_CP_82_SUG.pdf
+  - https://media.extron.com/public/download/files/userman/IN180x_and_DTP2_CrossPoint_82.pdf
+  - https://www.manua.ls/extron/dtp2-crosspoint-82/manual
+  - https://www.manuals.ca/extron/dtp2-crosspoint-82/manual
+retrieved_at: 2026-05-17T16:50:14.802Z
 last_checked_at: 2026-05-20T11:56:12.371Z
 ```
 
@@ -1903,14 +2039,24 @@ verdict: verified
 checked_at: 2026-05-20T11:56:12.371Z
 matched_actions: 250
 action_count: 250
-confidence: high
-summary: "All 250 spec actions matched; transport verified."
+confidence: medium
+summary: "All 250 spec actions matched; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "control TCP port (Telnet/SSH) not stated explicitly in source; UART pass-through start port is 2000 for over-TP UART, which is a different feature"
+- "flow control not stated in source; only baud/parity/data/stop documented as defaults"
+- "control Telnet/SSH port not stated in source"
+- "no multi-step macros documented in source"
+- "no electrical or voltage interlocks documented (power/current ratings not in this excerpt)"
+- "control TCP port (Telnet/SSH) — source describes Telnet/SSH access and a UART pass-through port (default 2000) but does not state the SIS control port number"
+- "serial flow control — only baud/parity/data/stop documented as defaults"
+- "firmware version compatibility ranges not stated in source"
+- "full set of CEC predefined command strings — source lists examples (\"PwrOn\", \"PwrOff\", \"ShowMe\") but not the complete dictionary"
+- "command response timing/latency characteristics not stated"
+- "per-block soft limit ranges for individual OIDs not enumerated in this excerpt"
 ```
 
 ---

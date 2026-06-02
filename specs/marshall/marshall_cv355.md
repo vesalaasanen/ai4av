@@ -27,14 +27,21 @@ last_checked_at: 2026-05-14T18:17:18.110Z
 generated_at: 2026-05-14T18:17:18.110Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "PelcoD external command list may require separate protocol implementation; not clear if both VISCA and PelcoD can operate simultaneously or if切换 is required"
+  - "all settable parameters are represented as Actions with direct commands"
+  - "device sends unsolicited notifications; VISCA supports event-like replies"
+  - "source describes no named multi-step macros"
+  - "no safety warnings or interlock procedures in source"
+  - "whether both VISCA and PelcoD can operate simultaneously on different interfaces not stated"
+  - "port 52381 stated for RS232 over IP; whether VISCA over IP uses same port or different port not explicitly separated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.110Z
   matched_actions: 130
   action_count: 166
-  confidence: high
-  summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified."
+  confidence: medium
+  summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1674,14 +1681,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.110Z
 matched_actions: 130
 action_count: 166
-confidence: high
-summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified."
+confidence: medium
+summary: "All 130 spec actions matched VISCA and PelcoD source commands; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "PelcoD external command list may require separate protocol implementation; not clear if both VISCA and PelcoD can operate simultaneously or if切换 is required"
+- "all settable parameters are represented as Actions with direct commands"
+- "device sends unsolicited notifications; VISCA supports event-like replies"
+- "source describes no named multi-step macros"
+- "no safety warnings or interlock procedures in source"
+- "whether both VISCA and PelcoD can operate simultaneously on different interfaces not stated"
+- "port 52381 stated for RS232 over IP; whether VISCA over IP uses same port or different port not explicitly separated in source"
 ```
 
 ---

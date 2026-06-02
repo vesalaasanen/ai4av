@@ -16,12 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T16:45:28.175Z
 last_checked_at: 2026-05-14T18:17:15.969Z
 generated_at: 2026-05-14T18:17:15.969Z
 firmware_coverage: "Not stated in source"
@@ -31,13 +29,23 @@ known_gaps:
   - B2BM
   - USBM
   - PSHF
+  - "TCP/IP control not documented — serial and IR only"
+  - "firmware version compatibility not stated in source"
+  - "protocol version V3.6 noted but no changelog for command additions"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences documented in source"
+  - "no additional safety interlock procedures stated in source"
+  - "IR discrete codes (Pronto CCF) documented but not structured as actions — binary IR protocol, not serial"
+  - "no response timeout specified"
+  - "HDMI5 input listed in IR table but not in RS-232 INPT command set"
+  - "POIS command has incomplete source list (only Air/AV/Component documented; HDMI not listed for POIS)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.969Z
   matched_actions: 40
   action_count: 40
-  confidence: high
-  summary: "All 70 spec actions (40 set/action + 30 query/feedback) match literal source commands with correct shapes and parameters; transport fully verified; only 4 source commands absent from spec, below the short threshold."
+  confidence: medium
+  summary: "All 70 spec actions (40 set/action + 30 query/feedback) match literal source commands with correct shapes and parameters; transport fully verified; only 4 source commands absent from spec, below the short threshold. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -720,12 +728,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T16:45:28.175Z
 last_checked_at: 2026-05-14T18:17:15.969Z
 ```
 
@@ -736,8 +742,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.969Z
 matched_actions: 40
 action_count: 40
-confidence: high
-summary: "All 70 spec actions (40 set/action + 30 query/feedback) match literal source commands with correct shapes and parameters; transport fully verified; only 4 source commands absent from spec, below the short threshold."
+confidence: medium
+summary: "All 70 spec actions (40 set/action + 30 query/feedback) match literal source commands with correct shapes and parameters; transport fully verified; only 4 source commands absent from spec, below the short threshold. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -747,6 +753,16 @@ summary: "All 70 spec actions (40 set/action + 30 query/feedback) match literal 
 - B2BM
 - USBM
 - PSHF
+- "TCP/IP control not documented — serial and IR only"
+- "firmware version compatibility not stated in source"
+- "protocol version V3.6 noted but no changelog for command additions"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences documented in source"
+- "no additional safety interlock procedures stated in source"
+- "IR discrete codes (Pronto CCF) documented but not structured as actions — binary IR protocol, not serial"
+- "no response timeout specified"
+- "HDMI5 input listed in IR table but not in RS-232 INPT command set"
+- "POIS command has incomplete source list (only Air/AV/Component documented; HDMI not listed for POIS)"
 ```
 
 ---

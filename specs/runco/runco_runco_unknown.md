@@ -28,14 +28,22 @@ last_checked_at: 2026-05-14T18:17:20.172Z
 generated_at: 2026-05-14T18:17:20.172Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no IP or network control documented — serial only"
+  - "all settable parameters represented as Actions with params;"
+  - "no unsolicited event notifications documented"
+  - "no explicit multi-step macros documented"
+  - "HDINPUTRES parameter encoding values 0-7 not confirmed against real device"
+  - "OUTRES parameter encoding values 0-5 not confirmed against real device"
+  - "no firmware version compatibility range stated in source"
+  - "no IP/network control protocol documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.172Z
   matched_actions: 57
   action_count: 88
-  confidence: high
-  summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -780,14 +788,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.172Z
 matched_actions: 57
 action_count: 88
-confidence: high
-summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim."
+confidence: medium
+summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no IP or network control documented — serial only"
+- "all settable parameters represented as Actions with params;"
+- "no unsolicited event notifications documented"
+- "no explicit multi-step macros documented"
+- "HDINPUTRES parameter encoding values 0-7 not confirmed against real device"
+- "OUTRES parameter encoding values 0-5 not confirmed against real device"
+- "no firmware version compatibility range stated in source"
+- "no IP/network control protocol documented"
 ```
 
 ---

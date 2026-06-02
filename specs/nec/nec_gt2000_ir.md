@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:49.974Z
 last_checked_at: 2026-04-24T14:43:55.013Z
 generated_at: 2026-04-24T14:43:55.013Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "this generic command reference (BDT140013 Rev 7.1) is shared across multiple NEC projector models; actual GT2000 command support may vary"
+  - "the source describes settable parameters as action commands (030-1, 030-2, etc.)"
+  - "source describes only query-response interaction; no unsolicited event notifications documented."
+  - "no multi-step macro sequences described in source."
+  - "detailed fault recovery sequences not provided in source."
+  - "Appendix values for input terminals, aspect ratios, eco modes, signal types, sub input settings, and base model types not included in extracted source text."
+  - "wireless LAN control not documented; manual references wireless LAN unit operation manual."
+  - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
   checked_at: 2026-04-24T14:43:55.013Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "Complete match: all actions verified against source; transport section fully resolved with no UNRESOLVED values remaining."
+  confidence: medium
+  summary: "Complete match: all actions verified against source; transport section fully resolved with no UNRESOLVED values remaining. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -789,7 +797,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:49.974Z
 last_checked_at: 2026-04-24T14:43:55.013Z
 ```
 
@@ -800,14 +808,21 @@ verdict: verified
 checked_at: 2026-04-24T14:43:55.013Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "Complete match: all actions verified against source; transport section fully resolved with no UNRESOLVED values remaining."
+confidence: medium
+summary: "Complete match: all actions verified against source; transport section fully resolved with no UNRESOLVED values remaining. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "this generic command reference (BDT140013 Rev 7.1) is shared across multiple NEC projector models; actual GT2000 command support may vary"
+- "the source describes settable parameters as action commands (030-1, 030-2, etc.)"
+- "source describes only query-response interaction; no unsolicited event notifications documented."
+- "no multi-step macro sequences described in source."
+- "detailed fault recovery sequences not provided in source."
+- "Appendix values for input terminals, aspect ratios, eco modes, signal types, sub input settings, and base model types not included in extracted source text."
+- "wireless LAN control not documented; manual references wireless LAN unit operation manual."
+- "firmware version compatibility not stated in source."
 ```
 
 ---

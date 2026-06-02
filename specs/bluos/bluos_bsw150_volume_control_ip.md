@@ -15,23 +15,28 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:51:30.797Z
 last_checked_at: 2026-05-16T18:51:30.797Z
 generated_at: 2026-05-16T18:51:30.797Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The source document covers the full BluOS Custom Integration API and is not BSW150-specific; supported inputs and features may vary by hardware model."
+  - "The source does not describe unsolicited push notifications. Long polling is the"
+  - "No multi-step sequences are described explicitly in the source."
+  - "no explicit interlock procedures or power-on sequencing requirements stated in source."
+  - "BSW150-specific hardware capabilities (available physical inputs, supported services) not enumerated in the source. The API document covers all BluOS players generically."
+  - "No error response codes or HTTP status codes documented in the source for failure cases (only <error> XML elements for /Browse)."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T18:51:30.797Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified."
+  confidence: medium
+  summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -583,11 +588,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:51:30.797Z
 last_checked_at: 2026-05-16T18:51:30.797Z
 ```
 
@@ -598,14 +601,20 @@ verdict: verified
 checked_at: 2026-05-16T18:51:30.797Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified."
+confidence: medium
+summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The source document covers the full BluOS Custom Integration API and is not BSW150-specific; supported inputs and features may vary by hardware model."
+- "The source does not describe unsolicited push notifications. Long polling is the"
+- "No multi-step sequences are described explicitly in the source."
+- "no explicit interlock procedures or power-on sequencing requirements stated in source."
+- "BSW150-specific hardware capabilities (available physical inputs, supported services) not enumerated in the source. The API document covers all BluOS players generically."
+- "No error response codes or HTTP status codes documented in the source for failure cases (only <error> XML elements for /Browse)."
+- "model-specific source not located"
 ```
 
 ---

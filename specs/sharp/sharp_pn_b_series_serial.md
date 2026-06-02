@@ -17,26 +17,33 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
   - business.sharpusa.com
+  - productadmin.sharp.ca
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
+  - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
 last_checked_at: 2026-05-14T18:17:20.447Z
 generated_at: 2026-05-14T18:17:20.447Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware versions or protocol version not stated"
+  - "PN-B401/PN-B501 may be discontinued; model naming variants (PN-40B401) unconfirmed"
+  - "no distinct settable parameters beyond those covered by Actions and Feedbacks"
+  - "no multi-step sequences described beyond repeater control and LAN login"
+  - "no explicit safety warnings or interlock procedures in source beyond timing constraints"
+  - "exact model naming variants (PN-40B401 etc.) not confirmed"
+  - "POWER SAVE MODE ON/OFF command code not in source"
+  - "OFF IF NO OPERATION command code not in source"
+  - "AUTO ASSIGN ID command code not in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.447Z
   matched_actions: 69
   action_count: 69
-  confidence: high
-  summary: "All 97 spec actions matched literally; full coverage verified."
+  confidence: medium
+  summary: "All 97 spec actions matched literally; full coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1072,13 +1079,11 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
   - business.sharpusa.com
+  - productadmin.sharp.ca
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
+  - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
 last_checked_at: 2026-05-14T18:17:20.447Z
 ```
@@ -1090,14 +1095,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.447Z
 matched_actions: 69
 action_count: 69
-confidence: high
-summary: "All 97 spec actions matched literally; full coverage verified."
+confidence: medium
+summary: "All 97 spec actions matched literally; full coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware versions or protocol version not stated"
+- "PN-B401/PN-B501 may be discontinued; model naming variants (PN-40B401) unconfirmed"
+- "no distinct settable parameters beyond those covered by Actions and Feedbacks"
+- "no multi-step sequences described beyond repeater control and LAN login"
+- "no explicit safety warnings or interlock procedures in source beyond timing constraints"
+- "exact model naming variants (PN-40B401 etc.) not confirmed"
+- "POWER SAVE MODE ON/OFF command code not in source"
+- "OFF IF NO OPERATION command code not in source"
+- "AUTO ASSIGN ID command code not in source"
 ```
 
 ---

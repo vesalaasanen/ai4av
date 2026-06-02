@@ -24,14 +24,16 @@ last_checked_at: 2026-05-14T18:17:21.647Z
 generated_at: 2026-05-14T18:17:21.647Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power control commands not present; voltage/power specs not applicable to software router"
+  - "complete version compatibility matrix not provided in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.647Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage."
+  confidence: medium
+  summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage. (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -318,14 +320,15 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.647Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage."
+confidence: medium
+summary: "All 25 spec actions matched literally in source; transport verified; complete command catalogue coverage. (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power control commands not present; voltage/power specs not applicable to software router"
+- "complete version compatibility matrix not provided in source"
 ```
 
 ---

@@ -19,22 +19,32 @@ compatible_with:
 source_domains:
   - convergingsystems.com
 source_urls:
-  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
-  - https://www.convergingsystems.com/bin/doc/integration/application_note_control4_v4_9.pdf
   - http://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
-retrieved_at: 2026-05-27T19:35:58.986Z
+  - http://www.convergingsystems.com/bin/doc/ibt/ibt_manual_0105.pdf
+retrieved_at: 2026-05-21T09:15:44.261Z
 last_checked_at: 2026-05-22T13:33:11.598Z
 generated_at: 2026-05-22T13:33:11.598Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "IBT-100 is a bus translator — actual controlled devices (IMC-100T, ILC-100x) are documented separately. This spec covers the IBT-100 as the transport gateway only."
+  - "RS-232 pinout / connector type not stated"
+  - "eNode IP addressing scheme not documented here"
+  - "IBT-100 native UDP port not stated"
+  - "no persistent parameter storage documented for IBT-100 itself"
+  - "no unsolicited event notifications documented for CS-Bus protocol"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "IBT-100 firmware version compatibility not stated"
+  - "RS-232 connector pinout not stated"
+  - "UDP port for IBT-100 native Ethernet interface not stated — eNode ports (5000/4000) are for the adapter, not IBT-100 itself"
 verification:
   verdict: verified
   checked_at: 2026-05-22T13:33:11.598Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions matched source commands with correct wire tokens and parameters; transport values verified verbatim."
+  confidence: medium
+  summary: "All 21 spec actions matched source commands with correct wire tokens and parameters; transport values verified verbatim. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -308,10 +318,9 @@ required_prefix: "#"
 source_domains:
   - convergingsystems.com
 source_urls:
-  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
-  - https://www.convergingsystems.com/bin/doc/integration/application_note_control4_v4_9.pdf
   - http://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
-retrieved_at: 2026-05-27T19:35:58.986Z
+  - http://www.convergingsystems.com/bin/doc/ibt/ibt_manual_0105.pdf
+retrieved_at: 2026-05-21T09:15:44.261Z
 last_checked_at: 2026-05-22T13:33:11.598Z
 ```
 
@@ -322,14 +331,24 @@ verdict: verified
 checked_at: 2026-05-22T13:33:11.598Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions matched source commands with correct wire tokens and parameters; transport values verified verbatim."
+confidence: medium
+summary: "All 21 spec actions matched source commands with correct wire tokens and parameters; transport values verified verbatim. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "IBT-100 is a bus translator — actual controlled devices (IMC-100T, ILC-100x) are documented separately. This spec covers the IBT-100 as the transport gateway only."
+- "RS-232 pinout / connector type not stated"
+- "eNode IP addressing scheme not documented here"
+- "IBT-100 native UDP port not stated"
+- "no persistent parameter storage documented for IBT-100 itself"
+- "no unsolicited event notifications documented for CS-Bus protocol"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "IBT-100 firmware version compatibility not stated"
+- "RS-232 connector pinout not stated"
+- "UDP port for IBT-100 native Ethernet interface not stated — eNode ports (5000/4000) are for the adapter, not IBT-100 itself"
 ```
 
 ---

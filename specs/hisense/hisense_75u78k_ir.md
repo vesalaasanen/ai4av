@@ -2,13 +2,13 @@
 spec_id: admin/hisense-75u78k
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Hisense 75U78K Control Spec"
-manufacturer: Hisense
+title: "HiSense 75U78K Control Spec"
+manufacturer: HiSense
 model_family: 75U78K
 aliases: []
 compatible_with:
   manufacturers:
-    - Hisense
+    - HiSense
   models:
     - 75U78K
   firmware: ""
@@ -17,586 +17,275 @@ compatible_with:
   required_options: []
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.623Z
-generated_at: 2026-05-14T18:17:16.623Z
+retrieved_at: 2026-06-02T01:39:56.617Z
+last_checked_at: 2026-06-02T05:46:06.357Z
+generated_at: 2026-06-02T05:46:06.357Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source documents no commands for the 75U78K or U78K/U7K consumer-TV family. E-Series (A6 prefix), M-Series (DD FF 00 08/07/06 frame), and WR-Series (DD FF 01 04 / 00 07 frame) are all distinct command dialects. No U78K-specific baud rate, frame format, or opcode set is stated."
+  - "75U78K baud rate not stated; M-Series and WR-Series use 9600, E-Series uses 115200. Applying M-Series default as best-guess inference."
+  - "75U78K not stated; all three documented series use 8"
+  - "75U78K not stated; all three documented series use none"
+  - "75U78K not stated; all three documented series use 1"
+  - "physical connector not stated for 75U78K. E-Series and WR-Series use RJ45-to-DB9; M-Series pinout differs."
+  - "source contains no 75U78K-specific commands. The three documented"
+  - "M-Series example with screen ID 01; verify against 75U78K"
+  - "M-Series example"
+  - "M-Series example; note M-Series frame is 11 bytes incl. wrapper"
+  - "M-Series example; vv = volume 0x00-0x64, yy = XOR check bit"
+  - "source documents M-Series status response format only; no 75U78K confirmation"
+  - "source contains no settable parameter lists for 75U78K"
+  - "source describes no unsolicited notification stream for 75U78K"
+  - "source contains no multi-step sequences for 75U78K"
+  - "source contains no safety warnings, interlock procedures, or"
+  - "source does not document any commands for the 75U78K or U78K/U7K family. The closest analogue (M-Series signage) is documented above, but the spec is flagged `declared_confidence: low` and should not be used to drive hardware without lab verification."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.623Z
-  matched_actions: 34
-  action_count: 59
-  confidence: high
-  summary: "All 34 spec actions matched source commands; transport verified."
+  checked_at: 2026-06-02T05:46:06.357Z
+  matched_actions: 10
+  action_count: 10
+  confidence: medium
+  summary: "All 10 spec actions match M-Series command templates exactly; transport parameters verified verbatim in source. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
-# Hisense 75U78K Control Spec
+# HiSense 75U78K Control Spec
 
 ## Summary
-Hisense commercial display supporting RS-232 control. Protocol uses HEX-encoded binary commands with per-device ID and XOR check bit. Source covers E Series (115200 baud), M Series (9600 baud), and WR Interactive Touch Displays (9600 baud). No authentication required.
+HiSense 75U78K is a ULED/U7K-series 75-inch LCD TV. This spec is built from HiSense's generic "External RS232 Control Guide," which documents HEX-byte RS-232 command sets for the E-Series, M-Series, and WR-Series digital-signage/display lines. The 75U78K is **not explicitly named** in the source; commands are assumed (inferred) to share the same framing only by family resemblance to the M-Series 8-data-byte frame.
 
-<!-- UNRESOLVED: specific model 75U78K not verified against source — source covers E/M/WR series generally -->
+<!-- UNRESOLVED: source documents no commands for the 75U78K or U78K/U7K consumer-TV family. E-Series (A6 prefix), M-Series (DD FF 00 08/07/06 frame), and WR-Series (DD FF 01 04 / 00 07 frame) are all distinct command dialects. No U78K-specific baud rate, frame format, or opcode set is stated. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600  # E Series: 115200; M Series + WR Series: 9600 — source states 9600 as primary
-  data_bits: 8
-  parity: none
-  stop_bits: 1
-  flow_control: none
+  baud_rate: 9600  # UNRESOLVED: 75U78K baud rate not stated; M-Series and WR-Series use 9600, E-Series uses 115200. Applying M-Series default as best-guess inference.
+  data_bits: 8  # UNRESOLVED: 75U78K not stated; all three documented series use 8
+  parity: none  # UNRESOLVED: 75U78K not stated; all three documented series use none
+  stop_bits: 1  # UNRESOLVED: 75U78K not stated; all three documented series use 1
+  flow_control: none  # UNRESOLVED: 75U78K not stated; all three documented series use none
+  # UNRESOLVED: physical connector not stated for 75U78K. E-Series and WR-Series use RJ45-to-DB9; M-Series pinout differs.
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: none  # inferred: no auth/login procedure described in source
 ```
 
 ## Traits
 ```yaml
-# inferred from command set:
-powerable: true  # Power On/Off commands present
-routable: true   # Input selection commands present (HDMI 1/2, VGA, DP, OPS, CMS, PDF, Media, USB)
-levelable: true  # Volume and brightness control present
-queryable: true  # Query commands for input, power state, volume, software version present
+- powerable       # inferred: power on/off commands present in documented series
+- routable        # inferred: input-select commands present in documented series
+- queryable       # inferred: query commands present in documented series
+- levelable       # inferred: set-volume commands present in documented series
 ```
 
 ## Actions
 ```yaml
-# E-Series commands (ID=yy, check bit=xx):
-- id: e_power_on
-  label: Power On (E Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-      description: Device ID in hex (01-FF), "00" broadcasts to all
-    - name: check_bit
-      type: string
-      description: XOR check bit calculated from command bytes
+# UNRESOLVED: source contains no 75U78K-specific commands. The three documented
+# command dialects (E-Series A6-prefix, M-Series DD-FF-prefix, WR-Series
+# DD-FF-prefix) are NOT interchangeable. Listing the M-Series commands below
+# as the most-likely match for a consumer TV, but every entry carries an
+# unresolved command and is NOT to be driven against a real 75U78K without
+# hardware confirmation.
+#
+# All commands use HEX byte sequences. yy / xx denote check bits (XOR of the
+# bytes highlighted in the source's red boxes); vv is a volume level 0x00-0x64.
 
-- id: e_power_off
-  label: Power Off (E Series)
+- id: power_on
+  label: Power On
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 08 C1 15 00 00 01 BB BB DD BB CC"  # UNRESOLVED: M-Series example with screen ID 01; verify against 75U78K
+  params: []
 
-- id: e_hdmi1_input
-  label: HDMI 1 Input (E Series)
+- id: power_off
+  label: Power Off
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 08 C1 15 00 00 01 AA AA DD BB CC"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_hdmi2_input
-  label: HDMI 2 Input (E Series)
+- id: hdmi_input
+  label: HDMI Input
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 08 00 00 01 08 C7"  # UNRESOLVED: M-Series example; note M-Series frame is 11 bytes incl. wrapper
+  params: []
 
-- id: e_ops_input
-  label: OPS Input (E Series)
+- id: displayport_input
+  label: DisplayPort Input
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 08 00 00 01 16 D9"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_cms_input
-  label: CMS Input (E Series)
+- id: vga_input
+  label: VGA Input
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 08 00 00 01 17 D8"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_pdf_input
-  label: PDF Input (E Series)
+- id: dvi_input
+  label: DVI Input
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 08 00 00 01 09 C6"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_media_input
-  label: Media Input (E Series)
+- id: mute_on
+  label: Mute Audio On
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 26 00 00 01 01 E0"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_usb_input
-  label: USB Input (E Series)
+- id: mute_off
+  label: Mute Audio Off
   kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: check_bit
-      type: string
+  command: "DD FF 00 07 C1 26 00 00 01 00 E1"  # UNRESOLVED: M-Series example
+  params: []
 
-- id: e_set_volume
-  label: Set Volume (E Series)
+- id: set_volume
+  label: Set Volume
   kind: action
+  command: "DD FF 00 07 C1 27 00 00 01 {vv} {yy}"  # UNRESOLVED: M-Series example; vv = volume 0x00-0x64, yy = XOR check bit
   params:
-    - name: device_id
-      type: string
-    - name: volume
+    - name: vv
       type: integer
-      description: Volume level 0-100 (hex)
-    - name: check_bit
-      type: string
-
-- id: e_set_mains_mode
-  label: Set Mains Application Mode (E Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: mode
+      description: Volume level 0x00-0x64 (0-100)
+    - name: yy
       type: integer
-      description: "00=Standby, 01=Power On, 02=last known state"
-    - name: check_bit
-      type: string
+      description: XOR check bit, computed from preceding bytes
 
-# M-Series commands (ID=xx, check bit=yy):
-- id: m_power_on
-  label: Power On (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_power_off
-  label: Power Off (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_displayport_input
-  label: DisplayPort Input (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_vga_input
-  label: VGA Input (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_hdmi_input
-  label: HDMI Input (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_dvi_input
-  label: DVI Input (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_mute_on
-  label: Mute Audio On (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_mute_off
-  label: Mute Audio Off (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-
-- id: m_set_volume
-  label: Set Volume (M Series)
-  kind: action
-  params:
-    - name: device_id
-      type: string
-    - name: volume
+- id: query_status
+  label: Query Status
+  kind: query
+  command: "DD FF 00 06 C1 28 00 00 01 EE"  # UNRESOLVED: M-Series example
+  params: []
+  returns:
+    - name: aa
       type: integer
-      description: Volume level 0-100 (hex)
-
-# WR-Series commands:
-- id: wr_power_on
-  label: Power On (WR Series)
-  kind: action
-
-- id: wr_power_off
-  label: Power Off (WR Series)
-  kind: action
-
-- id: wr_pc_input
-  label: PC Input (WR Series)
-  kind: action
-
-- id: wr_hdmi1_input
-  label: HDMI 1 Input (WR Series)
-  kind: action
-
-- id: wr_hdmi2_input
-  label: HDMI 2 Input (WR Series)
-  kind: action
-
-- id: wr_vga_input
-  label: VGA Input (WR Series)
-  kind: action
-
-- id: wr_displayport_input
-  label: DisplayPort Input (WR Series)
-  kind: action
-
-- id: wr_reboot_tv
-  label: Reboot TV (WR Series)
-  kind: action
-
-- id: wr_set_volume
-  label: Set Volume (WR Series)
-  kind: action
-  params:
-    - name: volume
+      description: Current volume level
+    - name: bb_cc
+      type: string
+      description: Current input source (05 02=DVI, 05 03=DisplayPort, 05 04=HDMI, 08 01=VGA)
+    - name: dd
       type: integer
-      description: Volume value (hex)
-
-- id: wr_video_mute_on
-  label: Video Mute On (WR Series)
-  kind: action
-
-- id: wr_video_mute_off
-  label: Video Mute Off (WR Series)
-  kind: action
-
-- id: wr_set_brightness
-  label: Set Brightness (WR Series)
-  kind: action
-  params:
-    - name: brightness
+      description: Power state (00=on, FF=off)
+    - name: ee
       type: integer
-      description: Brightness value
-
-- id: wr_set_date
-  label: Set Date (WR Series)
-  kind: action
-  params:
-    - name: year
+      description: Mute state (01=muted, 00=unmuted)
+    - name: ff
       type: integer
-    - name: month
-      type: integer
-    - name: day
-      type: integer
-
-- id: wr_set_time
-  label: Set Time (WR Series)
-  kind: action
-  params:
-    - name: hour
-      type: integer
-    - name: minute
-      type: integer
-    - name: second
-      type: integer
-
-# E-Series navigation:
-- id: e_source_menu
-  label: Source Menu (E Series)
-  kind: action
-
-- id: e_settings_menu
-  label: Settings Menu (E Series)
-  kind: action
-
-- id: e_up
-  label: Up (E Series)
-  kind: action
-
-- id: e_down
-  label: Down (E Series)
-  kind: action
-
-- id: e_ok
-  label: Ok (E Series)
-  kind: action
-
-- id: e_right
-  label: Right (E Series)
-  kind: action
-
-- id: e_left
-  label: Left (E Series)
-  kind: action
-
-- id: e_home
-  label: Home (E Series)
-  kind: action
-
-- id: e_vol_up
-  label: Volume Up (E Series)
-  kind: action
-
-- id: e_vol_down
-  label: Volume Down (E Series)
-  kind: action
-
-- id: e_return
-  label: Return (E Series)
-  kind: action
-
-- id: e_back
-  label: Back (E Series)
-  kind: action
-
-- id: e_num_0
-  label: Num 0 (E Series)
-  kind: action
-
-- id: e_num_1
-  label: Num 1 (E Series)
-  kind: action
-
-- id: e_num_2
-  label: Num 2 (E Series)
-  kind: action
-
-- id: e_num_3
-  label: Num 3 (E Series)
-  kind: action
-
-- id: e_num_4
-  label: Num 4 (E Series)
-  kind: action
-
-- id: e_num_5
-  label: Num 5 (E Series)
-  kind: action
-
-- id: e_num_6
-  label: Num 6 (E Series)
-  kind: action
-
-- id: e_num_7
-  label: Num 7 (E Series)
-  kind: action
-
-- id: e_num_8
-  label: Num 8 (E Series)
-  kind: action
-
-- id: e_num_9
-  label: Num 9 (E Series)
-  kind: action
-
-- id: e_channel_up
-  label: Channel Up (E Series)
-  kind: action
-
-- id: e_channel_down
-  label: Channel Down (E Series)
-  kind: action
-
-- id: e_subtitle
-  label: Subtitle (E Series)
-  kind: action
+      description: Signal presence (00=absent, 01=present)
 ```
 
 ## Feedbacks
 ```yaml
-# E-Series query responses:
-- id: e_input_selection_response
-  label: Query Input Selection Response (E Series)
+# UNRESOLVED: source documents M-Series status response format only; no 75U78K confirmation
+- id: power_state
   type: enum
-  values:
-    - "0D: HDMI 1"
-    - "06: HDMI 2"
-    - "0B: OPS"
-    - "15: CMS"
-    - "17: PDF"
-    - "16: Media"
-    - "0C: USB"
-    - "14: Home Screen"
+  values: [on, off]
+  source: "M-Series Query Status response byte dd: 00=on, FF=off"
 
-- id: e_power_state_response
-  label: Query Power State Response (E Series)
-  type: enum
-  values:
-    - "01: Off"
-    - "02: On"
-
-- id: e_volume_level_response
-  label: Query Volume Level Response (E Series)
+- id: volume_level
   type: integer
-  description: Volume level 0-100
+  range: [0, 100]
+  source: "M-Series Query Status response byte aa"
 
-- id: e_software_version_response
-  label: Query Software Version Response (E Series)
-  type: string
-  description: Platform version string
-
-# M-Series query responses:
-- id: m_status_response
-  label: Query Status Response (M Series)
-  type: object
-  properties:
-    volume:
-      type: integer
-      description: Current volume level
-    input:
-      type: enum
-      values:
-        - "05 02: DVI"
-        - "05 03: DisplayPort"
-        - "05 04: HDMI"
-        - "08 01: VGA"
-    power_state:
-      type: enum
-      values:
-        - "00: On"
-        - "FF: Off"
-    mute_state:
-      type: enum
-      values:
-        - "01: Muted"
-        - "00: Unmuted"
-    signal_present:
-      type: enum
-      values:
-        - "00: No signal"
-        - "01: Signal present"
-
-# WR-Series query responses:
-- id: wr_input_selection_response
-  label: Query Input Selection Response (WR Series)
+- id: input_source
   type: enum
-  values:
-    - "05 03 02: PC"
-    - "06 04 00: VGA"
-    - "05 05 00: HDMI 1"
-    - "05 03 01: HDMI 2"
-    - "05 03 03: DisplayPort"
+  values: [dvi, displayport, hdmi, vga]
+  source: "M-Series Query Status response bytes bb cc"
 
-- id: wr_power_state_response
-  label: Query Power State Response (WR Series)
+- id: mute_state
   type: enum
-  values:
-    - "00: Off"
-    - "01: On"
+  values: [muted, unmuted]
+  source: "M-Series Query Status response byte ee: 01=muted, 00=unmuted"
 
-- id: wr_software_version_response
-  label: Query Software Version Response (WR Series)
-  type: string
-
-- id: wr_volume_level_response
-  label: Query Volume Level Response (WR Series)
-  type: integer
+- id: signal_presence
+  type: enum
+  values: [absent, present]
+  source: "M-Series Query Status response byte ff: 00=absent, 01=present"
 ```
 
 ## Variables
 ```yaml
-# E-Series settable parameters:
-- id: e_device_id
-  label: Device ID
-  type: integer
-  range: "01-FF"
-  default: "01"
-
-# M-Series settable parameters:
-- id: m_device_id
-  label: Device ID
-  type: integer
-  range: "01-FF"
-  default: "01"
-
-# WR-Series settable parameters:
-- id: wr_volume
-  label: Volume
-  type: integer
-  range: "0-100"
+# UNRESOLVED: source contains no settable parameter lists for 75U78K
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: source does not describe unsolicited event notifications
+# UNRESOLVED: source describes no unsolicited notification stream for 75U78K
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: source does not describe multi-step macro sequences
+# UNRESOLVED: source contains no multi-step sequences for 75U78K
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: source does not describe safety warnings or interlock procedures
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements specific to the 75U78K.
 ```
 
 ## Notes
-E-Series uses `A6 xx 00 00 00 04 01` prefix with XOR check bit. Wake-on-LAN must be enabled for E-Series Power On to work. M-Series and WR-Series use `DD FF` prefix with different command structures.
+- Source document is HiSense's generic "External RS232 Control Guide" — the 75U78K (U78K / U7K consumer-TV family) is **not mentioned** anywhere. Three distinct command dialects are documented (E-Series A6-prefix, M-Series DD-FF-00-prefix, WR-Series DD-FF-01-prefix); they are NOT mutually compatible.
+- The actions above are transcribed from the M-Series section (lines 143–171) as the most plausible match for a consumer TV, but this assignment is **inference, not source evidence**. None of these bytes have been confirmed against an actual 75U78K unit.
+- All commands include XOR check bits (denoted `yy` in source). The check-bit algorithm is: XOR of the "highlighted red" bytes in the source's frame. For a real implementation, the dev must replicate the source's XOR framing exactly — substituting screen ID `01` for a different ID changes the check bit.
+- E-Series uses baud 115200, 8N1, no flow control, with an 8-byte RJ45-to-DB9 pinout. M-Series and WR-Series use 9600 8N1, no flow control, with their own RJ45-to-DB9 pinouts (RX/TX on different pins per series). The 75U78K's serial parameters are not in the source.
+- The "Uart Wake On" function must be enabled on E-Series panels for the power-on command to work; equivalent requirement for 75U78K is unknown.
+- Volume range across documented series: 0–100 decimal (0x00–0x64).
+- HDMI / VGA / DisplayPort / DVI / OPS / CMS / PDF / Media / USB / Home-Screen input codes are listed in the E-Series section (lines 55–63, 104); these are E-Series-specific opcodes and not interchangeable with M-Series codes.
+- Consumer-TV features expected on a 75U78K (channel up/down, number pad, EPG, app launch, smart-home integration) are entirely absent from the source.
 
-All commands are HEX-encoded binary — not ASCII text. Each command includes a device ID byte and a calculated XOR check bit. The check bit varies based on device ID.
-
-Source document covers three distinct Hisense display families with different protocol structures. The 75U78K model was not explicitly verified against these series.
-
-<!-- UNRESOLVED: model 75U78K specific firmware compatibility not confirmed against source -->
-<!-- UNRESOLVED: baud rate assumption — E Series uses 115200, M/WR use 9600 — spec uses 9600 as default -->
+<!-- UNRESOLVED: source does not document any commands for the 75U78K or U78K/U7K family. The closest analogue (M-Series signage) is documented above, but the spec is flagged `declared_confidence: low` and should not be used to drive hardware without lab verification. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.623Z
+retrieved_at: 2026-06-02T01:39:56.617Z
+last_checked_at: 2026-06-02T05:46:06.357Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.623Z
-matched_actions: 34
-action_count: 59
-confidence: high
-summary: "All 34 spec actions matched source commands; transport verified."
+checked_at: 2026-06-02T05:46:06.357Z
+matched_actions: 10
+action_count: 10
+confidence: medium
+summary: "All 10 spec actions match M-Series command templates exactly; transport parameters verified verbatim in source. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source documents no commands for the 75U78K or U78K/U7K consumer-TV family. E-Series (A6 prefix), M-Series (DD FF 00 08/07/06 frame), and WR-Series (DD FF 01 04 / 00 07 frame) are all distinct command dialects. No U78K-specific baud rate, frame format, or opcode set is stated."
+- "75U78K baud rate not stated; M-Series and WR-Series use 9600, E-Series uses 115200. Applying M-Series default as best-guess inference."
+- "75U78K not stated; all three documented series use 8"
+- "75U78K not stated; all three documented series use none"
+- "75U78K not stated; all three documented series use 1"
+- "physical connector not stated for 75U78K. E-Series and WR-Series use RJ45-to-DB9; M-Series pinout differs."
+- "source contains no 75U78K-specific commands. The three documented"
+- "M-Series example with screen ID 01; verify against 75U78K"
+- "M-Series example"
+- "M-Series example; note M-Series frame is 11 bytes incl. wrapper"
+- "M-Series example; vv = volume 0x00-0x64, yy = XOR check bit"
+- "source documents M-Series status response format only; no 75U78K confirmation"
+- "source contains no settable parameter lists for 75U78K"
+- "source describes no unsolicited notification stream for 75U78K"
+- "source contains no multi-step sequences for 75U78K"
+- "source contains no safety warnings, interlock procedures, or"
+- "source does not document any commands for the 75U78K or U78K/U7K family. The closest analogue (M-Series signage) is documented above, but the spec is flagged `declared_confidence: low` and should not be used to drive hardware without lab verification."
 ```
 
 ---

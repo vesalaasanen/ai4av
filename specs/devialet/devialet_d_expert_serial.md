@@ -19,19 +19,26 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:31.247Z
 last_checked_at: 2026-05-14T18:17:15.467Z
 generated_at: 2026-05-14T18:17:15.467Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact connector pinout not documented; trigger input/output specifications mentioned but trigger commands not detailed beyond TTL-level description"
+  - "no settable parameters beyond actions/feedbacks documented in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "exact serial connector pinout not documented"
+  - "trigger output configuration details not fully documented"
+  - "ACK response format details — source shows example but not full specification"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.467Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands."
+  confidence: medium
+  summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -360,7 +367,7 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:31.247Z
 last_checked_at: 2026-05-14T18:17:15.467Z
 ```
 
@@ -371,14 +378,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.467Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands."
+confidence: medium
+summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact connector pinout not documented; trigger input/output specifications mentioned but trigger commands not detailed beyond TTL-level description"
+- "no settable parameters beyond actions/feedbacks documented in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "exact serial connector pinout not documented"
+- "trigger output configuration details not fully documented"
+- "ACK response format details — source shows example but not full specification"
 ```
 
 ---

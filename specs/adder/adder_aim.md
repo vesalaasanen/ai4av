@@ -24,14 +24,23 @@ last_checked_at: 2026-05-14T18:17:13.857Z
 generated_at: 2026-05-14T18:17:13.857Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical transport port number not stated in source; no RS-232 or serial control documented"
+  - "no settable runtime parameters documented in source"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "physical HTTP port number (default 80/443) not stated in source"
+  - "no RS-232 serial control documented"
+  - "API version compatibility ranges not fully enumerated in source"
+  - "error code字典 not provided in source beyond example codes 2, 3, 9, 17, 210, 231"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:13.857Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source."
+  confidence: medium
+  summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -588,14 +597,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:13.857Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source."
+confidence: medium
+summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical transport port number not stated in source; no RS-232 or serial control documented"
+- "no settable runtime parameters documented in source"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "physical HTTP port number (default 80/443) not stated in source"
+- "no RS-232 serial control documented"
+- "API version compatibility ranges not fully enumerated in source"
+- "error code字典 not provided in source beyond example codes 2, 3, 9, 17, 210, 231"
 ```
 
 ---

@@ -1,19 +1,22 @@
 ---
-spec_id: admin/renkus_heinz-icxxrii
+spec_id: admin/renkus-heinz-icxxrii
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Renkus-Heinz ICxxR-II Control Spec"
+title: "Renkus-Heinz ICxxRII Control Spec"
 manufacturer: Renkus-Heinz
-model_family: IC8-R-II
+model_family: ICxxRII
 aliases: []
 compatible_with:
   manufacturers:
     - Renkus-Heinz
   models:
+    - ICxxRII
     - IC8-R-II
     - IC16-R-II
     - IC24-R-II
     - IC32-R-II
+    - "Iconyx R"
+    - "IC-Live R"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -26,31 +29,39 @@ source_urls:
   - https://www.renkus-heinz.com/wp-content/uploads/2021/03/icr-ii-usersmanual-2.pdf
   - "https://legacy.renkus-heinz.com/downloads/Iconyx_Gen-1_Gen-2/2_Then_Look_Here/1_Seriously_Did_You_Read_This/Servicing%20Serial%20Iconyx.pdf"
   - https://www.renkus-heinz.com/downloads/
+  - https://www.renkus-heinz.com/products/plugins/
 retrieved_at: 2026-05-18T11:03:05.228Z
-last_checked_at: 2026-05-18T16:46:53.266Z
-generated_at: 2026-05-18T16:46:53.266Z
+last_checked_at: 2026-06-02T06:13:07.826Z
+generated_at: 2026-06-02T06:13:07.826Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control surface (RHAON II) exists per family notes but not covered in this source — RS-485 only here."
+  - "flow control not explicitly stated; source says \"RS-485, 57,600/8-N-1\""
+  - "source does not describe unsolicited/asynchronous notifications."
+  - "voltage/current/power specs not stated in source."
+  - "TCP/IP RHAON-II control protocol (mentioned in family notes for the broader product line) is NOT in this source; this spec covers RS-485 only."
+  - "firmware version compatibility ranges not stated."
+  - "serial flow control not explicitly stated; source says \"57,600/8-N-1\" only."
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:46:53.266Z
-  matched_actions: 39
-  action_count: 39
-  confidence: high
-  summary: "All 39 spec actions matched to command table entries; baud rate and framing verified in source."
+  checked_at: 2026-06-02T06:13:07.826Z
+  matched_actions: 44
+  action_count: 44
+  confidence: medium
+  summary: "All 44 spec actions matched wire-level tokens in source; transport parameters (baud, framing, addressing) verified; coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-18
+created_at: 2026-06-02
 ---
 
-# Renkus-Heinz ICxxR-II Control Spec
+# Renkus-Heinz ICxxRII Control Spec
 
 ## Summary
-Renkus-Heinz Iconyx RHAON RS-485 protocol for ICxxR-II series column loudspeakers. Multi-unit array communication via RS-485, addressing each column by MAC address. Master-slave architecture — some commands target all units, others master-only. 57,600 baud, 8-N-1 framing.
+Renkus-Heinz Iconyx R / IC-Live R powered loudspeaker columns. RS-485 control protocol at 57600 8-N-1. Each column individually addressed by last 3 octets of its MAC address. Commands framed `AA <addr3> <payload> CC` (header AA, footer CC). Some commands master-only (M), some required for all units (A), some require ADC disable/enable wrapper (D). RS-485 control mode must first be enabled per column from RHAON software.
 
-<!-- UNRESOLVED: TCP/IP RHAON control layer not documented in this source — see RHAON-II manual PDF -->
+<!-- UNRESOLVED: TCP/IP control surface (RHAON II) exists per family notes but not covered in this source — RS-485 only here. -->
 
 ## Transport
 ```yaml
@@ -61,504 +72,479 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
+  flow_control: none  # UNRESOLVED: flow control not explicitly stated; source says "RS-485, 57,600/8-N-1"
+  variant: rs485
 addressing:
-  port: null  # UNRESOLVED: serial port number not stated in source
+  framing:
+    header: "0xAA"
+    footer: "0xCC"
+    address_bytes: 3  # last 3 octets of column MAC (first 3 always 00:1B:DE)
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable    # inferred from RemotePowerON / RemotePowerOFF
+- queryable    # inferred from Status request command
+- levelable    # inferred from Sendvolume / gain encoding table
+- routable     # inferred from AES/EBU input switching commands
 ```
 
 ## Actions
 ```yaml
 - id: status_request
   label: Status Request
-  kind: action
-  params: []
-  description: Returns 7 status messages. See Status Message section.
-
-- id: remote_power_on
-  label: Remote Power On
-  kind: action
-  params: []
-  note: Master unit only
-
-- id: remote_power_off
-  label: Remote Power Off
-  kind: action
-  params: []
-  note: Master unit only
-
-- id: toggle_mute
-  label: Toggle Mute
-  kind: action
-  params: []
-  note: Master unit only
-
-- id: toggle_analog_pad
-  label: Toggle Analog Pad
-  kind: action
-  params: []
-  note: Master unit only
-
-- id: set_7segment
-  label: Set 7-Segment Display
-  kind: action
-  params:
-    - name: digit
-      type: integer
-      description: Digit value 0-F (hex nibble)
-  note: Type "A" - all units
-
-- id: turn_decimal_points_on
-  label: Turn Decimal Points On
-  kind: action
-  params: []
-  note: Type "A"
-
-- id: turn_decimal_points_off
-  label: Turn Decimal Points Off
-  kind: action
-  params: []
-  note: Type "A"
-
-- id: save_decimal_points_default
-  label: Save Decimal Points Default Status
-  kind: action
-  params: []
-  note: Type "A"
-
-- id: enable_7segment_display
-  label: Enable 7-Segment Display
-  kind: action
-  params: []
-  note: Type "A"
-
-- id: disable_7segment_display
-  label: Disable 7-Segment Display
-  kind: action
-  params: []
-  note: Type "A"
-
-- id: save_7segment_default
-  label: Save 7-Segment Default Status
-  kind: action
-  params: []
-  note: Type "A"
+  kind: query
+  command: "AA <addr3> 01 02 CC"
+  scope: all_units
+  notes: Returns 7 status messages (gain, delay, speaker open coil, supply voltages, temperature, P/S temperature, last loaded preset). See Feedbacks.
 
 - id: led_on
-  label: LED On
+  label: LED On (Wink)
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 07 CC"
+  scope: all_units
 
 - id: led_off
   label: LED Off
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 08 CC"
+  scope: all_units
 
 - id: board_reset
   label: Board Reset
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 09 CC"
+  scope: all_units
 
-- id: micro_version_hardware_revision
-  label: Microcontroller Firmware / Hardware Revision
-  kind: action
-  params: []
-  note: Type "A" - returns response with FW version, HW revision, password
+- id: micro_version_hw_rev_query
+  label: Microcontroller Firmware / Hardware Assembly Revision Query
+  kind: query
+  command: "AA <addr3> 02 0A CC"
+  scope: all_units
+  notes: Response = <Header><Address><5 bytes FW Ver><32 bytes HW Rev><32 bytes Password><Footer>. ASCII, HW Rev/Password terminated with 0xFF.
 
 - id: disable_adc
   label: Disable ADC
   kind: action
-  params: []
-  note: Type "A" - requires undivded microcontroller attention; must disable before certain commands
+  command: "AA <addr3> 02 98 CC"
+  scope: all_units
+  notes: Wait 100ms after issuing before sending an ADC-restricted command.
 
 - id: enable_adc
   label: Enable ADC
   kind: action
-  params: []
-  note: Type "A" - re-enable after disable_adc; wait 200ms
+  command: "AA <addr3> 02 99 CC"
+  scope: all_units
+  notes: Wait 200ms after issuing.
+
+- id: set_7segment_digit
+  label: Set 7-Segment to Digit
+  kind: action
+  command: "AA <addr3> 02 8{x} CC"
+  scope: all_units
+  params:
+    - name: x
+      type: integer
+      description: Digit value (low nibble of second payload byte; 0x80..0x8F range)
+
+- id: decimal_points_on
+  label: Decimal Points On
+  kind: action
+  command: "AA <addr3> 02 94 CC"
+  scope: all_units
+
+- id: decimal_points_off
+  label: Decimal Points Off
+  kind: action
+  command: "AA <addr3> 02 95 CC"
+  scope: all_units
+
+- id: save_decimal_points_default
+  label: Save Decimal Points Default Status
+  kind: action
+  command: "AA <addr3> 02 AE CC"
+  scope: all_units
+
+- id: enable_7segment_display
+  label: Enable 7-Segment Display
+  kind: action
+  command: "AA <addr3> 02 9E CC"
+  scope: all_units
+
+- id: disable_7segment_display
+  label: Disable 7-Segment Display
+  kind: action
+  command: "AA <addr3> 02 9F CC"
+  scope: all_units
+
+- id: save_7segment_default
+  label: Save 7-Segment Default Status
+  kind: action
+  command: "AA <addr3> 02 A7 CC"
+  scope: all_units
 
 - id: disable_crestron_comms_saved
   label: Disable Crestron Comms (Saved)
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 10 CC"
+  scope: all_units
+  notes: Returns column to CobraNet/RHAON mode and persists state.
 
 - id: disable_crestron_comms_not_saved
   label: Disable Crestron Comms (Not Saved)
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 AC CC"
+  scope: all_units
 
-- id: read_preset_metadata
-  label: Read 2nd Set of Preset Beam Steering Metadata
-  kind: action
+- id: read_preset_metadata_2
+  label: Read 2nd Set of Preset Metadata
+  kind: query
+  command: "AA <addr3> 09 {preset} CC"
+  scope: all_units
+  requires_adc_disable: true
   params:
     - name: preset
       type: integer
-      description: Preset number (0-based)
-  note: Type "A,D" - requires ADC disable/enable; returns 128-byte metadata block
+      description: Preset index (single byte)
+  notes: Response = <Header><Address><128 bytes metadata><Footer>. Metadata layout = 1 byte audience-area count, 48 bytes audience-area dimensions (floats), 4 bytes array X, 4 bytes array Y, 4 bytes array angle, 63 bytes ASCII preset name (0xFF-terminated). Unused dimension bytes filled 0xFF.
 
 - id: begin_test_tone_scan
   label: Begin Test Tone Channel Scan
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 A8 CC"
+  scope: all_units
 
 - id: end_test_tone_scan
   label: End Test Tone Channel Scan
   kind: action
-  params: []
-  note: Type "A"
+  command: "AA <addr3> 02 A9 CC"
+  scope: all_units
 
 - id: enter_button_press
   label: Enter Button Press
   kind: action
-  params: []
-  note: Type "A,D" - wait 15 seconds after issuing for preset to load
+  command: "AA <addr3> 02 90 CC"
+  scope: all_units
+  requires_adc_disable: true
+  notes: Wait 15 seconds after issuing for preset to load.
+
+- id: remote_power_on
+  label: Remote Power On
+  kind: action
+  command: "AA <addr3> 02 12 CC"
+  scope: master_only
+
+- id: remote_power_off
+  label: Remote Power Off
+  kind: action
+  command: "AA <addr3> 02 13 CC"
+  scope: master_only
+
+- id: toggle_mute
+  label: Toggle Mute
+  kind: action
+  command: "AA <addr3> 02 16 CC"
+  scope: master_only
+
+- id: toggle_analog_pad
+  label: Toggle Analog Pad
+  kind: action
+  command: "AA <addr3> 02 17 CC"
+  scope: master_only
+
+- id: lock_buttons
+  label: Lock Front-Panel Buttons
+  kind: action
+  command: "AA <addr3> 02 0B CC"
+  scope: master_only
+
+- id: unlock_buttons
+  label: Unlock Front-Panel Buttons
+  kind: action
+  command: "AA <addr3> 02 0C CC"
+  scope: master_only
 
 - id: send_delay
-  label: Send Delay
+  label: Send Delay (R and L channels)
   kind: action
+  command: "AA <addr3> 07 {Rhi} {Rlo} {Lhi} {Llo} CC"
+  scope: master_only
   params:
-    - name: delay_r_ms
-      type: number
-      description: Right channel delay in ms (max 170ms at 48kHz, 85ms at 96kHz)
-    - name: delay_l_ms
-      type: number
-      description: Left channel delay in ms
-  note: Master unit only - encoding formula: delay_ms * (sample_rate_Hz / 1000)
+    - name: Rhi
+      type: integer
+      description: Right-channel delay high byte (16-bit value = delay_ms * sample_rate_Hz / 1000)
+    - name: Rlo
+      type: integer
+      description: Right-channel delay low byte
+    - name: Lhi
+      type: integer
+      description: Left-channel delay high byte
+    - name: Llo
+      type: integer
+      description: Left-channel delay low byte
+  notes: Max 170 ms per channel @ 48 kHz, 85 ms @ 96 kHz. Example payload "07 1F E0 0D B0" = R=170ms L=73ms @ 48 kHz.
 
 - id: save_delay
   label: Save Delay
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 1A CC"
+  scope: master_only
 
-- id: turn_aes_off
-  label: Turn AES Off
+- id: aes_off
+  label: AES/EBU Input Off
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 96 CC"
+  scope: master_only
 
-- id: turn_aes_on
-  label: Turn AES On
+- id: aes_on
+  label: AES/EBU Input On
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 97 CC"
+  scope: master_only
 
-- id: turn_phase_inversion_off
-  label: Turn Phase Inversion Off
+- id: phase_inversion_off
+  label: Phase Inversion Off
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 A5 CC"
+  scope: master_only
 
-- id: turn_phase_inversion_on
-  label: Turn Phase Inversion On
+- id: phase_inversion_on
+  label: Phase Inversion On
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 A6 CC"
+  scope: master_only
 
 - id: send_volume
   label: Send Volume
   kind: action
+  command: "AA <addr3> 06 {gain_byte} {gain_counter} CC"
+  scope: master_only
   params:
-    - name: gain_db
-      type: number
-      description: Gain in dB (range -100.0 to 0.0)
-  note: Master unit only - use Gain Encoding table for hex values
+    - name: gain_byte
+      type: integer
+      description: Gain byte (hex) per Gain Encoding table; e.g. 0xC8 = 0.0 dB
+    - name: gain_counter
+      type: integer
+      description: Gain counter (hex) per Gain Encoding table; e.g. 0xC9 = 0.0 dB
+  notes: Range 0.0 dB (C8 C9) down to -100.0 dB (00 00) in 0.5 dB steps. See Gain Encoding table in source.
 
 - id: save_volume
   label: Save Volume
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 02 18 CC"
+  scope: master_only
 
-- id: lock_buttons
-  label: Lock Buttons
+- id: test_tone_set_freq_440hz_amp1
+  label: Test Tone Set Frequency 440 Hz (D2Audio amp 1)
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 2A 54 B2 00 00 3F 01 2C 60 CC"
+  scope: all_units
+  notes: Low-frequency driver test tone.
 
-- id: unlock_buttons
-  label: Unlock Buttons
+- id: test_tone_set_freq_440hz_amp2
+  label: Test Tone Set Frequency 440 Hz (D2Audio amp 2)
   kind: action
-  params: []
-  note: Master unit only
+  command: "AA <addr3> 2A 54 B4 00 00 3F 01 2C 60 CC"
+  scope: all_units
 
-- id: test_tone_set_frequency_440hz
-  label: Set Test Tone Frequency 440Hz
+- id: test_tone_set_freq_5khz_amp1
+  label: Test Tone Set Frequency 5 kHz (D2Audio amp 1)
   kind: action
-  params: []
-  note: Requires D2Audio address byte per amp; sent twice for 2-amp column
+  command: "AA <addr3> 2A 54 B2 00 00 3F 0D 55 57 CC"
+  scope: all_units
+  notes: High-frequency driver test tone.
 
-- id: test_tone_set_frequency_5khz
-  label: Set Test Tone Frequency 5kHz
+- id: test_tone_set_freq_5khz_amp2
+  label: Test Tone Set Frequency 5 kHz (D2Audio amp 2)
   kind: action
-  params: []
-  note: Requires D2Audio address byte per amp; sent twice for 2-amp column
+  command: "AA <addr3> 2A 54 B4 00 00 3F 0D 55 57 CC"
+  scope: all_units
 
-- id: test_tone_set_level
-  label: Set Test Tone Level
+- id: test_tone_set_level_neg12db_amp1
+  label: Test Tone Set Level -12 dB (D2Audio amp 1)
   kind: action
-  params:
-    - name: level_db
-      type: number
-      description: Level in dB (e.g. -12)
-  note: Requires D2Audio address byte per amp
+  command: "AA <addr3> 2A 54 B2 00 00 42 DF D9 0D CC"
+  scope: all_units
 
-- id: test_tone_engage
-  label: Engage Sine Tone Generator
+- id: test_tone_set_level_neg12db_amp2
+  label: Test Tone Set Level -12 dB (D2Audio amp 2)
   kind: action
-  params: []
-  note: Requires D2Audio address byte per amp
+  command: "AA <addr3> 2A 54 B4 00 00 42 DF D9 0D CC"
+  scope: all_units
 
-- id: test_tone_disengage
-  label: Disengage Sine Tone Generator
+- id: test_tone_engage_amp1
+  label: Engage Sine Tone Generator (D2Audio amp 1)
   kind: action
-  params: []
-  note: Requires D2Audio address byte per amp
+  command: "AA <addr3> 2A 54 B2 00 00 40 80 00 00 CC"
+  scope: all_units
+
+- id: test_tone_engage_amp2
+  label: Engage Sine Tone Generator (D2Audio amp 2)
+  kind: action
+  command: "AA <addr3> 2A 54 B4 00 00 40 80 00 00 CC"
+  scope: all_units
+
+- id: test_tone_disengage_amp1
+  label: Disengage Sine Tone Generator (D2Audio amp 1)
+  kind: action
+  command: "AA <addr3> 2A 54 B2 00 00 40 00 00 00 CC"
+  scope: all_units
+
+- id: test_tone_disengage_amp2
+  label: Disengage Sine Tone Generator (D2Audio amp 2)
+  kind: action
+  command: "AA <addr3> 2A 54 B4 00 00 40 00 00 00 CC"
+  scope: all_units
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_state
-  label: Power State
-  type: enum
-  values: [on, off]
-  description: From status message yy byte bit 3
-
-- id: mute_state
-  label: Mute State
-  type: enum
-  values: [muted, unmuted]
-  description: From status message yy byte bit 1
-
-- id: input_pad_state
-  label: Input Pad State
-  type: enum
-  values: [enabled, disabled]
-  description: From status message yy byte bit 2
-
-- id: signal_present
-  label: Signal Present
-  type: boolean
-  description: From status message message 3 xx byte bit 6
-
-- id: signal_clip
-  label: Signal Clip
-  type: boolean
-  description: From status message message 3 xx byte bit 7
-
-- id: delay_values
-  label: Delay Values
-  type: object
+- id: status_msg1_gain_flags
+  label: Status Message 1 (Gain + Flags)
+  frame: "AA <addr3> 2C <gain> <flags> CC"
   fields:
-    - name: delay_r_ms
-      type: number
-    - name: delay_l_ms
-      type: number
-  description: From status message message 2 - R and L delay in ms
+    - name: gain
+      description: Current gain byte (see Gain Encoding table)
+    - name: flags
+      description: Bit-packed (bit 1=mute, 2=input pad, 3=remote power, 4=fault relay, 5=front LED, 6=alarm pin high/low, 7=alarm pin connected, 8=button lock)
 
-- id: speaker_open_coil
-  label: Speaker Open Coil Status
-  type: object
+- id: status_msg2_delay
+  label: Status Message 2 (Delay)
+  frame: "AA <addr3> <Rhi> <Rlo> <Lhi> <Llo> CC"
+
+- id: status_msg3_speaker_coil_flags
+  label: Status Message 3 (Speaker Open Coil + I/O Flags)
+  frame: "AA <addr3> 2D <speaker_open_coil> <flags> CC"
   fields:
-    - name: coils
-      type: array
-      items:
-        type: boolean
-      description: 8 booleans for 8 speakers; true=open coil. From message 3 coil byte
-    - name: external_rh_switch_attached
-      type: boolean
-    - name: segment_display_status
-      type: boolean
-    - name: aes_input_status
-      type: boolean
-    - name: ethernet_connected
-      type: boolean
-    - name: fault_relay_default
-      type: boolean
-    - name: signal_present
-      type: boolean
-    - name: signal_clip
-      type: boolean
-    - name: phase_inversion
-      type: boolean
-  description: From status message message 3
+    - name: speaker_open_coil
+      description: Each bit = 1 speaker. 0=OK, 1=open. Bit 1 = top speaker, bit 8 = bottom speaker.
+    - name: flags
+      description: Bit 1=ext RH-switch attached, 2=7-segment display status, 3=AES/EBU input status, 4=Ethernet connected, 5=fault relay default behavior, 6=signal present, 7=signal clip, 8=phase inversion.
 
-- id: power_supply_status
-  label: Power Supply Status
-  type: object
+- id: status_msg4_7seg_supply
+  label: Status Message 4 (7-Segment Digits + Supply Voltages)
+  frame: "AA <addr3> 29 <7seg_digits> <flags> CC"
   fields:
-    - name: supply_5v
-      type: boolean
-    - name: supply_12v
-      type: boolean
-    - name: supply_1_8v
-      type: boolean
-    - name: supply_n12v
-      type: boolean
-    - name: supply_3_3v
-      type: boolean
-    - name: d2audio_amp_status
-      type: enum
-      values: [ok, error]
-  description: From status message message 4
+    - name: flags
+      description: Bit 1=+5V OK, 2=+12V OK, 3=+1.8V OK, 4=-12V OK, 5=+3.3V OK, 6/7=unassigned, 8=D2Audio amp fault (1=BAD).
 
-- id: column_temperature
-  label: Column Temperature
-  type: number
-  unit: Fahrenheit
-  description: From status message message 5 - formula: temp = (((tenc * 2.4) / 1024) * 1000 + 500) / 10
+- id: status_msg5_column_temperature
+  label: Status Message 5 (Column Temperature, F)
+  frame: "AA <addr3> 2F <tenc_hi> <tenc_lo> CC"
+  notes: "Temperature_F = ((((tenc * 2.4) / 1024) * 1000) + 500) / 10"
 
-- id: power_supply_temperature
-  label: Power Supply Temperature
-  type: number
-  unit: Fahrenheit
-  description: From status message message 6
+- id: status_msg6_psu_temperature
+  label: Status Message 6 (Power Supply Temperature, F)
+  frame: "AA <addr3> 31 <tenc_hi> <tenc_lo> CC"
+  notes: Same encoding as msg 5.
 
-- id: last_loaded_preset
-  label: Last Loaded Preset
-  type: integer
-  description: From status message message 7 - FF if no preset loaded
-
-- id: rs485_mode_status
-  label: RS-485 Mode Status
-  type: boolean
-  description: From status message message 7 xx bit 1
-
-- id: preset_metadata
-  label: Preset Beam Steering Metadata
-  type: object
+- id: status_msg7_last_preset
+  label: Status Message 7 (Last Loaded Preset + Mode Flags)
+  frame: "AA <addr3> 32 <last_preset> <flags> CC"
   fields:
-    - name: audience_areas
-      type: integer
-    - name: audience_area_dimensions
-      type: object
-      description: Floats for (x,y) beginning and end
-    - name: array_position_x
-      type: number
-    - name: array_position_y
-      type: number
-    - name: array_position_angle
-      type: number
-    - name: preset_name
-      type: string
-  description: 128-byte metadata block from read_preset_metadata response
+    - name: last_preset
+      description: 0xFF if no preset has been loaded.
+    - name: flags
+      description: Bit 1=RS-485 mode status, 2=7-segment display default status, 3=7-segment decimal point default status, 4-8 unassigned.
 
-- id: firmware_version
-  label: Firmware Version
-  type: string
-  description: 5 bytes ASCII from micro_version_hardware_revision response
+- id: preset_metadata_response
+  label: Preset Metadata (Set 2) Response
+  frame: "AA <addr3> <128 bytes metadata> CC"
+  notes: Returned in response to read_preset_metadata_2.
 
-- id: hardware_revision
-  label: Hardware Assembly Revision
-  type: string
-  description: 32 bytes ASCII (0xFF terminated) from micro_version_hardware_revision response
+- id: firmware_hw_response
+  label: Microcontroller Firmware / Hardware Revision Response
+  frame: "AA <addr3> <5 bytes FW Ver ASCII> <32 bytes HW Rev ASCII> <32 bytes Password ASCII> CC"
+  notes: HW Rev and Password strings 0xFF-terminated.
 ```
 
 ## Variables
 ```yaml
-- id: volume_gain
-  label: Volume Gain
-  type: number
-  unit: dB
-  range:
-    min: -100.0
-    max: 0.0
-  encoding: See Gain Encoding table (0.0dB = 0xC8, -100.0dB = 0x00)
+- id: gain_db
+  label: Output Gain (dB)
+  type: float
+  range: [-100.0, 0.0]
+  step: 0.5
+  encoding: gain_encoding_table
+  setter: send_volume
+  persist: save_volume
+  notes: See full Gain Encoding table in source (0.0 dB = C8 C9 ... -100.0 dB = 00 00).
 
-- id: delay_right
-  label: Delay Right Channel
-  type: number
-  unit: ms
-  range:
-    min: 0
-    max: 170
-  description: Max 170ms at 48kHz, 85ms at 96kHz
+- id: delay_ms_right
+  label: Delay Right Channel (ms)
+  type: integer
+  range_48k: [0, 170]
+  range_96k: [0, 85]
+  encoding: "delay_int = delay_ms * sample_rate_Hz / 1000 (16-bit)"
+  setter: send_delay
+  persist: save_delay
 
-- id: delay_left
-  label: Delay Left Channel
-  type: number
-  unit: ms
-  range:
-    min: 0
-    max: 170
-  description: Max 170ms at 48kHz, 85ms at 96kHz
+- id: delay_ms_left
+  label: Delay Left Channel (ms)
+  type: integer
+  range_48k: [0, 170]
+  range_96k: [0, 85]
+  encoding: "delay_int = delay_ms * sample_rate_Hz / 1000 (16-bit)"
+  setter: send_delay
+  persist: save_delay
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event definitions in source - device sends status messages only on request
+# UNRESOLVED: source does not describe unsolicited/asynchronous notifications.
+# All response frames are reply-to-request only (see Feedbacks).
 ```
 
 ## Macros
 ```yaml
-- id: open_coil_test
-  label: Open Coil Test Sequence
-  description: |
-    1. Stop requesting status messages
-    2. Mute master column (if needed)
-    3. Begin test tone channel scan
-    4. Set frequency and level commands
-    5. Engage sine tone generator
-    6. Wait 10 seconds
-    7. Request column status (open coil data in response)
-    8. Disengage generator
-    9. End test tone channel scan
-    10. Unmute master column (if needed)
+- id: open_coil_test_sequence
+  label: Open-Coil Driver Test Sequence
+  steps:
+    - Stop polling status messages.
+    - Issue Toggle Mute on master column (if necessary).
+    - Send begin_test_tone_scan.
+    - Send test_tone_set_freq_440hz_amp1 + test_tone_set_freq_440hz_amp2 (LF drivers) OR 5 kHz variants (HF drivers).
+    - Send test_tone_set_level_neg12db_amp1 + test_tone_set_level_neg12db_amp2.
+    - Send test_tone_engage_amp1 + test_tone_engage_amp2.
+    - Wait 10 seconds.
+    - Send status_request and decode Message 3 speaker_open_coil byte.
+    - Send test_tone_disengage_amp1 + test_tone_disengage_amp2.
+    - Send end_test_tone_scan.
+    - Toggle Mute master column back (if necessary).
 
-- id: adc_sensitive_command
-  label: ADC-Sensitive Command Wrapper
-  description: |
-    1. Issue Disable ADC - wait 100ms
-    2. Run command
-    3. Issue Enable ADC - wait 200ms
+- id: adc_restricted_command_wrapper
+  label: ADC-Restricted Command Wrapper
+  steps:
+    - Send disable_adc, wait 100 ms.
+    - Send the ADC-restricted command (e.g. enter_button_press, read_preset_metadata_2).
+    - Send enable_adc, wait 200 ms.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
+confirmation_required_for:
+  - board_reset
+  - remote_power_off
 interlocks:
-  - description: ADC-sensitive commands require Disable ADC / Enable ADC wrapper sequence
-    reference: "Section: Enabling / Disabling the ADC"
-  - description: Test tone sequence must engage/disengage generator and wait 10 seconds
-    reference: "Section: Test Tones - order-of-operations"
-  - description: Master unit identified via DIP switch; slave columns bypass RHAON input card
-    reference: "Section: Background"
-  - description: Each column in array addressed individually by MAC address; routing commands may require master-only or all-units targeting
-    reference: "Section: Background"
-# UNRESOLVED: power cycling, fault relay behavior, and emergency muting procedures not documented in source
+  - description: ADC-restricted commands (kind D) MUST be wrapped in disable_adc / enable_adc with the documented 100 ms / 200 ms waits.
+    affected_commands: [enter_button_press, read_preset_metadata_2]
+  - description: Open-coil test must mute master, run scan window, then unmute and stop scan before resuming normal use.
+    affected_commands: [test_tone_engage_amp1, test_tone_engage_amp2]
+# UNRESOLVED: voltage/current/power specs not stated in source.
 ```
 
 ## Notes
-
-Command frame format: `<Header 0xAA> <Address 3 bytes (last 3 octets of MAC, prefix 00:1B:DE)> <Command payload bytes> <Footer 0xCC>`
-
-Wiring: 6-pin 3.5mm Phoenix connector J4 — pins 2 (RS485 Y), 3 (RS485 X), 4 (DGND). Vdd+, Remote LED Out, Program not used for RS-485 comms.
-
-Gain encoding is a lookup table mapping dB values to hex gain bytes (0xC8 = 0.0dB down to 0x00 = -100dB). Counter bytes also defined but primary encoding uses gain byte column.
-
-Preset loading via "Enter" button command requires 15-second wait after issuing command.
-
-<!-- UNRESOLVED: TCP/IP control layer not in this source document — see RHAON-II manual for network control protocol -->
-<!-- UNRESOLVED: Dante/AES67 support not documented in this source -->
-<!-- UNRESOLVED: CobraNet configuration not documented in this source -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: exact fault relay behavior and error codes not fully enumerated in source -->
-<!-- UNRESOLVED: sample rate mode (48kHz/96kHz) selection command not found in source -->
+- RS-485 control mode must be enabled per column from RHAON software ("Switch Device to RS485 mode") before any of these commands work. Disabling returns control to CobraNet/RHAON; can be done either via RHAON or by issuing `disable_crestron_comms_saved` / `disable_crestron_comms_not_saved` on the bus.
+- In a multi-column array, the master column (set via on-unit DIP switches) feeds audio to slaves. Master-only (M) commands target master; All-units (A) commands must be sent individually to each column.
+- Address bytes = last 3 octets of the column's MAC address; first 3 are always `00:1B:DE`.
+- Wiring: 6-pin 3.5 mm Phoenix connector J4 (bottom-left of User Interface Panel). Pin 2 = RS-485 Y, pin 3 = RS-485 X, pin 4 = DGND. Pins 1/5/6 (Vdd+, Remote LED Out, Program) reserved for Remote Controller.
+- Family covers Iconyx R Gen-3 line: IC8-R-II, IC16-R-II, IC24-R-II, IC32-R-II, and IC-Live R variants. Per-column communication required regardless of array size.
+- Test tones have two near-identical command pairs because each column has 2 D2Audio amplifiers (address byte B2 vs B4).
+<!-- UNRESOLVED: TCP/IP RHAON-II control protocol (mentioned in family notes for the broader product line) is NOT in this source; this spec covers RS-485 only. -->
+<!-- UNRESOLVED: firmware version compatibility ranges not stated. -->
+<!-- UNRESOLVED: serial flow control not explicitly stated; source says "57,600/8-N-1" only. -->
 
 ## Provenance
 
@@ -571,25 +557,32 @@ source_urls:
   - https://www.renkus-heinz.com/wp-content/uploads/2021/03/icr-ii-usersmanual-2.pdf
   - "https://legacy.renkus-heinz.com/downloads/Iconyx_Gen-1_Gen-2/2_Then_Look_Here/1_Seriously_Did_You_Read_This/Servicing%20Serial%20Iconyx.pdf"
   - https://www.renkus-heinz.com/downloads/
+  - https://www.renkus-heinz.com/products/plugins/
 retrieved_at: 2026-05-18T11:03:05.228Z
-last_checked_at: 2026-05-18T16:46:53.266Z
+last_checked_at: 2026-06-02T06:13:07.826Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:46:53.266Z
-matched_actions: 39
-action_count: 39
-confidence: high
-summary: "All 39 spec actions matched to command table entries; baud rate and framing verified in source."
+checked_at: 2026-06-02T06:13:07.826Z
+matched_actions: 44
+action_count: 44
+confidence: medium
+summary: "All 44 spec actions matched wire-level tokens in source; transport parameters (baud, framing, addressing) verified; coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control surface (RHAON II) exists per family notes but not covered in this source — RS-485 only here."
+- "flow control not explicitly stated; source says \"RS-485, 57,600/8-N-1\""
+- "source does not describe unsolicited/asynchronous notifications."
+- "voltage/current/power specs not stated in source."
+- "TCP/IP RHAON-II control protocol (mentioned in family notes for the broader product line) is NOT in this source; this spec covers RS-485 only."
+- "firmware version compatibility ranges not stated."
+- "serial flow control not explicitly stated; source says \"57,600/8-N-1\" only."
 ```
 
 ---

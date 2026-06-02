@@ -25,14 +25,23 @@ last_checked_at: 2026-05-14T18:17:14.891Z
 generated_at: 2026-05-14T18:17:14.891Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "6AXG, 6AXB, 6AXC, 6AXM, 6AXY follow same pattern as 6AXR - not enumerated individually for brevity"
+  - "FINE_GAMMA_G, FINE_GAMMA_B follow same pattern"
+  - "no multi-step macro sequences described in source"
+  - "6AXG, 6AXB, 6AXC, 6AXM, 6AXY commands follow same pattern as 6AXR but not individually enumerated"
+  - "FINE_GAMMA_G and FINE_GAMMA_B follow same pattern as FINE_GAMMA_R but not individually enumerated"
+  - "exact DZOOM_POS coordinate range not specified in source"
+  - "exact Fine Gamma number of adjustment points not specified"
+  - "KEYSTONE command parameters referenced in RC emulation but no standalone command documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.891Z
   matched_actions: 48
   action_count: 48
-  confidence: high
-  summary: "All 90 spec actions matched source commands literally; transport parameters verified."
+  confidence: medium
+  summary: "All 90 spec actions matched source commands literally; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -988,14 +997,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.891Z
 matched_actions: 48
 action_count: 48
-confidence: high
-summary: "All 90 spec actions matched source commands literally; transport parameters verified."
+confidence: medium
+summary: "All 90 spec actions matched source commands literally; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "6AXG, 6AXB, 6AXC, 6AXM, 6AXY follow same pattern as 6AXR - not enumerated individually for brevity"
+- "FINE_GAMMA_G, FINE_GAMMA_B follow same pattern"
+- "no multi-step macro sequences described in source"
+- "6AXG, 6AXB, 6AXC, 6AXM, 6AXY commands follow same pattern as 6AXR but not individually enumerated"
+- "FINE_GAMMA_G and FINE_GAMMA_B follow same pattern as FINE_GAMMA_R but not individually enumerated"
+- "exact DZOOM_POS coordinate range not specified in source"
+- "exact Fine Gamma number of adjustment points not specified"
+- "KEYSTONE command parameters referenced in RC emulation but no standalone command documented"
 ```
 
 ---

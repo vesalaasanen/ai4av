@@ -19,19 +19,27 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+retrieved_at: 2026-04-29T09:36:15.329Z
 last_checked_at: 2026-04-25T21:15:02.288Z
 generated_at: 2026-04-25T21:15:02.288Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware versions compatible with this API version not stated"
+  - "RS-232 or other serial control not covered in this source"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "exact NAD T758-specific input types not enumerated in this BluOS CI API doc"
+  - "power on/off commands not present — device may need CEC or IR for power control"
+  - "maximum number of grouped players not stated"
+  - "error response codes and handling not fully documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:15:02.288Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 25 spec actions map to documented BluOS API endpoints with correct transport (HTTP GET on port 11000, POST for reboot) and no hallucinated commands."
+  confidence: medium
+  summary: "All 25 spec actions map to documented BluOS API endpoints with correct transport (HTTP GET on port 11000, POST for reboot) and no hallucinated commands. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -388,7 +396,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+retrieved_at: 2026-04-29T09:36:15.329Z
 last_checked_at: 2026-04-25T21:15:02.288Z
 ```
 
@@ -399,14 +407,21 @@ verdict: verified
 checked_at: 2026-04-25T21:15:02.288Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 25 spec actions map to documented BluOS API endpoints with correct transport (HTTP GET on port 11000, POST for reboot) and no hallucinated commands."
+confidence: medium
+summary: "All 25 spec actions map to documented BluOS API endpoints with correct transport (HTTP GET on port 11000, POST for reboot) and no hallucinated commands. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware versions compatible with this API version not stated"
+- "RS-232 or other serial control not covered in this source"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "exact NAD T758-specific input types not enumerated in this BluOS CI API doc"
+- "power on/off commands not present — device may need CEC or IR for power control"
+- "maximum number of grouped players not stated"
+- "error response codes and handling not fully documented"
 ```
 
 ---

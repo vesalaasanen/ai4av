@@ -19,7 +19,8 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+  - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
+retrieved_at: 2026-05-14T15:57:21.734Z
 last_checked_at: 2026-05-19T17:04:13.476Z
 generated_at: 2026-05-19T17:04:13.476Z
 firmware_coverage: "Not stated in source"
@@ -28,13 +29,24 @@ known_gaps:
   - MSEL00
   - MSEL01
   - MSEL02
+  - "CB EB PowerLite L630U not listed in the applicable models table — command set may differ from the documented home-projector models"
+  - "TCP/IP port number not stated in source"
+  - "no response format tables documented beyond colon/ERR"
+  - "TCP port number not stated in source"
+  - "settable parameter names beyond PWR/MUTE/SOURCE not enumerated in source"
+  - "no multi-step sequences described in source"
+  - "source notes PWR ON may require preparation steps on some models"
+  - "CB EB PowerLite L630U not in applicable model list — exact command compatibility unconfirmed"
+  - "TCP/IP port number for network control not stated"
+  - "full set of queryable parameters not enumerated"
+  - "response format details beyond colon/ERR not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:04:13.476Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec."
+  confidence: medium
+  summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -217,7 +229,8 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+  - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
+retrieved_at: 2026-05-14T15:57:21.734Z
 last_checked_at: 2026-05-19T17:04:13.476Z
 ```
 
@@ -228,8 +241,8 @@ verdict: verified
 checked_at: 2026-05-19T17:04:13.476Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec."
+confidence: medium
+summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -238,6 +251,17 @@ summary: "All 9 spec actions matched literally in source with correct shapes; tr
 - MSEL00
 - MSEL01
 - MSEL02
+- "CB EB PowerLite L630U not listed in the applicable models table — command set may differ from the documented home-projector models"
+- "TCP/IP port number not stated in source"
+- "no response format tables documented beyond colon/ERR"
+- "TCP port number not stated in source"
+- "settable parameter names beyond PWR/MUTE/SOURCE not enumerated in source"
+- "no multi-step sequences described in source"
+- "source notes PWR ON may require preparation steps on some models"
+- "CB EB PowerLite L630U not in applicable model list — exact command compatibility unconfirmed"
+- "TCP/IP port number for network control not stated"
+- "full set of queryable parameters not enumerated"
+- "response format details beyond colon/ERR not documented"
 ```
 
 ---

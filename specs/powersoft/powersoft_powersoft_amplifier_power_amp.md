@@ -25,14 +25,23 @@ last_checked_at: 2026-04-25T21:50:01.791Z
 generated_at: 2026-04-25T21:50:01.791Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact command byte framing / protocol wire format not fully documented beyond command string names"
+  - "max attenuation value not stated"
+  - "source does not document unsolicited event/notification mechanisms"
+  - "no multi-step sequences explicitly described in source"
+  - "exact UDP packet framing / command string encoding not documented"
+  - "feedback value units (e.g., attenuation in dB, impedance in ohms) not stated"
+  - "response format for feedback channels not documented"
+  - "discovery protocol on port 30718 not documented"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:50:01.791Z
   matched_actions: 23
   action_count: 23
   confidence: low
-  summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified"
+  summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -437,13 +446,21 @@ checked_at: 2026-04-25T21:50:01.791Z
 matched_actions: 23
 action_count: 23
 confidence: low
-summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified"
+summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact command byte framing / protocol wire format not fully documented beyond command string names"
+- "max attenuation value not stated"
+- "source does not document unsolicited event/notification mechanisms"
+- "no multi-step sequences explicitly described in source"
+- "exact UDP packet framing / command string encoding not documented"
+- "feedback value units (e.g., attenuation in dB, impedance in ohms) not stated"
+- "response format for feedback channels not documented"
+- "discovery protocol on port 30718 not documented"
+- "firmware version compatibility not stated"
 ```
 
 ---

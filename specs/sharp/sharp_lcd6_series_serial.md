@@ -16,26 +16,26 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T20:38:54.440Z
 last_checked_at: 2026-05-31T21:05:30.324Z
 generated_at: 2026-05-31T21:05:30.324Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "document states \"NEC LCD monitor\" in text but Sharp LCD6 Series in filename; model name not explicitly stated in document body"
+  - "DHCP/TCP settings not in source; section references User's manual"
+  - "precise firmware version not stated in source"
+  - "voltage/power specs not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:05:30.324Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions confirmed verbatim against source CTL command sections and VCP format specification; transport parameters match exactly."
+  confidence: medium
+  summary: "All 18 spec actions confirmed verbatim against source CTL command sections and VCP format specification; transport parameters match exactly. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1126,14 +1126,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T20:38:54.440Z
 last_checked_at: 2026-05-31T21:05:30.324Z
 ```
 
@@ -1144,14 +1140,17 @@ verdict: verified
 checked_at: 2026-05-31T21:05:30.324Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions confirmed verbatim against source CTL command sections and VCP format specification; transport parameters match exactly."
+confidence: medium
+summary: "All 18 spec actions confirmed verbatim against source CTL command sections and VCP format specification; transport parameters match exactly. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "document states \"NEC LCD monitor\" in text but Sharp LCD6 Series in filename; model name not explicitly stated in document body"
+- "DHCP/TCP settings not in source; section references User's manual"
+- "precise firmware version not stated in source"
+- "voltage/power specs not stated in source"
 ```
 
 ---

@@ -30,13 +30,23 @@ protocol_coverage: []
 known_gaps:
   - "demo API (testing utility, not control)"
   - "recorder sub-resource mirrors (duplicate of recording endpoints)"
+  - "specific Mantaray hardware model identifiers not stated; source covers Furnace API generically"
+  - "HTTPS port not stated (assumed standard 443 but not confirmed)"
+  - "specific HTTPS port not stated in source"
+  - "source does not describe unsolicited push notifications or event subscriptions"
+  - "no multi-step macro sequences explicitly defined in source"
+  - "source contains no safety warnings, interlock procedures, or power-on sequencing"
+  - "specific Mantaray hardware models covered by this API not enumerated"
+  - "API rate limits not documented"
+  - "maximum concurrent client connections not stated"
+  - "firmware version compatibility range not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-08T15:40:56.725Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation."
+  confidence: medium
+  summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -768,8 +778,8 @@ verdict: verified
 checked_at: 2026-05-08T15:40:56.725Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation."
+confidence: medium
+summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -777,6 +787,16 @@ summary: "All 44 spec actions matched verbatim to source commands/endpoints with
 ```yaml
 - "demo API (testing utility, not control)"
 - "recorder sub-resource mirrors (duplicate of recording endpoints)"
+- "specific Mantaray hardware model identifiers not stated; source covers Furnace API generically"
+- "HTTPS port not stated (assumed standard 443 but not confirmed)"
+- "specific HTTPS port not stated in source"
+- "source does not describe unsolicited push notifications or event subscriptions"
+- "no multi-step macro sequences explicitly defined in source"
+- "source contains no safety warnings, interlock procedures, or power-on sequencing"
+- "specific Mantaray hardware models covered by this API not enumerated"
+- "API rate limits not documented"
+- "maximum concurrent client connections not stated"
+- "firmware version compatibility range not stated"
 ```
 
 ---

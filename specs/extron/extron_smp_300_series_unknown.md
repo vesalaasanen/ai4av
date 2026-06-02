@@ -19,25 +19,36 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - aca.im
   - extron.com
-  - media.extron.com
+  - manualslib.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://aca.im/driver_docs/Extron/extron_smp300_Series.pdf
+  - https://www.extron.com/download/files/userman/smp_300_series_68-2238-01_R.pdf
+  - https://www.manualslib.com/manual/2867393/Extron-Electronics-Smp-300-Series.html
+  - https://www.extron.com/download/
+retrieved_at: 2026-05-13T02:01:02.032Z
 last_checked_at: 2026-05-20T12:13:14.227Z
 generated_at: 2026-05-20T12:13:14.227Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "USB config port protocol details beyond SIS over USB serial not fully specified"
+  - "command syntax for audio output routing not fully clear in source table"
+  - "no multi-step macro sequences explicitly documented in source"
+  - "power-on sequencing requirements not documented; recording"
+  - "firmware version compatibility ranges not stated"
+  - "maximum concurrent Telnet connection count not explicitly stated (E26 error exists)"
+  - "USB config port protocol specifics beyond SIS serial emulation"
+  - "SSL/SSH certificate management not documented in source excerpt"
+  - "precise command syntax for audio output routing command incomplete in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T12:13:14.227Z
   matched_actions: 171
   action_count: 171
-  confidence: high
-  summary: "All 171 actions matched; transport verified."
+  confidence: medium
+  summary: "All 171 actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1648,13 +1659,15 @@ interlocks: []
 
 ```yaml
 source_domains:
+  - aca.im
   - extron.com
-  - media.extron.com
+  - manualslib.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://aca.im/driver_docs/Extron/extron_smp300_Series.pdf
+  - https://www.extron.com/download/files/userman/smp_300_series_68-2238-01_R.pdf
+  - https://www.manualslib.com/manual/2867393/Extron-Electronics-Smp-300-Series.html
+  - https://www.extron.com/download/
+retrieved_at: 2026-05-13T02:01:02.032Z
 last_checked_at: 2026-05-20T12:13:14.227Z
 ```
 
@@ -1665,14 +1678,22 @@ verdict: verified
 checked_at: 2026-05-20T12:13:14.227Z
 matched_actions: 171
 action_count: 171
-confidence: high
-summary: "All 171 actions matched; transport verified."
+confidence: medium
+summary: "All 171 actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "USB config port protocol details beyond SIS over USB serial not fully specified"
+- "command syntax for audio output routing not fully clear in source table"
+- "no multi-step macro sequences explicitly documented in source"
+- "power-on sequencing requirements not documented; recording"
+- "firmware version compatibility ranges not stated"
+- "maximum concurrent Telnet connection count not explicitly stated (E26 error exists)"
+- "USB config port protocol specifics beyond SIS serial emulation"
+- "SSL/SSH certificate management not documented in source excerpt"
+- "precise command syntax for audio output routing command incomplete in source"
 ```
 
 ---

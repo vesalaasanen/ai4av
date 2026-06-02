@@ -18,25 +18,26 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - extron.com
   - media.extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-2358-01_D_MPS_602.pdf
+retrieved_at: 2026-05-14T23:37:53.361Z
 last_checked_at: 2026-05-15T21:38:57.294Z
 generated_at: 2026-05-15T21:38:57.294Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP control documented; USB control details not specified beyond mention"
+  - "no multi-step sequences explicitly described in source"
+  - "USB control protocol details not specified beyond SIS acceptance"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:38:57.294Z
   matched_actions: 82
   action_count: 82
-  confidence: high
-  summary: "All 82 spec actions matched verbatim in source; transport parameters verified; no missing or extra commands."
+  confidence: medium
+  summary: "All 82 spec actions matched verbatim in source; transport parameters verified; no missing or extra commands. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1013,13 +1014,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - extron.com
   - media.extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-2358-01_D_MPS_602.pdf
+retrieved_at: 2026-05-14T23:37:53.361Z
 last_checked_at: 2026-05-15T21:38:57.294Z
 ```
 
@@ -1030,14 +1028,17 @@ verdict: verified
 checked_at: 2026-05-15T21:38:57.294Z
 matched_actions: 82
 action_count: 82
-confidence: high
-summary: "All 82 spec actions matched verbatim in source; transport parameters verified; no missing or extra commands."
+confidence: medium
+summary: "All 82 spec actions matched verbatim in source; transport parameters verified; no missing or extra commands. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP control documented; USB control details not specified beyond mention"
+- "no multi-step sequences explicitly described in source"
+- "USB control protocol details not specified beyond SIS acceptance"
+- "firmware version compatibility not stated"
 ```
 
 ---

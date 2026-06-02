@@ -1,16 +1,16 @@
 ---
-spec_id: admin/integra-tun-3-7-north-america
+spec_id: admin/integra-tun-3-7
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Integra TUN 3.7 (North America) Control Spec"
 manufacturer: Integra
-model_family: "TUN 3.7 (North America)"
+model_family: "Integra TUN 3.7"
 aliases: []
 compatible_with:
   manufacturers:
     - Integra
   models:
-    - "TUN 3.7 (North America)"
+    - "Integra TUN 3.7"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,30 +20,34 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:35.442Z
-last_checked_at: 2026-05-14T18:17:17.070Z
-generated_at: 2026-05-14T18:17:17.070Z
+last_checked_at: 2026-06-02T01:48:15.829Z
+generated_at: 2026-06-02T01:48:15.829Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "model-specific firmware version not stated in source"
+  - "no safety warnings, interlocks, or power-on sequencing"
+  - "source has mnemonic collision for DIF (two functions share opcode)"
+  - "eISCP exact receive-buffer handling and \"Reserved\" byte semantics beyond 0x000000 not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.070Z
-  matched_actions: 297
-  action_count: 297
-  confidence: high
-  summary: "All 479 spec actions map to documented ISCP commands; transport parameters verified against source; complete protocol coverage achieved."
+  checked_at: 2026-06-02T01:48:15.829Z
+  matched_actions: 91
+  action_count: 91
+  confidence: medium
+  summary: "All 91 spec actions matched literally to source ISCP commands; transport parameters (9600/8/N/1, port 60128) fully verified; source command catalogue exhaustively represented by spec. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-02
 ---
 
 # Integra TUN 3.7 (North America) Control Spec
 
 ## Summary
-AV Receiver supporting ISCP (Integra Serial Control Protocol) over both RS-232C and Ethernet (eISCP). Supports 4-zone multi-room audio distribution, FM/AM/XM/SIRIUS/HD Radio tuner, network streaming, and comprehensive audio/video routing and processing. Control interfaces: 3-wire RS-232C at 9600 baud, and TCP on port 60128 (configurable 49152–65535).
+The Integra TUN 3.7 (North America) is an AV receiver line programmable via the Integra Serial Control Protocol (ISCP) v1.15. Two transports are documented: 3-wire RS-232C (9600/8/N/1) and Ethernet (TCP, default port 60128) using the eISCP envelope. Commands use a fixed 3-character opcode followed by hex or symbolic parameters, prefixed with `!1` and terminated with CR (serial) or EOF/CR/LF (eISCP).
 
-<!-- UNRESOLVED: North America regional restrictions or model variants not detailed in source -->
+<!-- UNRESOLVED: model-specific firmware version not stated in source -->
 
 ## Transport
 ```yaml
@@ -51,7 +55,7 @@ protocols:
   - serial
   - tcp
 addressing:
-  port: 60128  # default; configurable 49152-65535
+  port: 60128
 serial:
   baud_rate: 9600
   data_bits: 8
@@ -64,1504 +68,1091 @@ auth:
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable       # PWR / ZPW / PW3 / PW4 power commands present
+- routable        # SLI / SLA / SLR / SLZ / SL3 / SL4 input/output routing present
+- queryable       # QSTN suffix on most commands
+- levelable       # MVL / ZVL / VL3 / VL4 / tone / balance / SWL / CTL present
 ```
 
 ## Actions
 ```yaml
-- id: power_on
-  label: System Power On
+# All ISCP actions use the literal message format: !1<CMD><PARAM>\r for serial,
+# or the same payload wrapped in an eISCP header (16-byte big-endian) for TCP.
+# QSTN suffix denotes a query that elicits a status response from the receiver.
+- id: pwr
+  label: System Power
   kind: action
-  params: []
-- id: power_off
-  label: System Standby
-  kind: action
-  params: []
-- id: power_qstn
-  label: Get System Power Status
-  kind: action
-  params: []
-
-- id: audio_muting_on
-  label: Audio Muting On
-  kind: action
-  params: []
-- id: audio_muting_off
-  label: Audio Muting Off
-  kind: action
-  params: []
-- id: audio_muting_toggle
-  label: Audio Muting Toggle
-  kind: action
-  params: []
-- id: audio_muting_qstn
-  label: Get Audio Muting State
-  kind: action
-  params: []
-
-- id: volume_set
-  label: Set Master Volume
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: Volume 0-100 (hex 00-64)
-- id: volume_up
-  label: Volume Up
-  kind: action
-  params: []
-- id: volume_down
-  label: Volume Down
-  kind: action
-  params: []
-- id: volume_up_1db
-  label: Volume Up 1dB Step
-  kind: action
-  params: []
-- id: volume_down_1db
-  label: Volume Down 1dB Step
-  kind: action
-  params: []
-- id: volume_qstn
-  label: Get Volume Level
-  kind: action
-  params: []
-
-- id: input_select
-  label: Select Input
-  kind: action
-  params:
-    - name: input
-      type: string
-      description: |
-        Input selector code:
-        "00" VIDEO1 VCR/DVR | "01" VIDEO2 CBL/SAT | "02" VIDEO3 GAME/TV GAME
-        "03" VIDEO4 AUX1 | "04" VIDEO5 AUX2 | "10" DVD | "20" TAPE1 TV/TAPE
-        "21" TAPE2 | "22" PHONO | "23" CD | "24" FM | "25" AM | "26" TUNER
-        "27" MUSIC SERVER | "28" INTERNET RADIO | "29" USB/USB(Front)
-        "2A" USB(Rear) | "30" MULTI CH | "40" Universal PORT
-- id: input_up
-  label: Selector Up
-  kind: action
-  params: []
-- id: input_down
-  label: Selector Down
-  kind: action
-  params: []
-- id: input_qstn
-  label: Get Selector Position
-  kind: action
-  params: []
-
-- id: listening_mode_set
-  label: Set Listening Mode
-  kind: action
-  params:
-    - name: mode
-      type: string
-      description: |
-        "00" STEREO | "01" DIRECT | "02" SURROUND | "03" FILM Game-RPG
-        "04" THX | "05" ACTION Game-Action | "06" MUSICAL Game-Rock | "07" MONO MOVIE
-        "08" ORCHESTRA | "09" UNPLUGGED | "0A" STUDIO-MIX | "0B" TV LOGIC
-        "0C" ALL CH STEREO | "0D" THEATER-DIMENSIONAL | "0E" ENHANCED 7/ENHANCE Game-Sports
-        "0F" MONO | "11" PURE AUDIO | "80" PLII/PLIIx Movie | "81" PLII/PLIIx Music
-        "82" Neo:6 Cinema | "83" Neo:6 Music | "90" PLIIz Height
-        "A0" PLIIx/PLII Movie + Audyssey DSX | "A1" PLIIx/PLII Music + Audyssey DSX
-        "A2" PLIIx/PLII Game + Audyssey DSX
-- id: listening_mode_up
-  label: Listening Mode Up
-  kind: action
-  params: []
-- id: listening_mode_down
-  label: Listening Mode Down
-  kind: action
-  params: []
-- id: listening_mode_qstn
-  label: Get Listening Mode
-  kind: action
-  params: []
-
-- id: late_night_set
-  label: Set Late Night Level
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: '"00" Off | "01" Low | "02" High'
-- id: late_night_up
-  label: Late Night Up
-  kind: action
-  params: []
-- id: late_night_qstn
-  label: Get Late Night Level
-  kind: action
-  params: []
-
-- id: dimmer_set
-  label: Set Dimmer Level
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: '"00" Bright | "01" Dim | "02" Dark | "03" Shut-Off | "08" Bright & LED OFF'
-- id: dimmer_up
-  label: Dimmer Up
-  kind: action
-  params: []
-- id: dimmer_qstn
-  label: Get Dimmer Level
-  kind: action
-  params: []
-
-- id: sleep_set
-  label: Set Sleep Timer
-  kind: action
-  params:
-    - name: minutes
-      type: integer
-      description: Sleep time 1-90 minutes (hex 01-5A); "OFF" to cancel
-- id: sleep_qstn
-  label: Get Sleep Time
-  kind: action
-  params: []
-
-- id: speaker_ab_set
-  label: Set Speaker A/B
-  kind: action
+  command: "!1PWR{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: speaker_ab_up
-  label: Speaker A/B Up
+      enum: ["00", "01", "QSTN"]
+      description: '00 = Standby, 01 = On, QSTN = query status'
+- id: amt
+  label: Audio Muting
   kind: action
-  params: []
-- id: speaker_ab_qstn
-  label: Get Speaker A/B State
+  command: "!1AMT{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG", "QSTN"]
+      description: '00 = Off, 01 = On, TG = wrap-around toggle, QSTN = query'
+- id: mvl
+  label: Master Volume
   kind: action
-  params: []
-
-- id: speaker_layout_set
-  label: Set Speaker Layout
+  command: "!1MVL{level}\r"
+  params:
+    - name: level
+      type: string
+      description: '00-64 hex (0-100), UP, DOWN, UP1, DOWN1, or QSTN'
+- id: sli
+  label: Input Selector
   kind: action
+  command: "!1SLI{input}\r"
+  params:
+    - name: input
+      type: string
+      description: '00-04 (VIDEO1-5), 10 (DVD), 20-2A (TAPE/PHONO/CD/FM/AM/TUNER/MS/IRADIO/USB), 30 (MULTI CH), 40 (Universal PORT), UP, DOWN, QSTN'
+- id: lmd
+  label: Listening Mode
+  kind: action
+  command: "!1LMD{mode}\r"
+  params:
+    - name: mode
+      type: string
+      description: '00-0F, 11, 80-83, 90, A0-A2 (named modes), UP, DOWN, QSTN'
+- id: ltn
+  label: Late Night
+  kind: action
+  command: "!1LTN{level}\r"
+  params:
+    - name: level
+      type: string
+      enum: ["00", "01", "02", "UP", "QSTN"]
+      description: '00 = Off, 01 = Low, 02 = High, UP = wrap, QSTN = query'
+- id: dim
+  label: Dimmer Level
+  kind: action
+  command: "!1DIM{level}\r"
+  params:
+    - name: level
+      type: string
+      enum: ["00", "01", "02", "03", "08", "DIM", "QSTN"]
+      description: '00 Bright, 01 Dim, 02 Dark, 03 Shut-Off, 08 Bright+LED Off, DIM wrap, QSTN'
+- id: slp
+  label: Sleep Timer
+  kind: action
+  command: "!1SLP{time}\r"
+  params:
+    - name: time
+      type: string
+      description: '01-5A hex (1-90 min), OFF, UP, or QSTN'
+- id: spa
+  label: Speaker A
+  kind: action
+  command: "!1SPA{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "UP", "QSTN"]
+      description: '00 = Off, 01 = On, UP = wrap, QSTN = query. SPA = Main A / Front A'
+- id: spb
+  label: Speaker B
+  kind: action
+  command: "!1SPB{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "UP", "QSTN"]
+      description: '00 = Off, 01 = On, UP = wrap, QSTN = query. SPB = Main B / Front B'
+- id: spl
+  label: Speaker Layout
+  kind: action
+  command: "!1SPL{layout}\r"
   params:
     - name: layout
       type: string
-      description: '"SB" SurrBack | "FH" Front High | "FW" Front Wide'
-- id: speaker_layout_up
-  label: Speaker Layout Up
+      enum: ["SB", "FH", "FW", "UP", "QSTN"]
+      description: 'SB = SurrBack, FH = Front High (+SurrBack), FW = Front Wide (+SurrBack)'
+- id: tfr
+  label: Tone Front
   kind: action
-  params: []
-- id: speaker_layout_qstn
-  label: Get Speaker Layout
-  kind: action
-  params: []
-
-- id: tone_front_set
-  label: Set Front Tone
-  kind: action
+  command: "!1TFR{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-      description: Bass -10 to +10 in 2-step hex ("-A" to "+A")
-    - name: treble
-      type: string
-      description: Treble -10 to +10 in 2-step hex ("-A" to "+A")
-- id: tone_front_bass_up
-  label: Front Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: tct
+  label: Tone Center
   kind: action
-  params: []
-- id: tone_front_bass_down
-  label: Front Bass Down
-  kind: action
-  params: []
-- id: tone_front_treble_up
-  label: Front Treble Up
-  kind: action
-  params: []
-- id: tone_front_treble_down
-  label: Front Treble Down
-  kind: action
-  params: []
-- id: tone_front_qstn
-  label: Get Front Tone
-  kind: action
-  params: []
-
-- id: tone_center_set
-  label: Set Center Tone
-  kind: action
+  command: "!1TCT{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-      description: Bass -10 to +10 in 2-step hex
-    - name: treble
-      type: string
-      description: Treble -10 to +10 in 2-step hex
-- id: tone_center_bass_up
-  label: Center Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: tsr
+  label: Tone Surround
   kind: action
-  params: []
-- id: tone_center_bass_down
-  label: Center Bass Down
-  kind: action
-  params: []
-- id: tone_center_treble_up
-  label: Center Treble Up
-  kind: action
-  params: []
-- id: tone_center_treble_down
-  label: Center Treble Down
-  kind: action
-  params: []
-- id: tone_center_qstn
-  label: Get Center Tone
-  kind: action
-  params: []
-
-- id: tone_surround_set
-  label: Set Surround Tone
-  kind: action
+  command: "!1TSR{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-    - name: treble
-      type: string
-- id: tone_surround_bass_up
-  label: Surround Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: tsb
+  label: Tone Surround Back
   kind: action
-  params: []
-- id: tone_surround_bass_down
-  label: Surround Bass Down
-  kind: action
-  params: []
-- id: tone_surround_treble_up
-  label: Surround Treble Up
-  kind: action
-  params: []
-- id: tone_surround_treble_down
-  label: Surround Treble Down
-  kind: action
-  params: []
-- id: tone_surround_qstn
-  label: Get Surround Tone
-  kind: action
-  params: []
-
-- id: tone_surround_back_set
-  label: Set Surround Back Tone
-  kind: action
+  command: "!1TSB{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-    - name: treble
-      type: string
-- id: tone_surround_back_bass_up
-  label: Surround Back Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: tsw
+  label: Tone Subwoofer
   kind: action
-  params: []
-- id: tone_surround_back_bass_down
-  label: Surround Back Bass Down
-  kind: action
-  params: []
-- id: tone_surround_back_treble_up
-  label: Surround Back Treble Up
-  kind: action
-  params: []
-- id: tone_surround_back_treble_down
-  label: Surround Back Treble Down
-  kind: action
-  params: []
-- id: tone_surround_back_qstn
-  label: Get Surround Back Tone
-  kind: action
-  params: []
-
-- id: tone_subwoofer_set
-  label: Set Subwoofer Tone
-  kind: action
+  command: "!1TSW{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-      description: Bass -10 to +10 in 2-step hex
-- id: tone_subwoofer_bass_up
-  label: Subwoofer Bass Up
+      description: 'Bxx (xx in -A..+A), BUP, BDOWN, QSTN'
+- id: slc
+  label: Speaker Level Calibration
   kind: action
-  params: []
-- id: tone_subwoofer_bass_down
-  label: Subwoofer Bass Down
+  command: "!1SLC{key}\r"
+  params:
+    - name: key
+      type: string
+      enum: ["TEST", "CHSEL", "UP", "DOWN"]
+      description: 'TEST, CHSEL, LEVEL+ (UP), LEVEL- (DOWN) keys'
+- id: swl
+  label: Subwoofer Temporary Level
   kind: action
-  params: []
-- id: tone_subwoofer_qstn
-  label: Get Subwoofer Tone
-  kind: action
-  params: []
-
-- id: speaker_level_calibration_test
-  label: Speaker Level Calibration Test
-  kind: action
-  params: []
-- id: speaker_level_calibration_channel_select
-  label: Speaker Level Calibration Channel Select
-  kind: action
-  params: []
-- id: speaker_level_calibration_level_up
-  label: Speaker Level Calibration Level Up
-  kind: action
-  params: []
-- id: speaker_level_calibration_level_down
-  label: Speaker Level Calibration Level Down
-  kind: action
-  params: []
-
-- id: subwoofer_level_set
-  label: Set Subwoofer Level
-  kind: action
+  command: "!1SWL{level}\r"
   params:
     - name: level
       type: string
-      description: "-F" to "+C" (-15dB to +12dB)
-- id: subwoofer_level_up
-  label: Subwoofer Level Up
+      description: '-F..+C hex (-15..+12 dB), UP, DOWN, QSTN'
+- id: ctl
+  label: Center Temporary Level
   kind: action
-  params: []
-- id: subwoofer_level_down
-  label: Subwoofer Level Down
-  kind: action
-  params: []
-- id: subwoofer_level_qstn
-  label: Get Subwoofer Level
-  kind: action
-  params: []
-
-- id: center_level_set
-  label: Set Center Level
-  kind: action
+  command: "!1CTL{level}\r"
   params:
     - name: level
       type: string
-      description: "-C" to "+C" (-12dB to +12dB)
-- id: center_level_up
-  label: Center Level Up
+      description: '-C..+C hex (-12..+12 dB), UP, DOWN, QSTN'
+- id: dif_info
+  label: Display Information (DIF)
   kind: action
-  params: []
-- id: center_level_down
-  label: Center Level Down
-  kind: action
-  params: []
-- id: center_level_qstn
-  label: Get Center Level
-  kind: action
-  params: []
-
-- id: display_info_set
-  label: Set Display Information
-  kind: action
+  command: "!1DIF{code}\r"
   params:
-    - name: type
+    - name: code
       type: string
-      description: '"00" Program Format | "01" Digital Input Position | "02" Digital Format Position | "03" Bass Level | "04" Treble Level'
-- id: display_mode_set
-  label: Set Display Mode
+      enum: ["00", "01", "02", "03", "04"]
+      description: '00 Program Format, 01 Digital Input, 02 Digital Format, 03 Bass, 04 Treble'
+- id: dif_mode
+  label: Display Mode (DIF)
   kind: action
+  command: "!1DIF{mode}\r"
   params:
     - name: mode
       type: string
-      description: '"00" Selector+Volume | "01" Selector+Listening Mode | "02" Digital Format | "03" Video Format'
-- id: display_mode_up
-  label: Display Mode Up
+      enum: ["00", "01", "02", "03", "TG", "QSTN"]
+      description: '00 Selector+Vol, 01 Selector+LMD, 02 Digital Format, 03 Video Format, TG wrap, QSTN'
+- id: osd
+  label: Setup / OSD Navigation
   kind: action
-  params: []
-- id: display_mode_qstn
-  label: Get Display Mode
+  command: "!1OSD{key}\r"
+  params:
+    - name: key
+      type: string
+      enum: ["MENU", "UP", "DOWN", "RIGHT", "LEFT", "ENTER", "EXIT", "AUDIO", "VIDEO"]
+      description: 'On-screen menu navigation keys'
+- id: mem
+  label: Memory Setup
   kind: action
-  params: []
-
-- id: osd_menu
-  label: OSD Menu
+  command: "!1MEM{op}\r"
+  params:
+    - name: op
+      type: string
+      enum: ["STR", "RCL", "LOCK", "UNLK"]
+      description: 'STR store, RCL recall, LOCK lock, UNLK unlock'
+- id: ifa
+  label: Audio Information
   kind: action
-  params: []
-- id: osd_up
-  label: OSD Up
+  command: "!1IFA{info}\r"
+  params:
+    - name: info
+      type: string
+      description: 'nnnnn:nnnnn comma-separated info string, or QSTN'
+- id: ifv
+  label: Video Information
   kind: action
-  params: []
-- id: osd_down
-  label: OSD Down
+  command: "!1IFV{info}\r"
+  params:
+    - name: info
+      type: string
+      description: 'nnnnn:nnnnn comma-separated info string, or QSTN'
+- id: slr
+  label: RECOUT Selector
   kind: action
-  params: []
-- id: osd_right
-  label: OSD Right
-  kind: action
-  params: []
-- id: osd_left
-  label: OSD Left
-  kind: action
-  params: []
-- id: osd_enter
-  label: OSD Enter
-  kind: action
-  params: []
-- id: osd_exit
-  label: OSD Exit
-  kind: action
-  params: []
-- id: osd_audio_adjust
-  label: OSD Audio Adjust
-  kind: action
-  params: []
-- id: osd_video_adjust
-  label: OSD Video Adjust
-  kind: action
-  params: []
-
-- id: memory_store
-  label: Memory Store
-  kind: action
-  params: []
-- id: memory_recall
-  label: Memory Recall
-  kind: action
-  params: []
-- id: memory_lock
-  label: Memory Lock
-  kind: action
-  params: []
-- id: memory_unlock
-  label: Memory Unlock
-  kind: action
-  params: []
-
-- id: audio_info_qstn
-  label: Get Audio Information
-  kind: action
-  params: []
-- id: video_info_qstn
-  label: Get Video Information
-  kind: action
-  params: []
-
-- id: recout_selector_set
-  label: Set RECOUT Selector
-  kind: action
+  command: "!1SLR{input}\r"
   params:
     - name: input
       type: string
-      description: |
-        "00" VIDEO1 | "01" VIDEO2 | "02" VIDEO3 | "03" VIDEO4 | "04" VIDEO5 |
-        "10" DVD | "20" TAPE1 | "21" TAPE2 | "22" PHONO | "23" CD | "24" FM |
-        "25" AM | "26" TUNER | "27" MUSIC SERVER | "28" INTERNET RADIO |
-        "30" MULTI CH | "7F" OFF | "80" SOURCE
-- id: recout_selector_qstn
-  label: Get RECOUT Selector Position
+      description: '00-04 (VIDEO1-5), 10 (DVD), 20-28, 30 (MULTI CH), 7F (OFF), 80 (SOURCE), QSTN'
+- id: sla
+  label: Audio Selector
   kind: action
-  params: []
-
-- id: audio_selector_set
-  label: Set Audio Selector
-  kind: action
+  command: "!1SLA{mode}\r"
   params:
     - name: mode
       type: string
-      description: '"00" AUTO | "01" MULTI-CHANNEL | "02" ANALOG | "03" iLINK | "04" HDMI | "05" COAX/OPT | "06" BALANCE'
-- id: audio_selector_up
-  label: Audio Selector Up
+      enum: ["00", "01", "02", "03", "04", "05", "06", "UP", "QSTN"]
+      description: '00 AUTO, 01 MULTI-CH, 02 ANALOG, 03 iLINK, 04 HDMI, 05 COAX/OPT, 06 BALANCE'
+- id: tga
+  label: 12V Trigger A
   kind: action
-  params: []
-- id: audio_selector_qstn
-  label: Get Audio Selector Status
-  kind: action
-  params: []
-
-- id: trigger_a_set
-  label: Set 12V Trigger A
-  kind: action
+  command: "!1TGA{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: trigger_b_set
-  label: Set 12V Trigger B
+      enum: ["00", "01"]
+      description: '00 Off, 01 On'
+- id: tgb
+  label: 12V Trigger B
   kind: action
+  command: "!1TGB{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: trigger_c_set
-  label: Set 12V Trigger C
+      enum: ["00", "01"]
+      description: '00 Off, 01 On'
+- id: tgc
+  label: 12V Trigger C
   kind: action
+  command: "!1TGC{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-
-- id: hdmi_output_set
-  label: Set HDMI Output Selector
+      enum: ["00", "01"]
+      description: '00 Off, 01 On'
+- id: vos
+  label: Video Output Selector
   kind: action
+  command: "!1VOS{out}\r"
   params:
-    - name: output
+    - name: out
       type: string
-      description: '"00" No Analog | "01" Main HDMI | "02" Sub HDMI | "03" Both | "04" Both(Main) | "05" Both(Sub)'
-- id: hdmi_output_up
-  label: HDMI Output Up
+      enum: ["00", "01", "QSTN"]
+      description: '00 D4, 01 Component (Japanese model only), QSTN'
+- id: hdo
+  label: HDMI Output Selector
   kind: action
-  params: []
-- id: hdmi_output_qstn
-  label: Get HDMI Output Selector
-  kind: action
-  params: []
-
-- id: monitor_resolution_set
-  label: Set Monitor Out Resolution
-  kind: action
+  command: "!1HDO{out}\r"
   params:
-    - name: resolution
+    - name: out
       type: string
-      description: |
-        "00" Through | "01" Auto | "02" 480p | "03" 720p | "04" 1080i | "05" 1080p |
-        "06" Source | "07" 1080p/24fs
-- id: monitor_resolution_up
-  label: Monitor Resolution Up
+      enum: ["00", "01", "02", "03", "04", "05", "UP", "QSTN"]
+      description: '00 No Analog, 01 Main, 02 Sub, 03 Both, 04 Both(Main), 05 Both(Sub)'
+- id: res
+  label: Monitor Out Resolution
   kind: action
-  params: []
-- id: monitor_resolution_qstn
-  label: Get Monitor Out Resolution
+  command: "!1RES{res}\r"
+  params:
+    - name: res
+      type: string
+      enum: ["00", "01", "02", "03", "04", "05", "06", "07", "UP", "QSTN"]
+      description: '00 Through, 01 Auto, 02 480p, 03 720p, 04 1080i, 05 1080p, 06 Source, 07 1080p/24'
+- id: isf
+  label: ISF Mode
   kind: action
-  params: []
-
-- id: isf_mode_set
-  label: Set ISF Mode
-  kind: action
+  command: "!1ISF{mode}\r"
   params:
     - name: mode
       type: string
-      description: '"00" Custom | "01" Day | "02" Night'
-- id: isf_mode_up
-  label: ISF Mode Up
+      enum: ["00", "01", "02", "UP", "QSTN"]
+      description: '00 Custom, 01 Day, 02 Night'
+- id: ras
+  label: Re-EQ / Academy Filter
   kind: action
-  params: []
-- id: isf_mode_qstn
-  label: Get ISF Mode State
-  kind: action
-  params: []
-
-- id: reeq_academy_set
-  label: Set Re-EQ/Academy Filter
-  kind: action
+  command: "!1RAS{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Both Off | "01" Re-EQ On | "02" Academy On'
-- id: reeq_academy_up
-  label: Re-EQ/Academy Up
+      enum: ["00", "01", "02", "UP", "QSTN"]
+      description: '00 Both Off, 01 Re-EQ On, 02 Academy On'
+- id: ady
+  label: Audyssey 2EQ / MultEQ / MultEQ XT
   kind: action
-  params: []
-- id: reeq_academy_qstn
-  label: Get Re-EQ/Academy State
-  kind: action
-  params: []
-
-- id: audyssey_eq_set
-  label: Set Audyssey 2EQ/MultEQ/MultEQ XT
-  kind: action
+  command: "!1ADY{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: audyssey_eq_up
-  label: Audyssey EQ Up
+      enum: ["00", "01", "UP", "QSTN"]
+      description: '00 Off, 01 On'
+- id: adq
+  label: Audyssey Dynamic EQ
   kind: action
-  params: []
-- id: audyssey_eq_qstn
-  label: Get Audyssey EQ State
-  kind: action
-  params: []
-
-- id: audyssey_dynamic_eq_set
-  label: Set Audyssey Dynamic EQ
-  kind: action
+  command: "!1ADQ{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: audyssey_dynamic_eq_up
-  label: Audyssey Dynamic EQ Up
+      enum: ["00", "01", "UP", "QSTN"]
+      description: '00 Off, 01 On'
+- id: adv
+  label: Audyssey Dynamic Volume
   kind: action
-  params: []
-- id: audyssey_dynamic_eq_qstn
-  label: Get Audyssey Dynamic EQ State
-  kind: action
-  params: []
-
-- id: audyssey_dynamic_volume_set
-  label: Set Audyssey Dynamic Volume
-  kind: action
+  command: "!1ADV{level}\r"
   params:
     - name: level
       type: string
-      description: '"00" Off | "01" Light | "02" Medium | "03" Heavy'
-- id: audyssey_dynamic_volume_up
-  label: Audyssey Dynamic Volume Up
+      enum: ["00", "01", "02", "03", "UP", "QSTN"]
+      description: '00 Off, 01 Light, 02 Medium, 03 Heavy'
+- id: dvl
+  label: Dolby Volume
   kind: action
-  params: []
-- id: audyssey_dynamic_volume_qstn
-  label: Get Audyssey Dynamic Volume State
-  kind: action
-  params: []
-
-- id: dolby_volume_set
-  label: Set Dolby Volume
-  kind: action
+  command: "!1DVL{level}\r"
   params:
     - name: level
       type: string
-      description: '"00" Off | "01" Low | "02" Mid | "03" High'
-- id: dolby_volume_up
-  label: Dolby Volume Up
+      enum: ["00", "01", "02", "03", "UP", "QSTN"]
+      description: '00 Off, 01 Low, 02 Mid, 03 High'
+- id: mot
+  label: Music Optimizer
   kind: action
-  params: []
-- id: dolby_volume_qstn
-  label: Get Dolby Volume State
-  kind: action
-  params: []
-
-- id: music_optimizer_set
-  label: Set Music Optimizer
-  kind: action
+  command: "!1MOT{state}\r"
   params:
     - name: state
       type: string
-      description: '"00" Off | "01" On'
-- id: music_optimizer_up
-  label: Music Optimizer Up
+      enum: ["00", "01", "UP", "QSTN"]
+      description: '00 Off, 01 On'
+- id: tun
+  label: Tuning
   kind: action
-  params: []
-- id: music_optimizer_qstn
-  label: Get Music Optimizer State
-  kind: action
-  params: []
-
-- id: tuner_set_frequency
-  label: Tune Directly
-  kind: action
+  command: "!1TUN{freq}\r"
   params:
-    - name: frequency
+    - name: freq
       type: string
-      description: FM nnn.nn MHz / AM nnnnn kHz / XM nnnnn ch
-- id: tuner_up
-  label: Tuning Up
+      description: 'nnnnn (FM nnn.nn MHz / AM nnnnn kHz / XM 00nnn ch), UP, DOWN, QSTN'
+- id: prs
+  label: Tuner Preset
   kind: action
-  params: []
-- id: tuner_down
-  label: Tuning Down
-  kind: action
-  params: []
-- id: tuner_qstn
-  label: Get Tuning Frequency
-  kind: action
-  params: []
-
-- id: preset_set
-  label: Set Preset
-  kind: action
+  command: "!1PRS{n}\r"
   params:
-    - name: number
-      type: integer
-      description: Preset number 1-40 (hex 01-28)
-- id: preset_up
-  label: Preset Up
-  kind: action
-  params: []
-- id: preset_down
-  label: Preset Down
-  kind: action
-  params: []
-- id: preset_qstn
-  label: Get Preset Number
-  kind: action
-  params: []
-
-- id: rds_info_display
-  label: Display RDS Information
-  kind: action
-  params:
-    - name: type
+    - name: n
       type: string
-      description: '"00" RT | "01" PTY | "02" TP'
-- id: rds_info_up
-  label: RDS Info Up
+      description: '01-28 hex (preset 1-40), UP, DOWN, QSTN'
+- id: rds
+  label: RDS Information Display
   kind: action
-  params: []
-
-- id: rds_pty_scan_set
-  label: Set PTY Number
-  kind: action
-  params:
-    - name: number
-      type: integer
-      description: PTY number 0-30 (hex 00-1E)
-- id: rds_pty_scan_enter
-  label: Finish PTY Scan
-  kind: action
-  params: []
-
-- id: rds_tp_scan_start
-  label: Start TP Scan
-  kind: action
-  params: []
-- id: rds_tp_scan_enter
-  label: Finish TP Scan
-  kind: action
-  params: []
-
-- id: xm_channel_name_qstn
-  label: Get XM Channel Name
-  kind: action
-  params: []
-- id: xm_artist_name_qstn
-  label: Get XM Artist Name
-  kind: action
-  params: []
-- id: xm_title_qstn
-  label: Get XM Title
-  kind: action
-  params: []
-- id: xm_channel_set
-  label: Set XM Channel
-  kind: action
-  params:
-    - name: channel
-      type: integer
-      description: Channel number 000-255
-- id: xm_channel_up
-  label: XM Channel Up
-  kind: action
-  params: []
-- id: xm_channel_down
-  label: XM Channel Down
-  kind: action
-  params: []
-- id: xm_channel_qstn
-  label: Get XM Channel Number
-  kind: action
-  params: []
-- id: xm_category_qstn
-  label: Get XM Category
-  kind: action
-  params: []
-- id: xm_category_up
-  label: XM Category Up
-  kind: action
-  params: []
-- id: xm_category_down
-  label: XM Category Down
-  kind: action
-  params: []
-
-- id: sirius_channel_name_qstn
-  label: Get SIRIUS Channel Name
-  kind: action
-  params: []
-- id: sirius_artist_name_qstn
-  label: Get SIRIUS Artist Name
-  kind: action
-  params: []
-- id: sirius_title_qstn
-  label: Get SIRIUS Title
-  kind: action
-  params: []
-- id: sirius_channel_set
-  label: Set SIRIUS Channel
-  kind: action
-  params:
-    - name: channel
-      type: integer
-      description: Channel number 000-255
-- id: sirius_channel_up
-  label: SIRIUS Channel Up
-  kind: action
-  params: []
-- id: sirius_channel_down
-  label: SIRIUS Channel Down
-  kind: action
-  params: []
-- id: sirius_channel_qstn
-  label: Get SIRIUS Channel Number
-  kind: action
-  params: []
-- id: sirius_category_qstn
-  label: Get SIRIUS Category
-  kind: action
-  params: []
-- id: sirius_category_up
-  label: SIRIUS Category Up
-  kind: action
-  params: []
-- id: sirius_category_down
-  label: SIRIUS Category Down
-  kind: action
-  params: []
-- id: sirius_parental_lock_set
-  label: Set SIRIUS Parental Lock
-  kind: action
-  params:
-    - name: password
-      type: string
-      description: 4-digit lock password
-- id: sirius_parental_lock_input
-  label: Display Parental Lock Input Prompt
-  kind: action
-  params: []
-- id: sirius_parental_lock_wrong
-  label: Display Parental Lock Wrong
-  kind: action
-  params: []
-
-- id: hd_radio_artist_qstn
-  label: Get HD Radio Artist Name
-  kind: action
-  params: []
-- id: hd_radio_channel_name_qstn
-  label: Get HD Radio Channel Name
-  kind: action
-  params: []
-- id: hd_radio_title_qstn
-  label: Get HD Radio Title
-  kind: action
-  params: []
-- id: hd_radio_detail_qstn
-  label: Get HD Radio Detail Info
-  kind: action
-  params: []
-- id: hd_radio_channel_program_set
-  label: Set HD Radio Channel Program
-  kind: action
-  params:
-    - name: program
-      type: integer
-      description: Program number 1-8 (hex 01-08)
-- id: hd_radio_channel_program_qstn
-  label: Get HD Radio Channel Program
-  kind: action
-  params: []
-- id: hd_radio_blend_set
-  label: Set HD Radio Blend Mode
-  kind: action
+  command: "!1RDS{mode}\r"
   params:
     - name: mode
       type: string
-      description: '"00" Auto | "01" Analog'
-- id: hd_radio_blend_qstn
-  label: Get HD Radio Blend Mode
+      enum: ["00", "01", "02", "UP"]
+      description: '00 RT, 01 PTY, 02 TP, UP wrap'
+- id: pts
+  label: PTY Scan
   kind: action
-  params: []
-- id: hd_radio_tuner_status_qstn
-  label: Get HD Radio Tuner Status
-  kind: action
-  params: []
-
-- id: net_ operation_play
-  label: Network Play
-  kind: action
-  params: []
-- id: net_ operation_stop
-  label: Network Stop
-  kind: action
-  params: []
-- id: net_ operation_pause
-  label: Network Pause
-  kind: action
-  params: []
-- id: net_ operation_track_up
-  label: Network Track Up
-  kind: action
-  params: []
-- id: net_ operation_track_down
-  label: Network Track Down
-  kind: action
-  params: []
-- id: net_ operation_ff
-  label: Network FF
-  kind: action
-  params: []
-- id: net_ operation_rew
-  label: Network REW
-  kind: action
-  params: []
-- id: net_ operation_repeat
-  label: Network Repeat
-  kind: action
-  params: []
-- id: net_ operation_random
-  label: Network Random
-  kind: action
-  params: []
-- id: net_ operation_display
-  label: Network Display
-  kind: action
-  params: []
-- id: net_ operation_album
-  label: Network Album
-  kind: action
-  params: []
-- id: net_ operation_artist
-  label: Network Artist
-  kind: action
-  params: []
-- id: net_ operation_genre
-  label: Network Genre
-  kind: action
-  params: []
-- id: net_ operation_playlist
-  label: Network Playlist
-  kind: action
-  params: []
-- id: net_ operation_right
-  label: Network Right
-  kind: action
-  params: []
-- id: net_ operation_left
-  label: Network Left
-  kind: action
-  params: []
-- id: net_ operation_up
-  label: Network Up
-  kind: action
-  params: []
-- id: net_ operation_down
-  label: Network Down
-  kind: action
-  params: []
-- id: net_ operation_select
-  label: Network Select
-  kind: action
-  params: []
-- id: net_ operation_delete
-  label: Network Delete
-  kind: action
-  params: []
-- id: net_ operation_caps
-  label: Network Caps
-  kind: action
-  params: []
-- id: net_ operation_ch_up
-  label: Network Channel Up
-  kind: action
-  params: []
-- id: net_ operation_ch_down
-  label: Network Channel Down
-  kind: action
-  params: []
-
-- id: netusb_artist_qstn
-  label: Get Net/USB Artist Name
-  kind: action
-  params: []
-- id: netusb_album_qstn
-  label: Get Net/USB Album Name
-  kind: action
-  params: []
-- id: netusb_title_qstn
-  label: Get Net/USB Title Name
-  kind: action
-  params: []
-- id: netusb_time_qstn
-  label: Get Net/USB Time Info
-  kind: action
-  params: []
-- id: netusb_track_qstn
-  label: Get Net/USB Track Info
-  kind: action
-  params: []
-- id: netusb_play_status_qstn
-  label: Get Net/USB Play Status
-  kind: action
-  params: []
-
-- id: internet_radio_preset_set
-  label: Set Internet Radio Preset
-  kind: action
+  command: "!1PTS{pty}\r"
   params:
-    - name: preset
-      type: integer
-      description: Preset number 1-40 (hex 01-28)
-
-- id: zone2_power_on
-  label: Zone2 Power On
+    - name: pty
+      type: string
+      description: '00-1E hex (PTY 0-30), or ENTER to finish'
+- id: tps
+  label: TP Scan
   kind: action
-  params: []
-- id: zone2_power_off
-  label: Zone2 Standby
+  command: "!1TPS{op}\r"
+  params:
+    - name: op
+      type: string
+      enum: ["", "ENTER"]
+      description: 'empty = start scan, ENTER = finish'
+- id: xcn
+  label: XM Channel Name
   kind: action
-  params: []
-- id: zone2_power_qstn
-  label: Get Zone2 Power Status
+  command: "!1XCN{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn channel name, or QSTN'
+- id: xat
+  label: XM Artist Name
   kind: action
-  params: []
-- id: zone2_muting_on
-  label: Zone2 Muting On
+  command: "!1XAT{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn artist name, or QSTN'
+- id: xti
+  label: XM Title
   kind: action
-  params: []
-- id: zone2_muting_off
-  label: Zone2 Muting Off
+  command: "!1XTI{title}\r"
+  params:
+    - name: title
+      type: string
+      description: 'nnnnnnnnnn title, or QSTN'
+- id: xch
+  label: XM Channel Number
   kind: action
-  params: []
-- id: zone2_muting_toggle
-  label: Zone2 Muting Toggle
+  command: "!1XCH{ch}\r"
+  params:
+    - name: ch
+      type: string
+      description: '000-255 channel number, UP, DOWN, QSTN'
+- id: xct
+  label: XM Category
   kind: action
-  params: []
-- id: zone2_muting_qstn
-  label: Get Zone2 Muting Status
+  command: "!1XCT{cat}\r"
+  params:
+    - name: cat
+      type: string
+      description: 'nnnnnnnnnn category info, UP, DOWN, QSTN'
+- id: scn
+  label: SIRIUS Channel Name
   kind: action
-  params: []
-- id: zone2_volume_set
-  label: Set Zone2 Volume
+  command: "!1SCN{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn channel name, or QSTN'
+- id: sat
+  label: SIRIUS Artist Name
   kind: action
+  command: "!1SAT{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn artist name, or QSTN'
+- id: sti
+  label: SIRIUS Title
+  kind: action
+  command: "!1STI{title}\r"
+  params:
+    - name: title
+      type: string
+      description: 'nnnnnnnnnn title, or QSTN'
+- id: sch
+  label: SIRIUS Channel Number
+  kind: action
+  command: "!1SCH{ch}\r"
+  params:
+    - name: ch
+      type: string
+      description: '000-255 channel number, UP, DOWN, QSTN'
+- id: sct
+  label: SIRIUS Category
+  kind: action
+  command: "!1SCT{cat}\r"
+  params:
+    - name: cat
+      type: string
+      description: 'nnnnnnnnnn category info, UP, DOWN, QSTN'
+- id: slk
+  label: SIRIUS Parental Lock
+  kind: action
+  command: "!1SLK{op}\r"
+  params:
+    - name: op
+      type: string
+      description: 'nnnn 4-digit password, INPUT = prompt, WRONG = bad password response'
+- id: hat
+  label: HD Radio Artist Name
+  kind: action
+  command: "!1HAT{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn up to 64 digits, or QSTN'
+- id: hcn
+  label: HD Radio Channel Name
+  kind: action
+  command: "!1HCN{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn 7-digit station name, or QSTN'
+- id: hti
+  label: HD Radio Title
+  kind: action
+  command: "!1HTI{title}\r"
+  params:
+    - name: title
+      type: string
+      description: 'nnnnnnnnnn up to 64 digits, or QSTN'
+- id: hds
+  label: HD Radio Detail Info
+  kind: action
+  command: "!1HDS{info}\r"
+  params:
+    - name: info
+      type: string
+      description: 'nnnnnnnnnn detail info, or QSTN'
+- id: hpr
+  label: HD Radio Channel Program
+  kind: action
+  command: "!1HPR{prog}\r"
+  params:
+    - name: prog
+      type: string
+      description: '01-08 HD Radio program, or QSTN'
+- id: hbl
+  label: HD Radio Blend Mode
+  kind: action
+  command: "!1HBL{mode}\r"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "QSTN"]
+      description: '00 Auto, 01 Analog'
+- id: hts
+  label: HD Radio Tuner Status
+  kind: action
+  command: "!1HTS{status}\r"
+  params:
+    - name: status
+      type: string
+      description: 'mmnnoo 3-byte status (mm HD flag, nn current program 01-08, oo receivable bitmask), or QSTN'
+- id: ntc
+  label: Net-Tune Operation
+  kind: action
+  command: "!1NTC{key}\r"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "STOP", "PAUSE", "TRUP", "TRDN", "FF", "REW", "REPEAT", "RANDOM", "DISPLAY", "ALBUM", "ARTIST", "GENRE", "PLAYLIST", "RIGHT", "LEFT", "UP", "DOWN", "SELECT", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "DELETE", "CAPS", "CHUP", "CHDN"]
+      description: 'Net/USB transport and navigation keys; FF/REW must repeat within 100ms'
+- id: nat
+  label: Net / USB Artist Name
+  kind: action
+  command: "!1NAT{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnnnn up to 64 ASCII letters, or QSTN'
+- id: nal
+  label: Net / USB Album Name
+  kind: action
+  command: "!1NAL{name}\r"
+  params:
+    - name: name
+      type: string
+      description: 'nnnnnnnn up to 64 ASCII letters, or QSTN'
+- id: nti
+  label: Net / USB Title Name
+  kind: action
+  command: "!1NTI{title}\r"
+  params:
+    - name: title
+      type: string
+      description: 'nnnnnnnnnn up to 64 ASCII letters, or QSTN'
+- id: ntm
+  label: Net / USB Time Info
+  kind: action
+  command: "!1NTM{time}\r"
+  params:
+    - name: time
+      type: string
+      description: 'mm:ss/mm:ss elapsed/total max 99:59, or QSTN'
+- id: ntr
+  label: Net / USB Track Info
+  kind: action
+  command: "!1NTR{tracks}\r"
+  params:
+    - name: tracks
+      type: string
+      description: 'cccc/tttt current/total tracks max 9999, or QSTN'
+- id: nst
+  label: Net / USB Play Status
+  kind: action
+  command: "!1NST{status}\r"
+  params:
+    - name: status
+      type: string
+      description: 'prs 3-letter status: p in {S,P,p,F,R}, r in {-,R,F,1}, or QSTN'
+- id: npr
+  label: Internet Radio Preset
+  kind: action
+  command: "!1NPR{n}\r"
+  params:
+    - name: n
+      type: string
+      description: '01-28 hex (preset 1-40)'
+- id: zpw
+  label: Zone 2 Power
+  kind: action
+  command: "!1ZPW{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "QSTN"]
+      description: '00 Standby, 01 On (only when main is On)'
+- id: zmt
+  label: Zone 2 Muting
+  kind: action
+  command: "!1ZMT{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG", "QSTN"]
+      description: '00 Off, 01 On, TG wrap, QSTN'
+- id: zvl
+  label: Zone 2 Volume
+  kind: action
+  command: "!1ZVL{level}\r"
   params:
     - name: level
-      type: integer
-      description: Volume 0-100 (hex 00-64)
-- id: zone2_volume_up
-  label: Zone2 Volume Up
+      type: string
+      description: '00-64 hex (0-100), UP, DOWN, QSTN'
+- id: ztn
+  label: Zone 2 Tone
   kind: action
-  params: []
-- id: zone2_volume_down
-  label: Zone2 Volume Down
-  kind: action
-  params: []
-- id: zone2_volume_qstn
-  label: Get Zone2 Volume Level
-  kind: action
-  params: []
-- id: zone2_tone_set
-  label: Set Zone2 Tone
-  kind: action
+  command: "!1ZTN{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-    - name: treble
-      type: string
-- id: zone2_tone_bass_up
-  label: Zone2 Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: zbl
+  label: Zone 2 Balance
   kind: action
-  params: []
-- id: zone2_tone_bass_down
-  label: Zone2 Bass Down
-  kind: action
-  params: []
-- id: zone2_tone_treble_up
-  label: Zone2 Treble Up
-  kind: action
-  params: []
-- id: zone2_tone_treble_down
-  label: Zone2 Treble Down
-  kind: action
-  params: []
-- id: zone2_tone_qstn
-  label: Get Zone2 Tone
-  kind: action
-  params: []
-- id: zone2_balance_set
-  label: Set Zone2 Balance
-  kind: action
+  command: "!1ZBL{bal}\r"
   params:
-    - name: balance
+    - name: bal
       type: string
-      description: Balance -10 to +10 ("-A" to "+A")
-- id: zone2_balance_up
-  label: Zone2 Balance Up
+      description: 'xx (xx in -A..+A), UP (R 2 step), DOWN (L 2 step), QSTN'
+- id: slz
+  label: Zone 2 Selector
   kind: action
-  params: []
-- id: zone2_balance_down
-  label: Zone2 Balance Down
-  kind: action
-  params: []
-- id: zone2_balance_qstn
-  label: Get Zone2 Balance
-  kind: action
-  params: []
-- id: zone2_input_select
-  label: Select Zone2 Input
-  kind: action
+  command: "!1SLZ{input}\r"
   params:
     - name: input
       type: string
-      description: |
-        "00" VIDEO1 | "01" VIDEO2 | "02" VIDEO3 | "03" VIDEO4 | "04" VIDEO5 |
-        "10" DVD | "20" TAPE1 | "21" TAPE2 | "22" PHONO | "23" CD | "24" FM |
-        "25" AM | "26" TUNER | "27" MUSIC SERVER | "28" INTERNET RADIO |
-        "29" USB/USB(Front) | "2A" USB(Rear) | "30" MULTI CH | "40" Universal PORT
-- id: zone2_tuner_set
-  label: Set Zone2 Tuning Frequency
+      description: '00-04, 10, 20-2A, 30, 40 (same set as SLI minus UP/DOWN/QSTN)'
+- id: tuz
+  label: Zone 2 Tuning
   kind: action
+  command: "!1TUZ{freq}\r"
   params:
-    - name: frequency
+    - name: freq
       type: string
-      description: FM nnn.nn MHz / AM nnnnn kHz
-- id: zone2_tuner_up
-  label: Zone2 Tuning Up
+      description: 'nnnnn (FM nnn.nn MHz / AM nnnnn kHz), UP, DOWN, QSTN'
+- id: pw3
+  label: Zone 3 Power
   kind: action
-  params: []
-- id: zone2_tuner_down
-  label: Zone2 Tuning Down
+  command: "!1PW3{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "QSTN"]
+      description: '00 Standby, 01 On'
+- id: mt3
+  label: Zone 3 Muting
   kind: action
-  params: []
-- id: zone2_tuner_qstn
-  label: Get Zone2 Tuning Frequency
+  command: "!1MT3{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG", "QSTN"]
+      description: '00 Off, 01 On, TG wrap, QSTN'
+- id: vl3
+  label: Zone 3 Volume
   kind: action
-  params: []
-
-- id: zone3_power_on
-  label: Zone3 Power On
-  kind: action
-  params: []
-- id: zone3_power_off
-  label: Zone3 Standby
-  kind: action
-  params: []
-- id: zone3_power_qstn
-  label: Get Zone3 Power Status
-  kind: action
-  params: []
-- id: zone3_muting_on
-  label: Zone3 Muting On
-  kind: action
-  params: []
-- id: zone3_muting_off
-  label: Zone3 Muting Off
-  kind: action
-  params: []
-- id: zone3_muting_toggle
-  label: Zone3 Muting Toggle
-  kind: action
-  params: []
-- id: zone3_muting_qstn
-  label: Get Zone3 Muting Status
-  kind: action
-  params: []
-- id: zone3_volume_set
-  label: Set Zone3 Volume
-  kind: action
+  command: "!1VL3{level}\r"
   params:
     - name: level
-      type: integer
-- id: zone3_volume_up
-  label: Zone3 Volume Up
+      type: string
+      description: '00-64 hex (0-100), UP, DOWN, QSTN'
+- id: tn3
+  label: Zone 3 Tone
   kind: action
-  params: []
-- id: zone3_volume_down
-  label: Zone3 Volume Down
-  kind: action
-  params: []
-- id: zone3_volume_qstn
-  label: Get Zone3 Volume Level
-  kind: action
-  params: []
-- id: zone3_tone_set
-  label: Set Zone3 Tone
-  kind: action
+  command: "!1TN3{param}\r"
   params:
-    - name: bass
+    - name: param
       type: string
-    - name: treble
-      type: string
-- id: zone3_tone_bass_up
-  label: Zone3 Bass Up
+      description: 'Bxx / Txx (xx in -A..+A), BUP, BDOWN, TUP, TDOWN, QSTN'
+- id: bl3
+  label: Zone 3 Balance
   kind: action
-  params: []
-- id: zone3_tone_bass_down
-  label: Zone3 Bass Down
-  kind: action
-  params: []
-- id: zone3_tone_treble_up
-  label: Zone3 Treble Up
-  kind: action
-  params: []
-- id: zone3_tone_treble_down
-  label: Zone3 Treble Down
-  kind: action
-  params: []
-- id: zone3_tone_qstn
-  label: Get Zone3 Tone
-  kind: action
-  params: []
-- id: zone3_balance_set
-  label: Set Zone3 Balance
-  kind: action
+  command: "!1BL3{bal}\r"
   params:
-    - name: balance
+    - name: bal
       type: string
-- id: zone3_balance_up
-  label: Zone3 Balance Up
+      description: 'xx (xx in -A..+A), UP (R 2 step), DOWN (L 2 step), QSTN'
+- id: sl3
+  label: Zone 3 Selector
   kind: action
-  params: []
-- id: zone3_balance_down
-  label: Zone3 Balance Down
-  kind: action
-  params: []
-- id: zone3_balance_qstn
-  label: Get Zone3 Balance
-  kind: action
-  params: []
-- id: zone3_input_select
-  label: Select Zone3 Input
-  kind: action
+  command: "!1SL3{input}\r"
   params:
     - name: input
       type: string
-- id: zone3_tuner_set
-  label: Set Zone3 Tuning Frequency
+      description: '00-06, 10, 20-2A, 30, 31 (XM), 32 (SIRIUS), 40, 80 (SOURCE), QSTN'
+- id: tu3
+  label: Zone 3 Tuning
   kind: action
+  command: "!1TU3{freq}\r"
   params:
-    - name: frequency
+    - name: freq
       type: string
-- id: zone3_tuner_up
-  label: Zone3 Tuning Up
+      description: 'nnnnn (FM nnn.nn MHz / AM nnnnn kHz), UP, DOWN, QSTN'
+- id: pw4
+  label: Zone 4 Power
   kind: action
-  params: []
-- id: zone3_tuner_down
-  label: Zone3 Tuning Down
+  command: "!1PW4{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "QSTN"]
+      description: '00 Standby, 01 On'
+- id: mt4
+  label: Zone 4 Muting
   kind: action
-  params: []
-- id: zone3_tuner_qstn
-  label: Get Zone3 Tuning Frequency
+  command: "!1MT4{state}\r"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG", "QSTN"]
+      description: '00 Off, 01 On, TG wrap, QSTN'
+- id: vl4
+  label: Zone 4 Volume
   kind: action
-  params: []
-
-- id: zone4_power_on
-  label: Zone4 Power On
-  kind: action
-  params: []
-- id: zone4_power_off
-  label: Zone4 Standby
-  kind: action
-  params: []
-- id: zone4_power_qstn
-  label: Get Zone4 Power Status
-  kind: action
-  params: []
-- id: zone4_muting_on
-  label: Zone4 Muting On
-  kind: action
-  params: []
-- id: zone4_muting_off
-  label: Zone4 Muting Off
-  kind: action
-  params: []
-- id: zone4_muting_toggle
-  label: Zone4 Muting Toggle
-  kind: action
-  params: []
-- id: zone4_muting_qstn
-  label: Get Zone4 Muting Status
-  kind: action
-  params: []
-- id: zone4_volume_set
-  label: Set Zone4 Volume
-  kind: action
+  command: "!1VL4{level}\r"
   params:
     - name: level
-      type: integer
-- id: zone4_volume_up
-  label: Zone4 Volume Up
+      type: string
+      description: '00-64 hex (0-100), UP, DOWN, QSTN'
+- id: sl4
+  label: Zone 4 Selector
   kind: action
-  params: []
-- id: zone4_volume_down
-  label: Zone4 Volume Down
-  kind: action
-  params: []
-- id: zone4_volume_qstn
-  label: Get Zone4 Volume Level
-  kind: action
-  params: []
-- id: zone4_input_select
-  label: Select Zone4 Input
-  kind: action
+  command: "!1SL4{input}\r"
   params:
     - name: input
       type: string
-- id: zone4_tuner_set
-  label: Set Zone4 Tuning Frequency
+      description: '00-06, 10, 20-2A, 30, 31 (XM), 32 (SIRIUS), 40, 80 (SOURCE), QSTN'
+- id: tu4
+  label: Zone 4 Tuning
   kind: action
+  command: "!1TU4{freq}\r"
   params:
-    - name: frequency
+    - name: freq
       type: string
-- id: zone4_tuner_up
-  label: Zone4 Tuning Up
+      description: 'nnnnn (FM nnn.nn MHz / AM nnnnn kHz), UP, DOWN, QSTN'
+- id: cds
+  label: Docking Station via RI
   kind: action
-  params: []
-- id: zone4_tuner_down
-  label: Zone4 Tuning Down
-  kind: action
-  params: []
-- id: zone4_tuner_qstn
-  label: Get Zone4 Tuning Frequency
-  kind: action
-  params: []
-
-- id: dock_power_on
-  label: Dock Power On
-  kind: action
-  params: []
-- id: dock_power_off
-  label: Dock Standby
-  kind: action
-  params: []
-- id: dock_play_resume
-  label: Dock Play/Resume
-  kind: action
-  params: []
-- id: dock_stop
-  label: Dock Stop
-  kind: action
-  params: []
-- id: dock_skip_forward
-  label: Dock Track Up
-  kind: action
-  params: []
-- id: dock_skip_back
-  label: Dock Track Down
-  kind: action
-  params: []
-- id: dock_pause
-  label: Dock Pause
-  kind: action
-  params: []
-- id: dock_play_pause
-  label: Dock Play/Pause
-  kind: action
-  params: []
-- id: dock_ff
-  label: Dock FF
-  kind: action
-  params: []
-- id: dock_rew
-  label: Dock REW
-  kind: action
-  params: []
-- id: dock_album_up
-  label: Dock Album Up
-  kind: action
-  params: []
-- id: dock_album_down
-  label: Dock Album Down
-  kind: action
-  params: []
-- id: dock_playlist_up
-  label: Dock Playlist Up
-  kind: action
-  params: []
-- id: dock_playlist_down
-  label: Dock Playlist Down
-  kind: action
-  params: []
-- id: dock_chapter_up
-  label: Dock Chapter Up
-  kind: action
-  params: []
-- id: dock_chapter_down
-  label: Dock Chapter Down
-  kind: action
-  params: []
-- id: dock_shuffle
-  label: Dock Shuffle
-  kind: action
-  params: []
-- id: dock_repeat
-  label: Dock Repeat
-  kind: action
-  params: []
-- id: dock_mute
-  label: Dock Mute
-  kind: action
-  params: []
-- id: dock_backlight
-  label: Dock Backlight
-  kind: action
-  params: []
-- id: dock_menu
-  label: Dock Menu
-  kind: action
-  params: []
-- id: dock_enter
-  label: Dock Enter/Select
-  kind: action
-  params: []
-- id: dock_cursor_up
-  label: Dock Cursor Up
-  kind: action
-  params: []
-- id: dock_cursor_down
-  label: Dock Cursor Down
-  kind: action
-  params: []
+  command: "!1CDS{key}\r"
+  params:
+    - name: key
+      type: string
+      enum: ["PWRON", "PWROFF", "PLY/RES", "STOP", "SKIP.F", "SKIP.R", "PAUSE", "PLY/PAU", "FF", "REW", "ALBUM+", "ALBUM-", "PLIST+", "PLIST-", "CHAPT+", "CHAPT-", "RANDOM", "REPEAT", "MUTE", "BLIGHT", "MENU", "ENTER", "UP", "DOWN"]
+      description: 'Dock transport and navigation keys'
 ```
 
 ## Feedbacks
 ```yaml
-# UNRESOLVED: The protocol describes response message format but does not enumerate
-# distinct feedback entries with value constraints. Feedbacks are embedded in command
-# responses (e.g. "PWR01" for power on, "PW3QSTN" returns power state).
-# A separate Feedbacks schema section cannot be fully enumerated from source alone.
+- id: power_state
+  type: enum
+  values: [on, standby]
+  command: "!1PWRQSTN\r"
+- id: muting_state
+  type: enum
+  values: [off, on]
+  command: "!1AMTQSTN\r"
+- id: master_volume
+  type: integer
+  range: [0, 100]
+  command: "!1MVLQSTN\r"
+- id: input_selector
+  type: string
+  command: "!1SLIQSTN\r"
+- id: listening_mode
+  type: string
+  command: "!1LMDQSTN\r"
+- id: late_night
+  type: enum
+  values: [off, low, high]
+  command: "!1LTNQSTN\r"
+- id: dimmer_level
+  type: enum
+  values: [bright, dim, dark, shut_off, bright_led_off]
+  command: "!1DIMQSTN\r"
+- id: sleep_time
+  type: integer
+  command: "!1SLPQSTN\r"
+- id: speaker_a
+  type: enum
+  values: [off, on]
+  command: "!1SPAQSTN\r"
+- id: speaker_b
+  type: enum
+  values: [off, on]
+  command: "!1SPBQSTN\r"
+- id: speaker_layout
+  type: enum
+  values: [surrback, front_high, front_wide]
+  command: "!1SPLQSTN\r"
+- id: tone_front
+  type: string
+  command: "!1TFRQSTN\r"
+- id: tone_center
+  type: string
+  command: "!1TCTQSTN\r"
+- id: tone_surround
+  type: string
+  command: "!1TSRQSTN\r"
+- id: tone_surrback
+  type: string
+  command: "!1TSBQSTN\r"
+- id: tone_subwoofer
+  type: string
+  command: "!1TSWQSTN\r"
+- id: subwoofer_level
+  type: integer
+  command: "!1SWLQSTN\r"
+- id: center_level
+  type: integer
+  command: "!1CTLQSTN\r"
+- id: recout_selector
+  type: string
+  command: "!1SLRQSTN\r"
+- id: audio_selector
+  type: enum
+  values: [auto, multi_ch, analog, ilink, hdmi, coax_opt, balance]
+  command: "!1SLAQSTN\r"
+- id: vos_selector
+  type: enum
+  values: [d4, component]
+  command: "!1VOSQSTN\r"
+- id: hdmi_output
+  type: string
+  command: "!1HDOQSTN\r"
+- id: monitor_resolution
+  type: string
+  command: "!1RESQSTN\r"
+- id: isf_mode
+  type: enum
+  values: [custom, day, night]
+  command: "!1ISFQSTN\r"
+- id: reeq_academy
+  type: enum
+  values: [off, reeq, academy]
+  command: "!1RASQSTN\r"
+- id: audyssey_multieq
+  type: enum
+  values: [off, on]
+  command: "!1ADYQSTN\r"
+- id: audyssey_dynamic_eq
+  type: enum
+  values: [off, on]
+  command: "!1ADQQSTN\r"
+- id: audyssey_dynamic_volume
+  type: enum
+  values: [off, light, medium, heavy]
+  command: "!1ADVQSTN\r"
+- id: dolby_volume
+  type: enum
+  values: [off, low, mid, high]
+  command: "!1DVLQSTN\r"
+- id: music_optimizer
+  type: enum
+  values: [off, on]
+  command: "!1MOTQSTN\r"
+- id: tuning_frequency
+  type: string
+  command: "!1TUNQSTN\r"
+- id: preset_number
+  type: integer
+  command: "!1PRSQSTN\r"
+- id: zone2_power
+  type: enum
+  values: [standby, on]
+  command: "!1ZPWQSTN\r"
+- id: zone2_muting
+  type: enum
+  values: [off, on]
+  command: "!1ZMTQSTN\r"
+- id: zone2_volume
+  type: integer
+  range: [0, 100]
+  command: "!1ZVLQSTN\r"
+- id: zone2_tone
+  type: string
+  command: "!1ZTNQSTN\r"
+- id: zone2_balance
+  type: string
+  command: "!1ZBLQSTN\r"
+- id: zone2_tuning
+  type: string
+  command: "!1TUZQSTN\r"
+- id: zone3_power
+  type: enum
+  values: [standby, on]
+  command: "!1PW3QSTN\r"
+- id: zone3_muting
+  type: enum
+  values: [off, on]
+  command: "!1MT3QSTN\r"
+- id: zone3_volume
+  type: integer
+  range: [0, 100]
+  command: "!1VL3QSTN\r"
+- id: zone3_tone
+  type: string
+  command: "!1TN3QSTN\r"
+- id: zone3_balance
+  type: string
+  command: "!1BL3QSTN\r"
+- id: zone3_selector
+  type: string
+  command: "!1SL3QSTN\r"
+- id: zone3_tuning
+  type: string
+  command: "!1TU3QSTN\r"
+- id: zone4_power
+  type: enum
+  values: [standby, on]
+  command: "!1PW4QSTN\r"
+- id: zone4_muting
+  type: enum
+  values: [off, on]
+  command: "!1MT4QSTN\r"
+- id: zone4_volume
+  type: integer
+  range: [0, 100]
+  command: "!1VL4QSTN\r"
+- id: zone4_selector
+  type: string
+  command: "!1SL4QSTN\r"
+- id: zone4_tuning
+  type: string
+  command: "!1TU4QSTN\r"
+- id: xm_channel_name
+  type: string
+  command: "!1XCNQSTN\r"
+- id: xm_artist
+  type: string
+  command: "!1XATQSTN\r"
+- id: xm_title
+  type: string
+  command: "!1XTIQSTN\r"
+- id: xm_channel_number
+  type: integer
+  range: [0, 255]
+  command: "!1XCHQSTN\r"
+- id: xm_category
+  type: string
+  command: "!1XCTQSTN\r"
+- id: sirius_channel_name
+  type: string
+  command: "!1SCNQSTN\r"
+- id: sirius_artist
+  type: string
+  command: "!1SATQSTN\r"
+- id: sirius_title
+  type: string
+  command: "!1STIQSTN\r"
+- id: sirius_channel_number
+  type: integer
+  range: [0, 255]
+  command: "!1SCHQSTN\r"
+- id: sirius_category
+  type: string
+  command: "!1SCTQSTN\r"
+- id: hd_radio_artist
+  type: string
+  command: "!1HATQSTN\r"
+- id: hd_radio_channel
+  type: string
+  command: "!1HCNQSTN\r"
+- id: hd_radio_title
+  type: string
+  command: "!1HTIQSTN\r"
+- id: hd_radio_detail
+  type: string
+  command: "!1HDSQSTN\r"
+- id: hd_radio_program
+  type: integer
+  range: [1, 8]
+  command: "!1HPRQSTN\r"
+- id: hd_radio_blend
+  type: enum
+  values: [auto, analog]
+  command: "!1HBLQSTN\r"
+- id: hd_radio_tuner_status
+  type: string
+  command: "!1HTSQSTN\r"
+- id: net_artist
+  type: string
+  command: "!1NATQSTN\r"
+- id: net_album
+  type: string
+  command: "!1NALQSTN\r"
+- id: net_title
+  type: string
+  command: "!1NTIQSTN\r"
+- id: net_time
+  type: string
+  command: "!1NTMQSTN\r"
+- id: net_track
+  type: string
+  command: "!1NTRQSTN\r"
+- id: net_status
+  type: string
+  command: "!1NSTQSTN\r"
+- id: audio_info
+  type: string
+  command: "!1IFAQSTN\r"
+- id: video_info
+  type: string
+  command: "!1IFVQSTN\r"
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: The protocol does not enumerate discrete Variables distinct from Actions.
-# Parameters such as volume level, input selection, tone settings, etc. are represented
-# as command parameters within Actions, not as independent Variables.
+# Discrete parameter ranges (e.g. volume 0-100, tone -10..+10) are exposed
+# through their parent action's command template (e.g. MVL{level}, TFR{param}).
+# No additional settable parameters beyond those.
 ```
 
 ## Events
 ```yaml
-# The protocol describes unsolicited Status Messages sent by the Receiver when
-# system status changes (Event Notice Communication). However, the specific event
-# payload schema (e.g. which ISCP commands trigger unsolicited messages) is not
-# enumerated in the source.
-# UNRESOLVED: event payload definitions not stated in source
+- id: unsolicited_status
+  description: >
+    Receiver pushes status messages on the same connection whenever its state
+    changes (per §2.1 of source). Status messages use the same 3-char opcode
+    as the corresponding command with a payload reflecting the new state.
+    Long-held connection is required (source §1.2 note).
 ```
 
 ## Macros
 ```yaml
-# No explicit Macros / multi-step sequences are described in the source.
+# No multi-step sequences defined in source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: No explicit safety warnings, interlock procedures, or power-on sequencing
-# requirements stated in source. Main unit must be ON for Zone 2 volume control to work
-# (stated in-zone volume section as operational note, not a safety interlock).
+# UNRESOLVED: no safety warnings, interlocks, or power-on sequencing
+# requirements in source. Do not infer any.
 ```
 
 ## Notes
+The source ISCP document (v1.15, 2009) describes the protocol generically across
+all Integra/Onkyo receivers in the family — TUN 3.7 is a North-American model
+descriptor. The "DIF" mnemonic appears twice in the source (lines 295-312) for
+two distinct functions (Display Information vs. Display Mode); both have been
+preserved as `dif_info` and `dif_mode`. eISCP wraps the same ISCP payload in a
+16-byte big-endian header (header size 0x10, version 0x01, reserved 0x000000)
+and uses EOF (0x1A) as the inner terminator instead of CR. Receiver requires a
+persistent TCP connection and one client at a time; messages should be paced
+at least 50 ms apart. 12V trigger A/B/C (TGA/TGB/TGC) is only honored when
+each 12V Trigger parameter is "OFF" in the receiver's Setup Menu. Zone 2
+volume (ZVL) only works when the main zone is On. XM/SIRIUS opcodes are only
+valid on receivers with the corresponding tuner pack; HD Radio opcodes only
+on HD Radio models; Net-Tune on TX-NR1000+.
 
-**Protocol timing:** Controller must allow ≥50ms between sending consecutive messages. Receiver responds within 50ms; absence of response indicates communication failure.
-
-**RS-232C connector:** 9-pin female D-sub (pin 2 = TX, pin 3 = RX, pin 5 = GND). Use straight-through cable. End character: `[CR]` and/or `[LF]` or `[CR][LF]`.
-
-**TCP (eISCP):** Default port 60128; configurable to 49152–65535. Requires power-cycle after changing port. Connection must be held open continuously to receive unsolicited status notifications. eISCP header is 16 bytes (big-endian size field = 0x00000010). Data section uses `[EOF]` as end character (alone or with `[CR][LF]`).
-
-**Message format:** All ISCP messages follow `!1CCCPPPP` pattern — `!` start, `1` unit type (Receiver), `CCC` 3-char command, `PPPP` parameter(s). Variable-length parameters; queries use `QSTN` suffix.
-
-**Multi-zone notes:** TUNER/XM/SIRIUS/HD Radio functions are shared between Main and Zone sides. Zone 2 tone/balance requires main unit to be ON. Zone 2 and Zone 3/4 selector lists differ slightly (Zone 3/4 include VIDEO6/VIDEO7 and XM/SIRIUS options).
-
-**Network command timing:** FF/REW Net-tune commands must be sent continuously with no more than 100ms delay between codes.
-
-**Protocol version:** ISCP version 0x01 stated. eISCP header version 0x01 stated.
-
-<!-- UNRESOLVED: XM/SIRIUS/HD Radio feature availability is model-dependent; source covers the TUN 3.7 North America variant but does not specify which tuner options are included in this specific SKU -->
-
-<!-- UNRESOLVED: Video Output Selector (VOS) is noted as "Japanese Model Only" -->
-
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-
-<!-- UNRESOLVED: voltage/current/power specifications not stated in source -->
-
-<!-- UNRESOLVED: fault behavior and error recovery sequences not stated in source -->
+<!-- UNRESOLVED: model-specific firmware version not stated in source -->
+<!-- UNRESOLVED: source has mnemonic collision for DIF (two functions share opcode) -->
+<!-- UNRESOLVED: eISCP exact receive-buffer handling and "Reserved" byte semantics beyond 0x000000 not stated -->
 
 ## Provenance
 
@@ -1571,24 +1162,27 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:35.442Z
-last_checked_at: 2026-05-14T18:17:17.070Z
+last_checked_at: 2026-06-02T01:48:15.829Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.070Z
-matched_actions: 297
-action_count: 297
-confidence: high
-summary: "All 479 spec actions map to documented ISCP commands; transport parameters verified against source; complete protocol coverage achieved."
+checked_at: 2026-06-02T01:48:15.829Z
+matched_actions: 91
+action_count: 91
+confidence: medium
+summary: "All 91 spec actions matched literally to source ISCP commands; transport parameters (9600/8/N/1, port 60128) fully verified; source command catalogue exhaustively represented by spec. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "model-specific firmware version not stated in source"
+- "no safety warnings, interlocks, or power-on sequencing"
+- "source has mnemonic collision for DIF (two functions share opcode)"
+- "eISCP exact receive-buffer handling and \"Reserved\" byte semantics beyond 0x000000 not stated"
 ```
 
 ---

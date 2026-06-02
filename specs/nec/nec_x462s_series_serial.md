@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:26.538Z
 last_checked_at: 2026-05-14T18:17:19.126Z
 generated_at: 2026-05-14T18:17:19.126Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variant within X462S Series not specified; some commands reference two-lamp models not confirmed for this series"
+  - "flow control not explicitly stated; RTS/CTS loopback noted in pinout"
+  - "no discrete settable parameters beyond actions; all parameters are action arguments"
+  - "no unsolicited notifications described; device only responds to commands"
+  - "no multi-step sequences explicitly documented"
+  - "no safety warnings or interlock procedures stated in source"
+  - "input terminal codes 1Ah and 03h both listed for COMPUTER3 — model-dependent; Appendix values referenced but not included in source"
+  - "exact baud rate selection method not documented (assumed to be set via projector menu)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.126Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions matched cleanly against source commands; transport parameters verified; comprehensive coverage confirmed."
+  confidence: medium
+  summary: "All 52 spec actions matched cleanly against source commands; transport parameters verified; comprehensive coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -465,7 +473,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:26.538Z
 last_checked_at: 2026-05-14T18:17:19.126Z
 ```
 
@@ -476,14 +484,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.126Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions matched cleanly against source commands; transport parameters verified; comprehensive coverage confirmed."
+confidence: medium
+summary: "All 52 spec actions matched cleanly against source commands; transport parameters verified; comprehensive coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variant within X462S Series not specified; some commands reference two-lamp models not confirmed for this series"
+- "flow control not explicitly stated; RTS/CTS loopback noted in pinout"
+- "no discrete settable parameters beyond actions; all parameters are action arguments"
+- "no unsolicited notifications described; device only responds to commands"
+- "no multi-step sequences explicitly documented"
+- "no safety warnings or interlock procedures stated in source"
+- "input terminal codes 1Ah and 03h both listed for COMPUTER3 — model-dependent; Appendix values referenced but not included in source"
+- "exact baud rate selection method not documented (assumed to be set via projector menu)"
 ```
 
 ---

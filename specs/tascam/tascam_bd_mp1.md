@@ -27,14 +27,18 @@ last_checked_at: 2026-05-14T18:17:21.189Z
 generated_at: 2026-05-14T18:17:21.189Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "audio format selection commands not documented in source"
+  - "audio format selection commands not in source"
+  - "BD-Live timeout or connection keepalive parameters not stated"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.189Z
   matched_actions: 46
   action_count: 46
-  confidence: high
-  summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols."
+  confidence: medium
+  summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -741,14 +745,17 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.189Z
 matched_actions: 46
 action_count: 46
-confidence: high
-summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols."
+confidence: medium
+summary: "All 71 spec actions match verbatim source tokens; transport parameters verified; semantic-id convention maps cleanly to wire protocols. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "audio format selection commands not documented in source"
+- "audio format selection commands not in source"
+- "BD-Live timeout or connection keepalive parameters not stated"
+- "firmware version compatibility not stated"
 ```
 
 ---

@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:29.431Z
 last_checked_at: 2026-05-14T18:17:19.178Z
 generated_at: 2026-05-14T18:17:19.178Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "complete input terminal code table not included — appendix references supplementary documentation"
+  - "flow control not stated in source"
+  - "variables are typically settable parameters not tied to discrete actions."
+  - "no unsolicited event/notification messages documented."
+  - "specific voltage/current/power specifications not provided in this control protocol document"
+  - "complete appendix values for input terminals, aspect modes, and eco modes vary by model — only partial tables provided"
+  - "firmware version compatibility not stated in source"
+  - "authentication credentials or tokens not described (no auth appears required)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.178Z
   matched_actions: 48
   action_count: 48
-  confidence: high
-  summary: "Every spec action has a literal hex match in the source; all transport parameters verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "Every spec action has a literal hex match in the source; all transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -665,7 +673,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:29.431Z
 last_checked_at: 2026-05-14T18:17:19.178Z
 ```
 
@@ -676,14 +684,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.178Z
 matched_actions: 48
 action_count: 48
-confidence: high
-summary: "Every spec action has a literal hex match in the source; all transport parameters verified; source command catalogue fully represented."
+confidence: medium
+summary: "Every spec action has a literal hex match in the source; all transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "complete input terminal code table not included — appendix references supplementary documentation"
+- "flow control not stated in source"
+- "variables are typically settable parameters not tied to discrete actions."
+- "no unsolicited event/notification messages documented."
+- "specific voltage/current/power specifications not provided in this control protocol document"
+- "complete appendix values for input terminals, aspect modes, and eco modes vary by model — only partial tables provided"
+- "firmware version compatibility not stated in source"
+- "authentication credentials or tokens not described (no auth appears required)"
 ```
 
 ---

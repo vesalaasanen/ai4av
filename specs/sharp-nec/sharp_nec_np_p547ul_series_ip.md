@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:17.395Z
 last_checked_at: 2026-05-14T18:17:20.372Z
 generated_at: 2026-05-14T18:17:20.372Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Lamp replacement countdown behavior not stated in source"
+  - "no standalone settable parameters found in source;"
+  - "no unsolicited event notifications described in source;"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "Standby mode configuration for NP-P547UL specifically not listed in compatibility table; NP-P series models use varying standby mode settings"
+  - "Lamp count (single vs dual) for NP-P547UL not confirmed in source"
+  - "Authentication credentials / login procedure not stated (auth.type: none inferred from absence)"
+  - "Command timing/interval requirements not stated"
+  - "DHCP / static IP configuration not described"
+  - "Firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.372Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "All 58 spec actions matched to source commands one-to-one; all transport parameters (port 7142, baud 115200, serial 8N1) explicitly documented in source."
+  confidence: medium
+  summary: "All 58 spec actions matched to source commands one-to-one; all transport parameters (port 7142, baud 115200, serial 8N1) explicitly documented in source. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -816,7 +827,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:17.395Z
 last_checked_at: 2026-05-14T18:17:20.372Z
 ```
 
@@ -827,14 +838,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.372Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "All 58 spec actions matched to source commands one-to-one; all transport parameters (port 7142, baud 115200, serial 8N1) explicitly documented in source."
+confidence: medium
+summary: "All 58 spec actions matched to source commands one-to-one; all transport parameters (port 7142, baud 115200, serial 8N1) explicitly documented in source. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Lamp replacement countdown behavior not stated in source"
+- "no standalone settable parameters found in source;"
+- "no unsolicited event notifications described in source;"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "Standby mode configuration for NP-P547UL specifically not listed in compatibility table; NP-P series models use varying standby mode settings"
+- "Lamp count (single vs dual) for NP-P547UL not confirmed in source"
+- "Authentication credentials / login procedure not stated (auth.type: none inferred from absence)"
+- "Command timing/interval requirements not stated"
+- "DHCP / static IP configuration not described"
+- "Firmware version compatibility not stated"
 ```
 
 ---

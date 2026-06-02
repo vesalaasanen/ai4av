@@ -24,14 +24,18 @@ last_checked_at: 2026-04-26T22:46:41.052Z
 generated_at: 2026-04-26T22:46:41.052Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical RS-232 serial control not documented in source"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "physical RS-232 support not documented, firmware version not stated, authentication token format not applicable (no auth in source)"
 verification:
   verdict: verified
   checked_at: 2026-04-26T22:46:41.052Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -762,14 +766,17 @@ verdict: verified
 checked_at: 2026-04-26T22:46:41.052Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete."
+confidence: medium
+summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical RS-232 serial control not documented in source"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "physical RS-232 support not documented, firmware version not stated, authentication token format not applicable (no auth in source)"
 ```
 
 ---

@@ -29,14 +29,21 @@ last_checked_at: 2026-05-14T18:17:19.326Z
 generated_at: 2026-05-14T18:17:19.326Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial (RS-232) transport parameters not documented for BB-RS232 itself — the device acts as a gateway; the RS-232 side connects to a host PC or automation controller"
+  - "no safety warnings or interlock procedures stated in source."
+  - "serial (RS-232) transport parameters (baud rate, data bits, parity, stop bits) are not stated in this document — the BB-RS232 is described as an Ethernet gateway, and the RS-232 side is assumed to connect to a host/automation controller rather than being a configurable parameter"
+  - "HTTP web interface is for configuration only; the primary control protocol is UDP XML on port 57010"
+  - "no explicit firmware version compatibility range stated"
+  - "some event messages are marked \"For Furman Sound use only\" and not documented (schedmgr/setevent, seqchg, schedmgr/delevent, perchg, schedmgr/clearschedule, cmdconflict, fwupgd, loadfile, tfilebusy, tfilelock)"
+  - "scheduled action day encoding is a 7-bit bitmap in decimal; bit 0 = Thursday; this quirk may require client-side handling"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.326Z
   matched_actions: 13
   action_count: 13
   confidence: low
-  summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage"
+  summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -469,13 +476,19 @@ checked_at: 2026-05-14T18:17:19.326Z
 matched_actions: 13
 action_count: 13
 confidence: low
-summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage"
+summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial (RS-232) transport parameters not documented for BB-RS232 itself — the device acts as a gateway; the RS-232 side connects to a host PC or automation controller"
+- "no safety warnings or interlock procedures stated in source."
+- "serial (RS-232) transport parameters (baud rate, data bits, parity, stop bits) are not stated in this document — the BB-RS232 is described as an Ethernet gateway, and the RS-232 side is assumed to connect to a host/automation controller rather than being a configurable parameter"
+- "HTTP web interface is for configuration only; the primary control protocol is UDP XML on port 57010"
+- "no explicit firmware version compatibility range stated"
+- "some event messages are marked \"For Furman Sound use only\" and not documented (schedmgr/setevent, seqchg, schedmgr/delevent, perchg, schedmgr/clearschedule, cmdconflict, fwupgd, loadfile, tfilebusy, tfilelock)"
+- "scheduled action day encoding is a 7-bit bitmap in decimal; bit 0 = Thursday; this quirk may require client-side handling"
 ```
 
 ---

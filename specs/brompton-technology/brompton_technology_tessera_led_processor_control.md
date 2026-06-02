@@ -29,14 +29,27 @@ last_checked_at: 2026-05-14T18:17:14.840Z
 generated_at: 2026-05-14T18:17:14.840Z
 firmware_coverage: ">=3.1.0"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware version compatibility range not fully specified beyond \"as of version 3.1.0\""
+  - "password protection behavior described for reboot/shutdown but full auth mechanism not documented"
+  - "HTTP uses port 80 (stated) and TCP uses port 23 (stated) - two different ports"
+  - "no unsolicited event/notification mechanism described in source"
+  - "full list of safety interlocks not documented in source"
+  - "TCP port explicitly stated as 23 for Telnet; HTTP port explicitly stated as 80"
+  - "password protection mechanism for reboot/shutdown not fully detailed"
+  - "maximum concurrent connection limits not stated"
+  - "API response time / latency characteristics not stated"
+  - "firmware version range for full API compatibility — intro says \"as of version 3.1.0\", API version documented is 3.5.2"
+  - "binary command encoding for TCP protocol — only text-based \"set/get path value\" syntax documented"
+  - "many input port-specific endpoints (DVI proc-amp, HDMI HDR, SDI controls) share the same structure but are listed per port type — representative examples included"
+  - "StarTracker, RedSpy, ShutterSync hidden marker sub-endpoints are extensive but follow a consistent pattern"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.840Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed."
+  confidence: medium
+  summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -995,14 +1008,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.840Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed."
+confidence: medium
+summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware version compatibility range not fully specified beyond \"as of version 3.1.0\""
+- "password protection behavior described for reboot/shutdown but full auth mechanism not documented"
+- "HTTP uses port 80 (stated) and TCP uses port 23 (stated) - two different ports"
+- "no unsolicited event/notification mechanism described in source"
+- "full list of safety interlocks not documented in source"
+- "TCP port explicitly stated as 23 for Telnet; HTTP port explicitly stated as 80"
+- "password protection mechanism for reboot/shutdown not fully detailed"
+- "maximum concurrent connection limits not stated"
+- "API response time / latency characteristics not stated"
+- "firmware version range for full API compatibility — intro says \"as of version 3.1.0\", API version documented is 3.5.2"
+- "binary command encoding for TCP protocol — only text-based \"set/get path value\" syntax documented"
+- "many input port-specific endpoints (DVI proc-amp, HDMI HDR, SDI controls) share the same structure but are listed per port type — representative examples included"
+- "StarTracker, RedSpy, ShutterSync hidden marker sub-endpoints are extensive but follow a consistent pattern"
 ```
 
 ---

@@ -99,7 +99,13 @@ api_key  = cfg.get("api_key", "")
 # Default points at the public Convex HTTP endpoint domain (*.convex.site).
 # The anonymous rate-limit bucket is keyed server-side from the request IP, so
 # no client-side identifier is needed.
-url      = cfg.get("url", "https://rare-bandicoot-208.eu-west-1.convex.site")
+DEFAULT_URL = "https://rare-bandicoot-208.eu-west-1.convex.site"
+url = cfg.get("url", DEFAULT_URL)
+# Upgrade guard: older installs cached the legacy *.convex.cloud host, but the
+# /api/skill/lookup route is served only on the *.convex.site HTTP-actions
+# domain. Ignore a stale .convex.cloud url so upgrading the skill never 404s.
+if "convex.cloud" in url:
+    url = DEFAULT_URL
 print(f"AI4AV_KEY={api_key}")
 print(f"AI4AV_URL={url}")
 PYEOF

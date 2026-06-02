@@ -17,21 +17,29 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.xilica.com
+  - support.xilica.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://support.xilica.com/en/categories/1363842-programming-api
+retrieved_at: 2026-05-27T13:10:20.490Z
 last_checked_at: 2026-05-31T22:46:45.017Z
 generated_at: 2026-05-31T22:46:45.017Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model variants (FR1, Q1, etc.) firmware compatibility not stated"
+  - "specific parameter names (gain, mute, EQ, etc.) not stated in source"
+  - "specific trigger conditions not enumerated in source"
+  - "firmware version compatibility not stated"
+  - "specific DSP parameters (gain ranges, frequency steps, etc.) not enumerated in source"
+  - "maximum number of subscriptions, control groups, or objects per group not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:46:45.017Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions match source commands verbatim; transport parameters (TCP 10007, UDP 10008, password auth) confirmed; no omitted source commands."
+  confidence: medium
+  summary: "All 21 spec actions match source commands verbatim; transport parameters (TCP 10007, UDP 10008, password auth) confirmed; no omitted source commands. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -312,9 +320,11 @@ INTERVAL applies globally on Solaro (per-connection on Neutrino). KEEPALIVE requ
 ```yaml
 source_domains:
   - cdn.xilica.com
+  - support.xilica.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://support.xilica.com/en/categories/1363842-programming-api
+retrieved_at: 2026-05-27T13:10:20.490Z
 last_checked_at: 2026-05-31T22:46:45.017Z
 ```
 
@@ -325,14 +335,19 @@ verdict: verified
 checked_at: 2026-05-31T22:46:45.017Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions match source commands verbatim; transport parameters (TCP 10007, UDP 10008, password auth) confirmed; no omitted source commands."
+confidence: medium
+summary: "All 21 spec actions match source commands verbatim; transport parameters (TCP 10007, UDP 10008, password auth) confirmed; no omitted source commands. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model variants (FR1, Q1, etc.) firmware compatibility not stated"
+- "specific parameter names (gain, mute, EQ, etc.) not stated in source"
+- "specific trigger conditions not enumerated in source"
+- "firmware version compatibility not stated"
+- "specific DSP parameters (gain ranges, frequency steps, etc.) not enumerated in source"
+- "maximum number of subscriptions, control groups, or objects per group not specified"
 ```
 
 ---

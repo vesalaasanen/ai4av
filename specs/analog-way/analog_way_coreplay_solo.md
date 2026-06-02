@@ -24,14 +24,20 @@ last_checked_at: 2026-05-14T18:17:13.952Z
 generated_at: 2026-05-14T18:17:13.952Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not stated in source"
+  - "no multi-step sequences explicitly described in source"
+  - "source mentions reboot/shutdown with no confirmation requirement stated"
+  - "number of player engines not stated (playerIndex is 1-based but max count unknown)"
+  - "volume range not stated (source says \"decibels\" but min/max unknown)"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:13.952Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters."
+  confidence: medium
+  summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -580,14 +586,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:13.952Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters."
+confidence: medium
+summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not stated in source"
+- "no multi-step sequences explicitly described in source"
+- "source mentions reboot/shutdown with no confirmation requirement stated"
+- "number of player engines not stated (playerIndex is 1-based but max count unknown)"
+- "volume range not stated (source says \"decibels\" but min/max unknown)"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

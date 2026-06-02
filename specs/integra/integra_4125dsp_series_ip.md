@@ -19,7 +19,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:20.402Z
 last_checked_at: 2026-05-14T18:17:16.814Z
 generated_at: 2026-05-14T18:17:16.814Z
 firmware_coverage: "Not stated in source"
@@ -32,13 +32,28 @@ known_gaps:
   - RDS
   - PTS
   - TPS
+  - "firmware version compatibility not stated in source"
+  - "exact DSP configuration commands for the 4125DSP variant not distinguished from general Integra AV receiver commands"
+  - "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS)"
+  - "XM, SIRIUS, HD Radio commands are model-specific and not confirmed"
+  - "tone feedbacks for individual speaker zones (TFW, TFH, TCT, TSR, TSB, TSW)"
+  - "XM/SIRIUS/HD Radio info feedbacks - model-specific"
+  - "no separate variable system documented in source"
+  - "no multi-step sequences described in source"
+  - "no power-on sequencing requirements documented"
+  - "no thermal or fault protection interlocks documented"
+  - "which commands in the full list are specifically supported on the 4125DSP vs. other Integra models"
+  - "Zone 2/3/4 availability on the 4125DSP Series — document covers all zones but model may not support all"
+  - "maximum volume range (0-80 vs 0-100) depends on model variant"
+  - "XM/SIRIUS/HD Radio tuner availability on the 4125DSP Series"
+  - "tone commands for all individual speaker channels (TFW, TFH, TCT, TSR, TSB, TSW) omitted from Actions for brevity — follow TFR pattern"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.814Z
   matched_actions: 68
   action_count: 68
-  confidence: high
-  summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented."
+  confidence: medium
+  summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -973,7 +988,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:20.402Z
 last_checked_at: 2026-05-14T18:17:16.814Z
 ```
 
@@ -984,8 +999,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.814Z
 matched_actions: 68
 action_count: 68
-confidence: high
-summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented."
+confidence: medium
+summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -998,6 +1013,21 @@ summary: "All 85 spec actions matched verbatim to source commands; transport par
 - RDS
 - PTS
 - TPS
+- "firmware version compatibility not stated in source"
+- "exact DSP configuration commands for the 4125DSP variant not distinguished from general Integra AV receiver commands"
+- "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS)"
+- "XM, SIRIUS, HD Radio commands are model-specific and not confirmed"
+- "tone feedbacks for individual speaker zones (TFW, TFH, TCT, TSR, TSB, TSW)"
+- "XM/SIRIUS/HD Radio info feedbacks - model-specific"
+- "no separate variable system documented in source"
+- "no multi-step sequences described in source"
+- "no power-on sequencing requirements documented"
+- "no thermal or fault protection interlocks documented"
+- "which commands in the full list are specifically supported on the 4125DSP vs. other Integra models"
+- "Zone 2/3/4 availability on the 4125DSP Series — document covers all zones but model may not support all"
+- "maximum volume range (0-80 vs 0-100) depends on model variant"
+- "XM/SIRIUS/HD Radio tuner availability on the 4125DSP Series"
+- "tone commands for all individual speaker channels (TFW, TFH, TCT, TSR, TSB, TSW) omitted from Actions for brevity — follow TFR pattern"
 ```
 
 ---

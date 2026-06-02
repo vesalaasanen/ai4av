@@ -24,14 +24,25 @@ last_checked_at: 2026-05-14T18:17:14.710Z
 generated_at: 2026-05-14T18:17:14.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Telnet port number not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "command termination requirements vary by control system — source notes carriage return may or may not be required"
+  - "response format not documented in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "no other safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "Telnet port number not stated — whether same commands work over TCP on a specific port"
+  - "STATUS response format not documented"
+  - "whether web credentials (blustream/1234) apply to Telnet authentication"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.710Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 15 spec actions matched literally in the command reference table; all transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 15 spec actions matched literally in the command reference table; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -286,14 +297,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.710Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 15 spec actions matched literally in the command reference table; all transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 15 spec actions matched literally in the command reference table; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Telnet port number not stated in source"
+- "firmware version compatibility not stated in source"
+- "command termination requirements vary by control system — source notes carriage return may or may not be required"
+- "response format not documented in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "no other safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "Telnet port number not stated — whether same commands work over TCP on a specific port"
+- "STATUS response format not documented"
+- "whether web credentials (blustream/1234) apply to Telnet authentication"
+- "firmware version compatibility not stated"
 ```
 
 ---

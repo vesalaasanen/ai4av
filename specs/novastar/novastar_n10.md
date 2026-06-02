@@ -24,14 +24,25 @@ last_checked_at: 2026-05-18T16:39:34.697Z
 generated_at: 2026-05-18T16:39:34.697Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device type field not confirmed (LED controller / video processor)"
+  - "no query commands returning current state found in source"
+  - "no unsolicited event notifications documented"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "data length field (bytes 0x10-0x11) encoding not fully documented for all command variants"
+  - "source/destination address byte meaning not documented (bytes 0x04-0x05, 0x08-0x09)"
+  - "device type field (byte 0x06) values not documented"
+  - "Ethernet port field (byte 0x07) purpose not documented"
+  - "maximum number of layers, input cards, or presets not stated"
+  - "query commands to read current brightness, preset, or mode not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:39:34.697Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -275,14 +286,24 @@ verdict: verified
 checked_at: 2026-05-18T16:39:34.697Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device type field not confirmed (LED controller / video processor)"
+- "no query commands returning current state found in source"
+- "no unsolicited event notifications documented"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "data length field (bytes 0x10-0x11) encoding not fully documented for all command variants"
+- "source/destination address byte meaning not documented (bytes 0x04-0x05, 0x08-0x09)"
+- "device type field (byte 0x06) values not documented"
+- "Ethernet port field (byte 0x07) purpose not documented"
+- "maximum number of layers, input cards, or presets not stated"
+- "query commands to read current brightness, preset, or mode not documented"
 ```
 
 ---

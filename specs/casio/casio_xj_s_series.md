@@ -26,14 +26,21 @@ last_checked_at: 2026-04-30T15:19:09.033Z
 generated_at: 2026-04-30T15:19:09.033Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "which specific XJ-S models support USB/HDMI/wireless inputs not confirmed for all units"
+  - "no continuous variable parameters found in source"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macro sequences documented"
+  - "specific XJ-S model variants and their supported inputs/features"
+  - "firmware version compatibility not stated"
+  - "detailed pinout of YK-5 cable not in this excerpt"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:19:09.033Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched verbatim against source command table."
+  confidence: medium
+  summary: "All 10 spec actions matched verbatim against source command table. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -200,14 +207,20 @@ verdict: verified
 checked_at: 2026-04-30T15:19:09.033Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched verbatim against source command table."
+confidence: medium
+summary: "All 10 spec actions matched verbatim against source command table. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "which specific XJ-S models support USB/HDMI/wireless inputs not confirmed for all units"
+- "no continuous variable parameters found in source"
+- "no unsolicited event notifications documented"
+- "no multi-step macro sequences documented"
+- "specific XJ-S model variants and their supported inputs/features"
+- "firmware version compatibility not stated"
+- "detailed pinout of YK-5 cable not in this excerpt"
 ```
 
 ---

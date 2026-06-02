@@ -19,21 +19,30 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:45:24.811Z
 last_checked_at: 2026-05-14T21:37:15.616Z
 generated_at: 2026-05-14T21:37:15.616Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no multi-step macro sequences explicitly described in source"
+  - "source does not describe explicit safety interlock sequences beyond good-practice state checks"
+  - "firmware version compatibility not stated in source"
+  - "exact laser power range per model not stated (min/max are dynamic, lens-dependent)"
+  - "HTTP file transfer endpoint authentication not specified"
+  - "exact available sources and connectors per model variant not listed"
+  - "warp file format details only referenced as \"same as MCM500/400\""
+  - "lens position integer ranges not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:37:15.616Z
   matched_actions: 54
   action_count: 54
-  confidence: high
-  summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage."
+  confidence: medium
+  summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -862,9 +871,10 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:45:24.811Z
 last_checked_at: 2026-05-14T21:37:15.616Z
 ```
 
@@ -875,14 +885,21 @@ verdict: verified
 checked_at: 2026-05-14T21:37:15.616Z
 matched_actions: 54
 action_count: 54
-confidence: high
-summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage."
+confidence: medium
+summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no multi-step macro sequences explicitly described in source"
+- "source does not describe explicit safety interlock sequences beyond good-practice state checks"
+- "firmware version compatibility not stated in source"
+- "exact laser power range per model not stated (min/max are dynamic, lens-dependent)"
+- "HTTP file transfer endpoint authentication not specified"
+- "exact available sources and connectors per model variant not listed"
+- "warp file format details only referenced as \"same as MCM500/400\""
+- "lens position integer ranges not stated"
 ```
 
 ---

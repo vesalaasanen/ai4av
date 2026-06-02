@@ -29,13 +29,22 @@ known_gaps:
   - update
   - getResp
   - error
+  - "no power on/off commands found — device may lack remote power control"
+  - "no error response format documented beyond method name \"error\""
+  - "error response payload format not documented beyond method name"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "maximum number of simultaneous TCP connections not stated"
+  - "error response format beyond method name \"error\" not documented"
+  - "UDP metering subscription response format details beyond example"
+  - "no power on/off commands documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:30:17.149Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage."
+  confidence: medium
+  summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -508,8 +517,8 @@ verdict: verified
 checked_at: 2026-04-30T09:30:17.149Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage."
+confidence: medium
+summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -518,6 +527,15 @@ summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in s
 - update
 - getResp
 - error
+- "no power on/off commands found — device may lack remote power control"
+- "no error response format documented beyond method name \"error\""
+- "error response payload format not documented beyond method name"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "maximum number of simultaneous TCP connections not stated"
+- "error response format beyond method name \"error\" not documented"
+- "UDP metering subscription response format details beyond example"
+- "no power on/off commands documented"
 ```
 
 ---

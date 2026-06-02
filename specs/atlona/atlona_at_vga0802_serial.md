@@ -17,25 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://www.manualslib.com/manual/734471/Atlona-At-Vga0801-To-At-Vga9601.html
+retrieved_at: 2026-05-21T18:11:38.097Z
 last_checked_at: 2026-05-22T13:30:15.816Z
 generated_at: 2026-05-22T13:30:15.816Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "No power on/off commands found in source"
+  - "flow control not stated in source"
+  - "source describes commands that return status but does not specify"
+  - "no unsolicited notification descriptions found in source."
+  - "no safety warnings or interlock procedures in source."
+  - "flow control (RTS/CTS, XON/XOFF) not stated in source"
+  - "response format strings for Status and query commands not documented"
+  - "group output membership ranges not stated (e.g., group 2 = outputs 4,5,6)"
 verification:
   verdict: verified
   checked_at: 2026-05-22T13:30:15.816Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage."
+  confidence: medium
+  summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -338,13 +344,11 @@ interlocks: []
 ```yaml
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://www.manualslib.com/manual/734471/Atlona-At-Vga0801-To-At-Vga9601.html
+retrieved_at: 2026-05-21T18:11:38.097Z
 last_checked_at: 2026-05-22T13:30:15.816Z
 ```
 
@@ -355,14 +359,21 @@ verdict: verified
 checked_at: 2026-05-22T13:30:15.816Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage."
+confidence: medium
+summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "No power on/off commands found in source"
+- "flow control not stated in source"
+- "source describes commands that return status but does not specify"
+- "no unsolicited notification descriptions found in source."
+- "no safety warnings or interlock procedures in source."
+- "flow control (RTS/CTS, XON/XOFF) not stated in source"
+- "response format strings for Status and query commands not documented"
+- "group output membership ranges not stated (e.g., group 2 = outputs 4,5,6)"
 ```
 
 ---

@@ -19,20 +19,26 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:22.286Z
 last_checked_at: 2026-04-23T05:37:01.178Z
 generated_at: 2026-04-23T05:37:01.178Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "electrical specifications (voltage, current, power consumption) not stated in source"
+  - "HTTPS port 443 stated but not populated as explicit port number"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "firmware compatibility range not stated"
+  - "electrical specifications (voltage/current/power) not stated"
+  - "fault behavior and error recovery procedures not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T05:37:01.178Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions matched literally in source; transport parameters verified; HTTP API fully covered."
+  confidence: medium
+  summary: "All 24 spec actions matched literally in source; transport parameters verified; HTTP API fully covered. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -405,8 +411,7 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:22.286Z
 last_checked_at: 2026-04-23T05:37:01.178Z
 ```
 
@@ -417,14 +422,20 @@ verdict: verified
 checked_at: 2026-04-23T05:37:01.178Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions matched literally in source; transport parameters verified; HTTP API fully covered."
+confidence: medium
+summary: "All 24 spec actions matched literally in source; transport parameters verified; HTTP API fully covered. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "electrical specifications (voltage, current, power consumption) not stated in source"
+- "HTTPS port 443 stated but not populated as explicit port number"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "firmware compatibility range not stated"
+- "electrical specifications (voltage/current/power) not stated"
+- "fault behavior and error recovery procedures not documented"
 ```
 
 ---

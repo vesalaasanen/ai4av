@@ -27,14 +27,21 @@ last_checked_at: 2026-05-14T18:17:20.764Z
 generated_at: 2026-05-14T18:17:20.764Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial VISCA pinout/baud not documented in this source — IP-only"
+  - "CGI command subset not included — separate spec needed"
+  - "RS-232 serial VISCA pinout/baud rate not in this source"
+  - "firmware version compatibility not stated"
+  - "maximum concurrent controller behavior beyond \"up to 5\" not detailed"
+  - "CGI command set not included — separate document covers HTTP-based control"
+  - "Press/Release commands for offset color temp and offset tint (ATW mode) use same command format as Memory A counterparts but with p=0"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.764Z
   matched_actions: 109
   action_count: 109
-  confidence: high
-  summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation."
+  confidence: medium
+  summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1719,14 +1726,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.764Z
 matched_actions: 109
 action_count: 109
-confidence: high
-summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation."
+confidence: medium
+summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial VISCA pinout/baud not documented in this source — IP-only"
+- "CGI command subset not included — separate spec needed"
+- "RS-232 serial VISCA pinout/baud rate not in this source"
+- "firmware version compatibility not stated"
+- "maximum concurrent controller behavior beyond \"up to 5\" not detailed"
+- "CGI command set not included — separate document covers HTTP-based control"
+- "Press/Release commands for offset color temp and offset tint (ATW mode) use same command format as Memory A counterparts but with p=0"
 ```
 
 ---

@@ -37,14 +37,30 @@ last_checked_at: 2026-05-14T18:17:15.819Z
 generated_at: 2026-05-14T18:17:15.819Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 baud rate and serial configuration not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "exact UDP default ports not stated — only recommended ranges"
+  - "no base URL pattern - OSC uses /eos/ path prefix"
+  - "baud rate not stated in source"
+  - "data bits not stated in source"
+  - "parity not stated in source"
+  - "stop bits not stated in source"
+  - "flow control not stated in source"
+  - "no specific multi-step sequences described in source beyond general macro capability"
+  - "no explicit safety warnings or interlock procedures found in source"
+  - "RS-232 serial configuration (baud rate, data bits, parity, stop bits) not stated in source"
+  - "firmware version compatibility range not stated"
+  - "exact default UDP port numbers not stated — only recommended ranges (4703-4727 or 8000/8001)"
+  - "OSC TCP connection limit / max concurrent connections not stated"
+  - "command rate limits or throttling not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.819Z
   matched_actions: 82
   action_count: 82
-  confidence: high
-  summary: "All 93 spec actions verified against source; port 3032 confirmed."
+  confidence: medium
+  summary: "All 93 spec actions verified against source; port 3032 confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1082,14 +1098,29 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.819Z
 matched_actions: 82
 action_count: 82
-confidence: high
-summary: "All 93 spec actions verified against source; port 3032 confirmed."
+confidence: medium
+summary: "All 93 spec actions verified against source; port 3032 confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 baud rate and serial configuration not stated in source"
+- "firmware version compatibility not stated in source"
+- "exact UDP default ports not stated — only recommended ranges"
+- "no base URL pattern - OSC uses /eos/ path prefix"
+- "baud rate not stated in source"
+- "data bits not stated in source"
+- "parity not stated in source"
+- "stop bits not stated in source"
+- "flow control not stated in source"
+- "no specific multi-step sequences described in source beyond general macro capability"
+- "no explicit safety warnings or interlock procedures found in source"
+- "RS-232 serial configuration (baud rate, data bits, parity, stop bits) not stated in source"
+- "firmware version compatibility range not stated"
+- "exact default UDP port numbers not stated — only recommended ranges (4703-4727 or 8000/8001)"
+- "OSC TCP connection limit / max concurrent connections not stated"
+- "command rate limits or throttling not stated"
 ```
 
 ---

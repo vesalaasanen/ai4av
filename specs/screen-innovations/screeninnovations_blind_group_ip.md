@@ -17,22 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - files.screeninnovations.com
+  - manualslib.com
 source_urls:
   - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
-  - https://files.screeninnovations.com/Downloads/Miscellaneous/Shade/si-ecosystem-toplogies.pdf
-retrieved_at: 2026-05-21T21:41:15.546Z
+  - https://www.manualslib.com/manual/3075025/Si-Tro-Y-2.html
+retrieved_at: 2026-05-21T21:26:24.094Z
 last_checked_at: 2026-05-31T21:02:41.117Z
 generated_at: 2026-05-31T21:02:41.117Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "downstream device models (specific blind motor models) not enumerated in source"
+  - "\"4800-56K\" range stated; specific rate not fixed in source"
+  - "flow control not mentioned in source"
+  - "Telnet username/password mentioned as configurable; no default stated"
+  - "time-triggered or occurrence-triggered events exist per source;"
+  - "source warns HTTP Get commands could cause damage if incorrect ASCII sent;"
+  - "specific RS-485 baud rate not fixed in source"
+  - "Telnet auth credentials not stated (username/password configurable but no defaults)"
+  - "downstream device model list not enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:02:41.117Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions map cleanly to source command documentation; transport parameters verified."
+  confidence: medium
+  summary: "All 10 spec actions map cleanly to source command documentation; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -243,10 +253,11 @@ Zigbee motors: 6 second delay recommended between scene commands.
 ```yaml
 source_domains:
   - files.screeninnovations.com
+  - manualslib.com
 source_urls:
   - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
-  - https://files.screeninnovations.com/Downloads/Miscellaneous/Shade/si-ecosystem-toplogies.pdf
-retrieved_at: 2026-05-21T21:41:15.546Z
+  - https://www.manualslib.com/manual/3075025/Si-Tro-Y-2.html
+retrieved_at: 2026-05-21T21:26:24.094Z
 last_checked_at: 2026-05-31T21:02:41.117Z
 ```
 
@@ -257,14 +268,22 @@ verdict: verified
 checked_at: 2026-05-31T21:02:41.117Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions map cleanly to source command documentation; transport parameters verified."
+confidence: medium
+summary: "All 10 spec actions map cleanly to source command documentation; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "downstream device models (specific blind motor models) not enumerated in source"
+- "\"4800-56K\" range stated; specific rate not fixed in source"
+- "flow control not mentioned in source"
+- "Telnet username/password mentioned as configurable; no default stated"
+- "time-triggered or occurrence-triggered events exist per source;"
+- "source warns HTTP Get commands could cause damage if incorrect ASCII sent;"
+- "specific RS-485 baud rate not fixed in source"
+- "Telnet auth credentials not stated (username/password configurable but no defaults)"
+- "downstream device model list not enumerated"
 ```
 
 ---

@@ -18,12 +18,12 @@ compatible_with:
   required_options: []
 source_domains:
   - cisco.com
-  - usermanual.wiki
+  - community.cisco.com
 source_urls:
-  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
-  - https://usermanual.wiki/Document/tandbergmxpreferenceuserguideforsystemintegratorsf8.1653454696.pdf
-  - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
-retrieved_at: 2026-05-18T17:04:01.469Z
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc6/api_reference_guide/codec-c90-api-reference-guide-tc62.pdf
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc5/api_reference_guide/codec_c60-c40_api_reference_guide_tc50.pdf
+  - https://community.cisco.com/kxiwq67737/attachments/kxiwq67737/discussions-telepresence-video-infra/102802/3/codec-c60-c40-api-reference-guide-tc72.pdf
+retrieved_at: 2026-05-14T18:17:21.166Z
 last_checked_at: 2026-05-14T18:17:21.166Z
 generated_at: 2026-05-14T18:17:21.166Z
 firmware_coverage: "Not stated in source"
@@ -41,13 +41,23 @@ known_gaps:
   - "xCommand Video"
   - "xCommand SystemUnit"
   - "xCommand UserManagement"
+  - "exact firmware version range not stated; document references TC4.0 through TC7.x"
+  - "TCP port numbers for Telnet and HTTP not explicitly stated in source"
+  - "SSH port not stated in source"
+  - "Telnet port not stated in source"
+  - "no explicit multi-step macro sequences documented in source"
+  - "power-on sequencing requirements not documented in this source"
+  - "exact TCP port numbers for Telnet, SSH, and HTTP not stated"
+  - "firmware version compatibility range not stated"
+  - "maximum number of simultaneous sessions not stated"
+  - "command response timing/latency not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.166Z
   matched_actions: 29
   action_count: 39
-  confidence: high
-  summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively."
+  confidence: medium
+  summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -645,12 +655,12 @@ interlocks: []
 ```yaml
 source_domains:
   - cisco.com
-  - usermanual.wiki
+  - community.cisco.com
 source_urls:
-  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc3/api_reference_guide/tandberg_codec-c60-c40_api_guide_tc31.pdf
-  - https://usermanual.wiki/Document/tandbergmxpreferenceuserguideforsystemintegratorsf8.1653454696.pdf
-  - https://usermanual.wiki/TANDBERG/MXP.3726017066.pdf
-retrieved_at: 2026-05-18T17:04:01.469Z
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc6/api_reference_guide/codec-c90-api-reference-guide-tc62.pdf
+  - https://www.cisco.com/en/US/docs/telepresence/endpoint/codec-c-series/tc5/api_reference_guide/codec_c60-c40_api_reference_guide_tc50.pdf
+  - https://community.cisco.com/kxiwq67737/attachments/kxiwq67737/discussions-telepresence-video-infra/102802/3/codec-c60-c40-api-reference-guide-tc72.pdf
+retrieved_at: 2026-05-14T18:17:21.166Z
 last_checked_at: 2026-05-14T18:17:21.166Z
 ```
 
@@ -661,8 +671,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.166Z
 matched_actions: 29
 action_count: 39
-confidence: high
-summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively."
+confidence: medium
+summary: "All 29 spec actions matched literal xCommand tokens in source; transport parameters (38400 baud, serial, HTTP) verified; specification covers core call/media control comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -680,6 +690,16 @@ summary: "All 29 spec actions matched literal xCommand tokens in source; transpo
 - "xCommand Video"
 - "xCommand SystemUnit"
 - "xCommand UserManagement"
+- "exact firmware version range not stated; document references TC4.0 through TC7.x"
+- "TCP port numbers for Telnet and HTTP not explicitly stated in source"
+- "SSH port not stated in source"
+- "Telnet port not stated in source"
+- "no explicit multi-step macro sequences documented in source"
+- "power-on sequencing requirements not documented in this source"
+- "exact TCP port numbers for Telnet, SSH, and HTTP not stated"
+- "firmware version compatibility range not stated"
+- "maximum number of simultaneous sessions not stated"
+- "command response timing/latency not documented"
 ```
 
 ---

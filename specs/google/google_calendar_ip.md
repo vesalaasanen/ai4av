@@ -19,19 +19,35 @@ source_domains:
   - developers.google.com
 source_urls:
   - https://developers.google.com/workspace/calendar/api/v3/reference
-retrieved_at: 2026-05-13T16:00:00.000Z
+  - https://developers.google.com/workspace/calendar/api/guides/overview
+  - https://developers.google.com/workspace/calendar/caldav
+retrieved_at: 2026-05-14T18:17:15.916Z
 last_checked_at: 2026-05-14T18:17:15.916Z
 generated_at: 2026-05-14T18:17:15.916Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "authentication mechanism not fully documented in source — source references \"authenticated user\" and \"domain-wide delegation of authority\" but does not specify OAuth2 flow, scopes, or token format"
+  - "rate limits and quota units not fully specified beyond mention that patch requests consume three quota units"
+  - "request/response body schemas not included in source — source references separate \"resource representation\" pages"
+  - "source references \"authenticated user\" and \"domain-wide delegation\" but does not specify the auth mechanism or token format"
+  - "response schemas are not documented in source — source references separate \"resource representation\" pages"
+  - "settable parameters not detailed in source — resource representation pages not included"
+  - "push notification payload format and delivery details not in source"
+  - "no explicit multi-step sequences defined in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "authentication mechanism (OAuth2 scopes, token acquisition) not documented in source"
+  - "rate limit quotas and daily usage limits not specified beyond patch costing 3 units"
+  - "request/response body schemas not in source"
+  - "error codes and error response format not documented"
+  - "pagination parameters for list endpoints not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.916Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands."
+  confidence: medium
+  summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -573,7 +589,9 @@ source_domains:
   - developers.google.com
 source_urls:
   - https://developers.google.com/workspace/calendar/api/v3/reference
-retrieved_at: 2026-05-13T16:00:00.000Z
+  - https://developers.google.com/workspace/calendar/api/guides/overview
+  - https://developers.google.com/workspace/calendar/caldav
+retrieved_at: 2026-05-14T18:17:15.916Z
 last_checked_at: 2026-05-14T18:17:15.916Z
 ```
 
@@ -584,14 +602,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.916Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands."
+confidence: medium
+summary: "All 38 spec actions match literal HTTP method and path combinations in the source; transport base URL verified; no extra source commands. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "authentication mechanism not fully documented in source — source references \"authenticated user\" and \"domain-wide delegation of authority\" but does not specify OAuth2 flow, scopes, or token format"
+- "rate limits and quota units not fully specified beyond mention that patch requests consume three quota units"
+- "request/response body schemas not included in source — source references separate \"resource representation\" pages"
+- "source references \"authenticated user\" and \"domain-wide delegation\" but does not specify the auth mechanism or token format"
+- "response schemas are not documented in source — source references separate \"resource representation\" pages"
+- "settable parameters not detailed in source — resource representation pages not included"
+- "push notification payload format and delivery details not in source"
+- "no explicit multi-step sequences defined in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "authentication mechanism (OAuth2 scopes, token acquisition) not documented in source"
+- "rate limit quotas and daily usage limits not specified beyond patch costing 3 units"
+- "request/response body schemas not in source"
+- "error codes and error response format not documented"
+- "pagination parameters for list endpoints not documented"
 ```
 
 ---

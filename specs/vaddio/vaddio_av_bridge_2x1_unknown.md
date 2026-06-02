@@ -16,24 +16,37 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - files.avprosupply.com
+  - manualowl.com
+  - image.makewebeasy.net
+  - fullcompass.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
+  - "https://res.cloudinary.com/avd/image/upload/v133464888/Resources/Vaddio/AV%20to%20USB%20Bridges%20and%20Encoders/Operation/411-0042-30_Rev_B_AV_Bridge_2x1_Complete_Manual.pdf"
+  - https://files.avprosupply.com/files/attachments/126001/vaddio-999-8210-000-manual.pdf
+  - "https://www.manualowl.com/m/Vaddio/AV-Bridge/Manual/440141?page=25"
+  - "https://image.makewebeasy.net/makeweb/0/9HUjBpYEg/Document/Vaddio_AVBridgeNano_Manual.pdf?v=202305101549"
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+retrieved_at: 2026-05-18T23:54:40.219Z
 last_checked_at: 2026-05-19T17:11:21.700Z
 generated_at: 2026-05-19T17:11:21.700Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Dante control commands not documented in source"
+  - "source mentions \"admin account\" login but does not specify password"
+  - "structured response schemas not explicitly defined in source"
+  - "unsolicited event notifications not documented in source"
+  - "safety warnings and interlock procedures not found in source"
+  - "Dante control commands not covered in source"
+  - "telnet session encryption (SSH vs plain Telnet) not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:11:21.700Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -639,12 +652,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - files.avprosupply.com
+  - manualowl.com
+  - image.makewebeasy.net
+  - fullcompass.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
+  - "https://res.cloudinary.com/avd/image/upload/v133464888/Resources/Vaddio/AV%20to%20USB%20Bridges%20and%20Encoders/Operation/411-0042-30_Rev_B_AV_Bridge_2x1_Complete_Manual.pdf"
+  - https://files.avprosupply.com/files/attachments/126001/vaddio-999-8210-000-manual.pdf
+  - "https://www.manualowl.com/m/Vaddio/AV-Bridge/Manual/440141?page=25"
+  - "https://image.makewebeasy.net/makeweb/0/9HUjBpYEg/Document/Vaddio_AVBridgeNano_Manual.pdf?v=202305101549"
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+retrieved_at: 2026-05-18T23:54:40.219Z
 last_checked_at: 2026-05-19T17:11:21.700Z
 ```
 
@@ -655,14 +674,20 @@ verdict: verified
 checked_at: 2026-05-19T17:11:21.700Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim."
+confidence: medium
+summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Dante control commands not documented in source"
+- "source mentions \"admin account\" login but does not specify password"
+- "structured response schemas not explicitly defined in source"
+- "unsolicited event notifications not documented in source"
+- "safety warnings and interlock procedures not found in source"
+- "Dante control commands not covered in source"
+- "telnet session encryption (SSH vs plain Telnet) not specified"
 ```
 
 ---

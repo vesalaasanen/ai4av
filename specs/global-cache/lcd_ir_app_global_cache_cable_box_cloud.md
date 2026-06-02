@@ -19,19 +19,25 @@ source_domains:
   - globalcache.com
 source_urls:
   - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
-retrieved_at: 2026-05-13T16:00:00.000Z
+retrieved_at: 2026-04-30T04:34:18.109Z
 last_checked_at: 2026-05-10T12:44:14.737Z
 generated_at: 2026-05-10T12:44:14.737Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "This spec covers a cloud IR code database service, not physical device control. Compatible models field refers to the API service itself, not end hardware. End-user devices (TVs, cable boxes, etc.) are discovered through the brand/type/model hierarchy."
+  - "This is a metadata/code retrieval service, not a controllable device."
+  - "No safety-critical device operations in source - cloud API only"
+  - "Firmware version for Global Caché hardware not stated in source"
+  - "Physical device connection details (RS-232, IP) not applicable — this is a cloud metadata service"
+  - "Actual IR transmission commands to physical hardware not documented in this API spec"
 verification:
   verdict: verified
   checked_at: 2026-05-10T12:44:14.737Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched their corresponding API endpoints in source; base URL and auth mechanism verified after protocols field corrected to https."
+  confidence: medium
+  summary: "All 15 spec actions matched their corresponding API endpoints in source; base URL and auth mechanism verified after protocols field corrected to https. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -280,7 +286,7 @@ source_domains:
   - globalcache.com
 source_urls:
   - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
-retrieved_at: 2026-05-13T16:00:00.000Z
+retrieved_at: 2026-04-30T04:34:18.109Z
 last_checked_at: 2026-05-10T12:44:14.737Z
 ```
 
@@ -291,14 +297,19 @@ verdict: verified
 checked_at: 2026-05-10T12:44:14.737Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched their corresponding API endpoints in source; base URL and auth mechanism verified after protocols field corrected to https."
+confidence: medium
+summary: "All 15 spec actions matched their corresponding API endpoints in source; base URL and auth mechanism verified after protocols field corrected to https. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "This spec covers a cloud IR code database service, not physical device control. Compatible models field refers to the API service itself, not end hardware. End-user devices (TVs, cable boxes, etc.) are discovered through the brand/type/model hierarchy."
+- "This is a metadata/code retrieval service, not a controllable device."
+- "No safety-critical device operations in source - cloud API only"
+- "Firmware version for Global Caché hardware not stated in source"
+- "Physical device connection details (RS-232, IP) not applicable — this is a cloud metadata service"
+- "Actual IR transmission commands to physical hardware not documented in this API spec"
 ```
 
 ---

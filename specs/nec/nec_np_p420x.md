@@ -24,14 +24,23 @@ last_checked_at: 2026-04-26T20:52:02.734Z
 generated_at: 2026-04-26T20:52:02.734Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" tables (input terminal codes, aspect values, eco mode values, signal types) not included in source"
+  - "projector parameters not explicitly documented as settable variables"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings or interlock procedures beyond command timing notes"
+  - "input terminal code values, aspect ratio values, eco mode values, signal type values, base model type values not provided in source document"
+  - "firmware version compatibility not stated in source"
+  - "port number for serial not stated (only baud rates stated for serial)"
+  - "authentication credentials or token formats not applicable (none stated)"
 verification:
   verdict: verified
   checked_at: 2026-04-26T20:52:02.734Z
   matched_actions: 48
   action_count: 48
-  confidence: high
-  summary: "All 48 semantic-id actions matched to source command catalogue; transport parameters fully verified in source document."
+  confidence: medium
+  summary: "All 48 semantic-id actions matched to source command catalogue; transport parameters fully verified in source document. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -781,14 +790,22 @@ verdict: verified
 checked_at: 2026-04-26T20:52:02.734Z
 matched_actions: 48
 action_count: 48
-confidence: high
-summary: "All 48 semantic-id actions matched to source command catalogue; transport parameters fully verified in source document."
+confidence: medium
+summary: "All 48 semantic-id actions matched to source command catalogue; transport parameters fully verified in source document. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" tables (input terminal codes, aspect values, eco mode values, signal types) not included in source"
+- "projector parameters not explicitly documented as settable variables"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings or interlock procedures beyond command timing notes"
+- "input terminal code values, aspect ratio values, eco mode values, signal type values, base model type values not provided in source document"
+- "firmware version compatibility not stated in source"
+- "port number for serial not stated (only baud rates stated for serial)"
+- "authentication credentials or token formats not applicable (none stated)"
 ```
 
 ---

@@ -32,14 +32,22 @@ last_checked_at: 2026-05-15T21:12:41.796Z
 generated_at: 2026-05-15T21:12:41.796Z
 firmware_coverage: ">= v2.00.20"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "HTTP port not stated in source; default assumed but not confirmed"
+  - "source does not document unsolicited notifications or event subscriptions"
+  - "source does not document multi-step macro sequences"
+  - "source does not document power-on sequencing or interlock procedures"
+  - "HTTP port number not stated in source"
+  - "no event/webhook/subscription mechanism documented"
+  - "no macro/preset sequencing documented beyond memory recall"
+  - "thumbnail endpoints not fully enumerated as actions (read-only image resources)"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:12:41.796Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified."
+  confidence: medium
+  summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -936,14 +944,21 @@ verdict: verified
 checked_at: 2026-05-15T21:12:41.796Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified."
+confidence: medium
+summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "HTTP port not stated in source; default assumed but not confirmed"
+- "source does not document unsolicited notifications or event subscriptions"
+- "source does not document multi-step macro sequences"
+- "source does not document power-on sequencing or interlock procedures"
+- "HTTP port number not stated in source"
+- "no event/webhook/subscription mechanism documented"
+- "no macro/preset sequencing documented beyond memory recall"
+- "thumbnail endpoints not fully enumerated as actions (read-only image resources)"
 ```
 
 ---

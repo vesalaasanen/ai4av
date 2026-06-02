@@ -24,14 +24,19 @@ last_checked_at: 2026-04-23T08:06:15.828Z
 generated_at: 2026-04-23T08:06:15.828Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control not mentioned in source — serial only"
+  - "complete list of error codes/notifications"
+  - "device sends unsolicited events (power-on message, etc.)"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings in source beyond interlock behavior"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:06:15.828Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 26 spec actions match source literals; transport parameters verified; spec fully represents documented command set."
+  confidence: medium
+  summary: "All 26 spec actions match source literals; transport parameters verified; spec fully represents documented command set. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -368,14 +373,18 @@ verdict: verified
 checked_at: 2026-04-23T08:06:15.828Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 26 spec actions match source literals; transport parameters verified; spec fully represents documented command set."
+confidence: medium
+summary: "All 26 spec actions match source literals; transport parameters verified; spec fully represents documented command set. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control not mentioned in source — serial only"
+- "complete list of error codes/notifications"
+- "device sends unsolicited events (power-on message, etc.)"
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings in source beyond interlock behavior"
 ```
 
 ---

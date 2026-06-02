@@ -19,19 +19,39 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:16:24.617Z
 last_checked_at: 2026-05-18T16:39:33.254Z
 generated_at: 2026-05-18T16:39:33.254Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact V400 Series model variants not enumerated in source"
+  - "default baud rate not stated (multiple supported)"
+  - "input terminal hex values referenced in appendix not included in source"
+  - "eco mode values referenced in appendix not included in source"
+  - "aspect values referenced in appendix not included in source"
+  - "sub input values for PIP referenced in appendix not included in source"
+  - "base model type values referenced in appendix not included in source"
+  - "ID1 control ID and ID2 model code values not stated"
+  - "flow control setting not stated for serial"
+  - "default not stated; supported: 115200, 38400, 19200, 9600, 4800"
+  - "flow control not stated in source"
+  - "full input terminal value list in appendix not in source"
+  - "aspect values in appendix not in source"
+  - "other DATA01 values for zoom/shift not in source"
+  - "eco mode values in appendix not in source"
+  - "sub input values in appendix not in source"
+  - "input terminal values in appendix not in source"
+  - "eco mode return values in appendix not in source"
+  - "base model type values in appendix not in source"
+  - "no persistent settable variables beyond those covered by actions"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:39:33.254Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands."
+  confidence: medium
+  summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands. (20 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -795,7 +815,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:16:24.617Z
 last_checked_at: 2026-05-18T16:39:33.254Z
 ```
 
@@ -806,14 +826,33 @@ verdict: verified
 checked_at: 2026-05-18T16:39:33.254Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands."
+confidence: medium
+summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands. (20 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact V400 Series model variants not enumerated in source"
+- "default baud rate not stated (multiple supported)"
+- "input terminal hex values referenced in appendix not included in source"
+- "eco mode values referenced in appendix not included in source"
+- "aspect values referenced in appendix not included in source"
+- "sub input values for PIP referenced in appendix not included in source"
+- "base model type values referenced in appendix not included in source"
+- "ID1 control ID and ID2 model code values not stated"
+- "flow control setting not stated for serial"
+- "default not stated; supported: 115200, 38400, 19200, 9600, 4800"
+- "flow control not stated in source"
+- "full input terminal value list in appendix not in source"
+- "aspect values in appendix not in source"
+- "other DATA01 values for zoom/shift not in source"
+- "eco mode values in appendix not in source"
+- "sub input values in appendix not in source"
+- "input terminal values in appendix not in source"
+- "eco mode return values in appendix not in source"
+- "base model type values in appendix not in source"
+- "no persistent settable variables beyond those covered by actions"
 ```
 
 ---

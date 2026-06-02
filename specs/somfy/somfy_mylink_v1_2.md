@@ -4,13 +4,13 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Somfy myLink v1.2 Control Spec"
 manufacturer: Somfy
-model_family: "myLink v1.2"
+model_family: "Somfy myLink v1.2"
 aliases: []
 compatible_with:
   manufacturers:
     - Somfy
   models:
-    - "myLink v1.2"
+    - "Somfy myLink v1.2"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,32 +20,41 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:12.406Z
-last_checked_at: 2026-05-14T18:17:20.649Z
-generated_at: 2026-05-14T18:17:20.649Z
+last_checked_at: 2026-06-02T05:46:19.451Z
+generated_at: 2026-06-02T05:46:19.451Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - 7Fh
+  - 6Fh
+  - "source is the generic Somfy SDN protocol guide, not a myLink-specific datasheet. The myLink is a WiFi-to-RF bridge product; this protocol does not directly describe the myLink's externally-exposed control surface. Coverage of the myLink as such is not stated in the source."
+  - "voltage, current, and power specifications not stated in source."
+  - "cable length, bus topology, and termination details are in a separate document (DOC114316 \"SDN Bus Wiring Guide\") and are not reproduced here."
+  - "flow control not stated in source (assumed none for half-duplex RS-485)"
+  - "power-on sequencing and interlock macros are not enumerated in"
+  - "physical safety warnings, installation interlocks, and motor"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.649Z
+  checked_at: 2026-06-02T05:46:19.451Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 30 spec actions match literal message codes in source; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 18 spec actions matched exactly to source; transport parameters (4800 baud, odd parity, bit inversion) verified verbatim; source coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-02
 ---
 
 # Somfy myLink v1.2 Control Spec
 
 ## Summary
-The Somfy myLink v1.2 implements the SOMFY Digital Network (SDN) protocol over RS-485 serial. This spec covers the binary half-duplex master/slave protocol used to control motorized window treatments — including move-to-position, stop, intermediate position configuration, speed adjustment (DC motors), network locking, and local UI management. Addressing supports point-to-point, group, and broadcast modes.
+This spec documents the Somfy Digital Network (SDN) bus protocol used by Somfy RS-485 motorized window-covering products. The source document (Somfy "SDN Integration Guide", DOC155888, Nov 2019) describes a half-duplex RS-485 master/slave protocol at 4800 baud, 8 data bits, odd parity, with master-driven SET/CTRL/GET messages and slave POST/ACK/NACK replies.
 
-<!-- UNRESOLVED: the source is the generic SDN Integration Guide; myLink-specific extensions or deviations are not documented -->
-<!-- UNRESOLVED: flow control not stated in source -->
-<!-- UNRESOLVED: myLink v1.2 specific firmware version compatibility not stated -->
+<!-- UNRESOLVED: source is the generic Somfy SDN protocol guide, not a myLink-specific datasheet. The myLink is a WiFi-to-RF bridge product; this protocol does not directly describe the myLink's externally-exposed control surface. Coverage of the myLink as such is not stated in the source. -->
+
+<!-- UNRESOLVED: voltage, current, and power specifications not stated in source. -->
+<!-- UNRESOLVED: cable length, bus topology, and termination details are in a separate document (DOC114316 "SDN Bus Wiring Guide") and are not reproduced here. -->
 
 ## Transport
 ```yaml
@@ -56,607 +65,465 @@ serial:
   data_bits: 8
   parity: odd
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
+  # UNRESOLVED: flow control not stated in source (assumed none for half-duplex RS-485)
+  flow_control: null
+  electrical: rs485
+  bit_order: lsb_first
+  bit_inversion: true   # source §4.2: all data bits are inverted before transmission for backward compatibility
+  start_bit_level: 0
+  stop_bit_level: 1
+  character_coding: nrz
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
-**Notes:** RS-485 half-duplex bus. All data bits must be inverted before transmission (e.g. byte 58h transmitted as A7h). No sync byte — messages delimited by bus inactivity. Frame structure: MSG (1B) + ACK/LEN (1B) + NODE_TYPE (1B) + SOURCE@ (3B) + DEST@ (3B) + DATA (0–21B) + CHECKSUM (2B). Checksum = complement sum of all preceding bytes. SOURCE@ and DEST@ are LSB-first.
+The on-wire frame layout (source §5) is identical for every message:
+
+| Byte 1 | Byte 2 | Byte 3 | Bytes 4-6 | Bytes 7-9 | Bytes 10..n-2 | Bytes n-1, n |
+|---|---|---|---|---|---|---|
+| MSG | ACK/LEN | NODE TYPE (src hi-nibble / dst lo-nibble) | SOURCE@ (LSBF) | DEST@ (LSBF) | DATA | CHECKSUM |
+
+- Minimum frame size: 11 bytes (no DATA).
+- Maximum frame size: 32 bytes (21 bytes of DATA).
+- `ACK/LEN` byte: B7 = ACK request, b6 = EXT (reserved, always 0), b5..b0 = LEN.
+- `CHECKSUM` = sum of Bytes 1..n-2 (complement-add error check, no correction).
+- Bit inversion: every data byte is bitwise-NOTed before transmission (e.g. 58h → A7h).
 
 ## Traits
 ```yaml
-traits:
-  - queryable  # inferred: many GET_xxx / POST_xxx pairs returning device state
-  - levelable  # inferred: position control in % and speed adjustment present
+# - queryable       (GET_xxx / POST_xxx status requests present in source)
+# Source does not document explicit power on/off, input routing, or level control,
+# so other listed traits are not added.
 ```
 
 ## Actions
 ```yaml
-actions:
-  - id: ctrl_moveto
-    label: Move to Position
-    kind: action
-    command_code: "0x03"
-    description: "Move motor to a target position (down limit, up limit, intermediate position index, or percentage)."
-    params:
-      - name: function
-        type: enum
-        values:
-          - id: down_limit
-            value: "0x00"
-            description: Move to DOWN limit; position ignored
-          - id: up_limit
-            value: "0x01"
-            description: Move to UP limit; position ignored
-          - id: intermediate_position
-            value: "0x02"
-            description: Move to intermediate position index (0-15)
-          - id: position_pct
-            value: "0x04"
-            description: Move to position in % of full travel (0-100)
-      - name: position
-        type: integer
-        description: "IP index (0-15) when function=0x02; percentage (0-100) when function=0x04; ignored otherwise"
-      - name: reserved
-        type: integer
-        description: Set to 0x00
+# All commands are framed as: MSG(1B) ACK/LEN(1B) NodeType(1B) SOURCE@(3B,LSBF)
+# DEST@(3B,LSBF) DATA(nB) CHECKSUM(2B). Only the MSG byte and DATA payload vary
+# by command; the header layout is documented in the Transport section above.
+#
+# Command field below names the MSG byte and DATA-field template per source §6.
+# Parameterized fields are written as {Name} in the DATA template and enumerated
+# in `params:`.
+#
+# Kind: action for SET_xxx and CTRL_xxx; kind: query for GET_xxx.
 
-  - id: ctrl_stop
-    label: Stop Motor
-    kind: action
-    command_code: "0x02"
-    description: "Immediately stop the motor without speed ramp-down."
-    params:
-      - name: reserved
-        type: integer
-        description: Set to 0x00
+# ── Device Management ────────────────────────────────────────────────────────
 
-  - id: set_group_addr
-    label: Set Group Address
-    kind: action
-    command_code: "0x51"
-    description: "Configure a group table entry for this device."
-    params:
-      - name: group_index
-        type: integer
-        min: 0
-        max: 15
-        description: Entry in the group table (0-based)
-      - name: group_id
-        type: integer
-        description: 24-bit group address
+- id: get_node_addr
+  label: Get Node Address
+  kind: query
+  command: "MSG=40h DATA=<empty>"
+  description: >
+    Request a device (or all devices on the bus) to report its NodeID. Response
+    is POST_NODE_ADDR (60h) with the NodeID carried in the SOURCE@ header.
+    Note: with many devices on the bus, replies from all devices are not
+    guaranteed (source §6.1.1).
+  params: []
 
-  - id: set_node_label
-    label: Set Device Label
-    kind: action
-    command_code: "0x55"
-    description: "Assign a user-defined text label to the device. Always 16 characters; pad with spaces."
-    params:
-      - name: label
-        type: string
-        description: 16-character label string
+- id: set_group_addr
+  label: Set Group Address
+  kind: action
+  command: "MSG=51h DATA=GroupIndex(1B) GroupID(3B,LSBF)"
+  description: >
+    Write a GroupID into one of the 16 group table entries of a device.
+  params:
+    - name: GroupIndex
+      type: integer
+      min: 0
+      max: 15
+      description: Entry index in the device's group table.
+    - name: GroupID
+      type: integer
+      min: 0
+      max: 16777215
+      description: 24-bit group address, LSBF.
 
-  - id: set_local_ui
-    label: Set Local UI State
-    kind: action
-    command_code: "0x17"
-    description: "Enable/disable local UI elements (buttons, LEDs, DCT, Bluetooth, touch motion)."
-    params:
-      - name: function
-        type: enum
-        values:
-          - id: enable
-            value: "0x00"
-            description: Enable/unlock the feature
-          - id: disable
-            value: "0x01"
-            description: Disable/lock the feature
-      - name: ui_index
-        type: enum
-        values:
-          - id: all
-            value: "0x00"
-            description: All local controls and feedbacks
-          - id: dct_input
-            value: "0x01"
-          - id: local_stimuli
-            value: "0x02"
-            description: Radio pairing pushbutton etc.
-          - id: local_radio
-            value: "0x03"
-            description: Bluetooth etc.
-          - id: touch_motion
-            value: "0x04"
-          - id: leds
-            value: "0x05"
-      - name: priority
-        type: integer
-        min: 0
-        max: 255
-        description: "Greater number = higher priority. Must equal or exceed current lock level."
+- id: get_group_addr
+  label: Get Group Address
+  kind: query
+  command: "MSG=41h DATA=GroupIndex(1B)"
+  description: >
+    Read a GroupID from a device's group table.
+  params:
+    - name: GroupIndex
+      type: integer
+      min: 0
+      max: 15
 
-  - id: set_motor_ip
-    label: Set Intermediate Position
-    kind: action
-    command_code: "0x15"
-    description: "Configure an intermediate position (IP) for the motor."
-    params:
-      - name: function
-        type: enum
-        values:
-          - id: delete_ip
-            value: "0x00"
-            description: Delete the IP; value ignored
-          - id: set_current_position
-            value: "0x01"
-            description: Set IP at current motor position; value ignored
-          - id: set_pct
-            value: "0x03"
-            description: Set IP at specified position in %
-          - id: divide_range
-            value: "0x04"
-            description: "Divide full range into N equally spaced IPs; IP_index ignored"
-      - name: ip_index
-        type: integer
-        min: 1
-        max: 16
-        description: "Intermediate position index (1-based). Ignored when function=0x04."
-      - name: value
-        type: integer
-        description: "Position in % (0-100) when function=0x03; IP count when function=0x04; ignored otherwise."
+# ── Device Information ───────────────────────────────────────────────────────
 
-  - id: set_motor_rolling_speed
-    label: Set Motor Rolling Speed
-    kind: action
-    command_code: "0x13"
-    description: "Set motor speed for DC motors only. Min/max values vary by motor - refer to technical datasheet."
-    params:
-      - name: up_speed
-        type: integer
-        description: Speed during UP movement (rpm encoding per datasheet)
-      - name: down_speed
-        type: integer
-        description: Speed during DOWN movement (rpm encoding per datasheet)
-      - name: slow_speed
-        type: integer
-        description: Speed for adjustment movements (rpm encoding per datasheet)
+- id: get_node_app_version
+  label: Get Firmware Version
+  kind: query
+  command: "MSG=74h DATA=<empty>"
+  description: >
+    Request firmware version. Response is POST_NODE_APP_VERSION (75h) carrying
+    App_Reference(3B), App_IndexLetter(1B ASCII 0x41..0x5A), App_IndexNumber(1B),
+    Reserved(1B).
+  params: []
 
-  - id: set_network_lock
-    label: Set Network Lock
-    kind: action
-    command_code: "0x16"
-    description: "Lock or unlock the device to prevent/allow network commands. Supports priority levels and persistence across power cycles."
-    params:
-      - name: function
-        type: enum
-        values:
-          - id: unlock
-            value: "0x00"
-            description: Unlock device
-          - id: lock
-            value: "0x01"
-            description: Lock device at current position
-          - id: save_on_power_cycle
-            value: "0x03"
-            description: "Save NETWORK_LOCK across power cycle; priority ignored"
-          - id: do_not_save
-            value: "0x04"
-            description: "Do not save NETWORK_LOCK across power cycle; priority ignored"
-      - name: priority
-        type: integer
-        min: 0
-        max: 255
-        description: "Greater number = higher priority. Required for lock function."
+- id: set_node_label
+  label: Set User Label
+  kind: action
+  command: "MSG=55h DATA=Label(16B,ASCII,space-padded)"
+  description: >
+    Write a 16-character user-defined text label. Always 16 bytes; pad with
+    space (0x20) if the string is shorter (source §6.2.2).
+  params:
+    - name: Label
+      type: string
+      max_length: 16
+      description: Always padded/truncated to 16 ASCII bytes.
 
-  - id: get_node_addr
-    label: Query Node Address
-    kind: query
-    command_code: "0x40"
-    description: "Request all devices to report their NodeID. Warning: replies from many devices may collide."
-    params: []
+- id: get_node_label
+  label: Get User Label
+  kind: query
+  command: "MSG=45h DATA=<empty>"
+  description: Response is POST_NODE_LABEL (65h) with 16 ASCII bytes.
+  params: []
 
-  - id: get_group_addr
-    label: Query Group Address
-    kind: query
-    command_code: "0x41"
-    description: "Query the group address stored at a given index."
-    params:
-      - name: group_index
-        type: integer
-        min: 0
-        max: 15
+# ── Device Configuration ─────────────────────────────────────────────────────
 
-  - id: get_node_app_version
-    label: Query Firmware Version
-    kind: query
-    command_code: "0x74"
-    description: Request the firmware revision from the device.
-    params: []
+- id: set_local_ui
+  label: Set Local UI Lock State
+  kind: action
+  command: "MSG=17h DATA=Function(1B) UI_Index(1B) Priority(1B)"
+  description: >
+    Enable/Unlock (Function=00h) or Disable/Lock (Function=01h) a local user
+    interface element. UI_Index selects which element (00h=all, 01h=DCT input,
+    02h=local stimuli, 03h=local radio, 04h=touch motion, 05h=LEDs). Priority
+    governs whether a higher-priority controller can override the lock.
+    Items disabled are ignored until re-enabled. Source §6.3.1.
+  params:
+    - name: Function
+      type: enum
+      values: [00h, 01h]
+      description: 00h=Enable/Unlock, 01h=Disable/Lock.
+    - name: UI_Index
+      type: enum
+      values: [00h, 01h, 02h, 03h, 04h, 05h]
+      description: 00h=all local controls/feedbacks, 01h=DCT input, 02h=local stimuli, 03h=local radio, 04h=touch motion, 05h=LEDs.
+    - name: Priority
+      type: integer
+      min: 0
+      max: 255
+      description: Higher number = higher priority.
 
-  - id: get_node_label
-    label: Query Device Label
-    kind: query
-    command_code: "0x45"
-    description: Request the user-defined text label.
-    params: []
+- id: get_local_ui
+  label: Get Local UI Lock State
+  kind: query
+  command: "MSG=27h DATA=UI_Index(1B)"
+  description: >
+    Read the current lock state of a UI element. Response is POST_LOCAL_UI
+    (37h) with Status(1B), Source_Addr(3B), Priority(1B). Source §6.3.1.
+  params:
+    - name: UI_Index
+      type: integer
+      min: 1
+      description: 0x01..UI_MAX (refer to UI list in SET_LOCAL_UI).
 
-  - id: get_local_ui
-    label: Query Local UI State
-    kind: query
-    command_code: "0x27"
-    description: Query the enabled/disabled state of a local UI element.
-    params:
-      - name: ui_index
-        type: integer
-        min: 1
-        description: "UI element index (see SET_LOCAL_UI for list)"
+- id: set_motor_ip
+  label: Set Intermediate Position
+  kind: action
+  command: "MSG=15h DATA=Function(1B) IP_Index(1B) Value(2B)"
+  description: >
+    Manage intermediate positions (IPs). Function: 00h=delete IP, 01h=set IP at
+    current position, 03h=set IP at specified % (Value = 0..100), 04h=divide
+    full range into N equally-spaced IPs (Value = N, IP_Index ignored). IP_Index
+    range 1..16. Setting an IP outside the configured limits returns
+    NACK(DATA_ERROR). Source §6.3.2.
+  params:
+    - name: Function
+      type: enum
+      values: [00h, 01h, 03h, 04h]
+    - name: IP_Index
+      type: integer
+      min: 1
+      max: 16
+    - name: Value
+      type: integer
+      description: Depends on Function: 00h/01h=ignored, 03h=position % (0..100), 04h=IP count.
 
-  - id: get_motor_ip
-    label: Query Intermediate Position
-    kind: query
-    command_code: "0x25"
-    description: Query the intermediate position value at a given index.
-    params:
-      - name: ip_index
-        type: integer
-        min: 1
-        max: 16
+- id: get_motor_ip
+  label: Get Intermediate Position
+  kind: query
+  command: "MSG=25h DATA=IP_Index(1B)"
+  description: >
+    Read the percentage of one IP. Response is POST_MOTOR_IP (35h) with
+    IP_index(1B), Reserved(2B), IP_position_percentage(1B, FFh if not set).
+  params:
+    - name: IP_Index
+      type: integer
+      min: 1
+      max: 16
 
-  - id: get_motor_rolling_speed
-    label: Query Motor Rolling Speed
-    kind: query
-    command_code: "0x23"
-    description: Query the current speed settings.
-    params: []
+- id: set_motor_rolling_speed
+  label: Set Motor Speed (DC motors only)
+  kind: action
+  command: "MSG=13h DATA=UP_Speed(1B) DOWN_Speed(1B) Slow_Speed(1B)"
+  description: >
+    Set UP / DOWN / Slow speeds in rpm. Speed range and default depend on the
+    specific motor - refer to device technical datasheet (not in this source).
+    Source §6.3.3.
+  params:
+    - name: UP_Speed
+      type: integer
+      description: Speed during UP movement, rpm. Range per motor datasheet.
+    - name: DOWN_Speed
+      type: integer
+      description: Speed during DOWN movement, rpm. Range per motor datasheet.
+    - name: Slow_Speed
+      type: integer
+      description: Speed for adjustment movements, rpm. Range per motor datasheet.
 
-  - id: get_network_lock
-    label: Query Network Lock State
-    kind: query
-    command_code: "0x26"
-    description: Query the current network lock status, source, priority, and persistence.
-    params: []
+- id: get_motor_rolling_speed
+  label: Get Motor Speed
+  kind: query
+  command: "MSG=23h DATA=<empty>"
+  description: >
+    Read current UP/DOWN/Slow speeds. Response is POST_MOTOR_ROLLING_SPEED
+    (33h).
+  params: []
 
-  - id: get_motor_position
-    label: Query Motor Position
-    kind: query
-    command_code: "0x0C"
-    description: Request current motor position (returned even while running).
-    params: []
+- id: set_network_lock
+  label: Set Network Lock
+  kind: action
+  command: "MSG=16h DATA=Function(1B) Priority(1B)"
+  description: >
+    Lock or unlock the device from network commands. Function: 00h=Unlock,
+    01h=Lock, 03h=Save lock state across power cycle, 04h=Do not save.
+    When locked, only CTRL_xxx messages with Priority ≥ current lock are
+    accepted; others are rejected with NACK(NODE_IS_LOCKED). Default factory
+    state is "Do not save" (Function=04h). Source §6.3.4.
+  params:
+    - name: Function
+      type: enum
+      values: [00h, 01h, 03h, 04h]
+    - name: Priority
+      type: integer
+      min: 0
+      max: 255
+      description: Higher number = higher priority. Ignored for Function 03h/04h.
 
-  - id: get_motor_status
-    label: Query Motor Status
-    kind: query
-    command_code: "0x0E"
-    description: "Request motor status, direction, command source, and cause."
-    params: []
+- id: get_network_lock
+  label: Get Network Lock
+  kind: query
+  command: "MSG=26h DATA=<empty>"
+  description: >
+    Read current network-lock state. Response is POST_NETWORK_LOCK (36h) with
+    Status(1B), Source_Addr(3B), Priority(1B), Saved(1B).
+  params: []
+
+# ── Device Control ───────────────────────────────────────────────────────────
+
+- id: ctrl_moveto
+  label: Move to Position
+  kind: action
+  command: "MSG=03h DATA=Function(1B) Position(2B) Reserved(1B)"
+  description: >
+    Drive motor to a position. Function: 00h=DOWN limit (Position ignored),
+    01h=UP limit (Position ignored), 02h=Intermediate Position (Position = IP
+    index 0..15), 04h=Position in % of full travel (Position = 0..100).
+    Source §6.4.1.
+  params:
+    - name: Function
+      type: enum
+      values: [00h, 01h, 02h, 04h]
+    - name: Position
+      type: integer
+      description: Meaning depends on Function: ignored for 00h/01h, IP index (0..15) for 02h, % (0..100) for 04h.
+
+- id: ctrl_stop
+  label: Stop Motor
+  kind: action
+  command: "MSG=02h DATA=Reserved(1B)"
+  description: >
+    Immediately stop the motor without speed ramp-down. Source §6.4.2.
+  params: []
+
+# ── Device Status ────────────────────────────────────────────────────────────
+
+- id: get_motor_position
+  label: Get Motor Position
+  kind: query
+  command: "MSG=0Ch DATA=<empty>"
+  description: >
+    Read current position. Response is POST_MOTOR_POSITION (0Dh) with
+    Position_pulse(2B), Position_percentage(1B), Reserved(1B), IP(1B, FFh if
+    not at an IP). Position is sent even while motor is running.
+  params: []
+
+- id: get_motor_status
+  label: Get Motor Status
+  kind: query
+  command: "MSG=0Eh DATA=<empty>"
+  description: >
+    Read motor state. Response is POST_MOTOR_STATUS (0Fh) with
+    Status(1B), Direction(1B), Source(1B), Cause(1B). Source §6.5.2.
+  params: []
 ```
 
 ## Feedbacks
 ```yaml
-feedbacks:
-  - id: ack
-    response_code: "0x7F"
-    description: "Acknowledgment. Sent when ACK bit was set in the request and message was processed."
-    data_length: 0
+# Derived from POST_xxx response messages (slave → master). Each entry mirrors
+# one POST payload so a controller can interpret any slave response it sees on
+# the bus.
 
-  - id: nack
-    response_code: "0x6F"
-    description: "Negative acknowledgment with error code."
-    data_length: 1
-    fields:
-      - name: error_code
-        type: enum
-        values:
-          - id: data_out_of_range
-            value: "0x01"
-            description: DATA field values not within expected range
-          - id: unknown_message
-            value: "0x10"
-            description: MSG identifier is unknown
-          - id: message_length_error
-            value: "0x11"
-            description: Message length below minimum
-          - id: busy
-            value: "0xFF"
-            description: Cannot process message
+- id: post_node_addr
+  type: object
+  description: >
+    Reply to GET_NODE_ADDR (40h). Carries no DATA - the reporting NodeID is in
+    the frame's SOURCE@ header. Source §6.1.1.
 
-  - id: post_node_addr
-    response_code: "0x60"
-    description: "Device NodeID (address is in the message header SOURCE@ field)."
-    data_length: 0
+- id: post_group_addr
+  type: object
+  description: >
+    Reply to GET_GROUP_ADDR (41h). DATA: GroupIndex(1B), GroupID(3B,LSBF).
+    Source §6.1.2.
 
-  - id: post_group_addr
-    response_code: "0x61"
-    description: Group address stored at the queried index.
-    data_length: 4
-    fields:
-      - name: group_index
-        type: integer
-        min: 0
-        max: 15
-      - name: group_id
-        type: integer
-        description: 24-bit associated group address
+- id: post_node_app_version
+  type: object
+  description: >
+    Reply to GET_NODE_APP_VERSION (74h). DATA: App_Reference(3B),
+    App_IndexLetter(1B ASCII 0x41..0x5A), App_IndexNumber(1B), Reserved(1B).
+    Source §6.2.1.
 
-  - id: post_node_app_version
-    response_code: "0x75"
-    description: Firmware revision information.
-    data_length: 6
-    fields:
-      - name: app_reference
-        type: integer
-        description: 24-bit firmware part number
-      - name: app_index_letter
-        type: string
-        description: "Firmware major revision (ASCII A-Z)"
-      - name: app_index_number
-        type: integer
-        description: Firmware revision number
-      - name: reserved
-        type: integer
+- id: post_node_label
+  type: object
+  description: >
+    Reply to GET_NODE_LABEL (45h). DATA: 16 ASCII bytes (space-padded).
+    Source §6.2.2.
 
-  - id: post_node_label
-    response_code: "0x65"
-    description: User-defined text label.
-    data_length: 16
-    fields:
-      - name: label
-        type: string
-        description: 16-character label string
+- id: post_local_ui
+  type: object
+  description: >
+    Reply to GET_LOCAL_UI (27h). DATA: Status(1B), Source_Addr(3B), Priority(1B).
+    Status: 00h=Enabled/Unlocked, 01h=Disabled/Locked. When unlocked,
+    Source_Addr=000000h and Priority=00h. Source §6.3.1.
 
-  - id: post_local_ui
-    response_code: "0x37"
-    description: Local UI element state.
-    data_length: 5
-    fields:
-      - name: status
-        type: enum
-        values:
-          - id: enabled
-            value: "0x00"
-          - id: disabled
-            value: "0x01"
-      - name: source_addr
-        type: integer
-        description: NodeID of the device that sent the lock command
-      - name: priority
-        type: integer
-        description: Lock priority level
+- id: post_motor_ip
+  type: object
+  description: >
+    Reply to GET_MOTOR_IP (25h). DATA: IP_index(1B), Reserved(2B),
+    IP_position_percentage(1B, 0..100, FFh if IP not set). Source §6.3.2.
 
-  - id: post_motor_ip
-    response_code: "0x35"
-    description: Intermediate position value.
-    data_length: 4
-    fields:
-      - name: ip_index
-        type: integer
-        min: 1
-        max: 16
-      - name: reserved
-        type: integer
-      - name: ip_position_percentage
-        type: integer
-        min: 0
-        max: 100
-        description: "0-100, or 0xFF if IP not set"
+- id: post_motor_rolling_speed
+  type: object
+  description: >
+    Reply to GET_MOTOR_ROLLING_SPEED (23h). DATA: UP_Speed(1B), DOWN_Speed(1B),
+    Slow_Speed(1B). Source §6.3.3.
 
-  - id: post_motor_rolling_speed
-    response_code: "0x33"
-    description: Current motor speed settings.
-    data_length: 3
-    fields:
-      - name: up_speed
-        type: integer
-        description: Speed during UP movement
-      - name: down_speed
-        type: integer
-        description: Speed during DOWN movement
-      - name: slow_speed
-        type: integer
-        description: Speed for adjustment movements
+- id: post_network_lock
+  type: object
+  description: >
+    Reply to GET_NETWORK_LOCK (26h). DATA: Status(1B), Source_Addr(3B),
+    Priority(1B), Saved(1B). Status: 00h=Unlocked, 01h=Locked. Saved: 00h=not
+    restored on power cycle, 01h=restored. When unlocked, Source_Addr=000000h,
+    Priority=00h. Source §6.3.4.
 
-  - id: post_network_lock
-    response_code: "0x36"
-    description: Network lock status.
-    data_length: 6
-    fields:
-      - name: status
-        type: enum
-        values:
-          - id: unlocked
-            value: "0x00"
-          - id: locked
-            value: "0x01"
-      - name: source_addr
-        type: integer
-        description: NodeID of device that sent lock command
-      - name: priority
-        type: integer
-        description: Lock priority level
-      - name: saved
-        type: enum
-        values:
-          - id: not_restored
-            value: "0x00"
-            description: Lock will not be restored on power cycle
-          - id: restored
-            value: "0x01"
-            description: Lock will be restored on power cycle
+- id: post_motor_position
+  type: object
+  description: >
+    Reply to GET_MOTOR_POSITION (0Ch). DATA: Position_pulse(2B, range
+    UP_LIMIT..DOWN_LIMIT), Position_percentage(1B, 0..100), Reserved(1B),
+    IP(1B, 01h..IP_MAX, FFh if not at an IP). Source §6.5.1.
 
-  - id: post_motor_position
-    response_code: "0x0D"
-    description: Current motor position (sent even while running).
-    data_length: 5
-    fields:
-      - name: position_pulse
-        type: integer
-        description: Position in encoder pulses
-      - name: position_percentage
-        type: integer
-        min: 0
-        max: 100
-        description: Position as percentage of travel
-      - name: reserved
-        type: integer
-      - name: ip
-        type: integer
-        description: "Matching IP index (1-based), or 0xFF if not at any IP"
-
-  - id: post_motor_status
-    response_code: "0x0F"
-    description: "Motor status, direction, command source, and cause."
-    data_length: 4
-    fields:
-      - name: status
-        type: enum
-        values:
-          - id: stopped
-            value: "0x00"
-          - id: running
-            value: "0x01"
-          - id: blocked
-            value: "0x02"
-            description: "Cannot move (thermal protection, obstacle)"
-          - id: locked
-            value: "0x03"
-            description: Locked by NETWORK_LOCK
-      - name: direction
-        type: enum
-        values:
-          - id: going_down
-            value: "0x00"
-          - id: going_up
-            value: "0x01"
-            description: "Last movement direction if stopped"
-          - id: unknown
-            value: "0xFF"
-      - name: source
-        type: enum
-        values:
-          - id: internal
-            value: "0x00"
-            description: "Limit/IP reached, over-current, obstacle, thermal protection, etc."
-          - id: network
-            value: "0x01"
-            description: SDN bus message
-          - id: local_ui
-            value: "0x02"
-            description: "DCT, local stimulus, local wireless"
-      - name: cause
-        type: enum
-        values:
-          - id: target_reached
-            value: "0x00"
-            description: Reached limit or IP or already at position
-          - id: explicit_command
-            value: "0x01"
-          - id: wink
-            value: "0x02"
-          - id: obstacle_detection
-            value: "0x20"
-          - id: over_current
-            value: "0x21"
-          - id: thermal_protection
-            value: "0x22"
-          - id: run_time_exceeded
-            value: "0x30"
-          - id: timeout_exceeded
-            value: "0x32"
-            description: ">2 min elapsed during CTRL_MOVE adjustment"
-          - id: reset_powerup
-            value: "0xFF"
-            description: Power recycled or no command after startup
-```
-
-## Variables
-```yaml
-variables:
-  - id: motor_position_pct
-    type: integer
-    min: 0
-    max: 100
-    unit: "%"
-    description: Current motor position as percentage of full travel range
-    readable: true
-    writable: true
-    write_action: ctrl_moveto
-    write_param: position_pct
-
-  - id: up_speed
-    type: integer
-    description: Motor speed during UP movement
-    readable: true
-    writable: true
-    write_action: set_motor_rolling_speed
-
-  - id: down_speed
-    type: integer
-    description: Motor speed during DOWN movement
-    readable: true
-    writable: true
-    write_action: set_motor_rolling_speed
-
-  - id: slow_speed
-    type: integer
-    description: Motor speed for adjustment movements
-    readable: true
-    writable: true
-    write_action: set_motor_rolling_speed
-
-  - id: network_lock_state
-    type: enum
-    values: [unlocked, locked]
-    description: Current network lock state
-    readable: true
-    writable: true
-    write_action: set_network_lock
-
-  - id: node_label
-    type: string
-    max_length: 16
-    description: User-defined text label for device identification
-    readable: true
-    writable: true
-    write_action: set_node_label
+- id: post_motor_status
+  type: object
+  description: >
+    Reply to GET_MOTOR_STATUS (0Eh). DATA: Status(1B), Direction(1B), Source(1B),
+    Cause(1B). Source §6.5.2.
+    Status: 00h=Stopped, 01h=Running, 02h=Blocked (thermal/obstacle),
+    03h=Locked by another device (NETWORK_LOCK).
+    Direction: 00h=Going DOWN, 01h=Going UP (or last direction if stopped),
+    FFh=Unknown.
+    Source: 00h=Internal (limit/IP/over-current/obstacle/thermal), 01h=Network
+    message, 02h=Local UI.
+    Cause: 00h=Target reached, 01h=Explicit command, 02h=Wink, 20h=Obstacle
+    detection, 21h=Over-current protection, 22h=Thermal protection,
+    30h=Run time exceeded, 32h=Timeout exceeded (CTRL_MOVE > 2 min),
+    FFh=Reset/PowerUp.
 ```
 
 ## Events
 ```yaml
-# The SDN protocol is strictly request-response from MASTER. SLAVEs only send
-# POST_xxx replies and ACK/NACK in response to MASTER requests. There are no
-# unsolicited notifications from the device.
-# Exception: devices can send POST_NODE_ADDR when the user presses a local button,
-# but this is not a bus-initiated event usable by a controller.
+- id: ack
+  description: >
+    Acknowledgement (MSG=7Fh, 0 bytes DATA). Sent by a slave when the master
+    requested an ACK and the message was processed without error. Source §6.1.3.
+
+- id: nack
+  description: >
+    Negative acknowledgement (MSG=6Fh, 1 byte ErrorCode). Sent by a slave when
+    the master requested an ACK but the message could not be processed.
+    Source §6.1.3.
+  error_codes:
+    - code: 01h
+      meaning: "Data out of range"
+    - code: 10h
+      meaning: "Unknown message (MSG identifier not recognized)"
+    - code: 11h
+      meaning: "Message length error (below minimum)"
+    - code: FFh
+      meaning: "Busy - cannot process message"
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step sequences described explicitly in source
+# No multi-step sequences are described in source.
+# UNRESOLVED: power-on sequencing and interlock macros are not enumerated in
+# the source protocol guide; relevant wiring/bus-topology guidance lives in
+# DOC114316 (separate document).
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks:
-  - description: "NETWORK_LOCK prevents all movement commands (CTRL_xxx, SET_MOTOR_LIMITS, SET_TILT_LIMITS) when device is locked. Only CTRL_NETWORK_LOCK and SET_NETWORK_LOCK with equal or higher priority can unlock."
-  - description: "SET_LOCAL_UI with UI_Index=0x00 requires priority equal to or higher than the highest lock level across all UI elements."
-# UNRESOLVED: power-on sequencing requirements not stated in source
-# UNRESOLVED: obstacle detection behavior beyond cause code not detailed
+  - name: network_lock
+    description: >
+      When SET_NETWORK_LOCK(01h) is active on a device, all CTRL_xxx
+      movements and limit-changing SETs are rejected with NACK(NODE_IS_LOCKED)
+      unless the incoming message carries a Priority ≥ the current lock
+      priority. Source §6.3.4.
+# UNRESOLVED: physical safety warnings, installation interlocks, and motor
+# thermal/obstacle protection behavior are referenced in the protocol (Cause
+# codes 20h/21h/22h) but not detailed as safety procedures in this source.
 ```
 
 ## Notes
-- **Data bit inversion:** All bytes must be bitwise inverted (NOT) before transmission on the bus. Example: data byte 0x58 is sent as 0xA7.
-- **Timing constraints:** Treq ≥ 10 ms (master delay before new request); Trep = 5–255 ms (randomized slave reply delay); Tc ≤ 1 ms (max inter-character gap); Tfree = 3 ms (bus free timeout).
-- **Addressing modes:** Point-to-point (DEST@ = specific NodeID), Group (SOURCE@ = GroupID, DEST@ = 000000h), Broadcast (DEST@ = FFFFFFh).
-- **ACK recommendations:** Acknowledgments are optional but strongly recommended. Implement retry on NACK or ACK timeout.
-- **Collision risk:** Avoid requesting ACKs or feedback in group/broadcast mode to reduce RS-485 bus collisions.
-- **Speed ranges:** SET_MOTOR_ROLLING_SPEED min/max values vary by motor model — must consult the specific motor's technical datasheet. DC motors only.
-- **Intermediate positions (IPs):** Up to 16 IPs per device. Function 04h (divide range) distributes IPs equally (e.g. 2 IPs → 33%/66%, 3 IPs → 25%/50%/75%).
-- **Frame size:** Minimum 11 bytes (no DATA), maximum 32 bytes (21 bytes DATA).
 
-<!-- UNRESOLVED: myLink v1.2 specific product features or deviations from generic SDN protocol not documented in source -->
-<!-- UNRESOLVED: exact NodeTypes supported by myLink v1.2 not stated -->
-<!-- UNRESOLVED: whether myLink acts as MASTER or can also be configured as SLAVE not stated -->
+- **Source scope:** This spec was generated from Somfy's generic "SDN Integration
+  Guide" (DOC155888, Nov 2019). The document covers the RS-485 SDN bus used by
+  multiple Somfy motorized product families, not the myLink specifically. The
+  myLink is a WiFi-to-RF bridge product; whether it exposes the SDN RS-485
+  surface described here is not stated in this source and is left UNRESOLVED.
+- **Bit inversion (source §4.2):** Every data byte is bitwise-NOTed on the
+  wire for backward compatibility with early protocol versions. Implementers
+  must invert again on receive (e.g. 58h on the application side ↔ A7h on the
+  bus). The CHECKSUM is calculated over the pre-inversion (logical) bytes.
+- **Bit order:** LSB first on the wire (source §4.2).
+- **Addressing modes (source §3.4, §5.4):** Point-to-point (specific NodeID),
+  Group (DEST@=000000h), Broadcast (DEST@=FFFFFFh), and NodeType filtering
+  (DEST NodeType in byte 3). SOURCE@ and DEST@ are LSBF.
+- **Timing (source §4.3):** Tc ≤ 1ms between consecutive characters in a
+  frame; Tfree ≥ 3ms bus idle; Treq ≥ 10ms master wait before next request;
+  Trep 5..255ms (randomized) slave reply delay. No sync byte — frames are
+  delimited by bus inactivity.
+- **Collisions (source §3.7):** RS-485 is collision-prone. Source recommends
+  avoiding ACK/feedback in group or broadcast addressing; if ACKs are used,
+  implement a retry strategy on NACK or ACK timeout.
+- **Data length caveat (source §5.5):** The "DATA length" column is a minimum;
+  devices may append extra bytes. Reserved fields must be transmitted (set to
+  00h or FFh per the source).
+- **NodeType table (source §3.2.2):** Reserved NodeTypes in this document:
+  02h=Ø30 DC Serie RS485, 05h=RS485 RTS transmitter, 06h=Glydea RS485,
+  07h=Ø50 AC Serie RS485, 08h=Ø50 DC Serie RS485, 09h=Ø40 AC Serie RS485
+  (not yet available at publication).
+- **Companion documents:** DOC114316 "SDN Bus Wiring Guide" (bus topology,
+  cable length, wiring) and "SDN Frame Builder" PC tool (encode/decode helper)
+  are referenced by the source but not reproduced here.
 
 ## Provenance
 
@@ -666,24 +533,31 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:12.406Z
-last_checked_at: 2026-05-14T18:17:20.649Z
+last_checked_at: 2026-06-02T05:46:19.451Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.649Z
+checked_at: 2026-06-02T05:46:19.451Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 30 spec actions match literal message codes in source; transport parameters verified verbatim."
+confidence: medium
+summary: "All 18 spec actions matched exactly to source; transport parameters (4800 baud, odd parity, bit inversion) verified verbatim; source coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- 7Fh
+- 6Fh
+- "source is the generic Somfy SDN protocol guide, not a myLink-specific datasheet. The myLink is a WiFi-to-RF bridge product; this protocol does not directly describe the myLink's externally-exposed control surface. Coverage of the myLink as such is not stated in the source."
+- "voltage, current, and power specifications not stated in source."
+- "cable length, bus topology, and termination details are in a separate document (DOC114316 \"SDN Bus Wiring Guide\") and are not reproduced here."
+- "flow control not stated in source (assumed none for half-duplex RS-485)"
+- "power-on sequencing and interlock macros are not enumerated in"
+- "physical safety warnings, installation interlocks, and motor"
 ```
 
 ---

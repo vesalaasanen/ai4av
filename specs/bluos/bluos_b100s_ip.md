@@ -19,19 +19,28 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-04-29T12:48:10.270Z
 last_checked_at: 2026-04-26T11:26:52.230Z
 generated_at: 2026-04-26T11:26:52.230Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "B100S-specific hardware details (available inputs, display capabilities) not stated in API doc"
+  - "firmware version compatibility for B100S not stated"
+  - "the source describes long-polling for status changes but no unsolicited"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings or interlock procedures stated in source"
+  - "specific B100S input types not confirmed (analog, optical, HDMI ARC, etc.)"
+  - "firmware version compatibility range not stated"
+  - "error response codes and recovery behavior not documented"
+  - "maximum concurrent connection limit not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-26T11:26:52.230Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods."
+  confidence: medium
+  summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -397,7 +406,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-04-29T12:48:10.270Z
 last_checked_at: 2026-04-26T11:26:52.230Z
 ```
 
@@ -408,14 +417,22 @@ verdict: verified
 checked_at: 2026-04-26T11:26:52.230Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods."
+confidence: medium
+summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "B100S-specific hardware details (available inputs, display capabilities) not stated in API doc"
+- "firmware version compatibility for B100S not stated"
+- "the source describes long-polling for status changes but no unsolicited"
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings or interlock procedures stated in source"
+- "specific B100S input types not confirmed (analog, optical, HDMI ARC, etc.)"
+- "firmware version compatibility range not stated"
+- "error response codes and recovery behavior not documented"
+- "maximum concurrent connection limit not stated"
 ```
 
 ---

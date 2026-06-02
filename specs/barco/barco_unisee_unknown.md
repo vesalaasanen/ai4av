@@ -17,21 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:38:51.766Z
 last_checked_at: 2026-05-14T21:40:20.532Z
 generated_at: 2026-05-14T21:40:20.532Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific UniSee model variants not listed in source; document covers generic Pulse API projectors"
+  - "firmware version compatibility not stated"
+  - "protocol version not stated"
+  - "ECO-mode wake-on-LAN details only described at high level"
+  - "no multi-step sequences explicitly documented beyond sequential property.set calls"
+  - "source contains no explicit safety warnings, interlock procedures, or"
+  - "maximum concurrent connection limit not stated"
+  - "JSON-RPC request size limits not stated"
+  - "specific UniSee source list may differ from generic Pulse examples"
+  - "illumination source types (laser vs LED vs lamp) vary by projector model"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:40:20.532Z
   matched_actions: 56
   action_count: 57
-  confidence: high
-  summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -902,9 +913,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:38:51.766Z
 last_checked_at: 2026-05-14T21:40:20.532Z
 ```
 
@@ -915,14 +927,23 @@ verdict: verified
 checked_at: 2026-05-14T21:40:20.532Z
 matched_actions: 56
 action_count: 57
-confidence: high
-summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific UniSee model variants not listed in source; document covers generic Pulse API projectors"
+- "firmware version compatibility not stated"
+- "protocol version not stated"
+- "ECO-mode wake-on-LAN details only described at high level"
+- "no multi-step sequences explicitly documented beyond sequential property.set calls"
+- "source contains no explicit safety warnings, interlock procedures, or"
+- "maximum concurrent connection limit not stated"
+- "JSON-RPC request size limits not stated"
+- "specific UniSee source list may differ from generic Pulse examples"
+- "illumination source types (laser vs LED vs lamp) vary by projector model"
 ```
 
 ---

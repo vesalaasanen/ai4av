@@ -17,21 +17,35 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.xilica.com
+  - support.xilica.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://support.xilica.com/en/articles/3940994
+  - https://support.xilica.com/en/articles/3942530
+retrieved_at: 2026-05-27T13:14:51.144Z
 last_checked_at: 2026-05-31T22:46:44.300Z
 generated_at: 2026-05-31T22:46:44.300Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific xR1 model variants (e.g. xR1-8x8, xR1-16x16) not enumerated in source"
+  - "firmware version compatibility not stated in source"
+  - "maximum number of simultaneous TCP connections not stated"
+  - "specific DSP parameter ranges (gain min/max, filter frequency ranges, etc.)"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "maximum subscription count not stated (error 107 implies a limit exists)"
+  - "maximum control group count not stated (error 112 implies a limit exists)"
+  - "maximum objects per group not stated (error 113 implies a limit exists)"
+  - "raw value scaling factors not documented (e.g. how many raw units per dB)"
+  - "verbose/simple mode described as future implementation, not yet available"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:46:44.300Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions match source commands one-to-one; transport parameters (TCP port 10007, keep-alive 60s, password auth) verified."
+  confidence: medium
+  summary: "All 21 spec actions match source commands one-to-one; transport parameters (TCP port 10007, keep-alive 60s, password auth) verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -343,9 +357,12 @@ interlocks: []
 ```yaml
 source_domains:
   - cdn.xilica.com
+  - support.xilica.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://support.xilica.com/en/articles/3940994
+  - https://support.xilica.com/en/articles/3942530
+retrieved_at: 2026-05-27T13:14:51.144Z
 last_checked_at: 2026-05-31T22:46:44.300Z
 ```
 
@@ -356,14 +373,24 @@ verdict: verified
 checked_at: 2026-05-31T22:46:44.300Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions match source commands one-to-one; transport parameters (TCP port 10007, keep-alive 60s, password auth) verified."
+confidence: medium
+summary: "All 21 spec actions match source commands one-to-one; transport parameters (TCP port 10007, keep-alive 60s, password auth) verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific xR1 model variants (e.g. xR1-8x8, xR1-16x16) not enumerated in source"
+- "firmware version compatibility not stated in source"
+- "maximum number of simultaneous TCP connections not stated"
+- "specific DSP parameter ranges (gain min/max, filter frequency ranges, etc.)"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "maximum subscription count not stated (error 107 implies a limit exists)"
+- "maximum control group count not stated (error 112 implies a limit exists)"
+- "maximum objects per group not stated (error 113 implies a limit exists)"
+- "raw value scaling factors not documented (e.g. how many raw units per dB)"
+- "verbose/simple mode described as future implementation, not yet available"
 ```
 
 ---

@@ -17,21 +17,41 @@ compatible_with:
   required_options: []
 source_domains:
   - support.sensibo.com
+  - home.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
+  - https://support.sensibo.com/api/operations/podsdevice_idacstates/post
+  - https://home.sensibo.com/me/api
 retrieved_at: 2026-05-27T14:00:29.234Z
 last_checked_at: 2026-05-31T21:05:27.544Z
 generated_at: 2026-05-31T21:05:27.544Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific AC unit models compatible with Sensibo hardware not listed in source"
+  - "key format/length not stated in source"
+  - "key rotation frequency/requirements not stated in source"
+  - "swing/mode/fan speed not confirmed as discrete traits"
+  - "full enum values not explicitly enumerated in source documentation"
+  - "mode enum values not stated (cooling/heating/auto/dry/fan only)"
+  - "fan level enum values not stated"
+  - "temperature range not stated"
+  - "swing enum values not stated"
+  - "full list of AC state properties not explicitly enumerated in source"
+  - "event schema and subscription mechanism not described in source"
+  - "multi-step sequences not documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "AC state property enum values (mode, fanLevel, swing) not enumerated in source"
+  - "temperature range/min/max not stated in source"
+  - "device event subscription mechanism not described in source"
+  - "specific Sensibo hardware model variants not enumerated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:05:27.544Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions have literal matches in the source documentation; transport parameters verified; one-to-one coverage of source operations."
+  confidence: medium
+  summary: "All 28 spec actions have literal matches in the source documentation; transport parameters verified; one-to-one coverage of source operations. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -429,8 +449,11 @@ Sensibo API requires `Accept-Encoding: gzip` header to achieve higher rate limit
 ```yaml
 source_domains:
   - support.sensibo.com
+  - home.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
+  - https://support.sensibo.com/api/operations/podsdevice_idacstates/post
+  - https://home.sensibo.com/me/api
 retrieved_at: 2026-05-27T14:00:29.234Z
 last_checked_at: 2026-05-31T21:05:27.544Z
 ```
@@ -442,14 +465,30 @@ verdict: verified
 checked_at: 2026-05-31T21:05:27.544Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions have literal matches in the source documentation; transport parameters verified; one-to-one coverage of source operations."
+confidence: medium
+summary: "All 28 spec actions have literal matches in the source documentation; transport parameters verified; one-to-one coverage of source operations. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific AC unit models compatible with Sensibo hardware not listed in source"
+- "key format/length not stated in source"
+- "key rotation frequency/requirements not stated in source"
+- "swing/mode/fan speed not confirmed as discrete traits"
+- "full enum values not explicitly enumerated in source documentation"
+- "mode enum values not stated (cooling/heating/auto/dry/fan only)"
+- "fan level enum values not stated"
+- "temperature range not stated"
+- "swing enum values not stated"
+- "full list of AC state properties not explicitly enumerated in source"
+- "event schema and subscription mechanism not described in source"
+- "multi-step sequences not documented in source"
+- "no safety warnings or interlock procedures in source"
+- "AC state property enum values (mode, fanLevel, swing) not enumerated in source"
+- "temperature range/min/max not stated in source"
+- "device event subscription mechanism not described in source"
+- "specific Sensibo hardware model variants not enumerated in source"
 ```
 
 ---

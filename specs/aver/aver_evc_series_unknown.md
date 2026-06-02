@@ -27,19 +27,24 @@ source_domains:
   - averusa.com
 source_urls:
   - "https://www.averusa.com/pro-av/downloads/control-codes/AVer%20Pro-AV%20PTZ%20Visca%20over%20IP-UDP%20and%20RS-232%20Guide.pdf"
-retrieved_at: 2026-05-14T11:10:44.083Z
+retrieved_at: 2026-05-14T11:06:23.093Z
 last_checked_at: 2026-05-14T21:34:32.330Z
 generated_at: 2026-05-14T21:34:32.330Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RTSP port 554 listed but no RTSP command documentation in source"
+  - "flow control not stated in source"
+  - "no acknowledgement or response format documented for any command"
+  - "no settable parameters documented"
+  - "no unsolicited notifications documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:34:32.330Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed."
+  confidence: medium
+  summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -183,7 +188,7 @@ source_domains:
   - averusa.com
 source_urls:
   - "https://www.averusa.com/pro-av/downloads/control-codes/AVer%20Pro-AV%20PTZ%20Visca%20over%20IP-UDP%20and%20RS-232%20Guide.pdf"
-retrieved_at: 2026-05-14T11:10:44.083Z
+retrieved_at: 2026-05-14T11:06:23.093Z
 last_checked_at: 2026-05-14T21:34:32.330Z
 ```
 
@@ -194,14 +199,18 @@ verdict: verified
 checked_at: 2026-05-14T21:34:32.330Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed."
+confidence: medium
+summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RTSP port 554 listed but no RTSP command documentation in source"
+- "flow control not stated in source"
+- "no acknowledgement or response format documented for any command"
+- "no settable parameters documented"
+- "no unsolicited notifications documented"
 ```
 
 ---

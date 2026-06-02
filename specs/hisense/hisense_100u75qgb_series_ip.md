@@ -19,23 +19,30 @@ compatible_with:
   required_options: []
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
+  - https://www.hisense-b2b.com
+retrieved_at: 2026-05-14T10:38:42.272Z
 last_checked_at: 2026-05-16T11:20:35.722Z
 generated_at: 2026-05-16T11:20:35.722Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "100U75QGB consumer TV series not present in source; compatibility inferred from manufacturer family only"
+  - "source does not describe unsolicited event notifications"
+  - "no explicit multi-step macros described in source"
+  - "IP control protocol for this model not in source; prior attempt noted IP control guide at hisense-b2b.com but it was not retrieved for this spec"
+  - "specific 100U75QGB RS-232 command protocol not confirmed; used commercial signage protocol family"
+  - "firmware version compatibility not stated in source"
+  - "TCP/IP port number not stated in source (TCP not supported by this doc)"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:20:35.722Z
   matched_actions: 49
   action_count: 68
-  confidence: high
-  summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series."
+  confidence: medium
+  summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -750,11 +757,11 @@ Three distinct RS-232 protocol variants documented for Hisense commercial displa
 ```yaml
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
+  - https://www.hisense-b2b.com
+retrieved_at: 2026-05-14T10:38:42.272Z
 last_checked_at: 2026-05-16T11:20:35.722Z
 ```
 
@@ -765,14 +772,20 @@ verdict: verified
 checked_at: 2026-05-16T11:20:35.722Z
 matched_actions: 49
 action_count: 68
-confidence: high
-summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series."
+confidence: medium
+summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "100U75QGB consumer TV series not present in source; compatibility inferred from manufacturer family only"
+- "source does not describe unsolicited event notifications"
+- "no explicit multi-step macros described in source"
+- "IP control protocol for this model not in source; prior attempt noted IP control guide at hisense-b2b.com but it was not retrieved for this spec"
+- "specific 100U75QGB RS-232 command protocol not confirmed; used commercial signage protocol family"
+- "firmware version compatibility not stated in source"
+- "TCP/IP port number not stated in source (TCP not supported by this doc)"
 ```
 
 ---

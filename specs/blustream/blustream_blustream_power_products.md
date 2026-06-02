@@ -20,211 +20,255 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
-last_checked_at: 2026-04-23T15:23:28.509Z
-generated_at: 2026-04-23T15:23:28.509Z
+last_checked_at: 2026-06-02T10:14:00.850Z
+generated_at: 2026-06-02T10:14:00.850Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "?"
-  - HELP
+  - "product line \"Blustream Blustream Power Products\" not in source; model CMX88AB inferred from manual title."
+  - "TCP port not stated in source"
+  - "source lists default username \"blustream\" / password \"1234\" under \"TCP/IP\" section, likely for web UI, but no auth procedure documented for Telnet control"
+  - "STATUS response format not documented in source"
+  - "no discrete settable parameters beyond Actions"
+  - "no unsolicited notifications documented in source"
+  - "no multi-step sequences documented in source"
+  - "no additional safety warnings in source"
+  - "STATUS response payload format not documented."
+  - "TCP port for Telnet control not stated."
+  - "whether default username/password applies to Telnet control or only web UI."
+  - "firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:23:28.509Z
-  matched_actions: 17
-  action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched literally in source command table with correct syntax and parameters; transport settings verified."
+  checked_at: 2026-06-02T10:14:00.850Z
+  matched_actions: 15
+  action_count: 15
+  confidence: medium
+  summary: "All 15 spec commands match verbatim in the source RS232 command reference table, transport parameters verified, and source has no extra commands beyond the 15 mapped. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-02
 ---
 
 # Blustream CMX88AB Control Spec
 
 ## Summary
-Blustream CMX88AB is an 8x8 HDMI matrix switcher supporting RS-232 and TCP/IP control. This spec covers power control, input/output routing, EDID management, and system configuration via serial or Telnet commands.
+RS-232 / Telnet control spec for Blustream CMX88AB matrix. ASCII command set for power, output routing, EDID management, system config.
+
+<!-- UNRESOLVED: product line "Blustream Blustream Power Products" not in source; model CMX88AB inferred from manual title. -->
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
   - serial
-addressing:
-  port: null  # UNRESOLVED: TCP port number not stated in source
+  - tcp
 serial:
   baud_rate: 57600
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
+addressing:
+  host: 192.168.0.200  # default static; device falls back to this when no DHCP
+  # UNRESOLVED: TCP port not stated in source
+  port: null
+  dhcp: true
 auth:
-  type: user_pass  # inferred: username/password stated in source
-  username: blustream
-  password: "1234"
+  type: null  # UNRESOLVED: source lists default username "blustream" / password "1234" under "TCP/IP" section, likely for web UI, but no auth procedure documented for Telnet control
 ```
 
 ## Traits
 ```yaml
-- powerable  # inferred: PON/POFF commands present
-- routable   # inferred: OUTxxFRyy routing commands present
-- queryable  # inferred: STATUS command present
+- powerable  # inferred from PON / POFF commands
+- routable   # inferred from OUTxxFRyy command
+- queryable  # inferred from STATUS command
 ```
 
 ## Actions
 ```yaml
+- id: help
+  label: Print Help
+  kind: action
+  command: "?"
+  params: []
+
+- id: help_keyword
+  label: Print Help (keyword)
+  kind: action
+  command: "HELP"
+  params: []
+
+- id: status
+  label: Print System Status
+  kind: query
+  command: "STATUS"
+  params: []
+
 - id: power_on
   label: Power On
   kind: action
+  command: "PON"
   params: []
 
 - id: power_off
   label: Power Off
   kind: action
+  command: "POFF"
   params: []
 
-- id: output_on
-  label: Set Output On
+- id: ir_control
+  label: Set System IR Control
   kind: action
+  command: "IRON/OFF"
   params:
-    - name: output
-      type: integer
-      description: Output number (01-08)
+    - name: state
+      type: enum
+      values: [ON, OFF]
+      description: ON or OFF
 
-- id: output_off
-  label: Set Output Off
+- id: key_control
+  label: Set System KEY Control
   kind: action
+  command: "KEYON/OFF"
   params:
-    - name: output
-      type: integer
-      description: Output number (01-08)
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
-- id: route_output
-  label: Route Output to Input
+- id: debug_mode
+  label: Set Debug Mode
   kind: action
+  command: "DBGON/OFF"
   params:
-    - name: output
-      type: integer
-      description: Output number (01-08)
-    - name: input
-      type: integer
-      description: Input number (01-04)
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
-- id: copy_edid
-  label: Copy EDID
+- id: onboard_beep
+  label: Set Onboard Beep
   kind: action
+  command: "BEEPON/OFF"
   params:
-    - name: input
-      type: integer
-      description: Input number (00=ALL, 01-08)
-    - name: output
-      type: integer
-      description: Output number (00=ALL, 01-02)
-
-- id: set_edid_default
-  label: Set EDID to Default
-  kind: action
-  params:
-    - name: input
-      type: integer
-      description: Input number (00=ALL, 01-04)
-    - name: edid
-      type: integer
-      description: EDID preset (00-14)
-
-- id: ir_on
-  label: IR Control On
-  kind: action
-  params: []
-
-- id: ir_off
-  label: IR Control Off
-  kind: action
-  params: []
-
-- id: key_on
-  label: Key Control On
-  kind: action
-  params: []
-
-- id: key_off
-  label: Key Control Off
-  kind: action
-  params: []
-
-- id: debug_on
-  label: Debug Mode On
-  kind: action
-  params: []
-
-- id: debug_off
-  label: Debug Mode Off
-  kind: action
-  params: []
-
-- id: beep_on
-  label: Beep On
-  kind: action
-  params: []
-
-- id: beep_off
-  label: Beep Off
-  kind: action
-  params: []
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: reset_system
-  label: Reset System
+  label: Reset System To Default
   kind: action
-  params:
-    - name: confirm
-      type: string
-      description: Must type "Yes" to confirm
+  command: "RESET"
+  params: []
+  notes: Confirm by typing "Yes"; "No" discards.
 
-- id: reset_defaults
-  label: Restore Factory Defaults
+- id: out_on_off
+  label: Set Output On/Off
   kind: action
+  command: "OUT{output}ON/OFF"
+  params:
+    - name: output
+      type: integer
+      description: Output zone number (01-08)
+    - name: state
+      type: enum
+      values: [ON, OFF]
+
+- id: out_route
+  label: Set Output From Input
+  kind: action
+  command: "OUT{output}FR{input}"
+  params:
+    - name: output
+      type: integer
+      description: Output zone number (01-08)
+    - name: input
+      type: integer
+      description: Input source number (01-08)
+
+- id: edid_copy
+  label: Copy EDID From Output To Input
+  kind: action
+  command: "EDID{input}CP{output}"
+  params:
+    - name: input
+      type: integer
+      description: Input (00 = ALL, 01-08)
+    - name: output
+      type: integer
+      description: Output (00 = ALL, 01-08)
+
+- id: edid_set_default
+  label: Set Input EDID To Default
+  kind: action
+  command: "EDID{input}DF{edid_index}"
+  params:
+    - name: input
+      type: integer
+      description: Input (00 = ALL, 01-04)
+    - name: edid_index
+      type: integer
+      description: EDID index (00-14); see Notes for table
+
+- id: factory_reset
+  label: Restore Factory Settings
+  kind: action
+  command: "RESETDEF"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: system_status
-  label: System Status
-  type: string
-  description: Returns matrix zone status, connection types
+# UNRESOLVED: STATUS response format not documented in source
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete settable parameters documented beyond action commands
+# UNRESOLVED: no discrete settable parameters beyond Actions
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented
+# UNRESOLVED: no unsolicited notifications documented in source
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences documented
+# UNRESOLVED: no multi-step sequences documented in source
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - reset_system  # requires "Yes" confirmation
+  - id: reset_system
+    description: 'RESET requires typing "Yes" to confirm; "No" discards'
 interlocks: []
+# UNRESOLVED: no additional safety warnings in source
 ```
 
 ## Notes
-Command syntax: commands are ASCII strings terminated by carriage return (<CR>, \r, 0x0D). No spaces between command characters unless required by control software.
+- Carriage return handling: some programs need <CR>, \r, or 0D appended; commands are sent verbatim (e.g. `OUT01ON`).
+- Spaces optional: commands work without spaces unless program requires them (e.g. `OUT{Space}01{Space}ON`).
+- IP control: default 192.168.0.200; DHCP on by default, reverts to 192.168.0.200 if no DHCP server.
+- EDID index table for `EDIDxxDFzz`:
+  - 00: HDMI 1080p@60Hz, 2CH PCM
+  - 01: HDMI 1080p@60Hz, 5.1CH PCM/DTS/DOLBY
+  - 02: HDMI 1080p@60Hz, 7.1CH PCM/DTS/DOLBY/HD
+  - 03: HDMI 1080i@60Hz, 2CH PCM
+  - 04: HDMI 1080i@60Hz, 5.1CH PCM/DTS/DOLBY
+  - 05: HDMI 1080i@60Hz, 7.1CH PCM/DTS/DOLBY/HD
+  - 06: HDMI 1080p@60Hz/3D, 2CH PCM
+  - 07: HDMI 1080p@60Hz/3D, 5.1CH PCM/DTS/DOLBY
+  - 08: HDMI 1080p@60Hz/3D, 7.1CH PCM/DTS/DOLBY/HD
+  - 09: HDMI 4K2K, 2CH PCM
+  - 10: HDMI 4K2K, 5.1CH PCM/DTS/DOLBY
+  - 11: HDMI 4K2K, 7.1CH PCM/DTS/DOLBY/HD
+  - 12: DVI 1280x1024@60Hz, no audio
+  - 13: DVI 1920x1080@60Hz, no audio
+  - 14: DVI 1920x1200@60Hz, no audio
 
-DHCP is enabled by default; if no DHCP server is present, default IP is 192.168.0.200.
-
-Output numbers are 01-08. EDID input selection uses 00 for ALL, 01-08 for individual. EDID output selection uses 00 for ALL, 01-02 for individual.
-<!-- UNRESOLVED: TCP control port number not stated in source -->
-<!-- UNRESOLVED: Telnet vs raw TCP not distinguished in source -->
-<!-- UNRESOLVED: unsolicited status change notifications not documented -->
+<!-- UNRESOLVED: STATUS response payload format not documented. -->
+<!-- UNRESOLVED: TCP port for Telnet control not stated. -->
+<!-- UNRESOLVED: whether default username/password applies to Telnet control or only web UI. -->
+<!-- UNRESOLVED: firmware version compatibility not stated. -->
 
 ## Provenance
 
@@ -234,25 +278,35 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
-last_checked_at: 2026-04-23T15:23:28.509Z
+last_checked_at: 2026-06-02T10:14:00.850Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:23:28.509Z
-matched_actions: 17
-action_count: 17
-confidence: high
-summary: "All 17 spec actions matched literally in source command table with correct syntax and parameters; transport settings verified."
+checked_at: 2026-06-02T10:14:00.850Z
+matched_actions: 15
+action_count: 15
+confidence: medium
+summary: "All 15 spec commands match verbatim in the source RS232 command reference table, transport parameters verified, and source has no extra commands beyond the 15 mapped. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "?"
-- HELP
+- "product line \"Blustream Blustream Power Products\" not in source; model CMX88AB inferred from manual title."
+- "TCP port not stated in source"
+- "source lists default username \"blustream\" / password \"1234\" under \"TCP/IP\" section, likely for web UI, but no auth procedure documented for Telnet control"
+- "STATUS response format not documented in source"
+- "no discrete settable parameters beyond Actions"
+- "no unsolicited notifications documented in source"
+- "no multi-step sequences documented in source"
+- "no additional safety warnings in source"
+- "STATUS response payload format not documented."
+- "TCP port for Telnet control not stated."
+- "whether default username/password applies to Telnet control or only web UI."
+- "firmware version compatibility not stated."
 ```
 
 ---

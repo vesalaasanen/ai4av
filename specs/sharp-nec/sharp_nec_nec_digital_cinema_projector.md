@@ -24,14 +24,25 @@ last_checked_at: 2026-05-14T18:17:20.352Z
 generated_at: 2026-05-14T18:17:20.352Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model number not stated in source — \"BDT140013\" may be the manual number rather than model"
+  - "wireless LAN unit manual reference not available"
+  - "flow control not mentioned; RTS/CTS pins present in pinout but no protocol details"
+  - "no standalone settable parameters documented separately from actions;"
+  - "no unsolicited notifications described; all communication appears to be command-response"
+  - "no multi-step sequences explicitly described as macros in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing requirements"
+  - "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub input values all reference this appendix"
+  - "wireless LAN unit manual not available"
+  - "specific model identification not possible from source; \"BDT140013 Rev 7.1\" appears to be the manual revision number"
+  - "no authentication mechanism described, but LAN connection may have separate network-level security not covered in this control protocol manual"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.352Z
   matched_actions: 43
   action_count: 43
-  confidence: high
-  summary: "All 61 spec actions matched semantic mappings to source commands; transport parameters verified verbatim; spec comprehensively represents documented protocol."
+  confidence: medium
+  summary: "All 61 spec actions matched semantic mappings to source commands; transport parameters verified verbatim; spec comprehensively represents documented protocol. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -794,14 +805,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.352Z
 matched_actions: 43
 action_count: 43
-confidence: high
-summary: "All 61 spec actions matched semantic mappings to source commands; transport parameters verified verbatim; spec comprehensively represents documented protocol."
+confidence: medium
+summary: "All 61 spec actions matched semantic mappings to source commands; transport parameters verified verbatim; spec comprehensively represents documented protocol. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model number not stated in source — \"BDT140013\" may be the manual number rather than model"
+- "wireless LAN unit manual reference not available"
+- "flow control not mentioned; RTS/CTS pins present in pinout but no protocol details"
+- "no standalone settable parameters documented separately from actions;"
+- "no unsolicited notifications described; all communication appears to be command-response"
+- "no multi-step sequences explicitly described as macros in source"
+- "no safety warnings, interlock procedures, or power-on sequencing requirements"
+- "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub input values all reference this appendix"
+- "wireless LAN unit manual not available"
+- "specific model identification not possible from source; \"BDT140013 Rev 7.1\" appears to be the manual revision number"
+- "no authentication mechanism described, but LAN connection may have separate network-level security not covered in this control protocol manual"
 ```
 
 ---

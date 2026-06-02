@@ -26,14 +26,26 @@ last_checked_at: 2026-05-31T20:54:04.554Z
 generated_at: 2026-05-31T20:54:04.554Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact PLS 300 firmware version compatibility range not stated (doc references API v2.00.20+)"
+  - "whether PLS 300 supports all endpoints or a subset of the Midra 4K API"
+  - "default credentials not stated; source shows \"Admin\"/\"pass\" as example only"
+  - "source does not define unsolicited event/push feedback; all state is polled via GET queries"
+  - "no continuous variables (volume, gain, etc.) documented in source"
+  - "no unsolicited notification mechanism documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "exact PLS 300 firmware version compatibility not stated"
+  - "whether PLS 300 supports all Midra 4K endpoints (some may be QVU/QMX/EKS-only)"
+  - "thumbnail URLs use /api/device/ path (different from /api/tpp/v1 control path) — base URL mapping unclear"
+  - "no port number stated for HTTP server"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:54:04.554Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched literally in source; transport parameters confirmed; bidirectional API coverage."
+  confidence: medium
+  summary: "All 49 spec actions matched literally in source; transport parameters confirmed; bidirectional API coverage. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1089,14 +1101,25 @@ verdict: verified
 checked_at: 2026-05-31T20:54:04.554Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched literally in source; transport parameters confirmed; bidirectional API coverage."
+confidence: medium
+summary: "All 49 spec actions matched literally in source; transport parameters confirmed; bidirectional API coverage. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact PLS 300 firmware version compatibility range not stated (doc references API v2.00.20+)"
+- "whether PLS 300 supports all endpoints or a subset of the Midra 4K API"
+- "default credentials not stated; source shows \"Admin\"/\"pass\" as example only"
+- "source does not define unsolicited event/push feedback; all state is polled via GET queries"
+- "no continuous variables (volume, gain, etc.) documented in source"
+- "no unsolicited notification mechanism documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "exact PLS 300 firmware version compatibility not stated"
+- "whether PLS 300 supports all Midra 4K endpoints (some may be QVU/QMX/EKS-only)"
+- "thumbnail URLs use /api/device/ path (different from /api/tpp/v1 control path) — base URL mapping unclear"
+- "no port number stated for HTTP server"
 ```
 
 ---

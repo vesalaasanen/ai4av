@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:54.679Z
 last_checked_at: 2026-05-14T18:17:18.870Z
 generated_at: 2026-05-14T18:17:18.870Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model variants within P402-TMX4P Series not enumerated in source"
+  - "standby mode compatibility matrix not fully specified (varies by model)"
+  - "no discrete parameter variables separate from action params in source"
+  - "no unsolicited event notifications described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "input terminal values appendix references \"Supplementary Information by Command\" appendix which is not present in full in this source document"
+  - "selection signal type values appendix incomplete in source"
+  - "audio select terminal values appendix incomplete in source"
+  - "standby mode requirements vary by model — specific P402-TMX4P requirements not enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.870Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation."
+  confidence: medium
+  summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -649,7 +658,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:54.679Z
 last_checked_at: 2026-05-14T18:17:18.870Z
 ```
 
@@ -660,14 +669,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.870Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation."
+confidence: medium
+summary: "All 61 spec actions matched source commands, transport parameters verified against protocol documentation. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model variants within P402-TMX4P Series not enumerated in source"
+- "standby mode compatibility matrix not fully specified (varies by model)"
+- "no discrete parameter variables separate from action params in source"
+- "no unsolicited event notifications described in source"
+- "no safety warnings or interlock procedures in source"
+- "input terminal values appendix references \"Supplementary Information by Command\" appendix which is not present in full in this source document"
+- "selection signal type values appendix incomplete in source"
+- "audio select terminal values appendix incomplete in source"
+- "standby mode requirements vary by model — specific P402-TMX4P requirements not enumerated"
 ```
 
 ---

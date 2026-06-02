@@ -2,16 +2,15 @@
 spec_id: admin/globalcache-ip2cc
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "GlobalCache IP2CC Control Spec"
-manufacturer: "Global Cache"
-model_family: IP2CC
+title: "Global Caché iTach IP2CC Control Spec"
+manufacturer: "Global Caché"
+model_family: "iTach IP2CC"
 aliases: []
 compatible_with:
   manufacturers:
-    - "Global Cache"
-    - GlobalCache
+    - "Global Caché"
   models:
-    - IP2CC
+    - "iTach IP2CC"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,31 +19,41 @@ source_domains:
   - globalcache.com
 source_urls:
   - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
-retrieved_at: 2026-05-04T18:05:13.638Z
+  - https://www.globalcache.com/files/docs/datasheet_itach_ip.pdf
+  - https://www.globalcache.com/files/docs/QS_iTachIP_distrib.pdf
+  - https://www.globalcache.com/downloads.html
+retrieved_at: 2026-04-29T21:45:14.451Z
 last_checked_at: 2026-04-27T09:04:45.495Z
 generated_at: 2026-04-27T09:04:45.495Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "iTach IP2CC-specific capability details (contact closure ratings, voltage, current, switching capacity) are not in this source. The source is the family-wide Unified TCP API manual, not an IP2CC datasheet."
+  - "source describes parameters as positional command arguments, not"
+  - "source does not define multi-step sequences or named macros"
+  - "source contains no safety warnings, interlock procedures, or"
+  - "IP2CC electrical specifications (contact rating, max voltage/current, switching cycles) are not in this source."
+  - "IP2CC mechanical/enclosure specs, power input, PoE class, and indicator-LED behavior are not in this source."
+  - "confirmation-required safety actions (e.g. whether the API requires explicit unlock for high-risk outputs) are not documented."
 verification:
   verdict: verified
   checked_at: 2026-04-27T09:04:45.495Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions match source command tokens exactly; transport parameters verified."
+  confidence: medium
+  summary: "All 24 spec actions match source command tokens exactly; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-27
+created_at: 2026-06-02
 ---
 
-# GlobalCache IP2CC Control Spec
+# Global Caché iTach IP2CC Control Spec
 
 ## Summary
-GlobalCache IP2CC (iTach IP2CC) is a network-to-CC (Control Crawler) gateway device. Controls equipment via IR transmission, and also provides relay and sensor I/O. The API is a unified TCP socket protocol on port 4998.
+Covers Global Caché iTach IP2CC (Contact Closure / relay) over the vendor's Unified TCP API on port 4998. IP2CC is a relay-output module (1:1–1:3) controlled via the unified ASCII command/response protocol shared across GC-100, iTach, Flex, and Global Connect families.
 
-<!-- UNRESOLVED: IP2CC-specific command subset not enumerated separately in source; spec covers full iTach family. -->
+<!-- UNRESOLVED: iTach IP2CC-specific capability details (contact closure ratings, voltage, current, switching capacity) are not in this source. The source is the family-wide Unified TCP API manual, not an IP2CC datasheet. -->
 
 ## Transport
 ```yaml
@@ -58,494 +67,238 @@ auth:
 
 ## Traits
 ```yaml
-queryable  # inferred: getversion, getdevices, getstate, get_IR, get_SERIAL commands present
-routable   # inferred: HDMI matrix switch commands present
+# No power on/off commands in source (relay state is a separate concern).
+# No queryable trait for relay state alone - queryable triggered by getstate.
+# No routable, no levelable, no powerable - only relay-state control is present.
+queryable: true   # inferred from getstate command examples
 ```
 
 ## Actions
 ```yaml
-- id: getversion
+# Unified TCP API commands applicable to iTach IP2CC relay outputs.
+# Module = 1, port = 1|2|3 on IP2CC per source module/port table.
+# Every request is a single line ending with carriage return (ASCII 13).
+# Response format mirrors request with `state,` prefix.
+
+- id: relay_getstate
+  label: Get Relay State
+  kind: query
+  command: "getstate,1:{port}"
+  params:
+    - name: port
+      type: integer
+      description: Relay port address (1-3 on IP2CC)
+
+- id: relay_getstate_notify
+  label: Get Relay State (Enable Change Notification)
+  kind: query
+  command: "getstate,1:{port},notify"
+  params:
+    - name: port
+      type: integer
+      description: Relay port address (1-3 on IP2CC)
+  notes: |
+    Enables TCP change notification for the duration of the client's
+    TCP connection. Notification messages use format
+    `state,1:{port},{state}`.
+
+- id: relay_setstate
+  label: Set Relay State
+  kind: action
+  command: "setstate,1:{port},{state}"
+  params:
+    - name: port
+      type: integer
+      description: Relay port address (1-3 on IP2CC)
+    - name: state
+      type: integer
+      description: |
+        0 = off/open
+        1 = on/closed (SPST; on1 for SPDT/DPDT)
+        2 = on2 (SPDT/DPDT second throw)
+  notes: |
+    State is not persistent through device reset or power-cycle;
+    always reverts to 0 (off/open) after reset.
+
+- id: relay_setstate_pulse
+  label: Pulse Relay (Timed Closure)
+  kind: action
+  command: "setstate,1:{port},{state},{period}"
+  params:
+    - name: port
+      type: integer
+      description: Relay port address (1-3 on IP2CC)
+    - name: state
+      type: integer
+      description: "0, 1, or 2 (see relay_setstate)"
+    - name: period
+      type: integer
+      description: Pulse period in ms, range 1-4294967295
+  notes: Optional period parameter only applies to setstate.
+
+- id: get_version
   label: Get Device Version
-  kind: action
-  params:
-    - name: module
-      type: integer
-      description: Module address 0-9 (optional; omits all modules)
-
-- id: getdevices
-  label: Get Device Capabilities
-  kind: action
+  kind: query
+  command: "getversion"
   params: []
+  notes: |
+    iTach IP2CC family version prefix: 710-1008-XX. Example
+    response: `version,0,710-1008-XX`.
 
-- id: blink
-  label: Blink Device LED
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: 0=blink disabled, 1=blink enabled
+- id: get_devices
+  label: Get Device Capabilities
+  kind: query
+  command: "getdevices"
+  params: []
+  notes: |
+    Response enumerates available modules and ports with type
+    (e.g. RELAY, RELAYSENSOR, etc.). Multi-line response
+    terminated by `endlistdevices`.
 
-- id: get_NET
+- id: get_network_config
   label: Get Network Configuration
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port (e.g., "0:1")
+  kind: query
+  command: "get_NET,0:0"
+  params: []
+  notes: |
+    Response: `NET,0:0,<cfglock>,<IPconfig>,<IPaddr>,<subnet>,<gateway>`.
+    IPconfig: STATIC or DHCP. cfglock: UNLOCKED or LOCKED.
 
-- id: set_NET
-  label: Set Network Configuration
-  kind: action
+- id: get_serial_config
+  label: Get Serial Port Configuration
+  kind: query
+  command: "get_SERIAL,1:{port}"
   params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: cfglock
-      type: string
-      description: UNLOCKED or LOCKED
-    - name: IPconfig
-      type: string
-      description: STATIC or DHCP
-    - name: IPaddr
-      type: string
-      description: IPv4 address
-    - name: subnet
-      type: string
-      description: IPv4 subnet mask
-    - name: gateway
-      type: string
-      description: IPv4 gateway
-
-- id: get_IR
-  label: Get IR Port Mode
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-
-- id: set_IR
-  label: Set IR Port Mode
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: mode
-      type: string
-      description: IR, BL2_BLASTER, IR_NOCARRIER, IR_BLASTER, IRTRIPORT, IRTRIPORT_BLASTER, SENSOR, SENSOR_NOTIFY, SERIAL, RECEIVER, LED_LIGHTING
-
-- id: sendir
-  label: Transmit IR Code
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: ID
+    - name: port
       type: integer
-      description: "0-65535"
-    - name: freq
-      type: integer
-      description: Carrier frequency Hz (15000-500000)
-    - name: repeat
-      type: integer
-      description: "1-50"
-    - name: offset
-      type: integer
-      description: "1-383"
-    - name: pulses
-      type: string
-      description: "on1,off1,on2,off2,...,onN,offN"
-
-- id: stopir
-  label: Stop IR Transmission
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
+      description: "Port address (1 for iTach)"
+  notes: |
+    IP2CC-specific serial commands are not in this source, but
+    the unified `get_SERIAL` command is documented for the
+    iTach family. Use only if IP2CC exposes a serial port.
 
 - id: get_IRL
   label: Enable IR Learner
-  kind: action
+  kind: query
+  command: "get_IRL"
   params: []
+  notes: |
+    Returns `IR Learner Enabled` followed by `IR <IR_code>` lines
+    for each received IR sequence. Module/port fixed at 1 in
+    received codes. Stays enabled until `stop_IRL` or connection
+    close.
 
 - id: stop_IRL
   label: Disable IR Learner
-  kind: action
+  kind: query
+  command: "stop_IRL"
   params: []
+  notes: Returns `IR Learner Disabled`.
 
-- id: receiveIR
-  label: Enable/Disable IR Input
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: mode
-      type: string
-      description: enabled or disabled
-
-- id: get_SERIAL
-  label: Get Serial Port Configuration
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-
-- id: set_SERIAL
-  label: Set Serial Port Configuration
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: baudrate
-      type: integer
-      description: 1200-115200
-    - name: flowcontrol
-      type: string
-      description: FLOW_NONE or FLOW_HARDWARE
-    - name: parity
-      type: string
-      description: PARITY_NO, PARITY_ODD, PARITY_EVEN
-    - name: stopbits
-      type: string
-      description: STOPBITS_1 or STOPBITS_2 (optional)
-    - name: cable_id
-      type: string
-      description: CABLE_3 or CABLE_4 (Flex only, optional)
-
-- id: getstate_relay
-  label: Get Relay State
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: mode
-      type: string
-      description: notify (optional, enable notifications)
-
-- id: setstate_relay
-  label: Set Relay State
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: state
-      type: integer
-      description: "0=off/open, 1=on/closed, 2=on2 (SPDT/DPDT)"
-    - name: period
-      type: integer
-      description: Pulse period in ms 1-4294967295 (optional)
-
-- id: getstate_sensor
-  label: Get Sensor State
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: mode
-      type: string
-      description: notify (optional, enable notifications)
-
-- id: get_SENSORNOTIFY
-  label: Get Sensor Notify Settings
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-
-- id: set_SENSORNOTIFY
-  label: Set Sensor Notify Settings
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:port
-    - name: n_port
-      type: integer
-      description: UDP port (0=disabled)
-    - name: n_interval
-      type: integer
-      description: Interval seconds (0=disabled)
-    - name: debounce
-      type: string
-      description: Duration (10us-1s, optional)
-
-- id: getstate_matrix
-  label: Get Matrix Switch State
-  kind: action
-  params:
-    - name: module_inport
-      type: string
-      description: Module:in_port
-    - name: mode
-      type: string
-      description: notify (optional)
-
-- id: setstate_matrix
-  label: Set Matrix Switch Routing
-  kind: action
-  params:
-    - name: module_inport
-      type: string
-      description: Module:in_port
-    - name: out_port
-      type: integer
-      description: Output port (0=disable)
-
-- id: getactive
-  label: Get Active Matrix Ports
-  kind: action
-  params:
-    - name: module
-      type: integer
-      description: Module address (1)
-
-- id: CEC_TX
-  label: Send CEC Message
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:out_port
-    - name: message
-      type: string
-      description: Colon-delimited hex bytes
-
-- id: CEC_RX
-  label: Receive CEC Messages
-  kind: action
-  params:
-    - name: module_port
-      type: string
-      description: Module:out_port
-    - name: enable
-      type: string
-      description: enabled/on/1 or disabled/off/0
+# Common error responses (informational; not callable):
+# ERR 001 - invalid module address
+# ERR 002 - invalid port address
+# ERR 003 - no carriage return
+# ERR 004 - not supported
+# ERR 005 - invalid parameter
+# ERR 007 - settings locked
+# RO001 - invalid logical relay type
+# RO002 - invalid relay state
+# RO003 - unsupported operation
+# RO004 - logical relay disabled/unavailable
+# SI001 - not a sensor or relay
 ```
 
 ## Feedbacks
 ```yaml
-- id: version_response
-  label: Version Response
-  type: string
-  description: "version,<module>,<version>"
+- id: relay_state
+  type: enum
+  values:
+    - "0"   # off/open
+    - "1"   # on/closed (SPST; on1 for SPDT/DPDT)
+    - "2"   # on2 (SPDT/DPDT second throw)
+  response_format: "state,1:{port},{state}"
+  notes: |
+    Returned by getstate (query) and unsolicited via TCP change
+    notification (statechange) when enabled with `notify` mode.
+    State is not persistent across reset/power-cycle.
 
-- id: device_response
-  label: Device Capability Response
-  type: string
-  description: "device,<module>,<ports> <type>[_subtype] ... endlistdevices"
+- id: network_config
+  type: object
+  response_format: "NET,0:0,<cfglock>,<IPconfig>,<IPaddr>,<subnet>,<gateway>"
+  notes: |
+    cfglock: UNLOCKED|LOCKED. IPconfig: STATIC|DHCP. IP addresses
+    in IPV4 dotted form.
 
-- id: IR_response
-  label: IR Port Mode Response
-  type: string
-  description: "IR,<module>:<port>,<mode>"
+- id: device_capabilities
+  type: object
+  response_format: "device,<module>,<ports> <type>[_subtype] ... endlistdevices"
+  notes: |
+    Types: ETHERNET, WIFI, MODULE, IR, SERIAL, RELAY, SENSOR,
+    RELAYSENSOR, IR_BLASTER, IRTRIPORT, IRTRIPORT_BLASTER, SWITCH.
+    Subtypes: DIGITAL, IN, OUT, RS232, RS485, SPST_3A, HDMI_3:1.
 
-- id: completeir
-  label: IR Transmission Complete
+- id: ir_learned_code
   type: string
-  description: "completeir,<module>:<port>,<ID>"
-
-- id: busyir
-  label: IR Port Busy
-  type: string
-  description: "busyir"
-
-- id: stopir_response
-  label: Stop IR Response
-  type: string
-  description: Echo of stopir request
-
-- id: IRL_response
-  label: IR Learner Response
-  type: string
-  description: "IR Learner Enabled", "IR,<IR_code>", "IR Learner Disabled"
-
-- id: receiveIR_response
-  label: IR Receive Response
-  type: string
-  description: "receiveIR,<module>:<port>,<mode>" followed by "IR,<IR_code>"
-
-- id: SERIAL_response
-  label: Serial Config Response
-  type: string
-  description: "SERIAL,<module>:<port>,<baudrate>,<flowcontrol/duplex>,<parity>[,stopbits][,cable_id]"
-
-- id: state_response
-  label: State Response
-  type: string
-  description: "state,<module>:<port>,<state>"
-
-- id: NET_response
-  label: Network Config Response
-  type: string
-  description: "NET,<module>:<port>,<cfglock>,<IPconfig>,<IPaddr>,<subnet>,<gateway>"
-
-- id: RELAY_response
-  label: Relay Config Response
-  type: string
-  description: "RELAY,<module>:<port>,<type>"
-
-- id: SENSORNOTIFY_response
-  label: Sensor Notify Response
-  type: string
-  description: "SENSORNOTIFY,<module>:<port>,<n_port>,<n_interval>[,debounce]"
-
-- id: active_response
-  label: Active Ports Response
-  type: string
-  description: "active,<module> OUT: <out_port1>,<state> ... IN: <in_port1>,<state> ... endactive,<module>"
-
-- id: CEC_response
-  label: CEC Response
-  type: string
-  description: "CEC,<module>:<port>,TX,<message>,<acknowledge>"
-
-- id: statechange_notification
-  label: State Change Notification
-  type: string
-  description: "statechange,<module>:<port>,<state>"
-
-- id: error
-  label: Error Response
-  type: string
-  description: "<error_prefix><error_code>"
+  response_format: "IR <IR_code>"
+  notes: |
+    Streamed while IR Learner is enabled (`get_IRL`).
+    Format is Global Caché IR Format with module/port fixed at 1.
 ```
 
 ## Variables
 ```yaml
-# Network config
-- id: network_cfglock
-  label: Config Lock
-  type: enum
-  values: [UNLOCKED, LOCKED]
-
-- id: network_IPconfig
-  label: IP Configuration
-  type: enum
-  values: [STATIC, DHCP]
-
-- id: network_IPaddr
-  label: IP Address
-  type: string
-
-- id: network_subnet
-  label: Subnet Mask
-  type: string
-
-- id: network_gateway
-  label: Gateway
-  type: string
-
-# IR config
-- id: IR_mode
-  label: IR Port Mode
-  type: enum
-  values: [IR, BL2_BLASTER, IR_NOCARRIER, IR_BLASTER, IRTRIPORT, IRTRIPORT_BLASTER, SENSOR, SENSOR_NOTIFY, SERIAL, RECEIVER, LED_LIGHTING]
-
-# Serial config
-- id: serial_baudrate
-  label: Baud Rate
-  type: integer
-  values: [1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200]
-
-- id: serial_flowcontrol
-  label: Flow Control
-  type: enum
-  values: [FLOW_NONE, FLOW_HARDWARE]
-
-- id: serial_parity
-  label: Parity
-  type: enum
-  values: [PARITY_NO, PARITY_ODD, PARITY_EVEN]
-
-- id: serial_stopbits
-  label: Stop Bits
-  type: enum
-  values: [STOPBITS_1, STOPBITS_2]
-
-# Relay config
-- id: relay_type
-  label: Relay Type
-  type: enum
-  values: [SPST, SPDT, DPDT, Disabled, Unavailable]
-
-- id: relay_state
-  label: Relay State
-  type: enum
-  values: [0, 1, 2]
-
-# Sensor notify
-- id: sensor_notify_port
-  label: Notify Port
-  type: integer
-  description: UDP port for notifications (0=disabled)
-
-- id: sensor_notify_interval
-  label: Notify Interval
-  type: integer
-  description: Seconds between periodic notifications (0=disabled)
-
-- id: sensor_debounce
-  label: Debounce
-  type: string
-  description: Minimum duration for valid state (10us-1s)
+# UNRESOLVED: source describes parameters as positional command arguments, not
+# persistent named variables. No persistent storage variables are documented.
 ```
 
 ## Events
 ```yaml
-- id: IR_code_received
-  label: IR Code Received
-  description: Streamed IR code from receiveIR or IR learner
-  params:
-    - name: IR_code
-      type: string
-      description: IR code in GlobalCache format
-
 - id: relay_state_change
-  label: Relay State Change
-  description: Notification when relay state changes
-  params:
-    - name: module_port
-      type: string
-    - name: state
-      type: integer
+  description: |
+    Unsolicited state change notification on the TCP connection
+    that issued `getstate,<module>:<port>,notify`. Format:
+    `state,<module>:<port>,<state>`. Persists for life of the
+    originating TCP connection.
+  response_format: "state,<module>:<port>,<state>"
 
-- id: sensor_state_change
-  label: Sensor State Change
-  description: Notification when sensor state changes
-  params:
-    - name: module_port
-      type: string
-    - name: state
-      type: integer
+- id: ir_received_code
+  description: |
+    Streamed by iTach while IR receive mode is enabled via
+    `receiveIR,<module>:<port>,enabled`. Format follows IR
+    Learner output: Global Caché IR code string with module/port
+    fixed at 1.
+  response_format: "sendir,1:1,1,<freq>,<repeat>,<offset>,<on1>,<off1>,..."
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step macros in source
+# UNRESOLVED: source does not define multi-step sequences or named macros
+# for IP2CC.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings in source
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements. IP2CC contact-closure electrical ratings
+# (voltage/current/load) are not present in this source and must be obtained
+# from the IP2CC datasheet before field deployment.
 ```
 
 ## Notes
-The Global Caché Unified TCP API spans multiple product families (GC-100, iTach, Flex, Global Connect). The IP2CC is an iTach family device supporting IR, serial, and relay functionality. Serial bridging runs on port 4999. No login or authentication required.
+- Source is Global Caché's Unified TCP API manual covering GC-100, iTach, Flex, and Global Connect families. iTach IP2CC is a relay-only Contact Closure module; commands marked applicable to IP2CC follow the iTach row of the module/port tables in the source.
+- All TCP API requests are a single line of printable text terminated with carriage return (ASCII 13). Commands and parameters are case sensitive.
+- Connections can be momentary (one request/response) or persistent (open socket for multiple requests and notifications). Max 8 simultaneous TCP connections per iTach.
+- iTach IP2CC firmware family prefix: `710-1008-XX` (exact version not stated in source).
+- DHCP by default; fallback to static IP if no DHCP server. Network configured via `get_NET`/`set_NET` (set_NET not supported on iTach/Flex/Global Connect per source).
+- IP2CC relay state does not persist through reset/power-cycle — always returns to `0` (off/open).
+- This spec covers only TCP API control. IR, serial, sensor, and HDMI-matrix sub-commands present in the unified manual are not part of IP2CC's primary function and are listed only where the IP2CC exposes a port of that class.
 
-<!-- UNRESOLVED: IP2CC-specific command restrictions not enumerated separately in source. -->
-<!-- UNRESOLVED: recommended retry/timeout values not stated. -->
+<!-- UNRESOLVED: IP2CC electrical specifications (contact rating, max voltage/current, switching cycles) are not in this source. -->
+<!-- UNRESOLVED: IP2CC mechanical/enclosure specs, power input, PoE class, and indicator-LED behavior are not in this source. -->
+<!-- UNRESOLVED: confirmation-required safety actions (e.g. whether the API requires explicit unlock for high-risk outputs) are not documented. -->
 
 ## Provenance
 
@@ -554,7 +307,10 @@ source_domains:
   - globalcache.com
 source_urls:
   - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
-retrieved_at: 2026-05-04T18:05:13.638Z
+  - https://www.globalcache.com/files/docs/datasheet_itach_ip.pdf
+  - https://www.globalcache.com/files/docs/QS_iTachIP_distrib.pdf
+  - https://www.globalcache.com/downloads.html
+retrieved_at: 2026-04-29T21:45:14.451Z
 last_checked_at: 2026-04-27T09:04:45.495Z
 ```
 
@@ -565,14 +321,20 @@ verdict: verified
 checked_at: 2026-04-27T09:04:45.495Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions match source command tokens exactly; transport parameters verified."
+confidence: medium
+summary: "All 24 spec actions match source command tokens exactly; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "iTach IP2CC-specific capability details (contact closure ratings, voltage, current, switching capacity) are not in this source. The source is the family-wide Unified TCP API manual, not an IP2CC datasheet."
+- "source describes parameters as positional command arguments, not"
+- "source does not define multi-step sequences or named macros"
+- "source contains no safety warnings, interlock procedures, or"
+- "IP2CC electrical specifications (contact rating, max voltage/current, switching cycles) are not in this source."
+- "IP2CC mechanical/enclosure specs, power input, PoE class, and indicator-LED behavior are not in this source."
+- "confirmation-required safety actions (e.g. whether the API requires explicit unlock for high-risk outputs) are not documented."
 ```
 
 ---

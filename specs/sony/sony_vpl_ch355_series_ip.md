@@ -28,25 +28,38 @@ compatible_with:
   required_options: []
 source_domains:
   - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
 source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://www.sony.com/electronics/support/res/manuals/9932/7009303bfef1bcfe3616e9036d29c71a/99325955M.pdf
+retrieved_at: 2026-05-03T04:49:49.836Z
 last_checked_at: 2026-05-14T18:17:20.866Z
 generated_at: 2026-05-14T18:17:20.866Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Requested device name \"VPL-CH355 Series\" does not appear in the source document. Source covers VPL-DX/EX/EW series. Verify correct source was provided."
+  - "RS-232C communication specifications (baud rate, data bits, parity, stop bits) referenced in source Section 3-2 but not captured in refined excerpt"
+  - "Complete SDCP packet header structure partially documented"
+  - "PJLink port number not stated in source"
+  - "baud rate not in refined source excerpt"
+  - "not in refined source excerpt"
+  - "specific response values not documented in source"
+  - "complete value list not in refined source"
+  - "SDAP advertisement broadcasts mentioned but unsolicited event format not fully documented"
+  - "source mentions that display-switching items are invalid when main power is off,"
+  - "Requested device \"VPL-CH355 Series\" not found in source; source covers VPL-DX/EX/EW models"
+  - "RS-232C baud rate, data bits, parity, stop bits not captured in refined source excerpt (Section 3-2)"
+  - "PJLink password format and default not specified"
+  - "Complete picture mode and aspect ratio value lists not in refined source"
+  - "SDCP encapsulation mode mentioned but not detailed"
+  - "SDAP advertisement broadcast format partially documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.866Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented."
+  confidence: medium
+  summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -385,13 +398,10 @@ The projector supports three control paths: RS-232C serial (Simplified Command w
 ```yaml
 source_domains:
   - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
 source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://www.sony.com/electronics/support/res/manuals/9932/7009303bfef1bcfe3616e9036d29c71a/99325955M.pdf
+retrieved_at: 2026-05-03T04:49:49.836Z
 last_checked_at: 2026-05-14T18:17:20.866Z
 ```
 
@@ -402,14 +412,29 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.866Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented."
+confidence: medium
+summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Requested device name \"VPL-CH355 Series\" does not appear in the source document. Source covers VPL-DX/EX/EW series. Verify correct source was provided."
+- "RS-232C communication specifications (baud rate, data bits, parity, stop bits) referenced in source Section 3-2 but not captured in refined excerpt"
+- "Complete SDCP packet header structure partially documented"
+- "PJLink port number not stated in source"
+- "baud rate not in refined source excerpt"
+- "not in refined source excerpt"
+- "specific response values not documented in source"
+- "complete value list not in refined source"
+- "SDAP advertisement broadcasts mentioned but unsolicited event format not fully documented"
+- "source mentions that display-switching items are invalid when main power is off,"
+- "Requested device \"VPL-CH355 Series\" not found in source; source covers VPL-DX/EX/EW models"
+- "RS-232C baud rate, data bits, parity, stop bits not captured in refined source excerpt (Section 3-2)"
+- "PJLink password format and default not specified"
+- "Complete picture mode and aspect ratio value lists not in refined source"
+- "SDCP encapsulation mode mentioned but not detailed"
+- "SDAP advertisement broadcast format partially documented"
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
-spec_id: admin/oppo-digital-bdp-83
+spec_id: admin/oppo-digital-bdp-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Oppo Digital BDP-83 Control Spec"
+title: "Oppo Digital BDP Series Control Spec"
 manufacturer: "Oppo Digital"
 model_family: BDP-83
 aliases: []
@@ -23,30 +23,33 @@ source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-05-14T18:17:19.502Z
-generated_at: 2026-05-14T18:17:19.502Z
+last_checked_at: 2026-06-02T04:56:31.595Z
+generated_at: 2026-06-02T04:56:31.595Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source documents commands (e.g. SVL, SZM, SRP) but does not enumerate"
+  - "source describes a synchronous command/response model; no unsolicited events documented."
+  - "source provides an example command sequence (PON → QPW → EJT → PLA → ...)"
+  - "source contains no safety warnings, interlocks, or power-on sequencing requirements."
+  - "firmware compatibility range; other BDP-series model coverage (BDP-93/95/103/105 etc.); error code catalogue beyond generic OK/ER."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.502Z
-  matched_actions: 60
+  checked_at: 2026-06-02T04:56:31.595Z
+  matched_actions: 80
   action_count: 80
-  confidence: high
-  summary: "All 60 spec actions matched literal command tokens in source; transport parameters verified; complete bidirectional coverage of BDP-83 command set."
+  confidence: medium
+  summary: "All 80 spec actions matched exactly with source command definitions; all transport parameters verified verbatim. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-26
+created_at: 2026-06-02
 ---
 
-# Oppo Digital BDP-83 Control Spec
+# Oppo Digital BDP Series Control Spec
 
 ## Summary
-OPPO BDP-83 Blu-ray Disc Player with RS-232C control interface. DCE device, female DB9 connector. Protocol: # prefix + 3-char command code + optional params + CR. Responses start with @, followed by OK/ER + optional params + CR. 9600 baud, 8N1, no flow control.
-
-<!-- UNRESOLVED: no TCP/IP, HTTP, or UDP control mentioned — serial-only device -->
+OPPO BDP-83 Blu-ray Disc Player with optional RS-232 wired remote-control port (DCE, female DB9). Commands are ASCII frames bracketed by `#` (0x23) start byte and CR (0x0d) terminator; responses use `@` (0x40) start byte with `OK` or `ER` result codes. This spec covers the documented serial command catalogue: IR-mapped buttons, status queries, and advanced single-step actions.
 
 ## Transport
 ```yaml
@@ -64,465 +67,667 @@ auth:
 
 ## Traits
 ```yaml
-- powerable       # POW, PON, POF commands present
-- routable        # SRC selects media source; input/output routing implied
-- queryable       # QPW, QVR, QVL, QHD, QPL, QTK, QCH, QTE, QTR, QCE, QCR, QEL, QRE, QDT, QAT, QST queries present
-- levelable       # VUP, VDN, SVL volume commands present
+- powerable    # inferred from PON/POF/POW discrete power commands
+- queryable    # inferred from QPW/QVR/QPL/... query commands
+- levelable    # inferred from SVL/VUP/VDN volume commands
 ```
 
 ## Actions
 ```yaml
-- id: pow
+- id: power_toggle
   label: Power Toggle
   kind: action
+  command: "#POW\r"
   params: []
-- id: src
+  notes: Toggle power STANDBY and ON; response OK ON or OK OFF.
+
+- id: source_menu
   label: Source / Home Menu
   kind: action
+  command: "#SRC\r"
   params: []
-- id: ejt
+
+- id: eject_toggle
   label: Open/Close Tray
   kind: action
+  command: "#EJT\r"
   params: []
-- id: pon
+  notes: Response OK OPEN or OK CLOSE.
+
+- id: power_on
   label: Power On (Discrete)
   kind: action
+  command: "#PON\r"
   params: []
-- id: pof
+
+- id: power_off
   label: Power Off (Discrete)
   kind: action
+  command: "#POF\r"
   params: []
-- id: sys
-  label: Set TV System
+
+- id: tv_system_toggle
+  label: Switch Output TV System
   kind: action
-  params:
-    - name: system
-      type: enum
-      values: [NTSC, PAL, AUTO]
-      description: Output TV system
-- id: dim
-  label: Dimmer
-  kind: action
+  command: "#SYS\r"
   params: []
-- id: pur
-  label: Pure Audio Mode
+  notes: Cycles NTSC / PAL / MULTI(AUTO); response OK NTSC, OK PAL, OK AUTO.
+
+- id: dimmer_cycle
+  label: Dim Front Panel Display
   kind: action
+  command: "#DIM\r"
   params: []
-- id: vup
+  notes: Response OK ON, OK DIM, OK OFF.
+
+- id: pure_audio_toggle
+  label: Pure Audio Mode Toggle
+  kind: action
+  command: "#PUR\r"
+  params: []
+  notes: Response OK ON or OK OFF.
+
+- id: volume_up
   label: Volume Up
   kind: action
+  command: "#VUP\r"
   params: []
-- id: vdn
+  notes: Response OK n (0-100).
+
+- id: volume_down
   label: Volume Down
   kind: action
+  command: "#VDN\r"
   params: []
-- id: mut
-  label: Mute
+  notes: Response OK n (0-100).
+
+- id: mute_toggle
+  label: Mute Toggle
   kind: action
+  command: "#MUT\r"
   params: []
-- id: nu0
-  label: Numeric Key 0
-  kind: action
-  params: []
-- id: nu1
+  notes: Response OK MUTE or OK UNMUTE.
+
+- id: numeric_1
   label: Numeric Key 1
   kind: action
+  command: "#NU1\r"
   params: []
-- id: nu2
+
+- id: numeric_2
   label: Numeric Key 2
   kind: action
+  command: "#NU2\r"
   params: []
-- id: nu3
+
+- id: numeric_3
   label: Numeric Key 3
   kind: action
+  command: "#NU3\r"
   params: []
-- id: nu4
+
+- id: numeric_4
   label: Numeric Key 4
   kind: action
+  command: "#NU4\r"
   params: []
-- id: nu5
+
+- id: numeric_5
   label: Numeric Key 5
   kind: action
+  command: "#NU5\r"
   params: []
-- id: nu6
+
+- id: numeric_6
   label: Numeric Key 6
   kind: action
+  command: "#NU6\r"
   params: []
-- id: nu7
+
+- id: numeric_7
   label: Numeric Key 7
   kind: action
+  command: "#NU7\r"
   params: []
-- id: nu8
+
+- id: numeric_8
   label: Numeric Key 8
   kind: action
+  command: "#NU8\r"
   params: []
-- id: nu9
+
+- id: numeric_9
   label: Numeric Key 9
   kind: action
+  command: "#NU9\r"
   params: []
-- id: clr
+
+- id: numeric_0
+  label: Numeric Key 0
+  kind: action
+  command: "#NU0\r"
+  params: []
+
+- id: clear_numeric
   label: Clear Numeric Input
   kind: action
+  command: "#CLR\r"
   params: []
-- id: got
-  label: Goto (Play from Specified Location)
+
+- id: goto_location
+  label: Go To Specified Location
   kind: action
+  command: "#GOT\r"
   params: []
-- id: hom
-  label: Home Menu
+  notes: Initiates GOTO sequence; follow with numeric key commands and SEL.
+
+- id: home_menu
+  label: Go to Home Menu
   kind: action
+  command: "#HOM\r"
   params: []
-- id: pup
+
+- id: page_up
   label: Page Up
   kind: action
+  command: "#PUP\r"
   params: []
-- id: pdn
+
+- id: page_down
   label: Page Down
   kind: action
+  command: "#PDN\r"
   params: []
-- id: osd
+
+- id: osd_toggle
   label: Show/Hide On-Screen Display
   kind: action
+  command: "#OSD\r"
   params: []
-- id: ttl
-  label: Top Menu (BD/DVD Title Menu)
+
+- id: top_menu
+  label: BD Top Menu / DVD Title Menu
   kind: action
+  command: "#TTL\r"
   params: []
-- id: mnu
-  label: Pop-Up Menu (BD/DVD Menu)
+
+- id: popup_menu
+  label: BD Pop-up Menu / DVD Menu
   kind: action
+  command: "#MNU\r"
   params: []
-- id: nup
+
+- id: nav_up
   label: Navigation Up
   kind: action
+  command: "#NUP\r"
   params: []
-- id: nlt
+
+- id: nav_left
   label: Navigation Left
   kind: action
+  command: "#NLT\r"
   params: []
-- id: nrt
+
+- id: nav_right
   label: Navigation Right
   kind: action
+  command: "#NRT\r"
   params: []
-- id: ndn
+
+- id: nav_down
   label: Navigation Down
   kind: action
+  command: "#NDN\r"
   params: []
-- id: sel
+
+- id: enter_select
   label: Enter / Select
   kind: action
+  command: "#SEL\r"
   params: []
-- id: set
-  label: Setup Menu
+
+- id: setup_menu
+  label: Enter Setup Menu
   kind: action
+  command: "#SET\r"
   params: []
-- id: ret
-  label: Return
+
+- id: return_back
+  label: Return To Previous Menu
   kind: action
+  command: "#RET\r"
   params: []
-- id: red
-  label: Red Button
+
+- id: color_red
+  label: Red Color Key
   kind: action
+  command: "#RED\r"
   params: []
-- id: grn
-  label: Green Button
+
+- id: color_green
+  label: Green Color Key
   kind: action
+  command: "#GRN\r"
   params: []
-- id: blu
-  label: Blue Button
+
+- id: color_blue
+  label: Blue Color Key
   kind: action
+  command: "#BLU\r"
   params: []
-- id: ylw
-  label: Yellow Button
+
+- id: color_yellow
+  label: Yellow Color Key
   kind: action
+  command: "#YLW\r"
   params: []
-- id: stp
-  label: Stop
+
+- id: stop
+  label: Stop Playback
   kind: action
+  command: "#STP\r"
   params: []
-- id: pla
-  label: Play
+
+- id: play
+  label: Start Playback
   kind: action
+  command: "#PLA\r"
   params: []
-- id: pau
-  label: Pause
+
+- id: pause
+  label: Pause Playback
   kind: action
+  command: "#PAU\r"
   params: []
-- id: prev
-  label: Skip to Previous
+
+- id: previous_track
+  label: Skip Previous
   kind: action
+  command: "#PREV\r"
   params: []
-- id: rev
+
+- id: fast_reverse
   label: Fast Reverse Play
   kind: action
+  command: "#REV\r"
   params: []
-- id: fwd
+  notes: Response OK 1 X .. OK 5 X.
+
+- id: fast_forward
   label: Fast Forward Play
   kind: action
+  command: "#FWD\r"
   params: []
-- id: nxt
-  label: Skip to Next
+  notes: Response OK 1 X .. OK 5 X.
+
+- id: next_track
+  label: Skip Next
   kind: action
+  command: "#NXT\r"
   params: []
-- id: aud
+
+- id: audio_language
   label: Change Audio Language/Channel
   kind: action
+  command: "#AUD\r"
   params: []
-- id: sub
+  notes: Response OK followed by audio track info.
+
+- id: subtitle_language
   label: Change Subtitle Language
   kind: action
+  command: "#SUB\r"
   params: []
-- id: ang
+  notes: Response OK followed by subtitle info.
+
+- id: camera_angle
   label: Change Camera Angle
   kind: action
+  command: "#ANG\r"
   params: []
-- id: zom
-  label: Zoom / Adjust Aspect Ratio
+  notes: Response OK followed by angle info.
+
+- id: zoom_cycle
+  label: Zoom In/Out / Aspect Ratio
   kind: action
+  command: "#ZOM\r"
   params: []
-- id: sap
-  label: Secondary Audio Program (SAP)
+  notes: Response OK followed by zoom ratio.
+
+- id: secondary_audio_toggle
+  label: Toggle Secondary Audio Program (SAP)
   kind: action
+  command: "#SAP\r"
   params: []
-- id: atb
-  label: A-B Replay
+
+- id: ab_repeat
+  label: A-B Section Repeat
   kind: action
+  command: "#ATB\r"
   params: []
-- id: rpt
-  label: Repeat Mode
+  notes: Response OK A-, OK A-B, OK OFF.
+
+- id: repeat_cycle
+  label: Repeat Cycle
   kind: action
+  command: "#RPT\r"
   params: []
-- id: pip
-  label: Picture-in-Picture
+  notes: Response OK Repeat Chapter / OK Repeat Title / OK OFF.
+
+- id: picture_in_picture
+  label: Toggle Picture-in-Picture
   kind: action
+  command: "#PIP\r"
   params: []
-- id: hdm
-  label: Resolution Switch
+
+- id: resolution_cycle
+  label: Switch Output Resolution
   kind: action
+  command: "#HDM\r"
   params: []
-- id: shd
-  label: Set HDMI Resolution
+
+- id: query_power_status
+  label: Query Power Status
+  kind: query
+  command: "#QPW\r"
+  params: []
+  notes: Response OK ON or OK OFF.
+
+- id: query_firmware_version
+  label: Query Firmware Version
+  kind: query
+  command: "#QVR\r"
+  params: []
+  notes: Response example OK BDP83-14-0306.
+
+- id: query_volume
+  label: Query Volume
+  kind: query
+  command: "#QVL\r"
+  params: []
+  notes: Response OK 100 or OK MUTE.
+
+- id: query_hdmi_resolution
+  label: Query HDMI Resolution
+  kind: query
+  command: "#QHD\r"
+  params: []
+  notes: Response OK 480P, OK 720P50, OK 1080P60, etc.
+
+- id: query_playback_status
+  label: Query Playback Status
+  kind: query
+  command: "#QPL\r"
+  params: []
+  notes: Possible responses include NO DISC, LOADING, OPEN, CLOSE, PLAY, PAUSE, STOP, STEP, FREV, FFWD, SFWD, SREV, SETUP, HOME MENU, MEDIA CENTER.
+
+- id: query_track_title
+  label: Query Track/Title Index
+  kind: query
+  command: "#QTK\r"
+  params: []
+  notes: Response example OK 2/10.
+
+- id: query_chapter
+  label: Query Chapter Index
+  kind: query
+  command: "#QCH\r"
+  params: []
+  notes: Response example OK 3/3.
+
+- id: query_track_elapsed
+  label: Query Track/Title Elapsed Time
+  kind: query
+  command: "#QTE\r"
+  params: []
+  notes: Response example OK 0:1:34.
+
+- id: query_track_remaining
+  label: Query Track/Title Remaining Time
+  kind: query
+  command: "#QTR\r"
+  params: []
+  notes: Response example OK 1:20:23.
+
+- id: query_chapter_elapsed
+  label: Query Chapter Elapsed Time
+  kind: query
+  command: "#QCE\r"
+  params: []
+  notes: Response example OK 0:1:34.
+
+- id: query_chapter_remaining
+  label: Query Chapter Remaining Time
+  kind: query
+  command: "#QCR\r"
+  params: []
+  notes: Response example OK 0:12:22.
+
+- id: query_total_elapsed
+  label: Query Total Elapsed Time
+  kind: query
+  command: "#QEL\r"
+  params: []
+  notes: Response example OK 0:5:12.
+
+- id: query_total_remaining
+  label: Query Total Remaining Time
+  kind: query
+  command: "#QRE\r"
+  params: []
+  notes: Response example OK 1:34:44.
+
+- id: query_disc_type
+  label: Query Disc Type
+  kind: query
+  command: "#QDT\r"
+  params: []
+  notes: Responses BD-MV, DVD-VIDEO, DVD-AUDIO, SACD, CDDA, HDCD, DATA-DISC.
+
+- id: query_audio_type
+  label: Query Audio Type
+  kind: query
+  command: "#QAT\r"
+  params: []
+  notes: Response example OK DD 1/5 English, OK DTS-HD 1/4 English, OK LPCM, etc.
+
+- id: query_subtitle_type
+  label: Query Subtitle Type
+  kind: query
+  command: "#QST\r"
+  params: []
+  notes: Response example OK OFF or OK 1/1 English.
+
+- id: set_hdmi_resolution
+  label: Set HDMI Output Resolution
   kind: action
+  command: "#SHD {resolution}\r"
   params:
     - name: resolution
       type: enum
       values: [SDI, SDP, 720P, 1080I, 1080P, SRC, AUTO]
-      description: HDMI output resolution
-- id: spn
-  label: Set TV System (NTSC/PAL/AUTO)
+      description: "SDI=SD interlaced (480i/576i); SDP=SD progressive (480p/576p); SRC=Source Direct."
+
+- id: set_tv_system
+  label: Set Output TV System
   kind: action
+  command: "#SPN {system}\r"
   params:
     - name: system
       type: enum
       values: [NTSC, PAL, AUTO]
-- id: szm
+
+- id: set_zoom_ratio
   label: Set Zoom Ratio
   kind: action
+  command: "#SZM {ratio}\r"
   params:
     - name: ratio
       type: enum
-      values: ["1", AR, FS, US, "1.2", "1.3", "1.5", "2", "1/2", "3", "4", "1/3", "1/4"]
-      description: Zoom ratio; AR=aspect ratio correction, FS=full screen, US=underscan
-- id: svl
+      values: ["1", "AR", "FS", "US", "1.2", "1.3", "1.5", "2", "1/2", "3", "4", "1/3", "1/4"]
+      description: "HDMI Output: 1, AR, FS, US, 1.2, 1.3, 1.5, 2, 1/2. Component Output: 1, 2, 3, 4, 1/2, 1/3, 1/4. AR=Aspect ratio correction; FS=Full Screen; US=Underscan."
+
+- id: set_volume
   label: Set Volume
   kind: action
+  command: "#SVL {value}\r"
   params:
-    - name: volume
-      type: integer
-      range: [0, 100]
-      description: Volume level 0-100, or MUTE
-- id: srp
+    - name: value
+      type: string
+      description: "Integer 0-100, or the string MUTE."
+
+- id: set_repeat_mode
   label: Set Repeat Mode
   kind: action
+  command: "#SRP {mode}\r"
   params:
     - name: mode
       type: enum
       values: [CH, TT, ALL, OFF, SHF, RND]
-      description: Repeat chapter, title, all, off, shuffle, random
-- id: srh
-  label: Search
+      description: "CH=Repeat chapter; TT=Repeat title; ALL=Repeat all; OFF=Repeat off; SHF=Shuffle; RND=Random."
+
+- id: search_to
+  label: Search To Location
   kind: action
+  command: "#SRH {target}\r"
   params:
     - name: target
       type: string
-      description: "T3 (title 3), C10 (chapter 10), C 0:00:34 (chapter time), T 0:12:13 (title time), or 0:12:13 (current context)"
-- id: dpl
+      description: "Formats per source: T<n> (title), C<n> (chapter), C h:mm:ss (offset within current chapter/track), T h:mm:ss (offset within current title), or h:mm:ss (offset within current title/disc)."
+
+- id: direct_play
   label: Direct Play
   kind: action
+  command: "#DPL\r"
   params: []
-- id: rst
-  label: Reset RS-232 / Clear Command Buffers
+
+- id: reset_rs232
+  label: Reset RS-232 Command Buffer
   kind: action
+  command: "#RST\r"
   params: []
-- id: qpw
-  label: Query Power Status
-  kind: query
-  params: []
-- id: qvr
-  label: Query Firmware Version
-  kind: query
-  params: []
-- id: qvl
-  label: Query Volume
-  kind: query
-  params: []
-- id: qhd
-  label: Query HDMI Resolution
-  kind: query
-  params: []
-- id: qpl
-  label: Query Playback Status
-  kind: query
-  params: []
-- id: qtk
-  label: Query Track / Title
-  kind: query
-  params: []
-- id: qch
-  label: Query Chapter
-  kind: query
-  params: []
-- id: qte
-  label: Query Track / Title Elapsed Time
-  kind: query
-  params: []
-- id: qtr
-  label: Query Track / Title Remaining Time
-  kind: query
-  params: []
-- id: qce
-  label: Query Chapter Elapsed Time
-  kind: query
-  params: []
-- id: qcr
-  label: Query Chapter Remaining Time
-  kind: query
-  params: []
-- id: qel
-  label: Query Total Elapsed Time
-  kind: query
-  params: []
-- id: qre
-  label: Query Total Remaining Time
-  kind: query
-  params: []
-- id: qdt
-  label: Query Disc Type
-  kind: query
-  params: []
-- id: qat
-  label: Query Audio Type
-  kind: query
-  params: []
-- id: qst
-  label: Query Subtitle Type
-  kind: query
-  params: []
+  notes: Clears all command buffers; does not wait for pending commands.
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_response
+- id: power_state
   type: enum
   values: [ON, OFF]
-  description: Response to POW, PON, POF commands
-- id: tray_response
-  type: enum
-  values: [OPEN, CLOSE]
-  description: Response to EJT command
-- id: system_response
-  type: enum
-  values: [NTSC, PAL, AUTO]
-  description: Response to SYS command
-- id: dimmer_response
-  type: enum
-  values: [ON, DIM, OFF]
-  description: Response to DIM command
-- id: pure_audio_response
-  type: enum
-  values: [ON, OFF]
-  description: Response to PUR command
-- id: volume_response
-  type: integer
-  description: "Volume number 0-100; also MUTE"
-- id: mute_response
-  type: enum
-  values: [MUTE, UNMUTE]
-  description: Response to MUT command
-- id: playback_response
+  source_query: query_power_status
+
+- id: volume_level
+  type: string
+  description: "Integer 0-100 or the literal MUTE."
+  source_query: query_volume
+
+- id: hdmi_resolution
+  type: string
+  description: "Resolution token returned by player (e.g. 480P, 720P50, 1080P60)."
+  source_query: query_hdmi_resolution
+
+- id: playback_status
   type: enum
   values: [NO DISC, LOADING, OPEN, CLOSE, PLAY, PAUSE, STOP, STEP, FREV, FFWD, SFWD, SREV, SETUP, HOME MENU, MEDIA CENTER]
-  description: Response to QPL query; also returned as action feedback
-- id: fast_play_response
-  type: enum
-  values: ["1 X", "2 X", "3 X", "4 X", "5 X"]
-  description: Response to REV and FWD commands
-- id: audio_info
+  source_query: query_playback_status
+
+- id: track_title_index
   type: string
-  description: "Audio track info, e.g. 'DD 1/1', 'DTS 2/5 English', 'LPCM', 'DTS-HD 1/4 English'"
-- id: subtitle_info
+  description: "Format current/total, e.g. 2/10."
+  source_query: query_track_title
+
+- id: chapter_index
   type: string
-  description: "Subtitle info, e.g. 'OFF', '1/1 English'"
-- id: angle_info
+  description: "Format current/total, e.g. 3/3."
+  source_query: query_chapter
+
+- id: track_elapsed_time
   type: string
-  description: "Camera angle info returned by ANG command"
-- id: zoom_info
+  description: "h:m:s elapsed in current track/title."
+  source_query: query_track_elapsed
+
+- id: track_remaining_time
   type: string
-  description: "Zoom ratio returned by ZOM command, e.g. '1.2'"
-- id: repeat_response
+  description: "h:m:s remaining in current track/title."
+  source_query: query_track_remaining
+
+- id: chapter_elapsed_time
+  type: string
+  source_query: query_chapter_elapsed
+
+- id: chapter_remaining_time
+  type: string
+  source_query: query_chapter_remaining
+
+- id: total_elapsed_time
+  type: string
+  source_query: query_total_elapsed
+
+- id: total_remaining_time
+  type: string
+  source_query: query_total_remaining
+
+- id: disc_type
   type: enum
-  values: [A-, A-B, OFF, "Repeat Chapter", "Repeat Title"]
-  description: "Response to ATB and RPT commands"
-- id: resolution_response
-  type: enum
-  values: [SDI, SDP, 720P, 1080I, 1080P, SRC, AUTO]
-  description: Response to SHD command
-- id: repeat_mode_response
-  type: enum
-  values: [CH, TT, ALL, OFF, SHF, RND]
-  description: Response to SRP command
-- id: search_response
-  type: enum
-  values: [OK, ER INVALID]
-  description: Response to SRH command
-- id: result_code
+  values: [BD-MV, DVD-VIDEO, DVD-AUDIO, SACD, CDDA, HDCD, DATA-DISC]
+  source_query: query_disc_type
+
+- id: audio_type
+  type: string
+  description: "Free-form audio descriptor (codec, channel layout, language)."
+  source_query: query_audio_type
+
+- id: subtitle_type
+  type: string
+  description: "OFF or 1/1 English etc."
+  source_query: query_subtitle_type
+
+- id: firmware_version
+  type: string
+  description: "Example: BDP83-14-0306."
+  source_query: query_firmware_version
+
+- id: command_result
   type: enum
   values: [OK, ER]
-  description: Generic result code prefix for all responses
+  description: "Result code returned in every response frame following the '@' start byte."
 ```
 
 ## Variables
 ```yaml
-# No standalone settable parameters - all configurable via action params
-# UNRESOLVED: volume variable readable via QVL but not separately settable beyond SVL action
+# UNRESOLVED: source documents commands (e.g. SVL, SZM, SRP) but does not enumerate
+# persistent settable parameters distinct from the action set above.
 ```
 
 ## Events
 ```yaml
-# No unsolicited notifications described in source
-# UNRESOLVED: player may send unsolicited responses during playback - not documented
+# UNRESOLVED: source describes a synchronous command/response model; no unsolicited events documented.
 ```
 
 ## Macros
 ```yaml
-# No multi-step macros described in source
-# UNRESOLVED: chained key sequences (e.g. GOT + numeric keys + SEL for chapter search) not documented as macros
+# UNRESOLVED: source provides an example command sequence (PON → QPW → EJT → PLA → ...)
+# but does not declare named macros. The GOTO sequence (GOT + numeric keys + SEL) is a
+# multi-step pattern documented in prose only; not formalized here.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - command_sequence: "Host must wait for response before sending next command (10s timeout before retransmit)"
-  - cable_warning: "Use straight-through DB9 RS-232 cable only - do NOT use null-modem cable"
-# UNRESOLVED: no explicit safety warnings or interlock procedures in source
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlocks, or power-on sequencing requirements.
 ```
 
 ## Notes
-RS-232C DCE device, female DB9. Pin 2=TXD, Pin 3=RXD, Pin 5=GND. Max command/response length: 25 bytes. Command prefix: `#` (0x23). Response prefix: `@` (0x40). End-of-command: CR (0x0d). If no response within 10s, host may retransmit. Player discards previous command if new command received before execution completes. For multi-key sequences (e.g. chapter goto), player responds to each key individually until final key completes the action.
-<!-- UNRESOLVED: no information about TCP/IP, HTTP, or network-based control; serial-only -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: unsolicited event emissions not documented -->
+- Frame format: `#<3-char code>[<sp><params>]<CR>` (start byte `#` = 0x23, terminator CR = 0x0d). Max 25 bytes per frame including start and end bytes.
+- Response format: `@<OK|ER>[<sp><message>]<CR>` (start byte `@` = 0x40). The character `#` must never appear in command parameters; the character `@` must never appear in response parameters.
+- Host should wait for the player's response before sending the next command. If a new command arrives before the previous completes, the previous may be discarded.
+- Host timeout: 10 seconds. If no response by then, retransmission is allowed.
+- `RST` clears all command buffers without waiting for pending operations.
+- Wiring: female DB9 DCE, straight-through cable (NOT null-modem). Pins: 2=TXD, 3=RXD, 5=GND.
+- Source documents only the BDP-83 explicitly; "BDP Series" applicability to other Oppo models is not asserted by this source.
+<!-- UNRESOLVED: firmware compatibility range; other BDP-series model coverage (BDP-93/95/103/105 etc.); error code catalogue beyond generic OK/ER. -->
 
 ## Provenance
 
@@ -535,24 +740,28 @@ source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-05-14T18:17:19.502Z
+last_checked_at: 2026-06-02T04:56:31.595Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.502Z
-matched_actions: 60
+checked_at: 2026-06-02T04:56:31.595Z
+matched_actions: 80
 action_count: 80
-confidence: high
-summary: "All 60 spec actions matched literal command tokens in source; transport parameters verified; complete bidirectional coverage of BDP-83 command set."
+confidence: medium
+summary: "All 80 spec actions matched exactly with source command definitions; all transport parameters verified verbatim. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source documents commands (e.g. SVL, SZM, SRP) but does not enumerate"
+- "source describes a synchronous command/response model; no unsolicited events documented."
+- "source provides an example command sequence (PON → QPW → EJT → PLA → ...)"
+- "source contains no safety warnings, interlocks, or power-on sequencing requirements."
+- "firmware compatibility range; other BDP-series model coverage (BDP-93/95/103/105 etc.); error code catalogue beyond generic OK/ER."
 ```
 
 ---

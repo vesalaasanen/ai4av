@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:21.461Z
 last_checked_at: 2026-04-26T21:32:02.053Z
 generated_at: 2026-04-26T21:32:02.053Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exhaustively documenting all parameters and data field values since the source references an appendix for many hex code tables"
+  - "commands 053-3 through 053-11 documented but lens memory control commands are fully described above"
+  - "commands 319-10 AUDIO SELECT SET partially documented above"
+  - "exhaustively documenting all data field values from INFORMATION REQUEST and other multi-byte response fields"
+  - "many settable parameters exist via adjustment commands but discrete Variables section not applicable - parameters are passed via action params"
+  - "no unsolicited event notifications described in source; device only responds to commands"
+  - "no multi-step macro sequences described explicitly in source"
+  - "standby mode requirements vary by model — some models require specific standby modes to receive commands via serial or LAN. See Appendix section \"Standby Mode settings for receiving commands\" for supported modes per connection type."
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:32:02.053Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "All 47 spec actions matched source; transport verified"
+  confidence: medium
+  summary: "All 47 spec actions matched source; transport verified (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -511,7 +519,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:21.461Z
 last_checked_at: 2026-04-26T21:32:02.053Z
 ```
 
@@ -522,14 +530,21 @@ verdict: verified
 checked_at: 2026-04-26T21:32:02.053Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "All 47 spec actions matched source; transport verified"
+confidence: medium
+summary: "All 47 spec actions matched source; transport verified (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exhaustively documenting all parameters and data field values since the source references an appendix for many hex code tables"
+- "commands 053-3 through 053-11 documented but lens memory control commands are fully described above"
+- "commands 319-10 AUDIO SELECT SET partially documented above"
+- "exhaustively documenting all data field values from INFORMATION REQUEST and other multi-byte response fields"
+- "many settable parameters exist via adjustment commands but discrete Variables section not applicable - parameters are passed via action params"
+- "no unsolicited event notifications described in source; device only responds to commands"
+- "no multi-step macro sequences described explicitly in source"
+- "standby mode requirements vary by model — some models require specific standby modes to receive commands via serial or LAN. See Appendix section \"Standby Mode settings for receiving commands\" for supported modes per connection type."
 ```
 
 ---

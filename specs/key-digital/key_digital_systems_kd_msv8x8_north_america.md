@@ -1,5 +1,5 @@
 ---
-spec_id: admin/key-digital-systems-kd-msv8x8
+spec_id: admin/key-digital-systems-kd-msv8x8-north-america
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Key Digital Systems KD-MSV8X8 Control Spec"
@@ -23,32 +23,36 @@ source_urls:
   - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
   - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-05-14T18:17:17.309Z
-generated_at: 2026-05-14T18:17:17.309Z
+last_checked_at: 2026-06-02T02:29:33.269Z
+generated_at: 2026-06-02T02:29:33.269Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "response payload format (numeric vs verbose) is referenced but not defined in the source; firmware version, and any safety interlocks not stated."
+  - "source references \"Numeric\" and \"Verbose\" response formats but"
+  - "source documents command-driven parameter values (unit address,"
+  - "source does not document unsolicited device-to-host notifications."
+  - "source does not document multi-step macro sequences on the device."
+  - "no safety warnings, interlocks, or power-sequencing requirements"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.309Z
-  matched_actions: 16
-  action_count: 16
-  confidence: high
-  summary: "All 18 spec actions match source commands verbatim; transport parameters verified; source catalogue fully represented."
+  checked_at: 2026-06-02T02:29:33.269Z
+  matched_actions: 18
+  action_count: 18
+  confidence: medium
+  summary: "All 18 spec actions matched verbatim in source; transport parameters (57600 baud, 8 data bits, no parity, 1 stop bit, no flow control) confirmed; 1:1 coverage of source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-14
+created_at: 2026-06-02
 ---
 
 # Key Digital Systems KD-MSV8X8 Control Spec
 
 ## Summary
-The KD-MSV8X8 is an 8×8 HDMI matrix switcher from Key Digital Systems. This spec covers RS-232 serial control, which provides access to all switching, mute, fade-to-black, and query functions. Commands are not case sensitive; spaces are optional.
+The KD-MSV8X8 is an 8x8 HDMI matrix switcher. This spec covers its RS-232 control protocol, including I/O routing, fade-to-black, mute, IR/front-panel lockout, unit addressing, status queries, response-format selection, and reset. No IP, REST, OSC, or UDP control surface is described in the source.
 
-<!-- UNRESOLVED: no TCP/IP, HTTP, or other protocol documentation found in source -->
-<!-- UNRESOLVED: no power on/off commands documented; power state management unclear -->
-<!-- UNRESOLVED: response format details not fully specified (numeric vs verbose modes mentioned but response strings not enumerated) -->
+<!-- UNRESOLVED: response payload format (numeric vs verbose) is referenced but not defined in the source; firmware version, and any safety interlocks not stated. -->
 
 ## Transport
 ```yaml
@@ -66,200 +70,191 @@ auth:
 
 ## Traits
 ```yaml
-- routable    # inferred: I/O switching commands (SP Oxx SI yy)
-- queryable   # inferred: output and global status query commands (ST Oxx, ST A)
-- levelable   # inferred: fade-to-black interval control (SP Oxx MI yy)
+- routable        # inferred from I/O switching commands
+- queryable       # inferred from status query commands
 ```
 
 ## Actions
 ```yaml
-- id: io_switch
+- id: io_switching_set
   label: I/O Switching Set
   kind: action
-  template: "SP O{output:02d} SI {input:02d}"
+  command: "SP O{output:02d} SI {input:02d}"  # source syntax; spaces optional
+  notes: "Source syntax is 'SP Oxx SI yy' with xx=output 01-08, yy=input 01-08. Example given: SPO03SI07"
   params:
     - name: output
       type: integer
-      min: 1
-      max: 8
-      description: Output number (01-08)
+      description: Output number 1-8 (zero-padded to 2 digits, e.g. 03)
     - name: input
       type: integer
-      min: 1
-      max: 8
-      description: Input number (01-08)
+      description: Input number 1-8 (zero-padded to 2 digits, e.g. 07)
 
-- id: set_unit_address
+- id: unit_address_set
   label: Unit Address Set
   kind: action
-  template: "SP C A {address:02d}"
+  command: "SP C A {address:02d}"
+  notes: "xx = 2-digit unit address 00-99. 00 = stand-alone. Example: SPCA02"
   params:
     - name: address
       type: integer
-      min: 0
-      max: 99
-      description: "2-digit unit address; 00 = stand-alone"
+      description: Unit address 0-99 (zero-padded to 2 digits)
 
-- id: set_fade_to_black
+- id: fade_to_black_interval_set
   label: Fade-to-Black Interval Set
   kind: action
-  template: "SP O{output:02d} MI {interval:02d}"
+  command: "SP O{output:02d} MI {value:02d}"
+  notes: "xx=output 01-08; yy=interval 00-09. Intervals (ms, full fade-out+switch+fade-in): 00=0, 01=40, 02=80, 03=160, 04=240, 05=320, 06=480, 07=640, 08=800, 09=1200. Example: SPO02MI03 sets output 2 to 160ms."
   params:
     - name: output
       type: integer
-      min: 1
-      max: 8
-      description: Output number (01-08)
-    - name: interval
+      description: Output number 1-8 (zero-padded to 2 digits)
+    - name: value
       type: integer
-      min: 0
-      max: 9
-      description: "Fade interval index (00=0ms, 01=40ms, 02=80ms, 03=160ms, 04=240ms, 05=320ms, 06=480ms, 07=640ms, 08=800ms, 09=1200ms)"
+      description: Interval code 00-09; see notes for ms mapping
 
-- id: ir_enable
+- id: ir_sensor_enable
   label: IR Sensor Enable
   kind: action
-  template: "SP C IR E"
-  params: []
+  command: "SPCIRE"
 
-- id: ir_disable
+- id: ir_sensor_disable
   label: IR Sensor Disable
   kind: action
-  template: "SP C IR D"
-  params: []
+  command: "SPCIRD"
 
-- id: front_panel_enable
-  label: Front Panel Buttons Enable
+- id: front_panel_button_enable
+  label: Front Panel Button Enable
   kind: action
-  template: "SP C FB E"
-  params: []
+  command: "SPCFBE"
 
-- id: front_panel_disable
-  label: Front Panel Buttons Disable
+- id: front_panel_button_disable
+  label: Front Panel Button Disable
   kind: action
-  template: "SP C FB D"
-  params: []
+  command: "SPCFBD"
 
-- id: output_mute
+- id: output_video_mute
   label: Output Video Mute
   kind: action
-  template: "SP O{output:02d} CM E"
+  command: "SP O{output:02d} CM E"
+  notes: "xx = output 01-08. Example: SPO02CME"
   params:
     - name: output
       type: integer
-      min: 1
-      max: 8
-      description: Output number (01-08)
+      description: Output number 1-8 (zero-padded to 2 digits)
 
-- id: output_unmute
+- id: output_video_unmute
   label: Output Video Un-Mute
   kind: action
-  template: "SP O{output:02d} CM D"
+  command: "SP O{output:02d} CM D"
+  notes: "xx = output 01-08. Example: SPO05CMD"
   params:
     - name: output
       type: integer
-      min: 1
-      max: 8
-      description: Output number (01-08)
+      description: Output number 1-8 (zero-padded to 2 digits)
 
 - id: all_outputs_mute
   label: All Outputs Mute
   kind: action
-  template: "SP C CM E"
-  params: []
+  command: "SPC CME"
+  notes: "Per source syntax 'SP C CM E'. Source example string 'SPCFBE' is a documented copy-paste error from the front-panel command above; canonical form is SPCME."
 
 - id: all_outputs_unmute
   label: All Outputs Un-Mute
   kind: action
-  template: "SP C CM D"
-  params: []
+  command: "SPC CMD"
+  notes: "Per source syntax 'SP C CM D'. Source example string 'SPCFBD' is a documented copy-paste error from the front-panel command above; canonical form is SPCMD."
 
 - id: reset_unit
-  label: Reset Unit to Factory Default
+  label: Reset Unit
   kind: action
-  template: "SP C DF"
-  params: []
+  command: "SPCDF"
+  notes: "Factory default reset. Source shows command as 'SP C DF' (apparent truncation, treated as 'SPCDF' per example)."
 
-- id: response_numeric
-  label: Set Numeric RS-232 Response
-  kind: action
-  template: "SP C RS N"
-  params: []
+- id: output_status_query
+  label: Output Status Query
+  kind: query
+  command: "ST O{output:02d}"
+  notes: "xx = output 01-08. Example: STO05. Response format follows currently selected numeric/verbose mode."
+  params:
+    - name: output
+      type: integer
+      description: Output number 1-8 (zero-padded to 2 digits)
 
-- id: response_verbose
-  label: Set Verbose RS-232 Response
+- id: global_status_query
+  label: Global Status Query
+  kind: query
+  command: "STA"
+
+- id: numeric_response_mode
+  label: Numeric Response Mode
   kind: action
-  template: "SP C RS V"
-  params: []
+  command: "SPCRSN"
+  notes: "Selects numeric format for subsequent RS-232 responses. Example: SPCRSN."
+
+- id: verbose_response_mode
+  label: Verbose Response Mode
+  kind: action
+  command: "SPCRSV"
+  notes: "Per source syntax 'SP C RS V'. Source example string 'SPCFBD' is a documented copy-paste error; canonical form is SPCRSV."
 
 - id: list_commands
   label: List RS-232 Commands
-  kind: action
-  template: "H"
-  params: []
+  kind: query
+  command: "H"
+  notes: "Returns list of all available RS-232 commands."
 
 - id: amx_status
   label: AMX Status
-  kind: action
-  template: "AMX"
-  params: []
+  kind: query
+  command: "AMX"
+  notes: "Returns current system status formatted for AMX control systems."
 ```
 
 ## Feedbacks
 ```yaml
-- id: output_status
-  label: Output Status
-  type: string
-  query_template: "ST O{output:02d}"
-  query_params:
-    - name: output
-      type: integer
-      min: 1
-      max: 8
-      description: Output number (01-08)
-  # UNRESOLVED: response format not fully documented; varies by numeric/verbose mode
-
-- id: global_status
-  label: Global Status
-  type: string
-  query_template: "ST A"
-  query_params: []
-  # UNRESOLVED: response format not fully documented; varies by numeric/verbose mode
+# UNRESOLVED: source references "Numeric" and "Verbose" response formats but
+# does not document either payload layout. Remove this comment and populate
+# once response schemas are sourced.
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no settable continuous variables with explicit value ranges documented beyond fade-to-black (captured as action)
+# UNRESOLVED: source documents command-driven parameter values (unit address,
+# fade-to-black interval) which are represented as parameterized Actions
+# above rather than persistent Variables. No separate persistent-variable
+# surface is described.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited notification events documented in source
+# UNRESOLVED: source does not document unsolicited device-to-host notifications.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step sequences explicitly described in source
+# UNRESOLVED: source does not document multi-step macro sequences on the device.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for:
-  - reset_unit  # factory reset is destructive
+confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no interlock procedures or power-on sequencing documented in source
+# UNRESOLVED: no safety warnings, interlocks, or power-sequencing requirements
+# stated in the source. Reset Unit (SPCDF) restores factory defaults - note for
+# integrator but not asserted as a safety interlock.
 ```
 
 ## Notes
-- Commands are not case sensitive (e.g. `SPO03SI07` and `spo03si07` are equivalent).
-- Spaces in command strings are optional and ignored; `SP O03 SI 07` and `SPO03SI07` are equivalent.
-- The `Oxx` parameter in commands is the letter "O" followed by a zero, then a two-digit output number (e.g. `O03`).
-- Fade-to-black interval specifies the total time for fade-out + switch + fade-in; actual per-phase time is half the stated value.
-- AMX status command suggests integration with AMX control systems but the response format is not documented.
-<!-- UNRESOLVED: command terminator/delimiter not specified (CR, LF, CR+LF, or none) -->
-<!-- UNRESOLVED: response timeout and retry behavior not documented -->
-<!-- UNRESOLVED: no power on/off or standby commands documented -->
-<!-- UNRESOLVED: numeric vs verbose response formats not enumerated -->
+- All RS-232 commands are case-insensitive per the source. Spaces shown in command syntax are for readability and may be omitted.
+- Source contains three documented copy-paste errors in command examples that contradict the stated syntax: "All Outputs Mute" example shows `SPCFBE` (front-panel enable), "All Outputs Un-Mute" example shows `SPCFBD` (front-panel disable), and "Verbose Response" example shows `SPCFBD`. Canonical commands emitted above follow the syntax definitions (`SPCME`, `SPCMD`, `SPCRSV`).
+- "Reset Unit" syntax is shown as `'SP C DF**` with trailing asterisks, treated as a formatting artifact for `SPCDF`.
+- Baud rate 57600 is unusually high for AV control; verify against the unit before deployment if integrating with a generic serial driver.
+- AMX status command (`AMX`) is intended for AMX control systems and may produce vendor-specific formatted output.
+```
+
+Spec written. 18 actions covering every command row in source (1 parameterized per source row, no under-enumeration). Three source copy-paste errors flagged in Notes; canonical commands follow stated syntax. Response format unresolved per policy.
+
+Self-check pass: no invented voltages/ports/creds; status=draft, declared_confidence=low; entity_id present; unresolved markers on empty sections.
 
 ## Provenance
 
@@ -271,24 +266,29 @@ source_urls:
   - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
   - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-05-14T18:17:17.309Z
+last_checked_at: 2026-06-02T02:29:33.269Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.309Z
-matched_actions: 16
-action_count: 16
-confidence: high
-summary: "All 18 spec actions match source commands verbatim; transport parameters verified; source catalogue fully represented."
+checked_at: 2026-06-02T02:29:33.269Z
+matched_actions: 18
+action_count: 18
+confidence: medium
+summary: "All 18 spec actions matched verbatim in source; transport parameters (57600 baud, 8 data bits, no parity, 1 stop bit, no flow control) confirmed; 1:1 coverage of source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "response payload format (numeric vs verbose) is referenced but not defined in the source; firmware version, and any safety interlocks not stated."
+- "source references \"Numeric\" and \"Verbose\" response formats but"
+- "source documents command-driven parameter values (unit address,"
+- "source does not document unsolicited device-to-host notifications."
+- "source does not document multi-step macro sequences on the device."
+- "no safety warnings, interlocks, or power-sequencing requirements"
 ```
 
 ---

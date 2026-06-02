@@ -17,25 +17,34 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - "https://www.manualslib.com/manual/558681/Atlona-Av128128.html?page=27"
+retrieved_at: 2026-05-31T08:08:40.076Z
 last_checked_at: 2026-05-31T20:54:05.480Z
 generated_at: 2026-05-31T20:54:05.480Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "matrix dimensions (input/output count) not explicitly stated in source"
+  - "flow control not stated in source"
+  - "no explicit power commands in source; keyboard lock implies control"
+  - "source does not document response strings for commands"
+  - "source does not document discrete settable parameters separate from action commands"
+  - "source does not document unsolicited notifications from the device"
+  - "source does not document multi-step command sequences"
+  - "no safety warnings or interlock procedures in source"
+  - "matrix input/output port count not stated in source"
+  - "group output composition (e.g. outputs 4,5,6 = group 2) not configurable via command, only queryable"
+  - "flow control (RTS/CTS, XON/XOFF) not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:54:05.480Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions match source commands one-to-one; transport parameters verified in source protocol specification."
+  confidence: medium
+  summary: "All 24 spec actions match source commands one-to-one; transport parameters verified in source protocol specification. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -326,13 +335,11 @@ Command terminators: each command must end with `.`, `;`, `!`, `"`, `$`, or `&`.
 ```yaml
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - "https://www.manualslib.com/manual/558681/Atlona-Av128128.html?page=27"
+retrieved_at: 2026-05-31T08:08:40.076Z
 last_checked_at: 2026-05-31T20:54:05.480Z
 ```
 
@@ -343,14 +350,24 @@ verdict: verified
 checked_at: 2026-05-31T20:54:05.480Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions match source commands one-to-one; transport parameters verified in source protocol specification."
+confidence: medium
+summary: "All 24 spec actions match source commands one-to-one; transport parameters verified in source protocol specification. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "matrix dimensions (input/output count) not explicitly stated in source"
+- "flow control not stated in source"
+- "no explicit power commands in source; keyboard lock implies control"
+- "source does not document response strings for commands"
+- "source does not document discrete settable parameters separate from action commands"
+- "source does not document unsolicited notifications from the device"
+- "source does not document multi-step command sequences"
+- "no safety warnings or interlock procedures in source"
+- "matrix input/output port count not stated in source"
+- "group output composition (e.g. outputs 4,5,6 = group 2) not configurable via command, only queryable"
+- "flow control (RTS/CTS, XON/XOFF) not stated in source"
 ```
 
 ---

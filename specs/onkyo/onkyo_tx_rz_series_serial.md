@@ -4,13 +4,13 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Onkyo TX-RZ Series Control Spec"
 manufacturer: Onkyo
-model_family: "TX-RZ Series"
+model_family: "Onkyo TX-RZ Series"
 aliases: []
 compatible_with:
   manufacturers:
     - Onkyo
   models:
-    - "TX-RZ Series"
+    - "Onkyo TX-RZ Series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -19,36 +19,42 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-21T15:18:18.496Z
-last_checked_at: 2026-05-16T23:46:32.077Z
-generated_at: 2026-05-16T23:46:32.077Z
+retrieved_at: 2026-06-02T03:58:12.590Z
+last_checked_at: 2026-06-02T04:20:05.210Z
+generated_at: 2026-06-02T04:20:05.210Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "the source document is the Integra ISCP v1.15 spec (Aug 2009) and predates the TX-RZ series; coverage of TX-RZ-specific features (e.g. newer streaming services, Dolby Atmos, DTS:X) is not stated in source."
+  - "source does not document a \"Variables\" section distinct from"
+  - "source does not document discrete multi-step macro sequences."
+  - "source does not document safety warnings, interlock procedures,"
+  - "TX-RZ-specific features (Dolby Atmos, DTS:X, AirPlay 2, Chromecast, voice assistants, newer network streaming) and any post-v1.15 ISCP extensions are not stated in source."
+  - "RI dock (CDS) command set is described as having \"DOCK\" sub-keys; full enumeration in source is truncated at \"DOWN CURSOR DOWN Key\" and may continue beyond."
+  - "eISCP packet size limits and maximum ISCP message length are not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T23:46:32.077Z
-  matched_actions: 139
-  action_count: 139
-  confidence: high
-  summary: "All 139 spec action-units matched cleanly; transport parameters verified in source; ISCP 1.15 protocol fully represented."
+  checked_at: 2026-06-02T04:20:05.210Z
+  matched_actions: 175
+  action_count: 175
+  confidence: medium
+  summary: "All 175 spec actions matched literally to ISCP v1.15 source; transport parameters verified; bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-17
+created_at: 2026-06-02
 ---
 
 # Onkyo TX-RZ Series Control Spec
 
 ## Summary
+Control spec for Onkyo TX-RZ Series AV receivers, using Onkyo's Integra Serial Control Protocol (ISCP v1.15) over RS-232C (3-wire, 9600 baud) and eISCP over Ethernet (TCP, default port 60128). The protocol is point-to-point, ASCII-text framed, with three-character command mnemonics prefixed by `!1` (receiver unit type) and terminated by CR / LF / EOF depending on transport.
 
-The Onkyo TX-RZ Series consists of AV receivers controlled via the ISCP (Integra Serial Control Protocol). This spec covers both RS-232C serial control and Ethernet-based eISCP (TCP) control. Commands are ASCII-framed with a fixed 3-character command code followed by variable-length parameters; the protocol supports bidirectional communication with unsolicited status notifications from the device.
-
-<!-- UNRESOLVED: specific TX-RZ model numbers are not enumerated in the source; the document applies to Onkyo AV receivers generally with ISCP version 1.15. Firmware version compatibility not stated. -->
+<!-- UNRESOLVED: the source document is the Integra ISCP v1.15 spec (Aug 2009) and predates the TX-RZ series; coverage of TX-RZ-specific features (e.g. newer streaming services, Dolby Atmos, DTS:X) is not stated in source. -->
 
 ## Transport
-
 ```yaml
+# RS-232C and TCP/eISCP are both documented; the user-declared protocol is RS-232C.
 protocols:
   - serial
   - tcp
@@ -59,1427 +65,1554 @@ serial:
   stop_bits: 1
   flow_control: none
 addressing:
-  port: 60128
+  port: 60128  # eISCP default; configurable 49152-65535 per setup menu
+  connector: "DB9 female (pin 2 TX, pin 3 RX, pin 5 GND); use straight-thru cable"
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
-### Protocol framing notes
-
-**RS-232C (ISCP over RS-232C):**
-- 9-pin female D-type connector; pin 2 = transmit, pin 3 = receive, pin 5 = signal ground
-- Use a straight-through cable to connect to a PC
-- Controller→Device message format: `!1<CMD><PARAM>[CR]` (start char `!`, unit type `1`, 3-char command, variable param, terminated with CR, LF, or CR+LF)
-- Device→Controller message format: `!1<CMD><PARAM>[EOF]` (terminated with ASCII 0x1A)
-- Special characters: `[CR]` = 0x0D, `[LF]` = 0x0A, `[EOF]` = 0x1A
-
-**Ethernet (eISCP over TCP):**
-- Default port: 60128; configurable 49152–65535 via receiver setup menu
-- eISCP packet = 16-byte header (`ISCP` + header size 0x10 + data size big-endian + version 0x01 + 3 reserved bytes) followed by eISCP data
-- eISCP data format: `!1<CMD><PARAM>[EOF]` (optionally followed by CR/LF depending on model)
-- Receiver accepts only one simultaneous TCP connection
-- Messages must be spaced at least 50 ms apart
-- Receiver sends unsolicited status messages when state changes
-
 ## Traits
-
 ```yaml
-- powerable       # inferred from power command examples (PWR, ZPW, PW3, PW4)
-- routable        # inferred from routing command examples (SLI, ZSL, SL3, SL4, SLA, HDO)
-- queryable       # inferred from query command examples (QSTN parameter on most commands)
-- levelable       # inferred from volume/tone commands (MVL, ZVL, VL3, VL4, TFR, etc.)
+- powerable       # PWR / ZPW / PW3 / PW4 power commands
+- routable        # SLI / SLR / ZSL / SL3 / SL4 / HDO input & output selectors
+- queryable       # every command supports QSTN status query
+- levelable       # MVL / ZVL / VL3 / VL4 / tone / subwoofer / center levels
 ```
 
 ## Actions
-
 ```yaml
-# ── MAIN ZONE — Power ──────────────────────────────────────────────────────
-- id: power_standby
-  label: System Standby
-  kind: action
-  params: []
-  notes: "Send: !1PWR00[CR]"
+# Each entry below corresponds to one ISCP command mnemonic documented in the
+# source. The `command` field shows the literal on-the-wire ASCII payload,
+# including the `!1` (receiver unit-type) prefix, the 3-character opcode, and
+# any parameter placeholder. Wrap-around (UP/DOWN/TG) and QSTN-query variants
+# are emitted as separate actions where the source lists them as distinct rows.
 
-- id: power_on
-  label: System Power On
+# --- Main Zone: Amplifier ---
+- id: pwr_set
+  label: System Power
   kind: action
+  command: "!1PWR{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = System Standby, 01 = System On'
+- id: pwr_query
+  label: System Power Status
+  kind: query
+  command: "!1PWRQSTN"
   params: []
-  notes: "Send: !1PWR01[CR]"
-
-# ── MAIN ZONE — Audio Muting ───────────────────────────────────────────────
-- id: mute_off
-  label: Audio Muting Off
+- id: amt_set
+  label: Audio Muting
   kind: action
+  command: "!1AMT{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG"]
+      description: '00 = Off, 01 = On, TG = wrap-around toggle'
+- id: amt_query
+  label: Audio Muting Status
+  kind: query
+  command: "!1AMTQSTN"
   params: []
-  notes: "Send: !1AMT00[CR]"
-
-- id: mute_on
-  label: Audio Muting On
+- id: spa_set
+  label: Speaker A
   kind: action
+  command: "!1SPA{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "UP"]
+      description: '00 = Off, 01 = On, UP = wrap-around. SPA=MAIN A or Front A.'
+- id: spa_query
+  label: Speaker A Status
+  kind: query
+  command: "!1SPAQSTN"
   params: []
-  notes: "Send: !1AMT01[CR]"
-
-- id: mute_toggle
-  label: Audio Muting Toggle
+- id: spb_set
+  label: Speaker B
   kind: action
+  command: "!1SPB{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "UP"]
+      description: '00 = Off, 01 = On, UP = wrap-around. SPB=MAIN B or Front B.'
+- id: spb_query
+  label: Speaker B Status
+  kind: query
+  command: "!1SPBQSTN"
   params: []
-  notes: "Send: !1AMTTG[CR]"
-
-# ── MAIN ZONE — Master Volume ──────────────────────────────────────────────
-- id: volume_set
-  label: Set Master Volume Level
+- id: spl_set
+  label: Speaker Layout
   kind: action
+  command: "!1SPL{value}"
+  params:
+    - name: value
+      type: string
+      enum: ["SB", "FH", "FW", "UP"]
+      description: 'SB = SurrBack, FH = Front High (or SB+FH), FW = Front Wide (or SB+FW), UP = wrap-around'
+- id: spl_query
+  label: Speaker Layout Status
+  kind: query
+  command: "!1SPLQSTN"
+  params: []
+- id: mvl_set
+  label: Master Volume
+  kind: action
+  command: "!1MVL{level}"
   params:
     - name: level
       type: string
-      description: "Hex level 00-64 (0-100) or 00-50 (0-80 on some models)"
-  notes: "Send: !1MVL<level>[CR]"
-
-- id: volume_up
-  label: Volume Up
-  kind: action
+      enum: ["00..64", "00..50", "UP", "DOWN", "UP1", "DOWN1"]
+      description: '00-64 hex = level 0-100, 00-50 hex = level 0-80, UP/DOWN = step, UP1/DOWN1 = 1dB step'
+- id: mvl_query
+  label: Master Volume Status
+  kind: query
+  command: "!1MVLQSTN"
   params: []
-  notes: "Send: !1MVLUP[CR]"
-
-- id: volume_down
-  label: Volume Down
+- id: tfr_set
+  label: Tone (Front)
   kind: action
-  params: []
-  notes: "Send: !1MVLDOWN[CR]"
-
-- id: volume_up_1db
-  label: Volume Up 1dB Step
-  kind: action
-  params: []
-  notes: "Send: !1MVLUP1[CR]"
-
-- id: volume_down_1db
-  label: Volume Down 1dB Step
-  kind: action
-  params: []
-  notes: "Send: !1MVLDOWN1[CR]"
-
-# ── MAIN ZONE — Input Selector ─────────────────────────────────────────────
-- id: input_select
-  label: Select Input
-  kind: action
+  command: "!1TFR{param}"
   params:
-    - name: input_code
+    - name: param
       type: string
-      description: "Input code: 00=VIDEO1/VCR, 01=VIDEO2/CBL/SAT, 02=VIDEO3/GAME, 03=VIDEO4/AUX1, 04=VIDEO5/AUX2, 05=VIDEO6, 06=VIDEO7, 10=DVD, 20=TAPE1, 21=TAPE2, 22=PHONO, 23=CD, 24=FM, 25=AM, 26=TUNER, 27=MUSIC SERVER, 28=INTERNET RADIO, 29=USB(Front), 2A=USB(Rear), 40=Universal PORT, 30=MULTI CH, 31=XM, 32=SIRIUS"
-  notes: "Send: !1SLI<input_code>[CR]"
-
-- id: input_up
-  label: Input Selector Up
-  kind: action
+      description: 'Bxx (Front Bass, xx -A..00..+A in 2-step [-10..+10]), Txx (Front Treble), BUP/BUP,BDOWN/TDOWN,TDOWN'
+- id: tfr_query
+  label: Front Tone Status
+  kind: query
+  command: "!1TFRQSTN"
   params: []
-  notes: "Send: !1SLIUP[CR]"
-
-- id: input_down
-  label: Input Selector Down
+- id: tfw_set
+  label: Tone (Front Wide)
   kind: action
+  command: "!1TFW{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, Txx, BUP, BDOWN, TUP, TDOWN (same shape as TFR)'
+- id: tfw_query
+  label: Front Wide Tone Status
+  kind: query
+  command: "!1TFWQSTN"
   params: []
-  notes: "Send: !1SLIDOWN[CR]"
-
-# ── MAIN ZONE — Audio Selector ─────────────────────────────────────────────
-- id: audio_selector_set
-  label: Set Audio Selector
+- id: tfh_set
+  label: Tone (Front High)
   kind: action
+  command: "!1TFH{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, Txx, BUP, BDOWN, TUP, TDOWN'
+- id: tfh_query
+  label: Front High Tone Status
+  kind: query
+  command: "!1TFHQSTN"
+  params: []
+- id: tct_set
+  label: Tone (Center)
+  kind: action
+  command: "!1TCT{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, Txx, BUP, BDOWN, TUP, TDOWN'
+- id: tct_query
+  label: Center Tone Status
+  kind: query
+  command: "!1TCTQSTN"
+  params: []
+- id: tsr_set
+  label: Tone (Surround)
+  kind: action
+  command: "!1TSR{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, Txx, BUP, BDOWN, TUP, TDOWN'
+- id: tsr_query
+  label: Surround Tone Status
+  kind: query
+  command: "!1TSRQSTN"
+  params: []
+- id: tsb_set
+  label: Tone (Surround Back)
+  kind: action
+  command: "!1TSB{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, Txx, BUP, BDOWN, TUP, TDOWN'
+- id: tsb_query
+  label: Surround Back Tone Status
+  kind: query
+  command: "!1TSBQSTN"
+  params: []
+- id: tsw_set
+  label: Tone (Subwoofer)
+  kind: action
+  command: "!1TSW{param}"
+  params:
+    - name: param
+      type: string
+      description: 'Bxx, BUP, BDOWN (subwoofer has no Treble row)'
+- id: tsw_query
+  label: Subwoofer Tone Status
+  kind: query
+  command: "!1TSWQSTN"
+  params: []
+- id: slp_set
+  label: Sleep Timer
+  kind: action
+  command: "!1SLP{value}"
+  params:
+    - name: value
+      type: string
+      enum: ["01..5A", "OFF", "UP"]
+      description: '01-5A hex = 1-90 min, OFF, UP = wrap-around'
+- id: slp_query
+  label: Sleep Timer Status
+  kind: query
+  command: "!1SLPQSTN"
+  params: []
+- id: slc_set
+  label: Speaker Level Calibration
+  kind: action
+  command: "!1SLC{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["TEST", "CHSEL", "UP", "DOWN"]
+      description: 'TEST key, CHSEL key, LEVEL+ (UP), LEVEL- (DOWN)'
+- id: swl_set
+  label: Subwoofer (temporary) Level
+  kind: action
+  command: "!1SWL{level}"
+  params:
+    - name: level
+      type: string
+      enum: ["-F..00..+C", "UP", "DOWN"]
+      description: '-F to +C hex = -15dB to +12dB; UP/DOWN = level keys'
+- id: swl_query
+  label: Subwoofer Level Status
+  kind: query
+  command: "!1SWLQSTN"
+  params: []
+- id: ctl_set
+  label: Center (temporary) Level
+  kind: action
+  command: "!1CTL{level}"
+  params:
+    - name: level
+      type: string
+      enum: ["-C..00..+C", "UP", "DOWN"]
+      description: '-C to +C hex = -12dB to +12dB; UP/DOWN = level keys'
+- id: ctl_query
+  label: Center Level Status
+  kind: query
+  command: "!1CTLQSTN"
+  params: []
+- id: dif_info_set
+  label: Display Information
+  kind: action
+  command: "!1DIF{mode}"
   params:
     - name: mode
       type: string
-      description: "00=AUTO, 01=MULTI-CHANNEL, 02=ANALOG, 03=iLINK, 04=HDMI, 05=COAX/OPT, 06=BALANCE"
-  notes: "Send: !1SLA<mode>[CR]"
-
-- id: audio_selector_up
-  label: Audio Selector Wrap-Around Up
+      enum: ["00", "01", "02", "03", "04"]
+      description: '00 = Program Format, 01 = Digital Input, 02 = Digital Format, 03 = Bass, 04 = Treble'
+- id: dif_mode_set
+  label: Display Mode
   kind: action
-  params: []
-  notes: "Send: !1SLAUP[CR]"
-
-# ── MAIN ZONE — Speaker A/B ────────────────────────────────────────────────
-- id: speaker_a_off
-  label: Speaker A Off
-  kind: action
-  params: []
-  notes: "Send: !1SPA00[CR]"
-
-- id: speaker_a_on
-  label: Speaker A On
-  kind: action
-  params: []
-  notes: "Send: !1SPA01[CR]"
-
-- id: speaker_b_off
-  label: Speaker B Off
-  kind: action
-  params: []
-  notes: "Send: !1SPB00[CR]"
-
-- id: speaker_b_on
-  label: Speaker B On
-  kind: action
-  params: []
-  notes: "Send: !1SPB01[CR]"
-
-# ── MAIN ZONE — Speaker Layout ─────────────────────────────────────────────
-- id: speaker_layout_set
-  label: Set Speaker Layout
-  kind: action
-  params:
-    - name: layout
-      type: string
-      description: "SB=SurrBack, FH=Front High, FW=Front Wide, UP=Wrap-Around"
-  notes: "Send: !1SPL<layout>[CR]"
-
-# ── MAIN ZONE — Listening Mode ─────────────────────────────────────────────
-- id: listening_mode_set
-  label: Set Listening Mode
-  kind: action
+  command: "!1DIF{mode}"
   params:
     - name: mode
       type: string
-      description: "Hex code; see Notes for full list (00=STEREO, 01=DIRECT, 02=SURROUND, 03=FILM, 04=THX, 05=ACTION, 06=MUSICAL, 07=MONO MOVIE, 08=ORCHESTRA, 09=UNPLUGGED, 0A=STUDIO-MIX, 0B=TV LOGIC, 0C=ALL CH STEREO, 0D=THEATER-DIMENSIONAL, 0E=ENHANCED 7, 0F=MONO, 11=PURE AUDIO, 12=MULTIPLEX, 13=FULL MONO, 14=DOLBY VIRTUAL, 15=DTS Surround Sensation, 16=Audyssey DSX, 40=5.1ch Surround, 41=Dolby EX/DTS ES, 42=THX Cinema, 43=THX Surround EX, 44=THX Music, 45=THX Games, 50=U2/S2 Cinema, 51=U2/S2 Music, 52=U2/S2 Games, 80=PLII Movie, 81=PLII Music, 82=Neo:6 Cinema, 83=Neo:6 Music, 84=PLII THX Cinema, 85=Neo:6 THX Cinema, 86=PLII Game, 87=Neural Surr, 88=Neural THX, 89=PLII THX Games, 8A=Neo:6 THX Games, 8B=PLII THX Music, 8C=Neo:6 THX Music, 8D=Neural THX Cinema, 8E=Neural THX Music, 8F=Neural THX Games, 90=PLIIz Height, 91=Neo:6 Cinema DTS, 92=Neo:6 Music DTS, 93=Neural Digital Music, 94-99=PLIIz+THX variants, A0-A7=Audyssey DSX variants)"
-  notes: "Send: !1LMD<mode>[CR]"
-
-- id: listening_mode_up
-  label: Listening Mode Wrap-Around Up
-  kind: action
+      enum: ["00", "01", "02", "03", "TG", "UP"]
+      description: '00 = Selector+Volume, 01 = Selector+Listening Mode, 02 = Digital Format (temp), 03 = Video Format (temp), TG/UP = wrap-around'
+- id: dif_mode_query
+  label: Display Mode Status
+  kind: query
+  command: "!1DIFQSTN"
   params: []
-  notes: "Send: !1LMDUP[CR]"
-
-- id: listening_mode_down
-  label: Listening Mode Wrap-Around Down
+- id: dim_set
+  label: Dimmer Level
   kind: action
-  params: []
-  notes: "Send: !1LMDDOWN[CR]"
-
-- id: listening_mode_movie
-  label: Listening Mode Movie Wrap
-  kind: action
-  params: []
-  notes: "Send: !1LMDMOVIE[CR]"
-
-- id: listening_mode_music
-  label: Listening Mode Music Wrap
-  kind: action
-  params: []
-  notes: "Send: !1LMDMUSIC[CR]"
-
-- id: listening_mode_game
-  label: Listening Mode Game Wrap
-  kind: action
-  params: []
-  notes: "Send: !1LMDGAME[CR]"
-
-# ── MAIN ZONE — Tone Controls ──────────────────────────────────────────────
-- id: tone_front_set
-  label: Set Front Tone (Bass/Treble)
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx for bass (-A to +A = -10 to +10 in 2-step), Txx for treble, BUP, BDOWN, TUP, TDOWN for increment"
-  notes: "Send: !1TFR<value>[CR]"
-
-- id: tone_center_set
-  label: Set Center Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1TCT<value>[CR]"
-
-- id: tone_surround_set
-  label: Set Surround Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1TSR<value>[CR]"
-
-- id: tone_surround_back_set
-  label: Set Surround Back Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1TSB<value>[CR]"
-
-- id: tone_subwoofer_set
-  label: Set Subwoofer Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, BUP, BDOWN"
-  notes: "Send: !1TSW<value>[CR]"
-
-- id: tone_front_wide_set
-  label: Set Front Wide Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1TFW<value>[CR]"
-
-- id: tone_front_high_set
-  label: Set Front High Tone
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1TFH<value>[CR]"
-
-# ── MAIN ZONE — Subwoofer Level ────────────────────────────────────────────
-- id: subwoofer_level_set
-  label: Set Subwoofer Level (temporary)
-  kind: action
+  command: "!1DIM{level}"
   params:
     - name: level
       type: string
-      description: "-F to +C (-15dB to +12dB), UP, DOWN"
-  notes: "Send: !1SWL<level>[CR]"
-
-- id: center_level_set
-  label: Set Center Level (temporary)
+      enum: ["00", "01", "02", "03", "08", "DIM"]
+      description: '00 = Bright, 01 = Dim, 02 = Dark, 03 = Shut-Off, 08 = Bright & LED OFF, DIM = wrap-around'
+- id: dim_query
+  label: Dimmer Level Status
+  kind: query
+  command: "!1DIMQSTN"
+  params: []
+- id: osd_set
+  label: Setup Operation (OSD)
   kind: action
+  command: "!1OSD{key}"
   params:
-    - name: level
+    - name: key
       type: string
-      description: "-C to +C (-12dB to +12dB), UP, DOWN"
-  notes: "Send: !1CTL<level>[CR]"
-
-# ── MAIN ZONE — Sleep ──────────────────────────────────────────────────────
-- id: sleep_set
-  label: Set Sleep Timer
+      enum: ["MENU", "UP", "DOWN", "RIGHT", "LEFT", "ENTER", "EXIT", "AUDIO", "VIDEO"]
+      description: On-screen menu navigation keys
+- id: mem_set
+  label: Memory Setup
   kind: action
+  command: "!1MEM{op}"
   params:
-    - name: time
+    - name: op
       type: string
-      description: "01-5A = 1-90 minutes (hex), OFF = disable, UP = wrap-around"
-  notes: "Send: !1SLP<time>[CR]"
+      enum: ["STR", "RCL", "LOCK", "UNLK"]
+      description: 'STR = store, RCL = recall, LOCK, UNLK = memory lock state'
+- id: ifa_query
+  label: Audio Information
+  kind: query
+  command: "!1IFAQSTN"
+  params: []
+  notes: 'Response format: "nnnnn:nnnnn" (CSV), same as immediate display. Sent after DIF02.'
+- id: ifv_query
+  label: Video Information
+  kind: query
+  command: "!1IFVQSTN"
+  params: []
+  notes: 'Response format: "nnnnn:nnnnn" (CSV), same as immediate display. Sent after DIF03.'
 
-# ── MAIN ZONE — Dimmer ─────────────────────────────────────────────────────
-- id: dimmer_set
-  label: Set Dimmer Level
+# --- Main Zone: Unit / Input / Output ---
+- id: sli_set
+  label: Input Selector
   kind: action
+  command: "!1SLI{source}"
   params:
-    - name: level
+    - name: source
       type: string
-      description: "00=Bright, 01=Dim, 02=Dark, 03=Shut-Off, 08=Bright+LED OFF, DIM=wrap-around"
-  notes: "Send: !1DIM<level>[CR]"
-
-# ── MAIN ZONE — Display ────────────────────────────────────────────────────
-- id: display_mode_set
-  label: Set Display Mode
+      enum: ["00", "01", "02", "03", "04", "05", "06", "10", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "30", "31", "32", "40", "UP", "DOWN"]
+      description: '00-06 = VIDEO1-7, 10 = DVD, 20 = TAPE1/TV, 21 = TAPE2, 22 = PHONO, 23 = CD, 24 = FM, 25 = AM, 26 = TUNER, 27 = MUSIC SERVER, 28 = INTERNET RADIO, 29 = USB front, 2A = USB rear, 30 = MULTI CH, 31 = XM, 32 = SIRIUS, 40 = Universal PORT, UP/DOWN = wrap-around'
+- id: sli_query
+  label: Input Selector Status
+  kind: query
+  command: "!1SLIQSTN"
+  params: []
+- id: slr_set
+  label: RECOUT Selector
   kind: action
+  command: "!1SLR{source}"
+  params:
+    - name: source
+      type: string
+      enum: ["00..06", "10", "20..28", "30", "31", "7F", "80"]
+      description: '00-06 = VIDEO1-7, 10 = DVD, 20-28 = TAPE1/2/PHONO/CD/FM/AM/TUNER/MUSIC SERVER/INTERNET RADIO, 30 = MULTI CH, 31 = XM, 7F = OFF, 80 = SOURCE (follows main)'
+- id: slr_query
+  label: RECOUT Selector Status
+  kind: query
+  command: "!1SLRQSTN"
+  params: []
+- id: sla_set
+  label: Audio Selector
+  kind: action
+  command: "!1SLA{mode}"
   params:
     - name: mode
       type: string
-      description: "00=Selector+Volume, 01=Selector+Listening Mode, 02=Digital Format (temporary), 03=Video Format (temporary), TG=wrap-around"
-  notes: "Send: !1DIF<mode>[CR]"
-
-# ── MAIN ZONE — HDMI Output ────────────────────────────────────────────────
-- id: hdmi_output_set
-  label: Set HDMI Output
+      enum: ["00", "01", "02", "03", "04", "05", "06", "UP"]
+      description: '00 = AUTO, 01 = MULTI-CHANNEL, 02 = ANALOG, 03 = iLINK, 04 = HDMI, 05 = COAX/OPT, 06 = BALANCE, UP = wrap-around'
+- id: sla_query
+  label: Audio Selector Status
+  kind: query
+  command: "!1SLAQSTN"
+  params: []
+- id: tga_set
+  label: 12V Trigger A
   kind: action
+  command: "!1TGA{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Off, 01 = On'
+- id: tgb_set
+  label: 12V Trigger B
+  kind: action
+  command: "!1TGB{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Off, 01 = On'
+- id: tgc_set
+  label: 12V Trigger C
+  kind: action
+  command: "!1TGC{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Off, 01 = On. TGA/TGB/TGC available only when each 12V Trigger parameter is "OFF" at Setup Menu.'
+- id: vos_set
+  label: Video Output Selector (Japanese Model Only)
+  kind: action
+  command: "!1VOS{mode}"
   params:
     - name: mode
       type: string
-      description: "00=No/Analog, 01=Yes/Out Main/HDMI Main, 02=Out Sub/HDMI Sub, 03=Both, 04=Both(Main), 05=Both(Sub), UP=wrap-around"
-  notes: "Send: !1HDO<mode>[CR]"
-
-# ── MAIN ZONE — Monitor Resolution ────────────────────────────────────────
-- id: monitor_resolution_set
-  label: Set Monitor Out Resolution
+      enum: ["00", "01"]
+      description: '00 = D4, 01 = Component'
+- id: vos_query
+  label: Video Output Selector Status
+  kind: query
+  command: "!1VOSQSTN"
+  params: []
+- id: hdo_set
+  label: HDMI Output Selector
   kind: action
-  params:
-    - name: resolution
-      type: string
-      description: "00=Through, 01=Auto, 02=480p, 03=720p, 04=1080i, 05=1080p, 07=1080p/24fs, 06=Source, UP=wrap-around"
-  notes: "Send: !1RES<resolution>[CR]"
-
-# ── MAIN ZONE — ISF Mode ──────────────────────────────────────────────────
-- id: isf_mode_set
-  label: Set ISF Mode
-  kind: action
+  command: "!1HDO{mode}"
   params:
     - name: mode
       type: string
-      description: "00=Custom, 01=Day, 02=Night, UP=wrap-around"
-  notes: "Send: !1ISF<mode>[CR]"
-
-# ── MAIN ZONE — 12V Triggers ──────────────────────────────────────────────
-- id: trigger_a_set
-  label: Set 12V Trigger A
+      enum: ["00", "01", "02", "03", "04", "05", "UP"]
+      description: '00 = No/Analog, 01 = Yes/Main, 02 = Sub, 03 = Both, 04 = Both(Main), 05 = Both(Sub), UP = wrap-around'
+- id: hdo_query
+  label: HDMI Output Selector Status
+  kind: query
+  command: "!1HDOQSTN"
+  params: []
+- id: res_set
+  label: Monitor Out Resolution
   kind: action
+  command: "!1RES{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "03", "04", "05", "06", "07", "UP"]
+      description: '00 = Through, 01 = Auto (HDMI only), 02 = 480p, 03 = 720p, 04 = 1080i, 05 = 1080p (HDMI only), 06 = Source, 07 = 1080p/24fs (HDMI only), UP = wrap-around'
+- id: res_query
+  label: Monitor Out Resolution Status
+  kind: query
+  command: "!1RESQSTN"
+  params: []
+- id: isf_set
+  label: ISF Mode
+  kind: action
+  command: "!1ISF{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "UP"]
+      description: '00 = Custom, 01 = Day, 02 = Night, UP = wrap-around'
+- id: isf_query
+  label: ISF Mode Status
+  kind: query
+  command: "!1ISFQSTN"
+  params: []
+
+# --- Main Zone: Surround ---
+- id: lmd_set
+  label: Listening Mode
+  kind: action
+  command: "!1LMD{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "11", "12", "13", "14", "15", "16", "40", "41", "42", "43", "44", "45", "50", "51", "52", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "UP", "DOWN", "MOVIE", "MUSIC", "GAME"]
+      description: '00=STEREO, 01=DIRECT, 02=SURROUND, 03=FILM/Game-RPG, 04=THX, 05=ACTION/Game-Action, 06=MUSICAL/Game-Rock, 07=MONO MOVIE, 08=ORCHESTRA, 09=UNPLUGGED, 0A=STUDIO-MIX, 0B=TV LOGIC, 0C=ALL CH STEREO, 0D=THEATER-DIMENSIONAL, 0E=ENHANCED 7/Game-Sports, 0F=MONO, 11=PURE AUDIO, 12=MULTIPLEX, 13=FULL MONO, 14=DOLBY VIRTUAL, 15=DTS Surround Sensation, 16=Audyssey DSX, 40=5.1ch/Straight Decode, 41=Dolby EX/DTS ES, 42-45=THX Cinema/Surround EX/Music/Games, 50-52=U2/S2 Cinema/Music/Games, 80-8F=PLII/PLIIx/Neo:6/Neural variants, 90-99=PLIIz Height variants, A0-A7=PLIIx+Audyssey DSX variants, UP/DOWN/MOVIE/MUSIC/GAME = wrap-around'
+- id: lmd_query
+  label: Listening Mode Status
+  kind: query
+  command: "!1LMDQSTN"
+  params: []
+- id: ltn_set
+  label: Late Night
+  kind: action
+  command: "!1LTN{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "03", "UP"]
+      description: '00 = Off, 01 = Low(DD)/On(TrueHD), 02 = High(DD)/On(TrueHD), 03 = Auto(TrueHD), UP = wrap-around'
+- id: ltn_query
+  label: Late Night Status
+  kind: query
+  command: "!1LTNQSTN"
+  params: []
+- id: ras_reaq_academy_set
+  label: Re-EQ / Academy Filter
+  kind: action
+  command: "!1RAS{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "UP"]
+      description: '00 = Both Off, 01 = Re-EQ On, 02 = Academy On, UP = wrap-around'
+- id: ras_reaq_academy_query
+  label: Re-EQ / Academy State
+  kind: query
+  command: "!1RASQSTN"
+  params: []
+- id: ras_reaq_set
+  label: Re-EQ
+  kind: action
+  command: "!1RAS{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "UP"]
+      description: '00 = Re-EQ Off, 01 = Re-EQ On, UP = wrap-around'
+- id: ras_reaq_query
+  label: Re-EQ State
+  kind: query
+  command: "!1RASQSTN"
+  params: []
+- id: ras_cinema_set
+  label: Cinema Filter
+  kind: action
+  command: "!1RAS{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "UP"]
+      description: '00 = Cinema Filter Off, 01 = Cinema Filter On, UP = wrap-around'
+- id: ras_cinema_query
+  label: Cinema Filter State
+  kind: query
+  command: "!1RASQSTN"
+  params: []
+- id: ady_set
+  label: Audyssey 2EQ / MultEQ / MultEQ XT
+  kind: action
+  command: "!1ADY{state}"
   params:
     - name: state
       type: string
-      description: "00=Off, 01=On"
-  notes: "Send: !1TGA<state>[CR]; only available when 12V Trigger parameter is OFF in Setup Menu"
-
-- id: trigger_b_set
-  label: Set 12V Trigger B
+      enum: ["00", "01", "UP"]
+      description: '00 = Off, 01 = On, UP = wrap-around'
+- id: ady_query
+  label: Audyssey 2EQ/MultEQ State
+  kind: query
+  command: "!1ADYQSTN"
+  params: []
+- id: adq_set
+  label: Audyssey Dynamic EQ
   kind: action
+  command: "!1ADQ{state}"
   params:
     - name: state
       type: string
-      description: "00=Off, 01=On"
-  notes: "Send: !1TGB<state>[CR]"
-
-- id: trigger_c_set
-  label: Set 12V Trigger C
+      enum: ["00", "01", "UP"]
+      description: '00 = Off, 01 = On, UP = wrap-around'
+- id: adq_query
+  label: Audyssey Dynamic EQ State
+  kind: query
+  command: "!1ADQQSTN"
+  params: []
+- id: adv_set
+  label: Audyssey Dynamic Volume
   kind: action
+  command: "!1ADV{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "03", "UP"]
+      description: '00 = Off, 01 = Light, 02 = Medium, 03 = Heavy, UP = wrap-around'
+- id: adv_query
+  label: Audyssey Dynamic Volume State
+  kind: query
+  command: "!1ADVQSTN"
+  params: []
+- id: dvl_set
+  label: Dolby Volume
+  kind: action
+  command: "!1DVL{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01", "02", "03", "UP"]
+      description: '00 = Off, 01 = Low, 02 = Mid, 03 = High, UP = wrap-around'
+- id: dvl_query
+  label: Dolby Volume State
+  kind: query
+  command: "!1DVLQSTN"
+  params: []
+- id: mot_set
+  label: Music Optimizer
+  kind: action
+  command: "!1MOT{state}"
   params:
     - name: state
       type: string
-      description: "00=Off, 01=On"
-  notes: "Send: !1TGC<state>[CR]"
-
-# ── MAIN ZONE — OSD Navigation ────────────────────────────────────────────
-- id: osd_menu
-  label: OSD Menu Key
-  kind: action
+      enum: ["00", "01", "UP"]
+      description: '00 = Off, 01 = On, UP = wrap-around'
+- id: mot_query
+  label: Music Optimizer State
+  kind: query
+  command: "!1MOTQSTN"
   params: []
-  notes: "Send: !1OSDMENU[CR]"
 
-- id: osd_up
-  label: OSD Up Key
+# --- Main Zone: Tuner ---
+- id: tun_set
+  label: Tuning (Main)
   kind: action
-  params: []
-  notes: "Send: !1OSDUP[CR]"
-
-- id: osd_down
-  label: OSD Down Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDDOWN[CR]"
-
-- id: osd_right
-  label: OSD Right Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDRIGHT[CR]"
-
-- id: osd_left
-  label: OSD Left Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDLEFT[CR]"
-
-- id: osd_enter
-  label: OSD Enter Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDENTER[CR]"
-
-- id: osd_exit
-  label: OSD Exit Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDEXIT[CR]"
-
-- id: osd_audio
-  label: OSD Audio Adjust Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDAUDIO[CR]"
-
-- id: osd_video
-  label: OSD Video Adjust Key
-  kind: action
-  params: []
-  notes: "Send: !1OSDVIDEO[CR]"
-
-# ── MAIN ZONE — Memory ────────────────────────────────────────────────────
-- id: memory_store
-  label: Store Memory
-  kind: action
-  params: []
-  notes: "Send: !1MEMSTR[CR]"
-
-- id: memory_recall
-  label: Recall Memory
-  kind: action
-  params: []
-  notes: "Send: !1MEMRCL[CR]"
-
-- id: memory_lock
-  label: Lock Memory
-  kind: action
-  params: []
-  notes: "Send: !1MEMLOCK[CR]"
-
-- id: memory_unlock
-  label: Unlock Memory
-  kind: action
-  params: []
-  notes: "Send: !1MEMUNLK[CR]"
-
-# ── MAIN ZONE — Audyssey ──────────────────────────────────────────────────
-- id: audyssey_multieq_set
-  label: Set Audyssey 2EQ/MultEQ/MultEQ XT
-  kind: action
+  command: "!1TUN{freq}"
   params:
-    - name: state
+    - name: freq
       type: string
-      description: "00=Off, 01=On, UP=wrap-around"
-  notes: "Send: !1ADY<state>[CR]"
-
-- id: audyssey_dynamic_eq_set
-  label: Set Audyssey Dynamic EQ
-  kind: action
-  params:
-    - name: state
-      type: string
-      description: "00=Off, 01=On, UP=wrap-around"
-  notes: "Send: !1ADQ<state>[CR]"
-
-- id: audyssey_dynamic_volume_set
-  label: Set Audyssey Dynamic Volume
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: "00=Off, 01=Light, 02=Medium, 03=Heavy, UP=wrap-around"
-  notes: "Send: !1ADV<level>[CR]"
-
-# ── MAIN ZONE — Dolby Volume ──────────────────────────────────────────────
-- id: dolby_volume_set
-  label: Set Dolby Volume
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: "00=Off, 01=Low, 02=Mid, 03=High, UP=wrap-around"
-  notes: "Send: !1DVL<level>[CR]"
-
-# ── MAIN ZONE — Music Optimizer ───────────────────────────────────────────
-- id: music_optimizer_set
-  label: Set Music Optimizer
-  kind: action
-  params:
-    - name: state
-      type: string
-      description: "00=Off, 01=On, UP=wrap-around"
-  notes: "Send: !1MOT<state>[CR]"
-
-# ── MAIN ZONE — Late Night ────────────────────────────────────────────────
-- id: late_night_set
-  label: Set Late Night Mode
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: "00=Off, 01=Low (DD)/On (TrueHD), 02=High (DD), 03=Auto (TrueHD), UP=wrap-around"
-  notes: "Send: !1LTN<level>[CR]"
-
-# ── MAIN ZONE — Re-EQ/Cinema Filter ──────────────────────────────────────
-- id: reeq_set
-  label: Set Re-EQ/Academy Filter
-  kind: action
-  params:
-    - name: state
-      type: string
-      description: "00=Both Off, 01=Re-EQ On, 02=Academy On, UP=wrap-around"
-  notes: "Send: !1RAS<state>[CR]"
-
-# ── MAIN ZONE — Speaker Level Calibration ────────────────────────────────
-- id: speaker_calibration_test
-  label: Speaker Level Calibration Test
-  kind: action
+      enum: ["nnnnn", "UP", "DOWN"]
+      description: 'nnnnn = FM nnn.nn MHz / AM nnnnn kHz / XM nnnnn ch (XM: leading 00); UP/DOWN = wrap-around. TUNER function shared by MAIN and ZONE side.'
+- id: tun_query
+  label: Tuning Frequency Status
+  kind: query
+  command: "!1TUNQSTN"
   params: []
-  notes: "Send: !1SLCTEST[CR]"
-
-- id: speaker_calibration_chsel
-  label: Speaker Level Calibration CH Select
+- id: prs_set
+  label: Preset
   kind: action
-  params: []
-  notes: "Send: !1SLCCHSEL[CR]"
-
-- id: speaker_calibration_up
-  label: Speaker Level Calibration Level Up
-  kind: action
-  params: []
-  notes: "Send: !1SLCUP[CR]"
-
-- id: speaker_calibration_down
-  label: Speaker Level Calibration Level Down
-  kind: action
-  params: []
-  notes: "Send: !1SLCDOWN[CR]"
-
-# ── MAIN ZONE — Tuner ─────────────────────────────────────────────────────
-- id: tuner_frequency_set
-  label: Set Tuner Frequency
-  kind: action
-  params:
-    - name: frequency
-      type: string
-      description: "nnnnn: FM nnn.nn MHz / AM nnnnn kHz / XM nnnnn ch"
-  notes: "Send: !1TUN<frequency>[CR]"
-
-- id: tuner_frequency_up
-  label: Tuner Frequency Up
-  kind: action
-  params: []
-  notes: "Send: !1TUNUP[CR]"
-
-- id: tuner_frequency_down
-  label: Tuner Frequency Down
-  kind: action
-  params: []
-  notes: "Send: !1TUNDOWN[CR]"
-
-- id: tuner_preset_set
-  label: Set Tuner Preset
-  kind: action
+  command: "!1PRS{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex) for preset 1-40, or 01-1E for preset 1-30"
-  notes: "Send: !1PRS<preset>[CR]"
-
-- id: tuner_preset_up
-  label: Tuner Preset Up
-  kind: action
+      enum: ["01..28", "01..1E", "UP", "DOWN"]
+      description: '01-28 hex = preset 1-40, 01-1E hex = preset 1-30, UP/DOWN = wrap-around'
+- id: prs_query
+  label: Preset Status
+  kind: query
+  command: "!1PRSQSTN"
   params: []
-  notes: "Send: !1PRSUP[CR]"
-
-- id: tuner_preset_down
-  label: Tuner Preset Down
+- id: prm_set
+  label: Preset Memory
   kind: action
-  params: []
-  notes: "Send: !1PRSDOWN[CR]"
-
-- id: tuner_preset_memory
-  label: Store Tuner Preset Memory
-  kind: action
+  command: "!1PRM{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1PRM<preset>[CR]"
-
-# ── MAIN ZONE — Net/USB Transport ─────────────────────────────────────────
-- id: net_play
-  label: Net/USB Play
+      enum: ["01..28", "01..1E"]
+      description: '01-28 hex = store preset 1-40, 01-1E hex = store preset 1-30'
+- id: rds_set
+  label: RDS Information Display
   kind: action
-  params: []
-  notes: "Send: !1NTCPLAY[CR]"
-
-- id: net_stop
-  label: Net/USB Stop
-  kind: action
-  params: []
-  notes: "Send: !1NTCSTOP[CR]"
-
-- id: net_pause
-  label: Net/USB Pause
-  kind: action
-  params: []
-  notes: "Send: !1NTCPAUSE[CR]"
-
-- id: net_track_up
-  label: Net/USB Track Up
-  kind: action
-  params: []
-  notes: "Send: !1NTCTRUP[CR]"
-
-- id: net_track_down
-  label: Net/USB Track Down
-  kind: action
-  params: []
-  notes: "Send: !1NTCTRDN[CR]"
-
-- id: net_ff
-  label: Net/USB Fast Forward
-  kind: action
-  params: []
-  notes: "Send: !1NTCFF[CR]; must be sent continuously, no more than 100ms between codes"
-
-- id: net_rew
-  label: Net/USB Rewind
-  kind: action
-  params: []
-  notes: "Send: !1NTCREW[CR]; must be sent continuously, no more than 100ms between codes"
-
-- id: net_repeat
-  label: Net/USB Repeat
-  kind: action
-  params: []
-  notes: "Send: !1NTCREPEAT[CR]"
-
-- id: net_random
-  label: Net/USB Random
-  kind: action
-  params: []
-  notes: "Send: !1NTCRANDOM[CR]"
-
-- id: net_display
-  label: Net/USB Display Key
-  kind: action
-  params: []
-  notes: "Send: !1NTCDISPLAY[CR]"
-
-- id: net_channel_up
-  label: Net/USB Internet Radio Channel Up
-  kind: action
-  params: []
-  notes: "Send: !1NTCCHUP[CR]"
-
-- id: net_channel_down
-  label: Net/USB Internet Radio Channel Down
-  kind: action
-  params: []
-  notes: "Send: !1NTCCHDN[CR]"
-
-- id: net_internet_radio_preset_set
-  label: Set Internet Radio Preset
-  kind: action
+  command: "!1RDS{mode}"
   params:
-    - name: preset
+    - name: mode
       type: string
-      description: "01-28 (hex) for preset 1-40"
-  notes: "Send: !1NPR<preset>[CR]"
-
-# ── MAIN ZONE — REC OUT Selector ──────────────────────────────────────────
-- id: recout_selector_set
-  label: Set REC OUT Selector
+      enum: ["00", "01", "02", "UP"]
+      description: '00 = RT, 01 = PTY, 02 = TP, UP = wrap-around. RBDS models: RT only.'
+- id: pts_set
+  label: PTY Scan
   kind: action
-  params:
-    - name: input_code
-      type: string
-      description: "00=VIDEO1, 01=VIDEO2, 02=VIDEO3, 03=VIDEO4, 04=VIDEO5, 05=VIDEO6, 06=VIDEO7, 10=DVD, 20=TAPE1, 21=TAPE2, 22=PHONO, 23=CD, 24=FM, 25=AM, 26=TUNER, 27=MUSIC SERVER, 28=INTERNET RADIO, 30=MULTI CH, 31=XM, 7F=OFF, 80=SOURCE"
-  notes: "Send: !1SLR<input_code>[CR]"
-
-# ── ZONE 2 ─────────────────────────────────────────────────────────────────
-- id: zone2_power_standby
-  label: Zone 2 Standby
-  kind: action
-  params: []
-  notes: "Send: !1ZPW00[CR]"
-
-- id: zone2_power_on
-  label: Zone 2 Power On
-  kind: action
-  params: []
-  notes: "Send: !1ZPW01[CR]"
-
-- id: zone2_mute_off
-  label: Zone 2 Muting Off
-  kind: action
-  params: []
-  notes: "Send: !1ZMT00[CR]"
-
-- id: zone2_mute_on
-  label: Zone 2 Muting On
-  kind: action
-  params: []
-  notes: "Send: !1ZMT01[CR]"
-
-- id: zone2_mute_toggle
-  label: Zone 2 Muting Toggle
-  kind: action
-  params: []
-  notes: "Send: !1ZMTTG[CR]"
-
-- id: zone2_volume_set
-  label: Set Zone 2 Volume Level
-  kind: action
-  params:
-    - name: level
-      type: string
-      description: "Hex level 00-64 (0-100) or 00-50 (0-80)"
-  notes: "Send: !1ZVL<level>[CR]; only works when main zone is ON"
-
-- id: zone2_volume_up
-  label: Zone 2 Volume Up
-  kind: action
-  params: []
-  notes: "Send: !1ZVLUP[CR]"
-
-- id: zone2_volume_down
-  label: Zone 2 Volume Down
-  kind: action
-  params: []
-  notes: "Send: !1ZVLDOWN[CR]"
-
-- id: zone2_input_select
-  label: Zone 2 Input Select
-  kind: action
-  params:
-    - name: input_code
-      type: string
-      description: "Same codes as SLI plus 80=SOURCE"
-  notes: "Send: !1ZSL<input_code>[CR]"
-
-- id: zone2_tone_set
-  label: Set Zone 2 Tone
-  kind: action
+  command: "!1PTS{value}"
   params:
     - name: value
       type: string
-      description: "Bxx, Txx, BUP, BDOWN, TUP, TDOWN"
-  notes: "Send: !1ZTN<value>[CR]; only works when main is ON and Zone2 is powered or variable"
-
-- id: zone2_balance_set
-  label: Set Zone 2 Balance
+      enum: ["00..1E", "ENTER"]
+      description: '00-1E hex = PTY number 0-30; ENTER = finish PTY scan'
+- id: tps_set
+  label: TP Scan
   kind: action
+  command: "!1TPS{value}"
   params:
     - name: value
       type: string
-      description: "xx=balance value, UP=right, DOWN=left"
-  notes: "Send: !1ZBL<value>[CR]"
-
-- id: zone2_tuner_frequency_set
-  label: Zone 2 Tuner Frequency (separate control)
+      enum: ["", "ENTER"]
+      description: 'Empty parameter = start TP scan, ENTER = finish TP scan'
+- id: xcn_query
+  label: XM Channel Name
+  kind: query
+  command: "!1XCNQSTN"
+  params: []
+- id: xat_query
+  label: XM Artist Name
+  kind: query
+  command: "!1XATQSTN"
+  params: []
+- id: xti_query
+  label: XM Title
+  kind: query
+  command: "!1XTIQSTN"
+  params: []
+- id: xch_set
+  label: XM Channel Number
   kind: action
+  command: "!1XCH{channel}"
   params:
-    - name: frequency
+    - name: channel
       type: string
-      description: "nnnnn: FM nnn.nn MHz / AM nnnnn kHz"
-  notes: "Send: !1TU2<frequency>[CR]"
-
-- id: zone2_preset_set
-  label: Zone 2 Preset (separate control)
+      enum: ["000..255", "UP", "DOWN"]
+      description: '000-255 = XM channel, UP/DOWN = wrap-around'
+- id: xch_query
+  label: XM Channel Number Status
+  kind: query
+  command: "!1XCHQSTN"
+  params: []
+- id: xct_set
+  label: XM Category
   kind: action
+  command: "!1XCT{category}"
+  params:
+    - name: category
+      type: string
+      enum: ["nnnnnnnnnn", "UP", "DOWN"]
+      description: 'nnnnnnnnnn = XM category info, UP/DOWN = wrap-around'
+- id: xct_query
+  label: XM Category Status
+  kind: query
+  command: "!1XCTQSTN"
+  params: []
+- id: scn_query
+  label: SIRIUS Channel Name
+  kind: query
+  command: "!1SCNQSTN"
+  params: []
+- id: sat_query
+  label: SIRIUS Artist Name
+  kind: query
+  command: "!1SATQSTN"
+  params: []
+- id: sti_query
+  label: SIRIUS Title
+  kind: query
+  command: "!1STIQSTN"
+  params: []
+- id: sch_set
+  label: SIRIUS Channel Number
+  kind: action
+  command: "!1SCH{channel}"
+  params:
+    - name: channel
+      type: string
+      enum: ["000..255", "UP", "DOWN"]
+      description: '000-255 = SIRIUS channel, UP/DOWN = wrap-around'
+- id: sch_query
+  label: SIRIUS Channel Number Status
+  kind: query
+  command: "!1SCHQSTN"
+  params: []
+- id: sct_set
+  label: SIRIUS Category
+  kind: action
+  command: "!1SCT{category}"
+  params:
+    - name: category
+      type: string
+      enum: ["nnnnnnnnnn", "UP", "DOWN"]
+      description: 'nnnnnnnnnn = SIRIUS category info, UP/DOWN = wrap-around'
+- id: sct_query
+  label: SIRIUS Category Status
+  kind: query
+  command: "!1SCTQSTN"
+  params: []
+- id: slk_set
+  label: SIRIUS Parental Lock
+  kind: action
+  command: "!1SLK{value}"
+  params:
+    - name: value
+      type: string
+      enum: ["nnnn", "INPUT", "WRONG"]
+      description: 'nnnn = 4-digit lock password; INPUT = prompt for password; WRONG = wrong password notification'
+- id: hat_query
+  label: HD Radio Artist Name
+  kind: query
+  command: "!1HATQSTN"
+  params: []
+- id: hcn_query
+  label: HD Radio Channel Name (Station)
+  kind: query
+  command: "!1HCNQSTN"
+  params: []
+- id: hti_query
+  label: HD Radio Title
+  kind: query
+  command: "!1HTIQSTN"
+  params: []
+- id: hds_query
+  label: HD Radio Detail Info
+  kind: query
+  command: "!1HDSQSTN"
+  params: []
+- id: hpr_set
+  label: HD Radio Channel Program
+  kind: action
+  command: "!1HPR{program}"
+  params:
+    - name: program
+      type: string
+      enum: ["01..08"]
+      description: '01-08 = HD Radio channel program number'
+- id: hpr_query
+  label: HD Radio Channel Program Status
+  kind: query
+  command: "!1HPRQSTN"
+  params: []
+- id: hbl_set
+  label: HD Radio Blend Mode
+  kind: action
+  command: "!1HBL{mode}"
+  params:
+    - name: mode
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Auto, 01 = Analog'
+- id: hbl_query
+  label: HD Radio Blend Mode Status
+  kind: query
+  command: "!1HBLQSTN"
+  params: []
+- id: hts_set
+  label: HD Radio Tuner Status
+  kind: action
+  command: "!1HTS{status}"
+  params:
+    - name: status
+      type: string
+      description: 'mmnnoo: mm="00"(not HD)/"01"(HD); nn="01"-"08" (current program); oo = receivable programs (8-bit hex mask)'
+- id: hts_query
+  label: HD Radio Tuner Status Query
+  kind: query
+  command: "!1HTSQSTN"
+  params: []
+
+# --- Main Zone: Net-Tune / Network ---
+- id: ntc_main_set
+  label: Net-Tune / Network Operation (Main)
+  kind: action
+  command: "!1NTC{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "STOP", "PAUSE", "TRUP", "TRDN", "FF", "REW", "REPEAT", "RANDOM", "DISPLAY", "ALBUM", "ARTIST", "GENRE", "PLAYLIST", "RIGHT", "LEFT", "UP", "DOWN", "SELECT", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "DELETE", "CAPS", "LOCATION", "LANGUAGE", "SETUP", "RETURN", "CHUP", "CHDN"]
+      description: Net/USB media keys. FF/REW must be sent continuously with no more than 100ms between codes.
+- id: nat_query
+  label: Net/USB Artist Name
+  kind: query
+  command: "!1NATQSTN"
+  params: []
+- id: nal_query
+  label: Net/USB Album Name
+  kind: query
+  command: "!1NALQSTN"
+  params: []
+- id: nti_query
+  label: Net/USB Title Name
+  kind: query
+  command: "!1NTIQSTN"
+  params: []
+- id: ntm_query
+  label: Net/USB Time Info
+  kind: query
+  command: "!1NTMQSTN"
+  params: []
+- id: ntr_query
+  label: Net/USB Track Info
+  kind: query
+  command: "!1NTRQSTN"
+  params: []
+- id: nst_query
+  label: Net/USB Play Status
+  kind: query
+  command: "!1NSTQSTN"
+  params: []
+- id: npr_set
+  label: Internet Radio Preset
+  kind: action
+  command: "!1NPR{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1PR2<preset>[CR]"
+      enum: ["01..28"]
+      description: '01-28 hex = preset 1-40'
 
-- id: zone2_net_play
-  label: Zone 2 Net/USB Play (separate control)
+# --- ONKYO RI System: CD / Tape / EQ / DAT ---
+- id: ccd_set
+  label: CD Player Operation (RI)
   kind: action
-  params: []
-  notes: "Send: !1NT2PLAY[CR]"
-
-- id: zone2_net_stop
-  label: Zone 2 Net/USB Stop
-  kind: action
-  params: []
-  notes: "Send: !1NT2STOP[CR]"
-
-- id: zone2_internet_radio_preset_set
-  label: Zone 2 Internet Radio Preset
-  kind: action
+  command: "!1CCD{key}"
   params:
-    - name: preset
+    - name: key
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1NP2<preset>[CR]"
-
-# ── ZONE 3 ─────────────────────────────────────────────────────────────────
-- id: zone3_power_standby
-  label: Zone 3 Standby
+      enum: ["POWER", "TRACK", "PLAY", "STOP", "PAUSE", "SKIP.F", "SKIP.R", "MEMORY", "CLEAR", "REPEAT", "RANDOM", "DISP", "D.MODE", "FF", "REW", "OP/CL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "10", "+10", "D.SKIP", "DISC.F", "DISC.R", "DISC1", "DISC2", "DISC3", "DISC4", "DISC5", "DISC6", "STBY", "PON"]
+      description: RI CD player keys (power on/off, transport, disc select 1-6, numeric 0-10/+10)
+- id: ct1_set
+  label: TAPE1 (A) Operation (RI)
   kind: action
+  command: "!1CT1{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY.F", "PLAY.R", "STOP", "RC/PAU", "FF", "REW"]
+      description: TAPE1(A) transport keys
+- id: ct2_set
+  label: TAPE2 (B) Operation (RI)
+  kind: action
+  command: "!1CT2{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY.F", "PLAY.R", "STOP", "RC/PAU", "FF", "REW", "OP/CL", "SKIP.F", "SKIP.R", "REC"]
+      description: TAPE2(B) transport keys
+- id: ceq_set
+  label: Graphics Equalizer Operation (RI)
+  kind: action
+  command: "!1CEQ{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["POWER", "PRESET"]
+      description: Graphics equalizer power and preset keys
+- id: cdt_set
+  label: DAT Recorder Operation (RI)
+  kind: action
+  command: "!1CDT{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "RC/PAU", "STOP", "SKIP.F", "SKIP.R", "FF", "REW"]
+      description: DAT recorder transport keys
+
+# --- ONKYO RI System: DVD ---
+- id: cdv_set
+  label: DVD Player Operation (RI)
+  kind: action
+  command: "!1CDV{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["POWER", "PWRON", "PWROFF", "PLAY", "STOP", "SKIP.F", "SKIP.R", "FF", "REW", "PAUSE", "LASTPLAY", "SUBTON/OFF", "SUBTITLE", "SETUP", "TOPMENU", "MENU", "UP", "DOWN", "LEFT", "RIGHT", "ENTER", "RETURN", "DISC.F", "DISC.R", "AUDIO", "RANDOM", "OP/CL", "ANGLE", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "0", "SEARCH", "DISP", "REPEAT", "MEMORY", "CLEAR", "ABR", "STEP.F", "STEP.R", "SLOW.F", "SLOW.R", "ZOOMTG", "ZOOMUP", "ZOOMDN", "PROGRE", "VDOFF", "CONMEM", "FUNMEM", "DISC1", "DISC2", "DISC3", "DISC4", "DISC5", "DISC6", "FOLDUP", "FOLDDN", "P.MODE", "ASCTG", "CDPCD", "MSPUP", "MSPDN", "PCT", "RSCTG", "INIT"]
+      description: DVD player keys (power, transport, navigation, disc select, picture control, factory reset)
+
+# --- ONKYO RI System: MD / CD-R ---
+- id: cmd_set
+  label: MD Recorder Operation (RI)
+  kind: action
+  command: "!1CMD{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["POWER", "PLAY", "STOP", "FF", "REW", "P.MODE", "SKIP.F", "SKIP.R", "PAUSE", "REC", "MEMORY", "DISP", "SCROLL", "M.SCAN", "CLEAR", "RANDOM", "REPEAT", "ENTER", "EJECT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10/0", "nn/nnn", "NAME", "GROUP", "STBY"]
+      description: MD recorder keys
+- id: ccr_set
+  label: CD-R Recorder Operation (RI)
+  kind: action
+  command: "!1CCR{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["POWER", "P.MODE", "PLAY", "STOP", "SKIP.F", "SKIP.R", "PAUSE", "REC", "CLEAR", "REPEAT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10/0", "nn/nnn", "SCROLL", "OP/CL", "DISP", "RANDOM", "MEMORY", "FF", "REW", "STBY"]
+      description: CD-R recorder keys
+
+# --- Zone 2 ---
+- id: zpw_set
+  label: Zone 2 Power
+  kind: action
+  command: "!1ZPW{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Zone2 Standby, 01 = Zone2 On. Only works when main is ON.'
+- id: zpw_query
+  label: Zone 2 Power Status
+  kind: query
+  command: "!1ZPWQSTN"
   params: []
-  notes: "Send: !1PW300[CR]"
-
-- id: zone3_power_on
-  label: Zone 3 Power On
+- id: zmt_set
+  label: Zone 2 Muting
   kind: action
+  command: "!1ZMT{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG"]
+      description: '00 = Off, 01 = On, TG = wrap-around'
+- id: zmt_query
+  label: Zone 2 Muting Status
+  kind: query
+  command: "!1ZMTQSTN"
   params: []
-  notes: "Send: !1PW301[CR]"
-
-- id: zone3_mute_off
-  label: Zone 3 Muting Off
+- id: zvl_set
+  label: Zone 2 Volume
   kind: action
-  params: []
-  notes: "Send: !1MT300[CR]"
-
-- id: zone3_mute_on
-  label: Zone 3 Muting On
-  kind: action
-  params: []
-  notes: "Send: !1MT301[CR]"
-
-- id: zone3_volume_set
-  label: Set Zone 3 Volume Level
-  kind: action
+  command: "!1ZVL{level}"
   params:
     - name: level
       type: string
-      description: "Hex level 00-64 or 00-50"
-  notes: "Send: !1VL3<level>[CR]"
-
-- id: zone3_input_select
-  label: Zone 3 Input Select
+      enum: ["00..64", "00..50", "UP", "DOWN"]
+      description: '00-64 hex = 0-100, 00-50 hex = 0-80; UP/DOWN. Only works when main is ON.'
+- id: zvl_query
+  label: Zone 2 Volume Status
+  kind: query
+  command: "!1ZVLQSTN"
+  params: []
+- id: ztn_set
+  label: Zone 2 Tone
   kind: action
+  command: "!1ZTN{param}"
   params:
-    - name: input_code
+    - name: param
       type: string
-      description: "Same codes as SLI plus 80=SOURCE"
-  notes: "Send: !1SL3<input_code>[CR]"
-
-- id: zone3_tuner_frequency_set
-  label: Zone 3 Tuner Frequency (separate control)
+      description: 'Bxx (bass -A..+A 2-step), Txx (treble), BUP,BDOWN,TUP,TDOWN. Only when main ON and Zone2 powered or variable.'
+- id: ztn_query
+  label: Zone 2 Tone Status
+  kind: query
+  command: "!1ZTNQSTN"
+  params: []
+- id: zbl_set
+  label: Zone 2 Balance
   kind: action
+  command: "!1ZBL{value}"
   params:
-    - name: frequency
+    - name: value
       type: string
-      description: "nnnnn"
-  notes: "Send: !1TU3<frequency>[CR]"
-
-- id: zone3_preset_set
-  label: Zone 3 Preset (separate control)
+      description: 'xx = balance, UP = to R (2 step), DOWN = to L (2 step)'
+- id: zbl_query
+  label: Zone 2 Balance Status
+  kind: query
+  command: "!1ZBLQSTN"
+  params: []
+- id: zsl_set
+  label: Zone 2 Selector
   kind: action
+  command: "!1ZSL{source}"
+  params:
+    - name: source
+      type: string
+      enum: ["00..06", "10", "20..29", "2A", "30", "31", "32", "40", "80"]
+      description: '00-06 = VIDEO1-7, 10 = DVD, 20-28 = TAPE1/2/PHONO/CD/FM/AM/TUNER/MUSIC SERVER/INTERNET RADIO, 29 = USB(Front), 2A = USB(Rear), 30 = MULTI CH, 31 = XM, 32 = SIRIUS, 40 = Universal PORT, 80 = SOURCE (follows main)'
+- id: zsl_query
+  label: Zone 2 Selector Status
+  kind: query
+  command: "!1ZSLQSTN"
+  params: []
+- id: tu2_set
+  label: Tuning (Zone 2, separate)
+  kind: action
+  command: "!1TU2{freq}"
+  params:
+    - name: freq
+      type: string
+      description: 'nnnnn = FM/AM/XM direct frequency. TUNER shared by MAIN and ZONE side, but Zone 2 control is separate.'
+- id: tu2_query
+  label: Zone 2 Tuning Status
+  kind: query
+  command: "!1TU2QSTN"
+  params: []
+- id: pr2_set
+  label: Preset (Zone 2, separate)
+  kind: action
+  command: "!1PR2{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1PR3<preset>[CR]"
-
-- id: zone3_net_play
-  label: Zone 3 Net/USB Play (separate control)
-  kind: action
+      enum: ["01..28", "01..1E", "UP", "DOWN"]
+      description: '01-28 hex = preset 1-40, 01-1E hex = preset 1-30'
+- id: pr2_query
+  label: Zone 2 Preset Status
+  kind: query
+  command: "!1PR2QSTN"
   params: []
-  notes: "Send: !1NT3PLAY[CR]"
-
-- id: zone3_internet_radio_preset_set
-  label: Zone 3 Internet Radio Preset
+- id: nt2_set
+  label: Net-Tune / Network Operation (Zone 2)
   kind: action
+  command: "!1NT2{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "STOP", "PAUSE", "TRUP", "TRDN", "CHUP", "CHDN"]
+      description: Network model only. Net-Tune/Network function shared by MAIN and ZONE side, but control is separate.
+- id: np2_set
+  label: Internet Radio Preset (Zone 2)
+  kind: action
+  command: "!1NP2{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1NP3<preset>[CR]"
+      enum: ["01..28"]
+      description: '01-28 hex = preset 1-40. Network model only.'
 
-# ── ZONE 4 ─────────────────────────────────────────────────────────────────
-- id: zone4_power_standby
-  label: Zone 4 Standby
+# --- Zone 3 ---
+- id: pw3_set
+  label: Zone 3 Power
   kind: action
+  command: "!1PW3{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Zone3 Standby, 01 = Zone3 On'
+- id: pw3_query
+  label: Zone 3 Power Status
+  kind: query
+  command: "!1PW3QSTN"
   params: []
-  notes: "Send: !1PW400[CR]"
-
-- id: zone4_power_on
-  label: Zone 4 Power On
+- id: mt3_set
+  label: Zone 3 Muting
   kind: action
+  command: "!1MT3{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG"]
+      description: '00 = Off, 01 = On, TG = wrap-around'
+- id: mt3_query
+  label: Zone 3 Muting Status
+  kind: query
+  command: "!1MT3QSTN"
   params: []
-  notes: "Send: !1PW401[CR]"
-
-- id: zone4_mute_off
-  label: Zone 4 Muting Off
+- id: vl3_set
+  label: Zone 3 Volume
   kind: action
-  params: []
-  notes: "Send: !1MT400[CR]"
-
-- id: zone4_mute_on
-  label: Zone 4 Muting On
-  kind: action
-  params: []
-  notes: "Send: !1MT401[CR]"
-
-- id: zone4_volume_set
-  label: Set Zone 4 Volume Level
-  kind: action
+  command: "!1VL3{level}"
   params:
     - name: level
       type: string
-      description: "Hex level 00-64 or 00-50"
-  notes: "Send: !1VL4<level>[CR]"
-
-- id: zone4_input_select
-  label: Zone 4 Input Select
+      enum: ["00..64", "00..50", "UP", "DOWN"]
+      description: '00-64 hex = 0-100, 00-50 hex = 0-80; UP/DOWN'
+- id: vl3_query
+  label: Zone 3 Volume Status
+  kind: query
+  command: "!1VL3QSTN"
+  params: []
+- id: sl3_set
+  label: Zone 3 Selector
   kind: action
+  command: "!1SL3{source}"
   params:
-    - name: input_code
+    - name: source
       type: string
-      description: "Same codes as SLI plus 80=SOURCE"
-  notes: "Send: !1SL4<input_code>[CR]"
-
-- id: zone4_tuner_frequency_set
-  label: Zone 4 Tuner Frequency (separate control)
+      enum: ["00..06", "10", "20..29", "2A", "30", "31", "32", "40", "80"]
+      description: Same source map as Zone 2; 80 = SOURCE
+- id: sl3_query
+  label: Zone 3 Selector Status
+  kind: query
+  command: "!1SL3QSTN"
+  params: []
+- id: tu3_set
+  label: Tuning (Zone 3, separate)
   kind: action
+  command: "!1TU3{freq}"
   params:
-    - name: frequency
+    - name: freq
       type: string
-      description: "nnnnn"
-  notes: "Send: !1TU4<frequency>[CR]"
-
-- id: zone4_preset_set
-  label: Zone 4 Preset (separate control)
+      description: 'nnnnn = FM/AM/XM direct frequency'
+- id: tu3_query
+  label: Zone 3 Tuning Status
+  kind: query
+  command: "!1TU3QSTN"
+  params: []
+- id: pr3_set
+  label: Preset (Zone 3, separate)
   kind: action
+  command: "!1PR3{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1PR4<preset>[CR]"
-
-- id: zone4_net_play
-  label: Zone 4 Net/USB Play (separate control)
-  kind: action
+      enum: ["01..28", "01..1E", "UP", "DOWN"]
+      description: '01-28 hex = preset 1-40, 01-1E hex = preset 1-30'
+- id: pr3_query
+  label: Zone 3 Preset Status
+  kind: query
+  command: "!1PR3QSTN"
   params: []
-  notes: "Send: !1NT4PLAY[CR]"
-
-- id: zone4_internet_radio_preset_set
-  label: Zone 4 Internet Radio Preset
+- id: nt3_set
+  label: Net-Tune / Network Operation (Zone 3)
   kind: action
+  command: "!1NT3{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "STOP", "PAUSE", "TRUP", "TRDN", "CHUP", "CHDN"]
+      description: Network model only. Net/USB playback transport for Zone 3.
+- id: np3_set
+  label: Internet Radio Preset (Zone 3)
+  kind: action
+  command: "!1NP3{preset}"
   params:
     - name: preset
       type: string
-      description: "01-28 (hex)"
-  notes: "Send: !1NP4<preset>[CR]"
+      enum: ["01..28"]
+      description: '01-28 hex = preset 1-40. Network model only.'
 
-# ── RI System — CD Player ──────────────────────────────────────────────────
-- id: ri_cd_power
-  label: RI CD Player Power On/Off
+# --- Zone 4 ---
+- id: pw4_set
+  label: Zone 4 Power
   kind: action
+  command: "!1PW4{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01"]
+      description: '00 = Zone4 Standby, 01 = Zone4 On'
+- id: pw4_query
+  label: Zone 4 Power Status
+  kind: query
+  command: "!1PW4QSTN"
   params: []
-  notes: "Send: !1CCDPOWER[CR]"
+- id: mt4_set
+  label: Zone 4 Muting
+  kind: action
+  command: "!1MT4{state}"
+  params:
+    - name: state
+      type: string
+      enum: ["00", "01", "TG"]
+      description: '00 = Off, 01 = On, TG = wrap-around'
+- id: mt4_query
+  label: Zone 4 Muting Status
+  kind: query
+  command: "!1MT4QSTN"
+  params: []
+- id: vl4_set
+  label: Zone 4 Volume
+  kind: action
+  command: "!1VL4{level}"
+  params:
+    - name: level
+      type: string
+      enum: ["00..64", "00..50", "UP", "DOWN"]
+      description: '00-64 hex = 0-100, 00-50 hex = 0-80; UP/DOWN'
+- id: vl4_query
+  label: Zone 4 Volume Status
+  kind: query
+  command: "!1VL4QSTN"
+  params: []
+- id: sl4_set
+  label: Zone 4 Selector
+  kind: action
+  command: "!1SL4{source}"
+  params:
+    - name: source
+      type: string
+      enum: ["00..06", "10", "20..29", "2A", "30", "31", "32", "40", "80"]
+      description: Same source map as Zones 2/3; 80 = SOURCE
+- id: sl4_query
+  label: Zone 4 Selector Status
+  kind: query
+  command: "!1SL4QSTN"
+  params: []
+- id: tu4_set
+  label: Tuning (Zone 4, separate)
+  kind: action
+  command: "!1TU4{freq}"
+  params:
+    - name: freq
+      type: string
+      description: 'nnnnn = FM/AM/XM direct frequency'
+- id: tu4_query
+  label: Zone 4 Tuning Status
+  kind: query
+  command: "!1TU4QSTN"
+  params: []
+- id: pr4_set
+  label: Preset (Zone 4, separate)
+  kind: action
+  command: "!1PR4{preset}"
+  params:
+    - name: preset
+      type: string
+      enum: ["01..28", "01..1E", "UP", "DOWN"]
+      description: '01-28 hex = preset 1-40, 01-1E hex = preset 1-30'
+- id: pr4_query
+  label: Zone 4 Preset Status
+  kind: query
+  command: "!1PR4QSTN"
+  params: []
+- id: nt4_set
+  label: Net-Tune / Network Operation (Zone 4)
+  kind: action
+  command: "!1NT4{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PLAY", "STOP", "PAUSE", "TRUP", "TRDN"]
+      description: Network model only. Zone 4 has no CHUP/CHDN.
+- id: np4_set
+  label: Internet Radio Preset (Zone 4)
+  kind: action
+  command: "!1NP4{preset}"
+  params:
+    - name: preset
+      type: string
+      enum: ["01..28"]
+      description: '01-28 hex = preset 1-40. Network model only.'
 
-- id: ri_cd_play
-  label: RI CD Player Play
+# --- Dock (via RI) ---
+- id: cds_set
+  label: Docking Station via RI
   kind: action
-  params: []
-  notes: "Send: !1CCDPLAY[CR]"
-
-- id: ri_cd_stop
-  label: RI CD Player Stop
-  kind: action
-  params: []
-  notes: "Send: !1CCDSTOP[CR]"
-
-- id: ri_cd_pause
-  label: RI CD Player Pause
-  kind: action
-  params: []
-  notes: "Send: !1CCDPAUSE[CR]"
-
-# ── RI System — DVD Player ────────────────────────────────────────────────
-- id: ri_dvd_power
-  label: RI DVD Player Power On/Off
-  kind: action
-  params: []
-  notes: "Send: !1CDVPOWER[CR]"
-
-- id: ri_dvd_play
-  label: RI DVD Player Play
-  kind: action
-  params: []
-  notes: "Send: !1CDVPLAY[CR]"
-
-- id: ri_dvd_stop
-  label: RI DVD Player Stop
-  kind: action
-  params: []
-  notes: "Send: !1CDVSTOP[CR]"
-
-# ── RI System — Docking Station ───────────────────────────────────────────
-- id: ri_dock_power_on
-  label: RI Dock Power On
-  kind: action
-  params: []
-  notes: "Send: !1CDSPWRON[CR]"
-
-- id: ri_dock_power_off
-  label: RI Dock Standby
-  kind: action
-  params: []
-  notes: "Send: !1CDSPWROFF[CR]"
-
-- id: ri_dock_play_resume
-  label: RI Dock Play/Resume
-  kind: action
-  params: []
-  notes: "Send: !1CDSPLY/RES[CR]"
-
-- id: ri_dock_play_pause
-  label: RI Dock Play/Pause
-  kind: action
-  params: []
-  notes: "Send: !1CDSPLY/PAU[CR]"
-
-- id: ri_dock_stop
-  label: RI Dock Stop
-  kind: action
-  params: []
-  notes: "Send: !1CDSSTOP[CR]"
-
-- id: ri_dock_track_up
-  label: RI Dock Track Up
-  kind: action
-  params: []
-  notes: "Send: !1CDSSKIP.F[CR]"
-
-- id: ri_dock_track_down
-  label: RI Dock Track Down
-  kind: action
-  params: []
-  notes: "Send: !1CDSSKIP.R[CR]"
+  command: "!1CDS{key}"
+  params:
+    - name: key
+      type: string
+      enum: ["PWRON", "PWROFF", "PLY/RES", "STOP", "SKIP.F", "SKIP.R", "PAUSE", "PLY/PAU", "FF", "REW", "ALBUM+", "ALBUM-", "PLIST+", "PLIST-", "CHAPT+", "CHAPT-", "RANDOM", "REPEAT", "MUTE", "BLIGHT", "MENU", "ENTER", "UP", "DOWN"]
+      description: RI dock keys: power, transport, album/playlist/chapter nav, shuffle/repeat, mute, backlight, menu navigation
 ```
 
 ## Feedbacks
-
 ```yaml
 - id: power_state
-  label: System Power State
   type: enum
-  values: [standby, on]
-  notes: "Response: !1PWR00[EOF] = standby, !1PWR01[EOF] = on. Query: !1PWRQSTN[CR]"
-
-- id: mute_state
-  label: Audio Muting State
+  values: [on, standby]
+  source: 'PWRQSTN response (e.g. !1PWR00 = standby, !1PWR01 = on)'
+- id: audio_muting
   type: enum
   values: [off, on]
-  notes: "Response: !1AMT00[EOF] or !1AMT01[EOF]. Query: !1AMTQSTN[CR]"
-
-- id: volume_level
-  label: Master Volume Level
+  source: 'AMTQSTN response (!1AMT00 / !1AMT01)'
+- id: master_volume
   type: string
-  notes: "Response: !1MVL<hex>[EOF]; hex 00-64 = level 0-100. Query: !1MVLQSTN[CR]"
-
+  source: 'MVLQSTN response - two-char hex (00-64 = 0-100; 00-50 = 0-80)'
 - id: input_selector
-  label: Input Selector Position
   type: string
-  notes: "Response: !1SLI<code>[EOF]. Query: !1SLIQSTN[CR]"
-
-- id: audio_selector_state
-  label: Audio Selector State
-  type: string
-  notes: "Response: !1SLA<code>[EOF]. Query: !1SLAQSTN[CR]"
-
+  source: 'SLIQSTN response - hex source code per SLI table'
 - id: listening_mode
-  label: Listening Mode
   type: string
-  notes: "Response: !1LMD<hex>[EOF]. Query: !1LMDQSTN[CR]"
-
-- id: tone_front
-  label: Front Tone (Bass+Treble)
+  source: 'LMDQSTN response - two-char hex mode code per LMD table'
+- id: speaker_layout
   type: string
-  notes: "Response: !1TFRBxxTxx[EOF]. Query: !1TFRQSTN[CR]"
-
-- id: tone_center
-  label: Center Tone
-  type: string
-  notes: "Response: !1TCTBxxTxx[EOF]. Query: !1TCTQSTN[CR]"
-
-- id: tone_surround
-  label: Surround Tone
-  type: string
-  notes: "Response: !1TSRBxxTxx[EOF]. Query: !1TSRQSTN[CR]"
-
-- id: tone_surround_back
-  label: Surround Back Tone
-  type: string
-  notes: "Response: !1TSBBxxTxx[EOF]. Query: !1TSBQSTN[CR]"
-
-- id: tone_subwoofer
-  label: Subwoofer Tone
-  type: string
-  notes: "Response: !1TSWBxx[EOF]. Query: !1TSWQSTN[CR]"
-
-- id: subwoofer_level
-  label: Subwoofer Level
-  type: string
-  notes: "Query: !1SWLQSTN[CR]"
-
-- id: center_level
-  label: Center Level
-  type: string
-  notes: "Query: !1CTLQSTN[CR]"
-
-- id: sleep_time
-  label: Sleep Timer Setting
-  type: string
-  notes: "Response: !1SLP<hex>[EOF] or !1SLPOFF[EOF]. Query: !1SLPQSTN[CR]"
-
-- id: dimmer_level
-  label: Dimmer Level
-  type: string
-  notes: "Response: !1DIM<code>[EOF]. Query: !1DIMQSTN[CR]"
-
-- id: display_mode
-  label: Display Mode
-  type: string
-  notes: "Response: !1DIF<code>[EOF]. Query: !1DIFQSTN[CR]"
-
-- id: hdmi_output
-  label: HDMI Output Selector
-  type: string
-  notes: "Response: !1HDO<code>[EOF]. Query: !1HDOQSTN[CR]"
-
-- id: monitor_resolution
-  label: Monitor Out Resolution
-  type: string
-  notes: "Response: !1RES<code>[EOF]. Query: !1RESQSTN[CR]"
-
-- id: isf_mode
-  label: ISF Mode State
-  type: string
-  notes: "Response: !1ISF<code>[EOF]. Query: !1ISFQSTN[CR]"
-
+  source: 'SPLQSTN response - SB / FH / FW'
 - id: speaker_a_state
-  label: Speaker A State
   type: enum
   values: [off, on]
-  notes: "Query: !1SPAQSTN[CR]"
-
+  source: 'SPAQSTN response (!1SPA00 / !1SPA01)'
 - id: speaker_b_state
-  label: Speaker B State
   type: enum
   values: [off, on]
-  notes: "Query: !1SPBQSTN[CR]"
-
-- id: speaker_layout_state
-  label: Speaker Layout State
+  source: 'SPBQSTN response (!1SPB00 / !1SPB01)'
+- id: dimmer_level
   type: string
-  notes: "Query: !1SPLQSTN[CR]"
-
-- id: late_night_level
-  label: Late Night Level
+  source: 'DIMQSTN response - hex 00/01/02/03/08'
+- id: hdmi_output
   type: string
-  notes: "Query: !1LTNQSTN[CR]"
-
-- id: reeq_state
-  label: Re-EQ/Cinema Filter State
+  source: 'HDOQSTN response - 00..05 per HDO table'
+- id: monitor_resolution
   type: string
-  notes: "Query: !1RASQSTN[CR]"
-
-- id: audyssey_multieq_state
-  label: Audyssey 2EQ/MultEQ State
+  source: 'RESQSTN response - 00..07 per RES table'
+- id: late_night
+  type: string
+  source: 'LTNQSTN response - 00..03'
+- id: dolby_volume
+  type: string
+  source: 'DVLQSTN response - 00..03'
+- id: audyssey_state
   type: enum
   values: [off, on]
-  notes: "Query: !1ADYQSTN[CR]"
-
-- id: audyssey_dynamic_eq_state
-  label: Audyssey Dynamic EQ State
+  source: 'ADYQSTN response'
+- id: audyssey_dynamic_eq
   type: enum
   values: [off, on]
-  notes: "Query: !1ADQQSTN[CR]"
-
-- id: audyssey_dynamic_volume_state
-  label: Audyssey Dynamic Volume State
+  source: 'ADQQSTN response'
+- id: audyssey_dynamic_volume
   type: string
-  notes: "Query: !1ADVQSTN[CR]"
-
-- id: dolby_volume_state
-  label: Dolby Volume State
-  type: string
-  notes: "Query: !1DVLQSTN[CR]"
-
-- id: music_optimizer_state
-  label: Music Optimizer State
+  source: 'ADVQSTN response - 00..03 (off/light/medium/heavy)'
+- id: music_optimizer
   type: enum
   values: [off, on]
-  notes: "Query: !1MOTQSTN[CR]"
-
+  source: 'MOTQSTN response'
+- id: display_mode
+  type: string
+  source: 'DIFQSTN response - 00..03'
+- id: zone2_power
+  type: enum
+  values: [off, on]
+  source: 'ZPWQSTN response'
+- id: zone2_muting
+  type: enum
+  values: [off, on]
+  source: 'ZMTQSTN response'
+- id: zone2_volume
+  type: string
+  source: 'ZVLQSTN response - hex 00-64/00-50'
+- id: zone2_selector
+  type: string
+  source: 'ZSLQSTN response - hex source code'
+- id: zone3_power
+  type: enum
+  values: [off, on]
+  source: 'PW3QSTN response'
+- id: zone3_volume
+  type: string
+  source: 'VL3QSTN response'
+- id: zone3_selector
+  type: string
+  source: 'SL3QSTN response'
+- id: zone4_power
+  type: enum
+  values: [off, on]
+  source: 'PW4QSTN response'
+- id: zone4_volume
+  type: string
+  source: 'VL4QSTN response'
+- id: zone4_selector
+  type: string
+  source: 'SL4QSTN response'
 - id: tuner_frequency
-  label: Tuner Frequency
   type: string
-  notes: "Query: !1TUNQSTN[CR]"
-
+  source: 'TUNQSTN response - 5-digit nnnnn'
 - id: tuner_preset
-  label: Tuner Preset Number
   type: string
-  notes: "Query: !1PRSQSTN[CR]"
-
+  source: 'PRSQSTN response - hex 01-28 / 01-1E'
+- id: net_usb_status
+  type: string
+  source: 'NSTQSTN response - 3-letter prs code (p: S/P/p/F/R, r: -/R/F/1)'
+- id: hd_radio_tuner_status
+  type: string
+  source: 'HTSQSTN response - 6-char mmnnoo (HD flag / current prog / receivable mask)'
 - id: audio_info
-  label: Audio Information
   type: string
-  notes: "Response: !1IFAnnnnn:nnnnn[EOF]; comma-separated. Query: !1IFAQSTN[CR]; also triggered by DIF02"
-
+  source: 'IFAQSTN response - "nnnnn:nnnnn" CSV'
 - id: video_info
-  label: Video Information
   type: string
-  notes: "Response: !1IFVnnnnn:nnnnn[EOF]; comma-separated. Query: !1IFVQSTN[CR]; also triggered by DIF03"
-
-- id: net_artist_name
-  label: Net/USB Artist Name
-  type: string
-  notes: "Query: !1NATQSTN[CR]; up to 64 ASCII chars"
-
-- id: net_album_name
-  label: Net/USB Album Name
-  type: string
-  notes: "Query: !1NALQSTN[CR]; up to 64 ASCII chars"
-
-- id: net_title_name
-  label: Net/USB Title Name
-  type: string
-  notes: "Query: !1NTIQSTN[CR]; up to 64 ASCII chars"
-
-- id: net_time_info
-  label: Net/USB Time Info
-  type: string
-  notes: "Response: !1NTMmm:ss/mm:ss[EOF]; elapsed/track time. Query: !1NTMQSTN[CR]"
-
-- id: net_track_info
-  label: Net/USB Track Info
-  type: string
-  notes: "Response: !1NTRcccc/tttt[EOF]; current/total tracks. Query: !1NTRQSTN[CR]"
-
-- id: net_play_status
-  label: Net/USB Play Status
-  type: string
-  notes: "Response: !1NSTprs[EOF]; p=play state (S/P/p/F/R), r=repeat state (-/R/F/1), s=shuffle state. Query: !1NSTQSTN[CR]"
-
-- id: zone2_power_state
-  label: Zone 2 Power State
-  type: enum
-  values: [standby, on]
-  notes: "Query: !1ZPWQSTN[CR]"
-
-- id: zone2_mute_state
-  label: Zone 2 Muting State
-  type: enum
-  values: [off, on]
-  notes: "Query: !1ZMTQSTN[CR]"
-
-- id: zone2_volume_level
-  label: Zone 2 Volume Level
-  type: string
-  notes: "Query: !1ZVLQSTN[CR]"
-
-- id: zone2_input_selector
-  label: Zone 2 Input Selector
-  type: string
-  notes: "Query: !1ZSLQSTN[CR]"
-
-- id: zone2_tone
-  label: Zone 2 Tone
-  type: string
-  notes: "Query: !1ZTNQSTN[CR]"
-
-- id: zone2_balance
-  label: Zone 2 Balance
-  type: string
-  notes: "Query: !1ZBLQSTN[CR]"
-
-- id: zone3_power_state
-  label: Zone 3 Power State
-  type: enum
-  values: [standby, on]
-  notes: "Query: !1PW3QSTN[CR]"
-
-- id: zone3_mute_state
-  label: Zone 3 Muting State
-  type: enum
-  values: [off, on]
-  notes: "Query: !1MT3QSTN[CR]"
-
-- id: zone3_volume_level
-  label: Zone 3 Volume Level
-  type: string
-  notes: "Query: !1VL3QSTN[CR]"
-
-- id: zone3_input_selector
-  label: Zone 3 Input Selector
-  type: string
-  notes: "Query: !1SL3QSTN[CR]"
-
-- id: zone4_power_state
-  label: Zone 4 Power State
-  type: enum
-  values: [standby, on]
-  notes: "Query: !1PW4QSTN[CR]"
-
-- id: zone4_mute_state
-  label: Zone 4 Muting State
-  type: enum
-  values: [off, on]
-  notes: "Query: !1MT4QSTN[CR]"
-
-- id: zone4_volume_level
-  label: Zone 4 Volume Level
-  type: string
-  notes: "Query: !1VL4QSTN[CR]"
-
-- id: zone4_input_selector
-  label: Zone 4 Input Selector
-  type: string
-  notes: "Query: !1SL4QSTN[CR]"
+  source: 'IFVQSTN response - "nnnnn:nnnnn" CSV'
 ```
 
 ## Variables
-
 ```yaml
-# UNRESOLVED: no settable parameters outside of discrete actions were identified; all adjustable
-# parameters are controlled via Actions. Remove this section or populate if additional
-# persistent variables are found in a more detailed source document.
+# Discrete, set-only per-zone or per-channel parameters. Discrete on/off/value
+# setters are modeled as actions; this section covers values that the source
+# exposes purely as QSTN-readable state without an explicit "set" row, plus
+# persistent mode/state that can be polled.
+# UNRESOLVED: source does not document a "Variables" section distinct from
+# Actions + QSTN. The entries below are derived from the per-command QSTN
+# response values documented in the Feedbacks table.
+- id: master_volume
+  type: integer
+  range: [0, 100]
+  description: MVLQSTN response; source defines 0-100 (hex 00-64) and 0-80 (hex 00-50) scales; receiver-specific.
+- id: zone2_volume
+  type: integer
+  range: [0, 100]
+  description: ZVLQSTN response; same 0-100/0-80 scale as master.
+- id: zone3_volume
+  type: integer
+  range: [0, 100]
+  description: VL3QSTN response.
+- id: zone4_volume
+  type: integer
+  range: [0, 100]
+  description: VL4QSTN response.
+- id: sleep_timer_minutes
+  type: integer
+  range: [0, 90]
+  description: SLPQSTN response; 01-5A hex = 1-90 min; 0 = OFF.
+- id: subwoofer_level_db
+  type: integer
+  range: [-15, 12]
+  description: SWLQSTN response; -F to +C hex = -15dB to +12dB.
+- id: center_level_db
+  type: integer
+  range: [-12, 12]
+  description: CTLQSTN response; -C to +C hex = -12dB to +12dB.
+- id: front_tone_bass
+  type: string
+  description: 'TFRQSTN response - bass component of "BxxTxx"'
+- id: front_tone_treble
+  type: string
+  description: 'TFRQSTN response - treble component of "BxxTxx"'
+- id: front_wide_tone_bass
+  type: string
+  description: TFWQSTN response bass
+- id: front_wide_tone_treble
+  type: string
+  description: TFWQSTN response treble
+- id: front_high_tone_bass
+  type: string
+  description: TFHQSTN response bass
+- id: front_high_tone_treble
+  type: string
+  description: TFHQSTN response treble
+- id: center_tone_bass
+  type: string
+  description: TCTQSTN response bass
+- id: center_tone_treble
+  type: string
+  description: TCTQSTN response treble
+- id: surround_tone_bass
+  type: string
+  description: TSRQSTN response bass
+- id: surround_tone_treble
+  type: string
+  description: TSRQSTN response treble
+- id: surround_back_tone_bass
+  type: string
+  description: TSBQSTN response bass
+- id: surround_back_tone_treble
+  type: string
+  description: TSBQSTN response treble
+- id: subwoofer_tone
+  type: string
+  description: TSWQSTN response - "Bxx" only (no treble)
+- id: zone2_balance
+  type: string
+  description: ZBLQSTN response - xx hex (no source-stated numeric scale)
+- id: zone2_tone
+  type: string
+  description: ZTNQSTN response - "BxxTxx" (bass/treble)
+- id: hd_radio_blend_mode
+  type: enum
+  values: [auto, analog]
+  description: HBLQSTN response
+- id: hd_radio_program
+  type: string
+  description: HPRQSTN response - 01-08
 ```
 
 ## Events
-
 ```yaml
-- id: status_change_notification
-  label: Unsolicited Status Notification
-  notes: "Device sends a status message whenever internal state changes without a command trigger. Format is identical to query responses: !1<CMD><value>[EOF]. Requires an active persistent TCP connection for eISCP; RS-232C delivers notifications automatically."
+# ISCP uses unsolicited status messages sent by the device on state change.
+# Source describes this in section 2.3 ("Event Notice Communication") - when
+# device state changes, the receiver sends a status message echoing the relevant
+# command.
+- id: status_message
+  direction: device_to_controller
+  description: >
+    Any status change generates an unsolicited message with the same form as
+    a status query response (e.g. SLI03 if the input selector changes to
+    VIDEO3). Receiver must respond within 50ms of a state change.
+  example: "!1SLI03"
+  trigger: state_change
+  notes: >
+    Controller→Device interval must be ≥50ms. Connection is point-to-point;
+    only one TCP client can connect at a time; the connection must be held
+    continuously to receive status notices (eISCP).
 ```
 
 ## Macros
-
 ```yaml
-# UNRESOLVED: no multi-step sequences are explicitly defined in the source.
+# Multi-step sequences described explicitly in source.
+# UNRESOLVED: source does not document discrete multi-step macro sequences.
+# The MEM command (STR/RCL/LOCK/UNLK) is a single-step memory operation,
+# not a macro definition. The wrap-around (UP/DOWN/TG) mnemonics are
+# single-command behaviors, not sequences. No macro definitions found.
 ```
 
 ## Safety
-
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - description: "Zone 2 tone and volume commands only work when main zone is powered ON"
-    commands: [zone2_tone_set, zone2_volume_set]
-  - description: "12V Trigger commands (TGA/TGB/TGC) are only available when the respective 12V Trigger parameter is set to OFF in the receiver Setup Menu"
-    commands: [trigger_a_set, trigger_b_set, trigger_c_set]
-  - description: "TCP (eISCP): only one client connection is permitted at a time; connecting a second client will displace the first"
-    commands: []
+interlocks: []
+# UNRESOLVED: source does not document safety warnings, interlock procedures,
+# or power-on sequencing requirements. The only sequencing constraint stated
+# is "Interval Time Receiving the message needs to take more than 50msec"
+# and that the eISCP TCP connection must remain open continuously.
 ```
 
 ## Notes
-
-**Protocol structure:**
-- ISCP protocol version: 1.15 (dated 31 August 2009; Onkyo copyright 2003-2009)
-- Every command follows the pattern: `!1<3-char-code><param>[terminator]`
-- Query parameter is always `QSTN` (e.g., `!1PWRQSTN[CR]` queries power state)
-- Wrap-around increment commands are `UP`; wrap-around decrement is `DOWN`
-- Toggle commands use `TG`
-
-**Timing:**
-- Receiver must respond within 50 ms; if no response, communication has failed
-- For eISCP (TCP), interval between received messages must be at least 50 ms
-- FFW/REW Net-tune commands must be sent continuously with no more than 100 ms between codes
-
-**Multi-zone architecture:**
-- Main zone: commands use 3-char codes (PWR, SLI, MVL, etc.)
-- Zone 2: uses ZPW (power), ZVL (volume), ZSL (input), ZTN (tone), ZBL (balance), ZMT (mute); shared tuner/preset use PRS/TUN; separate zone control uses PR2/TU2
-- Zone 3: PW3, VL3, SL3, MT3; separate control PR3/TU3/NT3
-- Zone 4: PW4, VL4, SL4, MT4; separate control PR4/TU4/NT4
-- Tuner/XM/SIRIUS/Net-Tune functions are shared across main and all zones by default; separate per-zone commands (TU2, PR2, NT2, etc.) provide independent zone control
-
-**eISCP TCP header format (big-endian):**
-- Bytes 0-3: ASCII `ISCP`
-- Bytes 4-7: Header size = 0x00000010 (16 bytes)
-- Bytes 8-11: Data size (big-endian 32-bit)
-- Byte 12: Version = 0x01
-- Bytes 13-15: Reserved = 0x000000
-
-**RI System:**
-- Onkyo RI (Remote Interactive) commands control connected Onkyo peripheral devices (CD, DVD, MD, DAT, tape decks, equalizers, docking stations) through the RI bus
-- RI commands are issued from the receiver via serial/eISCP to control attached accessories
-
-**Model-specific notes:**
-- XM and SIRIUS inputs/commands are only available on XM/SIRIUS-equipped models
-- HD Radio commands (HAT, HCN, HTI, HDS, HPR, HBL, HTS) are only available on HD Radio models
-- RDS commands (RDS, PTS, TPS) are only available on RDS/RBDS models
-- SIRIUS parental lock command SLK is SIRIUS-only
-- Video Output Selector VOS is Japanese market only
-- Neural Surround (LMD 87) is North America only
-- Listening mode 40 behavior differs between pre- and post-TX-SR805 models
-- Net-Tune commands NTC with z-suffix (PLAYz, STOPz, etc.) are for older Net-Tune models before TX-NR1000
-
-<!-- UNRESOLVED: specific TX-RZ model numbers supported by this ISCP 1.15 document are not enumerated. The source document title references "AV Receiver" generically. The TX-RZ branding appears to postdate this 2009 document version; confirm protocol applicability to specific TX-RZ variants. -->
-<!-- UNRESOLVED: video output selector VOS (D4/Component) is Japanese model only; applicability to TX-RZ export models not confirmed. -->
-<!-- UNRESOLVED: eISCP packet endianness for data size field verified as big-endian in source; verify implementation against actual device. -->
+- **ISCP framing (RS-232C):** Every message begins with `!1` (start char `!` + receiver unit type `1`) and ends with `[CR]`, `[LF]`, or `[CR][LF]`. Device-to-controller responses end with `[EOF]` (0x1A).
+- **eISCP framing (TCP):** The ISCP message is wrapped in a 16-byte header. Header is `"ISCP"` (4 bytes ASCII) + Header Size (4 bytes big-endian, currently `0x00000010`) + Data Size (4 bytes big-endian) + Version (1 byte, `0x01`) + Reserved (3 bytes, `0x000000`). ISCP end-character over eISCP is `[EOF]` (and optionally `[EOF][CR]` or `[EOF][CR][LF]` depending on model).
+- **Unit type:** Source defines "1" for receivers. Other Onkyo/Integra devices use other unit-type codes — out of scope here.
+- **Command/Question/Notification:** Three message types. Command (`!1CMD{param}`) for control; Question (`!1CMDQSTN`) for state read; Notification (unsolicited `!1CMD{value}`) for state change. Receiver responds within 50ms; otherwise the communication has failed.
+- **TUN/PRS shared semantics:** The TUNER and NET-TUNE/NETWORK functions are shared between MAIN and ZONE sides. The `TUN`/`PRS`/`NTC` commands are shared; the `TU2`/`TU3`/`TU4`/`PR2`/`PR3`/`PR4`/`NT2`/`NT3`/`NT4` variants provide independent Zone 2/3/4 control. The `NTC` command with `z`-suffixed parameters (`PLAYz`, `STOPz`, etc.) is the shared Net-Tune (pre-TX-NR1000) control.
+- **Receiver-specific availability:** Many commands are conditional — TGA/TGB/TGC require the corresponding Setup Menu 12V Trigger parameter to be OFF; SLI codes 31 (XM) and 32 (SIRIUS) require XM/SIRIUS-equipped models; VOS is Japanese models only; SIRIUS, HD Radio, and XM commands require the respective tuner pack.
+- **MVL scale:** Source documents two scales — 00-64 hex (0-100) and 00-50 hex (0-80). The 0-80 scale is for receivers that compress the range. The actual scale used depends on the receiver model.
+- **Listening mode availability:** Each `LMD` value is only valid on certain models. The `*1` and `*2` footnotes note that some codes (e.g. `40`, `41`) are model-specific (newer than TX-SR805 has different straight-decode behavior; `87` is North America only). The Verifier should treat availability as model-dependent, not fabrications.
+- **FF/REW timing (NTC):** "FFW/REW Net-tune commands must be sent continuously, with no more than 100ms delay between codes."
+- **Status message timing:** "Receiver will respond with a status message within 50msec. If Receiver does not respond within 50msec, the communication has failed."
+- **Source version caveat:** The source document is "ISCP Spec - Receivers, Version 1.15, 31 August 2009" (Integra brand). The Onkyo TX-RZ series was released 2015+ and may support newer ISCP features (e.g. Dolby Atmos, DTS:X, AirPlay, Chromecast, newer streaming services) not documented in v1.15. Coverage of TX-RZ-specific features is not stated in source.
+- **Wrap-around semantics:** When the source describes `UP`/`DOWN`/`TG`/`MOVIE`/`MUSIC`/`GAME` as parameters, these cause the device to step through the available values for that setting. The exact set of values stepped through is receiver- and setting-dependent.
+- **No firmware/version probing:** The source does not document a query for firmware version or receiver model identification. Compatibility checking must rely on the receiver's own setup menu.
+- **Transport mutual exclusivity:** A given physical RS-232C or Ethernet link is exclusive to one controller. The protocol is point-to-point; multi-controller setups require a bridging controller.
+<!-- UNRESOLVED: TX-RZ-specific features (Dolby Atmos, DTS:X, AirPlay 2, Chromecast, voice assistants, newer network streaming) and any post-v1.15 ISCP extensions are not stated in source. -->
+<!-- UNRESOLVED: RI dock (CDS) command set is described as having "DOCK" sub-keys; full enumeration in source is truncated at "DOWN CURSOR DOWN Key" and may continue beyond. -->
+<!-- UNRESOLVED: eISCP packet size limits and maximum ISCP message length are not stated in source. -->
 
 ## Provenance
 
@@ -1488,25 +1621,31 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-21T15:18:18.496Z
-last_checked_at: 2026-05-16T23:46:32.077Z
+retrieved_at: 2026-06-02T03:58:12.590Z
+last_checked_at: 2026-06-02T04:20:05.210Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T23:46:32.077Z
-matched_actions: 139
-action_count: 139
-confidence: high
-summary: "All 139 spec action-units matched cleanly; transport parameters verified in source; ISCP 1.15 protocol fully represented."
+checked_at: 2026-06-02T04:20:05.210Z
+matched_actions: 175
+action_count: 175
+confidence: medium
+summary: "All 175 spec actions matched literally to ISCP v1.15 source; transport parameters verified; bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "the source document is the Integra ISCP v1.15 spec (Aug 2009) and predates the TX-RZ series; coverage of TX-RZ-specific features (e.g. newer streaming services, Dolby Atmos, DTS:X) is not stated in source."
+- "source does not document a \"Variables\" section distinct from"
+- "source does not document discrete multi-step macro sequences."
+- "source does not document safety warnings, interlock procedures,"
+- "TX-RZ-specific features (Dolby Atmos, DTS:X, AirPlay 2, Chromecast, voice assistants, newer network streaming) and any post-v1.15 ISCP extensions are not stated in source."
+- "RI dock (CDS) command set is described as having \"DOCK\" sub-keys; full enumeration in source is truncated at \"DOWN CURSOR DOWN Key\" and may continue beyond."
+- "eISCP packet size limits and maximum ISCP message length are not stated in source."
 ```
 
 ---

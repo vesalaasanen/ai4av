@@ -26,14 +26,20 @@ last_checked_at: 2026-04-23T08:27:21.235Z
 generated_at: 2026-04-23T08:27:21.235Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "WB-150/250 do not support power status queries per source"
+  - "no unsolicited notifications documented"
+  - "no explicit multi-step sequences documented"
+  - "no explicit interlock or sequencing requirements in source"
+  - "SSH key-based auth not documented"
+  - "actual voltage/current ranges not specified"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:27:21.235Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands."
+  confidence: medium
+  summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -391,14 +397,19 @@ verdict: verified
 checked_at: 2026-04-23T08:27:21.235Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands."
+confidence: medium
+summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "WB-150/250 do not support power status queries per source"
+- "no unsolicited notifications documented"
+- "no explicit multi-step sequences documented"
+- "no explicit interlock or sequencing requirements in source"
+- "SSH key-based auth not documented"
+- "actual voltage/current ranges not specified"
 ```
 
 ---

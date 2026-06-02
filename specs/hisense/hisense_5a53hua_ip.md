@@ -1,51 +1,60 @@
 ---
-spec_id: admin/hisense-prosumer_tv
+spec_id: admin/hisense-5a53hua
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "HiSense Prosumer TV Control Spec"
+title: "HiSense 5A53HUA Prosumer TV Control Spec"
 manufacturer: HiSense
-model_family: "HiSense Prosumer TV"
+model_family: 5A53HUA
 aliases: []
 compatible_with:
   manufacturers:
     - HiSense
   models:
-    - "HiSense Prosumer TV"
+    - 5A53HUA
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.203Z
-generated_at: 2026-05-14T18:17:16.203Z
+retrieved_at: 2026-06-01T22:10:09.323Z
+last_checked_at: 2026-06-01T22:29:10.619Z
+generated_at: 2026-06-01T22:29:10.619Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - SPKM
+  - B2BM
+  - USBM
+  - PSHF
+  - "IP/Ethernet control not documented in source (caller suggested TCP/IP but no IP commands appear in the refined document). Only RS-232 and IR are covered."
+  - "any device-initiated notifications not described in source."
+  - "no multi-step sequences documented in source."
+  - "firmware version compatibility not stated in source."
+  - "voltage, current, and power specifications not stated in source."
+  - "full list of supported Prosumer TV model numbers — source Models field is blank."
+  - "POIS query command not listed in source (only set values 0000-0003 explicit, plus references to INPT-set inputs)."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.203Z
-  matched_actions: 89
-  action_count: 108
-  confidence: high
-  summary: "All 89 spec actions matched with literal counterparts; transport parameters verified verbatim."
+  checked_at: 2026-06-01T22:29:10.619Z
+  matched_actions: 120
+  action_count: 120
+  confidence: medium
+  summary: "All 120 spec actions confirmed verbatim in source command table; transport 9600 8N1 matches; 4 source commands (SPKM,B2BM,USBM,PSHF) not in spec but count is 4, under the >5 short threshold. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
-# HiSense Prosumer TV Control Spec
+# HiSense 5A53HUA Prosumer TV Control Spec
 
 ## Summary
-Prosumer TV controlled via RS-232C serial (9600 8N1, ASCII protocol) and discrete IR. Supports broadcast (ALL) addressing via MAC address suffix, power on/off from standby, input routing, picture/sound adjustments, aspect ratio, tuner, and panel/remote lock. No authentication required.
+RS-232C serial control protocol for the HiSense 5A53HUA Prosumer TV. Frame format: ASCII, 14 bytes fixed length (Operation, Client ID, Command, Data, Checksum, CR). Query commands return ACK with `OKAY`/`EROR`/`WAIT` plus data. Document also covers a discrete IR code set (out of scope for this serial spec).
 
-<!-- UNRESOLVED: TCP/IP control not present in source — document covers RS-232 and IR only. -->
+<!-- UNRESOLVED: IP/Ethernet control not documented in source (caller suggested TCP/IP but no IP commands appear in the refined document). Only RS-232 and IR are covered. -->
 
 ## Transport
 ```yaml
@@ -57,806 +66,1535 @@ serial:
   parity: none
   stop_bits: 1
   flow_control: none
+  connector: DB9 D-sub female on TV
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: none  # inferred: no auth/login procedure in source
 ```
+
+**Frame structure (per source, 14 bytes fixed):**
+- OPERATION (1 byte): `S` = Set, `Q` = Query
+- CLIENT ID (3 bytes ASCII): `0-9`,`A-F`. For Smart TV use last 3 bytes of Ethernet MAC; for Feature TV use value selected in TV Menu; `ALL` = broadcast.
+- COMMAND (4 bytes ASCII, `A-Z`): mnemonic from "Command & Data" table
+- DATA (4 bytes ASCII, `0-9`,`A-Z`,`#`,`?`): `????` for queries
+- CHECKSUM (1 byte): 8-bit checksum such that the 8-bit sum of the entire command string including the CHECKSUM byte equals `0x00`
+- TERMINATION (1 byte): Carriage Return `0x0D`
+
+**ACK from TV:** `<CLIENT_ID>:<ACK><DATA><CHECKSUM><CR>` where ACK is one of `OKAY`, `EROR`, `WAIT`.
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable       # inferred: POWER ON/OFF control present (POWR, PWRE)
+- routable        # inferred: input source selection present (INPT, POIS)
+- queryable       # inferred: extensive QUERY command set present
+- levelable       # inferred: volume/brightness/contrast/sharpness/color/tint/backlight settable
 ```
 
 ## Actions
 ```yaml
-- id: power_on
-  label: Power On
-  kind: action
-  params: []
-- id: power_off
-  label: Power Off
-  kind: action
-  params: []
-- id: power_standby
-  label: Set Standby
-  kind: action
-  params: []
-- id: enable_remote_power_on
-  label: Enable RS-232 Remote Power On
-  kind: action
-  params: []
-- id: disable_remote_power_on
+# Frame template:
+#   SET:    S<CLIENT_ID><COMMAND><DATA><CKSUM>\r
+#   QUERY:  Q<CLIENT_ID><COMMAND>????<CKSUM>\r
+# {CLIENT_ID}: 3 ASCII chars (last 3 of MAC, or "ALL")
+# {CKSUM}: 1 byte; 8-bit sum of all preceding bytes plus checksum = 0x00
+# \r = 0x0D (CR)
+
+- id: pwre_disable
   label: Disable RS-232 Remote Power On
   kind: action
-  params: []
+  command: "S{ID}PWRE0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+      description: 3-char ASCII client ID
+    - name: CKSUM
+      type: byte
+      description: 1-byte checksum (sum including this byte ≡ 0x00)
+  notes: "Function: POWER ON COMMAND ENABLE/QUERY POWER ON COMMAND SETTING"
 
-- id: set_input
-  label: Set Input Source
+- id: pwre_enable
+  label: Enable RS-232 Remote Power On
   kind: action
+  command: "S{ID}PWRE0001{CKSUM}\r"
   params:
-    - name: source
-      type: integer
-      description: |
-        0 = TV, 1 = AV, 3 = Component, 4 = AV, 6 = VGA, 9 = HDMI1,
-        10 = HDMI2, 11 = HDMI3, 12 = HDMI4
-- id: cycle_input
-  label: Cycle Input
-  kind: action
-  params: []
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Must be set to Enable before RS-232 can power the TV on from standby."
 
-- id: set_picture_mode
-  label: Set Picture Mode
+- id: powr_standby
+  label: Set Power Standby
   kind: action
+  command: "S{ID}POWR0000{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: |
-        0 = Standard, 2 = Vivid, 3 = EnergySaving, 4 = Theater,
-        5 = Game, 6 = Sport
-- id: set_brightness
-  label: Set Brightness
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: powr_on
+  label: Set Power On
   kind: action
+  command: "S{ID}POWR0001{CKSUM}\r"
   params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_cycle
+  label: Input Signal: Change One at a Time
+  kind: action
+  command: "S{ID}INPT0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_tv
+  label: Set Input Signal: TV
+  kind: action
+  command: "S{ID}INPT0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_component
+  label: Set Input Signal: Component
+  kind: action
+  command: "S{ID}INPT0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_av
+  label: Set Input Signal: AV
+  kind: action
+  command: "S{ID}INPT0004{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_vga
+  label: Set Input Signal: VGA
+  kind: action
+  command: "S{ID}INPT0006{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_hdmi1
+  label: Set Input Signal: HDMI1
+  kind: action
+  command: "S{ID}INPT0009{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_hdmi2
+  label: Set Input Signal: HDMI2
+  kind: action
+  command: "S{ID}INPT0010{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_hdmi3
+  label: Set Input Signal: HDMI3
+  kind: action
+  command: "S{ID}INPT0011{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpt_hdmi4
+  label: Set Input Signal: HDMI4
+  kind: action
+  command: "S{ID}INPT0012{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_standard
+  label: Set Picture Mode: Standard
+  kind: action
+  command: "S{ID}PMOD0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_vivid
+  label: Set Picture Mode: Vivid
+  kind: action
+  command: "S{ID}PMOD0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_energy_saving
+  label: Set Picture Mode: EnergySaving
+  kind: action
+  command: "S{ID}PMOD0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_theater
+  label: Set Picture Mode: Theater
+  kind: action
+  command: "S{ID}PMOD0004{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_game
+  label: Set Picture Mode: Game
+  kind: action
+  command: "S{ID}PMOD0005{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pmod_sport
+  label: Set Picture Mode: Sport
+  kind: action
+  command: "S{ID}PMOD0006{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: brit_set
+  label: Set Brightness Value
+  kind: action
+  command: "S{ID}BRIT{value}{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_contrast
-  label: Set Contrast
+      description: 0-100, 4-digit zero-padded (e.g. 0035, 0100)
+    - name: CKSUM
+      type: byte
+
+- id: cont_set
+  label: Set Contrast Value
   kind: action
+  command: "S{ID}CONT{value}{CKSUM}\r"
   params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_color_saturation
-  label: Set Color Saturation
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: colr_set
+  label: Set Color Saturation Value
   kind: action
+  command: "S{ID}COLR{value}{CKSUM}\r"
   params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_tint
-  label: Set Tint
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: tint_set
+  label: Set Tint Value
   kind: action
+  command: "S{ID}TINT{value}{CKSUM}\r"
   params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_sharpness
-  label: Set Sharpness
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: shrp_set
+  label: Set Sharpness Value
   kind: action
+  command: "S{ID}SHRP{value}{CKSUM}\r"
   params:
-    name: value
-    type: integer
-    description: 0-20
-- id: set_color_temp
-  label: Set Color Temperature
-  kind: action
-  params:
-    - name: temp
-      type: integer
-      description: 0 = High, 2 = Middle, 3 = Mid-Low, 4 = Low
-- id: set_backlight
-  label: Set Backlight
-  kind: action
-  params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: reset_picture_settings
+      description: 0-20, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: aspt_auto
+  label: Set Aspect Ratio: Auto
+  kind: action
+  command: "S{ID}ASPT0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_normal
+  label: Set Aspect Ratio: Normal
+  kind: action
+  command: "S{ID}ASPT0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_zoom
+  label: Set Aspect Ratio: Zoom
+  kind: action
+  command: "S{ID}ASPT0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_wide
+  label: Set Aspect Ratio: Wide
+  kind: action
+  command: "S{ID}ASPT0004{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_direct
+  label: Set Aspect Ratio: Direct
+  kind: action
+  command: "S{ID}ASPT0005{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_pixel_map
+  label: Set Aspect Ratio: 1-to-1 Pixel Map
+  kind: action
+  command: "S{ID}ASPT0006{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_panoramic
+  label: Set Aspect Ratio: Panoramic
+  kind: action
+  command: "S{ID}ASPT0007{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspt_cinema
+  label: Set Aspect Ratio: Cinema
+  kind: action
+  command: "S{ID}ASPT0008{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: ovsn_on
+  label: Set Overscan: On
+  kind: action
+  command: "S{ID}OVSN0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: ovsn_off
+  label: Set Overscan: Off
+  kind: action
+  command: "S{ID}OVSN0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: rstp_picture
   label: Reset Picture Settings
   kind: action
-  params: []
-- id: set_overscan
-  label: Set Overscan
-  kind: action
+  command: "S{ID}RSTP1000{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = On, 2 = Off
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
 
-- id: set_sound_mode
-  label: Set Sound Mode
+- id: ctem_high
+  label: Set Color Temp: High
   kind: action
+  command: "S{ID}CTEM0000{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: |
-        0 = Standard, 2 = Theater, 3 = Music, 4 = Speech, 5 = Late night
-- id: set_volume
-  label: Set Volume
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: ctem_middle
+  label: Set Color Temp: Middle
   kind: action
+  command: "S{ID}CTEM0002{CKSUM}\r"
   params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: ctem_mid_low
+  label: Set Color Temp: Mid-Low
+  kind: action
+  command: "S{ID}CTEM0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: ctem_low
+  label: Set Color Temp: Low
+  kind: action
+  command: "S{ID}CTEM0004{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: bklv_set
+  label: Set Backlight Value
+  kind: action
+  command: "S{ID}BKLV{value}{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_mute
-  label: Set Mute
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: amod_standard
+  label: Set Sound Mode: Standard
   kind: action
+  command: "S{ID}AMOD0000{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = Off, 1 = On
-- id: set_tv_speaker
-  label: Set TV Speaker
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: amod_theater
+  label: Set Sound Mode: Theater
   kind: action
+  command: "S{ID}AMOD0002{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = Off, 2 = On
-- id: reset_audio_settings
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: amod_music
+  label: Set Sound Mode: Music
+  kind: action
+  command: "S{ID}AMOD0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: amod_speech
+  label: Set Sound Mode: Speech
+  kind: action
+  command: "S{ID}AMOD0004{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: amod_late_night
+  label: Set Sound Mode: Late Night
+  kind: action
+  command: "S{ID}AMOD0005{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: rsta_audio
   label: Reset Audio Settings
   kind: action
-  params: []
-
-- id: set_aspect_ratio
-  label: Set Aspect Ratio
-  kind: action
+  command: "S{ID}RSTA2000{CKSUM}\r"
   params:
-    - name: ratio
-      type: integer
-      description: |
-        0 = Auto, 2 = Normal, 3 = Zoom, 4 = Wide, 5 = Direct,
-        6 = 1-to-1 pixel map, 7 = Panoramic, 8 = Cinema
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
 
-- id: channel_up
-  label: Channel Up
+- id: volm_set
+  label: Set Volume
   kind: action
-  params: []
-- id: channel_down
-  label: Channel Down
-  kind: action
-  params: []
-- id: set_tuner_mode
-  label: Set Tuner Mode
-  kind: action
+  command: "S{ID}VOLM{value}{CKSUM}\r"
   params:
-    - name: mode
+    - name: ID
+      type: string
+    - name: value
       type: integer
-      description: 0 = Antenna, 2 = Cable
-- id: auto_search
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: mute_off
+  label: Set Mute: Off
+  kind: action
+  command: "S{ID}MUTE0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: mute_on
+  label: Set Mute: On
+  kind: action
+  command: "S{ID}MUTE0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspk_off
+  label: Set TV Speaker: Off
+  kind: action
+  command: "S{ID}ASPK0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: aspk_on
+  label: Set TV Speaker: On
+  kind: action
+  command: "S{ID}ASPK0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: tunr_antenna
+  label: Tuner Mode: Antenna
+  kind: action
+  command: "S{ID}TUNR0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: tunr_cable
+  label: Tuner Mode: Cable
+  kind: action
+  command: "S{ID}TUNR0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: tscn_auto
   label: Automatic Search
   kind: action
-  params: []
+  command: "S{ID}TSCN0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
 
-- id: set_osd_language
-  label: Set OSD Language
+- id: chan_down
+  label: Channel Down
   kind: action
+  command: "S{ID}CHAN0000{CKSUM}\r"
   params:
-    - name: lang
-      type: integer
-      description: 0 = English, 2 = Español, 3 = Français
-- id: set_caption_control
-  label: Set Caption Control
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: chan_up
+  label: Channel Up
   kind: action
+  command: "S{ID}CHAN0001{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: 0 = Off, 2 = On, 3 = CC on when mute
-- id: set_standby_led
-  label: Set Standby LED
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: cc_off
+  label: Caption Control: Off
   kind: action
+  command: "S{ID}CC##0000{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = Off, 2 = On
-- id: set_power_off_control_mode
-  label: Set Power Off Control Mode
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Source shows mnemonic as `CC##` (literal two hash characters)."
+
+- id: cc_on
+  label: Caption Control: On
   kind: action
+  command: "S{ID}CC##0002{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: 0 = AC ONLY, 1 = ALL
-- id: set_volume_control
-  label: Set Volume Control
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: cc_on_when_mute
+  label: Caption Control: On When Mute
   kind: action
+  command: "S{ID}CC##0003{CKSUM}\r"
   params:
-    - name: mode
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: rset_factory
+  label: Restore Factory Settings
+  kind: action
+  command: "S{ID}RSET9999{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: lang_english
+  label: OSD Language: English
+  kind: action
+  command: "S{ID}LANG0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: lang_spanish
+  label: OSD Language: Español
+  kind: action
+  command: "S{ID}LANG0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: lang_french
+  label: OSD Language: Français
+  kind: action
+  command: "S{ID}LANG0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pled_off
+  label: Standby LED: Off
+  kind: action
+  command: "S{ID}PLED0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pled_on
+  label: Standby LED: On
+  kind: action
+  command: "S{ID}PLED0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: bttn_press
+  label: Remote Control Button Press
+  kind: action
+  command: "S{ID}BTTN{code}{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: code
+      type: string
+      description: |
+        4-digit button code. From source:
+        1012=POWER, 1000-1009=0-9, 1010=Dash, 1015=FRW<<, 1016=Play, 1017=FFW>>,
+        1018=Pause, 1019=Previous, 1020=Stop, 1021=Next>>, 1023=Media Player (HiMedia),
+        1024=Sleep, 1027=CC, 1031=Mute, 1032=Vol-, 1033=Vol+, 1034=CH+, 1035=CH-,
+        1036=Input, 1038=Menu, 1039=Connected Home (HiSmart), 1040=OK/Enter,
+        1041=Up, 1042=Down, 1043=Left, 1044=Right, 1045=Back, 1046=Exit,
+        1050=Red, 1051=Green, 1052=Blue, 1053=Yellow, 1054=MTS/SAP, 1055=Live TV
+    - name: CKSUM
+      type: byte
+
+- id: pbtn_ac_only
+  label: Power Off Control Mode: AC Only
+  kind: action
+  command: "S{ID}PBTN0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pbtn_all
+  label: Power Off Control Mode: All
+  kind: action
+  command: "S{ID}PBTN0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: mavl_set
+  label: Set Volume Range
+  kind: action
+  command: "S{ID}MAVL{value}{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: value
       type: integer
-      description: 0 = Locked, 1 = Last Volume, 2 = AC Reset, 3 = Standby Reset
-- id: set_volume_locked_level
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
+
+- id: svol_locked
+  label: Volume Control: Locked
+  kind: action
+  command: "S{ID}SVOL0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: svol_last
+  label: Volume Control: Last Volume
+  kind: action
+  command: "S{ID}SVOL0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: svol_ac_reset
+  label: Volume Control: AC Reset
+  kind: action
+  command: "S{ID}SVOL0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: svol_standby_reset
+  label: Volume Control: Standby Reset
+  kind: action
+  command: "S{ID}SVOL0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: vlfl_set
   label: Set Volume Locked Level
   kind: action
+  command: "S{ID}VLFL{value}{CKSUM}\r"
   params:
+    - name: ID
+      type: string
     - name: value
       type: integer
-      description: 0-100
-- id: set_remote_key
-  label: Set Remote Key
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: 0 = Enable, 1 = Disable, 2 = Partial
-- id: set_panel_key
-  label: Set Panel Key
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: 0 = Enable, 1 = Disable
-- id: set_menu_access
-  label: Set Menu Access
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: 0 = Enable, 1 = Disable
-- id: set_av_setting_menu
-  label: Set AV Setting Menu
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: 0 = Disable, 1 = Enable
-- id: set_osd_mode
-  label: Set OSD Mode
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: 0 = Enable, 1 = Disable
-- id: set_input_mode
-  label: Set Input Mode
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: |
-        0 = Locked, 1 = Selectable, 2 = AC Reset, 3 = Standby Reset
-- id: set_power_on_input
-  label: Set Power On Input Select
-  kind: action
-  params:
-    - name: source
-      type: integer
-      description: |
-        0 = Last, 1 = Air, 2 = AV, 3 = Component,
-        9 = HDMI1, 10 = HDMI2, 11 = HDMI3, 12 = HDMI4, 13 = VGA
-- id: reset_factory_settings
-  label: Reset Factory Settings
-  kind: action
-  params: []
+      description: 0-100, 4-digit zero-padded
+    - name: CKSUM
+      type: byte
 
-# Remote button simulator (BTTN) - key repeats
-- id: btn_ch_up
-  label: CH+
+- id: rmot_enable
+  label: Remote Key: Enable
   kind: action
-  params: []
-- id: btn_ch_down
-  label: CH-
-  kind: action
-  params: []
-- id: btn_vol_up
-  label: VOL+
-  kind: action
-  params: []
-- id: btn_vol_down
-  label: VOL-
-  kind: action
-  params: []
-- id: btn_power
-  label: POWER button
-  kind: action
-  params: []
-- id: btn_mute
-  label: MUTE button
-  kind: action
-  params: []
-- id: btn_input
-  label: INPUT button
-  kind: action
-  params: []
-- id: btn_menu
-  label: MENU button
-  kind: action
-  params: []
-- id: btn_exit
-  label: EXIT button
-  kind: action
-  params: []
-- id: btn_home
-  label: HOME button
-  kind: action
-  params: []
-- id: btn_back
-  label: BACK button
-  kind: action
-  params: []
-- id: btn_up
-  label: UP arrow
-  kind: action
-  params: []
-- id: btn_down
-  label: DOWN arrow
-  kind: action
-  params: []
-- id: btn_left
-  label: LEFT arrow
-  kind: action
-  params: []
-- id: btn_right
-  label: RIGHT arrow
-  kind: action
-  params: []
-- id: btn_ok
-  label: OK/ENTER
-  kind: action
-  params: []
-- id: btn_0
-  label: Digit 0
-  kind: action
-  params: []
-- id: btn_1
-  label: Digit 1
-  kind: action
-  params: []
-- id: btn_2
-  label: Digit 2
-  kind: action
-  params: []
-- id: btn_3
-  label: Digit 3
-  kind: action
-  params: []
-- id: btn_4
-  label: Digit 4
-  kind: action
-  params: []
-- id: btn_5
-  label: Digit 5
-  kind: action
-  params: []
-- id: btn_6
-  label: Digit 6
-  kind: action
-  params: []
-- id: btn_7
-  label: Digit 7
-  kind: action
-  params: []
-- id: btn_8
-  label: Digit 8
-  kind: action
-  params: []
-- id: btn_9
-  label: Digit 9
-  kind: action
-  params: []
-- id: btn_dash
-  label: DASH button
-  kind: action
-  params: []
-- id: btn_play
-  label: PLAY
-  kind: action
-  params: []
-- id: btn_pause
-  label: PAUSE
-  kind: action
-  params: []
-- id: btn_stop
-  label: STOP
-  kind: action
-  params: []
-- id: btn_ffw
-  label: FFW >>
-  kind: action
-  params: []
-- id: btn_frw
-  label: FRW <<
-  kind: action
-  params: []
-- id: btn_previous
-  label: PREVIOUS
-  kind: action
-  params: []
-- id: btn_next
-  label: NEXT >>
-  kind: action
-  params: []
-- id: btn_cc
-  label: CC button
-  kind: action
-  params: []
-- id: btn_sleep
-  label: SLEEP
-  kind: action
-  params: []
-- id: btn_info
-  label: INFO/DISPLAY
-  kind: action
-  params: []
-- id: btn_guide
-  label: Guide
-  kind: action
-  params: []
-- id: btn_freeze
-  label: Freeze
-  kind: action
-  params: []
-- id: btn_pip
-  label: PIP toggle
-  kind: action
-  params: []
-- id: btn_pip_input
-  label: PIP INPUT
-  kind: action
-  params: []
-- id: btn_pip_swap
-  label: PIP SWAP
-  kind: action
-  params: []
-- id: btn_pip_position
-  label: PIP POSITION
-  kind: action
-  params: []
-- id: btn_pip_size
-  label: PIP SIZE
-  kind: action
-  params: []
-- id: btn_channel_list
-  label: Channel List
-  kind: action
-  params: []
-- id: btn_fav_channel
-  label: Fav Channel
-  kind: action
-  params: []
-- id: btn_red
-  label: Red button
-  kind: action
-  params: []
-- id: btn_green
-  label: Green button
-  kind: action
-  params: []
-- id: btn_yellow
-  label: Yellow button
-  kind: action
-  params: []
-- id: btn_blue
-  label: Blue button
-  kind: action
-  params: []
-- id: btn_tools
-  label: Tools (Second Menu)
-  kind: action
-  params: []
-- id: btn_picture_mode
-  label: Picture Mode toggle
-  kind: action
-  params: []
-- id: btn_sound_mode
-  label: Sound Mode toggle
-  kind: action
-  params: []
-- id: btn_aspect_ratio_wide
-  label: Aspect Ratio 16:9
-  kind: action
-  params: []
-- id: btn_aspect_ratio_normal
-  label: Aspect Ratio 4:3
-  kind: action
-  params: []
-- id: btn_aspect_ratio_cinema
-  label: Aspect Ratio Cinema
-  kind: action
-  params: []
-- id: btn_aspect_ratio_panorama
-  label: Aspect Ratio Panorama
-  kind: action
-  params: []
-- id: btn_aspect_ratio_zoom
-  label: Aspect Ratio Zoom
-  kind: action
-  params: []
-- id: btn_mts_sap
-  label: MTS/SAP
-  kind: action
-  params: []
-- id: btn_live_tv
-  label: Live TV
-  kind: action
-  params: []
-- id: btn_media_player
-  label: Media Player
-  kind: action
-  params: []
-- id: btn_connected_home
-  label: Connected Home
-  kind: action
-  params: []
-- id: set_speaker_mode
-  label: Set TV Speaker Mode
-  kind: action
+  command: "S{ID}RMOT0000{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: 0 = Speaker, 1 = Off, 2 = ARC First
-- id: set_b2b_mode
-  label: Set B2B Function Mode
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: rmot_disable
+  label: Remote Key: Disable
   kind: action
+  command: "S{ID}RMOT0001{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = Enable, 1 = Disable
-- id: set_usb_behavior
-  label: Set USB Behavior
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: rmot_partial
+  label: Remote Key: Partial
   kind: action
+  command: "S{ID}RMOT0002{CKSUM}\r"
   params:
-    - name: mode
-      type: integer
-      description: 0 = Home, 1 = B2B
-- id: set_pixel_shifting
-  label: Set Pixel Shifting
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: panl_enable
+  label: Panel Key: Enable
   kind: action
+  command: "S{ID}PANL0000{CKSUM}\r"
   params:
-    - name: state
-      type: integer
-      description: 0 = Off, 1 = On
-- id: set_max_volume
-  label: Set Volume Range (Max Volume Level)
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: panl_disable
+  label: Panel Key: Disable
   kind: action
+  command: "S{ID}PANL0001{CKSUM}\r"
   params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: menu_enable
+  label: Menu Access: Enable
+  kind: action
+  command: "S{ID}MENU0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: menu_disable
+  label: Menu Access: Disable
+  kind: action
+  command: "S{ID}MENU0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: avmn_disable
+  label: AV Setting Menu: Disable
+  kind: action
+  command: "S{ID}AVMN0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: avmn_enable
+  label: AV Setting Menu: Enable
+  kind: action
+  command: "S{ID}AVMN0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: osd_enable
+  label: OSD Mode: Enable
+  kind: action
+  command: "S{ID}OSD#0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Source shows mnemonic as `OSD#` (literal hash character)."
+
+- id: osd_disable
+  label: OSD Mode: Disable
+  kind: action
+  command: "S{ID}OSD#0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpm_locked
+  label: Input Mode: Locked
+  kind: action
+  command: "S{ID}INPM0000{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpm_selectable
+  label: Input Mode: Selectable
+  kind: action
+  command: "S{ID}INPM0001{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpm_ac_reset
+  label: Input Mode: AC Reset
+  kind: action
+  command: "S{ID}INPM0002{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: inpm_standby_reset
+  label: Input Mode: Standby Reset
+  kind: action
+  command: "S{ID}INPM0003{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+
+- id: pois_set
+  label: Set Power-On Input Source
+  kind: action
+  command: "S{ID}POIS{value}{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
     - name: value
-      type: integer
-      description: 0-100
+      type: string
+      description: |
+        4-digit value. From source: 0000=LAST, 0001=Air, 0002=AV, 0003=Component.
+        Additional input values (HDMI1..HDMI4, VGA, etc.) are listed in INPT command set.
+    - name: CKSUM
+      type: byte
+
+# === QUERIES ===
+- id: query_pwre
+  label: Query Power On Command Setting
+  kind: query
+  command: "Q{ID}PWRE????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Disable, 1=Enable. Per source V3.1 note, not available in STANDBY mode."
+
+- id: query_inpt
+  label: Query Current Input Source
+  kind: query
+  command: "Q{ID}INPT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 1=TV, 3=Component, 4=AV, 6=VGA, 9=HDMI1, 10=HDMI2, 11=HDMI3, 12=HDMI4."
+
+- id: query_pmod
+  label: Query Picture Mode
+  kind: query
+  command: "Q{ID}PMOD????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Standard, 2=Vivid, 3=EnergySaving, 4=Theater, 5=Game, 6=Sport."
+
+- id: query_brit
+  label: Query Brightness Value
+  kind: query
+  command: "Q{ID}BRIT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_cont
+  label: Query Contrast Value
+  kind: query
+  command: "Q{ID}CONT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_colr
+  label: Query Color Saturation Value
+  kind: query
+  command: "Q{ID}COLR????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_tint
+  label: Query Tint Value
+  kind: query
+  command: "Q{ID}TINT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_shrp
+  label: Query Sharpness Value
+  kind: query
+  command: "Q{ID}SHRP????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-20."
+
+- id: query_aspt
+  label: Query Current Aspect Ratio
+  kind: query
+  command: "Q{ID}ASPT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Auto, 2=Normal, 3=Zoom, 4=Wide, 5=Direct, 6=1-to-1 pixel map, 7=Panoramic, 8=Cinema."
+
+- id: query_ovsn
+  label: Query Overscan
+  kind: query
+  command: "Q{ID}OVSN????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=On, 2=Off."
+
+- id: query_ctem
+  label: Query Color Temp
+  kind: query
+  command: "Q{ID}CTEM????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=High, 2=Middle, 3=Mid-Low, 4=Low."
+
+- id: query_bklv
+  label: Query Backlight Value
+  kind: query
+  command: "Q{ID}BKLV????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_amod
+  label: Query Sound Mode
+  kind: query
+  command: "Q{ID}AMOD????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Standard, 2=Theater, 3=Music, 4=Speech, 5=Late night."
+
+- id: query_volm
+  label: Query Current Volume
+  kind: query
+  command: "Q{ID}VOLM????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_mute
+  label: Query Mute Status
+  kind: query
+  command: "Q{ID}MUTE????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Not Mute, 1=Mute."
+
+- id: query_aspk
+  label: Query TV Speaker
+  kind: query
+  command: "Q{ID}ASPK????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Off, 2=On."
+
+- id: query_tunr
+  label: Query Tuner Mode
+  kind: query
+  command: "Q{ID}TUNR????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Antenna, 2=Cable."
+
+- id: query_cc
+  label: Query Caption Control
+  kind: query
+  command: "Q{ID}CC##????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Off, 2=On, 3=On when mute. Mnemonic contains literal `##`."
+
+- id: query_lang
+  label: Query OSD Language
+  kind: query
+  command: "Q{ID}LANG????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=English, 2=Español, 3=Français."
+
+- id: query_pled
+  label: Query Standby LED
+  kind: query
+  command: "Q{ID}PLED????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Off, 2=On."
+
+- id: query_pbtn
+  label: Query Power Off Control Mode
+  kind: query
+  command: "Q{ID}PBTN????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=AC Only, 1=All."
+
+- id: query_mavl
+  label: Query Volume Range
+  kind: query
+  command: "Q{ID}MAVL????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_svol
+  label: Query Volume Control
+  kind: query
+  command: "Q{ID}SVOL????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Locked, 1=Last Volume, 2=AC Reset, 3=Standby Reset."
+
+- id: query_vlfl
+  label: Query Volume Locked Level
+  kind: query
+  command: "Q{ID}VLFL????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0-100."
+
+- id: query_rmot
+  label: Query Remote Key
+  kind: query
+  command: "Q{ID}RMOT????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Enable, 1=Disable, 2=Partial."
+
+- id: query_panl
+  label: Query Panel Key
+  kind: query
+  command: "Q{ID}PANL????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Enable, 1=Disable."
+
+- id: query_menu
+  label: Query Menu Access
+  kind: query
+  command: "Q{ID}MENU????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Enable, 1=Disable."
+
+- id: query_avmn
+  label: Query AV Setting Menu
+  kind: query
+  command: "Q{ID}AVMN????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Disable, 1=Enable."
+
+- id: query_osd
+  label: Query OSD Mode
+  kind: query
+  command: "Q{ID}OSD#????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Enable, 1=Disable. Mnemonic contains literal `#`."
+
+- id: query_inpm
+  label: Query Input Mode
+  kind: query
+  command: "Q{ID}INPM????{CKSUM}\r"
+  params:
+    - name: ID
+      type: string
+    - name: CKSUM
+      type: byte
+  notes: "Returns 0=Locked, 1=Selectable, 2=AC Reset, 3=Standby Reset."
 ```
 
 ## Feedbacks
 ```yaml
-# Responses: ColonACKDATA4BytesChecksumCr
-# ColonACK is one of: OKAY, EROR, WAIT
-# OKAY example: 5FA:OKAY####[0x4A][0x0D]
-# WAIT example: 5FA:WAIT####[0x49][0x0D]
-# EROR example: [document does not give explicit EROR example]
-
-- id: ack
+- id: power_on_command_enable
   type: enum
-  values:
-    - OKAY
-    - WAIT
-    - EROR
-  description: Acknowledgement response from TV
-
-- id: power_state
+  values: [disable, enable]
+  source_query: query_pwre
+- id: input_source
   type: enum
-  values:
-    - "0"
-    - "1"
-  description: "0 = Standby, 1 = Power on"
-
-- id: current_input
-  type: integer
-  description: |
-    0 = TV, 1 = AV, 3 = Component, 4 = AV, 6 = VGA,
-    9 = HDMI1, 10 = HDMI2, 11 = HDMI3, 12 = HDMI4
-
+  values: [tv, av, component, vga, hdmi1, hdmi2, hdmi3, hdmi4]
+  source_query: query_inpt
 - id: picture_mode
-  type: integer
-  description: |
-    0 = Standard, 2 = Vivid, 3 = EnergySaving, 4 = Theater,
-    5 = Game, 6 = Sport
-
-- id: brightness_value
-  type: integer
-  description: 0-100
-
-- id: contrast_value
-  type: integer
-  description: 0-100
-
-- id: color_saturation_value
-  type: integer
-  description: 0-100
-
-- id: tint_value
-  type: integer
-  description: 0-100
-
-- id: sharpness_value
-  type: integer
-  description: 0-20
-
-- id: color_temp
-  type: integer
-  description: 0 = High, 2 = Middle, 3 = Mid-Low, 4 = Low
-
-- id: backlight_value
-  type: integer
-  description: 0-100
-
-- id: overscan_state
-  type: integer
-  description: 0 = On, 2 = Off
-
+  type: enum
+  values: [standard, vivid, energy_saving, theater, game, sport]
+  source_query: query_pmod
 - id: aspect_ratio
-  type: integer
-  description: |
-    0 = Auto, 2 = Normal, 3 = Zoom, 4 = Wide, 5 = Direct,
-    6 = 1-to-1 pixel map, 7 = Panoramic, 8 = Cinema
-
+  type: enum
+  values: [auto, normal, zoom, wide, direct, pixel_map, panoramic, cinema]
+  source_query: query_aspt
+- id: overscan
+  type: enum
+  values: [on, off]
+  source_query: query_ovsn
+- id: color_temp
+  type: enum
+  values: [high, middle, mid_low, low]
+  source_query: query_ctem
 - id: sound_mode
-  type: integer
-  description: |
-    0 = Standard, 2 = Theater, 3 = Music, 4 = Speech, 5 = Late night
-
-- id: volume_value
-  type: integer
-  description: 0-100
-
+  type: enum
+  values: [standard, theater, music, speech, late_night]
+  source_query: query_amod
 - id: mute_state
-  type: integer
-  description: 0 = Not muted, 1 = Muted
-
-- id: tv_speaker_state
-  type: integer
-  description: 0 = Off, 2 = On
-
+  type: enum
+  values: [not_mute, mute]
+  source_query: query_mute
+- id: tv_speaker
+  type: enum
+  values: [off, on]
+  source_query: query_aspk
 - id: tuner_mode
-  type: integer
-  description: 0 = Antenna, 2 = Cable
-
-- id: osd_language
-  type: integer
-  description: 0 = English, 2 = Español, 3 = Français
-
+  type: enum
+  values: [antenna, cable]
+  source_query: query_tunr
 - id: caption_control
-  type: integer
-  description: 0 = Off, 2 = On, 3 = CC on when mute
-
-- id: standby_led_state
-  type: integer
-  description: 0 = Off, 2 = On
-
+  type: enum
+  values: [off, on, on_when_mute]
+  source_query: query_cc
+- id: osd_language
+  type: enum
+  values: [english, spanish, french]
+  source_query: query_lang
+- id: standby_led
+  type: enum
+  values: [off, on]
+  source_query: query_pled
 - id: power_off_control_mode
-  type: integer
-  description: 0 = AC ONLY, 1 = ALL
-
-- id: volume_control_mode
-  type: integer
-  description: 0 = Locked, 1 = Last Volume, 2 = AC Reset, 3 = Standby Reset
-
-- id: volume_locked_level
-  type: integer
-  description: 0-100
-
-- id: remote_key_mode
-  type: integer
-  description: 0 = Enable, 1 = Disable, 2 = Partial
-
-- id: panel_key_state
-  type: integer
-  description: 0 = Enable, 1 = Disable
-
-- id: menu_access_state
-  type: integer
-  description: 0 = Enable, 1 = Disable
-
-- id: av_setting_menu_state
-  type: integer
-  description: 0 = Disable, 1 = Enable
-
-- id: osd_mode_state
-  type: integer
-  description: 0 = Enable, 1 = Disable
-
+  type: enum
+  values: [ac_only, all]
+  source_query: query_pbtn
+- id: volume_control
+  type: enum
+  values: [locked, last_volume, ac_reset, standby_reset]
+  source_query: query_svol
+- id: remote_key_lock
+  type: enum
+  values: [enable, disable, partial]
+  source_query: query_rmot
+- id: panel_key_lock
+  type: enum
+  values: [enable, disable]
+  source_query: query_panl
+- id: menu_access
+  type: enum
+  values: [enable, disable]
+  source_query: query_menu
+- id: av_setting_menu
+  type: enum
+  values: [disable, enable]
+  source_query: query_avmn
+- id: osd_mode
+  type: enum
+  values: [enable, disable]
+  source_query: query_osd
 - id: input_mode
-  type: integer
-  description: 0 = Locked, 1 = Selectable, 2 = AC Reset, 3 = Standby Reset
-
-- id: power_on_input_source
-  type: integer
-  description: |
-    0 = Last, 1 = Air, 2 = AV, 3 = Component,
-    9 = HDMI1, 10 = HDMI2, 11 = HDMI3, 12 = HDMI4, 13 = VGA
-
-- id: volume_range
-  type: integer
-  description: 0-100
-
-- id: remote_power_on_setting
-  type: integer
-  description: 0 = Disable RS-232 Remote Power On, 1 = Enable RS-232 Remote Power On
+  type: enum
+  values: [locked, selectable, ac_reset, standby_reset]
+  source_query: query_inpm
 ```
 
 ## Variables
 ```yaml
-# All settable values are queryable - see Feedbacks section.
-# UNRESOLVED: no standalone variables beyond the queryable states listed above
+- id: brightness
+  type: integer
+  range: [0, 100]
+  setter: brit_set
+  query: query_brit
+- id: contrast
+  type: integer
+  range: [0, 100]
+  setter: cont_set
+  query: query_cont
+- id: color_saturation
+  type: integer
+  range: [0, 100]
+  setter: colr_set
+  query: query_colr
+- id: tint
+  type: integer
+  range: [0, 100]
+  setter: tint_set
+  query: query_tint
+- id: sharpness
+  type: integer
+  range: [0, 20]
+  setter: shrp_set
+  query: query_shrp
+- id: backlight
+  type: integer
+  range: [0, 100]
+  setter: bklv_set
+  query: query_bklv
+- id: volume
+  type: integer
+  range: [0, 100]
+  setter: volm_set
+  query: query_volm
+- id: volume_range
+  type: integer
+  range: [0, 100]
+  setter: mavl_set
+  query: query_mavl
+- id: volume_locked_level
+  type: integer
+  range: [0, 100]
+  setter: vlfl_set
+  query: query_vlfl
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: document does not describe unsolicited event notifications from the TV.
-# The TV only responds to commands; it does not主动上报状态.
+# RS-232 is request/response - no unsolicited events documented in source.
+# UNRESOLVED: any device-initiated notifications not described in source.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step macros described in source.
+# UNRESOLVED: no multi-step sequences documented in source.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
+confirmation_required_for:
+  - rset_factory        # Restore Factory Settings - wipes all user config
+  - tscn_auto           # Automatic Search - rescans tuner channels
 interlocks:
   - description: |
-      RS-232 port must be enabled in Custom Install menu
-      (access via Quick Settings > 7 3 1 0).
-      Menu path: Quick Settings > 7 3 1 0 > Custom Installation > Enable.
+      RS-232 port must be enabled in the TV's Custom Install menu before any
+      serial command will be accepted. Procedure (per source):
+      1. Power on TV, press Quick Settings Menu on remote.
+      2. Enter "7 3 1 0" on the number pad to open Custom Install menu.
+      3. Scroll to "Custom Installation", set to Enable (Left/Right arrow, then OK).
+      4. For RS-232 power-on from standby, also set "Power On Command" to Enable.
   - description: |
-      Power On Command setting must be set to Enable in Custom Install Menu
-      if RS-232 power-on control from standby is required.
-  - description: |
-      POWRON command is not available when TV is in STANDBY mode -
-      enabling it first allows power-on from standby via RS-232.
+      Protocol is case-sensitive. All command mnemonics and data must be
+      uppercase ASCII.
 ```
 
 ## Notes
-Protocol is case-sensitive ASCII over RS-232C. Command format: `S[CLIENT_ID][COMMAND][DATA][CHECKSUM][CR]` (set) or `Q[CLIENT_ID][COMMAND]????[CHECKSUM][CR]` (query). Response: `[CLIENT_ID]:[ACK][DATA][CHECKSUM][CR]`. CLIENT_ID for Smart TV is last 3 bytes of Ethernet MAC; for Feature TV selected in TV menu; `ALL` for broadcast.
+- Source document title is "RS-232/IR Protocol for Hisense® Prosumer TV" (V3.6, 17-Apr-2017). Models field lists 5A53HUA among supported Prosumer TV series.
+- Physical interface: DB9 D-sub female on TV chassis. Pinout per source: 1=RI, 2=TXD, 3=RXD, 4=DSR, 5=GND, 6=DTR, 7=CTS, 8=RTS, 9=Power Input/DCD. Use a straight-through or USB-to-serial cable (sold separately).
+- Checksum algorithm: 8-bit sum of all preceding bytes (S or Q + 3-byte ID + 4-byte command + 4-byte data) plus the checksum byte itself = `0x00`. Equivalently, checksum = two's complement (mod 256) of the 8-bit sum of all preceding bytes.
+- Example literal command (ASCII): `S5FAPOWR0001<cksum>\r`. Example literal hex: `53 35 46 41 50 4F 57 52 30 30 30 31 05 0D`.
+- ACK payload (ASCII): `5FA:OKAY####<cksum>\r` where `####` carries query response data.
+- Generic "broadcast" client ID is `ALL` per source.
+- This document also defines a discrete IR code set (Presto CCF format, low custom 04FB, function codes 70-99 and 70-A9 hex range covering HDMI1..HDMI4, VGA, USB, picture/sound modes, aspect ratios, digits, arrows, volume/channel, PIP, transport, etc.). IR is one-way and not part of this RS-232 spec.
+- Caller suggested "Known protocol: TCP/IP" but the source document only documents RS-232 and IR. No IP-based command set is present in the refined source.
 
-Generic HEX commands (53 41 4C 4C...) work on all TVs regardless of MAC. TV-specific commands use the last 3 MAC bytes as CLIENT_ID.
-
-Checksum is 8-bit, computed so entire command string (including checksum byte) sums to zero.
-
-IR discrete codes use Pronto CCF format; IR section lists complete hex codes per function.
-
-<!-- UNRESOLVED: TCP/IP control — no such protocol in source document. -->
-<!-- UNRESOLVED: specific model 5A53HUA not named in document — document covers Hisense Prosumer TV series broadly. -->
-<!-- UNRESOLVED: firmware version not stated. -->
-<!-- UNRESOLVED: no unsolicited event notifications described. -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source. -->
+<!-- UNRESOLVED: voltage, current, and power specifications not stated in source. -->
+<!-- UNRESOLVED: full list of supported Prosumer TV model numbers — source Models field is blank. -->
+<!-- UNRESOLVED: POIS query command not listed in source (only set values 0000-0003 explicit, plus references to INPT-set inputs). -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.203Z
+retrieved_at: 2026-06-01T22:10:09.323Z
+last_checked_at: 2026-06-01T22:29:10.619Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.203Z
-matched_actions: 89
-action_count: 108
-confidence: high
-summary: "All 89 spec actions matched with literal counterparts; transport parameters verified verbatim."
+checked_at: 2026-06-01T22:29:10.619Z
+matched_actions: 120
+action_count: 120
+confidence: medium
+summary: "All 120 spec actions confirmed verbatim in source command table; transport 9600 8N1 matches; 4 source commands (SPKM,B2BM,USBM,PSHF) not in spec but count is 4, under the >5 short threshold. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- SPKM
+- B2BM
+- USBM
+- PSHF
+- "IP/Ethernet control not documented in source (caller suggested TCP/IP but no IP commands appear in the refined document). Only RS-232 and IR are covered."
+- "any device-initiated notifications not described in source."
+- "no multi-step sequences documented in source."
+- "firmware version compatibility not stated in source."
+- "voltage, current, and power specifications not stated in source."
+- "full list of supported Prosumer TV model numbers — source Models field is blank."
+- "POIS query command not listed in source (only set values 0000-0003 explicit, plus references to INPT-set inputs)."
 ```
 
 ---

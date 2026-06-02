@@ -18,24 +18,25 @@ compatible_with:
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+  - "https://www.rotel.com/sites/default/files/product/rs232/T11%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:37:50.069Z
 last_checked_at: 2026-05-31T21:00:14.670Z
 generated_at: 2026-05-31T21:00:14.670Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no standalone settable parameters beyond discrete actions"
+  - "unsolicited event notifications not documented"
+  - "multi-step macro sequences not documented"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:00:14.670Z
   matched_actions: 60
   action_count: 60
-  confidence: high
-  summary: "All 60 spec actions matched verbatim to source commands; transport parameters verified in connection settings table."
+  confidence: medium
+  summary: "All 60 spec actions matched verbatim to source commands; transport parameters verified in connection settings table. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -481,12 +482,8 @@ All commands terminated by "!". No spaces in commands. No CR/LF after terminator
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+  - "https://www.rotel.com/sites/default/files/product/rs232/T11%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:37:50.069Z
 last_checked_at: 2026-05-31T21:00:14.670Z
 ```
 
@@ -497,14 +494,18 @@ verdict: verified
 checked_at: 2026-05-31T21:00:14.670Z
 matched_actions: 60
 action_count: 60
-confidence: high
-summary: "All 60 spec actions matched verbatim to source commands; transport parameters verified in connection settings table."
+confidence: medium
+summary: "All 60 spec actions matched verbatim to source commands; transport parameters verified in connection settings table. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no standalone settable parameters beyond discrete actions"
+- "unsolicited event notifications not documented"
+- "multi-step macro sequences not documented"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:40.414Z
 last_checked_at: 2026-05-14T18:17:19.306Z
 generated_at: 2026-05-14T18:17:19.306Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit control details not in source"
+  - "flow control not specified in source"
+  - "commands 009, 037 series, 050, 053-1, 053-7, 060-1, 078 series, 084, 097 series, 098-8, 098-45, 098-198, 098-243-1, 305 series, 319-10 fully documented in source but not enumerated above for brevity"
+  - "most settings are controlled via action commands; no distinct"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no explicit multi-step macro sequences documented in source"
+  - "power-on sequencing requirements, voltage/power specifications not in source"
+  - "appendix values for input terminals, aspect ratios, eco mode settings not in source document"
+  - "wireless LAN control details not in source"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.306Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented."
+  confidence: medium
+  summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -453,7 +463,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:40.414Z
 last_checked_at: 2026-05-14T18:17:19.306Z
 ```
 
@@ -464,14 +474,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.306Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented."
+confidence: medium
+summary: "All 52 spec actions matched literally in source; transport parameters verified; full command coverage with 98% of distinct command tokens represented. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit control details not in source"
+- "flow control not specified in source"
+- "commands 009, 037 series, 050, 053-1, 053-7, 060-1, 078 series, 084, 097 series, 098-8, 098-45, 098-198, 098-243-1, 305 series, 319-10 fully documented in source but not enumerated above for brevity"
+- "most settings are controlled via action commands; no distinct"
+- "no unsolicited event/notification mechanism described in source"
+- "no explicit multi-step macro sequences documented in source"
+- "power-on sequencing requirements, voltage/power specifications not in source"
+- "appendix values for input terminals, aspect ratios, eco mode settings not in source document"
+- "wireless LAN control details not in source"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

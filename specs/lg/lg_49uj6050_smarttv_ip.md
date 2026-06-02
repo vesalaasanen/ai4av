@@ -1,8 +1,8 @@
 ---
-spec_id: admin/lg-49uj6050
+spec_id: admin/lg-49uj6050-smarttv
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "LG 49UJ6050 Control Spec"
+title: "LG 49UJ6050 SmartTV Control Spec"
 manufacturer: LG
 model_family: 49UJ6050
 aliases: []
@@ -16,34 +16,43 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:59:49.779Z
-generated_at: 2026-04-25T20:59:49.779Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T01:18:31.928Z
+last_checked_at: 2026-06-02T01:48:23.040Z
+generated_at: 2026-06-02T01:48:23.040Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source document is a generic LG RS-232 protocol manual; it does not explicitly name the 49UJ6050 model. Compatibility is asserted from the document context."
+  - "Source uses RS-232/serial despite input prompt describing protocol as \"TCP/IP\". Spec follows source."
+  - "All adjustable parameters in this device are exposed as parameterized Actions"
+  - "source does not document unsolicited notifications from the device."
+  - "source does not document multi-step sequences."
+  - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+  - "Firmware version compatibility not stated in source."
+  - "Specific 49UJ6050 model identification not stated in source; spec covers the protocol class."
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:59:49.779Z
-  matched_actions: 30
-  action_count: 30
-  confidence: high
-  summary: "All 30 spec actions matched literally in source; all transport parameters verified against LG 49UJ6050 programmer guide."
+  checked_at: 2026-06-02T01:48:23.040Z
+  matched_actions: 26
+  action_count: 26
+  confidence: medium
+  summary: "All 26 spec actions matched literally against source command table; all transport parameters verified verbatim; full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-18
+created_at: 2026-06-02
 ---
 
-# LG 49UJ6050 Control Spec
+# LG 49UJ6050 SmartTV Control Spec
 
 ## Summary
-LG 49UJ6050 Smart TV. Control via RS-232C serial (UART) protocol using ASCII command strings. No authentication required.
+LG 49UJ6050 SmartTV serial (RS-232C) control protocol. Covers power, input select, picture/sound adjustments, OSD/lock, tiling, and diagnostic reads over UART at 9600 baud using ASCII command strings terminated by carriage return.
 
-<!-- UNRESOLVED: IP/TCP control path not described in source — only RS-232C documented -->
+<!-- UNRESOLVED: Source document is a generic LG RS-232 protocol manual; it does not explicitly name the 49UJ6050 model. Compatibility is asserted from the document context. -->
+<!-- UNRESOLVED: Source uses RS-232/serial despite input prompt describing protocol as "TCP/IP". Spec follows source. -->
 
 ## Transport
 ```yaml
@@ -61,400 +70,534 @@ auth:
 
 ## Traits
 ```yaml
-- powerable  # inferred: power on/off command (k a) documented
-- routable    # inferred: input select command (k b) documented
-- levelable   # inferred: volume, contrast, brightness, color, tint, sharpness, balance commands documented
-- queryable   # inferred: read commands using FF data value documented
+- powerable    # inferred from power command examples
+- routable     # inferred from input select command examples
+- queryable    # inferred from FF status-read pattern on every command
+- levelable    # inferred from volume/contrast/brightness/color/tint/sharpness/balance ranges
 ```
 
 ## Actions
 ```yaml
+# Universal command frame: <cmd1><cmd2><SP><set_id><SP><data><CR>
+# <SP> = ASCII 0x20, <CR> = ASCII 0x0D
+# set_id: 1-99; 0 broadcasts to all sets (no ack check with broadcast).
+# Pass data=FF to read current status; otherwise data is the value to set.
+
 - id: power
   label: Power
   kind: action
+  command: "ka {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0 = Off, 1 = On, FF = Read
-  protocol_hints:
-    command: "k a"
-    format: "[k][a][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "FF"]
+      description: "00=Power Off, 01=Power On, FF=Read status"
 
 - id: input_select
-  label: Input Select
+  label: Input Select (Main Picture)
   kind: action
+  command: "kb {set_id} {data}\r"
   params:
-    - name: source
+    - name: set_id
       type: integer
-      description: 2=AV, 4=Component1, 5=Component2, 6=RGB-DTV, 7=RGB-PC, 8=HDMI-DTV, 9=HDMI-PC
-  protocol_hints:
-    command: "k b"
-    format: "[k][b][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["02", "04", "05", "06", "07", "08", "09", "FF"]
+      description: "02=AV, 04=Component1, 05=Component2, 06=RGB(DTV), 07=RGB(PC), 08=HDMI(DTV), 09=HDMI(PC), FF=Read status"
 
 - id: aspect_ratio
-  label: Aspect Ratio
+  label: Aspect Ratio (Main Picture)
   kind: action
+  command: "kc {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 1=4:3, 2=16:9, 3=Horizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full, 9=1:1(PC)
-  protocol_hints:
-    command: "k c"
-    format: "[k][c][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "FF"]
+      description: "01=4:3, 02=16:9, 03=Horizon(Spectacle), 04=Zoom1, 05=Zoom2, 06=Original, 07=14:9, 08=Full (Europe only), 09=1:1(PC), FF=Read status"
 
 - id: screen_mute
   label: Screen Mute
   kind: action
+  command: "kd {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Off, 1=On
-  protocol_hints:
-    command: "k d"
-    format: "[k][d][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "FF"]
+      description: "00=Mute off (picture on), 01=Mute on (picture off), FF=Read status"
 
 - id: volume_mute
   label: Volume Mute
   kind: action
+  command: "ke {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Mute On, 1=Mute Off
-  protocol_hints:
-    command: "k e"
-    format: "[k][e][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "FF"]
+      description: "00=Mute on (volume off), 01=Mute off (volume on), FF=Read status"
 
 - id: volume_control
   label: Volume Control
   kind: action
+  command: "kf {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  protocol_hints:
-    command: "k f"
-    format: "[k][f][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (0=Step 0, 64=Step 100); FF=Read status"
 
 - id: contrast
   label: Contrast
   kind: action
+  command: "kg {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  protocol_hints:
-    command: "k g"
-    format: "[k][g][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (0=Step 0, 64=Step 100); FF=Read status"
 
 - id: brightness
   label: Brightness
   kind: action
+  command: "kh {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  protocol_hints:
-    command: "k h"
-    format: "[k][h][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (0=Step 0, 64=Step 100); FF=Read status"
 
 - id: color
-  label: Color
+  label: Color (Video only)
   kind: action
+  command: "ki {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  protocol_hints:
-    command: "k i"
-    format: "[k][i][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (0=Step 0, 64=Step 100); FF=Read status"
 
 - id: tint
-  label: Tint
+  label: Tint (Video only)
   kind: action
+  command: "kj {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H=Red50, 64H=Green50
-  protocol_hints:
-    command: "k j"
-    format: "[k][j][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (00H=Red -50, 64H=Green +50); FF=Read status"
 
 - id: sharpness
-  label: Sharpness
+  label: Sharpness (Video only)
   kind: action
+  command: "kk {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  protocol_hints:
-    command: "k k"
-    format: "[k][k][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (0=Step 0, 64=Step 100); FF=Read status"
 
 - id: osd_select
   label: OSD Select
   kind: action
+  command: "kl {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Off, 1=On
-  protocol_hints:
-    command: "k l"
-    format: "[k][l][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "FF"]
+      description: "00=OSD Off, 01=OSD On, FF=Read status"
 
 - id: remote_lock
   label: Remote Lock / Key Lock
   kind: action
+  command: "km {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Off, 1=On
-  protocol_hints:
-    command: "k m"
-    format: "[k][m][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "FF"]
+      description: "00=Off, 01=On, FF=Read status"
 
 - id: balance
   label: Balance
   kind: action
+  command: "kt {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H=L50, 64H=R50
-  protocol_hints:
-    command: "k t"
-    format: "[k][t][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H (00H=L50, 64H=R50); FF=Read status"
 
 - id: color_temperature
   label: Color Temperature
   kind: action
+  command: "ku {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 0=Normal, 1=Cool, 2=Warm, 3=User
-  protocol_hints:
-    command: "k u"
-    format: "[k][u][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["00", "01", "02", "03", "FF"]
+      description: "00=Normal, 01=Cool, 02=Warm, 03=User, FF=Read status"
 
 - id: abnormal_state
-  label: Abnormal State Read
-  kind: action
-  params: []
-  protocol_hints:
-    command: "k z"
-    format: "[k][z][ ][Set ID][ ][FF][Cr]"
-    description: Read power off status. Returns: 0=Normal, 1=No signal, 2=Off-RC, 3=Off-Sleep, 4=Off-RS232C, 6=AC down, 8=Off-Timer, 9=Off-Auto
+  label: Abnormal State (Read power-off reason in Standby)
+  kind: query
+  command: "kz {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  response_meanings:
+    "00": "Normal (Power on and signal exist)"
+    "01": "No signal (Power on)"
+    "02": "Turned off by remote control"
+    "03": "Turned off by sleep timer"
+    "04": "Turned off by RS-232C function"
+    "06": "AC down"
+    "08": "Turned off by off-timer"
+    "09": "Turned off by auto-off"
 
 - id: ism_mode
-  label: ISM Mode
+  label: ISM Mode (afterimage prevention)
   kind: action
+  command: "jp {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 1=Inversion, 2=Orbiter, 4=White Wash, 8=Normal
-  protocol_hints:
-    command: "j p"
-    format: "[j][p][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: enum
+      values: ["01", "02", "04", "08"]
+      description: "01=Inversion, 02=Orbiter, 04=White Wash, 08=Normal"
 
 - id: auto_configure
-  label: Auto Configure
+  label: Auto Configure (RGB/PC only)
   kind: action
-  params: []
-  protocol_hints:
-    command: "j u"
-    format: "[j][u][ ][Set ID][ ][01][Cr]"
-    description: Adjust picture position automatically. Works only in RGB(PC) mode.
+  command: "ju {set_id} 01\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99; 0 broadcasts)
+  notes: Adjusts picture position and minimizes image shaking; works only in RGB(PC) mode.
 
 - id: key
-  label: Send IR Key Code
+  label: Send IR Remote Key Code
   kind: action
+  command: "mc {set_id} {key_code}\r"
   params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99; 0 broadcasts)
     - name: key_code
-      type: hex
-      description: Hex key code from IR code table
-  protocol_hints:
-    command: "m c"
-    format: "[m][c][ ][Set ID][ ][Data][Cr]"
+      type: hex_byte
+      description: IR key code (see IR Codes table in source; e.g. 08=Power, C4=Power On, C5=Power Off)
 
 - id: tile_mode
   label: Tile Mode
   kind: action
+  command: "dd {set_id} {data}\r"
   params:
-    - name: mode
-      type: hex
-      description: "00=Off, 12=1x2, 13=1x3, 14=1x4 ... 44=4x4"
-  protocol_hints:
-    command: "d d"
-    format: "[d][d][ ][Set ID][ ][Data][x]"
+    - name: set_id
+      type: integer
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00=Off, otherwise column*10+row (e.g. 12=1x2, 13=1x3, 14=1x4, 44=4x4). 0X and X0 are invalid except 00."
 
 - id: tile_h_size
-  label: Tile H Size
+  label: Tile Horizontal Size
   kind: action
+  command: "dg {set_id} {data}\r"
   params:
-    - name: size
+    - name: set_id
       type: integer
-      description: 00H-64H
-  protocol_hints:
-    command: "d g"
-    format: "[d][g][ ][Set ID][ ][Data][x]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H"
 
 - id: tile_v_size
-  label: Tile V Size
+  label: Tile Vertical Size
   kind: action
+  command: "dh {set_id} {data}\r"
   params:
-    - name: size
+    - name: set_id
       type: integer
-      description: 00H-64H
-  protocol_hints:
-    command: "d h"
-    format: "[d][h][ ][Set ID][ ][Data][x]"
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-64H"
 
 - id: tile_id_set
   label: Tile ID Set
   kind: action
+  command: "di {set_id} {data}\r"
   params:
-    - name: id
-      type: hex
-      description: 00H-10H
-  protocol_hints:
-    command: "d i"
-    format: "[d][i][ ][Set ID][ ][Data][x]"
+    - name: set_id
+      type: integer
+      description: Set ID (1-99; 0 broadcasts)
+    - name: data
+      type: hex_byte
+      description: "00H-10H (Tile ID assignment)"
 
 - id: elapsed_time_return
   label: Elapsed Time Return
-  kind: action
-  params: []
-  protocol_hints:
-    command: "d l"
-    format: "[d][l][ ][Set ID][ ][FF][x]"
-    description: Read used hours (hex)
+  kind: query
+  command: "dl {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: Response data is used hours in hex.
 
 - id: temperature_value
-  label: Temperature Value
-  kind: action
-  params: []
-  protocol_hints:
-    command: "d n"
-    format: "[d][n][ ][Set ID][ ][FF][x]"
-    description: Read internal temperature (1 byte hex)
+  label: Temperature Value (inside)
+  kind: query
+  command: "dn {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: Response data is 1 byte in hex.
 
 - id: lamp_fault_check
   label: Lamp Fault Check
-  kind: action
-  params: []
-  protocol_hints:
-    command: "d p"
-    format: "[d][p][ ][Set ID][ ][FF][x]"
-    description: Returns 0=Lamp Fault, 1=Lamp OK
+  kind: query
+  command: "dp {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  response_meanings:
+    "00": "Lamp Fault"
+    "01": "Lamp OK"
 ```
 
 ## Feedbacks
 ```yaml
-- id: ok_ack
-  label: OK Acknowledgement
-  type: pattern
-  pattern: "[Command2][ ][Set ID][ ][OK][Data][x]"
-  description: Returned on successful command
-
-- id: ng_ack
-  label: Error Acknowledgement
-  type: pattern
-  pattern: "[Command2][ ][Set ID][ ][NG][Data][x]"
-  description: Returned on error
+# OK ack frame: <cmd2><SP><set_id><SP>OK<SP><data>x
+# Error ack frame: <cmd2><SP><set_id><SP>NG<SP><data>x
+# x is a literal character per source (terminator).
 
 - id: power_state
-  label: Power State
   type: enum
   values: [off, on]
-  query_command: "k a FF"
-  query_pattern: "[k][a][ ][Set ID][ ][OK][Data][x]"
+  response_pattern: "a {set_id} OK {data}x"
+  data_map:
+    "00": off
+    "01": on
 
-- id: abnormal_state_value
-  label: Abnormal State Value
+- id: input_source
   type: enum
-  values: [0_normal, 1_no_signal, 2_off_rc, 3_off_sleep, 4_off_rs232c, 6_ac_down, 8_off_timer, 9_off_auto]
+  values: [av, component1, component2, rgb_dtv, rgb_pc, hdmi_dtv, hdmi_pc]
+  response_pattern: "b {set_id} OK {data}x"
+  data_map:
+    "02": av
+    "04": component1
+    "05": component2
+    "06": rgb_dtv
+    "07": rgb_pc
+    "08": hdmi_dtv
+    "09": hdmi_pc
 
-- id: elapsed_time_value
-  label: Elapsed Time
+- id: aspect_ratio_state
+  type: enum
+  values: [normal_4_3, wide_16_9, horizon, zoom1, zoom2, original, mode_14_9, full_eu, pc_1_1]
+  response_pattern: "c {set_id} OK {data}x"
+
+- id: screen_mute_state
+  type: enum
+  values: [picture_on, picture_off]
+
+- id: volume_mute_state
+  type: enum
+  values: [mute_on, mute_off]
+
+- id: volume
   type: integer
-  query_command: "d l FF"
-  unit: hours
+  range: "0-100"
+  response_pattern: "f {set_id} OK {data}x"
 
-- id: temperature_value_read
-  label: Temperature Value
+- id: contrast
   type: integer
-  query_command: "d n FF"
-  unit: unspecified
+  range: "0-100"
 
-- id: lamp_fault_value
-  label: Lamp Fault
+- id: brightness
+  type: integer
+  range: "0-100"
+
+- id: color
+  type: integer
+  range: "0-100"
+
+- id: tint
+  type: integer
+  range: "-50 to 50"
+
+- id: sharpness
+  type: integer
+  range: "0-100"
+
+- id: osd_state
+  type: enum
+  values: [off, on]
+
+- id: remote_lock_state
+  type: enum
+  values: [off, on]
+
+- id: balance
+  type: integer
+  range: "-50 to 50"
+
+- id: color_temperature_state
+  type: enum
+  values: [normal, cool, warm, user]
+
+- id: abnormal_state_reason
+  type: enum
+  values: [normal, no_signal, off_by_remote, off_by_sleep, off_by_rs232, ac_down, off_by_off_timer, off_by_auto_off]
+  response_pattern: "z {set_id} OK {data}x"
+
+- id: ism_mode_state
+  type: enum
+  values: [inversion, orbiter, white_wash, normal]
+
+- id: tile_mode_state
+  type: integer
+  description: Hex byte; 00=off, else column*10+row
+
+- id: tile_h_size_state
+  type: integer
+  range: "0-100"
+
+- id: tile_v_size_state
+  type: integer
+  range: "0-100"
+
+- id: tile_id_state
+  type: integer
+  range: "0-16"
+
+- id: elapsed_time_hours
+  type: integer
+  description: Hex-encoded hours
+  response_pattern: "l {set_id} OK {data}x"
+
+- id: internal_temperature
+  type: integer
+  description: 1-byte hex value
+  response_pattern: "n {set_id} OK {data}x"
+
+- id: lamp_fault
   type: enum
   values: [fault, ok]
-  query_command: "d p FF"
+  response_pattern: "p {set_id} OK {data}x"
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete variable parameters documented separately from actions
+# UNRESOLVED: All adjustable parameters in this device are exposed as parameterized Actions
+# (volume, contrast, brightness, color, tint, sharpness, balance, color_temperature).
+# No standalone settable variables are documented in the source.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented in source
+# UNRESOLVED: source does not document unsolicited notifications from the device.
+# All feedback is delivered as solicited responses to command frames.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences documented in source
+# UNRESOLVED: source does not document multi-step sequences.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or power-on sequencing requirements.
 ```
 
 ## Notes
-Command format: `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where Cr = 0x0D, Space = 0x20.
+- All commands use the frame `<cmd1><cmd2><SP><set_id><SP><data><CR>` where `<SP>=0x20` and `<CR>=0x0D`.
+- `set_id` is 1-99; `0` broadcasts to all connected sets. When broadcasting, ack messages are not checkable.
+- Every command supports a read form by sending `data=FF`; the device replies with the current value in an OK ack.
+- OK ack frame: `<cmd2><SP><set_id><SP>OK<SP><data>x`; Error ack frame: `<cmd2><SP><set_id><SP>NG<SP><data>x`. The trailing `x` is a literal character per the source.
+- Tiling sub-commands (tile_mode, tile_h_size, tile_v_size, tile_id_set, elapsed_time, temperature, lamp_fault) use `d` as cmd1 and acknowledge with `OK/NG` rather than just `OK`.
+- ISM Mode and Abnormal State are documented as hex-coded enums with gaps (e.g. ISM data 1/2/4/8 only; 0/3/5/6/7 undefined).
+- The source is a generic LG RS-232 protocol manual; explicit mention of the 49UJ6050 model number is not present in the supplied text. Compatibility is asserted from device-class context, not from model-specific evidence.
+- Source describes RS-232C/serial exclusively; the input prompt's "TCP/IP" label does not match the source content.
 
-Set ID range: 1-99. Set ID 0 broadcasts to all devices (ACK handling not reliable for broadcast).
-
-Read mode: transmit `FF` as Data to read current value.
-
-ACK format: `[Command2][ ][Set ID][ ][OK/NG][Data][x]`
-
-Tile mode data format uses `[x]` terminator instead of `[Cr]`.
-
-IR codes included for reference (wired remote control interface). Discrete IR codes (C4=Power On, C5=Power Off, etc.) available for one-way control.
-<!-- UNRESOLVED: TCP/IP control path not present in source — this spec covers RS-232C only -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: port number (COM1, etc.) not specified in source -->
+<!-- UNRESOLVED: Firmware version compatibility not stated in source. -->
+<!-- UNRESOLVED: Specific 49UJ6050 model identification not stated in source; spec covers the protocol class. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:59:49.779Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T01:18:31.928Z
+last_checked_at: 2026-06-02T01:48:23.040Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:59:49.779Z
-matched_actions: 30
-action_count: 30
-confidence: high
-summary: "All 30 spec actions matched literally in source; all transport parameters verified against LG 49UJ6050 programmer guide."
+checked_at: 2026-06-02T01:48:23.040Z
+matched_actions: 26
+action_count: 26
+confidence: medium
+summary: "All 26 spec actions matched literally against source command table; all transport parameters verified verbatim; full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source document is a generic LG RS-232 protocol manual; it does not explicitly name the 49UJ6050 model. Compatibility is asserted from the document context."
+- "Source uses RS-232/serial despite input prompt describing protocol as \"TCP/IP\". Spec follows source."
+- "All adjustable parameters in this device are exposed as parameterized Actions"
+- "source does not document unsolicited notifications from the device."
+- "source does not document multi-step sequences."
+- "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+- "Firmware version compatibility not stated in source."
+- "Specific 49UJ6050 model identification not stated in source; spec covers the protocol class."
 ```
 
 ---

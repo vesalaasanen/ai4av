@@ -17,28 +17,34 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - agneovo.com
   - resource.datavideo.com
-  - github.com
-  - dtvideolabs.com
 source_urls:
-  - https://www.agneovo.com/wp-content/uploads/2021/09/TBX-2201_RS232_CommandList.pdf
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
-  - "https://github.com/RoseOO/datavideo-dvip-docs/raw/refs/heads/master/SE1200MU/Datavideo%20SE-1200%20Ethernet%20Control%20Protocol_E1%2020190710.pdf"
-  - https://www.dtvideolabs.com/user-guide-playbackproplus
-retrieved_at: 2026-05-18T06:31:11.014Z
+  - http://resource.datavideo.com/manualsTW/Datavideo_HDR-70.pdf
+retrieved_at: 2026-05-14T23:07:15.160Z
 last_checked_at: 2026-05-15T21:32:07.924Z
 generated_at: 2026-05-15T21:32:07.924Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-422 mentioned in LCD menu but no RS-422 command details provided in source"
+  - "flow control not stated in source"
+  - "bitrate select commands (02h F3h 06h xx for HD, 02h F3h 07h xx for SD) list valid values"
+  - "bitrate values for HD (02h F3h 06h) and SD (02h F3h 07h) not fully encoded in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "RS-422 command protocol not documented in source"
+  - "bitrate select byte encoding (HD/SD) not fully specified"
+  - "SD bitrate valid values listed (LGOP: 8/15/30/50, I-only: 25/50) but byte encoding unknown"
+  - "HD bitrate valid values listed (LGOP: 10/25/35/50/65/120, I-only: 100/125) but byte encoding unknown"
+  - "Status Sense byte 4 hard-coded as \"1,0,0,1,0,0,0\" — meaning unclear"
+  - "flow control setting not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:32:07.924Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions match source commands exactly; transport parameters verified; comprehensive protocol coverage with no gaps."
+  confidence: medium
+  summary: "All 44 spec actions match source commands exactly; transport parameters verified; comprehensive protocol coverage with no gaps. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -582,16 +588,11 @@ interlocks:
 
 ```yaml
 source_domains:
-  - agneovo.com
   - resource.datavideo.com
-  - github.com
-  - dtvideolabs.com
 source_urls:
-  - https://www.agneovo.com/wp-content/uploads/2021/09/TBX-2201_RS232_CommandList.pdf
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
-  - "https://github.com/RoseOO/datavideo-dvip-docs/raw/refs/heads/master/SE1200MU/Datavideo%20SE-1200%20Ethernet%20Control%20Protocol_E1%2020190710.pdf"
-  - https://www.dtvideolabs.com/user-guide-playbackproplus
-retrieved_at: 2026-05-18T06:31:11.014Z
+  - http://resource.datavideo.com/manualsTW/Datavideo_HDR-70.pdf
+retrieved_at: 2026-05-14T23:07:15.160Z
 last_checked_at: 2026-05-15T21:32:07.924Z
 ```
 
@@ -602,14 +603,24 @@ verdict: verified
 checked_at: 2026-05-15T21:32:07.924Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions match source commands exactly; transport parameters verified; comprehensive protocol coverage with no gaps."
+confidence: medium
+summary: "All 44 spec actions match source commands exactly; transport parameters verified; comprehensive protocol coverage with no gaps. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-422 mentioned in LCD menu but no RS-422 command details provided in source"
+- "flow control not stated in source"
+- "bitrate select commands (02h F3h 06h xx for HD, 02h F3h 07h xx for SD) list valid values"
+- "bitrate values for HD (02h F3h 06h) and SD (02h F3h 07h) not fully encoded in source"
+- "no explicit safety interlock procedures documented in source"
+- "RS-422 command protocol not documented in source"
+- "bitrate select byte encoding (HD/SD) not fully specified"
+- "SD bitrate valid values listed (LGOP: 8/15/30/50, I-only: 25/50) but byte encoding unknown"
+- "HD bitrate valid values listed (LGOP: 10/25/35/50/65/120, I-only: 100/125) but byte encoding unknown"
+- "Status Sense byte 4 hard-coded as \"1,0,0,1,0,0,0\" — meaning unclear"
+- "flow control setting not stated"
 ```
 
 ---

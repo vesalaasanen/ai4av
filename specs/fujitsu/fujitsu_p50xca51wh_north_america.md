@@ -29,14 +29,22 @@ last_checked_at: 2026-05-14T18:17:15.900Z
 generated_at: 2026-05-14T18:17:15.900Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "P50XCA51WH-specific RS-232 protocol not confirmed; source covers P50XHA10 series only"
+  - "no unsolicited notification mechanism described in source"
+  - "no named macros in source"
+  - "no explicit safety interlock procedures beyond key disable priority"
+  - "P50XCA51WH-specific validation not performed — source covers P50XHA10 series"
+  - "firmware version compatibility not stated in source"
+  - "no IP/TCP control mentioned in source — serial only"
+  - "port number not stated — RS-232 only, no IP port applicable"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.900Z
   matched_actions: 143
   action_count: 199
-  confidence: high
-  summary: "All 143 spec commands match literal source tokens; transport verified."
+  confidence: medium
+  summary: "All 143 spec commands match literal source tokens; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1331,14 +1339,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.900Z
 matched_actions: 143
 action_count: 199
-confidence: high
-summary: "All 143 spec commands match literal source tokens; transport verified."
+confidence: medium
+summary: "All 143 spec commands match literal source tokens; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "P50XCA51WH-specific RS-232 protocol not confirmed; source covers P50XHA10 series only"
+- "no unsolicited notification mechanism described in source"
+- "no named macros in source"
+- "no explicit safety interlock procedures beyond key disable priority"
+- "P50XCA51WH-specific validation not performed — source covers P50XHA10 series"
+- "firmware version compatibility not stated in source"
+- "no IP/TCP control mentioned in source — serial only"
+- "port number not stated — RS-232 only, no IP port applicable"
 ```
 
 ---

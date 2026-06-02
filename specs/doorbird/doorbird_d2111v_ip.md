@@ -18,21 +18,27 @@ compatible_with:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-05-13T00:49:07.900Z
 last_checked_at: 2026-05-14T05:46:50.519Z
 generated_at: 2026-05-14T05:46:50.519Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial control not documented in source"
+  - "HTTPS certificate validation details not stated"
+  - "populate from source if present"
+  - "populate from source if explicit safety warnings exist"
+  - "RS-232 serial protocol not documented in source"
+  - "factory reset procedure not documented in source"
+  - "firmware version compatibility not stated (only specific examples: 000096, 000099, 000108, 000109, 000110, 000129)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T05:46:50.519Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected."
+  confidence: medium
+  summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -431,9 +437,8 @@ interlocks: []
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-05-13T00:49:07.900Z
 last_checked_at: 2026-05-14T05:46:50.519Z
 ```
 
@@ -444,14 +449,20 @@ verdict: verified
 checked_at: 2026-05-14T05:46:50.519Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected."
+confidence: medium
+summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial control not documented in source"
+- "HTTPS certificate validation details not stated"
+- "populate from source if present"
+- "populate from source if explicit safety warnings exist"
+- "RS-232 serial protocol not documented in source"
+- "factory reset procedure not documented in source"
+- "firmware version compatibility not stated (only specific examples: 000096, 000099, 000108, 000109, 000110, 000129)"
 ```
 
 ---

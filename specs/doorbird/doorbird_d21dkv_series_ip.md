@@ -19,20 +19,28 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:30.052Z
 last_checked_at: 2026-04-23T06:41:19.010Z
 generated_at: 2026-04-23T06:41:19.010Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no power on/off commands documented; UNRESOLVED: no discrete input/output routing beyond relay triggers"
+  - "events are received via UDP monitor stream and monitor.cgi,"
+  - "no multi-step macro sequences defined in source."
+  - "no explicit safety warnings or interlock procedures beyond permission-based access controls documented in source"
+  - "no voltage, current, or power specifications in source"
+  - "no firmware version compatibility ranges stated beyond minimums for specific features"
+  - "no error recovery sequences or fault behavior documented"
+  - "no binary command byte encoding tables — all commands are HTTP URL-based"
+  - "specific error codes beyond HTTP status codes not enumerated for all endpoints"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:41:19.010Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports."
+  confidence: medium
+  summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -578,8 +586,7 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:30.052Z
 last_checked_at: 2026-04-23T06:41:19.010Z
 ```
 
@@ -590,14 +597,22 @@ verdict: verified
 checked_at: 2026-04-23T06:41:19.010Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports."
+confidence: medium
+summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no power on/off commands documented; UNRESOLVED: no discrete input/output routing beyond relay triggers"
+- "events are received via UDP monitor stream and monitor.cgi,"
+- "no multi-step macro sequences defined in source."
+- "no explicit safety warnings or interlock procedures beyond permission-based access controls documented in source"
+- "no voltage, current, or power specifications in source"
+- "no firmware version compatibility ranges stated beyond minimums for specific features"
+- "no error recovery sequences or fault behavior documented"
+- "no binary command byte encoding tables — all commands are HTTP URL-based"
+- "specific error codes beyond HTTP status codes not enumerated for all endpoints"
 ```
 
 ---

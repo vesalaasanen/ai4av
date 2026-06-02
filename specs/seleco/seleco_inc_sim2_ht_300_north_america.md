@@ -25,14 +25,20 @@ last_checked_at: 2026-05-14T18:17:20.212Z
 generated_at: 2026-05-14T18:17:20.212Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "binary packet structure beyond hex tables not fully decoded; only named operation IDs documented"
+  - "no query commands returning current parameter values found in source"
+  - "no unsolicited event packets documented; device sends only ack codes in response to commands"
+  - "no multi-step sequences documented as named macros"
+  - "no safety warnings or interlock procedures in source"
+  - "operation code parameter value ranges not documented; CRC algorithm not specified; Event packet payload structure not fully described"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.212Z
   matched_actions: 87
   action_count: 93
-  confidence: high
-  summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes."
+  confidence: medium
+  summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -699,14 +705,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.212Z
 matched_actions: 87
 action_count: 93
-confidence: high
-summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes."
+confidence: medium
+summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "binary packet structure beyond hex tables not fully decoded; only named operation IDs documented"
+- "no query commands returning current parameter values found in source"
+- "no unsolicited event packets documented; device sends only ack codes in response to commands"
+- "no multi-step sequences documented as named macros"
+- "no safety warnings or interlock procedures in source"
+- "operation code parameter value ranges not documented; CRC algorithm not specified; Event packet payload structure not fully described"
 ```
 
 ---

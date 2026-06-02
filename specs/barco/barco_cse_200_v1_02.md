@@ -24,14 +24,23 @@ last_checked_at: 2026-05-14T18:17:14.278Z
 generated_at: 2026-05-14T18:17:14.278Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "exact list of input sources varies by projector model"
+  - "no multi-step macro sequences explicitly described in source"
+  - "no explicit safety interlock or power-on sequencing warnings beyond"
+  - "exact connector and source list for CSE-200 vs other Pulse projectors not specified"
+  - "maximum concurrent TCP connections not stated"
+  - "serial cable pinout specifies pins 2-2, 3-3, 5-5 but does not specify DTE/DCE or null-modem"
+  - "protocol version number not stated in source"
+  - "HTTP file endpoint authentication requirements not fully specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.278Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified."
+  confidence: medium
+  summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -559,14 +568,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.278Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified."
+confidence: medium
+summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "exact list of input sources varies by projector model"
+- "no multi-step macro sequences explicitly described in source"
+- "no explicit safety interlock or power-on sequencing warnings beyond"
+- "exact connector and source list for CSE-200 vs other Pulse projectors not specified"
+- "maximum concurrent TCP connections not stated"
+- "serial cable pinout specifies pins 2-2, 3-3, 5-5 but does not specify DTE/DCE or null-modem"
+- "protocol version number not stated in source"
+- "HTTP file endpoint authentication requirements not fully specified"
 ```
 
 ---

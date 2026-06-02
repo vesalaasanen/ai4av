@@ -17,21 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - rakocontrols.com
+  - manualmachine.com
+  - scribd.com
+  - wiki.london.hackspace.org.uk
 source_urls:
-  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
-retrieved_at: 2026-05-04T18:02:21.672Z
+  - https://rakocontrols.com/media/1956/accessing-the-rako-bridge-v222.pdf
+  - https://rakocontrols.com/media/1315/wra232-instruction-manual.pdf
+  - https://manualmachine.com/rako/wra232/2505407-user-manual/
+  - https://www.scribd.com/document/830853576/accessing-the-rako-hub
+  - https://wiki.london.hackspace.org.uk/view/Project:Java-Rako/Published_API
+retrieved_at: 2026-05-18T10:41:50.992Z
 last_checked_at: 2026-05-18T16:46:52.555Z
 generated_at: 2026-05-18T16:46:52.555Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "HTTP interface documented for RA/RTC/WA/WTC-Bridge and APR/WRE-Bridge products but NOT explicitly confirmed for WRA-232 in this source. UNRESOLVED: Custom String parameter (string=X&run=1) documented as WRA-232 specific but unclear if HTTP is supported on WRA-232."
+  - "no safety warnings or interlock procedures found in source"
+  - "Full RS232 command protocol details not included - refer to separate Rako RS232 Command Summary document. UNRESOLVED: XML download interface (rakobridge/rako.xml) documented for RA/RTC/WA/WTC-Bridge only, not confirmed for WRA-232."
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:46:52.555Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified."
+  confidence: medium
+  summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -382,9 +392,16 @@ The Rako protocol is shared across RAV232, RAV232+, and WRA-232 products. The co
 ```yaml
 source_domains:
   - rakocontrols.com
+  - manualmachine.com
+  - scribd.com
+  - wiki.london.hackspace.org.uk
 source_urls:
-  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
-retrieved_at: 2026-05-04T18:02:21.672Z
+  - https://rakocontrols.com/media/1956/accessing-the-rako-bridge-v222.pdf
+  - https://rakocontrols.com/media/1315/wra232-instruction-manual.pdf
+  - https://manualmachine.com/rako/wra232/2505407-user-manual/
+  - https://www.scribd.com/document/830853576/accessing-the-rako-hub
+  - https://wiki.london.hackspace.org.uk/view/Project:Java-Rako/Published_API
+retrieved_at: 2026-05-18T10:41:50.992Z
 last_checked_at: 2026-05-18T16:46:52.555Z
 ```
 
@@ -395,14 +412,16 @@ verdict: verified
 checked_at: 2026-05-18T16:46:52.555Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified."
+confidence: medium
+summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "HTTP interface documented for RA/RTC/WA/WTC-Bridge and APR/WRE-Bridge products but NOT explicitly confirmed for WRA-232 in this source. UNRESOLVED: Custom String parameter (string=X&run=1) documented as WRA-232 specific but unclear if HTTP is supported on WRA-232."
+- "no safety warnings or interlock procedures found in source"
+- "Full RS232 command protocol details not included - refer to separate Rako RS232 Command Summary document. UNRESOLVED: XML download interface (rakobridge/rako.xml) documented for RA/RTC/WA/WTC-Bridge only, not confirmed for WRA-232."
 ```
 
 ---

@@ -20,19 +20,27 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:34:57.092Z
 last_checked_at: 2026-05-14T18:17:14.693Z
 generated_at: 2026-05-14T18:17:14.693Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact TCP port number not stated in source (Telnet heading implies port 23 but not confirmed)"
+  - "source document title references CMX88AB — relationship to C88CS marketing name not clarified"
+  - "port number not stated in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences described in source"
+  - "exact format of STATUS response not documented"
+  - "number of inputs/outputs ranges — source shows xx=01-08 for outputs but only 01-04 for EDID inputs; unclear if matrix is 8x8 or 4x8"
+  - "whether commands work identically over TCP and RS-232 or have protocol-specific variations"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.693Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -305,7 +313,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:34:57.092Z
 last_checked_at: 2026-05-14T18:17:14.693Z
 ```
 
@@ -316,14 +324,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.693Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact TCP port number not stated in source (Telnet heading implies port 23 but not confirmed)"
+- "source document title references CMX88AB — relationship to C88CS marketing name not clarified"
+- "port number not stated in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences described in source"
+- "exact format of STATUS response not documented"
+- "number of inputs/outputs ranges — source shows xx=01-08 for outputs but only 01-04 for EDID inputs; unclear if matrix is 8x8 or 4x8"
+- "whether commands work identically over TCP and RS-232 or have protocol-specific variations"
 ```
 
 ---

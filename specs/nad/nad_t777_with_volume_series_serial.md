@@ -15,11 +15,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:22:08.426Z
 last_checked_at: 2026-05-16T23:22:08.426Z
 generated_at: 2026-05-16T23:22:08.426Z
 firmware_coverage: "Not stated in source"
@@ -27,13 +25,20 @@ protocol_coverage: []
 known_gaps:
   - /Presets
   - /Playlist
+  - "The source document is the BluOS Custom Integration API shared across NAD, Bluesound, and DALI products; no NAD-T777-specific command set or feature exclusions are documented. Input types available depend on physical hardware."
+  - "No persistent settable parameters beyond what is covered in Actions and Feedbacks are described in the source."
+  - "No multi-step macros are explicitly documented in the source."
+  - "RS-232C/serial protocol mentioned in the intake form is not documented in this source. If the NAD T777 has a separate RS-232C command set, it would require a different source document."
+  - "Authentication — source describes no login or credential mechanism. auth.type set to none by Tier 2 inference."
+  - "Firmware version compatibility for the T777 model specifically is not stated."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T23:22:08.426Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold."
+  confidence: medium
+  summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -464,11 +469,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:22:08.426Z
 last_checked_at: 2026-05-16T23:22:08.426Z
 ```
 
@@ -479,8 +482,8 @@ verdict: verified
 checked_at: 2026-05-16T23:22:08.426Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold."
+confidence: medium
+summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -488,6 +491,13 @@ summary: "All 31 spec actions matched verbatim source endpoints; transport port 
 ```yaml
 - /Presets
 - /Playlist
+- "The source document is the BluOS Custom Integration API shared across NAD, Bluesound, and DALI products; no NAD-T777-specific command set or feature exclusions are documented. Input types available depend on physical hardware."
+- "No persistent settable parameters beyond what is covered in Actions and Feedbacks are described in the source."
+- "No multi-step macros are explicitly documented in the source."
+- "RS-232C/serial protocol mentioned in the intake form is not documented in this source. If the NAD T777 has a separate RS-232C command set, it would require a different source document."
+- "Authentication — source describes no login or credential mechanism. auth.type set to none by Tier 2 inference."
+- "Firmware version compatibility for the T777 model specifically is not stated."
+- "model-specific source not located"
 ```
 
 ---

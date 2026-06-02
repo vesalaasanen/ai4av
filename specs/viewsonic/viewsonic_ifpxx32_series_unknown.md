@@ -16,26 +16,44 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - viewsonicglobal.com
+  - viewsonicvsa.freshdesk.com
+  - manuals.viewsonic.com
+  - reddit.com
+  - jarcomputers.com
+  - manualslib.com
 source_urls:
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
-  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
-  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
-  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
-retrieved_at: 2026-04-30T10:02:07.423Z
+  - https://viewsonicvsa.freshdesk.com/helpdesk/attachments/43019674572
+  - https://manuals.viewsonic.com/IFP32_RS-232_Protocols
+  - https://www.reddit.com/r/crestron/comments/dt71d7/correct_rs232_format_for_viewsonic_displays/
+  - https://www.jarcomputers.com/images/custom/docs/IFP32-2_UG_ENG-171634801263.pdf
+  - https://www.manualslib.com/manual/2312923/Viewsonic-Ifp32-Series.html
+retrieved_at: 2026-05-26T23:58:53.141Z
 last_checked_at: 2026-05-31T22:44:29.340Z
 generated_at: 2026-05-31T22:44:29.340Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document is titled \"Projector RS-232/LAN Control Protocol\" and states \"Apply for all projectors\" — applicability to IFPxx32 Series (interactive flat panels) not confirmed in source"
+  - "specific IFPxx32 model SKUs not listed in source"
+  - "default baud rate not stated; supported rates are 2400/4800/9600/14400/19200/38400/115200"
+  - "firmware version compatibility not stated in source"
+  - "source lists supported rates (2400/4800/9600/14400/19200/38400/115200) but no default"
+  - "not explicitly stated in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "source mentions \"do not perform other commands\" during warm up and cool down"
+  - "source document is titled \"Projector RS-232/LAN Control Protocol\" — confirms projector protocol, not IFP panel protocol"
+  - "data_bits, parity, stop_bits not explicitly stated in source (only baud rate range listed)"
+  - "flow control not stated"
+  - "specific model numbers in IFPxx32 series not listed"
+  - "AMX discovery response references \"PX800HD\" model — may differ for IFP models"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:44:29.340Z
   matched_actions: 234
   action_count: 234
-  confidence: high
-  summary: "All 234 spec actions matched verbatim against source section 3.3 command table; transport port 4661 and serial hardware confirmed; coverage ratio 234/235 exceeds 0.9 floor."
+  confidence: medium
+  summary: "All 234 spec actions matched verbatim against source section 3.3 command table; transport port 4661 and serial hardware confirmed; coverage ratio 234/235 exceeds 0.9 floor. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1463,14 +1481,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - viewsonicglobal.com
+  - viewsonicvsa.freshdesk.com
+  - manuals.viewsonic.com
+  - reddit.com
+  - jarcomputers.com
+  - manualslib.com
 source_urls:
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
-  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
-  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
-  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
-retrieved_at: 2026-04-30T10:02:07.423Z
+  - https://viewsonicvsa.freshdesk.com/helpdesk/attachments/43019674572
+  - https://manuals.viewsonic.com/IFP32_RS-232_Protocols
+  - https://www.reddit.com/r/crestron/comments/dt71d7/correct_rs232_format_for_viewsonic_displays/
+  - https://www.jarcomputers.com/images/custom/docs/IFP32-2_UG_ENG-171634801263.pdf
+  - https://www.manualslib.com/manual/2312923/Viewsonic-Ifp32-Series.html
+retrieved_at: 2026-05-26T23:58:53.141Z
 last_checked_at: 2026-05-31T22:44:29.340Z
 ```
 
@@ -1481,14 +1503,27 @@ verdict: verified
 checked_at: 2026-05-31T22:44:29.340Z
 matched_actions: 234
 action_count: 234
-confidence: high
-summary: "All 234 spec actions matched verbatim against source section 3.3 command table; transport port 4661 and serial hardware confirmed; coverage ratio 234/235 exceeds 0.9 floor."
+confidence: medium
+summary: "All 234 spec actions matched verbatim against source section 3.3 command table; transport port 4661 and serial hardware confirmed; coverage ratio 234/235 exceeds 0.9 floor. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document is titled \"Projector RS-232/LAN Control Protocol\" and states \"Apply for all projectors\" — applicability to IFPxx32 Series (interactive flat panels) not confirmed in source"
+- "specific IFPxx32 model SKUs not listed in source"
+- "default baud rate not stated; supported rates are 2400/4800/9600/14400/19200/38400/115200"
+- "firmware version compatibility not stated in source"
+- "source lists supported rates (2400/4800/9600/14400/19200/38400/115200) but no default"
+- "not explicitly stated in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "source mentions \"do not perform other commands\" during warm up and cool down"
+- "source document is titled \"Projector RS-232/LAN Control Protocol\" — confirms projector protocol, not IFP panel protocol"
+- "data_bits, parity, stop_bits not explicitly stated in source (only baud rate range listed)"
+- "flow control not stated"
+- "specific model numbers in IFPxx32 series not listed"
+- "AMX discovery response references \"PX800HD\" model — may differ for IFP models"
 ```
 
 ---

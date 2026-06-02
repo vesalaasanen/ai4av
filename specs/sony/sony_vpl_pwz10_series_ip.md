@@ -15,27 +15,42 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
-source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:20.924Z
 last_checked_at: 2026-05-14T18:17:20.924Z
 generated_at: 2026-05-14T18:17:20.924Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document title references VPL-DX/DW/EX/EW series models, not VPL-PWZ10 explicitly; protocol is assumed to be shared across Sony projector families"
+  - "RS-232C communication specifications (baud rate, data bits, parity, stop bits) not present in source"
+  - "PJLink port number not stated in source"
+  - "firmware version compatibility not stated"
+  - "PJLink port not stated in source (PJLink standard is 4352 but not confirmed)"
+  - "baud rate not stated in source"
+  - "data bits not stated in source"
+  - "parity not stated in source"
+  - "stop bits not stated in source"
+  - "flow control not stated in source"
+  - "exact AVMT parameter values not fully documented in source"
+  - "full list of aspect mode values not provided in source"
+  - "full list of picture mode values not provided in source"
+  - "response format values not fully documented in source"
+  - "no settable continuous parameters (volume, brightness, etc.) documented in source"
+  - "SDAP broadcast format partially documented but not fully specified in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "source document title lists VPL-DX/DW/EX/EW series, not VPL-PWZ10; assuming shared protocol across Sony projector families"
+  - "complete SDCP item number list not provided — only partial items documented"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.924Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 23 spec actions matched exactly to documented commands in source; transport parameters verified; complete PJLink and core SDCP coverage confirmed."
+  confidence: medium
+  summary: "All 23 spec actions matched exactly to documented commands in source; transport parameters verified; complete PJLink and core SDCP coverage confirmed. (20 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -353,15 +368,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
-source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:20.924Z
 last_checked_at: 2026-05-14T18:17:20.924Z
 ```
 
@@ -372,14 +381,34 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.924Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 23 spec actions matched exactly to documented commands in source; transport parameters verified; complete PJLink and core SDCP coverage confirmed."
+confidence: medium
+summary: "All 23 spec actions matched exactly to documented commands in source; transport parameters verified; complete PJLink and core SDCP coverage confirmed. (20 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document title references VPL-DX/DW/EX/EW series models, not VPL-PWZ10 explicitly; protocol is assumed to be shared across Sony projector families"
+- "RS-232C communication specifications (baud rate, data bits, parity, stop bits) not present in source"
+- "PJLink port number not stated in source"
+- "firmware version compatibility not stated"
+- "PJLink port not stated in source (PJLink standard is 4352 but not confirmed)"
+- "baud rate not stated in source"
+- "data bits not stated in source"
+- "parity not stated in source"
+- "stop bits not stated in source"
+- "flow control not stated in source"
+- "exact AVMT parameter values not fully documented in source"
+- "full list of aspect mode values not provided in source"
+- "full list of picture mode values not provided in source"
+- "response format values not fully documented in source"
+- "no settable continuous parameters (volume, brightness, etc.) documented in source"
+- "SDAP broadcast format partially documented but not fully specified in source"
+- "no multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "source document title lists VPL-DX/DW/EX/EW series, not VPL-PWZ10; assuming shared protocol across Sony projector families"
+- "complete SDCP item number list not provided — only partial items documented"
+- "model-specific source not located"
 ```
 
 ---

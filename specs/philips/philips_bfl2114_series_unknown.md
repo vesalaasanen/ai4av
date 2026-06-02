@@ -17,22 +17,40 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - ptzprotocols.com
+  - support.westan.com.au
+  - agneovo.com
+  - keydigital.org
+  - digis.ru
+  - community.xibo.org.uk
 source_urls:
-  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
-retrieved_at: 2026-05-04T18:06:29.645Z
+  - https://support.westan.com.au/portal/en-gb/kb/articles/bdl-sicp-commonly-used-protocol-v-1-89-onwards
+  - https://www.agneovo.com/wp-content/uploads/2021/07/PM-32_RS232_CommandList1.pdf
+  - "https://www.keydigital.org/web/content/160298/ModuleManual_Philips%20Professional%20Displays.pdf"
+  - https://www.digis.ru/upload/iblock/bb4/SICP_application_note_v1.6.pdf
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
+retrieved_at: 2026-05-19T06:48:42.634Z
 last_checked_at: 2026-05-19T17:11:19.531Z
 generated_at: 2026-05-19T17:11:19.531Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific BFL2114 model variants not enumerated in source"
+  - "confirm BFL2114 supports IP control"
+  - "no response/feedback strings documented in source"
+  - "no query commands for current state found in source"
+  - "no unsolicited notification format described in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "model-specific TCP/IP support not confirmed for BFL2114 specifically"
+  - "response format for commands not documented"
+  - "query commands for current power/input/volume state not found in source"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:11:19.531Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set."
+  confidence: medium
+  summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -220,10 +238,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - ptzprotocols.com
+  - support.westan.com.au
+  - agneovo.com
+  - keydigital.org
+  - digis.ru
+  - community.xibo.org.uk
 source_urls:
-  - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
-retrieved_at: 2026-05-04T18:06:29.645Z
+  - https://support.westan.com.au/portal/en-gb/kb/articles/bdl-sicp-commonly-used-protocol-v-1-89-onwards
+  - https://www.agneovo.com/wp-content/uploads/2021/07/PM-32_RS232_CommandList1.pdf
+  - "https://www.keydigital.org/web/content/160298/ModuleManual_Philips%20Professional%20Displays.pdf"
+  - https://www.digis.ru/upload/iblock/bb4/SICP_application_note_v1.6.pdf
+  - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
+retrieved_at: 2026-05-19T06:48:42.634Z
 last_checked_at: 2026-05-19T17:11:19.531Z
 ```
 
@@ -234,14 +260,23 @@ verdict: verified
 checked_at: 2026-05-19T17:11:19.531Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set."
+confidence: medium
+summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific BFL2114 model variants not enumerated in source"
+- "confirm BFL2114 supports IP control"
+- "no response/feedback strings documented in source"
+- "no query commands for current state found in source"
+- "no unsolicited notification format described in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "model-specific TCP/IP support not confirmed for BFL2114 specifically"
+- "response format for commands not documented"
+- "query commands for current power/input/volume state not found in source"
 ```
 
 ---

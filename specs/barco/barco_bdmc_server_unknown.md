@@ -17,21 +17,29 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:33:26.102Z
 last_checked_at: 2026-05-14T21:35:56.006Z
 generated_at: 2026-05-14T21:35:56.006Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "document is titled \"For UDX\" projectors; exact BDMC Server feature subset not specified"
+  - "HTTP file endpoints use base URL pattern http://<projector-ip>/api/... but HTTP is not a primary control transport — only used for file upload/download"
+  - "source does not describe specific safety interlocks for lamp/laser shutdown sequences"
+  - "firmware version compatibility ranges not stated"
+  - "exact connector/source set for BDMC Server model not specified — document references UDX-4K32/UDX-4K22 models"
+  - "laser min/max power range is dynamic (depends on lens, position) — not a fixed range"
+  - "ECO wake serial command (:POWR1\\r) uses raw ASCII, not JSON-RPC — protocol switching required"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:35:56.006Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed."
+  confidence: medium
+  summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -813,9 +821,10 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:33:26.102Z
 last_checked_at: 2026-05-14T21:35:56.006Z
 ```
 
@@ -826,14 +835,20 @@ verdict: verified
 checked_at: 2026-05-14T21:35:56.006Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed."
+confidence: medium
+summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "document is titled \"For UDX\" projectors; exact BDMC Server feature subset not specified"
+- "HTTP file endpoints use base URL pattern http://<projector-ip>/api/... but HTTP is not a primary control transport — only used for file upload/download"
+- "source does not describe specific safety interlocks for lamp/laser shutdown sequences"
+- "firmware version compatibility ranges not stated"
+- "exact connector/source set for BDMC Server model not specified — document references UDX-4K32/UDX-4K22 models"
+- "laser min/max power range is dynamic (depends on lens, position) — not a fixed range"
+- "ECO wake serial command (:POWR1\\r) uses raw ASCII, not JSON-RPC — protocol switching required"
 ```
 
 ---

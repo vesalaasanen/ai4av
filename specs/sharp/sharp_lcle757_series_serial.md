@@ -16,26 +16,32 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:29:37.952Z
 last_checked_at: 2026-05-31T21:11:55.716Z
 generated_at: 2026-05-31T21:11:55.716Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN IP address configuration not detailed in source; default DHCP=on stated"
+  - "flow control not stated in source"
+  - "Variables list is a summary; full VCP code table exceeds scope - see source section 8"
+  - "No unsolicited event descriptions found in source."
+  - "No explicit multi-step macros described in source."
+  - "no safety warnings or interlock procedures stated in source"
+  - "voltage/current/power specifications not in source"
+  - "firmware compatibility range not stated"
+  - "error recovery sequences not detailed"
+  - "port number for TCP control (port 7142 stated, but DHCP default means IP must be read from OSD or DHCP server)"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:11:55.716Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions (13 CTL commands plus generic VCP-get and VCP-set) have verbatim command-code matches in the source; transport values confirmed; VCP table entries are parameters to the generic set/get pair, not separate wire commands."
+  confidence: medium
+  summary: "All 15 spec actions (13 CTL commands plus generic VCP-get and VCP-set) have verbatim command-code matches in the source; transport values confirmed; VCP table entries are parameters to the generic set/get pair, not separate wire commands. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -377,14 +383,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:29:37.952Z
 last_checked_at: 2026-05-31T21:11:55.716Z
 ```
 
@@ -395,14 +397,23 @@ verdict: verified
 checked_at: 2026-05-31T21:11:55.716Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions (13 CTL commands plus generic VCP-get and VCP-set) have verbatim command-code matches in the source; transport values confirmed; VCP table entries are parameters to the generic set/get pair, not separate wire commands."
+confidence: medium
+summary: "All 15 spec actions (13 CTL commands plus generic VCP-get and VCP-set) have verbatim command-code matches in the source; transport values confirmed; VCP table entries are parameters to the generic set/get pair, not separate wire commands. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN IP address configuration not detailed in source; default DHCP=on stated"
+- "flow control not stated in source"
+- "Variables list is a summary; full VCP code table exceeds scope - see source section 8"
+- "No unsolicited event descriptions found in source."
+- "No explicit multi-step macros described in source."
+- "no safety warnings or interlock procedures stated in source"
+- "voltage/current/power specifications not in source"
+- "firmware compatibility range not stated"
+- "error recovery sequences not detailed"
+- "port number for TCP control (port 7142 stated, but DHCP default means IP must be read from OSD or DHCP server)"
 ```
 
 ---

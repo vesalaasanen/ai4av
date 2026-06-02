@@ -17,24 +17,28 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - lexicondsp.pl
   - lexicon.com
 source_urls:
-  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
-  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
-retrieved_at: 2026-05-04T15:17:03.082Z
+  - "https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwa48ad2d8/pdfs/Lexicon DD-8P_IP Control_Protocol.pdf"
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwaf911684/pdfs/Lexicon_DD-8p_Network_and_Firmware_Guide.pdf
+retrieved_at: 2026-05-21T05:56:02.857Z
 last_checked_at: 2026-05-26T20:04:55.392Z
 generated_at: 2026-05-26T20:04:55.392Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not stated in source — device uses port 80 by default but explicit port not documented"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macros documented in source"
+  - "port number not stated — default HTTP port 80 typical but not confirmed in source"
+  - "power on/off commands not present in source — only auto_powerdown setting"
 verification:
   verdict: verified
   checked_at: 2026-05-26T20:04:55.392Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions map cleanly to source endpoints; transport parameters verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 14 spec actions map cleanly to source endpoints; transport parameters verified; source command catalogue fully represented. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -341,12 +345,11 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - lexicondsp.pl
   - lexicon.com
 source_urls:
-  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
-  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
-retrieved_at: 2026-05-04T15:17:03.082Z
+  - "https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwa48ad2d8/pdfs/Lexicon DD-8P_IP Control_Protocol.pdf"
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwaf911684/pdfs/Lexicon_DD-8p_Network_and_Firmware_Guide.pdf
+retrieved_at: 2026-05-21T05:56:02.857Z
 last_checked_at: 2026-05-26T20:04:55.392Z
 ```
 
@@ -357,14 +360,18 @@ verdict: verified
 checked_at: 2026-05-26T20:04:55.392Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions map cleanly to source endpoints; transport parameters verified; source command catalogue fully represented."
+confidence: medium
+summary: "All 14 spec actions map cleanly to source endpoints; transport parameters verified; source command catalogue fully represented. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not stated in source — device uses port 80 by default but explicit port not documented"
+- "no unsolicited event notifications described in source"
+- "no multi-step macros documented in source"
+- "port number not stated — default HTTP port 80 typical but not confirmed in source"
+- "power on/off commands not present in source — only auto_powerdown setting"
 ```
 
 ---

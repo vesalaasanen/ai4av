@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:33.584Z
 last_checked_at: 2026-05-14T18:17:18.342Z
 generated_at: 2026-05-14T18:17:18.342Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "standby mode compatibility varies by model; some commands require specific standby modes. UNRESOLVED: HDBaseT control mentioned in appendix but not detailed. UNRESOLVED: appendix references not included in this document (Supplementary Information by Command appendix values for input terminals, aspect, eco mode, signal types)."
+  - "source lists 115200/38400/19200/9600/4800 bps as supported but no default stated"
+  - "RTS/CTS hardware handshaking noted in pinout but flow control setting not stated"
+  - "many query commands return variable data; full variable schema not enumerated in this source."
+  - "this source does not describe unsolicited event notifications from the projector."
+  - "no explicit multi-step macros described in source."
+  - "appendix values referenced but not fully documented (input terminal codes vary by model, aspect codes vary, eco mode codes vary). UNRESOLVED: HDBaseT standby mode mentioned but HDBaseT control protocol not detailed. UNRESOLVED: SLOT/USB-A/USB-B/SDI/SDI2/SDI3/SDI4/APPS input terminal values vary by model configuration."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.342Z
   matched_actions: 49
   action_count: 53
-  confidence: high
-  summary: "All 49 spec actions matched corresponding NEC source commands with correct semantic coverage; transport parameters verified; full command catalogue represented."
+  confidence: medium
+  summary: "All 49 spec actions matched corresponding NEC source commands with correct semantic coverage; transport parameters verified; full command catalogue represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -634,7 +641,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:33.584Z
 last_checked_at: 2026-05-14T18:17:18.342Z
 ```
 
@@ -645,14 +652,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.342Z
 matched_actions: 49
 action_count: 53
-confidence: high
-summary: "All 49 spec actions matched corresponding NEC source commands with correct semantic coverage; transport parameters verified; full command catalogue represented."
+confidence: medium
+summary: "All 49 spec actions matched corresponding NEC source commands with correct semantic coverage; transport parameters verified; full command catalogue represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "standby mode compatibility varies by model; some commands require specific standby modes. UNRESOLVED: HDBaseT control mentioned in appendix but not detailed. UNRESOLVED: appendix references not included in this document (Supplementary Information by Command appendix values for input terminals, aspect, eco mode, signal types)."
+- "source lists 115200/38400/19200/9600/4800 bps as supported but no default stated"
+- "RTS/CTS hardware handshaking noted in pinout but flow control setting not stated"
+- "many query commands return variable data; full variable schema not enumerated in this source."
+- "this source does not describe unsolicited event notifications from the projector."
+- "no explicit multi-step macros described in source."
+- "appendix values referenced but not fully documented (input terminal codes vary by model, aspect codes vary, eco mode codes vary). UNRESOLVED: HDBaseT standby mode mentioned but HDBaseT control protocol not detailed. UNRESOLVED: SLOT/USB-A/USB-B/SDI/SDI2/SDI3/SDI4/APPS input terminal values vary by model configuration."
 ```
 
 ---

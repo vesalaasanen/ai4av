@@ -19,19 +19,29 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:29.627Z
 last_checked_at: 2026-04-23T15:40:48.640Z
 generated_at: 2026-04-23T15:40:48.640Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control indicated as known protocol but no TCP port or addressing details found in this source"
+  - "trigger I/O (3.5 mm jack) documented but not a machine-serializable protocol"
+  - "TCP port not stated in source"
+  - "configurator details not documented"
+  - "exact format of unsolicited notifications not specified in source"
+  - "no multi-step sequences described in source"
+  - "non-power commands are only available when POWER=1, but no explicit"
+  - "TCP/IP transport details (port, connection lifecycle, framing) not in this source"
+  - "Configurator software details and configuration protocol not documented"
+  - "exact ACK response format beyond the single example"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:40:48.640Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "Every spec action matched literally in source; all transport parameters verified; no additional commands in source; full bidirectional coverage achieved."
+  confidence: medium
+  summary: "Every spec action matched literally in source; all transport parameters verified; no additional commands in source; full bidirectional coverage achieved. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -401,7 +411,7 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:29.627Z
 last_checked_at: 2026-04-23T15:40:48.640Z
 ```
 
@@ -412,14 +422,23 @@ verdict: verified
 checked_at: 2026-04-23T15:40:48.640Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "Every spec action matched literally in source; all transport parameters verified; no additional commands in source; full bidirectional coverage achieved."
+confidence: medium
+summary: "Every spec action matched literally in source; all transport parameters verified; no additional commands in source; full bidirectional coverage achieved. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control indicated as known protocol but no TCP port or addressing details found in this source"
+- "trigger I/O (3.5 mm jack) documented but not a machine-serializable protocol"
+- "TCP port not stated in source"
+- "configurator details not documented"
+- "exact format of unsolicited notifications not specified in source"
+- "no multi-step sequences described in source"
+- "non-power commands are only available when POWER=1, but no explicit"
+- "TCP/IP transport details (port, connection lifecycle, framing) not in this source"
+- "Configurator software details and configuration protocol not documented"
+- "exact ACK response format beyond the single example"
 ```
 
 ---

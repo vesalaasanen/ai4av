@@ -26,14 +26,21 @@ last_checked_at: 2026-05-14T18:17:14.532Z
 generated_at: 2026-05-14T18:17:14.532Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source is generic BenQ RS232 manual, NOT specific to any model. Exact command support per model (7200/8200/8220) unknown."
+  - "source uses incremental (+/-) commands for volume, contrast, brightness,"
+  - "no multi-step sequences described in source"
+  - "compatible_with.models is UNKNOWN — source does not list specific model numbers"
+  - "no firmware version ranges stated"
+  - "volume/contrast/brightness/color/sharpness range limits not stated"
+  - "which commands are available on which models not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.532Z
   matched_actions: 66
   action_count: 66
-  confidence: high
-  summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified."
+  confidence: medium
+  summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -984,14 +991,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.532Z
 matched_actions: 66
 action_count: 66
-confidence: high
-summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified."
+confidence: medium
+summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source is generic BenQ RS232 manual, NOT specific to any model. Exact command support per model (7200/8200/8220) unknown."
+- "source uses incremental (+/-) commands for volume, contrast, brightness,"
+- "no multi-step sequences described in source"
+- "compatible_with.models is UNKNOWN — source does not list specific model numbers"
+- "no firmware version ranges stated"
+- "volume/contrast/brightness/color/sharpness range limits not stated"
+- "which commands are available on which models not specified"
 ```
 
 ---

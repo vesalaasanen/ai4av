@@ -15,23 +15,30 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - definitivetechnology.com
-source_urls:
-  - https://www.definitivetechnology.com/on/demandware.static/-/Library-Sites-definitive_northamerica_shared/default/dwddd37399/downloads/heos_cli_protocolspecification-version-116.pdf
-retrieved_at: 2026-05-13T16:00:00.000Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-04-27T14:43:53.278Z
 last_checked_at: 2026-04-27T14:43:53.278Z
 generated_at: 2026-04-27T14:43:53.278Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "this doc is Denon HEOS CLI protocol; Definitive Technology Studio 3D Mini uses HEOS platform — command set identical to HEOS BAR/BAR"
+  - "no power on/off command in HEOS CLI"
+  - "specific feedback schemas per command - see full command details above"
+  - "no discrete variable parameters beyond action inputs"
+  - "device sends change events when register_for_change_events enable=on"
+  - "no explicit macro sequences in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Definitive Technology Studio 3D Mini specific command coverage not verified against device"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-04-27T14:43:53.278Z
   matched_actions: 56
   action_count: 56
-  confidence: high
-  summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified."
+  confidence: medium
+  summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -674,11 +681,9 @@ Command format: `heos://command_group/command?attr1=val1&attr2=val2\r\n`. delimi
 ## Provenance
 
 ```yaml
-source_domains:
-  - definitivetechnology.com
-source_urls:
-  - https://www.definitivetechnology.com/on/demandware.static/-/Library-Sites-definitive_northamerica_shared/default/dwddd37399/downloads/heos_cli_protocolspecification-version-116.pdf
-retrieved_at: 2026-05-13T16:00:00.000Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-04-27T14:43:53.278Z
 last_checked_at: 2026-04-27T14:43:53.278Z
 ```
 
@@ -689,14 +694,22 @@ verdict: verified
 checked_at: 2026-04-27T14:43:53.278Z
 matched_actions: 56
 action_count: 56
-confidence: high
-summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified."
+confidence: medium
+summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "this doc is Denon HEOS CLI protocol; Definitive Technology Studio 3D Mini uses HEOS platform — command set identical to HEOS BAR/BAR"
+- "no power on/off command in HEOS CLI"
+- "specific feedback schemas per command - see full command details above"
+- "no discrete variable parameters beyond action inputs"
+- "device sends change events when register_for_change_events enable=on"
+- "no explicit macro sequences in source"
+- "no safety warnings or interlock procedures in source"
+- "Definitive Technology Studio 3D Mini specific command coverage not verified against device"
+- "model-specific source not located"
 ```
 
 ---

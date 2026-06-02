@@ -16,26 +16,28 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - kb.clearone.com
-  - keydigital.org
-  - officeplusuae.com
+  - archive.org
 source_urls:
-  - https://kb.clearone.com
-  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
-retrieved_at: 2026-05-15T09:22:58.682Z
+  - https://archive.org/download/manualsbase-id-221992/221992.pdf
+retrieved_at: 2026-05-27T14:38:33.239Z
 last_checked_at: 2026-05-27T15:36:45.131Z
 generated_at: 2026-05-27T15:36:45.131Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version compatibility range stated in source"
+  - "no continuous variable definitions distinct from actions in source"
+  - "macro programming command syntax not documented in source"
+  - "SFTYMUTE command exists (holds all outputs muted) but no explicit"
+  - "binary command format not documented"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:36:45.131Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 66 spec actions map one-to-one to the 66 source commands; transport matches."
+  summary: "All 66 spec actions map one-to-one to the 66 source commands; transport matches. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -908,14 +910,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - kb.clearone.com
-  - keydigital.org
-  - officeplusuae.com
+  - archive.org
 source_urls:
-  - https://kb.clearone.com
-  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
-retrieved_at: 2026-05-15T09:22:58.682Z
+  - https://archive.org/download/manualsbase-id-221992/221992.pdf
+retrieved_at: 2026-05-27T14:38:33.239Z
 last_checked_at: 2026-05-27T15:36:45.131Z
 ```
 
@@ -927,13 +925,18 @@ checked_at: 2026-05-27T15:36:45.131Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 66 spec actions map one-to-one to the 66 source commands; transport matches."
+summary: "All 66 spec actions map one-to-one to the 66 source commands; transport matches. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version compatibility range stated in source"
+- "no continuous variable definitions distinct from actions in source"
+- "macro programming command syntax not documented in source"
+- "SFTYMUTE command exists (holds all outputs muted) but no explicit"
+- "binary command format not documented"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

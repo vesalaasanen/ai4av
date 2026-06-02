@@ -1,16 +1,16 @@
 ---
-spec_id: admin/mark_levinson-no502_media_console
+spec_id: admin/mark-levinson-no502-media-console-north-america
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Mark Levinson No502 Media Console Control Spec"
 manufacturer: "Mark Levinson"
-model_family: "No502 Media Console"
+model_family: "No502 Media Console (North America)"
 aliases: []
 compatible_with:
   manufacturers:
     - "Mark Levinson"
   models:
-    - "No502 Media Console"
+    - "No502 Media Console (North America)"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,31 +20,35 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-04-30T04:26:55.366Z
-last_checked_at: 2026-05-14T18:17:18.092Z
-generated_at: 2026-05-14T18:17:18.092Z
+last_checked_at: 2026-06-02T05:46:07.837Z
+generated_at: 2026-06-02T05:46:07.837Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility, factory default activity/audio profile/video profile/display configuration/speaker configuration names not enumerated in source"
+  - "source describes settable numeric/string parameters inline (e.g. VOL 0.0-100.0,"
+  - "source describes the FPDWNUP/IRDWNUP composite commands and the FPRPT/IRRPT"
+  - "source contains no explicit safety warnings, interlock procedures, or"
+  - "factory default activity names, audio profile names, video profile names, display configuration names, and speaker configuration names are not enumerated in the source; they are user-editable pre-configured values. Firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.092Z
-  matched_actions: 211
-  action_count: 268
-  confidence: high
-  summary: "All 211 spec actions matched command tokens in source; all transport parameters confirmed with verbatim evidence."
+  checked_at: 2026-06-02T05:46:07.837Z
+  matched_actions: 292
+  action_count: 292
+  confidence: medium
+  summary: "All 292 spec action units matched verbatim to the 88 source commands (88 opcodes × set/query/notification variants); transport values port 15003, baud 57600, 8N1 all confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
 # Mark Levinson No502 Media Console Control Spec
 
 ## Summary
+ASCII command protocol for the Mark Levinson No502 Media Console (North America). External host controllers send/receive structured ASCII messages of the form `HDR:SRC:CMD:PARAM\r` over either RS-232 (RJ-11, 57600 8N1) or TCP (RJ-45, port 15003). The protocol covers 88 distinct command opcodes for power, volume, surround mode, video resolution, speaker calibration, triggers, Zone 2 control, and per-key front-panel/IR simulation.
 
-The Mark Levinson No502 Media Console is an AV preamp/processor supporting RS-232 and Ethernet (TCP) control. ASCII-based protocol with message format HDR:SRC:CMD:PARAM terminated by carriage return (0x0D). Supports power control, volume/mute, activity routing, audio profile selection, surround modes, speaker calibration, video resolution, zone 2 control, and system status queries. Notifications are supported for most commands.
-
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+<!-- UNRESOLVED: firmware version compatibility, factory default activity/audio profile/video profile/display configuration/speaker configuration names not enumerated in source -->
 
 ## Transport
 ```yaml
@@ -60,1693 +64,2010 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none
+  type: none  # inferred: no auth procedure in source
 ```
+
+**Message framing (applies to both transports):** `HDR:SRC:CMD:PARAM\r` where `\r` = 0x0D. Fields are case sensitive and colon separated. HDR ∈ {RQST, RSP, NTF}. SRC ∈ {CS, UI, AV}. Maximum 1024 characters per message. Host must wait for ACK within 500ms; up to 3 WAIT responses precede ERROR.
+
+**Serial (RS-232) via RJ-11:** pin 2 Rx, pin 3 Tx, pin 5 ground. Cable must cross Tx↔Rx. Default control port = Ethernet; RS-232 selectable via Setup → User Options → Control Options → External Control.
+
+**TCP via RJ-45:** protocol TCP, No502 = server, host = client. Default static IP 192.168.50.2 / mask 255.255.0.0 if DHCP disabled. DHCP is factory default. 10/100 BaseT, half/full duplex, flow & pause control supported (auto-negotiate, not user adjustable).
 
 ## Traits
 ```yaml
-- powerable
-- queryable
-- levelable
-- routable
+- powerable       # inferred from PWR:ON / PWR:STANDBY commands
+- routable        # inferred from input/speaker/display configuration commands (ACT, APROF, SPKRCFG, DISPCFG, VPROF, Z2ACT)
+- queryable       # inferred from extensive ? query commands (PWR?, VOL?, STATUS_MAIN?, REQ_*_LIST?, etc.)
+- levelable       # inferred from volume (VOL, Z2VOL), trim (CAL_LVL_*), balance (BAL), fader (FADER), and offset (OFFSET*) commands
 ```
 
 ## Actions
 ```yaml
-- id: pwr_on
-  label: Power On
+- id: act_select
+  label: Select Activity
   kind: action
-  params: []
-
-- id: pwr_standby
-  label: Power Standby
-  kind: action
-  params: []
-
-- id: pwr_query
-  label: Query Power State
-  kind: action
-  params: []
-
-- id: pwr_ntf_enable
-  label: Enable Power Notifications
-  kind: action
-  params: []
-
-- id: pwr_ntf_disable
-  label: Disable Power Notifications
-  kind: action
-  params: []
-
-- id: act_set
-  label: Set Activity
-  kind: action
+  command: "RQST:CS:ACT:\"{name}\"\r"
   params:
     - name: name
       type: string
-      description: Activity name (case-sensitive, no quotes)
+      description: Case sensitive name of the activity in the system database. Do not include the surrounding quotes literally.
 
 - id: act_query
   label: Query Current Activity
-  kind: action
+  kind: query
+  command: "RQST:CS:ACT:?\r"
   params: []
 
-- id: act_ntf_enable
-  label: Enable Activity Notifications
+- id: act_notification_enable
+  label: Enable Activity Change Notifications
   kind: action
+  command: "RQST:CS:ACT:EN\r"
   params: []
 
-- id: act_ntf_disable
-  label: Disable Activity Notifications
+- id: act_notification_disable
+  label: Disable Activity Change Notifications
   kind: action
+  command: "RQST:CS:ACT:DIS\r"
   params: []
 
-- id: aprof_set
-  label: Set Audio Profile
+- id: act_notification_query
+  label: Query Activity Notification State
+  kind: query
+  command: "RQST:CS:ACT:NTF?\r"
+  params: []
+
+- id: aprof_select
+  label: Select Audio Profile
   kind: action
+  command: "RQST:CS:APROF:\"{name}\"\r"
   params:
     - name: name
       type: string
-      description: Audio profile name (case-sensitive, no quotes)
+      description: Case sensitive name of the audio profile in the system database.
 
 - id: aprof_query
   label: Query Current Audio Profile
-  kind: action
+  kind: query
+  command: "RQST:CS:APROF:?\r"
   params: []
 
-- id: aprof_ntf_enable
-  label: Enable Audio Profile Notifications
+- id: aprof_notification_enable
+  label: Enable Audio Profile Change Notifications
   kind: action
+  command: "RQST:CS:APROF:EN\r"
   params: []
 
-- id: aprof_ntf_disable
-  label: Disable Audio Profile Notifications
+- id: aprof_notification_disable
+  label: Disable Audio Profile Change Notifications
   kind: action
+  command: "RQST:CS:APROF:DIS\r"
   params: []
 
-- id: vol_set
-  label: Set Volume
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Volume level 0.0 to 100.0
-
-- id: vol_query
-  label: Query Volume
-  kind: action
-  params: []
-
-- id: vol_ntf_enable
-  label: Enable Volume Notifications
-  kind: action
-  params: []
-
-- id: vol_ntf_disable
-  label: Disable Volume Notifications
-  kind: action
-  params: []
-
-- id: mute_on
-  label: Mute On
-  kind: action
-  params: []
-
-- id: mute_off
-  label: Mute Off
-  kind: action
-  params: []
-
-- id: mute_query
-  label: Query Mute State
-  kind: action
-  params: []
-
-- id: mute_ntf_enable
-  label: Enable Mute Notifications
-  kind: action
-  params: []
-
-- id: mute_ntf_disable
-  label: Disable Mute Notifications
-  kind: action
-  params: []
-
-- id: bal_set
-  label: Set Balance
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Balance level -14.0 to 14.0 (0.0 is center)
-
-- id: bal_set_roff
-  label: Set Balance Right Off
-  kind: action
-  params: []
-
-- id: bal_set_loff
-  label: Set Balance Left Off
-  kind: action
-  params: []
-
-- id: bal_query
-  label: Query Balance
-  kind: action
-  params: []
-
-- id: bal_ntf_enable
-  label: Enable Balance Notifications
-  kind: action
-  params: []
-
-- id: bal_ntf_disable
-  label: Disable Balance Notifications
-  kind: action
-  params: []
-
-- id: fader_set
-  label: Set Fader
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Fader level -14.0 to 14.0
-
-- id: fader_set_foff
-  label: Set Fader Front Off
-  kind: action
-  params: []
-
-- id: fader_set_boff
-  label: Set Fader Back Off
-  kind: action
-  params: []
-
-- id: fader_query
-  label: Query Fader
-  kind: action
-  params: []
-
-- id: fader_ntf_enable
-  label: Enable Fader Notifications
-  kind: action
-  params: []
-
-- id: fader_ntf_disable
-  label: Disable Fader Notifications
-  kind: action
+- id: aprof_notification_query
+  label: Query Audio Profile Notification State
+  kind: query
+  command: "RQST:CS:APROF:NTF?\r"
   params: []
 
 - id: avsync_set
   label: Set AV Sync Delay
   kind: action
+  command: "RQST:CS:AVSYNC:{value}\r"
   params:
-    - name: delay
+    - name: value
       type: number
-      description: AV sync delay in ms, 0.0 to 500.0
+      description: AV sync delay in milliseconds, range 0.0-500.0.
 
 - id: avsync_query
-  label: Query AV Sync
-  kind: action
+  label: Query Current AV Sync Value
+  kind: query
+  command: "RQST:CS:AVSYNC:?\r"
   params: []
 
-- id: avsync_ntf_enable
-  label: Enable AV Sync Notifications
+- id: avsync_notification_enable
+  label: Enable AV Sync Change Notifications
   kind: action
+  command: "RQST:CS:AVSYNC:EN\r"
   params: []
 
-- id: avsync_ntf_disable
-  label: Disable AV Sync Notifications
+- id: avsync_notification_disable
+  label: Disable AV Sync Change Notifications
   kind: action
+  command: "RQST:CS:AVSYNC:DIS\r"
   params: []
 
-- id: dispcfg_set
-  label: Set Display Configuration
+- id: avsync_notification_query
+  label: Query AV Sync Notification State
+  kind: query
+  command: "RQST:CS:AVSYNC:NTF?\r"
+  params: []
+
+- id: bal_set
+  label: Set Balance
   kind: action
+  command: "RQST:CS:BAL:{value}\r"
+  params:
+    - name: value
+      type: string
+      description: One of ROFF, LOFF, or a numeric level in -14.0 to 14.0.
+
+- id: bal_query
+  label: Query Current Balance
+  kind: query
+  command: "RQST:CS:BAL:?\r"
+  params: []
+
+- id: bal_notification_enable
+  label: Enable Balance Change Notifications
+  kind: action
+  command: "RQST:CS:BAL:EN\r"
+  params: []
+
+- id: bal_notification_disable
+  label: Disable Balance Change Notifications
+  kind: action
+  command: "RQST:CS:BAL:DIS\r"
+  params: []
+
+- id: bal_notification_query
+  label: Query Balance Notification State
+  kind: query
+  command: "RQST:CS:BAL:NTF?\r"
+  params: []
+
+- id: cal_dist_lf_set
+  label: Set Left Front Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_LF:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0. Always reported in feet regardless of system setting.
+
+- id: cal_dist_lf_query
+  label: Query Left Front Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_LF:?\r"
+  params: []
+
+- id: cal_dist_rf_set
+  label: Set Right Front Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_RF:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_rf_query
+  label: Query Right Front Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_RF:?\r"
+  params: []
+
+- id: cal_dist_c_set
+  label: Set Center Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_C:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_c_query
+  label: Query Center Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_C:?\r"
+  params: []
+
+- id: cal_dist_ls_set
+  label: Set Left Surround Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_LS:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_ls_query
+  label: Query Left Surround Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_LS:?\r"
+  params: []
+
+- id: cal_dist_rs_set
+  label: Set Right Surround Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_RS:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_rs_query
+  label: Query Right Surround Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_RS:?\r"
+  params: []
+
+- id: cal_dist_lb_set
+  label: Set Left Back Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_LB:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_lb_query
+  label: Query Left Back Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_LB:?\r"
+  params: []
+
+- id: cal_dist_rb_set
+  label: Set Right Back Speaker Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_RB:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_rb_query
+  label: Query Right Back Speaker Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_RB:?\r"
+  params: []
+
+- id: cal_dist_lsub1_set
+  label: Set Left Subwoofer 1 Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_LSUB1:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_lsub1_query
+  label: Query Left Subwoofer 1 Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_LSUB1:?\r"
+  params: []
+
+- id: cal_dist_rsub1_set
+  label: Set Right Subwoofer 1 Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_RSUB1:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_rsub1_query
+  label: Query Right Subwoofer 1 Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_RSUB1:?\r"
+  params: []
+
+- id: cal_dist_lsub2_set
+  label: Set Left Subwoofer 2 Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_LSUB2:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_lsub2_query
+  label: Query Left Subwoofer 2 Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_LSUB2:?\r"
+  params: []
+
+- id: cal_dist_rsub2_set
+  label: Set Right Subwoofer 2 Distance
+  kind: action
+  command: "RQST:CS:CAL_DIST_RSUB2:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Distance in feet, 0.0 to 40.0.
+
+- id: cal_dist_rsub2_query
+  label: Query Right Subwoofer 2 Distance
+  kind: query
+  command: "RQST:CS:CAL_DIST_RSUB2:?\r"
+  params: []
+
+- id: cal_lvl_lf_set
+  label: Set Left Front Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_LF:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_lf_query
+  label: Query Left Front Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_LF:?\r"
+  params: []
+
+- id: cal_lvl_rf_set
+  label: Set Right Front Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_RF:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_rf_query
+  label: Query Right Front Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_RF:?\r"
+  params: []
+
+- id: cal_lvl_c_set
+  label: Set Center Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_C:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_c_query
+  label: Query Center Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_C:?\r"
+  params: []
+
+- id: cal_lvl_ls_set
+  label: Set Left Surround Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_LS:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_ls_query
+  label: Query Left Surround Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_LS:?\r"
+  params: []
+
+- id: cal_lvl_rs_set
+  label: Set Right Surround Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_RS:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_rs_query
+  label: Query Right Surround Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_RS:?\r"
+  params: []
+
+- id: cal_lvl_lb_set
+  label: Set Left Back Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_LB:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_lb_query
+  label: Query Left Back Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_LB:?\r"
+  params: []
+
+- id: cal_lvl_rb_set
+  label: Set Right Back Speaker Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_RB:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_rb_query
+  label: Query Right Back Speaker Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_RB:?\r"
+  params: []
+
+- id: cal_lvl_lsub1_set
+  label: Set Left Subwoofer 1 Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_LSUB1:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_lsub1_query
+  label: Query Left Subwoofer 1 Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_LSUB1:?\r"
+  params: []
+
+- id: cal_lvl_rsub1_set
+  label: Set Right Subwoofer 1 Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_RSUB1:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_rsub1_query
+  label: Query Right Subwoofer 1 Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_RSUB1:?\r"
+  params: []
+
+- id: cal_lvl_lsub2_set
+  label: Set Left Subwoofer 2 Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_LSUB2:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_lsub2_query
+  label: Query Left Subwoofer 2 Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_LSUB2:?\r"
+  params: []
+
+- id: cal_lvl_rsub2_set
+  label: Set Right Subwoofer 2 Level Trim
+  kind: action
+  command: "RQST:CS:CAL_LVL_RSUB2:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Level in dB, -14.0 to 14.0.
+
+- id: cal_lvl_rsub2_query
+  label: Query Right Subwoofer 2 Level Trim
+  kind: query
+  command: "RQST:CS:CAL_LVL_RSUB2:?\r"
+  params: []
+
+- id: dispcfg_select
+  label: Select Display Configuration
+  kind: action
+  command: "RQST:CS:DISPCFG:\"{name}\"\r"
   params:
     - name: name
       type: string
-      description: Display configuration name (case-sensitive, no quotes)
+      description: Case sensitive name of the display configuration in the system database.
 
 - id: dispcfg_query
-  label: Query Display Configuration
-  kind: action
+  label: Query Current Display Configuration
+  kind: query
+  command: "RQST:CS:DISPCFG:?\r"
   params: []
 
-- id: dispcfg_ntf_enable
-  label: Enable Display Config Notifications
+- id: dispcfg_notification_enable
+  label: Enable Display Configuration Notifications
   kind: action
+  command: "RQST:CS:DISPCFG:EN\r"
   params: []
 
-- id: dispcfg_ntf_disable
-  label: Disable Display Config Notifications
+- id: dispcfg_notification_disable
+  label: Disable Display Configuration Notifications
   kind: action
+  command: "RQST:CS:DISPCFG:DIS\r"
   params: []
 
-- id: vprof_set
-  label: Set Video Profile
+- id: dispcfg_notification_query
+  label: Query Display Configuration Notification State
+  kind: query
+  command: "RQST:CS:DISPCFG:NTF?\r"
+  params: []
+
+- id: encenter_set
+  label: Enable/Disable Center Speaker
   kind: action
+  command: "RQST:CS:ENCENTER:{state}\r"
   params:
-    - name: name
-      type: string
-      description: Video profile name (case-sensitive, no quotes)
-
-- id: vprof_query
-  label: Query Video Profile
-  kind: action
-  params: []
-
-- id: vprof_ntf_enable
-  label: Enable Video Profile Notifications
-  kind: action
-  params: []
-
-- id: vprof_ntf_disable
-  label: Disable Video Profile Notifications
-  kind: action
-  params: []
-
-- id: spkrcfg_set
-  label: Set Speaker Configuration
-  kind: action
-  params:
-    - name: name
-      type: string
-      description: Speaker configuration name (case-sensitive, no quotes)
-
-- id: spkrcfg_query
-  label: Query Speaker Configuration
-  kind: action
-  params: []
-
-- id: spkrcfg_ntf_enable
-  label: Enable Speaker Config Notifications
-  kind: action
-  params: []
-
-- id: spkrcfg_ntf_disable
-  label: Disable Speaker Config Notifications
-  kind: action
-  params: []
-
-- id: surrmode_set
-  label: Set Surround Mode
-  kind: action
-  params:
-    - name: mode
+    - name: state
       type: enum
-      values:
-        - L7Film
-        - L7TV
-        - L7Music
-        - L7MusicSurr
-        - PLIIxMovie
-        - PLIIxMusic
-        - PLIIMovie
-        - PLIIMusic
-        - ProLogic
-        - dtsNEO6Cinema
-        - dtsNEO6Music
-        - MultiChan
-        - StereoSurr
-        - Downmix
-        - Stereo
-        - MonoLogic
-        - MonoSurr
-        - Mono
-
-- id: surrmode_query
-  label: Query Surround Mode
-  kind: action
-  params: []
-
-- id: surrmode_ntf_enable
-  label: Enable Surround Mode Notifications
-  kind: action
-  params: []
-
-- id: surrmode_ntf_disable
-  label: Disable Surround Mode Notifications
-  kind: action
-  params: []
-
-- id: resolution_set
-  label: Set Resolution
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values:
-        - SD
-        - ED
-        - HD720P
-        - HD1080I
-        - HD1080P
-
-- id: resolution_query
-  label: Query Resolution
-  kind: action
-  params: []
-
-- id: resolution_ntf_enable
-  label: Enable Resolution Notifications
-  kind: action
-  params: []
-
-- id: resolution_ntf_disable
-  label: Disable Resolution Notifications
-  kind: action
-  params: []
-
-- id: encenter_on
-  label: Enable Center Speaker
-  kind: action
-  params: []
-
-- id: encenter_off
-  label: Disable Center Speaker
-  kind: action
-  params: []
+      values: [ON, OFF]
 
 - id: encenter_query
-  label: Query Center Speaker State
-  kind: action
+  label: Query Center Speaker Enable State
+  kind: query
+  command: "RQST:CS:ENCENTER:?\r"
   params: []
 
-- id: encenter_ntf_enable
-  label: Enable Center Speaker Notifications
+- id: encenter_notification_enable
+  label: Enable Center Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENCENTER:EN\r"
   params: []
 
-- id: encenter_ntf_disable
-  label: Disable Center Speaker Notifications
+- id: encenter_notification_disable
+  label: Disable Center Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENCENTER:DIS\r"
   params: []
 
-- id: ensurr_on
-  label: Enable Surround Speakers
-  kind: action
+- id: encenter_notification_query
+  label: Query Center Speaker Notification State
+  kind: query
+  command: "RQST:CS:ENCENTER:NTF?\r"
   params: []
 
-- id: ensurr_off
-  label: Disable Surround Speakers
+- id: ensurr_set
+  label: Enable/Disable Surround Speakers
   kind: action
-  params: []
+  command: "RQST:CS:ENSURR:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: ensurr_query
-  label: Query Surround Speakers State
-  kind: action
+  label: Query Surround Speaker Enable State
+  kind: query
+  command: "RQST:CS:ENSURR:?\r"
   params: []
 
-- id: ensurr_ntf_enable
-  label: Enable Surround Speakers Notifications
+- id: ensurr_notification_enable
+  label: Enable Surround Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENSURR:EN\r"
   params: []
 
-- id: ensurr_ntf_disable
-  label: Disable Surround Speakers Notifications
+- id: ensurr_notification_disable
+  label: Disable Surround Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENSURR:DIS\r"
   params: []
 
-- id: enrear_on
-  label: Enable Rear Speakers
-  kind: action
+- id: ensurr_notification_query
+  label: Query Surround Speaker Notification State
+  kind: query
+  command: "RQST:CS:ENSURR:NTF?\r"
   params: []
 
-- id: enrear_off
-  label: Disable Rear Speakers
+- id: enrear_set
+  label: Enable/Disable Rear Speakers
   kind: action
-  params: []
+  command: "RQST:CS:ENREAR:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: enrear_query
-  label: Query Rear Speakers State
-  kind: action
+  label: Query Rear Speaker Enable State
+  kind: query
+  command: "RQST:CS:ENREAR:?\r"
   params: []
 
-- id: enrear_ntf_enable
-  label: Enable Rear Speakers Notifications
+- id: enrear_notification_enable
+  label: Enable Rear Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENREAR:EN\r"
   params: []
 
-- id: enrear_ntf_disable
-  label: Disable Rear Speakers Notifications
+- id: enrear_notification_disable
+  label: Disable Rear Speaker Change Notifications
   kind: action
+  command: "RQST:CS:ENREAR:DIS\r"
   params: []
 
-- id: ensub1_on
-  label: Enable Subwoofer 1
-  kind: action
+- id: enrear_notification_query
+  label: Query Rear Speaker Notification State
+  kind: query
+  command: "RQST:CS:ENREAR:NTF?\r"
   params: []
 
-- id: ensub1_off
-  label: Disable Subwoofer 1
+- id: ensub1_set
+  label: Enable/Disable Subwoofer 1
   kind: action
-  params: []
+  command: "RQST:CS:ENSUB1:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: ensub1_query
-  label: Query Subwoofer 1 State
-  kind: action
+  label: Query Subwoofer 1 Enable State
+  kind: query
+  command: "RQST:CS:ENSUB1:?\r"
   params: []
 
-- id: ensub1_ntf_enable
-  label: Enable Subwoofer 1 Notifications
+- id: ensub1_notification_enable
+  label: Enable Subwoofer 1 Change Notifications
   kind: action
+  command: "RQST:CS:ENSUB1:EN\r"
   params: []
 
-- id: ensub1_ntf_disable
-  label: Disable Subwoofer 1 Notifications
+- id: ensub1_notification_disable
+  label: Disable Subwoofer 1 Change Notifications
   kind: action
+  command: "RQST:CS:ENSUB1:DIS\r"
   params: []
 
-- id: ensub2_on
-  label: Enable Subwoofer 2
-  kind: action
+- id: ensub1_notification_query
+  label: Query Subwoofer 1 Notification State
+  kind: query
+  command: "RQST:CS:ENSUB1:NTF?\r"
   params: []
 
-- id: ensub2_off
-  label: Disable Subwoofer 2
+- id: ensub2_set
+  label: Enable/Disable Subwoofer 2
   kind: action
-  params: []
+  command: "RQST:CS:ENSUB2:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: ensub2_query
-  label: Query Subwoofer 2 State
-  kind: action
+  label: Query Subwoofer 2 Enable State
+  kind: query
+  command: "RQST:CS:ENSUB2:?\r"
   params: []
 
-- id: ensub2_ntf_enable
-  label: Enable Subwoofer 2 Notifications
+- id: ensub2_notification_enable
+  label: Enable Subwoofer 2 Change Notifications
   kind: action
+  command: "RQST:CS:ENSUB2:EN\r"
   params: []
 
-- id: ensub2_ntf_disable
-  label: Disable Subwoofer 2 Notifications
+- id: ensub2_notification_disable
+  label: Disable Subwoofer 2 Change Notifications
   kind: action
+  command: "RQST:CS:ENSUB2:DIS\r"
   params: []
 
-- id: roomeqon_on
-  label: Room EQ On
-  kind: action
+- id: ensub2_notification_query
+  label: Query Subwoofer 2 Notification State
+  kind: query
+  command: "RQST:CS:ENSUB2:NTF?\r"
   params: []
 
-- id: roomeqon_off
-  label: Room EQ Off
+- id: fader_set
+  label: Set Fader
   kind: action
-  params: []
-
-- id: roomeqon_query
-  label: Query Room EQ State
-  kind: action
-  params: []
-
-- id: roomeqon_ntf_enable
-  label: Enable Room EQ Notifications
-  kind: action
-  params: []
-
-- id: roomeqon_ntf_disable
-  label: Disable Room EQ Notifications
-  kind: action
-  params: []
-
-- id: roomeq_set
-  label: Set Room EQ
-  kind: action
+  command: "RQST:CS:FADER:{value}\r"
   params:
-    - name: setting
-      type: integer
-      description: Room EQ setting 1 to 5
+    - name: value
+      type: string
+      description: One of FOFF, BOFF, or a numeric level in -14.0 to 14.0.
 
-- id: roomeq_query
-  label: Query Room EQ
-  kind: action
+- id: fader_query
+  label: Query Current Fader Setting
+  kind: query
+  command: "RQST:CS:FADER:?\r"
   params: []
 
-- id: roomeq_ntf_enable
-  label: Enable Room EQ Notifications
+- id: fader_notification_enable
+  label: Enable Fader Change Notifications
   kind: action
+  command: "RQST:CS:FADER:EN\r"
   params: []
 
-- id: roomeq_ntf_disable
-  label: Disable Room EQ Notifications
+- id: fader_notification_disable
+  label: Disable Fader Change Notifications
   kind: action
+  command: "RQST:CS:FADER:DIS\r"
   params: []
 
-- id: osd_on
-  label: OSD On
-  kind: action
+- id: fader_notification_query
+  label: Query Fader Notification State
+  kind: query
+  command: "RQST:CS:FADER:NTF?\r"
   params: []
 
-- id: osd_off
-  label: OSD Off
+- id: fpdispintens_set
+  label: Set Front Panel Display Intensity
   kind: action
+  command: "RQST:CS:FPDISPINTENS:{level}\r"
+  params:
+    - name: level
+      type: enum
+      values: [OFF, LOW, MED, HIGH]
+
+- id: fpdispintens_query
+  label: Query Front Panel Display Intensity
+  kind: query
+  command: "RQST:CS:FPDISPINTENS:?\r"
   params: []
 
-- id: osd_query
-  label: Query OSD State
+- id: fpdwnup
+  label: Front Panel Button Press Down and Release
   kind: action
+  command: "RQST:CS:FPDWNUP:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [ZONE, PREVIEW, DISPLAY, SETUP, MENU, MUTE, VIDEO_PROFILE, AUDIO_PROFILE, SURROUND, ENTER, STANDBY]
+      description: One of 11 front-panel keys. Equivalent to FPDWN immediately followed by FPUP.
+
+- id: fpdwn
+  label: Front Panel Button Press Down
+  kind: action
+  command: "RQST:CS:FPDWN:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [ZONE, PREVIEW, DISPLAY, SETUP, MENU, MUTE, VIDEO_PROFILE, AUDIO_PROFILE, SURROUND, ENTER, STANDBY]
+
+- id: fpdwn_notification_enable
+  label: Enable FPDWN Notifications
+  kind: action
+  command: "RQST:CS:FPDWN:EN\r"
   params: []
 
-- id: osd_ntf_enable
-  label: Enable OSD Notifications
+- id: fpdwn_notification_disable
+  label: Disable FPDWN Notifications
   kind: action
+  command: "RQST:CS:FPDWN:DIS\r"
   params: []
 
-- id: osd_ntf_disable
-  label: Disable OSD Notifications
-  kind: action
+- id: fpdwn_notification_query
+  label: Query FPDWN Notification State
+  kind: query
+  command: "RQST:CS:FPDWN:NTF?\r"
   params: []
 
-- id: monen_on
-  label: Monitor Output On
+- id: fprpt
+  label: Front Panel Button Held Down (Repeat)
   kind: action
+  command: "RQST:CS:FPRPT:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [ZONE, PREVIEW, DISPLAY, SETUP, MENU, MUTE, VIDEO_PROFILE, AUDIO_PROFILE, SURROUND, ENTER, STANDBY]
+      description: Simulates holding the key down. Buffered; number of repeats needed varies by resource (e.g. 5 then 3 to repeat inside Setup).
+
+- id: fprpt_notification_enable
+  label: Enable FPRPT Notifications
+  kind: action
+  command: "RQST:CS:FPRPT:EN\r"
   params: []
 
-- id: monen_off
-  label: Monitor Output Off
+- id: fprpt_notification_disable
+  label: Disable FPRPT Notifications
   kind: action
+  command: "RQST:CS:FPRPT:DIS\r"
   params: []
 
-- id: monen_query
-  label: Query Monitor Output State
-  kind: action
+- id: fprpt_notification_query
+  label: Query FPRPT Notification State
+  kind: query
+  command: "RQST:CS:FPRPT:NTF?\r"
   params: []
 
-- id: menubk_on
-  label: Menu Backlight On
+- id: fpup
+  label: Front Panel Button Release
   kind: action
+  command: "RQST:CS:FPUP:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [ZONE, PREVIEW, DISPLAY, SETUP, MENU, MUTE, VIDEO_PROFILE, AUDIO_PROFILE, SURROUND, ENTER, STANDBY]
+
+- id: fpup_notification_enable
+  label: Enable FPUP Notifications
+  kind: action
+  command: "RQST:CS:FPUP:EN\r"
   params: []
 
-- id: menubk_off
-  label: Menu Backlight Off
+- id: fpup_notification_disable
+  label: Disable FPUP Notifications
   kind: action
+  command: "RQST:CS:FPUP:DIS\r"
   params: []
+
+- id: fpup_notification_query
+  label: Query FPUP Notification State
+  kind: query
+  command: "RQST:CS:FPUP:NTF?\r"
+  params: []
+
+- id: fpact_ctl
+  label: Front Panel Activity Rotator
+  kind: action
+  command: "RQST:CS:FPACT_CTL:{direction}\r"
+  params:
+    - name: direction
+      type: enum
+      values: [CW, CCW]
+
+- id: fpact_ctl_notification_enable
+  label: Enable FPACT_CTL Notifications
+  kind: action
+  command: "RQST:CS:FPACT_CTL:EN\r"
+  params: []
+
+- id: fpact_ctl_notification_disable
+  label: Disable FPACT_CTL Notifications
+  kind: action
+  command: "RQST:CS:FPACT_CTL:DIS\r"
+  params: []
+
+- id: fpact_ctl_notification_query
+  label: Query FPACT_CTL Notification State
+  kind: query
+  command: "RQST:CS:FPACT_CTL:NTF?\r"
+  params: []
+
+- id: fpvol_ctl
+  label: Front Panel Volume Rotator
+  kind: action
+  command: "RQST:CS:FPVOL_CTL:{direction}\r"
+  params:
+    - name: direction
+      type: enum
+      values: [CW, CCW, CW_FAST, CCW_FAST]
+      description: CW_FAST/CCW_FAST simulate faster movement.
+
+- id: fpvol_ctl_notification_enable
+  label: Enable FPVOL_CTL Notifications
+  kind: action
+  command: "RQST:CS:FPVOL_CTL:EN\r"
+  params: []
+
+- id: fpvol_ctl_notification_disable
+  label: Disable FPVOL_CTL Notifications
+  kind: action
+  command: "RQST:CS:FPVOL_CTL:DIS\r"
+  params: []
+
+- id: fpvol_ctl_notification_query
+  label: Query FPVOL_CTL Notification State
+  kind: query
+  command: "RQST:CS:FPVOL_CTL:NTF?\r"
+  params: []
+
+- id: irdwnup
+  label: IR Button Press Down and Release
+  kind: action
+  command: "RQST:CS:IRDWNUP:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [UP, DOWN, LEFT, RIGHT, ENTER, MENU, SETUP, ACTIVITY_UP, ACTIVITY_DOWN, SURROUND_UP, SURROUND_DOWN, VOLUME_UP, VOLUME_DOWN, VIDEO_PROFILE, AUDIO_PROFILE, PREVIEW, MUTE, F1, F2, F3, ZONE, STANDBY]
+      description: One of 22 IR remote keys. Equivalent to IRDWN immediately followed by IRUP.
+
+- id: irdwn
+  label: IR Button Press Down
+  kind: action
+  command: "RQST:CS:IRDWN:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [UP, DOWN, LEFT, RIGHT, ENTER, MENU, SETUP, ACTIVITY_UP, ACTIVITY_DOWN, SURROUND_UP, SURROUND_DOWN, VOLUME_UP, VOLUME_DOWN, VIDEO_PROFILE, AUDIO_PROFILE, PREVIEW, MUTE, F1, F2, F3, ZONE, STANDBY]
+
+- id: irdwn_notification_enable
+  label: Enable IRDWN Notifications
+  kind: action
+  command: "RQST:CS:IRDWN:EN\r"
+  params: []
+
+- id: irdwn_notification_disable
+  label: Disable IRDWN Notifications
+  kind: action
+  command: "RQST:CS:IRDWN:DIS\r"
+  params: []
+
+- id: irdwn_notification_query
+  label: Query IRDWN Notification State
+  kind: query
+  command: "RQST:CS:IRDWN:NTF?\r"
+  params: []
+
+- id: irrpt
+  label: IR Button Repeat (Held)
+  kind: action
+  command: "RQST:CS:IRRPT:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [UP, DOWN, LEFT, RIGHT, ENTER, MENU, SETUP, ACTIVITY_UP, ACTIVITY_DOWN, SURROUND_UP, SURROUND_DOWN, VOLUME_UP, VOLUME_DOWN, VIDEO_PROFILE, AUDIO_PROFILE, PREVIEW, MUTE, F1, F2, F3, ZONE, STANDBY]
+      description: Simulates holding the IR key down. Buffered; number of repeats varies (e.g. 5 then 3 in Setup).
+
+- id: irrpt_notification_enable
+  label: Enable IRRPT Notifications
+  kind: action
+  command: "RQST:CS:IRRPT:EN\r"
+  params: []
+
+- id: irrpt_notification_disable
+  label: Disable IRRPT Notifications
+  kind: action
+  command: "RQST:CS:IRRPT:DIS\r"
+  params: []
+
+- id: irrpt_notification_query
+  label: Query IRRPT Notification State
+  kind: query
+  command: "RQST:CS:IRRPT:NTF?\r"
+  params: []
+
+- id: irup
+  label: IR Button Release
+  kind: action
+  command: "RQST:CS:IRUP:{key}\r"
+  params:
+    - name: key
+      type: enum
+      values: [UP, DOWN, LEFT, RIGHT, ENTER, MENU, SETUP, ACTIVITY_UP, ACTIVITY_DOWN, SURROUND_UP, SURROUND_DOWN, VOLUME_UP, VOLUME_DOWN, VIDEO_PROFILE, AUDIO_PROFILE, PREVIEW, MUTE, F1, F2, F3, ZONE, STANDBY]
+
+- id: irup_notification_enable
+  label: Enable IRUP Notifications
+  kind: action
+  command: "RQST:CS:IRUP:EN\r"
+  params: []
+
+- id: irup_notification_disable
+  label: Disable IRUP Notifications
+  kind: action
+  command: "RQST:CS:IRUP:DIS\r"
+  params: []
+
+- id: irup_notification_query
+  label: Query IRUP Notification State
+  kind: query
+  command: "RQST:CS:IRUP:NTF?\r"
+  params: []
+
+- id: menubk_set
+  label: Set Menu Backlight
+  kind: action
+  command: "RQST:CS:MENUBK:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
 
 - id: menubk_query
   label: Query Menu Backlight State
-  kind: action
+  kind: query
+  command: "RQST:CS:MENUBK:?\r"
   params: []
 
-- id: fphdispintens_set
-  label: Set Front Panel Display Intensity
+- id: monen_set
+  label: Set Monitor Output
   kind: action
+  command: "RQST:CS:MONEN:{state}\r"
   params:
-    - name: level
+    - name: state
       type: enum
-      values:
-        - OFF
-        - LOW
-        - MED
-        - HIGH
+      values: [ON, OFF]
 
-- id: fphdispintens_query
-  label: Query Front Panel Display Intensity
-  kind: action
+- id: monen_query
+  label: Query Monitor Output State
+  kind: query
+  command: "RQST:CS:MONEN:?\r"
   params: []
 
-- id: zoom_set
-  label: Set Zoom Mode
+- id: mute_set
+  label: Set Mute
   kind: action
+  command: "RQST:CS:MUTE:{state}\r"
   params:
-    - name: mode
+    - name: state
       type: enum
-      values:
-        - NORM
-        - WIDE
-        - FILL
-        - FW
+      values: [ON, OFF]
 
-- id: zoom_query
-  label: Query Zoom Mode
-  kind: action
+- id: mute_query
+  label: Query Mute State
+  kind: query
+  command: "RQST:CS:MUTE:?\r"
   params: []
 
-- id: zoom_ntf_enable
-  label: Enable Zoom Notifications
+- id: mute_notification_enable
+  label: Enable Mute Change Notifications
   kind: action
+  command: "RQST:CS:MUTE:EN\r"
   params: []
 
-- id: zoom_ntf_disable
-  label: Disable Zoom Notifications
+- id: mute_notification_disable
+  label: Disable Mute Change Notifications
   kind: action
+  command: "RQST:CS:MUTE:DIS\r"
   params: []
 
-- id: trigger_1_on
-  label: Trigger 1 On
-  kind: action
+- id: mute_notification_query
+  label: Query Mute Notification State
+  kind: query
+  command: "RQST:CS:MUTE:NTF?\r"
   params: []
 
-- id: trigger_1_off
-  label: Trigger 1 Off
+- id: nop
+  label: No Operation (Communication Test)
   kind: action
+  command: "RQST:CS:NOP:NOP\r"
   params: []
 
-- id: trigger_1_query
-  label: Query Trigger 1 State
+- id: ntf_disable_all_temp
+  label: Disable All Notifications Temporarily
   kind: action
+  command: "RQST:CS:NTF:DIS_ALL_TEMP\r"
   params: []
+  notes: All system notifications disabled for the current session; restored on power state change.
 
-- id: trigger_2_on
-  label: Trigger 2 On
+- id: ntf_disable_all_persist
+  label: Disable All Notifications Persistently
   kind: action
+  command: "RQST:CS:NTF:DIS_ALL_PERSIST\r"
   params: []
+  notes: Survives power cycles. Must be cleared with NTF:RESTORE_*.
 
-- id: trigger_2_off
-  label: Trigger 2 Off
+- id: ntf_disable_all_perm
+  label: Disable All Notifications Permanently
   kind: action
+  command: "RQST:CS:NTF:DIS_ALL_PERM\r"
   params: []
+  notes: Irrevocably erases the External Protocol Notification database. Only RESTORE_DEFAULT can recover.
 
-- id: trigger_2_query
-  label: Query Trigger 2 State
+- id: ntf_restore_default
+  label: Restore All Notifications to Factory Defaults
   kind: action
+  command: "RQST:CS:NTF:RESTORE_DEFAULT\r"
   params: []
+  notes: Only restores the External Protocol Notification database, not the full system database.
 
-- id: trigger_3_on
-  label: Trigger 3 On
+- id: ntf_restore_last_saved
+  label: Restore All Notifications to Last Saved State
   kind: action
-  params: []
-
-- id: trigger_3_off
-  label: Trigger 3 Off
-  kind: action
-  params: []
-
-- id: trigger_3_query
-  label: Query Trigger 3 State
-  kind: action
-  params: []
-
-- id: trigger_4_on
-  label: Trigger 4 On
-  kind: action
-  params: []
-
-- id: trigger_4_off
-  label: Trigger 4 Off
-  kind: action
-  params: []
-
-- id: trigger_4_query
-  label: Query Trigger 4 State
-  kind: action
-  params: []
-
-- id: z2act_set
-  label: Set Zone 2 Activity
-  kind: action
-  params:
-    - name: name
-      type: string
-      description: Zone 2 activity name (case-sensitive, no quotes)
-
-- id: z2act_off
-  label: Zone 2 Off
-  kind: action
-  params: []
-
-- id: z2act_query
-  label: Query Zone 2 Activity
-  kind: action
-  params: []
-
-- id: z2act_ntf_enable
-  label: Enable Zone 2 Activity Notifications
-  kind: action
-  params: []
-
-- id: z2act_ntf_disable
-  label: Disable Zone 2 Activity Notifications
-  kind: action
-  params: []
-
-- id: z2vol_set
-  label: Set Zone 2 Volume
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Zone 2 volume 0.0 to 100.0
-
-- id: z2vol_query
-  label: Query Zone 2 Volume
-  kind: action
-  params: []
-
-- id: z2vol_ntf_enable
-  label: Enable Zone 2 Volume Notifications
-  kind: action
-  params: []
-
-- id: z2vol_ntf_disable
-  label: Disable Zone 2 Volume Notifications
-  kind: action
-  params: []
-
-- id: xover_frnt_set
-  label: Set Front Crossover
-  kind: action
-  params:
-    - name: setting
-      type: variant
-      description: FULLSUB, FULL, or 30-120 (10Hz increments)
-
-- id: xover_frnt_query
-  label: Query Front Crossover
-  kind: action
-  params: []
-
-- id: xover_frnt_ntf_enable
-  label: Enable Front Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_frnt_ntf_disable
-  label: Disable Front Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_center_set
-  label: Set Center Crossover
-  kind: action
-  params:
-    - name: setting
-      type: variant
-      description: FULLSUB, FULL, or 30-120 (10Hz increments)
-
-- id: xover_center_query
-  label: Query Center Crossover
-  kind: action
-  params: []
-
-- id: xover_center_ntf_enable
-  label: Enable Center Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_center_ntf_disable
-  label: Disable Center Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_surr_set
-  label: Set Surround Crossover
-  kind: action
-  params:
-    - name: setting
-      type: variant
-      description: FULLSUB, FULL, or 30-120 (10Hz increments)
-
-- id: xover_surr_query
-  label: Query Surround Crossover
-  kind: action
-  params: []
-
-- id: xover_surr_ntf_enable
-  label: Enable Surround Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_surr_ntf_disable
-  label: Disable Surround Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_rear_set
-  label: Set Rear Crossover
-  kind: action
-  params:
-    - name: setting
-      type: variant
-      description: FULLSUB, FULL, or 30-120 (10Hz increments)
-
-- id: xover_rear_query
-  label: Query Rear Crossover
-  kind: action
-  params: []
-
-- id: xover_rear_ntf_enable
-  label: Enable Rear Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_rear_ntf_disable
-  label: Disable Rear Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_sub_set
-  label: Set Subwoofer Crossover
-  kind: action
-  params:
-    - name: setting
-      type: enum
-      values:
-        - FULL
-        - COMP
-
-- id: xover_sub_query
-  label: Query Subwoofer Crossover
-  kind: action
-  params: []
-
-- id: xover_sub_ntf_enable
-  label: Enable Subwoofer Crossover Notifications
-  kind: action
-  params: []
-
-- id: xover_sub_ntf_disable
-  label: Disable Subwoofer Crossover Notifications
-  kind: action
+  command: "RQST:CS:NTF:RESTORE_LAST_SAVED\r"
   params: []
 
 - id: offsetf_set
-  label: Set Front Offset
+  label: Set Front Speaker Offset
   kind: action
+  command: "RQST:CS:OFFSETF:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Front offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsetf_query
-  label: Query Front Offset
-  kind: action
+  label: Query Front Speaker Offset
+  kind: query
+  command: "RQST:CS:OFFSETF:?\r"
   params: []
 
-- id: offsetf_ntf_enable
-  label: Enable Front Offset Notifications
+- id: offsetf_notification_enable
+  label: Enable OFFSETF Notifications
   kind: action
+  command: "RQST:CS:OFFSETF:EN\r"
   params: []
 
-- id: offsetf_ntf_disable
-  label: Disable Front Offset Notifications
+- id: offsetf_notification_disable
+  label: Disable OFFSETF Notifications
   kind: action
+  command: "RQST:CS:OFFSETF:DIS\r"
+  params: []
+
+- id: offsetf_notification_query
+  label: Query OFFSETF Notification State
+  kind: query
+  command: "RQST:CS:OFFSETF:NTF?\r"
   params: []
 
 - id: offsetc_set
-  label: Set Center Offset
+  label: Set Center Speaker Offset
   kind: action
+  command: "RQST:CS:OFFSETC:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Center offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsetc_query
-  label: Query Center Offset
-  kind: action
+  label: Query Center Speaker Offset
+  kind: query
+  command: "RQST:CS:OFFSETC:?\r"
   params: []
 
-- id: offsetc_ntf_enable
-  label: Enable Center Offset Notifications
+- id: offsetc_notification_enable
+  label: Enable OFFSETC Notifications
   kind: action
+  command: "RQST:CS:OFFSETC:EN\r"
   params: []
 
-- id: offsetc_ntf_disable
-  label: Disable Center Offset Notifications
+- id: offsetc_notification_disable
+  label: Disable OFFSETC Notifications
   kind: action
+  command: "RQST:CS:OFFSETC:DIS\r"
+  params: []
+
+- id: offsetc_notification_query
+  label: Query OFFSETC Notification State
+  kind: query
+  command: "RQST:CS:OFFSETC:NTF?\r"
   params: []
 
 - id: offsets_set
-  label: Set Surround Offset
+  label: Set Surround Speaker Offset
   kind: action
+  command: "RQST:CS:OFFSETS:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Surround offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsets_query
-  label: Query Surround Offset
-  kind: action
+  label: Query Surround Speaker Offset
+  kind: query
+  command: "RQST:CS:OFFSETS:?\r"
   params: []
 
-- id: offsets_ntf_enable
-  label: Enable Surround Offset Notifications
+- id: offsets_notification_enable
+  label: Enable OFFSETS Notifications
   kind: action
+  command: "RQST:CS:OFFSETS:EN\r"
   params: []
 
-- id: offsets_ntf_disable
-  label: Disable Surround Offset Notifications
+- id: offsets_notification_disable
+  label: Disable OFFSETS Notifications
   kind: action
+  command: "RQST:CS:OFFSETS:DIS\r"
+  params: []
+
+- id: offsets_notification_query
+  label: Query OFFSETS Notification State
+  kind: query
+  command: "RQST:CS:OFFSETS:NTF?\r"
   params: []
 
 - id: offsetr_set
-  label: Set Rear Offset
+  label: Set Rear Speaker Offset
   kind: action
+  command: "RQST:CS:OFFSETR:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Rear offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsetr_query
-  label: Query Rear Offset
-  kind: action
+  label: Query Rear Speaker Offset
+  kind: query
+  command: "RQST:CS:OFFSETR:?\r"
   params: []
 
-- id: offsetr_ntf_enable
-  label: Enable Rear Offset Notifications
+- id: offsetr_notification_enable
+  label: Enable OFFSETR Notifications
   kind: action
+  command: "RQST:CS:OFFSETR:EN\r"
   params: []
 
-- id: offsetr_ntf_disable
-  label: Disable Rear Offset Notifications
+- id: offsetr_notification_disable
+  label: Disable OFFSETR Notifications
   kind: action
+  command: "RQST:CS:OFFSETR:DIS\r"
+  params: []
+
+- id: offsetr_notification_query
+  label: Query OFFSETR Notification State
+  kind: query
+  command: "RQST:CS:OFFSETR:NTF?\r"
   params: []
 
 - id: offsetsub1_set
   label: Set Subwoofer 1 Offset
   kind: action
+  command: "RQST:CS:OFFSETSUB1:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Subwoofer 1 offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsetsub1_query
   label: Query Subwoofer 1 Offset
-  kind: action
+  kind: query
+  command: "RQST:CS:OFFSETSUB1:?\r"
   params: []
 
-- id: offsetsub1_ntf_enable
-  label: Enable Subwoofer 1 Offset Notifications
+- id: offsetsub1_notification_enable
+  label: Enable OFFSETSUB1 Notifications
   kind: action
+  command: "RQST:CS:OFFSETSUB1:EN\r"
   params: []
 
-- id: offsetsub1_ntf_disable
-  label: Disable Subwoofer 1 Offset Notifications
+- id: offsetsub1_notification_disable
+  label: Disable OFFSETSUB1 Notifications
   kind: action
+  command: "RQST:CS:OFFSETSUB1:DIS\r"
+  params: []
+
+- id: offsetsub1_notification_query
+  label: Query OFFSETSUB1 Notification State
+  kind: query
+  command: "RQST:CS:OFFSETSUB1:NTF?\r"
   params: []
 
 - id: offsetsub2_set
   label: Set Subwoofer 2 Offset
   kind: action
+  command: "RQST:CS:OFFSETSUB2:{value}\r"
   params:
-    - name: level
-      type: number
-      description: Subwoofer 2 offset -14.0 to 14.0 or OFF
+    - name: value
+      type: string
+      description: OFF or numeric level in -14.0 to 14.0.
 
 - id: offsetsub2_query
   label: Query Subwoofer 2 Offset
-  kind: action
+  kind: query
+  command: "RQST:CS:OFFSETSUB2:?\r"
   params: []
 
-- id: offsetsub2_ntf_enable
-  label: Enable Subwoofer 2 Offset Notifications
+- id: offsetsub2_notification_enable
+  label: Enable OFFSETSUB2 Notifications
   kind: action
+  command: "RQST:CS:OFFSETSUB2:EN\r"
   params: []
 
-- id: offsetsub2_ntf_disable
-  label: Disable Subwoofer 2 Offset Notifications
+- id: offsetsub2_notification_disable
+  label: Disable OFFSETSUB2 Notifications
   kind: action
+  command: "RQST:CS:OFFSETSUB2:DIS\r"
   params: []
 
-- id: cal_dist_lf_set
-  label: Set Left Front Distance
+- id: offsetsub2_notification_query
+  label: Query OFFSETSUB2 Notification State
+  kind: query
+  command: "RQST:CS:OFFSETSUB2:NTF?\r"
+  params: []
+
+- id: osd_set
+  label: Set On-Screen Display Messages
   kind: action
+  command: "RQST:CS:OSD:{state}\r"
   params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
+    - name: state
+      type: enum
+      values: [ON, OFF]
+      description: Affects output monitor only, not front panel display.
 
-- id: cal_dist_lf_query
-  label: Query Left Front Distance
-  kind: action
+- id: osd_query
+  label: Query OSD State
+  kind: query
+  command: "RQST:CS:OSD:?\r"
   params: []
 
-- id: cal_dist_rf_set
-  label: Set Right Front Distance
+- id: osd_notification_enable
+  label: Enable OSD Change Notifications
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_rf_query
-  label: Query Right Front Distance
-  kind: action
+  command: "RQST:CS:OSD:EN\r"
   params: []
 
-- id: cal_dist_c_set
-  label: Set Center Distance
+- id: osd_notification_disable
+  label: Disable OSD Change Notifications
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_c_query
-  label: Query Center Distance
-  kind: action
+  command: "RQST:CS:OSD:DIS\r"
   params: []
 
-- id: cal_dist_ls_set
-  label: Set Left Surround Distance
-  kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_ls_query
-  label: Query Left Surround Distance
-  kind: action
+- id: osd_notification_query
+  label: Query OSD Notification State
+  kind: query
+  command: "RQST:CS:OSD:NTF?\r"
   params: []
 
-- id: cal_dist_rs_set
-  label: Set Right Surround Distance
+- id: pwr_on
+  label: Power On
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_rs_query
-  label: Query Right Surround Distance
-  kind: action
+  command: "RQST:CS:PWR:ON\r"
   params: []
 
-- id: cal_dist_lb_set
-  label: Set Left Back Distance
+- id: pwr_standby
+  label: Enter Standby
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_lb_query
-  label: Query Left Back Distance
-  kind: action
+  command: "RQST:CS:PWR:STANDBY\r"
   params: []
 
-- id: cal_dist_rb_set
-  label: Set Right Back Distance
-  kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_rb_query
-  label: Query Right Back Distance
-  kind: action
+- id: pwr_query
+  label: Query Power State
+  kind: query
+  command: "RQST:CS:PWR:?\r"
   params: []
 
-- id: cal_dist_lsub1_set
-  label: Set Subwoofer 1 Left Distance
+- id: pwr_notification_enable
+  label: Enable Power Change Notifications
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_lsub1_query
-  label: Query Subwoofer 1 Left Distance
-  kind: action
+  command: "RQST:CS:PWR:EN\r"
   params: []
 
-- id: cal_dist_rsub1_set
-  label: Set Subwoofer 1 Right Distance
+- id: pwr_notification_disable
+  label: Disable Power Change Notifications
   kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_rsub1_query
-  label: Query Subwoofer 1 Right Distance
-  kind: action
+  command: "RQST:CS:PWR:DIS\r"
   params: []
 
-- id: cal_dist_lsub2_set
-  label: Set Subwoofer 2 Left Distance
-  kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_lsub2_query
-  label: Query Subwoofer 2 Left Distance
-  kind: action
-  params: []
-
-- id: cal_dist_rsub2_set
-  label: Set Subwoofer 2 Right Distance
-  kind: action
-  params:
-    - name: distance
-      type: number
-      description: Distance 0.0 to 40.0 feet
-
-- id: cal_dist_rsub2_query
-  label: Query Subwoofer 2 Right Distance
-  kind: action
-  params: []
-
-- id: cal_lvl_lf_set
-  label: Set Left Front Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_lf_query
-  label: Query Left Front Level
-  kind: action
-  params: []
-
-- id: cal_lvl_rf_set
-  label: Set Right Front Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_rf_query
-  label: Query Right Front Level
-  kind: action
-  params: []
-
-- id: cal_lvl_c_set
-  label: Set Center Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_c_query
-  label: Query Center Level
-  kind: action
-  params: []
-
-- id: cal_lvl_ls_set
-  label: Set Left Surround Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_ls_query
-  label: Query Left Surround Level
-  kind: action
-  params: []
-
-- id: cal_lvl_rs_set
-  label: Set Right Surround Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_rs_query
-  label: Query Right Surround Level
-  kind: action
-  params: []
-
-- id: cal_lvl_lb_set
-  label: Set Left Back Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_lb_query
-  label: Query Left Back Level
-  kind: action
-  params: []
-
-- id: cal_lvl_rb_set
-  label: Set Right Back Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_rb_query
-  label: Query Right Back Level
-  kind: action
-  params: []
-
-- id: cal_lvl_lsub1_set
-  label: Set Subwoofer 1 Left Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_lsub1_query
-  label: Query Subwoofer 1 Left Level
-  kind: action
-  params: []
-
-- id: cal_lvl_rsub1_set
-  label: Set Subwoofer 1 Right Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_rsub1_query
-  label: Query Subwoofer 1 Right Level
-  kind: action
-  params: []
-
-- id: cal_lvl_lsub2_set
-  label: Set Subwoofer 2 Left Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_lsub2_query
-  label: Query Subwoofer 2 Left Level
-  kind: action
-  params: []
-
-- id: cal_lvl_rsub2_set
-  label: Set Subwoofer 2 Right Level
-  kind: action
-  params:
-    - name: level
-      type: number
-      description: Level -14.0 to 14.0
-
-- id: cal_lvl_rsub2_query
-  label: Query Subwoofer 2 Right Level
-  kind: action
+- id: pwr_notification_query
+  label: Query Power Notification State
+  kind: query
+  command: "RQST:CS:PWR:NTF?\r"
   params: []
 
 - id: recall_audioadj
-  label: Recall Audio Adjustments
+  label: Recall Audio Adjustment Nominal Values
   kind: action
+  command: "RQST:CS:RECALL:AUDIOADJ\r"
   params: []
 
-- id: req_act_list_query
-  label: Query Activity List
-  kind: action
+- id: req_act_list
+  label: Request List of Activities
+  kind: query
+  command: "RQST:CS:REQ_ACT_LIST:?\r"
   params: []
 
-- id: req_aprof_list_query
-  label: Query Audio Profile List
-  kind: action
+- id: req_aprof_list
+  label: Request List of Audio Profiles
+  kind: query
+  command: "RQST:CS:REQ_APROF_LIST:?\r"
   params: []
 
-- id: req_disp_list_query
-  label: Query Display Configuration List
-  kind: action
+- id: req_disp_list
+  label: Request List of Display Configurations
+  kind: query
+  command: "RQST:CS:REQ_DISP_LIST:?\r"
   params: []
 
-- id: req_spkr_list_query
-  label: Query Speaker Configuration List
-  kind: action
+- id: req_spkr_list
+  label: Request List of Speaker Configurations
+  kind: query
+  command: "RQST:CS:REQ_SPKR_LIST:?\r"
   params: []
 
-- id: req_surr_list_query
-  label: Query Surround Mode List
-  kind: action
+- id: req_surr_list
+  label: Request List of Available Surround Modes
+  kind: query
+  command: "RQST:CS:REQ_SURR_LIST:?\r"
   params: []
 
-- id: req_vprof_list_query
-  label: Query Video Profile List
+- id: req_vprof_list
+  label: Request List of Video Profiles
+  kind: query
+  command: "RQST:CS:REQ_VPROF_LIST:?\r"
+  params: []
+
+- id: resolution_set
+  label: Set Video Output Resolution
   kind: action
+  command: "RQST:CS:RESOLUTION:{format}\r"
+  params:
+    - name: format
+      type: enum
+      values: [SD, ED, HD720P, HD1080I, HD1080P]
+
+- id: resolution_query
+  label: Query Video Output Resolution
+  kind: query
+  command: "RQST:CS:RESOLUTION:?\r"
+  params: []
+
+- id: resolution_notification_enable
+  label: Enable Resolution Change Notifications
+  kind: action
+  command: "RQST:CS:RESOLUTION:EN\r"
+  params: []
+
+- id: resolution_notification_disable
+  label: Disable Resolution Change Notifications
+  kind: action
+  command: "RQST:CS:RESOLUTION:DIS\r"
+  params: []
+
+- id: resolution_notification_query
+  label: Query Resolution Notification State
+  kind: query
+  command: "RQST:CS:RESOLUTION:NTF?\r"
+  params: []
+
+- id: roomeqon_set
+  label: Set Room EQ On/Off
+  kind: action
+  command: "RQST:CS:ROOMEQON:{state}\r"
+  params:
+    - name: state
+      type: enum
+      values: [ON, OFF]
+
+- id: roomeqon_query
+  label: Query Room EQ On/Off State
+  kind: query
+  command: "RQST:CS:ROOMEQON:?\r"
+  params: []
+
+- id: roomeqon_notification_enable
+  label: Enable Room EQ On/Off Notifications
+  kind: action
+  command: "RQST:CS:ROOMEQON:EN\r"
+  params: []
+
+- id: roomeqon_notification_disable
+  label: Disable Room EQ On/Off Notifications
+  kind: action
+  command: "RQST:CS:ROOMEQON:DIS\r"
+  params: []
+
+- id: roomeqon_notification_query
+  label: Query Room EQ On/Off Notification State
+  kind: query
+  command: "RQST:CS:ROOMEQON:NTF?\r"
+  params: []
+
+- id: roomeq_set
+  label: Select Room EQ Profile
+  kind: action
+  command: "RQST:CS:ROOMEQ:{number}\r"
+  params:
+    - name: number
+      type: integer
+      description: Room EQ setting 1 to 5.
+
+- id: roomeq_query
+  label: Query Room EQ Setting
+  kind: query
+  command: "RQST:CS:ROOMEQ:?\r"
+  params: []
+
+- id: roomeq_notification_enable
+  label: Enable Room EQ Profile Notifications
+  kind: action
+  command: "RQST:CS:ROOMEQ:EN\r"
+  params: []
+
+- id: roomeq_notification_disable
+  label: Disable Room EQ Profile Notifications
+  kind: action
+  command: "RQST:CS:ROOMEQ:DIS\r"
+  params: []
+
+- id: roomeq_notification_query
+  label: Query Room EQ Profile Notification State
+  kind: query
+  command: "RQST:CS:ROOMEQ:NTF?\r"
+  params: []
+
+- id: spkrcfg_select
+  label: Select Speaker Configuration
+  kind: action
+  command: "RQST:CS:SPKRCFG:\"{name}\"\r"
+  params:
+    - name: name
+      type: string
+      description: Case sensitive name of the speaker configuration in the system database.
+
+- id: spkrcfg_query
+  label: Query Current Speaker Configuration
+  kind: query
+  command: "RQST:CS:SPKRCFG:?\r"
+  params: []
+
+- id: spkrcfg_notification_enable
+  label: Enable Speaker Configuration Notifications
+  kind: action
+  command: "RQST:CS:SPKRCFG:EN\r"
+  params: []
+
+- id: spkrcfg_notification_disable
+  label: Disable Speaker Configuration Notifications
+  kind: action
+  command: "RQST:CS:SPKRCFG:DIS\r"
+  params: []
+
+- id: spkrcfg_notification_query
+  label: Query Speaker Configuration Notification State
+  kind: query
+  command: "RQST:CS:SPKRCFG:NTF?\r"
   params: []
 
 - id: status_main_query
   label: Query Main Zone Status
-  kind: action
-  params: []
+  kind: query
+  command: "RQST:CS:STATUS_MAIN:?\r"
+  notes: Response is a comma-separated list of values in fixed order (Video Input Resolution, Output Frame Rate, Color Space, HDCP Status, Audio In, Signal, Sample Rate, Input Channels, Bit Rate, EX Encoded, 2.0 Encoding, ES Encoding, Dialog Offset, Mix Room, Center Mix Level, Surround Mix Level, Word Length). Parameter NAMES are NOT included in response.
 
-- id: status_main_ntf_enable
+- id: status_main_notification_enable
   label: Enable Main Zone Status Notifications
   kind: action
+  command: "RQST:CS:STATUS_MAIN:EN\r"
   params: []
 
-- id: status_main_ntf_disable
+- id: status_main_notification_disable
   label: Disable Main Zone Status Notifications
   kind: action
+  command: "RQST:CS:STATUS_MAIN:DIS\r"
+  params: []
+
+- id: status_main_notification_query
+  label: Query Main Zone Status Notification State
+  kind: query
+  command: "RQST:CS:STATUS_MAIN:NTF?\r"
   params: []
 
 - id: status_system_query
   label: Query System Status
-  kind: action
-  params: []
+  kind: query
+  command: "RQST:CS:STATUS_SYSTEM:?\r"
+  notes: Response: MODEL (e.g. "ML No 502"), SW VERSION (max 20 char string), TIMESINCE POWERUP (xx:xx:xx hrs:mins:sec). Notification not available.
 
 - id: status_zone2_query
   label: Query Zone 2 Status
-  kind: action
-  params: []
+  kind: query
+  command: "RQST:CS:STATUS_ZONE2:?\r"
+  notes: Response: SIGNAL (one of Dolby Digital, Dolby Digital EX, DTS, DTS ES Matrix, DTS ES Discrete, DTS 96/24, AAC, PCM, Analog, Unknown).
 
-- id: status_zone2_ntf_enable
+- id: status_zone2_notification_enable
   label: Enable Zone 2 Status Notifications
   kind: action
+  command: "RQST:CS:STATUS_ZONE2:EN\r"
   params: []
 
-- id: status_zone2_ntf_disable
+- id: status_zone2_notification_disable
   label: Disable Zone 2 Status Notifications
   kind: action
+  command: "RQST:CS:STATUS_ZONE2:DIS\r"
   params: []
 
-- id: ntf_disable_all_temp
-  label: Temporarily Disable All Notifications
-  kind: action
+- id: status_zone2_notification_query
+  label: Query Zone 2 Status Notification State
+  kind: query
+  command: "RQST:CS:STATUS_ZONE2:NTF?\r"
   params: []
 
-- id: ntf_disable_all_persist
-  label: Disable All Notifications Persistently
+- id: surrmode_set
+  label: Select Surround Mode
   kind: action
-  params: []
-
-- id: ntf_disable_all_perm
-  label: Permanently Disable All Notifications
-  kind: action
-  params: []
-
-- id: ntf_restore_default
-  label: Restore Notification Defaults
-  kind: action
-  params: []
-
-- id: ntf_restore_lastsaved
-  label: Restore Last Saved Notifications
-  kind: action
-  params: []
-
-- id: fpdwnup_send
-  label: Front Panel Button Press
-  kind: action
+  command: "RQST:CS:SURRMODE:{mode}\r"
   params:
-    - name: button
+    - name: mode
       type: enum
-      values:
-        - ZONE
-        - PREVIEW
-        - DISPLAY
-        - SETUP
-        - MENU
-        - MUTE
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - SURROUND
-        - ENTER
-        - STANDBY
+      values: [L7Film, L7TV, L7Music, L7MusicSurr, PLIIxMovie, PLIIxMusic, PLIIMovie, PLIIMusic, ProLogic, dtsNEO6Cinema, dtsNEO6Music, MultiChan, StereoSurr, Downmix, Stereo, MonoLogic, MonoSurr, Mono]
+      description: Availability depends on system configuration and decoded audio stream. INVALID_MODE returned if not currently available.
 
-- id: fpdwn_send
-  label: Front Panel Button Down
+- id: surrmode_query
+  label: Query Current Surround Mode
+  kind: query
+  command: "RQST:CS:SURRMODE:?\r"
+  params: []
+
+- id: surrmode_notification_enable
+  label: Enable Surround Mode Change Notifications
   kind: action
+  command: "RQST:CS:SURRMODE:EN\r"
+  params: []
+
+- id: surrmode_notification_disable
+  label: Disable Surround Mode Change Notifications
+  kind: action
+  command: "RQST:CS:SURRMODE:DIS\r"
+  params: []
+
+- id: surrmode_notification_query
+  label: Query Surround Mode Notification State
+  kind: query
+  command: "RQST:CS:SURRMODE:NTF?\r"
+  params: []
+
+- id: trigger_1_set
+  label: Set Trigger 1
+  kind: action
+  command: "RQST:CS:TRIGGER_1:{state}\r"
   params:
-    - name: button
+    - name: state
       type: enum
-      values:
-        - ZONE
-        - PREVIEW
-        - DISPLAY
-        - SETUP
-        - MENU
-        - MUTE
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - SURROUND
-        - ENTER
-        - STANDBY
+      values: [ON, OFF]
+      notes: Trigger state set via this command is not reflected in the UI.
 
-- id: fpdwn_ntf_enable
-  label: Enable Front Panel Down Notifications
-  kind: action
+- id: trigger_1_query
+  label: Query Trigger 1
+  kind: query
+  command: "RQST:CS:TRIGGER_1:?\r"
   params: []
 
-- id: fpdwn_ntf_disable
-  label: Disable Front Panel Down Notifications
+- id: trigger_2_set
+  label: Set Trigger 2
   kind: action
-  params: []
-
-- id: fprpt_send
-  label: Front Panel Repeat
-  kind: action
+  command: "RQST:CS:TRIGGER_2:{state}\r"
   params:
-    - name: button
+    - name: state
       type: enum
-      values:
-        - ZONE
-        - PREVIEW
-        - DISPLAY
-        - SETUP
-        - MENU
-        - MUTE
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - SURROUND
-        - ENTER
-        - STANDBY
+      values: [ON, OFF]
+      notes: Trigger state set via this command is not reflected in the UI.
 
-- id: fprpt_ntf_enable
-  label: Enable Front Panel Repeat Notifications
-  kind: action
+- id: trigger_2_query
+  label: Query Trigger 2
+  kind: query
+  command: "RQST:CS:TRIGGER_2:?\r"
   params: []
 
-- id: fprpt_ntf_disable
-  label: Disable Front Panel Repeat Notifications
+- id: trigger_3_set
+  label: Set Trigger 3
   kind: action
-  params: []
-
-- id: fpup_send
-  label: Front Panel Button Up
-  kind: action
+  command: "RQST:CS:TRIGGER_3:{state}\r"
   params:
-    - name: button
+    - name: state
       type: enum
-      values:
-        - ZONE
-        - PREVIEW
-        - DISPLAY
-        - SETUP
-        - MENU
-        - MUTE
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - SURROUND
-        - ENTER
-        - STANDBY
+      values: [ON, OFF]
+      notes: Trigger state set via this command is not reflected in the UI.
 
-- id: fpup_ntf_enable
-  label: Enable Front Panel Up Notifications
-  kind: action
+- id: trigger_3_query
+  label: Query Trigger 3
+  kind: query
+  command: "RQST:CS:TRIGGER_3:?\r"
   params: []
 
-- id: fpup_ntf_disable
-  label: Disable Front Panel Up Notifications
+- id: trigger_4_set
+  label: Set Trigger 4
   kind: action
-  params: []
-
-- id: fpact_ctl_cw
-  label: Front Panel Activity Control Clockwise
-  kind: action
-  params: []
-
-- id: fpact_ctl_ccw
-  label: Front Panel Activity Control Counter-Clockwise
-  kind: action
-  params: []
-
-- id: fpact_ctl_ntf_enable
-  label: Enable Front Panel Activity Notifications
-  kind: action
-  params: []
-
-- id: fpact_ctl_ntf_disable
-  label: Disable Front Panel Activity Notifications
-  kind: action
-  params: []
-
-- id: fpvol_ctl_cw
-  label: Front Panel Volume Control Clockwise
-  kind: action
-  params: []
-
-- id: fpvol_ctl_ccw
-  label: Front Panel Volume Control Counter-Clockwise
-  kind: action
-  params: []
-
-- id: fpvol_ctl_cw_fast
-  label: Front Panel Volume Control Fast Clockwise
-  kind: action
-  params: []
-
-- id: fpvol_ctl_ccw_fast
-  label: Front Panel Volume Control Fast Counter-Clockwise
-  kind: action
-  params: []
-
-- id: fpvol_ctl_ntf_enable
-  label: Enable Front Panel Volume Notifications
-  kind: action
-  params: []
-
-- id: fpvol_ctl_ntf_disable
-  label: Disable Front Panel Volume Notifications
-  kind: action
-  params: []
-
-- id: irdwnup_send
-  label: IR Button Press and Release
-  kind: action
+  command: "RQST:CS:TRIGGER_4:{state}\r"
   params:
-    - name: button
+    - name: state
       type: enum
-      values:
-        - UP
-        - DOWN
-        - LEFT
-        - RIGHT
-        - ENTER
-        - MENU
-        - SETUP
-        - ACTIVITY_UP
-        - ACTIVITY_DOWN
-        - SURROUND_UP
-        - SURROUND_DOWN
-        - VOLUME_UP
-        - VOLUME_DOWN
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - PREVIEW
-        - MUTE
-        - F1
-        - F2
-        - F3
-        - ZONE
-        - STANDBY
+      values: [ON, OFF]
+      notes: Trigger state set via this command is not reflected in the UI.
 
-- id: irdwn_send
-  label: IR Button Down
+- id: trigger_4_query
+  label: Query Trigger 4
+  kind: query
+  command: "RQST:CS:TRIGGER_4:?\r"
+  params: []
+
+- id: vol_set
+  label: Set Main Zone Volume
   kind: action
+  command: "RQST:CS:VOL:{value}\r"
   params:
-    - name: button
-      type: enum
-      values:
-        - UP
-        - DOWN
-        - LEFT
-        - RIGHT
-        - ENTER
-        - MENU
-        - SETUP
-        - ACTIVITY_UP
-        - ACTIVITY_DOWN
-        - SURROUND_UP
-        - SURROUND_DOWN
-        - VOLUME_UP
-        - VOLUME_DOWN
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - PREVIEW
-        - MUTE
-        - F1
-        - F2
-        - F3
-        - ZONE
-        - STANDBY
+    - name: value
+      type: number
+      description: Volume 0.0 to 100.0. Setting via this command does NOT pop-up the volume status window in the UI.
 
-- id: irdwn_ntf_enable
-  label: Enable IR Down Notifications
-  kind: action
+- id: vol_query
+  label: Query Main Zone Volume
+  kind: query
+  command: "RQST:CS:VOL:?\r"
   params: []
 
-- id: irdwn_ntf_disable
-  label: Disable IR Down Notifications
+- id: vol_notification_enable
+  label: Enable Volume Change Notifications
   kind: action
+  command: "RQST:CS:VOL:EN\r"
   params: []
 
-- id: irrpt_send
-  label: IR Repeat
+- id: vol_notification_disable
+  label: Disable Volume Change Notifications
   kind: action
+  command: "RQST:CS:VOL:DIS\r"
+  params: []
+
+- id: vol_notification_query
+  label: Query Volume Notification State
+  kind: query
+  command: "RQST:CS:VOL:NTF?\r"
+  params: []
+
+- id: vprof_select
+  label: Select Video Profile
+  kind: action
+  command: "RQST:CS:VPROF:\"{name}\"\r"
   params:
-    - name: button
-      type: enum
-      values:
-        - UP
-        - DOWN
-        - LEFT
-        - RIGHT
-        - ENTER
-        - MENU
-        - SETUP
-        - ACTIVITY_UP
-        - ACTIVITY_DOWN
-        - SURROUND_UP
-        - SURROUND_DOWN
-        - VOLUME_UP
-        - VOLUME_DOWN
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - PREVIEW
-        - MUTE
-        - F1
-        - F2
-        - F3
-        - ZONE
-        - STANDBY
+    - name: name
+      type: string
+      description: Case sensitive name of the video profile in the system database.
 
-- id: irrpt_ntf_enable
-  label: Enable IR Repeat Notifications
-  kind: action
+- id: vprof_query
+  label: Query Current Video Profile
+  kind: query
+  command: "RQST:CS:VPROF:?\r"
   params: []
 
-- id: irrpt_ntf_disable
-  label: Disable IR Repeat Notifications
+- id: vprof_notification_enable
+  label: Enable Video Profile Change Notifications
   kind: action
+  command: "RQST:CS:VPROF:EN\r"
   params: []
 
-- id: irup_send
-  label: IR Button Up
+- id: vprof_notification_disable
+  label: Disable Video Profile Change Notifications
   kind: action
+  command: "RQST:CS:VPROF:DIS\r"
+  params: []
+
+- id: vprof_notification_query
+  label: Query Video Profile Notification State
+  kind: query
+  command: "RQST:CS:VPROF:NTF?\r"
+  params: []
+
+- id: wait_test
+  label: Wait/Error Mechanism Test
+  kind: action
+  command: "RQST:CS:WAIT_TEST:?\r"
+  notes: Test only. Response: 3x WAIT followed by ERROR.
+
+- id: xover_frnt_set
+  label: Set Front Speaker Crossover
+  kind: action
+  command: "RQST:CS:XOVER_FRNT:{value}\r"
   params:
-    - name: button
+    - name: value
+      type: string
+      description: FULLSUB, FULL, or a frequency in 30-120 Hz (must be in 10 Hz increments or command returns INVALID_PRM).
+
+- id: xover_frnt_query
+  label: Query Front Speaker Crossover
+  kind: query
+  command: "RQST:CS:XOVER_FRNT:?\r"
+  params: []
+
+- id: xover_frnt_notification_enable
+  label: Enable Front XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_FRNT:EN\r"
+  params: []
+
+- id: xover_frnt_notification_disable
+  label: Disable Front XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_FRNT:DIS\r"
+  params: []
+
+- id: xover_frnt_notification_query
+  label: Query Front XOver Notification State
+  kind: query
+  command: "RQST:CS:XOVER_FRNT:NTF?\r"
+  params: []
+
+- id: xover_center_set
+  label: Set Center Speaker Crossover
+  kind: action
+  command: "RQST:CS:XOVER_CENTER:{value}\r"
+  params:
+    - name: value
+      type: string
+      description: FULLSUB, FULL, or 30-120 Hz in 10 Hz increments.
+
+- id: xover_center_query
+  label: Query Center Speaker Crossover
+  kind: query
+  command: "RQST:CS:XOVER_CENTER:?\r"
+  params: []
+
+- id: xover_center_notification_enable
+  label: Enable Center XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_CENTER:EN\r"
+  params: []
+
+- id: xover_center_notification_disable
+  label: Disable Center XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_CENTER:DIS\r"
+  params: []
+
+- id: xover_center_notification_query
+  label: Query Center XOver Notification State
+  kind: query
+  command: "RQST:CS:XOVER_CENTER:NTF?\r"
+  params: []
+
+- id: xover_surr_set
+  label: Set Surround Speaker Crossover
+  kind: action
+  command: "RQST:CS:XOVER_SURR:{value}\r"
+  params:
+    - name: value
+      type: string
+      description: FULLSUB, FULL, or 30-120 Hz in 10 Hz increments.
+
+- id: xover_surr_query
+  label: Query Surround Speaker Crossover
+  kind: query
+  command: "RQST:CS:XOVER_SURR:?\r"
+  params: []
+
+- id: xover_surr_notification_enable
+  label: Enable Surround XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_SURR:EN\r"
+  params: []
+
+- id: xover_surr_notification_disable
+  label: Disable Surround XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_SURR:DIS\r"
+  params: []
+
+- id: xover_surr_notification_query
+  label: Query Surround XOver Notification State
+  kind: query
+  command: "RQST:CS:XOVER_SURR:NTF?\r"
+  params: []
+
+- id: xover_rear_set
+  label: Set Rear Speaker Crossover
+  kind: action
+  command: "RQST:CS:XOVER_REAR:{value}\r"
+  params:
+    - name: value
+      type: string
+      description: FULLSUB, FULL, or 30-120 Hz in 10 Hz increments.
+
+- id: xover_rear_query
+  label: Query Rear Speaker Crossover
+  kind: query
+  command: "RQST:CS:XOVER_REAR:?\r"
+  params: []
+
+- id: xover_rear_notification_enable
+  label: Enable Rear XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_REAR:EN\r"
+  params: []
+
+- id: xover_rear_notification_disable
+  label: Disable Rear XOver Notifications
+  kind: action
+  command: "RQST:CS:XOVER_REAR:DIS\r"
+  params: []
+
+- id: xover_rear_notification_query
+  label: Query Rear XOver Notification State
+  kind: query
+  command: "RQST:CS:XOVER_REAR:NTF?\r"
+  params: []
+
+- id: xover_sub_set
+  label: Set Subwoofer Crossover (LPF)
+  kind: action
+  command: "RQST:CS:XOVER_SUB:{value}\r"
+  params:
+    - name: value
       type: enum
-      values:
-        - UP
-        - DOWN
-        - LEFT
-        - RIGHT
-        - ENTER
-        - MENU
-        - SETUP
-        - ACTIVITY_UP
-        - ACTIVITY_DOWN
-        - SURROUND_UP
-        - SURROUND_DOWN
-        - VOLUME_UP
-        - VOLUME_DOWN
-        - VIDEO_PROFILE
-        - AUDIO_PROFILE
-        - PREVIEW
-        - MUTE
-        - F1
-        - F2
-        - F3
-        - ZONE
-        - STANDBY
+      values: [FULL, COMP]
+      description: Maps to the Subwoofer LPF parameter in the User Interface.
 
-- id: irup_ntf_enable
-  label: Enable IR Up Notifications
-  kind: action
+- id: xover_sub_query
+  label: Query Subwoofer Crossover
+  kind: query
+  command: "RQST:CS:XOVER_SUB:?\r"
   params: []
 
-- id: irup_ntf_disable
-  label: Disable IR Up Notifications
+- id: xover_sub_notification_enable
+  label: Enable Subwoofer XOver Notifications
   kind: action
+  command: "RQST:CS:XOVER_SUB:EN\r"
   params: []
 
-- id: nop
-  label: No Operation
+- id: xover_sub_notification_disable
+  label: Disable Subwoofer XOver Notifications
   kind: action
+  command: "RQST:CS:XOVER_SUB:DIS\r"
+  params: []
+
+- id: xover_sub_notification_query
+  label: Query Subwoofer XOver Notification State
+  kind: query
+  command: "RQST:CS:XOVER_SUB:NTF?\r"
+  params: []
+
+- id: z2act_select
+  label: Select Zone 2 Activity
+  kind: action
+  command: "RQST:CS:Z2ACT:\"{name}\"\r"
+  params:
+    - name: name
+      type: string
+      description: Case sensitive name of the Zone 2 activity.
+
+- id: z2act_set_off
+  label: Set Zone 2 Audio Off
+  kind: action
+  command: "RQST:CS:Z2ACT:OFF\r"
+  params: []
+
+- id: z2act_query
+  label: Query Current Zone 2 Activity
+  kind: query
+  command: "RQST:CS:Z2ACT:?\r"
+  params: []
+
+- id: z2act_notification_enable
+  label: Enable Zone 2 Activity Change Notifications
+  kind: action
+  command: "RQST:CS:Z2ACT:EN\r"
+  params: []
+
+- id: z2act_notification_disable
+  label: Disable Zone 2 Activity Change Notifications
+  kind: action
+  command: "RQST:CS:Z2ACT:DIS\r"
+  params: []
+
+- id: z2act_notification_query
+  label: Query Zone 2 Activity Notification State
+  kind: query
+  command: "RQST:CS:Z2ACT:NTF?\r"
+  params: []
+
+- id: z2vol_set
+  label: Set Zone 2 Volume
+  kind: action
+  command: "RQST:CS:Z2VOL:{value}\r"
+  params:
+    - name: value
+      type: number
+      description: Volume 0.0 to 100.0.
+
+- id: z2vol_query
+  label: Query Zone 2 Volume
+  kind: query
+  command: "RQST:CS:Z2VOL:?\r"
+  params: []
+
+- id: z2vol_notification_enable
+  label: Enable Zone 2 Volume Change Notifications
+  kind: action
+  command: "RQST:CS:Z2VOL:EN\r"
+  params: []
+
+- id: z2vol_notification_disable
+  label: Disable Zone 2 Volume Change Notifications
+  kind: action
+  command: "RQST:CS:Z2VOL:DIS\r"
+  params: []
+
+- id: z2vol_notification_query
+  label: Query Zone 2 Volume Notification State
+  kind: query
+  command: "RQST:CS:Z2VOL:NTF?\r"
+  params: []
+
+- id: zoom_set
+  label: Set Zoom Mode
+  kind: action
+  command: "RQST:CS:ZOOM:{mode}\r"
+  params:
+    - name: mode
+      type: enum
+      values: [NORM, WIDE, FILL, FW]
+
+- id: zoom_query
+  label: Query Zoom Mode
+  kind: query
+  command: "RQST:CS:ZOOM:?\r"
+  params: []
+
+- id: zoom_notification_enable
+  label: Enable Zoom Change Notifications
+  kind: action
+  command: "RQST:CS:ZOOM:EN\r"
+  params: []
+
+- id: zoom_notification_disable
+  label: Disable Zoom Change Notifications
+  kind: action
+  command: "RQST:CS:ZOOM:DIS\r"
+  params: []
+
+- id: zoom_notification_query
+  label: Query Zoom Notification State
+  kind: query
+  command: "RQST:CS:ZOOM:NTF?\r"
   params: []
 ```
 
@@ -1754,290 +2075,367 @@ auth:
 ```yaml
 - id: power_state
   type: enum
-  values:
-    - ON
-    - STANDBY
+  values: [ON, STANDBY]
 
-- id: activity_name
-  type: string
+- id: pwr_notification_state
+  type: enum
+  values: [EN, DIS]
 
-- id: audio_profile_name
-  type: string
-
-- id: video_profile_name
-  type: string
-
-- id: display_config_name
-  type: string
-
-- id: speaker_config_name
-  type: string
-
-- id: volume_level
+- id: vol_level
   type: number
-  range: [0.0, 100.0]
+  description: 0.0 to 100.0
 
 - id: mute_state
   type: enum
-  values:
-    - ON
-    - OFF
+  values: [ON, OFF]
 
-- id: balance_level
-  type: number
-  range: [-14.0, 14.0]
-
-- id: fader_level
-  type: number
-  range: [-14.0, 14.0]
-
-- id: avsync_delay
-  type: number
-  range: [0.0, 500.0]
-
-- id: surround_mode
+- id: act_name
   type: string
+
+- id: aprof_name
+  type: string
+
+- id: dispcfg_name
+  type: string
+
+- id: spkrcfg_name
+  type: string
+
+- id: vprof_name
+  type: string
+
+- id: bal_value
+  type: string
+  description: ROFF, LOFF, or numeric -14.0 to 14.0
+
+- id: fader_value
+  type: string
+  description: FOFF, BOFF, or numeric -14.0 to 14.0
+
+- id: avsync_value
+  type: number
+  description: 0.0 to 500.0 milliseconds
 
 - id: resolution_mode
   type: enum
-  values:
-    - SD
-    - ED
-    - HD720P
-    - HD1080I
-    - HD1080P
+  values: [SD, ED, HD720P, HD1080I, HD1080P]
 
-- id: zone2_activity
+- id: surrmode
+  type: enum
+  values: [L7Film, L7TV, L7Music, L7MusicSurr, PLIIxMovie, PLIIxMusic, PLIIMovie, PLIIMusic, ProLogic, dtsNEO6Cinema, dtsNEO6Music, MultiChan, StereoSurr, Downmix, Stereo, MonoLogic, MonoSurr, Mono]
+
+- id: zoom_mode
+  type: enum
+  values: [NORM, WIDE, FILL, FW]
+
+- id: roomeq_setting
   type: string
+  description: OFF or 1-5
 
-- id: zone2_volume
+- id: roomeqon_state
+  type: enum
+  values: [ON, OFF]
+
+- id: encenter_state
+  type: enum
+  values: [ON, OFF]
+
+- id: ensurr_state
+  type: enum
+  values: [ON, OFF]
+
+- id: enrear_state
+  type: enum
+  values: [ON, OFF]
+
+- id: ensub1_state
+  type: enum
+  values: [ON, OFF]
+
+- id: ensub2_state
+  type: enum
+  values: [ON, OFF]
+
+- id: cal_dist_lf
   type: number
-  range: [0.0, 100.0]
+  description: Feet, 0.0 to 40.0
 
-- id: status_main_response
-  type: object
-  properties:
-    - video_input_resolution
-    - output_frame_rate
-    - color_space
-    - hdcp_status
-    - audio_in
-    - signal
-    - sample_rate
-    - input_channels
-    - bit_rate
-    - ex_encoded
-    - encoding_2p0
-    - es_encoding
-    - dialog_offset
-    - mix_room
-    - center_mix_level
-    - surround_mix_level
-    - word_length
+- id: cal_dist_rf
+  type: number
 
-- id: status_system_response
-  type: object
-  properties:
-    - model
-    - sw_version
-    - time_since_powerup
+- id: cal_dist_c
+  type: number
 
-- id: status_zone2_response
-  type: object
-  properties:
-    - signal
+- id: cal_dist_ls
+  type: number
 
-- id: activity_list
+- id: cal_dist_rs
+  type: number
+
+- id: cal_dist_lb
+  type: number
+
+- id: cal_dist_rb
+  type: number
+
+- id: cal_dist_lsub1
+  type: number
+
+- id: cal_dist_rsub1
+  type: number
+
+- id: cal_dist_lsub2
+  type: number
+
+- id: cal_dist_rsub2
+  type: number
+
+- id: cal_lvl_lf
+  type: number
+  description: dB, -14.0 to 14.0
+
+- id: cal_lvl_rf
+  type: number
+
+- id: cal_lvl_c
+  type: number
+
+- id: cal_lvl_ls
+  type: number
+
+- id: cal_lvl_rs
+  type: number
+
+- id: cal_lvl_lb
+  type: number
+
+- id: cal_lvl_rb
+  type: number
+
+- id: cal_lvl_lsub1
+  type: number
+
+- id: cal_lvl_rsub1
+  type: number
+
+- id: cal_lvl_lsub2
+  type: number
+
+- id: cal_lvl_rsub2
+  type: number
+
+- id: offsetf_value
+  type: string
+  description: OFF or -14.0 to 14.0
+
+- id: offsetc_value
   type: string
 
-- id: audio_profile_list
+- id: offsets_value
   type: string
 
-- id: display_config_list
+- id: offsetr_value
   type: string
 
-- id: speaker_config_list
+- id: offsetsub1_value
   type: string
 
-- id: surround_mode_list
+- id: offsetsub2_value
   type: string
 
-- id: video_profile_list
+- id: xover_frnt_value
+  type: string
+  description: FULLSUB, FULL, or 30-120 Hz
+
+- id: xover_center_value
   type: string
 
-- id: notification_state
+- id: xover_surr_value
+  type: string
+
+- id: xover_rear_value
+  type: string
+
+- id: xover_sub_value
   type: enum
-  values:
-    - EN
-    - DIS
+  values: [FULL, COMP]
 
-- id: fault_notification
+- id: trigger_1_state
   type: enum
-  values:
-    - THERM
-    - PWR
-    - SIGNAL
-    - UNKNOWN
+  values: [ON, OFF]
+
+- id: trigger_2_state
+  type: enum
+  values: [ON, OFF]
+
+- id: trigger_3_state
+  type: enum
+  values: [ON, OFF]
+
+- id: trigger_4_state
+  type: enum
+  values: [ON, OFF]
+
+- id: menubk_state
+  type: enum
+  values: [ON, OFF]
+
+- id: monen_state
+  type: enum
+  values: [ON, OFF]
+
+- id: osd_state
+  type: enum
+  values: [ON, OFF]
+
+- id: z2act_name
+  type: string
+  description: Activity name, or OFF
+
+- id: z2vol_level
+  type: number
+  description: 0.0 to 100.0
+
+- id: status_main
+  type: object
+  description: Comma-separated list in fixed order: VIDEO INPUT RESOLUTION, OUTPUT FRAME RATE, COLOR SPACE, HDCP STATUS, AUDIO IN, SIGNAL, SAMPLE RATE, INPUT CHANNELS, BIT RATE, EX ENCODED, 2.0 ENCODING, ES ENCODING, DIALOG OFFSET, MIX ROOM, CENTER MIX LEVEL, SURROUND MIX LEVEL, WORD LENGTH. Parameter NAMES are NOT included.
+
+- id: status_system
+  type: object
+  description: Comma-separated: MODEL, SW VERSION, TIMESINCE POWERUP (hrs:mins:sec)
+
+- id: status_zone2
+  type: object
+  description: SIGNAL only (one of Dolby Digital, Dolby Digital EX, DTS, DTS ES Matrix, DTS ES Discrete, DTS 96/24, AAC, PCM, Analog, Unknown)
+
+- id: req_act_list
+  type: string
+  description: Comma-separated list of activity names
+
+- id: req_aprof_list
+  type: string
+  description: Comma-separated list of audio profile names
+
+- id: req_disp_list
+  type: string
+
+- id: req_spkr_list
+  type: string
+
+- id: req_surr_list
+  type: string
+
+- id: req_vprof_list
+  type: string
+
+- id: rsp_invalid_src
+  type: string
+  description: RSP:INVALID_SRC\r
+
+- id: rsp_invalid_cmd
+  type: string
+  description: RSP:CS:INVALID_CMD\r
+
+- id: rsp_invalid_prm
+  type: string
+  description: RSP:CS:{CMD}:INVALID_PRM\r
+
+- id: rsp_invalid_str
+  type: string
+  description: RSP:CS:INVALID_STR\r
+
+- id: rsp_invalid_name
+  type: string
+  description: RSP:CS:{CMD}:INVALID_NAME\r
+
+- id: rsp_invalid_mode
+  type: string
+  description: RSP:CS:SURRMODE:INVALID_MODE\r
+
+- id: rsp_nack
+  type: string
+  description: RSP:CS:{CMD}:NACK\r - system in Standby
+
+- id: rsp_wait
+  type: string
+  description: RSP:CS:{CMD}:WAIT\r - up to 3 WAIT responses
+
+- id: rsp_error
+  type: string
+  description: RSP:CS:{CMD}:ERROR\r
 ```
 
 ## Variables
 ```yaml
-- id: room_eq_on
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: room_eq_setting
-  type: integer
-  range: [1, 5]
-
-- id: osd_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: monitor_output_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: menu_backlight_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: front_panel_display_intensity
-  type: enum
-  values:
-    - OFF
-    - LOW
-    - MED
-    - HIGH
-
-- id: center_speaker_enabled
-  type: boolean
-
-- id: surround_speakers_enabled
-  type: boolean
-
-- id: rear_speakers_enabled
-  type: boolean
-
-- id: subwoofer1_enabled
-  type: boolean
-
-- id: subwoofer2_enabled
-  type: boolean
-
-- id: zoom_mode
-  type: enum
-  values:
-    - NORM
-    - WIDE
-    - FILL
-    - FW
-
-- id: trigger_1_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: trigger_2_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: trigger_3_state
-  type: enum
-  values:
-    - ON
-    - OFF
-
-- id: trigger_4_state
-  type: enum
-  values:
-    - ON
-    - OFF
+# UNRESOLVED: source describes settable numeric/string parameters inline (e.g. VOL 0.0-100.0,
+# CAL_DIST_* 0.0-40.0). These are exposed as Actions above; no separate persistent variables
+# beyond the named configurations (Activity, AudioProfile, DisplayConfig, SpeakerConfig,
+# VideoProfile) which are user-named and not enumerated in the source.
 ```
 
 ## Events
 ```yaml
-- id: fault_thermal
-  description: Internal fan failed, system overheated
-  source: NTF:AV:FAULT:THERM
+- id: ntf_pwr
+  description: Power state change notification
+  example: "NTF:UI:PWR:ON\r"
 
-- id: fault_power
+- id: ntf_vol
+  description: Volume change notification
+  example: "NTF:UI:VOL:25.6\r"
+
+- id: ntf_act
+  description: Activity change notification
+  example: "NTF:UI:ACT:{name}\r"
+
+- id: ntf_fault_therm
+  description: Internal fan failed and system overheated
+  example: "NTF:AV:FAULT:THERM\r"
+
+- id: ntf_fault_pwr
   description: Power fail condition
-  source: NTF:AV:FAULT:PWR
+  example: "NTF:AV:FAULT:PWR\r"
 
-- id: fault_signal
-  description: General signal fault with ML Net or Link2 devices
-  source: NTF:AV:FAULT:SIGNAL
+- id: ntf_fault_signal
+  description: General signal fault with ML Net or Link2 attached devices
+  example: "NTF:AV:FAULT:SIGNAL\r"
 
-- id: fault_unknown
-  description: System software fault occurred
-  source: NTF:AV:FAULT:UNKNOWN
+- id: ntf_fault_unknown
+  description: System software fault - see front panel for details
+  example: "NTF:AV:FAULT:UNKNOWN\r"
 
-- id: power_state_change
-  description: Power state changed (ON or STANDBY)
-  source: NTF:UI:PWR:ON or NTF:UI:PWR:STANDBY
-
-- id: volume_change
-  description: Volume level changed
-  source: NTF:UI:VOL:XXX.X
-
-- id: mute_state_change
-  description: Mute state changed
-  source: NTF:UI:MUTE:ON or NTF:UI:MUTE:OFF
+# Source field for unsolicited notifications: UI (user interaction) or AV (component-generated fault).
+# Notifications are only sent to the controller if enabled; per-command enable/disable via
+# {CMD}:EN / {CMD}:DIS. Bulk controls via NTF:DIS_ALL_TEMP / DIS_ALL_PERSIST / DIS_ALL_PERM.
 ```
 
 ## Macros
 ```yaml
-- id: disable_all_notifications_temporary
-  label: Temporarily Disable All Notifications
-  steps:
-    - action: ntf_disable_all_temp
-
-- id: disable_all_notifications_persistent
-  label: Disable All Notifications Persistently
-  steps:
-    - action: ntf_disable_all_persist
-
-- id: restore_notification_defaults
-  label: Restore Notification Factory Defaults
-  steps:
-    - action: ntf_restore_default
+# UNRESOLVED: source describes the FPDWNUP/IRDWNUP composite commands and the FPRPT/IRRPT
+# repeat-rate behavior (5 initial then 3 subsequent inside Setup), but does not specify
+# any device-defined multi-step macro sequences the host can invoke.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
+# UNRESOLVED: source contains no explicit safety warnings, interlock procedures, or
+# power-on sequencing requirements. The CRITICAL FAULT notifications (THERM, PWR, SIGNAL,
+# UNKNOWN) are reactive notifications, not preventive interlocks.
 ```
 
 ## Notes
+Message framing applies to BOTH transports verbatim: `HDR:SRC:CMD:PARAM\r`, fields case sensitive, colon separated, 0x0D terminator, max 1024 chars, host must wait for ACK within 500ms. RS-232 default is OFF (Ethernet is default control port); activate via Setup → User Options → Control Options → External Control.
 
-**Protocol format:** ASCII messages with format `HDR:SRC:CMD:PARAM\r`. Maximum 1024 characters per message including terminator. All fields, commands, and parameters are case-sensitive.
+Many commands have non-persistent side effects: PWR, MUTE, SURRMODE, TRIGGER_*, DISPCFG, APROF, SPKRCFG, FPDWNUP/IRDWNUP and several others are NOT saved across standby. See source "Retention of External Command Changes" table for the full list of persistent vs. session-only commands. VOL and Z2VOL are saved ONLY if Setup → User Options → Audio Options → Power On Volume = "Last Level".
 
-**Response time:** System responds within 500ms. If processing exceeds 500ms, system may respond with WAIT up to 3 times before ERROR.
+The FAULT command has no incoming request form — it appears only as an outgoing AV-source notification. NTF:DIS_ALL_PERM irreversibly erases the External Protocol Notification database (only NTF:RESTORE_DEFAULT can recover it).
 
-**Error responses:** RSP:INVALID_SRC, RSP:INVALID_CMD, RSP:INVALID_PRM, RSP:INVALID_STR, RSP:INVALID_NAME, RSP:INVALID_MODE, RSP:NACK (when in standby), RSP:WAIT/ERROR.
+Per-encoder behavior: FPRPT and IRRPT are buffered for smooth UI operation; number of repeats required varies (e.g. 5 then 3 inside Setup). FPDWNUP/IRDWNUP execute the corresponding DWN then UP commands atomically; notifications are not generated for these composite commands.
 
-**Notification behavior:** Notifications are only sent when enabled per-command. Notifications survive power cycle (stored in database). NTF:DIS_ALL_PERM erases notification database irrevocably.
+Sub-mnemonics that share one opcode (e.g. SURRMODE's 18 modes, RESOLUTION's 5 formats, ZOOM's 4 modes, BAL's ROFF/LOFF/numeric, OFFSET*'s OFF/numeric) are emitted as single Actions with enum-typed params per the granularity rule (one command = one opcode).
 
-**Serial config:** 57600 baud, 8 data bits, no parity, 1 stop bit, no flow control. Connector: RJ-11 (pins 2=Rx, 3=Tx, 5=Ground).
-
-**Ethernet config:** TCP port 15003. Default static IP 192.168.50.2. Device acts as server, host as client.
-
-<!-- UNRESOLVED: firmware version not stated in source -->
-<!-- UNRESOLVED: DHCP behavior details not fully specified -->
-<!-- UNRESOLVED: specific fault recovery sequences not detailed -->
+<!-- UNRESOLVED: factory default activity names, audio profile names, video profile names, display configuration names, and speaker configuration names are not enumerated in the source; they are user-editable pre-configured values. Firmware version compatibility not stated. -->
 
 ## Provenance
 
@@ -2047,24 +2445,28 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-04-30T04:26:55.366Z
-last_checked_at: 2026-05-14T18:17:18.092Z
+last_checked_at: 2026-06-02T05:46:07.837Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.092Z
-matched_actions: 211
-action_count: 268
-confidence: high
-summary: "All 211 spec actions matched command tokens in source; all transport parameters confirmed with verbatim evidence."
+checked_at: 2026-06-02T05:46:07.837Z
+matched_actions: 292
+action_count: 292
+confidence: medium
+summary: "All 292 spec action units matched verbatim to the 88 source commands (88 opcodes × set/query/notification variants); transport values port 15003, baud 57600, 8N1 all confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility, factory default activity/audio profile/video profile/display configuration/speaker configuration names not enumerated in source"
+- "source describes settable numeric/string parameters inline (e.g. VOL 0.0-100.0,"
+- "source describes the FPDWNUP/IRDWNUP composite commands and the FPRPT/IRRPT"
+- "source contains no explicit safety warnings, interlock procedures, or"
+- "factory default activity names, audio profile names, video profile names, display configuration names, and speaker configuration names are not enumerated in the source; they are user-editable pre-configured values. Firmware version compatibility not stated."
 ```
 
 ---

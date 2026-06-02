@@ -37,13 +37,21 @@ known_gaps:
   - PSMODE
   - PSLOM
   - PSFH
+  - "specific AVR model numbers not stated in source; document covers a family of Denon AVRs"
+  - "firmware version compatibility not stated"
+  - "Variables section — all settable parameters are represented as Actions with params above"
+  - "safety section — source contains no explicit safety warnings, interlocks, or power-on sequencing beyond the 1-second delay note"
+  - "specific AVR model numbers not stated — document covers a family"
+  - "protocol version number not stated"
+  - "flow control for serial not stated (listed as none based on \"Non procedural\" communication procedure)"
+  - "complete list of surround mode parameters is extensive — see source for full list beyond representative values"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.264Z
   matched_actions: 106
   action_count: 109
-  confidence: high
-  summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope."
+  confidence: medium
+  summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1068,8 +1076,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.264Z
 matched_actions: 106
 action_count: 109
-confidence: high
-summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope."
+confidence: medium
+summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1087,6 +1095,14 @@ summary: "All 106 spec actions matched with verbatim evidence in source; transpo
 - PSMODE
 - PSLOM
 - PSFH
+- "specific AVR model numbers not stated in source; document covers a family of Denon AVRs"
+- "firmware version compatibility not stated"
+- "Variables section — all settable parameters are represented as Actions with params above"
+- "safety section — source contains no explicit safety warnings, interlocks, or power-on sequencing beyond the 1-second delay note"
+- "specific AVR model numbers not stated — document covers a family"
+- "protocol version number not stated"
+- "flow control for serial not stated (listed as none based on \"Non procedural\" communication procedure)"
+- "complete list of surround mode parameters is extensive — see source for full list beyond representative values"
 ```
 
 ---

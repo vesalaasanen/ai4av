@@ -24,14 +24,23 @@ last_checked_at: 2026-04-23T15:23:10.482Z
 generated_at: 2026-04-23T15:23:10.482Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial control not documented in source"
+  - "polling interval recommendations not stated in source"
+  - "protocol does not describe push mechanism beyond status updates"
+  - "no safety warnings or interlock procedures in source"
+  - "RS-232 serial control — not covered in source"
+  - "broadcast/discovery mechanism — not described in source"
+  - "command timing or rate-limiting constraints — not stated in source"
+  - "TLS/encryption for TCP control — not mentioned in source"
+  - "recommended reconnect behavior after disconnect — not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:23:10.482Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified."
+  confidence: medium
+  summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -505,14 +514,22 @@ verdict: verified
 checked_at: 2026-04-23T15:23:10.482Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified."
+confidence: medium
+summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial control not documented in source"
+- "polling interval recommendations not stated in source"
+- "protocol does not describe push mechanism beyond status updates"
+- "no safety warnings or interlock procedures in source"
+- "RS-232 serial control — not covered in source"
+- "broadcast/discovery mechanism — not described in source"
+- "command timing or rate-limiting constraints — not stated in source"
+- "TLS/encryption for TCP control — not mentioned in source"
+- "recommended reconnect behavior after disconnect — not stated in source"
 ```
 
 ---

@@ -18,21 +18,28 @@ compatible_with:
 source_domains:
   - christiedigital.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-101757-05-christie-lit-tech-ref-brio-ext-protocol.pdf
+retrieved_at: 2026-05-14T21:21:24.759Z
 last_checked_at: 2026-05-14T21:45:07.155Z
 generated_at: 2026-05-14T21:45:07.155Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial connectivity not mentioned in source"
+  - "no standalone settable parameters found; all config via actions"
+  - "no unsolicited event notifications documented; device only responds to commands"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "serial/RS-232 not mentioned in source; protocol supports TCP only"
+  - "firmware version compatibility not stated in source"
+  - "TCP keepalive/heartbeat timing not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:45:07.155Z
   matched_actions: 41
   action_count: 41
-  confidence: high
-  summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage."
+  confidence: medium
+  summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -437,9 +444,8 @@ interlocks: []
 source_domains:
   - christiedigital.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-101757-05-christie-lit-tech-ref-brio-ext-protocol.pdf
+retrieved_at: 2026-05-14T21:21:24.759Z
 last_checked_at: 2026-05-14T21:45:07.155Z
 ```
 
@@ -450,14 +456,21 @@ verdict: verified
 checked_at: 2026-05-14T21:45:07.155Z
 matched_actions: 41
 action_count: 41
-confidence: high
-summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage."
+confidence: medium
+summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial connectivity not mentioned in source"
+- "no standalone settable parameters found; all config via actions"
+- "no unsolicited event notifications documented; device only responds to commands"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "serial/RS-232 not mentioned in source; protocol supports TCP only"
+- "firmware version compatibility not stated in source"
+- "TCP keepalive/heartbeat timing not stated in source"
 ```
 
 ---

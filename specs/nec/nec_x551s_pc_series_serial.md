@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:33.331Z
 last_checked_at: 2026-05-14T18:17:19.253Z
 generated_at: 2026-05-14T18:17:19.253Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Some commands reference an appendix (\"Supplementary Information by Command\") that is not included in this source. Input terminal hex codes, aspect mode codes, eco mode codes, and audio select codes are partially documented in the appendix section of this source."
+  - "Variables are typically settable parameters exposed as queryable state."
+  - "The source document does not describe unsolicited event notifications"
+  - "The source document does not describe multi-step command sequences"
+  - "Appendix \"Supplementary Information by Command\" referenced throughout this spec is only partially captured. Full appendix content should be verified against the complete manual."
+  - "Firmware version compatibility not stated in source."
+  - "The document references a \"control ID\" (ID1) and \"model code\" (ID2) that must be set for communication, but the valid ranges and how to obtain them are not documented in this source excerpt."
+  - "HDBaseT standby mode mentioned but not detailed."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.253Z
   matched_actions: 28
   action_count: 28
   confidence: low
-  summary: "All 48 spec actions matched source commands; transport verified"
+  summary: "All 48 spec actions matched source commands; transport verified (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -546,7 +554,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:33.331Z
 last_checked_at: 2026-05-14T18:17:19.253Z
 ```
 
@@ -558,13 +566,20 @@ checked_at: 2026-05-14T18:17:19.253Z
 matched_actions: 28
 action_count: 28
 confidence: low
-summary: "All 48 spec actions matched source commands; transport verified"
+summary: "All 48 spec actions matched source commands; transport verified (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Some commands reference an appendix (\"Supplementary Information by Command\") that is not included in this source. Input terminal hex codes, aspect mode codes, eco mode codes, and audio select codes are partially documented in the appendix section of this source."
+- "Variables are typically settable parameters exposed as queryable state."
+- "The source document does not describe unsolicited event notifications"
+- "The source document does not describe multi-step command sequences"
+- "Appendix \"Supplementary Information by Command\" referenced throughout this spec is only partially captured. Full appendix content should be verified against the complete manual."
+- "Firmware version compatibility not stated in source."
+- "The document references a \"control ID\" (ID1) and \"model code\" (ID2) that must be set for communication, but the valid ranges and how to obtain them are not documented in this source excerpt."
+- "HDBaseT standby mode mentioned but not detailed."
 ```
 
 ---

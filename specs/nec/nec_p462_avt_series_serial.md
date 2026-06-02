@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:56.757Z
 last_checked_at: 2026-04-25T21:29:37.346Z
 generated_at: 2026-04-25T21:29:37.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Some commands reference an Appendix with input terminal values and aspect values that is not included in this source document"
+  - "multiple baud rates supported (115200/38400/19200/9600/4800 bps); no single value stated"
+  - "RTS/CTS handshake pins wired but flow control setting not stated"
+  - "Many adjustment commands (picture_adjust, volume_adjust, aspect_adjust,"
+  - "No unsolicited event notifications described in source."
+  - "Standby mode requirements for receiving commands differ between serial"
+  - "voltage, current, power specifications not stated in source"
+  - "fault behavior and error recovery sequences not fully documented"
+  - "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal hex codes, aspect hex codes, eco mode hex codes, and selection signal type codes are partially documented in appendix excerpt only"
+  - "Model code (ID2) values not stated in source; must be obtained from device or supplemental docs"
+  - "Firmware version compatibility not stated in source"
+  - "HDBaseT standby mode mentioned but not detailed in source"
+  - "Some commands (e.g. PICTURE ADJUST, VOLUME ADJUST) use 16-bit signed values; valid range not stated"
+  - "Lens control commands (053-x series) — applicability depends on lens option; source does not specify which models have lens"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:29:37.346Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands."
+  confidence: medium
+  summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -501,7 +515,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:56.757Z
 last_checked_at: 2026-04-25T21:29:37.346Z
 ```
 
@@ -512,14 +526,27 @@ verdict: verified
 checked_at: 2026-04-25T21:29:37.346Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands."
+confidence: medium
+summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Some commands reference an Appendix with input terminal values and aspect values that is not included in this source document"
+- "multiple baud rates supported (115200/38400/19200/9600/4800 bps); no single value stated"
+- "RTS/CTS handshake pins wired but flow control setting not stated"
+- "Many adjustment commands (picture_adjust, volume_adjust, aspect_adjust,"
+- "No unsolicited event notifications described in source."
+- "Standby mode requirements for receiving commands differ between serial"
+- "voltage, current, power specifications not stated in source"
+- "fault behavior and error recovery sequences not fully documented"
+- "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal hex codes, aspect hex codes, eco mode hex codes, and selection signal type codes are partially documented in appendix excerpt only"
+- "Model code (ID2) values not stated in source; must be obtained from device or supplemental docs"
+- "Firmware version compatibility not stated in source"
+- "HDBaseT standby mode mentioned but not detailed in source"
+- "Some commands (e.g. PICTURE ADJUST, VOLUME ADJUST) use 16-bit signed values; valid range not stated"
+- "Lens control commands (053-x series) — applicability depends on lens option; source does not specify which models have lens"
 ```
 
 ---

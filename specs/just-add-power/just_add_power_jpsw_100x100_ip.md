@@ -19,20 +19,31 @@ source_domains:
   - support.justaddpower.com
 source_urls:
   - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
-  - https://support.justaddpower.com/kb/article/379/
 retrieved_at: 2026-05-12T09:53:32.970Z
 last_checked_at: 2026-05-12T14:58:21.408Z
 generated_at: 2026-05-12T14:58:21.408Z
 firmware_coverage: "B1.0.0 or later"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "the source document covers Omega & Ultra Series generically; specific JPSW_100x100 commands may differ"
+  - "no query/feedback commands documented in source"
+  - "flow control not stated in source"
+  - "no query or response format documented in source"
+  - "no settable parameters documented in source"
+  - "no unsolicited notification format documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "response/acknowledgement format not documented"
+  - "command timing or rate limits not stated"
+  - "whether commands persist through reboot varies; source is ambiguous"
+  - "CLI Settings (boot-up behavior) are in a separate article not included here"
 verification:
   verdict: verified
   checked_at: 2026-05-12T14:58:21.408Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched literally in source; transport parameters (TCP port 23, RS-232 115200-8n1) verified; spec fully represents documented command set."
+  confidence: medium
+  summary: "All 10 spec actions matched literally in source; transport parameters (TCP port 23, RS-232 115200-8n1) verified; spec fully represents documented command set. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -199,7 +210,6 @@ source_domains:
   - support.justaddpower.com
 source_urls:
   - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
-  - https://support.justaddpower.com/kb/article/379/
 retrieved_at: 2026-05-12T09:53:32.970Z
 last_checked_at: 2026-05-12T14:58:21.408Z
 ```
@@ -211,14 +221,25 @@ verdict: verified
 checked_at: 2026-05-12T14:58:21.408Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched literally in source; transport parameters (TCP port 23, RS-232 115200-8n1) verified; spec fully represents documented command set."
+confidence: medium
+summary: "All 10 spec actions matched literally in source; transport parameters (TCP port 23, RS-232 115200-8n1) verified; spec fully represents documented command set. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "the source document covers Omega & Ultra Series generically; specific JPSW_100x100 commands may differ"
+- "no query/feedback commands documented in source"
+- "flow control not stated in source"
+- "no query or response format documented in source"
+- "no settable parameters documented in source"
+- "no unsolicited notification format documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "response/acknowledgement format not documented"
+- "command timing or rate limits not stated"
+- "whether commands persist through reboot varies; source is ambiguous"
+- "CLI Settings (boot-up behavior) are in a separate article not included here"
 ```
 
 ---

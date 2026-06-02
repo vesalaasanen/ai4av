@@ -19,19 +19,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:35.236Z
 last_checked_at: 2026-05-14T18:17:19.273Z
 generated_at: 2026-05-14T18:17:19.273Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "model number exact variant (X551UN, X551UNS, etc.) not distinguished in source; UNRESOLVED: appendix supplementary tables referenced but not included (input terminal codes, aspect values, eco mode values, signal type values, audio select values)"
+  - "variables that are set/get via parameter commands are documented in Actions and Feedbacks"
+  - "no unsolicited event/notification mechanism described in source"
+  - "power on/off commands have timing constraints (no other commands accepted"
+  - "standby mode must be configured correctly for serial/LAN control to work"
+  - "appendix tables (input terminal codes, aspect values, eco mode values, signal type values, audio select values) are referenced but not included in the source document excerpt"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.273Z
   matched_actions: 52
   action_count: 53
-  confidence: high
-  summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -782,7 +788,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:35.236Z
 last_checked_at: 2026-05-14T18:17:19.273Z
 ```
 
@@ -793,14 +799,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.273Z
 matched_actions: 52
 action_count: 53
-confidence: high
-summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete."
+confidence: medium
+summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "model number exact variant (X551UN, X551UNS, etc.) not distinguished in source; UNRESOLVED: appendix supplementary tables referenced but not included (input terminal codes, aspect values, eco mode values, signal type values, audio select values)"
+- "variables that are set/get via parameter commands are documented in Actions and Feedbacks"
+- "no unsolicited event/notification mechanism described in source"
+- "power on/off commands have timing constraints (no other commands accepted"
+- "standby mode must be configured correctly for serial/LAN control to work"
+- "appendix tables (input terminal codes, aspect values, eco mode values, signal type values, audio select values) are referenced but not included in the source document excerpt"
 ```
 
 ---

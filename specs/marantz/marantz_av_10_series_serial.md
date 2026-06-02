@@ -19,19 +19,28 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+retrieved_at: 2026-04-29T11:13:24.677Z
 last_checked_at: 2026-05-14T18:17:17.804Z
 generated_at: 2026-05-14T18:17:17.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document title references Denon; Marantz-specific command differences (if any) are not documented"
+  - "firmware version compatibility not stated in source"
+  - "full list of PS (parameter setting) commands for Audyssey, room size,"
+  - "no explicit multi-step macros described in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "source references Denon model numbers (X1100, S700, X4100) in parameter notes — unclear which features apply specifically to Marantz AV 10 Series"
+  - "no firmware version range specified for command compatibility"
+  - "Auro-3D commands marked as \"Auro-3D Upgrade only\" — unclear if AV 10 Series includes this natively"
+  - "HDRADIO, PANDORA, SIRIUSXM, SPOTIFY, LASTFM, FLICKR availability may vary by region"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.804Z
   matched_actions: 102
   action_count: 114
-  confidence: high
-  summary: "Every spec action matched literally to source command table; all transport parameters verified in protocol specification section."
+  confidence: medium
+  summary: "Every spec action matched literally to source command table; all transport parameters verified in protocol specification section. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1202,7 +1211,7 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+retrieved_at: 2026-04-29T11:13:24.677Z
 last_checked_at: 2026-05-14T18:17:17.804Z
 ```
 
@@ -1213,14 +1222,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.804Z
 matched_actions: 102
 action_count: 114
-confidence: high
-summary: "Every spec action matched literally to source command table; all transport parameters verified in protocol specification section."
+confidence: medium
+summary: "Every spec action matched literally to source command table; all transport parameters verified in protocol specification section. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document title references Denon; Marantz-specific command differences (if any) are not documented"
+- "firmware version compatibility not stated in source"
+- "full list of PS (parameter setting) commands for Audyssey, room size,"
+- "no explicit multi-step macros described in source"
+- "no explicit safety interlock procedures documented in source"
+- "source references Denon model numbers (X1100, S700, X4100) in parameter notes — unclear which features apply specifically to Marantz AV 10 Series"
+- "no firmware version range specified for command compatibility"
+- "Auro-3D commands marked as \"Auro-3D Upgrade only\" — unclear if AV 10 Series includes this natively"
+- "HDRADIO, PANDORA, SIRIUSXM, SPOTIFY, LASTFM, FLICKR availability may vary by region"
 ```
 
 ---

@@ -20,19 +20,35 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:32:31.256Z
 last_checked_at: 2026-05-16T12:18:23.272Z
 generated_at: 2026-05-16T12:18:23.272Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model variants within MExxxW/MExxxX family not enumerated — source uses generic series name"
+  - "input terminal value mapping deferred to vendor appendix \"Supplementary Information by Command\" — not present in this source"
+  - "eco mode value mapping deferred to vendor appendix"
+  - "aspect value mapping deferred to vendor appendix"
+  - "flow control not stated; RTS/CTS pins present on connector"
+  - "no settable continuous parameters beyond actions already listed (volume, picture gains set via action commands)"
+  - "source does not document unsolicited notifications from projector"
+  - "no multi-step sequences described in source"
+  - "no explicit safety interlock sequences documented in source"
+  - "input terminal byte-value mapping (appendix not in source)"
+  - "eco mode / lamp mode byte-value mapping"
+  - "aspect ratio byte-value mapping"
+  - "PIP/PbP sub input value mapping"
+  - "base model type value mapping"
+  - "wireless LAN command specifics (referred to wireless LAN unit manual)"
+  - "flow control configuration for serial (RTS/CTS pins wired but no software flow control documented)"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:18:23.272Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched literal hex opcodes in source; transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 28 spec actions matched literal hex opcodes in source; transport parameters verified; bidirectional coverage confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -566,7 +582,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:32:31.256Z
 last_checked_at: 2026-05-16T12:18:23.272Z
 ```
 
@@ -577,14 +593,29 @@ verdict: verified
 checked_at: 2026-05-16T12:18:23.272Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched literal hex opcodes in source; transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 28 spec actions matched literal hex opcodes in source; transport parameters verified; bidirectional coverage confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model variants within MExxxW/MExxxX family not enumerated — source uses generic series name"
+- "input terminal value mapping deferred to vendor appendix \"Supplementary Information by Command\" — not present in this source"
+- "eco mode value mapping deferred to vendor appendix"
+- "aspect value mapping deferred to vendor appendix"
+- "flow control not stated; RTS/CTS pins present on connector"
+- "no settable continuous parameters beyond actions already listed (volume, picture gains set via action commands)"
+- "source does not document unsolicited notifications from projector"
+- "no multi-step sequences described in source"
+- "no explicit safety interlock sequences documented in source"
+- "input terminal byte-value mapping (appendix not in source)"
+- "eco mode / lamp mode byte-value mapping"
+- "aspect ratio byte-value mapping"
+- "PIP/PbP sub input value mapping"
+- "base model type value mapping"
+- "wireless LAN command specifics (referred to wireless LAN unit manual)"
+- "flow control configuration for serial (RTS/CTS pins wired but no software flow control documented)"
 ```
 
 ---

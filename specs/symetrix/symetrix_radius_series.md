@@ -25,14 +25,20 @@ last_checked_at: 2026-05-08T15:46:56.395Z
 generated_at: 2026-05-08T15:46:56.395Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-485 control requires Symetrix ARC units; not fully documented in this source"
+  - "no explicit multi-step macros documented in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "controller number mapping to specific DSP parameters requires SymNet Composer configuration"
+  - "Site Identifier configuration requires SymNet Composer; default rebroadcast behavior noted but not command-based"
+  - "RS-485 control not detailed (requires ARC units)"
 verification:
   verdict: verified
   checked_at: 2026-05-08T15:46:56.395Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions have literal source counterparts with matching wire tokens, parameters, and ranges. Transport (port 48631, 57600 baud, TCP/UDP/serial) verified."
+  confidence: medium
+  summary: "All 27 spec actions have literal source counterparts with matching wire tokens, parameters, and ranges. Transport (port 48631, 57600 baud, TCP/UDP/serial) verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -443,14 +449,19 @@ verdict: verified
 checked_at: 2026-05-08T15:46:56.395Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions have literal source counterparts with matching wire tokens, parameters, and ranges. Transport (port 48631, 57600 baud, TCP/UDP/serial) verified."
+confidence: medium
+summary: "All 27 spec actions have literal source counterparts with matching wire tokens, parameters, and ranges. Transport (port 48631, 57600 baud, TCP/UDP/serial) verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-485 control requires Symetrix ARC units; not fully documented in this source"
+- "no explicit multi-step macros documented in source"
+- "no safety warnings or interlock procedures stated in source"
+- "controller number mapping to specific DSP parameters requires SymNet Composer configuration"
+- "Site Identifier configuration requires SymNet Composer; default rebroadcast behavior noted but not command-based"
+- "RS-485 control not detailed (requires ARC units)"
 ```
 
 ---

@@ -18,24 +18,30 @@ compatible_with:
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1058%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:58:41.651Z
 last_checked_at: 2026-05-31T21:00:13.938Z
 generated_at: 2026-05-31T21:00:13.938Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "no explicit query commands documented; feedback is unsolicited only"
+  - "volume direct max range for zones 2-4 not explicitly stated (only samples shown)"
+  - "no explicit get/set variable interface documented; volume direct and"
+  - "no multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "no explicit query/poll commands; all feedback is unsolicited"
+  - "volume direct max for zones 2-4 not explicitly stated (only samples shown)"
+  - "no error response format documented"
+  - "no power-on delay or initialization sequence documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:00:13.938Z
   matched_actions: 218
   action_count: 218
-  confidence: high
-  summary: "All 218 spec actions match hex commands in source; transport parameters verified; full command coverage achieved."
+  confidence: medium
+  summary: "All 218 spec actions match hex commands in source; transport parameters verified; full command coverage achieved. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1620,12 +1626,8 @@ interlocks: []
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1058%20Protocol.pdf"
+retrieved_at: 2026-05-27T13:58:41.651Z
 last_checked_at: 2026-05-31T21:00:13.938Z
 ```
 
@@ -1636,14 +1638,23 @@ verdict: verified
 checked_at: 2026-05-31T21:00:13.938Z
 matched_actions: 218
 action_count: 218
-confidence: high
-summary: "All 218 spec actions match hex commands in source; transport parameters verified; full command coverage achieved."
+confidence: medium
+summary: "All 218 spec actions match hex commands in source; transport parameters verified; full command coverage achieved. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "no explicit query commands documented; feedback is unsolicited only"
+- "volume direct max range for zones 2-4 not explicitly stated (only samples shown)"
+- "no explicit get/set variable interface documented; volume direct and"
+- "no multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "no explicit query/poll commands; all feedback is unsolicited"
+- "volume direct max for zones 2-4 not explicitly stated (only samples shown)"
+- "no error response format documented"
+- "no power-on delay or initialization sequence documented"
 ```
 
 ---

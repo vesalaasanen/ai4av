@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:48.163Z
 last_checked_at: 2026-04-25T21:23:58.703Z
 generated_at: 2026-04-25T21:23:58.703Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "lamp/filter replacement moratorium safety warnings not explicitly documented in command reference section"
+  - "baud rate configurable (115200/38400/19200/9600/4800); default not stated"
+  - "flow control not documented"
+  - "all parameters are command-driven with discrete actions;"
+  - "no unsolicited event notifications documented in source;"
+  - "lamp replacement moratorium warnings are documented as bit flags"
+  - "default serial baud rate not explicitly stated; selectable from 115200/38400/19200/9600/4800"
+  - "flow control (RTS/CTS) pinout documented but software flow control not specified"
+  - "concrete input terminal codes for V302X model not in appendix tables (appendix lists other NP models)"
+  - "concrete aspect ratio values for V302X model not in appendix tables"
+  - "concrete eco mode values for V302X model not in appendix tables"
+  - "standby mode settings table does not include V302X series explicitly"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:23:58.703Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage."
+  confidence: medium
+  summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -915,7 +927,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:48.163Z
 last_checked_at: 2026-04-25T21:23:58.703Z
 ```
 
@@ -926,14 +938,25 @@ verdict: verified
 checked_at: 2026-04-25T21:23:58.703Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage."
+confidence: medium
+summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "lamp/filter replacement moratorium safety warnings not explicitly documented in command reference section"
+- "baud rate configurable (115200/38400/19200/9600/4800); default not stated"
+- "flow control not documented"
+- "all parameters are command-driven with discrete actions;"
+- "no unsolicited event notifications documented in source;"
+- "lamp replacement moratorium warnings are documented as bit flags"
+- "default serial baud rate not explicitly stated; selectable from 115200/38400/19200/9600/4800"
+- "flow control (RTS/CTS) pinout documented but software flow control not specified"
+- "concrete input terminal codes for V302X model not in appendix tables (appendix lists other NP models)"
+- "concrete aspect ratio values for V302X model not in appendix tables"
+- "concrete eco mode values for V302X model not in appendix tables"
+- "standby mode settings table does not include V302X series explicitly"
 ```
 
 ---

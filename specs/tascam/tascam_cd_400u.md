@@ -25,14 +25,20 @@ last_checked_at: 2026-05-14T18:17:21.207Z
 generated_at: 2026-05-14T18:17:21.207Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TELNET port number not stated in source"
+  - "no standalone settable parameters found - all parameters are action-based"
+  - "no explicit multi-step macros documented"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "serial connector pinout beyond basic Tx/Rx/GND not exploitable via RS-232C control"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.207Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified."
+  confidence: medium
+  summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -398,14 +404,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.207Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified."
+confidence: medium
+summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TELNET port number not stated in source"
+- "no standalone settable parameters found - all parameters are action-based"
+- "no explicit multi-step macros documented"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "serial connector pinout beyond basic Tx/Rx/GND not exploitable via RS-232C control"
 ```
 
 ---

@@ -31,14 +31,21 @@ last_checked_at: 2026-04-27T09:45:16.689Z
 generated_at: 2026-04-27T09:45:16.689Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "GPI configuration parameters not fully detailed in source — only described functionally, no pin assignments or voltage specs given"
+  - "SNMP variables not enumerated in source - MIB file exported from DPM Manager"
+  - "device does not send unsolicited notifications per source - all queries are explicit"
+  - "no multi-step macros described in source"
+  - "no voltage/current/power specs in source"
+  - "SNMP MIB not included in source, must be exported from DPM Manager"
+  - "GPI pinout details not in source, referenced to DPM User's Manual"
 verification:
   verdict: verified
   checked_at: 2026-04-27T09:45:16.689Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented."
+  confidence: medium
+  summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -236,14 +243,20 @@ verdict: verified
 checked_at: 2026-04-27T09:45:16.689Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented."
+confidence: medium
+summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "GPI configuration parameters not fully detailed in source — only described functionally, no pin assignments or voltage specs given"
+- "SNMP variables not enumerated in source - MIB file exported from DPM Manager"
+- "device does not send unsolicited notifications per source - all queries are explicit"
+- "no multi-step macros described in source"
+- "no voltage/current/power specs in source"
+- "SNMP MIB not included in source, must be exported from DPM Manager"
+- "GPI pinout details not in source, referenced to DPM User's Manual"
 ```
 
 ---

@@ -19,21 +19,35 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:48:18.070Z
 last_checked_at: 2026-05-20T05:33:28.702Z
 generated_at: 2026-05-20T05:33:28.702Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact connector set per G100 variant not stated; source lists DVI 1/2, DisplayPort 1/2, HDMI, HDBaseT, SDI but notes \"list contents will vary depending on projector model\""
+  - "connector names vary by model; property path is image.connector.[name].detectedsignal"
+  - "minpower is dynamic, read from illumination.sources.laser.minpower"
+  - "maxpower is dynamic, read from illumination.sources.laser.maxpower"
+  - "no explicit multi-step macros documented in source"
+  - "no explicit safety interlock sequences documented in source"
+  - "firmware version compatibility not stated in source"
+  - "exact available sources and connectors per G100 variant not stated"
+  - "window position/size properties documented but no worked example for multi-window setup"
+  - "lens shift, zoom, focus position value ranges not stated"
+  - "warp grid file format described as \"same as MCM500/400\" but no spec provided"
+  - "DMX mode names and channel mappings not enumerated"
+  - "illumination source types beyond laser (LED, xenon, UHP) not enumerated for this model"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:33:28.702Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim."
+  confidence: medium
+  summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -794,9 +808,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:48:18.070Z
 last_checked_at: 2026-05-20T05:33:28.702Z
 ```
 
@@ -807,14 +822,26 @@ verdict: verified
 checked_at: 2026-05-20T05:33:28.702Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim."
+confidence: medium
+summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact connector set per G100 variant not stated; source lists DVI 1/2, DisplayPort 1/2, HDMI, HDBaseT, SDI but notes \"list contents will vary depending on projector model\""
+- "connector names vary by model; property path is image.connector.[name].detectedsignal"
+- "minpower is dynamic, read from illumination.sources.laser.minpower"
+- "maxpower is dynamic, read from illumination.sources.laser.maxpower"
+- "no explicit multi-step macros documented in source"
+- "no explicit safety interlock sequences documented in source"
+- "firmware version compatibility not stated in source"
+- "exact available sources and connectors per G100 variant not stated"
+- "window position/size properties documented but no worked example for multi-window setup"
+- "lens shift, zoom, focus position value ranges not stated"
+- "warp grid file format described as \"same as MCM500/400\" but no spec provided"
+- "DMX mode names and channel mappings not enumerated"
+- "illumination source types beyond laser (LED, xenon, UHP) not enumerated for this model"
 ```
 
 ---

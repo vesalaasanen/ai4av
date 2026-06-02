@@ -36,14 +36,21 @@ last_checked_at: 2026-04-30T14:44:40.236Z
 generated_at: 2026-04-30T14:44:40.236Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control not documented — RS-232/RS-422 only"
+  - "port number not stated in source"
+  - "no explicit multi-step macros documented - device supports"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "TCP/IP control capability — source documents RS-232/RS-422 only"
+  - "firmware version compatibility ranges not stated"
+  - "maximum virtual input/output counts vary by model (3200/6400/12800) — source shows up to 64x64 virtual"
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:44:40.236Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched the source semantically; transport parameters verified."
+  confidence: medium
+  summary: "All 49 spec actions matched the source semantically; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -750,14 +757,20 @@ verdict: verified
 checked_at: 2026-04-30T14:44:40.236Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched the source semantically; transport parameters verified."
+confidence: medium
+summary: "All 49 spec actions matched the source semantically; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control not documented — RS-232/RS-422 only"
+- "port number not stated in source"
+- "no explicit multi-step macros documented - device supports"
+- "no explicit safety warnings or interlock procedures in source"
+- "TCP/IP control capability — source documents RS-232/RS-422 only"
+- "firmware version compatibility ranges not stated"
+- "maximum virtual input/output counts vary by model (3200/6400/12800) — source shows up to 64x64 virtual"
 ```
 
 ---

@@ -17,25 +17,35 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-HD88M-SR.pdf
+  - https://www.manualslib.com/manual/450626/Atlona-At-Hd88m-Sr.html
+retrieved_at: 2026-05-19T19:17:09.663Z
 last_checked_at: 2026-05-20T04:51:27.573Z
 generated_at: 2026-05-20T04:51:27.573Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "response format for queries not documented"
+  - "command termination character (CR/LF) not stated"
+  - "device ID addressing via serial not fully documented"
+  - "flow control not stated in source"
+  - "response format/values for ST and VR not documented in source"
+  - "no settable parameters (beyond routing and IR code) documented"
+  - "no multi-step sequences documented in source"
+  - "system lock feature exists (locks RS-232/USB/IR control) but"
+  - "command termination character (CR, LF, both?) not stated"
+  - "response format and content for ST and VR queries not documented"
+  - "device ID setting/getting via serial command format not documented"
+  - "whether routing commands produce acknowledgement response not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-20T04:51:27.573Z
   matched_actions: 67
   action_count: 67
-  confidence: high
-  summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified."
+  confidence: medium
+  summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -538,13 +548,11 @@ interlocks: []
 ```yaml
 source_domains:
   - atlona.com
+  - manualslib.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-HD88M-SR.pdf
+  - https://www.manualslib.com/manual/450626/Atlona-At-Hd88m-Sr.html
+retrieved_at: 2026-05-19T19:17:09.663Z
 last_checked_at: 2026-05-20T04:51:27.573Z
 ```
 
@@ -555,14 +563,25 @@ verdict: verified
 checked_at: 2026-05-20T04:51:27.573Z
 matched_actions: 67
 action_count: 67
-confidence: high
-summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified."
+confidence: medium
+summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "response format for queries not documented"
+- "command termination character (CR/LF) not stated"
+- "device ID addressing via serial not fully documented"
+- "flow control not stated in source"
+- "response format/values for ST and VR not documented in source"
+- "no settable parameters (beyond routing and IR code) documented"
+- "no multi-step sequences documented in source"
+- "system lock feature exists (locks RS-232/USB/IR control) but"
+- "command termination character (CR, LF, both?) not stated"
+- "response format and content for ST and VR queries not documented"
+- "device ID setting/getting via serial command format not documented"
+- "whether routing commands produce acknowledgement response not stated"
 ```
 
 ---

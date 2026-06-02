@@ -22,19 +22,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:38:57.352Z
 last_checked_at: 2026-05-16T12:18:19.596Z
 generated_at: 2026-05-16T12:18:19.596Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, signal type details, sub-input values are incomplete."
+  - "source does not describe unsolicited notifications from projector"
+  - "source does not describe multi-step sequences beyond individual commands"
+  - "source mentions cooling process during power-off and that no commands"
+  - "Appendix \"Supplementary Information by Command\" not included in source — missing full input terminal value list, aspect value list, eco mode value list, signal type details, sub-input values, base model type values."
+  - "Default baud rate not stated — source lists supported rates but not which is default."
+  - "Flow control setting not stated for serial — table shows RTS/CTS pins connected but no software flow control mention."
+  - "Wireless LAN communication conditions deferred to separate operation manual."
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:18:19.596Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec action commands match literal opcodes in source; all transport parameters verified; full control coverage."
+  confidence: medium
+  summary: "All 28 spec action commands match literal opcodes in source; all transport parameters verified; full control coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -615,7 +623,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:38:57.352Z
 last_checked_at: 2026-05-16T12:18:19.596Z
 ```
 
@@ -626,14 +634,21 @@ verdict: verified
 checked_at: 2026-05-16T12:18:19.596Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec action commands match literal opcodes in source; all transport parameters verified; full control coverage."
+confidence: medium
+summary: "All 28 spec action commands match literal opcodes in source; all transport parameters verified; full control coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, signal type details, sub-input values are incomplete."
+- "source does not describe unsolicited notifications from projector"
+- "source does not describe multi-step sequences beyond individual commands"
+- "source mentions cooling process during power-off and that no commands"
+- "Appendix \"Supplementary Information by Command\" not included in source — missing full input terminal value list, aspect value list, eco mode value list, signal type details, sub-input values, base model type values."
+- "Default baud rate not stated — source lists supported rates but not which is default."
+- "Flow control setting not stated for serial — table shows RTS/CTS pins connected but no software flow control mention."
+- "Wireless LAN communication conditions deferred to separate operation manual."
 ```
 
 ---

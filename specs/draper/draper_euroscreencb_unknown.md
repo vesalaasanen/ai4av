@@ -24,14 +24,23 @@ last_checked_at: 2026-05-15T21:30:20.049Z
 generated_at: 2026-05-15T21:30:20.049Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP, HTTP, or other network transport documented — serial only"
+  - "firmware version compatibility not stated"
+  - "no power/voltage/current specs for the screen or MC1"
+  - "flow control not stated; X-on/X-off used for buffer management"
+  - "no continuously-settable analog variables documented beyond load thresholds (covered in Actions)"
+  - "unsolicited events are documented (power-up notification, buffer flow control)"
+  - "source mentions stall detection and load sensing thresholds but does not"
+  - "voltage/power specifications for MC1 and EuroscreenCB not stated"
+  - "radio (RFTM/DCPM) configuration details not fully documented"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:30:20.049Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -360,14 +369,22 @@ verdict: verified
 checked_at: 2026-05-15T21:30:20.049Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP, HTTP, or other network transport documented — serial only"
+- "firmware version compatibility not stated"
+- "no power/voltage/current specs for the screen or MC1"
+- "flow control not stated; X-on/X-off used for buffer management"
+- "no continuously-settable analog variables documented beyond load thresholds (covered in Actions)"
+- "unsolicited events are documented (power-up notification, buffer flow control)"
+- "source mentions stall detection and load sensing thresholds but does not"
+- "voltage/power specifications for MC1 and EuroscreenCB not stated"
+- "radio (RFTM/DCPM) configuration details not fully documented"
 ```
 
 ---

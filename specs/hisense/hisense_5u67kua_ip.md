@@ -16,24 +16,36 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
+  - builders.intel.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - https://builders.intel.com/docs/networkbuilders/hisense-ops-brings-more-compute-power-to-interactive-displays-1770982710.pdf
+retrieved_at: 2026-05-12T19:17:07.221Z
 last_checked_at: 2026-05-20T12:19:09.843Z
 generated_at: 2026-05-20T12:19:09.843Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control protocol not documented in source — only RS-232 serial and discrete IR covered"
+  - "TCP/IP control - source documents RS-232 only"
+  - "source does not document unsolicited event/notification messages from TV."
+  - "no explicit multi-step macro sequences documented in source."
+  - "fault behavior, error recovery sequences, and voltage/power specs not in source."
+  - "TCP/IP control protocol not documented in this source"
+  - "port number for TCP control not stated (source covers RS-232 only)"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T12:19:09.843Z
   matched_actions: 66
   action_count: 66
-  confidence: high
-  summary: "All 66 actions matched; transport verified."
+  confidence: medium
+  summary: "All 66 actions matched; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -746,12 +758,16 @@ ACK responses: `OKAY` (success), `EROR` (error), `WAIT` (processing — poll aga
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
+  - builders.intel.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - https://builders.intel.com/docs/networkbuilders/hisense-ops-brings-more-compute-power-to-interactive-displays-1770982710.pdf
+retrieved_at: 2026-05-12T19:17:07.221Z
 last_checked_at: 2026-05-20T12:19:09.843Z
 ```
 
@@ -762,14 +778,21 @@ verdict: verified
 checked_at: 2026-05-20T12:19:09.843Z
 matched_actions: 66
 action_count: 66
-confidence: high
-summary: "All 66 actions matched; transport verified."
+confidence: medium
+summary: "All 66 actions matched; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control protocol not documented in source — only RS-232 serial and discrete IR covered"
+- "TCP/IP control - source documents RS-232 only"
+- "source does not document unsolicited event/notification messages from TV."
+- "no explicit multi-step macro sequences documented in source."
+- "fault behavior, error recovery sequences, and voltage/power specs not in source."
+- "TCP/IP control protocol not documented in this source"
+- "port number for TCP control not stated (source covers RS-232 only)"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

@@ -1,5 +1,5 @@
 ---
-spec_id: admin/ad_notam-cs_101
+spec_id: admin/ad-notam-cs-101
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Ad Notam CS-101 Control Spec"
@@ -16,43 +16,50 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - ad-notam.com
   - cdn.shopify.com
   - configurator.ad-notam.com
+  - applicationmarket.crestron.com
 source_urls:
+  - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
   - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
   - https://configurator.ad-notam.com/service-support/product-support/notifications-technical-notes/control-integration
-retrieved_at: 2026-05-04T12:52:29.149Z
-last_checked_at: 2026-05-14T18:17:13.793Z
-generated_at: 2026-05-14T18:17:13.793Z
+  - https://www.ad-notam.com/attachment/244/download/dfu_rs232_protocol_v03_01_20131111.pdf
+  - https://applicationmarket.crestron.com/ad-notam-cs-101/
+retrieved_at: 2026-06-01T22:37:06.903Z
+last_checked_at: 2026-06-01T23:12:02.803Z
+generated_at: 2026-06-01T23:12:02.803Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source."
+  - "source contains no safety warnings, interlock procedures, or power-on"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:13.793Z
-  matched_actions: 57
-  action_count: 57
-  confidence: high
-  summary: "All 72 spec actions matched source commands literally; transport parameters verified; full coverage of documented RS-232 protocol."
+  checked_at: 2026-06-01T23:12:02.803Z
+  matched_actions: 112
+  action_count: 112
+  confidence: medium
+  summary: "All 112 spec actions matched literally in source table; transport parameters verified; 1-to-1 coverage. (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-27
+created_at: 2026-06-02
 ---
 
 # Ad Notam CS-101 Control Spec
 
 ## Summary
-Display Frame Unit (DFU) controlled via RS-232 ASCII protocol. Commands are 9 bytes fixed-length with header '&', acknowledgements use '%' prefix, errors use '!' prefix. Supports power, input selection, audio/video adjustment, and playback transport.
+Ad Notam CS-101 Display Frame Unit (DFU). RS-232 ASCII control protocol over a null-modem DB-9 cable, default 38400 baud 8N1, no handshake. Commands are 9-byte framed (`&IDN:VAL<CR>`) and acknowledged with `%IDN:VAL<CR>`; errors return `!ERR:NNN`. This spec catalogs every command row documented in the source.
 
-<!-- UNRESOLVED: IR remote control commands not documented — source covers RS-232 only -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 38400  # default; also 9600 and 19200 (configurable via OSD)
+  baud_rate: 38400  # default per source; 9600 and 19200 also supported, configurable via OSD service menu
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -63,494 +70,827 @@ auth:
 
 ## Traits
 ```yaml
-# Based on command set present:
-powerable: true   # inferred: power on/off/toggle commands present
-routable: true    # inferred: input selection commands present (SRC)
-levelable: true   # inferred: volume, brightness, contrast, etc. present
-queryable: true  # inferred: query commands with '?' separator present
+- powerable
+- routable
+- queryable
+- levelable
 ```
 
 ## Actions
 ```yaml
-- id: power_toggle
+# Power
+- id: pwr_tog
   label: Power Toggle
   kind: action
+  command: "&PWR:TOG"
   params: []
-
-- id: power_on
+- id: pwr_on
   label: Power On
   kind: action
+  command: "&PWR:ON*"
   params: []
-
-- id: power_off
+- id: pwr_off
   label: Power Off
   kind: action
+  command: "&PWR:OFF"
+  params: []
+- id: pwr_query
+  label: Get Power Status
+  kind: query
+  command: "&PWR?***"
   params: []
 
-- id: boot_set_on
+# Boot behavior
+- id: bot_on
   label: Boot Set to On
   kind: action
+  command: "&BOT:ON*"
   params: []
-
-- id: boot_set_standby
+- id: bot_sby
   label: Boot Set to Standby
   kind: action
+  command: "&BOT:SBY"
+  params: []
+- id: bot_lst
+  label: Boot Set to Last State
+  kind: action
+  command: "&BOT:LST"
+  params: []
+- id: bot_query
+  label: Get Boot Setup
+  kind: query
+  command: "&BOT?***"
   params: []
 
-- id: boot_set_last
-  label: Boot Set to Last
+# Signal loss timeout
+- id: sls_05s
+  label: Signal Loss 5 Seconds
   kind: action
+  command: "&SLS:05s"
+  params: []
+- id: sls_10s
+  label: Signal Loss 10 Seconds
+  kind: action
+  command: "&SLS:10s"
+  params: []
+- id: sls_30s
+  label: Signal Loss 30 Seconds
+  kind: action
+  command: "&SLS:30s"
+  params: []
+- id: sls_01m
+  label: Signal Loss 1 Minute
+  kind: action
+  command: "&SLS:01m"
+  params: []
+- id: sls_02m
+  label: Signal Loss 2 Minutes
+  kind: action
+  command: "&SLS:02m"
+  params: []
+- id: sls_off
+  label: Signal Loss Off
+  kind: action
+  command: "&SLS:OFF"
+  params: []
+- id: sls_query
+  label: Get Signal Loss Setup
+  kind: query
+  command: "&SLS?***"
   params: []
 
-- id: signal_loss_set
-  label: Set Signal Loss Timeout
+# Sleep timer
+- id: slp_015
+  label: Sleep Timer 15 Minutes
   kind: action
-  params:
-    - name: duration
-      type: string
-      description: Duration code (05s, 10s, 30s, 01m, 02m, OFF)
-
-- id: sleeptimer_set
-  label: Set Sleep Timer
+  command: "&SLP:015"
+  params: []
+- id: slp_030
+  label: Sleep Timer 30 Minutes
   kind: action
-  params:
-    - name: minutes
-      type: string
-      description: Minutes (015, 030, 045, 060, 090, 120, OFF)
-
-- id: numeric_digit
-  label: Numeric Digit
+  command: "&SLP:030"
+  params: []
+- id: slp_045
+  label: Sleep Timer 45 Minutes
   kind: action
-  params:
-    - name: digit
-      type: integer
-      description: Digit 0-9
-
-- id: cursor_ok
-  label: Cursor OK
+  command: "&SLP:045"
+  params: []
+- id: slp_060
+  label: Sleep Timer 60 Minutes
   kind: action
+  command: "&SLP:060"
+  params: []
+- id: slp_090
+  label: Sleep Timer 90 Minutes
+  kind: action
+  command: "&SLP:090"
+  params: []
+- id: slp_120
+  label: Sleep Timer 120 Minutes
+  kind: action
+  command: "&SLP:120"
+  params: []
+- id: slp_off
+  label: Sleep Timer Off
+  kind: action
+  command: "&SLP:OFF"
+  params: []
+- id: slp_query
+  label: Get Sleep Timer Status
+  kind: query
+  command: "&SLP?***"
   params: []
 
-- id: cursor_up
-  label: Cursor Up
+# Numeric keypad digits
+- id: num_001
+  label: Digit 1
   kind: action
+  command: "&NUM:001"
+  params: []
+- id: num_002
+  label: Digit 2
+  kind: action
+  command: "&NUM:002"
+  params: []
+- id: num_003
+  label: Digit 3
+  kind: action
+  command: "&NUM:003"
+  params: []
+- id: num_004
+  label: Digit 4
+  kind: action
+  command: "&NUM:004"
+  params: []
+- id: num_005
+  label: Digit 5
+  kind: action
+  command: "&NUM:005"
+  params: []
+- id: num_006
+  label: Digit 6
+  kind: action
+  command: "&NUM:006"
+  params: []
+- id: num_007
+  label: Digit 7
+  kind: action
+  command: "&NUM:007"
+  params: []
+- id: num_008
+  label: Digit 8
+  kind: action
+  command: "&NUM:008"
+  params: []
+- id: num_009
+  label: Digit 9
+  kind: action
+  command: "&NUM:009"
+  params: []
+- id: num_000
+  label: Digit 0
+  kind: action
+  command: "&NUM:000"
   params: []
 
-- id: cursor_down
-  label: Cursor Down
+# Cursor / navigation
+- id: crs_ok
+  label: OK
   kind: action
+  command: "&CRS:OK*"
+  params: []
+- id: crs_up
+  label: Up
+  kind: action
+  command: "&CRS:UP*"
+  params: []
+- id: crs_dn
+  label: Down
+  kind: action
+  command: "&CRS:DN*"
+  params: []
+- id: crs_lt
+  label: Left
+  kind: action
+  command: "&CRS:LT*"
+  params: []
+- id: crs_rt
+  label: Right
+  kind: action
+  command: "&CRS:RT*"
   params: []
 
-- id: cursor_left
-  label: Cursor Left
-  kind: action
-  params: []
-
-- id: cursor_right
-  label: Cursor Right
-  kind: action
-  params: []
-
-- id: volume_up
+# Volume
+- id: vol_up
   label: Volume Up
   kind: action
+  command: "&VOL:UP*"
   params: []
-
-- id: volume_down
+- id: vol_dn
   label: Volume Down
   kind: action
+  command: "&VOL:DN*"
+  params: []
+- id: vol_query
+  label: Get Volume Level
+  kind: query
+  command: "&VOL?***"
   params: []
 
-- id: mute_toggle
+# Mute
+- id: mut_tog
   label: Mute Toggle
   kind: action
+  command: "&MUT:TOG"
   params: []
-
-- id: mute_on
+- id: mut_on
   label: Mute On
   kind: action
+  command: "&MUT:ON*"
   params: []
-
-- id: mute_off
+- id: mut_off
   label: Mute Off
   kind: action
+  command: "&MUT:OFF"
+  params: []
+- id: mut_query
+  label: Get Mute Status
+  kind: query
+  command: "&MUT?***"
   params: []
 
-- id: function_play
+# Media transport
+- id: fnc_ply
   label: Play
   kind: action
+  command: "&FNC:PLY"
   params: []
-
-- id: function_pause
+- id: fnc_pse
   label: Pause
   kind: action
+  command: "&FNC:PSE"
   params: []
-
-- id: function_stop
+- id: fnc_stp
   label: Stop
   kind: action
+  command: "&FNC:STP"
   params: []
-
-- id: function_next
-  label: Skip Forward
+- id: fnc_nxt
+  label: Skip Forward / Chapter +
   kind: action
+  command: "&FNC:NXT"
   params: []
-
-- id: function_previous
-  label: Skip Backward
+- id: fnc_prv
+  label: Skip Backward / Chapter -
   kind: action
+  command: "&FNC:PRV"
   params: []
-
-- id: function_fast_forward
+- id: fnc_fwd
   label: Fast Forward
   kind: action
+  command: "&FNC:FWD"
   params: []
-
-- id: function_rewind
+- id: fnc_rwd
   label: Fast Backward
   kind: action
+  command: "&FNC:RWD"
   params: []
 
-- id: exit
+# Exit
+- id: ext
   label: Exit
   kind: action
+  command: "&EXT:***"
   params: []
 
-- id: osd_access_on
+# OSD access
+- id: osa_on
   label: OSD Access On
   kind: action
+  command: "&OSA:ON*"
   params: []
-
-- id: osd_access_off
+- id: osa_off
   label: OSD Access Off
   kind: action
+  command: "&OSA:OFF"
+  params: []
+- id: osa_query
+  label: Get OSD Access Status
+  kind: query
+  command: "&OSA?***"
   params: []
 
-- id: osd_toggle
-  label: OSD Toggle
+# OSD open/close
+- id: osd_tog
+  label: OSD Toggle (Open/Close)
   kind: action
+  command: "&OSD:TOG"
   params: []
-
 - id: osd_on
-  label: OSD On
+  label: OSD On (Open)
   kind: action
+  command: "&OSD:ON*"
   params: []
-
 - id: osd_off
-  label: OSD Off
+  label: OSD Off (Close)
   kind: action
+  command: "&OSD:OFF"
+  params: []
+- id: osd_query
+  label: Get OSD Status
+  kind: query
+  command: "&OSD?***"
   params: []
 
-- id: input_select
-  label: Select Input
+# Input source
+- id: src_hd1
+  label: Input HDMI 1
   kind: action
-  params:
-    - name: input
-      type: string
-      description: Input source (HD1, HD2, HD3, RGB, USB)
-
-- id: aspect_set
-  label: Set Aspect Ratio
+  command: "&SRC:HD1"
+  params: []
+- id: src_hd2
+  label: Input HDMI 2
   kind: action
-  params:
-    - name: mode
-      type: string
-      description: Aspect mode (169, 043, ZM1, ZM2)
-
-- id: picture_mode
-  label: Set Picture Mode
+  command: "&SRC:HD2"
+  params: []
+- id: src_hd3
+  label: Input HDMI 3
   kind: action
-  params:
-    - name: mode
-      type: string
-      description: Picture mode (STD, USR, DYN, MLD)
-
-- id: picture_temp
-  label: Set Picture Temperature
+  command: "&SRC:HD3"
+  params: []
+- id: src_rgb
+  label: Input Component
   kind: action
-  params:
-    - name: temp
-      type: string
-      description: Temperature (COL, MED, WRM)
+  command: "&SRC:RGB"
+  params: []
+- id: src_usb
+  label: Input USB / DMP
+  kind: action
+  command: "&SRC:USB"
+  params: []
+- id: src_query
+  label: Get Input Status
+  kind: query
+  command: "&SRC?***"
+  params: []
 
-- id: brightness_up
+# Aspect / zoom
+- id: asp_169
+  label: Aspect 16:9
+  kind: action
+  command: "&ASP:169"
+  params: []
+- id: asp_043
+  label: Aspect 4:3
+  kind: action
+  command: "&ASP:043"
+  params: []
+- id: asp_zm1
+  label: Zoom 1
+  kind: action
+  command: "&ASP:ZM1"
+  params: []
+- id: asp_zm2
+  label: Zoom 2
+  kind: action
+  command: "&ASP:ZM2"
+  params: []
+- id: asp_query
+  label: Get Aspect Status
+  kind: query
+  command: "&ASP?***"
+  params: []
+
+# Picture mode and color temp
+- id: pct_std
+  label: Picture Mode Standard
+  kind: action
+  command: "&PCT:STD"
+  params: []
+- id: pct_usr
+  label: Picture Mode User
+  kind: action
+  command: "&PCT:USR"
+  params: []
+- id: pct_dyn
+  label: Picture Mode Dynamic
+  kind: action
+  command: "&PCT:DYN"
+  params: []
+- id: pct_mld
+  label: Picture Mode Mild
+  kind: action
+  command: "&PCT:MLD"
+  params: []
+- id: pct_col
+  label: Picture Temp Cool
+  kind: action
+  command: "&PCT:COL"
+  params: []
+- id: pct_med
+  label: Picture Temp Medium
+  kind: action
+  command: "&PCT:MED"
+  params: []
+- id: pct_wrm
+  label: Picture Temp Warm
+  kind: action
+  command: "&PCT:WRM"
+  params: []
+
+# Brightness
+- id: brt_up
   label: Brightness Up
   kind: action
+  command: "&BRT:UP*"
   params: []
-
-- id: brightness_down
+- id: brt_dn
   label: Brightness Down
   kind: action
+  command: "&BRT:DN*"
+  params: []
+- id: brt_query
+  label: Get Brightness Level
+  kind: query
+  command: "&BRT?***"
   params: []
 
-- id: contrast_up
+# Contrast
+- id: con_up
   label: Contrast Up
   kind: action
+  command: "&CON:UP*"
   params: []
-
-- id: contrast_down
+- id: con_dn
   label: Contrast Down
   kind: action
+  command: "&CON:DN*"
+  params: []
+- id: con_query
+  label: Get Contrast Level
+  kind: query
+  command: "&CON?***"
   params: []
 
-- id: saturation_up
+# Saturation
+- id: str_up
   label: Saturation Up
   kind: action
+  command: "&STR:UP*"
   params: []
-
-- id: saturation_down
+- id: str_dn
   label: Saturation Down
   kind: action
+  command: "&STR:DN*"
+  params: []
+- id: str_query
+  label: Get Saturation Level
+  kind: query
+  command: "&STR?***"
   params: []
 
-- id: sharpness_up
+# Sharpness
+- id: srp_up
   label: Sharpness Up
   kind: action
+  command: "&SRP:UP*"
   params: []
-
-- id: sharpness_down
+- id: srp_dn
   label: Sharpness Down
   kind: action
+  command: "&SRP:DN*"
+  params: []
+- id: srp_query
+  label: Get Sharpness Level
+  kind: query
+  command: "&SRP?***"
   params: []
 
-- id: backlight_up
+# Backlight
+- id: blt_up
   label: Backlight Up
   kind: action
+  command: "&BLT:UP*"
   params: []
-
-- id: backlight_down
+- id: blt_dn
   label: Backlight Down
   kind: action
+  command: "&BLT:DN*"
+  params: []
+- id: blt_query
+  label: Get Backlight Level
+  kind: query
+  command: "&BLT?***"
   params: []
 
-- id: audio_mode
-  label: Set Audio Mode
+# Audio mode
+- id: aud_std
+  label: Audio Mode Standard
   kind: action
-  params:
-    - name: mode
-      type: string
-      description: Audio mode (STD, USR, MUS, MOV, SPR)
+  command: "&AUD:STD"
+  params: []
+- id: aud_usr
+  label: Audio Mode User
+  kind: action
+  command: "&AUD:USR"
+  params: []
+- id: aud_mus
+  label: Audio Mode Music
+  kind: action
+  command: "&AUD:MUS"
+  params: []
+- id: aud_mov
+  label: Audio Mode Movie
+  kind: action
+  command: "&AUD:MOV"
+  params: []
+- id: aud_spr
+  label: Audio Mode Sports
+  kind: action
+  command: "&AUD:SPR"
+  params: []
 
-- id: bass_up
+# Bass
+- id: bas_up
   label: Bass Up
   kind: action
+  command: "&BAS:UP*"
   params: []
-
-- id: bass_down
+- id: bas_dn
   label: Bass Down
   kind: action
+  command: "&BAS:DN*"
+  params: []
+- id: bas_query
+  label: Get Bass Level
+  kind: query
+  command: "&BAS?***"
   params: []
 
-- id: treble_up
+# Treble
+- id: trb_up
   label: Treble Up
   kind: action
+  command: "&TRB:UP*"
   params: []
-
-- id: treble_down
+- id: trb_dn
   label: Treble Down
   kind: action
+  command: "&TRB:DN*"
+  params: []
+- id: trb_query
+  label: Get Treble Level
+  kind: query
+  command: "&TRB?***"
   params: []
 
-- id: balance_left
+# Balance
+- id: bal_lt
   label: Balance Left
   kind: action
+  command: "&BAL:LT*"
   params: []
-
-- id: balance_right
+- id: bal_rt
   label: Balance Right
   kind: action
+  command: "&BAL:RT*"
+  params: []
+- id: bal_query
+  label: Get Balance Level
+  kind: query
+  command: "&BAL?***"
   params: []
 
-- id: boot_volume_up
+# Boot volume
+- id: bvl_up
   label: Boot Volume Up
   kind: action
+  command: "&BVL:UP*"
   params: []
-
-- id: boot_volume_down
+- id: bvl_dn
   label: Boot Volume Down
   kind: action
+  command: "&BVL:DN*"
+  params: []
+- id: bvl_query
+  label: Get Boot Volume Level
+  kind: query
+  command: "&BVL?***"
   params: []
 
-- id: echo_on
+# RS232 echo
+- id: eco_on
   label: Set RS232 Echo On
   kind: action
+  command: "&ECO:ON*"
   params: []
-
-- id: echo_off
+- id: eco_off
   label: Set RS232 Echo Off
   kind: action
+  command: "&ECO:OFF"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_status
+# Acknowledgement pattern: %IDN:VAL<CR>, 9 bytes, value field padded with '*' to 3 bytes.
+# Error pattern: !ERR:NNN<CR>
+- id: pwr_state
   type: enum
-  values: [ON*, OFF]
-  comment: Query with &PWR?***
-
-- id: boot_status
+  values: [on, off]
+  pattern: "%PWR:XXX"
+- id: bot_state
   type: enum
-  values: [ON*, SBY, LST]
-  comment: Query with &BOT?***
-
-- id: signal_loss_status
+  values: [on, standby, last]
+  pattern: "%BOT:XXX"
+- id: sls_state
   type: enum
-  values: [05s, 10s, 30s, 01m, 02m, OFF]
-  comment: Query with &SLS?***
-
-- id: sleep_timer_status
+  values: ["5s", "10s", "30s", "1m", "2m", off]
+  pattern: "%SLS:XXX"
+- id: slp_state
   type: enum
-  values: [015, 030, 045, 060, 090, 120, OFF]
-  comment: Query with &SLP?***
-
-- id: mute_status
-  type: enum
-  values: [ON*, OFF]
-  comment: Query with &MUT?***
-
-- id: osd_access_status
-  type: enum
-  values: [ON*, OFF]
-  comment: Query with &OSA?***
-
-- id: osd_status
-  type: enum
-  values: [ON*, OFF]
-  comment: Query with &OSD?***
-
-- id: input_status
-  type: enum
-  values: [HD1, HD2, HD3, RGB, USB]
-  comment: Query with &SRC?***
-
-- id: aspect_status
-  type: enum
-  values: [169, 043, ZM1, ZM2]
-  comment: Query with &ASP?***
-
-- id: volume_level
+  values: ["15min", "30min", "45min", "60min", "90min", "120min", off]
+  pattern: "%SLP:XXX"
+- id: vol_level
   type: integer
-  range: [000, 100]
-  comment: Query with &VOL?***
-
-- id: brightness_level
+  range: [0, 100]
+  pattern: "%VOL:XXX"
+- id: mut_state
+  type: enum
+  values: [on, off]
+  pattern: "%MUT:XXX"
+- id: osa_state
+  type: enum
+  values: [on, off]
+  pattern: "%OSA:XXX"
+- id: osd_state
+  type: enum
+  values: [on, off]
+  pattern: "%OSD:XXX"
+- id: src_state
+  type: enum
+  values: [hd1, hd2, hd3, rgb, usb]
+  pattern: "%SRC:XXX"
+- id: asp_state
+  type: enum
+  values: ["169", "043", "zm1", "zm2"]
+  pattern: "%ASP:XXX"
+- id: brt_level
   type: integer
-  range: [000, 100]
-  comment: Query with &BRT?***
-
-- id: contrast_level
+  range: [0, 100]
+  pattern: "%BRT:XXX"
+- id: con_level
   type: integer
-  range: [000, 100]
-  comment: Query with &CON?***
-
-- id: saturation_level
+  range: [0, 100]
+  pattern: "%CON:XXX"
+- id: str_level
   type: integer
-  range: [000, 100]
-  comment: Query with &STR?***
-
-- id: sharpness_level
+  range: [0, 100]
+  pattern: "%STR:XXX"
+- id: srp_level
   type: integer
-  range: [000, 100]
-  comment: Query with &SRP?***
-
-- id: backlight_level
+  range: [0, 100]
+  pattern: "%SRP:XXX"
+- id: blt_level
   type: integer
-  range: [000, 100]
-  comment: Query with &BLT?***
-
-- id: bass_level
+  range: [0, 100]
+  pattern: "%BLT:XXX"
+- id: bas_level
   type: integer
-  range: [000, 100]
-  comment: Query with &BAS?***
-
-- id: treble_level
+  range: [0, 100]
+  pattern: "%BAS:XXX"
+- id: trb_level
   type: integer
-  range: [000, 100]
-  comment: Query with &TRB?***
-
-- id: balance_level
+  range: [0, 100]
+  pattern: "%TRB:XXX"
+- id: bal_level
   type: integer
   range: [-50, 50]
-  comment: Query with &BAL?***
-
-- id: boot_volume_level
+  pattern: "%BAL:XXX"
+- id: bvl_level
   type: integer
-  range: [000, 100]
-  comment: Query with &BVL?***
-
-- id: error
+  range: [0, 100]
+  pattern: "%BVL:XXX"
+- id: error_code
   type: enum
-  values: ["!ERR:001", "!ERR:002", "!ERR:003", "!ERR:004"]
-  comment: !ERR:001=access denied, !ERR:002=not available, !ERR:003=not implemented, !ERR:004=out of range
+  values: ["001", "002", "003", "004"]
+  pattern: "!ERR:NNN"
 ```
 
 ## Variables
 ```yaml
-# No discrete settable parameters outside action/feedback pattern identified.
-# All settable parameters follow action/feedback command pattern above.
+# Settable parameters that have a queryable numeric range and step-style UP/DN controls.
+# The source documents range bounds; no continuous set command is provided for these -
+# only UP/DN step commands. Listed here for range metadata.
+- id: vol
+  label: Volume
+  type: integer
+  range: [0, 100]
+  controlled_by: [vol_up, vol_dn, vol_query]
+- id: brt
+  label: Brightness
+  type: integer
+  range: [0, 100]
+  controlled_by: [brt_up, brt_dn, brt_query]
+- id: con
+  label: Contrast
+  type: integer
+  range: [0, 100]
+  controlled_by: [con_up, con_dn, con_query]
+- id: str
+  label: Saturation
+  type: integer
+  range: [0, 100]
+  controlled_by: [str_up, str_dn, str_query]
+- id: srp
+  label: Sharpness
+  type: integer
+  range: [0, 100]
+  controlled_by: [srp_up, srp_dn, srp_query]
+- id: blt
+  label: Backlight
+  type: integer
+  range: [0, 100]
+  controlled_by: [blt_up, blt_dn, blt_query]
+- id: bas
+  label: Bass
+  type: integer
+  range: [0, 100]
+  controlled_by: [bas_up, bas_dn, bas_query]
+- id: trb
+  label: Treble
+  type: integer
+  range: [0, 100]
+  controlled_by: [trb_up, trb_dn, trb_query]
+- id: bal
+  label: Balance
+  type: integer
+  range: [-50, 50]
+  controlled_by: [bal_lt, bal_rt, bal_query]
+- id: bvl
+  label: Boot Volume
+  type: integer
+  range: [0, 100]
+  controlled_by: [bvl_up, bvl_dn, bvl_query]
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described in source.
-# Device only sends responses to commands.
-```
-
-## Macros
-```yaml
-# No multi-step macro sequences described in source.
+# Unsolicited notifications. Source documents acknowledgement (response) per command but
+# no asynchronous event/notification stream beyond that. ECHO controls whether acks are sent.
+- id: echo_disabled
+  label: RS232 Echo Disabled
+  description: When ECHO is OFF, the device does not send acknowledgement messages after commands.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - Wait 10 seconds after power on before sending next command
-  - Wait for response before sending next command
-  - Minimum 500ms delay between commands
-  - Minimum 2 seconds delay before resending if no response received
-  - Minimum 5 seconds delay after sending 20 commands
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or power-on
+# sequencing requirements beyond the timing note "wait 10 seconds after power on
+# before sending next command" - that is a timing constraint, not a safety interlock.
 ```
 
 ## Notes
-Command structure: 9 bytes fixed-length with '&' prefix. Format: `&XXX:YYY<CR>` where XXX=identifier (3 chars), YYY=value (3 chars, padded with '*' if shorter). Acknowledgements use '%' prefix. Errors use '!' prefix.
+Every command and acknowledgement is exactly 9 bytes including the trailing `<CR>` (0x0D). The value field is always 3 bytes; values shorter than 3 characters are right-padded with `*`. Commands use no whitespace between fields. Acknowledgement is controlled by the `&ECO:ON*` / `&ECO:OFF` pair — when echo is off the device does not reply to commands. Errors are reported with the `!ERR:NNN<CR>` pattern (codes 001 access denied, 002 not available, 003 not implemented, 004 value out of range). Host connection is a null-modem DB-9 cable (2↔3, 5↔5). Default baud is 38400; 9600 and 19200 are also supported and selectable from the OSD service menu. Timing: 10s after power-on, 500ms minimum between commands, 2s retry on no-response, 5s after 20-command bursts.
 
-Timing constraints are critical for reliable operation — do not send commands faster than specified.
-
-Baud rate defaults to 38400 but is configurable via OSD menu to 9600 or 19200.
-
-<!-- UNRESOLVED: IR remote command set not documented — source covers RS-232 only -->
-<!-- UNRESOLVED: firmware version compatibility not stated -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
+  - ad-notam.com
   - cdn.shopify.com
   - configurator.ad-notam.com
+  - applicationmarket.crestron.com
 source_urls:
+  - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
   - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
   - https://configurator.ad-notam.com/service-support/product-support/notifications-technical-notes/control-integration
-retrieved_at: 2026-05-04T12:52:29.149Z
-last_checked_at: 2026-05-14T18:17:13.793Z
+  - https://www.ad-notam.com/attachment/244/download/dfu_rs232_protocol_v03_01_20131111.pdf
+  - https://applicationmarket.crestron.com/ad-notam-cs-101/
+retrieved_at: 2026-06-01T22:37:06.903Z
+last_checked_at: 2026-06-01T23:12:02.803Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:13.793Z
-matched_actions: 57
-action_count: 57
-confidence: high
-summary: "All 72 spec actions matched source commands literally; transport parameters verified; full coverage of documented RS-232 protocol."
+checked_at: 2026-06-01T23:12:02.803Z
+matched_actions: 112
+action_count: 112
+confidence: medium
+summary: "All 112 spec actions matched literally in source table; transport parameters verified; 1-to-1 coverage. (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source."
+- "source contains no safety warnings, interlock procedures, or power-on"
 ```
 
 ---

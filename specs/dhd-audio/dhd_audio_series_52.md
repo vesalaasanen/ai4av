@@ -31,14 +31,21 @@ last_checked_at: 2026-04-25T20:38:13.401Z
 generated_at: 2026-04-25T20:38:13.401Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port 2008 stated for IP; serial port assignments (RS-232/RS-422) not specified per controller beyond presence"
+  - "source does not explicitly document acknowledgement block formats for each command."
+  - "source does not document unsolicited event formats except:"
+  - "no safety warnings or interlock procedures in source"
+  - "RS-232/RS-422 port pin assignments not stated in source; module documentation reference only"
+  - "TCP keepalive / session management not described"
+  - "LogicID format not documented in this excerpt"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:38:13.401Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 20 spec actions matched verbatim to source with correct opcodes and parameters; transport values verified against source."
+  confidence: medium
+  summary: "All 20 spec actions matched verbatim to source with correct opcodes and parameters; transport values verified against source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -531,14 +538,20 @@ verdict: verified
 checked_at: 2026-04-25T20:38:13.401Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 20 spec actions matched verbatim to source with correct opcodes and parameters; transport values verified against source."
+confidence: medium
+summary: "All 20 spec actions matched verbatim to source with correct opcodes and parameters; transport values verified against source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port 2008 stated for IP; serial port assignments (RS-232/RS-422) not specified per controller beyond presence"
+- "source does not explicitly document acknowledgement block formats for each command."
+- "source does not document unsolicited event formats except:"
+- "no safety warnings or interlock procedures in source"
+- "RS-232/RS-422 port pin assignments not stated in source; module documentation reference only"
+- "TCP keepalive / session management not described"
+- "LogicID format not documented in this excerpt"
 ```
 
 ---

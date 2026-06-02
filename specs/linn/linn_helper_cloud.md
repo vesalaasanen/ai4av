@@ -21,22 +21,23 @@ compatible_with:
 source_domains:
   - docs.linn.co.uk
 source_urls:
-  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
   - https://docs.linn.co.uk/wiki/index.php/Developer:LPEC
-  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:34.983Z
 last_checked_at: 2026-04-23T08:06:15.911Z
 generated_at: 2026-04-23T08:06:15.911Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power on/off commands not present in source"
+  - "firmware version compatibility not stated"
+  - "LPEC protocol version not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:06:15.911Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched literally in source; transport port and auth verified; full command vocabulary represented."
+  confidence: medium
+  summary: "All 14 spec actions matched literally in source; transport port and auth verified; full command vocabulary represented. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -264,9 +265,7 @@ PIN numbers may change after reboot if recently altered.
 source_domains:
   - docs.linn.co.uk
 source_urls:
-  - https://docs.linn.co.uk/wiki/images/d/d6/Genki_rs232_commands.PDF
   - https://docs.linn.co.uk/wiki/index.php/Developer:LPEC
-  - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:34.983Z
 last_checked_at: 2026-04-23T08:06:15.911Z
 ```
@@ -278,14 +277,16 @@ verdict: verified
 checked_at: 2026-04-23T08:06:15.911Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched literally in source; transport port and auth verified; full command vocabulary represented."
+confidence: medium
+summary: "All 14 spec actions matched literally in source; transport port and auth verified; full command vocabulary represented. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power on/off commands not present in source"
+- "firmware version compatibility not stated"
+- "LPEC protocol version not stated"
 ```
 
 ---

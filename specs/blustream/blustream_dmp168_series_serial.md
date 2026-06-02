@@ -16,23 +16,34 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - blustream.com.au
-source_urls:
-  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:14.729Z
 last_checked_at: 2026-05-14T18:17:14.729Z
 generated_at: 2026-05-14T18:17:14.729Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source document title references CMX88AB — confirm DMP168 Series and CMX88AB are the same product family or adjust compatible_with accordingly"
+  - "TCP port number not stated in source"
+  - "not applicable for Telnet; web interface at default IP 192.168.0.200"
+  - "whether Telnet/RS-232 require authentication"
+  - "no settable continuous parameters found in source"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "input/output port count — source implies 8x8 (01-08) but exact model matrix size not confirmed"
+  - "TCP port number for Telnet control not stated in source"
+  - "whether RS-232 and Telnet share identical command syntax confirmed beyond \"RS-232 and Telnet Commands\" section heading"
+  - "response format for STATUS query not documented in source"
+  - "maximum input/output zone count (observed range 01-08 but upper bound not explicitly stated) -->Spec generated above. Key observations:"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.729Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified."
+  confidence: medium
+  summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -270,11 +281,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - blustream.com.au
-source_urls:
-  - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:14.729Z
 last_checked_at: 2026-05-14T18:17:14.729Z
 ```
 
@@ -285,14 +294,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.729Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified."
+confidence: medium
+summary: "All 14 actions verified; {ON|OFF} placeholder notation in spec is a documentation convention for ON/OFF; transport (57600 8N1, no flow control) verified. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source document title references CMX88AB — confirm DMP168 Series and CMX88AB are the same product family or adjust compatible_with accordingly"
+- "TCP port number not stated in source"
+- "not applicable for Telnet; web interface at default IP 192.168.0.200"
+- "whether Telnet/RS-232 require authentication"
+- "no settable continuous parameters found in source"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "input/output port count — source implies 8x8 (01-08) but exact model matrix size not confirmed"
+- "TCP port number for Telnet control not stated in source"
+- "whether RS-232 and Telnet share identical command syntax confirmed beyond \"RS-232 and Telnet Commands\" section heading"
+- "response format for STATUS query not documented in source"
+- "maximum input/output zone count (observed range 01-08 but upper bound not explicitly stated) -->Spec generated above. Key observations:"
+- "model-specific source not located"
 ```
 
 ---

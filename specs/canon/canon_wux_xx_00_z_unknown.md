@@ -17,24 +17,37 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - usa.canon.com
   - downloads.canon.com
+  - manualslib.com
+  - manualshelf.com
+  - canon.a.bigcontent.io
+  - gdlp01.c-wss.com
 source_urls:
-  - https://www.usa.canon.com/support/p/bu-45h
-  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
-retrieved_at: 2026-05-01T02:09:56.759Z
+  - https://downloads.canon.com/nw/brochures/pdf/projector/WUX5000_WUX4000_Command_List.pdf
+  - https://www.manualslib.com/manual/2034638/Canon-Wux500st.html
+  - https://www.manualshelf.com/manual/canon/realis-wux10/wux10-command-list.html
+  - https://canon.a.bigcontent.io/v1/static/636349338420159846SJ_xeed_wux6500_02/
+  - https://gdlp01.c-wss.com/gds/8/0300023908/03/wux500-450st-um4-eng.pdf
+retrieved_at: 2026-05-15T01:04:12.983Z
 last_checked_at: 2026-05-15T21:15:23.626Z
 generated_at: 2026-05-15T21:15:23.626Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated; exact model variants (e.g. DICOM) not enumerated"
+  - "no multi-step sequences explicitly described in source beyond"
+  - "source states POWER OFF interrupts processing of other commands"
+  - "exact physical connector pinout beyond 3-wire SD/RD/SG not specified"
+  - "whether LAN connection shares the same command set or has protocol differences"
+  - "DHCP/static IP configuration for LAN not documented"
+  - "fine gamma adjustment point count is variable; exact range not constrained beyond 0-1024 per point"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:15:23.626Z
   matched_actions: 51
   action_count: 51
-  confidence: high
-  summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim."
+  confidence: medium
+  summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -784,12 +797,18 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - usa.canon.com
   - downloads.canon.com
+  - manualslib.com
+  - manualshelf.com
+  - canon.a.bigcontent.io
+  - gdlp01.c-wss.com
 source_urls:
-  - https://www.usa.canon.com/support/p/bu-45h
-  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
-retrieved_at: 2026-05-01T02:09:56.759Z
+  - https://downloads.canon.com/nw/brochures/pdf/projector/WUX5000_WUX4000_Command_List.pdf
+  - https://www.manualslib.com/manual/2034638/Canon-Wux500st.html
+  - https://www.manualshelf.com/manual/canon/realis-wux10/wux10-command-list.html
+  - https://canon.a.bigcontent.io/v1/static/636349338420159846SJ_xeed_wux6500_02/
+  - https://gdlp01.c-wss.com/gds/8/0300023908/03/wux500-450st-um4-eng.pdf
+retrieved_at: 2026-05-15T01:04:12.983Z
 last_checked_at: 2026-05-15T21:15:23.626Z
 ```
 
@@ -800,14 +819,20 @@ verdict: verified
 checked_at: 2026-05-15T21:15:23.626Z
 matched_actions: 51
 action_count: 51
-confidence: high
-summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim."
+confidence: medium
+summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated; exact model variants (e.g. DICOM) not enumerated"
+- "no multi-step sequences explicitly described in source beyond"
+- "source states POWER OFF interrupts processing of other commands"
+- "exact physical connector pinout beyond 3-wire SD/RD/SG not specified"
+- "whether LAN connection shares the same command set or has protocol differences"
+- "DHCP/static IP configuration for LAN not documented"
+- "fine gamma adjustment point count is variable; exact range not constrained beyond 0-1024 per point"
 ```
 
 ---

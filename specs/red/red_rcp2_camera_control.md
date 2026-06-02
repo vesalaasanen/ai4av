@@ -21,19 +21,29 @@ source_domains:
   - red.com
 source_urls:
   - "https://www.red.com/SSP%20Applications/Red@SuiteCentric/SCA%20Kilimanjaro/documents/910-0046_Rev-T___RED_ENG__RED_Command_Protocol_Reference_Guide.pdf"
-retrieved_at: 2026-05-07T14:21:13.719Z
+  - https://www.red.com/download/rcp2-documentation
+  - https://www.red.com/developers
+retrieved_at: 2026-05-07T08:19:18.203Z
 last_checked_at: 2026-05-14T18:17:20.040Z
 generated_at: 2026-05-14T18:17:20.040Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RCP parameter set versions vary by firmware; specific firmware version to parameter set mapping is not fully enumerated"
+  - "no specific safety interlock sequences documented beyond operational notes above"
+  - "full key code enumeration is extensive (~100+ codes) — see source tables for complete list"
+  - "many IMAGE group parameters (curves, CDL, LGG) have complex sub-parameter structures not fully decomposed here"
+  - "monitor/output group has per-port variants (BRAIN LCD, Rear LCD, EVF, HDMI, HD-SDI) with parallel parameters — representative entries shown"
+  - "audio group has per-channel variants (CH1-CH4) for gain, volume, mute, limiter, phantom power — representative entries shown"
+  - "WiFi configuration parameters (WLANMODE, WLANAHID, WLANAHPW, etc.) documented but not fully enumerated as actions"
+  - "power input/output port parameters use indexed addressing (MSG_INDEXED_INT) — requires PWILIST/PWOLIST query first"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.040Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112)."
+  confidence: medium
+  summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -625,7 +635,9 @@ source_domains:
   - red.com
 source_urls:
   - "https://www.red.com/SSP%20Applications/Red@SuiteCentric/SCA%20Kilimanjaro/documents/910-0046_Rev-T___RED_ENG__RED_Command_Protocol_Reference_Guide.pdf"
-retrieved_at: 2026-05-07T14:21:13.719Z
+  - https://www.red.com/download/rcp2-documentation
+  - https://www.red.com/developers
+retrieved_at: 2026-05-07T08:19:18.203Z
 last_checked_at: 2026-05-14T18:17:20.040Z
 ```
 
@@ -636,14 +648,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.040Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112)."
+confidence: medium
+summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RCP parameter set versions vary by firmware; specific firmware version to parameter set mapping is not fully enumerated"
+- "no specific safety interlock sequences documented beyond operational notes above"
+- "full key code enumeration is extensive (~100+ codes) — see source tables for complete list"
+- "many IMAGE group parameters (curves, CDL, LGG) have complex sub-parameter structures not fully decomposed here"
+- "monitor/output group has per-port variants (BRAIN LCD, Rear LCD, EVF, HDMI, HD-SDI) with parallel parameters — representative entries shown"
+- "audio group has per-channel variants (CH1-CH4) for gain, volume, mute, limiter, phantom power — representative entries shown"
+- "WiFi configuration parameters (WLANMODE, WLANAHID, WLANAHPW, etc.) documented but not fully enumerated as actions"
+- "power input/output port parameters use indexed addressing (MSG_INDEXED_INT) — requires PWILIST/PWOLIST query first"
 ```
 
 ---

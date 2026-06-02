@@ -24,14 +24,29 @@ last_checked_at: 2026-05-14T18:17:18.306Z
 generated_at: 2026-05-14T18:17:18.306Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "complete list of compatible models within the C651Q-AVT2 Series not enumerated in source"
+  - "HDBaseT standby mode requirements not fully specified"
+  - "multiple rates supported (115200/38400/19200/9600/4800); no default stated"
+  - "flow control not documented"
+  - "exact mapping of hex values varies by model"
+  - "no discrete settable parameters beyond action commands; all parameters"
+  - "no unsolicited event notifications documented; device only responds"
+  - "power on/off sequences with cooling periods may require delays between commands."
+  - "exact standby mode requirements per model not fully documented"
+  - "complete model list for C651Q-AVT2 Series not enumerated"
+  - "standby mode requirements per specific model not fully documented"
+  - "firmware version compatibility not stated"
+  - "HDBaseT control details and standby mode specifics"
+  - "flow control (RTS/CTS) configuration not documented"
+  - "TCP connection keepalive or timeout behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.306Z
   matched_actions: 45
   action_count: 53
-  confidence: high
-  summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage."
+  confidence: medium
+  summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -701,14 +716,28 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.306Z
 matched_actions: 45
 action_count: 53
-confidence: high
-summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage."
+confidence: medium
+summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "complete list of compatible models within the C651Q-AVT2 Series not enumerated in source"
+- "HDBaseT standby mode requirements not fully specified"
+- "multiple rates supported (115200/38400/19200/9600/4800); no default stated"
+- "flow control not documented"
+- "exact mapping of hex values varies by model"
+- "no discrete settable parameters beyond action commands; all parameters"
+- "no unsolicited event notifications documented; device only responds"
+- "power on/off sequences with cooling periods may require delays between commands."
+- "exact standby mode requirements per model not fully documented"
+- "complete model list for C651Q-AVT2 Series not enumerated"
+- "standby mode requirements per specific model not fully documented"
+- "firmware version compatibility not stated"
+- "HDBaseT control details and standby mode specifics"
+- "flow control (RTS/CTS) configuration not documented"
+- "TCP connection keepalive or timeout behavior not documented"
 ```
 
 ---

@@ -21,22 +21,27 @@ source_domains:
   - digitalprojection.co.uk
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+retrieved_at: 2026-05-04T15:09:49.913Z
 last_checked_at: 2026-05-14T18:17:15.509Z
 generated_at: 2026-05-14T18:17:15.509Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "EVL Series model name not found in source document; compatible_with.models lists all models explicitly documented"
+  - "source does not document unsolicited event notifications from projector"
+  - "source does not document multi-step macro sequences"
+  - "EVL Series model number not found in source; compatible_with lists all explicitly documented models (HIGHlite Laser II 3D Series, HL Laser 4K, M-Vision Laser 18K)"
+  - "firmware version compatibility range not stated"
+  - "authentication credentials or token format not stated (auth.type: none inferred from absence of any login procedure)"
+  - "unsolicited event/notification format not documented"
+  - "macro/multistep command sequences not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.509Z
   matched_actions: 195
   action_count: 239
-  confidence: high
-  summary: "All 195 spec actions matched source commands; transport parameters verified."
+  confidence: medium
+  summary: "All 195 spec actions matched source commands; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2034,10 +2039,7 @@ source_domains:
   - digitalprojection.co.uk
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+retrieved_at: 2026-05-04T15:09:49.913Z
 last_checked_at: 2026-05-14T18:17:15.509Z
 ```
 
@@ -2048,14 +2050,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.509Z
 matched_actions: 195
 action_count: 239
-confidence: high
-summary: "All 195 spec actions matched source commands; transport parameters verified."
+confidence: medium
+summary: "All 195 spec actions matched source commands; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "EVL Series model name not found in source document; compatible_with.models lists all models explicitly documented"
+- "source does not document unsolicited event notifications from projector"
+- "source does not document multi-step macro sequences"
+- "EVL Series model number not found in source; compatible_with lists all explicitly documented models (HIGHlite Laser II 3D Series, HL Laser 4K, M-Vision Laser 18K)"
+- "firmware version compatibility range not stated"
+- "authentication credentials or token format not stated (auth.type: none inferred from absence of any login procedure)"
+- "unsolicited event/notification format not documented"
+- "macro/multistep command sequences not documented"
 ```
 
 ---

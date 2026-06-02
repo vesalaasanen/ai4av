@@ -2,7 +2,7 @@
 spec_id: admin/christie-cp-2210-2215-2230-2000m
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Christie CP 2210 2215 2230 2000M Control Spec"
+title: "Christie CP 2210 / CP 2215 / CP 2230 / CP 2000M Control Spec"
 manufacturer: Christie
 model_family: "CP 2210"
 aliases: []
@@ -13,1641 +13,1416 @@ compatible_with:
     - "CP 2210"
     - "CP 2215"
     - "CP 2230"
-    - 2000M
+    - "CP 2000M"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
-last_checked_at: 2026-05-20T08:04:51.795Z
-generated_at: 2026-05-20T08:04:51.795Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-100410-08-christie-lit-man-usr-cp2210.pdf
+  - https://www.manualslib.com/manual/816593/Christie-Cp-2210.html
+retrieved_at: 2026-05-14T21:23:46.567Z
+last_checked_at: 2026-06-02T00:53:52.894Z
+generated_at: 2026-06-02T00:53:52.894Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port for the Ethernet interface not stated in source"
+  - "TCP port not stated in source"
+  - "section kept for spec completeness; no source-supported entries."
+  - "source does not document any unsolicited notification messages;"
+  - "source does not document any multi-step user-defined sequences."
+  - "high-voltage lamp / thermal warnings are not detailed in this protocol"
+  - "TCP port for the Ethernet interface is not stated in this document."
+  - "firmware version compatibility ranges across CP 2210/2215/2230/2000M not stated."
+  - "full set of baud rates the hardware supports beyond those listed for BDR (0..7) not stated."
+  - "edge enhancement (EDG) and white peaking (WPK) numeric ranges not explicitly stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T08:04:51.795Z
-  matched_actions: 95
-  action_count: 95
-  confidence: high
-  summary: "All 95 spec actions matched source commands; transport parameters verified."
+  checked_at: 2026-06-02T00:53:52.894Z
+  matched_actions: 153
+  action_count: 153
+  confidence: medium
+  summary: "All 153 spec actions matched literal command codes in source; transport parameters (115200 baud, 8N1) verified; bidirectional command coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-15
+created_at: 2026-06-02
 ---
 
-# Christie CP 2210 2215 2230 2000M Control Spec
+# Christie CP 2210 / CP 2215 / CP 2230 / CP 2000M Control Spec
 
 ## Summary
-Christie E Series projector serial protocol. Controls via RS-232 (115200 baud default) or Ethernet. ASCII message format using 3-letter command codes with optional 4-letter subcodes. Three message types: Set (no suffix), Request (?), Reply (!). Supports power, input routing, image adjustment, lamp management, and network configuration.
+ASCII serial protocol for the Christie E Series cinema projectors (CP 2210, CP 2215, CP 2230, CP 2000M). Control and query are performed by sending three-character command codes (optionally with a four-character subcode, parameter, and a leading `#` for full acknowledgement) wrapped in parentheses over RS-232 (default 115200 baud, 8N1, no flow control) or an Ethernet port. Replies use `(CODE!data)` and `(CODE+SUBCODE!data)` formats; errors return `(ITP)- (65535 00000 ERR00005 "ITP: Too Few Parameters")`-style messages.
 
-<!-- UNRESOLVED: Ethernet port number not stated in source. TCP control protocol details not documented — only RS-232 serial described in detail. -->
+<!-- UNRESOLVED: TCP port for the Ethernet interface not stated in source -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
+  - tcp
 serial:
   baud_rate: 115200
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
+addressing:
+  port: null  # UNRESOLVED: TCP port not stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: none  # inferred: no auth procedure in source. (PIN protect is local UI lock, not network auth.)
 ```
 
 ## Traits
 ```yaml
-- powerable
-- queryable
-- routable
-- levelable
+- powerable      # inferred: PWR on/off commands present
+- routable       # inferred: SIN / SIN+MAIN / SIN+PIIP input switching commands present
+- queryable      # inferred: MIF, SIF, LIF, PIF, SST, SIV, LCE, LSE query commands present
+- levelable      # inferred: brightness, contrast, color, tint, gain/offset, gamma, etc. present
 ```
 
 ## Actions
 ```yaml
-- id: power
-  label: Power On/Off
-  kind: action
-  params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0 = off (standby), 1 = on"
+# Each row corresponds to a command or subcode documented in the source.
+# Message format: "(CODE[+SUBCODE][DATA])" for set, "(CODE+SUBCODE?)" for query.
+# Optional leading "#" requests full acknowledgement echo.
+# Modifiers "n" and "p" mean "next value" and "previous value" where supported.
 
+# --- SIZE & POSITION ---
+- id: size_preset
+  label: Size Preset
+  kind: action
+  command: "(SZP{preset})"
+  params:
+    - name: preset
+      type: integer
+      description: "0=Auto, 1=Native, 2=4:3, 3=LetterBox, 4=Full Size, 5=Full Width, 6=Full Height"
+- id: overscan
+  label: Overscan
+  kind: action
+  command: "(OVS{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=Zoom, 2=Crop"
+- id: pixel_phase
+  label: Pixel Phase
+  kind: action
+  command: "(PXP{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: pixel_track
+  label: Pixel Track
+  kind: action
+  command: "(PXT{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: horz_position
+  label: Horizontal Position
+  kind: action
+  command: "(HOR{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: vert_position
+  label: Vertical Position
+  kind: action
+  command: "(VRT{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: horz_keystone
+  label: Horizontal Keystone
+  kind: action
+  command: "(WRP+HKST{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: vert_keystone
+  label: Vertical Keystone
+  kind: action
+  command: "(WRP+VKST{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: horz_pincushion
+  label: Horizontal Pincushion
+  kind: action
+  command: "(HPC{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: vert_pincushion
+  label: Vertical Pincushion
+  kind: action
+  command: "(VPC{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: digital_zoom
+  label: Digital Zoom
+  kind: action
+  command: "(SIZ{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (100=normal/unchanged, default 100)"
+- id: digital_horz_shift
+  label: Digital Horizontal Shift
+  kind: action
+  command: "(DSH{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50). Requires Digital Zoom applied first."
+- id: digital_vert_shift
+  label: Digital Vertical Shift
+  kind: action
+  command: "(DSV{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50). Requires Digital Zoom applied first."
+- id: auto_image
+  label: Auto Image
+  kind: action
+  command: "(AIM1)"
+  params: []
+
+# --- IMAGE SETTINGS ---
+- id: brightness
+  label: Brightness
+  kind: action
+  command: "(BRT{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: contrast
+  label: Contrast
+  kind: action
+  command: "(CON{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: color_space
+  label: Color Space
+  kind: action
+  command: "(CSP{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=RGB, 1=REC709, 2=REC601, 3=RGB Video, 4=Auto (default)"
+- id: detail
+  label: Detail (Sharpness)
+  kind: action
+  command: "(DTL{level})"
+  params:
+    - name: level
+      type: integer
+      description: "0=Maximum, 1=High, 2=Normal, 3=Low, 4=Minimum (default 2)"
+- id: color
+  label: Color Saturation
+  kind: action
+  command: "(CLR{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50). Analog video only."
+- id: tint
+  label: Tint
+  kind: action
+  command: "(TNT{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50). Analog NTSC only."
+- id: noise_reduction
+  label: Noise Reduction
+  kind: action
+  command: "(NRD{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 0)"
+- id: flesh_tone
+  label: Flesh Tone Correction
+  kind: action
+  command: "(FTC{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 0)"
+- id: video_black_level
+  label: Video Black Level (IRE)
+  kind: action
+  command: "(VBL{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=IRE off, 1=IRE on"
+- id: detect_film
+  label: Detect Film
+  kind: action
+  command: "(FMD{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On (default 1)"
+- id: closed_captions
+  label: Closed Captions
+  kind: action
+  command: "(CLC{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=CC1, 2=CC2 (default 0)"
+- id: red_gain
+  label: Red Gain
+  kind: action
+  command: "(ROG{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: green_gain
+  label: Green Gain
+  kind: action
+  command: "(GOG{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: blue_gain
+  label: Blue Gain
+  kind: action
+  command: "(BOG{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: red_offset
+  label: Red Offset
+  kind: action
+  command: "(ROO{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: green_offset
+  label: Green Offset
+  kind: action
+  command: "(GOO{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: blue_offset
+  label: Blue Offset
+  kind: action
+  command: "(BOO{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50)"
+- id: sync_threshold
+  label: Sync Threshold (SOG)
+  kind: action
+  command: "(SYT{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 50). Sync-on-green threshold."
+- id: rgb_reset
+  label: RGB Gain/Offset Reset
+  kind: action
+  command: "(GOR1)"
+  params: []
+- id: picture_setting
+  label: Picture Setting
+  kind: action
+  command: "(PST{preset})"
+  params:
+    - name: preset
+      type: integer
+      description: "0=Presentation, 1=Video, 2=Bright, 3=Whiteboard, 4=Blackboard, 5=Beige Wall, 6=User. Use (PST+USER1) to store current settings to User Mode."
+- id: dynamicblack
+  label: DynamicBlack
+  kind: action
+  command: "(DIM{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On"
+- id: gamma_curve
+  label: Gamma Curve
+  kind: action
+  command: "(BGC{curve})"
+  params:
+    - name: curve
+      type: integer
+      description: "0=Video, 1=Film, 2=Bright, 3=CRT"
+- id: brilliant_color
+  label: BrilliantColor
+  kind: action
+  command: "(BCL{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Normal Look, 1=Bright Look"
+- id: white_peaking
+  label: White Peaking
+  kind: action
+  command: "(WPK{value})"
+  params:
+    - name: value
+      type: integer
+      description: "White processing amount (range not specified in source)"
+- id: color_temperature
+  label: Color Temperature
+  kind: action
+  command: "(CCI{preset})"
+  params:
+    - name: preset
+      type: integer
+      description: "0=Warmest, 1=Warm, 2=Cool, 3=Bright"
+- id: edge_enhancement
+  label: Edge Enhancement
+  kind: action
+  command: "(EDG{level})"
+  params:
+    - name: level
+      type: integer
+      description: "0=Off, 1=Normal, 2=Maximum"
+- id: color_wheel_speed
+  label: Color Wheel Speed
+  kind: action
+  command: "(CWS{speed})"
+  params:
+    - name: speed
+      type: integer
+      description: "0=2x, 1=3x"
+
+# --- CONFIGURATION ---
+- id: language
+  label: OSD Language
+  kind: action
+  command: "(LOC+LANG{lang})"
+  params:
+    - name: lang
+      type: integer
+      description: "0=English, 1=Chinese, 2=French, 3=German, 4=Italian, 5=Japanese, 6=Korean, 7=Russian, 8=Spanish"
+- id: focus
+  label: Focus
+  kind: action
+  command: "(FCS{dir})"
+  params:
+    - name: dir
+      type: string
+      description: "n=increase by 1, p=decrease by 1"
+- id: zoom
+  label: Zoom
+  kind: action
+  command: "(ZOM{dir})"
+  params:
+    - name: dir
+      type: string
+      description: "n=increase by 1, p=decrease by 1"
+- id: lens_shift_vertical
+  label: Lens Shift Vertical
+  kind: action
+  command: "(LVO{dir})"
+  params:
+    - name: dir
+      type: string
+      description: "n=increase by 1, p=decrease by 1"
+- id: lens_shift_horizontal
+  label: Lens Shift Horizontal
+  kind: action
+  command: "(LHO{dir})"
+  params:
+    - name: dir
+      type: string
+      description: "n=increase by 1, p=decrease by 1"
+- id: lock_lens_motors
+  label: Lock Lens Motors
+  kind: action
+  command: "(LCB+LOCK{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Allow, 1=Locked"
+- id: lens_center
+  label: Lens Center
+  kind: action
+  command: "(LCB+HOME1)"
+  params: []
+- id: ceiling_mount
+  label: Ceiling Mount
+  kind: action
+  command: "(CEL{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On, 2=Auto (G-sensor)"
+- id: rear_projection
+  label: Rear Projection
+  kind: action
+  command: "(SOR{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On"
+- id: menu_shift_horizontal
+  label: Menu Shift Horizontal
+  kind: action
+  command: "(MSH{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 0)"
+- id: menu_shift_vertical
+  label: Menu Shift Vertical
+  kind: action
+  command: "(MSV{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-100 (default 0)"
+- id: show_messages
+  label: Show Messages (OSD)
+  kind: action
+  command: "(MBE+USER{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On (default 1)"
+- id: menu_transparency
+  label: Menu Transparency
+  kind: action
+  command: "(OST{value})"
+  params:
+    - name: value
+      type: integer
+      description: "0-90 (default 0=not transparent)"
+- id: splash_screen
+  label: Splash Screen Select
+  kind: action
+  command: "(SPS+SLCT{choice})"
+  params:
+    - name: choice
+      type: integer
+      description: "0=Factory Logo, 1=Blue, 2=Black, 3=White (default 0)"
+- id: pin_protect
+  label: PIN Protect
+  kind: action
+  command: '(PIV"{pin}")'
+  params:
+    - name: pin
+      type: string
+      description: "5-digit PIN (each digit 0-9). Toggle on/off when PIN is correct."
+- id: change_pin
+  label: Change PIN
+  kind: action
+  command: '(PCG"{old_pin},{new_pin}")'
+  params:
+    - name: old_pin
+      type: string
+      description: "Current 5-digit PIN (default 12345)"
+    - name: new_pin
+      type: string
+      description: "New 5-digit PIN"
 - id: standby_mode
   label: Standby Mode
   kind: action
+  command: "(PWR+STBM{mode})"
   params:
     - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0 = 1W mode (keypad only), 1 = communication mode (full)"
-
-- id: source_select
-  label: Source Select
+      type: integer
+      description: "0=1W mode (no UART/WEB/USB wake), 1=Communication mode (~20W, supports wake)"
+- id: auto_power_on
+  label: Auto Power On
   kind: action
+  command: "(APW{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On (default 0). On = skip standby on AC applied."
+- id: auto_shutdown
+  label: Auto Shutdown
+  kind: action
+  command: "(ASH{interval})"
+  params:
+    - name: interval
+      type: integer
+      description: "0=Never (default), 1=5min, 2=10min, 3=15min, 4=20min, 5=25min, 6=30min"
+- id: sleep_timer
+  label: Sleep Timer
+  kind: action
+  command: "(SLP{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off (default), 1=2Hrs, 2=4Hrs, 3=6Hrs"
+- id: high_altitude
+  label: High Altitude
+  kind: action
+  command: "(HAT{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On (modifies fan speeds). Not compatible with Whisper mode."
+- id: net_dhcp
+  label: Network DHCP
+  kind: action
+  command: "(NET+DHCP{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On"
+- id: net_ip_address
+  label: Network IP Address
+  kind: action
+  command: '(NET+ETH0"{ip}")'
+  params:
+    - name: ip
+      type: string
+      description: "Dotted-quad IP, e.g. 192.168.000.001"
+- id: net_subnet
+  label: Network Subnet Mask
+  kind: action
+  command: '(NET+SUB0"{mask}")'
+  params:
+    - name: mask
+      type: string
+      description: "Dotted-quad subnet mask, e.g. 255.255.255.000"
+- id: net_gateway
+  label: Network Default Gateway
+  kind: action
+  command: '(NET+GATE"{gw}")'
+  params:
+    - name: gw
+      type: string
+      description: "Dotted-quad gateway IP"
+- id: net_hostname
+  label: Network Projector Name
+  kind: action
+  command: '(NET+HOST"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "Projector hostname (e.g. DWU670-E)"
+- id: net_mac
+  label: Network MAC Address
+  kind: action
+  command: '(NET+MAC0"{mac}")'
+  params:
+    - name: mac
+      type: string
+      description: "MAC address, e.g. 00:E0:47:01:02:3C"
+- id: net_show_messages
+  label: Network Show Messages
+  kind: action
+  command: "(NET+SHOW{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On"
+- id: net_restart
+  label: Network Restart
+  kind: action
+  command: "(NET+RSTR1)"
+  params: []
+- id: net_factory_reset
+  label: Network Factory Reset
+  kind: action
+  command: "(NET+RSET1)"
+  params: []
+- id: serial_baud_rate
+  label: Serial Port Baud Rate
+  kind: action
+  command: "(BDR{rate})"
+  params:
+    - name: rate
+      type: integer
+      description: "0=2400, 1=4800, 2=9600, 3=14400, 4=19200, 5=38400, 6=57600, 7=115200 (default)"
+- id: serial_echo
+  label: Serial Port Echo
+  kind: action
+  command: "(SEC{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off (default), 1=On"
+- id: trigger_12v
+  label: 12V Trigger
+  kind: action
+  command: "(VTT{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=On (drives a connected screen)"
+- id: hotkey_assign
+  label: Hot-Key Assignment
+  kind: action
+  command: "(HKS{function})"
+  params:
+    - name: function
+      type: integer
+      description: "0=Blank Screen, 1=Aspect Ratio, 2=Freeze Screen, 3=Projector Info, 4=Overscan, 5=Closed Captions"
+
+# --- LAMP ---
+- id: lamp_power
+  label: Lamp Power
+  kind: action
+  command: "(LPM{level})"
+  params:
+    - name: level
+      type: integer
+      description: "0=280W .. 10=330W in 5W steps (default 10=330W)"
+- id: current_lamp
+  label: Current Lamp
+  kind: action
+  command: "(LOP{lamp})"
+  params:
+    - name: lamp
+      type: integer
+      description: "1=Only Lamp 1, 2=Only Lamp 2, 3=Both Lamps"
+- id: whisper_mode
+  label: Whisper Mode
+  kind: action
+  command: "(WSP{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Off, 1=Lamp1, 2=Lamp2, 3=Auto. Not compatible with High Altitude."
+- id: lamp_auto_switch
+  label: Lamp Auto Switch Mode
+  kind: action
+  command: "(LSF{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=Only on lamp fail, 1=Switch on every power-on (+ on fail), 2=Switch after N hours (+ on fail)"
+- id: lamp_auto_switch_hours
+  label: Lamp Auto Switch Hours
+  kind: action
+  command: "(LSF+TIME{hours})"
+  params:
+    - name: hours
+      type: integer
+      description: "Hours threshold for the 'After N Hours' mode (e.g. (LSF+TIME120))"
+- id: lamp_life_warning
+  label: Lamp Life Warning
+  kind: action
+  command: "(LPL{hours})"
+  params:
+    - name: hours
+      type: integer
+      description: "Hours at which a lamp-replace warning is shown. 0 disables (default 0)."
+- id: reset_lamp1_hours
+  label: Reset Lamp 1 Hours
+  kind: action
+  command: "(LPC+LMP11)"
+  params: []
+- id: reset_lamp2_hours
+  label: Reset Lamp 2 Hours
+  kind: action
+  command: "(LPC+LAMP21)"
+  params: []
+- id: reset_both_lamp_hours
+  label: Reset Both Lamp Hours
+  kind: action
+  command: "(LPC+BOTH1)"
+  params: []
+
+# --- INPUT SWITCHING & PIP ---
+- id: select_source
+  label: Select Source (Main)
+  kind: action
+  command: "(SIN{source})"
+  params:
+    - name: source
+      type: integer
+      description: "0=VGA1, 1=VGA2, 2=RGBHV (BNC), 3=HDMI1, 4=HDMI2, 5=Component, 6=S-Video, 7=Composite"
+- id: set_main_source
+  label: Set Main Source
+  kind: action
+  command: "(SIN+MAIN{source})"
   params:
     - name: source
       type: integer
       description: "0=VGA1, 1=VGA2, 2=RGBHV, 3=HDMI1, 4=HDMI2, 5=Component, 6=S-Video, 7=Composite"
-
-- id: source_select_main
-  label: Source Select (Main)
+- id: set_pip_source
+  label: Set PIP Source
   kind: action
+  command: "(SIN+PIIP{source})"
   params:
     - name: source
       type: integer
-
-- id: source_select_pip
-  label: Source Select (PIP)
-  kind: action
-  params:
-    - name: source
-      type: integer
-
-- id: size_presets
-  label: Size Presets
-  kind: action
-  params:
-    - name: preset
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6]
-      description: "0=Auto, 1=Native, 2=4:3, 3=LetterBox, 4=Full Size, 5=Full Width, 6=Full Height"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: over_scan
-  label: Over Scan
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2]
-      description: "0=OFF, 1=ZOOM, 2=CROP"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: pixel_phase
-  label: Pixel Phase
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: pixel_track
-  label: Pixel Track
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: horz_position
-  label: Horizontal Position
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: vert_position
-  label: Vertical Position
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: horz_keystone
-  label: Horizontal Keystone
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: vert_keystone
-  label: Vertical Keystone
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: horz_pincushion
-  label: Horizontal Pincushion
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: vert_pincushion
-  label: Vertical Pincushion
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: digital_zoom
-  label: Digital Zoom
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 100
-      description: "100 = normal display area, 0 = smallest"
-
-- id: digital_horz_shift
-  label: Digital Horizontal Shift
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-      description: "0=leftmost, 50=center, 100=rightmost"
-
-- id: digital_vert_shift
-  label: Digital Vertical Shift
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-      description: "0=top, 50=center, 100=bottom"
-
-- id: auto_image
-  label: Auto Image
-  kind: action
-  params: []
-
-- id: brightness
-  label: Brightness
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: contrast
-  label: Contrast
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: color_space
-  label: Color Space
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2, 3, 4]
-      description: "0=RGB, 1=REC709, 2=REC601, 3=RGB Video, 4=Auto"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: detail
-  label: Detail (Sharpness)
-  kind: action
-  params:
-    - name: level
-      type: enum
-      values: [0, 1, 2, 3, 4]
-      description: "0=Maximum, 1=High, 2=Normal, 3=Low, 4=Minimum"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: color_saturation
-  label: Color Saturation
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: tint
-  label: Tint (NTSC)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: noise_reduction
-  label: Noise Reduction
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 0
-
-- id: flesh_tone_correction
-  label: Flesh Tone Correction
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 0
-
-- id: video_black_level
-  label: Video Black Level
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=IRE off, 1=IRE on"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: film_mode
-  label: Film Mode Detection
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=Detect film OFF, 1=Detect film ON"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: closed_captions
-  label: Closed Captions
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2]
-      description: "0=off, 1=CC1, 2=CC2"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: red_gain
-  label: Red Gain
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: green_gain
-  label: Green Gain
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: blue_gain
-  label: Blue Gain
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: red_offset
-  label: Red Offset
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: green_offset
-  label: Green Offset
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: blue_offset
-  label: Blue Offset
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: sync_threshold
-  label: Sync Threshold (SOG)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: rgb_gain_offset_reset
-  label: RGB Gain/Offset Reset
-  kind: action
-  params: []
-
-- id: picture_setting
-  label: Picture Setting
-  kind: action
-  params:
-    - name: preset
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6]
-      description: "0=Presentation, 1=Video, 2=Bright, 3=Whiteboard, 4=Blackboard, 5=Beige Wall, 6=User"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: dynamic_black
-  label: DynamicBlack
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=off, 1=on"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: gamma_curve
-  label: Gamma Curve
-  kind: action
-  params:
-    - name: curve
-      type: enum
-      values: [0, 1, 2, 3]
-      description: "0=Video, 1=Film, 2=Bright, 3=CRT"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: brilliant_color
-  label: BrilliantColor
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=Normal Look, 1=Bright Look"
-
-- id: white_peaking
-  label: White Peaking
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 50
-
-- id: color_temperature
-  label: Color Temperature
-  kind: action
-  params:
-    - name: preset
-      type: enum
-      values: [0, 1, 2, 3]
-      description: "0=Warmest, 1=Warm, 2=Cool, 3=Bright"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: edge_enhancement
-  label: Edge Enhancement
-  kind: action
-  params:
-    - name: level
-      type: enum
-      values: [0, 1, 2]
-      description: "0=off, 1=normal, 2=maximum"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: color_wheel_speed
-  label: Color Wheel Speed
-  kind: action
-  params:
-    - name: speed
-      type: enum
-      values: [0, 1]
-      description: "0=2x setting, 1=3x setting"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: language
-  label: Language
-  kind: action
-  params:
-    - name: lang
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-      description: "0=English, 1=Chinese, 2=French, 3=German, 4=Italian, 5=Japanese, 6=Korean, 7=Russian, 8=Spanish"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: focus
-  label: Focus
-  kind: action
-  params:
-    - name: action
-      type: string
-      description: "Use n to increase, p to decrease, or integer value"
-  notes: Write only; accepts modifiers n/p for increment/decrement
-
-- id: zoom
-  label: Zoom
-  kind: action
-  params:
-    - name: action
-      type: string
-      description: "Use n to increase, p to decrease, or integer value"
-  notes: Write only; accepts modifiers n/p for increment/decrement
-
-- id: lens_vert
-  label: Lens Shift Vertical
-  kind: action
-  params:
-    - name: action
-      type: string
-      description: "Use n to increase, p to decrease, or integer value"
-  notes: Write only; accepts modifiers n/p
-
-- id: lens_horz
-  label: Lens Shift Horizontal
-  kind: action
-  params:
-    - name: action
-      type: string
-      description: "Use n to increase, p to decrease, or integer value"
-  notes: Write only; accepts modifiers n/p
-
-- id: lock_lens_motors
-  label: Lock Lens Motors
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=Allow, 1=Locked"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: lens_home
-  label: Lens Home (Calibrate)
-  kind: action
-  params: []
-  notes: Write only; calibrates and returns lens to home position
-
-- id: ceiling_mount
-  label: Ceiling Mount
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2]
-      description: "0=off, 1=on, 2=Auto (G-sensor)"
-
-- id: rear_projection
-  label: Rear Projection
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=Off, 1=On"
-
-- id: menu_shift_horz
-  label: Menu Shift Horizontal
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 0
-
-- id: menu_shift_vert
-  label: Menu Shift Vertical
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 100]
-      default: 0
-
-- id: menu_transparency
-  label: Menu Transparency
-  kind: action
-  params:
-    - name: value
-      type: integer
-      range: [0, 90]
-      default: 0
-
-- id: messages_on
-  label: Messages On/Off
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=OFF, 1=ON"
-  notes: Controls OSD messages
-
-- id: splash_screen
-  label: Splash Screen
-  kind: action
-  params:
-    - name: screen
-      type: enum
-      values: [0, 1, 2, 3]
-      description: "0=Factory Logo, 1=Blue, 2=Black, 3=White"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: pin_protect
-  label: PIN Protect
-  kind: action
-  params:
-    - name: password
-      type: string
-      pattern: "XXXXX"
-      description: "5-digit password (0-9)"
-
-- id: change_pin
-  label: Change PIN
-  kind: action
-  params:
-    - name: old_pin
-      type: string
-      description: Old 5-digit PIN
-    - name: new_pin
-      type: string
-      description: New 5-digit PIN
-
-- id: auto_power
-  label: Auto Power On
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=OFF, 1=ON"
-  notes: Auto power on when AC applied; accepts modifiers n/p
-
-- id: auto_shutdown
-  label: Auto Shutdown
-  kind: action
-  params:
-    - name: minutes
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6]
-      description: "0=Off/Never, 1=5min, 2=10min, 3=15min, 4=20min, 5=25min, 6=30min"
-  notes: Auto power down when no signal for set time; accepts modifiers n/p
-
-- id: sleep_timer
-  label: Sleep Timer
-  kind: action
-  params:
-    - name: hours
-      type: enum
-      values: [0, 1, 2, 3]
-      description: "0=OFF, 1=2hrs, 2=4hrs, 3=6hrs"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: high_altitude
-  label: High Altitude Mode
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=off, 1=on"
-  notes: Modifies fan speeds; accepts modifiers n/p
-
-- id: network_dhcp
-  label: Network DHCP
-  kind: action
-  params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=off, 1=on"
-
-- id: network_ip
-  label: Network IP Address
-  kind: action
-  params:
-    - name: ip
-      type: string
-      pattern: "XXX.XXX.XXX.XXX"
-
-- id: network_subnet
-  label: Network Subnet Mask
-  kind: action
-  params:
-    - name: mask
-      type: string
-      pattern: "XXX.XXX.XXX.XXX"
-
-- id: network_gateway
-  label: Network Gateway
-  kind: action
-  params:
-    - name: gateway
-      type: string
-      pattern: "XXX.XXX.XXX.XXX"
-
-- id: network_hostname
-  label: Network Hostname
-  kind: action
-  params:
-    - name: name
-      type: string
-
-- id: network_mac
-  label: Network MAC Address
-  kind: action
-  params:
-    - name: mac
-      type: string
-
-- id: network_messages
-  label: Network Messages
-  kind: action
-  params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=off, 1=on"
-
-- id: network_restart
-  label: Network Restart
-  kind: action
-  params: []
-
-- id: network_reset
-  label: Network Factory Reset
-  kind: action
-  params: []
-
-- id: serial_baud
-  label: Serial Port Baud Rate
-  kind: action
-  params:
-    - name: rate
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6, 7]
-      description: "0=2400, 1=4800, 2=9600, 3=14400, 4=19200, 5=38400, 6=57600, 7=115200"
-  notes: Default is 115200; accepts modifiers n/p
-
-- id: serial_echo
-  label: Serial Port Echo
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=OFF, 1=ON"
-  notes: Default is off; accepts modifiers n/p
-
-- id: trigger_12v
-  label: 12V Trigger
-  kind: action
-  params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=off, 1=on"
-  notes: For motorized screens; accepts modifiers n/p
-
-- id: hot_key_settings
-  label: Hot Key Settings
-  kind: action
-  params:
-    - name: func
-      type: enum
-      values: [0, 1, 2, 3, 4, 5]
-      description: "0=Blank Screen, 1=Aspect Ratio, 2=Freeze, 3=Projector Info, 4=Overscan, 5=Closed Captions"
-  notes: Assign function to IR remote hot-key; accepts modifiers n/p
-
-- id: lamp_power
-  label: Lamp Power
-  kind: action
-  params:
-    - name: level
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-      description: "0=280W, 1=285W, 2=290W, 3=295W, 4=300W, 5=305W, 6=310W, 7=315W, 8=320W, 9=325W, 10=330W"
-  notes: Default 330W; accepts modifiers n/p
-
-- id: current_lamp
-  label: Current Lamp
-  kind: action
-  params:
-    - name: lamp
-      type: enum
-      values: [1, 2, 3]
-      description: "1=Lamp1 only, 2=Lamp2 only, 3=Both lamps"
-  notes: Accepts modifiers n/p
-
-- id: whisper_mode
-  label: Whisper Mode
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2, 3]
-      description: "0=Off, 1=Lamp1, 2=Lamp2, 3=Auto"
-  notes: Not compatible with high altitude mode; accepts modifiers n/p
-
-- id: lamp_auto_switch
-  label: Lamp Auto Switch
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: [0, 1, 2]
-      description: "0=Switch on failure, 1=Switch on every power on, 2=Switch after N hours"
-  notes: Accepts modifiers n/p; use LSF+TIME subcode to set hour threshold
-
-- id: lamp_hours_query
-  label: Lamp Info (Query)
-  kind: action
-  params:
-    - name: subcode
-      type: string
-      enum: [LP1H, LP2H, LPTH, LP1R, LP2R]
-      description: "LP1H=Lamp1 hours, LP2H=Lamp2 hours, LPTH=Total hours, LP1R=Lamp1 resets, LP2R=Lamp2 resets"
-
-- id: lamp_life_warning
-  label: Lamp Life Warning
-  kind: action
-  params:
-    - name: hours
-      type: integer
-      description: "User-settable hour threshold for warning; 0=off; default 0"
-
-- id: reset_lamp_hours
-  label: Reset Lamp Hours
-  kind: action
-  params:
-    - name: target
-      type: enum
-      values: [LMP1, LMP2, BOTH]
-      description: "LMP1=Reset Lamp1, LMP2=Reset Lamp2, BOTH=Reset both"
-
-- id: pip
+      description: "0=VGA1, 1=VGA2, 2=RGBHV, 3=HDMI1, 4=HDMI2, 5=Component, 6=S-Video, 7=Composite"
+- id: pip_enable
   label: PIP/PBP Enable
   kind: action
+  command: "(PIP{mode})"
   params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=Disable, 1=Enable"
-  notes: Accepts modifiers n/p
-
+    - name: mode
+      type: integer
+      description: "0=Disable, 1=Enable (default 0)"
 - id: pip_swap
   label: PIP/PBP Swap
   kind: action
+  command: "(PPS1)"
   params: []
-  notes: Write only; swaps main and PIP sources
-
 - id: pip_size
   label: PIP/PBP Size
   kind: action
+  command: "(PHS{size})"
   params:
     - name: size
-      type: enum
-      values: [0, 1, 2]
+      type: integer
       description: "0=Small, 1=Medium, 2=Large"
-
 - id: pip_layout
   label: PIP/PBP Layout
   kind: action
+  command: "(PPP{layout})"
   params:
     - name: layout
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6, 7]
-      description: "0=POP Bigger Left, 1=Over-Under Bigger Upper, 2=POP Bigger Right, 3=Over-Under Bigger Lower, 4=PIP-Bottom Right, 5=PIP-Bottom Left, 6=PIP-Top Left, 7=PIP-Top Right"
-
-- id: timing_mode
-  label: Timing Detection Mode
+      type: integer
+      description: "0=POP-Bigger Left, 1=Over-Under Bigger Upper, 2=POP-Bigger Right, 3=Over-Under Bigger Lower, 4=PIP-Bottom Right, 5=PIP-Bottom Left, 6=PIP-Top Left, 7=PIP-Top Right"
+- id: timing_detect
+  label: Timing Detect Mode
   kind: action
+  command: "(TMG{mode})"
   params:
     - name: mode
-      type: enum
-      values: [0, 1]
-      description: "0=Normal, 1=Wide"
-  notes: Accepts modifiers n (next) and p (previous)
-
-- id: source_hotkey_enable
-  label: Enabled Source Hot Key
-  kind: action
-  params:
-    - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=ON, 1=OFF"
-
-- id: source_hotkey
-  label: Main Source Hot Key Assignment
-  kind: action
-  params:
-    - name: source
-      type: enum
-      values: [VGA1, VGA2, BNC1, HDM1, HDM2, CON1, SVDO, COPS]
-    - name: key_number
       type: integer
-      description: Key number 0-9
+      description: "0=Normal, 1=Wide"
+- id: enable_main_hotkey
+  label: Enable Main Source Hot-Key
+  kind: action
+  command: "(ESH{mode})"
+  params:
+    - name: mode
+      type: integer
+      description: "0=On, 1=Off (0/9 hotkeys to select source directly)"
+- id: hotkey_vga1
+  label: Set Hot-Key for VGA1
+  kind: action
+  command: "(MHK+VGA1{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign. Example: (MHK+VGA18)"
+- id: hotkey_vga2
+  label: Set Hot-Key for VGA2
+  kind: action
+  command: "(MHK+VGA2{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_bnc
+  label: Set Hot-Key for BNC
+  kind: action
+  command: "(MHK+BNC1{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_hdmi1
+  label: Set Hot-Key for HDMI1
+  kind: action
+  command: "(MHK+HDM1{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_hdmi2
+  label: Set Hot-Key for HDMI2
+  kind: action
+  command: "(MHK+HDM2{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_component
+  label: Set Hot-Key for Component
+  kind: action
+  command: "(MHK+CON1{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_svideo
+  label: Set Hot-Key for S-Video
+  kind: action
+  command: "(MHK+SVDO{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: hotkey_composite
+  label: Set Hot-Key for Composite
+  kind: action
+  command: "(MHK+COPS{key})"
+  params:
+    - name: key
+      type: integer
+      description: "Number key (0-9) to assign"
+- id: source_key_function
+  label: Source Key Function
+  kind: action
+  command: "(SKS{function})"
+  params:
+    - name: function
+      type: integer
+      description: "0=Change source, 1=List all sources (default), 2=Change source with Auto"
 
+# --- MISC ---
 - id: test_pattern
   label: Test Pattern
   kind: action
+  command: "(ITP{pattern})"
   params:
     - name: pattern
-      type: enum
-      values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-      description: "0=OFF, 1=Grid, 2=White, 3=Black, 4=Checkerboard, 5=Color bars, 6=Red, 7=Green, 8=Blue, 9=Yellow, 10=Magenta, 11=Cyan"
-  notes: "6-11 require Service mode; accepts modifiers n/p"
-
-- id: color_wheel_index
-  label: Color Wheel Index
-  kind: action
-  params:
-    - name: speed
-      type: enum
-      values: [SPX2, SPX3]
-      description: "SPX2=2x speed, SPX3=3x speed"
-    - name: value
       type: integer
-  notes: Only works when service mode is on
-
-- id: projector_info_query
-  label: Projector Info (Query)
+      description: "0=Off, 1=Grid, 2=White, 3=Black, 4=Checkerboard, 5=Color Bars, 6=Red (Service), 7=Green (Service), 8=Blue (Service), 9=Yellow (Service), 10=Magenta (Service), 11=Cyan (Service). Grid/Color Bars may take up to 18s to leave."
+- id: projector_status
+  label: Projector Status
+  kind: query
+  command: "(SST?)"
+  params: []
+- id: color_wheel_index_2x
+  label: Color Wheel Index 2x
   kind: action
+  command: "(CWI+SPX2{index})"
   params:
-    - name: subcode
-      type: enum
-      values: [MDLN, SNUM, NERS, FWVS, CFVS, BCVS]
-      description: "MDLN=Model name, SNUM=Serial number, NERS=Native resolution, FWVS=FW version, CFVS=Configuration, BCVS=Boot code version"
-  notes: Service mode only
-
+    - name: index
+      type: integer
+      description: "Color wheel index for 2x speed. Service mode only."
+- id: color_wheel_index_3x
+  label: Color Wheel Index 3x
+  kind: action
+  command: "(CWI+SPX3{index})"
+  params:
+    - name: index
+      type: integer
+      description: "Color wheel index for 3x speed. Service mode only."
 - id: factory_defaults
   label: Factory Defaults
   kind: action
+  command: "(DEF 111)"
   params: []
-  notes: Write only; requires number 111 in command; service mode only
-
-- id: enter_service_mode
-  label: Enter Service Mode
+- id: enter_service_code
+  label: Enter Service Code
   kind: action
+  command: '(UID"{username},{password}")'
   params:
-    - name: credentials
+    - name: username
       type: string
-      description: Format "username,password"
-  notes: Write only; format (UID"service,service")
+      description: "Service username (default: service)"
+    - name: password
+      type: string
+      description: "Service password (default: service)"
 
+# --- SERIAL-ONLY QUERIES ---
 - id: serial_command_version
-  label: E Series Serial Command Version
-  kind: action
+  label: Serial Command Version
+  kind: query
+  command: "(SIV?)"
   params: []
-  notes: Read only
-
-- id: last_command_error
+- id: last_serial_command_error
   label: Last Serial Command Error
-  kind: action
+  kind: query
+  command: "(LCE?)"
   params: []
-  notes: Read only
-
 - id: last_system_error
   label: Last System Error
-  kind: action
+  kind: query
+  command: "(LSE?)"
   params: []
-  notes: Read only
+- id: main_active_source
+  label: Main Active Source
+  kind: query
+  command: "(MIF+ACTS?)"
+  params: []
+- id: main_signal_format
+  label: Main Signal Format
+  kind: query
+  command: "(MIF+SGFT?)"
+  params: []
+- id: main_aspect_ratio
+  label: Main Aspect Ratio
+  kind: query
+  command: "(MIF+APRT?)"
+  params: []
+- id: main_resolution
+  label: Main Resolution
+  kind: query
+  command: "(MIF+RESL?)"
+  params: []
+- id: main_vert_refresh
+  label: Main Vertical Refresh
+  kind: query
+  command: "(MIF+VREF?)"
+  params: []
+- id: main_horz_refresh
+  label: Main Horizontal Refresh
+  kind: query
+  command: "(MIF+HREF?)"
+  params: []
+- id: main_pixel_clock
+  label: Main Pixel Clock
+  kind: query
+  command: "(MIF+PIXC?)"
+  params: []
+- id: main_sync_type
+  label: Main Sync Type
+  kind: query
+  command: "(MIF+SYNC?)"
+  params: []
+- id: main_color_space
+  label: Main Color Space
+  kind: query
+  command: "(MIF+CLSP?)"
+  params: []
+- id: sec_active_source
+  label: PIP Active Source
+  kind: query
+  command: "(SIF+ACTS?)"
+  params: []
+- id: sec_signal_format
+  label: PIP Signal Format
+  kind: query
+  command: "(SIF+SGFT?)"
+  params: []
+- id: sec_aspect_ratio
+  label: PIP Aspect Ratio
+  kind: query
+  command: "(SIF+APRT?)"
+  params: []
+- id: sec_resolution
+  label: PIP Resolution
+  kind: query
+  command: "(SIF+RESL?)"
+  params: []
+- id: sec_vert_refresh
+  label: PIP Vertical Refresh
+  kind: query
+  command: "(SIF+VREF?)"
+  params: []
+- id: sec_horz_refresh
+  label: PIP Horizontal Refresh
+  kind: query
+  command: "(SIF+HREF?)"
+  params: []
+- id: sec_pixel_clock
+  label: PIP Pixel Clock
+  kind: query
+  command: "(SIF+PIXC?)"
+  params: []
+- id: sec_sync_type
+  label: PIP Sync Type
+  kind: query
+  command: "(SIF+SYNC?)"
+  params: []
+- id: sec_color_space
+  label: PIP Color Space
+  kind: query
+  command: "(SIF+CLSP?)"
+  params: []
+- id: lamp1_hours
+  label: Lamp 1 Hours
+  kind: query
+  command: "(LIF+LP1H?)"
+  params: []
+- id: lamp2_hours
+  label: Lamp 2 Hours
+  kind: query
+  command: "(LIF+LP2H?)"
+  params: []
+- id: total_lamp_hours
+  label: Total Lamp Hours
+  kind: query
+  command: "(LIF+LPTH?)"
+  params: []
+- id: lamp1_reset_count
+  label: Lamp 1 Reset Count
+  kind: query
+  command: "(LIF+LP1R?)"
+  params: []
+- id: lamp2_reset_count
+  label: Lamp 2 Reset Count
+  kind: query
+  command: "(LIF+LP2R?)"
+  params: []
+- id: model_name
+  label: Model Name (Service)
+  kind: query
+  command: "(PIF+MDLN?)"
+  params: []
+- id: serial_number
+  label: Serial Number (Service)
+  kind: query
+  command: "(PIF+SNUM?)"
+  params: []
+- id: native_resolution
+  label: Native Resolution (Service)
+  kind: query
+  command: "(PIF+NERS?)"
+  params: []
+- id: firmware_version
+  label: Firmware Version (Service)
+  kind: query
+  command: "(PIF+FWVS?)"
+  params: []
+- id: configuration_version
+  label: Configuration Version (Service)
+  kind: query
+  command: "(PIF+CFVS?)"
+  params: []
+- id: boot_code_version
+  label: Boot Code Version (Service)
+  kind: query
+  command: "(PIF+BCVS?)"
+  params: []
 
-- id: source_name
-  label: Source Name Setting
+# --- FUNCTIONS USED ONLY BY SERIAL COMMAND ---
+- id: power_on
+  label: Power On
   kind: action
+  command: "(PWR1)"
+  params: []
+- id: power_off
+  label: Power Off
+  kind: action
+  command: "(PWR0)"
+  params: []
+- id: rename_source_vga1
+  label: Rename Source VGA1
+  kind: action
+  command: '(SNS+SRC0"{name}")'
   params:
-    - name: source
-      type: enum
-      values: [SRC0, SRC1, SRC2, SRC3, SRC4, SRC5, SRC6, SRC7]
-      description: "SRC0=VGA1, SRC1=VGA2, SRC2=BNC, SRC3=HDMI1, SRC4=HDMI2, SRC5=Component, SRC6=S-Video, SRC7=Video"
     - name: name
       type: string
-
-- id: key_code
-  label: Key Code Entry
+      description: "User-defined source name"
+- id: rename_source_vga2
+  label: Rename Source VGA2
   kind: action
+  command: '(SNS+SRC1"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_bnc
+  label: Rename Source BNC
+  kind: action
+  command: '(SNS+SRC2"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_hdmi1
+  label: Rename Source HDMI1
+  kind: action
+  command: '(SNS+SRC3"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_hdmi2
+  label: Rename Source HDMI2
+  kind: action
+  command: '(SNS+SRC4"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_component
+  label: Rename Source Component
+  kind: action
+  command: '(SNS+SRC5"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_svideo
+  label: Rename Source S-Video
+  kind: action
+  command: '(SNS+SRC6"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: rename_source_composite
+  label: Rename Source Video
+  kind: action
+  command: '(SNS+SRC7"{name}")'
+  params:
+    - name: name
+      type: string
+      description: "User-defined source name"
+- id: key_code_entry
+  label: Key-Code Entry
+  kind: action
+  command: "(KEY{code})"
   params:
     - name: code
       type: integer
-      description: Decimal keycode value
-  notes: Write only; simulates remote button press
-
+      description: "Decimal IR keycode (POWER=0, MENU=19, ENTER=40, etc.; see Appendix-2 table)"
 - id: shutter
-  label: Shutter On/Off
+  label: Shutter
   kind: action
+  command: "(SHU{state})"
   params:
     - name: state
-      type: enum
-      values: [0, 1]
-      description: "0=Open/Shutter off, 1=Closed/Shutter on"
-  notes: Displays black screen; accepts modifiers n/p
-
-- id: osd_show_hide
+      type: integer
+      description: "0=Open (Shutter off), 1=Closed (Shutter on, black screen)"
+- id: osd_show
   label: OSD Show/Hide
   kind: action
+  command: "(OSD{state})"
   params:
     - name: state
-      type: enum
-      values: [0, 1]
+      type: integer
       description: "0=Hide, 1=Show"
-  notes: Accepts modifiers n/p
-- id: mif_query
-  label: Main Source Info Query
-  kind: query
-  params:
-    - name: subcode
-      type: string
-      description: "ACTS, SGFT, APRT, RESL, VREF, HREF, PIXC, SYNC, CLSP"
-  notes: Read only; format (MIF+<subcode>?)
-
-- id: sif_query
-  label: Secondary Source Info Query
-  kind: query
-  params:
-    - name: subcode
-      type: string
-      description: "ACTS, SGFT, APRT, RESL, VREF, HREF, PIXC, SYNC, CLSP"
-  notes: Read only; valid only when PIP/PBP enabled; format (SIF+<subcode>?)
-
-- id: sks
-  label: Source Key Function Setting
-  kind: action
-  params:
-    - name: func
-      type: integer
-      description: "0=Change source, 1=List all of Sources, 2=Change source with Auto"
-  notes: Assigns function to source hot-key
-
-- id: pst_user_store
-  label: Picture Setting Store to User Mode
-  kind: action
-  params: []
-  notes: Write only; stores current picture settings to User Mode via (PST+USER1)
-
-- id: lsf_time
-  label: Lamp Auto Switch Hour Threshold
-  kind: action
-  params:
-    - name: hours
-      type: integer
-      description: Number of hours for lamp auto switch threshold
-  notes: Subcode TIME; format (LSF+TIME<hours>)
 ```
 
 ## Feedbacks
 ```yaml
-- id: projector_status
-  type: object
-  properties:
-    - code: model name (SST!000)
-    - code: serial number (SST!001)
-    - code: native resolution (SST!002)
-    - code: main input (SST!003)
-    - code: main signal format (SST!004)
-    - code: main pixel clock (SST!005)
-    - code: main sync type (SST!006)
-    - code: main horizontal refresh (SST!007)
-    - code: main vertical refresh (SST!008)
-    - code: PIP input (SST!009)
-    - code: PIP signal format (SST!010)
-    - code: PIP pixel clock (SST!011)
-    - code: PIP sync type (SST!012)
-    - code: PIP horizontal refresh (SST!013)
-    - code: PIP vertical refresh (SST!014)
-    - code: lamp power setting (SST!015)
-    - code: current lamp (SST!016)
-    - code: lamp 1 hours (SST!017)
-    - code: lamp 2 hours (SST!018)
-    - code: standby mode (SST!019)
-    - code: lens lock setting (SST!020)
-    - code: IP address (SST!021)
-    - code: DHCP (SST!022)
-  description: Query via (SST?) returns multiple code-value pairs
-
-- id: main_source_info
-  type: object
-  properties:
-    - ACTS: active source
-    - SGFT: signal format
-    - APRT: aspect ratio
-    - RESL: resolution
-    - VREF: vertical refresh
-    - HREF: horizontal refresh
-    - PIXC: pixel clock
-    - SYNC: sync type
-    - CLSP: color space
-  description: Query via (MIF+<subcode>?)
-
-- id: secondary_source_info
-  type: object
-  properties:
-    - ACTS: active source (PIP)
-    - SGFT: signal format
-    - APRT: aspect ratio
-    - RESL: resolution
-    - VREF: vertical refresh
-    - HREF: horizontal refresh
-    - PIXC: pixel clock
-    - SYNC: sync type
-    - CLSP: color space
-  description: Query via (SIF+<subcode>?); valid only when PIP/PBP enabled
-
-- id: lamp_info
-  type: object
-  properties:
-    - LP1H: lamp 1 hours
-    - LP2H: lamp 2 hours
-    - LPTH: total hours all lamps
-    - LP1R: lamp 1 reset count
-    - LP2R: lamp 2 reset count
-  description: Query via (LIF+<subcode>?)
-
-- id: projector_info
-  type: object
-  properties:
-    - MDLN: model name
-    - SNUM: serial number
-    - NERS: native resolution
-    - FWVS: firmware version
-    - CFVS: configuration data
-    - BCVS: boot code version
-  description: Query via (PIF+<subcode>?); service mode only
-
-- id: system_error
-  type: enum
-  values:
-    - "1: lamp failed to strike after 5 attempts"
-    - "3: lamp went out unexpectedly"
-    - "4: fan failure"
-    - "5: over temperature"
-  description: Query via (LSE?); read only
-
-- id: command_error
+# Observed via SST! multi-line response. Each line returns (SST!NNN  "value"  "label").
+# Individual subcode queries (MIF+RESL?, SIF+RESL?, etc.) return the same field directly.
+- id: model_name
   type: string
-  description: Query via (LCE?); returns error description string; read only
-
-- id: serial_version
+  description: "SST!000 / PIF+MDLN? - model name string"
+- id: serial_number
   type: string
-  description: Query via (SIV?); read only
-
-- id: size_presets_current
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6]
-  description: "0=Auto, 1=Native, 2=4:3, 3=LetterBox, 4=Full Size, 5=Full Width, 6=Full Height"
-
-- id: over_scan_current
-  type: enum
-  values: [0, 1, 2]
-  description: "0=OFF, 1=ZOOM, 2=CROP"
-
-- id: color_space_current
-  type: enum
-  values: [0, 1, 2, 3, 4]
-  description: "0=RGB, 1=REC709, 2=REC601, 3=RGB Video, 4=Auto"
-
-- id: detail_current
-  type: enum
-  values: [0, 1, 2, 3, 4]
-  description: "0=Maximum, 1=High, 2=Normal, 3=Low, 4=Minimum"
-
-- id: film_mode_current
-  type: enum
-  values: [0, 1]
-  description: "0=Detect film OFF, 1=Detect film ON"
-
-- id: dynamic_black_current
-  type: enum
-  values: [0, 1]
-  description: "0=off, 1=on"
-
-- id: gamma_curve_current
-  type: enum
-  values: [0, 1, 2, 3]
-  description: "0=Video, 1=Film, 2=Bright, 3=CRT"
-
-- id: brilliant_color_current
-  type: enum
-  values: [0, 1]
-  description: "0=Normal Look, 1=Bright Look"
-
-- id: color_temperature_current
-  type: enum
-  values: [0, 1, 2, 3]
-  description: "0=Warmest, 1=Warm, 2=Cool, 3=Bright"
-
-- id: edge_enhancement_current
-  type: enum
-  values: [0, 1, 2]
-  description: "0=off, 1=normal, 2=maximum"
-
-- id: lamp_power_current
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  description: "0=280W ... 10=330W"
-
-- id: standby_mode_current
-  type: enum
-  values: [0, 1]
-  description: "0=1W mode, 1=Communication mode"
-
-- id: network_settings
-  type: object
-  properties:
-    - ETH0: IP address
-    - SUB0: subnet mask
-    - GATE: default gateway
-    - HOST: projector name
-    - MAC0: MAC address
-    - DHCP: on/off
-  description: Read via NET+<subcode>?; write via NET+<subcode>"value"
-
-- id: source_hotkey_current
-  type: object
-  description: "Returns hot-key assignments per source; use (MHK+<source>?); ESH controls enabled state"
+  description: "SST!001 / PIF+SNUM? - projector serial number"
+- id: native_resolution
+  type: string
+  description: "SST!002 / PIF+NERS? - native panel resolution"
+- id: main_input
+  type: string
+  description: "SST!003 - currently selected main input name"
+- id: main_signal_format
+  type: string
+  description: "SST!004 / MIF+SGFT? - e.g. Digital / Analog"
+- id: main_pixel_clock
+  type: string
+  description: "SST!005 / MIF+PIXC? - pixel clock with MHz unit"
+- id: main_sync_type
+  type: string
+  description: "SST!006 / MIF+SYNC? - Separate / Composite / SOG / etc."
+- id: main_horz_refresh
+  type: string
+  description: "SST!007 / MIF+HREF? - horizontal refresh with kHz unit"
+- id: main_vert_refresh
+  type: string
+  description: "SST!008 / MIF+VREF? - vertical refresh with Hz unit"
+- id: pip_input
+  type: string
+  description: "SST!009 - currently selected PIP/PBP input name"
+- id: pip_signal_format
+  type: string
+  description: "SST!010 / SIF+SGFT?"
+- id: pip_pixel_clock
+  type: string
+  description: "SST!011 / SIF+PIXC?"
+- id: pip_sync_type
+  type: string
+  description: "SST!012 / SIF+SYNC?"
+- id: pip_horz_refresh
+  type: string
+  description: "SST!013 / SIF+HREF?"
+- id: pip_vert_refresh
+  type: string
+  description: "SST!014 / SIF+VREF?"
+- id: lamp_power_setting
+  type: string
+  description: "SST!015 - e.g. \"330 W\""
+- id: current_lamp
+  type: string
+  description: "SST!016 - \"Lamp 1\" / \"Lamp 2\" / \"Both\""
+- id: lamp1_hours
+  type: string
+  description: "SST!017 / LIF+LP1H? - with \"Hours\" unit"
+- id: lamp2_hours
+  type: string
+  description: "SST!018 / LIF+LP2H? - with \"Hours\" unit"
+- id: standby_mode
+  type: string
+  description: "SST!019 - \"1W Mode\" / \"Communication\""
+- id: lens_lock_setting
+  type: string
+  description: "SST!020 - \"Allow\" / \"Locked\""
+- id: ip_address
+  type: string
+  description: "SST!021 - current IP"
+- id: dhcp_state
+  type: string
+  description: "SST!022 - \"On\" / \"Off\""
+- id: main_color_space
+  type: string
+  description: "MIF+CLSP? - current color space"
+- id: main_resolution
+  type: string
+  description: "MIF+RESL? - e.g. \"1920x1200\""
+- id: main_aspect_ratio
+  type: string
+  description: "MIF+APRT?"
+- id: main_active_source
+  type: string
+  description: "MIF+ACTS?"
+- id: pip_color_space
+  type: string
+  description: "SIF+CLSP?"
+- id: pip_resolution
+  type: string
+  description: "SIF+RESL?"
+- id: pip_aspect_ratio
+  type: string
+  description: "SIF+APRT?"
+- id: pip_active_source
+  type: string
+  description: "SIF+ACTS?"
+- id: total_lamp_hours
+  type: string
+  description: "LIF+LPTH? - sum of all lamp hours"
+- id: lamp1_reset_count
+  type: string
+  description: "LIF+LP1R? - number of times Lamp 1 hours have been reset"
+- id: lamp2_reset_count
+  type: string
+  description: "LIF+LP2R? - number of times Lamp 2 hours have been reset"
+- id: firmware_version
+  type: string
+  description: "PIF+FWVS? - service-mode only"
+- id: configuration_version
+  type: string
+  description: "PIF+CFVS? - service-mode only"
+- id: boot_code_version
+  type: string
+  description: "PIF+BCVS? - service-mode only"
+- id: serial_command_version
+  type: string
+  description: "SIV? - E Series protocol version"
+- id: last_serial_command_error
+  type: string
+  description: "LCE? - error text from the most recent failed serial command"
+- id: last_system_error
+  type: integer
+  description: "LSE? - coded: 1=lamp did not strike (5 attempts), 3=lamp went out, 4=fan failure, 5=over temperature"
 ```
 
 ## Variables
 ```yaml
-- id: size_presets
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6]
-  default: 0
-  description: "0=Auto, 1=Native, 2=4:3, 3=LetterBox, 4=Full Size, 5=Full Width, 6=Full Height"
-
-- id: over_scan
-  type: enum
-  values: [0, 1, 2]
-  default: 0
-  description: "0=OFF, 1=ZOOM, 2=CROP"
-
-- id: pixel_phase
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: pixel_track
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: horz_position
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: vert_position
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: horz_keystone
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: vert_keystone
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: horz_pincushion
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: vert_pincushion
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: digital_zoom
-  type: integer
-  range: [0, 100]
-  default: 100
-
-- id: digital_horz_shift
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: digital_vert_shift
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: auto_image
-  type: integer
-  description: Write trigger; (AIM1)
-
-- id: brightness
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: contrast
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: color_space
-  type: enum
-  values: [0, 1, 2, 3, 4]
-  default: 4
-  description: "0=RGB, 1=REC709, 2=REC601, 3=RGB Video, 4=Auto"
-
-- id: detail
-  type: enum
-  values: [0, 1, 2, 3, 4]
-  default: 2
-  description: "0=Maximum, 1=High, 2=Normal, 3=Low, 4=Minimum"
-
-- id: color_saturation
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: tint
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: noise_reduction
-  type: integer
-  range: [0, 100]
-  default: 0
-
-- id: flesh_tone_correction
-  type: integer
-  range: [0, 100]
-  default: 0
-
-- id: video_black_level
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=IRE off, 1=IRE on"
-
-- id: film_mode
-  type: enum
-  values: [0, 1]
-  default: 1
-  description: "0=Detect film OFF, 1=Detect film ON"
-
-- id: closed_captions
-  type: enum
-  values: [0, 1, 2]
-  default: 0
-  description: "0=off, 1=CC1, 2=CC2"
-
-- id: red_gain
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: green_gain
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: blue_gain
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: red_offset
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: green_offset
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: blue_offset
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: sync_threshold
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: picture_setting
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6]
-  default: 0
-  description: "0=Presentation, 1=Video, 2=Bright, 3=Whiteboard, 4=Blackboard, 5=Beige Wall, 6=User"
-
-- id: dynamic_black
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=off, 1=on"
-
-- id: gamma_curve
-  type: enum
-  values: [0, 1, 2, 3]
-  default: 0
-  description: "0=Video, 1=Film, 2=Bright, 3=CRT"
-
-- id: brilliant_color
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=Normal Look, 1=Bright Look"
-
-- id: white_peaking
-  type: integer
-  range: [0, 100]
-  default: 50
-
-- id: color_temperature
-  type: enum
-  values: [0, 1, 2, 3]
-  default: 0
-  description: "0=Warmest, 1=Warm, 2=Cool, 3=Bright"
-
-- id: edge_enhancement
-  type: enum
-  values: [0, 1, 2]
-  default: 0
-  description: "0=off, 1=normal, 2=maximum"
-
-- id: color_wheel_speed
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=2x setting, 1=3x setting"
-
-- id: language
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-  default: 0
-  description: "0=English, 1=Chinese, 2=French, 3=German, 4=Italian, 5=Japanese, 6=Korean, 7=Russian, 8=Spanish"
-
-- id: ceiling_mount
-  type: enum
-  values: [0, 1, 2]
-  default: 0
-  description: "0=off, 1=on, 2=Auto (G-sensor)"
-
-- id: rear_projection
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=Off, 1=On"
-
-- id: menu_shift_horz
-  type: integer
-  range: [0, 100]
-  default: 0
-
-- id: menu_shift_vert
-  type: integer
-  range: [0, 100]
-  default: 0
-
-- id: menu_transparency
-  type: integer
-  range: [0, 90]
-  default: 0
-
-- id: splash_screen
-  type: enum
-  values: [0, 1, 2, 3]
-  default: 0
-  description: "0=Factory Logo, 1=Blue, 2=Black, 3=White"
-
-- id: standby_mode
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=1W mode, 1=Communication mode"
-
-- id: auto_power
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=OFF, 1=ON"
-
-- id: auto_shutdown
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6]
-  default: 0
-  description: "0=Off/Never, 1=5min, 2=10min, 3=15min, 4=20min, 5=25min, 6=30min"
-
-- id: sleep_timer
-  type: enum
-  values: [0, 1, 2, 3]
-  default: 0
-  description: "0=OFF, 1=2hrs, 2=4hrs, 3=6hrs"
-
-- id: high_altitude
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=off, 1=on"
-
-- id: serial_baud
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6, 7]
-  default: 7
-  description: "0=2400, 1=4800, 2=9600, 3=14400, 4=19200, 5=38400, 6=57600, 7=115200"
-
-- id: serial_echo
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=OFF, 1=ON"
-
-- id: trigger_12v
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=off, 1=on"
-
-- id: hot_key_settings
-  type: enum
-  values: [0, 1, 2, 3, 4, 5]
-  default: 0
-  description: "0=Blank Screen, 1=Aspect Ratio, 2=Freeze, 3=Projector Info, 4=Overscan, 5=Closed Captions"
-
-- id: lamp_power
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  default: 10
-  description: "0=280W ... 10=330W"
-
-- id: current_lamp
-  type: enum
-  values: [1, 2, 3]
-  default: 1
-  description: "1=Lamp1 only, 2=Lamp2 only, 3=Both lamps"
-
-- id: whisper_mode
-  type: enum
-  values: [0, 1, 2, 3]
-  default: 0
-  description: "0=Off, 1=Lamp1, 2=Lamp2, 3=Auto"
-
-- id: lamp_life_warning
-  type: integer
-  default: 0
-  description: "User-settable hour threshold; 0=off"
-
-- id: pip
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=Disable, 1=Enable"
-
-- id: pip_size
-  type: enum
-  values: [0, 1, 2]
-  default: 0
-  description: "0=Small, 1=Medium, 2=Large"
-
-- id: pip_layout
-  type: enum
-  values: [0, 1, 2, 3, 4, 5, 6, 7]
-  default: 4
-  description: "0=POP Bigger Left, 1=Over-Under Bigger Upper, 2=POP Bigger Right, 3=Over-Under Bigger Lower, 4=PIP-Bottom Right, 5=PIP-Bottom Left, 6=PIP-Top Left, 7=PIP-Top Right"
-
-- id: timing_mode
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=Normal, 1=Wide"
-
-- id: source_hotkey_enable
-  type: enum
-  values: [0, 1]
-  default: 0
-  description: "0=ON, 1=OFF"
+# Source documents settings as discrete command-parameter actions rather than free
+# variables; no separately settable parameters that are not already an action.
+# UNRESOLVED: section kept for spec completeness; no source-supported entries.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: source documents no unsolicited event notifications.
-# Projector sends error replies (ERR) and status responses (SST!) only in reply to queries.
-# Confirm via live device testing whether unsolicited status events are emitted.
+# UNRESOLVED: source does not document any unsolicited notification messages;
+# all status flows are pull (request/reply). Section kept for spec completeness.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: source describes no explicit multi-step sequences.
-# Service mode auto-exits on power off - (PWR0) returns to normal mode.
+# UNRESOLVED: source does not document any multi-step user-defined sequences.
+# The serial protocol itself is stateless per-message; sequencing is the
+# responsibility of the controller.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks: []
-# UNRESOLVED: source contains no safety interlock procedures, confirmation requirements,
-# or power-on sequencing specifications beyond standard projector operation.
+confirmation_required_for:
+  - factory_defaults      # DEF 111 - full factory wipe, requires the literal "111" guard
+  - reset_lamp1_hours
+  - reset_lamp2_hours
+  - reset_both_lamp_hours
+interlocks:
+  - digital_horz_shift_requires_digital_zoom   # source: DSH disabled until SIZ applied
+  - digital_vert_shift_requires_digital_zoom   # source: DSV disabled until SIZ applied
+  - whisper_mode_incompatible_with_high_altitude  # source: WSP not compatible with HAT
+# UNRESOLVED: high-voltage lamp / thermal warnings are not detailed in this protocol
+# document; they would normally appear in the projector safety manual, not here.
 ```
 
 ## Notes
-RS-232 physical: null modem cable, 9-pin female to host, 9-pin female to projector (pin 2↔3, pin 3↔2, pin 5↔5). Message format: `(Code Data)` for set, `(Code?)` for request, `(Code!Data)` for reply. Prefix `#` before function code for full acknowledgement echo. Space between code and data is optional. Modifiers `n` (next) and `p` (previous) work on enumerated commands. Subcodes use `+` separator: `(CODE+SUBCODE data)`. Service mode required for (DEF), (PIF), (CWI), (UID). Service mode exits on power off. Grid/Color Bars test pattern switch may take up to 18 seconds. Whisper mode incompatible with high altitude mode.
-<!-- UNRESOLVED: Ethernet port number not stated — TCP control protocol details not documented. -->
-<!-- UNRESOLVED: unsolicited event emissions not confirmed. -->
-<!-- UNRESOLVED: default PIN not stated — source shows only change PIN command (PCG) with example format. -->
+
+- **Message wrapper:** every command and reply is enclosed in parentheses. Leading `#` (e.g. `#(PWR1)`) requests a full-acknowledgement echo from the projector; acknowledgement is redundant on requests that already produce a reply.
+- **Modifiers:** for any command allowing `n`/`p`, `n` advances to the next defined value and `p` goes to the previous one (e.g. `(OVS n)` from Off goes to Zoom; `(OVS p)` from Crop goes to Zoom).
+- **Request format:** `(CODE?)` or `(CODE+SUBCODE?)` for queries; reply format is `(CODE!data)` or `(CODE+SUBCODE!data)`.
+- **Errors:** a syntax or parameter error returns `(ITP)- (65535 00000 ERR00005 "ITP: Too Few Parameters")` style messages — `ITP` is the example code, the format applies to any rejected command.
+- **Service mode:** `PIF*`, `CWI*`, and `DEF` are only available after `UID` login with a service credential. Service mode clears on power-off.
+- **Partial messages:** if a new start character `(` is received before the previous message's end character `)`, the previous (partial) message is discarded.
+- **Cable pinout for RS-232:** null standard, 9-pin female on both ends. Pin 2↔3 crossed, pin 5↔5 straight.
+- **Test pattern caveat:** switching away from the Grid (ITP1) or Color Bars (ITP5) test patterns can take up to 18 seconds.
+- **Standby interaction:** when `PWR+STBM` is `0` (1W mode), the projector cannot be powered on via UART/WEB/USB. Set standby to `1` (Communication mode, ~20W) to allow serial power-on.
+- **Auth:** this document describes a local-protocol serial surface; there is no network login, no API key, and no token. The PIN (PIV/PCG) is a local UI lockout, not a network authentication mechanism.
+- **Default subnet / gateway / hostname values:** the source's example values (`192.168.000.001` / `255.255.255.000` / `DWU670-E`) appear to be illustrative of a typical install rather than factory defaults; they should be read as examples of payload format, not as the projector's own defaults.
+
+<!-- UNRESOLVED: TCP port for the Ethernet interface is not stated in this document. -->
+<!-- UNRESOLVED: firmware version compatibility ranges across CP 2210/2215/2230/2000M not stated. -->
+<!-- UNRESOLVED: full set of baud rates the hardware supports beyond those listed for BDR (0..7) not stated. -->
+<!-- UNRESOLVED: edge enhancement (EDG) and white peaking (WPK) numeric ranges not explicitly stated. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
-last_checked_at: 2026-05-20T08:04:51.795Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-100410-08-christie-lit-man-usr-cp2210.pdf
+  - https://www.manualslib.com/manual/816593/Christie-Cp-2210.html
+retrieved_at: 2026-05-14T21:23:46.567Z
+last_checked_at: 2026-06-02T00:53:52.894Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T08:04:51.795Z
-matched_actions: 95
-action_count: 95
-confidence: high
-summary: "All 95 spec actions matched source commands; transport parameters verified."
+checked_at: 2026-06-02T00:53:52.894Z
+matched_actions: 153
+action_count: 153
+confidence: medium
+summary: "All 153 spec actions matched literal command codes in source; transport parameters (115200 baud, 8N1) verified; bidirectional command coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port for the Ethernet interface not stated in source"
+- "TCP port not stated in source"
+- "section kept for spec completeness; no source-supported entries."
+- "source does not document any unsolicited notification messages;"
+- "source does not document any multi-step user-defined sequences."
+- "high-voltage lamp / thermal warnings are not detailed in this protocol"
+- "TCP port for the Ethernet interface is not stated in this document."
+- "firmware version compatibility ranges across CP 2210/2215/2230/2000M not stated."
+- "full set of baud rates the hardware supports beyond those listed for BDR (0..7) not stated."
+- "edge enhancement (EDG) and white peaking (WPK) numeric ranges not explicitly stated."
 ```
 
 ---

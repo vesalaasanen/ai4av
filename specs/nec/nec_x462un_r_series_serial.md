@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:28.627Z
 last_checked_at: 2026-05-14T18:17:19.142Z
 generated_at: 2026-05-14T18:17:19.142Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "document title indicates \"Projector\" but input specifies X462UN-R Series display — verification needed"
+  - "many parameters are settable but only via action commands;"
+  - "no unsolicited event notifications documented;"
+  - "power on/off commands block other commands during execution;"
+  - "standby mode compatibility matrix not fully specified; varies by model"
+  - "input terminal valueAppendix not fully reproduced; some values vary by model"
+  - "aspect valuesAppendix not fully reproduced"
+  - "eco mode valuesAppendix not fully reproduced"
+  - "selection signal type valuesAppendix not fully reproduced"
+  - "audio select valuesAppendix not fully reproduced"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.142Z
   matched_actions: 52
   action_count: 53
-  confidence: high
-  summary: "All 52 spec actions matched directly to source commands with correct transport parameters."
+  confidence: medium
+  summary: "All 52 spec actions matched directly to source commands with correct transport parameters. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -588,7 +598,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:28.627Z
 last_checked_at: 2026-05-14T18:17:19.142Z
 ```
 
@@ -599,14 +609,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.142Z
 matched_actions: 52
 action_count: 53
-confidence: high
-summary: "All 52 spec actions matched directly to source commands with correct transport parameters."
+confidence: medium
+summary: "All 52 spec actions matched directly to source commands with correct transport parameters. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "document title indicates \"Projector\" but input specifies X462UN-R Series display — verification needed"
+- "many parameters are settable but only via action commands;"
+- "no unsolicited event notifications documented;"
+- "power on/off commands block other commands during execution;"
+- "standby mode compatibility matrix not fully specified; varies by model"
+- "input terminal valueAppendix not fully reproduced; some values vary by model"
+- "aspect valuesAppendix not fully reproduced"
+- "eco mode valuesAppendix not fully reproduced"
+- "selection signal type valuesAppendix not fully reproduced"
+- "audio select valuesAppendix not fully reproduced"
 ```
 
 ---

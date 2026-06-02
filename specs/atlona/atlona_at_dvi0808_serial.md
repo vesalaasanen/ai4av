@@ -18,24 +18,31 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://atlona.com/pdf/manuals/AT-DVI-MATRIX.pdf
+retrieved_at: 2026-05-19T18:48:56.762Z
 last_checked_at: 2026-05-20T04:51:22.522Z
 generated_at: 2026-05-20T04:51:22.522Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP, HTTP, or other protocol support not mentioned in source"
+  - "flow control not stated in source"
+  - "port number not applicable for serial-only device"
+  - "power on/off commands not found in source"
+  - "device does not appear to send unsolicited status notifications"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "voltage/current/power specs not in source"
+  - "firmware version compatibility not stated"
+  - "TCP/IP or HTTP control paths not mentioned in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T04:51:22.522Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -299,12 +306,9 @@ Example command strings from source:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://atlona.com/pdf/manuals/AT-DVI-MATRIX.pdf
+retrieved_at: 2026-05-19T18:48:56.762Z
 last_checked_at: 2026-05-20T04:51:22.522Z
 ```
 
@@ -315,14 +319,23 @@ verdict: verified
 checked_at: 2026-05-20T04:51:22.522Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP, HTTP, or other protocol support not mentioned in source"
+- "flow control not stated in source"
+- "port number not applicable for serial-only device"
+- "power on/off commands not found in source"
+- "device does not appear to send unsolicited status notifications"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "voltage/current/power specs not in source"
+- "firmware version compatibility not stated"
+- "TCP/IP or HTTP control paths not mentioned in source"
 ```
 
 ---

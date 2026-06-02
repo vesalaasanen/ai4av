@@ -17,12 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - developer.honeywellhome.com
-  - github.com
 source_urls:
   - https://developer.honeywellhome.com/api-methods
-  - "https://developer.honeywellhome.com/api-methods?field_smart_method_tags_tid=39"
-  - https://github.com/roy-bentley/enviracom/blob/main/docs/PROTOCOL.md
-retrieved_at: 2026-05-01T02:09:42.940Z
+retrieved_at: 2026-04-30T04:32:30.743Z
 last_checked_at: 2026-04-23T07:01:27.626Z
 generated_at: 2026-04-23T07:01:27.626Z
 firmware_coverage: "Not stated in source"
@@ -32,13 +29,29 @@ known_gaps:
   - "/devices/waterLeakDetectors/{deviceId}/history"
   - "/devices/dhw/{deviceId}/schedule"
   - "/devices/shutoffvalve/{deviceId}"
+  - "complete payload schemas for POST/PUT requests not included in source"
+  - "base URL not stated in source excerpt"
+  - "token format, expiry, scope details not in source excerpt"
+  - "powerable - no explicit power on/off command in source"
+  - "routable - no input/output routing for thermostat"
+  - "levelable - temperature setpoint commands may exist but payloads not documented"
+  - "payload schema not documented in source"
+  - "response payload structures not documented in source excerpt"
+  - "configurable parameters not enumerated in source"
+  - "event types and payload schemas not documented"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source excerpt"
+  - "payload schemas for POST/PUT endpoints not included in source"
+  - "base URL for API calls not stated in source"
+  - "event type definitions not documented"
+  - "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
 verification:
   verdict: verified
   checked_at: 2026-04-23T07:01:27.626Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations."
+  confidence: medium
+  summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -254,12 +267,9 @@ Cloud-only device — requires internet connectivity and Honeywell account. All 
 ```yaml
 source_domains:
   - developer.honeywellhome.com
-  - github.com
 source_urls:
   - https://developer.honeywellhome.com/api-methods
-  - "https://developer.honeywellhome.com/api-methods?field_smart_method_tags_tid=39"
-  - https://github.com/roy-bentley/enviracom/blob/main/docs/PROTOCOL.md
-retrieved_at: 2026-05-01T02:09:42.940Z
+retrieved_at: 2026-04-30T04:32:30.743Z
 last_checked_at: 2026-04-23T07:01:27.626Z
 ```
 
@@ -270,8 +280,8 @@ verdict: verified
 checked_at: 2026-04-23T07:01:27.626Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations."
+confidence: medium
+summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -281,6 +291,22 @@ summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verifi
 - "/devices/waterLeakDetectors/{deviceId}/history"
 - "/devices/dhw/{deviceId}/schedule"
 - "/devices/shutoffvalve/{deviceId}"
+- "complete payload schemas for POST/PUT requests not included in source"
+- "base URL not stated in source excerpt"
+- "token format, expiry, scope details not in source excerpt"
+- "powerable - no explicit power on/off command in source"
+- "routable - no input/output routing for thermostat"
+- "levelable - temperature setpoint commands may exist but payloads not documented"
+- "payload schema not documented in source"
+- "response payload structures not documented in source excerpt"
+- "configurable parameters not enumerated in source"
+- "event types and payload schemas not documented"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source excerpt"
+- "payload schemas for POST/PUT endpoints not included in source"
+- "base URL for API calls not stated in source"
+- "event type definitions not documented"
+- "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
 ```
 
 ---

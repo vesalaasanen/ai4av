@@ -24,14 +24,20 @@ last_checked_at: 2026-04-27T08:57:42.307Z
 generated_at: 2026-04-27T08:57:42.307Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "model name not stated in source"
+  - "response strings not documented in source"
+  - "no persistent parameters documented"
+  - "no unsolicited notifications documented"
+  - "no multi-step sequences documented"
+  - "device model name not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T08:57:42.307Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched source semantically; transport parameters verified or reasonably inferred; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 15 spec actions matched source semantically; transport parameters verified or reasonably inferred; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -217,14 +223,19 @@ verdict: verified
 checked_at: 2026-04-27T08:57:42.307Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched source semantically; transport parameters verified or reasonably inferred; bidirectional coverage complete."
+confidence: medium
+summary: "All 15 spec actions matched source semantically; transport parameters verified or reasonably inferred; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "model name not stated in source"
+- "response strings not documented in source"
+- "no persistent parameters documented"
+- "no unsolicited notifications documented"
+- "no multi-step sequences documented"
+- "device model name not stated in source"
 ```
 
 ---

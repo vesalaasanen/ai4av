@@ -24,14 +24,18 @@ last_checked_at: 2026-05-01T00:09:23.792Z
 generated_at: 2026-05-01T00:09:23.792Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "maximum input/output count not stated in source"
+  - "source does not enumerate discrete settable parameters beyond actions."
+  - "no safety warnings or interlock procedures in source"
+  - "plane map PlnMap1 not used at this time (reserved)"
 verification:
   verdict: verified
   checked_at: 2026-05-01T00:09:23.792Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified."
+  confidence: medium
+  summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -326,14 +330,17 @@ verdict: verified
 checked_at: 2026-05-01T00:09:23.792Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified."
+confidence: medium
+summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "maximum input/output count not stated in source"
+- "source does not enumerate discrete settable parameters beyond actions."
+- "no safety warnings or interlock procedures in source"
+- "plane map PlnMap1 not used at this time (reserved)"
 ```
 
 ---

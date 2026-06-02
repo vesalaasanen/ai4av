@@ -18,22 +18,30 @@ compatible_with:
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+retrieved_at: 2026-04-30T04:24:51.843Z
 last_checked_at: 2026-05-14T18:17:14.612Z
 generated_at: 2026-05-14T18:17:14.612Z
 firmware_coverage: 3.0.4.8
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variants covered by this protocol not fully enumerated"
+  - "firmware version compatibility range not stated — only v3.0.4.8 confirmed"
+  - "no multi-step sequences explicitly documented in source"
+  - "no power-on sequencing or safety interlock procedures documented in source"
+  - "login credential change procedure not documented"
+  - "session timeout / keepalive behavior not documented"
+  - "maximum message length not stated"
+  - "firmware version compatibility range not stated"
+  - "exact model variants covered by this protocol not enumerated"
+  - "error code enumeration beyond \"#Error\" not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.612Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 21 spec actions matched with literal command syntax in source; transport parameters (port 23, TCP, credential auth, 0x0A framing) verified verbatim."
+  confidence: medium
+  summary: "All 21 spec actions matched with literal command syntax in source; transport parameters (port 23, TCP, credential auth, 0x0A framing) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -414,10 +422,8 @@ interlocks: []
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+retrieved_at: 2026-04-30T04:24:51.843Z
 last_checked_at: 2026-05-14T18:17:14.612Z
 ```
 
@@ -428,14 +434,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.612Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 21 spec actions matched with literal command syntax in source; transport parameters (port 23, TCP, credential auth, 0x0A framing) verified verbatim."
+confidence: medium
+summary: "All 21 spec actions matched with literal command syntax in source; transport parameters (port 23, TCP, credential auth, 0x0A framing) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variants covered by this protocol not fully enumerated"
+- "firmware version compatibility range not stated — only v3.0.4.8 confirmed"
+- "no multi-step sequences explicitly documented in source"
+- "no power-on sequencing or safety interlock procedures documented in source"
+- "login credential change procedure not documented"
+- "session timeout / keepalive behavior not documented"
+- "maximum message length not stated"
+- "firmware version compatibility range not stated"
+- "exact model variants covered by this protocol not enumerated"
+- "error code enumeration beyond \"#Error\" not documented"
 ```
 
 ---

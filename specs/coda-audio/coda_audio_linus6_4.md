@@ -24,14 +24,21 @@ last_checked_at: 2026-04-27T14:40:22.749Z
 generated_at: 2026-04-27T14:40:22.749Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "separate \"LINUS Control v2.8 Third Party Control for LINUS6.4\" document contains additional commands not covered here"
+  - "no standalone settable parameters beyond discrete actions"
+  - "no unsolicited notifications documented - device only responds to GET commands"
+  - "no multi-step sequences documented"
+  - "power sequencing safety not explicitly documented beyond delay param"
+  - "full command set for LINUS6.4 requires separate v2.8 document not included here"
+  - "firmware version not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T14:40:22.749Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions matched verbatim to source commands with correct parameter ranges and transport verified on UDP port 3000."
+  confidence: medium
+  summary: "All 16 spec actions matched verbatim to source commands with correct parameter ranges and transport verified on UDP port 3000. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -293,14 +300,20 @@ verdict: verified
 checked_at: 2026-04-27T14:40:22.749Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions matched verbatim to source commands with correct parameter ranges and transport verified on UDP port 3000."
+confidence: medium
+summary: "All 16 spec actions matched verbatim to source commands with correct parameter ranges and transport verified on UDP port 3000. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "separate \"LINUS Control v2.8 Third Party Control for LINUS6.4\" document contains additional commands not covered here"
+- "no standalone settable parameters beyond discrete actions"
+- "no unsolicited notifications documented - device only responds to GET commands"
+- "no multi-step sequences documented"
+- "power sequencing safety not explicitly documented beyond delay param"
+- "full command set for LINUS6.4 requires separate v2.8 document not included here"
+- "firmware version not stated in source"
 ```
 
 ---

@@ -4,13 +4,13 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Lumagen Radiance 2143 Series Control Spec"
 manufacturer: Lumagen
-model_family: "Radiance 2143 Series"
+model_family: "Radiance 2143"
 aliases: []
 compatible_with:
   manufacturers:
     - Lumagen
   models:
-    - "Radiance 2143 Series"
+    - "Radiance 2143"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -19,32 +19,37 @@ source_domains:
   - lumagen.com
 source_urls:
   - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
-retrieved_at: 2026-05-04T18:03:24.592Z
-last_checked_at: 2026-05-14T18:17:17.709Z
-generated_at: 2026-05-14T18:17:17.709Z
+retrieved_at: 2026-04-30T04:31:52.314Z
+last_checked_at: 2026-06-02T03:24:56.958Z
+generated_at: 2026-06-02T03:24:56.958Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version mapping for which commands are supported on the Radiance 2143 specifically vs Radiance Pro"
+  - "many more variables exist (input/output offsets, ctemp pts, LUT entries) but follow the same set_via/query_via pattern; see ZY/ZQ Actions and Feedbacks above for full coverage."
+  - "no macros defined in source"
+  - "source contains no explicit safety warnings, interlock procedures,"
+  - "firmware version compatibility ranges per command (source notes \"for Radiance Pro... in latest posted software revision\" and \"Older commands that have been superceded are shown grayed out\", but specific Radiance 2143 firmware revisions and command support cutoffs are not stated)."
+  - "behavior on power loss, error recovery sequences, fault behavior are not described in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.709Z
-  matched_actions: 167
-  action_count: 178
-  confidence: high
-  summary: "All 167 spec actions matched literally in source; transport fully verified; comprehensive coverage of Radiance 2143 control protocol."
+  checked_at: 2026-06-02T03:24:56.958Z
+  matched_actions: 215
+  action_count: 215
+  confidence: medium
+  summary: "All 215 spec actions match verbatim source command tokens and all transport parameters (9600 baud, 8N1, no flow) are confirmed in source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
 # Lumagen Radiance 2143 Series Control Spec
 
 ## Summary
-Video processor with RS-232 control interface. Controls power, input selection (18 logical inputs across 4 memories), aspect ratio, zoom, test patterns, image adjustments (contrast, color, hue, black level), output configuration (CMS, gamma, 3D LUT), and HDR metadata. Supports optional delimiter mode with ack/nack and checksum variants. Query commands begin with ZQ and return comma-separated status data prefixed with !.
+RS-232 serial control interface for the Lumagen Radiance 2143 video processor. The protocol uses single-character and multi-character ASCII commands (mostly without terminators) plus a family of multi-character `ZQ`/`ZY`/`ZT`/`ZW`/`ZB`/`ZC`/`ZD`/`ZE` commands for queries, configuration, color management, test patterns, and on-screen messaging. Many advanced commands are tagged "Radiance Pro only" in the source; this spec enumerates the full documented command set but applicability to the 2143 may be partial.
 
-<!-- UNRESOLVED: firmware compatibility ranges not stated in source -->
-<!-- UNRESOLVED: Radiance Pro-specific commands (1.90, 2.00, 2.40, extended source aspects, Rec2020/HDR) are documented but may require newer firmware; source does not specify minimum firmware version -->
+<!-- UNRESOLVED: firmware version mapping for which commands are supported on the Radiance 2143 specifically vs Radiance Pro -->
 
 ## Transport
 ```yaml
@@ -62,1815 +67,2107 @@ auth:
 
 ## Traits
 ```yaml
-- powerable      # inferred: ON (%), STBY ($) power commands present
-- routable       # inferred: input selection commands (i0-i18, ZONE) present
-- queryable      # inferred: ZQ query commands returning state present
-- levelable      # inferred: contrast, color, hue, black level adjustment commands present
+- powerable        # inferred from power on/standby command examples (% and $)
+- routable         # inferred from input selection (i) and zone selection (L)
+- queryable        # inferred from ZQI/ZQO/ZQS query command family
+- levelable        # inferred from level-set commands (color, hue, contrast, gamma, ctemp)
 ```
 
 ## Actions
 ```yaml
+# --- Power / basic navigation (single-char ASCII command list) ---
 - id: power_on
   label: Power On
   kind: action
+  command: "%"
   params: []
 
-- id: power_standby
-  label: Standby
+- id: standby
+  label: Power to Standby
   kind: action
+  command: "$"
   params: []
 
 - id: menu
   label: Activate Menu
   kind: action
+  command: "M"
   params: []
 
 - id: exit
-  label: Exit
+  label: Exit / Cancel
   kind: action
+  command: "X"
   params: []
 
 - id: help
-  label: Help
+  label: On-screen Help
   kind: action
+  command: "U"
   params: []
 
-- id: force_menu_off
+- id: clear_menu
   label: Force Menu Off
   kind: action
+  command: "!"
   params: []
 
-- id: select_input
+- id: input_select
   label: Select Input
   kind: action
+  command: "i{input}"
   params:
     - name: input
-      type: integer
-      description: Input number (0-18, or i0-i18)
-    - name: memory
       type: string
-      description: "Memory designator (default, A, B, C, D)"
-    - name: offset
-      type: integer
-      description: "Offset for inputs >9 (e.g., +2 for input 12)"
-  notes: "Format: i[N] or i[M][N] for mem A-D. Use +N suffix for inputs 10-18."
+      description: |
+        Input number. For 1-9 send the digit (e.g. "i2" for input 2). For
+        input 10+ use the "+" prefix (e.g. "i+2" for input 12). Source: "Choose
+        input (i.e. i2 for input 2 and i+2 for input 12)."
 
-- id: prev_input
-  label: Previous Input
+- id: zone_select
+  label: Output Zone Select
   kind: action
+  command: "L"
+  params: []
+
+- id: alt_key
+  label: ALT Key
+  kind: action
+  command: "#"
+  params: []
+  # NOTE: source: "If delimiter mode enabled instead use :(colon) character"
+
+- id: previous_input
+  label: Display Previous Input
+  kind: action
+  command: "P"
   params: []
 
 - id: pip_off
   label: PIP Off
   kind: action
+  command: "e"
   params: []
 
 - id: pip_select
   label: PIP Select
   kind: action
+  command: "p"
   params: []
 
 - id: pip_swap
   label: PIP Swap
   kind: action
+  command: "r"
   params: []
 
 - id: pip_mode
   label: PIP Mode
   kind: action
+  command: "m"
   params: []
 
 - id: ok
-  label: OK / Accept
+  label: Accept Command (OK)
   kind: action
+  command: "k"
   params: []
-  notes: "Many commands do not use <CR> terminator. Only send <CR> when command specifies it."
+
+- id: ok_cr
+  label: Accept Command (CR variant)
+  kind: action
+  command: "<CR>"
+  params: []
+  # NOTE: source: "Many RS232 commands do not use a <CR> terminator. Do not send the <CR> unless the command specifies it as the terminator."
 
 - id: arrow_left
   label: Left Arrow
   kind: action
+  command: "<"
   params: []
 
 - id: arrow_right
   label: Right Arrow
   kind: action
+  command: ">"
   params: []
 
 - id: arrow_down
   label: Down Arrow
   kind: action
+  command: "v"
   params: []
 
 - id: arrow_up
   label: Up Arrow
   kind: action
+  command: "^"
   params: []
 
 - id: digit_0
-  label: Digit 0
+  label: Enter digit 0
   kind: action
+  command: "0"
   params: []
 
 - id: digit_1
-  label: Digit 1
+  label: Enter digit 1
   kind: action
+  command: "1"
   params: []
 
 - id: digit_2
-  label: Digit 2
+  label: Enter digit 2
   kind: action
+  command: "2"
   params: []
 
 - id: digit_3
-  label: Digit 3
+  label: Enter digit 3
   kind: action
+  command: "3"
   params: []
 
 - id: digit_4
-  label: Digit 4
+  label: Enter digit 4
   kind: action
+  command: "4"
   params: []
 
 - id: digit_5
-  label: Digit 5
+  label: Enter digit 5
   kind: action
+  command: "5"
   params: []
 
 - id: digit_6
-  label: Digit 6
+  label: Enter digit 6
   kind: action
+  command: "6"
   params: []
 
 - id: digit_7
-  label: Digit 7
+  label: Enter digit 7
   kind: action
+  command: "7"
   params: []
 
 - id: digit_8
-  label: Digit 8
+  label: Enter digit 8
   kind: action
+  command: "8"
   params: []
 
 - id: digit_9
-  label: Digit 9
+  label: Enter digit 9
   kind: action
+  command: "9"
   params: []
 
 - id: add_10
-  label: Add 10 (for input selection)
+  label: Add 10 to Next Digit (10+)
   kind: action
+  command: "+"
   params: []
 
-- id: source_aspect_4_3
-  label: Source Aspect 4:3
-  kind: action
-  params: []
-
-- id: source_aspect_4_3_nz
-  label: Source Aspect 4:3 (No Zoom)
-  kind: action
-  params: []
-
-- id: source_aspect_4_3_letterbox
-  label: Source Aspect 4:3 Letterbox
-  kind: action
-  params: []
-
-- id: source_aspect_16_9
-  label: Source Aspect 16:9
-  kind: action
-  params: []
-
-- id: source_aspect_16_9_nz
-  label: Source Aspect 16:9 (No Zoom)
-  kind: action
-  params: []
-
-- id: source_aspect_1_85
-  label: Source Aspect 1.85
-  kind: action
-  params: []
-
-- id: source_aspect_1_85_nz
-  label: Source Aspect 1.85 (No Zoom)
-  kind: action
-  params: []
-
-- id: source_aspect_1_90
-  label: Source Aspect 1.90
-  kind: action
-  params: []
-  notes: "Radiance Pro only"
-
-- id: source_aspect_2_00
-  label: Source Aspect 2.00
-  kind: action
-  params: []
-  notes: "Radiance Pro only"
-
-- id: source_aspect_2_20
-  label: Source Aspect 2.20
-  kind: action
-  params: []
-  notes: "Radiance Pro only"
-
-- id: source_aspect_2_35
-  label: Source Aspect 2.35
-  kind: action
-  params: []
-
-- id: source_aspect_2_35_nz
-  label: Source Aspect 2.35 (No Zoom)
-  kind: action
-  params: []
-
-- id: source_aspect_2_40
-  label: Source Aspect 2.40
-  kind: action
-  params: []
-  notes: "Radiance Pro only"
-
-- id: non_linear_stretch
+# --- Source aspect selection commands ---
+- id: nls
   label: Non-Linear Stretch
   kind: action
-  params: []
-  notes: "Send source aspect first, then NLS"
-
-- id: mem_a
-  label: Select MEM A
-  kind: action
+  command: "N"
   params: []
 
-- id: mem_b
-  label: Select MEM B
+- id: aspect_4_3
+  label: Select 4:3 Source Aspect (prev zoom)
   kind: action
+  command: "n"
   params: []
 
-- id: mem_c
-  label: Select MEM C
+- id: aspect_4_3_nz
+  label: Select 4:3 Source Aspect (no zoom)
   kind: action
+  command: "["
   params: []
 
-- id: mem_d
-  label: Select MEM D
+- id: aspect_4_3_nz_nls
+  label: Select 4:3 Source Aspect with NLS (no zoom)
   kind: action
+  command: "[N"
   params: []
 
-- id: onscreen_messages_on
-  label: On-Screen Messages On
+- id: aspect_lbox
+  label: Select 4:3 Letterbox Source Aspect (prev zoom)
   kind: action
+  command: "l"
   params: []
 
-- id: onscreen_messages_off
-  label: On-Screen Messages Off
+- id: aspect_lbox_nz
+  label: Select 4:3 Letterbox Source Aspect (no zoom)
   kind: action
+  command: "]"
+  params: []
+
+- id: aspect_lbox_nz_nls
+  label: Select 4:3 Letterbox Source Aspect with NLS (no zoom)
+  kind: action
+  command: "]N"
+  params: []
+
+- id: aspect_16_9
+  label: Select 16:9 Source Aspect (prev zoom)
+  kind: action
+  command: "w"
+  params: []
+
+- id: aspect_16_9_nz
+  label: Select 16:9 Source Aspect (no zoom)
+  kind: action
+  command: "*"
+  params: []
+
+- id: aspect_16_9_nz_nls
+  label: Select 16:9 Source Aspect with NLS (no zoom)
+  kind: action
+  command: "*N"
+  params: []
+
+- id: aspect_1_85
+  label: Select 1.85 Source Aspect (prev zoom)
+  kind: action
+  command: "j"
+  params: []
+
+- id: aspect_1_85_nz
+  label: Select 1.85 Source Aspect (no zoom)
+  kind: action
+  command: "/"
+  params: []
+
+- id: aspect_1_85_nz_nls
+  label: Select 1.85 Source Aspect with NLS (no zoom)
+  kind: action
+  command: "/N"
+  params: []
+
+- id: aspect_1_90
+  label: Select 1.90 Source Aspect (Radiance Pro only)
+  kind: action
+  command: "A"
+  params: []
+
+- id: aspect_1_90_nls
+  label: Select 1.90 Source Aspect with NLS (Radiance Pro only)
+  kind: action
+  command: "AN"
+  params: []
+
+- id: aspect_2_00
+  label: Select 2.00 Source Aspect (Radiance Pro only)
+  kind: action
+  command: "C"
+  params: []
+
+- id: aspect_2_00_nls
+  label: Select 2.00 Source Aspect with NLS (Radiance Pro only)
+  kind: action
+  command: "CN"
+  params: []
+
+- id: aspect_2_20
+  label: Select 2.20 Source Aspect (Radiance Pro only)
+  kind: action
+  command: "E"
+  params: []
+
+- id: aspect_2_20_nls
+  label: Select 2.20 Source Aspect with NLS (Radiance Pro only)
+  kind: action
+  command: "EN"
+  params: []
+
+- id: aspect_2_35
+  label: Select 2.35 Source Aspect (prev zoom)
+  kind: action
+  command: "W"
+  params: []
+
+- id: aspect_2_35_nz
+  label: Select 2.35 Source Aspect (no zoom)
+  kind: action
+  command: "K"
+  params: []
+
+- id: aspect_2_40
+  label: Select 2.40 Source Aspect (Radiance Pro only)
+  kind: action
+  command: "G"
+  params: []
+
+- id: aspect_4_3_pillarbox
+  label: Select 4:3 Pillarbox Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+n"
+  params: []
+
+- id: aspect_1_375_pillarbox
+  label: Select 1.375 Pillarbox Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+l"
+  params: []
+
+- id: aspect_1_66_pillarbox
+  label: Select 1.66 Pillarbox Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+w"
+  params: []
+
+- id: aspect_2_10
+  label: Select 2.10 Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+j"
+  params: []
+
+- id: aspect_2_55
+  label: Select 2.55 Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+W"
+  params: []
+
+- id: aspect_2_76
+  label: Select 2.76 Source Aspect (Radiance Pro only, Extended)
+  kind: action
+  command: "+N"
+  params: []
+
+# --- Input memory selection ---
+- id: mema
+  label: Select Input Memory A (MEMA)
+  kind: action
+  command: "a"
+  params: []
+
+- id: memb
+  label: Select Input Memory B (MEMB)
+  kind: action
+  command: "b"
+  params: []
+
+- id: memc
+  label: Select Input Memory C (MEMC)
+  kind: action
+  command: "c"
+  params: []
+
+- id: memd
+  label: Select Input Memory D (MEMD)
+  kind: action
+  command: "d"
+  params: []
+
+# --- OSD / aspect detect / misc single-char ---
+- id: osd_messages_on
+  label: Onscreen Messages On
+  kind: action
+  command: "g"
+  params: []
+
+- id: osd_messages_off
+  label: Onscreen Messages Off
+  kind: action
+  command: "s"
   params: []
 
 - id: auto_aspect_disable
-  label: Auto Aspect Disable
+  label: Auto Aspect Disable (Radiance Pro only)
   kind: action
+  command: "V"
   params: []
-  notes: "Radiance Pro only"
 
 - id: auto_aspect_enable
-  label: Auto Aspect Enable
+  label: Auto Aspect Enable (Radiance Pro only)
   kind: action
+  command: "~"
   params: []
-  notes: "Radiance Pro only. If delimiter mode enabled, use ? instead of ~"
+  # NOTE: source: "If delimiter mode enabled instead use ?(question mark) character"
 
-- id: save
-  label: Save
+- id: save_shortcut
+  label: Save Shortcut
   kind: action
+  command: "S"
   params: []
-  notes: "Send Save then OK"
+  # NOTE: send "S" then "k" (OK) to confirm save
 
 - id: hdr_setup
-  label: HDR Setup
+  label: Show HDR Parameter Menu (Radiance Pro only)
   kind: action
+  command: "Y"
   params: []
-  notes: "Radiance Pro only"
 
-- id: test_pattern
-  label: Test Pattern
+- id: pattern_menu
+  label: Show Test Pattern Menu (Radiance Pro only)
   kind: action
-  params:
-    - name: pattern
-      type: string
-      description: "Pattern group letter a-r"
-    - name: sub
-      type: integer
-      description: "Sub pattern number 0-n"
-    - name: ire
-      type: integer
-      description: "IRE level 000-100"
-  notes: "Radiance Pro only. Also see ZY7T and ZQI02 for pattern info queries."
+  command: "H"
+  params: []
 
-- id: define_block_char
+- id: noop_underscore
+  label: No-Operation
+  kind: action
+  command: "_"
+  params: []
+  # NOTE: source: "Underscore is a no-operation character and is always ignored"
+
+# --- Legacy test pattern command tXMM (use ZY7T instead per source) ---
+- id: test_pattern_legacy
+  label: Test Pattern (legacy, use ZY7T instead)
+  kind: action
+  command: "t{group}{level}"
+  params:
+    - name: group
+      type: string
+      description: |
+        Test pattern group letter 'a'-'p' (a=Crosshatch, b=Overscan,
+        c=Contrast, d=Every other Hline, e=Every other Vline, f=Ramp,
+        g=White Window, h=White Solid, i=75% Colorbars, j=Red Solid,
+        k=Green Solid, l=Blue Solid, m=Yellow Solid, n=Cyan Solid,
+        o=Magenta Solid, p=Contrast2, q=Red Window, r=Green Window,
+        s=Blue Window, t=Yellow Window, u=Cyan Window, v=Magenta Window).
+        Send capital letter 'X' to exit.
+    - name: level
+      type: integer
+      description: |
+        MM=00-10 corresponds to 10%-100% in 10% steps. MM=11-20 corresponds
+        to 5%-95% in 10% steps.
+
+- id: test_pattern_adjustable
+  label: Set Adjustable Test Pattern Mode
+  kind: action
+  command: "tA"
+  params: []
+
+- id: test_pattern_reference
+  label: Set Reference Test Pattern Mode
+  kind: action
+  command: "tR"
+  params: []
+
+# --- ZB / ZC / ZD / ZE config commands ---
+- id: define_block_character
   label: Define Block Character
   kind: action
+  command: "ZB{X}"
   params:
-    - name: char
+    - name: X
       type: string
-      description: "Character to display as solid block"
-  notes: "Used for on-screen messages like volume bars"
+      description: Character to be displayed as a solid block in onscreen messages.
 
 - id: clear_onscreen_message
-  label: Clear On-Screen Message
+  label: Clear Onscreen Message
   kind: action
+  command: "ZC"
   params: []
 
 - id: set_delimiters
-  label: Set Delimiters
+  label: Set Delimiters Mode
   kind: action
+  command: "ZD{mode}"
   params:
     - name: mode
       type: integer
-      description: "0=off, 1=on, 2=on with ack/nack, 3=on with checksum and ack/nack"
-  notes: "When delimiter mode active, use ? for enable auto-aspect and : for ALT key"
+      description: |
+        0=off, 1=on, 2=on with ack/nack, 3=on with checksum and ack/nack.
 
 - id: set_echo
-  label: Set Echo
+  label: Set Echo Mode
   kind: action
+  command: "ZE{mode}"
   params:
     - name: mode
       type: integer
-      description: "0=off, 1=on (default), 2=off with status"
-  notes: "Echo=On recommended; Off may affect software updates"
+      description: 0=echo off, 1=echo on (default), 2=echo off with status.
+
+# --- ZT / ZW print / delay commands ---
+- id: print_message
+  label: Print On-screen Message
+  kind: action
+  command: "ZTM{text}<CR>"
+  params:
+    - name: M
+      type: string
+      description: |
+        Message slot '0'-'9'. '9' leaves message until "ZC" sent. 2 lines,
+        30 chars per line, legal chars 0x20-0x7A. Terminator <CR> or '{'.
+
+- id: delay_command_processing
+  label: Delay RS-232 Command Processing
+  kind: action
+  command: "ZW{ms}<CR>"
+  params:
+    - name: ms
+      type: integer
+      description: Delay in milliseconds, up to 30000 (30 seconds).
+
+# --- ZY system / config set commands ---
+- id: set_baud_rate
+  label: Set RS-232 Baud Rate
+  kind: action
+  command: "ZYS{X}<CR>"
+  params:
+    - name: X
+      type: string
+      description: |
+        'D'=9.6k (default), 'M'=28.8k, 'F'=57.6k, '1'=115.2k, '2'=230.4k,
+        '3'=460.8k. Return to default 9.6k before using Lumagen utilities.
 
 - id: set_zoom_factor
   label: Set Zoom Factor
   kind: action
+  command: "ZY0{M}<CR>"
   params:
-    - name: factor
+    - name: M
       type: integer
-      description: "0-2 (or 0-7 if zoom set for 5% steps)"
+      description: |
+        Zoom factor 0-2 (or 0-7 if zoom is set for 5% steps).
 
 - id: set_output_aspect_all
-  label: Set Output Aspect Ratio (All Inputs)
+  label: Set Output Aspect for All Input Aspects
   kind: action
+  command: "ZY1{MMM}<CR>"
   params:
-    - name: aspect
+    - name: MMM
       type: integer
-      description: "110-250 corresponding to 1.10-2.50"
+      description: 110-250 corresponds to 1.10-2.50.
 
 - id: set_output_shrink
   label: Set Output Shrink Parameters
   kind: action
+  command: "ZY2{top}{left}{bottom}{right}<CR>"
   params:
     - name: top
       type: integer
-      description: "Top edge shrink 0-255"
+      description: 000-255 pixels
     - name: left
       type: integer
-      description: "Left edge shrink 0-255"
+      description: 000-255 pixels
     - name: bottom
       type: integer
-      description: "Bottom edge shrink 0-255"
+      description: 000-255 pixels
     - name: right
       type: integer
-      description: "Right edge shrink 0-255"
+      description: 000-255 pixels
 
-- id: set_output_trigger
-  label: Set Output Trigger
+- id: set_trigger
+  label: Set Trigger Output (units with output triggers only)
   kind: action
+  command: "ZY3{trigger}{state}<CR>"
   params:
     - name: trigger
       type: integer
-      description: "1 or 2"
+      description: 1 or 2
     - name: state
       type: string
-      description: "H=on, L=off"
-  notes: "Only available on units with output triggers"
+      description: H=on, L=off
 
 - id: set_output_gamma
-  label: Set Output Color Management Gamma
+  label: Set Output Color Mgmt Gamma
   kind: action
+  command: "ZY40{XXX}<CR>"
   params:
-    - name: gamma
+    - name: XXX
       type: integer
-      description: "080-140 corresponding to 0.80-1.40"
+      description: 080-140 corresponds to 0.80-1.40
 
-- id: set_output_color_gamut_enable
-  label: Set Output Color Management 3D Gamut Enable
+- id: set_output_color_gamut_matrix_legacy
+  label: Set Output Color Mgmt Gamut Matrix (legacy, use ZY415 instead)
   kind: action
+  command: "ZY410{C}{R}{XXXX}<CR>"
   params:
-    - name: enable
+    - name: C
       type: integer
-      description: "0=disable, 1=enable"
+      description: Column 0-6 corresponds to R,G,B,Y,C,M,W
+    - name: R
+      type: integer
+      description: Row 0-2 corresponds to AddR,AddG,AddB
+    - name: XXXX
+      type: integer
+      description: Value 0000-1024 (leading zeros required)
 
-- id: set_output_color_gamut_matrix
-  label: Set Output Color Management Color Gamut Matrix
+- id: reset_color_gamut
+  label: Reset Color Gamut to Defaults (8-point mode)
   kind: action
-  params:
-    - name: column
-      type: integer
-      description: "0-6 corresponds to R,G,B,Y,C,M,W"
-    - name: row
-      type: integer
-      description: "0-2 corresponds to AddR,AddG,AddB"
-    - name: value
-      type: integer
-      description: "0000-1024"
-  notes: "Replaced by ZY415"
-
-- id: reset_output_color_gamut
-  label: Reset Output Color Management Gamut
-  kind: action
+  command: "ZY411<CR>"
   params: []
-  notes: "Resets currently selected CMS to default values and 8-point mode"
+
+- id: set_3d_gamut_enable
+  label: 3D Color Gamut Enable
+  kind: action
+  command: "ZY412{state}<CR>"
+  params:
+    - name: state
+      type: integer
+      description: 0=disable, 1=enable
 
 - id: set_1d_lut_points
-  label: Set 1D LUT Number of Points
+  label: Set 1D LUT (Grayscale) Point Count
   kind: action
+  command: "ZY413{XX}<CR>"
   params:
-    - name: points
+    - name: XX
       type: integer
-      description: "11, 12, or 21"
-  notes: "Changing number of points resets all points to default values"
+      description: 11, 12 or 21 points. Changing pts resets all to default.
 
 - id: set_3d_lut_value
   label: Set 3D LUT Value
   kind: action
+  command: "ZY415{XX}{YY}{ZZ}{C}{VVVV}<CR>"
   params:
-    - name: xx
-      type: integer
-      description: "Red axis address (00-04 for 5x5x5, 00-08 for 9x9x9, 00-16 for 17x17x17)"
-    - name: yy
-      type: integer
-      description: "Green axis address"
-    - name: zz
-      type: integer
-      description: "Blue axis address"
-    - name: component
-      type: integer
-      description: "0,1,2 for red, green, blue"
-    - name: value
+    - name: XX
       type: string
-      description: "Hex value x0000-x0400 for 10-bit"
-  notes: "Puts Radiance into 125-point mode if previously in 8-point mode. Radiance Pro only."
+      description: Address on red axis (range depends on LUT size)
+    - name: YY
+      type: string
+      description: Address on green axis
+    - name: ZZ
+      type: string
+      description: Address on blue axis
+    - name: C
+      type: integer
+      description: 0=red, 1=green, 2=blue component at this location
+    - name: VVVV
+      type: string
+      description: Hex value for the color component (x0000-x0400 for 10-bit)
 
 - id: select_gamut_size
-  label: Select Gamut Size
+  label: Select Gamut Size (5x5x5, 9x9x9, 17x17x17)
   kind: action
+  command: "ZY416{XX}{M}<CR>"
   params:
-    - name: size
+    - name: XX
       type: integer
-      description: "05, 09, or 17 for 5x5x5, 9x9x9, or 17x17x17"
-    - name: gamma_mode
+      description: 05=5x5x5, 09=9x9x9, 17=17x17x17
+    - name: M
       type: string
-      description: "S=source gamma, L=linear gamma"
-  notes: "Radiance Pro only. Optional M field for gamma mode."
+      description: |
+        Optional, Radiance Pro only: 'S'=source gamma (recommended) or
+        'L'=linear gamma.
 
-- id: set_output_hdr_intensity
-  label: Set Output HDR Intensity Mapping
+- id: set_hdr_intensity_mapping
+  label: Set Output HDR Intensity Mapping for Current CMS
   kind: action
+  command: "ZY417{XXXXX}{G}<CR>"
   params:
-    - name: level
+    - name: XXXXX
       type: integer
-      description: "00000=disable, 00050-10000=enable and set display max level"
-    - name: gamma
+      description: |
+        00000=disable; 00050-10000 enables and sets display max level.
+    - name: G
       type: string
-      description: "A=auto, H=HDR gamma, S=SDR gamma"
-  notes: "For current CMS"
+      description: |
+        Gamma into 3D LUT. 'A'=auto, 'H'=HDR gamma, 'S'=SDR gamma.
 
-- id: set_rs232_message_colors
-  label: Set RS232 Message Command Colors
+- id: set_message_colors
+  label: Set RS-232 Message Colors and Transparency (Radiance Pro only)
   kind: action
+  command: "ZY418{C}{RR}{GG}{BB}<CR>"
   params:
-    - name: component
+    - name: C
       type: integer
-      description: "0=background, 1=foreground, 2=blend"
-    - name: color
+      description: |
+        0=set background color, 1=set foreground color, 2=set blend value.
+    - name: RR
       type: string
-      description: "RRGGBB hex for foreground/background, 000001-00000f for blend"
-  notes: "Radiance Pro only"
+      description: Red hex (00-ff)
+    - name: GG
+      type: string
+      description: Green hex (00-ff)
+    - name: BB
+      type: string
+      description: |
+        Blue hex (00-ff). When C=2, only last digit used: 000001-00000f
+        (f=opaque, 1=near-transparent).
 
-- id: set_ctemp_point_rgb
-  label: Set Color Temperature Point RGB
+- id: set_3d_lut_value_short
+  label: Set 3D LUT Value (shorter form)
   kind: action
+  command: "ZYG{X}{Y}{Z}{RRR}{GGG}{BBB}<CR>"
   params:
-    - name: pp
-      type: integer
-      description: "Point number (0-10 for 11pt, 0-11 for 12pt, 0-20 for 21pt)"
-    - name: red
-      type: integer
-      description: "0000-1000 corresponding to 000.0-100.0"
-    - name: grn
-      type: integer
-      description: "0000-1000"
-    - name: blu
-      type: integer
-      description: "0000-1000"
-  notes: "High precision variant (5 digits per color) available on Radiance Pro"
+    - name: X
+      type: string
+      description: |
+        Red-axis address. 10-16 represented by ':;<=>?@' respectively.
+    - name: Y
+      type: string
+      description: Green-axis address
+    - name: Z
+      type: string
+      description: Blue-axis address
+    - name: RRR
+      type: string
+      description: Hex red value 000-400
+    - name: GGG
+      type: string
+      description: Hex green value 000-400
+    - name: BBB
+      type: string
+      description: Hex blue value 000-400
 
-- id: set_ctemp_point_red
-  label: Set Color Temperature Point Red
+- id: set_output_ctemp_rgb
+  label: Set Output Red, Green, Blue for Ctemp Point (combined)
   kind: action
+  command: "ZY42A{PP}{RRRR}{GGGG}{BBBB}<CR>"
   params:
-    - name: pp
+    - name: PP
       type: integer
-    - name: value
+      description: |
+        Color-temp point. 11pt: 0-10, 12pt: 0-11, 21pt: 0-20 (depends on
+        ZY413 setting).
+    - name: RRRR
       type: integer
-      description: "0000-1000"
+      description: |
+        Red value 0000-1000 corresponds to 000.0-100.0. Radiance Pro
+        optionally supports 5 digits (hundredths precision).
+    - name: GGGG
+      type: integer
+      description: Green value 0000-1000
+    - name: BBBB
+      type: integer
+      description: Blue value 0000-1000
 
-- id: set_ctemp_point_grn
-  label: Set Color Temperature Point Green
+- id: set_output_ctemp_blue
+  label: Set Output Blue for Ctemp Point
   kind: action
+  command: "ZY42B{PP}{XXXX}<CR>"
   params:
-    - name: pp
+    - name: PP
       type: integer
-    - name: value
+      description: Color-temp point (see ZY413).
+    - name: XXXX
       type: integer
-      description: "0000-1000"
+      description: |
+        Value 0000-1000. Radiance Pro optionally supports 5 digits.
 
-- id: set_ctemp_point_blu
-  label: Set Color Temperature Point Blue
+- id: set_output_ctemp_default
+  label: Set Output Default for Ctemp Point
   kind: action
+  command: "ZY42D{PP}<CR>"
   params:
-    - name: pp
+    - name: PP
       type: integer
-    - name: value
-      type: integer
-      description: "0000-1000"
+      description: Color-temp point (see ZY413).
 
-- id: set_ctemp_point_ire
-  label: Set Color Temperature Point IRE
+- id: set_output_ctemp_green
+  label: Set Output Green for Ctemp Point
   kind: action
+  command: "ZY42G{PP}{XXXX}<CR>"
   params:
-    - name: pp
+    - name: PP
       type: integer
-    - name: value
+      description: Color-temp point (see ZY413).
+    - name: XXXX
       type: integer
-      description: "0000-1000"
-  notes: "Radiance Pro only"
+      description: |
+        Value 0000-1000. Radiance Pro optionally supports 5 digits.
 
-- id: reset_ctemp_point
-  label: Reset Color Temperature Point to Default
+- id: set_output_ctemp_ire
+  label: Set Output IRE for Ctemp Point
   kind: action
+  command: "ZY42I{PP}{XXXXX}<CR>"
   params:
-    - name: pp
+    - name: PP
       type: integer
+      description: Color-temp point (see ZY413).
+    - name: XXXXX
+      type: integer
+      description: Value 0000-1000
+
+- id: set_output_ctemp_red
+  label: Set Output Red for Ctemp Point
+  kind: action
+  command: "ZY42R{PP}{XXXX}<CR>"
+  params:
+    - name: PP
+      type: integer
+      description: Color-temp point (see ZY413).
+    - name: XXXX
+      type: integer
+      description: |
+        Value 0000-1000. Radiance Pro optionally supports 5 digits.
 
 - id: set_output_color
   label: Set Output Color
   kind: action
+  command: "ZY43CC{S}{VVV}<CR>"
   params:
-    - name: color
-      type: integer
-      description: "0-127"
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-  notes: "Current input combined with current output; final value limited by register range"
+      description: Sign + or -
+    - name: VVV
+      type: integer
+      description: Value 000-127
 
 - id: set_output_color_red
   label: Set Output Color Red
   kind: action
+  command: "ZY43CR{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_color_grn
   label: Set Output Color Green
   kind: action
+  command: "ZY43CG{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_hue
   label: Set Output Hue
   kind: action
+  command: "ZY43HH{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_hue_red
   label: Set Output Hue Red
   kind: action
+  command: "ZY43HR{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_hue_grn
   label: Set Output Hue Green
   kind: action
+  command: "ZY43HG{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_black
-  label: Set Output Black Level
+  label: Set Output Black
   kind: action
+  command: "ZY43BL{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-064"
+      description: Value 000-064
 
 - id: set_output_contrast
   label: Set Output Contrast
   kind: action
+  command: "ZY43CO{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_output_mode_by_name
   label: Set Output Mode by Name
   kind: action
+  command: "ZY44{ModeName}<CR>"
   params:
-    - name: mode_name
+    - name: ModeName
       type: string
-      description: "Mode name as seen in menu (e.g. 480p, 720p60, 1080p60, C0-C7 for custom)"
+      description: |
+        Name as seen in Output:Configs:ConfigX:Select Mode menu (e.g.
+        480p, 720p60, 1080p, etc.).
 
 - id: set_output_aspect_per_input
-  label: Set Output Aspect per Input Aspect
+  label: Set Output Aspect for Specific Input Aspect
   kind: action
+  command: "ZY45{X}{MMM}<CR>"
   params:
-    - name: input_aspect
+    - name: X
       type: integer
-      description: "0=4:3, 1=Lbox, 2=16:9, 3=1.85, 4=2.35"
-    - name: aspect
+      description: 0=4:3, 1=Lbox, 2=16:9, 3=1.85, 4=2.35
+    - name: MMM
       type: integer
-      description: "110-250 corresponding to 1.10-2.50"
+      description: 110-250 corresponds to 1.10-2.50
 
 - id: set_output_format
   label: Set Output Format
   kind: action
+  command: "ZY46{F}{C}<CR>"
   params:
-    - name: format
+    - name: F
       type: integer
-      description: "0=YCB422, 1=YCB444, 2=RGBPC, 3=RGBVID, 8=automax, 9=auto9"
-
-- id: set_output_format_ex
-  label: Set Output Format (Extended)
-  kind: action
-  params:
-    - name: format
-      type: integer
-      description: "0=YCB422, 1=YCB444, 2=RGBPC, 3=RGBVID, 8=automax, 9=auto9"
-    - name: colorspace
-      type: integer
-      description: "0=auto, 1=601, 2=709, 3=hdr2020, 4=sdr2020, 5=sdrP3"
-  notes: "Add 8 to colorspace value to enable HDR flag"
-
-- id: set_3d_output_eye
-  label: Set 3D Output Eye
-  kind: action
-  params:
-    - name: eye
+      description: |
+        0=YCB422, 1=YCB444, 2=RGBPC, 3=RGBVID, 8=automax, 9=auto9
+    - name: C
       type: string
-      description: "L=left, R=right, B=both"
+      description: |
+        Optional colorspace: 0=auto, 1=601, 2=709, 3=hdr2020, 4=sdr2020,
+        5=sdrP3. Add x8 to enable HDR flag with 601/709/sdr2020 (9, b, c).
+
+- id: set_3d_eye_output
+  label: Set 3D Output for Left, Right or Both Eyes
+  kind: action
+  command: "ZY47{X}<CR>"
+  params:
+    - name: X
+      type: string
+      description: L=Left, R=Right, B=Both
 
 - id: set_3d_eyeglass_polarity
   label: Set 3D Eyeglass Polarity
   kind: action
+  command: "ZY48{X}<CR>"
   params:
-    - name: direction
+    - name: X
       type: string
-      description: "< or >"
+      description: '-' or '+'
 
-- id: set_input_mem_output_config
-  label: Set Input Memory Output Config
+- id: set_input_mem_output_config_legacy
+  label: Set Input Memory Output Config Select (legacy, use ZY530)
   kind: action
+  command: "ZY503{X}{Y}{Z}<CR>"
   params:
-    - name: out1_enable
+    - name: X
       type: integer
-      description: "0=disable, 1=enable"
-    - name: out2_enable
+      description: Output1 enable (0=disable, 1=enable)
+    - name: Y
       type: integer
-      description: "0=disable, 1=enable"
-    - name: config
+      description: Output2 enable (0=disable, 1=enable)
+    - name: Z
       type: integer
-      description: "0-7"
-  notes: "Replaced by ZY530"
+      description: Output Config 0-7
 
 - id: set_input_contrast
   label: Set Input Contrast Level
   kind: action
+  command: "ZY506{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-      description: "+ or -"
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_color_format
   label: Set Input Color Format
   kind: action
+  command: "ZY507{X}<CR>"
   params:
-    - name: format
+    - name: X
       type: integer
-      description: "0=auto, 1=Bt.601, 2=Bt.709"
+      description: 0=auto, 1=Bt.601, 2=Bt.709 (SD inputs fixed to Bt.601)
 
 - id: set_input_color_offset
   label: Set Input Color Offset
   kind: action
+  command: "ZY508{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_color_red_offset
   label: Set Input Color Red Offset
   kind: action
+  command: "ZY509{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_color_grn_offset
   label: Set Input Color Green Offset
   kind: action
+  command: "ZY510{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_hue_offset
   label: Set Input Hue Offset
   kind: action
+  command: "ZY511{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_hue_red_offset
   label: Set Input Hue Red Offset
   kind: action
+  command: "ZY512{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_hue_grn_offset
   label: Set Input Hue Green Offset
   kind: action
+  command: "ZY513{S}{VVV}<CR>"
   params:
-    - name: sign
+    - name: S
       type: string
-    - name: value
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "000-127"
+      description: Value 000-127
 
 - id: set_input_yc_delay
   label: Set Input YC Delay
   kind: action
+  command: "ZY514{S1}{XX}{S2}{YY}<CR>"
   params:
-    - name: cr_sign
+    - name: S1
       type: string
-    - name: cr_delay
+      description: Sign + or -
+    - name: XX
       type: integer
-      description: "00-31 in 1/16 pixel increments"
-    - name: cb_sign
+      description: Cr delay 00-31 (1/16 pixel units)
+    - name: S2
       type: string
-    - name: cb_delay
+      description: Sign + or -
+    - name: YY
       type: integer
-      description: "00-31"
+      description: Cb delay 00-31 (1/16 pixel units)
 
 - id: set_input_deinterlacing_mode
   label: Set Input Deinterlacing Mode
   kind: action
+  command: "ZY515{X}<CR>"
   params:
-    - name: mode
+    - name: X
       type: integer
-      description: "0=auto, 1=film, 2=video"
+      description: 0=auto, 1=film, 2=video
 
-- id: set_input_vertical_shift
-  label: Set Input Vertical Shift
+- id: set_input_vertical_shift_select
+  label: Set Input Vertical Shift Setting
   kind: action
+  command: "ZY5160{XX}<CR>"
   params:
-    - name: index
+    - name: XX
       type: integer
-      description: "0=off, 1-15=select setting"
-    - name: sign
-      type: string
-    - name: value
+      description: |
+        0=off, 1-15=index of current vertical shift setting being used.
+
+- id: set_input_vertical_shift_value
+  label: Set Input Vertical Shift Setting Value
+  kind: action
+  command: "ZY5161{XX}{S}{VVV}<CR>"
+  params:
+    - name: XX
       type: integer
-      description: "-511 to 511"
-  notes: "Use ZY5160XX to just switch settings without changing values"
-
-- id: set_reinterlace_control
-  label: Set Reinterlace Control
-  kind: action
-  params:
-    - name: mode
+      description: Shift setting index to use
+    - name: S
+      type: string
+      description: Sign + or -
+    - name: VVV
       type: integer
-      description: "0=disallow, 1=allow, 2=allow with on-screen messages"
+      description: Shift value -511 to 511
 
-- id: set_input_label
-  label: Set Input Label
+- id: set_darbee_enhancement
+  label: Darbee Enhancement Control
   kind: action
+  command: "ZY517{GGG}{M}{E}<CR>"
   params:
-    - name: type
+    - name: GGG
       type: string
-      description: "A-D for input mem, 0 for single mem label, 1=custom mode, 2=CMS, 3=style"
-    - name: index
+      description: |
+        Gain 000-120, or "KKK" to keep current, or "+01"-"+99"/"-01"-"-99"
+        for relative changes.
+    - name: M
       type: string
-      description: "Mem letter + input number or mode number depending on type"
-    - name: label
+      description: |
+        Mode: 'P'=Pop, 'G'=Game, 'H'=HD, 'K'=keep current.
+    - name: E
       type: string
-      description: "Up to 10 chars"
+      description: |
+        Enable: '0'=off, '1'=on, 'K'=keep current.
 
-- id: set_output_mode_cms_style
-  label: Set Output Mode CMS and Style
+- id: set_hdr_mapping
+  label: Set HDR Mapping for Current Input Memory
   kind: action
+  command: "ZY518{P}{RR}{S}{C}{T}{GG}{BB}<CR>"
   params:
-    - name: mode
-      type: string
-      description: "K=keep, 0-7=select"
-    - name: cms
-      type: string
-      description: "K=keep, 0-7=select (non-Rec2020)"
-    - name: style
-      type: string
-      description: "K=keep, 0-7=select"
-
-- id: set_output_mode_cms_style_ex
-  label: Set Output Mode CMS and Style (Extended)
-  kind: action
-  params:
-    - name: mode
-      type: string
-    - name: cms_non2020
-      type: string
-    - name: cms_rec2020
-      type: string
-      description: "Separate CMS for Rec2020/HDR"
-    - name: style
-      type: string
-  notes: "Radiance Pro only. Uses input HDMI InfoFrames to determine Rec2020 selection."
-
-- id: set_test_pattern_output_mode
-  label: Set Test Pattern Output Mode
-  kind: action
-  params:
-    - name: cms
-      type: string
-      description: "0-7 or K"
-    - name: style
-      type: string
-      description: "0-7 or K"
-    - name: dim
-      type: string
-      description: "3D mode: 0,1,2,4,8 or K"
-    - name: mode
-      type: string
-      description: "Crt mode name or C0-C7 or K"
-
-- id: set_test_pattern_output_mode_ex
-  label: Set Test Pattern Output Mode (Extended)
-  kind: action
-  params:
-    - name: input_colorspace
+    - name: P
       type: integer
-      description: "1=Rec709, 2=Rec2020"
-    - name: cms
-      type: string
-    - name: style
-      type: string
-    - name: dim
-      type: string
-    - name: mode
-      type: string
-  notes: "Radiance Pro only"
-
-- id: set_hdr_info_primary_point
-  label: Set HDR Test Pattern Info Frame Primary Display Point
-  kind: action
-  params:
-    - name: index
+      description: |
+        Settings group selector. 0=load settings for SrcMax 2000.
+    - name: RR
       type: integer
-      description: "0, 1, or 2"
-    - name: x
-      type: string
-      description: "4-digit hex"
-    - name: y
-      type: string
-      description: "4-digit hex"
-  notes: "Radiance Pro only. Not active until ZY547 received."
-
-- id: set_hdr_info_white_point
-  label: Set HDR Test Pattern Info Frame White Point
-  kind: action
-  params:
-    - name: x
-      type: string
-    - name: y
-      type: string
-  notes: "Radiance Pro only. Not active until ZY547."
-
-- id: set_hdr_info_mastering_luminance
-  label: Set HDR Test Pattern Info Frame Display Mastering Luminance
-  kind: action
-  params:
-    - name: max
-      type: string
-      description: "4-digit hex"
-    - name: min
-      type: string
-      description: "4-digit hex"
-  notes: "Radiance Pro only. Not active until ZY547."
-
-- id: set_hdr_info_content_light
-  label: Set HDR Test Pattern Info Frame Max Content Light Level
-  kind: action
-  params:
-    - name: max_content
-      type: string
-    - name: fall
-      type: string
-  notes: "Radiance Pro only. Not active until ZY547."
-
-- id: activate_hdr_info
-  label: Activate HDR Test Pattern Info Frame Parameters
-  kind: action
-  params: []
-  notes: "Radiance Pro only. Activates parameters set via ZY540-ZY546."
-
-- id: set_hdr_pass_through
-  label: Set HDR Pass Through Mode
-  kind: action
-  params:
-    - name: mode
-      type: string
-      description: "P=HDR pass through, T=for test pattern"
-  notes: "Firmware >=081516. Radiance Pro only."
-
-- id: reset_auto_aspect
-  label: Reset Automatic Aspect Detection
-  kind: action
-  params: []
-
-- id: set_gamemode
-  label: Set Game Mode
-  kind: action
-  params:
-    - name: enable
+      description: |
+        Display ratio adjust 31-95 (corresponds to onscreen -31 to +31).
+    - name: S
       type: integer
-      description: "0=off, 1=on"
-  notes: "Added 051021"
-
-- id: save_config
-  label: Save Configuration to Flash
-  kind: action
-  params: []
-  notes: "Exit any on-screen test patterns prior to performing save"
-
-- id: set_menu_position
-  label: Set Menu Position
-  kind: action
-  params:
-    - name: position
+      description: Shape parameter 0-7
+    - name: C
       type: integer
-      description: "0=default, 1=top"
+      description: Clip parameter 0-7
+    - name: T
+      type: integer
+      description: Transition parameter 0-7
+    - name: GG
+      type: integer
+      description: |
+        Gamma adjust 8-24 (corresponds to onscreen -8 to +8, each step 0.02).
+    - name: BB
+      type: integer
+      description: |
+        Black adjust 1-15 (corresponds to onscreen -7 to +7).
 
 - id: toggle_hdmi_hotplug
   label: Toggle HDMI Hotplug
   kind: action
+  command: "ZY520{X}<CR>"
   params:
-    - name: input
-      type: integer
-      description: "0-5 for HDMI inputs 1-6, 7=all. RadiancePro: 0-7 or A for all"
-  notes: "Forces sources to re-read EDID information"
+    - name: X
+      type: string
+      description: |
+        0-5=HDMI input 1-6, 7=all HDMI inputs. Radiance Pro: 0-7 or 'A' for all.
 
 - id: set_sharpness_combined
-  label: Set Sharpness (Combined H/V)
+  label: Set Horizontal+Vertical Sharpness
   kind: action
+  command: "ZY521{E}{L}{S}<CR>"
   params:
-    - name: enable
+    - name: E
       type: string
-      description: "Y or N"
-    - name: level
+      description: Y or N
+    - name: L
       type: integer
-      description: "0-7 (7 is most sharpening)"
-    - name: sensitivity
+      description: Level 0-7 (7 is most sharpening)
+    - name: S
       type: string
-      description: "H=high, N=normal"
-  notes: "Added 120420"
+      description: H=high or N=normal sensitivity
 
 - id: set_sharpness_separate
-  label: Set Sharpness (Separate H/V)
+  label: Set Separate Horizontal/Vertical Sharpness
   kind: action
+  command: "ZY522{E}{Hn}{H}{Vn}{V}{S}<CR>"
   params:
-    - name: sign
+    - name: E
       type: string
-      description: "+ or -"
-    - name: h_level
-      type: integer
-      description: "0-7"
-    - name: v_level
-      type: integer
-      description: "0-7"
-    - name: sensitivity
+      description: Enable
+    - name: Hn
       type: string
-      description: "H=high, N=normal"
-  notes: "Added 052521"
+      description: Sign for H (+ or -)
+    - name: H
+      type: integer
+      description: Horizontal level 0-7
+    - name: Vn
+      type: string
+      description: Sign for V (+ or -)
+    - name: V
+      type: integer
+      description: Vertical level 0-7
+    - name: S
+      type: string
+      description: H=high or N=normal sensitivity
 
-- id: set_darbee
-  label: Set Darbee Enhancement
+- id: set_reinterlace_arrow_control
+  label: Allow Remote Arrow Buttons for Reinterlace Control
   kind: action
+  command: "ZY523{X}<CR>"
   params:
-    - name: gain
-      type: string
-      description: "000-120, or KKK to keep, or +/-NN for relative"
-    - name: mode
-      type: string
-      description: "P/G/H/K for Pop/Game/HD/Keep"
-    - name: enable
-      type: string
-      description: "0/1/K for off/on/keep"
-  notes: "Current input setting combined with current output setting"
+    - name: X
+      type: integer
+      description: |
+        0=disallows, 1=allows, 2=allows with onscreen messages.
 
-- id: set_hdr_mapping_settings
-  label: Set HDR Mapping Settings
+- id: set_label
+  label: Set Input / Custom Mode / CMS / Style Label
   kind: action
+  command: "ZY524{X}{Y}{label}<CR>"
   params:
-    - name: group
+    - name: X
       type: string
-      description: "0 for SrcMax 2000"
-    - name: ratio
+      description: |
+        'A'-'D'=input mem label (single); '0'=set mem A-D label; '1'=custom
+        mode label; '2'=CMS label; '3'=style label.
+    - name: Y
+      type: string
+      description: |
+        '0'-'7' meaning input 1-8 or memory/mode/CMS/style index 0-7.
+    - name: label
+      type: string
+      description: |
+        Label string, up to 10 chars (input) / 7 chars (custom mode) /
+        8 chars (CMS, style).
+
+- id: set_output_mode_cms_style
+  label: Set Output Mode, CMS, Style
+  kind: action
+  command: "ZY530{M}{C}{D}{S}<CR>"
+  params:
+    - name: M
+      type: string
+      description: K=keep current, 0-7 to select Output Mode 0-7
+    - name: C
+      type: string
+      description: |
+        K=keep current, 0-7 to select Output CMS 0-7 (for non Rec2020).
+    - name: D
+      type: string
+      description: |
+        Optional, Radiance Pro: K=keep, 0-7 to select Output CMS 0-7 for
+        Rec2020/HDR.
+    - name: S
+      type: string
+      description: K=keep current, 0-7 to select Output Style 0-7
+
+- id: set_test_pattern_output_mode
+  label: Test Pattern Output Mode
+  kind: action
+  command: "ZY532{C}{S}{D}{M}<CR>"
+  params:
+    - name: C
+      type: string
+      description: CMS 0-7 or K
+    - name: S
+      type: string
+      description: Style 0-7 or K
+    - name: D
+      type: string
+      description: |
+        3D mode 0,1,2,4,8 or K (0=off, 1=frame seq, 2=frame packed,
+        4=top-btm, 8=side-by-side).
+    - name: M
+      type: string
+      description: |
+        Output mode name (480p, 720p60 etc.), C0-C7 for custom mode, or K.
+
+- id: set_test_pattern_output_mode_pro
+  label: Test Pattern Output Mode (Radiance Pro)
+  kind: action
+  command: "ZY533{I}{C}{S}{D}{M}<CR>"
+  params:
+    - name: I
       type: integer
-      description: "31-95 (display ratio adjust -31 to +31)"
-    - name: shape
+      description: Input colorspace, 1=Rec709, 2=Rec2020
+    - name: C
+      type: string
+      description: CMS 0-7 or K
+    - name: S
+      type: string
+      description: Style 0-7 or K
+    - name: D
+      type: string
+      description: 3D mode 0,1,2,4,8 or K
+    - name: M
+      type: string
+      description: Output mode name, C0-C7, or K
+
+- id: set_hdr_infoframe_primary_0
+  label: Set Test Pattern HDR Info Frame Primary Display Point 0 (Pro only)
+  kind: action
+  command: "ZY540{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: x[0] hex value
+    - name: YYYY
+      type: string
+      description: y[0] hex value
+  # NOTE: not active until ZY547 received
+
+- id: set_hdr_infoframe_primary_1
+  label: Set Test Pattern HDR Info Frame Primary Display Point 1 (Pro only)
+  kind: action
+  command: "ZY541{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: x[1] hex value
+    - name: YYYY
+      type: string
+      description: y[1] hex value
+
+- id: set_hdr_infoframe_primary_2
+  label: Set Test Pattern HDR Info Frame Primary Display Point 2 (Pro only)
+  kind: action
+  command: "ZY542{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: x[2] hex value
+    - name: YYYY
+      type: string
+      description: y[2] hex value
+
+- id: set_hdr_infoframe_white_point
+  label: Set Test Pattern HDR Info Frame White Point (Pro only)
+  kind: action
+  command: "ZY543{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: WPx hex value
+    - name: YYYY
+      type: string
+      description: WPy hex value
+
+- id: set_hdr_infoframe_mastering_lum
+  label: Set Test Pattern HDR Info Frame Mastering Luminance (Pro only)
+  kind: action
+  command: "ZY544{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: Max luminance hex value
+    - name: YYYY
+      type: string
+      description: Min luminance hex value
+
+- id: set_hdr_infoframe_cll_fall
+  label: Set Test Pattern HDR Info Frame CLL and FALL (Pro only)
+  kind: action
+  command: "ZY545{XXXX}{YYYY}<CR>"
+  params:
+    - name: XXXX
+      type: string
+      description: Max content light level hex
+    - name: YYYY
+      type: string
+      description: Max frame average light level hex
+
+- id: set_hdr_infoframe_default
+  label: Reset Test Pattern HDR Info Frame to Default (Pro only)
+  kind: action
+  command: "ZY546<CR>"
+  params: []
+
+- id: activate_hdr_infoframe
+  label: Activate HDR Info Frame Params Set via ZY540-ZY546 (Pro only)
+  kind: action
+  command: "ZY547<CR>"
+  params: []
+
+- id: set_hdr_pass_through
+  label: HDR Pass Through Selection
+  kind: action
+  command: "ZY548{X}<CR>"
+  params:
+    - name: X
+      type: string
+      description: |
+        P=HDR pass through, T=use HDR info programmed with ZY540-5 (active
+        or test pattern video).
+
+- id: reset_auto_aspect
+  label: Reset Automatic Aspect Detection
+  kind: action
+  command: "ZY550<CR>"
+  params: []
+
+- id: set_game_mode
+  label: Set Game Mode
+  kind: action
+  command: "ZY551{X}<CR>"
+  params:
+    - name: X
       type: integer
-      description: "0-7"
-    - name: clip
+      description: 0=off, 1=on
+
+- id: save_configuration
+  label: Save Configuration to Flash
+  kind: action
+  command: "ZY6SAVECONFIG<CR>"
+  params: []
+  # NOTE: Exit any onscreen test patterns prior to performing a save.
+
+- id: set_menu_position
+  label: Set Menu Position
+  kind: action
+  command: "ZY7M{X}<CR>"
+  params:
+    - name: X
       type: integer
-      description: "0-7"
-    - name: transition
+      description: 0=default menu, 1=menu at top
+
+- id: test_pattern_v2
+  label: Test Pattern Command (preferred, replaces tXMM)
+  kind: action
+  command: "ZY7T{G}{S}{III}<CR>"
+  params:
+    - name: G
+      type: string
+      description: |
+        Test pattern group 'a'-'r' (e.g. a=Crosshatch/Overscan/Squares;
+        b=Contrast/Ramp variants; c=Lines; d=Ramp; e=Gray windows;
+        f=Color bars; g/h/i/j/k/l=R/G/B/Y/C/M windows; m/n/o/p/q/r=
+        desaturated R/G/B/Y/C/M windows).
+    - name: S
       type: integer
-      description: "0-7"
-    - name: gamma
+      description: Subpattern number (depends on group).
+    - name: III
       type: integer
-      description: "8-24 (adjusts gamma by .02 per step)"
-    - name: black
+      description: IRE 000-100, rounded to nearest 5.
+
+- id: test_pattern_user_size
+  label: Test Pattern User-Defined Size Pattern
+  kind: action
+  command: "ZY7Ts{S}{RRR}{GGG}{BBB}<CR>"
+  params:
+    - name: S
       type: integer
-      description: "1-15 (black adjust -7 to +7)"
-  notes: "For current input memory"
+      description: 0-2 for medium, small, full-field size
+    - name: RRR
+      type: integer
+      description: Red 0-255 (3 digits)
+    - name: GGG
+      type: integer
+      description: Green 0-255
+    - name: BBB
+      type: integer
+      description: Blue 0-255
+
+- id: test_pattern_user_size_apl
+  label: Test Pattern User-Defined Size + APL Pattern
+  kind: action
+  command: "ZY7Ts{SSS}{AAA}{RRR}{GGG}{BBB}<CR>"
+  params:
+    - name: SSS
+      type: integer
+      description: Area 000-999 (0-99.9% of screen)
+    - name: AAA
+      type: integer
+      description: APL 000-100 (0-100%)
+    - name: RRR
+      type: integer
+      description: Red 0-255
+    - name: GGG
+      type: integer
+      description: Green 0-255
+    - name: BBB
+      type: integer
+      description: Blue 0-255
+
+# --- Queries (ZQI / ZQO / ZQS) ---
+- id: query_input_basic
+  label: Basic Input Info
+  kind: query
+  command: "ZQI00"
+  params: []
+
+- id: query_input_video
+  label: Input Video Status
+  kind: query
+  command: "ZQI01"
+  params: []
+
+- id: query_input_pattern
+  label: Input Pattern Info
+  kind: query
+  command: "ZQI02"
+  params: []
+
+- id: query_output_config_select_legacy
+  label: Output1/Output2 Config Select for Current Input Memory (legacy, replaced by ZQI18)
+  kind: query
+  command: "ZQI03"
+  params: []
+
+- id: query_input_audio_select
+  label: Current Input Audio Select
+  kind: query
+  command: "ZQI04"
+  params: []
+
+- id: query_input_black_level
+  label: Current Input Black Level
+  kind: query
+  command: "ZQI05"
+  params: []
+
+- id: query_input_contrast
+  label: Current Input Contrast Level
+  kind: query
+  command: "ZQI06"
+  params: []
+
+- id: query_input_color_format
+  label: Current Input Color Format
+  kind: query
+  command: "ZQI07"
+  params: []
+
+- id: query_input_color_offset
+  label: Current Input Color Offset
+  kind: query
+  command: "ZQI08"
+  params: []
+
+- id: query_input_color_red_offset
+  label: Current Input Color Red Offset
+  kind: query
+  command: "ZQI09"
+  params: []
+
+- id: query_input_color_grn_offset
+  label: Current Input Color Green Offset
+  kind: query
+  command: "ZQI10"
+  params: []
+
+- id: query_input_hue_offset
+  label: Current Input Hue Offset
+  kind: query
+  command: "ZQI11"
+  params: []
+
+- id: query_input_hue_red_offset
+  label: Current Input Hue Red Offset
+  kind: query
+  command: "ZQI12"
+  params: []
+
+- id: query_input_hue_grn_offset
+  label: Current Input Hue Green Offset
+  kind: query
+  command: "ZQI13"
+  params: []
+
+- id: query_input_yc_delay
+  label: Current Input YC Delay
+  kind: query
+  command: "ZQI14"
+  params: []
+
+- id: query_input_deinterlace_mode
+  label: Current Input Deinterlacing Mode
+  kind: query
+  command: "ZQI15"
+  params: []
+
+- id: query_input_vertical_shift
+  label: Current Input Vertical Shift
+  kind: query
+  command: "ZQI16"
+  params: []
+
+- id: query_input_reinterlace_status
+  label: Current Input Reinterlacing Status
+  kind: query
+  command: "ZQI17"
+  params: []
+
+- id: query_output_config
+  label: Output Configuration by Input Resolution and Memory
+  kind: query
+  command: "ZQI18"
+  params: []
+
+- id: query_input_aspect_legacy
+  label: Input Aspect (legacy, use ZQI20)
+  kind: query
+  command: "ZQI19"
+  params: []
+
+- id: query_input_aspect
+  label: Input Aspect (recommended)
+  kind: query
+  command: "ZQI20"
+  params: []
+
+- id: query_full_info_v1
+  label: Full Information Query (Radiance 2XXX and Radiance Pro)
+  kind: query
+  command: "ZQI21"
+  params: []
+
+- id: query_full_info_v2
+  label: Full Information Query v2 (Radiance Pro only)
+  kind: query
+  command: "ZQI22"
+  params: []
+
+- id: query_full_info_v3
+  label: Full Information Query v3 (Radiance Pro only)
+  kind: query
+  command: "ZQI23"
+  params: []
+
+- id: query_full_info_v4
+  label: Full Information Query v4 (Radiance Pro only)
+  kind: query
+  command: "ZQI24"
+  params: []
+
+- id: query_sharpness
+  label: Sharpness Setting Query
+  kind: query
+  command: "ZQI30"
+  params: []
+
+- id: query_rec_2020_support
+  label: Display Rec 2020 Support (Radiance Pro only)
+  kind: query
+  command: "ZQI50"
+  params: []
+
+- id: query_hdr_test_pattern_infoframe
+  label: HDR Test Pattern Info Frame Data (Radiance Pro only)
+  kind: query
+  command: "ZQI51"
+  params: []
+
+- id: query_hdr_status
+  label: HDR Status (Radiance Pro only)
+  kind: query
+  command: "ZQI52"
+  params: []
+
+- id: query_game_mode
+  label: Game Mode Status
+  kind: query
+  command: "ZQI53"
+  params: []
+
+- id: query_output_basic
+  label: Basic Output Info
+  kind: query
+  command: "ZQO00"
+  params: []
+
+- id: query_output_mode
+  label: Output Mode
+  kind: query
+  command: "ZQO01"
+  params: []
+
+- id: query_output_aspect
+  label: Output Aspect
+  kind: query
+  command: "ZQO02"
+  params: []
+
+- id: query_output_shrink
+  label: Output Shrink
+  kind: query
+  command: "ZQO03"
+  params: []
+
+- id: query_output_gamma
+  label: Output Gamma
+  kind: query
+  command: "ZQO04"
+  params: []
+
+- id: query_output_gamut_enabled
+  label: Output Color Gamut Enabled
+  kind: query
+  command: "ZQO05"
+  params: []
+
+- id: query_output_gamut_addr
+  label: Output Color Gamut AddR Values (legacy, use ZQO30)
+  kind: query
+  command: "ZQO06"
+  params: []
+
+- id: query_output_gamut_addg
+  label: Output Color Gamut AddG Values (legacy, use ZQO30)
+  kind: query
+  command: "ZQO07"
+  params: []
+
+- id: query_output_gamut_addb
+  label: Output Color Gamut AddB Values (legacy, use ZQO30)
+  kind: query
+  command: "ZQO08"
+  params: []
+
+- id: query_output_ctemp_ire_low
+  label: Output Color Temp IRE Points 0-10
+  kind: query
+  command: "ZQO09"
+  params: []
+
+- id: query_output_ctemp_r_low
+  label: Output Color Temp R Points 0-10
+  kind: query
+  command: "ZQO10"
+  params: []
+
+- id: query_output_ctemp_g_low
+  label: Output Color Temp G Points 0-10
+  kind: query
+  command: "ZQO11"
+  params: []
+
+- id: query_output_ctemp_b_low
+  label: Output Color Temp B Points 0-10
+  kind: query
+  command: "ZQO12"
+  params: []
+
+- id: query_output_color_settings
+  label: Output Color Settings
+  kind: query
+  command: "ZQO13"
+  params: []
+
+- id: query_output_hue_settings
+  label: Output Hue Settings
+  kind: query
+  command: "ZQO14"
+  params: []
+
+- id: query_output_black_contrast
+  label: Output Black and Contrast
+  kind: query
+  command: "ZQO15"
+  params: []
+
+- id: query_output_mode_name
+  label: Output Mode Name
+  kind: query
+  command: "ZQO16"
+  params: []
+
+- id: query_output_ctemp_points
+  label: Output Color Temp Points Count
+  kind: query
+  command: "ZQO17"
+  params: []
+
+- id: query_output_color_format
+  label: Output Color Format (Radiance Pro only)
+  kind: query
+  command: "ZQO18"
+  params: []
+
+- id: query_3d_lut_capability
+  label: 3D LUT Capability
+  kind: query
+  command: "ZQO20"
+  params: []
+
+- id: query_3d_lut_size
+  label: Current 3D LUT Size
+  kind: query
+  command: "ZQO21"
+  params: []
+
+- id: query_3d_lut_value
+  label: 3D LUT Value at Address
+  kind: query
+  command: "ZQO30{XX}{YY}{ZZ}"
+  params:
+    - name: XX
+      type: string
+      description: Red-axis address (in current LUT size range)
+    - name: YY
+      type: string
+      description: Green-axis address
+    - name: ZZ
+      type: string
+      description: Blue-axis address
+
+- id: query_output_ctemp_ire_high
+  label: Output Color Temp IRE Points 11-20 (or point 12 in 12pt mode)
+  kind: query
+  command: "ZQO89"
+  params: []
+
+- id: query_output_ctemp_r_high
+  label: Output Color Temp R Points 11-20 (or point 12 in 12pt mode)
+  kind: query
+  command: "ZQO90"
+  params: []
+
+- id: query_output_ctemp_g_high
+  label: Output Color Temp G Points 11-20 (or point 12 in 12pt mode)
+  kind: query
+  command: "ZQO91"
+  params: []
+
+- id: query_output_ctemp_b_high
+  label: Output Color Temp B Points 11-20 (or point 12 in 12pt mode)
+  kind: query
+  command: "ZQO92"
+  params: []
+
+- id: query_alive
+  label: Alive Check
+  kind: query
+  command: "ZQS00"
+  params: []
+
+- id: query_id
+  label: ID (Model Name, Software Revision, Model#, Serial#)
+  kind: query
+  command: "ZQS01"
+  params: []
+
+- id: query_power
+  label: Power Status
+  kind: query
+  command: "ZQS02"
+  params: []
+
+- id: query_zoom_step
+  label: Zoom Step Percentage
+  kind: query
+  command: "ZQS03"
+  params: []
+
+- id: query_trigger_status
+  label: Output Trigger Status (triggers 1 and 2; units with output triggers only)
+  kind: query
+  command: "ZQS04"
+  params: []
+
+- id: query_label
+  label: Label Query (input mem / custom mode / CMS / style)
+  kind: query
+  command: "ZQS1{X}{Y}"
+  params:
+    - name: X
+      type: string
+      description: |
+        'A'-'D'=input label (memory A-D); '1'=custom mode label; '2'=CMS
+        label; '3'=style label.
+    - name: Y
+      type: string
+      description: |
+        Input number-1 ('0'=input 1), or '0'-'7' for custom mode / CMS /
+        style index.
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_state
-  label: Power State
+- id: ack
   type: enum
-  values:
-    - "0"
-    - "1"
-  description: "0=off, 1=on"
-  query_command: ZQS02
+  values: [ack, nack]
+  # Source: "!Y" = Ack, "!N" = Nack. Terminated as <LF><CR> (0x0a 0x0d).
+  # Only sent when Delimiter Mode is set to "On with Ack/Nack" or
+  # "On with Csum & Ack/Nack".
 
-- id: basic_input_info
-  label: Basic Input Info
-  type: object
-  properties:
-    - name: logical_input
-      type: integer
-      description: "1-18"
-    - name: memory
-      type: string
-      description: "A-D"
-    - name: physical_input
-      type: integer
-      description: "1-18"
-  query_command: ZQI00
-  example_response: "!I00,1,A,1<CR><LF>"
+- id: power_state
+  type: enum
+  values: [on, off]
+  # ZQS02 response: "!S02,0<CR><LF>" = Off, "!S02,1<CR><LF>" = On.
+
+- id: alive_response
+  type: string
+  # ZQS00 response: "!S00,Ok<CR><LF>" if working.
+
+- id: device_id
+  type: string
+  # ZQS01 response: "!S01,<model_name>,<software_rev>,<model#>,<serial#><CR><LF>".
+  # Example: "!S01,RadianceXD,102308,1009,745<CR><LF>"
+
+- id: input_info
+  type: string
+  # ZQI00 response: "!I00,<logical_input 1-18>,<input_memory A-D>,<physical_input 1-18>"
 
 - id: input_video_status
-  label: Input Video Status
-  type: object
-  properties:
-    - name: status
-      type: integer
-      description: "0=none, 1=video active, 2=test pattern active"
-    - name: vert_rate_100
-      type: integer
-      description: "Vertical rate * 100"
-    - name: horiz_res
-      type: integer
-    - name: vert_res
-      type: integer
-    - name: interlaced
-      type: integer
-      description: "0=off, 2=frame packed, 4=top-bottom, 8=side-by-side"
-    - name: input_3d_type
-      type: integer
-      description: "0=off, 2=frame packed, 4=top-bottom, 8=side-by-side"
-  query_command: ZQI01
-  example_response: "!I01,1,5992,720,480,1,0<CR><LF>"
+  type: string
+  # ZQI01 response: "!I01,<state>,<vrate*100>,<hres>,<vres>,<interlaced>,<3D_input>,<3D_type>"
+  # state: 0=none, 1=video active, 2=test pattern active
 
-- id: input_pattern_info
-  label: Input Pattern Info
-  type: object
-  properties:
-    - name: on
-      type: integer
-      description: "1=on, 0=off"
-    - name: pattern_group
-      type: string
-      description: "a-o"
-    - name: sub_pattern
-      type: integer
-    - name: ire_level
-      type: integer
-      description: "0-100"
-    - name: mode
-      type: string
-      description: "A=adjustable, R=reference"
-  query_command: ZQI02
-
-- id: output1_config
-  label: Output1 and Output2 Config Select
-  type: object
-  properties:
-    - name: out1_enabled
-      type: integer
-      description: "0=disabled, 1=enabled"
-    - name: out2_enabled
-      type: integer
-    - name: config_select
-      type: integer
-      description: "0-7"
-  query_command: ZQI03
-  notes: "Replaced by ZQI18"
-
-- id: input_audio_select
-  label: Current Input Audio Select
-  type: integer
-  description: "0-5=HDMI, 6-11=coax, 12-13=optical, 14-17=stereo"
-  query_command: ZQI04
-
-- id: input_black_level
-  label: Current Input Black Level
-  type: integer
-  range: "-64 to 64"
-  query_command: ZQI05
-
-- id: input_contrast_level
-  label: Current Input Contrast Level
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI06
-
-- id: input_color_format
-  label: Current Input Color Format
-  type: integer
-  values:
-    - 0
-    - 1
-    - 2
-  description: "0=auto, 1=Bt.601, 2=Bt.709"
-  query_command: ZQI07
-
-- id: input_color_offset
-  label: Current Input Color Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI08
-
-- id: input_color_red_offset
-  label: Current Input Color Red Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI09
-
-- id: input_color_grn_offset
-  label: Current Input Color Green Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI10
-
-- id: input_hue_offset
-  label: Current Input Hue Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI11
-
-- id: input_hue_red_offset
-  label: Current Input Hue Red Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI12
-
-- id: input_hue_grn_offset
-  label: Current Input Hue Green Offset
-  type: integer
-  range: "-127 to 127"
-  query_command: ZQI13
-
-- id: input_yc_delay
-  label: Current Input YC Delay
-  type: object
-  properties:
-    - name: cr
-      type: integer
-      description: "-31 to 31, multiply by 1/16 pixel"
-    - name: cb
-      type: integer
-  query_command: ZQI14
-
-- id: input_deinterlacing_mode
-  label: Current Input Deinterlacing Mode
-  type: enum
-  values:
-    - 0
-    - 1
-    - 2
-  description: "0=auto, 1=film, 2=video"
-  query_command: ZQI15
-
-- id: input_vertical_shift
-  label: Current Input Vertical Shift
-  type: object
-  properties:
-    - name: index
-      type: integer
-      description: "0=off, 1-15=current setting index"
-    - name: value
-      type: integer
-      description: "-511 to 511"
-  query_command: ZQI16
-
-- id: input_reinterlace_status
-  label: Current Input Reinterlacing Status
-  type: object
-  properties:
-    - name: enable
-      type: integer
-      description: "1/0"
-    - name: allow_control
-      type: integer
-      description: "1/0"
-    - name: active
-      type: integer
-      description: "1/0"
-  query_command: ZQI17
-
-- id: output_config_selected
-  label: Output Configuration Selected
-  type: object
-  properties:
-    - name: out1_on
-      type: integer
-    - name: out2_on
-      type: integer
-    - name: mode
-      type: string
-      description: "C0-7 or D<mode_name>"
-    - name: dim_3d
-      type: string
-      description: "0=off, f=auto, 1=frame seq, 2=frame packed, 4=top-btm, 8=side-by-side"
-    - name: cms
-      type: integer
-      description: "0-7"
-    - name: style
-      type: integer
-      description: "0-7"
-  query_command: ZQI18
-  response_format: "!I18,O,T,M,D,C,S"
-
-- id: input_aspect_legacy
-  label: Input Aspect (Legacy)
-  type: enum
-  values:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-  description: "0=4:3, 1=LBOX, 2=1.78, 3=1.85, 4=2.35, 5-9=NLS variants"
-  query_command: ZQI19
-  notes: "Use ZQI20 instead"
-
-- id: input_aspect
-  label: Input Aspect
-  type: object
-  properties:
-    - name: aspect
-      type: integer
-      description: "0=4:3, 1=LBOX, 2=16:9, 3=1.85, 4=2.35, 6=ALT-1.85, 7=ALT-2.35"
-    - name: nls
-      type: string
-      description: "N if NLS enabled, - if not"
-  query_command: ZQI20
-  response_format: "!I20,XY"
-
-- id: full_info_v1
-  label: Full Information Query (Radiance 2XXX and Pro)
-  type: object
-  properties:
-    - name: input_status
-      type: integer
-      description: "0=no source, 1=active video, 2=internal pattern"
-    - name: vert_rate
-      type: string
-      description: "3 digits e.g. 059"
-    - name: vert_res
-      type: string
-      description: "4 digits e.g. 1080"
-    - name: dim_3d
-      type: integer
-    - name: input_config
-      type: integer
-      description: "Always 0 for non-Pro models"
-    - name: raster_aspect
-      type: string
-      description: "3 digits e.g. 178"
-    - name: content_aspect
-      type: string
-      description: "3 digits e.g. 240"
-    - name: nls
-      type: string
-      description: "- or N"
-    - name: dim_3d_output
-      type: integer
-    - name: output_on
-      type: string
-      description: "16-bit hex b0-b15 for out 1-16"
-    - name: cms
-      type: integer
-      description: "0-7"
-    - name: style
-      type: integer
-      description: "0-7"
-    - name: output_vert_rate
-      type: string
-    - name: output_vert_res
-      type: string
-    - name: output_aspect
-      type: string
-      description: "3 digits e.g. 178"
-  query_command: ZQI21
-  response_format: "!I21,M,RRR,VVVV,D,X,AAA,SSS,Y,T,WWWW,C,B,PPP,QQQQ,ZZZ"
-
-- id: full_info_v2
-  label: Full Information Query v2 (Radiance Pro only)
-  type: object
-  notes: "Adds output colorspace and dynamic range fields"
-  query_command: ZQI22
-  response_format: "!I22,M,RRR,VVVV,D,X,AAA,SSS,Y,T,WWWW,C,B,PPP,QQQQ,ZZZ,E,F,G,H"
-
-- id: full_info_v3
-  label: Full Information Query v3 (Radiance Pro only)
-  type: object
-  notes: "Adds virtual input and physical input fields"
-  query_command: ZQI23
-  response_format: "!I23,M,RRR,VVVV,D,X,AAA,SSS,Y,T,WWWW,C,B,PPP,QQQQ,ZZZ,E,F,G,H,II,KK"
-
-- id: full_info_v4
-  label: Full Information Query v4 (Radiance Pro only)
-  type: object
-  notes: "Adds detected raster aspect and detected source aspect"
-  query_command: ZQI24
-  response_format: "!I24,M,RRR,VVVV,D,X,AAA,SSS,Y,T,WWWW,C,B,PPP,QQQQ,ZZZ,E,F,G,H,II,KK,JJJ,LLL"
-  notes: "Allow for future comma-delimited fields at end of response"
-
-- id: sharpness_setting
-  label: Query Sharpness Setting
-  type: integer
-  description: "Returns values corresponding to ZY521ELS command"
-  query_command: ZQI30
-
-- id: rec2020_support
-  label: Rec 2020 Support Query (Radiance Pro only)
-  type: enum
-  values:
-    - Y
-    - N
-  description: "Rec2020 support for display connected to main video output"
-  query_command: ZQI50
-
-- id: hdr_test_pattern_info
-  label: HDR Test Pattern Info Frame Data (Radiance Pro only)
-  type: object
-  properties:
-    - name: p0x
-      type: string
-    - name: p0y
-      type: string
-    - name: p1x
-      type: string
-    - name: p1y
-      type: string
-    - name: p2x
-      type: string
-    - name: p2y
-      type: string
-    - name: wpx
-      type: string
-    - name: wpy
-      type: string
-    - name: max
-      type: string
-    - name: min
-      type: string
-    - name: cll
-      type: string
-    - name: fall
-      type: string
-  query_command: ZQI51
-
-- id: hdr_status
-  label: HDR Status (Radiance Pro only)
-  type: object
-  properties:
-    - name: valid
-      type: integer
-      description: "0=not HDR, 1=HDR"
-    - name: min
-      type: string
-    - name: max
-      type: string
-    - name: cll
-      type: string
-  query_command: ZQI52
-
-- id: gamemode_status
-  label: Game Mode Status
-  type: enum
-  values:
-    - 0
-    - 1
-  description: "0=off, 1=on"
-  query_command: ZQI53
-
-- id: basic_output_info
-  label: Basic Output Info
-  type: object
-  properties:
-    - name: output_config
-      type: integer
-      description: "0-7"
-    - name: video_out1
-      type: integer
-      description: "1=on, 0=off"
-    - name: video_out2
-      type: integer
-    - name: audio_out1
-      type: integer
-    - name: audio_out2
-      type: integer
-  query_command: ZQO00
-  example_response: "!O00,1,1,0,1,1<CR><LF>"
+- id: input_aspect_state
+  type: string
+  # ZQI20 response: "!I20,XY" where X=0-9 aspect code, Y='N' (NLS) or '-' (no NLS).
 
 - id: output_mode
-  label: Output Mode
-  type: object
-  properties:
-    - name: vert_rate_100
-      type: integer
-    - name: horiz_res
-      type: integer
-    - name: vert_res
-      type: integer
-    - name: interlaced
-      type: integer
-      description: "0=off, 1=frame seq, 2=frame packed, 4=top-bottom, 8=side-by-side"
-  query_command: ZQO01
-  example_response: "!O01,5994,1920,1080,0,0<CR><LF>"
-
-- id: output_aspect
-  label: Output Aspect Ratio
-  type: object
-  properties:
-    - name: current
-      type: integer
-      description: "110-250 = 1.10-2.50"
-    - name: aspect_4_3
-      type: integer
-    - name: aspect_lbox
-      type: integer
-    - name: aspect_16_9
-      type: integer
-    - name: aspect_1_85
-      type: integer
-    - name: aspect_2_35
-      type: integer
-  query_command: ZQO02
-
-- id: output_shrink
-  label: Output Shrink
-  type: object
-  properties:
-    - name: top
-      type: integer
-      description: "000-255 pixels"
-    - name: left
-      type: integer
-    - name: bottom
-      type: integer
-    - name: right
-      type: integer
-  query_command: ZQO03
-
-- id: output_gamma
-  label: Output Gamma
-  type: integer
-  range: "80-140"
-  description: "Corresponds to 0.80-1.40"
-  query_command: ZQO04
-
-- id: output_color_gamut_enabled
-  label: Output Color Gamut Enabled
-  type: enum
-  values:
-    - 0
-    - 1
-  query_command: ZQO05
-
-- id: output_color_gamut_addr
-  label: Output Color Gamut AddR/AddG/AddB Values
-  type: object
-  properties:
-    - name: values
-      type: array
-      items:
-        type: integer
-      description: "7 values for r,g,b,yellow,cyan,magenta,white 0-1024"
-  query_command: ZQO06
-
-- id: output_color_temp_ire
-  label: Output Color Temp IRE Points
-  type: array
-  items:
-    type: integer
-  description: "11 values 0-1000 corresponding to 0-100.0 IRE"
-  query_command: ZQO09
-
-- id: output_color_temp_r
-  label: Output Color Temp R Points
-  type: array
-  items:
-    type: integer
-  description: "11 values 0-1000"
-  query_command: ZQO10
-
-- id: output_color_temp_g
-  label: Output Color Temp G Points
-  type: array
-  items:
-    type: integer
-  description: "11 values 0-1000"
-  query_command: ZQO11
-
-- id: output_color_temp_b
-  label: Output Color Temp B Points
-  type: array
-  items:
-    type: integer
-  description: "11 values 0-1000"
-  query_command: ZQO12
-
-- id: output_color_settings
-  label: Output Color Settings
-  type: object
-  properties:
-    - name: color
-      type: integer
-      range: "-127 to 127"
-    - name: color_red
-      type: integer
-    - name: color_grn
-      type: integer
-  query_command: ZQO13
-
-- id: output_hue_settings
-  label: Output Hue Settings
-  type: object
-  properties:
-    - name: hue
-      type: integer
-      range: "-127 to 127"
-    - name: hue_red
-      type: integer
-    - name: hue_grn
-      type: integer
-  query_command: ZQO14
-
-- id: output_black_contrast
-  label: Output Black and Contrast
-  type: object
-  properties:
-    - name: black
-      type: integer
-      range: "-64 to 64"
-    - name: contrast
-      type: integer
-      range: "-127 to 127"
-  query_command: ZQO15
-
-- id: output_mode_name
-  label: Output Mode Name
   type: string
-  description: "Names as seen in menu under Output:Configs:ConfigX:Select Mode"
-  query_command: ZQO16
+  # ZQO01 response: "!O01,<vrate*100>,<hres>,<vres>,<interlaced>,<3D>"
 
-- id: output_ctemp_points_count
-  label: Output Color Temp Points Count
-  type: enum
-  values:
-    - 2
-    - 5
-    - 11
-    - 12
-    - 21
-  query_command: ZQO17
-
-- id: output_color_format_pro
-  label: Output Color Format (Radiance Pro only)
-  type: enum
-  values:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
-  description: "0=yc422, 1=yc444, 2=rgbvid, 3=rgbpc, 4=yc420"
-  query_command: ZQO18
-
-- id: lut_3d_capability
-  label: 3D LUT Capability
-  type: object
-  properties:
-    - name: dim
-      type: string
-      description: "LUT dimension (e.g. 05 for 5x5x5)"
-    - name: bits
-      type: string
-      description: "Bit length of LUT color values"
-  query_command: ZQO20
-  example_response: "!O20,NN,PP"
-
-- id: current_3d_lut_size
-  label: Current 3D LUT Size
+- id: full_status_v1
   type: string
-  description: "01=8pt, 05=5x5x5, 09=9x9x9, 17=17x17x17"
-  query_command: ZQO21
+  # ZQI21 response: see source for "!I21,M,RRR,VVVV,D,X,AAA,SSS,Y,C,B,PPP,QQQQ,ZZZ"
 
-- id: alive
-  label: Alive Check
+- id: trigger_state
   type: string
-  description: "Returns Ok if working"
-  query_command: ZQS00
-  example_response: "!S00,Ok<CR><LF>"
+  # ZQS04 response: per-trigger 0=low, 1=high
 
-- id: identity
-  label: Identity
-  type: object
-  properties:
-    - name: model_name
-      type: string
-    - name: software_revision
-      type: string
-    - name: model_number
-      type: string
-    - name: serial
-      type: string
-  query_command: ZQS01
-  example_response: "!S01,RadianceXD,102308,1009,745<CR><LF>"
+- id: hdr_status
+  type: string
+  # ZQI52 response: "V,Min,Max,Cll" where V=0 (not HDR) or V=1 (HDR with metadata).
+  # Radiance Pro only.
 
-- id: zoom_step_pct
-  label: Zoom Step Percentage
+- id: game_mode
   type: enum
-  values:
-    - 5
-    - 15
-  query_command: ZQS03
+  values: [on, off]
+  # ZQI53 response: 0=off, 1=on.
 
-- id: output_trigger_status
-  label: Output Trigger Status
-  type: object
-  properties:
-    - name: trigger1
-      type: integer
-      description: "0=low, 1=high"
-    - name: trigger2
-      type: integer
-  query_command: ZQS04
-  notes: "Only available on units with output triggers"
-
-- id: label_query
-  label: Label Query
-  type: string
-  description: "Returns label for input memory, custom mode, CMS, or style"
-  query_command: ZQS1XY
-  notes: "X=A/B/C/D for input labels, X=1 for custom mode, X=2 for CMS, X=3 for style"
+- id: rec_2020_support
+  type: enum
+  values: ["Y", "N"]
+  # ZQI50 response: "!I50,R" where R='Y' or 'N'. Radiance Pro only.
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete settable variables separate from action commands found in source
+# Most settable parameters are exposed via ZY-set commands (see Actions). The
+# following variables represent state that is both queryable and settable.
+
+- id: input_contrast
+  type: integer
+  range: [-127, 127]
+  set_via: set_input_contrast       # ZY506
+  query_via: query_input_contrast   # ZQI06
+
+- id: input_color_format
+  type: enum
+  values: [auto, bt_601, bt_709]
+  set_via: set_input_color_format   # ZY507
+  query_via: query_input_color_format # ZQI07
+
+- id: input_deinterlace_mode
+  type: enum
+  values: [auto, film, video]
+  set_via: set_input_deinterlacing_mode # ZY515
+  query_via: query_input_deinterlace_mode # ZQI15
+
+- id: output_gamma
+  type: integer
+  range: [80, 140]
+  description: 0.80 to 1.40 (value * 0.01)
+  set_via: set_output_gamma         # ZY40
+  query_via: query_output_gamma     # ZQO04
+
+- id: zoom_factor
+  type: integer
+  range: [0, 7]
+  set_via: set_zoom_factor          # ZY0
+  query_via: query_zoom_step        # ZQS03
+
+- id: game_mode_state
+  type: enum
+  values: [on, off]
+  set_via: set_game_mode            # ZY551
+  query_via: query_game_mode        # ZQI53
+
+# <!-- UNRESOLVED: many more variables exist (input/output offsets, ctemp pts, LUT entries) but follow the same set_via/query_via pattern; see ZY/ZQ Actions and Feedbacks above for full coverage. -->
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: unsolicited event/reporting mechanism not documented in source.
-# However, source describes "Unsolicited Reporting of Mode Changes" via RS-232 menu
-# configuration (Report mode changes: Off, Input, Output, Full, Fullv2, Fullv3, Fullv4)
-# which sends query-like responses on mode changes. No explicit event format defined.
+# Unsolicited Reporting of Mode Changes -- enabled in menu under:
+# Other -> I/O Setup -> RS-232 Setup -> Report mode changes.
+#
+# When enabled, on a mode change the unit sends a string in the same format
+# as the corresponding query response.
+
+- id: mode_change_output
+  description: |
+    "Output" mode-change report. Uses ZQO01 response format on output mode
+    change. Triggered when "Report mode changes" = "Output".
+
+- id: mode_change_input
+  description: |
+    "Input" mode-change report. Sends two responses: ZQI01 followed by
+    ZQI18. Triggered when "Report mode changes" = "Input".
+
+- id: mode_change_full
+  description: |
+    "Full" mode-change report (Radiance 2XXX and Radiance Pro). Uses ZQI21
+    response format. Triggered when "Report mode changes" = "Full".
+
+- id: mode_change_full_v2
+  description: |
+    "Full v2" mode-change report (Radiance Pro only). Uses ZQI22 response
+    format.
+
+- id: mode_change_full_v3
+  description: |
+    "Full v3" mode-change report (Radiance Pro only). Uses ZQI23 response
+    format.
+
+- id: mode_change_full_v4
+  description: |
+    "Full v4" mode-change report (Radiance Pro only). Uses ZQI24 response
+    format.
+
+- id: power_message_out
+  description: |
+    Power On/Off Message can be sent out the RS-232 port at power on/off
+    transitions to control another device. Strings are user-configurable
+    via menu under Other -> OnOff Setup -> (On Message, Off Message).
+    NOTE: Enabling Power On/Off Message turns off echoing of the original
+    query command (query responses still sent).
 ```
 
 ## Macros
 ```yaml
-- id: print_message
-  label: Print Message on Screen
-  command: ZTMxxxx<CR>
-  params:
-    - name: message
-      type: string
-      description: "2 lines, 30 chars per line. M='0'-'9' leaves message until ZC sent."
-  notes: "Legal characters 0x20-0x7A. Use { as alternative terminator."
-
-- id: delay_command
-  label: Delay RS232 Command Processing
-  command: ZWxxx<CR>
-  params:
-    - name: delay_ms
-      type: integer
-      description: "Up to 30000ms"
-  notes: "Example: power on command, wait 5 seconds, then put up message"
-
-- id: set_baud_rate
-  label: Set RS232 Baud Rate
-  command: ZYSX<CR>
-  params:
-    - name: rate
-      type: string
-      description: "D=9.6k, M=28.8k, F=57.6k, 1=115.2k, 2=230.4k, 3=460.8k"
-  notes: "Return to default 9.6k before attempting Lumagen utilities"
+# No multi-step macros are explicitly documented in source.
+# <!-- UNRESOLVED: no macros defined in source -->
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no explicit safety warnings, interlock procedures, or power-on
-# sequencing requirements found in source. Document notes that Info page appears
-# if <CR> sent with commands that don't need it - user must eliminate unnecessary
-# <CR> characters or disable via MENU 0927 Save.
+# <!-- UNRESOLVED: source contains no explicit safety warnings, interlock procedures,
+# or power-on sequencing requirements that demand structured safety modeling. -->
 ```
 
 ## Notes
 
-Serial interface uses standard RS-232 null modem cable. DB9 female pinout: Pin 2=Receive, Pin 3=Transmit, Pin 5+shell=Ground. No hardware flow control.
+**Command terminators.** Most ASCII commands do not require a terminator. Commands that explicitly require a terminator are shown with `<CR>` in this spec. Either a carriage return or `{` may be used as a terminator. Sending an unnecessary `<CR>` will bring up the Info page (this behavior can be disabled with `MENU 0927` + Save).
 
-Command terminators: Use <CR> (carriage return) or `{` as terminator. Commands that require <CR> are listed with `<CR>` at end. Many commands do NOT use <CR> — sending <CR> unnecessarily will bring up Info page. Characters outside Hex 20-7A act as terminators; above Hex 7F masked to 0x7F.
+**Character range.** Any character outside the legal range (Hex 20 to Hex 7A) acts as a terminator. Characters above Hex 7F are masked with `0x7F`. The underscore character `_` is a no-operation and is always ignored.
 
-Delimiter mode (optional): When enabled accepts `#<command><CR>`. Start delimiter `#`, end is <CR> or terminator. Lumagen recommends Delimiter Mode = Off for reliability. When delimiter mode active, use `?` for enable auto-aspect (instead of `~`), and `:` for ALT key (instead of `#`).
+**Query format.** All query commands begin with `ZQ`, followed by one of `I`/`S`/`O`, then a two-digit decimal code. No terminating characters are used on query requests. Query responses always begin with `!` followed by the last 3 characters of the request, followed by comma-separated data, followed by `<CR><LF>`. Exception: Ack/Nack responses (`!Y`/`!N`) terminate as `<LF><CR>` (0x0a 0x0d).
 
-Checksum mode: Format `#NcommandCC<CR>` where N=0-9 command count, CC=8-bit checksum. Ack given only when checksums match. Command count included in checksum but not verified to be incrementing.
+**Echo modes.** Echo defaults to `On` (recommended). `Off with Status` sends power/input change status in ZQS02/ZQI00 format. Lumagen recommends leaving Echo On — turning Off may affect software-update capability. See `ZE` command (action `set_echo`).
 
-Query response format: Query commands begin with ZQ, followed by char (I/S/O), then 2-digit decimal code. Response begins with `!` + last 3 chars of query request + data separated by commas + `<CR><LF>`. Ack/Nack (!Y/!N) uses different terminator `<LF><CR>` (0xa 0xd).
+**Delimiter modes.** When enabled, commands are sent as `#<command><CR>` or with checksum as `#NcommandCC<CR>`. When delimiter mode is active, two character substitutions apply: `?` is used for "enable auto-aspect" (instead of `~`), and `:` (colon) is used in place of `#` for the ALT key. Lumagen recommends Delimiter Mode = Off (default). See `ZD` command (action `set_delimiters`).
 
-Echo modes: Echo=On (default) echoes all chars. Echo=Off only sends message at power on/off. Echo=Off with Status sends power/input change status in ZQS02/ZQI00 format.
+**Multi-character commands.** Some single-row commands require multiple ASCII characters sent in sequence with no inter-character delay (e.g. `*N` for "16:9NZ NLS"). These are listed verbatim in the Actions section.
 
-Power On/Off Message: RS-232 power message can control another device. Configured via MENU → Other → OnOff Setup → On Message/Off Message. Message Control sets baud rate, parity, gap for the message.
+**Radiance Pro vs Radiance 2XXX scoping.** The source covers Radiance Pro and older Radiance models in the same document, with Pro-only commands tagged "Radiance Pro only" in their descriptions. For the Radiance 2143 (a 2XXX-series unit), the Pro-only commands (e.g. ZY540-547, ZQI22/23/24, ZQI50/51/52, ZY418, ZY533, extended aspect ratios `+n`/`+l`/`+w`/`+j`/`+W`/`+N`, 1.90/2.00/2.20/2.40 aspects, ZY42x 5-digit precision) are unlikely to apply. Actions are retained in this spec for completeness; the implementer should test before depending on Pro-only commands on a 2143.
 
-<!-- UNRESOLVED: minimum firmware version for Radiance Pro-only commands not stated -->
-<!-- UNRESOLVED: UDP protocol not mentioned in source — serial-only device -->
-<!-- UNRESOLVED: TCP/IP control not mentioned in source — serial-only device -->
+**Connector pinout.** DB9 Female 9-pin D connector, same pinout as a PC, without hardware flow control. Pin 2 = Receive, Pin 3 = Transmit, Pin 5 + connector shell = Ground.
+
+**Save flow.** Most settings persist only after a save. Use action `save_shortcut` (`S`) followed by `ok` (`k`), or `save_configuration` (`ZY6SAVECONFIG<CR>`). Exit any onscreen test pattern before saving.
+
+**Older / superseded commands.** Several commands marked "use X instead" in the source (e.g. ZQI03 → ZQI18, ZQI19 → ZQI20, ZQO06/07/08 → ZQO30, ZY410 → ZY415, ZY503 → ZY530, tXMM → ZY7T) are retained in this spec because the source still lists them as separate command rows. New integrations should prefer the recommended replacements.
+
+<!-- UNRESOLVED: firmware version compatibility ranges per command (source notes "for Radiance Pro... in latest posted software revision" and "Older commands that have been superceded are shown grayed out", but specific Radiance 2143 firmware revisions and command support cutoffs are not stated). -->
+<!-- UNRESOLVED: behavior on power loss, error recovery sequences, fault behavior are not described in source. -->
 
 ## Provenance
 
@@ -1879,25 +2176,30 @@ source_domains:
   - lumagen.com
 source_urls:
   - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
-retrieved_at: 2026-05-04T18:03:24.592Z
-last_checked_at: 2026-05-14T18:17:17.709Z
+retrieved_at: 2026-04-30T04:31:52.314Z
+last_checked_at: 2026-06-02T03:24:56.958Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.709Z
-matched_actions: 167
-action_count: 178
-confidence: high
-summary: "All 167 spec actions matched literally in source; transport fully verified; comprehensive coverage of Radiance 2143 control protocol."
+checked_at: 2026-06-02T03:24:56.958Z
+matched_actions: 215
+action_count: 215
+confidence: medium
+summary: "All 215 spec actions match verbatim source command tokens and all transport parameters (9600 baud, 8N1, no flow) are confirmed in source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version mapping for which commands are supported on the Radiance 2143 specifically vs Radiance Pro"
+- "many more variables exist (input/output offsets, ctemp pts, LUT entries) but follow the same set_via/query_via pattern; see ZY/ZQ Actions and Feedbacks above for full coverage."
+- "no macros defined in source"
+- "source contains no explicit safety warnings, interlock procedures,"
+- "firmware version compatibility ranges per command (source notes \"for Radiance Pro... in latest posted software revision\" and \"Older commands that have been superceded are shown grayed out\", but specific Radiance 2143 firmware revisions and command support cutoffs are not stated)."
+- "behavior on power loss, error recovery sequences, fault behavior are not described in source."
 ```
 
 ---

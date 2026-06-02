@@ -25,14 +25,20 @@ last_checked_at: 2026-04-30T09:48:21.302Z
 generated_at: 2026-04-30T09:48:21.302Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no settable continuous variables beyond volume (covered in actions)"
+  - "no unsolicited notification events described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "no query/readback commands documented — source only describes set/action commands"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:48:21.302Z
   matched_actions: 63
   action_count: 63
-  confidence: high
-  summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified."
+  confidence: medium
+  summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -555,14 +561,19 @@ verdict: verified
 checked_at: 2026-04-30T09:48:21.302Z
 matched_actions: 63
 action_count: 63
-confidence: high
-summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified."
+confidence: medium
+summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no settable continuous variables beyond volume (covered in actions)"
+- "no unsolicited notification events described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "no query/readback commands documented — source only describes set/action commands"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

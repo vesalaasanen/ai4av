@@ -19,19 +19,28 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T18:38:12.112Z
 last_checked_at: 2026-05-16T17:53:53.322Z
 generated_at: 2026-05-16T17:53:53.322Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "authentication mechanism not described in source — no login procedure found"
+  - "no settable parameters beyond discrete actions found in source"
+  - "no out-of-band event push protocol found in source"
+  - "no multi-step sequences explicitly described in source as macros"
+  - "no safety warnings or interlock procedures stated in source beyond standard reboot caution"
+  - "authentication not described — assume no auth required but not explicitly confirmed for all environments"
+  - "HTTPS support not mentioned; all examples use plain HTTP"
+  - "error response format for HTTP-level errors (4xx/5xx) not documented"
+  - "firmware version compatibility for volume/playback endpoints not stated (only input selection endpoints reference firmware versions)"
 verification:
   verdict: verified
   checked_at: 2026-05-16T17:53:53.322Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed."
+  confidence: medium
+  summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -714,7 +723,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T18:38:12.112Z
 last_checked_at: 2026-05-16T17:53:53.322Z
 ```
 
@@ -725,14 +734,22 @@ verdict: verified
 checked_at: 2026-05-16T17:53:53.322Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed."
+confidence: medium
+summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "authentication mechanism not described in source — no login procedure found"
+- "no settable parameters beyond discrete actions found in source"
+- "no out-of-band event push protocol found in source"
+- "no multi-step sequences explicitly described in source as macros"
+- "no safety warnings or interlock procedures stated in source beyond standard reboot caution"
+- "authentication not described — assume no auth required but not explicitly confirmed for all environments"
+- "HTTPS support not mentioned; all examples use plain HTTP"
+- "error response format for HTTP-level errors (4xx/5xx) not documented"
+- "firmware version compatibility for volume/playback endpoints not stated (only input selection endpoints reference firmware versions)"
 ```
 
 ---

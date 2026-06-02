@@ -39,25 +39,28 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
-  - snapav.com
+  - manual3.jvckenwood.com
+  - manualshelf.com
+  - manuals.jvckenwood.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+  - https://manual3.jvckenwood.com/projector/mobile/dla/lch60830-001en/
+  - https://www.manualshelf.com/manual/jvc/dla-x500r/owner-s-manual-english.html
+  - https://manuals.jvckenwood.com/download/files/PC027183199-1.pdf
+retrieved_at: 2026-05-21T01:16:55.267Z
 last_checked_at: 2026-05-26T14:04:35.761Z
 generated_at: 2026-05-26T14:04:35.761Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "DLA-X500R is not listed explicitly in the source model list; entity covers the shared protocol family. Confirm exact model compatibility."
 verification:
   verdict: verified
   checked_at: 2026-05-26T14:04:35.761Z
   matched_actions: 327
   action_count: 327
-  confidence: high
-  summary: "All 327 spec hex commands match verbatim in source command tables; transport (baud 19200, port 20554, 8N1) confirmed; source command inventory co-extensive with spec."
+  confidence: medium
+  summary: "All 327 spec hex commands match verbatim in source command tables; transport (baud 19200, port 20554, 8N1) confirmed; source command inventory co-extensive with spec. (1 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2222,13 +2225,15 @@ interlocks: []
 ```yaml
 source_domains:
   - support.jvc.com
-  - snapav.com
+  - manual3.jvckenwood.com
+  - manualshelf.com
+  - manuals.jvckenwood.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+  - https://manual3.jvckenwood.com/projector/mobile/dla/lch60830-001en/
+  - https://www.manualshelf.com/manual/jvc/dla-x500r/owner-s-manual-english.html
+  - https://manuals.jvckenwood.com/download/files/PC027183199-1.pdf
+retrieved_at: 2026-05-21T01:16:55.267Z
 last_checked_at: 2026-05-26T14:04:35.761Z
 ```
 
@@ -2239,14 +2244,14 @@ verdict: verified
 checked_at: 2026-05-26T14:04:35.761Z
 matched_actions: 327
 action_count: 327
-confidence: high
-summary: "All 327 spec hex commands match verbatim in source command tables; transport (baud 19200, port 20554, 8N1) confirmed; source command inventory co-extensive with spec."
+confidence: medium
+summary: "All 327 spec hex commands match verbatim in source command tables; transport (baud 19200, port 20554, 8N1) confirmed; source command inventory co-extensive with spec. (1 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "DLA-X500R is not listed explicitly in the source model list; entity covers the shared protocol family. Confirm exact model compatibility."
 ```
 
 ---

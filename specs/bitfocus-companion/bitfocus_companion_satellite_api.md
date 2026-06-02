@@ -24,14 +24,22 @@ last_checked_at: 2026-05-14T18:17:14.658Z
 generated_at: 2026-05-14T18:17:14.658Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no authentication mechanism described; source does not specify if auth can be configured"
+  - "WebSocket port 16623 mentioned but websocket is not a declared protocol type"
+  - "no multi-step sequences described in source"
+  - "populate if source contains safety warnings, interlock procedures,"
+  - "WebSocket protocol framing details not specified beyond port number"
+  - "maximum number of simultaneous devices/subscriptions not stated"
+  - "line length limits or message size limits not stated"
+  - "reconnection behavior and session persistence not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.658Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete."
+  confidence: medium
+  summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -379,14 +387,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.658Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete."
+confidence: medium
+summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no authentication mechanism described; source does not specify if auth can be configured"
+- "WebSocket port 16623 mentioned but websocket is not a declared protocol type"
+- "no multi-step sequences described in source"
+- "populate if source contains safety warnings, interlock procedures,"
+- "WebSocket protocol framing details not specified beyond port number"
+- "maximum number of simultaneous devices/subscriptions not stated"
+- "line length limits or message size limits not stated"
+- "reconnection behavior and session persistence not documented"
 ```
 
 ---

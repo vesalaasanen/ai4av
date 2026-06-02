@@ -31,14 +31,23 @@ last_checked_at: 2026-05-14T18:17:20.805Z
 generated_at: 2026-05-14T18:17:20.805Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 VISCA serial config not detailed in this source; IP-only portion documented"
+  - "base_url not applicable for UDP"
+  - "queryable state values documented in inquiry reply packets"
+  - "device-initiated (unsolicited) events not documented in source"
+  - "explicit multi-step macros not identified in source"
+  - "RS-232 serial baud rate / serial config not detailed in this IP-focused source document"
+  - "firmware version compatibility not stated"
+  - "VISCA Network Change command not supported over IP"
+  - "Address Set command not supported over IP"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.805Z
   matched_actions: 84
   action_count: 89
-  confidence: high
-  summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage."
+  confidence: medium
+  summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -854,14 +863,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.805Z
 matched_actions: 84
 action_count: 89
-confidence: high
-summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage."
+confidence: medium
+summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 VISCA serial config not detailed in this source; IP-only portion documented"
+- "base_url not applicable for UDP"
+- "queryable state values documented in inquiry reply packets"
+- "device-initiated (unsolicited) events not documented in source"
+- "explicit multi-step macros not identified in source"
+- "RS-232 serial baud rate / serial config not detailed in this IP-focused source document"
+- "firmware version compatibility not stated"
+- "VISCA Network Change command not supported over IP"
+- "Address Set command not supported over IP"
 ```
 
 ---

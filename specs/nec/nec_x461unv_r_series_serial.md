@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:25.086Z
 last_checked_at: 2026-04-26T21:32:03.587Z
 generated_at: 2026-04-26T21:32:03.587Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model designation (X461UNV-R) not confirmed in source; manual title \"Projector Control Command Reference Manual BDT140013 Rev 7.1\" used for manufacturer attribution"
+  - "no standalone settable parameters found in source; uses action-based adjustments"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures beyond those stated in command descriptions"
+  - "input terminal hex code mapping not fully enumerated in source; appendix lists common values but some entries show \"varies\" or multiple possible values"
+  - "ID2 model code values not enumerated in source"
+  - "aspect ratio hex codes include duplicate/overlapping entries (e.g., 16:9 and WIDE SCREEN both map to 02h/03h)"
+  - "audio select mapping incomplete for some terminal types"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:32:03.587Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched source; transport verified"
+  confidence: medium
+  summary: "All 50 spec actions matched source; transport verified (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -653,7 +662,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:25.086Z
 last_checked_at: 2026-04-26T21:32:03.587Z
 ```
 
@@ -664,14 +673,22 @@ verdict: verified
 checked_at: 2026-04-26T21:32:03.587Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched source; transport verified"
+confidence: medium
+summary: "All 50 spec actions matched source; transport verified (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model designation (X461UNV-R) not confirmed in source; manual title \"Projector Control Command Reference Manual BDT140013 Rev 7.1\" used for manufacturer attribution"
+- "no standalone settable parameters found in source; uses action-based adjustments"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures beyond those stated in command descriptions"
+- "input terminal hex code mapping not fully enumerated in source; appendix lists common values but some entries show \"varies\" or multiple possible values"
+- "ID2 model code values not enumerated in source"
+- "aspect ratio hex codes include duplicate/overlapping entries (e.g., 16:9 and WIDE SCREEN both map to 02h/03h)"
+- "audio select mapping incomplete for some terminal types"
 ```
 
 ---

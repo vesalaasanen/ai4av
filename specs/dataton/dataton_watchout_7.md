@@ -27,14 +27,24 @@ last_checked_at: 2026-04-27T14:41:59.431Z
 generated_at: 2026-04-27T14:41:59.431Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no power on/off commands in source"
+  - "powerable - no power commands in source"
+  - "node identification method not specified"
+  - "specific variable keys not stated in source - defined per show"
+  - "no explicit multi-step macros in source"
+  - "no interlock procedures stated in source"
+  - "firmware version compatibility not stated"
+  - "no power commands in source"
+  - "authentication token format not applicable — no auth"
+  - "specific input variable keys defined per show, not in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T14:41:59.431Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented."
+  confidence: medium
+  summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -367,14 +377,23 @@ verdict: verified
 checked_at: 2026-04-27T14:41:59.431Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented."
+confidence: medium
+summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no power on/off commands in source"
+- "powerable - no power commands in source"
+- "node identification method not specified"
+- "specific variable keys not stated in source - defined per show"
+- "no explicit multi-step macros in source"
+- "no interlock procedures stated in source"
+- "firmware version compatibility not stated"
+- "no power commands in source"
+- "authentication token format not applicable — no auth"
+- "specific input variable keys defined per show, not in source"
 ```
 
 ---

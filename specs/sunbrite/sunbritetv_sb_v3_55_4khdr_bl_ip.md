@@ -18,22 +18,33 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+  - docs.control4.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - "https://docs.control4.com/help/sun/displays/veranda3api/Content/IP%20Control.htm"
+retrieved_at: 2026-05-26T20:43:47.096Z
 last_checked_at: 2026-05-31T22:43:11.007Z
 generated_at: 2026-05-31T22:43:11.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Power Status"
+  - "TCP/IP control not confirmed in source; source is RS-232 only"
+  - "flow control not stated in source"
+  - "port number not stated in source"
+  - "no explicit response strings documented except power acknowledgement"
+  - "no settable parameters documented as separate variables"
+  - "no unsolicited notification events documented"
+  - "no multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP control capability not confirmed; source document covers RS-232 only"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:43:11.007Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched verbatim against source table; transport parameters confirmed; one additional Power Status query in source does not exceed the 5-entry threshold for short."
+  confidence: medium
+  summary: "All 49 spec actions matched verbatim against source table; transport parameters confirmed; one additional Power Status query in source does not exceed the 5-entry threshold for short. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -357,9 +368,11 @@ Input 7 (VGA) and Input 8 (HDMI1) are out of letter sequence to remain compatibl
 ```yaml
 source_domains:
   - sunbritetv.com
+  - docs.control4.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - "https://docs.control4.com/help/sun/displays/veranda3api/Content/IP%20Control.htm"
+retrieved_at: 2026-05-26T20:43:47.096Z
 last_checked_at: 2026-05-31T22:43:11.007Z
 ```
 
@@ -370,14 +383,23 @@ verdict: verified
 checked_at: 2026-05-31T22:43:11.007Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched verbatim against source table; transport parameters confirmed; one additional Power Status query in source does not exceed the 5-entry threshold for short."
+confidence: medium
+summary: "All 49 spec actions matched verbatim against source table; transport parameters confirmed; one additional Power Status query in source does not exceed the 5-entry threshold for short. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "Power Status"
+- "TCP/IP control not confirmed in source; source is RS-232 only"
+- "flow control not stated in source"
+- "port number not stated in source"
+- "no explicit response strings documented except power acknowledgement"
+- "no settable parameters documented as separate variables"
+- "no unsolicited notification events documented"
+- "no multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP control capability not confirmed; source document covers RS-232 only"
 ```
 
 ---

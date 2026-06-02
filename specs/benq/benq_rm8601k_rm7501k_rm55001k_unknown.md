@@ -19,14 +19,16 @@ compatible_with:
   required_options: []
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - manualowl.com
+  - manua.ls
+  - mans.io
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621914
+  - https://www.manua.ls/benq/rm8601k/manual
+  - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
+  - https://mans.io/item/Benq/rm8601k
+retrieved_at: 2026-05-14T20:26:53.834Z
 last_checked_at: 2026-05-14T21:41:39.641Z
 generated_at: 2026-05-14T21:41:39.641Z
 firmware_coverage: "Not stated in source"
@@ -44,13 +46,24 @@ known_gaps:
   - micvol
   - appmod_dynamic
   - appmod_livingroom
+  - "HDBaseT serial COM port details not stated beyond COM port naming in Device Manager"
+  - "device accepts 9600/14400/19200/38400/57600/115200; defaults not stated"
+  - "no standalone settable parameters outside of action/feedback pairs identified"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "Lamp2 Hour command (*ltim2=?) not supported per source"
+  - "audio mic volume commands (*micvol=*) not supported per source"
+  - "Network, USB Display, USB Reader, Wireless, HDBaseT, DisplayPort source commands not supported per source"
+  - "network standby, microphone standby, AMX discovery, broadcasting, remote receiver commands not supported per source"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:41:39.641Z
   matched_actions: 89
   action_count: 113
-  confidence: high
-  summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete."
+  confidence: medium
+  summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -716,14 +729,16 @@ interlocks: []
 ```yaml
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - manualowl.com
+  - manua.ls
+  - mans.io
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621914
+  - https://www.manua.ls/benq/rm8601k/manual
+  - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
+  - https://mans.io/item/Benq/rm8601k
+retrieved_at: 2026-05-14T20:26:53.834Z
 last_checked_at: 2026-05-14T21:41:39.641Z
 ```
 
@@ -734,8 +749,8 @@ verdict: verified
 checked_at: 2026-05-14T21:41:39.641Z
 matched_actions: 89
 action_count: 113
-confidence: high
-summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete."
+confidence: medium
+summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -753,6 +768,17 @@ summary: "All 89 spec actions match source commands; transport parameters verifi
 - micvol
 - appmod_dynamic
 - appmod_livingroom
+- "HDBaseT serial COM port details not stated beyond COM port naming in Device Manager"
+- "device accepts 9600/14400/19200/38400/57600/115200; defaults not stated"
+- "no standalone settable parameters outside of action/feedback pairs identified"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "Lamp2 Hour command (*ltim2=?) not supported per source"
+- "audio mic volume commands (*micvol=*) not supported per source"
+- "Network, USB Display, USB Reader, Wireless, HDBaseT, DisplayPort source commands not supported per source"
+- "network standby, microphone standby, AMX discovery, broadcasting, remote receiver commands not supported per source"
+- "firmware version compatibility not stated"
 ```
 
 ---

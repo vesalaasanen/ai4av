@@ -28,14 +28,16 @@ last_checked_at: 2026-05-14T18:17:21.319Z
 generated_at: 2026-05-14T18:17:21.319Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical device spec not applicable; web-based platform"
+  - "API version compatibility, production readiness"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.319Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 50 spec actions matched literally in source; transport parameters verified."
+  confidence: medium
+  summary: "All 50 spec actions matched literally in source; transport parameters verified. (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -524,14 +526,15 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.319Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 50 spec actions matched literally in source; transport parameters verified."
+confidence: medium
+summary: "All 50 spec actions matched literally in source; transport parameters verified. (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical device spec not applicable; web-based platform"
+- "API version compatibility, production readiness"
 ```
 
 ---

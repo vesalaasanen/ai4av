@@ -17,23 +17,28 @@ compatible_with:
   required_options: []
 source_domains:
   - audio-technica.com
-  - docs.audio-technica.com
 source_urls:
   - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
-  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
-retrieved_at: 2026-05-04T15:16:41.162Z
+retrieved_at: 2026-04-30T04:31:06.431Z
 last_checked_at: 2026-05-14T18:17:14.121Z
 generated_at: 2026-05-14T18:17:14.121Z
 firmware_coverage: "1.0.5 or later"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact power on/off sequence not documented as discrete commands; system boot/standby behavior not specified"
+  - "no explicit multi-step macro sequences described in source"
+  - "no explicit safety warnings, interlock procedures, or power-on"
+  - "exact reboot/power-cycle command not specified in IP control spec"
+  - "firmware update mechanism not described in this document"
+  - "Dante settings change also requires CU reboot"
+  - "precise list of commands that differ between IRCU firmware 1.0.5 and later versions not fully enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.121Z
   matched_actions: 57
   action_count: 57
-  confidence: high
-  summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented."
+  confidence: medium
+  summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1308,11 +1313,9 @@ interlocks: []
 ```yaml
 source_domains:
   - audio-technica.com
-  - docs.audio-technica.com
 source_urls:
   - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
-  - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
-retrieved_at: 2026-05-04T15:16:41.162Z
+retrieved_at: 2026-04-30T04:31:06.431Z
 last_checked_at: 2026-05-14T18:17:14.121Z
 ```
 
@@ -1323,14 +1326,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.121Z
 matched_actions: 57
 action_count: 57
-confidence: high
-summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented."
+confidence: medium
+summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact power on/off sequence not documented as discrete commands; system boot/standby behavior not specified"
+- "no explicit multi-step macro sequences described in source"
+- "no explicit safety warnings, interlock procedures, or power-on"
+- "exact reboot/power-cycle command not specified in IP control spec"
+- "firmware update mechanism not described in this document"
+- "Dante settings change also requires CU reboot"
+- "precise list of commands that differ between IRCU firmware 1.0.5 and later versions not fully enumerated"
 ```
 
 ---

@@ -27,14 +27,22 @@ last_checked_at: 2026-05-14T18:17:20.062Z
 generated_at: 2026-05-14T18:17:20.062Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port number not stated in source"
+  - "TCP port number not stated in source"
+  - "only applies to multi-zone units"
+  - "no named macros beyond example sequences"
+  - "no safety warnings for power-on sequencing, fault behavior, or error recovery stated"
+  - "firmware version compatibility not stated in source"
+  - "fault behavior and error recovery procedures not stated in source"
+  - "voltage/current/power specifications not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.062Z
   matched_actions: 120
   action_count: 120
-  confidence: high
-  summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -865,14 +873,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.062Z
 matched_actions: 120
 action_count: 120
-confidence: high
-summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim."
+confidence: medium
+summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port number not stated in source"
+- "TCP port number not stated in source"
+- "only applies to multi-zone units"
+- "no named macros beyond example sequences"
+- "no safety warnings for power-on sequencing, fault behavior, or error recovery stated"
+- "firmware version compatibility not stated in source"
+- "fault behavior and error recovery procedures not stated in source"
+- "voltage/current/power specifications not stated in source"
 ```
 
 ---

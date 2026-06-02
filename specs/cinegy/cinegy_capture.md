@@ -24,14 +24,25 @@ last_checked_at: 2026-05-14T18:17:15.005Z
 generated_at: 2026-05-14T18:17:15.005Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version compatibility range stated"
+  - "no authentication or authorization mechanism described"
+  - "port is variable - 8000+n where n is engine number [1..9]; default example uses 8001"
+  - "no continuously settable parameters (e.g., gain, level) documented beyond job triggers."
+  - "no unsolicited event/notification mechanism documented in source"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "error handling and recovery behavior not documented"
+  - "API version compatibility range not stated (APIVersion: 2 observed in example)"
+  - "concurrent request handling and rate limits not documented"
+  - "maximum number of engine instances (n=1..9) — upper bound stated but practical limits unknown"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.005Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved."
+  confidence: medium
+  summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -317,14 +328,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.005Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved."
+confidence: medium
+summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version compatibility range stated"
+- "no authentication or authorization mechanism described"
+- "port is variable - 8000+n where n is engine number [1..9]; default example uses 8001"
+- "no continuously settable parameters (e.g., gain, level) documented beyond job triggers."
+- "no unsolicited event/notification mechanism documented in source"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "error handling and recovery behavior not documented"
+- "API version compatibility range not stated (APIVersion: 2 observed in example)"
+- "concurrent request handling and rate limits not documented"
+- "maximum number of engine instances (n=1..9) — upper bound stated but practical limits unknown"
 ```
 
 ---

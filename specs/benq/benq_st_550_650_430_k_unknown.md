@@ -25,26 +25,35 @@ compatible_with:
   required_options: []
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - manualslib.com
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.manualslib.com/manual/1752140/Benq-St430k-Series.html
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:25:55.045Z
 last_checked_at: 2026-05-14T21:41:42.710Z
 generated_at: 2026-05-14T21:41:42.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model mapping for \"ST 550 650 430 K\" not found in source — source lists MS531/BS5050/ES6540/MS521H/MX532/MW533/TW533/MH534/TH534"
+  - "firmware version compatibility not stated"
+  - "response format beyond error strings not documented"
+  - "no discrete settable numeric parameters found - volume/contrast/brightness/color/sharpness use +/- relative commands only"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences documented in source"
+  - "source notes commands work if standby power is 0.5W or supported baud rate is set;"
+  - "exact response format for query commands beyond error strings"
+  - "model name \"ST 550 650 430 K\" not found in source document"
+  - "lamp mode response value mapping (lnor/eco/seco) unconfirmed"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:41:42.710Z
   matched_actions: 84
   action_count: 93
-  confidence: high
-  summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands."
+  confidence: medium
+  summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -844,14 +853,13 @@ interlocks: []
 ```yaml
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - manualslib.com
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.manualslib.com/manual/1752140/Benq-St430k-Series.html
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:25:55.045Z
 last_checked_at: 2026-05-14T21:41:42.710Z
 ```
 
@@ -862,14 +870,23 @@ verdict: verified
 checked_at: 2026-05-14T21:41:42.710Z
 matched_actions: 84
 action_count: 93
-confidence: high
-summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands."
+confidence: medium
+summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model mapping for \"ST 550 650 430 K\" not found in source — source lists MS531/BS5050/ES6540/MS521H/MX532/MW533/TW533/MH534/TH534"
+- "firmware version compatibility not stated"
+- "response format beyond error strings not documented"
+- "no discrete settable numeric parameters found - volume/contrast/brightness/color/sharpness use +/- relative commands only"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences documented in source"
+- "source notes commands work if standby power is 0.5W or supported baud rate is set;"
+- "exact response format for query commands beyond error strings"
+- "model name \"ST 550 650 430 K\" not found in source document"
+- "lamp mode response value mapping (lnor/eco/seco) unconfirmed"
 ```
 
 ---

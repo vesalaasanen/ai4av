@@ -19,19 +19,29 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+retrieved_at: 2026-04-29T11:13:29.352Z
 last_checked_at: 2026-05-14T18:17:17.857Z
 generated_at: 2026-05-14T18:17:17.857Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific Marantz Cinema Series model numbers not stated in source document"
+  - "firmware version compatibility not stated in source"
+  - "source document is titled \"Denon AV Receiver Control Protocol\" — Marantz and Denon share the same protocol but exact model coverage is unconfirmed"
+  - "no multi-step sequences explicitly described in source"
+  - "no additional safety warnings or interlock procedures found in source"
+  - "specific Marantz Cinema Series model numbers not stated"
+  - "firmware version compatibility not stated"
+  - "max number of concurrent TCP connections not stated"
+  - "connection keepalive/timeout behavior not stated"
+  - "whether protocol version varies across Cinema Series models"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.857Z
   matched_actions: 144
   action_count: 171
-  confidence: high
-  summary: "All 144 spec actions matched literal commands in source; transport parameters verified; coverage is complete."
+  confidence: medium
+  summary: "All 144 spec actions matched literal commands in source; transport parameters verified; coverage is complete. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1422,7 +1432,7 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T11:13:34.167Z
+retrieved_at: 2026-04-29T11:13:29.352Z
 last_checked_at: 2026-05-14T18:17:17.857Z
 ```
 
@@ -1433,14 +1443,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.857Z
 matched_actions: 144
 action_count: 171
-confidence: high
-summary: "All 144 spec actions matched literal commands in source; transport parameters verified; coverage is complete."
+confidence: medium
+summary: "All 144 spec actions matched literal commands in source; transport parameters verified; coverage is complete. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific Marantz Cinema Series model numbers not stated in source document"
+- "firmware version compatibility not stated in source"
+- "source document is titled \"Denon AV Receiver Control Protocol\" — Marantz and Denon share the same protocol but exact model coverage is unconfirmed"
+- "no multi-step sequences explicitly described in source"
+- "no additional safety warnings or interlock procedures found in source"
+- "specific Marantz Cinema Series model numbers not stated"
+- "firmware version compatibility not stated"
+- "max number of concurrent TCP connections not stated"
+- "connection keepalive/timeout behavior not stated"
+- "whether protocol version varies across Cinema Series models"
 ```
 
 ---

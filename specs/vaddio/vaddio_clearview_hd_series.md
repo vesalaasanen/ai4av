@@ -28,14 +28,25 @@ last_checked_at: 2026-05-14T18:17:21.268Z
 generated_at: 2026-05-14T18:17:21.268Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "this source covers only the HD-USB model; other ClearVIEW HD models (HD-18, HD-19, HD-20, HD-22) use a different command set"
+  - "firmware version compatibility not stated"
+  - "USB 2.0 control protocol mentioned but not documented in this source"
+  - "no continuous settable variables beyond action-params identified in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "USB 2.0 control interface mentioned but protocol not documented"
+  - "web interface control mentioned but API not documented"
+  - "IR remote commander commands not mapped to protocol equivalents"
+  - "exact firmware version requirements for IP streaming (Release 2.0.x mentioned)"
+  - "error recovery / fault behavior sequences not documented"
+  - "command timing constraints not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.268Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -697,14 +708,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.268Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "this source covers only the HD-USB model; other ClearVIEW HD models (HD-18, HD-19, HD-20, HD-22) use a different command set"
+- "firmware version compatibility not stated"
+- "USB 2.0 control protocol mentioned but not documented in this source"
+- "no continuous settable variables beyond action-params identified in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "USB 2.0 control interface mentioned but protocol not documented"
+- "web interface control mentioned but API not documented"
+- "IR remote commander commands not mapped to protocol equivalents"
+- "exact firmware version requirements for IP streaming (Release 2.0.x mentioned)"
+- "error recovery / fault behavior sequences not documented"
+- "command timing constraints not documented"
 ```
 
 ---

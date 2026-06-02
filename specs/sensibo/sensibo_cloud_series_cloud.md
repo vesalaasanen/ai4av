@@ -19,19 +19,27 @@ source_domains:
   - support.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
-retrieved_at: 2026-05-27T14:00:29.234Z
+retrieved_at: 2026-05-14T10:39:18.298Z
 last_checked_at: 2026-05-18T16:51:18.196Z
 generated_at: 2026-05-18T16:51:18.196Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical device port/specs, voltage/power, firmware version compatibility, binary command encodings"
+  - "key format/structure not stated in source"
+  - "routable, levelable - no input/output routing or level control commands in source"
+  - "individual settable parameters not enumerated in source - API returns full AC state objects"
+  - "unsolicited push events not described in source - API appears polling-based (GET patterns)"
+  - "no explicit multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "auth credential format, firmware version, physical port specs, power consumption, event push model, binary encoding details"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:51:18.196Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations."
+  confidence: medium
+  summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -335,7 +343,7 @@ source_domains:
   - support.sensibo.com
 source_urls:
   - https://support.sensibo.com/api/
-retrieved_at: 2026-05-27T14:00:29.234Z
+retrieved_at: 2026-05-14T10:39:18.298Z
 last_checked_at: 2026-05-18T16:51:18.196Z
 ```
 
@@ -346,14 +354,21 @@ verdict: verified
 checked_at: 2026-05-18T16:51:18.196Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations."
+confidence: medium
+summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical device port/specs, voltage/power, firmware version compatibility, binary command encodings"
+- "key format/structure not stated in source"
+- "routable, levelable - no input/output routing or level control commands in source"
+- "individual settable parameters not enumerated in source - API returns full AC state objects"
+- "unsolicited push events not described in source - API appears polling-based (GET patterns)"
+- "no explicit multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "auth credential format, firmware version, physical port specs, power consumption, event push model, binary encoding details"
 ```
 
 ---

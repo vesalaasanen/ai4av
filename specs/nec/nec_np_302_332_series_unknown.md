@@ -20,19 +20,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:27:02.818Z
 last_checked_at: 2026-05-16T11:39:53.933Z
 generated_at: 2026-05-16T11:39:53.933Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN control not documented in source — see operation manual of wireless LAN unit"
+  - "specific variable parameters not fully enumerated in source."
+  - "no unsolicited event notifications documented in source."
+  - "no explicit multi-step macros described in source."
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "appendix \"Supplementary Information by Command\" not included in source — input terminal values and aspect values not populated"
+  - "firmware version compatibility not stated"
+  - "wireless LAN control protocol not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:39:53.933Z
   matched_actions: 52
   action_count: 52
-  confidence: high
-  summary: "All 52 semantic-id spec actions have documented source counterparts; transport parameters verified verbatim; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 52 semantic-id spec actions have documented source counterparts; transport parameters verified verbatim; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -517,7 +525,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:27:02.818Z
 last_checked_at: 2026-05-16T11:39:53.933Z
 ```
 
@@ -528,14 +536,21 @@ verdict: verified
 checked_at: 2026-05-16T11:39:53.933Z
 matched_actions: 52
 action_count: 52
-confidence: high
-summary: "All 52 semantic-id spec actions have documented source counterparts; transport parameters verified verbatim; source command catalogue fully represented."
+confidence: medium
+summary: "All 52 semantic-id spec actions have documented source counterparts; transport parameters verified verbatim; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN control not documented in source — see operation manual of wireless LAN unit"
+- "specific variable parameters not fully enumerated in source."
+- "no unsolicited event notifications documented in source."
+- "no explicit multi-step macros described in source."
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "appendix \"Supplementary Information by Command\" not included in source — input terminal values and aspect values not populated"
+- "firmware version compatibility not stated"
+- "wireless LAN control protocol not documented"
 ```
 
 ---

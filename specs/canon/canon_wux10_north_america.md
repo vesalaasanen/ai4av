@@ -24,14 +24,30 @@ last_checked_at: 2026-04-23T15:28:50.519Z
 generated_at: 2026-04-23T15:28:50.519Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP or network control protocol documented in source"
+  - "response format for GET commands not documented in source"
+  - "valid value ranges for brightness, sharpness, contrast not stated in source"
+  - "command timing, delays, or retry behavior not documented in source"
+  - "valid range not stated in source"
+  - "response format not documented in source"
+  - "value range and response format not documented in source"
+  - "no settable continuous parameters with documented ranges found in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "source does not document power-on sequencing requirements, warm-up/cool-down"
+  - "response/acknowledgement format for all commands not documented"
+  - "minimum delay between commands not documented"
+  - "warm-up time after power on not documented"
+  - "cool-down time after power off not documented"
+  - "error response format not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:28:50.519Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands."
+  confidence: medium
+  summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -285,14 +301,29 @@ verdict: verified
 checked_at: 2026-04-23T15:28:50.519Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands."
+confidence: medium
+summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP or network control protocol documented in source"
+- "response format for GET commands not documented in source"
+- "valid value ranges for brightness, sharpness, contrast not stated in source"
+- "command timing, delays, or retry behavior not documented in source"
+- "valid range not stated in source"
+- "response format not documented in source"
+- "value range and response format not documented in source"
+- "no settable continuous parameters with documented ranges found in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "source does not document power-on sequencing requirements, warm-up/cool-down"
+- "response/acknowledgement format for all commands not documented"
+- "minimum delay between commands not documented"
+- "warm-up time after power on not documented"
+- "cool-down time after power off not documented"
+- "error response format not documented"
 ```
 
 ---

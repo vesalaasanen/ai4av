@@ -24,14 +24,21 @@ last_checked_at: 2026-05-31T06:54:50.271Z
 generated_at: 2026-05-31T06:54:50.271Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "exact hardware models (GXR2 amplifier, RS232G module part numbers) not specified"
+  - "no multi-step macro sequences described in source"
+  - "no power-on sequencing requirements stated in source"
+  - "exact GXR2 and RS232G module model numbers not specified"
+  - "maximum cable length / serial distance not stated"
+  - "whether TCP/IP gateway variant exists (RS232G name implies serial only)"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:54:50.271Z
   matched_actions: 75
   action_count: 75
-  confidence: high
-  summary: "All 75 spec actions found verbatim in source with exact command codes; transport parameters verified; complete protocol coverage."
+  confidence: medium
+  summary: "All 75 spec actions found verbatim in source with exact command codes; transport parameters verified; complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1064,14 +1071,20 @@ verdict: verified
 checked_at: 2026-05-31T06:54:50.271Z
 matched_actions: 75
 action_count: 75
-confidence: high
-summary: "All 75 spec actions found verbatim in source with exact command codes; transport parameters verified; complete protocol coverage."
+confidence: medium
+summary: "All 75 spec actions found verbatim in source with exact command codes; transport parameters verified; complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "exact hardware models (GXR2 amplifier, RS232G module part numbers) not specified"
+- "no multi-step macro sequences described in source"
+- "no power-on sequencing requirements stated in source"
+- "exact GXR2 and RS232G module model numbers not specified"
+- "maximum cable length / serial distance not stated"
+- "whether TCP/IP gateway variant exists (RS232G name implies serial only)"
 ```
 
 ---

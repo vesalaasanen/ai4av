@@ -27,14 +27,19 @@ last_checked_at: 2026-05-14T18:17:14.990Z
 generated_at: 2026-05-14T18:17:14.990Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial baud rate and port configuration not stated in source; configured via Spyder Studio"
+  - "unsolicited event notifications not documented in source"
+  - "explicit multi-step macros not documented in source"
+  - "serial baud rate, data bits, parity, stop bits not stated in source (configured via Spyder Studio)"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.990Z
   matched_actions: 94
   action_count: 97
-  confidence: high
-  summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified."
+  confidence: medium
+  summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1628,14 +1633,18 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.990Z
 matched_actions: 94
 action_count: 97
-confidence: high
-summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified."
+confidence: medium
+summary: "All 94 spec actions matched literally in source with correct parameter shapes and transport values verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial baud rate and port configuration not stated in source; configured via Spyder Studio"
+- "unsolicited event notifications not documented in source"
+- "explicit multi-step macros not documented in source"
+- "serial baud rate, data bits, parity, stop bits not stated in source (configured via Spyder Studio)"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

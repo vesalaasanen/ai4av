@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:23.401Z
 last_checked_at: 2026-04-26T21:36:05.610Z
 generated_at: 2026-04-26T21:36:05.610Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "complete command byte encoding for all parameters not fully specified (referenced as \"Appendix\" but appendix content partially truncated in source)"
+  - "multiple rates supported (115200/38400/19200/9600/4800 bps) - no single default stated"
+  - "RTS/CTS loopback present in pinout but flow_control mode not stated"
+  - "variables that can be both set and queried are documented as action/feedback pairs."
+  - "no unsolicited notification mechanism described in source."
+  - "no explicit multi-step macro sequences documented in source."
+  - "no explicit safety warnings for voltage, current, or physical interlock procedures in source."
+  - "complete list of aspect mode hex codes — appendix references values but some (like FULL) have multiple possible codes (09h or 10h)"
+  - "HDBaseT standby mode details not fully specified in source"
+  - "lamp information for dual-lamp operation requires model-specific validation"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:36:05.610Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched source commands; transport verified."
+  confidence: medium
+  summary: "All 53 spec actions matched source commands; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -566,7 +576,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:23.401Z
 last_checked_at: 2026-04-26T21:36:05.610Z
 ```
 
@@ -577,14 +587,23 @@ verdict: verified
 checked_at: 2026-04-26T21:36:05.610Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched source commands; transport verified."
+confidence: medium
+summary: "All 53 spec actions matched source commands; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "complete command byte encoding for all parameters not fully specified (referenced as \"Appendix\" but appendix content partially truncated in source)"
+- "multiple rates supported (115200/38400/19200/9600/4800 bps) - no single default stated"
+- "RTS/CTS loopback present in pinout but flow_control mode not stated"
+- "variables that can be both set and queried are documented as action/feedback pairs."
+- "no unsolicited notification mechanism described in source."
+- "no explicit multi-step macro sequences documented in source."
+- "no explicit safety warnings for voltage, current, or physical interlock procedures in source."
+- "complete list of aspect mode hex codes — appendix references values but some (like FULL) have multiple possible codes (09h or 10h)"
+- "HDBaseT standby mode details not fully specified in source"
+- "lamp information for dual-lamp operation requires model-specific validation"
 ```
 
 ---

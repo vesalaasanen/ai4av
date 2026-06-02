@@ -37,13 +37,20 @@ known_gaps:
   - XAT
   - XTI
   - XCH
+  - "continuous/settable parameters not fully distinct from actions above"
+  - "no explicit multi-step macro sequences described in source"
+  - "no explicit safety interlock or power sequencing warnings in source"
+  - "specific DSX-3 feature subset not confirmed — source is generic Integra ISCP protocol doc v1.15"
+  - "which tone control commands apply to DSX-3 specifically"
+  - "XM/SIRIUS/HD Radio support depends on model variant"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.986Z
   matched_actions: 104
   action_count: 104
-  confidence: high
-  summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands."
+  confidence: medium
+  summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1199,8 +1206,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.986Z
 matched_actions: 104
 action_count: 104
-confidence: high
-summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands."
+confidence: medium
+summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1218,6 +1225,13 @@ summary: "All 124 spec commands have literal matches in source; transport verifi
 - XAT
 - XTI
 - XCH
+- "continuous/settable parameters not fully distinct from actions above"
+- "no explicit multi-step macro sequences described in source"
+- "no explicit safety interlock or power sequencing warnings in source"
+- "specific DSX-3 feature subset not confirmed — source is generic Integra ISCP protocol doc v1.15"
+- "which tone control commands apply to DSX-3 specifically"
+- "XM/SIRIUS/HD Radio support depends on model variant"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

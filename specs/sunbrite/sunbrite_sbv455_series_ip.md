@@ -17,21 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-solis-ig/Content/Topics/IP%20Control%20Guide.htm"
+retrieved_at: 2026-05-26T16:32:54.221Z
 last_checked_at: 2026-05-31T22:42:30.126Z
 generated_at: 2026-05-31T22:42:30.126Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control not documented in source — only RS-232 commands present"
+  - "flow control not stated in source"
+  - "COM port not stated in source"
+  - "no standalone settable parameters documented - all commands are discrete actions"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP control path not documented in source — spec derived from RS-232 command table only"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:42:30.126Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched verbatim in source command table; transport parameters verified; complete coverage."
+  confidence: medium
+  summary: "All 50 spec actions matched verbatim in source command table; transport parameters verified; complete coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -407,9 +417,11 @@ Input 7 (VGA) and Input 8 (HDMI1) are documented as out of letter sequence to re
 ```yaml
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-solis-ig/Content/Topics/IP%20Control%20Guide.htm"
+retrieved_at: 2026-05-26T16:32:54.221Z
 last_checked_at: 2026-05-31T22:42:30.126Z
 ```
 
@@ -420,14 +432,21 @@ verdict: verified
 checked_at: 2026-05-31T22:42:30.126Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched verbatim in source command table; transport parameters verified; complete coverage."
+confidence: medium
+summary: "All 50 spec actions matched verbatim in source command table; transport parameters verified; complete coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control not documented in source — only RS-232 commands present"
+- "flow control not stated in source"
+- "COM port not stated in source"
+- "no standalone settable parameters documented - all commands are discrete actions"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP control path not documented in source — spec derived from RS-232 command table only"
 ```
 
 ---

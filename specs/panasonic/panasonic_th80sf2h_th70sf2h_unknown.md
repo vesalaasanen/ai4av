@@ -2,7 +2,7 @@
 spec_id: admin/panasonic-th80sf2h-th70sf2h
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Panasonic TH-80SF2H/70SF2H Control Spec"
+title: "Panasonic TH-80SF2H / TH-70SF2H Control Spec"
 manufacturer: Panasonic
 model_family: TH-80SF2H
 aliases: []
@@ -17,56 +17,60 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - na.panasonic.com
-  - eww.pass.panasonic.co.jp
+  - docs.connect.panasonic.com
   - eu.connect.panasonic.com
+  - manualowl.com
 source_urls:
-  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
-  - https://eww.pass.panasonic.co.jp/pro-av/support/content/guide/DEF/RP50_120/RemoteControllerInterfaceSpecifications-E.pdf
-  - https://eww.pass.panasonic.co.jp/pav-ks/support/content/general_1/DEF/KAIROS_RestAPI_14_E.pdf
-  - https://eu.connect.panasonic.com/sites/default/files/media/2024-04/8475ef1uw_manual_en_8.pdf
-  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
-retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-05-18T16:44:23.292Z
-generated_at: 2026-05-18T16:44:23.292Z
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/SF2H_SerialCommandList.pdf
+  - https://docs.connect.panasonic.com/prodisplays/support/rs232c_commandlist.html
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LAN_Protocol_exp.pdf
+  - https://eu.connect.panasonic.com/sites/default/files/media/document/2017-12/sf2huw_manual_en.pdf
+  - https://www.manualowl.com/m/Panasonic/TH-80SF2H/Manual/515989
+retrieved_at: 2026-05-18T03:13:52.321Z
+last_checked_at: 2026-06-02T10:14:09.339Z
+generated_at: 2026-06-02T10:14:09.339Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Exact LAN port not explicitly pinned in protocol section; \"Default is 1024\" stated for the WEB control admin port. Treat 1024 as the default, but the source also lists a user-configurable LAN Setup - Port Number (1024-4351, 4353-9999, 10001-19999, 20001-27249, 27251-41793, 41795-65535)."
+  - "no explicit multi-step command sequences described in source"
+  - "no explicit safety warnings, interlock procedures, or power-on"
+  - "firmware compatibility version range, voltage/current draw,"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:44:23.292Z
-  matched_actions: 176
-  action_count: 176
-  confidence: high
-  summary: "All 176 spec actions map to source commands via semantic-id convention; transport parameters (9600 bps, 8N1, no flow control, port 1024) verified verbatim in source."
+  checked_at: 2026-06-02T10:14:09.339Z
+  matched_actions: 218
+  action_count: 218
+  confidence: medium
+  summary: "All 218 spec actions match source wire tokens with correct shapes; AVL/AMT/VMT colon-separator fixes and changing_mode polarity (2=High,1=Normal) confirmed; transport params (9600 8N1, port 1024, MD5 auth) all verified. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-18
+created_at: 2026-06-02
 ---
 
-# Panasonic TH-80SF2H/70SF2H Control Spec
+# Panasonic TH-80SF2H / TH-70SF2H Control Spec
 
 ## Summary
-Panasonic large-format LCD display supporting RS-232C serial and TCP/IP LAN control. Protocol 1 and Protocol 2 LAN modes; protect mode (MD5 password auth) and non-protect mode described. Serial: 9600 bps, 8N1, no flow control. Default LAN port 1024. Only PON and QPW operational in standby.
+Large-format LCD signage displays (80-inch TH-80SF2H and 70-inch TH-70SF2H). RS-232C and LAN control over an ASCII command set framed with STX (0x02) and ETX (0x03), 3-character command mnemonics with colon-prefixed parameters. The same command mnemonics are exposed over both transports; LAN framing is "NTCONTROL 0" + payload.
 
-<!-- UNRESOLVED: port number beyond default 1024 not confirmed for RS-232C; UNRESOLVED: LAN port range for Protocol 2 same as Protocol 1 default; UNRESOLVED: command timing/inter-command delay not specified -->
+<!-- UNRESOLVED: Exact LAN port not explicitly pinned in protocol section; "Default is 1024" stated for the WEB control admin port. Treat 1024 as the default, but the source also lists a user-configurable LAN Setup - Port Number (1024-4351, 4353-9999, 10001-19999, 20001-27249, 27251-41793, 41795-65535). -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
   - tcp
-addressing:
-  port: 1024  # default; port range 1024~65535 stated
 serial:
   baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
+addressing:
+  port: 1024  # default LAN port per source; user-configurable via SSU:LCP (1024-4351, 4353-9999, 10001-19999, 20001-27249, 27251-41793, 41795-65535)
 auth:
-  type: none  # inferred: non-protect mode described with no password in source
+  type: password  # WEB control admin password (MD5 of random+password) when in Protect mode; Non protect mode sends NTCONTROL 0 directly
 ```
 
 ## Traits
@@ -79,2475 +83,2314 @@ auth:
 
 ## Actions
 ```yaml
+# All commands are 3-character ASCII mnemonics; parameters are colon-prefixed
+# strings of fixed width per command. Wire format on RS-232C: <STX>CMD[:PARAM]<ETX>
+# where STX=0x02, ETX=0x03. Wire format on LAN: "NTCONTROL 0" (0x4E 54 43 4F 4E 54
+# 52 4F 4C 20 30 0D) followed by the same STX..ETX payload when LAN protocol = 1
+# (or "NTCONTROL 1" when protocol = 2).
+
+# --- Basic Control ---
 - id: power_on
-  label: Power On
+  label: Power ON
   kind: action
+  command: "PON"
   params: []
 
 - id: power_off
-  label: Power Off
+  label: Power OFF
   kind: action
+  command: "POF"
   params: []
 
-- id: select_input
-  label: Select Input
+- id: power_status
+  label: Power Status
+  kind: query
+  command: "QPW"
+  params: []
+  # Reply: QPW:0 (Standby) / QPW:1 (Power ON)
+
+- id: input_change
+  label: Input Change
   kind: action
+  command: "IMS:{input}"  # source: IMS:*** (colon precedes param; omit ':param' to toggle)
   params:
     - name: input
       type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
-  enum:
-    - HM1
-    - HM2
-    - DL1
-    - DV1
-    - PC1
-    - VD1
-    - UD1
-    - MV1
+      values: [HM1, HM2, DL1, DV1, PC1, VD1, UD1, MV1]
+      description: HDMI1 / HDMI2 / DIGITAL LINK / DVI-D / PC / VIDEO / USB / MEMORY VIEWER; omit parameter to toggle
 
-- id: set_volume
-  label: Set Audio Volume
+- id: input_change_dl1_yfb
+  label: Digital Link Input select for YFB Series
   kind: action
+  command: "IMS:DL1{input}"
+  params:
+    - name: input
+      type: string
+      values: [HD1, HD2, PC1, PC2, SVD, VID]
+      description: "YFB100: HD1/HD2/PC1/PC2/SVD/VID; YFB200: HD1/HD2/PC1/PC2/VID"
+
+- id: audio_volume_set
+  label: Audio Volume
+  kind: action
+  command: "AVL:{level}"  # source: AVL:*** (mandatory colon before level)
   params:
     - name: level
       type: integer
       description: "000-100"
-  range: [0, 100]
 
 - id: volume_up
   label: Volume Up
   kind: action
+  command: "AUU"
   params: []
 
 - id: volume_down
   label: Volume Down
   kind: action
+  command: "AUD"
   params: []
 
-- id: set_audio_mute
+- id: audio_volume_query
+  label: Current Audio Volume
+  kind: query
+  command: "QAV"
+  params: []
+  # Reply: QAV:000-100
+
+- id: audio_mute
   label: Audio Mute
   kind: action
+  command: "AMT:{mode}"  # source: AMT(:*) — colon precedes param; omit ':param' to toggle
   params:
-    - name: state
+    - name: mode
       type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+      values: [0, 1]
+      description: "Omit param to toggle. 0 = mute off, 1 = mute on."
 
-- id: set_video_mute
+- id: video_mute
   label: Video Mute
   kind: action
+  command: "VMT:{mode}"  # source: VMT(:*) — colon precedes param; omit ':param' to toggle
   params:
-    - name: state
+    - name: mode
       type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+      values: [0, 1]
+      description: "Omit param to toggle. 0 = off, 1 = on."
 
-- id: set_aspect
+- id: aspect_change
   label: Aspect Change
   kind: action
+  command: "DAM:{mode}"
   params:
     - name: mode
       type: string
-      description: "FULL/NORM/ZOOM/ZOM2"
-  enum:
-    - FULL
-    - NORM
-    - ZOOM
-    - ZOM2
+      values: [FULL, NORM, ZOOM, ZOM2]
+      description: FULL / NORMAL / ZOOM1 / ZOOM2
 
-- id: set_picture_mode
+# --- Picture ---
+- id: picture_mode
   label: Picture Mode
   kind: action
+  command: "VPC:MEN{mode}"
   params:
     - name: mode
       type: string
-      description: "VIV/NAT/STD/SUV/GRH/DCM"
-  enum:
-    - VIV
-    - NAT
-    - STD
-    - SUV
-    - GRH
-    - DCM
+      values: [VIV, NAT, STD, SUV, GRH, DCM]
+      description: VIVID SIGNAGE / NATURAL SIGNAGE / STANDARD / SURVEILLANCE / GRAPHIC / DICOM
 
-- id: set_backlight
+- id: backlight
   label: Backlight
   kind: action
+  command: "VPC:BLT{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF (default). Available when Power save is Off."
 
-- id: set_picture_contrast
+- id: picture_contrast
   label: Picture Contrast
   kind: action
+  command: "VPC:PIC{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF"
 
-- id: set_black_level
+- id: black_level_brightness
   label: Black Level Brightness
   kind: action
+  command: "VPC:BLK{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF"
 
-- id: set_color
+- id: color
   label: Color
   kind: action
+  command: "VPC:COL{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF"
 
-- id: set_tint
+- id: tint
   label: Tint
   kind: action
+  command: "VPC:TIN{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF"
 
-- id: set_sharpness
+- id: sharpness
   label: Sharpness
   kind: action
+  command: "VPC:SHP{level}"
   params:
     - name: level
-      type: integer
-      description: "000~100 or DEF"
-  range: [0, 100]
+      type: string
+      description: "000-100 or DEF"
 
-- id: set_enhance_level
-  label: Enhance Level
+- id: enhance_level
+  label: Enhance level
   kind: action
+  command: "VPC:SHE{level}"
   params:
     - name: level
-      type: integer
-      description: "1: low, 2: high"
-  enum:
-    - 1
-    - 2
+      type: string
+      values: ["1", "2"]
+      description: "1 = low, 2 = high"
 
-- id: set_gamma
+- id: gamma
   label: Gamma
   kind: action
+  command: "VWB:GMM{value}"
   params:
     - name: value
       type: string
-      description: "20/22/24/26"
-  enum:
-    - "20"
-    - "22"
-    - "24"
-    - "26"
+      values: ["20", "22", "24", "26"]
+      description: "2.0 / 2.2 / 2.4 / 2.6"
 
-- id: set_color_temperature
+- id: color_temperature
   label: Color Temperature
   kind: action
+  command: "VPC:TMP{value}"
   params:
     - name: value
       type: string
-      description: "032/040/050/065/075/093/107/NTV/U01/U02"
-  enum:
-    - "032"
-    - "040"
-    - "050"
-    - "065"
-    - "075"
-    - "093"
-    - "107"
-    - NTV
-    - U01
-    - U02
+      values: ["032", "040", "050", "065", "075", "093", "107", "NTV", "U01", "U02"]
+      description: "3200K-10700K, NaTiVe, USER1, USER2"
 
-- id: set_red_gain
+- id: red_gain
   label: Red Gain
   kind: action
+  command: "VWB:RGN{value}"
   params:
     - name: value
-      type: integer
-      description: "0000~0255; available when color temp is USER1/USER2"
-  range: [0, 255]
+      type: string
+      description: "0000-0255; available when Color Temperature is USER1/USER2"
 
-- id: set_green_gain
+- id: green_gain
   label: Green Gain
   kind: action
+  command: "VWB:GGN{value}"
   params:
     - name: value
-      type: integer
-      description: "0000~0255; available when color temp is USER1/USER2"
-  range: [0, 255]
+      type: string
+      description: "0000-0255; available when Color Temperature is USER1/USER2"
 
-- id: set_blue_gain
+- id: blue_gain
   label: Blue Gain
   kind: action
+  command: "VWB:BGN{value}"
   params:
     - name: value
-      type: integer
-      description: "0000~0255; available when color temp is USER1/USER2"
-  range: [0, 255]
+      type: string
+      description: "0000-0255; available when Color Temperature is USER1/USER2"
 
-- id: set_red_bias
+- id: red_bias
   label: Red Bias
   kind: action
+  command: "VWB:RBS{value}"
   params:
     - name: value
-      type: integer
-      description: "-127~0000~0128; available when color temp is USER1/USER2"
-  range: [-127, 128]
+      type: string
+      description: "-127 to 0128 (sign + 4-digit zero-padded); USER1/USER2 only"
 
-- id: set_green_bias
+- id: green_bias
   label: Green Bias
   kind: action
+  command: "VWB:GBS{value}"
   params:
     - name: value
-      type: integer
-      description: "-127~0000~0128; available when color temp is USER1/USER2"
-  range: [-127, 128]
+      type: string
+      description: "-127 to 0128; USER1/USER2 only"
 
-- id: set_blue_bias
+- id: blue_bias
   label: Blue Bias
   kind: action
+  command: "VWB:BBS{value}"
   params:
     - name: value
-      type: integer
-      description: "-127~0000~0128; available when color temp is USER1/USER2"
-  range: [-127, 128]
-
-- id: set_dynamic_contrast
-  label: Dynamic Contrast
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: "00~10"
-  range: [0, 10]
-
-- id: set_color_enhancement
-  label: Color Enhancement
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_refine_enhancer
-  label: Refine Enhancer
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: "0: off, 1: low, 2: mid, 3: high"
-  enum:
-    - 0
-    - 1
-    - 2
-    - 3
-
-- id: set_gradation_smoother
-  label: Gradation Smoother
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: memory_delete
-  label: Memory Delete
-  kind: action
-  params:
-    - name: slot
-      type: integer
-      description: "01~06"
-  range: [1, 6]
-
-- id: memory_load
-  label: Memory Load
-  kind: action
-  params:
-    - name: slot
-      type: integer
-      description: "01~06"
-  range: [1, 6]
-
-- id: memory_save
-  label: Memory Save
-  kind: action
-  params:
-    - name: slot
-      type: integer
-      description: "01~06"
-    - name: name
       type: string
-      description: "up to 20 chars"
-  range: [1, 6]
+      description: "-127 to 0128; USER1/USER2 only"
 
-- id: memory_name_change
-  label: Memory Name Change
+- id: six_seg_color_management
+  label: 6-segment color management
   kind: action
-  params:
-    - name: slot
-      type: integer
-      description: "01~06"
-    - name: name
-      type: string
-      description: "up to 20 chars"
-  range: [1, 6]
-
-- id: set_audio_output_select
-  label: Audio Output Select
-  kind: action
-  params:
-    - name: output
-      type: string
-      description: "SPO: speakers, LNO: audio out"
-  enum:
-    - SPO
-    - LNO
-
-- id: set_balance
-  label: Balance
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: "-20~000~+20"
-  range: [-20, 20]
-
-- id: set_sound_mode
-  label: Sound Mode
-  kind: action
+  command: "VWB:CMF{mode}"
   params:
     - name: mode
       type: string
-      description: "STD(AUT)/DYN/CLR"
-  enum:
-    - STD
-    - DYN
-    - CLR
+      values: ["0", "1"]
+      description: "0 = off, 1 = on"
 
-- id: set_bass
+- id: six_seg_color_select
+  label: 6-segment color management select color
+  kind: action
+  command: "VWB:CML{color}{tint}{saturation}{value}"
+  params:
+    - name: color
+      type: string
+      values: [R, Y, G, C, B, M]
+    - name: tint
+      type: string
+      description: "-511 to 0511"
+    - name: saturation
+      type: string
+      description: "-127 to 0127"
+    - name: value
+      type: string
+      description: "-127 to 0127"
+
+- id: six_seg_color_reset
+  label: 6-segment color management reset
+  kind: action
+  command: "VWB:CMR"
+  params: []
+
+- id: dynamic_contrast
+  label: Dynamic Contrast
+  kind: action
+  command: "VPC:DCO{level}"
+  params:
+    - name: level
+      type: string
+      description: "00-10"
+
+- id: color_enhancement
+  label: Color Enhancement
+  kind: action
+  command: "VPC:PAJ{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
+
+- id: refine_enhancer
+  label: Refine enhancer
+  kind: action
+  command: "VPC:SRC{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1", "2", "3"]
+      description: "0 = OFF, 1 = Low, 2 = Mid, 3 = High"
+
+- id: gradation_smoother
+  label: Gradation smoother
+  kind: action
+  command: "VPC:GRS{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = off, 1 = on"
+
+# --- Picture Memory ---
+- id: memory_delete
+  label: Memory delete
+  kind: action
+  command: "VPF:DEL{slot}"
+  params:
+    - name: slot
+      type: string
+      description: "01-06 (Memory No.1 - Memory No.6)"
+
+- id: memory_load
+  label: Memory load
+  kind: action
+  command: "VPF:LOD{slot}"
+  params:
+    - name: slot
+      type: string
+      description: "01-06"
+
+- id: memory_name_change
+  label: Memory name change
+  kind: action
+  command: "VPF:NAM{slot}{name}"
+  params:
+    - name: slot
+      type: string
+      description: "01-06"
+    - name: name
+      type: string
+      description: "Max 20 characters"
+
+- id: memory_save
+  label: Memory save
+  kind: action
+  command: "VPF:SAV{slot}{name}"
+  params:
+    - name: slot
+      type: string
+      description: "01-06"
+    - name: name
+      type: string
+      description: "Max 20 characters"
+
+- id: memory_state
+  label: Memory state
+  kind: query
+  command: "QPF:STA"
+  params: []
+  # Reply: QPF:STA******  where ****** = "- / 0" per Memory No.1-6 (Unused / Use)
+
+# --- Sound Adjustment ---
+- id: output_select
+  label: Output Select
+  kind: action
+  command: "AAC:OUT{target}"
+  params:
+    - name: target
+      type: string
+      values: [SPO, LNO]
+      description: SPEAKERS / AUDIO OUT
+
+- id: balance
+  label: Balance
+  kind: action
+  command: "AAC:BAL{value}"
+  params:
+    - name: value
+      type: string
+      description: "-20 to +20 (4-digit zero-padded, sign+3 digits). Available when Output Select is SPEAKERS."
+
+- id: sound_mode
+  label: Sound Mode
+  kind: action
+  command: "AAC:MEN{mode}"
+  params:
+    - name: mode
+      type: string
+      values: [STD, AUT, DYN, CLR]
+      description: STANDARD / DYNAMIC / CLEAR. SPEAKERS only.
+
+- id: bass
   label: Bass
   kind: action
+  command: "AAC:BAS{value}"
   params:
     - name: value
-      type: integer
-      description: "-20~000~+20"
-  range: [-20, 20]
+      type: string
+      description: "-20 to +20. SPEAKERS only."
 
-- id: set_treble
+- id: treble
   label: Treble
   kind: action
+  command: "AAC:TRE{value}"
   params:
     - name: value
-      type: integer
-      description: "-20~000~+20"
-  range: [-20, 20]
+      type: string
+      description: "-20 to +20. SPEAKERS only."
 
-- id: set_surround
+- id: surround
   label: Surround
   kind: action
+  command: "AAC:SUR{mode}"
   params:
-    - name: state
+    - name: mode
       type: string
-      description: "MON: on, OFF: off"
-  enum:
-    - MON
-    - OFF
+      values: [MON, OFF]
+      description: "ON / OFF (the source codes MON/OFF; map MON→ON). SPEAKERS only."
 
-- id: set_horizontal_position
+# --- Position/Size ---
+- id: horizontal_position
   label: Horizontal Position
   kind: action
+  command: "DGE:HPO{value}"
   params:
     - name: value
-      type: integer
-      description: "-100~0000~+100"
-  range: [-100, 100]
+      type: string
+      description: "-100 to +100 (5-digit zero-padded, sign+4 digits)"
 
-- id: set_horizontal_size
+- id: horizontal_size
   label: Horizontal Size
   kind: action
+  command: "DGE:HSZ{value}"
   params:
     - name: value
-      type: integer
-      description: "-100~0000~+100"
-  range: [-100, 100]
+      type: string
+      description: "-100 to +100"
 
-- id: set_vertical_position
+- id: vertical_position
   label: Vertical Position
   kind: action
+  command: "DGE:VPO{value}"
   params:
     - name: value
-      type: integer
-      description: "-100~0000~+100"
-  range: [-100, 100]
+      type: string
+      description: "-100 to +100"
 
-- id: set_vertical_size
+- id: vertical_size
   label: Vertical Size
   kind: action
+  command: "DGE:VSZ{value}"
   params:
     - name: value
-      type: integer
-      description: "-100~0000~+100"
-  range: [-100, 100]
+      type: string
+      description: "-100 to +100"
 
-- id: set_clock_phase
+- id: clock_phase
   label: Clock Phase
   kind: action
+  command: "DGE:CLK{value}"
   params:
     - name: value
-      type: integer
-      description: "00~30"
-  range: [0, 30]
+      type: string
+      description: "00-30"
 
-- id: set_dot_clock
+- id: dot_clock
   label: Dot Clock
   kind: action
+  command: "DGE:DCL{value}"
   params:
     - name: value
-      type: integer
-      description: "-5~000~+5"
-  range: [-5, 5]
+      type: string
+      description: "-5 to +5 (sign+2 digits)"
 
-- id: set_pixel_mode
+- id: one_to_one_pixel_mode
   label: 1:1 Pixel Mode
   kind: action
+  command: "DGE:DBD{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
 
-- id: set_overscan
+- id: overscan
   label: Overscan
   kind: action
+  command: "DGE:OVS{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
 
-- id: set_position_size_lump
-  label: Position/Size Lump Setting
+- id: pos_size_lump
+  label: Pos./Size Lump Setting
   kind: action
+  command: "DGE:PSZ{hpos}{hsize}{vpos}{vsize}"
   params:
     - name: hpos
-      type: integer
-      description: "-100~0000~+100"
+      type: string
+      description: "-100 to +100 (5-digit)"
     - name: hsize
-      type: integer
-      description: "-100~0000~+100"
+      type: string
+      description: "-100 to +100 (5-digit)"
     - name: vpos
-      type: integer
-      description: "-100~0000~+100"
+      type: string
+      description: "-100 to +100 (5-digit)"
     - name: vsize
-      type: integer
-      description: "-100~0000~+100"
-  range:
-    hpos: [-100, 100]
-    hsize: [-100, 100]
-    vpos: [-100, 100]
-    vsize: [-100, 100]
+      type: string
+      description: "-100 to +100 (5-digit)"
 
 - id: auto_setup
   label: Auto Setup
   kind: action
+  command: "DGE:ASU{mode}"
   params:
-    - name: exec
-      type: integer
-      description: "1: execution start"
-  enum:
-    - 1
+    - name: mode
+      type: string
+      description: "1 = Execution start. Inquiry reply: OK / NG / OF / NW."
 
-- id: set_wobbling
+# --- Set up (Wobbling, Language, Orientation, Menu) ---
+- id: wobbling
   label: Wobbling
   kind: action
+  command: "OSP:WOB{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
 
-- id: set_no_activity_power_off
-  label: No Activity Power Off
+- id: no_activity_power_off
+  label: No activity power off
   kind: action
+  command: "SSU:NAO{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
 
-- id: set_osd_language
+- id: osd_language
   label: OSD Language
   kind: action
+  command: "SSU:LNG{lang}"
   params:
     - name: lang
       type: string
-      description: "ENG/DEU/FRA/ITL/ESP/USA/CHA/JPN/RUS"
-  enum:
-    - ENG
-    - DEU
-    - FRA
-    - ITL
-    - ESP
-    - USA
-    - CHA
-    - JPN
-    - RUS
+      values: [ENG, DEU, FRA, ITL, ITA, ESP, USA, CHA, JPN, RUS]
+      description: English(UK)/German/French/Italian/Spanish/English(US)/Chinese/Japanese/Russian
 
-- id: set_display_orientation
+- id: display_orientation
   label: Display Orientation
   kind: action
+  command: "SSU:DOR{mode}"
   params:
     - name: mode
-      type: integer
-      description: "0: landscape, 1: portrait"
-  enum:
-    - 0
-    - 1
+      type: string
+      values: ["0", "1"]
+      description: "0 = Landscape, 1 = Portrait"
 
-- id: set_image_rotation
-  label: Image Rotation
+- id: image_rotation
+  label: Image rotation
   kind: action
+  command: "SSU:IMR{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: 180 degrees"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = Off, 1 = 180 degrees"
 
-- id: set_menu_position
+- id: menu_position
   label: Menu Position
   kind: action
+  command: "SSU:OPS{pos}"
   params:
     - name: pos
-      type: integer
-      description: "1: left(landscape)/upper(portrait), 2: center, 3: right(landscape)/lower(portrait)"
-  enum:
-    - 1
-    - 2
-    - 3
+      type: string
+      values: ["1", "2", "3"]
+      description: "1 = Left(Landscape)/Upper(Portrait); 2 = Center; 3 = Right(Landscape)/Lower(Portrait)"
 
-- id: set_menu_duration
+- id: menu_display_duration
   label: Menu Display Duration
   kind: action
+  command: "SSU:MDT{seconds}"
   params:
     - name: seconds
-      type: integer
-      description: "005~180 (5 second unit)"
-  range: [5, 180]
+      type: string
+      description: "005-180 (5-second unit)"
 
-- id: set_menu_transparency
+- id: menu_transparency
   label: Menu Transparency
   kind: action
+  command: "SSU:MTL{percent}"
   params:
-    - name: level
-      type: integer
-      description: "000~100 (10% unit)"
-  range: [0, 100]
+    - name: percent
+      type: string
+      description: "000-100 (10% unit)"
 
-- id: set_3d_yc_filter
+# --- Set up: Signal ---
+- id: yc_filter_3d
   label: 3D Y/C Filter
   kind: action
+  command: "SSG:YCS{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_color_system
+- id: color_system
   label: Color System
   kind: action
+  command: "SSG:COS{sys}"
   params:
-    - name: system
+    - name: sys
       type: string
-      description: "NTS/PAL/SCM/4NT/MPA/NPA/AUT"
-  enum:
-    - NTS
-    - PAL
-    - SCM
-    - 4NT
-    - MPA
-    - NPA
-    - AUT
+      values: [NTS, PAL, SCM, "4NT", MPA, NPA, AUT]
+      description: NTSC / PAL / SECAM / NTSC4.43 / PAL-M / PAL-N / AUTO
 
-- id: set_sync_signal
+- id: sync_signal_setting
   label: Sync Signal Setting
   kind: action
+  command: "SSG:SNC{mode}"
   params:
     - name: mode
       type: string
-      description: "HAV: auto detection, GRN: sync on green, HVS: hvsync"
-  enum:
-    - HAV
-    - GRN
-    - HVS
+      values: [HAV, GRN, HVS]
+      description: "Auto detection / Sync On Green / Hvsync. PC input only."
 
-- id: set_cinema_reality
+- id: cinema_reality_32_pulldown
   label: Cinema Reality 3:2 Pull Down
   kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_xga_mode
-  label: XGA Mode
-  kind: action
+  command: "SSG:DCR{mode}"
   params:
     - name: mode
-      type: integer
-      description: "1: 1024x768, 2: 1280x768, 3: 1366x768, 4: auto"
-  enum:
-    - 1
-    - 2
-    - 3
-    - 4
+      type: string
+      values: ["0", "1"]
 
-- id: set_noise_reduction
+- id: xga_mode
+  label: XGA Mode
+  kind: action
+  command: "SSG:XGA{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["1", "2", "3", "4"]
+      description: "1=1024x768, 2=1280x768, 3=1366x768, 4=Auto"
+
+- id: noise_reduction
   label: Noise Reduction
   kind: action
+  command: "SSG:NRS{mode}"
   params:
-    - name: level
+    - name: mode
       type: string
-      description: "OFF/AUT/LOW/MID/HIG"
-  enum:
-    - OFF
-    - AUT
-    - LOW
-    - MID
-    - HIG
+      values: [OFF, AUT, LOW, MID, HIG]
+      description: "OFF / Auto / Low / Middle / High"
 
-- id: set_mpeg_noise_reduction
+- id: mpeg_noise_reduction
   label: MPEG Noise Reduction
   kind: action
+  command: "SSG:MNR{mode}"
   params:
-    - name: level
+    - name: mode
       type: string
-      description: "OFF/LOW/MID/HIG"
-  enum:
-    - OFF
-    - LOW
-    - MID
-    - HIG
+      values: [OFF, LOW, MID, HIG]
+      description: "OFF / Low / Middle / High"
 
-- id: set_signal_range
+- id: signal_range
   label: Signal Range
   kind: action
+  command: "SSG:HRC{range}"
   params:
     - name: range
       type: string
-      description: "VID/FUL/AUT (HDMI/DVI-D); VID/FUL/AUT (other: not avail)"
-  enum:
-    - VID
-    - FUL
-    - AUT
+      values: [VID, FUL, AUT]
+      description: "Video / FULL / Auto. For HDMI/DVI-D inputs only."
 
-- id: set_component_rgb_select
+- id: component_rgb_select
   label: Component/RGB-IN Select
   kind: action
+  command: "SSU:CMP{signal}"
   params:
-    - name: mode
+    - name: signal
       type: string
-      description: "YBR: YBR signal, RGB: RGB signal; available when PC selected"
-  enum:
-    - YBR
-    - RGB
+      values: [YBR, RGB]
+      description: "YBR Signal / RGB Signal. PC only."
 
-- id: set_yuv_rgb_select
+- id: yuv_rgb_select
   label: YUV/RGB-IN Select
   kind: action
+  command: "SSU:DYR{signal}"
   params:
-    - name: mode
+    - name: signal
       type: string
-      description: "YUV/RGB; available when HDMI1/HDMI2/DVI-D selected"
-  enum:
-    - YUV
-    - RGB
+      values: [YUV, RGB]
+      description: "YUV Signal / RGB Signal. HDMI1/HDMI2/DVI-D only."
 
-- id: set_input_level
+- id: input_level
   label: Input Level
   kind: action
+  command: "VWB:ILV{value}"
   params:
     - name: value
-      type: integer
-      description: "-16~000~+16"
-  range: [-16, 16]
+      type: string
+      description: "-16 to +16 (sign+3 digits)"
 
-- id: set_dynamic_backlight
-  label: Dynamic Backlight Control
+- id: dynamic_backlight_control
+  label: Dynamic backlight control
   kind: action
+  command: "SSG:DBC{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+# --- Set up: Screensaver ---
+- id: screensaver_on_off
+  label: Screensaver ON/OFF
+  kind: action
+  command: "OSP:SCR{state}"
   params:
     - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+      type: string
+      values: ["0", "5"]
+      description: "0 = stop, 5 = operating"
 
-- id: set_screensaver
-  label: Screensaver On/Off
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0: stop, 5: operating"
-  enum:
-    - 0
-    - 5
-
-- id: set_screensaver_mode
+- id: screensaver_mode
   label: Screensaver Mode
   kind: action
+  command: "SSC:MOD{mode}"
   params:
     - name: mode
-      type: integer
-      description: "0: off, 1: interval, 2: time designation, 3: on, 4: standby after screensaver"
-  enum:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
+      type: string
+      values: ["0", "1", "2", "3", "4"]
+      description: "0=OFF, 1=Interval, 2=Time Designation, 3=ON, 4=Standby after Screensaver"
 
-- id: set_interval_screensaver
+- id: interval_screensaver
   label: Interval Screensaver
   kind: action
+  command: "SSC:INT{periodic}{operating}"
   params:
-    - name: periodic_time
+    - name: periodic
       type: string
-      description: "0000~2359"
-    - name: operating_time
+      description: "Periodic time HHMM (0000-2359)"
+    - name: operating
       type: string
-      description: "0000~2359"
-  pattern: "^[0-2][0-9][0-5][0-9] [0-2][0-9][0-5][0-9]$"
+      description: "Operating time HHMM (0000-2359)"
 
-- id: set_time_designation_screensaver
+- id: time_designation_screensaver
   label: Time Designation Screensaver
   kind: action
+  command: "SSC:TIM{start}{finish}"
   params:
-    - name: start_time
+    - name: start
       type: string
-      description: "0000~2359"
-    - name: finish_time
+      description: "Start time HHMM (0000-2359)"
+    - name: finish
       type: string
-      description: "0000~2359"
-  pattern: "^[0-2][0-9][0-5][0-9] [0-2][0-9][0-5][0-9]$"
+      description: "Finish time HHMM (0000-2359)"
 
-- id: set_standby_after_screensaver
+- id: standby_after_screensaver
   label: Standby after Screensaver
   kind: action
+  command: "SSC:AOF{time}"
   params:
     - name: time
       type: string
-      description: "0000~2359 (hour:minute)"
-  pattern: "^[0-2][0-9][0-5][0-9]$"
+      description: "HHMM (0000-2359)"
 
-- id: set_input_label_current
+# --- Set up: Input label ---
+- id: set_label_current_input
   label: Set Label for Current Input
   kind: action
+  command: "SSU:ILA{label}"
   params:
     - name: label
       type: string
-      description: "INP/PCN/DV1/DV2/DV3/BD1/BD2/BD3/CTV/VCR/STB/SKP"
-  enum:
-    - INP
-    - PCN
-    - DV1
-    - DV2
-    - DV3
-    - BD1
-    - BD2
-    - BD3
-    - CTV
-    - VCR
-    - STB
-    - SKP
+      values: [INP, PCN, DV1, DV2, DV3, BD1, BD2, BD3, CTV, VCR, STB, SKP]
+      description: "INP/PCN reset name; DV1-3/BD1-3 = DVD/Blu-ray 1-3; CTV/VCR/STB/SKP"
 
-- id: set_power_management_mode
+- id: set_label_each_input
+  label: Set Label for EACH INPUT
+  kind: action
+  command: "SSU:ILA{input}{label}"
+  params:
+    - name: input
+      type: string
+      values: [HM1, HM2, DL1, DV1, PC1, VD1]
+    - name: label
+      type: string
+      values: [INP, DV1, DV2, DV3, BD1, BD2, BD3, CTV, VCR, STB, SKP]
+
+# --- Set up: Power management ---
+- id: power_management_mode
   label: Power Management Mode
   kind: action
+  command: "SSU:ECS{mode}"
   params:
     - name: mode
-      type: integer
-      description: "0: custom, 1: on"
-  enum:
-    - 0
-    - 1
+      type: string
+      values: ["0", "1"]
+      description: "0 = CUSTOM, 1 = ON"
 
-- id: set_no_signal_power_off
+- id: no_signal_power_off
   label: No Signal Power Off
   kind: action
+  command: "SSU:AOF{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_hdmi1_power_management
+- id: hdmi1_power_management
   label: HDMI1 Power Management
   kind: action
+  command: "SSU:D1H{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_hdmi2_power_management
+- id: hdmi2_power_management
   label: HDMI2 Power Management
   kind: action
+  command: "SSU:D2H{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_digital_link_power_management
+- id: digital_link_power_management
   label: DIGITAL LINK Power Management
   kind: action
+  command: "SSU:D1L{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_dvi_d_power_management
+- id: dvi_d_power_management
   label: DVI-D Power Management
   kind: action
+  command: "SSU:D1V{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_pc_power_management
+- id: pc_power_management
   label: PC Power Management
   kind: action
+  command: "SSU:DPM{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_power_save
+- id: power_save
   label: Power Save
   kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_extended_standby_mode
-  label: Extended Standby Mode
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_hdmi_cec_control
-  label: HDMI-CEC Control
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: disable, 1: enable"
-  enum:
-    - 0
-    - 1
-
-- id: set_display_setting
-  label: Display Setting (Image Settings)
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_image_select
-  label: Image Select (Image Settings)
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0: default image, 1: user image"
-  enum:
-    - 0
-    - 1
-
-- id: set_network_control
-  label: Network Control
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_lan_setup_port
-  label: LAN Setup Port Number
-  kind: action
-  params:
-    - name: port
-      type: integer
-      description: "1024~65535 (1024~4351, 4353~9999, 10001~19999, 20001~27249, 27251~41793, 41795~65535)"
-  range: [1024, 65535]
-
-- id: set_digital_link_mode
-  label: DIGITAL LINK Mode
-  kind: action
+  command: "SSU:ECO{mode}"
   params:
     - name: mode
       type: string
-      description: "AT: auto, DL: digital link mode, EN: ethernet"
-  enum:
-    - AT
-    - DL
-    - EN
+      values: ["0", "1"]
 
-- id: set_usb_media_player
-  label: USB Media Player
+- id: extended_standby_mode
+  label: Extended standby mode
   kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: disable, 1: enable"
-  enum:
-    - 0
-    - 1
-
-- id: set_schedule_play
-  label: Schedule Play Function
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: disable, 1: enable"
-  enum:
-    - 0
-    - 1
-
-- id: set_video_playback_mode
-  label: Video Playback Mode
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0: standard, 1: adjust"
-  enum:
-    - 0
-    - 1
-
-- id: set_resume_play
-  label: Resume Play
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_slide_show_duration
-  label: Slide Show Duration
-  kind: action
-  params:
-    - name: seconds
-      type: integer
-      description: "010~600 (5 second unit)"
-  range: [10, 600]
-
-- id: set_play_mode
-  label: Play Mode
-  kind: action
-  params:
-    - name: mode
-      type: integer
-      description: "0: individual play, 1: synchronize play"
-  enum:
-    - 0
-    - 1
-
-- id: set_memory_viewer_function
-  label: Memory Viewer Function
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_memory_viewer_view
-  label: Memory Viewer View
-  kind: action
-  params:
-    - name: view
-      type: string
-      description: "THU: thumbnail, LIS: list"
-  enum:
-    - THU
-    - LIS
-
-- id: set_content_select
-  label: Content Select
-  kind: action
-  params:
-    - name: content
-      type: string
-      description: "STL/VID/AUD/ALL/SAV/SAA/VAA"
-  enum:
-    - STL
-    - VID
-    - AUD
-    - ALL
-    - SAV
-    - SAA
-    - VAA
-
-- id: set_sort_type
-  label: Sort Type
-  kind: action
-  params:
-    - name: type
-      type: string
-      description: "DAT: date, NAM: name"
-  enum:
-    - DAT
-    - NAM
-
-- id: set_sort_order
-  label: Sort Order
-  kind: action
-  params:
-    - name: order
-      type: string
-      description: "ASD: ascending, DSD: descending"
-  enum:
-    - ASD
-    - DSD
-
-- id: set_play_method
-  label: Play Method
-  kind: action
-  params:
-    - name: method
-      type: string
-      description: "NON/ONE/ALL/RAN/SEL/PRG"
-  enum:
-    - NON
-    - ONE
-    - ALL
-    - RAN
-    - SEL
-    - PRG
-
-- id: set_picture_duration
-  label: Picture Duration
-  kind: action
-  params:
-    - name: seconds
-      type: integer
-      description: "010~600 (5 second unit)"
-  range: [10, 600]
-
-- id: set_function_group
-  label: Function Group
-  kind: action
-  params:
-    - name: group
-      type: string
-      description: "INP/MEM/ACT"
-  enum:
-    - INP
-    - MEM
-    - ACT
-
-- id: set_function_button_settings
-  label: Function Button Settings
-  kind: action
-  params:
-    - name: button
-      type: integer
-      description: "1-6"
-    - name: action
-      type: string
-      description: "(ACTION&MENU) SIG/SSV/SUT/LNS/ECO/OSH/MLT/DZM/DID/HCO/PLE; (INPUT) HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
-  range: [1, 6]
-
-- id: set_onscreen_display
-  label: On Screen Display
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_initial_input
-  label: Initial Input
-  kind: action
-  params:
-    - name: input
-      type: string
-      description: "OFF/HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
-  enum:
-    - OFF
-    - HM1
-    - HM2
-    - DL1
-    - DV1
-    - PC1
-    - VD1
-    - UD1
-    - MV1
-
-- id: set_initial_vol
-  label: Initial VOL Level
-  kind: action
-  params:
-    - name: enable
-      type: integer
-      description: "0: off, 1: on"
-    - name: level
-      type: integer
-      description: "000~100"
-  range:
-    enable: [0, 1]
-    level: [0, 100]
-
-- id: set_maximum_vol
-  label: Maximum VOL Level
-  kind: action
-  params:
-    - name: enable
-      type: integer
-      description: "0: off, 1: on"
-    - name: level
-      type: integer
-      description: "000~100"
-  range:
-    enable: [0, 1]
-    level: [0, 100]
-
-- id: set_input_lock
-  label: Input Lock
-  kind: action
-  params:
-    - name: input
-      type: string
-      description: "OFF/HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
-  enum:
-    - OFF
-    - HM1
-    - HM2
-    - DL1
-    - DV1
-    - PC1
-    - VD1
-    - UD1
-    - MV1
-
-- id: set_button_lock
-  label: Button Lock
-  kind: action
-  params:
-    - name: lock
-      type: string
-      description: "OFF/MEN/ALL"
-  enum:
-    - OFF
-    - MEN
-    - ALL
-
-- id: set_controller_user_level
-  label: Controller User Level
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: "0: off, 1: user1, 2: user2, 3: user3"
-  enum:
-    - 0
-    - 1
-    - 2
-    - 3
-
-- id: set_pc_auto_setting
-  label: PC Auto Setting
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_off_timer_function
-  label: Off Timer Function
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_initial_startup
-  label: Initial Startup
-  kind: action
+  command: "SSU:ESM{mode}"
   params:
     - name: mode
       type: string
-      description: "LST: last memory, PON: on, STB: standby"
-  enum:
-    - LST
-    - PON
-    - STB
+      values: ["0", "1"]
 
-- id: set_lan_control_protocol
-  label: LAN Control Protocol
+# --- Set up: HDMI-CEC ---
+- id: hdmi_cec_control
+  label: HDMI-CEC control
   kind: action
-  params:
-    - name: protocol
-      type: string
-      description: "LP1: protocol1, LP2: protocol2"
-  enum:
-    - LP1
-    - LP2
-
-- id: set_power_on_screen_delay
-  label: Power On Screen Delay
-  kind: action
-  params:
-    - name: delay
-      type: string
-      description: "AT: auto, 00~30: seconds"
-  enum:
-    - AT
-    - "00"
-    - "01"
-    - "02"
-    - "03"
-    - "04"
-    - "05"
-    - "06"
-    - "07"
-    - "08"
-    - "09"
-    - "10"
-    - "11"
-    - "12"
-    - "13"
-    - "14"
-    - "15"
-    - "16"
-    - "17"
-    - "18"
-    - "19"
-    - "20"
-    - "21"
-    - "22"
-    - "23"
-    - "24"
-    - "25"
-    - "26"
-    - "27"
-    - "28"
-    - "29"
-    - "30"
-
-- id: set_clock_display
-  label: Clock Display
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_input_search
-  label: Input Search
-  kind: action
+  command: "SHC:FNC{mode}"
   params:
     - name: mode
       type: string
-      description: "OFF/ALL/PRI/IDC"
-  enum:
-    - OFF
-    - ALL
-    - PRI
-    - IDC
+      values: ["0", "1"]
+      description: "0 = Disable, 1 = Enable"
 
-- id: set_failover_mode_off
-  label: Input Change Mode Off (Failover Disable)
+- id: hdmi1_change_device
+  label: HDMI1 (change device)
   kind: action
+  command: "SHC:HM1{dir}"
+  params:
+    - name: dir
+      type: string
+      values: [NXT, PRE]
+      description: NXT = next device, PRE = previous device
+
+- id: hdmi1_get_device_name
+  label: HDMI1 (get device name)
+  kind: query
+  command: "QHC:HM1"
   params: []
+  # Reply: QHC:HM1<name>  (max 23 chars)
 
-- id: set_failover_mode_quick
-  label: Input Change Mode Quick
+- id: hdmi2_change_device
+  label: HDMI2 (change device)
   kind: action
+  command: "SHC:HM2{dir}"
   params:
-    - name: primary
+    - name: dir
       type: string
-      description: "NON/HM1/HM2/DL1/DV1"
-    - name: secondary
-      type: string
-      description: "NON/HM1/HM2/DL1/DV1"
-    - name: auto_switch_back
-      type: integer
-      description: "0: disable, 1: enable"
-  enum:
-    primary: [NON, HM1, HM2, DL1, DV1]
-    secondary: [NON, HM1, HM2, DL1, DV1]
-    auto_switch_back: [0, 1]
+      values: [NXT, PRE]
 
-- id: set_failover_mode_normal
-  label: Input Change Mode Normal
-  kind: action
-  params:
-    - name: primary
-      type: string
-      description: "NON/HM1/HM2/DL1/DV1/PC1/VD1/UD1"
-    - name: secondary
-      type: string
-      description: "NON/HM1/HM2/DL1/DV1/PC1/VD1/UD1"
-    - name: auto_switch_back
-      type: integer
-      description: "0: disable, 1: enable"
-  enum:
-    primary: [NON, HM1, HM2, DL1, DV1, PC1, VD1, UD1]
-    secondary: [NON, HM1, HM2, DL1, DV1, PC1, VD1, UD1]
-    auto_switch_back: [0, 1]
-
-- id: set_changing_mode
-  label: Changing Mode
-  kind: action
-  params:
-    - name: speed
-      type: integer
-      description: "1: high speed, 2: normal"
-  enum:
-    - 1
-    - 2
-
-- id: set_manual_switch_back
-  label: Manual Switch Back
-  kind: action
+- id: hdmi2_get_device_name
+  label: HDMI2 (get device name)
+  kind: query
+  command: "QHC:HM2"
   params: []
+  # Reply: QHC:HM2<name>  (max 23 chars)
 
-- id: set_audio_input_current
-  label: Audio Input Select for Current Input
+- id: cec_menu_code
+  label: MENU code
   kind: action
+  command: "SHC:MNC{code}"
   params:
-    - name: video_input
+    - name: code
       type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1"
-    - name: audio_input
-      type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1/NAD"
-  enum:
-    video_input: [HM1, HM2, DL1, DV1, PC1, VD1]
-    audio_input: [HM1, HM2, DL1, DV1, PC1, VD1, NAD]
+      values: ["1", "2", "3", "4", "5", "6"]
 
-- id: set_audio_input_each
-  label: Audio Input Select for Each Input
+- id: cec_display_to_device
+  label: Display→Device
   kind: action
-  params:
-    - name: video_input
-      type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1"
-    - name: audio_input
-      type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1/NAD"
-  enum:
-    video_input: [HM1, HM2, DL1, DV1, PC1, VD1]
-    audio_input: [HM1, HM2, DL1, DV1, PC1, VD1, NAD]
-
-- id: set_no_signal_warning
-  label: No Signal Warning
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_no_signal_warning_timing
-  label: No Signal Warning Timing
-  kind: action
-  params:
-    - name: minutes
-      type: integer
-      description: "01~60"
-  range: [1, 60]
-
-- id: set_no_signal_error
-  label: No Signal Error
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_no_signal_error_timing
-  label: No Signal Error Timing
-  kind: action
-  params:
-    - name: minutes
-      type: integer
-      description: "01~90"
-  range: [1, 90]
-
-- id: set_temperature_warning
-  label: Temperature Warning
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: recall
-  label: Recall
-  kind: action
-  params: []
-
-- id: osd_clear
-  label: OSD Clear
-  kind: action
-  params: []
-
-- id: set_digital_zoom
-  label: Digital Zoom
-  kind: action
-  params:
-    - name: on_off
-      type: integer
-      description: "0: off, 1: on"
-    - name: enlargement
-      type: integer
-      description: "1/2/3/4"
-    - name: hpos
-      type: integer
-      description: "1/2/3/4/5"
-    - name: vpos
-      type: integer
-      description: "1/2/3/4/5"
-  enum:
-    on_off: [0, 1]
-    enlargement: [1, 2, 3, 4]
-    hpos: [1, 2, 3, 4, 5]
-    vpos: [1, 2, 3, 4, 5]
-
-- id: set_off_timer
-  label: Off Timer
-  kind: action
-  params:
-    - name: minutes
-      type: integer
-      description: "00~90"
-  range: [0, 90]
-
-- id: usb_skip_next
-  label: USB Media Player Skip to Next
-  kind: action
-  params: []
-
-- id: usb_skip_previous
-  label: USB Media Player Skip to Previous
-  kind: action
-  params: []
-
-- id: usb_play_from_top
-  label: USB Media Player Play from Top
-  kind: action
-  params: []
-
-- id: set_light_id_mode
-  label: LightID Mode Select
-  kind: action
+  command: "SHC:PTS{mode}"
   params:
     - name: mode
-      type: integer
-      description: "0: off, 1: external control mode, 2: internal ID mode"
-  enum:
-    - 0
-    - 1
-    - 2
+      type: string
+      values: [OFF, POF, PWR]
+      description: "Disable / Power off / Power on/off"
 
-- id: stop_light_id
-  label: Stop LightID Sending
+- id: cec_device_to_display
+  label: Device→Display
   kind: action
-  params: []
-
-- id: set_backlight_control
-  label: Backlight Control (LightID)
-  kind: action
+  command: "SHC:STP{mode}"
   params:
-    - name: level
-      type: integer
-      description: "1: low, 2: middle, 3: high"
-  enum:
-    - 1
-    - 2
-    - 3
+    - name: mode
+      type: string
+      values: [OFF, PON, PWR]
+      description: "Disable / Power on / Power on/off"
 
-- id: set_multi_display_on_off
-  label: Multi Display On/Off
+# --- Set up: Image settings / Startup image ---
+- id: startup_image_display
+  label: Display setting (startup image)
   kind: action
+  command: "SCI:SIM{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_multi_display_setup
+- id: startup_image_select
+  label: Image select (startup image)
+  kind: action
+  command: "SCI:SCG{image}"
+  params:
+    - name: image
+      type: string
+      values: ["0", "1"]
+      description: "0 = Default image, 1 = User image"
+
+- id: no_signal_image_display
+  label: Display setting (no-signal image)
+  kind: action
+  command: "SCI:NIM{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: no_signal_image_select
+  label: Image select (no-signal image)
+  kind: action
+  command: "SCI:NCG{image}"
+  params:
+    - name: image
+      type: string
+      values: ["0", "1"]
+      description: "0 = Default image, 1 = User image"
+
+# --- Set up: Multi display ---
+- id: multi_display_on_off
+  label: Multi Display ON/OFF
+  kind: action
+  command: "MDC:{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
+
+- id: multi_display_setup
   label: Multi Display Setup Detail
   kind: action
+  command: "MDC:EXP{on}{hscale}{vscale}{bezel_h}{bezel_v}{location}"
   params:
-    - name: on_off
-      type: integer
-      description: "0: off, 1: on"
+    - name: on
+      type: string
+      values: ["0", "1"]
     - name: hscale
-      type: integer
-      description: "01~10"
+      type: string
+      description: "01-10 (Horizontal Scale)"
     - name: vscale
-      type: integer
-      description: "01~10"
+      type: string
+      description: "01-10 (Vertical Scale)"
     - name: bezel_h
-      type: integer
-      description: "000~100"
+      type: string
+      description: "000-100 (Bezel H Adjustment)"
     - name: bezel_v
-      type: integer
-      description: "000~100"
+      type: string
+      description: "000-100 (Bezel V Adjustment)"
     - name: location
       type: string
-      description: "001~100 (A1~J10)"
-  range:
-    on_off: [0, 1]
-    hscale: [1, 10]
-    vscale: [1, 10]
-    bezel_h: [0, 100]
-    bezel_v: [0, 100]
+      description: "001-100 (Location: A1-J10 encoded numerically)"
 
-- id: set_timer_program
-  label: Set Up Timer
+# --- Set up timer ---
+- id: set_up_timer_program
+  label: Set up timer
   kind: action
+  command: "TIM:PRG{program}{enable}{day}{action}{time}{input}"
   params:
     - name: program
-      type: integer
-      description: "01~20"
+      type: string
+      description: "01-20 (Program number)"
     - name: enable
-      type: integer
-      description: "0: off, 1: on"
+      type: string
+      values: ["0", "1"]
+      description: "Function OFF/ON (lower params ignored when OFF)"
     - name: day
       type: string
-      description: "SUN/MON/TUE/WED/THU/FRI/SAT/EVD"
+      values: [SUN, MON, TUE, WED, THU, FRI, SAT, EVD]
     - name: action
       type: string
-      description: "PON/POF"
+      values: [PON, POF]
     - name: time
       type: string
-      description: "0000~2359"
+      description: "HHMM (0000-2359)"
     - name: input
       type: string
-      description: "HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
-  range: [1, 20]
-  enum:
-    day: [SUN, MON, TUE, WED, THU, FRI, SAT, EVD]
-    action: [PON, POF]
+      values: [HM1, HM2, DL1, DV1, PC1, VD1, UD1, MV1]
+
+- id: present_day
+  label: Present Day
+  kind: query
+  command: "QIM:DAY"
+  params: []
+  # Reply: QIM:DAY<SUN/MON/.../SAT>
+
+- id: present_time
+  label: Present Time
+  kind: query
+  command: "QIM:NOW"
+  params: []
+  # Reply: QIM:NOW0<HHMM>
 
 - id: set_day_time
   label: DAY TIME
   kind: action
+  command: "TIM:DAT{yyyy}{mm}{dd}{hh}{mm_}"
   params:
-    - name: year
-      type: integer
-      description: "2017~2035"
-    - name: month
-      type: integer
-      description: "01~12"
-    - name: day
-      type: integer
-      description: "01~31"
-    - name: hour
-      type: integer
-      description: "00~23"
-    - name: minute
-      type: integer
-      description: "00~59"
-  range:
-    year: [2017, 2035]
-    month: [1, 12]
-    day: [1, 31]
-    hour: [0, 23]
-    minute: [0, 59]
+    - name: yyyy
+      type: string
+      description: "2017-2035"
+    - name: mm
+      type: string
+      description: "01-12"
+    - name: dd
+      type: string
+      description: "01-31"
+    - name: hh
+      type: string
+      description: "00-23"
+    - name: mm_
+      type: string
+      description: "00-59"
 
-- id: set_synchronize_display
-  label: Synchronize Display
+- id: synchronize_display
+  label: Synchronize display
   kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_parent_child
-  label: Parent or Child Setting
-  kind: action
+  command: "TIM:SDM{mode}"
   params:
     - name: mode
-      type: integer
-      description: "0: child, 1: parent"
-  enum:
-    - 0
-    - 1
+      type: string
+      values: ["0", "1"]
+      description: "0 = Off, 1 = On"
 
-- id: set_serial_control
+- id: parent_or_child_setting
+  label: Parent or child setting
+  kind: action
+  command: "TIM:PCS{role}"
+  params:
+    - name: role
+      type: string
+      values: ["0", "1"]
+      description: "0 = Child, 1 = Parent"
+
+# --- Network settings ---
+- id: serial_control_select
   label: Serial Control
   kind: action
+  command: "SCT:SEC{path}"
   params:
-    - name: port
+    - name: path
       type: string
-      description: "SE1: serial in, DL1: digital link"
-  enum:
-    - SE1
-    - DL1
+      values: [SE1, DL1]
+      description: "SE1 = Serial in, DL1 = DIGITAL LINK"
 
-- id: set_auto_display_name
+- id: network_control
+  label: Network Control
+  kind: action
+  command: "SSU:NCT{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON. Setting to Off while connected via LAN may disconnect."
+
+- id: auto_display_name
   label: Auto Display Name
   kind: action
+  command: "SSU:ADN{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_display_name
-  label: Display Name
+- id: display_name
+  label: Display name
   kind: action
+  command: "SSU:LDN{name}"
   params:
     - name: name
       type: string
-      description: "max 8 chars"
-  maxLength: 8
+      description: "Max 8 characters"
 
-- id: set_lan_setup_network
-  label: LAN Setup Network Address
+- id: lan_setup_network
+  label: LAN Setup - Network Address
   kind: action
+  command: "SSU:NET{ip1}{ip2}{ip3}{ip4}{sn1}{sn2}{sn3}{sn4}{gw1}{gw2}{gw3}{gw4}{dhcp}"
   params:
     - name: ip1
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255 (IP byte 1)"
     - name: ip2
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
     - name: ip3
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
     - name: ip4
-      type: integer
-      description: "000~255"
-    - name: mask1
-      type: integer
-      description: "000~255"
-    - name: mask2
-      type: integer
-      description: "000~255"
-    - name: mask3
-      type: integer
-      description: "000~255"
-    - name: mask4
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
+    - name: sn1
+      type: string
+      description: "000-255 (subnet byte 1)"
+    - name: sn2
+      type: string
+      description: "000-255"
+    - name: sn3
+      type: string
+      description: "000-255 (source appears to have a typo repeating sn1/2; treat as 4 subnet bytes total: 1st-4th)"
+    - name: sn4
+      type: string
+      description: "000-255"
     - name: gw1
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255 (gateway byte 1)"
     - name: gw2
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
     - name: gw3
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
     - name: gw4
-      type: integer
-      description: "000~255"
+      type: string
+      description: "000-255"
     - name: dhcp
-      type: integer
-      description: "0: off, 1: on"
-  range:
-    ip1: [0, 255]
-    ip2: [0, 255]
-    ip3: [0, 255]
-    ip4: [0, 255]
-    mask1: [0, 255]
-    mask2: [0, 255]
-    mask3: [0, 255]
-    mask4: [0, 255]
-    gw1: [0, 255]
-    gw2: [0, 255]
-    gw3: [0, 255]
-    gw4: [0, 255]
-    dhcp: [0, 1]
+      type: string
+      values: ["0", "1"]
+      description: "0 = DHCP OFF, 1 = DHCP ON"
 
-- id: set_amx_dd
+- id: lan_setup_port
+  label: LAN Setup - Port Number
+  kind: action
+  command: "SSU:LCP{port}"
+  params:
+    - name: port
+      type: string
+      description: "1024-4351, 4353-9999, 10001-19999, 20001-27249, 27251-41793, 41795-65535"
+
+- id: digital_link_mode
+  label: DIGITAL LINK Mode
+  kind: action
+  command: "SSU:DLM{mode}"
+  params:
+    - name: mode
+      type: string
+      values: [AT, DL, EN]
+      description: "Auto / DIGITAL LINK mode / Ethernet"
+
+- id: digital_link_status
+  label: DIGITAL LINK STATUS
+  kind: query
+  command: "QSU:DLS"
+  params: []
+  # Reply: QSU:DLS%1%2-%3%4-%5%6
+  # %1: 0/1/2/3 (No connect/Digital Link/LPM/Ethernet)
+  # %2: 0/1/2 (No HDMI/HDMI No HDCP/HDMI HDCP)
+  # %3%4: 00-99 (Signal Quality MIN)
+  # %5%6: 00-99 (Signal Quality MAX)
+
+- id: amx_dd
   label: AMX D.D.
   kind: action
+  command: "SSU:ADD{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_crestron
+- id: crestron_connected
   label: Crestron Connected
   kind: action
+  command: "SSU:CRV{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_extron_xtp
+- id: extron_xtp
   label: Extron XTP
   kind: action
+  command: "SSU:EXP{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_usb_memory_network
-  label: USB Memory Network Settings
+- id: usb_memory_network_settings
+  label: USB memory network settings
   kind: action
+  command: "SSU:UNS{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: prohibit, 1: permit"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = Prohibit, 1 = Permit"
 
-- id: reset
+- id: lan_reset
   label: Reset
   kind: action
+  command: "SSU:LRT"
   params: []
 
-- id: set_lan_data_clone_write_protect
-  label: LAN Data Cloning Write Protect
+# --- USB media player settings ---
+- id: usb_media_player
+  label: USB media player
   kind: action
+  command: "SUS:UMP{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_power_on_message_no_activity
-  label: Power On Message (No Activity Power Off)
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_power_on_message_power_management
-  label: Power On Message (Power Management)
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_hdmi1_device_change
-  label: HDMI1 Change Device
-  kind: action
-  params:
-    - name: direction
+    - name: mode
       type: string
-      description: "NXT: next, PRE: previous"
-  enum:
-    - NXT
-    - PRE
+      values: ["0", "1"]
+      description: "0 = Disable, 1 = Enable"
 
-- id: set_hdmi2_device_change
-  label: HDMI2 Change Device
+- id: schedule_play_function
+  label: Schedule play function
   kind: action
+  command: "SUS:SPF{mode}"
   params:
-    - name: direction
+    - name: mode
       type: string
-      description: "NXT: next, PRE: previous"
-  enum:
-    - NXT
-    - PRE
+      values: ["0", "1"]
+      description: "0 = Disable, 1 = Enable"
 
-- id: set_menu_code
-  label: HDMI-CEC Menu Code
+- id: video_playback_mode
+  label: Video Playback Mode
   kind: action
+  command: "SUS:VPB{mode}"
   params:
-    - name: code
-      type: integer
-      description: "1~6"
-  range: [1, 6]
-
-- id: set_display_to_device
-  label: Display to Device
-  kind: action
-  params:
-    - name: action
+    - name: mode
       type: string
-      description: "OFF/POF/PWR"
-  enum:
-    - OFF
-    - POF
-    - PWR
+      values: ["0", "1"]
+      description: "0 = Standard, 1 = Adjust"
 
-- id: set_device_to_display
-  label: Device to Display
+- id: resume_play
+  label: Resume play
   kind: action
+  command: "SUS:RSP{mode}"
   params:
-    - name: action
+    - name: mode
       type: string
-      description: "OFF/PON/PWR"
-  enum:
-    - OFF
-    - PON
-    - PWR
+      values: ["0", "1"]
 
-- id: set_function_guide
-  label: Function Guide Settings
+- id: slide_show_duration
+  label: Slide show duration
   kind: action
+  command: "SUS:SSD{seconds}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: seconds
+      type: string
+      description: "010-600 (5-second unit)"
 
-- id: set_detect_digital_input
-  label: Detect Digital Input
+- id: play_mode
+  label: Play mode
   kind: action
+  command: "SUS:SPM{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = Individual play, 1 = Synchronize play"
+
+- id: get_schedule_play_mode
+  label: get Schedule play mode
+  kind: query
+  command: "QUS:CMS"
+  params: []
+  # Reply: QUS:CMS* 0 = Normal mode, 1 = Schedule play mode
+
+# --- Memory viewer settings ---
+- id: memory_viewer_function
+  label: Memory viewer function
+  kind: action
+  command: "SMS:MVF{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
+
+- id: memory_view_view
+  label: View
+  kind: action
+  command: "SMS:VIE{view}"
+  params:
+    - name: view
+      type: string
+      values: [THU, LIS]
+      description: "THU = Thumbnail, LIS = List"
+
+- id: memory_view_content_select
+  label: Content select
+  kind: action
+  command: "SMS:CON{content}"
+  params:
+    - name: content
+      type: string
+      values: [STL, VID, AUD, ALL, SAV, SAA, VAA]
+      description: Picture / Video / Audio / All / Picture+Video / Picture+Audio / Video+Audio
+
+- id: memory_view_sort_type
+  label: Sort type
+  kind: action
+  command: "SMS:TYP{type}"
+  params:
+    - name: type
+      type: string
+      values: [DAT, NAM]
+      description: "DAT = Date, NAM = Name"
+
+- id: memory_view_sort_order
+  label: Sort order
+  kind: action
+  command: "SMS:ODR{order}"
+  params:
+    - name: order
+      type: string
+      values: [ASD, DSD]
+      description: "ASD = Ascending, DSD = Descending"
+
+- id: memory_view_play_method
+  label: Play method
+  kind: action
+  command: "SMS:RPT{method}"
+  params:
+    - name: method
+      type: string
+      values: [NON, ONE, ALL, RAN, SEL, PRG]
+      description: None / Repeat one / Repeat all / Random / Select / Program
+
+- id: memory_view_picture_duration
+  label: Picture duration
+  kind: action
+  command: "SMS:SSD{seconds}"
+  params:
+    - name: seconds
+      type: string
+      description: "010-600 (5-second unit)"
+
+- id: memory_view_auto_info
+  label: Auto display content info
+  kind: action
+  command: "SMS:INF{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: memory_view_auto_guide
+  label: Auto display operation guide
+  kind: action
+  command: "SMS:GUI{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+# --- Function button settings ---
+- id: function_group
+  label: Function Group
+  kind: action
+  command: "OSP:KGR{group}"
+  params:
+    - name: group
+      type: string
+      values: [INP, MEM, ACT]
+      description: INPUT / MEMORY / ACTION & MENU(SHORTCUT)
+
+- id: function_button_settings
+  label: Function Button Settings
+  kind: action
+  command: "OSP:KFN{key}{value}"
+  params:
+    - name: key
+      type: string
+      values: ["1", "2", "3", "4", "5", "6"]
+      description: "FUNCTION KEY 1-6"
+    - name: value
+      type: string
+      description: "Per Function Group: ACTION&MENU = SIG/SSV/SUT/LNS/ECO/OSH/MLT/DZM/DID/HCO/PLE; INPUT = HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
+
+- id: function_guide_settings
+  label: Function guide Settings
+  kind: action
+  command: "OSP:KFG{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
+
+# --- Options Menu ---
+- id: on_screen_display
+  label: On screen display
+  kind: action
+  command: "OSP:OSD{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: initial_input
+  label: Initial input
+  kind: action
+  command: "OSP:IIN{input}"
   params:
     - name: input
       type: string
-      description: "HM1/HM2/DL1/DV1/PC1"
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    input: [HM1, HM2, DL1, DV1, PC1]
-    state: [0, 1]
+      values: [OFF, HM1, HM2, DL1, DV1, PC1, VD1, UD1, MV1]
 
-- id: set_changing_delay
-  label: Changing Delay
+- id: initial_vol_level
+  label: Initial VOL level
   kind: action
+  command: "OSP:IVL{enable}{volume}"
   params:
-    - name: delay
-      type: integer
-      description: "00~10 (seconds)"
-  range: [0, 10]
+    - name: enable
+      type: string
+      values: ["0", "1"]
+    - name: volume
+      type: string
+      description: "000-100"
 
-- id: set_serial_id_function
-  label: Serial ID Function
+- id: maximum_vol_level
+  label: Maximum VOL level
   kind: action
+  command: "OSP:MVL{enable}{volume}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: enable
+      type: string
+      values: ["0", "1"]
+    - name: volume
+      type: string
+      description: "000-100"
 
-- id: set_serial_response_normal
+- id: input_lock
+  label: Input lock
+  kind: action
+  command: "OSP:INL{input}"
+  params:
+    - name: input
+      type: string
+      values: [OFF, HM1, HM2, DL1, DV1, PC1, VD1, UD1, MV1]
+
+- id: button_lock
+  label: Button lock
+  kind: action
+  command: "OSP:BTL{mode}"
+  params:
+    - name: mode
+      type: string
+      values: [OFF, MEN, ALL]
+      description: "OFF / MENU&ENTER / ON"
+
+- id: controller_user_level
+  label: Controller User level
+  kind: action
+  command: "OSP:RCM{level}"
+  params:
+    - name: level
+      type: string
+      values: ["0", "1", "2", "3"]
+      description: "0 = OFF, 1 = User1, 2 = User2, 3 = User3"
+
+- id: pc_auto_setting
+  label: PC auto setting
+  kind: action
+  command: "OSP:PAS{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: off_timer_function
+  label: Off-timer function
+  kind: action
+  command: "OSP:OFT{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: initial_startup
+  label: Initial Startup
+  kind: action
+  command: "OSP:ISU{value}"
+  params:
+    - name: value
+      type: string
+      values: [LST, PON, STB]
+      description: "LST = Last memory, PON = ON, STB = STANDBY"
+
+- id: display_id
+  label: Display ID
+  kind: query
+  command: "QID:DID"
+  params: []
+  # Reply: QID:DID000-100
+
+- id: serial_id_function
+  label: Serial ID function
+  kind: action
+  command: "SID:SID{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: serial_response_normal
   label: Serial Response (Normal)
   kind: action
+  command: "SCT:RIN{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_serial_response_id_all
-  label: Serial Response (ID All)
+- id: serial_response_id_all
+  label: Serial Response (ID all)
   kind: action
+  command: "SCT:RIA{mode}"
   params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
+    - name: mode
+      type: string
+      values: ["0", "1"]
 
-- id: set_serial_id_setup
+- id: serial_id_setup
   label: Serial ID Setup
   kind: action
+  command: "SIF:{enable}{id}"
   params:
-    - name: function
-      type: integer
-      description: "0: off, 1: on"
-    - name: display_id
-      type: integer
-      description: "000~100"
-  range:
-    function: [0, 1]
-    display_id: [0, 100]
+    - name: enable
+      type: string
+      values: ["0", "1"]
+    - name: id
+      type: string
+      description: "000-100 (Display ID)"
 
-- id: set_serial_daisy_chain_position
-  label: Serial Daisy Chain Position
+- id: serial_daisy_chain_position
+  label: Serial daisy chain position
   kind: action
+  command: "SCT:DCP{position}"
   params:
     - name: position
       type: string
-      description: "TOP/DEF/END"
-  enum:
-    - TOP
-    - DEF
-    - END
+      values: [TOP, DEF, END]
+      description: "TOP / (default) / END"
 
-- id: set_auto_command_send
+- id: lan_control_protocol
+  label: LAN Control Protocol
+  kind: action
+  command: "OSP:LPN{protocol}"
+  params:
+    - name: protocol
+      type: string
+      values: [LP1, LP2]
+      description: "LP1 = Protocol 1, LP2 = Protocol 2"
+
+- id: power_on_screen_delay
+  label: Power ON Screen Delay
+  kind: action
+  command: "OSP:POD{delay}"
+  params:
+    - name: delay
+      type: string
+      description: "AT = Auto, 00-30 seconds"
+
+- id: clock_display
+  label: Clock Display
+  kind: action
+  command: "OSP:CLK{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: power_on_message_no_activity
+  label: Power on message (No activity power off)
+  kind: action
+  command: "OSP:NAP{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: power_on_message_power_management
+  label: Power on message (Power management)
+  kind: action
+  command: "OSP:PMM{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+# --- Input search ---
+- id: input_search
+  label: Input search
+  kind: action
+  command: "ISH:FNC{mode}"
+  params:
+    - name: mode
+      type: string
+      values: [OFF, ALL, PRI, IDC]
+      description: "OFF / ALL inputs / Custom / Input detection"
+
+- id: first_search_input
+  label: 1st search input
+  kind: action
+  command: "ISH:PRI{input}"
+  params:
+    - name: input
+      type: string
+      values: [NON, HM1, HM2, DV1, PC1, VD1, UD1]
+
+- id: second_search_input
+  label: 2nd search input
+  kind: action
+  command: "ISH:SCI{input}"
+  params:
+    - name: input
+      type: string
+      values: [NON, HM1, HM2, DV1, PC1, VD1, UD1]
+
+- id: detect_digital_input
+  label: Detect digital input
+  kind: action
+  command: "ISH:DIN{input}{mode}"
+  params:
+    - name: input
+      type: string
+      values: [HM1, HM2, DL1, DV1, PC1]
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON"
+
+- id: changing_delay
+  label: Changing delay
+  kind: action
+  command: "ISH:CGD{seconds}"
+  params:
+    - name: seconds
+      type: string
+      description: "00-10 (changing time in seconds)"
+
+# --- Failover/Failback ---
+- id: input_change_mode_off
+  label: Input Change Mode Off
+  kind: action
+  command: "SBI:OFF"
+  params: []
+
+- id: input_change_mode_quick
+  label: Input Change Mode Quick
+  kind: action
+  command: "SBI:QIC{primary}{secondary}{auto_back}"
+  params:
+    - name: primary
+      type: string
+      values: [NON, HM1, HM2, DL1, DV1]
+    - name: secondary
+      type: string
+      values: [NON, HM1, HM2, DL1, DV1]
+    - name: auto_back
+      type: string
+      values: ["0", "1"]
+      description: "0 = Disable, 1 = Enable"
+
+- id: input_change_mode_normal
+  label: Input Change Mode Normal
+  kind: action
+  command: "SBI:NOR{primary}{secondary}{auto_back}"
+  params:
+    - name: primary
+      type: string
+      values: [NON, HM1, HM2, DL1, DV1, PC1, VD1, UD1]
+    - name: secondary
+      type: string
+      values: [NON, HM1, HM2, DL1, DV1, PC1, VD1, UD1]
+    - name: auto_back
+      type: string
+      values: ["0", "1"]
+
+- id: changing_mode
+  label: Changing mode
+  kind: action
+  command: "SBI:CHM{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["1", "2"]
+      description: "2 = High speed, 1 = Normal speed (Quick mode only)"
+
+- id: backup_input_status
+  label: Backup Input Status
+  kind: query
+  command: "QBI:STS"
+  params: []
+  # Reply: QBI:STS<active><main_input><current>
+  # active: 0=inactive, 1=active
+  # main_input: HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1
+  # current: 0=Main, 1=Primary backup, 2=Secondary backup
+
+- id: backup_input_signal_status
+  label: Backup Input Signal Status
+  kind: query
+  command: "QBI:SIG"
+  params: []
+  # Reply: QBI:SIG<m><p><s> (0=no signal, 1=not no signal for Main/Primary/Secondary)
+
+- id: manual_switch_back
+  label: Manual Switch Back
+  kind: action
+  command: "BIP:FSB"
+  params: []
+
+# --- Audio input select ---
+- id: audio_input_select_current
+  label: Audio input select (for Current Input)
+  kind: action
+  command: "SAI:A{audio}"
+  params:
+    - name: audio
+      type: string
+      values: [HM1, HM2, DL1, DV1, PC1, VD1, NAD]
+      description: "Audio source: HM1/HM2/DL1/DV1/PC1/VD1 or NAD (no audio)"
+
+- id: audio_input_select_each
+  label: Audio input select (for EACH INPUT)
+  kind: action
+  command: "SAI:V{input}A{audio}"
+  params:
+    - name: input
+      type: string
+      values: [HM1, HM2, DL1, DV1, PC1, VD1]
+    - name: audio
+      type: string
+      values: [HM1, HM2, DL1, AV, NAD]
+      description: "AV covers AV IN x3 (source lists AV IN three times); NAD = no audio"
+
+# --- Information Timing ---
+- id: no_signal_warning
+  label: No Signal Warning
+  kind: action
+  command: "SIT:NSW{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = Off, 1 = On (auto reply QST:NSW*)"
+
+- id: no_signal_warning_timing
+  label: No Signal Warning Timing
+  kind: action
+  command: "SIT:SWT{minutes}"
+  params:
+    - name: minutes
+      type: string
+      description: "01-60"
+
+- id: query_no_signal_warning
+  label: Query status: No Signal Warning
+  kind: query
+  command: "QST:NSW"
+  params: []
+  # Reply: 0 = no warning, 1 = no signal warning; 0 when NSW is set OFF
+
+- id: no_signal_error
+  label: No Signal Error
+  kind: action
+  command: "SIT:NSE{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: no_signal_error_timing
+  label: No Signal Error Timing
+  kind: action
+  command: "SIT:SET{minutes}"
+  params:
+    - name: minutes
+      type: string
+      description: "01-90"
+
+- id: query_no_signal_error
+  label: Query status: No Signal Error
+  kind: query
+  command: "QST:NSE"
+  params: []
+  # Reply: 0 = no error, 1 = no signal error; 0 when NSE is set OFF
+
+- id: temperature_warning
+  label: Temperature Warning
+  kind: action
+  command: "SIT:TPW{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = Off, 1 = On (auto reply QST:TO*)"
+
+- id: query_temperature_warning
+  label: Query status: Temperature warning
+  kind: query
+  command: "QST:TO"
+  params: []
+  # Reply: 0 = NORMAL-MODE, 1 = HIGH TEMPERATURE-MODE
+
+# --- Others ---
+- id: recall
+  label: Recall
+  kind: action
+  command: "DDS"
+  params: []
+
+- id: display_id_name
+  label: Display ID / Display name
+  kind: action
+  command: "DDS:DID"
+  params: []
+
+- id: audio_mute_options
+  label: Audio Mute (Options menu)
+  kind: action
+  command: "AOC:{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+      description: "0 = MUTE OFF, 1 = MUTE ON"
+
+- id: osd_clear
+  label: OSD Clear
+  kind: action
+  command: "VDO"
+  params: []
+
+- id: digital_zoom
+  label: digital zoom
+  kind: action
+  command: "DZM:{on}{factor}{hpos}{vpos}"
+  params:
+    - name: on
+      type: string
+      values: ["0", "1"]
+    - name: factor
+      type: string
+      values: ["1", "2", "3", "4"]
+    - name: hpos
+      type: string
+      values: ["1", "2", "3", "4", "5"]
+    - name: vpos
+      type: string
+      values: ["1", "2", "3", "4", "5"]
+
+- id: off_timer
+  label: Off Timer
+  kind: action
+  command: "ZOT:{minutes}"
+  params:
+    - name: minutes
+      type: string
+      description: "00-90"
+
+- id: ump_next
+  label: USB media player Skip to the next playback file
+  kind: action
+  command: "UMP:NXT"
+  params: []
+
+- id: ump_previous
+  label: USB media player Skip to the previous playback file
+  kind: action
+  command: "UMP:PRE"
+  params: []
+
+- id: ump_replay
+  label: USB media player Playback again from top of the file
+  kind: action
+  command: "UMP:RPY"
+  params: []
+
+- id: inquiry_signal_status
+  label: Inquiry about Signal Status of input signal
+  kind: query
+  command: "QST:SGS"
+  params: []
+  # Reply: QST:SGS* 0=Valid signal, 1=No signal, 2=Unsupported signal
+
+- id: inquiry_signal_frequency
+  label: Inquiry about Signal Frequency of input signal
+  kind: query
+  command: "QFR"
+  params: []
+  # Reply: QFR:H***.** V***.**
+
+- id: inquiry_signal_format
+  label: Inquiry about Signal Format of input signal
+  kind: query
+  command: "QSF"
+  params: []
+  # Reply: QSF:<format> (max 20 chars)
+
+- id: inquiry_dl_status_detail
+  label: Inquiry about detail of DIGITAL LINK status
+  kind: query
+  command: "QST:DLD"
+  params: []
+  # Reply: QST:DLD<link><cable><hdmi><A><B><C><D><min><max>
+  # link: 0/1/2/3; cable: 000-225 (<20m LAN); hdmi: 0/1/2; A-D: -00 to -99 per channel; min/max: -00 to -99
+
+- id: auto_command_send_setting
   label: Auto Command Send Setting
   kind: action
+  command: "RCM:{qss_on}{qss_stserr_on}"
   params:
-    - name: enable_qss
-      type: integer
-      description: "0: off, 1: on"
-    - name: enable_stserr
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    enable_qss: [0, 1]
-    enable_stserr: [0, 1]
-
-- id: set_6_segment_color_management
-  label: 6-segment Color Management
-  kind: action
-  params:
-    - name: state
-      type: integer
-      description: "0: off, 1: on"
-  enum:
-    - 0
-    - 1
-
-- id: set_6_segment_color_select
-  label: 6-segment Color Management Select Color
-  kind: action
-  params:
-    - name: color
+    - name: qss_on
       type: string
-      description: "R/Y/G/C/B/M"
-    - name: tint
-      type: integer
-      description: "-511~511"
-    - name: saturation
-      type: integer
-      description: "-127~127"
-    - name: value
-      type: integer
-      description: "-127~127"
-  enum:
-    color: [R, Y, G, C, B, M]
-  range:
-    tint: [-511, 511]
-    saturation: [-127, 127]
-    value: [-127, 127]
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON - QSS (QSS command)"
+    - name: qss_stserr_on
+      type: string
+      values: ["0", "1"]
+      description: "0 = OFF, 1 = ON - QSS:STSERR (QSS:STSERR)"
 
-- id: reset_6_segment_color
-  label: 6-segment Color Management Reset
+- id: inquiry_model_name
+  label: Inquiry about Model Name
+  kind: query
+  command: "QMN"
+  params: []
+  # Reply: QMN:<size><F><17> (e.g. 70F17 = 70-inch FHD 2017)
+
+- id: inquiry_model
+  label: Inquiry about Model
+  kind: query
+  command: "QID"
+  params: []
+  # Reply: QID:<size>.<model>.<market>  e.g. 70.SF2H.J
+
+- id: software_version_main
+  label: Software Version Main MCU
+  kind: query
+  command: "QRV"
+  params: []
+  # Reply: QRV:<version>SF2H (e.g. 1.0000SF2H)
+
+- id: software_version_sub
+  label: Software Version Sub MCU
+  kind: query
+  command: "QRV:STB"
+  params: []
+  # Reply: QRV:STB<version>  e.g. 01.00
+
+- id: software_version_eeprom
+  label: Software Version EEPROM
+  kind: query
+  command: "QRV:EEP"
+  params: []
+  # Reply: QRV:EEP<version>  e.g. 01.00
+
+- id: software_version_hdbaset_rx
+  label: Software Version HDBaseT RX
+  kind: query
+  command: "QRV:HBT"
+  params: []
+  # Reply: QRV:HBT<version>  e.g. 30.90.000C
+
+- id: serial_number
+  label: Serial number
+  kind: query
+  command: "QSN"
+  params: []
+  # Reply: QSN:<serial> 9-15 ASCII chars (alnum upper + space + '-')
+
+- id: lan_cloning_write_protect
+  label: LAN data Cloning - Write protect
   kind: action
+  command: "LCL:WRP{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1"]
+
+- id: sos_history
+  label: SOS History
+  kind: query
+  command: "QSS"
+  params: []
+  # Reply: QSS:<count>.<c1>.<c2>...<c10>   up to 10 entries, each 2 hex chars (00-FF)
+
+- id: inquiry_sos_status
+  label: Inquiry about SOS Status
+  kind: query
+  command: "QSS:STS"
+  params: []
+  # Reply: QSS:STS***  NON=no history, ERR=SOS generating, EXT=history exists
+
+# --- Light ID Control ---
+- id: lightid_mode
+  label: LightID mode (Select PWM Mode)
+  kind: action
+  command: "LID:MOD{mode}"
+  params:
+    - name: mode
+      type: string
+      values: ["0", "1", "2"]
+      description: "0 = Main CPU Control (LightID OFF), 1 = External Control, 2 = Internal ID"
+
+- id: lightid_stop
+  label: Stop LightID
+  kind: action
+  command: "LID:STP"
+  params: []
+
+- id: lightid_backlight_blt
+  label: BackLight Control (LID:BLT)
+  kind: action
+  command: "LID:BLT{duty}"
+  params:
+    - name: duty
+      type: string
+      values: ["1", "2", "3"]
+      description: "1 = Low, 2 = Middle, 3 = High. Not available when LightID mode is Off."
+
+- id: lightid_backlight_blc
+  label: BackLight Control (LID:BLC)
+  kind: action
+  command: "LID:BLC{duty}"
+  params:
+    - name: duty
+      type: string
+      values: ["1", "2", "3"]
+      description: "1 = Low, 2 = Middle, 3 = High. Not available when LightID mode is Off. Equivalent to LID:BLT/QLI:BLT."
+
+- id: lightid_backlight_blt_query
+  label: BackLight Control (LID:BLT) query
+  kind: query
+  command: "QLI:BLT"
+  params: []
+
+- id: lightid_backlight_blc_query
+  label: BackLight Control (LID:BLC) query
+  kind: query
+  command: "QLI:BLC"
+  params: []
+
+- id: lightid_mode_query
+  label: LightID mode query
+  kind: query
+  command: "QLI:MOD"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_status
+- id: power_state
   type: enum
-  values: ["0", "1"]
-  description: "0: standby (off), 1: power on"
+  values: [standby, on]
+  # From QPW:0 / QPW:1
+
+- id: audio_mute_state
+  type: enum
+  values: [off, on]
+  # From QAM:0 / QAM:1
+
+- id: video_mute_state
+  type: enum
+  values: [off, on]
+  # From QVM:0 / QVM:1
 
 - id: current_input
   type: string
-  description: "HM1/HM2/DL1/DV1/PC1/VD1/UD1/MV1"
+  values: [HM1, HM2, DL1, DV1, PC1, VD1, UD1, MV1]
+  # From QMI:***
 
-- id: current_audio_volume
+- id: current_aspect
+  type: string
+  values: [FULL, NORM, ZOOM, ZOM2]
+  # From QAS
+
+- id: volume_level
   type: integer
   range: [0, 100]
-  description: "000-100"
+  # From QAV:***
 
-- id: audio_mute_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: audio mute off, 1: audio mute on"
-
-- id: video_mute_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: video mute off, 1: video mute on"
-
-- id: aspect_status
+- id: picture_mode
   type: string
-  description: "FULL/NORM/ZOOM/ZOM2"
+  values: [VIV, NAT, STD, SUV, GRH, DCM]
+  # From QPC:MEN
 
-- id: picture_mode_status
-  type: string
-  description: "VIV/NAT/STD/SUV/GRH/DCM"
-
-- id: backlight_status
+- id: backlight_level
   type: integer
-  description: "000~100 or DEF"
   range: [0, 100]
+  # From QPC:BLT
 
-- id: picture_contrast_status
-  type: integer
-  description: "000~100 or DEF"
-  range: [0, 100]
+- id: no_signal_warning_active
+  type: boolean
+  # From QST:NSW (1 = warning, 0 = none; 0 when NSW setting is OFF)
 
-- id: black_level_status
-  type: integer
-  description: "000~100 or DEF"
-  range: [0, 100]
+- id: no_signal_error_active
+  type: boolean
+  # From QST:NSE (1 = error, 0 = none; 0 when NSE setting is OFF)
 
-- id: color_status
-  type: integer
-  description: "000~100 or DEF"
-  range: [0, 100]
+- id: temperature_warning_active
+  type: boolean
+  # From QST:TO (1 = HIGH TEMPERATURE, 0 = NORMAL)
 
-- id: tint_status
-  type: integer
-  description: "000~100 or DEF"
-  range: [0, 100]
-
-- id: sharpness_status
-  type: integer
-  description: "000~100 or DEF"
-  range: [0, 100]
-
-- id: memory_state
-  type: string
-  description: "- / 0 (memory no.1-no.6): unused / use"
-
-- id: memory_name_status
-  type: string
-  description: "memory name (max 20 chars)"
-
-- id: audio_output_select_status
-  type: string
-  description: "SPO: speakers, LNO: audio out"
-
-- id: balance_status
-  type: integer
-  description: "-20~20"
-
-- id: sound_mode_status
-  type: string
-  description: "STD(AUT)/DYN/CLR"
-
-- id: bass_status
-  type: integer
-  description: "-20~20"
-
-- id: treble_status
-  type: integer
-  description: "-20~20"
-
-- id: surround_status
-  type: string
-  description: "MON: on, OFF: off"
-
-- id: horizontal_position_status
-  type: integer
-  description: "-100~+100"
-
-- id: horizontal_size_status
-  type: integer
-  description: "-100~+100"
-
-- id: vertical_position_status
-  type: integer
-  description: "-100~+100"
-
-- id: vertical_size_status
-  type: integer
-  description: "-100~+100"
-
-- id: clock_phase_status
-  type: integer
-  description: "00~30"
-
-- id: dot_clock_status
-  type: integer
-  description: "-5~+5"
-
-- id: pixel_mode_status
+- id: signal_status
   type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: overscan_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: auto_setup_result
-  type: string
-  description: "OK: result OK, NG: result NG, OF: unperforming or not effective, NW: adjusting"
-
-- id: wobbling_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: no_activity_power_off_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: osd_language_status
-  type: string
-  description: "ENG/DEU/FRA/ITL/ESP/USA/CHA/JPN/RUS"
-
-- id: display_orientation_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: landscape, 1: portrait"
-
-- id: image_rotation_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: 180 degrees"
-
-- id: menu_position_status
-  type: integer
-  description: "1/2/3"
-
-- id: menu_duration_status
-  type: integer
-  description: "005~180 (seconds)"
-
-- id: menu_transparency_status
-  type: integer
-  description: "000~100 (10% unit)"
-
-- id: signal_status_info
-  type: enum
-  values: ["0", "1", "2"]
-  description: "0: valid signal, 1: no signal, 2: unsupported signal"
+  values: [valid, no_signal, unsupported]
+  # From QST:SGS
 
 - id: signal_frequency
-  type: string
-  description: "H***.** V***.** (horizontal/vertical frequency)"
+  type: object
+  # From QFR:H***.** V***.**
+  fields: [horizontal_hz, vertical_hz]
 
 - id: signal_format
   type: string
-  description: "max 20 characters"
-
-- id: model_name
-  type: string
-  description: "70/80 (inch) F (FHD) 17 (product of 2017)"
-
-- id: model
-  type: string
-  description: "70/80 SF2H J/U/E/W/C (inch/model/market)"
-
-- id: software_version_main_mcu
-  type: string
-  description: "*.* version"
-
-- id: software_version_sub_mcu
-  type: string
-  description: "*.* version"
-
-- id: software_version_eeprom
-  type: string
-  description: "*.* version"
-
-- id: software_version_hdbaset_rx
-  type: string
-  description: "*.*.* version"
-
-- id: serial_number
-  type: string
-  description: "ASCII 9~15 characters"
-
-- id: sos_status
-  type: string
-  description: "NON: no SOS history, ERR: SOS generating, EXT: SOS history exists"
+  # From QSF:<format> (max 20 chars)
 
 - id: digital_link_status
-  type: string
-  description: "link status / HDMI status / est. cable length / signal quality"
-
-- id: display_id
-  type: integer
-  description: "000~100"
-
-- id: present_day
-  type: string
-  description: "SUN/MON/TUE/WED/THU/FRI/SAT"
-
-- id: present_time
-  type: string
-  description: "0000~2359 (hour:minute)"
-
-- id: digital_link_mode_status
-  type: string
-  description: "AT/DL/EN"
-
-- id: network_control_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: lan_setup_port_status
-  type: integer
-  description: "1024~65535"
-
-- id: schedule_play_mode_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: normal mode, 1: schedule play mode"
-
-- id: usb_media_player_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: disable, 1: enable"
-
-- id: schedule_play_function_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: disable, 1: enable"
-
-- id: memory_viewer_function_status
-  type: enum
-  values: ["0", "1"]
-  description: "0: off, 1: on"
-
-- id: temperature_warning_status
-  type: enum
-  values: ["0", "1"]
-  description: "1: high temperature mode, 0: normal mode"
-
-- id: no_signal_warning_status
-  type: enum
-  values: ["0", "1"]
-  description: "1: no signal warning active, 0: no warning"
-
-- id: no_signal_error_status
-  type: enum
-  values: ["0", "1"]
-  description: "1: no signal error active, 0: no error"
-
-- id: no_signal_warning_timing_status
-  type: integer
-  description: "01~60 (minutes)"
-
-- id: no_signal_error_timing_status
-  type: integer
-  description: "01~90 (minutes)"
-
-- id: backup_input_status
-  type: string
-  description: "status / main input / current input status"
-
-- id: backup_input_signal_status
-  type: string
-  description: "main input signal / primary backup signal / secondary backup signal"
-
-- id: light_id_mode_status
-  type: enum
-  values: ["0", "1", "2"]
-  description: "0: off, 1: external control mode, 2: internal ID mode"
-
-- id: backlight_control_status
-  type: enum
-  values: ["1", "2", "3"]
-  description: "1: low, 2: middle, 3: high"
+  type: object
+  # From QSU:DLS - see action id digital_link_status for field layout
 ```
 
 ## Variables
 ```yaml
-# All settable picture/sound/network parameters are represented as Actions with params.
-# This device uses discrete command-based control; no separate Variables section applies.
+# No persistent settings need be exposed beyond the action set; commands carry
+# both set and query forms (S*/Q* pairs).
 ```
 
 ## Events
 ```yaml
-# Unsolicited notifications (auto-sent by display on certain conditions):
-- id: no_signal_warning_auto
-  type: enum
-  values: ["0", "1"]
-  description: "Auto-sent when RS-232C control active and no signal warning triggers"
+# The source describes these unsolicited notifications on the serial/LAN
+# control channel when the corresponding auto-reply features are enabled.
+# Enable flags: SIT:NSW (No Signal Warning), SIT:NSE (No Signal Error),
+# SIT:TPW (Temperature Warning), and Auto Command Send Setting (RCM).
+- id: no_signal_warning
+  message: "QST:NSW*"
+  description: "Sent automatically when No Signal Warning is ON and condition occurs"
+  enabled_by: SIT:NSW
 
-- id: no_signal_error_auto
-  type: enum
-  values: ["0", "1"]
-  description: "Auto-sent when RS-232C control active and no signal error triggers"
+- id: no_signal_error
+  message: "QST:NSE*"
+  description: "Sent automatically when No Signal Error is ON and condition occurs"
+  enabled_by: SIT:NSE
 
-- id: temperature_warning_auto
-  type: enum
-  values: ["0", "1"]
-  description: "Auto-sent when high temperature mode detected"
+- id: temperature_warning
+  message: "QST:TO*"
+  description: "Sent automatically when Temperature Warning is ON"
+  enabled_by: SIT:TPW
 
-- id: sos_history
-  type: string
-  description: "Auto-sent on SOS event; 6-byte SOS classification data"
+- id: sos_history_change
+  message: "QSS / QSS:STSERR"
+  description: "Auto-sent when RCM (Auto Command Send Setting) is enabled"
+  enabled_by: RCM
+
+# In standby (power off), the unit only responds to PON and QPW.
 ```
 
 ## Macros
 ```yaml
-# Multi-step sequences from source:
-# UNRESOLVED: no explicit multi-step macros defined in source
+# UNRESOLVED: no explicit multi-step command sequences described in source
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - "Only PON and QPW commands operational in standby (standby mode)"
-  - "Network control setting to Off while connected with LAN might disconnect the connection"
-  - "Backlight (VPC:BLT) available only when Power Save is Off"
-  - "Red/Green/Blue Gain and Bias settings available only when Color Temperature is USER1 or USER2"
-  - "6-segment color management settings available only when 6-segment color management is On"
-  - "Balance, Bass, Treble, Surround, Sound Mode available only when Output Select is SPEAKERS"
-  - "Component/RGB-IN Select available only when PC is selected"
-  - "YUV/RGB-IN Select available only when HDMI1/HDMI2/DVI-D is selected"
-  - "Manual Switch Back enabled only when Input Change Mode is not Off and Auto Switch Back is Disabled"
-  - "Changing Mode (high speed/normal) adjustable only when Input Change Mode Quick is selected"
-  - "Backlight Control (LightID) not available when LightID mode is Off"
+interlocks: []
+# UNRESOLVED: no explicit safety warnings, interlock procedures, or power-on
+# sequencing requirements stated in the supplied command-list document. The
+# full operating manual may contain such sections; this refined source only
+# contains the command reference.
 ```
 
 ## Notes
-Serial format: `<STX>command[:parameters]<ETX>` — STX (02h), 3-char command, optional colon + params, ETX (03h). Wait for response before sending next command. Incorrect commands return `ER401`. Display ID + Serial ID mechanism for daisy-chain. LAN Protocol 1 and Protocol 2 differ in MD5 auth format (protect mode) and response framing. Protocol 1 omits first 4 chars of inquiry command reply. Default LAN port 1024; port range 1024~65535 (excluding reserved ranges). Cable type: straight.
-<!-- UNRESOLVED: inter-command delay timing not stated in source -->
-<!-- UNRESOLVED: firmware version compatibility not stated -->
-<!-- UNRESOLVED: port number for RS-232C not explicitly stated beyond default 9600/8N1 -->
-<!-- UNRESOLVED: LAN Protocol 2 response format details not fully specified in source excerpt -->
+- Serial wire format: 9600 bps, 8N1, no flow control, straight cable. Frame every command as `<STX>3-byte-CMD[:params]<ETX>` (STX = 0x02, ETX = 0x03). STX-only framing is mandatory — the source shows that for `PON`, the on-wire bytes are 02 50 4F 4E 03, and for `VPC:085` the bytes are 02 56 50 43 3A 30 38 35 03 (i.e. parameter strings are case-sensitive ASCII).
+- Standby behavior: when the display is in standby it responds to `PON` and `QPW` only; the source explicitly notes this.
+- Wait for response: the source warns to wait for the response of one command before sending the next, otherwise the unit may reply `ER401`.
+- Multiple commands may be batched only after a successful reply; `ER401` indicates an incorrect command.
+- The `Read user image` operation (Image settings) deliberately returns `ER401` to the computer.
+- LAN control (Protocol 1 = `NTCONTROL 0` header + payload, Protocol 2 = `NTCONTROL 1` header + payload, both followed by `<STX>...<ETX>`). The source does not state the full on-wire bytes for `NTCONTROL 0/1` beyond the header table; treat 0x4E 0x54 0x43 0x4F 0x4E 0x54 0x52 0x4F 0x4C 0x20 0x30 0x0D (and `...31 0x0D` for protocol 2) as the typical 12-byte header, but verify against the Panasonic web-control reference (https://panasonic.net/cns/prodisplays/) before production use.
+- LAN auth: when [Options] - [LAN control protocol] is set to Protocol 1 and a WEB control admin password is configured, the host must obtain a random string from the display, compute MD5 of `zzzzzzzzyyyyy` (8-byte random + password) and send that as part of the payload. In "Non protect mode" (no password set), the host can send commands directly.
+- LAN auth (Protocol 2) hashes `xxxxxx:yyyyy:zzzzzzzz` (admin user name : password : 8-byte random) with MD5.
+- Default LAN port: 1024, but `SSU:LCP` allows reconfiguring within the source-listed ranges. Restrictions: ports 04352, 10000, 20000, 27250, and 41794 are excluded.
+- Display ID + Serial ID: to address a single display on a daisy chain, set [Options] - [Serial ID function] ON and prefix commands with `RAD:<NNN>;` (or `AD94;RAD:<NNN>;`). With Display ID=0 the unit accepts any serial ID but ignores inquiry commands; serial ID `000` is accepted by all units but again blocks inquiries. If Display ID is non-zero, responses are sent only when the Display ID matches the serial ID.
+- DIGITAL LINK mode (`SSU:DLM`) supports Auto, DIGITAL LINK, and Ethernet. Detail inquiries (`QSU:DLS` and `QST:DLD`) report per-channel signal quality and HDMI/HDCP state.
+- Source typo note: the LAN Setup - Network Address parameter table appears to list 4 subnet mask bytes labelled "1st / 2nd / 1st / 2nd"; treat as the conventional 4-byte subnet mask (bytes 1-4).
+- Image rotation (`SSU:IMR`) is Off / 180°; it does not support arbitrary angles.
+- Memory viewer (`SMS:*`) and USB media player (`SUS:*`/`UMP:*`) commands are independent and operate on different content sources.
+- LightID commands require [LightID mode] (`LID:MOD`) to be set to 1 (External) or 2 (Internal); the backlight duty commands (`LID:BLT` / `LID:BLC`) are unavailable in mode 0.
+
+<!-- UNRESOLVED: firmware compatibility version range, voltage/current draw,
+weight, dimensions, maximum cable lengths beyond the 20 m Digital Link LAN
+guidance, supported DIGITAL LINK switch models, full LAN control byte layout
+(headers, terminators), exact checksum behavior if any. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - na.panasonic.com
-  - eww.pass.panasonic.co.jp
+  - docs.connect.panasonic.com
   - eu.connect.panasonic.com
+  - manualowl.com
 source_urls:
-  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
-  - https://eww.pass.panasonic.co.jp/pro-av/support/content/guide/DEF/RP50_120/RemoteControllerInterfaceSpecifications-E.pdf
-  - https://eww.pass.panasonic.co.jp/pav-ks/support/content/general_1/DEF/KAIROS_RestAPI_14_E.pdf
-  - https://eu.connect.panasonic.com/sites/default/files/media/2024-04/8475ef1uw_manual_en_8.pdf
-  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
-retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-05-18T16:44:23.292Z
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/SF2H_SerialCommandList.pdf
+  - https://docs.connect.panasonic.com/prodisplays/support/rs232c_commandlist.html
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LAN_Protocol_exp.pdf
+  - https://eu.connect.panasonic.com/sites/default/files/media/document/2017-12/sf2huw_manual_en.pdf
+  - https://www.manualowl.com/m/Panasonic/TH-80SF2H/Manual/515989
+retrieved_at: 2026-05-18T03:13:52.321Z
+last_checked_at: 2026-06-02T10:14:09.339Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:44:23.292Z
-matched_actions: 176
-action_count: 176
-confidence: high
-summary: "All 176 spec actions map to source commands via semantic-id convention; transport parameters (9600 bps, 8N1, no flow control, port 1024) verified verbatim in source."
+checked_at: 2026-06-02T10:14:09.339Z
+matched_actions: 218
+action_count: 218
+confidence: medium
+summary: "All 218 spec actions match source wire tokens with correct shapes; AVL/AMT/VMT colon-separator fixes and changing_mode polarity (2=High,1=Normal) confirmed; transport params (9600 8N1, port 1024, MD5 auth) all verified. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Exact LAN port not explicitly pinned in protocol section; \"Default is 1024\" stated for the WEB control admin port. Treat 1024 as the default, but the source also lists a user-configurable LAN Setup - Port Number (1024-4351, 4353-9999, 10001-19999, 20001-27249, 27251-41793, 41795-65535)."
+- "no explicit multi-step command sequences described in source"
+- "no explicit safety warnings, interlock procedures, or power-on"
+- "firmware compatibility version range, voltage/current draw,"
 ```
 
 ---

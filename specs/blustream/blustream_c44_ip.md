@@ -20,7 +20,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:34:56.355Z
 last_checked_at: 2026-04-23T15:24:28.449Z
 generated_at: 2026-04-23T15:24:28.449Z
 firmware_coverage: "Not stated in source"
@@ -31,13 +31,30 @@ known_gaps:
   - IR_OUTPUT_2_1D
   - IR_3D_0F
   - IR_4K_51
+  - "TCP/Telnet port number not stated in source"
+  - "exact relationship between C44 and CMX88AB model names not clarified in source"
+  - "command response format not documented (only command syntax given)"
+  - "TCP port number not stated in source"
+  - "port number not stated in source"
+  - "exact response format not documented in source"
+  - "exact power state query/response format not documented"
+  - "exact response format not documented"
+  - "no continuous variable ranges documented in source"
+  - "no unsolicited notification/event mechanism documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no power-on sequencing requirements documented in source"
+  - "TCP/Telnet port number not stated — source mentions TCP/IP control and \"Telnet Commands\" but gives no port"
+  - "command response/acknowledgement format not documented — only command syntax is provided"
+  - "EDIDxxDFzz input range is 01-04 in source but product is described as 8x8 matrix — possible documentation error or different variant"
+  - "no firmware version compatibility range stated"
+  - "web browser interface mentioned but no REST/HTTP API documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:24:28.449Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer."
+  confidence: medium
+  summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -317,7 +334,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:34:56.355Z
 last_checked_at: 2026-04-23T15:24:28.449Z
 ```
 
@@ -328,8 +345,8 @@ verdict: verified
 checked_at: 2026-04-23T15:24:28.449Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer."
+confidence: medium
+summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -340,6 +357,23 @@ summary: "All 14 spec actions matched verbatim in source with correct syntax; tr
 - IR_OUTPUT_2_1D
 - IR_3D_0F
 - IR_4K_51
+- "TCP/Telnet port number not stated in source"
+- "exact relationship between C44 and CMX88AB model names not clarified in source"
+- "command response format not documented (only command syntax given)"
+- "TCP port number not stated in source"
+- "port number not stated in source"
+- "exact response format not documented in source"
+- "exact power state query/response format not documented"
+- "exact response format not documented"
+- "no continuous variable ranges documented in source"
+- "no unsolicited notification/event mechanism documented in source"
+- "no multi-step macro sequences documented in source"
+- "no power-on sequencing requirements documented in source"
+- "TCP/Telnet port number not stated — source mentions TCP/IP control and \"Telnet Commands\" but gives no port"
+- "command response/acknowledgement format not documented — only command syntax is provided"
+- "EDIDxxDFzz input range is 01-04 in source but product is described as 8x8 matrix — possible documentation error or different variant"
+- "no firmware version compatibility range stated"
+- "web browser interface mentioned but no REST/HTTP API documented"
 ```
 
 ---

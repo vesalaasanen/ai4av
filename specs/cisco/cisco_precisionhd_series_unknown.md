@@ -2,7 +2,7 @@
 spec_id: admin/cisco-precisionhd-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Cisco PrecisionHD Series Control Spec"
+title: "Cisco PrecisionHD Series Camera Control Spec"
 manufacturer: Cisco
 model_family: "PrecisionHD Camera 1080p12x"
 aliases: []
@@ -12,54 +12,62 @@ compatible_with:
   models:
     - "PrecisionHD Camera 1080p12x"
     - "PrecisionHD Camera 1080p4x"
-    - "Precision 40 Camera"
     - "PrecisionHD Camera 1080p2.5x"
+    - "Precision 40 Camera"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
   - cisco.com
-  - developer.webex.com
+  - manualshelf.com
+  - tzmc.us
+  - dekom.com
 source_urls:
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
-  - https://developer.webex.com/docs/devices
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T22:56:18.279Z
-last_checked_at: 2026-05-15T21:25:38.186Z
-generated_at: 2026-05-15T21:25:38.186Z
+  - https://www.manualshelf.com/manual/cisco/telepresence-precisionhd-1080p-12x/user-guide-english.html
+  - http://tzmc.us/cisco/end_points/edge/precisionhd_1080p-720p_camera_user_guide.pdf
+  - https://www.cisco.com/c/en/us/support/collaboration-endpoints/telepresence-precisionhd-cameras/products-user-guide-list.html
+  - https://www.dekom.com/fileadmin/Vidowawi/precisionhd-1080p-720p_camera_user_guide_tc40_04_L01.pdf
+retrieved_at: 2026-05-14T15:10:26.520Z
+last_checked_at: 2026-06-02T00:53:56.289Z
+generated_at: 2026-06-02T00:53:56.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "per-model applicability of asterisk-marked commands is in the source but not encoded per action."
+  - "no input routing commands in source"
+  - "no volume/gain control in source"
+  - "no discrete settable parameters beyond action commands; raw positions"
+  - "no multi-step sequences described in source."
+  - "no explicit safety warnings, interlock procedures, or power-on"
+  - "firmware version compatibility ranges not stated in source. Per-model applicability of asterisk-marked commands is not encoded per action (one source flag, many models)."
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:25:38.186Z
-  matched_actions: 57
-  action_count: 57
-  confidence: high
-  summary: "All 57 spec actions matched to source VISCA command table entries; transport parameters fully verified in source."
+  checked_at: 2026-06-02T00:53:56.289Z
+  matched_actions: 94
+  action_count: 94
+  confidence: medium
+  summary: "All 94 spec actions have literal matches in source; transport parameters verified; comprehensive coverage of command catalogue. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-14
+created_at: 2026-06-02
 ---
 
-# Cisco PrecisionHD Series Control Spec
+# Cisco PrecisionHD Series Camera Control Spec
 
 ## Summary
+VISCA-protocol RS-232 control for Cisco PrecisionHD camera family (1080p12x, 1080p4x, 1080p2.5x, Precision 40). Binary packet protocol, codec as host on address 0x81, camera replies on 0x90. Default 9600 8N1 no flow control; speed switchable to 115200.
 
-RS-232 VISCA protocol camera control for Cisco PrecisionHD series cameras (1080p12x, 1080p4x, 1080p2.5x, Precision 40). Controls pan/tilt/zoom/focus, white balance, exposure, image flip/mirror, backlight compensation, gamma, and LED indicators. Serial-only; no IP or network control. Camera is queryable via inquiry commands. **Power commands do not toggle power — they only reset motors.** DIP switches are read at boot only.
-
-<!-- UNRESOLVED: Some commands marked * do not apply to 1080p4x, 1080p2.5x, Precision 40 cameras — per-model capability matrix not stated -->
+<!-- UNRESOLVED: per-model applicability of asterisk-marked commands is in the source but not encoded per action. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600
+  baud_rate: 9600  # default; 115200 also supported via CAM_Speed
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -70,718 +78,823 @@ auth:
 
 ## Traits
 ```yaml
-- powerable      # Power_Off / Power_On commands present (motor reset only)
-- routable       # Video_Format command present
-- queryable      # Multiple inquiry commands present
-- levelable      # Zoom_Direct, Focus_Direct, Iris_Direct, Gain_Direct present
+- powerable  # inferred from Power_On / Power_Off commands
+- queryable  # inferred from inquiry commands
+- routable   # UNRESOLVED: no input routing commands in source
+- levelable  # UNRESOLVED: no volume/gain control in source
 ```
 
 ## Actions
 ```yaml
-- id: Power_On
-  label: Power On (Motor Reset)
+# Network and interface
+- id: if_clear
+  label: IF_Clear
   kind: action
+  command: "8x 01 00 01 ff"
   params: []
-  comment: Stores zoom/focus value, resets motors. Does not toggle power.
-
-- id: Power_Off
-  label: Power Off (Motor Reset)
+- id: address_set
+  label: Address_Set
   kind: action
-  params: []
-  comment: PrecisionHD 720p only if camera on long time. Motor reset only.
-
-- id: Video_Format
-  label: Select Video Format
-  kind: action
+  command: "8x 30 0p ff"
   params:
-    - name: video_mode
+    - name: p
       type: integer
-      description: Video mode selection (0x0000-0x0009 per DIP switch table)
-    - name: reserved
-      type: integer
-      description: Reserved parameter (set to 0)
-
-- id: WB_Auto
-  label: White Balance Auto
+      description: New address for this device (broadcast x=8 increments p before sending)
+- id: command_cancel
+  label: Command_Cancel
   kind: action
-  params: []
-
-- id: WB_Table_Manual
-  label: White Balance Table Manual
-  kind: action
-  params: []
-
-- id: WB_Table_Direct
-  label: White Balance Table Direct
-  kind: action
+  command: "8x 2p ff"
   params:
-    - name: table_index
+    - name: p
       type: integer
-      description: WB table index (4 bytes)
+      description: Socket ID. Not supported on PrecisionHD 1080p 12x.
 
-- id: AE_Auto
-  label: Auto Exposure
+# Camera control
+- id: power_on
+  label: Power_On
   kind: action
+  command: "8x 01 04 00 02 ff"
   params: []
-
-- id: AE_Manual
-  label: Manual Exposure
+- id: power_off
+  label: Power_Off
   kind: action
+  command: "8x 01 04 00 03 ff"
   params: []
-
-- id: Iris_Direct
-  label: Iris Direct
+- id: video_format
+  label: Video_Format
   kind: action
+  command: "8x 01 35 0p 0q 0r ff"
   params:
-    - name: position
+    - name: p
       type: integer
-      description: Iris position 0-50
-
-- id: Gain_Direct
-  label: Gain Direct
+      description: Reserved
+    - name: q
+      type: integer
+      description: Video mode (see DIP/Video mode table)
+    - name: r
+      type: integer
+      description: Used in PrecisionHD 720p; recyclable
+- id: wb_auto
+  label: WB_Auto
   kind: action
+  command: "8x 01 04 35 00 ff"
+  params: []
+- id: wb_table_manual
+  label: WB_Table_Manual
+  kind: action
+  command: "8x 01 04 35 06 ff"
+  params: []
+- id: wb_table_direct
+  label: WB_Table_Direct
+  kind: action
+  command: "8x 01 04 75 0p 0q 0r 0s ff"
   params:
-    - name: position
+    - name: pqrs
       type: integer
-      description: Gain position 12-21 dB
-
-- id: Backlight_On
-  label: Backlight Compensation On
+      description: WB table index
+- id: ae_auto
+  label: AE_Auto
   kind: action
+  command: "8x 01 04 39 00 ff"
   params: []
-
-- id: Backlight_Off
-  label: Backlight Compensation Off
+- id: ae_manual
+  label: AE_Manual
   kind: action
+  command: "8x 01 04 39 03 ff"
   params: []
-
-- id: Mirror_On
-  label: Mirror On
+- id: iris_direct
+  label: Iris_Direct
   kind: action
-  params: []
-
-- id: Mirror_Off
-  label: Mirror Off
-  kind: action
-  params: []
-
-- id: Flip_On
-  label: Flip On
-  kind: action
-  params: []
-
-- id: Flip_Off
-  label: Flip Off
-  kind: action
-  params: []
-
-- id: Gamma_Auto
-  label: Gamma Auto
-  kind: action
-  params: []
-
-- id: Gamma_Manual
-  label: Gamma Manual
-  kind: action
-  params: []
-
-- id: Gamma_Direct
-  label: Gamma Direct
-  kind: action
+  command: "8x 01 04 4B 0p 0q 0r 0s ff"
   params:
-    - name: table
+    - name: pqrs
       type: integer
-      description: Gamma table 0-7
-
-- id: MM_Detect_On
-  label: Motor Moved Detection On
+      description: Iris position 0..50 (requires AE=Manual)
+- id: gain_direct
+  label: Gain_Direct
   kind: action
+  command: "8x 01 04 4c 0p 0q 0r 0s ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Gain position 12..21 dB (requires AE=Manual)
+- id: backlight_on
+  label: Backlight_On
+  kind: action
+  command: "8x 01 04 33 02 ff"
+  params: []
+- id: backlight_off
+  label: Backlight_Off
+  kind: action
+  command: "8x 01 04 33 03 ff"
+  params: []
+- id: mirror_on
+  label: Mirror_On
+  kind: action
+  command: "8x 01 04 61 02 ff"
+  params: []
+- id: mirror_off
+  label: Mirror_Off
+  kind: action
+  command: "8x 01 04 61 03 ff"
+  params: []
+- id: flip_on
+  label: Flip_On
+  kind: action
+  command: "8x 01 04 66 02 ff"
+  params: []
+- id: flip_off
+  label: Flip_Off
+  kind: action
+  command: "8x 01 04 66 03 ff"
+  params: []
+- id: gamma_auto
+  label: Gamma_Auto
+  kind: action
+  command: "8x 01 04 51 02 ff"
+  params: []
+- id: gamma_manual
+  label: Gamma_Manual
+  kind: action
+  command: "8x 01 04 51 03 ff"
+  params: []
+- id: gamma_direct
+  label: Gamma_Direct
+  kind: action
+  command: "8x 01 04 52 0p 0q 0r 0s ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Gamma table 0..7
+- id: mm_detect_on
+  label: MM_Detect_On
+  kind: action
+  command: "8x 01 50 30 01 ff"
+  params: []
+- id: mm_detect_off
+  label: MM_Detect_Off
+  kind: action
+  command: "8x 01 50 30 00 ff"
+  params: []
+- id: call_led_on
+  label: Call_LED_On
+  kind: action
+  command: "8x 01 33 01 01 ff"
+  params: []
+- id: call_led_off
+  label: Call_LED_Off
+  kind: action
+  command: "8x 01 33 01 00 ff"
+  params: []
+- id: call_led_blink
+  label: Call_LED_Blink
+  kind: action
+  command: "8x 01 33 01 02 ff"
+  params: []
+- id: power_led_on
+  label: Power_LED_On
+  kind: action
+  command: "8x 01 33 02 01 ff"
+  params: []
+- id: power_led_off
+  label: Power_LED_Off
+  kind: action
+  command: "8x 01 33 02 00 ff"
+  params: []
+- id: ir_output_on
+  label: IR_Output_On
+  kind: action
+  command: "8x 01 06 08 02 ff"
+  params: []
+- id: ir_output_off
+  label: IR_Output_Off
+  kind: action
+  command: "8x 01 06 08 03 ff"
+  params: []
+- id: ir_camera_control_on
+  label: IR_CameraControl_On
+  kind: action
+  command: "8x 01 06 09 02 ff"
+  params: []
+- id: ir_camera_control_off
+  label: IR_CameraControl_Off
+  kind: action
+  command: "8x 01 06 09 03 ff"
   params: []
 
-- id: MM_Detect_Off
-  label: Motor Moved Detection Off
+# PTZF movement
+- id: zoom_stop
+  label: Zoom_Stop
   kind: action
+  command: "8x 01 04 07 00 ff"
   params: []
-
-- id: Call_LED_On
-  label: Call LED On
+- id: zoom_tele
+  label: Zoom_Tele
   kind: action
+  command: "8x 01 04 07 2p ff"
+  params:
+    - name: p
+      type: string
+      description: Speed, hex digit 0..F (a=low, b=high in source; full 0..F range assumed)
+- id: zoom_wide
+  label: Zoom_Wide
+  kind: action
+  command: "8x 01 04 07 3p ff"
+  params:
+    - name: p
+      type: string
+      description: Speed, hex digit 0..F
+- id: zoom_direct
+  label: Zoom_Direct
+  kind: action
+  command: "8x 01 04 47 0p 0q 0r 0s ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Zoom position
+- id: zoom_focus_direct
+  label: ZoomFocus_Direct
+  kind: action
+  command: "8x 01 04 47 0p 0q 0r 0s 0t 0u 0v 0w ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Zoom position
+    - name: tuvw
+      type: integer
+      description: Focus position
+- id: focus_stop
+  label: Focus_Stop
+  kind: action
+  command: "8x 01 04 08 00 ff"
   params: []
-
-- id: Call_LED_Off
-  label: Call LED Off
+- id: focus_far
+  label: Focus_Far
   kind: action
+  command: "8x 01 04 08 2p ff"
+  params:
+    - name: p
+      type: string
+      description: Speed, hex digit 0..F
+- id: focus_near
+  label: Focus_Near
+  kind: action
+  command: "8x 01 04 08 3p ff"
+  params:
+    - name: p
+      type: string
+      description: Speed, hex digit 0..F
+- id: focus_direct
+  label: Focus_Direct
+  kind: action
+  command: "8x 01 04 48 0p 0q 0r 0s ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Focus position
+- id: focus_auto
+  label: Focus_Auto
+  kind: action
+  command: "8x 01 04 38 02 ff"
   params: []
-
-- id: Call_LED_Blink
-  label: Call LED Blink
+- id: focus_manual
+  label: Focus_Manual
   kind: action
+  command: "8x 01 04 38 03 ff"
   params: []
-
-- id: Power_LED_On
-  label: Power LED On
+- id: pt_stop
+  label: PT_Stop
   kind: action
+  command: "8x 01 06 01 03 03 03 03 ff"
   params: []
-
-- id: Power_LED_Off
-  label: Power LED Off
+- id: pt_reset
+  label: PT_Reset
   kind: action
+  command: "8x 01 06 05 ff"
   params: []
-
-- id: IR_Output_On
-  label: IR Output On
+- id: pt_up
+  label: PT_Up
   kind: action
-  params: []
-
-- id: IR_Output_Off
-  label: IR Output Off
-  kind: action
-  params: []
-
-- id: IR_CameraControl_On
-  label: IR Camera Control On
-  kind: action
-  params: []
-
-- id: IR_CameraControl_Off
-  label: IR Camera Control Off
-  kind: action
-  params: []
-
-- id: Zoom_Stop
-  label: Zoom Stop
-  kind: action
-  params: []
-
-- id: Zoom_Tele
-  label: Zoom Tele ( telephoto)
-  kind: action
+  command: "8x 01 06 01 0p 0t 03 01 ff"
   params:
-    - name: speed
-      type: integer
-      description: Zoom speed parameter
-
-- id: Zoom_Wide
-  label: Zoom Wide
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_down
+  label: PT_Down
   kind: action
+  command: "8x 01 06 01 0p 0t 03 02 ff"
   params:
-    - name: speed
-      type: integer
-      description: Zoom speed parameter
-
-- id: Zoom_Direct
-  label: Zoom Direct
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_left
+  label: PT_Left
   kind: action
+  command: "8x 01 06 01 0p 0t 01 03 ff"
   params:
-    - name: position
-      type: integer
-      description: Zoom position (4 bytes)
-
-- id: ZoomFocus_Direct
-  label: Zoom Focus Direct
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_right
+  label: PT_Right
   kind: action
+  command: "8x 01 06 01 0p 0t 02 03 ff"
   params:
-    - name: zoom_position
-      type: integer
-      description: Zoom position (4 bytes)
-    - name: focus_position
-      type: integer
-      description: Focus position (4 bytes)
-
-- id: Focus_Stop
-  label: Focus Stop
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_up_left
+  label: PT_UpLeft
   kind: action
-  params: []
-
-- id: Focus_Far
-  label: Focus Far
-  kind: action
+  command: "8x 01 06 01 0p 0t 01 01 ff"
   params:
-    - name: speed
-      type: integer
-      description: Focus speed parameter
-
-- id: Focus_Near
-  label: Focus Near
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_down_left
+  label: PT_DownLeft
   kind: action
+  command: "8x 01 06 01 0p 0t 01 02 ff"
   params:
-    - name: speed
-      type: integer
-      description: Focus speed parameter
-
-- id: Focus_Direct
-  label: Focus Direct
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_down_right
+  label: PT_DownRight
   kind: action
+  command: "8x 01 06 01 0p 0t 02 02 ff"
   params:
-    - name: position
-      type: integer
-      description: Focus position (4 bytes)
-
-- id: Focus_Auto
-  label: Focus Auto (Autofocus)
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_up_right
+  label: PT_UpRight
   kind: action
-  params: []
-
-- id: Focus_Manual
-  label: Focus Manual
-  kind: action
-  params: []
-
-- id: PT_Stop
-  label: Pan/Tilt Stop
-  kind: action
-  params: []
-
-- id: PT_Reset
-  label: Pan/Tilt Reset
-  kind: action
-  params: []
-
-- id: PT_Up
-  label: Pan/Tilt Up
-  kind: action
+  command: "8x 01 06 01 0p 0t 02 01 ff"
   params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_Down
-  label: Pan/Tilt Down
+    - name: p
+      type: string
+      description: Pan speed, hex digit
+    - name: t
+      type: string
+      description: Tilt speed, hex digit
+- id: pt_direct
+  label: PT_Direct
   kind: action
+  command: "8x 01 06 02 0p 0t 0q 0r 0s 0u 0v 0w 0x 0y ff"
   params:
-    - name: pan_speed
+    - name: p
+      type: string
+      description: Max pan speed, hex digit
+    - name: t
+      type: string
+      description: Max tilt speed, hex digit
+    - name: qrsu
       type: integer
-    - name: tilt_speed
+      description: Pan position
+    - name: vwxy
       type: integer
-
-- id: PT_Left
-  label: Pan/Tilt Left
+      description: Tilt position
+- id: ptzf_direct
+  label: PTZF_Direct
   kind: action
+  command: "8x 01 06 20 0p 0q 0r 0s 0t 0u 0v 0w 0x 0y 0z 0g 0h 0i 0j 0k ff"
   params:
-    - name: pan_speed
+    - name: pqrs
       type: integer
-    - name: tilt_speed
+      description: Pan position
+    - name: tuvw
       type: integer
-
-- id: PT_Right
-  label: Pan/Tilt Right
+      description: Tilt position
+    - name: xyzg
+      type: integer
+      description: Zoom position
+    - name: hijk
+      type: integer
+      description: Focus position
+- id: pt_limit_set
+  label: PT_Limit_Set
   kind: action
+  command: "8x 01 06 07 00 0x 0p 0q 0r 0s 0t 0u 0v 0w ff"
   params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_UpLeft
-  label: Pan/Tilt Up Left
-  kind: action
-  params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_DownLeft
-  label: Pan/Tilt Down Left
-  kind: action
-  params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_DownRight
-  label: Pan/Tilt Down Right
-  kind: action
-  params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_UpRight
-  label: Pan/Tilt Up Right
-  kind: action
-  params:
-    - name: pan_speed
-      type: integer
-    - name: tilt_speed
-      type: integer
-
-- id: PT_Direct
-  label: Pan/Tilt Direct
-  kind: action
-  params:
-    - name: max_pan_speed
-      type: integer
-    - name: max_tilt_speed
-      type: integer
-    - name: pan_position
-      type: integer
-    - name: tilt_position
-      type: integer
-
-- id: PTZF_Direct
-  label: Pan/Tilt/Zoom/Focus Direct
-  kind: action
-  params:
-    - name: pan
-      type: integer
-    - name: tilt
-      type: integer
-    - name: zoom
-      type: integer
-    - name: focus
-      type: integer
-  comment: Do not route through Sony cameras.
-
-- id: PT_Limit_Set
-  label: Pan/Tilt Limit Set
-  kind: action
-  params:
-    - name: direction
+    - name: x
       type: integer
       description: 1=Up/Right, 0=Down/Left
-    - name: pan_limit
+    - name: pqrs
       type: integer
-    - name: tilt_limit
+      description: Pan limit
+    - name: tuvw
       type: integer
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: PT_Limit_Clear
-  label: Pan/Tilt Limit Clear
+      description: Tilt limit
+- id: pt_limit_clear
+  label: PT_Limit_Clear
   kind: action
+  command: "8x 01 06 07 01 0x ... ff"
   params:
-    - name: direction
+    - name: x
       type: integer
       description: 1=Up/Right, 0=Down/Left
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
+  notes: "Sony specifies several filler bytes after 0x; can be ignored."
 
-- id: CAM_Speed
-  label: Set Serial Speed
+# Software upload
+- id: sw_start
+  label: SW start
   kind: action
+  command: "8x 01 50 a2 0p 0q 0r 0s 0t 0u 0v 0w ff"
   params:
-    - name: speed
+    - name: pqrstuvw
       type: integer
-      description: 0=9600, 1=115200
-  comment: Wait 20 seconds after ok before sending new commands.
-
-- id: CAM_Boot
-  label: Reboot Camera
+      description: Size, pq=LSB
+- id: sw_end
+  label: SW end
   kind: action
+  command: "8x 01 50 a1 ff"
   params: []
-  comment: Resets serial speed to 9600.
+- id: sw_abort
+  label: SW abort
+  kind: action
+  command: "8x 01 50 a3 ff"
+  params: []
+- id: sw_packet
+  label: SW packet
+  kind: action
+  command: "8x a0 pp qq rr ss [256 bytes data] ff"
+  params:
+    - name: ppqq
+      type: integer
+      description: 16-bit packet id, pp=LSB. Starts at 0.
+    - name: rrss
+      type: integer
+      description: 16-bit XModem CRC, rr=LSB
+    - name: data
+      type: string
+      description: 256 bytes raw data; pad last packet with 0x00
+- id: cam_pingpong_reset
+  label: CAM_PingPong_Reset
+  kind: action
+  command: "8x ae ff"
+  params: []
+- id: cam_ping
+  label: CAM_Ping
+  kind: action
+  command: "8x af 0p 0q 0r 0s [256 bytes data] ff"
+  params:
+    - name: pqrs
+      type: integer
+      description: Pingval
+    - name: data
+      type: string
+      description: 256 bytes
+- id: cam_stdin
+  label: CAM_Stdin
+  kind: action
+  command: "8x a4 [0-256 bytes stdin] 00 ff"
+  params:
+    - name: stdin
+      type: string
+      description: 0..256 bytes for the command interpreter
+- id: cam_debug_mode
+  label: CAM_Debug_Mode
+  kind: action
+  command: "8x 01 39 0q ff"
+  params:
+    - name: q
+      type: integer
+      description: 0=off, 1=on
+
+# Other
+- id: cam_boot
+  label: CAM_Boot
+  kind: action
+  command: "8x 01 42 ff"
+  params: []
+- id: cam_speed
+  label: CAM_Speed
+  kind: action
+  command: "8x 01 34 0p ff"
+  params:
+    - name: p
+      type: integer
+      description: 0=9600 baud, 1=115200 baud
+
+# Inquiries
+- id: cam_id_inq
+  label: CAM_ID_Inq
+  kind: query
+  command: "8x 09 04 22 ff"
+  params: []
+- id: cam_swid_inq
+  label: CAM_SWID_Inq
+  kind: query
+  command: "8x 09 04 23 ff"
+  params: []
+- id: cam_hwid_inq
+  label: CAM_HWID_Inq
+  kind: query
+  command: "8x 09 04 24 ff"
+  params: []
+- id: zoom_pos_inq
+  label: Zoom_Pos_Inq
+  kind: query
+  command: "8x 09 04 47 ff"
+  params: []
+- id: focus_pos_inq
+  label: Focus_Pos_Inq
+  kind: query
+  command: "8x 09 04 48 ff"
+  params: []
+- id: focus_mode_inq
+  label: Focus_Mode_Inq
+  kind: query
+  command: "8x 09 04 38 ff"
+  params: []
+- id: pan_tilt_pos_inq
+  label: PanTilt_Pos_Inq
+  kind: query
+  command: "8x 09 06 12 ff"
+  params: []
+- id: power_inq
+  label: Power_Inq
+  kind: query
+  command: "8x 09 04 00 ff"
+  params: []
+- id: wb_mode_inq
+  label: WB_Mode_Inq
+  kind: query
+  command: "8x 09 04 35 ff"
+  params: []
+- id: wb_table_inq
+  label: WB_Table_Inq
+  kind: query
+  command: "8x 09 04 75 ff"
+  params: []
+- id: ae_mode_inq
+  label: AE_Mode_Inq
+  kind: query
+  command: "8x 09 04 39 ff"
+  params: []
+- id: backlight_mode_inq
+  label: Backlight_Mode_Inq
+  kind: query
+  command: "8x 09 04 33 ff"
+  params: []
+- id: mirror_inq
+  label: Mirror_Inq
+  kind: query
+  command: "8x 09 04 61 ff"
+  params: []
+- id: flip_inq
+  label: Flip_Inq
+  kind: query
+  command: "8x 09 04 66 ff"
+  params: []
+- id: gamma_mode_inq
+  label: Gamma_Mode_Inq
+  kind: query
+  command: "8x 09 04 51 ff"
+  params: []
+- id: gamma_table_inq
+  label: Gamma_Table_Inq
+  kind: query
+  command: "8x 09 04 52 ff"
+  params: []
+- id: call_led_inq
+  label: Call_LED_Inq
+  kind: query
+  command: "8x 09 01 33 01 ff"
+  params: []
+- id: power_led_inq
+  label: Power_LED_Inq
+  kind: query
+  command: "8x 09 01 33 02 ff"
+  params: []
+- id: video_system_inq
+  label: Video_System_Inq
+  kind: query
+  command: "8x 09 06 23 ff"
+  params: []
+- id: dip_switch_inq
+  label: DIP_Switch_Inq
+  kind: query
+  command: "8x 09 06 24 ff"
+  params: []
+- id: ir_output_inq
+  label: IR_Output_Inq
+  kind: query
+  command: "8x 09 06 08 ff"
+  params: []
+- id: als_rgain_inq
+  label: ALS_RGain_Inq
+  kind: query
+  command: "8x 09 50 50 ff"
+  params: []
+- id: als_bgain_inq
+  label: ALS_BGain_Inq
+  kind: query
+  command: "8x 09 50 51 ff"
+  params: []
+- id: als_ggain_inq
+  label: ALS_GGain_Inq
+  kind: query
+  command: "8x 09 50 52 ff"
+  params: []
+- id: als_wgain_inq
+  label: ALS_WGain_Inq
+  kind: query
+  command: "8x 09 50 53 ff"
+  params: []
+- id: up_side_down_inq
+  label: Up side down_Inq
+  kind: query
+  command: "8x 09 50 70 ff"
+  params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: CAM_ID
-  label: Camera ID
-  type: integer
-  values: [80]
-  response: "90 50 zz xx 00 yy ff"
-  comment: zz=0x50 identifies this camera.
-
-- id: CAM_SWID
-  label: Software ID
-  type: string
-  response: "y0 50 [1-125 bytes ASCII] ff"
-  comment: Do not route through Sony cameras.
-
-- id: CAM_HWID
-  label: Hardware ID (Serial Number)
-  type: string
-  response: "y0 50 [12 bytes ASCII] ff"
-
-- id: Zoom_Pos
-  label: Zoom Position
-  type: integer
-  response: "y0 50 0p 0q 0r 0s ff"
-
-- id: Focus_Pos
-  label: Focus Position
-  type: integer
-  response: "y0 50 0p 0q 0r 0s ff"
-
-- id: Focus_Mode
-  label: Focus Mode
+- id: completion
+  label: Completion
   type: enum
-  values:
-    - 2  # Auto
-    - 3  # Manual
-  response: "y0 50 0p ff"
-
-- id: PanTilt_Pos
-  label: Pan/Tilt Position
-  type: integer
-  response: "y0 50 0p 0q 0r 0s 0t 0u 0v 0w ff"
-
-- id: Power_State
+  values: [ok]
+  packet: "90 5Y FF"  # Y = socket number; PrecisionHD 1080p Y always 0
+- id: error_message_length
+  label: Error - Message Length
+  type: flag
+  packet: "90 6Y 01 FF"
+- id: error_syntax
+  label: Error - Syntax
+  type: flag
+  packet: "90 6Y 02 FF"
+- id: error_buffer_full
+  label: Error - Command Buffer Full
+  type: flag
+  packet: "90 6Y 03 FF"
+- id: error_cancelled
+  label: Error - Command Cancelled
+  type: flag
+  packet: "90 6Y 04 FF"
+- id: error_no_socket
+  label: Error - No Socket
+  type: flag
+  packet: "90 6Y 05 FF"
+- id: error_not_executable
+  label: Error - Command Not Executable
+  type: flag
+  packet: "90 6Y 41 FF"
+- id: power_state
   label: Power State
   type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-  response: "y0 50 0p ff"
-
-- id: WB_Mode
-  label: White Balance Mode
+  values: [on, off]
+  source: power_inq  # p=2: On, p=3: Off
+- id: focus_mode
+  label: Focus Mode
   type: enum
-  values:
-    - 0  # Auto
-    - 6  # Table manual
-  response: "y0 50 0p ff"
-
-- id: WB_Table
-  label: White Balance Table
-  type: integer
-  response: "y0 50 0p 0q 0r 0s ff"
-
-- id: AE_Mode
-  label: Auto Exposure Mode
+  values: [auto, manual]
+  source: focus_mode_inq  # p=2: Auto, p=3: Manual
+- id: wb_mode
+  label: WB Mode
   type: enum
-  values:
-    - 0  # Auto
-    - 3  # Manual
-  response: "y0 50 0p ff"
-
-- id: Backlight_Mode
+  values: [auto, table_manual]
+  source: wb_mode_inq  # p=0: Auto, p=6: Table manual
+- id: ae_mode
+  label: AE Mode
+  type: enum
+  values: [auto, manual]
+  source: ae_mode_inq  # p=0: Auto, p=3: Manual
+- id: backlight_mode
   label: Backlight Mode
   type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-    - 4  # Auto
-  response: "y0 50 0p ff"
-
-- id: Mirror_State
-  label: Mirror State
-  type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-  response: "y0 50 0p ff"
-
-- id: Flip_State
-  label: Flip State
-  type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-  response: "y0 50 0p ff"
-
-- id: Gamma_Mode
+  values: [on, off, auto]
+  source: backlight_mode_inq  # p=2: On, p=3: Off, p=4: Auto
+- id: gamma_mode
   label: Gamma Mode
   type: enum
-  values:
-    - 2  # Auto
-    - 3  # Manual
-  response: "y0 50 0p ff"
-
-- id: Gamma_Table
-  label: Gamma Table
-  type: integer
-  response: "y0 50 0p 0q 0r 0s ff"
-
-- id: Call_LED_State
+  values: [auto, manual]
+  source: gamma_mode_inq
+- id: call_led_state
   label: Call LED State
   type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-    - 4  # Blink
-  response: "y0 50 0p ff"
-
-- id: Power_LED_State
-  label: Power LED State
+  values: [on, off, blink]
+  source: call_led_inq
+- id: orientation
+  label: Up side down
   type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-  response: "y0 50 0p ff"
-
-- id: Video_System
-  label: Video System
-  type: enum
-  values:
-    - 0x0000  # Auto
-    - 0x0001  # 1920x1080p30
-    - 0x0002  # 1920x1080p50
-    - 0x0003  # 1920x1080p60
-    - 0x0004  # 1280x720p25
-    - 0x0005  # 1280x720p30
-    - 0x0006  # 1280x720p50
-    - 0x0007  # 1280x720p60
-    - 0x0009  # SW control
-  response: "y0 50 0p 0q 0r 0s ff"
-
-- id: DIP_Switch
-  label: DIP Switch
-  type: integer
-  response: "y0 50 0p 0q 0r 0s ff"
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: IR_Output_State
-  label: IR Output State
-  type: enum
-  values:
-    - 2  # On
-    - 3  # Off
-  response: "y0 50 0p ff"
-
-- id: ALS_RGain
-  label: Ambient Light Sensor Red Gain
-  type: integer
-  response: "y0 50 0p 0q 0r 0s 0t 0u 0v 0w ff"
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: ALS_BGain
-  label: Ambient Light Sensor Blue Gain
-  type: integer
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: ALS_GGain
-  label: Ambient Light Sensor Green Gain
-  type: integer
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: ALS_WGain
-  label: Ambient Light Sensor White Gain
-  type: integer
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: UpsideDown_State
-  label: Upside Down State
-  type: enum
-  values:
-    - 0  # Upright
-    - 1  # Upside down
-  response: "y0 50 0p ff"
-  comment: Does not apply to 1080p4x, 1080p2.5x, Precision 40.
-
-- id: Command_Completion
-  label: Command Completion
-  type: enum
-  values:
-    - 90-5Y-FF  # Completion OK
-    - 90-6Y-..-FF  # Error (see error codes)
-  response: "90-5Y-FF"
-
-- id: Network_Change
-  label: Network Change Notification
-  type: event
-  response: "y0 38 ff"
-  comment: Cameras added/removed from chain. Wait 9 seconds before reconfiguring.
-
-- id: IR_Push
-  label: IR Push Event
-  type: event
-  response: "y0 07 7d 02 gg hh ff"
-  comment: IR code received when IR mode is on.
+  values: [upright, upside_down]
+  source: up_side_down_inq
+- id: network_change_push
+  label: Network_Change Push
+  type: flag
+  packet: "y0 38 FF"  # y = 9 (camera->host)
+- id: ir_push
+  label: IR_Push
+  type: object
+  packet: "y0 07 7d 02 gg hh FF"
+  fields:
+    - name: gg
+      description: IR ID
+    - name: hh
+      description: keycode
 ```
 
 ## Variables
 ```yaml
-# No standalone settable parameters - all are action parameters or inquiry responses.
+# UNRESOLVED: no discrete settable parameters beyond action commands; raw positions
+# (zoom, focus, pan, tilt) are queryable but are typically treated as actions.
 ```
 
 ## Events
 ```yaml
-- id: Network_Change
-  label: Network Change
-  description: Camera detects cameras added/removed from chain.
-  payload:
-    - name: cameras_changed
-      type: boolean
-      description: Always true when this event fires.
-
-- id: IR_Push
-  label: IR Push
-  description: IR code received by camera when IR mode is enabled.
-  payload:
-    - name: ir_id
-      type: integer
-    - name: keycode
-      type: integer
+# Push messages are listed under Feedbacks (network_change_push, ir_push).
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macros described in source.
+# UNRESOLVED: no multi-step sequences described in source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - Do not route messages longer than 16 bytes through Sony cameras. Put Cisco cameras first in the chain.
-  - After Network_Change event, wait 9 seconds before issuing a full reconfigure command.
-  - After CAM_Speed command, wait 20 seconds before sending new commands.
-  - DIP switches are read at startup only; reboot camera after changing DIP switches.
-  - Power_On/Power_Off commands only reset motors - they do not toggle camera power.
-  - Do not route debug commands or SW upload commands through Sony cameras.
-  - SW end command may take up to 30 seconds to complete.
-  # UNRESOLVED: safety interlock for SW verification failure - recovery procedure not stated
+interlocks: []
+# UNRESOLVED: no explicit safety warnings, interlock procedures, or power-on
+# sequencing requirements in source. PT_Limit_Set is described as session-only
+# (clears on reboot) but that is operational, not safety-critical.
 ```
 
 ## Notes
+- Codec (host) sends on address byte 0x81; camera replies on 0x90. Single-camera use typically address 0x81, broadcast 0x88.
+- PrecisionHD 1080p supports a single socket only (Y=0 in 0x5Y/0x6Y replies). Command_Cancel should not be used on that model.
+- CAM_Speed reply is sent before the baud switch; wait 20 s after OK before sending new commands.
+- CAM_Boot resets serial speed back to 9600.
+- SW_packet and CAM_PingPong_Reset / CAM_Ping / CAM_Stdin messages must never be routed through Sony cameras (exceed 16 bytes or violate VISCA length).
+- PTZF_Direct, CAM_SWID_Inq, SW packet, SW start, SW end, SW abort also exceed 16 bytes and must be placed first in daisy chain.
+- Commands marked with `*` in source do not apply to PrecisionHD 1080p4x, 1080p2.5x, or Precision 40.
+- PrecisionHD 720p commands are documented in a separate MXP Reference User Guide for System Integrators.
+- Wait 9 s after receiving Network_Change push before full reconfigure.
 
-**VISCA packet format (3-16 bytes):** `[AddressByte] [MessageBytes 1..14] [Terminator FF]`
-- Address byte from host: `0x81` (camera address 1). From camera: `0x90`.
-- Broadcast address: `0x88`.
-- PrecisionHD 1080p supports single socket only (Y=0).
-
-**Error codes:** `90-6Y-XX-FF` where Y=socket, XX=error type:
-- `01`: Message length error (>14 bytes)
-- `02`: Syntax error
-- `03`: Command buffer full
-- `04`: Command cancelled
-- `05`: No socket (to be cancelled)
-- `41`: Command not executable
-
-**Serial speed:** Default 9600 baud. Changeable via CAM_Speed command to 115200. CAM_Boot resets to 9600.
-
-**Commands marked * do not apply to:** PrecisionHD 1080p4x, PrecisionHD 1080p2.5x, Precision 40.
-
-**Debug/SW upload commands:** Do not conform to VISCA length requirements. Never route through Sony cameras.
-
-<!-- UNRESOLVED: firmware version compatibility not stated -->
-<!-- UNRESOLVED: voltage/current/power specifications not stated -->
-<!-- UNRESOLVED: per-model command applicability matrix not explicitly enumerated -->
-<!-- UNRESOLVED: error recovery sequences not described -->
+<!-- UNRESOLVED: firmware version compatibility ranges not stated in source. Per-model applicability of asterisk-marked commands is not encoded per action (one source flag, many models). -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - cisco.com
-  - developer.webex.com
+  - manualshelf.com
+  - tzmc.us
+  - dekom.com
 source_urls:
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
-  - https://developer.webex.com/docs/devices
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T22:56:18.279Z
-last_checked_at: 2026-05-15T21:25:38.186Z
+  - https://www.manualshelf.com/manual/cisco/telepresence-precisionhd-1080p-12x/user-guide-english.html
+  - http://tzmc.us/cisco/end_points/edge/precisionhd_1080p-720p_camera_user_guide.pdf
+  - https://www.cisco.com/c/en/us/support/collaboration-endpoints/telepresence-precisionhd-cameras/products-user-guide-list.html
+  - https://www.dekom.com/fileadmin/Vidowawi/precisionhd-1080p-720p_camera_user_guide_tc40_04_L01.pdf
+retrieved_at: 2026-05-14T15:10:26.520Z
+last_checked_at: 2026-06-02T00:53:56.289Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:25:38.186Z
-matched_actions: 57
-action_count: 57
-confidence: high
-summary: "All 57 spec actions matched to source VISCA command table entries; transport parameters fully verified in source."
+checked_at: 2026-06-02T00:53:56.289Z
+matched_actions: 94
+action_count: 94
+confidence: medium
+summary: "All 94 spec actions have literal matches in source; transport parameters verified; comprehensive coverage of command catalogue. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "per-model applicability of asterisk-marked commands is in the source but not encoded per action."
+- "no input routing commands in source"
+- "no volume/gain control in source"
+- "no discrete settable parameters beyond action commands; raw positions"
+- "no multi-step sequences described in source."
+- "no explicit safety warnings, interlock procedures, or power-on"
+- "firmware version compatibility ranges not stated in source. Per-model applicability of asterisk-marked commands is not encoded per action (one source flag, many models)."
 ```
 
 ---

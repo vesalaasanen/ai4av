@@ -1,986 +1,1163 @@
 ---
-spec_id: admin/lexicon-mc8-mc8b
+spec_id: admin/lexicon-mc-8-mc-8b
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Lexicon MC8 MC8B Control Spec"
+title: "Lexicon MC-8 / MC-8B Control Spec"
 manufacturer: Lexicon
-model_family: MC8
+model_family: MC-8
 aliases: []
 compatible_with:
   manufacturers:
     - Lexicon
   models:
-    - MC8
-    - MC8B
+    - MC-8
+    - MC-8B
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - lexicondsp.pl
   - lexicon.com
+  - manualslib.com
 source_urls:
-  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
-  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
-retrieved_at: 2026-05-04T15:17:03.082Z
-last_checked_at: 2026-05-16T11:29:20.424Z
-generated_at: 2026-05-16T11:29:20.424Z
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwd2bbdf85/pdfs/RS232_Protocol_Documentation.pdf
+  - https://www.manualslib.com/manual/382538/Lexicon-Mc-8-V1-0-Serial-Communications-Protocol-Definition-Rev-1-4.html
+  - https://www.manualslib.com/products/Lexicon-Mc-8-V2-0-Serial-Protocol-Definition-Rev-1-7-2417200.html
+retrieved_at: 2026-05-14T17:15:09.378Z
+last_checked_at: 2026-06-01T21:44:38.529Z
+generated_at: 2026-06-01T21:44:38.529Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document was titled for MC-10 / RV-9 / RV-6. MC-8 / MC-8B share this Lexicon AVR protocol family, but per-model coverage (e.g. DAB tuner) was not separately confirmed in source."
+  - "front-panel setup is required to enable Control (\"RS232 CONTROL ON\" via DIRECT button, 4s hold) before commands are accepted."
+  - "source does not document any interlock procedures or safety warnings."
+  - "source does not document power-on sequencing requirements."
+  - "firmware version compatibility for MC-8 / MC-8B specifically not stated in source."
+  - "which commands are accepted in standby state not stated."
+  - "maximum IP command rate / pacing not stated; the 3-second response window is the only timing constraint documented."
+  - "behaviour when a command is sent to a zone that does not exist (e.g. 0x03) is not separately documented beyond the answer-code table."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T11:29:20.424Z
-  matched_actions: 56
-  action_count: 56
-  confidence: high
-  summary: "All 56 spec actions matched literally with source; transport parameters verified; complete protocol coverage."
+  checked_at: 2026-06-01T21:44:38.529Z
+  matched_actions: 72
+  action_count: 72
+  confidence: medium
+  summary: "All 72 spec action units matched to verbatim source command codes; transport parameters fully supported; source's 51 command codes are completely represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-14
+created_at: 2026-06-01
 ---
 
-# Lexicon MC8 MC8B Control Spec
+# Lexicon MC-8 / MC-8B Control Spec
 
 ## Summary
+RS-232 and TCP/IP control protocol for Lexicon MC-8 / MC-8B AV processors. The device exposes a binary command/response frame over RS-232 (38,400 bps, 8N1, null modem) and TCP port 50000. The protocol implements virtual IR commands so any IR remote function can be replayed over the control link via the Simulate RC5 command (0x08). Two zones are addressable (0x01 master, 0x02 zone 2).
 
-AV receiver control via RS-232 serial and TCP/IP using a binary byte-oriented protocol. Commands use format `<Start><Zone><CommandCode><DataLength><Data><End>` with hex values. All IR remote functions can be simulated via the Simulate RC5 command (0x08). Two-zone support (Zone 1 master, Zone 2). AMX Duet DDDP compatible.
-
-<!-- UNRESOLVED: source document titled for MC-10/RV-9/RV-6 — operator confirmed MC8/MC8B applicability but not verified against device -->
-<!-- UNRESOLVED: no power-on command documented in binary protocol; only RC5 IR power on/off via 0x08 -->
+<!-- UNRESOLVED: source document was titled for MC-10 / RV-9 / RV-6. MC-8 / MC-8B share this Lexicon AVR protocol family, but per-model coverage (e.g. DAB tuner) was not separately confirmed in source. -->
+<!-- UNRESOLVED: front-panel setup is required to enable Control ("RS232 CONTROL ON" via DIRECT button, 4s hold) before commands are accepted. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
   - tcp
+addressing:
+  port: 50000
 serial:
   baud_rate: 38400
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
-addressing:
-  port: 50000
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-traits:
-  - powerable    # inferred: power state query (0x00) + RC5 power on/off
-  - queryable    # inferred: extensive status query commands
-  - levelable    # inferred: volume (0x0D), treble (0x35), bass (0x36), balance (0x3B), sub trim (0x3F, 0x45), lipsync (0x40)
-  - routable     # inferred: source selection (0x1D), video selection (0x0A), analogue/digital (0x0B)
+- powerable       # standby/power state query (0x00); power on/off via Simulate RC5 0x08 codes 16-123 / 16-124
+- routable        # input source select (0x0A, 0x0B, 0x1D); HDMI output switching (0x4F)
+- queryable       # extensive status queries for every command code
+- levelable       # volume (0x0D), treble (0x35), bass (0x36), balance (0x3B), sub trim (0x3F, 0x45), lipsync (0x40), Dolby cal (0x3A)
 ```
 
 ## Actions
 ```yaml
-actions:
-  - id: request_power_state
-    label: Request Power State
-    kind: query
-    command_code: 0x00
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number (0x01=Zone1, 0x02=Zone2)"
-    description: "Request stand-by state. Data=0xF0 to query."
-    response: "0x00=standby, 0x01=powered on"
+# All commands share the frame: 0x21 {Zn} {Cc} {Dl} {Data...} 0x0D
+# St = 0x21 '!', Et = 0x0D, Zn = 0x01 (Zone 1) or 0x02 (Zone 2)
+# Cc = command code (1 byte), Dl = data length (1 byte, excludes Et)
+# Response frame: 0x21 {Zn} {Cc} {Ac} {Dl} {Data...} 0x0D
+# Answer codes: 0x00 ok, 0x82 zone invalid, 0x83 cmd not recognised,
+#                0x84 param not recognised, 0x85 cmd invalid at this time,
+#                0x86 invalid data length
+# Commands 0xF0-0xFF are reserved for test and must not be issued as opcodes.
+# AV responds to each command within 3 seconds.
 
-  - id: set_display_brightness
-    label: Set Display Brightness
-    kind: action
-    command_code: 0x01
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: brightness
-        type: integer
-        description: "0xF0=request, 0x00=off, 0x01=L1, 0x02=L2"
-    description: "Set or request front panel VFD brightness."
+- id: power_state_query
+  label: Power State Query
+  kind: query
+  command: "0x21 {zone} 0x00 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: request_headphone_status
-    label: Request Headphone Status
-    kind: query
-    command_code: 0x02
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Determine whether headphones are connected."
-    response: "0x00=not connected, 0x01=connected"
+- id: display_brightness_query
+  label: Display Brightness Query
+  kind: query
+  command: "0x21 0x01 0x01 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_fm_genre
-    label: Request FM Genre
-    kind: query
-    command_code: 0x03
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request current FM station programme type. Returns ASCII string. Error 0x85 if FM not selected."
+- id: headphones_status_query
+  label: Headphones Status Query
+  kind: query
+  command: "0x21 0x01 0x02 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_software_version
-    label: Request Software Version
-    kind: query
-    command_code: 0x04
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: component
-        type: integer
-        description: "0xF0=RS232 version, 0xF1=Host version, 0xF2=OSD version, 0xF3=DSP version, 0xF4=NET version, 0xF5=IAP version"
-    description: "Request version number of software components."
-    response: "Echo data + major + minor version bytes"
+- id: fm_genre_query
+  label: FM Programme Type Query
+  kind: query
+  command: "0x21 {zone} 0x03 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if FM not selected on the zone.
 
-  - id: restore_factory_defaults
-    label: Restore Factory Defaults
-    kind: action
-    command_code: 0x05
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number (0x01)"
-    description: "Force factory default restore. Requires confirmation bytes 0xAA 0xAA."
+- id: software_version_query
+  label: Software Version Query
+  kind: query
+  command: "0x21 0x01 0x04 0x01 {version_id} 0x0D"
+  params:
+    - name: version_id
+      type: enum
+      description: Which subsystem version to read.
+      values: [0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5]
+      value_labels:
+        0xF0: RS232 protocol version
+        0xF1: Host version
+        0xF2: OSD version
+        0xF3: DSP version
+        0xF4: NET version
+        0xF5: IAP version
 
-  - id: save_restore_settings
-    label: Save/Restore Secure Settings
-    kind: action
-    command_code: 0x06
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number (0x01)"
-      - name: operation
-        type: integer
-        description: "0x00=save, 0x01=restore"
-      - name: pin
-        type: string
-        description: "4-digit PIN (4 bytes)"
-    description: "Save or restore secure copy of settings. Requires confirmation 0x55 0x55 + 4-digit PIN. Error 0x85 if no secure copy exists."
+- id: restore_factory_defaults
+  label: Restore Factory Defaults
+  kind: action
+  command: "0x21 0x01 0x05 0x02 0xAA 0xAA 0x0D"
+  params: []
 
-  - id: simulate_rc5
-    label: Simulate RC5 IR Command
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: system_code
-        type: integer
-        description: "RC5 system code (e.g. 0x10=Zone1, 0x17=Zone2)"
-      - name: command_code_rc5
-        type: integer
-        description: "RC5 command code"
-    description: "Simulate an RC5 IR command via serial/TCP. An additional status message is usually sent as a result."
+- id: save_restore_secure_copy
+  label: Save / Restore Secure Copy of Settings
+  kind: action
+  command: "0x21 0x01 0x06 0x07 {mode} 0x55 0x55 {pin1} {pin2} {pin3} {pin4} 0x0D"
+  params:
+    - name: mode
+      type: enum
+      description: 0x00 = Save secure backup, 0x01 = Restore secure backup
+      values: [0x00, 0x01]
+    - name: pin1
+      type: integer
+      description: PIN digit 1 (0x00-0x09)
+    - name: pin2
+      type: integer
+      description: PIN digit 2 (0x00-0x09)
+    - name: pin3
+      type: integer
+      description: PIN digit 3 (0x00-0x09)
+    - name: pin4
+      type: integer
+      description: PIN digit 4 (0x00-0x09)
 
-  - id: set_display_info_type
-    label: Set Display Information Type
-    kind: action
-    command_code: 0x09
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: info_type
-        type: integer
-        description: "0x00=Processing mode, 0xE0=cycle all, 0xF0=request current. Source-specific: FM(0x01=RadioText,0x02=ProgType,0x03=SignalStrength), DAB(0x01-0x04), NET/USB(0x01-0x05)"
-    description: "Set the VFD display information type."
+- id: simulate_rc5
+  label: Simulate RC5 IR Command
+  kind: action
+  command: "0x21 0x01 0x08 0x02 {system_code} {command_code} 0x0D"
+  params:
+    - name: system_code
+      type: enum
+      description: RC5 system code. 0x10 = AV system (zone 1 / global). 0x17 = Zone 2 system.
+      values: [0x10, 0x17]
+    - name: command_code
+      type: integer
+      description: RC5 command code (0x00-0xFF). See RC5 command table in Notes for full mapping.
 
-  - id: select_video_input
-    label: Select Video Input
-    kind: action
-    command_code: 0x0A
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: source
-        type: integer
-        description: "0x00=BD, 0x01=SAT, 0x02=AV, 0x03=PVR, 0x04=VCR, 0x05=Game, 0x06=STB, 0xF0=request current"
-    description: "Change video input. Returns 0x85 if OSD setup screen showing."
+- id: display_info_type
+  label: Set Display Information Type
+  kind: action
+  command: "0x21 {zone} 0x09 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "Display type code (see Notes for per-source value mapping). 0x00=Processing, 0xE0=Cycle all, 0xF0=Query current, plus per-source 0x01-0x05 codes."
 
-  - id: select_analogue_digital
-    label: Select Analogue/Digital Audio
-    kind: action
-    command_code: 0x0B
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: audio_type
-        type: integer
-        description: "0x00=analogue, 0x01=digital, 0x02=HDMI, 0xF0=request current"
-    description: "Select analogue/digital/HDMI audio input for current source. Returns 0x85 if OSD showing."
+- id: display_info_type_query
+  label: Display Information Type Query
+  kind: query
+  command: "0x21 {zone} 0x09 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: set_imax_enhanced
-    label: Set IMAX Enhanced
-    kind: action
-    command_code: 0x0C
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: mode
-        type: integer
-        description: "0xF0=request, 0xF1=auto, 0xF2=on, 0xF3=off"
-    description: "Control IMAX Enhanced mode."
-    response: "0x00=off, 0x01=on, 0x02=auto"
+- id: current_source_query
+  label: Current Source Query
+  kind: query
+  command: "0x21 {zone} 0x1D 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: set_volume
-    label: Set Volume
-    kind: action
-    command_code: 0x0D
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: volume
-        type: integer
-        description: "0x00-0x63 (0-99dB), 0xF0=request current"
-    description: "Set or request zone volume. Returns volume even if muted."
-    response: "0x00-0x63 (0-99)"
+- id: headphone_override
+  label: Headphone Over-ride (Mute Relays)
+  kind: action
+  command: "0x21 {zone} 0x1F 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: state
+      type: enum
+      description: "0x00=Clear (speakers muted if headphones present), 0x01=Set (speakers unmuted if headphones present)"
+      values: [0x00, 0x01]
 
-  - id: request_mute_status
-    label: Request Mute Status
-    kind: query
-    command_code: 0x0E
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request mute status. Data=0xF0."
-    response: "0x00=muted, 0x01=not muted"
+- id: video_selection
+  label: Video Selection
+  kind: action
+  command: "0x21 0x01 0x0A 0x01 {source} 0x0D"
+  params:
+    - name: source
+      type: enum
+      description: Video source code.
+      values: [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06]
+      value_labels:
+        0x00: BD
+        0x01: SAT
+        0x02: AV
+        0x03: PVR
+        0x04: VCR
+        0x05: Game
+        0x06: STB
 
-  - id: request_direct_mode
-    label: Request Direct Mode Status
-    kind: query
-    command_code: 0x0F
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request direct mode status. Data=0xF0."
-    response: "0x00=off, 0x01=on"
+- id: video_selection_query
+  label: Video Selection Query
+  kind: query
+  command: "0x21 0x01 0x0A 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_decode_mode_2ch
-    label: Request Decode Mode 2ch
-    kind: query
-    command_code: 0x10
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request decode mode for two-channel material. Data=0xF0."
-    response: "0x01=Stereo, 0x04=Dolby Surround, 0x07=Neo:6 Cinema, 0x08=Neo:6 Music, 0x09=5/7 Ch Stereo, 0x0A=DTS Neural:X, 0x0B=Logic7 Immersion, 0x0C=DTS Virtual:X"
+- id: select_audio_input
+  label: Select Analogue / Digital Audio Input
+  kind: action
+  command: "0x21 {zone} 0x0B 0x01 {audio} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: audio
+      type: enum
+      description: Audio input type for current source.
+      values: [0x00, 0x01, 0x02, 0xF0]
+      value_labels:
+        0x00: Analogue
+        0x01: Digital
+        0x02: HDMI
+        0xF0: Query
 
-  - id: request_decode_mode_mch
-    label: Request Decode Mode MCH
-    kind: query
-    command_code: 0x11
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request decode mode for multi-channel material. Data=0xF0."
-    response: "0x01=Stereo down-mix, 0x02=Multi-ch, 0x03=DTS-ES/Neural:X, 0x06=Dolby Surround, 0x0B=Logic7 Immersion, 0x0C=DTS Virtual:X"
+- id: select_audio_input_query
+  label: Audio Input Type Query
+  kind: query
+  command: "0x21 {zone} 0x0B 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: request_rds_info
-    label: Request RDS Information
-    kind: query
-    command_code: 0x12
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request RDS info from current FM station. Returns ASCII string. Error 0x85 if FM not selected."
+- id: imax_enhanced
+  label: IMAX Enhanced
+  kind: action
+  command: "0x21 {zone} 0x0C 0x01 {mode} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: mode
+      type: enum
+      description: "0xF0=Query, 0xF1=Auto, 0xF2=On, 0xF3=Off"
+      values: [0xF0, 0xF1, 0xF2, 0xF3]
+      value_labels:
+        0xF0: Query current state
+        0xF1: Auto
+        0xF2: On
+        0xF3: Off
 
-  - id: request_video_output_resolution
-    label: Request Video Output Resolution
-    kind: query
-    command_code: 0x13
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request video output resolution. Data=0xF0."
-    response: "0x02=SD Progressive, 0x03=720p, 0x04=1080i, 0x05=1080p, 0x06=Preferred, 0x07=Bypass, 0x08=4k"
+- id: imax_enhanced_query
+  label: IMAX Enhanced Query
+  kind: query
+  command: "0x21 {zone} 0x0C 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: request_menu_status
-    label: Request Menu Status
-    kind: query
-    command_code: 0x14
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request which menu is open. Data=0xF0."
-    response: "0x00=none, 0x02=Setup, 0x03=Trim, 0x04=Bass, 0x05=Treble, 0x06=Sync, 0x07=Sub, 0x08=Tuner, 0x09=Network, 0x0A=USB"
+- id: volume_set
+  label: Set Volume
+  kind: action
+  command: "0x21 {zone} 0x0D 0x01 {volume} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: volume
+      type: integer
+      description: Volume in dB attenuation 0-99 (0x00-0x63). 0 is loudest, 99 is quietest.
 
-  - id: request_tuner_preset
-    label: Request Tuner Preset
-    kind: query
-    command_code: 0x15
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: preset
-        type: integer
-        description: "0x01-0x32 (1-50) to select, 0xF0 to request current"
-    description: "Request or select tuner preset number. Error 0x85 if tuner not selected."
-    response: "0xFF=no preset, 0x01-0x32=preset number"
+- id: volume_query
+  label: Volume Query
+  kind: query
+  command: "0x21 {zone} 0x0D 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: tune_frequency
-    label: Tune Frequency
-    kind: action
-    command_code: 0x16
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: direction
-        type: integer
-        description: "0x00=decrement, 0x01=increment, 0xF0=request current"
-    description: "Increment/decrement tuner frequency in 0.05MHz steps (FM). Returns 2-byte frequency (MHz + 10s kHz). Error 0x85 if tuner not selected."
+- id: mute_status_query
+  label: Mute Status Query
+  kind: query
+  command: "0x21 {zone} 0x0E 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: request_dab_station
-    label: Request DAB Station
-    kind: query
-    command_code: 0x18
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request current DAB station name. Returns 16-byte ASCII padded with spaces. Error 0x85 if DAB not selected."
+- id: direct_mode_query
+  label: Direct Mode Status Query
+  kind: query
+  command: "0x21 0x01 0x0F 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_dab_genre
-    label: Request DAB Programme Type
-    kind: query
-    command_code: 0x19
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request DAB programme type. Returns 16-byte ASCII padded. Error 0x85 if DAB not selected."
+- id: decode_mode_2ch_query
+  label: Decode Mode (2ch) Status Query
+  kind: query
+  command: "0x21 0x01 0x10 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_dls_info
-    label: Request DLS/PDT Info
-    kind: query
-    command_code: 0x1A
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request DLS/PDT digital radio text from current DAB station. Returns 128-byte ASCII padded. Error 0x85 if DAB not selected."
+- id: decode_mode_mch_query
+  label: Decode Mode (MCH) Status Query
+  kind: query
+  command: "0x21 0x01 0x11 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_preset_details
-    label: Request Preset Details
-    kind: query
-    command_code: 0x1B
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: preset
-        type: integer
-        description: "0x01-0x32 (1-50) preset number"
-    description: "Request details of a tuner preset. Returns preset number, type (FM freq/RDS name/DAB), and station name."
+- id: rds_info_query
+  label: RDS Information Query
+  kind: query
+  command: "0x21 {zone} 0x12 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if FM not selected.
 
-  - id: request_network_playback_status
-    label: Request Network Playback Status
-    kind: query
-    command_code: 0x1C
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request network playback status. Data=0xF0."
-    response: "Data1: 0x00=Navigating, 0x01=Playing, 0x02=Paused, 0xFF=Busy/Not Playing. Data2+: folder/file name in ASCII."
+- id: video_output_resolution_query
+  label: Video Output Resolution Query
+  kind: query
+  command: "0x21 0x01 0x13 0x01 0xF0 0x0D"
+  params: []
 
-  - id: request_current_source
-    label: Request Current Source
-    kind: query
-    command_code: 0x1D
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request the source currently selected for a zone. Data=0xF0."
-    response: "0x00=Follow Zone1, 0x01=CD, 0x02=BD, 0x03=AV, 0x04=SAT, 0x05=PVR, 0x06=VCR, 0x08=AUX, 0x09=DISPLAY, 0x0B=Tuner FM, 0x0C=Tuner DAB, 0x0E=NET, 0x0F=USB, 0x10=STB, 0x11=GAME"
+- id: menu_status_query
+  label: Open Menu Status Query
+  kind: query
+  command: "0x21 0x01 0x14 0x01 0xF0 0x0D"
+  params: []
 
-  - id: set_headphone_override
-    label: Set Headphone Override
-    kind: action
-    command_code: 0x1F
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: state
-        type: integer
-        description: "0x00=clear (speakers muted with headphones), 0x01=set (speakers unmuted with headphones)"
-    description: "Activate/deactivate mute relays. Does not zero the volume."
+- id: tuner_preset_select
+  label: Select Tuner Preset
+  kind: action
+  command: "0x21 {zone} 0x15 0x01 {preset} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: preset
+      type: integer
+      description: Preset number 1-50 (0x01-0x32). Returns 0x85 if tuner not selected on the zone.
 
-  - id: set_input_name
-    label: Set/Request Input Name
-    kind: action
-    command_code: 0x20
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: name
-        type: string
-        description: "Input name (max 10 ASCII chars). 0xF0 to query."
-    description: "Set or query the user-defined name for the current input."
+- id: tuner_preset_query
+  label: Current Tuner Preset Query
+  kind: query
+  command: "0x21 {zone} 0x15 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if tuner not selected.
 
-  - id: fm_scan
-    label: FM Scan
-    kind: action
-    command_code: 0x23
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: direction
-        type: integer
-        description: "0x01=scan up, 0x02=scan down"
-    description: "Initiate FM scan up or down. Only valid on FM input."
-    response: "0xFF=scanning"
+- id: tune_step
+  label: Increment / Decrement Tuner Frequency
+  kind: action
+  command: "0x21 {zone} 0x16 0x01 {direction} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: direction
+      type: enum
+      description: 0x00 = Decrement by 1 step (0.05 MHz FM), 0x01 = Increment by 1 step.
+      values: [0x00, 0x01]
 
-  - id: dab_scan
-    label: DAB Scan
-    kind: action
-    command_code: 0x24
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Initiate DAB scan. Data=0xF0. Only valid on DAB input."
-    response: "0xFF=scanning"
+- id: tune_query
+  label: Current Tuner Frequency Query
+  kind: query
+  command: "0x21 {zone} 0x16 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if tuner not selected.
 
-  - id: heartbeat
-    label: Heartbeat
-    kind: action
-    command_code: 0x25
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Heartbeat to check connectivity. Also resets EuP standby timer. Data=0xF0."
-    response: "0x00=acknowledged"
+- id: dab_station_query
+  label: DAB Station Query
+  kind: query
+  command: "0x21 {zone} 0x18 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if DAB not selected.
 
-  - id: reboot
-    label: Reboot
-    kind: action
-    command_code: 0x26
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number (0x01)"
-    description: "Force reboot. Data bytes must be ASCII 'REBOOT' (0x52 0x45 0x42 0x4F 0x4F 0x54)."
-    response: "0x00=acknowledged"
+- id: dab_prog_type_query
+  label: DAB Programme Type / Category Query
+  kind: query
+  command: "0x21 {zone} 0x19 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if DAB not selected.
 
-  - id: set_treble
-    label: Set Treble EQ
-    kind: action
-    command_code: 0x35
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x0C=0 to +12dB, 0x81-0x8C=-1 to -12dB, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust treble equalisation."
+- id: dab_dls_pdt_query
+  label: DAB DLS / PDT Info Query
+  kind: query
+  command: "0x21 {zone} 0x1A 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if DAB not selected.
 
-  - id: set_bass
-    label: Set Bass EQ
-    kind: action
-    command_code: 0x36
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x0C=0 to +12dB, 0x81-0x8C=-1 to -12dB, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust bass equalisation."
+- id: preset_details_query
+  label: Tuner Preset Details Query
+  kind: query
+  command: "0x21 {zone} 0x1B 0x01 {preset} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: preset
+      type: integer
+      description: Preset number to query, 1-50 (0x01-0x32)
 
-  - id: set_room_eq
-    label: Set Room EQ
-    kind: action
-    command_code: 0x37
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: state
-        type: integer
-        description: "0xF0=request, 0xF1=on, 0xF2=off"
-    description: "Turn room equalisation on/off."
-    response: "0x00=off, 0x01=on, 0x02=not calculated (off)"
+- id: network_playback_status_query
+  label: Network Playback Status Query
+  kind: query
+  command: "0x21 {zone} 0x1C 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02). Returns 0x85 if network source not selected.
 
-  - id: set_dolby_volume
-    label: Set Dolby Volume
-    kind: action
-    command_code: 0x38
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: state
-        type: integer
-        description: "0x00=off, 0x01=on, 0xF0=request"
-    description: "Control Dolby volume system."
-    response: "0x00=off, 0x01=on"
+- id: set_input_name
+  label: Set Input Name
+  kind: action
+  command: "0x21 0x01 0x20 0x{len} {name_bytes} 0x0D"
+  params:
+    - name: name
+      type: string
+      description: Up to 10 ASCII characters. Dl byte = length of string.
 
-  - id: set_dolby_leveller
-    label: Set Dolby Leveller
-    kind: action
-    command_code: 0x39
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x0A=level 0-10, 0xFF=off, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Control Dolby volume leveller component."
-    response: "0x00-0x0A=level 0-10, 0xFF=off"
+- id: input_name_query
+  label: Input Name Query
+  kind: query
+  command: "0x21 0x01 0x20 0x01 0xF0 0x0D"
+  params: []
 
-  - id: set_dolby_volume_calibration_offset
-    label: Set Dolby Volume Calibration Offset
-    kind: action
-    command_code: 0x3A
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x0F=0 to +15dB, 0x80-0x8F=-1 to -15dB, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust Dolby volume calibration offset."
+- id: fm_scan
+  label: FM Scan
+  kind: action
+  command: "0x21 0x01 0x23 0x01 {direction} 0x0D"
+  params:
+    - name: direction
+      type: enum
+      description: 0x01 = Scan up, 0x02 = Scan down
+      values: [0x01, 0x02]
 
-  - id: set_balance
-    label: Set Balance
-    kind: action
-    command_code: 0x3B
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x06=0 to +6, 0x81-0x86=-1 to -6, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust balance control."
+- id: dab_scan
+  label: DAB Scan
+  kind: action
+  command: "0x21 0x01 0x24 0x01 0xF0 0x0D"
+  params: []
 
-  - id: set_subwoofer_trim
-    label: Set Subwoofer Trim
-    kind: action
-    command_code: 0x3F
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x14=positive in 0.5dB steps, 0x81-0x94=negative in 0.5dB steps, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust subwoofer trim in 0.5dB steps."
+- id: heartbeat
+  label: Heartbeat
+  kind: query
+  command: "0x21 0x01 0x25 0x01 0xF0 0x0D"
+  params: []
+  # Returns 0x00. Resets the EuP standby timer.
 
-  - id: set_lipsync_delay
-    label: Set Lipsync Delay
-    kind: action
-    command_code: 0x40
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00-0x32 in 5ms steps, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Adjust lipsync delay in 5ms steps."
+- id: reboot
+  label: Reboot Unit
+  kind: action
+  command: "0x21 0x01 0x26 0x06 0x52 0x45 0x42 0x4F 0x4F 0x54 0x0D"
+  params: []
+  # Confirmation bytes are ASCII "REBOOT".
 
-  - id: set_compression
-    label: Set Compression
-    kind: action
-    command_code: 0x41
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: mode
-        type: integer
-        description: "0x00=off, 0x01=medium, 0x02=high, 0xF0=request"
-    description: "Adjust dynamic range compression."
+- id: treble_eq_set
+  label: Treble Equalisation
+  kind: action
+  command: "0x21 {zone} 0x35 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x0C = 0 to +12 dB. 0x81-0x8C = -1 to -12 dB. 0xF1 = +1 dB step. 0xF2 = -1 dB step."
 
-  - id: request_incoming_video_params
-    label: Request Incoming Video Parameters
-    kind: query
-    command_code: 0x42
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request incoming video resolution, refresh rate, aspect ratio. Data=0xF0."
-    response: "7 data bytes: H-res MSB/LSB, V-res MSB/LSB, refresh rate, interlaced flag (0x00=P/0x01=I), aspect ratio (0x00=undef/0x01=4:3/0x02=16:9)"
+- id: treble_eq_query
+  label: Treble Equalisation Query
+  kind: query
+  command: "0x21 {zone} 0x35 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: request_incoming_audio_format
-    label: Request Incoming Audio Format
-    kind: query
-    command_code: 0x43
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request incoming audio format. Data=0xF0."
-    response: "Data1 format: 0x00=PCM through 0x18=IMAX ENHANCED. Data2 channel config: 0x00=DualMono through 0x1A+."
+- id: bass_eq_set
+  label: Bass Equalisation
+  kind: action
+  command: "0x21 {zone} 0x36 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x0C = 0 to +12 dB. 0x81-0x8C = -1 to -12 dB. 0xF1 = +1 dB step. 0xF2 = -1 dB step."
 
-  - id: request_audio_sample_rate
-    label: Request Audio Sample Rate
-    kind: query
-    command_code: 0x44
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Request incoming audio sample rate. Data=0xF0."
-    response: "0x00=32kHz, 0x01=44.1kHz, 0x02=48kHz, 0x03=88.2kHz, 0x04=96kHz, 0x05=176.4kHz, 0x06=192kHz, 0x07=Unknown, 0x08=Undetected"
+- id: bass_eq_query
+  label: Bass Equalisation Query
+  kind: query
+  command: "0x21 {zone} 0x36 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: set_sub_stereo_trim
-    label: Set Sub Stereo Trim
-    kind: action
-    command_code: 0x45
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: value
-        type: integer
-        description: "0x00=0dB, 0x81-0x94=-0.5 to -10dB in 0.5dB steps, 0xF0=request, 0xF1=increment, 0xF2=decrement"
-    description: "Set/request subwoofer trim for stereo mode in 0.5dB steps."
+- id: room_eq
+  label: Room Equalisation
+  kind: action
+  command: "0x21 {zone} 0x37 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: state
+      type: enum
+      description: "0xF1=On, 0xF2=Off"
+      values: [0xF1, 0xF2]
+      value_labels:
+        0xF1: Room EQ on
+        0xF2: Room EQ off
 
-  - id: set_zone1_osd
-    label: Set Zone 1 OSD
-    kind: action
-    command_code: 0x4E
-    params:
-      - name: state
-        type: integer
-        description: "0xF0=request, 0xF1=on, 0xF2=off"
-    description: "Enable/disable Zone 1 OSD display."
-    response: "0x00=on, 0x01=off"
+- id: room_eq_query
+  label: Room Equalisation Query
+  kind: query
+  command: "0x21 {zone} 0x37 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: set_video_output_switching
-    label: Set Video Output Switching
-    kind: action
-    command_code: 0x4F
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-      - name: output
-        type: integer
-        description: "0x02=HDMI Out 1, 0x03=HDMI Out 2, 0x04=HDMI Out 1&2, 0xF0=request"
-    description: "Set or request HDMI video output selection."
+- id: dolby_volume
+  label: Dolby Volume
+  kind: action
+  command: "0x21 {zone} 0x38 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: state
+      type: enum
+      description: "0x00=Off, 0x01=On"
+      values: [0x00, 0x01]
 
-  - id: rc5_power_on
-    label: RC5 Power On
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-123 (Power On). System code 0x10, command 0x7B."
+- id: dolby_volume_query
+  label: Dolby Volume Query
+  kind: query
+  command: "0x21 {zone} 0x38 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: rc5_power_off
-    label: RC5 Power Off
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-124 (Power Off). System code 0x10, command 0x7C."
+- id: dolby_leveller_set
+  label: Dolby Leveller
+  kind: action
+  command: "0x21 {zone} 0x39 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x0A = Leveller 0-10. 0xF1 = Increment. 0xF2 = Decrement. 0xFF = Off."
 
-  - id: rc5_standby
-    label: RC5 Standby Toggle
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-12 (Standby toggle). System code 0x10, command 0x0C."
+- id: dolby_leveller_query
+  label: Dolby Leveller Query
+  kind: query
+  command: "0x21 {zone} 0x39 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: rc5_mute
-    label: RC5 Mute Toggle
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-13 (Mute toggle). System code 0x10, command 0x0D."
+- id: dolby_volume_cal_offset_set
+  label: Dolby Volume Calibration Offset
+  kind: action
+  command: "0x21 {zone} 0x3A 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x0F = 0 to +15 dB. 0x80-0x8F = -1 to -15 dB. 0xF1 = +1 dB. 0xF2 = -1 dB."
 
-  - id: rc5_volume_up
-    label: RC5 Volume Up
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-16 (Volume up). System code 0x10, command 0x10."
+- id: dolby_volume_cal_offset_query
+  label: Dolby Volume Calibration Offset Query
+  kind: query
+  command: "0x21 {zone} 0x3A 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
 
-  - id: rc5_volume_down
-    label: RC5 Volume Down
-    kind: action
-    command_code: 0x08
-    params:
-      - name: zone
-        type: integer
-        description: "Zone number"
-    description: "Simulate RC5 16-17 (Volume down). System code 0x10, command 0x11."
+- id: balance_set
+  label: Balance
+  kind: action
+  command: "0x21 {zone} 0x3B 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x06 = Balance 0 to +6. 0x81-0x86 = Balance -1 to -6. 0xF1 = +1. 0xF2 = -1."
+
+- id: balance_query
+  label: Balance Query
+  kind: query
+  command: "0x21 {zone} 0x3B 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+
+- id: subwoofer_trim_set
+  label: Subwoofer Trim
+  kind: action
+  command: "0x21 {zone} 0x3F 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x14 = Positive sub trim in 0.5 dB steps (e.g. 0x02 = +1.0 dB). 0x81-0x94 = Negative in 0.5 dB steps (e.g. 0x82 = -1.0 dB). 0xF1 = +0.5 dB. 0xF2 = -0.5 dB."
+
+- id: subwoofer_trim_query
+  label: Subwoofer Trim Query
+  kind: query
+  command: "0x21 {zone} 0x3F 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+
+- id: lipsync_delay_set
+  label: Lipsync Delay
+  kind: action
+  command: "0x21 {zone} 0x40 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: integer
+      description: "0x00-0x32 = Lipsync delay in 5 ms steps (e.g. 0x08 = 40 ms). 0xF1 = +5 ms. 0xF2 = -5 ms."
+
+- id: lipsync_delay_query
+  label: Lipsync Delay Query
+  kind: query
+  command: "0x21 {zone} 0x40 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+
+- id: compression_set
+  label: Dynamic Range Compression
+  kind: action
+  command: "0x21 {zone} 0x41 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+    - name: value
+      type: enum
+      description: "0x00=Off, 0x01=Medium, 0x02=High"
+      values: [0x00, 0x01, 0x02]
+
+- id: compression_query
+  label: Compression Query
+  kind: query
+  command: "0x21 {zone} 0x41 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: Zone number (0x01 or 0x02)
+
+- id: video_params_query
+  label: Incoming Video Parameters Query
+  kind: query
+  command: "0x21 0x01 0x42 0x01 0xF0 0x0D"
+  params: []
+  # Response: 7 data bytes: H-res MSB, H-res LSB, V-res MSB, V-res LSB, refresh rate, interlaced flag, aspect ratio.
+
+- id: audio_format_query
+  label: Incoming Audio Format Query
+  kind: query
+  command: "0x21 0x01 0x43 0x01 0xF0 0x0D"
+  params: []
+  # Response: 2 data bytes: stream format (0x00 PCM ... 0x18 IMAX ENHANCED), channel configuration (0x00 Dual Mono ... 0x18 ...).
+
+- id: audio_sample_rate_query
+  label: Incoming Audio Sample Rate Query
+  kind: query
+  command: "0x21 0x01 0x44 0x01 0xF0 0x0D"
+  params: []
+  # Response: 1 data byte. 0x00=32 kHz, 0x01=44.1 kHz, 0x02=48 kHz, 0x03=88.2 kHz, 0x04=96 kHz, 0x05=176.4 kHz, 0x06=192 kHz, 0x07=Unknown, 0x08=Undetected.
+
+- id: sub_stereo_trim_set
+  label: Sub Stereo Trim
+  kind: action
+  command: "0x21 0x01 0x45 0x01 {value} 0x0D"
+  params:
+    - name: value
+      type: integer
+      description: "0x00 = 0 dB. 0x81-0x94 = -0.5 dB to -10.0 dB in 0.5 dB steps. 0xF1 = +0.5 dB. 0xF2 = -0.5 dB."
+
+- id: sub_stereo_trim_query
+  label: Sub Stereo Trim Query
+  kind: query
+  command: "0x21 0x01 0x45 0x01 0xF0 0x0D"
+  params: []
+
+- id: zone1_osd_set
+  label: Zone 1 OSD On/Off
+  kind: action
+  command: "0x21 0x01 0x4E 0x01 {state} 0x0D"
+  params:
+    - name: state
+      type: enum
+      description: "0xF1=On, 0xF2=Off"
+      values: [0xF1, 0xF2]
+      value_labels:
+        0xF1: OSD On
+        0xF2: OSD Off
+  # Note: source has a discrepancy - section heading is "Set/Request Zone 1 OSD on/off (0x4E)" but the example command in the section reads "0x21 0x01 0x4A 0x01 0xF2 0x0D". Per the heading, the opcode is 0x4E.
+
+- id: zone1_osd_query
+  label: Zone 1 OSD State Query
+  kind: query
+  command: "0x21 0x01 0x4E 0x01 0xF0 0x0D"
+  params: []
+
+- id: video_output_switching_set
+  label: HDMI Video Output Switching
+  kind: action
+  command: "0x21 0x01 0x4F 0x01 {target} 0x0D"
+  params:
+    - name: target
+      type: enum
+      description: "0x02=HDMI Out 1, 0x03=HDMI Out 2, 0x04=HDMI Out 1 & 2"
+      values: [0x02, 0x03, 0x04]
+
+- id: video_output_switching_query
+  label: HDMI Video Output Switching Query
+  kind: query
+  command: "0x21 0x01 0x4F 0x01 0xF0 0x0D"
+  params: []
+
+- id: amx_duet_discovery
+  label: AMX Duet Discovery (ASCII)
+  kind: query
+  command: "AMX\r"
+  params: []
+  # Out-of-band ASCII. Send literal "AMX\r" (0x41 0x4D 0x58 0x0D). Device replies with the AMX Duet beacon string.
+  # Response example: AMXB<Device-SDKClass=Receiver><Device-Make=Lexicon><Device-Model=MC-8><Device-Revision=x.y.z>\r
+  # MC-8B expected to follow the same pattern with model=MC-8B.
 ```
 
 ## Feedbacks
 ```yaml
-feedbacks:
-  - id: power_state
-    type: enum
-    values: [standby, powered_on]
-    description: "Unsolicited when power state changes via front panel or IR."
+- id: power_state
+  type: enum
+  description: Stand-by state of a zone, returned by 0x00 query.
+  values: [standby, on]
 
-  - id: volume_level
-    type: integer
-    values: "0-99 (dB)"
-    description: "Current zone volume. Returned by set_volume and unsolicited on volume change."
+- id: display_brightness
+  type: enum
+  description: Front-panel brightness, returned by 0x01 query.
+  values: [off, l1, l2]
 
-  - id: mute_state
-    type: enum
-    values: [muted, not_muted]
-    description: "Zone mute status."
+- id: headphones_connected
+  type: enum
+  description: Headphone connection state, returned by 0x02 query.
+  values: [not_connected, connected]
 
-  - id: source_selected
-    type: enum
-    values: [follow_zone1, CD, BD, AV, SAT, PVR, VCR, AUX, DISPLAY, Tuner_FM, Tuner_DAB, NET, USB, STB, GAME]
-    description: "Current source selection for a zone."
+- id: current_source
+  type: enum
+  description: Currently selected source, returned by 0x1D query.
+  values: [follow_z1, cd, bd, av, sat, pvr, vcr, aux, display, tuner_fm, tuner_dab, net, usb, stb, game]
+  notes: Hex codes 0x00-0x11, with 0x07 and 0x0A undefined in the source.
 
-  - id: display_brightness
-    type: enum
-    values: [off, L1, L2]
-    description: "Front panel VFD brightness level."
+- id: video_input
+  type: enum
+  description: Current video input, returned by 0x0A query.
+  values: [bd, sat, av, pvr, vcr, game, stb]
 
-  - id: headphone_connected
-    type: enum
-    values: [not_connected, connected]
-    description: "Headphone connection status."
+- id: audio_input_type
+  type: enum
+  description: Audio input mode in use, returned by 0x0B query.
+  values: [analogue, digital, hdmi]
 
-  - id: decode_mode_2ch
-    type: enum
-    values: [Stereo, Dolby_Surround, Neo6_Cinema, Neo6_Music, 5_7ch_Stereo, DTS_NeuralX, Logic7_Immersion, DTS_VirtualX]
-    description: "Current 2-channel decode mode."
+- id: imax_enhanced_state
+  type: enum
+  description: IMAX Enhanced mode, returned by 0x0C query.
+  values: [off, on, auto]
 
-  - id: decode_mode_mch
-    type: enum
-    values: [Stereo_downmix, Multichannel, DTS_ES_NeuralX, Dolby_Surround, Logic7_Immersion, DTS_VirtualX]
-    description: "Current multi-channel decode mode."
+- id: volume_level
+  type: integer
+  description: Zone volume 0-99 (0x00-0x63), returned by 0x0D query. 0 = loudest, 99 = quietest.
 
-  - id: video_output_resolution
-    type: enum
-    values: [SD_Progressive, 720p, 1080i, 1080p, Preferred, Bypass, 4k]
-    description: "Video output resolution."
+- id: mute_state
+  type: enum
+  description: Mute state of a zone, returned by 0x0E query.
+  values: [muted, not_muted]
 
-  - id: menu_status
-    type: enum
-    values: [none, Setup, Trim, Bass, Treble, Sync, Sub, Tuner, Network, USB]
-    description: "Currently open menu."
+- id: direct_mode_state
+  type: enum
+  description: Direct mode state, returned by 0x0F query.
+  values: [off, on]
 
-  - id: direct_mode
-    type: enum
-    values: [off, on]
-    description: "Direct mode status."
+- id: decode_mode_2ch
+  type: enum
+  description: 2-channel decode mode, returned by 0x10 query.
+  values: [stereo, dolby_surround, neo6_cinema, neo6_music, stereo_5_7ch, dts_neural_x, logic7_immersion, dts_virtual_x]
+  notes: Hex codes 0x01, 0x04, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C.
 
-  - id: room_eq_state
-    type: enum
-    values: [off, on, not_calculated]
-    description: "Room EQ status."
+- id: decode_mode_mch
+  type: enum
+  description: Multi-channel decode mode, returned by 0x11 query.
+  values: [stereo_downmix, multichannel, dts_es_neural_x, dolby_surround, logic7_immersion, dts_virtual_x]
+  notes: Hex codes 0x01, 0x02, 0x03, 0x06, 0x0B, 0x0C.
 
-  - id: imax_enhanced_state
-    type: enum
-    values: [off, on, auto]
-    description: "IMAX Enhanced mode."
+- id: video_output_resolution
+  type: enum
+  description: Current HDMI video output resolution, returned by 0x13 query.
+  values: [sd_progressive, 720p, 1080i, 1080p, preferred, bypass, 4k]
+  notes: Hex codes 0x02-0x08.
 
-  - id: network_playback
-    type: enum
-    values: [Navigating, Playing, Paused, Busy]
-    description: "Network playback status with folder/filename in ASCII."
+- id: open_menu
+  type: enum
+  description: Which menu (if any) is currently open, returned by 0x14 query.
+  values: [none, setup, trim, bass, treble, sync, sub, tuner, network, usb]
+  notes: Hex codes 0x00, 0x02-0x0A.
 
-  - id: incoming_audio_format
-    type: enum
-    values: [PCM, Analogue_Direct, Dolby_Digital, Dolby_Digital_EX, Dolby_Digital_Surround, Dolby_Digital_Plus, Dolby_TrueHD, DTS, DTS_96_24, DTS_ES_Matrix, DTS_ES_Discrete, DTS_HD_MA, DTS_HD_HR, Dolby_Atmos, DTS_X, IMAX_ENHANCED]
-    description: "Incoming audio stream format."
+- id: tuner_preset
+  type: integer
+  description: Current tuner preset 1-50 (0x01-0x32), or 0xFF if none selected. Returned by 0x15 query.
 
-  - id: incoming_audio_sample_rate
-    type: enum
-    values: ["32kHz", "44.1kHz", "48kHz", "88.2kHz", "96kHz", "176.4kHz", "192kHz", Unknown, Undetected]
-    description: "Incoming audio sample rate."
-```
+- id: tuner_frequency
+  type: object
+  description: "Current FM tuner frequency, returned by 0x16 query. Two bytes: Data1=MHz, Data2=10's of kHz."
 
-## Variables
-```yaml
-variables:
-  - id: volume
-    type: integer
-    range: [0, 99]
-    unit: dB
-    description: "Zone volume level."
+- id: dab_station
+  type: string
+  description: DAB service label, 16 ASCII bytes space-padded. Returned by 0x18 query.
 
-  - id: treble
-    type: integer
-    range: [-12, 12]
-    unit: dB
-    description: "Treble equalisation."
+- id: fm_radio_text
+  type: string
+  description: FM RDS radio text, ASCII. Returned by 0x12 query.
 
-  - id: bass
-    type: integer
-    range: [-12, 12]
-    unit: dB
-    description: "Bass equalisation."
+- id: dab_radio_text
+  type: string
+  description: DAB DLS/PDT text, 128 ASCII bytes space-padded. Returned by 0x1A query.
 
-  - id: balance
-    type: integer
-    range: [-6, 6]
-    description: "Balance control."
+- id: network_playback
+  type: object
+  description: "Network playback status, returned by 0x1C query. Data1 state, Data2..n name (folder if navigating, file if playing/paused)."
+  properties:
+    state:
+      type: enum
+      values: [navigating, playing, paused, busy]
+    name:
+      type: string
 
-  - id: subwoofer_trim
-    type: number
-    range: [-10.0, 10.0]
-    unit: dB
-    step: 0.5
-    description: "Subwoofer trim."
+- id: menu_signal
+  type: enum
+  description: Audio input type in use (analogue/digital/HDMI), returned by 0x0B query.
+  values: [analogue, digital, hdmi]
 
-  - id: sub_stereo_trim
-    type: number
-    range: [-10.0, 0.0]
-    unit: dB
-    step: 0.5
-    description: "Subwoofer trim for stereo mode."
+- id: room_eq_state
+  type: enum
+  description: Room EQ state, returned by 0x37 query.
+  values: [off, on, not_calculated]
 
-  - id: lipsync_delay
-    type: integer
-    range: [0, 250]
-    unit: ms
-    step: 5
-    description: "Lipsync delay."
+- id: dolby_volume_state
+  type: enum
+  description: Dolby Volume state, returned by 0x38 query.
+  values: [off, on]
 
-  - id: dolby_leveller
-    type: integer
-    range: [0, 10]
-    description: "Dolby volume leveller setting. 0xFF = off."
+- id: dolby_leveller_setting
+  type: integer
+  description: Dolby Leveller setting 0-10 (0x00-0x0A) or 0xFF = off. Returned by 0x39 query.
 
-  - id: dolby_volume_calibration_offset
-    type: integer
-    range: [-15, 15]
-    unit: dB
-    description: "Dolby volume calibration offset."
+- id: dolby_volume_cal_offset
+  type: integer
+  description: Dolby Volume calibration offset in dB. Encoded: 0x00-0x0F = 0 to +15 dB; 0x80-0x8F = -1 to -15 dB. Returned by 0x3A query.
 
-  - id: dolby_volume
-    type: enum
-    values: [off, on]
-    description: "Dolby volume system on/off."
+- id: balance
+  type: integer
+  description: Balance offset. 0x00-0x06 = 0 to +6; 0x81-0x86 = -1 to -6. Returned by 0x3B query.
 
-  - id: compression
-    type: enum
-    values: [off, medium, high]
-    description: "Dynamic range compression."
+- id: subwoofer_trim
+  type: integer
+  description: Subwoofer trim in 0.5 dB steps. 0x00-0x14 = positive; 0x81-0x94 = negative. Returned by 0x3F query.
+
+- id: lipsync_delay_ms
+  type: integer
+  description: Lipsync delay in 5 ms steps. Multiply returned byte (0x00-0x32) by 5. Returned by 0x40 query.
+
+- id: compression_state
+  type: enum
+  description: Dynamic range compression setting, returned by 0x41 query.
+  values: [off, medium, high]
+
+- id: video_params
+  type: object
+  description: Incoming video parameters, returned by 0x42 query (7 bytes).
+  properties:
+    h_res: { type: integer, description: Horizontal resolution in pixels }
+    v_res: { type: integer, description: Vertical resolution in pixels }
+    refresh_hz: { type: integer, description: Refresh rate (full image update) }
+    interlaced: { type: boolean, description: 0x00 = Progressive, 0x01 = Interlaced }
+    aspect: { type: enum, values: [undefined, 4_3, 16_9] }
+
+- id: audio_format
+  type: object
+  description: Incoming audio format, returned by 0x43 query (2 bytes).
+  properties:
+    stream:
+      type: enum
+      values: [pcm, analogue_direct, dolby_digital, dolby_digital_ex, dolby_digital_surround, dolby_digital_plus, dolby_truehd, dts, dts_96_24, dts_es_matrix, dts_es_discrete, dts_es_matrix_96_24, dts_es_discrete_96_24, dts_hd_master, dts_hd_high_res, dts_lbr, dts_core, pcm_zero, unsupported, undetected, dolby_atmos, dts_x, imax_enhanced]
+    channels:
+      type: integer
+      description: Channel configuration code (0x00-0x18). See source for full mapping.
+
+- id: audio_sample_rate
+  type: enum
+  description: Incoming audio sample rate, returned by 0x44 query.
+  values: [32k, 44_1k, 48k, 88_2k, 96k, 176_4k, 192k, unknown, undetected]
+
+- id: sub_stereo_trim
+  type: integer
+  description: Sub Stereo trim. 0x00 = 0 dB; 0x81-0x94 = -0.5 dB to -10 dB. Returned by 0x45 query.
+
+- id: zone1_osd_state
+  type: enum
+  description: Zone 1 OSD on/off, returned by 0x4E query. NOTE: source has a typo (response data description shows 0x00 = On, 0x01 = Off, opposite of most binary on/off conventions). Use raw response byte.
+  values: [on, off]
+
+- id: video_output_switching
+  type: enum
+  description: Active HDMI output(s), returned by 0x4F query.
+  values: [hdmi1, hdmi2, hdmi1_and_2]
+
+- id: software_version
+  type: object
+  description: Three bytes per 0x04 query: Data1=echo of requested version_id, Data2=Major, Data3=Minor.
+
+- id: input_name
+  type: string
+  description: Custom input name, up to 10 ASCII characters. Returned by 0x20 query.
+
+- id: heartbeat_ack
+  type: integer
+  description: Heartbeat acknowledgement byte, always 0x00. Returned by 0x25.
 ```
 
 ## Events
 ```yaml
-events:
-  - id: unsolicited_state_change
-    description: "Device sends status updates when state changes via front panel, IR remote, or other inputs. Any change from these inputs is relayed using the appropriate message type (e.g. display brightness change, decode mode change, volume change)."
-```
+- id: unsolicited_status_update
+  description: >
+    The AV relays state changes caused by front-panel or IR input as unsolicited messages
+    using the same response frame format with answer code Ac=0x00. Many commands (especially
+    Simulate RC5 0x08 and source-select / EQ / volume changes) will produce an additional
+    status message after the immediate command response. Hosts should listen for these on the
+    receive channel and reconcile local state.
+  frame: "0x21 {zone} {cc} 0x00 {dl} {data...} 0x0D"
 
-## Macros
-```yaml
-# UNRESOLVED: no multi-step sequences explicitly documented in source
+- id: amx_duet_beacon
+  description: >
+    Out-of-band ASCII reply to "AMX\r" query. The unit transmits a single line
+    "AMXB<Device-SDKClass=Receiver><Device-Make=Lexicon><Device-Model={model}><Device-Revision={rs232_version}>\r".
+    Triggered by the discovery command, not on state changes.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - action: restore_factory_defaults
-    reason: "Requires confirmation bytes 0xAA 0xAA to avoid accidental restore"
-  - action: save_restore_settings
-    reason: "Requires confirmation bytes 0x55 0x55 and 4-digit PIN"
-  - action: reboot
-    reason: "Requires ASCII 'REBOOT' (6 bytes) as confirmation"
-interlocks:
-  - "Commands 0xF0-0xFF reserved for test functions - must never be used"
-  - "Certain commands return 0x85 when Setup Menu is displayed"
-  - "Tuner commands return 0x85 when tuner input not selected"
-  - "DAB commands return 0x85 when DAB not selected"
-  - "FM commands return 0x85 when FM not selected"
-# UNRESOLVED: no power-on sequencing requirements documented
+  - restore_factory_defaults  # requires 0xAA 0xAA confirmation pattern
+  - save_restore_secure_copy  # requires 0x55 0x55 confirmation pattern and 4-digit PIN
+  - reboot                   # requires ASCII "REBOOT" confirmation
+interlocks: []
+# UNRESOLVED: source does not document any interlock procedures or safety warnings.
+# UNRESOLVED: source does not document power-on sequencing requirements.
 ```
 
 ## Notes
 
-- **Protocol framing:** All commands use format `0x21 <Zone> <Cc> <Dl> <Data> 0x0D`. Responses add an Answer Code byte after Cc: `0x21 <Zone> <Cc> <Ac> <Dl> <Data> 0x0D`.
-- **Zone numbers:** 0x01 = Zone 1 (master), 0x02 = Zone 2. Zone-less commands refer to Zone 1.
-- **Answer codes:** 0x00=Status update, 0x82=Zone Invalid, 0x83=Command not recognised, 0x84=Parameter not recognised, 0x85=Command invalid at this time, 0x86=Invalid data length.
-- **Response timing:** Device responds within 3 seconds. RC may send further commands before previous response received.
-- **RC5 simulation:** Command 0x08 accepts any RC5 system/command code pair. System 0x10 = Zone 1, 0x17 = Zone 2.
-- **RS-232 cable:** Null-modem wiring (pin 2↔3 Rx/Tx crossed, pin 5↔5 ground).
-- **Control must be enabled** — disabled by default. Enable via front panel DIRECT button (hold 4s) or OSD General Setup menu.
-- **AMX Duet DDDP:** Device responds to "AMX\r" with identification string including make, model, and RS232 protocol version.
-- **Heartbeat (0x25):** Resets EuP standby timer — send periodically to prevent standby.
+### Protocol framing summary
+- Start byte `0x21` (!), end byte `0x0D` (CR). All multi-byte fields are big-endian.
+- `Dl` (data length) counts the data bytes only; it does not include `Et` or itself.
+- The AV responds to every command within 3 seconds. The host may pipeline commands before a prior response arrives.
+- Commands 0xF0-0xFF are reserved for test functions; the spec table reuses 0xF0-F2 as the standard "request current value" sub-codes, which is distinct from the test-function reservation.
 
-<!-- UNRESOLVED: source document covers MC-10/RV-9/RV-6; MC8/MC8B applicability not confirmed in source text -->
-<!-- UNRESOLVED: RC5 code list is extensive (60+ codes via system 0x10 and 0x17) — only most common ones listed in Actions -->
-<!-- UNRESOLVED: maximum data length not stated beyond 255-byte response limit -->
-<!-- UNRESOLVED: no firmware version compatibility range stated -->
-<!-- UNRESOLVED: no power-on command in native binary protocol — only via RC5 simulation (0x08) -->
+### Zone addressing
+- Zone 1 (`0x01`) is the master zone. Most commands accept either `0x01` or `0x02`.
+- Several query commands (0x0F direct mode, 0x10 2ch decode, 0x11 MCH decode, 0x13 video resolution, 0x42 video params, 0x43 audio format, 0x44 audio sample rate, 0x4E OSD) are defined for Zone 1 only; the source COMMAND table hard-codes `Zn 0x01`.
+- Several commands return `0x85` (command invalid at this time) if a required input is not active on the addressed zone (e.g. tuner commands when no tuner is selected, network query when network source not selected).
+
+### Setup requirement
+- Control is disabled by default for minimum standby power. The user must enable it:
+  - Front panel: hold DIRECT button 4 s until "RS232 CONTROL ON" appears on the VFD, OR
+  - OSD menu: press A then U on the remote, enter General Setup, set Control = On.
+- IP control: configure the IP address in the Network Settings menu, then control via TCP port 50000.
+
+### Serial cable
+- Null modem: pin 2↔3 (Rx↔Tx), pin 5↔5 (RS232 Ground). Source does not list flow control lines, and explicitly says "no flow control".
+
+### Negative-number encoding convention
+For commands taking a signed parameter (treble, bass, balance, subwoofer trim, sub stereo trim, Dolby Volume cal offset), the source uses two byte ranges:
+- Positive 0 to +N: `0x00` to `0x0C` (or larger upper bound depending on parameter).
+- Negative -1 to -N: `0x81` to `0x8C` (or larger upper bound). The high bit (0x80) is the sign flag; the low nibble is the magnitude.
+- `0xF1` / `0xF2` are increment / decrement by one step.
+
+### Source ↔ source-list divergence for 0x1D vs 0x0A
+The current-source query (0x1D) and the video-selection command (0x0A) use overlapping but not identical source tables. 0x1D reports 15 sources including CD (0x01) and DISPLAY (0x09) and TUNER (0x0B/0x0C). 0x0A's set-side table lists only 7 sources (BD/SAT/AV/PVR/VCR/Game/STB) and treats 0xF0 as "request current input". Hosts driving 0x0A should set only values that appear in the 0x0A set table.
+
+### Simulate RC5 IR Command (0x08) — RC5 code table
+The source lists 50+ user-facing RC5 codes that can be sent through the Simulate RC5 command. Two RC5 system codes are used:
+- `0x10` (16) — AV system / Zone 1. Power, volume, source selects, transport, surround modes, EQ, display.
+- `0x17` (23) — Zone 2 system. Zone 2 source selects, volume, mute.
+
+A non-exhaustive list of notable codes (system-command in decimal / hex bytes):
+- Power: Standby 16-12 / `0x10 0x0C`; Power On 16-123 / `0x10 0x7B`; Power Off 16-124 / `0x10 0x7C`.
+- Volume: Up 16-16 / `0x10 0x10`; Down 16-17 / `0x10 0x11`; Mute 16-13 / `0x10 0x0D`; Mute On 16-26 / `0x10 0x1A`; Mute Off 16-120 / `0x10 0x78`.
+- Source selects (Z1): CD 16-118, BD 16-98, STB 16-100, VCR 16-119, Display 16-58, Radio 16-91, Aux 16-99, Net 16-92, USB 16-93, AV 16-94, Sat 16-27, PVR 16-96, Game 16-97, FM 16-28, DAB 16-72.
+- Transport: Rewind 16-121, Fast Forward 16-52, Skip Back 16-33, Skip Forward 16-11, Stop 16-54, Play 16-53, Pause 16-48, Record 16-90, Random 16-76, Repeat 16-49.
+- Surround modes: Stereo 16-107, Multi Channel 16-106, Dolby Surround 16-110, DTS Neo:6 Cinema 16-111, DTS Neo:6 Music 16-112, DTS Neural:X 16-113, Logic7 Immersion 16-114, DTS Virtual:X 16-115, 5/7 Ch Stereo 16-69, Dolby D EX 16-23.
+- EQ: Pop Up (Dolby Volume on/off) 16-70, Audio (Room EQ on/off) 16-30, Access Treble 16-14, Treble +1 16-46, Treble -1 16-102, Access Bass 16-39, Bass +1 16-44, Bass -1 16-45, Access Sub Trim 16-51, Sub Trim +0.5 16-105, Sub Trim -0.5 16-108, Access Lipsync 16-50, Lip Sync +5 16-15, Lip Sync -5 16-101, Access Speaker Trim 16-37.
+- Display: Cycle VFD info 16-55, DISP brightness 16-59, Display Off 16-31, Display L1 16-34, Display L2 16-35.
+- HDMI: Select HDMI Out 1 16-73, Out 2 16-74, Out 1 & 2 16-75, Cycle output resolutions 16-47.
+- Direct mode: Activate 16-10, Direct On 16-78, Direct Off 16-79.
+- Numeric keys 1-9, 0: 16-1 through 16-9, 16-0.
+- Zone 2 (`0x17`): Power On 23-123, Power Off 23-124, Vol+ 23-1, Vol- 23-2, Mute 23-3, Mute On 23-4, Mute Off 23-5, CD 23-6, BD 23-7, STB 23-8, AV 23-9, Game 23-11, Aux 23-13, PVR 23-15, FM 23-14, DAB 23-16, USB 23-18, NET 23-19, SAT 23-20, VCR 23-21.
+- Change control to next zone 16-95; Set Zone 2 to Follow Zone 1 16-20.
+
+Hosts should treat `simulate_rc5` as a generic RC5 forwarder and consult this table to expose named functions. There is no native protocol command for many of these (notably power on/off, individual source select keys, transport, EQ/trim deltas) — they are reachable only via 0x08.
+
+### 0x09 Display Information Type — per-source value mapping
+The COMMAND data byte for 0x09 is context-dependent on the currently active source:
+- All sources: `0x00` Processing mode; `0xE0` cycle through all displayable info; `0xF0` query current.
+- FM: `0x01` Radio text, `0x02` Programme type, `0x03` Signal strength.
+- DAB (AVR450/750 only per source): `0x01` Radio text, `0x02` Genre, `0x03` Signal quality, `0x04` Bit rate.
+- NET / USB: `0x01` Track, `0x02` Artist, `0x03` Album, `0x04` audio type, `0x05` rate.
+
+### 0x06 Save/Restore secure copy
+- Data1=0x00 saves a secure backup; Data1=0x01 restores it.
+- Data2/Data3 are a fixed `0x55 0x55` confirmation pattern.
+- Data4-Data7 are a 4-digit PIN (one decimal digit per byte).
+- If no secure copy exists, the restore variant returns `0x85`.
+- A second save while one is in progress fails silently.
+- If a `0x1E` command is in progress, this command returns `0x85`.
+
+### 0x26 Reboot
+- Confirmation bytes are literal ASCII "REBOOT" (`0x52 0x45 0x42 0x4F 0x4F 0x54`).
+
+### AMX Duet discovery
+- ASCII, not part of the binary frame: send `AMX\r` (`0x41 0x4D 0x58 0x0D`).
+- Response is one line: `AMXB<Device-SDKClass=Receiver><Device-Make=Lexicon><Device-Model=MC-8><Device-Revision=x.y.z>\r`.
+- For MC-8B, the `Device-Model` value should be `MC-8B`. Source-document examples show `MC-10`, `RV-9`, `RV-6` only; MC-8/MC-8B are not literally demonstrated in source.
+
+### Source-document limitations
+- The source PDF was originally issued for Lexicon MC-10 / RV-9 / RV-6. Several command-response tables annotate "(AVR450/750 only)" for DAB-specific features. DAB coverage for MC-8 / MC-8B is not separately confirmed in source.
+- `0xF0`-`0xFF` are reserved for test functions per the protocol note, but `0xF0`/`0xF1`/`0xF2` are also reused as the "request current value", "increment", and "decrement" sub-codes in many command data fields. The reservation applies to the Cc (command code) position, not to data sub-codes.
+- Source discrepancy in 0x4E Zone 1 OSD: section heading reads "0x4E" but the example command reads `0x4A`. This spec treats `0x4E` as the correct opcode per the section title.
+- Source discrepancy in 0x1A DAB DLS: example command reads `0x21 0x01 0x1A 0xF0 0x0D` (data length 0xF0, which is not a valid length byte). This spec uses `0x21 0x01 0x1A 0x01 0xF0 0x0D` per the COMMAND table layout, which is the consistent shape across all other 0xF0-query commands.
+- Source reports response data `0x00` = Zone 1 OSD is On, `0x01` = Off (per the table under 0x4E). This is opposite to the binary on/off convention used in most other commands. Hosts should verify by experiment.
+
+<!-- UNRESOLVED: firmware version compatibility for MC-8 / MC-8B specifically not stated in source. -->
+<!-- UNRESOLVED: which commands are accepted in standby state not stated. -->
+<!-- UNRESOLVED: maximum IP command rate / pacing not stated; the 3-second response window is the only timing constraint documented. -->
+<!-- UNRESOLVED: behaviour when a command is sent to a zone that does not exist (e.g. 0x03) is not separately documented beyond the answer-code table. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - lexicondsp.pl
   - lexicon.com
+  - manualslib.com
 source_urls:
-  - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
-  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
-retrieved_at: 2026-05-04T15:17:03.082Z
-last_checked_at: 2026-05-16T11:29:20.424Z
+  - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwd2bbdf85/pdfs/RS232_Protocol_Documentation.pdf
+  - https://www.manualslib.com/manual/382538/Lexicon-Mc-8-V1-0-Serial-Communications-Protocol-Definition-Rev-1-4.html
+  - https://www.manualslib.com/products/Lexicon-Mc-8-V2-0-Serial-Protocol-Definition-Rev-1-7-2417200.html
+retrieved_at: 2026-05-14T17:15:09.378Z
+last_checked_at: 2026-06-01T21:44:38.529Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T11:29:20.424Z
-matched_actions: 56
-action_count: 56
-confidence: high
-summary: "All 56 spec actions matched literally with source; transport parameters verified; complete protocol coverage."
+checked_at: 2026-06-01T21:44:38.529Z
+matched_actions: 72
+action_count: 72
+confidence: medium
+summary: "All 72 spec action units matched to verbatim source command codes; transport parameters fully supported; source's 51 command codes are completely represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document was titled for MC-10 / RV-9 / RV-6. MC-8 / MC-8B share this Lexicon AVR protocol family, but per-model coverage (e.g. DAB tuner) was not separately confirmed in source."
+- "front-panel setup is required to enable Control (\"RS232 CONTROL ON\" via DIRECT button, 4s hold) before commands are accepted."
+- "source does not document any interlock procedures or safety warnings."
+- "source does not document power-on sequencing requirements."
+- "firmware version compatibility for MC-8 / MC-8B specifically not stated in source."
+- "which commands are accepted in standby state not stated."
+- "maximum IP command rate / pacing not stated; the 3-second response window is the only timing constraint documented."
+- "behaviour when a command is sent to a zone that does not exist (e.g. 0x03) is not separately documented beyond the answer-code table."
 ```
 
 ---

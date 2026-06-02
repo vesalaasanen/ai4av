@@ -19,19 +19,26 @@ source_domains:
   - rachio.readme.io
 source_urls:
   - https://rachio.readme.io/reference
-retrieved_at: 2026-05-04T18:03:58.635Z
+retrieved_at: 2026-04-30T04:32:52.163Z
 last_checked_at: 2026-04-27T15:11:48.990Z
 generated_at: 2026-04-27T15:11:48.990Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no safety warnings or interlock procedures in source"
+  - "no discrete settable parameters documented outside action params"
+  - "no multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "specific rate limit values not stated in source"
+  - "firmware version compatibility not stated"
+  - "request/response body schemas not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T15:11:48.990Z
   matched_actions: 88
   action_count: 88
-  confidence: high
-  summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -476,7 +483,7 @@ source_domains:
   - rachio.readme.io
 source_urls:
   - https://rachio.readme.io/reference
-retrieved_at: 2026-05-04T18:03:58.635Z
+retrieved_at: 2026-04-30T04:32:52.163Z
 last_checked_at: 2026-04-27T15:11:48.990Z
 ```
 
@@ -487,14 +494,20 @@ verdict: verified
 checked_at: 2026-04-27T15:11:48.990Z
 matched_actions: 88
 action_count: 88
-confidence: high
-summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no safety warnings or interlock procedures in source"
+- "no discrete settable parameters documented outside action params"
+- "no multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "specific rate limit values not stated in source"
+- "firmware version compatibility not stated"
+- "request/response body schemas not documented in source"
 ```
 
 ---

@@ -18,763 +18,367 @@ compatible_with:
   required_options: []
 source_domains:
   - downloads.pvs.global
-  - audac.eu
 source_urls:
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX_Commands_Manual.pdf
-  - https://audac.eu/eu/products/d/m2---multimedia-digital-audio-mixer
+  - https://downloads.pvs.global/downloads/audac/products/manuals/MTX48_88_UserManual.pdf
 retrieved_at: 2026-05-27T13:53:21.367Z
-last_checked_at: 2026-05-27T15:34:22.160Z
-generated_at: 2026-05-27T15:34:22.160Z
+last_checked_at: 2026-06-02T00:05:00.608Z
+generated_at: 2026-06-02T00:05:00.608Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "MTX48 exact input/output channel counts not stated in source; source input/output lists enumerate 8 inputs and 8 outputs."
+  - "power on/off commands not present in this protocol manual."
+  - "flow control not stated in source"
+  - "no explicit safety warnings, interlocks, or power-on sequencing requirements found in source."
+  - "RS-485 termination / address scheme not stated in source."
+  - "TCP/IP authentication (if any) not stated in source."
+  - "Maximum command rate, latency, and timeout behavior not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-27T15:34:22.160Z
-  matched_actions: 126
-  action_count: 126
-  confidence: high
-  summary: "All 126 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage."
+  checked_at: 2026-06-02T00:05:00.608Z
+  matched_actions: 21
+  action_count: 21
+  confidence: medium
+  summary: "All 21 spec actions matched literally in source with exact parameter shapes and transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
 # Audac MTX Matrix Switches Control Spec
 
 ## Summary
-AUDAC MTX48 (4-zone) and MTX88 (8-zone) matrix audio switchers. Control via RS-232, RS-485, or TCP/IP on port 5001. Protocol: ASCII commands delimited by `#|`, with CRC-16 checksum or universal checksum `U`. All zone settings (volume, routing, bass, treble) lost on power-off unless saved with SAVE command. Supports per-zone volume, routing, bass, treble, mute control. 8 inputs (Mic 1, Mic 2, Line 3-6, WLI/MWX65, WMI).
+ASCII pipe-delimited command protocol for Audac MTX48 and MTX88 audio matrix switches. Same command set accepted over RS-232, RS-485, and TCP/IP. Covers per-zone volume, routing, bass, treble, mute, plus all-zone queries, settings save, factory reset, and firmware version query.
 
-<!-- UNRESOLVED: RS-485 specific wiring/pinout not documented in source -->
+<!-- UNRESOLVED: MTX48 exact input/output channel counts not stated in source; source input/output lists enumerate 8 inputs and 8 outputs. -->
+<!-- UNRESOLVED: power on/off commands not present in this protocol manual. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
   - tcp
-addressing:
-  port: 5001serial:
+serial:
   baud_rate: 19200
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
+  flow_control: none  # UNRESOLVED: flow control not stated in source
+addressing:
+  port: 5001
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable  # inferred: power state controls documented
-- routable   # inferred: per-zone input routing commands present
-- queryable  # inferred: get commands for all parameters present
-- levelable  # inferred: volume/bass/treble level commands present
+- routable        # inferred from SRx routing command examples
+- levelable       # inferred from SVx volume, SB0x bass, ST0x treble examples
+- queryable       # inferred from GVALL/GRALL/GMALL/GV0x/GR0x/GM0x/GB0x/GT0x/GZI0x query examples
 ```
 
 ## Actions
 ```yaml
-- id: sv1  label: Set Volume Zone 1
+# Frame format (verbatim from source):
+#   #|X001|<source>|<command>|<args>|<checksum>|<CR><LF>
+# - startsymbol '#'
+# - destination 'X001' (fixed)
+# - source: any string up to 4 chars, no '|' or '#'
+# - checksum: CRC-16 of bytes excluding '#', or 'U' (always accepted)
+# - return: 0x0d 0x0a
+
+- id: set_volume_zone
+  label: Set Output Volume of a Zone
   kind: action
+  command: "#|X001|{source}|SV{zone}|{level}|{checksum}|<CR><LF>"
   params:
-    - name: volume
+    - name: zone
       type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv2
-  label: Set Volume Zone 2
-  kind: action
-  params:
-    - name: volume
+      description: Zone number (1-8)
+    - name: level
       type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv3
-  label: Set Volume Zone 3
+      description: Volume in negative dB (0 = maximum, 70 = minimum)
+
+- id: set_volume_up_zone
+  label: Set Volume Up 3dB in a Zone
   kind: action
+  command: "#|X001|{source}|SVU0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: volume
+    - name: zone
       type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv4
-  label: Set Volume Zone 4
+      description: Zone number (1-8)
+
+- id: set_volume_down_zone
+  label: Set Volume Down 3dB in a Zone
   kind: action
+  command: "#|X001|{source}|SVD0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: volume
+    - name: zone
       type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv5
-  label: Set Volume Zone 5
+      description: Zone number (1-8)
+
+- id: set_routing_zone
+  label: Set Routing (Input Select) in a Zone
   kind: action
+  command: "#|X001|{source}|SR{zone}|{input}|{checksum}|<CR><LF>"
   params:
-    - name: volume
+    - name: zone
       type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv6
-  label: Set Volume Zone 6
-  kind: action
-  params:
-    - name: volume
-      type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv7
-  label: Set Volume Zone 7
-  kind: action
-  params:
-    - name: volume
-      type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: sv8
-  label: Set Volume Zone 8
-  kind: action
-  params:
-    - name: volume
-      type: integer
-      description: Volume level 0-70 (0=maximum, 70=minimum, value = -dB)
-- id: svu01
-  label: Volume Up Zone 1
-  kind: action
-  params: []
-- id: svu02
-  label: Volume Up Zone 2
-  kind: action
-  params: []
-- id: svu03
-  label: Volume Up Zone 3
-  kind: action
-  params: []
-- id: svu04
-  label: Volume Up Zone 4
-  kind: action
-  params: []
-- id: svu05
-  label: Volume Up Zone 5
-  kind: action
-  params: []
-- id: svu06
-  label: Volume Up Zone 6
-  kind: action
-  params: []
-- id: svu07
-  label: Volume Up Zone 7
-  kind: action
-  params: []
-- id: svu08
-  label: Volume Up Zone 8
-  kind: action
-  params: []
-- id: svd01
-  label: Volume Down Zone 1
-  kind: action
-  params: []
-- id: svd02
-  label: Volume Down Zone 2
-  kind: action
-  params: []
-- id: svd03
-  label: Volume Down Zone 3
-  kind: action
-  params: []
-- id: svd04
-  label: Volume Down Zone 4
-  kind: action
-  params: []
-- id: svd05
-  label: Volume Down Zone 5
-  kind: action
-  params: []
-- id: svd06
-  label: Volume Down Zone 6
-  kind: action
-  params: []
-- id: svd07
-  label: Volume Down Zone 7
-  kind: action
-  params: []
-- id: svd08
-  label: Volume Down Zone 8
-  kind: action
-  params: []
-- id: sr1
-  label: Set Routing Zone 1
-  kind: action
-  params:
+      description: Zone number (1-8)
     - name: input
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr2
-  label: Set Routing Zone 2
+      description: Input number (0-8)
+
+- id: set_routing_up_zone
+  label: Set Routing Up in a Zone
   kind: action
+  command: "#|X001|{source}|SRU0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr3
-  label: Set Routing Zone 3
+      description: Zone number (1-8)
+
+- id: set_routing_down_zone
+  label: Set Routing Down in a Zone
   kind: action
+  command: "#|X001|{source}|SRD0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr4
-  label: Set Routing Zone 4
+      description: Zone number (1-8)
+
+- id: set_bass_zone
+  label: Set Bass in a Zone
   kind: action
+  command: "#|X001|{source}|SB0{zone}|{value}|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr5
-  label: Set Routing Zone 5
+      description: Zone number (1-8)
+    - name: value
+      type: integer
+      description: Bass value 0-14 (-14dB to +14dB in 2dB steps, 7 = 0dB)
+
+- id: set_treble_zone
+  label: Set Treble in a Zone
   kind: action
+  command: "#|X001|{source}|ST0{zone}|{value}|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr6
-  label: Set Routing Zone 6
+      description: Zone number (1-8)
+    - name: value
+      type: integer
+      description: Treble value 0-14 (-14dB to +14dB in 2dB steps, 7 = 0dB)
+
+- id: set_mute_zone
+  label: Set Mute State in a Zone
   kind: action
+  command: "#|X001|{source}|SM0{zone}|{state}|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr7
-  label: Set Routing Zone 7
-  kind: action
+      description: Zone number (1-8)
+    - name: state
+      type: enum
+      values: ["0", "1"]
+      description: "0 = mute disabled, 1 = output muted"
+
+- id: get_volume_all
+  label: Get Volume for All Zones
+  kind: query
+  command: "#|X001|{source}|GVALL|0|{checksum}|<CR><LF>"
+  params: []
+
+- id: get_routing_all
+  label: Get Routing for All Zones
+  kind: query
+  command: "#|X001|{source}|GRALL|0|{checksum}|<CR><LF>"
+  params: []
+
+- id: get_mute_all
+  label: Get Mute for All Zones
+  kind: query
+  command: "#|X001|{source}|GMALL|0|{checksum}|<CR><LF>"
+  params: []
+
+- id: get_volume_zone
+  label: Get Volume for a Zone
+  kind: query
+  command: "#|X001|{source}|GV0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sr8
-  label: Set Routing Zone 8
-  kind: action
+      description: Zone number (1-8)
+
+- id: get_routing_zone
+  label: Get Routing for a Zone
+  kind: query
+  command: "#|X001|{source}|GR0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: input
+    - name: zone
       type: integer
-      description: Input number 0-8 (0=none/disable)
-- id: sru01
-  label: Routing Up Zone 1
-  kind: action
-  params: []
-- id: sru02
-  label: Routing Up Zone 2
-  kind: action
-  params: []
-- id: sru03
-  label: Routing Up Zone 3
-  kind: action
-  params: []
-- id: sru04
-  label: Routing Up Zone 4
-  kind: action
-  params: []
-- id: sru05
-  label: Routing Up Zone 5
-  kind: action
-  params: []
-- id: sru06
-  label: Routing Up Zone 6
-  kind: action
-  params: []
-- id: sru07
-  label: Routing Up Zone 7
-  kind: action
-  params: []
-- id: sru08
-  label: Routing Up Zone 8
-  kind: action
-  params: []
-- id: srd01
-  label: Routing Down Zone 1
-  kind: action
-  params: []
-- id: srd02
-  label: Routing Down Zone 2
-  kind: action
-  params: []
-- id: srd03
-  label: Routing Down Zone 3
-  kind: action
-  params: []
-- id: srd04
-  label: Routing Down Zone 4
-  kind: action
-  params: []
-- id: srd05
-  label: Routing Down Zone 5
-  kind: action
-  params: []
-- id: srd06
-  label: Routing Down Zone 6
-  kind: action
-  params: []
-- id: srd07
-  label: Routing Down Zone 7
-  kind: action
-  params: []
-- id: srd08
-  label: Routing Down Zone 8
-  kind: action
-  params: []
-- id: sb01
-  label: Set Bass Zone 1
-  kind: action
+      description: Zone number (1-8)
+
+- id: get_mute_zone
+  label: Get Mute for a Zone
+  kind: query
+  command: "#|X001|{source}|GM0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: bass
+    - name: zone
       type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB,2dB steps)
-- id: sb02
-  label: Set Bass Zone 2
-  kind: action
+      description: Zone number (1-8)
+
+- id: get_bass_zone
+  label: Get Bass for a Zone
+  kind: query
+  command: "#|X001|{source}|GB0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: bass
+    - name: zone
       type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb03
-  label: Set Bass Zone 3
-  kind: action
+      description: Zone number (1-8)
+
+- id: get_treble_zone
+  label: Get Treble for a Zone
+  kind: query
+  command: "#|X001|{source}|GT0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: bass
+    - name: zone
       type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb04
-  label: Set Bass Zone 4
-  kind: action
+      description: Zone number (1-8)
+
+- id: get_zone_info
+  label: Get Volume, Routing, Mute, Bass, Treble for One Zone
+  kind: query
+  command: "#|X001|{source}|GZI0{zone}|0|{checksum}|<CR><LF>"
   params:
-    - name: bass
+    - name: zone
       type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb05
-  label: Set Bass Zone 5
+      description: Zone number (1-8)
+
+- id: save_settings
+  label: Save Current Zone Settings
   kind: action
-  params:
-    - name: bass
-      type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb06
-  label: Set Bass Zone 6
+  command: "#|X001|{source}|SAVE|0|{checksum}|<CR><LF>"
+  params: []
+
+- id: factory_default_reset
+  label: Reset All Zone and Device Settings to Factory Default
   kind: action
-  params:
-    - name: bass
-      type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb07
-  label: Set Bass Zone 7
-  kind: action
-  params:
-    - name: bass
-      type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sb08
-  label: Set Bass Zone 8
-  kind: action
-  params:
-    - name: bass
-      type: integer
-      description: Bass level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st01
-  label: Set Treble Zone 1
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st02
-  label: Set Treble Zone 2
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st03
-  label: Set Treble Zone 3
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st04
-  label: Set Treble Zone 4
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st05
-  label: Set Treble Zone 5
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st06
-  label: Set Treble Zone 6
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st07
-  label: Set Treble Zone 7
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: st08
-  label: Set Treble Zone 8
-  kind: action
-  params:
-    - name: treble
-      type: integer
-      description: Treble level 0-14 (0=-14dB, 7=0dB, 14=+14dB, 2dB steps)
-- id: sm01
-  label: Set Mute Zone 1
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm02
-  label: Set Mute Zone 2
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm03
-  label: Set Mute Zone 3
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm04
-  label: Set Mute Zone 4
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm05
-  label: Set Mute Zone 5
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm06
-  label: Set Mute Zone 6
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm07
-  label: Set Mute Zone 7
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: sm08
-  label: Set Mute Zone 8
-  kind: action
-  params:
-    - name: mute
-      type: integer
-      description: Mute state 0=off, 1=muted
-- id: gvall  label: Get Volume All Zones
-  kind: query
+  command: "#|X001|{source}|DEF|0|{checksum}|<CR><LF>"
   params: []
-- id: grall
-  label: Get Routing All Zones
-  kind: query
-  params: []
-- id: gmall
-  label: Get Mute All Zones
-  kind: query
-  params: []
-- id: gv01
-  label: Get Volume Zone 1
-  kind: query
-  params: []
-- id: gv02
-  label: Get Volume Zone 2
-  kind: query
-  params: []
-- id: gv03
-  label: Get Volume Zone 3
-  kind: query
-  params: []
-- id: gv04
-  label: Get Volume Zone 4
-  kind: query
-  params: []
-- id: gv05
-  label: Get Volume Zone 5
-  kind: query
-  params: []
-- id: gv06
-  label: Get Volume Zone 6
-  kind: query
-  params: []
-- id: gv07
-  label: Get Volume Zone 7
-  kind: query
-  params: []
-- id: gv08
-  label: Get Volume Zone 8
-  kind: query
-  params: []
-- id: gr01
-  label: Get Routing Zone 1
-  kind: query
-  params: []
-- id: gr02
-  label: Get Routing Zone 2
-  kind: query
-  params: []
-- id: gr03
-  label: Get Routing Zone 3
-  kind: query
-  params: []
-- id: gr04
-  label: Get Routing Zone 4
-  kind: query
-  params: []
-- id: gr05
-  label: Get Routing Zone 5
-  kind: query
-  params: []
-- id: gr06
-  label: Get Routing Zone 6
-  kind: query
-  params: []
-- id: gr07
-  label: Get Routing Zone 7
-  kind: query
-  params: []
-- id: gr08
-  label: Get Routing Zone 8
-  kind: query
-  params: []
-- id: gm01
-  label: Get Mute Zone 1
-  kind: query
-  params: []
-- id: gm02
-  label: Get Mute Zone 2
-  kind: query
-  params: []
-- id: gm03
-  label: Get Mute Zone 3
-  kind: query
-  params: []
-- id: gm04
-  label: Get Mute Zone 4
-  kind: query
-  params: []
-- id: gm05
-  label: Get Mute Zone 5
-  kind: query
-  params: []
-- id: gm06
-  label: Get Mute Zone 6
-  kind: query
-  params: []
-- id: gm07
-  label: Get Mute Zone 7
-  kind: query
-  params: []
-- id: gm08
-  label: Get Mute Zone 8
-  kind: query
-  params: []
-- id: gb01
-  label: Get Bass Zone 1
-  kind: query
-  params: []
-- id: gb02
-  label: Get Bass Zone 2
-  kind: query
-  params: []
-- id: gb03
-  label: Get Bass Zone 3
-  kind: query
-  params: []
-- id: gb04
-  label: Get Bass Zone 4
-  kind: query
-  params: []
-- id: gb05
-  label: Get Bass Zone 5
-  kind: query
-  params: []
-- id: gb06
-  label: Get Bass Zone 6
-  kind: query
-  params: []
-- id: gb07
-  label: Get Bass Zone 7
-  kind: query
-  params: []
-- id: gb08
-  label: Get Bass Zone 8
-  kind: query
-  params: []
-- id: gt01
-  label: Get Treble Zone 1
-  kind: query
-  params: []
-- id: gt02
-  label: Get Treble Zone 2
-  kind: query
-  params: []
-- id: gt03
-  label: Get Treble Zone 3
-  kind: query
-  params: []
-- id: gt04
-  label: Get Treble Zone 4
-  kind: query
-  params: []
-- id: gt05
-  label: Get Treble Zone 5
-  kind: query
-  params: []
-- id: gt06
-  label: Get Treble Zone 6
-  kind: query
-  params: []
-- id: gt07
-  label: Get Treble Zone 7
-  kind: query
-  params: []
-- id: gt08
-  label: Get Treble Zone 8
-  kind: query
-  params: []
-- id: gzi01
-  label: Get Zone Info Zone 1
-  kind: query
-  params: []
-- id: gzi02
-  label: Get Zone Info Zone 2
-  kind: query
-  params: []
-- id: gzi03
-  label: Get Zone Info Zone 3
-  kind: query
-  params: []
-- id: gzi04
-  label: Get Zone Info Zone 4
-  kind: query
-  params: []
-- id: gzi05
-  label: Get Zone Info Zone 5
-  kind: query
-  params: []
-- id: gzi06
-  label: Get Zone Info Zone 6
-  kind: query
-  params: []
-- id: gzi07
-  label: Get Zone Info Zone 7
-  kind: query
-  params: []
-- id: gzi08
-  label: Get Zone Info Zone 8
-  kind: query
-  params: []
-- id: save
-  label: Save Settings
-  kind: action
-  params: []
-- id: def
-  label: Factory Default  kind: action
-  params: []
-- id: gsv
+
+- id: get_firmware_version
   label: Get Firmware Version
   kind: query
+  command: "#|X001|{source}|GSV|0|{checksum}|<CR><LF>"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-# All commands return acknowledgement in format #|source|X001|command|+|checksum|return
-# Zone update broadcasts sent to ALL clients in format #|ALL|X001|<prefix>|<value>|checksum|return
-# Volume range: 0-70 (0=max, 70=min)
-# Bass/Treble range: 00-0E (hex, 0-14)
-# Routing range: 0-8 (0=disabled)
-# Mute range: 0-1
-```
-
-## Variables
-```yaml
-# No standalone settable variables outside of zone actions - all params embedded in zone commands
+- id: volume_all_zones
+  type: string
+  description: Per-zone volume levels, caret-delimited (e.g. "40^40^20^20^20^20^20^20"). Reply to GVALL: tag `VALL`.
+- id: routing_all_zones
+  type: string
+  description: Per-zone input routing, caret-delimited. Reply to GRALL: tag `RALL`.
+- id: mute_all_zones
+  type: string
+  description: Per-zone mute state, caret-delimited (0/1). Reply to GMALL: tag `MALL`.
+- id: volume_zone
+  type: integer
+  description: Per-zone volume (negative dB, 0 = max, 70 = min). Reply to GV0x: tag `V0x`.
+- id: routing_zone
+  type: integer
+  description: Per-zone input (0-8). Reply to GR0x: tag `R0x`.
+- id: mute_zone
+  type: integer
+  description: Per-zone mute (0 or 1). Reply to GM0x: tag `M0x`.
+- id: bass_zone
+  type: integer
+  description: Per-zone bass (0-14, 7 = 0dB). Reply to GB0x: tag `B0x`.
+- id: treble_zone
+  type: integer
+  description: Per-zone treble (0-14, 7 = 0dB). Reply to GT0x: tag `T0x`.
+- id: zone_info
+  type: string
+  description: Zone info pack (volume^routing^mute^bass^treble), caret-delimited. Reply to GZI0x: tag `ZI0x`.
+- id: firmware_version
+  type: string
+  description: Firmware version string (e.g. "V1.1"). Reply to GSV: tag `SV`.
+- id: command_ack
+  type: string
+  description: Acknowledgement echoing the command with "+" as the argument. Source address is the original client source.
+- id: state_update
+  type: string
+  description: Unsolicited state update broadcast to all clients. Destination "ALL"; tag and value describe the change (e.g. V01, R01, B01, T01, M01).
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: device sends unsolicited broadcast updates to ALL clients on state change
-# Format: #|ALL|X001|<prefix>|<value>|checksum|return
-# prefixes: V##=volume, R##=routing, M##=mute, B##=bass, T##=treble
-```
-
-## Macros
-```yaml
-# UNRESOLVED: no explicit multi-step macros documented in source
+- id: zone_volume_update
+  description: Broadcast when a zone volume changes. Format `#|ALL|X001|V{zone}|{level}|{checksum}|<CR><LF>`.
+- id: zone_routing_update
+  description: Broadcast when a zone routing changes. Format `#|ALL|X001|R{zone}|{input}|{checksum}|<CR><LF>`.
+- id: zone_bass_update
+  description: Broadcast when a zone bass changes. Format `#|ALL|X001|B{zone}|{value}|{checksum}|<CR><LF>`.
+- id: zone_treble_update
+  description: Broadcast when a zone treble changes. Format `#|ALL|X001|T{zone}|{value}|{checksum}|<CR><LF>`.
+- id: zone_mute_update
+  description: Broadcast when a zone mute state changes. Format `#|ALL|X001|M{zone}|{state}|{checksum}|<CR><LF>`.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - def # factory reset clears all zone and device settings
+  - factory_default_reset  # DEF resets all zone and device settings to factory default
 interlocks: []
-# UNRESOLVED: no explicit safety interlock procedures in source
+# UNRESOLVED: no explicit safety warnings, interlocks, or power-on sequencing requirements found in source.
 ```
 
 ## Notes
-Command format: `#|destination|source|command|arguments|checksum|return`
-- Fixed device address: X001
-- Checksum: CRC-16 (excluding '#') or use 'U' as universal checksum
-- Return bytes: 0x0D 0x0A
-- Max 1 simultaneous TCP/IP connection on port 5001
-- All volume/routing/tone settings lost on power-off unless saved with SAVE command
-- Settings configured via web config page save automatically
-- Inputs disabled in website input selection skipped by SRU/SRD commands
-- MTX48: 4 zones; MTX88: 8 zones — commands spec'd for 8 zones maximum
-<!-- UNRESOLVED: RS-485 pinout/wiring details not in source -->
-<!-- UNRESOLVED: RS-232 pinout/wiring details not in source -->
-<!-- UNRESOLVED: TCP/IP connection persistence/timeout behavior not documented -->
-<!-- UNRESOLVED: firmware version range compatibility not stated -->
+Address fixed at `X001` for all destinations. Checksum is CRC-16 computed over the frame bytes excluding the leading `#`; sending `U` is always accepted as a checksum bypass. Source address is any string up to 4 characters and cannot contain `|` or `#`. Frame terminator is `<CR><LF>` (0x0d 0x0a). TCP/IP accepts maximum 1 simultaneous connection on port 5001. All volume, routing, and tone settings are lost on power off unless persisted with the `SAVE` command; settings changed via the device's web configuration page are saved automatically. Routing up/down commands skip inputs disabled in the web input selection menu. Source documents 8 inputs and 8 outputs; MTX48 (4-zone) channel range not explicitly stated in this protocol document.
+
+<!-- UNRESOLVED: RS-485 termination / address scheme not stated in source. -->
+<!-- UNRESOLVED: TCP/IP authentication (if any) not stated in source. -->
+<!-- UNRESOLVED: Maximum command rate, latency, and timeout behavior not stated in source. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - downloads.pvs.global
-  - audac.eu
 source_urls:
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX_Commands_Manual.pdf
-  - https://audac.eu/eu/products/d/m2---multimedia-digital-audio-mixer
+  - https://downloads.pvs.global/downloads/audac/products/manuals/MTX48_88_UserManual.pdf
 retrieved_at: 2026-05-27T13:53:21.367Z
-last_checked_at: 2026-05-27T15:34:22.160Z
+last_checked_at: 2026-06-02T00:05:00.608Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-27T15:34:22.160Z
-matched_actions: 126
-action_count: 126
-confidence: high
-summary: "All 126 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage."
+checked_at: 2026-06-02T00:05:00.608Z
+matched_actions: 21
+action_count: 21
+confidence: medium
+summary: "All 21 spec actions matched literally in source with exact parameter shapes and transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "MTX48 exact input/output channel counts not stated in source; source input/output lists enumerate 8 inputs and 8 outputs."
+- "power on/off commands not present in this protocol manual."
+- "flow control not stated in source"
+- "no explicit safety warnings, interlocks, or power-on sequencing requirements found in source."
+- "RS-485 termination / address scheme not stated in source."
+- "TCP/IP authentication (if any) not stated in source."
+- "Maximum command rate, latency, and timeout behavior not stated in source."
 ```
 
 ---

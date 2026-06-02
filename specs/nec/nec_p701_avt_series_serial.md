@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:05.726Z
 last_checked_at: 2026-04-25T21:32:23.243Z
 generated_at: 2026-04-25T21:32:23.243Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "document is BDT140013 Rev 7.1 — generic NEC projector command reference; specific P701-AVT Series model commands not enumerated separately"
+  - "flow control not specified in source"
+  - "settable parameters not clearly distinguished from actions in source"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "specific standby mode requirements for P701-AVT Series not stated"
+  - "firmware version compatibility not stated"
+  - "specific model variations for P701-AVT Series not enumerated"
+  - "HDBaseT standby mode support not confirmed for P701-AVT Series"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:32:23.243Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched distinct source commands; transport parameters verified verbatim in manual."
+  confidence: medium
+  summary: "All 53 spec actions matched distinct source commands; transport parameters verified verbatim in manual. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -558,7 +567,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:05.726Z
 last_checked_at: 2026-04-25T21:32:23.243Z
 ```
 
@@ -569,14 +578,22 @@ verdict: verified
 checked_at: 2026-04-25T21:32:23.243Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched distinct source commands; transport parameters verified verbatim in manual."
+confidence: medium
+summary: "All 53 spec actions matched distinct source commands; transport parameters verified verbatim in manual. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "document is BDT140013 Rev 7.1 — generic NEC projector command reference; specific P701-AVT Series model commands not enumerated separately"
+- "flow control not specified in source"
+- "settable parameters not clearly distinguished from actions in source"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "specific standby mode requirements for P701-AVT Series not stated"
+- "firmware version compatibility not stated"
+- "specific model variations for P701-AVT Series not enumerated"
+- "HDBaseT standby mode support not confirmed for P701-AVT Series"
 ```
 
 ---

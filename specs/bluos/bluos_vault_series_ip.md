@@ -19,19 +19,28 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-04-29T12:48:14.170Z
 last_checked_at: 2026-04-26T11:29:13.284Z
 generated_at: 2026-04-26T11:29:13.284Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific Vault Series model variants not enumerated in source"
+  - "no explicit power on/off command; playback control only"
+  - "no discrete settable parameters beyond volume/ playback; main state is queryable via /Status"
+  - "no unsolicited notifications described; client must poll /Status or /SyncStatus"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "power on/off command not present in source"
+  - "firmware version compatibility ranges not stated in source"
+  - "LSDP binary packet structure not fully documented (binary format reference only)"
 verification:
   verdict: verified
   checked_at: 2026-04-26T11:29:13.284Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified."
+  confidence: medium
+  summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -424,7 +433,6 @@ interlocks: []
 <!-- UNRESOLVED: LSDP binary packet structure not fully documented (binary format reference only) -->
 ```
 
-The spec has been written to `drafts.jsonl`. The Convex backend requires auth tokens I don't have access to — you'll need to call `ingestSpecRevisionAuthenticated` directly.
 
 Here's the spec:
 
@@ -437,7 +445,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-04-29T12:48:14.170Z
 last_checked_at: 2026-04-26T11:29:13.284Z
 ```
 
@@ -448,14 +456,22 @@ verdict: verified
 checked_at: 2026-04-26T11:29:13.284Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified."
+confidence: medium
+summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific Vault Series model variants not enumerated in source"
+- "no explicit power on/off command; playback control only"
+- "no discrete settable parameters beyond volume/ playback; main state is queryable via /Status"
+- "no unsolicited notifications described; client must poll /Status or /SyncStatus"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "power on/off command not present in source"
+- "firmware version compatibility ranges not stated in source"
+- "LSDP binary packet structure not fully documented (binary format reference only)"
 ```
 
 ---

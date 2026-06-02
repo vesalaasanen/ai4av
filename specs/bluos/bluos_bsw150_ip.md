@@ -15,11 +15,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:41:11.996Z
 last_checked_at: 2026-05-16T18:41:11.996Z
 generated_at: 2026-05-16T18:41:11.996Z
 firmware_coverage: "Not stated in source"
@@ -28,13 +26,20 @@ known_gaps:
   - /Browse
   - /Presets
   - /RadioBrowse
+  - "device-specific hardware capabilities (inputs, outputs, amplifier specs) not described in source; source is the generic BluOS CI API document applicable to multiple Bluesound/NAD/DALI products"
+  - "no multi-step macro sequences described explicitly in source; populate if applicable"
+  - "no safety warnings or interlock procedures stated in source"
+  - "BSW150-specific hardware capabilities (number/type of physical inputs, amplifier details) not described in source — source is generic BluOS CI API v1.7 document"
+  - "firmware version compatibility range for the BSW150 model specifically not stated"
+  - "whether BSW150 supports all endpoints documented (e.g., /Doorbell, HUB inputs) — source is a platform-wide API reference"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T18:41:11.996Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented."
+  confidence: medium
+  summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -571,11 +576,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:41:11.996Z
 last_checked_at: 2026-05-16T18:41:11.996Z
 ```
 
@@ -586,8 +589,8 @@ verdict: verified
 checked_at: 2026-05-16T18:41:11.996Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented."
+confidence: medium
+summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -596,6 +599,13 @@ summary: "All 34 spec actions matched verbatim in the BluOS CI API source; trans
 - /Browse
 - /Presets
 - /RadioBrowse
+- "device-specific hardware capabilities (inputs, outputs, amplifier specs) not described in source; source is the generic BluOS CI API document applicable to multiple Bluesound/NAD/DALI products"
+- "no multi-step macro sequences described explicitly in source; populate if applicable"
+- "no safety warnings or interlock procedures stated in source"
+- "BSW150-specific hardware capabilities (number/type of physical inputs, amplifier details) not described in source — source is generic BluOS CI API v1.7 document"
+- "firmware version compatibility range for the BSW150 model specifically not stated"
+- "whether BSW150 supports all endpoints documented (e.g., /Doorbell, HUB inputs) — source is a platform-wide API reference"
+- "model-specific source not located"
 ```
 
 ---

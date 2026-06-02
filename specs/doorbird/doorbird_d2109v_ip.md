@@ -19,20 +19,23 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:24.390Z
 last_checked_at: 2026-04-23T06:39:48.837Z
 generated_at: 2026-04-23T06:39:48.837Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 not mentioned in source — no direct physical control port documented"
+  - "explicit safety interlock procedures not stated in source"
+  - "voltage/current/power specifications not in source"
+  - "RS-232 serial control not documented for D2109V specifically"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:39:48.837Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions matched verbatim in source; transport (HTTP/80, HTTPS/443, SIP/5060, UDP/6524-35344) verified; bidirectional command coverage complete."
+  confidence: medium
+  summary: "All 24 spec actions matched verbatim in source; transport (HTTP/80, HTTPS/443, SIP/5060, UDP/6524-35344) verified; bidirectional command coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -446,8 +449,7 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:24.390Z
 last_checked_at: 2026-04-23T06:39:48.837Z
 ```
 
@@ -458,14 +460,17 @@ verdict: verified
 checked_at: 2026-04-23T06:39:48.837Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions matched verbatim in source; transport (HTTP/80, HTTPS/443, SIP/5060, UDP/6524-35344) verified; bidirectional command coverage complete."
+confidence: medium
+summary: "All 24 spec actions matched verbatim in source; transport (HTTP/80, HTTPS/443, SIP/5060, UDP/6524-35344) verified; bidirectional command coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 not mentioned in source — no direct physical control port documented"
+- "explicit safety interlock procedures not stated in source"
+- "voltage/current/power specifications not in source"
+- "RS-232 serial control not documented for D2109V specifically"
 ```
 
 ---

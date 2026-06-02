@@ -17,21 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - support.adder.com
+  - github.com
+  - adder.com
 source_urls:
-  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
-retrieved_at: 2026-05-04T18:05:14.063Z
+  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A+AIM+API"
+  - https://github.com/AdderAPI/AIM-Manager
+  - https://www.adder.com/en/adder-api
+retrieved_at: 2026-05-27T03:30:20.901Z
 last_checked_at: 2026-05-27T06:52:01.446Z
 generated_at: 2026-05-27T06:52:01.446Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical connectivity (RS-232/USB local config) not documented in source"
+  - "no unsolicited push notifications documented; API is polling-based (RESTful)"
+  - "no persistent configuration parameters exposed as standalone settable variables;"
+  - "no server-push events documented; client must poll and diff responses"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "physical port config (RS-232 local management), voltage/power specs, firmware compatibility ranges not in source"
 verification:
   verdict: verified
   checked_at: 2026-05-27T06:52:01.446Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 26 spec methods match source API catalog 1:1; transport verified."
+  confidence: medium
+  summary: "All 26 spec methods match source API catalog 1:1; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -484,9 +495,13 @@ AIM API is RESTful HTTP; best practice per doc: login once, reuse token across r
 ```yaml
 source_domains:
   - support.adder.com
+  - github.com
+  - adder.com
 source_urls:
-  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
-retrieved_at: 2026-05-04T18:05:14.063Z
+  - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A+AIM+API"
+  - https://github.com/AdderAPI/AIM-Manager
+  - https://www.adder.com/en/adder-api
+retrieved_at: 2026-05-27T03:30:20.901Z
 last_checked_at: 2026-05-27T06:52:01.446Z
 ```
 
@@ -497,14 +512,20 @@ verdict: verified
 checked_at: 2026-05-27T06:52:01.446Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 26 spec methods match source API catalog 1:1; transport verified."
+confidence: medium
+summary: "All 26 spec methods match source API catalog 1:1; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical connectivity (RS-232/USB local config) not documented in source"
+- "no unsolicited push notifications documented; API is polling-based (RESTful)"
+- "no persistent configuration parameters exposed as standalone settable variables;"
+- "no server-push events documented; client must poll and diff responses"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "physical port config (RS-232 local management), voltage/power specs, firmware compatibility ranges not in source"
 ```
 
 ---

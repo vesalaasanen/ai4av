@@ -19,23 +19,28 @@ compatible_with:
 source_domains:
   - ametekesp.com
 source_urls:
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
   - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
-  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
-retrieved_at: 2026-05-01T02:09:11.359Z
+retrieved_at: 2026-04-30T04:31:25.323Z
 last_checked_at: 2026-05-14T18:17:21.112Z
 generated_at: 2026-05-14T18:17:21.112Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "which specific Vertical Series + models share this API beyond SX-VS-1216"
+  - "maximum number of outlets varies by model; only SX-VS-1216 (16 outlets) shown in source"
+  - "source does not detail specific power-on sequencing warnings or interlock procedures beyond the shutdown state mechanism"
+  - "maximum number of outlets and groups varies by model; only SX-VS-1216 (16 outlets) is shown"
+  - "outputConfirmation field values and meaning not fully documented"
+  - "protocol version v1 is the only version documented; no deprecation timeline stated"
+  - "GPIO feedback signal options beyond DCBank1Feedback, DCBank2Feedback, 5VBankFeedback not enumerated"
+  - "DHCP and static IP configuration change may require device restart"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.112Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -704,11 +709,8 @@ interlocks:
 source_domains:
   - ametekesp.com
 source_urls:
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
   - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
-  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
-retrieved_at: 2026-05-01T02:09:11.359Z
+retrieved_at: 2026-04-30T04:31:25.323Z
 last_checked_at: 2026-05-14T18:17:21.112Z
 ```
 
@@ -719,14 +721,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.112Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete."
+confidence: medium
+summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "which specific Vertical Series + models share this API beyond SX-VS-1216"
+- "maximum number of outlets varies by model; only SX-VS-1216 (16 outlets) shown in source"
+- "source does not detail specific power-on sequencing warnings or interlock procedures beyond the shutdown state mechanism"
+- "maximum number of outlets and groups varies by model; only SX-VS-1216 (16 outlets) is shown"
+- "outputConfirmation field values and meaning not fully documented"
+- "protocol version v1 is the only version documented; no deprecation timeline stated"
+- "GPIO feedback signal options beyond DCBank1Feedback, DCBank2Feedback, 5VBankFeedback not enumerated"
+- "DHCP and static IP configuration change may require device restart"
 ```
 
 ---

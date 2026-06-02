@@ -18,22 +18,26 @@ compatible_with:
 source_domains:
   - shinybowusa.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://shinybowusa.com/PDF/RS232_V1.0.pdf
+  - https://shinybowusa.com/PDF/RS232_V2.0.pdf
+retrieved_at: 2026-05-21T22:06:14.404Z
 last_checked_at: 2026-05-31T21:22:45.245Z
 generated_at: 2026-05-31T21:22:45.245Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no unsolicited event descriptions in source"
+  - "no explicit multi-step macros in source"
+  - "no safety warnings or interlock procedures in source"
+  - "command timing/interval specifications not stated in source"
+  - "fault behavior and error recovery not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:22:45.245Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched source control commands one-to-one with correct transport parameters."
+  confidence: medium
+  summary: "All 10 spec actions matched source control commands one-to-one with correct transport parameters. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -217,10 +221,9 @@ After receiving SBASKSTA, device sends status sequentially: item 10, 1/2, IN/OUT
 source_domains:
   - shinybowusa.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://shinybowusa.com/PDF/RS232_V1.0.pdf
+  - https://shinybowusa.com/PDF/RS232_V2.0.pdf
+retrieved_at: 2026-05-21T22:06:14.404Z
 last_checked_at: 2026-05-31T21:22:45.245Z
 ```
 
@@ -231,14 +234,18 @@ verdict: verified
 checked_at: 2026-05-31T21:22:45.245Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched source control commands one-to-one with correct transport parameters."
+confidence: medium
+summary: "All 10 spec actions matched source control commands one-to-one with correct transport parameters. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no unsolicited event descriptions in source"
+- "no explicit multi-step macros in source"
+- "no safety warnings or interlock procedures in source"
+- "command timing/interval specifications not stated in source"
+- "fault behavior and error recovery not documented"
 ```
 
 ---

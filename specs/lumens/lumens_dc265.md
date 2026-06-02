@@ -25,14 +25,22 @@ last_checked_at: 2026-05-14T18:17:17.747Z
 generated_at: 2026-05-14T18:17:17.747Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source does not document unsolicited notifications from the device"
+  - "no multi-step sequences described in source"
+  - "source does not contain safety warnings or interlock procedures"
+  - "no mention of command timing, inter-command delays, or timeout behavior"
+  - "resolution mode selection command not identified in source"
+  - "firmware version compatibility not stated in source"
+  - "reg1/reg2/reg3 register functions not documented"
+  - "Focus Direct return packet uses P3 for speed but standard return format has status at byte 5 -- behavior unclear"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.747Z
   matched_actions: 46
   action_count: 46
-  confidence: high
-  summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol."
+  confidence: medium
+  summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -730,14 +738,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.747Z
 matched_actions: 46
 action_count: 46
-confidence: high
-summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol."
+confidence: medium
+summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source does not document unsolicited notifications from the device"
+- "no multi-step sequences described in source"
+- "source does not contain safety warnings or interlock procedures"
+- "no mention of command timing, inter-command delays, or timeout behavior"
+- "resolution mode selection command not identified in source"
+- "firmware version compatibility not stated in source"
+- "reg1/reg2/reg3 register functions not documented"
+- "Focus Direct return packet uses P3 for speed but standard return format has status at byte 5 -- behavior unclear"
 ```
 
 ---

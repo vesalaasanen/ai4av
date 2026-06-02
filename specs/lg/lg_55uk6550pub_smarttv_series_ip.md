@@ -4,365 +4,382 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "LG 55UK6550PUB SmartTV Series Control Spec"
 manufacturer: LG
-model_family: 55UK6550PUB
+model_family: "55UK6550PUB SmartTV Series"
 aliases: []
 compatible_with:
   manufacturers:
     - LG
   models:
-    - 55UK6550PUB
+    - "55UK6550PUB SmartTV Series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T21:04:57.113Z
-generated_at: 2026-04-25T21:04:57.113Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T02:47:12.317Z
+last_checked_at: 2026-06-02T03:24:48.217Z
+generated_at: 2026-06-02T03:24:48.217Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version range, supported model variants beyond \"SmartTV series\" not stated; exact behavior differences between models flagged \"(Depending on model)\" not enumerated."
+  - "source documents that every k/x family command supports a Data=FF query"
+  - "source documents only request/response framing; no unsolicited"
+  - "no explicit multi-step macro sequences are documented in the source."
+  - "source contains no explicit safety warnings, interlock procedures,"
+  - "which entries above are typographical errors in the source vs intentional; some ACK mnemonic mismatches (kj→[r], kr→[u], xu→[l]) cannot be reconciled without device testing."
+  - "exact line-termination expected by the IP control parser (LF vs CRLF). Source says \"press Enter\" but does not specify the byte sequence."
+  - "behaviour of `POWER on` over IP — source documents `POWER off` example only; whether the telnet daemon accepts `POWER on` after Mobile TV On / WoL handshake is not stated."
+  - "response framing for IP query-style operations — source documents only OK/NG outcomes for sent commands and does not describe a query verb for reading current state over IP."
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:04:57.113Z
-  matched_actions: 27
-  action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched literally against source, shapes agree, transport parameters verified."
+  checked_at: 2026-06-02T03:24:48.217Z
+  matched_actions: 57
+  action_count: 57
+  confidence: medium
+  summary: "All 57 spec actions matched verbatim in source; transport parameters verified; no shape or coverage gaps. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-19
+created_at: 2026-06-02
 ---
 
 # LG 55UK6550PUB SmartTV Series Control Spec
 
 ## Summary
-LG 55UK6550PUB is a 4K UHD Smart TV supporting both RS-232C serial control and wired/wireless IP control via Telnet. The document covers external control device setup, command protocols, transmission formats, and key code mappings for both control methods.
+LG SmartTV series with two documented external control surfaces: an RS-232C serial interface (DE9 or phone-jack, optionally over a USB-to-Serial converter using PL2303) carrying ASCII command pairs of the form `[Cmd1][Cmd2][ ][Set ID][ ][Data][Cr]`, and a Network IP Control telnet interface on TCP port 9761 (USA only, must be enabled via the hidden `IP Control Setup` menu) carrying plaintext command lines. Both surfaces expose power, picture, audio, channel tuning, input routing, key-injection, and 3D control. Power-on over IP requires WoL because the telnet service is not available while the TV is off.
 
-<!-- UNRESOLVED: 3D-related features depend on specific model variant; not all 55UK6550PUB models may have 3D capability -->
+<!-- UNRESOLVED: firmware version range, supported model variants beyond "SmartTV series" not stated; exact behavior differences between models flagged "(Depending on model)" not enumerated. -->
 
 ## Transport
 ```yaml
 protocols:
-  - serial
   - tcp
+  - serial
 addressing:
-  port: 9761  # IP Control Telnet port (USA models)
+  port: 9761
 serial:
   baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none
+  flow_control: none  # inferred: source documents 3-wire RXD/TXD/GND only, no RTS/CTS lines
 auth:
-  type: none  # inferred: no authentication required for command execution; IP Control setup uses password 828 to enable, not to authenticate
+  type: none  # inferred: source describes telnet session opened directly with `telnet <ip> 9761` and no login prompt; the 828 password gates the on-TV setup menu, not the telnet session
 ```
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable        # inferred from power on/off command (ka / POWER)
+- routable         # inferred from input-select commands (xb / INPUT_SELECT)
+- queryable        # inferred from "Transmit 'FF' data to read status of command" on every k/x family command
+- levelable        # inferred from volume / contrast / brightness / backlight level commands
 ```
 
 ## Actions
 ```yaml
-- id: power
-  label: Power
+# ============================================================
+# RS-232C command set (Section "Command reference list", rows 01-27)
+# Wire format: [Command1][Command2][ ][Set ID][ ][Data][Cr]
+#   - Set ID: 00-63 hex (decimal 0-99); 00 = broadcast to all sets
+#   - Data:   command-specific hex; FF = query current status
+#   - Cr:     ASCII 0x0D
+# ============================================================
+
+- id: rs232_power
+  label: Power (RS-232)
   kind: action
+  command: "[k][a][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: state
+    - name: set_id
+      type: hex
+      description: 00-63 (00 = all sets)
+    - name: data
       type: enum
       values:
         - "00"  # Power Off
         - "01"  # Power On
-  protocol: both  # serial: k a; IP: POWER on/off
-  description: Control power on/off. With RS232C cable works in any power state. With USB-to-Serial only works when TV is on.
+        - "FF"  # Query status
+  notes: |
+    Ack: [a][ ][Set ID][ ][OK/NG][Data][x].
+    With native RS-232C cable, ka works in both power-on and power-off states.
+    With USB-to-Serial converter, ka only works when TV is on.
 
-- id: aspect_ratio
-  label: Aspect Ratio
+- id: rs232_aspect_ratio
+  label: Aspect Ratio (RS-232)
   kind: action
+  command: "[k][c][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: ratio
+    - name: data
       type: enum
       values:
-        - "01"  # Normal screen
-        - "02"  # Wide screen (16:9)
+        - "01"  # Normal
+        - "02"  # Wide 16:9
         - "04"  # Zoom
-        - "05"  # Zoom 2
+        - "05"  # Zoom 2 (Europe/Colombia/Mid-East except Colombia)
         - "06"  # Set by Program/Original
-        - "07"  # 14:9
+        - "07"  # 14:9 (4:3)
         - "09"  # Just Scan
-        - "0B"  # Full Wide
+        - "0B"  # Full Wide (Latin America except Colombia)
         - "0C"  # 21:9
-        - "10-1F"  # Cinema Zoom 1-16
-  protocol: both  # serial: k c; IP: ASPECT_RATIO
+        - "10-1F"  # Cinema Zoom 1 to 16
+  notes: "Ack: [c][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: screen_mute
-  label: Screen Mute
+- id: rs232_screen_mute
+  label: Screen Mute (RS-232)
   kind: action
+  command: "[k][d][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: mode
+    - name: data
       type: enum
       values:
-        - "00"  # Screen mute off (Picture on) Video mute off
+        - "00"  # Screen mute off (Picture on) / Video mute off
         - "01"  # Screen mute on (Picture off)
         - "10"  # Video mute on
-  protocol: both  # serial: k d; IP: SCREEN_MUTE screenmuteon/videomuteon/allmuteoff
 
-- id: volume_mute
-  label: Volume Mute
+- id: rs232_volume_mute
+  label: Volume Mute (RS-232)
   kind: action
+  command: "[k][e][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: state
+    - name: data
       type: enum
       values:
         - "00"  # Volume mute on
         - "01"  # Volume mute off
-  protocol: both  # serial: k e; IP: VOLUME_MUTE on/off
+  notes: "Ack: [e][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: volume_control
-  label: Volume Control
+- id: rs232_volume_control
+  label: Volume Control (RS-232)
   kind: action
+  command: "[k][f][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Volume level (IP Control uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: k f (00-64); IP: VOLUME_CONTROL (0-100)
+    - name: data
+      type: hex
+      description: 00-64 (decimal 0-100)
+  notes: "Ack: [f][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: contrast
-  label: Contrast
+- id: rs232_contrast
+  label: Contrast (RS-232)
   kind: action
+  command: "[k][g][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Contrast level (IP Control uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: k g (00-64); IP: PICTURE_CONTRAST (0-100)
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [g][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: brightness
-  label: Brightness
+- id: rs232_brightness
+  label: Brightness (RS-232)
   kind: action
+  command: "[k][h][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Brightness level (IP Control uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: k h (00-64); IP: PICTURE_BRIGHTNESS (0-100)
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [h][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: color
-  label: Color/Colour
+- id: rs232_color
+  label: Color/Colour (RS-232)
   kind: action
+  command: "[k][i][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Color level (IP Control uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: k i (00-64); IP: PICTURE_COLOUR (0-100)
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [i][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: tint
-  label: Tint
+- id: rs232_tint
+  label: Tint (RS-232)
   kind: action
+  command: "[k][j][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Tint level Red 00 to Green 64 (IP Control uses 0-100)
-  protocol: both  # serial: k j (00-64); IP: PICTURE_TINT (0-100)
+    - name: data
+      type: hex
+      description: 00 (Red) to 64 (Green)
+  notes: "Ack: [r][ ][Set ID][ ][OK/NG][Data][x] (per source)."
 
-- id: sharpness
-  label: Sharpness
+- id: rs232_sharpness
+  label: Sharpness (RS-232)
   kind: action
+  command: "[k][k][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-50
-      description: Sharpness level (IP Control uses 0-50; RS-232 uses 00-32)
-  protocol: both  # serial: k k (00-32); IP: PICTURE_SHARPNESS (0-50)
+    - name: data
+      type: hex
+      description: 00-32
+  notes: "Ack: [k][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: osd_select
-  label: OSD Select
+- id: rs232_osd_select
+  label: OSD Select (RS-232)
   kind: action
+  command: "[k][l][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: state
+    - name: data
       type: enum
       values:
         - "00"  # OSD off
         - "01"  # OSD on
-  protocol: both  # serial: k l; IP: OSD_SELECT on/off
+  notes: "Ack: [l][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: remote_control_lock
-  label: Remote Control Lock Mode
+- id: rs232_remote_lock
+  label: Remote Control Lock Mode (RS-232)
   kind: action
+  command: "[k][m][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: state
+    - name: data
       type: enum
       values:
         - "00"  # Lock off
         - "01"  # Lock on
-  protocol: both  # serial: k m; IP: REMOTECONTROLER_LOCK on/off
-  description: Locks front panel and remote. Released when main power off/on (20-30 sec). In standby with lock on, TV will not turn on by IR or local key.
+  notes: |
+    Ack: [m][ ][Set ID][ ][OK/NG][Data][x].
+    Lock released by main-power off/on cycle (plug-out 20-30s then plug-in).
 
-- id: treble
-  label: Treble
+- id: rs232_treble
+  label: Treble (RS-232)
   kind: action
+  command: "[k][r][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-64
-  protocol: serial  # k r; IP equivalent not documented separately
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [u][ ][Set ID][ ][OK/NG][Data][x] (per source)."
 
-- id: bass
-  label: Bass
+- id: rs232_bass
+  label: Bass (RS-232)
   kind: action
+  command: "[k][s][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-64
-  protocol: serial  # k s; IP equivalent not documented separately
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [s][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: balance
-  label: Balance
+- id: rs232_balance
+  label: Balance (RS-232)
   kind: action
+  command: "[k][t][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Balance level (IP uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: k t (00-64); IP: AUDIO_BALANCE (0-100)
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [t][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: color_temperature
-  label: Color Temperature
+- id: rs232_color_temperature
+  label: Color(Colour) Temperature (RS-232)
   kind: action
+  command: "[x][u][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Color temperature (IP uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: x u (00-64); IP: PICTURE_COLOUR_TEMPERATURE (0-100)
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [l][ ][Set ID][ ][OK/NG][Data][x] (per source)."
 
-- id: ism_method
-  label: ISM Method
+- id: rs232_ism_method
+  label: ISM Method (RS-232, Plasma only)
   kind: action
+  command: "[j][p][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: mode
+    - name: data
       type: enum
       values:
         - "02"  # Orbiter
         - "08"  # Normal
-        - "20"  # Color Wash
-  protocol: serial  # j p; plasma TV only
-  description: Only Plasma TV
+        - "20"  # Color(Colour) Wash
+  notes: "Ack: [p][ ][Set ID][ ][OK/NG][Data][x]. Plasma TV only."
 
-- id: equalizer
-  label: Equalizer
+- id: rs232_equalizer
+  label: Equalizer (RS-232)
   kind: action
+  command: "[j][v][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: band
-      type: integer
-      range: 1-5
-    - name: step
-      type: integer
-      range: 0-20
-  protocol: both  # serial: j v; IP: AUDIO_EQUALIZER [1-5] [0-20]
-  description: Precondition: Sound mode must be EQ adjustable
+    - name: data
+      type: hex
+      description: |
+        Bit-packed byte: bits 7-5 select frequency band (000=1st .. 100=5th),
+        bits 4-0 select step 0-19 (decimal). Source provides bit table.
+  notes: "Ack: [v][ ][Set ID][ ][OK/NG][Data][x]. Requires sound mode EQ-adjustable."
 
-- id: energy_saving
-  label: Energy Saving
+- id: rs232_energy_saving
+  label: Energy Saving (RS-232)
   kind: action
+  command: "[j][q][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: mode
+    - name: data
       type: enum
       values:
         - "00"  # Off
         - "01"  # Minimum
         - "02"  # Medium
         - "03"  # Maximum
-        - "04"  # Auto (LCD/LED) / Intelligent sensor (PDP)
+        - "04"  # Auto / Intelligent sensor
         - "05"  # Screen off
-  protocol: both  # serial: j q; IP: ENERGY_SAVING off/minimum/medium/maximum/screenoff
+  notes: "Ack: [q][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: tune_command
-  label: Tune Command
+- id: rs232_tune_command
+  label: Tune Command (RS-232)
   kind: action
+  command: "[m][a][ ][Set ID][ ][Data 00][ ][Data 01][ ][Data 02][Cr]"
   params:
-    - name: channel_data
-      type: object
-      properties:
-        physical_channel:
-          type: integer
-          description: Physical channel number (varies by region)
-        major_channel:
-          type: integer
-          description: Major channel number (for digital)
-        minor_channel:
-          type: integer
-          description: Minor/Branch channel number (for digital)
-        source:
-          type: enum
-          values:
-            - "00"  # Antenna TV (ATV)
-            - "01"  # Cable TV (CATV) - Analog
-            - "02"  # Antenna TV (DTV)
-            - "06"  # Cable TV (CADTV)
-            - "07"  # BS (Japan)
-            - "08"  # CS1 (Japan)
-            - "09"  # CS2 (Japan)
-            - "10"  # Antenna Radio
-            - "20"  # Satellite TV
-            - "22"  # DTV no physical
-            - "26"  # CADTV no physical
-            - "40"  # Satellite DTV
-            - "46"  # CADTV Major only
-            - "50"  # Satellite Radio
-            - "66"  # CADTV Major only
-            - "80"  # Cable TV (CATV)
-  protocol: both  # serial: m a; IP: CHANNEL_SETTING_ATSC_ATV/CHANNEL_SETTING_ATSC_DTV
-  description: Complex multi-parameter channel tuning. Format differs significantly between RS-232 and IP control. RS-232 uses hex, IP uses ASCII decimal.
+    - name: data
+      type: bytes
+      description: |
+        Region-dependent layout. Europe/Mid-East/Colombia/Asia (excl. SK, JP):
+          3 bytes - [Hi][Lo][Source] with Source 00=ATV, 80=CATV, 10=DTV,
+          20=Radio, 40=SDTV, 50=S-Radio, 90=CADTV, A0=CA-Radio.
+        South Korea / N./L. America (excl. Colombia) and Japan:
+          6 bytes - [Phys][MajHi][MajLo][MinHi][MinLo][Source].
+        Channel data range 00 00 - 27 0F (0-9999 decimal).
+        Source includes worked examples (ma 00 00 0a 00, ma 00 00 01 10, etc.).
+  notes: |
+    Ack (3-byte form): [a][ ][Set ID][ ][OK][Data 00][Data 01][Data 02][x] /
+                       [a][ ][Set ID][ ][NG][Data 00][x].
+    Ack (6-byte form): [a][ ][Set ID][ ][OK][Data 00..05][x] / NG form.
 
-- id: channel_add_delete
-  label: Channel Add/Delete
+- id: rs232_channel_add_del
+  label: Channel(Programme) Add/Del/Skip (RS-232)
   kind: action
+  command: "[m][b][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: operation
+    - name: data
       type: enum
       values:
-        - "00"  # Delete/Skip
+        - "00"  # Del (ATSC/ISDB) / Skip (DVB)
         - "01"  # Add
-  protocol: both  # serial: m b; IP: CHANNEL_ADD_DELETE add/delete
+  notes: "Ack: [b][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: key
-  label: Key
+- id: rs232_key
+  label: Key (RS-232 IR remote injection)
   kind: action
+  command: "[m][c][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: key_code
-      type: string
-      description: Key code from the key code table (hex for RS-232, ASCII name for IP)
-  protocol: both  # serial: m c; IP: KEY_ACTION
-  description: Sends IR remote key code. Full list includes: exit, channelup, channeldown, volumeup, volumedown, arrowright, arrowleft, volumemute, deviceinput, sleepreserve, livetv, previouschannel, favoritechannel, teletext, teletextoption, returnback, avmode, captionsubtitle, arrowup, arrowdown, myapp, settingmenu, ok, quickmenu, videomode, audiomode, channellist, bluebutton, yellowbutton, greenbutton, redbutton, aspectratio, audiodescription, programmorder, userguide, smarthome, simplelink, fastforward, rewind, programminfo, programguide, play, slowplay, soccerscreen, record, 3d, autoconfig, app, screenbright, number0-9
+    - name: data
+      type: hex
+      description: |
+        Key code from the "KEY CODES" table - e.g. 00=CH+, 02=Vol+, 08=Power,
+        09=Mute, 0B=Input, 44=OK/Enter, 7C=Smart/Home, BD=REC, DC=3D, etc.
+        Full 50+ entry table in source pp.1-2.
+  notes: "Ack: [c][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: control_backlight
-  label: Control Backlight
+- id: rs232_control_backlight
+  label: Control Backlight / Panel Light (RS-232)
   kind: action
+  command: "[m][g][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: level
-      type: integer
-      range: 0-100
-      description: Backlight level (IP uses 0-100; RS-232 uses 00-64)
-  protocol: both  # serial: m g (00-64); IP: PICTURE_BACKLIGHT (0-100)
-  description: Precondition for IP: Energy Saving must be off
+    - name: data
+      type: hex
+      description: 00-64
+  notes: "Ack: [g][ ][Set ID][ ][OK/NG][Data][x]. Same mnemonic governs backlight and panel light."
 
-- id: input_select
-  label: Input Select
+- id: rs232_input_select
+  label: Input Select (RS-232)
   kind: action
+  command: "[x][b][ ][Set ID][ ][Data][Cr]"
   params:
-    - name: source
+    - name: data
       type: enum
       values:
         - "00"  # DTV
@@ -372,7 +389,7 @@ auth:
         - "04"  # ISDB-CS2 (Japan)
         - "10"  # ATV
         - "11"  # CATV
-        - "20"  # AV or AV1
+        - "20"  # AV / AV1
         - "21"  # AV2
         - "40"  # Component1
         - "41"  # Component2
@@ -381,182 +398,588 @@ auth:
         - "91"  # HDMI2
         - "92"  # HDMI3
         - "93"  # HDMI4
-  protocol: both  # serial: x b; IP: INPUT_SELECT dtv/atv/cadtv/catv/avav1/component1/hdmi1/hdmi2/hdmi3
-  description: Select main picture input source
+  notes: "Ack: [b][ ][Set ID][ ][OK/NG][Data][x]."
 
-- id: picture_3d
-  label: 3D
+- id: rs232_3d
+  label: 3D Mode (RS-232, 3D models only)
   kind: action
+  command: "[x][t][ ][Set ID][ ][Data 00][ ][Data 01][ ][Data 02][ ][Data 03][Cr]"
+  params:
+    - name: data_00
+      type: enum
+      values: ["00", "01", "02", "03"]  # 3D On / 3D Off / 3D->2D / 2D->3D
+    - name: data_01
+      type: enum
+      values: ["00", "01", "02", "03", "04", "05"]  # TopBottom/SideBySide/CheckBoard/FrameSeq/ColInterl/RowInterl
+    - name: data_02
+      type: enum
+      values: ["00", "01"]  # Right-to-Left / Left-to-Right
+    - name: data_03
+      type: hex
+      description: 3D depth 00-14 (Manual mode only)
+  notes: "Ack: [t][ ][Set ID][ ][OK][Data00][Data01][Data02][Data03][x] / NG form."
+
+- id: rs232_extended_3d
+  label: Extended 3D (RS-232, 3D models only)
+  kind: action
+  command: "[x][v][ ][Set ID][ ][Data 00][ ][Data 01][Cr]"
+  params:
+    - name: data_00
+      type: enum
+      values:
+        - "00"  # 3D Picture Correction
+        - "01"  # 3D Depth (Manual only)
+        - "02"  # 3D Viewpoint
+        - "06"  # 3D Color Correction
+        - "07"  # 3D Sound Zooming
+        - "08"  # Normal Image View
+        - "09"  # 3D Mode (Genre)
+    - name: data_01
+      type: hex
+      description: Range varies per data_00 (00-01 for correction/genre toggles, 00-14 for depth/viewpoint, 00-05 for genre)
+  notes: "Ack: [v][ ][Set ID][ ][OK][Data00][Data01][x] / NG form."
+
+- id: rs232_auto_configure
+  label: Auto Configure (RS-232)
+  kind: action
+  command: "[j][u][ ][Set ID][ ][Data][Cr]"
+  params:
+    - name: data
+      type: enum
+      values:
+        - "01"  # Run auto-configure
+  notes: "Ack: [u][ ][Set ID][ ][OK/NG][Data][x]. RGB (PC) input only."
+
+# ============================================================
+# Network IP Control (telnet on TCP 9761, USA only)
+# Wire format: ASCII command line terminated by Enter (LF/CRLF).
+# Responses: 'OK' on success, 'NG' on error.
+# ============================================================
+
+- id: ip_power_off
+  label: Power Off (IP)
+  kind: action
+  command: "POWER off"
+  params: []
+  notes: |
+    Only 'off' is documented for the IP transport because the telnet server
+    is unavailable while the TV is off. Power-on is performed via Wake-on-LAN
+    after enabling the 'Mobile TV On' setting.
+
+- id: ip_aspect_ratio
+  label: Aspect Ratio (IP)
+  kind: action
+  command: "ASPECT_RATIO {mode}"
   params:
     - name: mode
       type: enum
-      values:
-        - "off"  # 3D Off
-        - "3dto2d"  # 3D to 2D
-        - "2dto3d"  # 2D to 3D
-    - name: format
-      type: enum
-      required: false
-      values:
-        - "topandbottom"
-        - "sidebyside"
-        - "checkboard"
-        - "framesequential"
-        - "columninterleaving"
-        - "rowinterleaving"
-    - name: direction
-      type: enum
-      required: false
-      values:
-        - "righttoleft"
-        - "lefttoright"
-    - name: effect
-      type: integer
-      required: false
-      range: 0-20
-  protocol: both  # serial: x t; IP: PICTURE_3D
-  description: Only 3D models. Format/direction parameters vary by model and signal.
+      values: [4by3, 16by9, setbyoriginal]
 
-- id: picture_3d_extension
-  label: Extended 3D
+- id: ip_screen_mute
+  label: Screen Mute (IP)
   kind: action
+  command: "SCREEN_MUTE {mode}"
   params:
-    - name: option
+    - name: mode
       type: enum
-      values:
-        - "picturecorrection"
-        - "colorcorrection"
-        - "sound"
-        - "normal"
-        - "depth"
-        - "viewpoint"
-        - "genre"
-    - name: value
-      type: mixed
-      description: Varies by option (0/1 for on/off, 0-20 for depth/viewpoint, 0-5 for genre)
-  protocol: both  # serial: x v; IP: PICTURE_3D_EXTENSION
-  description: Only 3D models. Preconditions must be met for certain options.
+      values: [screenmuteon, videomuteon, allmuteoff]
 
-- id: auto_configure
-  label: Auto Configure
+- id: ip_volume_mute
+  label: Volume Mute (IP)
   kind: action
+  command: "VOLUME_MUTE {state}"
   params:
     - name: state
       type: enum
+      values: [on, off]
+
+- id: ip_volume_control
+  label: Volume Control (IP)
+  kind: action
+  command: "VOLUME_CONTROL {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100 decimal
+
+- id: ip_picture_contrast
+  label: Picture Contrast (IP)
+  kind: action
+  command: "PICTURE_CONTRAST {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_picture_brightness
+  label: Picture Brightness (IP)
+  kind: action
+  command: "PICTURE_BRIGHTNESS {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_picture_colour
+  label: Picture Colour (IP)
+  kind: action
+  command: "PICTURE_COLOUR {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_picture_tint
+  label: Picture Tint (IP)
+  kind: action
+  command: "PICTURE_TINT {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_picture_sharpness
+  label: Picture Sharpness (IP)
+  kind: action
+  command: "PICTURE_SHARPNESS {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-50
+
+- id: ip_osd_select
+  label: OSD Select (IP)
+  kind: action
+  command: "OSD_SELECT {state}"
+  params:
+    - name: state
+      type: enum
+      values: [on, off]
+
+- id: ip_remote_lock
+  label: Remote Control Lock (IP)
+  kind: action
+  command: "REMOTECONTROLER_LOCK {state}"
+  params:
+    - name: state
+      type: enum
+      values: [on, off]
+
+- id: ip_audio_balance
+  label: Audio Balance (IP)
+  kind: action
+  command: "AUDIO_BALANCE {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_picture_colour_temperature
+  label: Picture Colour Temperature (IP)
+  kind: action
+  command: "PICTURE_COLOUR_TEMPERATURE {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+
+- id: ip_audio_equalizer
+  label: Audio Equalizer (IP)
+  kind: action
+  command: "AUDIO_EQUALIZER {band} {step}"
+  params:
+    - name: band
+      type: integer
+      description: 1-5 (frequency band)
+    - name: step
+      type: integer
+      description: 0-20 (decimal step)
+  notes: "Precondition: Sound > Sound Mode Settings > Equalizer = on."
+
+- id: ip_energy_saving
+  label: Energy Saving (IP)
+  kind: action
+  command: "ENERGY_SAVING {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: [screenoff, maximum, medium, minimum, off]
+
+- id: ip_channel_setting_atsc_atv
+  label: Channel Setting (ATSC ATV) (IP)
+  kind: action
+  command: "CHANNEL_SETTING_ATSC_ATV {channel} {source}"
+  params:
+    - name: channel
+      type: integer
+      description: Physical analog channel number
+    - name: source
+      type: enum
+      values: [antenna, cable]
+
+- id: ip_channel_setting_atsc_dtv
+  label: Channel Setting (ATSC DTV) (IP)
+  kind: action
+  command: "CHANNEL_SETTING_ATSC_DTV {args}"
+  params:
+    - name: form
+      type: enum
       values:
-        - "01"  # Execute Auto Configure
-  protocol: serial  # j u
-  description: Adjusts picture position and minimizes image shaking. Only works in RGB (PC) mode.
+        - "[channel] cablenotphy"                       # single-channel cable digital
+        - "[major] [minor] antennanotphy"               # major/minor digital antenna
+        - "[major] [minor] cablenotphy"                 # major/minor digital cable
+    - name: channel
+      type: integer
+    - name: major
+      type: integer
+    - name: minor
+      type: integer
+  notes: "Three documented invocation forms within the CHANNEL_SETTING_ATSC_DTV method."
+
+- id: ip_channel_add_delete
+  label: Channel Add/Delete (IP)
+  kind: action
+  command: "CHANNEL_ADD_DELETE {op}"
+  params:
+    - name: op
+      type: enum
+      values: [add, delete]
+
+- id: ip_key_action
+  label: Key Action (IP IR injection)
+  kind: action
+  command: "KEY_ACTION {key}"
+  params:
+    - name: key
+      type: enum
+      values:
+        - exit
+        - channelup
+        - channeldown
+        - volumeup
+        - volumedown
+        - arrowright
+        - arrowleft
+        - volumemute
+        - deviceinput
+        - sleepreserve
+        - livetv
+        - previouschannel
+        - favoritechannel
+        - teletext
+        - teletextoption
+        - returnback
+        - avmode
+        - captionsubtitle
+        - arrowup
+        - arrowdown
+        - myapp
+        - settingmenu
+        - ok
+        - quickmenu
+        - videomode
+        - audiomode
+        - channellist
+        - bluebutton
+        - yellowbutton
+        - greenbutton
+        - redbutton
+        - aspectratio
+        - audiodescription
+        - programmorder
+        - userguide
+        - smarthome
+        - simplelink
+        - fastforward
+        - rewind
+        - programminfo
+        - programguide
+        - play
+        - slowplay
+        - soccerscreen
+        - record
+        - 3d
+        - autoconfig
+        - app
+        - screenbright
+        - number0
+        - number1
+        - number2
+        - number3
+        - number4
+        - number5
+        - number6
+        - number7
+        - number8
+        - number9
+
+- id: ip_picture_backlight
+  label: Picture Backlight (IP)
+  kind: action
+  command: "PICTURE_BACKLIGHT {level}"
+  params:
+    - name: level
+      type: integer
+      description: 0-100
+  notes: "Precondition: Picture > Energy Saving = off."
+
+- id: ip_input_select
+  label: Input Select (IP)
+  kind: action
+  command: "INPUT_SELECT {source}"
+  params:
+    - name: source
+      type: enum
+      values: [dtv, atv, cadtv, catv, avav1, component1, hdmi1, hdmi2, hdmi3]
+
+- id: ip_picture_3d_off
+  label: 3D Off / 3D-to-2D (IP)
+  kind: action
+  command: "PICTURE_3D {mode}"
+  params:
+    - name: mode
+      type: enum
+      values: [off, 3dto2d]
+  notes: "3D models only."
+
+- id: ip_picture_3d_2dto3d
+  label: 3D 2D-to-3D (IP)
+  kind: action
+  command: "PICTURE_3D 2dto3d {orientation} {depth}"
+  params:
+    - name: orientation
+      type: enum
+      values: [righttoleft, lefttoright]
+    - name: depth
+      type: integer
+      description: 0-20
+  notes: "3D models only."
+
+- id: ip_picture_3d_on
+  label: 3D On (IP)
+  kind: action
+  command: "PICTURE_3D on {pattern} {orientation} {depth}"
+  params:
+    - name: pattern
+      type: enum
+      values: [topandbottom, sidebyside, checkboard, framesequential, columninterleaving, rowinterleaving]
+    - name: orientation
+      type: enum
+      values: [righttoleft, lefttoright]
+    - name: depth
+      type: integer
+      description: 0-20
+  notes: "3D models only."
+
+- id: ip_picture_3d_extension_picturecorrection
+  label: 3D Picture Correction (IP)
+  kind: action
+  command: "PICTURE_3D_EXTENSION picturecorrection {direction}"
+  params:
+    - name: direction
+      type: enum
+      values: ["0", "1"]  # 0=Right-to-Left, 1=Left-to-Right
+  notes: "Precondition: PICTURE_3D on X X X."
+
+- id: ip_picture_3d_extension_colorcorrection_sound
+  label: 3D Color Correction / Sound Zooming (IP)
+  kind: action
+  command: "PICTURE_3D_EXTENSION {option} {state}"
+  params:
+    - name: option
+      type: enum
+      values: [colorcorrection, sound]
+    - name: state
+      type: enum
+      values: ["0", "1"]  # 0=off, 1=on
+  notes: "Precondition: PICTURE_3D on X X X."
+
+- id: ip_picture_3d_extension_normal
+  label: 3D Normal Image View (IP)
+  kind: action
+  command: "PICTURE_3D_EXTENSION normal {state}"
+  params:
+    - name: state
+      type: enum
+      values: ["0", "1"]  # 0=off, 1=on
+  notes: "Precondition: PICTURE_3D on X X X."
+
+- id: ip_picture_3d_extension_depth_viewpoint
+  label: 3D Depth / Viewpoint (IP)
+  kind: action
+  command: "PICTURE_3D_EXTENSION {option} {value}"
+  params:
+    - name: option
+      type: enum
+      values: [depth, viewpoint]
+    - name: value
+      type: integer
+      description: 0-20 (viewpoint range)
+  notes: |
+    Depth precondition: PICTURE_3D 2dto3d X X AND PICTURE_3D_EXTENSION genre 4.
+    Viewpoint precondition: PICTURE_3D 2dto3d X X.
+
+- id: ip_picture_3d_extension_genre
+  label: 3D Mode Genre (IP)
+  kind: action
+  command: "PICTURE_3D_EXTENSION genre {genre}"
+  params:
+    - name: genre
+      type: enum
+      values: ["0", "1", "2", "3", "4", "5"]
+  notes: |
+    0=Standard / 1=Sport / 2=Cinema / 3=Extreme / 4=Manual / 5=Auto.
+    Precondition: PICTURE_3D 2dto3d X X.
 ```
 
 ## Feedbacks
 ```yaml
-- id: acknowledgement
-  type: enum
-  values:
-    - OK  # Command accepted
-    - NG  # Command rejected or illegal code
-  description: All commands return ACK in format [Command2][ ][Set ID][ ][OK/NG][Data][x]
+# RS-232 query: send the same opcode with Data=FF; ACK frame returns current value.
+# Wire format: [Command2][ ][Set ID][ ][OK][Data][x] (success) or [Command2][ ][Set ID][ ][NG][Data][x].
+# Each Feedback below mirrors the corresponding Action's queryable status.
+
+- id: rs232_ack_ok
+  label: OK Acknowledgement (RS-232)
+  type: string
+  format: "[Command2][ ][Set ID][ ][OK][Data][x]"
+  notes: "Returned for any successfully processed command. Data echoes set value or returns queried status when request used Data=FF."
+
+- id: rs232_ack_ng
+  label: Error Acknowledgement (RS-232)
+  type: string
+  format: "[Command2][ ][Set ID][ ][NG][Data][x]"
+  notes: "Data=00 means Illegal Code per source."
+
+- id: ip_ack_ok
+  label: OK Response (IP)
+  type: string
+  format: "OK"
+  notes: "Returned when an IP command line is accepted."
+
+- id: ip_ack_ng
+  label: NG Response (IP)
+  type: string
+  format: "NG"
+  notes: "Returned when an IP command line is rejected."
 
 - id: power_state_query
+  label: Power Status Query (RS-232)
   type: enum
-  values:
-    - "00"  # Power Off
-    - "01"  # Power On
-  description: Query power state by sending FF as data. Returns current power state.
+  values: [on, off]
+  query_command: "[k][a][ ][Set ID][ ][FF][Cr]"
+  notes: "Ack data byte: 00=off, 01=on."
 
-- id: volume_mute_query
-  type: enum
-  values:
-    - "00"  # Volume mute on
-    - "01"  # Volume mute off
-
-- id: error_code
-  type: enum
-  values:
-    - "00"  # Illegal Code
-  description: Returned in NG acknowledgement when data is invalid
+# UNRESOLVED: source documents that every k/x family command supports a Data=FF query
+# returning current status, but does not enumerate per-command response value ranges
+# beyond what is implicit in the set-command parameter table. Only the explicit
+# 'show power state' query example is itemized above; per-command queries are
+# implementable by sending Data=FF on each opcode and parsing the ACK Data field.
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: The document describes settable parameters as write-only actions.
-# No dedicated query/feedback variables are documented beyond FF read queries.
-# All documented parameters (contrast, brightness, volume, etc.) are
-# writable actions that support FF to read current value.
+- id: set_id
+  label: Set ID
+  type: integer
+  range: [1, 99]
+  default: 1
+  notes: |
+    Selects which TV responds on a daisy-chained RS-232 bus.
+    Transmitted as hex 0x00-0x63. 0x00 broadcasts to all sets.
+    Configured on TV via Settings > General > About this TV / OPTION > SET ID.
+
+- id: ip_control_enable
+  label: Network IP Control Enable
+  type: enum
+  values: [on, off]
+  notes: |
+    Set via hidden 'IP Control Setup' menu (long-press Settings 5s on Live TV,
+    enter password 828, select Network IP Control = On). Requires TV reboot.
+
+- id: ip_control_password
+  label: IP Control Setup Password
+  type: string
+  default: "828"
+  notes: "3-digit numeric password gating access to the IP Control Setup menu (not the telnet session)."
+
+- id: mobile_tv_on
+  label: Mobile TV On (Wake-on-LAN enable)
+  type: enum
+  values: [on, off]
+  notes: "Settings > Mobile TV On = On is required for power-on via WoL packet from a paired mobile app."
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: No unsolicited event notifications are documented.
-# The protocol is strictly command-response; device does not push events.
+# UNRESOLVED: source documents only request/response framing; no unsolicited
+# event push notifications are described for either RS-232 or telnet transport.
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macros are documented.
+# UNRESOLVED: no explicit multi-step macro sequences are documented in the source.
+# (3D extension preconditions describe required state-before-call ordering, but
+# those are precondition notes on individual actions, not standalone macros.)
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - description: Remote control lock (k m / REMOTECONTROLER_LOCK) interlocks power-on by IR/local key when in standby mode
-    source: "When main power is off & on (plug-off and plug-in, after 20-30 seconds), external control lock is released."
-  - description: During playing or recording media, all commands except Power (ka) and Key (mc) are not executed and treated as NG
-    source: "Note: During playing or recording media, all commands except Power (ka) and Key (mc) are not executed and treated as NG."
+interlocks: []
+# UNRESOLVED: source contains no explicit safety warnings, interlock procedures,
+# or power-sequencing requirements beyond operational notes (e.g. ka not executed
+# during media playback/recording).
 ```
 
 ## Notes
-
-**RS-232 vs IP Control Differences:**
-- RS-232 uses hex command format: `[Command1][Command2][ ][Set ID][ ][Data][Cr]`
-- IP Control uses ASCII text commands via Telnet: e.g., `VOLUME_MUTE on`
-- IP Control port range is 0-100 vs RS-232 00-64 for same parameters (e.g., volume)
-- Both protocols support Set ID for multi-device control (RS-232: 1-99, IP via Set ID parameter)
-
-**IP Control Setup:**
-- Default setup password: 828
-- Enable path: Settings > Network > IP Control Setup > Network IP Control = On
-- Requires TV reboot after enabling
-- WOL (Wake on LAN) requires "Mobile TV On" to be enabled
-
-**Protocol Notes:**
-- Carriage Return (Cr) for RS-232: ASCII code 0x0D
-- Space in RS-232 format: ASCII code 0x20
-- With USB-to-Serial converter, TV must be powered on to accept commands
-- With RS232C cable, power command (ka) works in any power state
-
-<!-- UNRESOLVED: Exact port number 9761 is stated only for USA model; other regions may differ -->
-<!-- UNRESOLVED: Detailed energy saving level mapping (j q) for IP control uses different keywords than documented -->
-<!-- UNRESOLVED: ISM Method (j p) documented for Plasma TV only; applicability to LCD/LED models unclear -->
+- **Dual transport on different population scopes.** The RS-232C command set is the global LG external-control protocol documented for this TV series; the Network IP Control telnet interface on TCP 9761 is explicitly scoped "For USA only" in the source. Drivers targeting non-USA units should fall back to RS-232.
+- **Power-on asymmetry on IP.** The telnet daemon is only reachable while the TV is powered on, so `POWER off` is the only documented IP power verb. Power-on is performed via a Wake-on-LAN magic packet after enabling `Mobile TV On`. Native RS-232C cable can drive `ka 01` (power on) in standby; USB-to-Serial converters cannot.
+- **Media playback blocks most commands.** During playback or recording of media, all commands except `ka` (Power) and `mc` (Key) on RS-232 — and Power + Key on IP — return NG.
+- **Query mechanism.** Every `k*` and `x*` RS-232 opcode accepts `Data=FF` to read current status; the ACK byte carries the current value. This is what `traits: queryable` reflects.
+- **Set ID 0 is broadcast.** Sending Set ID `0x00` addresses every chained set simultaneously.
+- **Lock release path.** Remote Control Lock (`km 01`) is cleared only by a main-power cycle (20-30s unplug); a power-on key press will not wake a locked TV while in standby.
+- **3D commands are gated by model.** All `xt`/`xv` / `PICTURE_3D*` entries are flagged "(only 3D models)" in source.
+- **USB-to-Serial chip identity.** LG documents PL2303 (Vendor 0x0557 / Product 0x2008) as the supported converter; cable is not provided.
+- **OK acknowledgement quirks.** The source's per-command ACK templates occasionally show a different second-character than the request mnemonic (e.g. Tint request `kj` ACK shown as `[r]`; Treble request `kr` ACK shown as `[u]`; Colour Temperature `xu` ACK shown as `[l]`). These appear to be source-document typographic errors; field implementers should match on the actual second character returned rather than the printed example.
+<!-- UNRESOLVED: which entries above are typographical errors in the source vs intentional; some ACK mnemonic mismatches (kj→[r], kr→[u], xu→[l]) cannot be reconciled without device testing. -->
+<!-- UNRESOLVED: exact line-termination expected by the IP control parser (LF vs CRLF). Source says "press Enter" but does not specify the byte sequence. -->
+<!-- UNRESOLVED: behaviour of `POWER on` over IP — source documents `POWER off` example only; whether the telnet daemon accepts `POWER on` after Mobile TV On / WoL handshake is not stated. -->
+<!-- UNRESOLVED: response framing for IP query-style operations — source documents only OK/NG outcomes for sent commands and does not describe a query verb for reading current state over IP. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T21:04:57.113Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T02:47:12.317Z
+last_checked_at: 2026-06-02T03:24:48.217Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:04:57.113Z
-matched_actions: 27
-action_count: 27
-confidence: high
-summary: "All 27 spec actions matched literally against source, shapes agree, transport parameters verified."
+checked_at: 2026-06-02T03:24:48.217Z
+matched_actions: 57
+action_count: 57
+confidence: medium
+summary: "All 57 spec actions matched verbatim in source; transport parameters verified; no shape or coverage gaps. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version range, supported model variants beyond \"SmartTV series\" not stated; exact behavior differences between models flagged \"(Depending on model)\" not enumerated."
+- "source documents that every k/x family command supports a Data=FF query"
+- "source documents only request/response framing; no unsolicited"
+- "no explicit multi-step macro sequences are documented in the source."
+- "source contains no explicit safety warnings, interlock procedures,"
+- "which entries above are typographical errors in the source vs intentional; some ACK mnemonic mismatches (kj→[r], kr→[u], xu→[l]) cannot be reconciled without device testing."
+- "exact line-termination expected by the IP control parser (LF vs CRLF). Source says \"press Enter\" but does not specify the byte sequence."
+- "behaviour of `POWER on` over IP — source documents `POWER off` example only; whether the telnet daemon accepts `POWER on` after Mobile TV On / WoL handshake is not stated."
+- "response framing for IP query-style operations — source documents only OK/NG outcomes for sent commands and does not describe a query verb for reading current state over IP."
 ```
 
 ---

@@ -24,14 +24,18 @@ last_checked_at: 2026-04-24T14:34:25.538Z
 generated_at: 2026-04-24T14:34:25.538Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit manual not included; TCP port 7142 confirmed for wired LAN"
+  - "projector does not appear to send unsolicited event notifications per source documentation"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures stated in source. Power on/off commands block other commands during execution (cooling time)."
 verification:
   verdict: verified
   checked_at: 2026-04-24T14:34:25.538Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "Complete verification: all actions present, transport parameters match, intentional null values documented"
+  confidence: medium
+  summary: "Complete verification: all actions present, transport parameters match, intentional null values documented (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -695,14 +699,17 @@ verdict: verified
 checked_at: 2026-04-24T14:34:25.538Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "Complete verification: all actions present, transport parameters match, intentional null values documented"
+confidence: medium
+summary: "Complete verification: all actions present, transport parameters match, intentional null values documented (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit manual not included; TCP port 7142 confirmed for wired LAN"
+- "projector does not appear to send unsolicited event notifications per source documentation"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures stated in source. Power on/off commands block other commands during execution (cooling time)."
 ```
 
 ---

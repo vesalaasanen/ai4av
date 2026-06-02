@@ -18,23 +18,30 @@ compatible_with:
   required_options: []
 source_domains:
   - shinybowusa.com
+  - manualslib.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
   - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://www.shinybowusa.com/PDF/UG-5548BNC.pdf
+  - https://www.manualslib.com/manual/857571/Shinybow-Usa-Sb-5548.html
+retrieved_at: 2026-05-21T21:53:27.960Z
 last_checked_at: 2026-05-31T21:22:44.437Z
 generated_at: 2026-05-31T21:22:44.437Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "total port count not stated (8 outputs visible in command examples)"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "number of inputs not explicitly stated (8 outputs shown, assumes 8x8)"
+  - "hardware revision/firmware version not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:22:44.437Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions matched source commands; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 21 spec actions matched source commands; transport parameters verified verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -306,11 +313,12 @@ Balance range 0-100; 50 = center (equal L/R), 0 = 100% left, 100 = 100% right.
 ```yaml
 source_domains:
   - shinybowusa.com
+  - manualslib.com
 source_urls:
-  - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
   - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - https://www.shinybowusa.com/PDF/UG-5548BNC.pdf
+  - https://www.manualslib.com/manual/857571/Shinybow-Usa-Sb-5548.html
+retrieved_at: 2026-05-21T21:53:27.960Z
 last_checked_at: 2026-05-31T21:22:44.437Z
 ```
 
@@ -321,14 +329,19 @@ verdict: verified
 checked_at: 2026-05-31T21:22:44.437Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions matched source commands; transport parameters verified verbatim."
+confidence: medium
+summary: "All 21 spec actions matched source commands; transport parameters verified verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "total port count not stated (8 outputs visible in command examples)"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "number of inputs not explicitly stated (8 outputs shown, assumes 8x8)"
+- "hardware revision/firmware version not stated in source"
 ```
 
 ---

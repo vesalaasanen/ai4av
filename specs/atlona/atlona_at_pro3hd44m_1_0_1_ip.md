@@ -18,24 +18,28 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PRO3HD44M_V3.pdf
+  - https://atlona.com/pdf/data_sheet/AT-PRO3HD-FAMILY-DS.pdf
+retrieved_at: 2026-05-31T08:36:58.746Z
 last_checked_at: 2026-05-31T20:54:08.579Z
 generated_at: 2026-05-31T20:54:08.579Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version stated only as `(Firmware #)` placeholder in source"
+  - "TCP port number not stated in source; source mentions default DHCP on"
+  - "source does not document unsolicited event notifications"
+  - "source does not document multi-step macro sequences"
+  - "TCP/IP port number not stated in source"
+  - "firmware version compatibility range not stated in source"
+  - "list of available internal EDID index values not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:54:08.579Z
   matched_actions: 97
   action_count: 97
-  confidence: high
-  summary: "All 97 spec actions matched source commands; transport parameters verified (port correctly marked UNRESOLVED); full bidirectional coverage."
+  confidence: medium
+  summary: "All 97 spec actions matched source commands; transport parameters verified (port correctly marked UNRESOLVED); full bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -935,12 +939,9 @@ Commands are case-sensitive and terminated with carriage return (`\r`). If a com
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PRO3HD44M_V3.pdf
+  - https://atlona.com/pdf/data_sheet/AT-PRO3HD-FAMILY-DS.pdf
+retrieved_at: 2026-05-31T08:36:58.746Z
 last_checked_at: 2026-05-31T20:54:08.579Z
 ```
 
@@ -951,14 +952,20 @@ verdict: verified
 checked_at: 2026-05-31T20:54:08.579Z
 matched_actions: 97
 action_count: 97
-confidence: high
-summary: "All 97 spec actions matched source commands; transport parameters verified (port correctly marked UNRESOLVED); full bidirectional coverage."
+confidence: medium
+summary: "All 97 spec actions matched source commands; transport parameters verified (port correctly marked UNRESOLVED); full bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version stated only as `(Firmware #)` placeholder in source"
+- "TCP port number not stated in source; source mentions default DHCP on"
+- "source does not document unsolicited event notifications"
+- "source does not document multi-step macro sequences"
+- "TCP/IP port number not stated in source"
+- "firmware version compatibility range not stated in source"
+- "list of available internal EDID index values not stated in source"
 ```
 
 ---

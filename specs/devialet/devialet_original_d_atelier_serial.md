@@ -19,19 +19,29 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:34.695Z
 last_checked_at: 2026-04-25T20:38:08.456Z
 generated_at: 2026-04-25T20:38:08.456Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact pinout of the RS-232 connector not specified in source"
+  - "trigger I/O (3.5mm jack) control protocol not fully documented — only physical specs given"
+  - "no settable parameters beyond discrete actions and volume (covered in actions/feedbacks)"
+  - "no multi-step sequences described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "exact ACK response format not fully specified (e.g. \"[DEVIALET>VOLUME=ACK]\" shown as example)"
+  - "RS-232 connector pinout not specified"
+  - "configurator software details and configuration protocol not documented"
+  - "firmware version compatibility not stated in source"
+  - "trigger I/O command protocol (beyond physical spec) not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:38:08.456Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "All 38 spec actions matched literals from source; complete transport verification (baud 115200, 8n1, no flow control); no extraneous commands in source."
+  confidence: medium
+  summary: "All 38 spec actions matched literals from source; complete transport verification (baud 115200, 8n1, no flow control); no extraneous commands in source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -423,7 +433,7 @@ source_domains:
   - devialet.com
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
-retrieved_at: 2026-05-01T01:56:41.364Z
+retrieved_at: 2026-04-30T04:26:34.695Z
 last_checked_at: 2026-04-25T20:38:08.456Z
 ```
 
@@ -434,14 +444,23 @@ verdict: verified
 checked_at: 2026-04-25T20:38:08.456Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "All 38 spec actions matched literals from source; complete transport verification (baud 115200, 8n1, no flow control); no extraneous commands in source."
+confidence: medium
+summary: "All 38 spec actions matched literals from source; complete transport verification (baud 115200, 8n1, no flow control); no extraneous commands in source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact pinout of the RS-232 connector not specified in source"
+- "trigger I/O (3.5mm jack) control protocol not fully documented — only physical specs given"
+- "no settable parameters beyond discrete actions and volume (covered in actions/feedbacks)"
+- "no multi-step sequences described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "exact ACK response format not fully specified (e.g. \"[DEVIALET>VOLUME=ACK]\" shown as example)"
+- "RS-232 connector pinout not specified"
+- "configurator software details and configuration protocol not documented"
+- "firmware version compatibility not stated in source"
+- "trigger I/O command protocol (beyond physical spec) not documented"
 ```
 
 ---

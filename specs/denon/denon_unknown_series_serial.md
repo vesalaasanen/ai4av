@@ -23,23 +23,26 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - heimkinoraum.de
-source_urls:
-  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-20T11:38:42.349Z
 last_checked_at: 2026-05-20T11:38:42.349Z
 generated_at: 2026-05-20T11:38:42.349Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Not all models support all commands — model-specific availability is noted in the command tables but not fully captured in this spec. RS-232C is only available on X2100W (NA only), X3100W, X4100W, X5200W, X7200W/A; the S700W and X1100W use Ethernet only."
+  - "No discrete settable-parameter section beyond actions; all adjustable parameters"
+  - "populate from source, or remove section if not applicable"
+  - "Complete list of surround mode EVENT-only responses not fully captured; source contains extensive surround mode response tables. Binary command encoding not applicable (ASCII protocol). Authentication not applicable. Firmware compatibility range not stated in source."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:38:42.349Z
   matched_actions: 182
   action_count: 182
-  confidence: high
-  summary: "All 182 actions matched; transport verified."
+  confidence: medium
+  summary: "All 182 actions matched; transport verified. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1602,11 +1605,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - heimkinoraum.de
-source_urls:
-  - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-20T11:38:42.349Z
 last_checked_at: 2026-05-20T11:38:42.349Z
 ```
 
@@ -1617,14 +1618,18 @@ verdict: verified
 checked_at: 2026-05-20T11:38:42.349Z
 matched_actions: 182
 action_count: 182
-confidence: high
-summary: "All 182 actions matched; transport verified."
+confidence: medium
+summary: "All 182 actions matched; transport verified. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Not all models support all commands — model-specific availability is noted in the command tables but not fully captured in this spec. RS-232C is only available on X2100W (NA only), X3100W, X4100W, X5200W, X7200W/A; the S700W and X1100W use Ethernet only."
+- "No discrete settable-parameter section beyond actions; all adjustable parameters"
+- "populate from source, or remove section if not applicable"
+- "Complete list of surround mode EVENT-only responses not fully captured; source contains extensive surround mode response tables. Binary command encoding not applicable (ASCII protocol). Authentication not applicable. Firmware compatibility range not stated in source."
+- "model-specific source not located"
 ```
 
 ---

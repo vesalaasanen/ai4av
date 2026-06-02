@@ -16,28 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - shure.com
-  - content-files.shure.com
   - pubs.shure.com
+  - techportal.shure.com
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+  - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
+  - https://techportal.shure.com/
+retrieved_at: 2026-05-14T10:38:08.504Z
 last_checked_at: 2026-05-18T17:04:25.606Z
 generated_at: 2026-05-18T17:04:25.606Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial RS-232 not supported; no auth mechanism described in source"
+  - "no power on/off commands in source"
+  - "no safety warnings or interlock procedures in source"
+  - "power on/off commands not present in source"
+  - "authentication mechanism not described in source"
+  - "SAMPLE command for metering not fully documented in source"
+  - "VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:04:25.606Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants."
+  confidence: medium
+  summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -413,16 +416,12 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - shure.com
-  - content-files.shure.com
   - pubs.shure.com
+  - techportal.shure.com
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+  - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
+  - https://techportal.shure.com/
+retrieved_at: 2026-05-14T10:38:08.504Z
 last_checked_at: 2026-05-18T17:04:25.606Z
 ```
 
@@ -433,14 +432,20 @@ verdict: verified
 checked_at: 2026-05-18T17:04:25.606Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants."
+confidence: medium
+summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial RS-232 not supported; no auth mechanism described in source"
+- "no power on/off commands in source"
+- "no safety warnings or interlock procedures in source"
+- "power on/off commands not present in source"
+- "authentication mechanism not described in source"
+- "SAMPLE command for metering not fully documented in source"
+- "VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered"
 ```
 
 ---

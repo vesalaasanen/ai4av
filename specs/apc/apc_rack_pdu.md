@@ -28,14 +28,23 @@ last_checked_at: 2026-04-30T14:19:54.487Z
 generated_at: 2026-04-30T14:19:54.487Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Telnet/SSH port number not stated in source. UNRESOLVED: TCP port number not stated in source."
+  - "port number not stated in source"
+  - "data bits not stated in source"
+  - "parity not stated in source"
+  - "stop bits not stated in source"
+  - "flow control not stated in source"
+  - "no unsolicited event notifications described in source - device sends"
+  - "no explicit multi-step sequences described as macros in source."
+  - "TCP port number not stated in source. UNRESOLVED: SSH version 1 security concerns (source mentions v1 and v2). UNRESOLVED: firmware version compatibility not stated in source."
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:19:54.487Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified."
+  confidence: medium
+  summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -624,14 +633,22 @@ verdict: verified
 checked_at: 2026-04-30T14:19:54.487Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified."
+confidence: medium
+summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Telnet/SSH port number not stated in source. UNRESOLVED: TCP port number not stated in source."
+- "port number not stated in source"
+- "data bits not stated in source"
+- "parity not stated in source"
+- "stop bits not stated in source"
+- "flow control not stated in source"
+- "no unsolicited event notifications described in source - device sends"
+- "no explicit multi-step sequences described as macros in source."
+- "TCP port number not stated in source. UNRESOLVED: SSH version 1 security concerns (source mentions v1 and v2). UNRESOLVED: firmware version compatibility not stated in source."
 ```
 
 ---

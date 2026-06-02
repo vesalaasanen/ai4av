@@ -24,14 +24,19 @@ last_checked_at: 2026-05-14T18:17:15.180Z
 generated_at: 2026-05-14T18:17:15.180Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232, TCP, or other control protocols not documented in source"
+  - "no explicit power commands in source"
+  - "no explicit multi-step macros documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "default port 3019 not explicitly confirmed as production default, only localhost example shown"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.180Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift."
+  confidence: medium
+  summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -362,14 +367,18 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.180Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift."
+confidence: medium
+summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232, TCP, or other control protocols not documented in source"
+- "no explicit power commands in source"
+- "no explicit multi-step macros documented in source"
+- "no safety warnings or interlock procedures in source"
+- "default port 3019 not explicitly confirmed as production default, only localhost example shown"
 ```
 
 ---

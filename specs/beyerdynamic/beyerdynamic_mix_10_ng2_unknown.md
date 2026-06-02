@@ -19,37 +19,41 @@ source_domains:
   - usermanual.wiki
   - images.static-thomann.de
   - manualslib.com
-  - adeogroup.it
+  - fccid.io
 source_urls:
   - https://usermanual.wiki/Beyerdynamic/MIX10NG2-1016784.pdf
   - https://images.static-thomann.de/pics/atg/atgdata/document/manual/142489_anleitung.pdf
   - https://manualslib.com/manual/286677/Beyerdynamic-MIX-10-NG2.html
-  - https://adeogroup.it/sites/default/files/prodotti_allegati_pubblici/beyerdynamic_brochure-orbis.pdf
+  - https://fccid.io/OSDMIX10NG2/User-Manual-1016784/ViewExhibitReport.cfm
 retrieved_at: 2026-05-12T21:12:24.361Z
 last_checked_at: 2026-05-14T05:46:52.872Z
 generated_at: 2026-05-14T05:46:52.872Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "switch-on power sequencing, max cable length, behavior on malformed frames"
+  - "data byte format for D8 not detailed in source beyond \"V 1.0\" example"
+  - "source contains no explicit safety warnings or interlock procedures"
+  - "max cable length, behavior on malformed frames, command timeouts, link-layer retry behavior"
 verification:
   verdict: verified
   checked_at: 2026-05-14T05:46:52.872Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected."
+  confidence: medium
+  summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-13
+created_at: 2026-06-02
 ---
 
 # Beyerdynamic MIX 10 NG2 Control Spec
 
 ## Summary
-Beyerdynamic MIX 10 NG2 is a mixing unit with RS-232 control interface. Communication uses DLE/STX/ETX-framed two-byte commands with XOR checksum. No authentication required.
+Stereo/mic line mixer with RS-232 control. Two-byte commands wrapped in DLE-framed packets with XOR checksum. 9600 baud, 8N1, no handshake. Sub-D 9 (Pin 2=Rx, Pin 3=Tx, Pin 5=GND). DevNo=0x01 for PC→Device, 0x00 for Device→PC.
 
-<!-- UNRESOLVED: no mention of TCP/IP, HTTP, or other protocols — serial-only device -->
+<!-- UNRESOLVED: switch-on power sequencing, max cable length, behavior on malformed frames -->
 
 ## Transport
 ```yaml
@@ -61,458 +65,408 @@ serial:
   parity: none
   stop_bits: 1
   flow_control: none
-  pinout:
-    rx: 2  # Sub-D 9 pin 2
-    tx: 3  # Sub-D 9 pin 3
-    gnd: 5 # Sub-D 9 pin 5
+  connector: "Sub-D 9 (Pin 2=Rx, Pin 3=Tx, Pin 5=GND)"
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable     # Switch-on status command (B7) present
-- routable      # Select line source command (A1) present
-- queryable     # Inquiry commands (AF, BF) present
-- levelable     # Volume control commands (A2, A3, A6, A7) present
+- routable  # inferred: input source selection (A1, C1)
+- levelable  # inferred: volume commands (A2/A3/A6/A7)
+- queryable  # inferred: inquiry commands (AF, BF)
+- powerable  # inferred: switch-on status preset (B7, D7)
 ```
 
 ## Actions
+
+PC→Device frame: `10 02 01 {Len} {Cmd} {Data0} {Data1?} 10 03 {CS}`.
+`{CS}` = XOR of bytes STX(02) through ETX(03) inclusive.
+`{Len}` = byte count of Cmd+Data (0x01 / 0x02 / 0x03).
+
 ```yaml
 - id: select_line_source
   label: Select Line Source
   kind: action
+  command: "10 02 01 02 A1 {Data0} 10 03 {CS}"
   params:
-    - name: source
+    - name: Data0
       type: integer
-      description: Line source 0=none, 1-4=line 1-4
+      description: Line source (00=none, 01=line1, 02=line2, 03=line3, 04=line4)
 
 - id: set_stereo_volume
   label: Set Stereo Volume
   kind: action
+  command: "10 02 01 03 A2 {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: value
+    - name: Data0
       type: integer
-      description: Volume 0x00-0x4F (non-linear scale, see Notes)
-    - name: channel
+      description: Volume value (00-4F hex; 4F-7F=mute)
+    - name: Data1
       type: integer
-      description: Stereo channel 0x00=LINE, 0x01=SUB-L, 0x02=SUB-R, 0x03=MASTER-L, 0x04=MASTER-R
+      description: Stereo channel (00=LINE, 01=SUB-L, 02=SUB-R, 03=MASTER-L, 04=MASTER-R)
 
 - id: set_mic_volume
   label: Set Mic Volume
   kind: action
+  command: "10 02 01 03 A3 {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: value
+    - name: Data0
       type: integer
-      description: Volume 0x00-0x4F
-    - name: channel
+      description: Volume value (00-4F hex)
+    - name: Data1
       type: integer
-      description: Mic channel 0x10=MIC1, 0x11=MIC2, ..., 0x15=MIC6
+      description: Mic channel (10=MIC1, 11=MIC2, 12=MIC3, 13=MIC4, 14=MIC5, 15=MIC6)
 
-- id: change_stereo_volume_by_steps
+- id: change_stereo_volume_step
   label: Change Stereo Volume by N Steps
   kind: action
+  command: "10 02 01 03 A6 {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: steps
+    - name: Data0
       type: integer
-      description: Number of steps 0x00-0x1F; upper bit of byte 2 determines direction (0=up, 1=down)
-    - name: direction
+      description: Steps (00-1F) | bit 6 = direction (0=higher, 1=lower)
+    - name: Data1
       type: integer
-      description: 0=higher, 1=lower
-    - name: channel
-      type: integer
-      description: Stereo channel 0x00-0x04
+      description: Stereo channel (00-04)
 
-- id: change_mic_volume_by_steps
+- id: change_mic_volume_step
   label: Change Mic Volume by N Steps
   kind: action
+  command: "10 02 01 03 A7 {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: steps
+    - name: Data0
       type: integer
-      description: Number of steps 0x00-0x1F
-    - name: direction
+      description: Steps (00-1F) | bit 6 = direction (0=higher, 1=lower)
+    - name: Data1
       type: integer
-      description: 0=higher, 1=lower
-    - name: channel
-      type: integer
-      description: Mic channel 0x10-0x15
+      description: Mic channel (10-15)
 
 - id: set_ducking_manually
-  label: Set Ducking Manually
+  label: Set Manual Ducking
   kind: action
+  command: "10 02 01 02 A8 {Data0} 10 03 {CS}"
   params:
-    - name: state
+    - name: Data0
       type: integer
-      description: 0x02=on, 0x00=off
+      description: 00=off, 02=on
 
 - id: set_mic_ducking
   label: Set Mic Ducking
   kind: action
+  command: "10 02 01 03 A9 {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: enabled
+    - name: Data0
       type: integer
-      description: 0x01=enabled, 0x00=disabled
-    - name: channel
+      description: 00=disabled, 01=enabled
+    - name: Data1
       type: integer
-      description: Mic channel 0x10-0x15
+      description: Mic channel (10-15)
 
 - id: set_stereo_ganged
   label: Set Stereo Ganged
   kind: action
+  command: "10 02 01 03 AA {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: enabled
+    - name: Data0
       type: integer
-      description: 0x01=enabled, 0x00=disabled
-    - name: mode
+      description: 00=disabled, 01=enabled
+    - name: Data1
       type: integer
-      description: 0x01=subgroup, 0x02=master
+      description: 01=subgroup, 02=master
 
 - id: recall_or_save_preset
   label: Recall or Save Preset
   kind: action
+  command: "10 02 01 03 AB {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: preset
+    - name: Data0
       type: integer
-      description: Preset number 0x00-0x03 (0=default, 1-3=user presets)
-    - name: operation
+      description: Preset number (00-03)
+    - name: Data1
       type: integer
-      description: 0x00=recall, 0x01=save
+      description: 00=recall, 01=save
 
 - id: mute_channel
   label: Mute Channel
   kind: action
+  command: "10 02 01 03 AE {Data0} {Data1} 10 03 {CS}"
   params:
-    - name: mute
+    - name: Data0
       type: integer
-      description: 0x00=unmute, 0x01=mute
-    - name: channel
+      description: 00=unmute, 01=mute
+    - name: Data1
       type: integer
-      description: Channel 0x00-0x04 (stereo) or 0x10-0x15 (mic)
+      description: Channel (00-04 stereo, 10-15 mic)
 
-- id: inquiry_select_line_source
+- id: inquiry_line_source
   label: Inquiry Line Source
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 AF 01 10 03 {CS}"
 
 - id: inquiry_stereo_volume
   label: Inquiry Stereo Volume
-  kind: action
+  kind: query
+  command: "10 02 01 03 AF 02 {Data1} 10 03 {CS}"
   params:
-    - name: channel
+    - name: Data1
       type: integer
-      description: Stereo channel 0x00-0x04
+      description: Stereo channel (00-04)
 
 - id: inquiry_mic_volume
   label: Inquiry Mic Volume
-  kind: action
+  kind: query
+  command: "10 02 01 03 AF 03 {Data1} 10 03 {CS}"
   params:
-    - name: channel
+    - name: Data1
       type: integer
-      description: Mic channel 0x10-0x15
+      description: Mic channel (10-15)
 
 - id: inquiry_stereo_ganged
   label: Inquiry Stereo Ganged
-  kind: action
+  kind: query
+  command: "10 02 01 03 AF 06 {Data1} 10 03 {CS}"
   params:
-    - name: mode
+    - name: Data1
       type: integer
-      description: 0x01=subgroup, 0x02=master
+      description: 01=subgroup, 02=master
 
 - id: inquiry_mute_state
   label: Inquiry Mute State
-  kind: action
+  kind: query
+  command: "10 02 01 03 AF 07 {Data1} 10 03 {CS}"
   params:
-    - name: channel
+    - name: Data1
       type: integer
-      description: Channel 0x00-0x04 (stereo) or 0x10-0x15 (mic)
+      description: Channel (00-04 stereo, 10-15 mic)
 
 - id: set_fade_out_speed
   label: Set Fade-Out Speed
   kind: action
+  command: "10 02 01 02 B0 {Data0} 10 03 {CS}"
   params:
-    - name: speed
+    - name: Data0
       type: integer
-      description: Speed value 0x00-0x7F
+      description: Speed value (00-7F)
 
 - id: set_fade_in_speed
   label: Set Fade-In Speed
   kind: action
+  command: "10 02 01 02 B1 {Data0} 10 03 {CS}"
   params:
-    - name: speed
+    - name: Data0
       type: integer
-      description: Speed value 0x00-0x7F
+      description: Speed value (00-7F)
 
 - id: set_ducking_threshold
   label: Set Ducking Threshold
   kind: action
+  command: "10 02 01 02 B2 {Data0} 10 03 {CS}"
   params:
-    - name: threshold
+    - name: Data0
       type: integer
-      description: Threshold value 0x00-0x7F
+      description: Threshold value (00-7F)
 
 - id: set_ducking_attenuation
   label: Set Ducking Attenuation
   kind: action
+  command: "10 02 01 02 B3 {Data0} 10 03 {CS}"
   params:
-    - name: attenuation
+    - name: Data0
       type: integer
-      description: Attenuation value 0x00-0x4F
+      description: Attenuation value (00-4F)
 
 - id: set_ducking_hold
   label: Set Ducking Hold
   kind: action
+  command: "10 02 01 02 B4 {Data0} 10 03 {CS}"
   params:
-    - name: value
+    - name: Data0
       type: integer
-      description: Hold value 0x00-0x7F
+      description: Hold value (00-7F)
 
 - id: set_switch_on_status
   label: Set Switch-On Status
   kind: action
+  command: "10 02 01 02 B7 {Data0} 10 03 {CS}"
   params:
-    - name: preset
+    - name: Data0
       type: integer
-      description: 0x00=switch-off status, 0x01-0x03=preset 1-3
+      description: 00=switch-off status, 01=preset 1, 02=preset 2, 03=preset 3
 
 - id: reset_eeprom
   label: Reset EEPROM
   kind: action
-  params: []
+  command: "10 02 01 02 B8 00 10 03 {CS}"
 
 - id: inquiry_fade_out_speed
   label: Inquiry Fade-Out Speed
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 00 10 03 {CS}"
 
 - id: inquiry_fade_in_speed
   label: Inquiry Fade-In Speed
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 01 10 03 {CS}"
 
 - id: inquiry_ducking_threshold
   label: Inquiry Ducking Threshold
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 02 10 03 {CS}"
 
 - id: inquiry_ducking_stereo_reduction
   label: Inquiry Ducking Stereo Reduction
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 03 10 03 {CS}"
 
 - id: inquiry_ducking_hold
   label: Inquiry Ducking Hold
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 04 10 03 {CS}"
 
 - id: inquiry_ducking_fade_out_speed
   label: Inquiry Ducking Fade-Out Speed
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 05 10 03 {CS}"
 
 - id: inquiry_ducking_fade_in_speed
   label: Inquiry Ducking Fade-In Speed
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 06 10 03 {CS}"
 
 - id: inquiry_start_configuration
   label: Inquiry Start Configuration
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 07 10 03 {CS}"
 
 - id: inquiry_programmed_version
   label: Inquiry Programmed Version
-  kind: action
-  params: []
+  kind: query
+  command: "10 02 01 02 BF 08 10 03 {CS}"
 ```
 
 ## Feedbacks
+
+Device→PC frame: `10 02 00 {Len} {Cmd} {Data0} {Data1?} 10 03 {CS}`. DevNo=0x00.
+
 ```yaml
-# Device sends acknowledgment after every received command.
-# Device also sends unsolicited status changes for:
 - id: line_source_selected
-  label: Line Source Selected (Unsolicited)
   type: integer
-  description: Line 0=none, 1-4=line 1-4
-  values: [0, 1, 2, 3, 4]
+  description: Currently selected line source (00=none, 01-04=line 1-4)
+  command: "10 02 00 02 C1 {Data0} 10 03 {CS}"
 
 - id: stereo_volume_currently_adjusted
-  label: Stereo Volume Currently Adjusted
-  type: object
-  fields:
-    - name: value
-      type: integer
-      description: Volume value 0x00-0x4F
-    - name: channel
-      type: integer
-      description: Stereo channel 0x00-0x04
+  type: integer
+  description: Stereo volume in adjustment (00-4F; 4F-7F=mute)
+  command: "10 02 00 03 C2 {Data0} {Data1} 10 03 {CS}"
 
 - id: mic_volume_currently_adjusted
-  label: Mic Volume Currently Adjusted
-  type: object
-  fields:
-    - name: value
-      type: integer
-      description: Volume value 0x00-0x4F
-    - name: channel
-      type: integer
-      description: Mic channel 0x10-0x15
+  type: integer
+  description: Mic volume in adjustment (00-4F)
+  command: "10 02 00 03 C3 {Data0} {Data1} 10 03 {CS}"
 
 - id: stereo_volume_now
-  label: Stereo Volume Now
-  type: object
-  fields:
-    - name: value
-      type: integer
-      description: Volume value 0x00-0x4F
-    - name: channel
-      type: integer
-      description: Stereo channel 0x00-0x04
+  type: integer
+  description: Settled stereo volume (00-4F)
+  command: "10 02 00 03 C4 {Data0} {Data1} 10 03 {CS}"
 
 - id: mic_volume_now
-  label: Mic Volume Now
-  type: object
-  fields:
-    - name: value
-      type: integer
-      description: Volume value 0x00-0x4F
-    - name: channel
-      type: integer
-      description: Mic channel 0x10-0x15
+  type: integer
+  description: Settled mic volume (00-4F)
+  command: "10 02 00 03 C5 {Data0} {Data1} 10 03 {CS}"
 
-- id: auto_ducking_state
-  label: Auto Ducking State
-  type: boolean
-  description: Bit 0 of byte 1
+- id: auto_ducking_flag
+  type: enum
+  values: [on, off]
+  description: Auto ducking state (bit 0 of Data0; 1=on, 0=off)
+  command: "10 02 00 02 C8 20 10 03 {CS}"
 
-- id: ducking_manually_state
-  label: Ducking Manually State
-  type: boolean
-  description: Bit 1 of byte 2
+- id: ducking_manually_flag
+  type: enum
+  values: [on, off]
+  description: Manual ducking state (bit 1 of Data0; 1=on, 0=off)
+  command: "10 02 00 02 C8 21 10 03 {CS}"
 
-- id: mic_ducking_enabled
-  label: Mic Ducking Enabled
-  type: object
-  fields:
-    - name: enabled
-      type: boolean
-    - name: channel
-      type: integer
-      description: Mic channel 0x10-0x15
+- id: mic_ducking
+  type: enum
+  values: [enabled, disabled]
+  description: Per-mic ducking enable state
+  command: "10 02 00 03 C9 {Data0} {Data1} 10 03 {CS}"
 
-- id: stereo_ganged_state
-  label: Stereo Ganged State
-  type: object
-  fields:
-    - name: enabled
-      type: boolean
-    - name: mode
-      type: integer
-      description: 0x01=subgroup, 0x02=master
+- id: stereo_ganged
+  type: enum
+  values: [enabled, disabled]
+  description: Stereo ganged state
+  command: "10 02 00 03 CA {Data0} {Data1} 10 03 {CS}"
 
 - id: preset_load_save
-  label: Preset Load or Save
-  type: object
-  fields:
-    - name: preset
-      type: integer
-      description: 0x00=default, 0x01-0x03=preset 1-3
-    - name: operation
-      type: integer
-      description: 0x00=load, 0x01=save
+  type: integer
+  description: Preset load/save notification (Data0: 00=default, 01-03=preset; Data1: 00=load, 01=save)
+  command: "10 02 00 03 CB {Data0} {Data1} 10 03 {CS}"
 
 - id: mute_flag
-  label: Mute Flag
-  type: object
-  fields:
-    - name: muted
-      type: boolean
-    - name: channel
-      type: integer
-      description: Channel 0x00-0x04 (stereo) or 0x10-0x15 (mic)
+  type: enum
+  values: [on, off]
+  description: Channel mute state (Data0: 1=mute, 0=unmute)
+  command: "10 02 00 03 CE {Data0} {Data1} 10 03 {CS}"
 
 - id: fade_out_speed
-  label: Fade-Out Speed
   type: integer
-  description: Speed value 0x00-0x7F
+  description: Current fade-out speed (00-7F)
+  command: "10 02 00 02 D0 {Data0} 10 03 {CS}"
 
 - id: fade_in_speed
-  label: Fade-In Speed
   type: integer
-  description: Speed value 0x00-0x7F
+  description: Current fade-in speed (00-7F)
+  command: "10 02 00 02 D1 {Data0} 10 03 {CS}"
 
 - id: ducking_threshold_value
-  label: Ducking Threshold Value
   type: integer
-  description: Threshold value 0x00-0x7F
+  description: Current ducking threshold (00-7F)
+  command: "10 02 00 02 D2 {Data0} 10 03 {CS}"
 
 - id: ducking_reduction
-  label: Ducking Reduction
   type: integer
-  description: Reduction value 0x00-0x4F
+  description: Current ducking reduction (00-4F)
+  command: "10 02 00 02 D3 {Data0} 10 03 {CS}"
 
 - id: ducking_hold
-  label: Ducking Hold
   type: integer
-  description: Hold value 0x00-0x7F
+  description: Current ducking hold (00-7F)
+  command: "10 02 00 02 D4 {Data0} 10 03 {CS}"
 
 - id: switch_on_status
-  label: Switch-On Status
   type: integer
-  description: 0x00=switch-off, 0x01-0x03=preset 1-3
+  description: Power-on default state (00=switch-off, 01-03=preset 1-3)
+  command: "10 02 00 02 D7 {Data0} 10 03 {CS}"
 
 - id: programmed_version
-  label: Programmed Version
   type: string
-  description: Version string e.g. "V 1.0"
-```
-
-## Variables
-```yaml
-# Volume scaling is non-linear:
-# 0x00-0x20: N × (-0.5 dB)
-# 0x21-0x40: N × (-1.0 dB) + 16.0 dB
-# 0x41-0x4E: N × (-2.0 dB) + 80.0 dB
-# 0x4F-0x7F: -104 dB (mute)
-```
-
-## Events
-```yaml
-# Device sends unsolicited status changes for all state variables.
-# Acknowledge message sent directly after receiving any command.
-```
-
-## Macros
-```yaml
-# No explicit macros described in source.
+  description: Firmware version string
+  command: "10 02 00 02 D8 10 03 {CS}"
+  # UNRESOLVED: data byte format for D8 not detailed in source beyond "V 1.0" example
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: source contains no explicit safety warnings or interlock procedures
 ```
 
 ## Notes
 
-**Command packet structure:**
-```
-DLE STX DeviceNo Len Cmd[Data] DLE ETX Checksum
-0x10 0x02 0x01    0x02 A1 03    0x10 03  A0
-```
-- Device→PC uses DeviceNo=0x00; PC→Device uses DeviceNo=0x01
-- Checksum = XOR of all bytes from STX through ETX (inclusive)
+- **Frame format**: `DLE STX DevNo Len Cmd Data[0..1] DLE ETX CS`. DLE=0x10, STX=0x02, ETX=0x03.
+- **Checksum**: XOR of bytes STX(02) through ETX(03) inclusive, excluding the leading DLE(10) and the CS byte itself.
+- **Length**: byte count of `Cmd + Data` (typically 0x02 or 0x03).
+- **Volume scale (hex)**: `00..20` → N × (-0.5 dB); `21..40` → N × (-1.0 dB) + 16.0 dB; `41..4E` → N × (-2.0 dB) + 80.0 dB; `4F..7F` → -104 dB (mute).
+- **Channel codes**: `00..04` = LINE, SUB-L, SUB-R, MASTER-L, MASTER-R; `10..15` = MIC1..MIC6.
+- **A6/A7 step direction**: bit 6 of Data0 — 0=higher, 1=lower.
+- **C8 bit fields**: bit 0 = auto ducking, bit 1 = manual ducking.
+- **Acknowledgement**: device sends an ack immediately after each request.
+- **Worked example** (select CD line input = line 3): `10 02 01 02 A1 03 10 03 A0` (XOR of 02⊕01⊕02⊕A1⊕03⊕10⊕03 = A0).
 
-**Channel addressing:**
-- Stereo channels: 0x00=LINE, 0x01=SUB-L, 0x02=SUB-R, 0x03=MASTER-L, 0x04=MASTER-R
-- Mic channels: 0x10=MIC1, 0x11=MIC2, ..., 0x15=MIC6
-
-**Volume scale:** Non-linear curve; 0x4F-0x7F maps to -104 dB (mute). See Variables section.
-
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: no mention of TCP/IP, HTTP, REST, or other protocols — serial only -->
-<!-- UNRESOLVED: error handling behavior not described in source -->
-<!-- UNRESOLVED: no mention of command timing or polling requirements -->
+<!-- UNRESOLVED: max cable length, behavior on malformed frames, command timeouts, link-layer retry behavior -->
 
 ## Provenance
 
@@ -521,12 +475,12 @@ source_domains:
   - usermanual.wiki
   - images.static-thomann.de
   - manualslib.com
-  - adeogroup.it
+  - fccid.io
 source_urls:
   - https://usermanual.wiki/Beyerdynamic/MIX10NG2-1016784.pdf
   - https://images.static-thomann.de/pics/atg/atgdata/document/manual/142489_anleitung.pdf
   - https://manualslib.com/manual/286677/Beyerdynamic-MIX-10-NG2.html
-  - https://adeogroup.it/sites/default/files/prodotti_allegati_pubblici/beyerdynamic_brochure-orbis.pdf
+  - https://fccid.io/OSDMIX10NG2/User-Manual-1016784/ViewExhibitReport.cfm
 retrieved_at: 2026-05-12T21:12:24.361Z
 last_checked_at: 2026-05-14T05:46:52.872Z
 ```
@@ -538,14 +492,17 @@ verdict: verified
 checked_at: 2026-05-14T05:46:52.872Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected."
+confidence: medium
+summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "switch-on power sequencing, max cable length, behavior on malformed frames"
+- "data byte format for D8 not detailed in source beyond \"V 1.0\" example"
+- "source contains no explicit safety warnings or interlock procedures"
+- "max cable length, behavior on malformed frames, command timeouts, link-layer retry behavior"
 ```
 
 ---

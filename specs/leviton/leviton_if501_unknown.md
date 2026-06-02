@@ -17,22 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - leviton.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://leviton.com/content/dam/leviton/lighting-controls/controls/product_documents/instruction_sheet/D42AV-D4200-AV-Interface-English-Instruction-Sheet.pdf
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
+  - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
 retrieved_at: 2026-05-14T23:54:54.918Z
 last_checked_at: 2026-05-16T11:29:19.339Z
 generated_at: 2026-05-16T11:29:19.339Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device model IF501 inferred from entity_id; source references \"Vizia RF + VRC0P\" — exact model correspondence not confirmed"
+  - "no distinct settable variables beyond action parameters identified in source"
+  - "no explicit safety warnings or interlock procedures in source."
+  - "exact model number IF501 vs VRC0P correspondence not confirmed in source"
+  - "maximum number of nodes/groups supported not stated"
+  - "firmware version compatibility not stated"
+  - "command timing requirements beyond ST (1-2ms between DI/BR) not specified"
+  - "Z-Wave command class details referenced in appendices but not fully enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:29:19.339Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions matched verbatim in source; transport parameters fully verified; comprehensive command coverage without gaps."
+  confidence: medium
+  summary: "All 21 spec actions matched verbatim in source; transport parameters fully verified; comprehensive command coverage without gaps. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -392,9 +401,10 @@ interlocks: []
 ```yaml
 source_domains:
   - leviton.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://leviton.com/content/dam/leviton/lighting-controls/controls/product_documents/instruction_sheet/D42AV-D4200-AV-Interface-English-Instruction-Sheet.pdf
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
+  - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
 retrieved_at: 2026-05-14T23:54:54.918Z
 last_checked_at: 2026-05-16T11:29:19.339Z
 ```
@@ -406,14 +416,21 @@ verdict: verified
 checked_at: 2026-05-16T11:29:19.339Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions matched verbatim in source; transport parameters fully verified; comprehensive command coverage without gaps."
+confidence: medium
+summary: "All 21 spec actions matched verbatim in source; transport parameters fully verified; comprehensive command coverage without gaps. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device model IF501 inferred from entity_id; source references \"Vizia RF + VRC0P\" — exact model correspondence not confirmed"
+- "no distinct settable variables beyond action parameters identified in source"
+- "no explicit safety warnings or interlock procedures in source."
+- "exact model number IF501 vs VRC0P correspondence not confirmed in source"
+- "maximum number of nodes/groups supported not stated"
+- "firmware version compatibility not stated"
+- "command timing requirements beyond ST (1-2ms between DI/BR) not specified"
+- "Z-Wave command class details referenced in appendices but not fully enumerated"
 ```
 
 ---

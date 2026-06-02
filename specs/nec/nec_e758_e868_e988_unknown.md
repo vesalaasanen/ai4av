@@ -21,19 +21,37 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:53:01.351Z
 last_checked_at: 2026-05-16T12:37:59.381Z
 generated_at: 2026-05-16T12:37:59.381Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values for PIP are incomplete."
+  - "flow_control not stated in source"
+  - "wireless LAN specifics deferred to separate wireless LAN unit manual"
+  - "flow control not stated in source"
+  - "complete input terminal value list not in source"
+  - "aspect values listed in Appendix not included in source"
+  - "other target values not documented in this section"
+  - "eco mode values listed in Appendix not included in source"
+  - "input terminal values listed in Appendix not included in source"
+  - "eco mode return values listed in Appendix not included in source"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no multi-step macro sequences described in source"
+  - "source mentions interlock switch in error status bitfield (DATA09 Bit1)"
+  - "Appendix \"Supplementary Information by Command\" not included — missing input terminal values, aspect values, eco mode values, base model type values, selection signal type details, and sub-input PIP values"
+  - "flow_control serial parameter not stated"
+  - "default baud rate not specified (multiple supported: 115200/38400/19200/9600/4800)"
+  - "lens control target values beyond 06h (Periphery Focus) not documented in provided sections"
+  - "no notification/event mechanism for asynchronous status changes described"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:37:59.381Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched verbatim with source opcodes; Feedbacks section represents all source query commands; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 28 spec actions matched verbatim with source opcodes; Feedbacks section represents all source query commands; bidirectional coverage complete. (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -627,7 +645,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:53:01.351Z
 last_checked_at: 2026-05-16T12:37:59.381Z
 ```
 
@@ -638,14 +656,31 @@ verdict: verified
 checked_at: 2026-05-16T12:37:59.381Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched verbatim with source opcodes; Feedbacks section represents all source query commands; bidirectional coverage complete."
+confidence: medium
+summary: "All 28 spec actions matched verbatim with source opcodes; Feedbacks section represents all source query commands; bidirectional coverage complete. (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values for PIP are incomplete."
+- "flow_control not stated in source"
+- "wireless LAN specifics deferred to separate wireless LAN unit manual"
+- "flow control not stated in source"
+- "complete input terminal value list not in source"
+- "aspect values listed in Appendix not included in source"
+- "other target values not documented in this section"
+- "eco mode values listed in Appendix not included in source"
+- "input terminal values listed in Appendix not included in source"
+- "eco mode return values listed in Appendix not included in source"
+- "no unsolicited event/notification mechanism described in source"
+- "no multi-step macro sequences described in source"
+- "source mentions interlock switch in error status bitfield (DATA09 Bit1)"
+- "Appendix \"Supplementary Information by Command\" not included — missing input terminal values, aspect values, eco mode values, base model type values, selection signal type details, and sub-input PIP values"
+- "flow_control serial parameter not stated"
+- "default baud rate not specified (multiple supported: 115200/38400/19200/9600/4800)"
+- "lens control target values beyond 06h (Periphery Focus) not documented in provided sections"
+- "no notification/event mechanism for asynchronous status changes described"
 ```
 
 ---

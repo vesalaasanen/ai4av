@@ -27,11 +27,8 @@ compatible_with:
   required_options: []
 source_domains:
   - bang-olufsen.github.io
-  - bangolufsenrmaskillgohel.blob.core.windows.net
 source_urls:
   - https://bang-olufsen.github.io/mozart-open-api/
-  - "https://bangolufsenrmaskillgohel.blob.core.windows.net/zendesk-guide/B2B%20Toolbox/3rd%20Party%20integration%20Drivers%20and%20Protocols/BLGW_Home_Integration_Protocol.pdf"
-  - https://bang-olufsen.github.io/mozart-open-api
 retrieved_at: 2026-05-07T06:17:53.402Z
 last_checked_at: 2026-05-20T05:10:36.374Z
 generated_at: 2026-05-20T05:10:36.374Z
@@ -40,13 +37,21 @@ protocol_coverage: []
 known_gaps:
   - connect_notifications
   - close_api_client
+  - "specific endpoint paths and request/response schemas not detailed in source; only high-level category list and Python SDK method signatures provided"
+  - "detailed parameter schemas not provided; source lists schema names"
+  - "multi-step sequences not documented in source"
+  - "safety warnings and interlock procedures not present in source"
+  - "specific REST endpoint paths, HTTP methods (GET/POST/PUT/DELETE), request/response body schemas not stated in source"
+  - "Power on/off command syntax not detailed despite Power endpoint category existing"
+  - "Audio tuning parameters (Bass, Treble, Loudness, Balance, Surround) listed as schemas but no command syntax or value ranges documented"
+  - "SpeakerGroup, Scene, Bluetooth, Stand, Display control commands not detailed beyond schema names"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:10:36.374Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification."
+  confidence: medium
+  summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -219,11 +224,8 @@ Receiving WebSocketEventBeoRemoteButton requires `remote_control=True` in `conne
 ```yaml
 source_domains:
   - bang-olufsen.github.io
-  - bangolufsenrmaskillgohel.blob.core.windows.net
 source_urls:
   - https://bang-olufsen.github.io/mozart-open-api/
-  - "https://bangolufsenrmaskillgohel.blob.core.windows.net/zendesk-guide/B2B%20Toolbox/3rd%20Party%20integration%20Drivers%20and%20Protocols/BLGW_Home_Integration_Protocol.pdf"
-  - https://bang-olufsen.github.io/mozart-open-api
 retrieved_at: 2026-05-07T06:17:53.402Z
 last_checked_at: 2026-05-20T05:10:36.374Z
 ```
@@ -235,8 +237,8 @@ verdict: verified
 checked_at: 2026-05-20T05:10:36.374Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification."
+confidence: medium
+summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -244,6 +246,14 @@ summary: "All 12 spec actions match source methods; transport parameters verifie
 ```yaml
 - connect_notifications
 - close_api_client
+- "specific endpoint paths and request/response schemas not detailed in source; only high-level category list and Python SDK method signatures provided"
+- "detailed parameter schemas not provided; source lists schema names"
+- "multi-step sequences not documented in source"
+- "safety warnings and interlock procedures not present in source"
+- "specific REST endpoint paths, HTTP methods (GET/POST/PUT/DELETE), request/response body schemas not stated in source"
+- "Power on/off command syntax not detailed despite Power endpoint category existing"
+- "Audio tuning parameters (Bass, Treble, Loudness, Balance, Surround) listed as schemas but no command syntax or value ranges documented"
+- "SpeakerGroup, Scene, Bluetooth, Stand, Display control commands not detailed beyond schema names"
 ```
 
 ---

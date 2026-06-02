@@ -21,19 +21,27 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T22:00:59.334Z
 last_checked_at: 2026-05-16T19:52:00.136Z
 generated_at: 2026-05-16T19:52:00.136Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "No authentication procedure found in source — auth appears to be absent."
+  - "Firmware version compatibility ranges not fully stated; some input selection commands vary by firmware version (v3.8.0, v4.2.0)."
+  - "no unsolicited event/push mechanism documented in source beyond long-poll responses."
+  - "no other multi-step macros explicitly described in source."
+  - "no additional safety warnings or interlock procedures found in source."
+  - "No authentication mechanism described; assumed open HTTP with no credentials."
+  - "Firmware version compatibility ranges not comprehensively stated (only specific version thresholds noted for input selection)."
+  - "Error response format not fully documented; source notes errors are enclosed in <error> root element with <message> and optional <detail> text nodes (mentioned only for /Browse)."
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:52:00.136Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed."
+  confidence: medium
+  summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -665,7 +673,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T22:00:59.334Z
 last_checked_at: 2026-05-16T19:52:00.136Z
 ```
 
@@ -676,14 +684,21 @@ verdict: verified
 checked_at: 2026-05-16T19:52:00.136Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed."
+confidence: medium
+summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "No authentication procedure found in source — auth appears to be absent."
+- "Firmware version compatibility ranges not fully stated; some input selection commands vary by firmware version (v3.8.0, v4.2.0)."
+- "no unsolicited event/push mechanism documented in source beyond long-poll responses."
+- "no other multi-step macros explicitly described in source."
+- "no additional safety warnings or interlock procedures found in source."
+- "No authentication mechanism described; assumed open HTTP with no credentials."
+- "Firmware version compatibility ranges not comprehensively stated (only specific version thresholds noted for input selection)."
+- "Error response format not fully documented; source notes errors are enclosed in <error> root element with <message> and optional <detail> text nodes (mentioned only for /Browse)."
 ```
 
 ---

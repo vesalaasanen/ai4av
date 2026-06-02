@@ -17,9 +17,10 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:50:42.964Z
 last_checked_at: 2026-05-14T21:37:19.283Z
 generated_at: 2026-05-14T21:37:19.283Z
 firmware_coverage: "Not stated in source"
@@ -27,13 +28,23 @@ protocol_coverage: []
 known_gaps:
   - system.standby.enable
   - system.eco.enable
+  - "specific G62 model variants not enumerated in source"
+  - "firmware version compatibility not stated"
+  - "HTTP file transfer endpoints have no auth requirement documented"
+  - "source does not describe safety interlocks or power-on sequencing beyond"
+  - "zoom/focus/lens shift position value ranges not specified"
+  - "DMX extended mode channel details not specified"
+  - "CLO behavior details not specified beyond engage method"
+  - "color preset names and P7 color mode details not fully documented"
+  - "HTTP file transfer authentication requirements not stated"
+  - "laser serial number method (illumination.laser.getserialnumber) response format partially documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:37:19.283Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively."
+  confidence: medium
+  summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -819,9 +830,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:50:42.964Z
 last_checked_at: 2026-05-14T21:37:19.283Z
 ```
 
@@ -832,8 +844,8 @@ verdict: verified
 checked_at: 2026-05-14T21:37:19.283Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively."
+confidence: medium
+summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -841,6 +853,16 @@ summary: "All 50 spec actions matched literal method names and properties in sou
 ```yaml
 - system.standby.enable
 - system.eco.enable
+- "specific G62 model variants not enumerated in source"
+- "firmware version compatibility not stated"
+- "HTTP file transfer endpoints have no auth requirement documented"
+- "source does not describe safety interlocks or power-on sequencing beyond"
+- "zoom/focus/lens shift position value ranges not specified"
+- "DMX extended mode channel details not specified"
+- "CLO behavior details not specified beyond engage method"
+- "color preset names and P7 color mode details not fully documented"
+- "HTTP file transfer authentication requirements not stated"
+- "laser serial number method (illumination.laser.getserialnumber) response format partially documented"
 ```
 
 ---

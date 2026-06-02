@@ -25,14 +25,19 @@ last_checked_at: 2026-04-27T15:30:54.587Z
 generated_at: 2026-04-27T15:30:54.587Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 not mentioned; RS-422 referenced only as OSD setting flag"
+  - "no input/output routing commands found"
+  - "command pattern not fully documented"
+  - "no safety warnings or interlock procedures documented"
+  - "serial/RS-232 config not documented; RS-422 shown only as OSD status flag"
 verification:
   verdict: verified
   checked_at: 2026-04-27T15:30:54.587Z
   matched_actions: 35
   action_count: 35
-  confidence: high
-  summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented."
+  confidence: medium
+  summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -481,14 +486,18 @@ verdict: verified
 checked_at: 2026-04-27T15:30:54.587Z
 matched_actions: 35
 action_count: 35
-confidence: high
-summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented."
+confidence: medium
+summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 not mentioned; RS-422 referenced only as OSD setting flag"
+- "no input/output routing commands found"
+- "command pattern not fully documented"
+- "no safety warnings or interlock procedures documented"
+- "serial/RS-232 config not documented; RS-422 shown only as OSD status flag"
 ```
 
 ---

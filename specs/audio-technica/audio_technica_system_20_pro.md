@@ -31,14 +31,22 @@ last_checked_at: 2026-05-14T18:17:14.185Z
 generated_at: 2026-05-14T18:17:14.185Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power on/off commands not found in source — system may require manual power-on; UNRESOLVED: maximum concurrent TCP connections stated as 1, but connection establishment details not fully documented"
+  - "no discrete Variables section found - all settable parameters are expressed as Actions"
+  - "no explicit multi-step macros found in source - the preset system (EQ and COMP)"
+  - "safety warnings or interlock procedures not found in source document"
+  - "command timeout values not stated in source"
+  - "TCP keepalive or heartbeat interval not stated in source"
+  - "multicast group registration details not fully documented"
+  - "firmware update procedure not covered in IP control spec"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.185Z
   matched_actions: 152
   action_count: 165
-  confidence: high
-  summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set."
+  confidence: medium
+  summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1943,14 +1951,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.185Z
 matched_actions: 152
 action_count: 165
-confidence: high
-summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set."
+confidence: medium
+summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power on/off commands not found in source — system may require manual power-on; UNRESOLVED: maximum concurrent TCP connections stated as 1, but connection establishment details not fully documented"
+- "no discrete Variables section found - all settable parameters are expressed as Actions"
+- "no explicit multi-step macros found in source - the preset system (EQ and COMP)"
+- "safety warnings or interlock procedures not found in source document"
+- "command timeout values not stated in source"
+- "TCP keepalive or heartbeat interval not stated in source"
+- "multicast group registration details not fully documented"
+- "firmware update procedure not covered in IP control spec"
 ```
 
 ---

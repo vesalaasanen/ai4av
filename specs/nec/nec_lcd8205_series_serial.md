@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:54.061Z
 last_checked_at: 2026-04-25T21:18:45.997Z
 generated_at: 2026-04-25T21:18:45.997Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document is titled \"Projector Control Command Reference Manual\" but user specified LCD8205 Series — model family confirmed by user input"
+  - "flow control not stated in source"
+  - "variables are typically settable parameters exposed as writable properties."
+  - "the source document does not describe unsolicited event notifications"
+  - "no multi-step command sequences described explicitly as macros in source."
+  - "voltage, current, power specifications not stated in source"
+  - "fault behavior and error recovery sequences not explicitly documented"
+  - "input terminal hex codes vary by model — Appendix documents common values but some codes are model-dependent"
+  - "aspect values vary by model — multiple hex codes map to same aspect mode"
+  - "eco mode values vary by model — different models support different subsets"
+  - "firmware version compatibility not stated in source"
+  - "HDBaseT standby mode referenced but details not provided in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:18:45.997Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched NEC source commands; transport parameters verified; complete coverage of documented command set."
+  confidence: medium
+  summary: "All 53 spec actions matched NEC source commands; transport parameters verified; complete coverage of documented command set. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -629,7 +641,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:54.061Z
 last_checked_at: 2026-04-25T21:18:45.997Z
 ```
 
@@ -640,14 +652,25 @@ verdict: verified
 checked_at: 2026-04-25T21:18:45.997Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched NEC source commands; transport parameters verified; complete coverage of documented command set."
+confidence: medium
+summary: "All 53 spec actions matched NEC source commands; transport parameters verified; complete coverage of documented command set. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document is titled \"Projector Control Command Reference Manual\" but user specified LCD8205 Series — model family confirmed by user input"
+- "flow control not stated in source"
+- "variables are typically settable parameters exposed as writable properties."
+- "the source document does not describe unsolicited event notifications"
+- "no multi-step command sequences described explicitly as macros in source."
+- "voltage, current, power specifications not stated in source"
+- "fault behavior and error recovery sequences not explicitly documented"
+- "input terminal hex codes vary by model — Appendix documents common values but some codes are model-dependent"
+- "aspect values vary by model — multiple hex codes map to same aspect mode"
+- "eco mode values vary by model — different models support different subsets"
+- "firmware version compatibility not stated in source"
+- "HDBaseT standby mode referenced but details not provided in source"
 ```
 
 ---

@@ -19,31 +19,35 @@ source_domains:
   - madvrenvy.com
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
-retrieved_at: 2026-05-04T17:32:06.925Z
-last_checked_at: 2026-05-14T18:17:17.785Z
-generated_at: 2026-05-14T18:17:17.785Z
+retrieved_at: 2026-04-26T17:04:37.161Z
+last_checked_at: 2026-06-02T04:56:26.827Z
+generated_at: 2026-06-02T04:56:26.827Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "EDID file format, full option catalogue, and option value ranges are not enumerated in source. REST/API control is not described in this document (user note of \"REST\" is overridden by source evidence showing raw TCP ASCII)."
+  - "source does not document multi-step command macros."
+  - "source does not describe interlock procedures or power-on sequencing requirements beyond the PowerOff / Standby notes above."
+  - "firmware version compatibility, full option/value catalogue, EDID block format, 3DLUT file format, exact set of supported color spaces/transfer characteristics (only examples listed in source)."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.785Z
-  matched_actions: 57
-  action_count: 57
-  confidence: high
-  summary: "All 89 spec action ids match documented source commands; transport verified (TCP port 44077, no auth)."
+  checked_at: 2026-06-02T04:56:26.827Z
+  matched_actions: 58
+  action_count: 58
+  confidence: medium
+  summary: "All 58 spec actions matched literally in source; port 44077 TCP verified; no transport issues; command catalogue fully represented. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-26
+created_at: 2026-06-02
 ---
 
 # madVR Envy Control Spec
 
 ## Summary
-madVR Envy is a video processor with IP control via TCP server on port 44077, supporting up to 16 concurrent connections. ASCII text (UTF8) command/response protocol with heartbeat keepalive. Supports power management, menu/GUI control, aspect ratio overrides, profile management, option enumeration/changes, 3DLUT file transfer, settings backup/restore, and EDID management.
+The madVR Envy is a video processor that exposes an ASCII text command interface over a raw TCP socket (port 44077, up to 16 concurrent connections). Clients send `Command Args⏎` lines; Envy replies with `OK⏎` or `ERROR "..."⏎` and pushes unsolicited notifications while the connection is open. A heartbeat (`Heartbeat⏎` every ~20s) is required to keep the connection alive beyond 60s of silence.
 
-<!-- UNRESOLVED: voltage/current/power specs not stated in source -->
+<!-- UNRESOLVED: EDID file format, full option catalogue, and option value ranges are not enumerated in source. REST/API control is not described in this document (user note of "REST" is overridden by source evidence showing raw TCP ASCII). -->
 
 ## Transport
 ```yaml
@@ -52,776 +56,760 @@ protocols:
 addressing:
   port: 44077
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: none  # inferred: no login/password/auth procedure described in source
 ```
 
 ## Traits
 ```yaml
-- powerable      # PowerOff, Standby, Restart commands present
-- routable       # ActivateProfile, profile switching present
-- queryable      # GetTemperatures, GetMacAddress, QueryOption, GetActiveProfile present
-- levelable      # DisplayAudioVolume, ChangeOption present
+- powerable       # inferred: PowerOff / Standby / Restart / ReloadSoftware
+- routable        # inferred: ActivateProfile, SOURCE/DISPLAY routing
+- queryable       # inferred: Get* / Enum* / QueryOption commands
+- levelable       # inferred: DisplayAudioVolume min/current/max
 ```
 
 ## Actions
 ```yaml
-# Power
+- id: heartbeat
+  label: Heartbeat
+  kind: action
+  command: "Heartbeat"
+  params: []
+  notes: |
+    Send every ~20 seconds. Envy closes the connection after 60 seconds of silence.
+    Reply: "OK". Special command outside the numbered reference sections.
+
 - id: power_off
   label: Power Off
   kind: action
+  command: "PowerOff"
   params: []
+  notes: |
+    Envy no longer reacts to remote. Wake only via front-panel power button or Wake-On-LAN.
+
 - id: standby
   label: Standby
   kind: action
+  command: "Standby"
   params: []
+  notes: |
+    Low-power state. Still reacts to remote / front-panel / Wake-On-LAN.
+
 - id: restart
   label: Restart
   kind: action
+  command: "Restart"
   params: []
+
 - id: reload_software
   label: Reload Software
   kind: action
+  command: "ReloadSoftware"
   params: []
+  notes: "Takes about 2-3 seconds. Triggered automatically on certain signal-format changes."
 
-# Menu / GUI
 - id: open_menu
   label: Open Menu
   kind: action
+  command: "OpenMenu {menu}"
   params:
     - name: menu
       type: string
-      description: Menu name (Info, Settings, Configuration, Profiles, TestPatterns)
+      description: One of Info, Settings, Configuration, Profiles, TestPatterns (case-insensitive; e.g. "Configuration", "hdrSettings").
+  notes: "May also accept detailed page IDs from section 5.3."
+
 - id: close_menu
   label: Close Menu
   kind: action
+  command: "CloseMenu"
   params: []
+
 - id: key_press
-  label: Key Press
+  label: Key Press (short)
   kind: action
+  command: "KeyPress {button}"
   params:
     - name: button
       type: string
-      description: Button name (POWER, INFO, MENU=CONFIG, LEFT, RIGHT, UP, DOWN, OK, INPUT=PROFILES, SETTINGS, BACK, RED, GREEN, BLUE, YELLOW, MAGENTA, CYAN)
+      description: |
+        One of POWER, INFO, MENU(=CONFIG), LEFT, RIGHT, UP, DOWN, OK,
+        INPUT(=PROFILES), SETTINGS, BACK, RED, GREEN, BLUE, YELLOW, MAGENTA, CYAN.
+  notes: "Simulates <0.7s button press."
+
 - id: key_hold
-  label: Key Hold
+  label: Key Hold (long)
   kind: action
+  command: "KeyHold {button}"
   params:
     - name: button
       type: string
-      description: Button name (same as KeyPress)
+      description: Same button set as KeyPress.
+  notes: "Simulates >1s button hold."
+
 - id: display_alert_window
   label: Display Alert Window
   kind: action
+  command: "DisplayAlertWindow {text}"
   params:
     - name: text
       type: string
-      description: Alert message text
+      description: Alert text shown centered. User must close manually.
+
 - id: close_alert_window
   label: Close Alert Window
   kind: action
+  command: "CloseAlertWindow"
   params: []
+
 - id: display_message
   label: Display Message
   kind: action
+  command: "DisplayMessage {timeoutSeconds} {text}"
   params:
-    - name: timeout
+    - name: timeoutSeconds
       type: integer
-      description: Timeout in seconds
+      description: Seconds before message disappears.
     - name: text
       type: string
-      description: Message text
+      description: Message body.
+
 - id: display_audio_volume
   label: Display Audio Volume
   kind: action
+  command: "DisplayAudioVolume {min} {current} {max} {unit}"
   params:
     - name: min
       type: integer
-      description: Minimum value
     - name: current
       type: integer
-      description: Current value
     - name: max
       type: integer
-      description: Maximum value
     - name: unit
       type: string
-      description: Unit description (e.g., "dB" or "%")
+      description: 'Unit label, e.g. "dB" or "%".'
+  notes: "Used to render an AVR-style volume OSD when AVR cannot."
+
 - id: display_audio_mute
   label: Display Audio Mute
   kind: action
+  command: "DisplayAudioMute"
   params: []
+
 - id: close_audio_mute
   label: Close Audio Mute
   kind: action
+  command: "CloseAudioMute"
   params: []
 
-# Aspect Ratio
 - id: set_aspect_ratio_mode
   label: Set Aspect Ratio Mode
   kind: action
+  command: "SetAspectRatioMode {mode}"
   params:
     - name: mode
       type: string
-      description: "Auto, Hold, or custom ratio (4:3, 16:9, 1.85:1, 2.00:1, 2.20:1, 2.35:1, 2.40:1, 2.55:1, 2.76:1)"
+      description: |
+        Auto, Hold, or one of 4:3, 16:9, 1.85:1, 2.00:1, 2.20:1,
+        2.35:1, 2.40:1, 2.55:1, 2.76:1.
+  notes: "Affects only temporary AR handling; reset on movie stop."
 
-# Information
 - id: get_incoming_signal_info
   label: Get Incoming Signal Info
-  kind: action
+  kind: query
+  command: "GetIncomingSignalInfo"
   params: []
+  notes: 'Reply example: "IncomingSignalInfo 3840x2160 23.976p 2D 422 10bit HDR10 2020 TV 16:9".'
+
 - id: get_aspect_ratio
   label: Get Aspect Ratio
-  kind: action
+  kind: query
+  command: "GetAspectRatio"
   params: []
+  notes: 'Reply example: "AspectRatio 3840:1600 2.400 240 \"Panavision\"".'
+
 - id: get_masking_ratio
   label: Get Masking Ratio
-  kind: action
+  kind: query
+  command: "GetMaskingRatio"
   params: []
+  notes: 'Reply example: "MaskingRatio 3840:1700 2.259 220".'
+
 - id: get_temperatures
   label: Get Temperatures
-  kind: action
+  kind: query
+  command: "GetTemperatures"
   params: []
+  notes: |
+    Reply format: "Temperatures {gpu} {hdmiInput} \"{cpu}\" \"{mainboard}\" {unknownFuture}".
+    Example: Temperatures 74 67 41 45.
+
 - id: get_mac_address
   label: Get MAC Address
-  kind: action
+  kind: query
+  command: "GetMacAddress"
   params: []
+  notes: |
+    Reply format: "MacAddress 01-02-03-04-05-06".
+    Useful for Wake-On-LAN.
 
-# Profile Groups
 - id: create_profile_group
-  label: Create Profile Group
+  label: Create Custom Profile Group
   kind: action
+  command: "CreateProfileGroup {name}"
   params:
     - name: name
       type: string
-      description: Profile group name
+      description: Group name; new group has 1 profile.
+
 - id: rename_profile_group
-  label: Rename Profile Group
+  label: Rename Custom Profile Group
   kind: action
+  command: "RenameProfileGroup {customProfileGroupId} {name}"
   params:
-    - name: id
+    - name: customProfileGroupId
       type: integer
-      description: Profile group ID
     - name: name
       type: string
-      description: New name
+
 - id: delete_profile_group
-  label: Delete Profile Group
+  label: Delete Custom Profile Group
   kind: action
+  command: "DeleteProfileGroup {customProfileGroupId}"
   params:
-    - name: id
+    - name: customProfileGroupId
       type: integer
-      description: Profile group ID
+
 - id: enum_profile_groups
   label: Enumerate Profile Groups
-  kind: action
+  kind: query
+  command: "EnumProfileGroups"
   params: []
+  notes: |
+    One line per group: "ProfileGroup {id} \"{name}\"", terminated by a bare "ProfileGroup." line.
 
-# Profiles
 - id: create_profile
   label: Create Profile
   kind: action
+  command: "CreateProfile {group} {name}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
+      description: SOURCE, DISPLAY, or customProfileGroupId (numeric).
     - name: name
       type: string
-      description: Profile name
+  notes: 'Example: CreateProfile SOURCE "Oppo Blu-Ray Player".'
+
 - id: rename_profile
   label: Rename Profile
   kind: action
+  command: "RenameProfile {group} {profileId} {name}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
-    - name: id
+      description: SOURCE, DISPLAY, or customProfileGroupId.
+    - name: profileId
       type: integer
-      description: Profile ID
     - name: name
       type: string
-      description: New name
+
 - id: delete_profile
   label: Delete Profile
   kind: action
+  command: "DeleteProfile {group} {profileId}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
-    - name: id
+    - name: profileId
       type: integer
-      description: Profile ID
+  notes: |
+    Deleting the last profile in a custom group also deletes the group.
+    Cannot delete the last profile in SOURCE/DISPLAY.
+
 - id: add_profile_to_page
   label: Add Profile to Page
   kind: action
+  command: "AddProfileToPage {fullProfileId} {pageId}"
   params:
     - name: fullProfileId
       type: string
-      description: Full profile ID (e.g., sourceProfiles_profile2)
+      description: e.g. "sourceProfiles_profile2" or "customProfileGroup1_profile1".
     - name: pageId
       type: string
-      description: Page ID (e.g., hdrSettings)
+      description: Settings or configuration page ID, e.g. "displayConfig", "hdrSettings".
+
 - id: remove_profile_from_page
   label: Remove Profile from Page
   kind: action
+  command: "RemoveProfileFromPage {fullProfileId} {pageId}"
   params:
     - name: fullProfileId
       type: string
-      description: Full profile ID
     - name: pageId
       type: string
-      description: Page ID
+
 - id: activate_profile
   label: Activate Profile
   kind: action
+  command: "ActivateProfile {group} {profileId}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
-    - name: id
+      description: SOURCE, DISPLAY, or customProfileGroupId.
+    - name: profileId
       type: integer
-      description: Profile ID (use 0 to deactivate)
+      description: Use 0 to deactivate.
+  notes: "Only one active profile per group."
+
 - id: get_active_profile
   label: Get Active Profile
-  kind: action
+  kind: query
+  command: "GetActiveProfile {group}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
+  notes: 'Reply: "ActiveProfile {group} {index}".'
+
 - id: enum_profiles
   label: Enumerate Profiles
-  kind: action
+  kind: query
+  command: "EnumProfiles {group}"
   params:
     - name: group
       type: string
-      description: "SOURCE, DISPLAY, or customProfileGroupId"
+      description: SOURCE, DISPLAY, or customProfileGroupId.
+  notes: |
+    Reply: "Profile {fullProfileId} \"{name}\"" lines, terminated by a bare "Profile." line.
 
-# Settings / Configuration
 - id: enum_setting_pages
   label: Enumerate Setting Pages
-  kind: action
+  kind: query
+  command: "EnumSettingPages"
   params: []
+  notes: 'Reply: "SettingPage {id} \"{name}\"" lines, terminated by "SettingPage." line.'
+
 - id: enum_config_pages
-  label: Enumerate Config Pages
-  kind: action
+  label: Enumerate Configuration Pages
+  kind: query
+  command: "EnumConfigPages"
   params: []
+  notes: 'Reply: "ConfigPage {id} \"{name}\"" lines.'
+
 - id: enum_options
   label: Enumerate Options
-  kind: action
+  kind: query
+  command: "EnumOptions {pageId}"
   params:
     - name: pageId
       type: string
-      description: Page ID, config page ID, or detailed page path
+      description: Plain page ID (e.g. "hdrSettings") or detailed path (e.g. "temporary\\hdrSettings").
+  notes: |
+    Reply: "Option {type} {optionId} {currentValue} {effectiveValue}" lines,
+    terminated by a bare "Option." line.
+
 - id: query_option
   label: Query Option
-  kind: action
+  kind: query
+  command: "QueryOption {optionIdOrPath}"
   params:
-    - name: optionIdPath
+    - name: optionIdOrPath
       type: string
-      description: Option ID or full option path (e.g., hdrHighlightRecovery or customProfileGroup1_profile1\hdrHighlightRecovery)
+      description: Bare option ID or detailed path like "customProfileGroup1_profile1\\hdrHighlightRecovery".
+  notes: |
+    Reply: "Option {type} {optionId} {currentValue} {effectiveValue}".
+    First value = value at requested path; second = effective rendering value.
+
 - id: change_option
   label: Change Option
   kind: action
+  command: "ChangeOption {optionIdPath} {value}"
   params:
     - name: optionIdPath
       type: string
-      description: Option ID or path
+      description: Bare ID (modifies base settings) or detailed path.
     - name: value
       type: string
-      description: New value (string, integer, YES, or NO)
+      description: 'Quoted string, integer, YES, or NO depending on option type.'
+  notes: 'Example: ChangeOption hdrNits 120.'
+
 - id: inherit_option
   label: Inherit Option
   kind: action
+  command: "InheritOption {optionIdPath}"
   params:
     - name: optionIdPath
       type: string
-      description: Option path to reset to inherit
+      description: Must be a detailed profile/temporary path; bare ID is rejected.
+
 - id: reset_temporary
   label: Reset Temporary Settings
   kind: action
+  command: "ResetTemporary"
   params: []
 
-# 3DLUT Files
 - id: enum_3dlut_files
   label: Enumerate 3DLUT Files
-  kind: action
+  kind: query
+  command: "Enum3DLUTFiles"
   params: []
+  notes: 'Reply: "3DLUTFile \"{filename}\"" lines, terminated by bare "3DLUTFile." line.'
+
 - id: rename_3dlut_file
   label: Rename 3DLUT File
   kind: action
+  command: "Rename3DLUTFile {oldName} {newName}"
   params:
     - name: oldName
       type: string
-      description: Old file name (must include .3dlut extension)
     - name: newName
       type: string
-      description: New file name
+
 - id: delete_3dlut_file
   label: Delete 3DLUT File
   kind: action
+  command: "Delete3DLUTFile {fileName}"
   params:
     - name: fileName
       type: string
-      description: File name (must include .3dlut extension)
+  notes: "No undelete. File lost permanently."
+
 - id: download_3dlut_file
   label: Download 3DLUT File
   kind: action
+  command: "Download3DLUTFile {fileName}"
   params:
     - name: fileName
       type: string
-      description: File name
+      description: e.g. "BT.2020.3dlut".
+  notes: |
+    Reply: info line "Download3DLUTFile {base64size} {crcInHex} \"{fileName}\""
+    followed by the file contents in base64. Verify CRC32 (init -1).
+
 - id: upload_3dlut_file
   label: Upload 3DLUT File
   kind: action
+  command: "Upload3DLUTFile {base64size} {crcInHex} {fileName}"
   params:
     - name: base64size
       type: integer
-      description: Size of base64-encoded file in bytes
-    - name: crcHex
+    - name: crcInHex
       type: string
-      description: CRC32 in hex (initialize with -1)
     - name: fileName
       type: string
-      description: File name
+  notes: |
+    Send the info line first, then the base64 file contents.
+    Both lines get individual "OK" replies.
 
-# Demo
 - id: toggle
-  label: Toggle Option
+  label: Toggle Demo Option
   kind: action
+  command: "Toggle {option}"
   params:
     - name: option
       type: string
-      description: "Toggle option (ToneMap, HighlightRecovery, ContrastRecovery, ShadowRecovery, 3DLUT, ScreenBoundaries, Histogram, DebugOSD)"
-- id: tonemap_on
-  label: Tone Map On
+      description: |
+        One of ToneMap, HighlightRecovery, ContrastRecovery, ShadowRecovery,
+        3DLUT, ScreenBoundaries, Histogram, DebugOSD.
+  notes: "Affects temporary settings."
+
+- id: tone_map_on
+  label: Tone Map On (temporary)
   kind: action
-  params: []
-- id: tonemap_off
-  label: Tone Map Off
-  kind: action
+  command: "ToneMapOn"
   params: []
 
-# Settings Management
+- id: tone_map_off
+  label: Tone Map Off (temporary)
+  kind: action
+  command: "ToneMapOff"
+  params: []
+
 - id: download_settings_file
   label: Download Settings File
   kind: action
+  command: "DownloadSettingsFile"
   params: []
+  notes: |
+    Reply: info line "DownloadSettingsFile {base64size} {crcInHex}"
+    followed by the settings file in base64. Verify CRC32 (init -1).
+
 - id: upload_settings_file
   label: Upload Settings File
   kind: action
+  command: "UploadSettingsFile {base64size} {crcInHex}"
   params:
     - name: base64size
       type: integer
-      description: Size of base64-encoded file in bytes
-    - name: crcHex
+    - name: crcInHex
       type: string
-      description: CRC32 in hex
+  notes: "Becomes active immediately after upload."
+
 - id: store_settings
   label: Store Settings
   kind: action
+  command: "StoreSettings {slot} {storageName} {password}"
   params:
-    - name: target
+    - name: slot
       type: string
-      description: "Installer, Suggested, or slot index (1-16)"
-    - name: name
+      description: 'Installer, Suggested, or slotIndex (1..16).'
+    - name: storageName
       type: string
-      description: Storage name
     - name: password
       type: string
-      description: Optional password for Installer slot
+      description: Required only when overwriting Installer or Suggested.
+  notes: "Installer is not user-deletable/renameable. Suggested is user-deletable."
+
 - id: restore_settings
   label: Restore Settings
   kind: action
+  command: "RestoreSettings {slot}"
   params:
-    - name: target
+    - name: slot
       type: string
-      description: "Installer, Suggested, or slot index (1-16)"
+      description: 'Installer, Suggested, or slotIndex (1..16).'
+  notes: "Restored settings become active immediately."
 
-# EDID
 - id: download_edid_file
   label: Download EDID File
   kind: action
+  command: "DownloadEDIDFile {slot}"
   params:
     - name: slot
       type: string
-      description: "Current or slot index (1-16)"
+      description: 'Current (or empty) for display EDID, or slotIndex.'
+  notes: |
+    Reply: info line "DownloadEDIDFile {base64size} {crcInHex} \"{storage name}\""
+    followed by base64 EDID block.
+
 - id: upload_edid_file
   label: Upload EDID File
   kind: action
+  command: "UploadEDIDFile {slotIndex} {base64size} {crcInHex} {storageName}"
   params:
-    - name: slot
+    - name: slotIndex
       type: integer
-      description: Slot index (1-16)
     - name: base64size
       type: integer
-      description: Size of base64-encoded file in bytes
-    - name: crcHex
+    - name: crcInHex
       type: string
-      description: CRC32 in hex
-    - name: name
+    - name: storageName
       type: string
-      description: Storage name
+  notes: "Send info line first, then base64 EDID block."
 
-# Other
 - id: refresh_license_info
   label: Refresh License Info
   kind: action
+  command: "RefreshLicenseInfo"
   params: []
+  notes: "License info (e.g. user name) is not auto-refreshed from server."
+
 - id: force_1080p60_output
   label: Force 1080p60 Output
   kind: action
+  command: "Force1080p60Output"
   params: []
+  notes: "Use when display fails to sync to Envy."
+
 - id: hotplug
-  label: Hotplug
+  label: HDMI Hotplug
   kind: action
+  command: "Hotplug"
   params: []
+  notes: "Issues HDMI hotplug on Envy's input port. May recover AVR/source sync."
+
 - id: bye
   label: Close Connection
   kind: action
+  command: "Bye"
   params: []
+  notes: "Envy closes the TCP connection immediately."
 ```
 
 ## Feedbacks
 ```yaml
-# Simple responses
-- id: ok
+- id: welcome
   type: string
-  values: ["OK"]
+  description: |
+    First line Envy sends on connect, e.g. "WELCOME to Envy v1.0.1.0".
+    No reply required.
+- id: ok
+  type: enum
+  values: [ok]
+  description: 'Success reply: "OK".'
 - id: error
   type: string
-  values: ["ERROR \"<error description>\""]
-
-# Power notifications
-- id: power_off
-  type: notification
-  payload: []
-- id: standby
-  type: notification
-  payload: []
-- id: restart
-  type: notification
-  payload: []
-- id: reload_software
-  type: notification
-  payload: []
-
-# Menu / GUI notifications
-- id: open_menu
-  type: notification
-  payload:
-    - name: menu
-      type: string
-      description: Menu name
-- id: close_menu
-  type: notification
-  payload: []
-- id: key_press
-  type: notification
-  payload:
-    - name: button
-      type: string
-      description: Button name
-- id: key_hold
-  type: notification
-  payload:
-    - name: button
-      type: string
-      description: Button name
-
-# Aspect ratio notifications
-- id: aspect_ratio
-  type: notification
-  payload:
-    - name: pixelAR
-      type: string
-      description: Pixel aspect ratio (e.g., 3840:1600)
-    - name: floatAR
-      type: float
-      description: Float aspect ratio (e.g., 2.400)
-    - name: nearestKnownAR
-      type: integer
-      description: Nearest well-known ratio code
-    - name: description
-      type: string
-      description: Description (e.g., "Panavision")
-- id: masking_ratio
-  type: notification
-  payload:
-    - name: pixelAR
-      type: string
-    - name: floatAR
-      type: float
-    - name: nearestKnownAR
-      type: integer
-- id: set_aspect_ratio_mode
-  type: notification
-  payload:
-    - name: mode
-      type: string
-      description: "Auto, Hold, or custom ratio"
-
-# Signal notifications
-- id: no_signal
-  type: notification
-  payload: []
+  description: 'Failure reply: "ERROR \"<description>\"".'
 - id: incoming_signal_info
-  type: notification
-  payload:
-    - name: resolution
-      type: string
-      description: Resolution (e.g., 3840x2160)
-    - name: frameRate
-      type: string
-      description: Frame rate (e.g., 23.976p)
-    - name: dimensions
-      type: string
-      description: 2D or 3D
-    - name: chroma
-      type: string
-      description: "422, 444, 420"
-    - name: bitDepth
-      type: string
-      description: "8bit, 10bit, 12bit"
-    - name: colorSpace
-      type: string
-      description: "SDR, HDR10, HLG"
-    - name: colorGamut
-      type: string
-      description: "601, PAL, 709, DCI, 2020"
-    - name: format
-      type: string
-      description: "TV or PC"
-    - name: aspect
-      type: string
-      description: "16:9 or 4:3"
+  type: string
+  description: 'Notification: "IncomingSignalInfo {W}x{H} {refreshRate}p 2D|3D {chroma} {bitDepth} {transfer} {colorspace} {tv|pC} {ar}".'
 - id: outgoing_signal_info
-  type: notification
-  payload:
-    - name: resolution
-      type: string
-    - name: frameRate
-      type: string
-    - name: dimensions
-      type: string
-    - name: colorSpace
-      type: string
-    - name: bitDepth
-      type: string
-    - name: colorGamut
-      type: string
-    - name: format
-      type: string
-    - name: aspect
-      type: string
-- id: display_changed
-  type: notification
-  payload: []
-
-# Profile notifications
-- id: create_profile_group
-  type: notification
-  payload:
-    - name: id
-      type: integer
-      description: Assigned profile group ID
-    - name: name
-      type: string
-      description: Profile group name
-- id: rename_profile_group
-  type: notification
-  payload:
-    - name: id
-      type: integer
-    - name: name
-      type: string
-- id: delete_profile_group
-  type: notification
-  payload:
-    - name: id
-      type: integer
-- id: create_profile
-  type: notification
-  payload:
-    - name: group
-      type: string
-    - name: id
-      type: integer
-      description: Assigned profile ID
-    - name: name
-      type: string
-- id: rename_profile
-  type: notification
-  payload:
-    - name: group
-      type: string
-    - name: id
-      type: integer
-    - name: name
-      type: string
-- id: delete_profile
-  type: notification
-  payload:
-    - name: group
-      type: string
-    - name: id
-      type: integer
-- id: add_profile_to_page
-  type: notification
-  payload:
-    - name: profileId
-      type: string
-    - name: pageId
-      type: string
-- id: remove_profile_from_page
-  type: notification
-  payload:
-    - name: profileId
-      type: string
-    - name: pageId
-      type: string
+  type: string
+  description: 'Notification: "OutgoingSignalInfo {W}x{H} {refreshRate}p 2D|3D {chroma} {bitDepth} {transfer} {colorspace} {tv|pC}".'
+- id: aspect_ratio
+  type: string
+  description: 'Notification: "AspectRatio {pixelAR} {floatAR} {nearestWellKnownAR} \"{description}\"".'
+- id: masking_ratio
+  type: string
+  description: 'Notification: "MaskingRatio {pixelAR} {floatAR} {nearestWellKnownAR}".'
+- id: set_aspect_ratio_mode
+  type: string
+  description: 'Notification confirming the temporary AR mode change.'
 - id: activate_profile
-  type: notification
-  payload:
-    - name: group
-      type: string
-    - name: id
-      type: integer
-
-# Option notifications
+  type: string
+  description: 'Notification: "ActivateProfile {group} {profileId}".'
+- id: create_profile_group
+  type: string
+  description: 'Notification: "CreateProfileGroup {customProfileGroupId} \"{name}\"".'
+- id: create_profile
+  type: string
+  description: 'Notification: "CreateProfile {group} {profileId} \"{name}\"".'
 - id: change_option
-  type: notification
-  payload:
-    - name: optionType
-      type: string
-      description: "STRING, INTEGER, etc."
-    - name: optionIdPath
-      type: string
-    - name: currentValue
-      type: string
-    - name: effectiveValue
-      type: string
+  type: string
+  description: 'Notification: "ChangeOption {type} {path} {current} {effective}".'
 - id: inherit_option
-  type: notification
-  payload:
-    - name: optionType
-      type: string
-    - name: optionIdPath
-      type: string
-    - name: effectiveValue
-      type: string
-- id: reset_temporary
-  type: notification
-  payload: []
-
-# 3DLUT notifications
-- id: upload_3dlut_file
-  type: notification
-  payload:
-    - name: fileName
-      type: string
-- id: rename_3dlut_file
-  type: notification
-  payload:
-    - name: oldName
-      type: string
-    - name: newName
-      type: string
-- id: delete_3dlut_file
-  type: notification
-  payload:
-    - name: fileName
-      type: string
-
-# Demo notifications
-- id: toggle
-  type: notification
-  payload:
-    - name: option
-      type: string
-- id: tonemap_on
-  type: notification
-  payload: []
-- id: tonemap_off
-  type: notification
-  payload: []
-
-# Settings management notifications
-- id: upload_settings_file
-  type: notification
-  payload: []
-- id: store_settings
-  type: notification
-  payload:
-    - name: target
-      type: string
-      description: "Installer, Suggested, or slot index"
-    - name: name
-      type: string
-- id: restore_settings
-  type: notification
-  payload:
-    - name: target
-      type: string
-
-# Other notifications
-- id: refresh_license_info
-  type: notification
-  payload: []
-- id: force_1080p60_output
-  type: notification
-  payload: []
-- id: hotplug
-  type: notification
-  payload: []
-- id: firmware_update
-  type: notification
-  payload: []
+  type: string
+  description: 'Notification: "InheritOption {type} {path} {effective}".'
+- id: no_signal
+  type: enum
+  values: [no_signal]
+  description: 'Notification: "NoSignal".'
+- id: display_changed
+  type: enum
+  values: [display_changed]
+  description: 'Notification: a different display was just connected.'
 - id: missing_heartbeat
-  type: notification
-  payload: []
+  type: enum
+  values: [missing_heartbeat]
+  description: 'Notification: connection is about to close after 60s silence.'
+- id: firmware_update
+  type: enum
+  values: [firmware_update]
+  description: 'Notification: firmware is about to install.'
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: settings/configuration options enumerated via EnumOptions, QueryOption, ChangeOption.
-# Option values dynamically discovered at runtime via option enumeration workflow (section 7 of source).
-# No static enumerated list available in source.
+# Settable parameters (exposed via ChangeOption). Full catalogue not enumerated in source.
+# Use EnumOptions / QueryOption to discover IDs, types, and value ranges.
+- id: hdr_nits
+  type: integer
+  description: 'Example variable from source. ChangeOption hdrNits 120. Full option list not documented; discover via EnumOptions.'
+- id: hdr_highlight_recovery
+  type: integer
+  description: 'Example from source. ChangeOption hdrHighlightRecovery 2..5 ("Off"=0, "Insane"=5). Discover via EnumOptions.'
 ```
 
 ## Events
 ```yaml
-# Envy sends event notifications asynchronously while connected.
-# See Feedbacks section for event notifications.
-# UNRESOLVED: specific event timing/ordering guarantees not stated in source
+# All unsolicited notifications Envy pushes while a client connection is open.
+# Source: section 4 (overview) and section 6 (notification reference).
+- id: power_off
+  message: "PowerOff"
+- id: standby
+  message: "Standby"
+- id: restart
+  message: "Restart"
+- id: reload_software
+  message: "ReloadSoftware"
+- id: open_menu
+  message: "OpenMenu {menu}"
+- id: close_menu
+  message: "CloseMenu"
+- id: key_press
+  message: "KeyPress {button}"
+- id: key_hold
+  message: "KeyHold {button}"
+- id: aspect_ratio
+  message: "AspectRatio {pixelAR} {floatAR} {nearestWellKnownAR} \"{description}\""
+- id: masking_ratio
+  message: "MaskingRatio {pixelAR} {floatAR} {nearestWellKnownAR}"
+- id: set_aspect_ratio_mode
+  message: "SetAspectRatioMode {mode}"
+- id: create_profile_group
+  message: "CreateProfileGroup {customProfileGroupId} \"{name}\""
+- id: rename_profile_group
+  message: "RenameProfileGroup {customProfileGroupId} \"{name}\""
+- id: delete_profile_group
+  message: "DeleteProfileGroup {customProfileGroupId}"
+- id: create_profile
+  message: "CreateProfile {group} {profileId} \"{name}\""
+- id: rename_profile
+  message: "RenameProfile {group} {profileId} \"{name}\""
+- id: delete_profile
+  message: "DeleteProfile {group} {profileId}"
+- id: add_profile_to_page
+  message: "AddProfileToPage {profileId} {pageId}"
+- id: remove_profile_from_page
+  message: "RemoveProfileFromPage {profileId} {pageId}"
+- id: activate_profile
+  message: "ActivateProfile {group} {profileId}"
+- id: change_option
+  message: "ChangeOption {type} {path} {current} {effective}"
+- id: inherit_option
+  message: "InheritOption {type} {path} {effective}"
+- id: reset_temporary
+  message: "ResetTemporary"
+- id: upload_3dlut_file
+  message: "Upload3DLUTFile \"{fileName}\""
+- id: rename_3dlut_file
+  message: "Rename3DLUTFile \"{oldName}\" \"{newName}\""
+- id: delete_3dlut_file
+  message: "Delete3DLUTFile \"{fileName}\""
+- id: toggle
+  message: "Toggle {option}"
+- id: tone_map_on
+  message: "ToneMapOn"
+- id: tone_map_off
+  message: "ToneMapOff"
+- id: upload_settings_file
+  message: "UploadSettingsFile"
+- id: store_settings
+  message: "StoreSettings {slot} \"{name}\""
+- id: restore_settings
+  message: "RestoreSettings {slot}"
+- id: no_signal
+  message: "NoSignal"
+- id: incoming_signal_info
+  message: "IncomingSignalInfo {W}x{H} {refreshRate}p 2D|3D {chroma} {bitDepth} {transfer} {colorspace} {tv|pc} {ar}"
+- id: outgoing_signal_info
+  message: "OutgoingSignalInfo {W}x{H} {refreshRate}p 2D|3D {chroma} {bitDepth} {transfer} {colorspace} {tv|pc}"
+- id: display_changed
+  message: "DisplayChanged"
+- id: refresh_license_info
+  message: "RefreshLicenseInfo"
+- id: force_1080p60_output
+  message: "Force1080p60Output"
+- id: hotplug
+  message: "Hotplug"
+- id: firmware_update
+  message: "FirmwareUpdate"
+- id: missing_heartbeat
+  message: "MissingHeartbeat"
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step macros described in source
+# No multi-step sequences described in source.
+# UNRESOLVED: source does not document multi-step command macros.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks:
-  # Power-on from fully off requires physical button press or Wake-On-LAN packet
-  - condition: "PowerOff state requires physical power button or Wake-On-LAN to restore"
-    description: "Envy does not react to remote control after PowerOff. Must use front panel button or Wake-On-LAN."
-# UNRESOLVED: no explicit safety warnings or interlock procedures stated in source beyond power-on requirement
+confirmation_required_for:
+  - delete_3dlut_file  # Source: "A 3DLUT file deleted is lost forever. No undelete."
+  - power_off          # Source: Envy no longer reacts to remote; requires physical button or WoL to recover.
+  - store_settings     # Source: overwriting Installer/Suggested requires service password.
+interlocks: []
+# UNRESOLVED: source does not describe interlock procedures or power-on sequencing requirements beyond the PowerOff / Standby notes above.
 ```
 
 ## Notes
-Envy is a TCP server (not HTTP/REST). Commands are plain ASCII text terminated with CR, LF, or CRLF. Responses are "OK" or "ERROR". Notifications are asynchronous and sent to all connected clients. Heartbeat required every 20s or connection closes after 60s. Can also open connection per-command without keeping alive (no notifications in that mode).
+- All commands are case-sensitive ASCII text terminated by `⏎` (0x0D, 0x0A, or 0x0D 0x0A). Reply framing matches the request framing.
+- Up to 16 concurrent TCP connections to port 44077. Connection is closed by Envy after 60 seconds of silence; clients must send `Heartbeat` every ~20 seconds to stay connected.
+- The user-supplied "Known protocol: REST" contradicts the source: this revision documents raw TCP ASCII control, not HTTP/REST. A separate REST/HTTP API (if any) would require a different source.
+- Replies and notifications may arrive out of order (source: section 4).
+- `INHERIT` is the default state for every option in every profile. Profiles are transparent until an option is explicitly overwritten (source: section 8.3).
+- Full option catalogue (settings + configuration pages, IDs, types, value ranges) is not enumerated in source. Use `EnumSettingPages` / `EnumConfigPages` / `EnumOptions` to discover.
 
-Profile system uses inheritance: profiles are transparent by default, only explicit option changes take effect. Profile groups include predefined "SOURCE" and "DISPLAY", plus user-created custom profile groups.
-
-Settings/configuration pages enumerated via EnumSettingPages/EnumConfigPages, options via EnumOptions, values changed via ChangeOption. Option ID paths support profile-specific overrides (e.g., customProfileGroup1_profile1\hdrHighlightRecovery).
-
-3DLUT and settings files transferred as base64-encoded binary with CRC32 verification (initialize CRC with -1).
-
-<!-- UNRESOLVED: firmware version compatibility ranges not stated in source -->
-<!-- UNRESOLVED: voltage/current/power specifications not stated in source -->
-<!-- UNRESOLVED: binary command byte encodings not used — all ASCII text protocol -->
-<!-- UNRESOLVED: authentication token format not applicable — no auth required -->
+<!-- UNRESOLVED: firmware version compatibility, full option/value catalogue, EDID block format, 3DLUT file format, exact set of supported color spaces/transfer characteristics (only examples listed in source). -->
 
 ## Provenance
 
@@ -830,25 +818,28 @@ source_domains:
   - madvrenvy.com
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
-retrieved_at: 2026-05-04T17:32:06.925Z
-last_checked_at: 2026-05-14T18:17:17.785Z
+retrieved_at: 2026-04-26T17:04:37.161Z
+last_checked_at: 2026-06-02T04:56:26.827Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.785Z
-matched_actions: 57
-action_count: 57
-confidence: high
-summary: "All 89 spec action ids match documented source commands; transport verified (TCP port 44077, no auth)."
+checked_at: 2026-06-02T04:56:26.827Z
+matched_actions: 58
+action_count: 58
+confidence: medium
+summary: "All 58 spec actions matched literally in source; port 44077 TCP verified; no transport issues; command catalogue fully represented. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "EDID file format, full option catalogue, and option value ranges are not enumerated in source. REST/API control is not described in this document (user note of \"REST\" is overridden by source evidence showing raw TCP ASCII)."
+- "source does not document multi-step command macros."
+- "source does not describe interlock procedures or power-on sequencing requirements beyond the PowerOff / Standby notes above."
+- "firmware version compatibility, full option/value catalogue, EDID block format, 3DLUT file format, exact set of supported color spaces/transfer characteristics (only examples listed in source)."
 ```
 
 ---

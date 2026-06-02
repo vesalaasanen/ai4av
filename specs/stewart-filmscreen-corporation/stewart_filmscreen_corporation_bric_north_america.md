@@ -30,13 +30,22 @@ firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - P0
+  - "no HTTP/TCP/IP/REST protocol documented — serial only"
+  - "power commands not documented"
+  - "no response/acknowledgement strings documented"
+  - "no settable parameters documented"
+  - "no unsolicited notifications documented"
+  - "no explicit multi-step sequences documented"
+  - "no other safety warnings or interlock procedures in source"
+  - "P0 (Not Implemented) command present but omitted from actions"
+  - "no query commands, no response format, no status reporting documented"
 verification:
   verdict: verified
   checked_at: 2026-05-04T16:17:49.759Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified."
+  confidence: medium
+  summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -243,14 +252,23 @@ verdict: verified
 checked_at: 2026-05-04T16:17:49.759Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified."
+confidence: medium
+summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - P0
+- "no HTTP/TCP/IP/REST protocol documented — serial only"
+- "power commands not documented"
+- "no response/acknowledgement strings documented"
+- "no settable parameters documented"
+- "no unsolicited notifications documented"
+- "no explicit multi-step sequences documented"
+- "no other safety warnings or interlock procedures in source"
+- "P0 (Not Implemented) command present but omitted from actions"
+- "no query commands, no response format, no status reporting documented"
 ```
 
 ---

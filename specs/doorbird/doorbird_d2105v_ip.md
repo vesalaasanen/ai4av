@@ -19,20 +19,27 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:22.644Z
 last_checked_at: 2026-04-23T06:39:48.661Z
 generated_at: 2026-04-23T06:39:48.661Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Serial/RS-232 not mentioned in source — not applicable to this model"
+  - "HTTPS port 443 stated but not as configurable; omitted per N/A rule"
+  - "no discrete settable parameters documented as separate variables;"
+  - "no explicit safety interlocks or confirmation requirements found in source"
+  - "Serial/RS-232 configuration not applicable to D2105V (IP-only model)"
+  - "Firmware version compatibility range not explicitly stated"
+  - "Voltage/power specifications not provided in source"
+  - "Specific fault behavior and error recovery sequences not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:39:48.661Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions match literals in source; transport parameters (port 80, HTTP/UDP, Basic auth) verified from documentation."
+  confidence: medium
+  summary: "All 24 spec actions match literals in source; transport parameters (port 80, HTTP/UDP, Basic auth) verified from documentation. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -380,8 +387,7 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:22.644Z
 last_checked_at: 2026-04-23T06:39:48.661Z
 ```
 
@@ -392,14 +398,21 @@ verdict: verified
 checked_at: 2026-04-23T06:39:48.661Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions match literals in source; transport parameters (port 80, HTTP/UDP, Basic auth) verified from documentation."
+confidence: medium
+summary: "All 24 spec actions match literals in source; transport parameters (port 80, HTTP/UDP, Basic auth) verified from documentation. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Serial/RS-232 not mentioned in source — not applicable to this model"
+- "HTTPS port 443 stated but not as configurable; omitted per N/A rule"
+- "no discrete settable parameters documented as separate variables;"
+- "no explicit safety interlocks or confirmation requirements found in source"
+- "Serial/RS-232 configuration not applicable to D2105V (IP-only model)"
+- "Firmware version compatibility range not explicitly stated"
+- "Voltage/power specifications not provided in source"
+- "Specific fault behavior and error recovery sequences not documented"
 ```
 
 ---

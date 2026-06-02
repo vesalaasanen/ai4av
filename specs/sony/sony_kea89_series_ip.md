@@ -2,52 +2,57 @@
 spec_id: admin/sony-kea89-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Sony KEA89 Series Control Spec"
+title: "Sony KEA89 Series BRAVIA Control Spec"
 manufacturer: Sony
-model_family: "KEA89 Series"
+model_family: "KEA89 series"
 aliases: []
 compatible_with:
   manufacturers:
     - Sony
   models:
-    - "KEA89 Series"
+    - "KEA89 series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
+retrieved_at: 2026-06-02T06:52:25.672Z
 last_checked_at: 2026-05-31T22:41:23.905Z
 generated_at: 2026-05-31T22:41:23.905Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source describes Simple IP Control for BRAVIA Professional Displays generally, not the KEA89 model specifically. Spec is family-level until per-model confirmation. EU-area models have 3 RED-DA specification tiers; available commands differ per tier."
+  - "max volume value not stated"
+  - "source does not describe multi-step sequences."
+  - "no safety warnings or interlock procedures in source."
+  - "- Source does not name the KEA89 model family explicitly; spec is family-level for BRAVIA Pro Displays until per-model confirmation."
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:41:23.905Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched to source FourCC codes; transport port 20060 verified; one-to-one coverage of complete command catalogue."
+  confidence: medium
+  summary: "All 17 spec actions matched to source FourCC codes; transport port 20060 verified; one-to-one coverage of complete command catalogue. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
-# Sony KEA89 Series Control Spec
+# Sony KEA89 Series BRAVIA Control Spec
 
 ## Summary
-Sony KEA89 Series commercial displays support Simple IP Control over TCP on port 20060. The protocol uses fixed 24-byte ASCII messages with a FourCC command structure (SSIP). Supports power, volume, mute, input selection, picture mute, scene settings, and IR remote code passthrough. EU models have reduced command sets per RED-DA compliance.
+The Sony KEA89 series is a line of BRAVIA Professional Displays. This spec covers Sony's "Simple IP Control" protocol (SSIP), a proprietary TCP-based control interface intended for developers integrating with CIS and commercial AV control systems. Every command and response is a fixed 24-byte ASCII frame.
 
-<!-- UNRESOLVED: EU RED-DA specification variants not detailed in source — operator must consult RED-DA IP control docs for variant-specific command availability -->
+<!-- UNRESOLVED: source describes Simple IP Control for BRAVIA Professional Displays generally, not the KEA89 model specifically. Spec is family-level until per-model confirmation. EU-area models have 3 RED-DA specification tiers; available commands differ per tier. -->
 
 ## Transport
 ```yaml
@@ -61,279 +66,265 @@ auth:
 
 ## Traits
 ```yaml
-- powerable
-- queryable
-- levelable
-- routable
+powerable: true   # setPowerStatus / getPowerStatus / togglePowerStatus / firePowerChange
+levelable: true   # setAudioVolume / getAudioVolume / fireVolumeChange
+queryable: true   # get* commands
+routable: true    # setInput / getInput / fireInputChange (HDMI, Composite, Component, Screen Mirroring)
 ```
 
 ## Actions
 ```yaml
-- id: setIrccCode
-  label: Send IR Code
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: IR code number (byte value, 0-255). See IR Commands table for full list.
+# Every message is a 24-byte ASCII frame:
+#   byte[0-1]  header  "*S"            (0x2A 0x53, fixed)
+#   byte[2]    type    "C" "E" "A" "N" (Control / Enquiry / Answer / Notify)
+#   byte[3-6]  FourCC  e.g. "POWR"
+#   byte[7-22] params  16 bytes; numeric params pad with "0", strings pad with "#"
+#   byte[23]   footer  "\n"            (0x0A, fixed)
+# The command strings below are the literal 24-byte payload (header + body + footer).
 
-- id: setPowerStatus
+- id: set_ircc_code
+  label: Send IR Remote Code
+  kind: action
+  command: "*SCIRCC{ircc_param}\n"
+  params:
+    - name: ircc_param
+      type: string
+      description: 16 ASCII decimal digits (left-padded with "0"); see IR Commands table for code values.
+
+- id: set_power_status
   label: Set Power Status
   kind: action
+  command: "*SCPOWR000000000000000{state}\n"
   params:
-    - name: power
-      type: integer
-      enum:
-        - 0  # Standby (Off)
-        - 1  # Active (On)
+    - name: state
+      type: string
+      enum: ["0", "1"]
+      description: 0 = Standby (Off), 1 = Active (On). Sits in the last parameter byte.
 
-- id: getPowerStatus
+- id: get_power_status
   label: Get Power Status
   kind: query
-  params: []
+  command: "*SEPOWR################\n"
 
-- id: togglePowerStatus
+- id: toggle_power_status
   label: Toggle Power Status
   kind: action
-  params: []
+  command: "*SCTPOW################\n"
 
-- id: setAudioVolume
+- id: set_audio_volume
   label: Set Audio Volume
   kind: action
+  command: "*SCVOLU{volume}\n"
   params:
     - name: volume
-      type: integer
-      description: Volume level as decimal digit string left-padded with zeros, e.g. 0000000000000029
+      type: string
+      description: Volume as 16 ASCII decimal digits, left-padded with "0" (e.g. 29 -> "0000000000000029"). Maximum value not stated in source.
 
-- id: getAudioVolume
+- id: get_audio_volume
   label: Get Audio Volume
   kind: query
-  params: []
+  command: "*SEVOLU################\n"
 
-- id: setAudioMute
+- id: set_audio_mute
   label: Set Audio Mute
   kind: action
+  command: "*SCAMUT000000000000000{state}\n"
   params:
-    - name: mute
-      type: integer
-      enum:
-        - 0  # Unmute
-        - 1  # Mute
+    - name: state
+      type: string
+      enum: ["0", "1"]
+      description: 0 = Unmute, 1 = Mute. Sits in the last parameter byte.
 
-- id: getAudioMute
-  label: Get Audio Mute Status
+- id: get_audio_mute
+  label: Get Audio Mute
   kind: query
-  params: []
+  command: "*SEAMUT################\n"
 
-- id: setInput
+- id: set_input
   label: Set Input
   kind: action
+  command: "*SCINPT0000000{type}0000{input_number}\n"
   params:
-    - name: input
-      type: integer
-      description: Input source type code + index. Type codes: 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring. Followed by index number.
+    - name: type
+      type: string
+      enum: ["1", "3", "4", "5"]
+      description: 1 = HDMI, 3 = Composite, 4 = Component, 5 = Screen Mirroring (per source). Single ASCII digit.
+    - name: input_number
+      type: string
+      description: 4 ASCII decimal digits, left-padded with "0"; source range 1-9999.
 
-- id: getInput
-  label: Get Input
+- id: get_input
+  label: Get Current Input
   kind: query
-  params: []
+  command: "*SEINPT################\n"
 
-- id: setPictureMute
+- id: set_picture_mute
   label: Set Picture Mute
   kind: action
+  command: "*SCPMUT000000000000000{state}\n"
   params:
-    - name: mute
-      type: integer
-      enum:
-        - 0  # Disables picture mute (normal display)
-        - 1  # Turns screen black
+    - name: state
+      type: string
+      enum: ["0", "1"]
+      description: 0 = Disabled (picture mute off), 1 = Enabled (screen black). Sits in the last parameter byte.
 
-- id: getPictureMute
-  label: Get Picture Mute Status
+- id: get_picture_mute
+  label: Get Picture Mute
   kind: query
-  params: []
+  command: "*SEPMUT################\n"
 
-- id: togglePictureMute
+- id: toggle_picture_mute
   label: Toggle Picture Mute
   kind: action
-  params: []
+  command: "*SCTPMU################\n"
 
-- id: setSceneSetting
+- id: set_scene_setting
   label: Set Scene Setting
   kind: action
+  command: "*SCSCEN{scene_padded}\n"
   params:
-    - name: scene
+    - name: scene_padded
       type: string
-      description: Scene setting name. Case-sensitive, padded with "#" on right. Values: auto, auto24pSync, general, etc.
+      description: 16-byte case-sensitive string right-padded with "#". Allowed values: "auto", "auto24pSync", "general" (e.g. "auto24pSync#####").
 
-- id: getSceneSetting
+- id: get_scene_setting
   label: Get Scene Setting
   kind: query
-  params: []
+  command: "*SESCEN################\n"
 
-- id: getBroadcastAddress
-  label: Get Broadcast Address
+- id: get_broadcast_address
+  label: Get Broadcast Address (eth0)
   kind: query
-  params:
-    - name: interface
-      type: string
-      description: Interface name, e.g. "eth0"
+  command: "*SEBADREth0############\n"
+  notes: 'eth0' literal ASCII then 12 '#' padding bytes. EU-area models only (per source footnote).
 
-- id: getMacAddress
-  label: Get MAC Address
+- id: get_mac_address
+  label: Get MAC Address (eth0)
   kind: query
-  params:
-    - name: interface
-      type: string
-      description: Interface name, e.g. "eth0"
+  command: "*SEMADREth0############\n"
+  notes: 'eth0' literal ASCII then 12 '#' padding bytes. EU-area models only (per source footnote).
 ```
 
 ## Feedbacks
 ```yaml
-- id: powerAnswer
+- id: power_state
   type: enum
-  values:
-    - "0000000000000000000000"  # Standby (Off)
-    - "0000000000000000000001"  # Active (On)
-    - "FFFFFFFFFFFFFFFFFFFFFFFF"  # Error
+  values: [off, on]
+  notes: From getPowerStatus answer (0 = Standby, 1 = Active) or firePowerChange notification.
 
-- id: audioVolumeAnswer
+- id: audio_mute
+  type: enum
+  values: [unmuted, muted]
+  notes: From getAudioMute answer (0 = Not Muted, 1 = Muted) or fireMuteChange.
+
+- id: picture_mute
+  type: enum
+  values: [off, on]
+  notes: From getPictureMute answer (0 = Disabled, 1 = Enabled).
+
+- id: current_input
+  type: object
+  description: |
+    Composite of (type, number) from getInput / fireInputChange.
+    type: hdmi (1) | composite (3) | component (4) | screen_mirroring (5)
+    number: 1-9999
+
+- id: scene_setting
+  type: enum
+  values: [auto, auto24pSync, general]
+  notes: From getSceneSetting answer; strings are case-sensitive.
+
+- id: broadcast_address
   type: string
-  description: Volume value returned as ASCII digit string
+  description: IPv4 broadcast address (e.g. "192.168.0.14") from getBroadcastAddress answer. EU models only.
 
-- id: audioMuteAnswer
-  type: enum
-  values:
-    - "0000000000000000000000"  # Not Muted
-    - "0000000000000000000001"  # Muted
-
-- id: inputAnswer
-  type: enum
-  values:
-    - NNN...  # Not Found
-    - "0000000000000000000000"  # Success
-    - "FFFFFFFFFFFFFFFFFFFFFFFF"  # Error
-
-- id: pictureMuteAnswer
-  type: enum
-  values:
-    - "0000000000000000000000"  # Disabled (picture mute off)
-    - "0000000000000000000001"  # Enabled (picture mute on)
-
-- id: sceneSettingAnswer
+- id: mac_address
   type: string
-  description: Scene setting value returned as ASCII string
+  description: MAC address from getMacAddress answer. EU models only.
 
-- id: irccSuccess
-  type: enum
-  values:
-    - "0000000000000000000000"  # Success
-    - "FFFFFFFFFFFFFFFFFFFFFFFF"  # Error
-
-- id: broadcastAddressAnswer
-  type: string
-  description: IPv4 address string padded with "#"
-
-- id: macAddressAnswer
-  type: string
-  description: MAC address string padded with "#"
+- id: volume
+  type: integer
+  description: Audio volume. Minimum 0; maximum not stated in source (example given: 29).  # UNRESOLVED: max volume value not stated
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no standalone settable parameters other than direct commands
+- id: volume
+  type: integer
+  description: Audio volume. Minimum 0; maximum not stated in source.  # UNRESOLVED: max volume value not stated
+  set_action: set_audio_volume
+  get_action: get_audio_volume
 ```
 
 ## Events
 ```yaml
-- id: firePowerChange
+- id: fire_power_change
   type: notification
-  params:
-    - name: state
-      type: integer
-      enum:
-        - 0  # Powering off
-        - 1  # Powering on
+  fourcc: POWR
+  description: "Sent by monitor on power state change. Param last byte: 0 = powering off, 1 = powering on."
 
-- id: fireInputChange
+- id: fire_input_change
   type: notification
-  params:
-    - name: input
-      type: integer
-      description: Input source type code + index (same encoding as setInput)
+  fourcc: INPT
+  description: "Sent by monitor on input change. Param format mirrors getInput (type marker + 4-digit number)."
 
-- id: fireVolumeChange
+- id: fire_volume_change
   type: notification
-  params:
-    - name: volume
-      type: string
-      description: Volume value as ASCII digit string
+  fourcc: VOLU
+  description: "Sent by monitor on volume change. Param is the new volume value (16 ASCII decimal digits)."
 
-- id: fireMuteChange
+- id: fire_mute_change
   type: notification
-  params:
-    - name: mute
-      type: integer
-      enum:
-        - 0  # Unmuting
-        - 1  # Muting
+  fourcc: AMUT
+  description: "Sent by monitor on audio mute change. Param last byte: 0 = unmuting, 1 = muting."
 
-- id: firePictureMuteChange
+- id: fire_picture_mute_change
   type: notification
-  params:
-    - name: mute
-      type: integer
-      enum:
-        - 0  # Picture mute enabled
-        - 1  # Picture mute disabled
+  fourcc: PMUT
+  description: "Sent by monitor on picture mute change. Param last byte: 0 = enabling, 1 = disabling."
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences defined in source
+# UNRESOLVED: source does not describe multi-step sequences.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures stated in source
+# UNRESOLVED: no safety warnings or interlock procedures in source.
 ```
 
 ## Notes
+- Every frame is 24 ASCII bytes: `*S` header + msg type + FourCC + 16-byte params + `\n` footer. Header and footer are fixed; only msg type, FourCC, and 16-byte param field vary.
+- Parameter padding: numeric params right-pad (or, for `setAudioVolume`, left-pad) with ASCII `0`; string params right-pad with `#` (0x23). Enquiry (`E`) commands use `#` padding throughout the param area since they carry no value.
+- Message types: `C` (Control) client→monitor, `E` (Enquiry) client→monitor, `A` (Answer) monitor→client, `N` (Notify) monitor→client for unsolicited state changes.
+- The `setIrccCode` command forwards consumer remote-control key codes (HDMI 1-4, Volume Up/Down, Mute, Channel Up/Down, Play/Pause/Stop, etc.). The source enumerates 30+ IR codes by 16-digit param value.
+- `getBroadcastAddress` and `getMacAddress` are marked EU-models-only in the source. EU-area models have 3 RED-DA specification tiers; available commands differ per tier (see https://pro-bravia.sony.net/setup/device-settings/red-da/).
+- The toggle variants use distinct FourCCs: `TPOW` (toggle power) and `TPMU` (toggle picture mute), not the base `POWR`/`PMUT` mnemonics with no params.
 
-### Protocol Details
-- Message format: 24-byte fixed-length ASCII, no terminator needed beyond the 24-byte block
-- Header: `0x2A 0x53` (`*S`)
-- Footer: `0x0A` (LF)
-- Byte[2] message types: `C`=Control, `E`=Enquiry, `A`=Answer, `N`=Notify
-- Command FourCC occupies bytes 3-6
-- Parameters occupy bytes 7-22 (16 bytes), padded with `#` or `0` as appropriate
-
-### EU Model Restriction
-EU area models have RED-DA compliance variants. Command availability differs per specification. See https://pro-bravia.sony.net/setup/device-settings/red-da/ for details.
-
-### Command Stability
-Answer messages may include both acceptance (SA*) and current state (SN*) in same response — e.g. power off returns `*SAPOWR0000000000000000 *SNPOWR0000000000000000`.
-
-### IR Command Coverage
-`setIrccCode` accepts numeric codes for all standard BRAVIA remote buttons (Display, Home, Up/Down/Left/Right, 0-9, Volume, Channel, Color keys, Playback controls, HDMI 1-4, etc.). Full 270-entry table available in source.
-<!-- UNRESOLVED: complete IR command numeric code mapping for all 270 entries not fully enumerated in this spec — source table has all values -->
-<!-- UNRESOLVED: network interface naming convention not stated -->
-<!-- UNRESOLVED: error code enumeration for `FFFFFFFF` responses not fully enumerated -->
+<!-- UNRESOLVED:
+- Source does not name the KEA89 model family explicitly; spec is family-level for BRAVIA Pro Displays until per-model confirmation.
+- Maximum volume value not stated (source example: 29).
+- Firmware version compatibility not stated in source.
+- No safety warnings or interlock procedures in source.
+- No multi-step macros described in source.
+- EU RED-DA tier command-availability matrix not in source.
+-->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
+retrieved_at: 2026-06-02T06:52:25.672Z
 last_checked_at: 2026-05-31T22:41:23.905Z
 ```
 
@@ -344,14 +335,18 @@ verdict: verified
 checked_at: 2026-05-31T22:41:23.905Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched to source FourCC codes; transport port 20060 verified; one-to-one coverage of complete command catalogue."
+confidence: medium
+summary: "All 17 spec actions matched to source FourCC codes; transport port 20060 verified; one-to-one coverage of complete command catalogue. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source describes Simple IP Control for BRAVIA Professional Displays generally, not the KEA89 model specifically. Spec is family-level until per-model confirmation. EU-area models have 3 RED-DA specification tiers; available commands differ per tier."
+- "max volume value not stated"
+- "source does not describe multi-step sequences."
+- "no safety warnings or interlock procedures in source."
+- "- Source does not name the KEA89 model family explicitly; spec is family-level for BRAVIA Pro Displays until per-model confirmation."
 ```
 
 ---

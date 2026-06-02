@@ -24,14 +24,23 @@ last_checked_at: 2026-04-26T22:51:42.920Z
 generated_at: 2026-04-26T22:51:42.920Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "P627UL-specific input terminal codes not in appendix (appendix lists older NP-series models); TCP port 7142 confirmed for LAN control but serial-only file was provided"
+  - "flow control not explicitly stated"
+  - "most parameters are settable via Actions rather than separate Variables."
+  - "no unsolicited event notifications described in source. Device only responds to commands."
+  - "no explicit multi-step macros described in source."
+  - "no explicit safety warnings or interlock procedures beyond command timing notes."
+  - "serial flow control (RTS/CTS) pin present in pinout but not confirmed in communication settings table"
+  - "P627UL-specific appendix tables missing from source; only older NP-series models listed in supplementary info"
+  - "TCP port 7142 from LAN section not used in serial-only spec but included for completeness since source covers both interfaces"
 verification:
   verdict: verified
   checked_at: 2026-04-26T22:51:42.920Z
   matched_actions: 52
   action_count: 52
-  confidence: high
-  summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table."
+  confidence: medium
+  summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -631,14 +640,22 @@ verdict: verified
 checked_at: 2026-04-26T22:51:42.920Z
 matched_actions: 52
 action_count: 52
-confidence: high
-summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table."
+confidence: medium
+summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "P627UL-specific input terminal codes not in appendix (appendix lists older NP-series models); TCP port 7142 confirmed for LAN control but serial-only file was provided"
+- "flow control not explicitly stated"
+- "most parameters are settable via Actions rather than separate Variables."
+- "no unsolicited event notifications described in source. Device only responds to commands."
+- "no explicit multi-step macros described in source."
+- "no explicit safety warnings or interlock procedures beyond command timing notes."
+- "serial flow control (RTS/CTS) pin present in pinout but not confirmed in communication settings table"
+- "P627UL-specific appendix tables missing from source; only older NP-series models listed in supplementary info"
+- "TCP port 7142 from LAN section not used in serial-only spec but included for completeness since source covers both interfaces"
 ```
 
 ---

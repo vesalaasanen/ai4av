@@ -19,21 +19,29 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:52:47.997Z
 last_checked_at: 2026-05-20T05:35:49.868Z
 generated_at: 2026-05-20T05:35:49.868Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no multi-step macro sequences explicitly documented in source"
+  - "source mentions verifying projector state before power commands and best practice"
+  - "firmware version compatibility not stated in source"
+  - "exact model differences (W12 vs W14 vs W18) not specified — source lists vary by projector model"
+  - "HTTP file endpoint authentication requirements not stated"
+  - "property.get/property.set payload size limits not stated"
+  - "maximum number of concurrent subscriptions not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:35:49.868Z
   matched_actions: 58
   action_count: 58
-  confidence: high
-  summary: "All 58 spec actions matched with exact method and property names; transport parameters verified verbatim in source; comprehensive command coverage."
+  confidence: medium
+  summary: "All 58 spec actions matched with exact method and property names; transport parameters verified verbatim in source; comprehensive command coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -848,9 +856,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:52:47.997Z
 last_checked_at: 2026-05-20T05:35:49.868Z
 ```
 
@@ -861,14 +870,20 @@ verdict: verified
 checked_at: 2026-05-20T05:35:49.868Z
 matched_actions: 58
 action_count: 58
-confidence: high
-summary: "All 58 spec actions matched with exact method and property names; transport parameters verified verbatim in source; comprehensive command coverage."
+confidence: medium
+summary: "All 58 spec actions matched with exact method and property names; transport parameters verified verbatim in source; comprehensive command coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no multi-step macro sequences explicitly documented in source"
+- "source mentions verifying projector state before power commands and best practice"
+- "firmware version compatibility not stated in source"
+- "exact model differences (W12 vs W14 vs W18) not specified — source lists vary by projector model"
+- "HTTP file endpoint authentication requirements not stated"
+- "property.get/property.set payload size limits not stated"
+- "maximum number of concurrent subscriptions not stated"
 ```
 
 ---

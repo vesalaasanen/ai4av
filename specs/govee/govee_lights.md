@@ -26,14 +26,25 @@ last_checked_at: 2026-04-25T20:45:32.359Z
 generated_at: 2026-04-25T20:45:32.359Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "control endpoint (PUT/POST for sending commands) not documented — only GET discovery shown"
+  - "no command response format for control actions"
+  - "firmware version compatibility not stated"
+  - "the source describes capability types and their parameter schemas but does NOT document"
+  - "no settable parameter endpoints documented beyond capability definitions"
+  - "no unsolicited notification or webhook mechanism documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "control endpoint URL and request body format not documented"
+  - "no webhook or push notification mechanism for async state changes"
+  - "actual per-device scene lists vary — discovery endpoint returns device-specific options"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:45:32.359Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 11 spec actions matched capabilities in source discovery endpoint; transport verified; spec completely represents documented API surface."
+  confidence: medium
+  summary: "All 11 spec actions matched capabilities in source discovery endpoint; transport verified; spec completely represents documented API surface. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -322,14 +333,24 @@ verdict: verified
 checked_at: 2026-04-25T20:45:32.359Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 11 spec actions matched capabilities in source discovery endpoint; transport verified; spec completely represents documented API surface."
+confidence: medium
+summary: "All 11 spec actions matched capabilities in source discovery endpoint; transport verified; spec completely represents documented API surface. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "control endpoint (PUT/POST for sending commands) not documented — only GET discovery shown"
+- "no command response format for control actions"
+- "firmware version compatibility not stated"
+- "the source describes capability types and their parameter schemas but does NOT document"
+- "no settable parameter endpoints documented beyond capability definitions"
+- "no unsolicited notification or webhook mechanism documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "control endpoint URL and request body format not documented"
+- "no webhook or push notification mechanism for async state changes"
+- "actual per-device scene lists vary — discovery endpoint returns device-specific options"
 ```
 
 ---

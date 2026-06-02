@@ -21,12 +21,8 @@ compatible_with:
   required_options: []
 source_domains:
   - pulse-eight.com
-  - support.pulse-eight.com
 source_urls:
   - https://www.pulse-eight.com/Downloads/SerialProtocol_v1-1.pdf
-  - https://support.pulse-eight.com/support/solutions/articles/30000048810-neo-xmr-binary-user-manual
-  - https://www.pulse-eight.com/Download/GetFile/105
-  - https://support.pulse-eight.com/support/solutions/articles/30000053019-neo-matrix-local-webui-guide
 retrieved_at: 2026-05-23T20:48:53.689Z
 last_checked_at: 2026-05-31T07:05:34.920Z
 generated_at: 2026-05-31T07:05:34.920Z
@@ -37,13 +33,24 @@ known_gaps:
   - pDMZ
   - pVMZ
   - pDDNDZ
+  - "exact Palladia model names not stated in source; source references ProAudio line"
+  - "firmware version compatibility range not stated"
+  - "flow_control setting not explicitly stated (omitted from serial port settings list)"
+  - "flow control not stated in source"
+  - "no settable parameters beyond those captured as actions/feedbacks"
+  - "no multi-step sequences explicitly defined in source beyond paging presets"
+  - "no safety warnings or interlock procedures found in source"
+  - "flow_control not stated for RS-232"
+  - "Palladia model names/numbers not documented in this source"
+  - "maximum number of concurrent TCP connections not stated"
+  - "VMLZ and VMT commands referenced (mute level, fade time) but not documented in this source excerpt"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:05:34.920Z
   matched_actions: 58
   action_count: 58
-  confidence: high
-  summary: "All 58 spec actions have literal wire-token matches in the source; transport (port 50005, 19200 8N1) confirmed; 4 paging-mute commands in source are not represented in spec but do not exceed the 5-command short threshold."
+  confidence: medium
+  summary: "All 58 spec actions have literal wire-token matches in the source; transport (port 50005, 19200 8N1) confirmed; 4 paging-mute commands in source are not represented in spec but do not exceed the 5-command short threshold. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1082,12 +1089,8 @@ interlocks: []
 ```yaml
 source_domains:
   - pulse-eight.com
-  - support.pulse-eight.com
 source_urls:
   - https://www.pulse-eight.com/Downloads/SerialProtocol_v1-1.pdf
-  - https://support.pulse-eight.com/support/solutions/articles/30000048810-neo-xmr-binary-user-manual
-  - https://www.pulse-eight.com/Download/GetFile/105
-  - https://support.pulse-eight.com/support/solutions/articles/30000053019-neo-matrix-local-webui-guide
 retrieved_at: 2026-05-23T20:48:53.689Z
 last_checked_at: 2026-05-31T07:05:34.920Z
 ```
@@ -1099,8 +1102,8 @@ verdict: verified
 checked_at: 2026-05-31T07:05:34.920Z
 matched_actions: 58
 action_count: 58
-confidence: high
-summary: "All 58 spec actions have literal wire-token matches in the source; transport (port 50005, 19200 8N1) confirmed; 4 paging-mute commands in source are not represented in spec but do not exceed the 5-command short threshold."
+confidence: medium
+summary: "All 58 spec actions have literal wire-token matches in the source; transport (port 50005, 19200 8N1) confirmed; 4 paging-mute commands in source are not represented in spec but do not exceed the 5-command short threshold. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1110,6 +1113,17 @@ summary: "All 58 spec actions have literal wire-token matches in the source; tra
 - pDMZ
 - pVMZ
 - pDDNDZ
+- "exact Palladia model names not stated in source; source references ProAudio line"
+- "firmware version compatibility range not stated"
+- "flow_control setting not explicitly stated (omitted from serial port settings list)"
+- "flow control not stated in source"
+- "no settable parameters beyond those captured as actions/feedbacks"
+- "no multi-step sequences explicitly defined in source beyond paging presets"
+- "no safety warnings or interlock procedures found in source"
+- "flow_control not stated for RS-232"
+- "Palladia model names/numbers not documented in this source"
+- "maximum number of concurrent TCP connections not stated"
+- "VMLZ and VMT commands referenced (mute level, fade time) but not documented in this source excerpt"
 ```
 
 ---

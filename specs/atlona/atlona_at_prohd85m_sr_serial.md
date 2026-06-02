@@ -18,24 +18,30 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PROHD85M-SR_manual_WEB.pdf
+  - https://atlona.com/pdf/rs232/AT-PROHD85M-SR_RS232.xls
+  - https://atlona.com/pdf/ircodes/AT-PROHD85M-SR_ir.doc
+retrieved_at: 2026-05-31T14:42:15.903Z
 last_checked_at: 2026-05-31T20:56:03.773Z
 generated_at: 2026-05-31T20:56:03.773Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no status query commands, no power commands, no safety warnings in source"
+  - "no status query commands in source"
+  - "no settable parameters documented"
+  - "no unsolicited notifications documented"
+  - "no multi-step sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "device may physically have fewer than 5 outputs — source does not clarify model variant"
+  - "no power on/off commands, no firmware version, no query/feedback commands, no auth, no safety warnings in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:56:03.773Z
   matched_actions: 40
   action_count: 40
-  confidence: high
-  summary: "All 40 routing commands match source table; all transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 40 routing commands match source table; all transport parameters verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -355,12 +361,10 @@ Command format: `cir<XY>` where X = output (0–4), Y = input (0–7). Terminato
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PROHD85M-SR_manual_WEB.pdf
+  - https://atlona.com/pdf/rs232/AT-PROHD85M-SR_RS232.xls
+  - https://atlona.com/pdf/ircodes/AT-PROHD85M-SR_ir.doc
+retrieved_at: 2026-05-31T14:42:15.903Z
 last_checked_at: 2026-05-31T20:56:03.773Z
 ```
 
@@ -371,14 +375,21 @@ verdict: verified
 checked_at: 2026-05-31T20:56:03.773Z
 matched_actions: 40
 action_count: 40
-confidence: high
-summary: "All 40 routing commands match source table; all transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 40 routing commands match source table; all transport parameters verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no status query commands, no power commands, no safety warnings in source"
+- "no status query commands in source"
+- "no settable parameters documented"
+- "no unsolicited notifications documented"
+- "no multi-step sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "device may physically have fewer than 5 outputs — source does not clarify model variant"
+- "no power on/off commands, no firmware version, no query/feedback commands, no auth, no safety warnings in source"
 ```
 
 ---

@@ -28,14 +28,23 @@ last_checked_at: 2026-05-04T10:21:28.186Z
 generated_at: 2026-05-04T10:21:28.186Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "OSC listen port default not stated in source"
+  - "complete feedback message table not visible in source"
+  - "Show Control trigger/task types (MIDI, MMC, MSC, Art-Net, sACN) documented but are internal programming, not external device control"
+  - "feedback message table referenced in source (D.3) but not fully visible."
+  - "device sends unsolicited feedback to connected clients on state changes,"
+  - "OSC listen port default value not stated in source"
+  - "complete feedback message table not visible in source — D.3 references it but content was not extractable"
+  - "API prefix label configuration mechanism not detailed in source"
+  - "\"hello\" command format inferred from naming pattern, not explicitly in a command table"
 verification:
   verdict: verified
   checked_at: 2026-05-04T10:21:28.186Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented."
+  confidence: medium
+  summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -310,14 +319,22 @@ verdict: verified
 checked_at: 2026-05-04T10:21:28.186Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented."
+confidence: medium
+summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "OSC listen port default not stated in source"
+- "complete feedback message table not visible in source"
+- "Show Control trigger/task types (MIDI, MMC, MSC, Art-Net, sACN) documented but are internal programming, not external device control"
+- "feedback message table referenced in source (D.3) but not fully visible."
+- "device sends unsolicited feedback to connected clients on state changes,"
+- "OSC listen port default value not stated in source"
+- "complete feedback message table not visible in source — D.3 references it but content was not extractable"
+- "API prefix label configuration mechanism not detailed in source"
+- "\"hello\" command format inferred from naming pattern, not explicitly in a command table"
 ```
 
 ---

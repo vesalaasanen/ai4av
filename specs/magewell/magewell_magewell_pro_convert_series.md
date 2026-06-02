@@ -32,14 +32,24 @@ last_checked_at: 2026-04-30T14:47:51.509Z
 generated_at: 2026-04-30T14:47:51.509Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version compatibility range stated in source"
+  - "HTTP port not explicitly stated; examples use default port 80"
+  - "source does not describe unsolicited event/notification mechanisms"
+  - "source does not describe multi-step macro sequences"
+  - "source does not contain explicit safety warnings or interlock procedures"
+  - "firmware version compatibility ranges not stated"
+  - "no description of unsolicited event/push notification mechanism"
+  - "no explicit safety interlock procedures documented"
+  - "maximum concurrent session count not stated"
+  - "API rate limits not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:47:51.509Z
   matched_actions: 54
   action_count: 54
-  confidence: high
-  summary: "All 54 spec actions matched to source methods using semantic-id convention; transport verified."
+  confidence: medium
+  summary: "All 54 spec actions matched to source methods using semantic-id convention; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1095,14 +1105,23 @@ verdict: verified
 checked_at: 2026-04-30T14:47:51.509Z
 matched_actions: 54
 action_count: 54
-confidence: high
-summary: "All 54 spec actions matched to source methods using semantic-id convention; transport verified."
+confidence: medium
+summary: "All 54 spec actions matched to source methods using semantic-id convention; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version compatibility range stated in source"
+- "HTTP port not explicitly stated; examples use default port 80"
+- "source does not describe unsolicited event/notification mechanisms"
+- "source does not describe multi-step macro sequences"
+- "source does not contain explicit safety warnings or interlock procedures"
+- "firmware version compatibility ranges not stated"
+- "no description of unsolicited event/push notification mechanism"
+- "no explicit safety interlock procedures documented"
+- "maximum concurrent session count not stated"
+- "API rate limits not stated"
 ```
 
 ---

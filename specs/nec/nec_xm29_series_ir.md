@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:38.708Z
 last_checked_at: 2026-05-14T18:17:19.290Z
 generated_at: 2026-05-14T18:17:19.290Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit commands not documented in source; UNRESOLVED: eco mode / lamp mode values not enumerated in source"
+  - "flow control not stated in source"
+  - "populate from source"
+  - "many settable parameters are command-based rather than variable-based"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step sequences explicitly documented in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "wireless LAN unit commands not documented; refer to wireless LAN unit operation manual"
+  - "appendix \"Supplementary Information by Command\" values not available in source"
+  - "MODEL CODE (ID2) values by model not stated in source"
+  - "input terminal hex values referenced but not enumerated (see appendix)"
+  - "aspect ratio values referenced but not enumerated (see appendix)"
+  - "eco mode numeric values referenced but not enumerated (see appendix)"
+  - "key code table partial — only SOURCE, COMPUTER1/2, VIDEO1, S-VIDEO1, VOLUME UP/DOWN, ASPECT, FREEZE, LAMP MODE/ECO, etc. shown; other codes in appendix not available"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.290Z
   matched_actions: 49
   action_count: 50
-  confidence: high
-  summary: "All 49 spec actions matched source; transport verified"
+  confidence: medium
+  summary: "All 49 spec actions matched source; transport verified (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -632,7 +646,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:38.708Z
 last_checked_at: 2026-05-14T18:17:19.290Z
 ```
 
@@ -643,14 +657,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.290Z
 matched_actions: 49
 action_count: 50
-confidence: high
-summary: "All 49 spec actions matched source; transport verified"
+confidence: medium
+summary: "All 49 spec actions matched source; transport verified (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit commands not documented in source; UNRESOLVED: eco mode / lamp mode values not enumerated in source"
+- "flow control not stated in source"
+- "populate from source"
+- "many settable parameters are command-based rather than variable-based"
+- "no unsolicited event notifications documented in source"
+- "no multi-step sequences explicitly documented in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "wireless LAN unit commands not documented; refer to wireless LAN unit operation manual"
+- "appendix \"Supplementary Information by Command\" values not available in source"
+- "MODEL CODE (ID2) values by model not stated in source"
+- "input terminal hex values referenced but not enumerated (see appendix)"
+- "aspect ratio values referenced but not enumerated (see appendix)"
+- "eco mode numeric values referenced but not enumerated (see appendix)"
+- "key code table partial — only SOURCE, COMPUTER1/2, VIDEO1, S-VIDEO1, VOLUME UP/DOWN, ASPECT, FREEZE, LAMP MODE/ECO, etc. shown; other codes in appendix not available"
 ```
 
 ---

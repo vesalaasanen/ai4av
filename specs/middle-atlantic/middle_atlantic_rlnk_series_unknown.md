@@ -4,927 +4,790 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Middle Atlantic RackLink Series Control Spec"
 manufacturer: "Middle Atlantic"
-model_family: "RackLink Series"
+model_family: RLNK-Select
 aliases: []
 compatible_with:
   manufacturers:
     - "Middle Atlantic"
   models:
-    - "RackLink Series"
-    - "RackLink Premium"
-    - "RackLink Select"
-    - "RackLink Premium+"
+    - RLNK-Select
+    - RLNK-Premium
+    - RLNK-Premium+
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
   - res.cloudinary.com
-  - media.iewc.com
+  - digitalautomation.us
+  - files.d-tools.com
+  - markertek.com
+  - files.avprosupply.com
 source_urls:
   - "https://res.cloudinary.com/avd/image/upload/v1598618818/Resources/Middle%20Atlantic/Power/Firmware/I-00472-Series-Protocol.pdf"
-  - https://media.iewc.com/PublicAssets/SpecificationSheets/RLNK-SW715R-NS_specification.pdf
-retrieved_at: 2026-05-27T02:36:30.545Z
-last_checked_at: 2026-05-27T15:41:21.022Z
-generated_at: 2026-05-27T15:41:21.022Z
+  - https://digitalautomation.us/wp-content/uploads/2023/09/MiddleAtlantic_RacklinkSelect_IP.pdf
+  - "http://files.d-tools.com/Visualizations/Approved/Middle%20Atlantic/Documents/Middle%20Atlantic_RLNK-915R_Manual1.PDF"
+  - "https://www.markertek.com/Attachments/Manuals/MIDDLE%20ATLANTIC/RLNK-215-Manual.pdf"
+  - https://files.avprosupply.com/files/attachments/13508/middle-atlantic-rlnk-215-manual.pdf
+retrieved_at: 2026-05-27T02:31:54.772Z
+last_checked_at: 2026-06-01T22:35:53.262Z
+generated_at: 2026-06-01T22:35:53.262Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "per-model command capability matrix is partially stated (e.g. RS-232 only on Premium, energy management only on Premium/Premium+); firmware revisions and per-firmware command gating are not stated."
+  - "per-firmware-version command gating is not stated; voltage/current/power ratings are not stated; physical pinout of the RS-232 DB connector is not stated; default delay values for sequencing are not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-27T15:41:21.022Z
-  matched_actions: 84
-  action_count: 84
-  confidence: high
-  summary: "All 84 spec action units match source commands with correct opcodes, parameters, and transport details."
+  checked_at: 2026-06-01T22:35:53.262Z
+  matched_actions: 53
+  action_count: 53
+  confidence: medium
+  summary: "All 53 spec actions match source commands with correct opcodes, parameters, and transport details; full catalogue coverage. (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
 # Middle Atlantic RackLink Series Control Spec
 
 ## Summary
-RackLink is a network-connected power management device (PDU) supporting outlet control, energy monitoring, and sequencing. Control via RS-232 (Premium models) and TCP/IP (Select, Premium, Premium+ models). Protocol is binary with a framed message structure (header 0xFE, tail 0xFF), escape sequences for protected bytes, and 7-bit masked checksums. Authentication required; default login for Select/Premium is `user|password`.
+The Middle Atlantic RackLink (RLNK) Series is a family of rack power products (Select, Premium, Premium+) that expose a binary control protocol over RS-232 (Premium only) and TCP/IP port 60000. Every frame is a fixed hex envelope: `0xFE <length> <data envelope> <checksum> 0xFF`, where the checksum is the 7-bit-masked sum of all bytes from the header through the end of the data envelope. A `Login` command (`user|password` by default) is required before any other command will be honored, and the device sends periodic `Ping` frames that the controller must answer or be disconnected after three misses.
 
-<!-- UNRESOLVED: specific model variant feature differences (Premium+ has configurable accounts vs fixed default login, configurable delay settings for sequencing) not fully enumerated -->
+<!-- UNRESOLVED: per-model command capability matrix is partially stated (e.g. RS-232 only on Premium, energy management only on Premium/Premium+); firmware revisions and per-firmware command gating are not stated. -->
 
 ## Transport
 ```yaml
 protocols:
-  - serial
   - tcp
+  - serial
+addressing:
+  port: 60000
 serial:
   baud_rate: 9600
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: null  # UNRESOLVED: flow control not stated in source
-addressing:
-  port: 60000
+  flow_control: none
 auth:
-  type: credentials  # login required per source; default user|password for Select/Premium
+  type: password  # protocol-specific Login command carries "Username|Password" (default "user|password")
 ```
+
+**Frame format (all transports):** `0xFE <length> <data envelope> <checksum> 0xFF`
+- `0xFE` = Header
+- `<length>` = 1 byte = total bytes in data envelope
+- `<data envelope>` = 3–250 bytes, always begins with a `0x00` prefix byte, then command + subcommand + payload
+- `<checksum>` = `(sum of all bytes from 0xFE through end of data envelope) & 0x7F`
+- `0xFF` = Tail
+
+Reserved/protected bytes `0xFE`, `0xFF`, `0xFD` inside the data envelope must be escaped with `0xFD` + inverted value; the escape byte is excluded from length and checksum calculations.
 
 ## Traits
 ```yaml
-# inferred from source command set:
-# - powerable       (outlet on/off/cycle commands)
-# - routable        (power sequencing commands)
-# - queryable       (status read commands for all outlets/contacts/sensors)
-# - levelable       (threshold setting commands for voltage, current, temperature)
+- powerable       # inferred from outlet on/off and cycle commands
+- queryable       # inferred from get-state, get-count, sensor, and log read commands
+- routable        # inferred from power sequencing (sequence up / sequence down) commands
 ```
 
 ## Actions
 ```yaml
-# NACK - error response from device
-- id: nak
-  label: NACK Error Response
-  kind: feedback
-  params:
-    - name: error_code
-      type: enum
-      values:
-        - "0x01"  # Bad CRC on previous command
-        - "0x02"  # Bad Length on previous command
-        - "0x03"  # Bad Escape sequence on previous command
-        - "0x04"  # Previous command invalid
-        - "0x05"  # Previous sub-command invalid
-        - "0x06"  # Previous command incorrect byte count
-        - "0x07"  # Invalid data bytes in previous command
-        - "0x08"  # Invalid Credentials (need to login again)
-        - "0x10"  # Unknown Error
-        - "0x11"  # Access Denied (EPO)
-
-# Ping - device-to-control-system keepalive
+# ----- Session / link management -----
 - id: ping
-  label: Ping (Device to Control System)
+  label: Ping
   kind: action
+  command: "FE 03 00 01 01 {checksum} FF"
+  notes: |
+    Device periodically sends this to the controller; controller must respond with Pong or
+    be considered disconnected after three unanswered pings. Checksum always 0x03.
   params: []
 
-# Pong - control system response to Ping
 - id: pong
-  label: Pong (Control System to Device)
+  label: Ping Response
   kind: action
+  command: "FE 03 00 01 10 {checksum} FF"
+  notes: Response to a device-initiated Ping. Checksum always 0x12.
   params: []
 
-# Login
 - id: login
   label: Login
   kind: action
+  command: "FE {length} 00 02 01 {credentials} {checksum} FF"
+  notes: |
+    Credentials encoded as ASCII "Username|Password". Default "user|password"
+    (hex 75 73 65 72 7C 70 61 73 73 77 6F 72 64). Must be sent before any other command.
+    On Premium+ the login username/password may reference any admin user with the control
+    protocol enabled (no default "user" account).
   params:
     - name: credentials
       type: string
-      description: "Username|Password format. Default for Select/Premium: user|password. Premium+ uses any admin account with control protocol enabled."
+      description: ASCII string "Username|Password"
 
-# Login Response
-- id: login_response
-  label: Login Response
-  kind: feedback
-  params:
-    - name: accepted
-      type: enum
-      values: ["0x00", "0x01"]
+# ----- NACK (device-to-controller error response, not a controller-sent command) -----
+# Documented for completeness; no action is sent by the controller.
+# Error codes: 0x01 Bad CRC, 0x02 Bad Length, 0x03 Bad Escape, 0x04 Invalid command,
+# 0x05 Invalid sub-command, 0x06 Wrong byte count, 0x07 Invalid data bytes,
+# 0x08 Invalid Credentials, 0x10 Unknown Error, 0x11 Access Denied (EPO).
 
-# Power Outlet Read State (0x20 / Get State)
-- id: read_outlet_state
-  label: Read Outlet/Contact State
+# ----- Outlets (0x20) and Dry Contacts (0x30) -----
+- id: read_outlet_status
+  label: Read Outlet Status
   kind: query
+  command: "FE 04 00 20 02 {outlet} {checksum} FF"
   params:
-    - name: outlet_or_contact
-      type: enum
-      values: ["0x20", "0x30"]
-    - name: number
+    - name: outlet
       type: integer
-      description: "0x01 to 0x10 (1-16) for outlets; 0x01 to 0x08 (1-8) for contacts"
+      description: Outlet number 1-16 (0x01-0x10)
 
-# Power Outlet Write State (0x20 / Set State) - ON
-- id: outlet_on
-  label: Outlet ON
-  kind: action
+- id: read_contact_status
+  label: Read Dry Contact Status
+  kind: query
+  command: "FE 04 00 30 02 {contact} {checksum} FF"
   params:
-    - name: outlet_number
+    - name: contact
       type: integer
-      description: "1 to 16 (0x01 to 0x10)"
+      description: Dry contact number 1-8 (0x01-0x08)
+
+- id: write_outlet_status
+  label: Write Outlet State
+  kind: action
+  command: "FE 09 00 20 01 {outlet} {state} {cycle_time} {checksum} FF"
+  params:
+    - name: outlet
+      type: integer
+      description: Outlet number 1-16
     - name: state
       type: enum
-      values: ["0x01"]
-
-# Power Outlet Write State (0x20 / Set State) - OFF
-- id: outlet_off
-  label: Outlet OFF
-  kind: action
-  params:
-    - name: outlet_number
-      type: integer
-      description: "1 to 16 (0x01 to 0x10)"
-    - name: state
-      type: enum
-      values: ["0x00"]
-
-# Power Outlet Write State (0x20 / Set State) - CYCLE
-- id: outlet_cycle
-  label: Outlet Cycle
-  kind: action
-  params:
-    - name: outlet_number
-      type: integer
-      description: "1 to 16 (0x01 to 0x10)"
-    - name: state
-      type: enum
-      values: ["0x02"]
-    - name: cycle_time
-      type: integer
-      description: "0000 to 3600 seconds, ASCII encoded (e.g., 5 seconds = \"0005\" = 0x30303035)"
-
-# Dry Contact Write State (0x30 / Set State) - ON
-- id: contact_on
-  label: Dry Contact ON
-  kind: action
-  params:
-    - name: contact_number
-      type: integer
-      description: "1 to 8 (0x01 to 0x08)"
-    - name: state
-      type: enum
-      values: ["0x01"]
-
-# Dry Contact Write State (0x30 / Set State) - OFF
-- id: contact_off
-  label: Dry Contact OFF
-  kind: action
-  params:
-    - name: contact_number
-      type: integer
-      description: "1 to 8 (0x01 to 0x08)"
-    - name: state
-      type: enum
-      values: ["0x00"]
-
-# Dry Contact Write State (0x30 / Set State) - CYCLE
-- id: contact_cycle
-  label: Dry Contact Cycle
-  kind: action
-  params:
-    - name: contact_number
-      type: integer
-      description: "1 to 8 (0x01 to 0x08)"
-    - name: state
-      type: enum
-      values: ["0x02"]
-    - name: cycle_time
-      type: integer
-      description: "0000 to 3600 seconds, ASCII encoded"
-
-# Outlet Status Response
-- id: outlet_status_response
-  label: Outlet/Contact Status Response
-  kind: feedback
-  params:
-    - name: outlet_or_contact
-      type: enum
-      values: ["0x20", "0x30"]
-    - name: subcommand
-      type: enum
-      values:
-        - "0x10"  # Response to a command
-        - "0x12"  # Status Update from local events
-        - "0x30"  # Log Update
-    - name: number
-      type: integer
-    - name: current_state
-      type: enum
-      values: ["0x00", "0x01"]
+      values: [off, on, cycle, not_controllable]
+      description: "0x00 OFF, 0x01 ON, 0x02 Cycle (uses cycle_time), 0x03 Not Controllable (response only)"
     - name: cycle_time
       type: string
-      description: "ASCII encoded cycle time (0000-3600)"
+      description: ASCII 4 digits, 0000-3600 seconds; send 0x30 0x30 0x30 0x30 ("0000") for on/off
 
-# Read Outlet/Contact Name (0x21/0x31 Get Name)
+- id: write_contact_status
+  label: Write Dry Contact State
+  kind: action
+  command: "FE 09 00 30 01 {contact} {state} {cycle_time} {checksum} FF"
+  params:
+    - name: contact
+      type: integer
+      description: Dry contact number 1-8
+    - name: state
+      type: enum
+      values: [off, on, cycle]
+      description: "0x00 OFF, 0x01 ON, 0x02 Cycle"
+    - name: cycle_time
+      type: string
+      description: ASCII 4 digits, 0000-3600 seconds; send 0x30 0x30 0x30 0x30 ("0000") for on/off
+
+# ----- Outlet (0x21) and Dry Contact (0x31) Names -----
 - id: read_outlet_name
   label: Read Outlet Name
   kind: query
+  command: "FE 04 00 21 02 {outlet} {checksum} FF"
   params:
-    - name: outlet_number
+    - name: outlet
       type: integer
-      description: "1 to 16 (0x01 to 0x10)"
+      description: Outlet number 1-16
+
+- id: write_outlet_name
+  label: Write Outlet Name
+  kind: action
+  command: "FE {length} 00 21 01 {outlet} {name} {checksum} FF"
+  params:
+    - name: outlet
+      type: integer
+      description: Outlet number 1-16
+    - name: name
+      type: string
+      description: ASCII name string
 
 - id: read_contact_name
   label: Read Dry Contact Name
   kind: query
+  command: "FE 04 00 31 02 {contact} {checksum} FF"
   params:
-    - name: contact_number
+    - name: contact
       type: integer
-      description: "1 to 8 (0x01 to 0x08)"
-
-# Write Outlet/Contact Name (0x21/0x31 Set Name)
-- id: write_outlet_name
-  label: Write Outlet Name
-  kind: action
-  params:
-    - name: outlet_number
-      type: integer
-      description: "1 to 16"
-    - name: name
-      type: string
-      description: "Variable string name"
+      description: Dry contact number 1-8
 
 - id: write_contact_name
   label: Write Dry Contact Name
   kind: action
+  command: "FE {length} 00 31 01 {contact} {name} {checksum} FF"
   params:
-    - name: contact_number
+    - name: contact
       type: integer
-      description: "1 to 8"
+      description: Dry contact number 1-8
     - name: name
       type: string
+      description: ASCII name string
 
-# Outlet/Contact Name Response
-- id: outlet_name_response
-  label: Outlet/Contact Name Response
-  kind: feedback
-  params:
-    - name: outlet_or_contact
-      type: enum
-      values: ["0x21", "0x31"]
-    - name: number
-      type: integer
-    - name: name
-      type: string
-
-# Read Outlet Count (0x22 Get Count)
+# ----- Outlet (0x22) and Dry Contact (0x32) Counts -----
 - id: read_outlet_count
   label: Read Outlet Count
   kind: query
+  command: "FE 03 00 22 02 25 FF"
+  notes: Checksum always 0x25; tail always 0xFF. No variable params.
   params: []
 
-# Read Contact Count (0x32 Get Count)
 - id: read_contact_count
   label: Read Dry Contact Count
   kind: query
+  command: "FE 03 00 32 02 35 FF"
+  notes: Checksum always 0x35; tail always 0xFF. No variable params.
   params: []
 
-# Outlet/Contact Count Response
-- id: outlet_count_response
-  label: Outlet/Contact Count Response
-  kind: feedback
-  params:
-    - name: outlet_or_contact
-      type: enum
-      values: ["0x22", "0x32"]
-    - name: status_bytes
-      type: string
-      description: "16 bytes for outlets, 8 bytes for contacts. Each byte: C=Controllable, N=Non-Controllable, X=Does not exist"
-
-# Power Sequencing Command (0x36 Set) - Sequence UP
-- id: sequence_up
-  label: Sequence Power Up
+# ----- Power Sequencing (0x36) -----
+- id: sequence_outlets
+  label: Power Sequence
   kind: action
-  params:
-    - name: delay_time
-      type: integer
-      description: "0000 to 0999 seconds, ASCII encoded. Premium+: send 0000 to use saved settings."
-
-# Power Sequencing Command (0x36 Set) - Sequence DOWN
-- id: sequence_down
-  label: Sequence Power Down
-  kind: action
-  params:
-    - name: delay_time
-      type: integer
-      description: "0000 to 0999 seconds, ASCII encoded. Premium+: send 0000 to use saved settings."
-
-# Sequencing Response
-- id: sequencing_response
-  label: Sequencing Response
-  kind: feedback
+  command: "FE 08 00 36 01 {direction} {delay} {checksum} FF"
+  notes: |
+    Premium+ ignores the delay field and uses its configured per-outlet delay (send
+    0x30 0x30 0x30 0x30 "0000"). Non-Premium+: delay 0000-0999 seconds ASCII.
   params:
     - name: direction
       type: enum
-      values:
-        - "0x00"  # Not Sequencing (fallback on error)
-        - "0x01"  # Sequencing up
-        - "0x02"  # Sequencing up complete
-        - "0x03"  # Sequencing down
-        - "0x04"  # Sequencing down complete
-    - name: delay_time
+      values: [up, down]
+      description: "0x01 Sequence Up, 0x03 Sequence Down"
+    - name: delay
       type: string
-      description: "ASCII encoded delay time"
+      description: ASCII 4 digits, 0000-0999 seconds
 
-# Energy Management State - Get (0x23)
-- id: read_energy_management_state
-  label: Read Energy Management State
-  kind: query
-  params:
-    - name: outlet_number
-      type: integer
-      description: "1 to 16 (0x01 to 0x10)"
-
-# Energy Management State - Set (0x23)
-- id: set_energy_management_state
-  label: Set Energy Management State
+# ----- Energy Management (0x23, Premium/Premium+ only) -----
+- id: set_outlet_energy_state
+  label: Set Outlet Energy State
   kind: action
+  command: "FE 05 00 23 01 {outlet} {state} {checksum} FF"
+  notes: Premium/Premium+ only.
   params:
-    - name: outlet_number
+    - name: outlet
       type: integer
-      description: "1 to 16"
-    - name: energy_state
-      type: string
-      description: "16-byte ASCII string (one byte per outlet). D=Disconnected, S=Standby, I=ON, O=OFF, U=Unknown"
-
-# Energy Management Response
-- id: energy_management_response
-  label: Energy Management State Response
-  kind: feedback
-  params:
-    - name: outlet_number
-      type: integer
-    - name: energy_state
-      type: string
-      description: "16-byte ASCII string per outlet"
-
-# EPO - Emergency Power Off (0x37)
-- id: epo_recover
-  label: EPO Recover
-  kind: action
-  params: []
-
-- id: epo_initiate
-  label: EPO Initiate
-  kind: action
-  params: []
-
-# EPO Response
-- id: epo_response
-  label: EPO Response
-  kind: feedback
-  params:
-    - name: subcommand
+      description: Outlet number 1-16
+    - name: state
       type: enum
-      values: ["0x10", "0x12"]
-    - name: epo_state
-      type: enum
-      values:
-        - "0x00"  # Normal Operation State
-        - "0x01"  # Emergency Power Off Mode
+      values: [disconnected, standby, on, off, unknown]
+      description: |
+        ASCII letter: 0x44 D, 0x53 S, 0x49 I (ON), 0x4F O (OFF), 0x55 U (Unknown)
 
-# Register Log Alerts - Get (0x40)
-- id: read_log_alerts
-  label: Read Log Alert Registration
+- id: get_outlet_energy_state
+  label: Get Outlet Energy State
   kind: query
+  command: "FE 04 00 23 02 {outlet} {checksum} FF"
+  notes: Premium/Premium+ only.
+  params:
+    - name: outlet
+      type: integer
+      description: Outlet number 1-16
+
+# ----- Emergency Power Off (0x37) -----
+- id: epo
+  label: Emergency Power Off
+  kind: action
+  command: "FE 04 00 37 01 {action} {checksum} FF"
+  safety: critical
+  notes: |
+    EPO Initiate (0x01) cuts outlet power. EPO Recover (0x00) restores operation.
+    NACK code 0x11 "Access Denied (EPO)" indicates an active EPO.
+  params:
+    - name: action
+      type: enum
+      values: [recover, initiate]
+      description: "0x00 EPO Recover, 0x01 EPO Initiate"
+
+# ----- Log Alerts Registration (0x40) -----
+- id: get_log_alerts
+  label: Get Log Alert Registration
+  kind: query
+  command: "FE 03 00 40 02 {checksum} FF"
   params: []
 
-# Register Log Alerts - Set (0x40)
 - id: set_log_alerts
-  label: Register Log Alerts
+  label: Set Log Alert Registration
   kind: action
+  command: "FE 05 00 40 01 {byte1} {byte2} {checksum} FF"
+  notes: |
+    Two-bitfield bytes. Byte 1: bit1 Normal, bit2 OverV, bit3 UnderV, bit4 OverTemp,
+    bit5 UnderTemp, bit6 Surge. Byte 2: bit1 AutoPing, bit2 RS232Ping, bit3 OverI,
+    bit4 UnderI, bit5 EPO.
   params:
-    - name: alert_settings
-      type: string
-      description: "Two bytes, each bit representing an alert type. First byte: BIT1=Normal Log Alerts, BIT2=Over Voltage, BIT3=Under Voltage, BIT4=Over Temperature, BIT5=Under Temperature, BIT6=Surge Fault. Second byte: BIT1=Auto Ping Timeout, BIT2=RS232 Ping Timeout, BIT3=Over Current, BIT4=Under Current, BIT5=EPO."
+    - name: byte1
+      type: integer
+      description: Bitfield byte 1
+    - name: byte2
+      type: integer
+      description: Bitfield byte 2
 
-# Register Log Alerts Response
-- id: log_alerts_response
-  label: Log Alerts Registration Response
-  kind: feedback
-  params:
-    - name: alert_settings
-      type: string
-
-# Register Status Change - Get (0x41)
-- id: read_status_change_registration
-  label: Read Status Change Registration
+# ----- Status Change Registration (0x41) -----
+- id: get_status_change_registration
+  label: Get Status Change Registration
   kind: query
+  command: "FE 03 00 41 02 {checksum} FF"
   params: []
 
-# Register Status Change - Set (0x41)
 - id: set_status_change_registration
-  label: Register Status Changes
+  label: Set Status Change Registration
   kind: action
+  command: "FE 06 00 41 01 {b1} {b2} {b3} {b4} {checksum} FF"
+  notes: |
+    Four-bitfield bytes. See source for per-bit meanings (outlet/contact/EPO/sequence/
+    threshold/sensor change enable bits).
   params:
-    - name: registration_data
-      type: string
-      description: "Up to 7 bytes of bitfield registration data covering outlet status, dry contact, input, sequence, EPO, voltage/current/temperature thresholds, energy usage, and thermal metrics."
+    - name: b1
+      type: integer
+      description: Bitfield byte 1
+    - name: b2
+      type: integer
+      description: Bitfield byte 2
+    - name: b3
+      type: integer
+      description: Bitfield byte 3
+    - name: b4
+      type: integer
+      description: Bitfield byte 4
 
-# Sensor Value Commands - Read (0x50 to 0x61)
-- id: read_kilowatt_hours
-  label: Read Kilowatt Hours
+# ----- Sensor Values (0x50-0x61) -----
+- id: get_kilowatt_hours
+  label: Get Kilowatt Hours
   kind: query
+  command: "FE 03 00 50 02 {checksum} FF"
+  notes: Response value format "##########.#" (10 integer + 1 decimal digits).
   params: []
 
-- id: read_peak_voltage
-  label: Read Peak Voltage
+- id: get_peak_voltage
+  label: Get Peak Voltage
   kind: query
+  command: "FE 03 00 51 02 {checksum} FF"
+  notes: Response format "###".
   params: []
 
-- id: read_rms_voltage
-  label: Read RMS Voltage
+- id: get_rms_voltage
+  label: Get RMS Voltage
   kind: query
+  command: "FE 03 00 52 02 {checksum} FF"
+  notes: Response format "###".
   params: []
 
-- id: read_peak_load
-  label: Read Peak Load
+- id: get_peak_load
+  label: Get Peak Load
   kind: query
+  command: "FE 03 00 53 02 {checksum} FF"
+  notes: Response format "##.#".
   params: []
 
-- id: read_rms_load
-  label: Read RMS Load
+- id: get_rms_load
+  label: Get RMS Load
   kind: query
+  command: "FE 03 00 54 02 {checksum} FF"
+  notes: Response format "##.#".
   params: []
 
-- id: read_temperature
-  label: Read Temperature
+- id: get_temperature
+  label: Get Temperature
   kind: query
+  command: "FE 03 00 55 02 {checksum} FF"
+  notes: Response format "###" (Fahrenheit).
   params: []
 
-- id: read_wattage
-  label: Read Wattage
+- id: get_wattage
+  label: Get Wattage
   kind: query
+  command: "FE 03 00 56 02 {checksum} FF"
+  notes: Response format "####".
   params: []
 
-- id: read_power_factor
-  label: Read Power Factor
+- id: get_power_factor
+  label: Get Power Factor
   kind: query
+  command: "FE 03 00 57 02 {checksum} FF"
+  notes: Response format "#.#".
   params: []
 
-- id: read_thermal_load
-  label: Read Thermal Load (BTU)
+- id: get_thermal_load
+  label: Get Thermal Load (BTU)
   kind: query
+  command: "FE 03 00 58 02 {checksum} FF"
+  notes: Response format "####.#".
   params: []
 
-- id: read_surge_protection_state
-  label: Read Surge Protection State
+- id: get_surge_protection_state
+  label: Get Surge Protection State
   kind: query
+  command: "FE 03 00 59 02 {checksum} FF"
+  notes: "Response: 0x00 n/a, 0x01 protected, 0x02 compromised."
   params: []
 
-- id: read_energy_management_state_all
-  label: Read Energy Management State (All Outlets)
+- id: get_energy_management_state
+  label: Get Energy Management State (all outlets)
   kind: query
+  command: "FE 03 00 60 02 {checksum} FF"
+  notes: 16 ASCII letters, one per outlet (D/S/I/O/U).
   params: []
 
-- id: read_occupancy_state
-  label: Read Occupancy State
+- id: get_occupancy_state
+  label: Get Occupancy State
   kind: query
+  command: "FE 03 00 61 02 {checksum} FF"
+  notes: "Response: 0x55 'U' Unoccupied, 0x4F 'O' Occupied."
   params: []
 
-# Sensor Value Commands - Write (threshold set commands 0x50-0x61 as settable)
-- id: set_kilowatt_hours
-  label: Set Kilowatt Hours
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ##########.#"
-
-- id: set_peak_voltage
-  label: Set Peak Voltage
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ###"
-
-- id: set_rms_voltage
-  label: Set RMS Voltage
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ###"
-
-- id: set_peak_load
-  label: Set Peak Load
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ##.#"
-
-- id: set_rms_load
-  label: Set RMS Load
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ##.#"
-
-- id: set_temperature
-  label: Set Temperature
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ###"
-
-- id: set_wattage
-  label: Set Wattage
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ####"
-
-- id: set_power_factor
-  label: Set Power Factor
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format #.#"
-
-- id: set_thermal_load
-  label: Set Thermal Load (BTU)
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "ASCII value in format ####.#"
-
-- id: set_surge_protection_state
-  label: Set Surge Protection State
-  kind: action
-  params:
-    - name: value
-      type: enum
-      values: ["0x00", "0x01", "0x02"]
-
-- id: set_energy_management_state_all
-  label: Set Energy Management State (All Outlets)
-  kind: action
-  params:
-    - name: value
-      type: string
-      description: "16 bytes, one ASCII letter per outlet"
-
-- id: set_occupancy_state
-  label: Set Occupancy State
-  kind: action
-  params:
-    - name: value
-      type: enum
-      values: ["U", "O"]
-
-# Sensor Response
-- id: sensor_response
-  label: Sensor Value Response
-  kind: feedback
-  params:
-    - name: command
-      type: enum
-      values: ["0x50", "0x51", "0x52", "0x53", "0x54", "0x55", "0x56", "0x57", "0x58", "0x59", "0x60", "0x61"]
-    - name: subcommand
-      type: enum
-      values: ["0x10", "0x12"]
-    - name: value
-      type: string
-
-# Threshold Commands - Read (0x70-0x77)
-- id: read_low_voltage_threshold
-  label: Read Low Voltage Threshold
+# ----- Thresholds (0x70-0x77) -----
+- id: get_low_voltage_threshold
+  label: Get Low Voltage Threshold
   kind: query
+  command: "FE 03 00 70 02 {checksum} FF"
   params: []
 
-- id: read_high_voltage_threshold
-  label: Read High Voltage Threshold
-  kind: query
-  params: []
-
-- id: read_max_load_current
-  label: Read Max Load Current
-  kind: query
-  params: []
-
-- id: read_min_load_current
-  label: Read Min Load Current
-  kind: query
-  params: []
-
-- id: read_max_temperature
-  label: Read Max Temperature
-  kind: query
-  params: []
-
-- id: read_min_temperature
-  label: Read Min Temperature
-  kind: query
-  params: []
-
-# Threshold Commands - Write (0x70-0x77)
 - id: set_low_voltage_threshold
   label: Set Low Voltage Threshold
   kind: action
+  command: "FE {length} 00 70 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ###"
+      description: ASCII "###"
+
+- id: get_high_voltage_threshold
+  label: Get High Voltage Threshold
+  kind: query
+  command: "FE 03 00 71 02 {checksum} FF"
+  params: []
 
 - id: set_high_voltage_threshold
   label: Set High Voltage Threshold
   kind: action
+  command: "FE {length} 00 71 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ###"
+      description: ASCII "###"
+
+- id: get_max_load_current
+  label: Get Max Load Current
+  kind: query
+  command: "FE 03 00 73 02 {checksum} FF"
+  params: []
 
 - id: set_max_load_current
   label: Set Max Load Current
   kind: action
+  command: "FE {length} 00 73 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ##.#"
+      description: ASCII "##.#"
+
+- id: get_min_load_current
+  label: Get Min Load Current
+  kind: query
+  command: "FE 03 00 74 02 {checksum} FF"
+  params: []
 
 - id: set_min_load_current
   label: Set Min Load Current
   kind: action
+  command: "FE {length} 00 74 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ##.#"
+      description: ASCII "##.#"
+
+- id: get_max_temperature
+  label: Get Max Temperature
+  kind: query
+  command: "FE 03 00 76 02 {checksum} FF"
+  params: []
 
 - id: set_max_temperature
   label: Set Max Temperature
   kind: action
+  command: "FE {length} 00 76 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ###"
+      description: ASCII "###"
+
+- id: get_min_temperature
+  label: Get Min Temperature
+  kind: query
+  command: "FE 03 00 77 02 {checksum} FF"
+  params: []
 
 - id: set_min_temperature
   label: Set Min Temperature
   kind: action
+  command: "FE {length} 00 77 01 {value} {checksum} FF"
   params:
     - name: value
       type: string
-      description: "ASCII format ###"
+      description: ASCII "###"
 
-# Threshold Response
-- id: threshold_response
-  label: Threshold Response
-  kind: feedback
-  params:
-    - name: command
-      type: enum
-      values: ["0x70", "0x71", "0x73", "0x74", "0x76", "0x77"]
-    - name: subcommand
-      type: enum
-      values: ["0x10", "0x12"]
-    - name: value
-      type: string
-
-# Read Log Entry (0x80)
+# ----- Log read / count / clear (0x80-0x82) -----
 - id: read_log_entries
   label: Read Log Entries
   kind: query
+  command: "FE 0A 00 80 02 {start_idx} 7C {count} {checksum} FF"
+  notes: |
+    start_idx is ASCII 4 digits ("0002" = entry 2). count is ASCII 2 digits ("10" = 10).
+    Separator 0x7C = "|". Response is one frame per entry.
   params:
-    - name: first_entry_index
+    - name: start_idx
       type: string
-      description: "ASCII encoded index (e.g., \"0002\" = start on 2nd entry)"
-    - name: number_of_entries
+      description: ASCII 4-digit starting index
+    - name: count
       type: string
-      description: "ASCII encoded count (e.g., \"10\" = read 10 entries)"
+      description: ASCII 2-digit entry count
 
-# Log Entry Read Response
-- id: log_entry_response
-  label: Log Entry Read Response
-  kind: feedback
-  params:
-    - name: entry_request_number
-      type: string
-    - name: entries_remaining
-      type: string
-    - name: actual_entry_number
-      type: string
-    - name: entry_type
-      type: string
-      description: "ASCII ## format: 00=Normal, 01=Over Voltage, 02=Under Voltage, 03=Over Current, 04=Under Current, 05=Over Temperature, 06=Under Temperature, 07=Surge Fault, 08=Auto Ping Fault, 09=RS-232 Ping Fail, 10=EPO Initiate, 11=EPO Recovery"
-    - name: datetime
-      type: string
-      description: "MM/DD/YYYY HH:MM:SS format"
-    - name: sensors
-      type: string
-      description: "Format TTT,WWWW,F.F,VVR,CC.R,LLLL.L,O (temperature, wattage, power factor, RMS voltage, RMS current, thermal load, occupancy)"
-    - name: energy_states
-      type: string
-      description: "16 comma-separated energy management states for outlets 1-16"
-
-# Get Log Count (0x81)
 - id: get_log_count
   label: Get Log Count
   kind: query
+  command: "FE 03 00 81 02 {checksum} FF"
+  notes: Response data is ASCII 4-digit count (e.g. "0120" = 120).
   params: []
 
-# Clear Log (0x82)
 - id: clear_log
   label: Clear Log
   kind: action
+  command: "FE 03 00 82 01 {checksum} FF"
   params: []
 
-# Log Count/Clear Response
-- id: log_count_response
-  label: Log Count/Clear Response
-  kind: feedback
-  params:
-    - name: command
-      type: enum
-      values: ["0x81", "0x82"]
-    - name: count
-      type: string
-      description: "ASCII encoded count (for 0x81 response only)"
-
-# Product Info Commands (0x90-0x95)
+# ----- Product info (0x90, 0x91, 0x93, 0x94, 0x95) -----
 - id: get_part_number
   label: Get Part Number
   kind: query
+  command: "FE 03 00 90 02 {checksum} FF"
+  notes: Response: ASCII string up to 50 characters.
   params: []
 
 - id: get_amp_hour_rating
-  label: Get Product Amp Hour Rating
+  label: Get Amp Hour Rating
   kind: query
+  command: "FE 03 00 91 02 {checksum} FF"
+  notes: Response format "###".
   params: []
 
 - id: get_surge_existence
-  label: Get Surge Protection Existence
+  label: Get Surge Existence
   kind: query
+  command: "FE 03 00 93 02 {checksum} FF"
+  notes: 'Response: "Y" or "N".'
   params: []
 
 - id: get_ip_address
   label: Get Current IP Address
   kind: query
+  command: "FE 03 00 94 02 {checksum} FF"
+  notes: Response: ASCII IPv4 "###.###.###.###" (no leading zeroes, variable length).
   params: []
 
 - id: get_mac_address
   label: Get MAC Address
   kind: query
+  command: "FE 03 00 95 02 {checksum} FF"
+  notes: Response: ASCII "##:##:##:##:##:##".
   params: []
-
-# Product Info Response
-- id: product_info_response
-  label: Product Info Response
-  kind: feedback
-  params:
-    - name: command
-      type: enum
-      values: ["0x90", "0x91", "0x93", "0x94", "0x95"]
-    - name: value
-      type: string
 ```
 
 ## Feedbacks
 ```yaml
-# See Actions section above - responses are modeled as feedback entries on each command.
-# Key unsolicited notifications:
-# - Outlet status change (0x20/0x30 with subcommand 0x12)
-# - EPO status change (0x37 with subcommand 0x12)
-# - Ping from device (0x01, subcommand 0x01) - requires Pong response
-# - Sensor status change (subcommand 0x12 on sensor commands 0x50-0x61)
-# - Threshold status change (subcommand 0x12 on threshold commands 0x70-0x77)
-# UNRESOLVED: full event subscription model not enumerated from source
+- id: outlet_state
+  type: enum
+  values: [off, on, not_controllable]
+  description: Per-outlet state (0x20/0x30 response/status, subcommand 0x10/0x12/0x30)
+
+- id: contact_state
+  type: enum
+  values: [off, on]
+  description: Per-dry-contact state
+
+- id: outlet_controllable_mask
+  type: string
+  description: 16-byte mask (0x22 response): "C" controllable, "N" not-controllable, "X" absent
+
+- id: contact_controllable_mask
+  type: string
+  description: 8-byte mask (0x32 response)
+
+- id: sequence_state
+  type: enum
+  values: [idle, sequencing_up, sequencing_up_complete, sequencing_down, sequencing_down_complete]
+  description: 0x36 response; 0x00 idle/fallback, 0x01 up, 0x02 up-complete, 0x03 down, 0x04 down-complete
+
+- id: energy_state
+  type: enum
+  values: [disconnected, standby, on, off, unknown]
+  description: 0x23 response: D/S/I/O/U
+
+- id: epo_state
+  type: enum
+  values: [normal, epo_mode]
+  description: 0x37 response: 0x00 normal, 0x01 EPO mode
+
+- id: surge_state
+  type: enum
+  values: [n_a, protected, compromised]
+  description: 0x59 response
+
+- id: occupancy_state
+  type: enum
+  values: [unoccupied, occupied]
+  description: 0x61 response
+
+- id: login_result
+  type: enum
+  values: [rejected, accepted]
+  description: 0x02 response: 0x00 rejected, 0x01 accepted
+
+- id: nack_code
+  type: integer
+  description: |
+    Error code from NACK (0x10): 0x01 BadCRC, 0x02 BadLength, 0x03 BadEscape,
+    0x04 InvalidCmd, 0x05 InvalidSub, 0x06 BadByteCount, 0x07 BadDataBytes,
+    0x08 InvalidCreds, 0x10 UnknownError, 0x11 AccessDeniedEPO
 ```
 
 ## Variables
 ```yaml
-# Sensor values (read-only, reported via 0x50-0x61 responses):
-# - Kilowatt Hours (0x50): ##########.# format
-# - Peak Voltage (0x51): ### format
-# - RMS Voltage (0x52): ### format
-# - Peak Load (0x53): ##.# format
-# - RMS Load (0x54): ##.# format
-# - Temperature (0x55): ### format (Fahrenheit)
-# - Wattage (0x56): #### format
-# - Power Factor (0x57): #.# format
-# - Thermal Load (0x58): ####.# format (BTU)
-# - Surge Protection State (0x59): 0x00=n/a, 0x01=protected, 0x02=compromised
-# - Energy Management State (0x60): 16-byte string per outlet
-# - Occupancy State (0x61): U=Unoccupied, O=Occupied
+- name: outlet_name
+  type: string
+  description: Per-outlet label (1-16), writable via 0x21 set
 
-# Thresholds (read/write via 0x70-0x77):
-# - Low Voltage Threshold (0x70)
-# - High Voltage Threshold (0x71)
-# - Max Load Current (0x73)
-# - Min Load Current (0x74)
-# - Max Temperature (0x76)
-# - Min Temperature (0x77)
+- name: contact_name
+  type: string
+  description: Per-dry-contact label (1-8), writable via 0x31 set
 
-# Product info (read-only via 0x90-0x95):
-# - Part Number (0x90): up to 50 chars
-# - Amp Hour Rating (0x91): ### format
-# - Surge Existence (0x93): Y/N
-# - Current IP Address (0x94): ###.###.###.###
-# - MAC Address (0x95): ##:##:##:##:##:##
+- name: low_voltage_threshold
+  type: string
+  description: ASCII "###"; 0x70
+
+- name: high_voltage_threshold
+  type: string
+  description: ASCII "###"; 0x71
+
+- name: max_load_current
+  type: string
+  description: ASCII "##.#"; 0x73
+
+- name: min_load_current
+  type: string
+  description: ASCII "##.#"; 0x74
+
+- name: max_temperature
+  type: string
+  description: ASCII "###"; 0x76
+
+- name: min_temperature
+  type: string
+  description: ASCII "###"; 0x77
 ```
 
 ## Events
 ```yaml
-# Unsolicited notifications device sends:
-# - Outlet status change (0x20/0x30, subcommand 0x12)
-# - EPO status change (0x37, subcommand 0x12)
-# - Ping request (0x01, subcommand 0x01) - control system must respond with Pong
-# - Sensor status change (0x50-0x61, subcommand 0x12)
-# - Threshold status change (0x70-0x77, subcommand 0x12)
-# - Log update (0x20/0x30, subcommand 0x30)
-# UNRESOLVED: full event taxonomy and triggering conditions not fully enumerated
+- id: outlet_status_change
+  description: 0x20/0x30 response with subcommand 0x12 (status update) - pushed on local change. Requires bit 1 of Register Status Change byte 1 to be enabled.
+
+- id: outlet_log_update
+  description: 0x20/0x30 response with subcommand 0x30 (scheduled log report).
+
+- id: status_change
+  description: 0x23 response with subcommand 0x12 (status change, Premium/Premium+).
+
+- id: epo_status_change
+  description: 0x37 response with subcommand 0x12 (EPO state changed).
+
+- id: sensor_status_change
+  description: Sensor (0x50-0x61) response with subcommand 0x12; requires the corresponding bit in Register Status Change bytes 5-6 to be enabled.
+
+- id: threshold_status_change
+  description: Threshold (0x70-0x77) response with subcommand 0x12.
+
+- id: log_entry
+  description: 0x80 multi-frame response carrying one log record each.
+
+- id: log_alert
+  description: 0x40 unsolicited alert; requires the corresponding bit in Register Log Alerts bytes 1-2 to be enabled.
 ```
 
 ## Macros
 ```yaml
-# Multi-step sequences described explicitly in source:
-# - Connection establishment: send Login → receive Login Response → receive Ping from device → send Pong → ready
-# - Reconnection after disconnect: must repeat full login sequence
-# - EPO sequence: EPO Initiate → device sends EPO Status Change → EPO Recover to restore
+- id: sequence_up
+  description: 0x36 direction 0x01 - bring outlets on in configured order with delay between each
+  steps:
+    - send: sequence_outlets
+      params: {direction: up, delay: "<configured seconds 0000-0999>"}
+
+- id: sequence_down
+  description: 0x36 direction 0x03 - turn outlets off in configured order
+  steps:
+    - send: sequence_outlets
+      params: {direction: down, delay: "<configured seconds 0000-0999>"}
+
+- id: login_and_pong
+  description: Required session establishment sequence
+  steps:
+    - send: login
+      params: {credentials: "user|password"}
+    - wait: device-initiated ping
+    - send: pong
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - epo_initiate  # Emergency Power Off: confirmation may be required in high-availability setups
+  - epo  # EPO Initiate cuts outlet power; NACK 0x11 blocks other commands until EPO Recover
 interlocks:
-  - "Three unanswered Pings triggers disconnect - control system must respond to Ping messages"
-  - "Login required before any other command - session must be re-established after disconnect"
-# UNRESOLVED: EPO wiring/latching specifics not in source
+  - "EPO active blocks all commands except EPO Recover (NACK 0x11 Access Denied)"
+  - "Login must be re-established after three missed pings; device enters disconnected state and NACKs subsequent commands"
 ```
 
 ## Notes
-- Protocol uses 0xFE header and 0xFF tail as message delimiters — 0xFE, 0xFF, and 0xFD within message body must be escaped (0xFD prefix + bit-inverted value)
-- Checksum: sum all bytes from header through end of data envelope, mask with 0x7F
-- Cycle time encoding: ASCII string of 4 digits (0000-3600), NOT binary — e.g., 5 seconds = "0005" = 0x30303035
-- Sequencing delay encoding: ASCII 4 digits (0000-0999) — e.g., 999 seconds = "0999" = 0x30393939
-- Default login for Select/Premium: username `user`, password `password`; Premium+ requires manually created admin account with control protocol enabled
-- RS-232 transport only available on Premium models (not Select or Premium+)
-- Device closes TCP connection after 3 unanswered Pings
-- Log entries formatted as pipe-delimited ASCII: `|entry_type|datetime|sensors|energy_states|`
-<!-- UNRESOLVED: physical mounting, voltage, current, power capacity specifications not in source -->
-<!-- UNRESOLVED: factory reset procedure not in source -->
-<!-- UNRESOLVED: firmware update mechanism not in source -->
+- **Frame construction**: every command must be assembled per the frame format. `length` = bytes in the data envelope (between the length byte and the checksum, inclusive of the leading `0x00` prefix). `checksum` = `(sum of bytes from 0xFE through end of data envelope) & 0x7F`. Escape any `0xFE`/`0xFF`/`0xFD` inside the data envelope with `0xFD` + inverted value; the escape byte is excluded from length and checksum.
+- **Model variants**:
+  - **Select**: TCP/IP only. Default `user`/`password` login is enabled by first web login.
+  - **Premium**: RS-232 and TCP/IP. Default `user`/`password` login enabled by first web login.
+  - **Premium+**: TCP/IP. No default `user` account; login username/password must reference any admin account with the control protocol checkbox enabled. Energy management and sensor/threshold features are Premium/Premium+ only.
+- **Subcommand semantics**: in responses, subcommand `0x10` is the reply to a controller command, `0x12` is an unsolicited status update, `0x30` is a log report. `0x01` is always the SET/WRITE form and `0x02` is always the GET/READ form.
+- **Cycle time encoding**: cycle time fields are 4 ASCII digits, not binary, even though the rest of the protocol is binary hex. The decimal point is part of the ASCII string for sensor/threshold values that include one.
+- **Ping policy**: pings are device-initiated. Three unanswered pings → connection considered lost; controller must re-login to resume.
+
+<!-- UNRESOLVED: per-firmware-version command gating is not stated; voltage/current/power ratings are not stated; physical pinout of the RS-232 DB connector is not stated; default delay values for sequencing are not stated. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - res.cloudinary.com
-  - media.iewc.com
+  - digitalautomation.us
+  - files.d-tools.com
+  - markertek.com
+  - files.avprosupply.com
 source_urls:
   - "https://res.cloudinary.com/avd/image/upload/v1598618818/Resources/Middle%20Atlantic/Power/Firmware/I-00472-Series-Protocol.pdf"
-  - https://media.iewc.com/PublicAssets/SpecificationSheets/RLNK-SW715R-NS_specification.pdf
-retrieved_at: 2026-05-27T02:36:30.545Z
-last_checked_at: 2026-05-27T15:41:21.022Z
+  - https://digitalautomation.us/wp-content/uploads/2023/09/MiddleAtlantic_RacklinkSelect_IP.pdf
+  - "http://files.d-tools.com/Visualizations/Approved/Middle%20Atlantic/Documents/Middle%20Atlantic_RLNK-915R_Manual1.PDF"
+  - "https://www.markertek.com/Attachments/Manuals/MIDDLE%20ATLANTIC/RLNK-215-Manual.pdf"
+  - https://files.avprosupply.com/files/attachments/13508/middle-atlantic-rlnk-215-manual.pdf
+retrieved_at: 2026-05-27T02:31:54.772Z
+last_checked_at: 2026-06-01T22:35:53.262Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-27T15:41:21.022Z
-matched_actions: 84
-action_count: 84
-confidence: high
-summary: "All 84 spec action units match source commands with correct opcodes, parameters, and transport details."
+checked_at: 2026-06-01T22:35:53.262Z
+matched_actions: 53
+action_count: 53
+confidence: medium
+summary: "All 53 spec actions match source commands with correct opcodes, parameters, and transport details; full catalogue coverage. (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "per-model command capability matrix is partially stated (e.g. RS-232 only on Premium, energy management only on Premium/Premium+); firmware revisions and per-firmware command gating are not stated."
+- "per-firmware-version command gating is not stated; voltage/current/power ratings are not stated; physical pinout of the RS-232 DB connector is not stated; default delay values for sequencing are not stated."
 ```
 
 ---

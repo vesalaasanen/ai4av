@@ -24,14 +24,21 @@ last_checked_at: 2026-05-14T18:17:15.835Z
 generated_at: 2026-05-14T18:17:15.835Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no explicit power on/off commands in source"
+  - "flow control not mentioned in source"
+  - "Input UDP Port default is \"0\" per source; recommended range 4703-4727 stated but not a fixed value"
+  - "no standalone settable parameters found in source"
+  - "no unsolicited event descriptions in source"
+  - "user-definable macro storage not documented"
+  - "no explicit safety warnings, interlock procedures,"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.835Z
   matched_actions: 39
   action_count: 39
-  confidence: high
-  summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands."
+  confidence: medium
+  summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -660,14 +667,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.835Z
 matched_actions: 39
 action_count: 39
-confidence: high
-summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands."
+confidence: medium
+summary: "All 46 spec actions match documented PSAP commands; transport parameters verified against source; no missing or fabricated commands. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no explicit power on/off commands in source"
+- "flow control not mentioned in source"
+- "Input UDP Port default is \"0\" per source; recommended range 4703-4727 stated but not a fixed value"
+- "no standalone settable parameters found in source"
+- "no unsolicited event descriptions in source"
+- "user-definable macro storage not documented"
+- "no explicit safety warnings, interlock procedures,"
 ```
 
 ---

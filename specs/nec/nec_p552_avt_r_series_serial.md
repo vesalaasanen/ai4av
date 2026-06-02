@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:03.355Z
 last_checked_at: 2026-05-14T18:17:18.927Z
 generated_at: 2026-05-14T18:17:18.927Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "product firmware version not stated in source"
+  - "no discrete settable parameters found beyond action commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "baud rate default not stated in source"
+  - "standby mode compatibility matrix not fully specified"
+  - "HDBaseT standby mode support varies by model"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.927Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions matched literal source commands; shapes, parameters, and transport parameters verified; command catalogue comprehensively represented."
+  confidence: medium
+  summary: "All 52 spec actions matched literal source commands; shapes, parameters, and transport parameters verified; command catalogue comprehensively represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -620,7 +627,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:03.355Z
 last_checked_at: 2026-05-14T18:17:18.927Z
 ```
 
@@ -631,14 +638,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.927Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions matched literal source commands; shapes, parameters, and transport parameters verified; command catalogue comprehensively represented."
+confidence: medium
+summary: "All 52 spec actions matched literal source commands; shapes, parameters, and transport parameters verified; command catalogue comprehensively represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "product firmware version not stated in source"
+- "no discrete settable parameters found beyond action commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "baud rate default not stated in source"
+- "standby mode compatibility matrix not fully specified"
+- "HDBaseT standby mode support varies by model"
 ```
 
 ---

@@ -20,35 +20,44 @@ source_domains:
 source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/sanyo/plc-wxe45_rs232basiccommand.pdf"
 retrieved_at: 2026-05-21T21:13:48.850Z
-last_checked_at: 2026-05-31T21:02:40.324Z
-generated_at: 2026-05-31T21:02:40.324Z
+last_checked_at: 2026-06-02T05:46:11.599Z
+generated_at: 2026-06-02T05:46:11.599Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "cable pinout is referenced (D-Sub 9 pin ↔ Mini 8 pin) but the exact wiring is not described in the refined source."
+  - "source does not describe unsolicited notifications; projector only returns responses to commands."
+  - "source does not describe multi-step sequences."
+  - "source describes operational gating (commands disabled in Cooling Down / Abnormal Temperature / Power Save states) but not formal safety interlocks."
+  - "D-Sub 9 ↔ Mini 8 pin cable pinout is referenced but the wiring is not in the refined source."
+  - "firmware version compatibility range not stated."
+  - "service-mode baud rate change procedure not documented in refined source."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T21:02:40.324Z
-  matched_actions: 54
-  action_count: 54
-  confidence: high
-  summary: "All 54 spec actions matched in source command table; transport parameters verified verbatim; complete bidirectional coverage."
+  checked_at: 2026-06-02T05:46:11.599Z
+  matched_actions: 60
+  action_count: 60
+  confidence: medium
+  summary: "All 60 spec actions matched literally in source command tables; all transport parameters (19200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-22
+created_at: 2026-06-02
 ---
 
 # Sanyo PLC-WXE45 Control Spec
 
 ## Summary
-Sanyo PLC-WXE45 data projector with RS-232C serial control. Remote control via computer. Commands: power, input selection, volume, mute, image modes, keystone, freeze, timer, lamp status, temperature sensors.
+RS-232C serial control spec for the Sanyo PLC-WXE45 projector. Commands are 2-character ASCII mnemonics sent as `"C" COMMAND [CR]`; status queries are `"CR" COMMAND [CR]`. One command per line, capital letters only, terminated by carriage return (0x0D).
+
+<!-- UNRESOLVED: cable pinout is referenced (D-Sub 9 pin ↔ Mini 8 pin) but the exact wiring is not described in the refined source. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600  # stated: 9600 / 19200 selectable; initial default 19200 per source
+  baud_rate: 19200  # initial setting; 9600 also supported per source, switchable in service mode
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -59,374 +68,462 @@ auth:
 
 ## Traits
 ```yaml
-# Source contains power on/off, input routing, status queries, volume/brightness adjustment
-- powerable
-- routable
-- queryable
-- levelable
+- powerable       # inferred from C00/C01/C02 power commands
+- routable        # inferred from C05/C06/C07 input select and C32/C33/C34/C50/C51/C54 sub-input commands
+- queryable       # inferred from CR0/CR1/CR3/CR4/CR6/CR7 status read commands
+- levelable       # inferred from C09/C0A volume and C20/C21 brightness commands
 ```
 
 ## Actions
 ```yaml
+# All functional execution commands from source. Format: "C<hh>\r" where <hh> is two hex chars.
 - id: power_on
-  label: Power ON
+  label: POWER ON
   kind: action
+  command: "C00\r"
   params: []
 
 - id: power_off_quick
-  label: Power OFF (Quick)
+  label: POWER OFF (Quick)
   kind: action
+  command: "C01\r"
   params: []
 
 - id: power_off
-  label: Power OFF (Standard)
+  label: POWER OFF
   kind: action
+  command: "C02\r"
   params: []
 
-- id: computer_1
+- id: select_computer_1
   label: Computer 1
   kind: action
+  command: "C05\r"
   params: []
 
-- id: computer_2
+- id: select_computer_2
   label: Computer 2
   kind: action
+  command: "C06\r"
   params: []
 
-- id: video
+- id: select_video
   label: Video
   kind: action
+  command: "C07\r"
   params: []
 
 - id: volume_up
-  label: Volume Up
+  label: VOLUME +
   kind: action
+  command: "C09\r"
   params: []
 
 - id: volume_down
-  label: Volume Down
+  label: VOLUME -
   kind: action
+  command: "C0A\r"
   params: []
 
 - id: audio_mute_on
-  label: Audio Mute ON
+  label: AUDIO MUTE ON
   kind: action
+  command: "C0B\r"
   params: []
 
 - id: audio_mute_off
-  label: Audio Mute OFF
+  label: AUDIO MUTE OFF
   kind: action
+  command: "C0C\r"
   params: []
 
 - id: video_mute_on
-  label: Video Mute ON
+  label: VIDEO MUTE ON
   kind: action
+  command: "C0D\r"
   params: []
 
 - id: video_mute_off
-  label: Video Mute OFF
+  label: VIDEO MUTE OFF
   kind: action
+  command: "C0E\r"
   params: []
 
 - id: screen_normal
-  label: Screen Normal Size
+  label: Screen Normal (4:3)
   kind: action
+  command: "C0F\r"
   params: []
 
 - id: screen_full
-  label: Screen Full Size
+  label: Screen Full
   kind: action
+  command: "C10\r"
   params: []
 
 - id: image_standard
   label: Image Standard
   kind: action
+  command: "C11\r"
   params: []
 
 - id: image_real
   label: Image Real
   kind: action
+  command: "C12\r"
   params: []
 
 - id: image_cinema
   label: Image Cinema
   kind: action
+  command: "C13\r"
   params: []
 
 - id: image_1
   label: Image 1
   kind: action
+  command: "C14\r"
   params: []
 
 - id: image_2
   label: Image 2
   kind: action
+  command: "C15\r"
   params: []
 
 - id: image_3
   label: Image 3
   kind: action
+  command: "C16\r"
   params: []
 
 - id: image_4
   label: Image 4
   kind: action
+  command: "C17\r"
   params: []
 
 - id: image_blackboard
   label: Image Blackboard (Green)
   kind: action
+  command: "C18\r"
   params: []
 
 - id: image_dynamic
   label: Image Dynamic
   kind: action
+  command: "C19\r"
   params: []
 
 - id: menu_on
-  label: Menu ON
+  label: MENU ON
   kind: action
+  command: "C1C\r"
   params: []
 
 - id: menu_off
-  label: Menu OFF
+  label: MENU OFF
   kind: action
+  command: "C1D\r"
   params: []
 
 - id: display_clear
-  label: Display Clear
+  label: DISPLAY CLEAR
   kind: action
+  command: "C1E\r"
   params: []
 
 - id: brightness_up
-  label: Brightness Up
+  label: BRIGHTNESS +
   kind: action
+  command: "C20\r"
   params: []
 
 - id: brightness_down
-  label: Brightness Down
+  label: BRIGHTNESS -
   kind: action
+  command: "C21\r"
   params: []
 
 - id: image_toggle
-  label: Image Toggle
+  label: IMAGE (Toggle)
   kind: action
+  command: "C27\r"
   params: []
 
-- id: on_start_enable
+- id: onstart_enable
   label: ON START Enable
   kind: action
+  command: "C28\r"
   params: []
 
-- id: on_start_disable
+- id: onstart_disable
   label: ON START Disable
   kind: action
+  command: "C29\r"
   params: []
 
 - id: power_mgmt_ready
   label: Power Management Ready
   kind: action
+  command: "C2A\r"
   params: []
 
 - id: power_mgmt_off
   label: Power Management OFF
   kind: action
+  command: "C2B\r"
   params: []
 
 - id: power_mgmt_shutdown
-  label: Power Management Shut Down
+  label: Power Management Shut down
   kind: action
+  command: "C2E\r"
   params: []
 
 - id: dzoom_up
-  label: D.ZOOM Up
+  label: D.ZOOM +
   kind: action
+  command: "C30\r"
   params: []
 
 - id: dzoom_down
-  label: D.ZOOM Down
+  label: D.ZOOM -
   kind: action
+  command: "C31\r"
   params: []
 
 - id: video_auto
   label: Video Auto
   kind: action
+  command: "C32\r"
   params: []
 
 - id: video_video
   label: Video Video
   kind: action
+  command: "C33\r"
   params: []
 
 - id: video_svideo
   label: Video S-Video
   kind: action
+  command: "C34\r"
   params: []
 
 - id: image_colorboard
   label: Image Colorboard
   kind: action
+  command: "C39\r"
   params: []
 
 - id: pointer_right
-  label: Pointer Right
+  label: POINTER RIGHT
   kind: action
+  command: "C3A\r"
   params: []
 
 - id: pointer_left
-  label: Pointer Left
+  label: POINTER LEFT
   kind: action
+  command: "C3B\r"
   params: []
 
 - id: pointer_up
-  label: Pointer Up
+  label: POINTER UP
   kind: action
+  command: "C3C\r"
   params: []
 
 - id: pointer_down
-  label: Pointer Down
+  label: POINTER DOWN
   kind: action
+  command: "C3D\r"
   params: []
 
 - id: enter
-  label: Enter
+  label: ENTER
   kind: action
+  command: "C3F\r"
   params: []
 
 - id: freeze_on
-  label: Freeze ON
+  label: FREEZE ON
   kind: action
+  command: "C43\r"
   params: []
 
 - id: freeze_off
-  label: Freeze OFF
+  label: FREEZE OFF
   kind: action
+  command: "C44\r"
   params: []
 
-- id: computer_1_analog_rgb
+- id: computer1_analog_rgb
   label: Computer 1 Analog RGB
   kind: action
+  command: "C50\r"
   params: []
 
-- id: computer_1_scart
+- id: computer1_scart
   label: Computer 1 SCART
   kind: action
+  command: "C51\r"
   params: []
 
-- id: computer_1_component
+- id: computer1_component
   label: Computer 1 Component
   kind: action
+  command: "C54\r"
   params: []
 
 - id: auto_pc_adj
-  label: Auto PC Adj
+  label: AUTO PC ADJ.
   kind: action
+  command: "C89\r"
   params: []
 
 - id: presentation_timer
-  label: Presentation Timer
+  label: PRESENTATION TIMER
   kind: action
+  command: "C8A\r"
   params: []
 
 - id: keystone_up
-  label: Keystone Up
+  label: KEYSTONE ↑
   kind: action
+  command: "C8E\r"
   params: []
 
 - id: keystone_down
-  label: Keystone Down
+  label: KEYSTONE ↓
   kind: action
+  command: "C8F\r"
+  params: []
+
+# Status read commands
+- id: status_read
+  label: Status Read
+  kind: query
+  command: "CR0\r"
+  params: []
+
+- id: input_mode_read
+  label: Input Mode Read
+  kind: query
+  command: "CR1\r"
+  params: []
+
+- id: lamp_time_read
+  label: Lamp Time Read
+  kind: query
+  command: "CR3\r"
+  params: []
+
+- id: setting_read
+  label: Setting Read (Ceiling / Rear)
+  kind: query
+  command: "CR4\r"
+  params: []
+
+- id: temp_read
+  label: Temp Read
+  kind: query
+  command: "CR6\r"
+  params: []
+
+- id: lamp_mode_read
+  label: Lamp Mode Read
+  kind: query
+  command: "CR7\r"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_state
-  label: Power State
+# Status Read response values per source.
+# Each Feedback corresponds to one status read command's acceptable response.
+- id: status
   type: enum
   values:
-    - "00"  # Power ON
-    - "80"  # Standby
-    - "40"  # Countdown in process
-    - "20"  # Cooling Down
-    - "10"  # Power Failure
-    - "28"  # Cooling Down due to Temperature Anomaly
-    - "88"  # Standby after Temperature Anomaly
-    - "24"  # Power Save / Cooling Down
-    - "04"  # Power Save
-    - "21"  # Cooling Down after lamp failure
-    - "81"  # Standby after lamp failure cooling down
+    - "00"   # Power ON
+    - "80"   # Standby
+    - "40"   # Countdown in process
+    - "20"   # Cooling Down in process
+    - "10"   # Power Failure
+    - "28"   # Cooling Down in process due to Temperature Anomaly
+    - "88"   # Coming back after Temperature Anomaly
+    - "24"   # Power Save / Cooling Down in process
+    - "04"   # Power Save
+    - "21"   # Cooling Down in process after Power off due to lamp failure
+    - "81"   # Standby after Cooling Down due to lamp failure
 
 - id: input_mode
-  label: Input Mode
   type: enum
   values:
-    - "1"  # Computer 1
-    - "2"  # Computer 2
-    - "3"  # Video
+    - "1"    # Computer 1 selected
+    - "2"    # Computer 2 selected
+    - "3"    # Video selected
 
-- id: lamp_time
-  label: Lamp Time
-  type: string
-  description: 5-digit lamp hours (e.g. "00410" = 410 hours)
-
-- id: screen_setting
-  label: Screen Setting
+- id: setting
   type: enum
   values:
-    - "11"  # Normal
-    - "10"  # Rear/Ceiling ON
-    - "01"  # Rear ON
-    - "00"  # Ceiling ON
-
-- id: temperature
-  label: Temperature
-  type: string
-  description: "Format: %1_%2_%3 (e.g. \"_31.5 _35.2__ _33.4\"). Sensors 1-3. Negative temps use \"-\" prefix. Error returns \"E00.0\"."
+    - "11"   # Normal Screen Setting
+    - "10"   # Rear & Ceiling ON
+    - "01"   # Rear ON
+    - "00"   # Ceiling ON
 
 - id: lamp_mode
-  label: Lamp Mode
   type: enum
   values:
-    - "00"  # Light is out
-    - "01"  # Light is on
+    - "00"   # Light is out
+    - "01"   # Light is on
 ```
 
 ## Variables
 ```yaml
-# No standalone settable parameters - all control via discrete Actions
+# Free-form numeric/string readouts (not enum).
+- id: lamp_time_hours
+  type: integer
+  description: Total lamp running hours (5-digit zero-padded, e.g. "00410" = 410 hours). Not actual hours, but Eco-mode-corresponding value.
+
+- id: temperature_sensors
+  type: string
+  description: Three temperatures in form "%1_%2_%3" where each field is "00.0" or "-00.0" or "E00.0" (E prefix on sensor hardware error). Example: "_31.5_35.2_33.4".
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: projector sends unsolicited notifications only during power state transitions; no dedicated event subscription mechanism documented
+# UNRESOLVED: source does not describe unsolicited notifications; projector only returns responses to commands.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences described as macros in source
+# UNRESOLVED: source does not describe multi-step sequences.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks:
-  - When projector status is Cooling Down: no Functional Execution Commands accepted (none execute, all return [ACK][CR])
-  - When projector status is Abnormal Temperature: no Functional Execution Commands accepted
-  - When projector status is Abnormal Power: no Functional Execution Commands accepted
-  - When projector status is Power Save / Cooling Down: no Functional Execution Commands accepted
-  - Command pipelining rule: wait minimum 100ms after receiving response before issuing next command
-  - Source explicitly warns: Do not issue any command during ~5 second internal initialization after plugging AC power
-  - Source explicitly warns: Commands taking more than 1 second to receive carriage return cause buffer clear
+confirmation_required_for:
+  - power_off  # C02 displays "Power OFF?" and must be sent a second time to actually shut down
+interlocks: []
+# UNRESOLVED: source describes operational gating (commands disabled in Cooling Down / Abnormal Temperature / Power Save states) but not formal safety interlocks.
 ```
 
 ## Notes
-<!-- UNRESOLVED: TCP/IP or HTTP control not available on this model — serial only -->
-<!-- UNRESOLVED: port number not applicable (serial-only device) -->
-Command format: "C" + 2-char command code + CR (0x0D). ACK response: (0x06, 0x0D). Error response: "?" + CR.
-Status read format: "CR" + 1-char command code + CR. Response varies by command — see Feedbacks above.
-Baud rate user-selectable in service mode; initial default 19200.
-<!-- UNRESOLVED: service mode access procedure not documented in source -->
+- Baud rate: initial 19200, switchable to 9600 in service mode. Source supports both values.
+- Command framing: every command is a single line starting with "C" (functional) or "CR" (status read) and terminated by CR (0x0D). Commands must be capital A-Z.
+- Inter-command delay: 100 ms minimum; wait for ACK before issuing next command.
+- Initialization: ~5 seconds after AC plug-in during which the projector ignores all commands.
+- Timeout: if a single command line takes >1 s to arrive, the buffer is cleared and the command is not executed.
+- Acceptable response: ACK (0x06) + CR. Undecodable response: "?" + CR.
+- Status response length varies by command (see CR0/CR1/CR3/CR4/CR6/CR7 in source).
+- C02 power off is a two-step: first send displays "Power OFF?", second send executes shutdown. C01 is the quick power off variant (no confirmation).
+- D.Zoom mode must be exited before screen-size commands (C0F/C10) are accepted.
+
+<!-- UNRESOLVED: D-Sub 9 ↔ Mini 8 pin cable pinout is referenced but the wiring is not in the refined source. -->
+<!-- UNRESOLVED: firmware version compatibility range not stated. -->
+<!-- UNRESOLVED: service-mode baud rate change procedure not documented in refined source. -->
 
 ## Provenance
 
@@ -436,24 +533,30 @@ source_domains:
 source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/sanyo/plc-wxe45_rs232basiccommand.pdf"
 retrieved_at: 2026-05-21T21:13:48.850Z
-last_checked_at: 2026-05-31T21:02:40.324Z
+last_checked_at: 2026-06-02T05:46:11.599Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T21:02:40.324Z
-matched_actions: 54
-action_count: 54
-confidence: high
-summary: "All 54 spec actions matched in source command table; transport parameters verified verbatim; complete bidirectional coverage."
+checked_at: 2026-06-02T05:46:11.599Z
+matched_actions: 60
+action_count: 60
+confidence: medium
+summary: "All 60 spec actions matched literally in source command tables; all transport parameters (19200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "cable pinout is referenced (D-Sub 9 pin ↔ Mini 8 pin) but the exact wiring is not described in the refined source."
+- "source does not describe unsolicited notifications; projector only returns responses to commands."
+- "source does not describe multi-step sequences."
+- "source describes operational gating (commands disabled in Cooling Down / Abnormal Temperature / Power Save states) but not formal safety interlocks."
+- "D-Sub 9 ↔ Mini 8 pin cable pinout is referenced but the wiring is not in the refined source."
+- "firmware version compatibility range not stated."
+- "service-mode baud rate change procedure not documented in refined source."
 ```
 
 ---

@@ -21,19 +21,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:59:10.352Z
 last_checked_at: 2026-05-16T12:18:22.339Z
 generated_at: 2026-05-16T12:18:22.339Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value mapping references appendix not included in source"
+  - "eco mode value mapping references appendix not included in source"
+  - "aspect value mapping references appendix not included in source"
+  - "sub input setting value mapping references appendix not included in source"
+  - "base model type value mapping references appendix not included in source"
+  - "flow control not stated; full duplex noted"
+  - "continuous variables (brightness, contrast, volume, etc.) have adjustable ranges"
+  - "no event/push notification model documented"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "appendix with input terminal, aspect, eco mode, sub input, base model type value mappings not included in source"
+  - "flow control for serial not specified beyond \"full duplex\""
+  - "default baud rate not stated; multiple rates supported"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:18:22.339Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched literally to source commands; transport parameters verified verbatim in specification sections."
+  confidence: medium
+  summary: "All 28 spec actions matched literally to source commands; transport parameters verified verbatim in specification sections. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -575,7 +588,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:59:10.352Z
 last_checked_at: 2026-05-16T12:18:22.339Z
 ```
 
@@ -586,14 +599,26 @@ verdict: verified
 checked_at: 2026-05-16T12:18:22.339Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched literally to source commands; transport parameters verified verbatim in specification sections."
+confidence: medium
+summary: "All 28 spec actions matched literally to source commands; transport parameters verified verbatim in specification sections. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value mapping references appendix not included in source"
+- "eco mode value mapping references appendix not included in source"
+- "aspect value mapping references appendix not included in source"
+- "sub input setting value mapping references appendix not included in source"
+- "base model type value mapping references appendix not included in source"
+- "flow control not stated; full duplex noted"
+- "continuous variables (brightness, contrast, volume, etc.) have adjustable ranges"
+- "no event/push notification model documented"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock procedures documented in source"
+- "appendix with input terminal, aspect, eco mode, sub input, base model type value mappings not included in source"
+- "flow control for serial not specified beyond \"full duplex\""
+- "default baud rate not stated; multiple rates supported"
 ```
 
 ---

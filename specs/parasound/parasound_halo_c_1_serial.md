@@ -20,21 +20,23 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
-retrieved_at: 2026-05-21T17:00:47.559Z
+retrieved_at: 2026-05-21T16:55:19.847Z
 last_checked_at: 2026-05-31T07:00:28.605Z
 generated_at: 2026-05-31T07:00:28.605Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "multi-zone details, trigger output specs, video format switching behavior"
+  - "no discrete settable parameters beyond multi-byte commands listed in Actions"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility, trigger output electrical specs, video format switching behavior"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:00:28.605Z
   matched_actions: 107
   action_count: 107
-  confidence: high
-  summary: "All 107 spec actions matched wire-level hex codes in source; every transport parameter verified verbatim in source documentation."
+  confidence: medium
+  summary: "All 107 spec actions matched wire-level hex codes in source; every transport parameter verified verbatim in source documentation. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1092,9 +1094,7 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
-retrieved_at: 2026-05-21T17:00:47.559Z
+retrieved_at: 2026-05-21T16:55:19.847Z
 last_checked_at: 2026-05-31T07:00:28.605Z
 ```
 
@@ -1105,14 +1105,17 @@ verdict: verified
 checked_at: 2026-05-31T07:00:28.605Z
 matched_actions: 107
 action_count: 107
-confidence: high
-summary: "All 107 spec actions matched wire-level hex codes in source; every transport parameter verified verbatim in source documentation."
+confidence: medium
+summary: "All 107 spec actions matched wire-level hex codes in source; every transport parameter verified verbatim in source documentation. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "multi-zone details, trigger output specs, video format switching behavior"
+- "no discrete settable parameters beyond multi-byte commands listed in Actions"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility, trigger output electrical specs, video format switching behavior"
 ```
 
 ---

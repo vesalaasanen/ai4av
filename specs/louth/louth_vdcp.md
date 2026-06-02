@@ -24,14 +24,20 @@ last_checked_at: 2026-04-25T21:06:26.422Z
 generated_at: 2026-04-25T21:06:26.422Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device model variants not specified in source"
+  - "flow control not specified in source"
+  - "no explicit safety warnings or interlock procedures stated in source"
+  - "specific device models that implement this protocol are not named in source"
+  - "electrical specifications (voltage, current, power) not provided"
+  - "physical connection details beyond RS-422 pinout not specified"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:06:26.422Z
   matched_actions: 76
   action_count: 76
-  confidence: high
-  summary: "All 76 spec actions match semantically to source command definitions, transport parameters verified verbatim, comprehensive protocol coverage confirmed."
+  confidence: medium
+  summary: "All 76 spec actions match semantically to source command definitions, transport parameters verified verbatim, comprehensive protocol coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -870,14 +876,19 @@ verdict: verified
 checked_at: 2026-04-25T21:06:26.422Z
 matched_actions: 76
 action_count: 76
-confidence: high
-summary: "All 76 spec actions match semantically to source command definitions, transport parameters verified verbatim, comprehensive protocol coverage confirmed."
+confidence: medium
+summary: "All 76 spec actions match semantically to source command definitions, transport parameters verified verbatim, comprehensive protocol coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device model variants not specified in source"
+- "flow control not specified in source"
+- "no explicit safety warnings or interlock procedures stated in source"
+- "specific device models that implement this protocol are not named in source"
+- "electrical specifications (voltage, current, power) not provided"
+- "physical connection details beyond RS-422 pinout not specified"
 ```
 
 ---

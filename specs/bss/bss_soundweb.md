@@ -27,14 +27,27 @@ last_checked_at: 2026-05-14T18:17:14.856Z
 generated_at: 2026-05-14T18:17:14.856Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model numbers (BLU-50v2, BLU-100, etc.) not listed in this source document"
+  - "baud rate not stated in source; configured via Audio Architect Properties window"
+  - "data_bits, parity, stop_bits not stated in source"
+  - "power commands not explicitly documented in this source"
+  - "routing commands not explicitly documented in this source"
+  - "specific Parameter ID values for конкретные parameters (gain, mute, source selector) - need full object/parameter reference from Audio Architect"
+  - "конкретные parameter ID mappings - Audio Architect object browser required"
+  - "specific unsolicited event types not enumerated in this source"
+  - "no safety warnings or interlock procedures in this source"
+  - "specific model variants (BLU-50v2, BLU-100, BLU-320, etc.) — source covers general Soundweb London family only"
+  - "preset storage/management commands beyond RECALL PRESET"
+  - "firmware version compatibility"
+  - "configurable parameters (baud rate, port) default values not stated in source — configured via Audio Architect"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.856Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified."
+  confidence: medium
+  summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -335,14 +348,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.856Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified."
+confidence: medium
+summary: "All 14 spec actions matched verbatim to source opcodes; transport parameters verified. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model numbers (BLU-50v2, BLU-100, etc.) not listed in this source document"
+- "baud rate not stated in source; configured via Audio Architect Properties window"
+- "data_bits, parity, stop_bits not stated in source"
+- "power commands not explicitly documented in this source"
+- "routing commands not explicitly documented in this source"
+- "specific Parameter ID values for конкретные parameters (gain, mute, source selector) - need full object/parameter reference from Audio Architect"
+- "конкретные parameter ID mappings - Audio Architect object browser required"
+- "specific unsolicited event types not enumerated in this source"
+- "no safety warnings or interlock procedures in this source"
+- "specific model variants (BLU-50v2, BLU-100, BLU-320, etc.) — source covers general Soundweb London family only"
+- "preset storage/management commands beyond RECALL PRESET"
+- "firmware version compatibility"
+- "configurable parameters (baud rate, port) default values not stated in source — configured via Audio Architect"
 ```
 
 ---

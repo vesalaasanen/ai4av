@@ -38,25 +38,37 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
-  - snapav.com
+  - github.com
+  - sbprojects.net
+  - remotecentral.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+  - https://support.jvc.com/consumer/support/documents/RemoteCodes.pdf
+  - https://github.com/jcj83429/jvc_compulink
+  - https://www.sbprojects.net/knowledge/ir/jvc.php
+  - https://www.remotecentral.com/cgi-bin/codes/jvc/
+retrieved_at: 2026-05-17T21:22:34.987Z
 last_checked_at: 2026-05-20T15:40:15.243Z
 generated_at: 2026-05-20T15:40:15.243Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device name \"X BE WE\" could not be mapped to a specific model; spec covers all models listed in compatible_with"
+  - "source does not describe settable parameters beyond discrete actions."
+  - "source does not describe unsolicited event notifications from projector."
+  - "no safety warnings or interlock procedures stated in source."
+  - "device name \"X BE WE\" — likely an internal JVC reference; no model by that exact name appears in the source document. Compatible model list derived from the full model list in the source document."
+  - "firmware version compatibility not stated in source."
+  - "RS-232C COM port number not stated in source."
+  - "LAN IP address defaults are stated (192.168.0.2 etc.) but these are installer-configurable; not hard-coded in the protocol."
+  - "full Remote Control Emulation command table (pages 7-13 of source) not fully enumerated here — subset included covering most common operations. Full table available at source pages 7-13."
 verification:
   verdict: verified
   checked_at: 2026-05-20T15:40:15.243Z
   matched_actions: 171
   action_count: 171
-  confidence: high
-  summary: "All 171 hex commands verified literal match in source; transport verified."
+  confidence: medium
+  summary: "All 171 hex commands verified literal match in source; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1585,13 +1597,16 @@ interlocks: []
 ```yaml
 source_domains:
   - support.jvc.com
-  - snapav.com
+  - github.com
+  - sbprojects.net
+  - remotecentral.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+  - https://support.jvc.com/consumer/support/documents/RemoteCodes.pdf
+  - https://github.com/jcj83429/jvc_compulink
+  - https://www.sbprojects.net/knowledge/ir/jvc.php
+  - https://www.remotecentral.com/cgi-bin/codes/jvc/
+retrieved_at: 2026-05-17T21:22:34.987Z
 last_checked_at: 2026-05-20T15:40:15.243Z
 ```
 
@@ -1602,14 +1617,22 @@ verdict: verified
 checked_at: 2026-05-20T15:40:15.243Z
 matched_actions: 171
 action_count: 171
-confidence: high
-summary: "All 171 hex commands verified literal match in source; transport verified."
+confidence: medium
+summary: "All 171 hex commands verified literal match in source; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device name \"X BE WE\" could not be mapped to a specific model; spec covers all models listed in compatible_with"
+- "source does not describe settable parameters beyond discrete actions."
+- "source does not describe unsolicited event notifications from projector."
+- "no safety warnings or interlock procedures stated in source."
+- "device name \"X BE WE\" — likely an internal JVC reference; no model by that exact name appears in the source document. Compatible model list derived from the full model list in the source document."
+- "firmware version compatibility not stated in source."
+- "RS-232C COM port number not stated in source."
+- "LAN IP address defaults are stated (192.168.0.2 etc.) but these are installer-configurable; not hard-coded in the protocol."
+- "full Remote Control Emulation command table (pages 7-13 of source) not fully enumerated here — subset included covering most common operations. Full table available at source pages 7-13."
 ```
 
 ---

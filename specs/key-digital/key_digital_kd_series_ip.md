@@ -1,8 +1,8 @@
 ---
-spec_id: admin/key_digital-kd_series
+spec_id: admin/key-digital-kd-series
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Key Digital KD-4x4CSA / KD-8x8CSA Control Spec"
+title: "Key Digital KD Series Control Spec"
 manufacturer: "Key Digital"
 model_family: KD-4x4CSA
 aliases: []
@@ -12,43 +12,45 @@ compatible_with:
   models:
     - KD-4x4CSA
     - KD-8x8CSA
-  firmware: ""
+  firmware: "\"1.02\""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
   - keydigital.com
-  - keydigital.org
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-  - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
-  - https://www.keydigital.com/KDMS-Pro.html
-  - "https://keydigital.org/web/content/167616?download=true"
-retrieved_at: 2026-05-22T16:37:30.119Z
-last_checked_at: 2026-05-08T15:43:08.354Z
-generated_at: 2026-05-08T15:43:08.354Z
-firmware_coverage: "Not stated in source"
+  - http://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
+retrieved_at: 2026-06-02T00:50:06.157Z
+last_checked_at: 2026-06-02T01:48:17.348Z
+generated_at: 2026-06-02T01:48:17.348Z
+firmware_coverage: "\"1.02\""
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source documents no unsolicited / asynchronous notifications."
+  - "source documents no multi-step macro sequences."
+  - "source documents no electrical safety warnings, interlocks, or power-on"
+  - "firmware compatibility range — source only shows F/W 1.02 in the help/status examples."
+  - "response payloads for every command except H and STA. Source says \"If a new command is received, a prompt should be sent back\" but does not document per-command ACK/NAK strings or error codes."
+  - "behavior when an invalid command is sent — no error string syntax documented."
+  - "exact System Address prefix syntax (position, separator, whether prefix consumes the leading 'SP' of mnemonics)."
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:43:08.354Z
+  checked_at: 2026-06-02T01:48:17.348Z
   matched_actions: 22
   action_count: 22
-  confidence: high
-  summary: "All 22 spec actions matched literal commands in source; transport parameters verified; comprehensive command coverage."
+  confidence: medium
+  summary: "All 22 spec actions matched literally in source; transport fully verified; bidirectional coverage of source command catalogue. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-07
+created_at: 2026-06-02
 ---
 
-# Key Digital KD-4x4CSA / KD-8x8CSA Control Spec
+# Key Digital KD Series Control Spec
 
 ## Summary
-HDMI matrix switcher supporting 4x4 (KD-4x4CSA) and 8x8 (KD-8x8CSA) configurations. Control via RS-232 serial and TCP/IP (Telnet default). Commands include video input routing, audio output enable/disable, EDID management, power control, and system status query. Commands are not case-sensitive; carriage return + line feed required at end of each command string.
-
-<!-- UNRESOLVED: whether KD-8x8CSA has identical command set not independently confirmed — inferred from same document -->
+Control spec for the Key Digital KD-4x4CSA and KD-8x8CSA HDMI matrix switchers (CSA series). Devices accept an ASCII command protocol over either RS-232 or TCP/IP (Telnet). Commands are not case-sensitive, must omit interior spaces, and must be terminated with carriage return + line feed.
 
 ## Transport
 ```yaml
@@ -56,7 +58,8 @@ protocols:
   - tcp
   - serial
 addressing:
-  port: 23  # default TCP port; source shows TCP Port = 0023 in STA output
+  host: "192.168.0.239"  # factory default IP per source
+  port: 23               # factory default TCP port per source
 serial:
   baud_rate: 57600
   data_bits: 8
@@ -65,371 +68,372 @@ serial:
   flow_control: none
 auth:
   type: none  # inferred: no auth procedure in source
+framing:
+  terminator: "\r\n"  # source: "Carriage return and line feed is required at the end of each string"
+  case_sensitive: false  # source: "Commands are not case-sensitive"
+  strip_spaces: true     # source: "Spaces are shown for clarity; commands should NOT have any spaces"
 ```
 
 ## Traits
 ```yaml
-- powerable  # PN (power on), PF (power off) commands present
-- routable   # SPO xx SI yy (video input routing) present
-- queryable  # STA command returns full system state
-- levelable  # SPO xx AA/DA E/D (audio output enable/disable) present
+- powerable   # inferred from PN / PF commands
+- routable    # inferred from SPOxxSIyy input-to-output routing command
+- queryable   # inferred from STA / H query commands
 ```
 
 ## Actions
 ```yaml
+- id: help
+  label: Help
+  kind: query
+  command: "H"
+  params: []
+  notes: "Returns entire API in readable format."
+
 - id: power_on
   label: Power On
   kind: action
+  command: "PN"
   params: []
-  description: Turns unit on. Command: PN
 
 - id: power_off
   label: Power Off
   kind: action
+  command: "PF"
   params: []
-  description: Turns unit off. Command: PF
 
-- id: set_video_routing
-  label: Set Video Input Routing
+- id: status_query
+  label: Show Global System Status
+  kind: query
+  command: "STA"
+  params: []
+  notes: "Returns power, RS-232 settings, front panel state, network settings, per-input EDID/LINK, per-output routing/state, per-audio-output enable flags."
+
+- id: set_output_input
+  label: Set Output to Video Input
   kind: action
+  command: "SPO{output}SI{input}"
   params:
     - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
+      type: string
+      description: "Output selector: 01-04 (KD-4x4CSA) or 01-08 (KD-8x8CSA), or A=all"
     - name: input
-      type: integer
-      description: Input number (01-04, U=Up, D=Down)
-  description: Routes video input yy to output xx. Command: SPO xx SI yy
+      type: string
+      description: "Input selector: 01-04 (KD-4x4CSA) or 01-08 (KD-8x8CSA), or U=up, D=down"
 
-- id: set_video_output_power
-  label: Set Video Output Power
+- id: set_output_state
+  label: Set Output On/Off
   kind: action
+  command: "SPO{output}{state}"
   params:
     - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
-    - name: power
+      type: string
+      description: "Output selector: 01-04/01-08, or A=all"
+    - name: state
       type: enum
       values: [ON, OFF]
-  description: Enable/disable video output. Command: SPO xx ON/OFF
 
-- id: set_audio_analog_output
-  label: Set External Analog Audio Output
+- id: set_output_debug
+  label: Set Output Debug Mode On/Off
   kind: action
+  command: "SPO{output}DBG{state}"
   params:
     - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
+      type: string
+      description: "Output selector: 01-04/01-08, or A=all"
     - name: state
       type: enum
-      values: [E, D]
-      description: E=Enable, D=Disable
-  description: Enable/disable external analog audio output. Command: SPO xx AA E/D
+      values: [ON, OFF]
 
-- id: set_audio_digital_output
-  label: Set External Digital Audio Output
+- id: set_output_video_format
+  label: Set Output Video Format
   kind: action
+  command: "SPO{output}HFM{mode}"
   params:
     - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
-    - name: state
+      type: string
+      description: "Output selector: 01-04/01-08, or A=all"
+    - name: mode
       type: enum
-      values: [E, D]
-      description: E=Enable, D=Disable
-  description: Enable/disable external digital audio output. Command: SPO xx DA E/D
+      values: [A, D, H]
+      description: "A=Auto, D=Forced DVI, H=Bypass (HDMI)"
 
 - id: copy_edid_from_output
   label: Copy EDID from Output to Input
   kind: action
+  command: "SPCEDID{input}H{output}"
   params:
     - name: input
-      type: integer
-      description: Input number (01-04, or A for all)
+      type: string
+      description: "Target input: 01-04 or A=all"
     - name: output
-      type: integer
-      description: Output number (01-04) to copy EDID from
-  description: Copy EDID from HDMI output yy to input xx. Command: SPC EDID xx H yy
+      type: string
+      description: "Source output: 01-04"
 
-- id: copy_edid_from_preset
-  label: Copy EDID from Default Preset
+- id: copy_edid_from_default
+  label: Copy EDID from Default Preset to Input
   kind: action
+  command: "SPCEDID{input}D{preset}"
   params:
     - name: input
-      type: integer
-      description: Input number (01-04, or A for all)
+      type: string
+      description: "Target input: 01-04 or A=all"
     - name: preset
-      type: integer
-      description: Preset number (01-15)
-  description: Copy default EDID preset zz to input xx. Command: SPC EDID xx D zz
+      type: string
+      description: "Default EDID preset: 01-15 (see EDID preset reference)"
 
-- id: set_host_ip
+- id: set_output_analog_audio
+  label: Enable/Disable External Analog Audio Output
+  kind: action
+  command: "SPO{output}AA{state}"
+  params:
+    - name: output
+      type: string
+      description: "Output selector: 01-04 or A=all"
+    - name: state
+      type: enum
+      values: [E, D]
+      description: "E=Enable, D=Disable"
+
+- id: set_output_digital_audio
+  label: Enable/Disable External Digital Audio Output
+  kind: action
+  command: "SPO{output}DA{state}"
+  params:
+    - name: output
+      type: string
+      description: "Output selector: 01-04 or A=all"
+    - name: state
+      type: enum
+      values: [E, D]
+      description: "E=Enable, D=Disable"
+
+- id: set_host_ip_address
   label: Set Host IP Address
   kind: action
+  command: "SPCETIPA{ip}"
   params:
     - name: ip
       type: string
-      pattern: "\\d{3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
-      description: IP address octets (000-255 each)
-  description: Set TCP/IP host IP address. Command: SPCETIPA xxx.xxx.xxx.xxx
+      description: "Dotted-quad IPv4 address, each octet 000-255"
 
-- id: set_netmask
+- id: set_net_mask
   label: Set Net Mask
   kind: action
+  command: "SPCETIPM{mask}"
   params:
     - name: mask
       type: string
-      pattern: "\\d{3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
-      description: Netmask octets (000-255 each)
-  description: Set TCP/IP netmask. Command: SPCETIPM xxx.xxx.xxx.xxx
+      description: "Dotted-quad IPv4 netmask, each octet 000-255"
 
-- id: set_router_ip
-  label: Set Router IP Address
+- id: set_route_ip_address
+  label: Set Route IP Address
   kind: action
+  command: "SPCETIPR{route}"
   params:
-    - name: ip
+    - name: route
       type: string
-      pattern: "\\d{3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
-      description: Router IP octets (000-255 each)
-  description: Set TCP/IP router/gateway address. Command: SPCETIPR xxx.xxx.xxx.xxx
+      description: "Dotted-quad IPv4 gateway address, each octet 000-255"
 
 - id: set_tcp_port
   label: Set TCP/IP Port
   kind: action
+  command: "SPCETIPP{port}"
   params:
     - name: port
-      type: integer
-      description: Port number (0001-9999)
-  description: Set TCP/IP port. Command: SPCETIPP zzzz
+      type: string
+      description: "TCP port number, 0001-9999 (four-digit zero-padded per source)"
 
-- id: apply_network_reboot
-  label: Apply Network Config and Reboot
+- id: network_reboot_apply
+  label: Network Reboot and Apply New Config
   kind: action
+  command: "SPCETIPB"
   params: []
-  description: Reboot network with new IP settings. Command: SPCETIPB
 
 - id: set_system_address
   label: Set System Address
   kind: action
+  command: "SPCA{address}"
   params:
     - name: address
-      type: integer
-      description: System address (00-99); 00=Single unit mode
-  description: Set system address for multi-unit control. Command: SPC Axx
+      type: string
+      description: "System address: 00-99 (00 = single-unit mode)"
 
 - id: set_rs232_baud_rate
   label: Set RS-232 Baud Rate
   kind: action
+  command: "SPCRSB{rate}"
   params:
-    - name: rate_code
-      type: integer
-      description: Baud rate code (0=57600, 1=38400, 2=19200, 3=9600, 4=4800)
-  description: Change RS-232 serial baud rate. Command: SPC RSB z
+    - name: rate
+      type: enum
+      values: ["0", "1", "2", "3", "4"]
+      description: "0=57600, 1=38400, 2=19200, 3=9600, 4=4800"
 
 - id: set_front_panel_buttons
   label: Enable/Disable Front Panel Buttons
   kind: action
+  command: "SPCFB{state}"
   params:
     - name: state
       type: enum
       values: [E, D]
-      description: E=Enable, D=Disable
-  description: Lock/unlock front panel pushbuttons. Command: SPC FB E/D
+      description: "E=Enable, D=Disable"
 
-- id: factory_reset_no_network
-  label: Factory Reset (Preserve Network)
+- id: reset_factory_default_keep_network
+  label: Reset to Factory Default (preserve network config)
   kind: action
+  command: "SPCDF00"
   params: []
-  description: Reset to factory defaults without changing network settings. Command: SPCDF 00
 
-- id: factory_reset_all
-  label: Factory Reset (All Settings)
+- id: reset_factory_default_all
+  label: Reset to Factory Default (all settings)
   kind: action
+  command: "SPCDF"
   params: []
-  description: Reset all settings to factory defaults including network. Command: SPCDF
-
-- id: show_help
-  label: Show Help
-  kind: action
-  params: []
-  description: Returns full API in readable format. Command: H
-
-- id: show_status
-  label: Show Global System Status
-  kind: action
-  params: []
-  description: Returns current state of power, RS232 config, network settings, video routing, and audio output status. Command: STA
-
-- id: set_output_debug_mode
-  label: Set Output Debug Mode
-  kind: action
-  params:
-    - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
-    - name: state
-      type: enum
-      values: [ON, OFF]
-  description: Enable/disable debug mode for output. Command: SPO xx DBG ON/OFF
-
-- id: set_output_video_format_mode
-  label: Set Output Video Format Mode
-  kind: action
-  params:
-    - name: output
-      type: integer
-      description: Output number (01-04, or A for all)
-    - name: mode
-      type: enum
-      values: [A, D, H]
-      description: A=Auto, D=Forced DVI, H=Bypass
-  description: Set output video format mode. Command: SPO xx HFM A/D/H
 ```
 
 ## Feedbacks
 ```yaml
+# All observable state is returned as a multi-line ASCII block from the STA query.
+# The source does not document per-field query opcodes; clients must parse the STA payload.
+
 - id: power_state
   type: enum
   values: [ON, OFF]
-  description: Current power state; returned by STA command
+  source: "STA -> 'Power : <ON|OFF>'"
 
-- id: video_output_state
-  type: object
-  properties:
-    - name: input
-      type: integer
-      description: Currently routed input number (01-04)
-    - name: output
-      type: enum
-      values: [ON, OFF]
-      description: Output power state
-    - name: link
-      type: enum
-      values: [ON, OFF]
-    - name: dbg
-      type: enum
-      values: [ON, OFF]
-      description: Debug mode state
-    - name: format
-      type: string
-      description: Video format mode (AUTO, DVI, Bypass)
-  description: Per-output video state; returned by STA command
-
-- id: audio_output_state
-  type: object
-  properties:
-    - name: analog
-      type: enum
-      values: [Enabled, Disabled]
-    - name: digital
-      type: enum
-      values: [Enabled, Disabled]
-  description: Per-output audio state; returned by STA command
-
-- id: network_status
-  type: object
-  properties:
-    - name: mac_address
-      type: string
-    - name: host_ip
-      type: string
-    - name: net_mask
-      type: string
-    - name: router_ip
-      type: string
-    - name: tcp_port
-      type: integer
-  description: Network configuration; returned by STA command
-
-- id: system_address
-  type: integer
-  description: Current system address (00-99); returned by STA command
-
-- id: firmware_version
+- id: rs232_settings
   type: string
-  description: Firmware version; returned by STA command (e.g., "1.02")
+  source: "STA -> 'RS232 : Baud Rate=<n>bps, Data=8bit, Parity=None, Stop=1bit'"
 
 - id: front_panel_state
   type: enum
   values: [Enabled, Disabled]
-  description: Front panel lock state; returned by STA command
+  source: "STA -> 'Front Panel Button : <Enabled|Disabled>'"
 
-- id: edid_input_state
+- id: mac_address
+  type: string
+  source: "STA -> 'MAC Address = <xx:xx:xx:xx:xx:xx>'"
+
+- id: host_ip_address
+  type: string
+  source: "STA -> 'Host IP Address = <ddd.ddd.ddd.ddd>'"
+
+- id: net_mask
+  type: string
+  source: "STA -> 'Net Mask = <ddd.ddd.ddd.ddd>'"
+
+- id: router_ip_address
+  type: string
+  source: "STA -> 'Router IP Address = <ddd.ddd.ddd.ddd>'"
+
+- id: tcp_port
+  type: integer
+  source: "STA -> 'TCP Port = <zzzz>'"
+
+- id: video_input_state
   type: object
-  properties:
-    - name: edid
-      type: string
-      description: EDID preset name/number
-    - name: link
-      type: enum
-      values: [ON, OFF]
-  description: Per-input EDID and link status; returned by STA command
+  description: "Per-input EDID assignment and HDMI source LINK state"
+  source: "STA -> 'Video Input <nn> : EDID = <preset>, LINK = <ON|OFF>'"
+
+- id: video_output_state
+  type: object
+  description: "Per-output routed input, output enable, sink LINK, debug, video format mode"
+  source: "STA -> 'Video Output <nn> : IN = <nn>, OUT = <ON|OFF>, LINK = <ON|OFF>, DBG = <ON|OFF>, <AUTO|DVI|BYPASS>'"
+
+- id: audio_output_state
+  type: object
+  description: "Per-audio-output analog and digital enable flags"
+  source: "STA -> 'Audio Output <nn> : Analog = <Enabled|Disabled>, Digital = <Enabled|Disabled>'"
+
+- id: firmware_version
+  type: string
+  source: "STA / H header -> 'F/W Version : <v>'"
+
+- id: system_address_state
+  type: integer
+  source: "STA / H header -> 'System Address = <xx>'"
+
+- id: command_prompt
+  type: string
+  description: "Device emits a prompt of the form '<MODEL>>' after processing each command."
+  source: "H output footer: 'If a new command is received, a prompt should be sent back.'"
 ```
 
 ## Variables
 ```yaml
-# No discrete settable parameters beyond the action params above.
-# All configurable state is addressed via action commands.
+# All settable state is driven by the Actions above; the source does not expose
+# variables that are not bound to a documented set-command. Section intentionally empty.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event/notification structure described in source.
-# Source states "if a new command is received, a prompt should be sent back"
-# suggesting response-only (query/response) model, not push events.
+# UNRESOLVED: source documents no unsolicited / asynchronous notifications.
+# The only device-initiated output described is the post-command prompt (see feedbacks.command_prompt).
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macro sequences described in source.
+# UNRESOLVED: source documents no multi-step macro sequences.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source.
+# UNRESOLVED: source documents no electrical safety warnings, interlocks, or power-on
+# sequencing requirements. Note that SPCDF (reset to factory default all) and SPCETIPB
+# (network reboot/apply) are destructive in the sense that they will disrupt control
+# sessions; the integrator may wish to confirm these in higher layers, but the source
+# itself contains no explicit safety language.
 ```
 
 ## Notes
-Commands are not case-sensitive. Spaces in command syntax are for readability only — commands must be sent WITHOUT spaces (e.g., `SPO01SI02`, not `SPO 01 SI 02`). Carriage return + line feed required at end of every command string. System address prefix (zz=01-99) may precede any command for multi-unit daisy-chain control.
-
-Video format modes: A=Auto (EDID-driven), D=Forced DVI, H=Bypass (pass through without conversion).
-
-EDID presets 01-15 map to specific resolution/audio combinations; preset 04 (1080p60, 2Ch PCM) is factory default.
-
-Network default: IP 192.168.0.239, port 23 (Telnet). MAC address shown in STA output: 18:98:66:E9:7C:B1.
+- Command framing: every command string must be terminated with `\r\n` (carriage return + line feed). The device will not act on an unterminated command.
+- Commands are not case-sensitive. The protocol document shows commands with spaces for readability, but **interior spaces must be removed before sending**. Examples: `SPO 01 SI 02` is documented but the wire payload is `SPO01SI02\r\n`; `SPC EDID 01 D 04` is documented but the wire payload is `SPCEDID01D04\r\n`.
+- Multi-device addressing: when more than one KD unit shares a control bus, every command may be prefixed with the two-digit System Address `zz=[01-99]`. Address `00` indicates single-unit mode and requires no prefix. The exact prefix syntax is described in source only as "All Commands may have Prefix System Address zz=[01-99]" without a worked example — implementers should verify against a live device.
+- TCP/IP control is the same ASCII protocol exposed over a Telnet server (default port 23). After connecting, the device emits a `<MODEL>>` prompt and accepts commands line-by-line.
+- Default network settings shipped from factory: IP 192.168.0.239, TCP port 23, baud rate 57600. The `SPCETIPB` command must be issued after changing any network parameter for the new configuration to take effect.
+- EDID preset 00 (shown in the EDID Preset Reference Table) copies EDID from HDMI Output 08. Note this preset is referenced in the table but the `SPC EDID xx D zz` command syntax restricts `zz=[01-15]`; preset 00 may only be selectable via a different mechanism or only on the KD-8x8CSA — source is ambiguous.
+- The `SPO xx HFM` mode mnemonics (A / D / H) map to Auto / Forced DVI / Bypass per the H help output; the STA status block reports the same field as `AUTO` / `DVI` / `BYPASS` (full words) — clients parsing STA should expect the word form, not the single-letter mnemonic.
+<!-- UNRESOLVED: firmware compatibility range — source only shows F/W 1.02 in the help/status examples. -->
+<!-- UNRESOLVED: response payloads for every command except H and STA. Source says "If a new command is received, a prompt should be sent back" but does not document per-command ACK/NAK strings or error codes. -->
+<!-- UNRESOLVED: behavior when an invalid command is sent — no error string syntax documented. -->
+<!-- UNRESOLVED: exact System Address prefix syntax (position, separator, whether prefix consumes the leading 'SP' of mnemonics). -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - keydigital.com
-  - keydigital.org
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-  - https://www.keydigital.org/web/content/178896/AVoIP_VideoWall_Commands.pdf
-  - https://www.keydigital.com/KDMS-Pro.html
-  - "https://keydigital.org/web/content/167616?download=true"
-retrieved_at: 2026-05-22T16:37:30.119Z
-last_checked_at: 2026-05-08T15:43:08.354Z
+  - http://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
+retrieved_at: 2026-06-02T00:50:06.157Z
+last_checked_at: 2026-06-02T01:48:17.348Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:43:08.354Z
+checked_at: 2026-06-02T01:48:17.348Z
 matched_actions: 22
 action_count: 22
-confidence: high
-summary: "All 22 spec actions matched literal commands in source; transport parameters verified; comprehensive command coverage."
+confidence: medium
+summary: "All 22 spec actions matched literally in source; transport fully verified; bidirectional coverage of source command catalogue. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source documents no unsolicited / asynchronous notifications."
+- "source documents no multi-step macro sequences."
+- "source documents no electrical safety warnings, interlocks, or power-on"
+- "firmware compatibility range — source only shows F/W 1.02 in the help/status examples."
+- "response payloads for every command except H and STA. Source says \"If a new command is received, a prompt should be sent back\" but does not document per-command ACK/NAK strings or error codes."
+- "behavior when an invalid command is sent — no error string syntax documented."
+- "exact System Address prefix syntax (position, separator, whether prefix consumes the leading 'SP' of mnemonics)."
 ```
 
 ---

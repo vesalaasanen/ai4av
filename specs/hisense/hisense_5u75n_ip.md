@@ -16,24 +16,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/en/Attachment/DownloadFile?downloadId=519"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
+retrieved_at: 2026-05-04T21:09:11.021Z
 last_checked_at: 2026-05-14T18:17:16.287Z
 generated_at: 2026-05-14T18:17:16.287Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control documented in separate HiSense \"IP Control User Manual\" not included in this source"
+  - "no model-specific confirmation that 5U75N supports all listed commands"
+  - "no continuously-variable settable parameters beyond those covered in Actions"
+  - "no multi-step sequences described in source"
+  - "TCP/IP transport documented in separate \"IP Control User Manual\" — command set likely overlaps but not confirmed from this source"
+  - "IR discrete codes present in source but excluded from spec (not machine-serializable control)"
+  - "no firmware version range stated; source revisions span 2014–2017"
+  - "multiple-TV daisy-chain wiring described but pinout diagram not extractable from text"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.287Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 109 spec actions match source commands literally with correct opcodes and parameters; transport fully verified in serial protocol section."
+  confidence: medium
+  summary: "All 109 spec actions match source commands literally with correct opcodes and parameters; transport fully verified in serial protocol section. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1185,12 +1196,15 @@ Protocol uses fixed-length ASCII frames. Set command format: `S[CLIENT_ID][COMMA
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/en/Attachment/DownloadFile?downloadId=519"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
+retrieved_at: 2026-05-04T21:09:11.021Z
 last_checked_at: 2026-05-14T18:17:16.287Z
 ```
 
@@ -1201,14 +1215,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.287Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 109 spec actions match source commands literally with correct opcodes and parameters; transport fully verified in serial protocol section."
+confidence: medium
+summary: "All 109 spec actions match source commands literally with correct opcodes and parameters; transport fully verified in serial protocol section. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control documented in separate HiSense \"IP Control User Manual\" not included in this source"
+- "no model-specific confirmation that 5U75N supports all listed commands"
+- "no continuously-variable settable parameters beyond those covered in Actions"
+- "no multi-step sequences described in source"
+- "TCP/IP transport documented in separate \"IP Control User Manual\" — command set likely overlaps but not confirmed from this source"
+- "IR discrete codes present in source but excluded from spec (not machine-serializable control)"
+- "no firmware version range stated; source revisions span 2014–2017"
+- "multiple-TV daisy-chain wiring described but pinout diagram not extractable from text"
 ```
 
 ---

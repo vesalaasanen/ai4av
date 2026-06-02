@@ -42,14 +42,24 @@ last_checked_at: 2026-05-01T07:51:46.401Z
 generated_at: 2026-05-01T07:51:46.401Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Section B (HIGHlite Laser 3D, M-Vision 930 3D) has distinct commands with different ranges; this spec covers Section A projectors only. Section B commands noted but not fully populated."
+  - "populate from source"
+  - "no unsolicited notifications described in source"
+  - "no multi-step macros described in source"
+  - "safety warnings not found in source beyond standard projector handling"
+  - "Section B commands for HIGHlite Laser 3D and M-Vision 930 3D not fully populated"
+  - "MCGD/target data commands (mcgd.data, tcgd1.data, tcgd2.data) have comma-separated coordinate input format not modeled in Actions"
+  - "4corner commands (4corner.ulx/uly/urx/ury/llx/lly/lrx/lry) range -1000 to +1000 not fully represented"
+  - "eb.blu coordinate commands (x1/y1/x2/y2/x3/y3/x4/y4) not fully modeled"
+  - "lamp2/lamp3/lamp4 status values (0-19) not fully represented in Feedbacks"
 verification:
   verdict: verified
   checked_at: 2026-05-01T07:51:46.401Z
   matched_actions: 150
   action_count: 150
-  confidence: high
-  summary: "All 150 spec actions match Section A source commands with correct semantic coverage, all transport parameters verified against source, no fabrications or drift detected."
+  confidence: medium
+  summary: "All 150 spec actions match Section A source commands with correct semantic coverage, all transport parameters verified against source, no fabrications or drift detected. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1235,14 +1245,23 @@ verdict: verified
 checked_at: 2026-05-01T07:51:46.401Z
 matched_actions: 150
 action_count: 150
-confidence: high
-summary: "All 150 spec actions match Section A source commands with correct semantic coverage, all transport parameters verified against source, no fabrications or drift detected."
+confidence: medium
+summary: "All 150 spec actions match Section A source commands with correct semantic coverage, all transport parameters verified against source, no fabrications or drift detected. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Section B (HIGHlite Laser 3D, M-Vision 930 3D) has distinct commands with different ranges; this spec covers Section A projectors only. Section B commands noted but not fully populated."
+- "populate from source"
+- "no unsolicited notifications described in source"
+- "no multi-step macros described in source"
+- "safety warnings not found in source beyond standard projector handling"
+- "Section B commands for HIGHlite Laser 3D and M-Vision 930 3D not fully populated"
+- "MCGD/target data commands (mcgd.data, tcgd1.data, tcgd2.data) have comma-separated coordinate input format not modeled in Actions"
+- "4corner commands (4corner.ulx/uly/urx/ury/llx/lly/lrx/lry) range -1000 to +1000 not fully represented"
+- "eb.blu coordinate commands (x1/y1/x2/y2/x3/y3/x4/y4) not fully modeled"
+- "lamp2/lamp3/lamp4 status values (0-19) not fully represented in Feedbacks"
 ```
 
 ---

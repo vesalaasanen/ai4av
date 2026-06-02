@@ -16,30 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - avsforum.com
   - raw.githubusercontent.com
-  - usa.yamaha.com
-  - wiki.elvis.science
+  - github.com
 source_urls:
-  - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://raw.githubusercontent.com/rsc-dev/pyamaha/master/doc/YXC_API_Spec_Basic.pdf
-  - https://usa.yamaha.com/files/download/other_assets/5/1343735/200330_mtx_mrx_xmv_ex_rcps_v400_rev14_en.pdf
-  - https://wiki.elvis.science/images/0/04/Yamaha_MusicCast_HTTP_simplified_API_for_ControlSystems.pdf
-  - https://usa.yamaha.com/files/download/other_assets/1/1144121/mtx_mrx_xmv_ex_remote_control_protocol_spec_v310_en.pdf
-retrieved_at: 2026-05-22T19:22:45.243Z
+  - https://github.com/opctim/yamaha-extended-control-openapi
+retrieved_at: 2026-05-19T04:51:05.122Z
 last_checked_at: 2026-05-19T17:13:35.078Z
 generated_at: 2026-05-19T17:13:35.078Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - switchAccount
+  - "TrueX-90A model not explicitly named in source; inferred from Convex entity bootstrap"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "no explicit HTTP port stated in source. URLBase example uses port 80 but not explicitly documented as default."
+  - "firmware compatibility range not stated"
+  - "exact voltage/power specs not in source"
+  - "port number not explicitly stated, only demonstrated in URLBase example"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:13:35.078Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec."
+  confidence: medium
+  summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -602,17 +603,12 @@ Port number: UNRESOLVED: no explicit HTTP port stated in source. URLBase example
 
 ```yaml
 source_domains:
-  - avsforum.com
   - raw.githubusercontent.com
-  - usa.yamaha.com
-  - wiki.elvis.science
+  - github.com
 source_urls:
-  - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://raw.githubusercontent.com/rsc-dev/pyamaha/master/doc/YXC_API_Spec_Basic.pdf
-  - https://usa.yamaha.com/files/download/other_assets/5/1343735/200330_mtx_mrx_xmv_ex_rcps_v400_rev14_en.pdf
-  - https://wiki.elvis.science/images/0/04/Yamaha_MusicCast_HTTP_simplified_API_for_ControlSystems.pdf
-  - https://usa.yamaha.com/files/download/other_assets/1/1144121/mtx_mrx_xmv_ex_remote_control_protocol_spec_v310_en.pdf
-retrieved_at: 2026-05-22T19:22:45.243Z
+  - https://github.com/opctim/yamaha-extended-control-openapi
+retrieved_at: 2026-05-19T04:51:05.122Z
 last_checked_at: 2026-05-19T17:13:35.078Z
 ```
 
@@ -623,14 +619,20 @@ verdict: verified
 checked_at: 2026-05-19T17:13:35.078Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec."
+confidence: medium
+summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - switchAccount
+- "TrueX-90A model not explicitly named in source; inferred from Convex entity bootstrap"
+- "no explicit safety warnings or interlock procedures in source"
+- "no explicit HTTP port stated in source. URLBase example uses port 80 but not explicitly documented as default."
+- "firmware compatibility range not stated"
+- "exact voltage/power specs not in source"
+- "port number not explicitly stated, only demonstrated in URLBase example"
 ```
 
 ---

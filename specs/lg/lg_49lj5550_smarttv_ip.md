@@ -16,22 +16,37 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - manualslib.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
+  - https://www.manualslib.com/products/Lg-49lj5550-10832443.html
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+retrieved_at: 2026-04-26T14:23:19.626Z
 last_checked_at: 2026-04-26T14:23:19.626Z
 generated_at: 2026-04-26T14:23:19.626Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Network IP control section is labelled \"For USA only\" — applicability to other regions is unclear"
+  - "Which specific connector type (DE9, phone jack, or USB-to-serial) the 49LJ5550 uses is not stated"
+  - "flow control not stated; none inferred from 3-wire config"
+  - "no continuous variables with independent get/set semantics beyond the actions/feedbacks above"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences explicitly documented in source"
+  - "no explicit safety interlocks or power-on sequencing beyond the above operational notes"
+  - "which connector type the 49LJ5550 uses (DE9, phone jack, or USB-to-serial)"
+  - "firmware version compatibility ranges not stated"
+  - "whether IP control is available outside USA"
 verification:
   verdict: verified
   checked_at: 2026-04-26T14:23:19.626Z
   matched_actions: 48
   action_count: 48
-  confidence: high
-  summary: "All 48 spec actions matched verbatim with source commands; transport parameters verified in manual."
+  confidence: medium
+  summary: "All 48 spec actions matched verbatim with source commands; transport parameters verified in manual. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -880,10 +895,15 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - manualslib.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
+  - https://www.manualslib.com/products/Lg-49lj5550-10832443.html
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+retrieved_at: 2026-04-26T14:23:19.626Z
 last_checked_at: 2026-04-26T14:23:19.626Z
 ```
 
@@ -894,14 +914,23 @@ verdict: verified
 checked_at: 2026-04-26T14:23:19.626Z
 matched_actions: 48
 action_count: 48
-confidence: high
-summary: "All 48 spec actions matched verbatim with source commands; transport parameters verified in manual."
+confidence: medium
+summary: "All 48 spec actions matched verbatim with source commands; transport parameters verified in manual. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Network IP control section is labelled \"For USA only\" — applicability to other regions is unclear"
+- "Which specific connector type (DE9, phone jack, or USB-to-serial) the 49LJ5550 uses is not stated"
+- "flow control not stated; none inferred from 3-wire config"
+- "no continuous variables with independent get/set semantics beyond the actions/feedbacks above"
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences explicitly documented in source"
+- "no explicit safety interlocks or power-on sequencing beyond the above operational notes"
+- "which connector type the 49LJ5550 uses (DE9, phone jack, or USB-to-serial)"
+- "firmware version compatibility ranges not stated"
+- "whether IP control is available outside USA"
 ```
 
 ---

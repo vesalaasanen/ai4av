@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:07.347Z
 last_checked_at: 2026-04-25T21:32:22.396Z
 generated_at: 2026-04-25T21:32:22.396Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "HDBaseT control mentioned in standby modes but not documented in command reference"
+  - "projector name, eco mode, PIP mode, edge blending are settable via"
+  - "no unsolicited event notifications documented. Device only responds"
+  - "no explicit multi-step macros described in source."
+  - "no explicit safety warnings, interlock procedures, or power-on"
+  - "Full input terminal hex code table appendix not included in source (referenced as external appendix \"Supplementary Information by Command\")"
+  - "Base model type code values not provided in source (referenced as external appendix)"
+  - "Sub input setting values for PIP/PICTURE BY PICTURE not fully documented (referenced as external appendix)"
+  - "HDBaseT control functionality not documented in command reference, only mentioned in standby mode notes"
+  - "firmware version compatibility not stated"
+  - "specific error recovery sequences not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:32:22.396Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched to source commands; transport parameters verified in source; full coverage of documented command catalogue."
+  confidence: medium
+  summary: "All 53 spec actions matched to source commands; transport parameters verified in source; full coverage of documented command catalogue. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -692,7 +703,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:07.347Z
 last_checked_at: 2026-04-25T21:32:22.396Z
 ```
 
@@ -703,14 +714,24 @@ verdict: verified
 checked_at: 2026-04-25T21:32:22.396Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched to source commands; transport parameters verified in source; full coverage of documented command catalogue."
+confidence: medium
+summary: "All 53 spec actions matched to source commands; transport parameters verified in source; full coverage of documented command catalogue. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "HDBaseT control mentioned in standby modes but not documented in command reference"
+- "projector name, eco mode, PIP mode, edge blending are settable via"
+- "no unsolicited event notifications documented. Device only responds"
+- "no explicit multi-step macros described in source."
+- "no explicit safety warnings, interlock procedures, or power-on"
+- "Full input terminal hex code table appendix not included in source (referenced as external appendix \"Supplementary Information by Command\")"
+- "Base model type code values not provided in source (referenced as external appendix)"
+- "Sub input setting values for PIP/PICTURE BY PICTURE not fully documented (referenced as external appendix)"
+- "HDBaseT control functionality not documented in command reference, only mentioned in standby mode notes"
+- "firmware version compatibility not stated"
+- "specific error recovery sequences not documented"
 ```
 
 ---

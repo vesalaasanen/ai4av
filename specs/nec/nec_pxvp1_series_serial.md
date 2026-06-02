@@ -19,19 +19,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-22T22:48:15.937Z
 last_checked_at: 2026-05-31T06:51:02.708Z
 generated_at: 2026-05-31T06:51:02.708Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value mapping references appendix not included in source"
+  - "eco mode value mapping references appendix not included in source"
+  - "aspect value mapping references appendix not included in source"
+  - "base model type value mapping references appendix not included in source"
+  - "source lists 115200/38400/19200/9600/4800 - default not stated"
+  - "RTS/CTS pins wired but flow control setting not stated"
+  - "no unsolicited notification events described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit power-on sequencing or interlock procedures found in source"
+  - "appendix value tables for input terminals, eco modes, aspect ratios, base model types not in source"
+  - "flow control setting not stated despite RTS/CTS wiring"
+  - "default baud rate not stated"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:51:02.708Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 action commands match source hex sequences exactly; transport parameters verified in source; feedbacks enumerate status queries."
+  confidence: medium
+  summary: "All 28 action commands match source hex sequences exactly; transport parameters verified in source; feedbacks enumerate status queries. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -626,7 +639,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-22T22:48:15.937Z
 last_checked_at: 2026-05-31T06:51:02.708Z
 ```
 
@@ -637,14 +650,26 @@ verdict: verified
 checked_at: 2026-05-31T06:51:02.708Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 action commands match source hex sequences exactly; transport parameters verified in source; feedbacks enumerate status queries."
+confidence: medium
+summary: "All 28 action commands match source hex sequences exactly; transport parameters verified in source; feedbacks enumerate status queries. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value mapping references appendix not included in source"
+- "eco mode value mapping references appendix not included in source"
+- "aspect value mapping references appendix not included in source"
+- "base model type value mapping references appendix not included in source"
+- "source lists 115200/38400/19200/9600/4800 - default not stated"
+- "RTS/CTS pins wired but flow control setting not stated"
+- "no unsolicited notification events described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit power-on sequencing or interlock procedures found in source"
+- "appendix value tables for input terminals, eco modes, aspect ratios, base model types not in source"
+- "flow control setting not stated despite RTS/CTS wiring"
+- "default baud rate not stated"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:43.345Z
 last_checked_at: 2026-04-25T21:17:26.590Z
 generated_at: 2026-04-25T21:17:26.590Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model E422-R confirmation; manual covers multiple projector models; some commands reference appendix for values not fully enumerated in source"
+  - "commands 053-3 through 053-11 partially documented; lens memory appendix values not fully enumerated in source"
+  - "continuous parameters like brightness, contrast, volume are"
+  - "no unsolicited event/notification mechanism described in source."
+  - "no explicit multi-step macros described in source."
+  - "voltage, current, power consumption specifications not provided"
+  - "no explicit safety interlocks for lens travel limits described"
+  - "full appendix tables for input terminal codes by model variant not reproduced in source"
+  - "standby mode compatibility matrix per model not enumerated"
+  - "HDBaseT control mentioned but not detailed"
+  - "firmware version compatibility not stated"
+  - "some DATA01/DATA02 byte values in command examples include extra trailing bytes that appear to be part of the DATA payload rather than separate fields (e.g., \"02h 00h 00h 00h 00h 02h\" — the 02h after LEN may be part of the data length encoding)"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:17:26.590Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed."
+  confidence: medium
+  summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -783,7 +795,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:43.345Z
 last_checked_at: 2026-04-25T21:17:26.590Z
 ```
 
@@ -794,14 +806,25 @@ verdict: verified
 checked_at: 2026-04-25T21:17:26.590Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed."
+confidence: medium
+summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model E422-R confirmation; manual covers multiple projector models; some commands reference appendix for values not fully enumerated in source"
+- "commands 053-3 through 053-11 partially documented; lens memory appendix values not fully enumerated in source"
+- "continuous parameters like brightness, contrast, volume are"
+- "no unsolicited event/notification mechanism described in source."
+- "no explicit multi-step macros described in source."
+- "voltage, current, power consumption specifications not provided"
+- "no explicit safety interlocks for lens travel limits described"
+- "full appendix tables for input terminal codes by model variant not reproduced in source"
+- "standby mode compatibility matrix per model not enumerated"
+- "HDBaseT control mentioned but not detailed"
+- "firmware version compatibility not stated"
+- "some DATA01/DATA02 byte values in command examples include extra trailing bytes that appear to be part of the DATA payload rather than separate fields (e.g., \"02h 00h 00h 00h 00h 02h\" — the 02h after LEN may be part of the data length encoding)"
 ```
 
 ---

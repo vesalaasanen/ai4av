@@ -17,21 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:32:46.530Z
 last_checked_at: 2026-05-20T05:37:42.615Z
 generated_at: 2026-05-20T05:37:42.615Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document describes \"Pulse API\" for Barco Pulse projectors, not IOSONO Core specifically — command availability may vary"
+  - "firmware version compatibility not stated in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "source document describes \"Pulse API\" for Barco Pulse projectors; IOSONO Core command surface may differ significantly"
+  - "HTTP file endpoint base URL uses default HTTP port — exact port not stated (only TCP JSON-RPC port 9090 documented)"
+  - "illumination source type (laser/LED/xenon) varies by model — introspection required"
+  - "network.device.lan.ip4config structure defined but DHCP/static configuration method not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:37:42.615Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions matched source command methods and all transport parameters verified."
+  confidence: medium
+  summary: "All 31 spec actions matched source command methods and all transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -599,9 +608,10 @@ notes: >
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:32:46.530Z
 last_checked_at: 2026-05-20T05:37:42.615Z
 ```
 
@@ -612,14 +622,21 @@ verdict: verified
 checked_at: 2026-05-20T05:37:42.615Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions matched source command methods and all transport parameters verified."
+confidence: medium
+summary: "All 31 spec actions matched source command methods and all transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document describes \"Pulse API\" for Barco Pulse projectors, not IOSONO Core specifically — command availability may vary"
+- "firmware version compatibility not stated in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock procedures documented in source"
+- "source document describes \"Pulse API\" for Barco Pulse projectors; IOSONO Core command surface may differ significantly"
+- "HTTP file endpoint base URL uses default HTTP port — exact port not stated (only TCP JSON-RPC port 9090 documented)"
+- "illumination source type (laser/LED/xenon) varies by model — introspection required"
+- "network.device.lan.ip4config structure defined but DHCP/static configuration method not documented"
 ```
 
 ---

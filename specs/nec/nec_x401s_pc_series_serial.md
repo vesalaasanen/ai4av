@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:19.304Z
 last_checked_at: 2026-05-14T18:17:19.054Z
 generated_at: 2026-05-14T18:17:19.054Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN authentication method not described in source"
+  - "multiple baud rates supported (115200/38400/19200/9600/4800 bps); default not stated"
+  - "flow control not documented"
+  - "no discrete settable parameters outside action commands documented"
+  - "source does not describe unsolicited notifications from projector"
+  - "no multi-step sequences explicitly described in source"
+  - "no explicit interlock procedures or safety warnings beyond command timing notes"
+  - "TCP/IP protocol details beyond port 7142 not documented"
+  - "HDBaseT control support mentioned in standby modes but not detailed"
+  - "full input terminal code table not provided (appendix references supplementary doc)"
+  - "aspect value codes partially listed — some modes have dual codes"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.054Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 55 spec actions matched to source; transport params verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 55 spec actions matched to source; transport params verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -507,7 +518,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:19.304Z
 last_checked_at: 2026-05-14T18:17:19.054Z
 ```
 
@@ -518,14 +529,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.054Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 55 spec actions matched to source; transport params verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 55 spec actions matched to source; transport params verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN authentication method not described in source"
+- "multiple baud rates supported (115200/38400/19200/9600/4800 bps); default not stated"
+- "flow control not documented"
+- "no discrete settable parameters outside action commands documented"
+- "source does not describe unsolicited notifications from projector"
+- "no multi-step sequences explicitly described in source"
+- "no explicit interlock procedures or safety warnings beyond command timing notes"
+- "TCP/IP protocol details beyond port 7142 not documented"
+- "HDBaseT control support mentioned in standby modes but not detailed"
+- "full input terminal code table not provided (appendix references supplementary doc)"
+- "aspect value codes partially listed — some modes have dual codes"
 ```
 
 ---

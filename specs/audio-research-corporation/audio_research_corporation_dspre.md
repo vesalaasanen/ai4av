@@ -24,14 +24,27 @@ last_checked_at: 2026-04-23T15:12:39.639Z
 generated_at: 2026-04-23T15:12:39.639Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "actual RS-232 command string format/encoding not documented in source; only Crestron signal abstractions are provided"
+  - "serial flow_control not stated in source"
+  - "flow control not stated in source"
+  - "actual serial command strings for each action are not documented;"
+  - "actual serial response strings/formats not documented in source"
+  - "no settable persistent parameters beyond actions documented in source"
+  - "unsolicited notification behavior not documented in source"
+  - "no explicit safety warnings or power-on sequencing interlocks documented beyond the 90-second mute delay"
+  - "actual RS-232 command string syntax and encoding unknown"
+  - "serial flow_control not stated"
+  - "response/acknowledgement string format unknown"
+  - "firmware version compatibility not stated"
+  - "whether BNC input can be directly selected or only via Input Up/Down cycling"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:12:39.639Z
   matched_actions: 40
   action_count: 40
-  confidence: high
-  summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct."
+  confidence: medium
+  summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -428,14 +441,26 @@ verdict: verified
 checked_at: 2026-04-23T15:12:39.639Z
 matched_actions: 40
 action_count: 40
-confidence: high
-summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct."
+confidence: medium
+summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "actual RS-232 command string format/encoding not documented in source; only Crestron signal abstractions are provided"
+- "serial flow_control not stated in source"
+- "flow control not stated in source"
+- "actual serial command strings for each action are not documented;"
+- "actual serial response strings/formats not documented in source"
+- "no settable persistent parameters beyond actions documented in source"
+- "unsolicited notification behavior not documented in source"
+- "no explicit safety warnings or power-on sequencing interlocks documented beyond the 90-second mute delay"
+- "actual RS-232 command string syntax and encoding unknown"
+- "serial flow_control not stated"
+- "response/acknowledgement string format unknown"
+- "firmware version compatibility not stated"
+- "whether BNC input can be directly selected or only via Input Up/Down cycling"
 ```
 
 ---

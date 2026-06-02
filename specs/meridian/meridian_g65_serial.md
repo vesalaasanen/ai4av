@@ -19,19 +19,28 @@ source_domains:
   - meridian-audio.info
 source_urls:
   - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
-retrieved_at: 2026-05-04T18:01:40.170Z
+retrieved_at: 2026-04-30T04:25:02.292Z
 last_checked_at: 2026-05-14T18:17:18.146Z
 generated_at: 2026-05-14T18:17:18.146Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no pinout or connector type specified for RS-232"
+  - "no firmware version compatibility stated"
+  - "flow control not stated in source"
+  - "full variable schema with ranges documented but complex;"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings or interlock procedures found in source."
+  - "RS-232 connector pinout and cable wiring not specified"
+  - "no power-on command documented, only standby"
+  - "response format details beyond \"20 characters\" not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.146Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -584,7 +593,7 @@ source_domains:
   - meridian-audio.info
 source_urls:
   - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
-retrieved_at: 2026-05-04T18:01:40.170Z
+retrieved_at: 2026-04-30T04:25:02.292Z
 last_checked_at: 2026-05-14T18:17:18.146Z
 ```
 
@@ -595,14 +604,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.146Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim."
+confidence: medium
+summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no pinout or connector type specified for RS-232"
+- "no firmware version compatibility stated"
+- "flow control not stated in source"
+- "full variable schema with ranges documented but complex;"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings or interlock procedures found in source."
+- "RS-232 connector pinout and cable wiring not specified"
+- "no power-on command documented, only standby"
+- "response format details beyond \"20 characters\" not specified"
 ```
 
 ---

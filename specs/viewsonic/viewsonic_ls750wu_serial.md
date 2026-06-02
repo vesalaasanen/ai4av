@@ -18,57 +18,69 @@ compatible_with:
 source_domains:
   - viewsonicglobal.com
 source_urls:
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
-  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
-  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
-  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
-retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-05-31T22:45:08.772Z
-generated_at: 2026-05-31T22:45:08.772Z
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/Projector/LS750WU_LS850WU_LS860WU/LS750WU_LS850WU_LS860WU_UG_ENG.pdf
+retrieved_at: 2026-05-27T13:39:59.623Z
+last_checked_at: 2026-06-01T21:44:37.790Z
+generated_at: 2026-06-01T21:44:37.790Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN control (HTTP/TCP) command set is not part of this spec; the RS-232C command table is the source of truth."
+  - "source lists literal bytes 0x11/0x9A without stating the value range or checksum recomputation rule."
+  - "response frame format for Read commands not stated in source."
+  - "response encoding not stated in source"
+  - "response byte layout / units not stated in source"
+  - "units and byte layout not stated in source"
+  - "value range, units, and checksum recomputation for"
+  - "source does not document any unsolicited notifications"
+  - "source does not document any multi-step command sequences"
+  - "source contains no explicit safety warnings, interlocks, or"
+  - "HDMI 2, S-Video, and HDBaseT source-selection opcodes are not in the source."
+  - "firmware version compatibility, checksum recomputation algorithm, and response frame layout for Read commands are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T22:45:08.772Z
-  matched_actions: 187
-  action_count: 187
-  confidence: high
-  summary: "All 187 spec actions matched source commands with correct transport parameters (115200 8N1)."
+  checked_at: 2026-06-01T21:44:37.790Z
+  matched_actions: 215
+  action_count: 215
+  confidence: medium
+  summary: "All 215 spec actions match literal hex sequences in source RS-232 command table; transport parameters verified; no fabrications or drift detected. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-22
+created_at: 2026-06-01
 ---
 
 # ViewSonic LS750WU Control Spec
 
 ## Summary
-Laser phosphor projector with RS-232C serial control interface. Full command table documented including power, source routing, image adjustment, and system configuration. Also supports LAN-based control (Crestron, PJLink, SNMP, AMX) via RJ-45 port.
 
-<!-- UNRESOLVED: HDBaseT control interface not documented beyond presence in OSD menu -->
+The ViewSonic LS750WU is a laser projector controllable via RS-232C serial. This spec covers the full RS-232 command set documented by the manufacturer, including power, source selection, picture adjustment, 3D, audio, language, light source mode, CEC, HDMI format, and remote-key emulation commands. The projector also supports LAN-based control (web UI, Crestron RoomView port 41794, PJLink, SNMP, AMX, Xpanel); those interfaces are described in `Notes`, not the structured sections below.
+
+<!-- UNRESOLVED: LAN control (HTTP/TCP) command set is not part of this spec; the RS-232C command table is the source of truth. -->
 
 ## Transport
 ```yaml
+# RS-232C only - the structured spec scope is the serial control port.
+# LAN/web control info appears in Notes.
 protocols:
   - serial
 serial:
-  baud_rate: 115200
+  baud_rate: 115200  # default per source; OSD also supports 2400/4800/9600/14400/19200/38400/57600
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
 auth:
-  type: none
+  type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+# Evidence-backed only:
+- powerable       # Power ON/OFF/TOGGLE writes + Status read
+- routable        # Source input writes (D-Sub/Comp.1, HDMI 1, Composite Video) + Status read
+- queryable       # many "Read/Status" commands across categories
+- levelable       # Contrast/Brightness/Volume/Saturation/Sharpness increase/decrease + get-value
 ```
 
 ## Actions
@@ -76,837 +88,1375 @@ auth:
 - id: power_on
   label: Power On
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x00 0x00 0x5D"
   params: []
+
 - id: power_off
   label: Power Off
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x01 0x00 0x5E"
   params: []
+
 - id: power_toggle
-  label: Power On/Off Toggle
+  label: Power ON/OFF (toggle)
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x34 0x00 0x91"
   params: []
+
 - id: power_status
-  label: Get Power Status
+  label: Power Status
   kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x00 0x5E"
   params: []
+
 - id: reset_settings
   label: Reset Settings
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x02 0x00 0x5F"
   params: []
+
 - id: reset_color_settings
   label: Reset Color Settings
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x2A 0x00 0x87"
   params: []
+
 - id: splash_screen_black
-  label: Set Splash Screen Black
+  label: Splash Screen - Black
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x0A 0x00 0x67"
   params: []
+
 - id: splash_screen_blue
-  label: Set Splash Screen Blue
+  label: Splash Screen - Blue
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x0A 0x01 0x68"
   params: []
+
 - id: splash_screen_viewsonic
-  label: Set Splash Screen ViewSonic
+  label: Splash Screen - ViewSonic
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x0A 0x02 0x69"
   params: []
+
 - id: splash_screen_status
-  label: Get Splash Screen Status
+  label: Splash Screen Status
   kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x0A 0x68"
   params: []
-- id: high_altitude_off
-  label: High Altitude Mode Off
+
+- id: high_altitude_mode_off
+  label: High Altitude Mode - Off
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x0C 0x00 0x69"
   params: []
-- id: high_altitude_on
-  label: High Altitude Mode On
+
+- id: high_altitude_mode_on
+  label: High Altitude Mode - On
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x0C 0x01 0x6A"
   params: []
-- id: high_altitude_status
-  label: Get High Altitude Mode Status
+
+- id: high_altitude_mode_status
+  label: High Altitude Mode Status
   kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x0C 0x6A"
   params: []
+
 - id: light_source_mode_normal
-  label: Light Source Mode Normal
+  label: Light Source Mode - Normal
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x00 0x6D"
   params: []
+
 - id: light_source_mode_eco
-  label: Light Source Mode Eco
+  label: Light Source Mode - Eco
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x01 0x6E"
   params: []
+
 - id: light_source_mode_dynamic_eco
-  label: Light Source Mode Dynamic Eco
+  label: Light Source Mode - Dynamic Eco
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x02 0x6F"
   params: []
-- id: light_source_mode_custom
-  label: Light Source Mode Custom
+
+- id: light_source_mode_custom_20
+  label: Light Source Mode - Custom 20
   kind: action
-  params:
-    - name: level
-      type: integer
-      description: Custom level (20, 40, 60, 80, 100)
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x04 0x71"
+  params: []
+
+- id: light_source_mode_custom_40
+  label: Light Source Mode - Custom 40
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x05 0x72"
+  params: []
+
+- id: light_source_mode_custom_60
+  label: Light Source Mode - Custom 60
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x06 0x73"
+  params: []
+
+- id: light_source_mode_custom_80
+  label: Light Source Mode - Custom 80
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x07 0x74"
+  params: []
+
+- id: light_source_mode_custom_100
+  label: Light Source Mode - Custom 100
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x10 0x08 0x75"
+  params: []
+
 - id: light_source_mode_status
-  label: Get Light Source Mode Status
+  label: Light Source Mode Status
   kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x10 0x6E"
   params: []
-- id: message_off
-  label: Message Off
-  kind: action
-  params: []
-- id: message_on
-  label: Message On
-  kind: action
-  params: []
-- id: message_status
-  label: Get Message Status
-  kind: query
-  params: []
-- id: projector_position_front_table
-  label: Set Projector Position Front Table
-  kind: action
-  params: []
-- id: projector_position_rear_table
-  label: Set Projector Position Rear Table
-  kind: action
-  params: []
-- id: projector_position_rear_ceiling
-  label: Set Projector Position Rear Ceiling
-  kind: action
-  params: []
-- id: projector_position_front_ceiling
-  label: Set Projector Position Front Ceiling
-  kind: action
-  params: []
-- id: projector_position_status
-  label: Get Projector Position Status
-  kind: query
-  params: []
-- id: 3d_sync_off
-  label: 3D Sync Off
-  kind: action
-  params: []
-- id: 3d_sync_auto
-  label: 3D Sync Auto
-  kind: action
-  params: []
-- id: 3d_sync_frame_sequential
-  label: 3D Sync Frame Sequential
-  kind: action
-  params: []
-- id: 3d_sync_frame_packing
-  label: 3D Sync Frame Packing
-  kind: action
-  params: []
-- id: 3d_sync_top_bottom
-  label: 3D Sync Top Bottom
-  kind: action
-  params: []
-- id: 3d_sync_side_by_side
-  label: 3D Sync Side by Side
-  kind: action
-  params: []
-- id: 3d_sync_status
-  label: Get 3D Sync Status
-  kind: query
-  params: []
-- id: 3d_sync_invert_off
-  label: 3D Sync Invert Off
-  kind: action
-  params: []
-- id: 3d_sync_invert_on
-  label: 3D Sync Invert On
-  kind: action
-  params: []
-- id: 3d_sync_invert_status
-  label: Get 3D Sync Invert Status
-  kind: query
-  params: []
-- id: contrast_decrease
-  label: Contrast Decrease
-  kind: action
-  params: []
-- id: contrast_increase
-  label: Contrast Increase
-  kind: action
-  params: []
-- id: contrast_get
-  label: Get Contrast Value
-  kind: query
-  params: []
-- id: brightness_decrease
-  label: Brightness Decrease
-  kind: action
-  params: []
-- id: brightness_increase
-  label: Brightness Increase
-  kind: action
-  params: []
-- id: brightness_get
-  label: Get Brightness Value
-  kind: query
-  params: []
-- id: aspect_ratio_auto
-  label: Aspect Ratio Auto
-  kind: action
-  params: []
-- id: aspect_ratio_4_3
-  label: Aspect Ratio 4:3
-  kind: action
-  params: []
-- id: aspect_ratio_16_9
-  label: Aspect Ratio 16:9
-  kind: action
-  params: []
-- id: aspect_ratio_16_10
-  label: Aspect Ratio 16:10
-  kind: action
-  params: []
-- id: aspect_ratio_native
-  label: Aspect Ratio Native
-  kind: action
-  params: []
-- id: aspect_ratio_cycle
-  label: Aspect Ratio Cycle
-  kind: action
-  params: []
-- id: aspect_ratio_get
-  label: Get Aspect Ratio
-  kind: query
-  params: []
-- id: auto_adjust
-  label: Auto Adjust
-  kind: action
-  params: []
-- id: horizontal_position_right
-  label: Horizontal Position Shift Right
-  kind: action
-  params: []
-- id: horizontal_position_left
-  label: Horizontal Position Shift Left
-  kind: action
-  params: []
-- id: horizontal_position_get
-  label: Get Horizontal Position
-  kind: query
-  params: []
-- id: vertical_position_up
-  label: Vertical Position Shift Up
-  kind: action
-  params: []
-- id: vertical_position_down
-  label: Vertical Position Shift Down
-  kind: action
-  params: []
-- id: vertical_position_get
-  label: Get Vertical Position
-  kind: query
-  params: []
-- id: color_temperature_5500k
-  label: Color Temperature 5500K
-  kind: action
-  params: []
-- id: color_temperature_6500k
-  label: Color Temperature 6500K
-  kind: action
-  params: []
-- id: color_temperature_8000k
-  label: Color Temperature 8000K
-  kind: action
-  params: []
-- id: color_temperature_get
-  label: Get Color Temperature
-  kind: query
-  params: []
-- id: color_temperature_red_gain_decrease
-  label: Color Temperature Red Gain Decrease
-  kind: action
-  params: []
-- id: color_temperature_red_gain_increase
-  label: Color Temperature Red Gain Increase
-  kind: action
-  params: []
-- id: color_temperature_red_gain_get
-  label: Get Color Temperature Red Gain
-  kind: query
-  params: []
-- id: color_temperature_green_gain_decrease
-  label: Color Temperature Green Gain Decrease
-  kind: action
-  params: []
-- id: color_temperature_green_gain_increase
-  label: Color Temperature Green Gain Increase
-  kind: action
-  params: []
-- id: color_temperature_green_gain_get
-  label: Get Color Temperature Green Gain
-  kind: query
-  params: []
-- id: color_temperature_blue_gain_decrease
-  label: Color Temperature Blue Gain Decrease
-  kind: action
-  params: []
-- id: color_temperature_blue_gain_increase
-  label: Color Temperature Blue Gain Increase
-  kind: action
-  params: []
-- id: color_temperature_blue_gain_get
-  label: Get Color Temperature Blue Gain
-  kind: query
-  params: []
-- id: color_temperature_red_offset_decrease
-  label: Color Temperature Red Offset Decrease
-  kind: action
-  params: []
-- id: color_temperature_red_offset_increase
-  label: Color Temperature Red Offset Increase
-  kind: action
-  params: []
-- id: color_temperature_red_offset_get
-  label: Get Color Temperature Red Offset
-  kind: query
-  params: []
-- id: color_temperature_green_offset_decrease
-  label: Color Temperature Green Offset Decrease
-  kind: action
-  params: []
-- id: color_temperature_green_offset_increase
-  label: Color Temperature Green Offset Increase
-  kind: action
-  params: []
-- id: color_temperature_green_offset_get
-  label: Get Color Temperature Green Offset
-  kind: query
-  params: []
-- id: color_temperature_blue_offset_decrease
-  label: Color Temperature Blue Offset Decrease
-  kind: action
-  params: []
-- id: color_temperature_blue_offset_increase
-  label: Color Temperature Blue Offset Increase
-  kind: action
-  params: []
-- id: color_temperature_blue_offset_get
-  label: Get Color Temperature Blue Offset
-  kind: query
-  params: []
-- id: blank_on
-  label: Blank On
-  kind: action
-  params: []
-- id: blank_off
-  label: Blank Off
-  kind: action
-  params: []
-- id: blank_status
-  label: Get Blank Status
-  kind: query
-  params: []
-- id: keystone_vertical_decrease
-  label: Keystone Vertical Decrease
-  kind: action
-  params: []
-- id: keystone_vertical_increase
-  label: Keystone Vertical Increase
-  kind: action
-  params: []
-- id: keystone_vertical_get
-  label: Get Keystone Vertical
-  kind: query
-  params: []
-- id: keystone_horizontal_decrease
-  label: Keystone Horizontal Decrease
-  kind: action
-  params: []
-- id: keystone_horizontal_increase
-  label: Keystone Horizontal Increase
-  kind: action
-  params: []
-- id: keystone_horizontal_get
-  label: Get Keystone Horizontal
-  kind: query
-  params: []
-- id: color_mode_brightest
-  label: Color Mode Brightest
-  kind: action
-  params: []
-- id: color_mode_movie
-  label: Color Mode Movie
-  kind: action
-  params: []
-- id: color_mode_standard
-  label: Color Mode Standard
-  kind: action
-  params: []
-- id: color_mode_photo
-  label: Color Mode Photo
-  kind: action
-  params: []
-- id: color_mode_presentation
-  label: Color Mode Presentation
-  kind: action
-  params: []
-- id: color_mode_cycle
-  label: Color Mode Cycle
-  kind: action
-  params: []
-- id: color_mode_user1
-  label: Color Mode User 1
-  kind: action
-  params: []
-- id: color_mode_user2
-  label: Color Mode User 2
-  kind: action
-  params: []
-- id: color_mode_status
-  label: Get Color Mode Status
-  kind: query
-  params: []
-- id: primary_color_r
-  label: Primary Color R
-  kind: action
-  params: []
-- id: primary_color_g
-  label: Primary Color G
-  kind: action
-  params: []
-- id: primary_color_b
-  label: Primary Color B
-  kind: action
-  params: []
-- id: primary_color_c
-  label: Primary Color C
-  kind: action
-  params: []
-- id: primary_color_m
-  label: Primary Color M
-  kind: action
-  params: []
-- id: primary_color_y
-  label: Primary Color Y
-  kind: action
-  params: []
-- id: primary_color_status
-  label: Get Primary Color Status
-  kind: query
-  params: []
-- id: hue_decrease
-  label: Hue/Tint Decrease
-  kind: action
-  params: []
-- id: hue_increase
-  label: Hue/Tint Increase
-  kind: action
-  params: []
-- id: hue_get
-  label: Get Hue/Tint Value
-  kind: query
-  params: []
-- id: saturation_decrease
-  label: Saturation Decrease
-  kind: action
-  params: []
-- id: saturation_increase
-  label: Saturation Increase
-  kind: action
-  params: []
-- id: saturation_get
-  label: Get Saturation Value
-  kind: query
-  params: []
-- id: gain_decrease
-  label: Gain Decrease
-  kind: action
-  params: []
-- id: gain_increase
-  label: Gain Increase
-  kind: action
-  params: []
-- id: gain_get
-  label: Get Gain Value
-  kind: query
-  params: []
-- id: sharpness_decrease
-  label: Sharpness Decrease
-  kind: action
-  params: []
-- id: sharpness_increase
-  label: Sharpness Increase
-  kind: action
-  params: []
-- id: sharpness_get
-  label: Get Sharpness Value
-  kind: query
-  params: []
-- id: freeze_on
-  label: Freeze On
-  kind: action
-  params: []
-- id: freeze_off
-  label: Freeze Off
-  kind: action
-  params: []
-- id: freeze_status
-  label: Get Freeze Status
-  kind: query
-  params: []
-- id: source_dsub_comp1
-  label: Source D-Sub/Comp 1
-  kind: action
-  params: []
-- id: source_hdmi1
-  label: Source HDMI 1
-  kind: action
-  params: []
-- id: source_composite_video
-  label: Source Composite Video
-  kind: action
-  params: []
-- id: source_status
-  label: Get Source Status
-  kind: query
-  params: []
-- id: quick_auto_search_on
-  label: Quick Auto Search On
-  kind: action
-  params: []
-- id: quick_auto_search_off
-  label: Quick Auto Search Off
-  kind: action
-  params: []
-- id: quick_auto_search_status
-  label: Get Quick Auto Search Status
-  kind: query
-  params: []
-- id: mute_on
-  label: Mute On
-  kind: action
-  params: []
-- id: mute_off
-  label: Mute Off
-  kind: action
-  params: []
-- id: mute_status
-  label: Get Mute Status
-  kind: query
-  params: []
-- id: volume_increase
-  label: Volume Increase
-  kind: action
-  params: []
-- id: volume_decrease
-  label: Volume Decrease
-  kind: action
-  params: []
-- id: volume_set
-  label: Set Volume
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Volume value (0-20 based on hex pattern 0x11)
-- id: volume_get
-  label: Get Volume
-  kind: query
-  params: []
-- id: language_set
-  label: Set Language
-  kind: action
-  params:
-    - name: lang
-      type: enum
-      values:
-        - English
-        - Français
-        - Deutsch
-        - Italiano
-        - Español
-        - РУССКИЙ
-        - 繁體中文
-        - 简体中文
-        - 日本語
-        - 한국어
-        - Swedish
-        - Dutch
-        - Turkish
-        - Czech
-        - Portuguese
-        - Thai
-        - Polish
-        - Finnish
-        - Arabic
-        - Indonesia
-        - Hindi
-        - Vie
-        - Greek
-- id: language_status
-  label: Get Language
-  kind: query
-  params: []
-- id: light_source_usage_reset
-  label: Reset Light Source Usage Time
-  kind: action
-  params: []
-- id: light_source_usage_get
-  label: Get Light Source Usage Time
-  kind: query
-  params: []
-- id: hdmi_format_rgb
-  label: HDMI Format RGB
-  kind: action
-  params: []
-- id: hdmi_format_yuv
-  label: HDMI Format YUV
-  kind: action
-  params: []
-- id: hdmi_format_auto
-  label: HDMI Format Auto
-  kind: action
-  params: []
-- id: hdmi_format_status
-  label: Get HDMI Format Status
-  kind: query
-  params: []
-- id: hdmi_range_enhanced
-  label: HDMI Range Enhanced
-  kind: action
-  params: []
-- id: hdmi_range_normal
-  label: HDMI Range Normal
-  kind: action
-  params: []
-- id: hdmi_range_auto
-  label: HDMI Range Auto
-  kind: action
-  params: []
-- id: hdmi_range_status
-  label: Get HDMI Range Status
-  kind: query
-  params: []
-- id: cec_off
-  label: CEC Off
-  kind: action
-  params: []
-- id: cec_on
-  label: CEC On
-  kind: action
-  params: []
-- id: cec_status
-  label: Get CEC Status
-  kind: query
-  params: []
-- id: error_status_get
-  label: Get Error Status
-  kind: query
-  params: []
-- id: brilliant_color_off
-  label: Brilliant Color Off
-  kind: action
-  params: []
-- id: brilliant_color_color1
-  label: Brilliant Color Color 1
-  kind: action
-  params: []
-- id: brilliant_color_color2
-  label: Brilliant Color Color 2
-  kind: action
-  params: []
-- id: brilliant_color_color3
-  label: Brilliant Color Color 3
-  kind: action
-  params: []
-- id: brilliant_color_color4
-  label: Brilliant Color Color 4
-  kind: action
-  params: []
-- id: brilliant_color_color5
-  label: Brilliant Color Color 5
-  kind: action
-  params: []
-- id: brilliant_color_color6
-  label: Brilliant Color Color 6
-  kind: action
-  params: []
-- id: brilliant_color_color7
-  label: Brilliant Color Color 7
-  kind: action
-  params: []
-- id: brilliant_color_color8
-  label: Brilliant Color Color 8
-  kind: action
-  params: []
-- id: brilliant_color_color9
-  label: Brilliant Color Color 9
-  kind: action
-  params: []
-- id: brilliant_color_color10
-  label: Brilliant Color Color 10
-  kind: action
-  params: []
-- id: brilliant_color_status
-  label: Get Brilliant Color Status
-  kind: query
-  params: []
-- id: remote_control_code_1
-  label: Remote Control Code 1
-  kind: action
-  params: []
-- id: remote_control_code_2
-  label: Remote Control Code 2
-  kind: action
-  params: []
-- id: remote_control_code_3
-  label: Remote Control Code 3
-  kind: action
-  params: []
-- id: remote_control_code_4
-  label: Remote Control Code 4
-  kind: action
-  params: []
-- id: remote_control_code_5
-  label: Remote Control Code 5
-  kind: action
-  params: []
-- id: remote_control_code_6
-  label: Remote Control Code 6
-  kind: action
-  params: []
-- id: remote_control_code_7
-  label: Remote Control Code 7
-  kind: action
-  params: []
-- id: remote_control_code_8
-  label: Remote Control Code 8
-  kind: action
-  params: []
-- id: remote_control_code_status
-  label: Get Remote Control Code Status
-  kind: query
-  params: []
-- id: over_scan_off
-  label: Over Scan Off
-  kind: action
-  params: []
-- id: over_scan_value1
-  label: Over Scan Value 1
-  kind: action
-  params: []
-- id: over_scan_value2
-  label: Over Scan Value 2
-  kind: action
-  params: []
-- id: over_scan_value3
-  label: Over Scan Value 3
-  kind: action
-  params: []
-- id: over_scan_value4
-  label: Over Scan Value 4
-  kind: action
-  params: []
-- id: over_scan_value5
-  label: Over Scan Value 5
-  kind: action
-  params: []
-- id: over_scan_get
-  label: Get Over Scan Value
-  kind: query
-  params: []
-- id: remote_key_menu
-  label: Remote Key Menu
-  kind: action
-  params: []
-- id: remote_key_exit
-  label: Remote Key Exit
-  kind: action
-  params: []
-- id: remote_key_top
-  label: Remote Key Top
-  kind: action
-  params: []
-- id: remote_key_bottom
-  label: Remote Key Bottom
-  kind: action
-  params: []
-- id: remote_key_left
-  label: Remote Key Left
-  kind: action
-  params: []
-- id: remote_key_right
-  label: Remote Key Right
-  kind: action
-  params: []
-- id: remote_key_source
-  label: Remote Key Source
-  kind: action
-  params: []
-- id: remote_key_enter
-  label: Remote Key Enter
-  kind: action
-  params: []
-- id: remote_key_auto
-  label: Remote Key Auto
-  kind: action
-  params: []
-- id: operating_temperature_get
-  label: Get Operating Temperature
-  kind: query
-  params: []
+
 - id: light_source_mode_cycle
   label: Light Source Mode Cycle
   kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x36 0x00 0x95"
+  params: []
+
+- id: message_off
+  label: Message - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x27 0x00 0x84"
+  params: []
+
+- id: message_on
+  label: Message - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x27 0x01 0x85"
+  params: []
+
+- id: message_status
+  label: Message Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x27 0x85"
+  params: []
+
+- id: projector_position_front_table
+  label: Projector Position - Front Table
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x00 0x00 0x5E"
+  params: []
+
+- id: projector_position_rear_table
+  label: Projector Position - Rear Table
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x00 0x01 0x5F"
+  params: []
+
+- id: projector_position_rear_ceiling
+  label: Projector Position - Rear Ceiling
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x00 0x02 0x60"
+  params: []
+
+- id: projector_position_front_ceiling
+  label: Projector Position - Front Ceiling
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x00 0x03 0x61"
+  params: []
+
+- id: projector_position_status
+  label: Projector Position Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x00 0x5F"
+  params: []
+
+- id: d3_sync_off
+  label: 3D Sync - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x00 0x7E"
+  params: []
+
+- id: d3_sync_auto
+  label: 3D Sync - Auto
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x01 0x7F"
+  params: []
+
+- id: d3_sync_frame_sequential
+  label: 3D Sync - Frame Sequential
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x02 0x80"
+  params: []
+
+- id: d3_sync_frame_packing
+  label: 3D Sync - Frame Packing
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x03 0x81"
+  params: []
+
+- id: d3_sync_top_bottom
+  label: 3D Sync - Top-Bottom
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x04 0x82"
+  params: []
+
+- id: d3_sync_side_by_side
+  label: 3D Sync - Side by Side
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x20 0x05 0x83"
+  params: []
+
+- id: d3_sync_status
+  label: 3D Sync Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x20 0x7F"
+  params: []
+
+- id: d3_sync_invert_off
+  label: 3D Sync Invert - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x21 0x00 0x7F"
+  params: []
+
+- id: d3_sync_invert_on
+  label: 3D Sync Invert - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x21 0x01 0x80"
+  params: []
+
+- id: d3_sync_invert_status
+  label: 3D Sync Invert Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x21 0x80"
+  params: []
+
+- id: contrast_decrease
+  label: Contrast - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x02 0x00 0x60"
+  params: []
+
+- id: contrast_increase
+  label: Contrast - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x02 0x01 0x61"
+  params: []
+
+- id: contrast_get_value
+  label: Contrast Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x02 0x61"
+  params: []
+
+- id: brightness_decrease
+  label: Brightness - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x03 0x00 0x61"
+  params: []
+
+- id: brightness_increase
+  label: Brightness - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x03 0x01 0x62"
+  params: []
+
+- id: brightness_get_value
+  label: Brightness Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x03 0x62"
+  params: []
+
+- id: aspect_ratio_auto
+  label: Aspect Ratio - Auto
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x04 0x00 0x62"
+  params: []
+
+- id: aspect_ratio_4_3
+  label: Aspect Ratio - 4:3
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x04 0x02 0x64"
+  params: []
+
+- id: aspect_ratio_16_9
+  label: Aspect Ratio - 16:9
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x04 0x03 0x65"
+  params: []
+
+- id: aspect_ratio_16_10
+  label: Aspect Ratio - 16:10
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x04 0x04 0x66"
+  params: []
+
+- id: aspect_ratio_native
+  label: Aspect Ratio - Native
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x04 0x09 0x6B"
+  params: []
+
+- id: aspect_ratio_cycle
+  label: Aspect Ratio - Cycle
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x31 0x00 0x90"
+  params: []
+
+- id: aspect_ratio_get_value
+  label: Aspect Ratio Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x04 0x63"
+  params: []
+
+- id: auto_adjust_execute
+  label: Auto Adjust - Execute
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x05 0x00 0x63"
+  params: []
+
+- id: horizontal_position_shift_right
+  label: Horizontal Position - Shift Right
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x06 0x01 0x65"
+  params: []
+
+- id: horizontal_position_shift_left
+  label: Horizontal Position - Shift Left
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x06 0x00 0x64"
+  params: []
+
+- id: horizontal_position_get_value
+  label: Horizontal Position Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x06 0x65"
+  params: []
+
+- id: vertical_position_shift_up
+  label: Vertical Position - Shift Up
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x07 0x00 0x65"
+  params: []
+
+- id: vertical_position_shift_down
+  label: Vertical Position - Shift Down
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x07 0x01 0x66"
+  params: []
+
+- id: vertical_position_get_value
+  label: Vertical Position Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x07 0x66"
+  params: []
+
+- id: color_temperature_5500k
+  label: Color Temperature - 5500K
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x08 0x00 0x66"
+  params: []
+
+- id: color_temperature_6500k
+  label: Color Temperature - 6500K
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x08 0x01 0x67"
+  params: []
+
+- id: color_temperature_8000k
+  label: Color Temperature - 8000K
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x08 0x03 0x69"
+  params: []
+
+- id: color_temperature_get_value
+  label: Color Temperature Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x08 0x67"
+  params: []
+
+- id: ct_red_gain_decrease
+  label: Color Temp - Red Gain Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x00 0x00 0x99"
+  params: []
+
+- id: ct_red_gain_increase
+  label: Color Temp - Red Gain Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x00 0x01 0x9A"
+  params: []
+
+- id: ct_red_gain_get_value
+  label: Color Temp - Red Gain Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x3B 0x9A"
+  params: []
+
+- id: ct_green_gain_decrease
+  label: Color Temp - Green Gain Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x01 0x00 0x9A"
+  params: []
+
+- id: ct_green_gain_increase
+  label: Color Temp - Green Gain Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x01 0x01 0x9B"
+  params: []
+
+- id: ct_green_gain_get_value
+  label: Color Temp - Green Gain Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x3C 0x9B"
+  params: []
+
+- id: ct_blue_gain_decrease
+  label: Color Temp - Blue Gain Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x02 0x00 0x9B"
+  params: []
+
+- id: ct_blue_gain_increase
+  label: Color Temp - Blue Gain Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3A 0x02 0x01 0x9C"
+  params: []
+
+- id: ct_blue_gain_get_value
+  label: Color Temp - Blue Gain Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x3D 0x9C"
+  params: []
+
+- id: ct_red_offset_decrease
+  label: Color Temp - Red Offset Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x00 0x00 0x9D"
+  params: []
+
+- id: ct_red_offset_increase
+  label: Color Temp - Red Offset Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x00 0x01 0x9E"
+  params: []
+
+- id: ct_red_offset_get_value
+  label: Color Temp - Red Offset Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x3F 0x9E"
+  params: []
+
+- id: ct_green_offset_decrease
+  label: Color Temp - Green Offset Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x01 0x00 0x9E"
+  params: []
+
+- id: ct_green_offset_increase
+  label: Color Temp - Green Offset Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x01 0x01 0x9F"
+  params: []
+
+- id: ct_green_offset_get_value
+  label: Color Temp - Green Offset Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x40 0x9F"
+  params: []
+
+- id: ct_blue_offset_decrease
+  label: Color Temp - Blue Offset Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x02 0x00 0x9F"
+  params: []
+
+- id: ct_blue_offset_increase
+  label: Color Temp - Blue Offset Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x05 0x00 0x34 0x12 0x3E 0x02 0x01 0xA0"
+  params: []
+
+- id: ct_blue_offset_get_value
+  label: Color Temp - Blue Offset Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x41 0xA0"
+  params: []
+
+- id: blank_on
+  label: Blank - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x09 0x01 0x68"
+  params: []
+
+- id: blank_off
+  label: Blank - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x09 0x00 0x67"
+  params: []
+
+- id: blank_status
+  label: Blank Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x09 0x68"
+  params: []
+
+- id: keystone_vertical_decrease
+  label: Keystone - Vertical Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0A 0x00 0x68"
+  params: []
+
+- id: keystone_vertical_increase
+  label: Keystone - Vertical Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0A 0x01 0x69"
+  params: []
+
+- id: keystone_vertical_get_value
+  label: Keystone - Vertical Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x0A 0x69"
+  params: []
+
+- id: keystone_horizontal_decrease
+  label: Keystone - Horizontal Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x31 0x00 0x8E"
+  params: []
+
+- id: keystone_horizontal_increase
+  label: Keystone - Horizontal Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x31 0x01 0x8F"
+  params: []
+
+- id: keystone_horizontal_get_value
+  label: Keystone - Horizontal Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x31 0x8F"
+  params: []
+
+- id: color_mode_brightest
+  label: Color Mode - Brightest
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x00 0x69"
+  params: []
+
+- id: color_mode_movie
+  label: Color Mode - Movie
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x01 0x6A"
+  params: []
+
+- id: color_mode_standard
+  label: Color Mode - Standard
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x04 0x6D"
+  params: []
+
+- id: color_mode_photo
+  label: Color Mode - Photo
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x13 0x7C"
+  params: []
+
+- id: color_mode_presentation
+  label: Color Mode - Presentation
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x14 0x7D"
+  params: []
+
+- id: color_mode_cycle
+  label: Color Mode - Cycle
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x33 0x00 0x92"
+  params: []
+
+- id: color_mode_user1
+  label: Color Mode - User1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x18 0x81"
+  params: []
+
+- id: color_mode_user2
+  label: Color Mode - User2
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0B 0x19 0x82"
+  params: []
+
+- id: color_mode_status
+  label: Color Mode Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x0B 0x6A"
+  params: []
+
+- id: reset_color_settings_alt
+  label: Reset Color Settings (alt)
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x2A 0x00 0x87"
+  params: []
+  # Note: identical byte sequence to reset_color_settings; source lists it twice under different headings.
+
+- id: primary_color_r
+  label: Primary Color - R
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x00 0x6E"
+  params: []
+
+- id: primary_color_g
+  label: Primary Color - G
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x01 0x6F"
+  params: []
+
+- id: primary_color_b
+  label: Primary Color - B
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x02 0x70"
+  params: []
+
+- id: primary_color_c
+  label: Primary Color - C
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x03 0x71"
+  params: []
+
+- id: primary_color_m
+  label: Primary Color - M
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x04 0x72"
+  params: []
+
+- id: primary_color_y
+  label: Primary Color - Y
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x10 0x05 0x73"
+  params: []
+
+- id: primary_color_status
+  label: Primary Color Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x10 0x6F"
+  params: []
+
+- id: hue_tint_decrease
+  label: Hue/Tint - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x11 0x00 0x6F"
+  params: []
+
+- id: hue_tint_increase
+  label: Hue/Tint - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x11 0x01 0x70"
+  params: []
+
+- id: hue_tint_get_value
+  label: Hue/Tint Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x11 0x70"
+  params: []
+
+- id: saturation_decrease
+  label: Saturation - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x12 0x00 0x70"
+  params: []
+
+- id: saturation_increase
+  label: Saturation - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x12 0x01 0x71"
+  params: []
+
+- id: saturation_get_value
+  label: Saturation Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x12 0x71"
+  params: []
+
+- id: gain_decrease
+  label: Gain - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x13 0x00 0x71"
+  params: []
+
+- id: gain_increase
+  label: Gain - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x13 0x01 0x72"
+  params: []
+
+- id: gain_get_value
+  label: Gain Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x13 0x72"
+  params: []
+
+- id: sharpness_decrease
+  label: Sharpness - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0E 0x00 0x6C"
+  params: []
+
+- id: sharpness_increase
+  label: Sharpness - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0E 0x01 0x6D"
+  params: []
+
+- id: sharpness_get_value
+  label: Sharpness Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x0E 0x6D"
+  params: []
+
+- id: freeze_on
+  label: Freeze - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x00 0x01 0x60"
+  params: []
+
+- id: freeze_off
+  label: Freeze - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x00 0x00 0x5F"
+  params: []
+
+- id: freeze_status
+  label: Freeze Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x13 0x00 0x60"
+  params: []
+
+- id: source_input_dsub_comp1
+  label: Source Input - D-Sub/Comp. 1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x01 0x00 0x60"
+  params: []
+
+- id: source_input_hdmi1
+  label: Source Input - HDMI 1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x01 0x03 0x63"
+  params: []
+
+- id: source_input_composite_video
+  label: Source Input - Composite Video
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x01 0x05 0x65"
+  params: []
+
+- id: source_input_status
+  label: Source Input Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x13 0x01 0x61"
+  params: []
+
+- id: quick_auto_search_on
+  label: Quick Auto Search - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x02 0x01 0x62"
+  params: []
+
+- id: quick_auto_search_off
+  label: Quick Auto Search - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x02 0x00 0x61"
+  params: []
+
+- id: quick_auto_search_status
+  label: Quick Auto Search Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x13 0x02 0x62"
+  params: []
+
+- id: mute_on
+  label: Mute - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x14 0x00 0x01 0x61"
+  params: []
+
+- id: mute_off
+  label: Mute - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x14 0x00 0x00 0x60"
+  params: []
+
+- id: mute_status
+  label: Mute Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x14 0x00 0x61"
+  params: []
+
+- id: volume_increase
+  label: Volume - Increase
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x14 0x01 0x00 0x61"
+  params: []
+
+- id: volume_decrease
+  label: Volume - Decrease
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x14 0x02 0x00 0x62"
+  params: []
+
+- id: volume_write_value
+  label: Volume - Write Value
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x2A 0x11 0x9A"
+  params: []
+  # UNRESOLVED: source lists literal bytes 0x11/0x9A without stating the value range or checksum recomputation rule.
+
+- id: volume_get_value
+  label: Volume Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x14 0x03 0x64"
+  params: []
+
+- id: language_english
+  label: Language - English
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x00 0x61"
+  params: []
+
+- id: language_french
+  label: Language - Français
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x01 0x62"
+  params: []
+
+- id: language_german
+  label: Language - Deutsch
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x02 0x63"
+  params: []
+
+- id: language_italian
+  label: Language - Italiano
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x03 0x64"
+  params: []
+
+- id: language_spanish
+  label: Language - Español
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x04 0x65"
+  params: []
+
+- id: language_russian
+  label: Language - Русский
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x05 0x66"
+  params: []
+
+- id: language_traditional_chinese
+  label: Language - 繁體中文
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x06 0x67"
+  params: []
+
+- id: language_simplified_chinese
+  label: Language - 简体中文
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x07 0x68"
+  params: []
+
+- id: language_japanese
+  label: Language - 日本語
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x08 0x69"
+  params: []
+
+- id: language_korean
+  label: Language - 한국어
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x09 0x6A"
+  params: []
+
+- id: language_swedish
+  label: Language - Swedish
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0a 0x6B"
+  params: []
+
+- id: language_dutch
+  label: Language - Dutch
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0b 0x6C"
+  params: []
+
+- id: language_turkish
+  label: Language - Turkish
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0c 0x6D"
+  params: []
+
+- id: language_czech
+  label: Language - Czech
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0d 0x6E"
+  params: []
+
+- id: language_portuguese
+  label: Language - Portuguese
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0e 0x6F"
+  params: []
+
+- id: language_thai
+  label: Language - Thai
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x0f 0x70"
+  params: []
+
+- id: language_polish
+  label: Language - Polish
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x10 0x71"
+  params: []
+
+- id: language_finnish
+  label: Language - Finnish
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x11 0x72"
+  params: []
+
+- id: language_arabic
+  label: Language - Arabic
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x12 0x73"
+  params: []
+
+- id: language_indonesia
+  label: Language - Indonesia
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x13 0x74"
+  params: []
+
+- id: language_hindi
+  label: Language - Hindi
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x14 0x75"
+  params: []
+
+- id: language_vie
+  label: Language - Vie
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x15 0x76"
+  params: []
+
+- id: language_greek
+  label: Language - Greek
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x00 0x16 0x77"
+  params: []
+
+- id: language_status
+  label: Language Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x15 0x00 0x62"
+  params: []
+
+- id: light_source_usage_time_reset
+  label: Light Source Usage Time - Reset to ZERO
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x15 0x01 0x00 0x62"
+  params: []
+
+- id: light_source_usage_time_get
+  label: Light Source Usage Time - Get Usage Time
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x15 0x01 0x63"
+  params: []
+
+- id: hdmi_format_rgb
+  label: HDMI Format - RGB
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x28 0x00 0x85"
+  params: []
+
+- id: hdmi_format_yuv
+  label: HDMI Format - YUV
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x28 0x01 0x86"
+  params: []
+
+- id: hdmi_format_auto
+  label: HDMI Format - Auto
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x28 0x02 0x87"
+  params: []
+
+- id: hdmi_format_status
+  label: HDMI Format Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x28 0x86"
+  params: []
+
+- id: hdmi_range_enhanced
+  label: HDMI Range - Enhanced
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x29 0x00 0x86"
+  params: []
+
+- id: hdmi_range_normal
+  label: HDMI Range - Normal
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x29 0x01 0x87"
+  params: []
+
+- id: hdmi_range_auto
+  label: HDMI Range - Auto
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x29 0x02 0x88"
+  params: []
+
+- id: hdmi_range_status
+  label: HDMI Range Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x29 0x87"
+  params: []
+
+- id: cec_off
+  label: CEC - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x2B 0x00 0x88"
+  params: []
+
+- id: cec_on
+  label: CEC - On
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x2B 0x01 0x89"
+  params: []
+
+- id: cec_status
+  label: CEC Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x2B 0x89"
+  params: []
+
+- id: error_status
+  label: Error Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x0C 0x0D 0x66"
+  params: []
+
+- id: brilliant_color_off
+  label: Brilliant Color - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x00 0x6D"
+  params: []
+
+- id: brilliant_color_1
+  label: Brilliant Color - Color 1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x01 0x6E"
+  params: []
+
+- id: brilliant_color_2
+  label: Brilliant Color - Color 2
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x02 0x6F"
+  params: []
+
+- id: brilliant_color_3
+  label: Brilliant Color - Color 3
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x03 0x70"
+  params: []
+
+- id: brilliant_color_4
+  label: Brilliant Color - Color 4
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x04 0x71"
+  params: []
+
+- id: brilliant_color_5
+  label: Brilliant Color - Color 5
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x05 0x72"
+  params: []
+
+- id: brilliant_color_6
+  label: Brilliant Color - Color 6
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x06 0x73"
+  params: []
+
+- id: brilliant_color_7
+  label: Brilliant Color - Color 7
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x07 0x74"
+  params: []
+
+- id: brilliant_color_8
+  label: Brilliant Color - Color 8
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x08 0x75"
+  params: []
+
+- id: brilliant_color_9
+  label: Brilliant Color - Color 9
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x09 0x76"
+  params: []
+
+- id: brilliant_color_10
+  label: Brilliant Color - Color 10
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x12 0x0F 0x0A 0x77"
+  params: []
+
+- id: brilliant_color_status
+  label: Brilliant Color Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x12 0x0F 0x6E"
+  params: []
+
+- id: remote_control_code_1
+  label: Remote Control Code 1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x00 0xA0"
+  params: []
+
+- id: remote_control_code_2
+  label: Remote Control Code 2
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x01 0xA1"
+  params: []
+
+- id: remote_control_code_3
+  label: Remote Control Code 3
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x02 0xA2"
+  params: []
+
+- id: remote_control_code_4
+  label: Remote Control Code 4
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x03 0xA3"
+  params: []
+
+- id: remote_control_code_5
+  label: Remote Control Code 5
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x04 0xA4"
+  params: []
+
+- id: remote_control_code_6
+  label: Remote Control Code 6
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x05 0xA5"
+  params: []
+
+- id: remote_control_code_7
+  label: Remote Control Code 7
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x06 0xA6"
+  params: []
+
+- id: remote_control_code_8
+  label: Remote Control Code 8
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x0C 0x48 0x07 0xA7"
+  params: []
+
+- id: remote_control_code_status
+  label: Remote Control Code Status
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x0C 0x48 0xA1"
+  params: []
+
+- id: over_scan_off
+  label: Over Scan - Off
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x00 0x90"
+  params: []
+
+- id: over_scan_1
+  label: Over Scan - Value 1
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x01 0x91"
+  params: []
+
+- id: over_scan_2
+  label: Over Scan - Value 2
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x02 0x92"
+  params: []
+
+- id: over_scan_3
+  label: Over Scan - Value 3
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x03 0x93"
+  params: []
+
+- id: over_scan_4
+  label: Over Scan - Value 4
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x04 0x94"
+  params: []
+
+- id: over_scan_5
+  label: Over Scan - Value 5
+  kind: action
+  command: "0x06 0x14 0x00 0x04 0x00 0x34 0x11 0x33 0x05 0x95"
+  params: []
+
+- id: over_scan_get_value
+  label: Over Scan Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x11 0x33 0x91"
+  params: []
+
+- id: remote_key_menu
+  label: Remote Key - Menu
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x0F 0x61"
+  params: []
+
+- id: remote_key_exit
+  label: Remote Key - Exit
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x13 0x65"
+  params: []
+
+- id: remote_key_top
+  label: Remote Key - Top
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x0B 0x5D"
+  params: []
+
+- id: remote_key_bottom
+  label: Remote Key - Bottom
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x0C 0x5E"
+  params: []
+
+- id: remote_key_left
+  label: Remote Key - Left
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x0D 0x5F"
+  params: []
+
+- id: remote_key_right
+  label: Remote Key - Right
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x0E 0x60"
+  params: []
+
+- id: remote_key_source
+  label: Remote Key - Source
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x04 0x56"
+  params: []
+
+- id: remote_key_enter
+  label: Remote Key - Enter
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x15 0x67"
+  params: []
+
+- id: remote_key_auto
+  label: Remote Key - Auto
+  kind: action
+  command: "0x02 0x14 0x00 0x04 0x00 0x34 0x02 0x04 0x08 0x5A"
+  params: []
+
+- id: amx_response
+  label: AMX Response
+  kind: action
+  command: "AMX"
+  params: []
+  # Source lists the payload as the literal ASCII string "AMX".
+
+- id: operating_temperature_get
+  label: Operating Temperature - Get Value
+  kind: query
+  command: "0x07 0x14 0x00 0x05 0x00 0x34 0x00 0x00 0x15 0x03 0x65"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
+# Source describes Read/Status commands but does not document the response
+# byte layout - only the request payloads are provided. Per Tier 3, response
+# decoding is left UNRESOLVED.
+# UNRESOLVED: response frame format for Read commands not stated in source.
+# Each Read above is implemented as `kind: query`; consumers must parse the
+# returned bytes per the projector's own protocol spec (not supplied here).
+
 - id: power_state
   type: enum
-  values: [on, off]
-- id: source_state
+  values: [on, off]  # UNRESOLVED: response encoding not stated in source
+  source_action: power_status
+
+- id: source_input_state
   type: enum
-  values:
-    - D-Sub/Comp.1
-    - HDMI 1
-    - Composite Video
-- id: error_state
-  type: object
-  properties:
-    code: string
+  values: [dsub_comp1, hdmi1, composite_video]  # UNRESOLVED: response encoding not stated in source
+  source_action: source_input_status
+
+- id: light_source_usage_hours
+  type: integer
+  source_action: light_source_usage_time_get
+  # UNRESOLVED: response byte layout / units not stated in source
+
+- id: operating_temperature
+  type: number
+  source_action: operating_temperature_get
+  # UNRESOLVED: units and byte layout not stated in source
 ```
 
 ## Variables
 ```yaml
-- id: volume
-  type: integer
-  range: [0, 20]
-- id: brightness
-  type: integer
-- id: contrast
-  type: integer
-- id: aspect_ratio
-  type: enum
-  values: [Auto, "4:3", "16:9", "16:10", Native]
+# Discrete write actions cover the documented command set; no continuous
+# settable parameters are described in the source beyond the literal "Write
+# Value" byte sequence for Volume (see volume_write_value action).
+# UNRESOLVED: value range, units, and checksum recomputation for
+# volume_write_value (`0x06 0x14 0x00 0x04 0x00 0x34 0x13 0x2A 0x11 0x9A`)
+# are not stated in the source.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: unsolicited event notifications not documented in source
+# UNRESOLVED: source does not document any unsolicited notifications
+# the device sends back over RS-232. No Events section applicable.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: multi-step macro sequences not documented in source
+# UNRESOLVED: source does not document any multi-step command sequences
+# or built-in macros. No Macros section applicable.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
+# UNRESOLVED: source contains no explicit safety warnings, interlocks, or
+# power-on sequencing requirements beyond the general LAN/RS-232 setup
+# guidance. No safety-critical fields populated.
 ```
 
 ## Notes
-RS-232 protocol default: 115200 baud, 8N1. Alternate baud rates supported: 2400/4800/9600/14400/19200/38400/57600/115200 (set via OSD menu). Web interface default password: "0000". LAN control works in standby mode when "Standby LAN Control" is enabled. HDBaseT control port available on LS850WU/LS860WU only — not LS750WU.
-<!-- UNRESOLVED: binary protocol packet structure not fully decoded (checksum bytes) -->
-<!-- UNRESOLVED: network TCP port number not stated in source -->
-<!-- UNRESOLVED: Crestron/IPID/port for room control not verified against LS750WU-specific docs -->
+
+- **RS-232 default is 115200 bps, 8/N/1, no flow control.** The OSD `Baud Rate` menu allows 2400/4800/9600/14400/19200/38400/57600/115200; the source documents the default only.
+- **Pin assignment (DB-9):** 1=NC, 2=RX, 3=TX, 4=NC, 5=GND, 6=NC, 7=RTS, 8=CTS, 9=NC. RTS/CTS are exposed but flow control is set to None.
+- **LAN/web control is out of scope for this spec** but the projector also exposes:
+  - **Web UI** (default admin password `0000` per source).
+  - **Crestron RoomView** — IPID `02`, reserved port `41794` per source.
+  - **PJLink, SNMP v1, AMX, Xpanel v1.10** — supported per source; the source defers to each standard's own documentation for the command set.
+  - **Standby LAN control** must be enabled in `ADVANCED > LAN Control Settings` to reach the projector in standby.
+- **Control Method** OSD setting: RS-232, USB, or HDBaseT (HDBaseT only on LS850WU/LS860WU — not applicable to LS750WU).
+- **Source list omits some inputs.** The connection-port table lists HDMI 1, HDMI 2, USB, HDBaseT, Composite, S-Video, COMPUTER IN, etc., but the RS-232 `Source input` table only enumerates `D-Sub/Comp. 1`, `HDMI 1`, and `Composite Video`. HDMI 2 / S-Video / HDBaseT are not listed in the RS-232 source-input command set. UNRESOLVED: HDMI 2, S-Video, and HDBaseT source-selection opcodes are not in the source.
+- **Duplicate command** — `Reset Color Settings` appears twice in the source with identical byte sequence under different headings (line 170 and line 265). Captured once as `reset_color_settings`; the duplicate is preserved as `reset_color_settings_alt` for fidelity.
+- **Volume Write Value** is the only parameterized write in the source; the byte `0x11` is given literally without a stated value range or checksum rule, so it is left as a literal action with an UNRESOLVED note.
+- **`AMX` command payload** is the literal ASCII string `AMX` per the source's command table.
+- **Checksum handling:** the source lists each command as a fixed sequence ending in a checksum byte; this spec preserves the bytes verbatim. A separate, generic checksum-recomputation algorithm is not stated in the source and is not asserted here.
+
+<!-- UNRESOLVED: firmware version compatibility, checksum recomputation algorithm, and response frame layout for Read commands are not stated in the source. -->
 
 ## Provenance
 
@@ -914,30 +1464,37 @@ RS-232 protocol default: 115200 baud, 8N1. Alternate baud rates supported: 2400/
 source_domains:
   - viewsonicglobal.com
 source_urls:
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDX5560_CDX5562/CDX5560_CDX5562_UG_ENG.pdf
-  - https://www.viewsonicglobal.com/public/products_download/user_guide/CD/CDE5010/CDE5010_UG_ENG.pdf
-  - "https://www.viewsonicglobal.com/public/products_download/user_guide/projector/LSC_6_7_8_Series/LSC%20Series%20RS-232%20LAN%20Control%20Protocol%20Specification.pdf"
-  - "https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf?pass"
-  - https://www.viewsonicglobal.com/public/products_download/97/Commercial_Displays_RS232.pdf
-retrieved_at: 2026-04-30T10:02:07.423Z
-last_checked_at: 2026-05-31T22:45:08.772Z
+  - https://www.viewsonicglobal.com/public/products_download/user_guide/Projector/LS750WU_LS850WU_LS860WU/LS750WU_LS850WU_LS860WU_UG_ENG.pdf
+retrieved_at: 2026-05-27T13:39:59.623Z
+last_checked_at: 2026-06-01T21:44:37.790Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T22:45:08.772Z
-matched_actions: 187
-action_count: 187
-confidence: high
-summary: "All 187 spec actions matched source commands with correct transport parameters (115200 8N1)."
+checked_at: 2026-06-01T21:44:37.790Z
+matched_actions: 215
+action_count: 215
+confidence: medium
+summary: "All 215 spec actions match literal hex sequences in source RS-232 command table; transport parameters verified; no fabrications or drift detected. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN control (HTTP/TCP) command set is not part of this spec; the RS-232C command table is the source of truth."
+- "source lists literal bytes 0x11/0x9A without stating the value range or checksum recomputation rule."
+- "response frame format for Read commands not stated in source."
+- "response encoding not stated in source"
+- "response byte layout / units not stated in source"
+- "units and byte layout not stated in source"
+- "value range, units, and checksum recomputation for"
+- "source does not document any unsolicited notifications"
+- "source does not document any multi-step command sequences"
+- "source contains no explicit safety warnings, interlocks, or"
+- "HDMI 2, S-Video, and HDBaseT source-selection opcodes are not in the source."
+- "firmware version compatibility, checksum recomputation algorithm, and response frame layout for Read commands are not stated in the source."
 ```
 
 ---

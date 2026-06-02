@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:40.679Z
 last_checked_at: 2026-05-14T18:17:18.735Z
 generated_at: 2026-05-14T18:17:18.735Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "NP-UM3 Series is not explicitly listed in the supplementary tables; input terminal codes, aspect values, and eco mode values are model-specific and could not be confirmed for this exact series"
+  - "some models cannot receive commands in standby mode — applicability to NP-UM3 unknown"
+  - "source does not describe unsolicited notifications from the projector"
+  - "no multi-step macro sequences described in source"
+  - "source mentions interlock switch (error status bit) but no explicit safety procedure documented"
+  - "input terminal hex codes are model-specific; NP-UM3 Series not listed in supplementary tables"
+  - "aspect values are model-specific; NP-UM3 Series not listed in supplementary tables"
+  - "eco mode values are model-specific; NP-UM3 Series not listed in supplementary tables"
+  - "sub input setting values for PIP/PbP are model-specific"
+  - "no firmware version compatibility range stated in source"
+  - "maximum number of concurrent connections not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.735Z
   matched_actions: 30
   action_count: 30
-  confidence: high
-  summary: "All 54 spec actions matched verbatim command sequences in the source; transport parameters verified; comprehensive command coverage."
+  confidence: medium
+  summary: "All 54 spec actions matched verbatim command sequences in the source; transport parameters verified; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -608,7 +619,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:40.679Z
 last_checked_at: 2026-05-14T18:17:18.735Z
 ```
 
@@ -619,14 +630,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.735Z
 matched_actions: 30
 action_count: 30
-confidence: high
-summary: "All 54 spec actions matched verbatim command sequences in the source; transport parameters verified; comprehensive command coverage."
+confidence: medium
+summary: "All 54 spec actions matched verbatim command sequences in the source; transport parameters verified; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "NP-UM3 Series is not explicitly listed in the supplementary tables; input terminal codes, aspect values, and eco mode values are model-specific and could not be confirmed for this exact series"
+- "some models cannot receive commands in standby mode — applicability to NP-UM3 unknown"
+- "source does not describe unsolicited notifications from the projector"
+- "no multi-step macro sequences described in source"
+- "source mentions interlock switch (error status bit) but no explicit safety procedure documented"
+- "input terminal hex codes are model-specific; NP-UM3 Series not listed in supplementary tables"
+- "aspect values are model-specific; NP-UM3 Series not listed in supplementary tables"
+- "eco mode values are model-specific; NP-UM3 Series not listed in supplementary tables"
+- "sub input setting values for PIP/PbP are model-specific"
+- "no firmware version compatibility range stated in source"
+- "maximum number of concurrent connections not stated"
 ```
 
 ---

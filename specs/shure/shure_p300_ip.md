@@ -17,27 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - shure.com
-  - content-files.shure.com
-  - pubs.shure.com
+  - shure.stoplight.io
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
   - https://www.shure.com/en-US/docs/commandstrings/P300
+  - https://www.shure.com/en-US/docs/guide/P300
+  - https://shure.stoplight.io/
 retrieved_at: 2026-04-30T13:38:16.296Z
 last_checked_at: 2026-05-14T18:17:20.513Z
 generated_at: 2026-05-14T18:17:20.513Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no multi-step sequences explicitly described in source beyond the muting best-practice scenario"
+  - "power-on sequencing requirements not stated in source"
+  - "firmware version compatibility range not stated"
+  - "keep-alive / heartbeat mechanism not documented"
+  - "maximum concurrent connections not stated"
+  - "command delimiter beyond angle brackets not specified"
+  - "error response format only mentioned as <REP ERR> for metering — full error catalog not in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.513Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 68 spec actions matched verbatim; transport verified."
+  confidence: medium
+  summary: "All 68 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1161,14 +1165,11 @@ interlocks:
 ```yaml
 source_domains:
   - shure.com
-  - content-files.shure.com
-  - pubs.shure.com
+  - shure.stoplight.io
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
-  - https://pubs.shure.com/command-strings/MXW/en-US
   - https://www.shure.com/en-US/docs/commandstrings/P300
+  - https://www.shure.com/en-US/docs/guide/P300
+  - https://shure.stoplight.io/
 retrieved_at: 2026-04-30T13:38:16.296Z
 last_checked_at: 2026-05-14T18:17:20.513Z
 ```
@@ -1180,14 +1181,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.513Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 68 spec actions matched verbatim; transport verified."
+confidence: medium
+summary: "All 68 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no multi-step sequences explicitly described in source beyond the muting best-practice scenario"
+- "power-on sequencing requirements not stated in source"
+- "firmware version compatibility range not stated"
+- "keep-alive / heartbeat mechanism not documented"
+- "maximum concurrent connections not stated"
+- "command delimiter beyond angle brackets not specified"
+- "error response format only mentioned as <REP ERR> for metering — full error catalog not in source"
 ```
 
 ---

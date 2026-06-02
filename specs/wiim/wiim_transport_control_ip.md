@@ -19,20 +19,34 @@ source_domains:
   - wiimhome.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+retrieved_at: 2026-05-04T17:29:58.830Z
 last_checked_at: 2026-05-14T18:17:21.515Z
 generated_at: 2026-05-14T18:17:21.515Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - setPlayerCmd:hex_playlist
+  - "exact product models covered (doc is titled \"HTTP API for WiiM PRODUCTS\" suggesting it may apply to multiple WiiM devices)"
+  - "no explicit port number stated; HTTPS implies 443 but not confirmed"
+  - "firmware version compatibility not stated"
+  - "port number not explicitly stated in source (HTTPS default 443 assumed by client)"
+  - "no settable continuous parameters beyond discrete actions above"
+  - "no unsolicited notification/event mechanism described in source"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "exact WiiM product models this API applies to (doc header says \"WiiM PRODUCTS\" generically)"
+  - "meaning and usage of the communication_port (8819) field"
+  - "whether HTTP (non-TLS) is also supported"
+  - "UPnP/DPAP control interface mentioned in getStatusEx but not documented"
+  - "maximum concurrent connection limit"
+  - "command rate limits or throttling"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.515Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage."
+  confidence: medium
+  summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -369,7 +383,7 @@ source_domains:
   - wiimhome.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+retrieved_at: 2026-05-04T17:29:58.830Z
 last_checked_at: 2026-05-14T18:17:21.515Z
 ```
 
@@ -380,14 +394,28 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.515Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage."
+confidence: medium
+summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - setPlayerCmd:hex_playlist
+- "exact product models covered (doc is titled \"HTTP API for WiiM PRODUCTS\" suggesting it may apply to multiple WiiM devices)"
+- "no explicit port number stated; HTTPS implies 443 but not confirmed"
+- "firmware version compatibility not stated"
+- "port number not explicitly stated in source (HTTPS default 443 assumed by client)"
+- "no settable continuous parameters beyond discrete actions above"
+- "no unsolicited notification/event mechanism described in source"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "exact WiiM product models this API applies to (doc header says \"WiiM PRODUCTS\" generically)"
+- "meaning and usage of the communication_port (8819) field"
+- "whether HTTP (non-TLS) is also supported"
+- "UPnP/DPAP control interface mentioned in getStatusEx but not documented"
+- "maximum concurrent connection limit"
+- "command rate limits or throttling"
 ```
 
 ---

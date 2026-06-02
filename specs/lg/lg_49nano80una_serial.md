@@ -16,39 +16,48 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:58:34.297Z
-generated_at: 2026-04-25T20:58:34.297Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T01:11:18.020Z
+last_checked_at: 2026-06-02T01:48:20.704Z
+generated_at: 2026-06-02T01:48:20.704Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "ISM (jp) is Plasma-only; 3D (xt) and Extended 3D (xv) are 3D-models-only. 49NANO80UNA is LED/NanoCell, non-3D. These actions are included for protocol completeness, not because the device supports them."
+  - "49NANO80UNA is LED; ISM not supported. Included for protocol completeness."
+  - "ma format varies by region (Korea/Japan/N.America/Europe) and signal type (analog/digital/cable/satellite). See source pp.9-10 for full encoding table."
+  - "backlight and panel light share opcode mg; documented as two distinct functions in source."
+  - "49NANO80UNA is not 3D. Included for protocol completeness."
+  - "most commands (kd, kg, kh, ki, kj, kk, kl, km, kr, ks, kt, kc, xb, xu, jq, xt, xv, mb, mg) accept FF as query data and return current state in the same ACK format; not enumerated as individual Feedbacks."
+  - "settable scalar parameters (volume/contrast/brightness/color/tint/sharpness/treble/bass/balance/color_temperature/energy_saving) are exposed as Actions rather than discrete Variables."
+  - "source does not document unsolicited device-to-host events."
+  - "source does not document multi-step sequences."
+  - "source does not contain safety warnings or interlock procedures."
+  - "Network IP control (Telnet 9761) uses a different command syntax — `KEYWORD value` form (e.g. `VOLUME_MUTE on`, `PICTURE_CONTRAST 50`) — documented in source pp.13-15. Only RS-232C protocol is enumerated in detail above."
+  - "Power command works in both standby and on-state with RS-232C cable, but only when TV is on with USB-to-Serial converter. Source explicitly notes this asymmetry."
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:58:34.297Z
-  matched_actions: 27
-  action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched verbatim in source; all transport parameters verified; full coverage."
+  checked_at: 2026-06-02T01:48:20.704Z
+  matched_actions: 28
+  action_count: 28
+  confidence: medium
+  summary: "All 28 spec actions matched literal RS-232C command mnemonics in source; all transport parameters verified verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-18
+created_at: 2026-06-02
 ---
 
 # LG 49NANO80UNA Control Spec
 
 ## Summary
+LG 49NANO80UNA NanoCell TV. RS-232C serial and Telnet network (port 9761) external control. ASCII protocol with carriage-return termination and Set ID addressing 1-99. Source covers a family of LG TVs (Plasma/LED/LCD); not all commands apply to this model.
 
-The LG 49NANO80UNA is a 49-inch NanoCell 4K UHD smart TV controllable via RS-232C serial and, for USA models, TCP/IP (telnet). This spec covers both control interfaces. The serial protocol uses ASCII command frames with hexadecimal data payloads. The IP protocol uses plain-text keyword commands over telnet on port 9761.
-
-<!-- UNRESOLVED: exact connector type (DE9 vs phone jack) for this specific model not confirmed -->
-<!-- UNRESOLVED: Network IP Control section marked "For USA only" — applicability to other regions unclear -->
+<!-- UNRESOLVED: ISM (jp) is Plasma-only; 3D (xt) and Extended 3D (xv) are 3D-models-only. 49NANO80UNA is LED/NanoCell, non-3D. These actions are included for protocol completeness, not because the device supports them. -->
 
 ## Transport
-
 ```yaml
 protocols:
   - serial
@@ -58,697 +67,509 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not stated in source, set to none
-  communication_code: ascii
-  cable_type: crossed_reverse
+  flow_control: none
 addressing:
-  port: 9761  # telnet; "For USA only" per source
+  port: 9761  # IP control Telnet port; RS-232C is the primary control port
 auth:
-  type: none  # inferred: no auth procedure for serial; IP control telnet session has no login once Network IP Control is enabled on TV
+  type: none  # inferred: no login procedure for RS-232C; IP control has 3-digit menu password (default 828) only for setup menu, not the telnet session
 ```
 
 ## Traits
-
 ```yaml
-traits:
-  - powerable     # inferred: power on/off commands (ka / POWER)
-  - queryable     # inferred: send FF data to read status of any command
-  - levelable     # inferred: volume, contrast, brightness, backlight, treble, bass, balance, sharpness, tint, color, color temperature
-  - routable      # inferred: input select command (xb / INPUT_SELECT)
+# powerable    # inferred from power (ka) command
+# queryable    # inferred from FF-data query pattern (transmit FF to read status)
+# routable     # inferred from input_select (xb) command
+# levelable    # inferred from volume/contrast/brightness/treble/bass/balance commands
 ```
 
 ## Actions
-
 ```yaml
-actions:
-  # === POWER ===
-  - id: power_on
-    label: Power On
-    kind: action
-    serial_cmd: "ka {set_id} 01"
-    ip_cmd: null  # POWER off only documented for IP; power on via WOL or ka
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-        description: "Set ID (0 = all sets)"
+# 01. Power (Command: ka)
+- id: power
+  label: Power
+  kind: action
+  command: "ka {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte (00=broadcast, 01-63=specific TV)"
+    - name: data
+      type: string
+      description: "00=Power Off, 01=Power On, FF=Query status"
 
-  - id: power_off
-    label: Power Off
-    kind: action
-    serial_cmd: "ka {set_id} 00"
-    ip_cmd: "POWER off"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
+# 02. Aspect Ratio (Command: kc)
+- id: aspect_ratio
+  label: Aspect Ratio
+  kind: action
+  command: "kc {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "01=Normal, 02=16:9, 04=Zoom, 05=Zoom2, 06=Set by Program/Original, 07=14:9, 09=Just Scan, 0B=Full Wide, 0C=21:9, 10-1F=Cinema Zoom 1-16"
 
-  - id: power_query
-    label: Query Power State
-    kind: query
-    serial_cmd: "ka {set_id} FF"
-    ip_cmd: null  # UNRESOLVED: no IP query syntax documented
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
+# 03. Screen Mute (Command: kd)
+- id: screen_mute
+  label: Screen Mute
+  kind: action
+  command: "kd {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=Screen mute off (Picture on, Video mute off), 01=Screen mute on (Picture off), 10=Video mute on"
 
-  # === VOLUME ===
-  - id: volume_set
-    label: Set Volume
-    kind: action
-    serial_cmd: "kf {set_id} {level_hex}"
-    ip_cmd: "VOLUME_CONTROL {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
-        description: "Volume level (serial: hex 00-64; IP: decimal 0-100)"
+# 04. Volume Mute (Command: ke)
+- id: volume_mute
+  label: Volume Mute
+  kind: action
+  command: "ke {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=Mute on (Volume off), 01=Mute off (Volume on), FF=Query"
 
-  - id: volume_mute
-    label: Volume Mute
-    kind: action
-    serial_cmd: "ke {set_id} {state}"
-    ip_cmd: "VOLUME_MUTE {state_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: state
-        type: enum
-        values:
-          serial:
-            "00": mute_on
-            "01": mute_off
-          ip:
-            on: mute_on
-            off: mute_off
+# 05. Volume Control (Command: kf)
+- id: volume
+  label: Volume Control
+  kind: action
+  command: "kf {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Volume 00-64 hex (00-100 decimal)"
 
-  # === PICTURE ===
-  - id: contrast_set
-    label: Set Contrast
-    kind: action
-    serial_cmd: "kg {set_id} {level_hex}"
-    ip_cmd: "PICTURE_CONTRAST {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 06. Contrast (Command: kg)
+- id: contrast
+  label: Contrast
+  kind: action
+  command: "kg {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Contrast 00-64 hex"
 
-  - id: brightness_set
-    label: Set Brightness
-    kind: action
-    serial_cmd: "kh {set_id} {level_hex}"
-    ip_cmd: "PICTURE_BRIGHTNESS {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 07. Brightness (Command: kh)
+- id: brightness
+  label: Brightness
+  kind: action
+  command: "kh {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Brightness 00-64 hex"
 
-  - id: color_set
-    label: Set Color
-    kind: action
-    serial_cmd: "ki {set_id} {level_hex}"
-    ip_cmd: "PICTURE_COLOUR {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 08. Color/Colour (Command: ki)
+- id: color
+  label: Color/Colour
+  kind: action
+  command: "ki {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Color 00-64 hex"
 
-  - id: tint_set
-    label: Set Tint
-    kind: action
-    serial_cmd: "kj {set_id} {level_hex}"
-    ip_cmd: "PICTURE_TINT {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 09. Tint (Command: kj)
+- id: tint
+  label: Tint
+  kind: action
+  command: "kj {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Tint 00 (Red) to 64 (Green) hex"
 
-  - id: sharpness_set
-    label: Set Sharpness
-    kind: action
-    serial_cmd: "kk {set_id} {level_hex}"
-    ip_cmd: "PICTURE_SHARPNESS {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 50
-        min_ip: 0
-        max_ip: 50
+# 10. Sharpness (Command: kk)
+- id: sharpness
+  label: Sharpness
+  kind: action
+  command: "kk {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Sharpness 00-32 hex"
 
-  - id: backlight_set
-    label: Set Backlight
-    kind: action
-    serial_cmd: "mg {set_id} {level_hex}"
-    ip_cmd: "PICTURE_BACKLIGHT {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
-        note: "IP precondition: Energy Saving must be off"
+# 11. OSD Select (Command: kl)
+- id: osd_select
+  label: OSD Select
+  kind: action
+  command: "kl {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=OSD off, 01=OSD on"
 
-  - id: color_temperature_set
-    label: Set Color Temperature
-    kind: action
-    serial_cmd: "xu {set_id} {level_hex}"
-    ip_cmd: "PICTURE_COLOUR_TEMPERATURE {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 12. Remote Control Lock Mode (Command: km)
+- id: remote_lock
+  label: Remote Control Lock Mode
+  kind: action
+  command: "km {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=Lock off, 01=Lock on"
 
-  # === ASPECT RATIO ===
-  - id: aspect_ratio_set
-    label: Set Aspect Ratio
-    kind: action
-    serial_cmd: "kc {set_id} {mode_hex}"
-    ip_cmd: "ASPECT_RATIO {mode_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: mode
-        type: enum
-        values:
-          serial:
-            "01": normal
-            "02": wide_16by9
-            "04": zoom
-            "05": zoom2
-            "06": set_by_program
-            "07": "14:9"
-            "09": just_scan
-            "0B": full_wide
-            "0C": "21:9"
-            "10-1F": cinema_zoom_1_to_16
-          ip:
-            "4by3": normal
-            "16by9": wide
-            setbyoriginal: set_by_program
+# 13. Treble (Command: kr)
+- id: treble
+  label: Treble
+  kind: action
+  command: "kr {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Treble 00-64 hex"
 
-  # === SCREEN MUTE ===
-  - id: screen_mute_set
-    label: Set Screen Mute
-    kind: action
-    serial_cmd: "kd {set_id} {mode_hex}"
-    ip_cmd: "SCREEN_MUTE {mode_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: mode
-        type: enum
-        values:
-          serial:
-            "00": off
-            "01": screen_mute_on
-            "10": video_mute_on
-          ip:
-            allmuteoff: off
-            screenmuteon: screen_mute
-            videomuteon: video_mute
+# 14. Bass (Command: ks)
+- id: bass
+  label: Bass
+  kind: action
+  command: "ks {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Bass 00-64 hex"
 
-  # === OSD ===
-  - id: osd_set
-    label: Set OSD On/Off
-    kind: action
-    serial_cmd: "kl {set_id} {state}"
-    ip_cmd: "OSD_SELECT {state_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: state
-        type: enum
-        values:
-          serial:
-            "00": "off"
-            "01": "on"
-          ip:
-            "off": "off"
-            "on": "on"
+# 15. Balance (Command: kt)
+- id: balance
+  label: Balance
+  kind: action
+  command: "kt {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Balance 00-64 hex"
 
-  # === AUDIO ===
-  - id: treble_set
-    label: Set Treble
-    kind: action
-    serial_cmd: "kr {set_id} {level_hex}"
-    ip_cmd: null  # UNRESOLVED: no IP treble command documented
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min: 0
-        max: 100
+# 16. Color Temperature (Command: xu)
+- id: color_temperature
+  label: Color Temperature
+  kind: action
+  command: "xu {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Color temperature 00-64 hex"
 
-  - id: bass_set
-    label: Set Bass
-    kind: action
-    serial_cmd: "ks {set_id} {level_hex}"
-    ip_cmd: null  # UNRESOLVED: no IP bass command documented
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min: 0
-        max: 100
+# 17. ISM Method (Command: jp) - Plasma TV only
+- id: ism_method
+  label: ISM Method (Plasma only)
+  kind: action
+  command: "jp {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "02=Orbiter, 08=Normal, 20=Color Wash"
+  # UNRESOLVED: 49NANO80UNA is LED; ISM not supported. Included for protocol completeness.
 
-  - id: balance_set
-    label: Set Balance
-    kind: action
-    serial_cmd: "kt {set_id} {level_hex}"
-    ip_cmd: "AUDIO_BALANCE {level}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: level
-        type: integer
-        min_serial: 0
-        max_serial: 100
-        min_ip: 0
-        max_ip: 100
+# 18. Equalizer (Command: jv)
+- id: equalizer
+  label: Equalizer
+  kind: action
+  command: "jv {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Single hex byte: bits 7-5 = frequency band (000=1st, 001=2nd, 010=3rd, 011=4th, 100=5th), bits 4-0 = step value 0-20"
 
-  - id: equalizer_set
-    label: Set Equalizer
-    kind: action
-    serial_cmd: "jv {set_id} {data}"
-    ip_cmd: "AUDIO_EQUALIZER {band} {step}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: band
-        type: integer
-        min: 1
-        max: 5
-        description: "Frequency band (1-5)"
-      - name: step
-        type: integer
-        min: 0
-        max: 20
-        description: "EQ step (decimal)"
-    note: "IP precondition: sound mode must be EQ adjustable"
+# 19. Energy Saving (Command: jq)
+- id: energy_saving
+  label: Energy Saving
+  kind: action
+  command: "jq {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=Off, 01=Minimum, 02=Medium, 03=Maximum, 04=Auto (LCD/LED) / Intelligent sensor (PDP), 05=Screen off"
 
-  # === ENERGY SAVING ===
-  - id: energy_saving_set
-    label: Set Energy Saving
-    kind: action
-    serial_cmd: "jq {set_id} {mode_hex}"
-    ip_cmd: "ENERGY_SAVING {mode_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: mode
-        type: enum
-        values:
-          serial:
-            "00": "off"
-            "01": minimum
-            "02": medium
-            "03": maximum
-            "04": auto
-            "05": screen_off
-          ip:
-            "off": "off"
-            minimum: minimum
-            medium: medium
-            maximum: maximum
-            screenoff: screen_off
+# 20. Tune Command (Command: ma)
+- id: tune_channel
+  label: Tune Channel
+  kind: action
+  command: "ma {set_id} {d0} {d1} {d2} {d3} {d4} {d5}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte (or 0 for variant form)"
+    - name: d0
+      type: string
+      description: "High byte channel data (or 00=don't care for digital)"
+    - name: d1
+      type: string
+      description: "Low byte channel data / High byte Major channel"
+    - name: d2
+      type: string
+      description: "Input Source (analog: 00=ATV, 80=CATV) / Low byte Major channel"
+    - name: d3
+      type: string
+      description: "High byte Minor channel (or 00)"
+    - name: d4
+      type: string
+      description: "Low byte Minor channel (or 00)"
+    - name: d5
+      type: string
+      description: "Input Source (digital): 00=ATV, 01=CATV, 02=DTV-Antenna, 06=CADTV, 22=DTV-Antenna(no phy), 26=CADTV(no phy), 40=SDTV, 46/66=CADTV one-part, 90=CADTV"
+  # UNRESOLVED: ma format varies by region (Korea/Japan/N.America/Europe) and signal type (analog/digital/cable/satellite). See source pp.9-10 for full encoding table.
 
-  # === INPUT SELECT ===
-  - id: input_select
-    label: Select Input
-    kind: action
-    serial_cmd: "xb {set_id} {input_hex}"
-    ip_cmd: "INPUT_SELECT {input_name}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: input
-        type: enum
-        values:
-          serial:
-            "00": DTV
-            "01": CADTV
-            "02": satellite_dtv
-            "10": ATV
-            "11": CATV
-            "20": AV
-            "21": AV2
-            "40": component1
-            "41": component2
-            "60": RGB
-            "90": HDMI1
-            "91": HDMI2
-            "92": HDMI3
-            "93": HDMI4
-          ip:
-            dtv: DTV
-            atv: ATV
-            cadtv: CADTV
-            catv: CATV
-            avav1: AV
-            component1: component1
-            hdmi1: HDMI1
-            hdmi2: HDMI2
-            hdmi3: HDMI3
+# 21. Channel Add/Del (Command: mb)
+- id: channel_add_del
+  label: Channel Add/Del (Skip)
+  kind: action
+  command: "mb {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=Del (ATSC/ISDB) / Skip (DVB), 01=Add"
 
-  # === REMOTE CONTROL LOCK ===
-  - id: remote_lock_set
-    label: Set Remote Control Lock
-    kind: action
-    serial_cmd: "km {set_id} {state}"
-    ip_cmd: "REMOTECONTROLER_LOCK {state_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: state
-        type: enum
-        values:
-          serial:
-            "00": lock_off
-            "01": lock_on
-          ip:
-            "off": lock_off
-            "on": lock_on
-    note: "Lock is released on main power cycle (unplug/replug after 20-30s)"
+# 22. Key (Command: mc)
+- id: key_action
+  label: IR Key Code
+  kind: action
+  command: "mc {set_id} {key_code}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: key_code
+      type: string
+      description: "Hex key code from source: 00=CH+, 01=CH-, 02=Vol+, 03=Vol-, 06=Right, 07=Left, 08=Power, 09=Mute, 0B=Input, 0E=Sleep, 0F=TV, 10-19=Number 0-9, 1A=Q.View, 1E=FAV, 20=Text, 21=T.Opt, 28=Return, 30=AV, 39=Caption, 40=Up, 41=Down, 42=MyApps, 43=Menu, 44=OK, 45=Q.Menu, 4C=List, 4D=Picture, 52=Sound, 53=List, 5B=Exit, 60=PIP/AD, 61=Blue, 63=Yellow, 71=Green, 72=Red, 79=Ratio, 7A=UserGuide, 7C=Smart/Home, 7E=SIMPLINK, 8E=Fwd, 8F=Rew, 91=AD, 99=AutoConfig, 9B=TV/PC, 9E=LiveMenu, 9F=App, AA=Info, AB=ProgramGuide, B0=Play, B1=Stop, B5=Recent, BA=Pause, BB=Soccer, BD=Rec, DC=3D"
 
-  # === KEY (IR REMOTE EMULATION) ===
-  - id: key_send
-    label: Send Remote Key
-    kind: action
-    serial_cmd: "mc {set_id} {key_hex}"
-    ip_cmd: "KEY_ACTION {key_name}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: key
-        type: enum
-        description: "IR remote key code (hex for serial, name for IP)"
-        values:
-          serial:
-            "00": channel_up
-            "01": channel_down
-            "02": volume_up
-            "03": volume_down
-            "08": power
-            "09": mute
-            "0B": input
-            "44": ok_enter
-            "40": arrow_up
-            "41": arrow_down
-            "06": arrow_right
-            "07": arrow_left
-            "43": menu_settings
-            "7C": smart_home
-            "28": return_back
-          ip:
-            exit: exit
-            channelup: channel_up
-            channeldown: channel_down
-            volumeup: volume_up
-            volumedown: volume_down
-            arrowright: arrow_right
-            arrowleft: arrow_left
-            volumemute: mute
-            deviceinput: input
-            ok: ok
-            arrowup: arrow_up
-            arrowdown: arrow_down
-            settingmenu: menu
-            smarthome: smart_home
-            returnback: return_back
+# 23. Control Backlight (Command: mg)
+- id: backlight
+  label: Control Backlight
+  kind: action
+  command: "mg {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Backlight 00-64 hex"
 
-  # === TUNE / CHANNEL ===
-  - id: tune_channel
-    label: Tune to Channel
-    kind: action
-    serial_cmd: "ma {set_id} {data00} {data01} {data02}"
-    ip_cmd: "CHANNEL_SETTING_ATSC_ATV {channel} {source}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: channel
-        type: integer
-        description: "Channel number"
-      - name: source
-        type: enum
-        values:
-          ip:
-            antenna: antenna
-            cable: cable
-    note: "Serial tune command is multi-byte and region-dependent; see source for DTV/satellite variants"
+# 23. Control Panel Light (Command: mg)
+- id: panel_light
+  label: Control Panel Light
+  kind: action
+  command: "mg {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "Panel light 00-64 hex"
+  # UNRESOLVED: backlight and panel light share opcode mg; documented as two distinct functions in source.
 
-  - id: channel_add_delete
-    label: Channel Add/Delete
-    kind: action
-    serial_cmd: "mb {set_id} {state}"
-    ip_cmd: "CHANNEL_ADD_DELETE {state_ip}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: state
-        type: enum
-        values:
-          serial:
-            "00": delete_skip
-            "01": add
-          ip:
-            add: add
-            delete: delete
+# 24. Input Select (Command: xb)
+- id: input_select
+  label: Input Select (Main)
+  kind: action
+  command: "xb {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "00=DTV, 01=CADTV, 02=Satellite DTV, 03=ISDB-CS1, 04=ISDB-CS2, 10=ATV, 11=CATV, 20=AV1, 21=AV2, 40=Component1, 41=Component2, 60=RGB, 90=HDMI1, 91=HDMI2, 92=HDMI3, 93=HDMI4"
 
-  # === 3D (model-dependent) ===
-  - id: set_3d
-    label: Set 3D Mode
-    kind: action
-    serial_cmd: "xt {set_id} {d00} {d01} {d02} {d03}"
-    ip_cmd: "PICTURE_3D {args}"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-      - name: mode
-        type: enum
-        values:
-          "00": "3D On"
-          "01": "3D Off"
-          "02": 3D_to_2D
-          "03": 2D_to_3D
-    note: "3D commands are model-dependent; multi-byte data for pattern, direction, depth"
+# 25. 3D (Command: xt) - 3D models only
+- id: picture_3d
+  label: 3D Mode
+  kind: action
+  command: "xt {set_id} {d0} {d1} {d2} {d3}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: d0
+      type: string
+      description: "00=3D On, 01=3D Off, 02=3D to 2D, 03=2D to 3D"
+    - name: d1
+      type: string
+      description: "00=Top/Bottom, 01=Side by Side, 02=Check Board, 03=Frame Sequential, 04=Column interleaving, 05=Row interleaving"
+    - name: d2
+      type: string
+      description: "00=Right to Left, 01=Left to Right (Plasma only)"
+    - name: d3
+      type: string
+      description: "3D depth 00-14 hex"
+  # UNRESOLVED: 49NANO80UNA is not 3D. Included for protocol completeness.
 
-  # === AUTO CONFIGURE ===
-  - id: auto_configure
-    label: Auto Configure
-    kind: action
-    serial_cmd: "ju {set_id} 01"
-    ip_cmd: "KEY_ACTION autoconfig"
-    params:
-      - name: set_id
-        type: integer
-        min: 0
-        max: 99
-    note: "Works only in RGB (PC) mode"
+# 26. Extended 3D (Command: xv) - 3D models only
+- id: picture_3d_extension
+  label: Extended 3D
+  kind: action
+  command: "xv {set_id} {d0} {d1}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: d0
+      type: string
+      description: "00=3D Picture Correction, 01=3D Depth, 02=3D Viewpoint, 06=3D Color Correction, 07=3D Sound Zooming, 08=Normal Image View, 09=3D Mode (Genre)"
+    - name: d1
+      type: string
+      description: "Per-option: d0=00 -> 00/01; d0=01/02 -> 0-14 (depth) or 0-20 (viewpoint); d0=06/07 -> 00/01; d0=08 -> 00/01; d0=09 -> 00-05 (Standard/Sport/Cinema/Extreme/Manual/Auto)"
+  # UNRESOLVED: 49NANO80UNA is not 3D. Included for protocol completeness.
+
+# 27. Auto Configure (Command: ju) - RGB/PC mode only
+- id: auto_configure
+  label: Auto Configure
+  kind: action
+  command: "ju {set_id} {data}\r"
+  params:
+    - name: set_id
+      type: string
+      description: "Set ID hex byte"
+    - name: data
+      type: string
+      description: "01=Run auto configure (RGB/PC mode only)"
 ```
 
 ## Feedbacks
-
 ```yaml
-feedbacks:
-  - id: power_state
-    type: enum
-    values: ["off", "on"]
-    serial_response: "a {set_id} OK {data} x"
-    description: "Queried by sending ka {set_id} FF; returns 00=off, 01=on"
-
-  - id: volume_level
-    type: integer
-    range: "0-100"
-    serial_response: "f {set_id} OK {data_hex} x"
-    description: "Queried by sending kf {set_id} FF"
-
-  - id: volume_mute_state
-    type: enum
-    values: [muted, unmuted]
-    serial_response: "e {set_id} OK {data} x"
-    description: "Queried by sending ke {set_id} FF; 00=muted, 01=unmuted"
-
-  - id: input_source
-    type: enum
-    serial_response: "b {set_id} OK {data} x"
-    description: "Queried by sending xb {set_id} FF"
-
-  - id: aspect_ratio
-    type: enum
-    serial_response: "c {set_id} OK {data} x"
-    description: "Queried by sending kc {set_id} FF"
-
-  - id: ack_ok
-    type: string
-    description: "General OK acknowledgement: [Command2] [Set ID] OK [Data] x"
-
-  - id: ack_ng
-    type: string
-    description: "General error acknowledgement: [Command2] [Set ID] NG [Data] x; Data 00 = illegal code"
+- id: power_state
+  type: enum
+  values: [off, on]
+  source: "Response to ka {set_id} FF - data 00=Off, 01=On"
+- id: volume_mute_state
+  type: enum
+  values: [on, off]
+  source: "Response to ke {set_id} FF - data 00=Mute on, 01=Mute off"
+# UNRESOLVED: most commands (kd, kg, kh, ki, kj, kk, kl, km, kr, ks, kt, kc, xb, xu, jq, xt, xv, mb, mg) accept FF as query data and return current state in the same ACK format; not enumerated as individual Feedbacks.
 ```
 
 ## Variables
-
 ```yaml
-# All level-type parameters are settable via their respective commands.
-# The query mechanism (send FF as data) returns current value.
-# No separate variable system beyond command-level read/write.
+# UNRESOLVED: settable scalar parameters (volume/contrast/brightness/color/tint/sharpness/treble/bass/balance/color_temperature/energy_saving) are exposed as Actions rather than discrete Variables.
 ```
 
 ## Events
-
 ```yaml
-# UNRESOLVED: source does not describe unsolicited notifications from the TV
+# UNRESOLVED: source does not document unsolicited device-to-host events.
 ```
 
 ## Macros
-
 ```yaml
-# UNRESOLVED: no multi-step sequences described in source
+# UNRESOLVED: source does not document multi-step sequences.
 ```
 
 ## Safety
-
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - "During media playback/recording, only Power (ka) and Key (mc) commands execute; all others return NG"
-  - "Remote control lock is released on main power cycle (unplug 20-30s)"
-  - "USB-to-Serial converter: ka command only works when TV is powered on (RS-232C cable works in standby too)"
-# UNRESOLVED: no explicit safety warnings or power-on sequencing requirements in source
+interlocks: []
+# UNRESOLVED: source does not contain safety warnings or interlock procedures.
+# Note: Remote control lock (km 01) disables IR + local keys. External control lock is released by AC power cycle (unplug 20-30s). Standby + key lock prevents IR/local power-on; not safety-critical.
 ```
 
 ## Notes
+- Transport: ASCII over RS-232C, 9600 8N1, carriage-return (0x0D) terminated, space (0x20) delimited
+- Cable: crossed (null-modem) RS-232C cable required
+- USB-to-Serial alternative: PL2303 chip (VID 0x0557, PID 0x2008); works only when TV is powered on
+- Set ID: 1-99 decimal in TV menu, 0x00-0x63 hex in protocol; 0x00 = broadcast to all
+- ACK format (TV -> host): `[Cmd2][ ][SetID][ ][OK/NG][Data][x]` where `x` is the literal ASCII 'x' (0x78), NOT a CR. Note this is the response terminator; transmissions use CR.
+- IP control: Telnet to port 9761. 3-digit setup password (default 828) gates the IP Control Setup menu on the TV itself; the telnet session itself has no login
+- WOL power-on: requires `Mobile TV On` submenu enabled and a WOL mobile app (iOS / Google Play)
+- Media playback/recording restriction: only Power (ka) and Key (mc) commands are accepted; all others return NG
+- Model-specific commands: ISM (jp) is Plasma-only; 3D/Extended 3D (xt, xv) are 3D-models-only; Auto Configure (ju) requires RGB/PC input
+- The protocol is shared across a wide LG TV family; 49NANO80UNA is an LED/NanoCell, non-3D model, so the Plasma/3D actions in this spec will not work on this device but are retained for protocol completeness
 
-- **Serial command format:** `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where `[Cr]` = 0x0D, `[ ]` = 0x20 (space). Data is hexadecimal ASCII. Set ID 0 = broadcast to all sets (range 1-99).
-- **IP command format:** Plain-text keyword commands over telnet, terminated with Enter. Responses are `OK` or `NG` on separate lines.
-- **IP control setup:** Requires enabling "Network IP Control" on the TV via Settings button hold (5s on Live TV screen) → enter 828 → IP Control Setup → On → reboot. Marked "For USA only."
-- **Query convention:** Sending `FF` as data in any serial command reads the current status (Tier 2 inference: all commands with hex data range support status query via FF).
-- **USB-to-Serial:** Only PL2303 chip-based converters supported (VID 0x0557, PID 0x2008), not provided by LG.
-- **IP volume range** is 0-100 decimal; **serial volume range** is 0x00-0x64 (hex). Sharpness serial max is 0x32 (50 decimal); IP max is 50.
-- **Model-dependent features:** 3D commands, ISM method (plasma only), certain aspect ratio modes, and tune command behavior vary by model and region.
-- **WOL (Wake on LAN):** TV can be powered on via WOL if "Mobile TV On" setting is enabled and a WOL app is used.
+<!-- UNRESOLVED: Network IP control (Telnet 9761) uses a different command syntax — `KEYWORD value` form (e.g. `VOLUME_MUTE on`, `PICTURE_CONTRAST 50`) — documented in source pp.13-15. Only RS-232C protocol is enumerated in detail above. -->
 
-<!-- UNRESOLVED: exact RS-232C connector type for 49NANO80UNA (DE9, phone jack, or USB-only) not confirmed -->
-<!-- UNRESOLVED: IP control availability outside USA not confirmed -->
-<!-- UNRESOLVED: no firmware version compatibility stated -->
-<!-- UNRESOLVED: no error recovery or fault behavior sequences documented -->
-<!-- UNRESOLVED: IP control query/read syntax not documented — only set commands shown -->
+<!-- UNRESOLVED: Power command works in both standby and on-state with RS-232C cable, but only when TV is on with USB-to-Serial converter. Source explicitly notes this asymmetry. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-25T20:58:34.297Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-06-02T01:11:18.020Z
+last_checked_at: 2026-06-02T01:48:20.704Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:58:34.297Z
-matched_actions: 27
-action_count: 27
-confidence: high
-summary: "All 27 spec actions matched verbatim in source; all transport parameters verified; full coverage."
+checked_at: 2026-06-02T01:48:20.704Z
+matched_actions: 28
+action_count: 28
+confidence: medium
+summary: "All 28 spec actions matched literal RS-232C command mnemonics in source; all transport parameters verified verbatim. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "ISM (jp) is Plasma-only; 3D (xt) and Extended 3D (xv) are 3D-models-only. 49NANO80UNA is LED/NanoCell, non-3D. These actions are included for protocol completeness, not because the device supports them."
+- "49NANO80UNA is LED; ISM not supported. Included for protocol completeness."
+- "ma format varies by region (Korea/Japan/N.America/Europe) and signal type (analog/digital/cable/satellite). See source pp.9-10 for full encoding table."
+- "backlight and panel light share opcode mg; documented as two distinct functions in source."
+- "49NANO80UNA is not 3D. Included for protocol completeness."
+- "most commands (kd, kg, kh, ki, kj, kk, kl, km, kr, ks, kt, kc, xb, xu, jq, xt, xv, mb, mg) accept FF as query data and return current state in the same ACK format; not enumerated as individual Feedbacks."
+- "settable scalar parameters (volume/contrast/brightness/color/tint/sharpness/treble/bass/balance/color_temperature/energy_saving) are exposed as Actions rather than discrete Variables."
+- "source does not document unsolicited device-to-host events."
+- "source does not document multi-step sequences."
+- "source does not contain safety warnings or interlock procedures."
+- "Network IP control (Telnet 9761) uses a different command syntax — `KEYWORD value` form (e.g. `VOLUME_MUTE on`, `PICTURE_CONTRAST 50`) — documented in source pp.13-15. Only RS-232C protocol is enumerated in detail above."
+- "Power command works in both standby and on-state with RS-232C cable, but only when TV is on with USB-to-Serial converter. Source explicitly notes this asymmetry."
 ```
 
 ---

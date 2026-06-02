@@ -21,19 +21,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:01:25.457Z
 last_checked_at: 2026-05-16T11:38:03.683Z
 generated_at: 2026-05-16T11:38:03.683Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN control not documented beyond noting a wireless LAN unit can be connected"
+  - "multiple baud rates supported (115200/38400/19200/9600/4800); no single default stated"
+  - "hardware flow control (RTS/CTS) pinout defined but flow_control setting not specified"
+  - "many settable parameters exist but source organizes them as action param spaces."
+  - "no unsolicited notification mechanism described in source - projector only responds to commands."
+  - "no explicit multi-step macro sequences defined in source."
+  - "specific voltage/current/power specifications not stated in source."
+  - "lamp replacement moratorium periods not detailed beyond bit-flag naming."
+  - "serial baud rate default not stated; source lists 115200/38400/19200/9600/4800 as options with no single default"
+  - "data_rate for wired LAN is auto-switchable (10/100 Mbps) — no explicit configuration"
+  - "input terminal numeric codes (DATA01 for INPUT SW CHANGE) defined in appendix not present in source"
+  - "aspect value codes and eco mode value codes defined in appendix not present in source"
+  - "sub input setting values for PIP/PbP defined in appendix not present in source"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:38:03.683Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions map one-to-one to source commands with matching parameters; transport port 7142 and serial settings fully verified in source."
+  confidence: medium
+  summary: "All 53 spec actions map one-to-one to source commands with matching parameters; transport port 7142 and serial settings fully verified in source. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -698,7 +711,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:01:25.457Z
 last_checked_at: 2026-05-16T11:38:03.683Z
 ```
 
@@ -709,14 +722,26 @@ verdict: verified
 checked_at: 2026-05-16T11:38:03.683Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions map one-to-one to source commands with matching parameters; transport port 7142 and serial settings fully verified in source."
+confidence: medium
+summary: "All 53 spec actions map one-to-one to source commands with matching parameters; transport port 7142 and serial settings fully verified in source. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN control not documented beyond noting a wireless LAN unit can be connected"
+- "multiple baud rates supported (115200/38400/19200/9600/4800); no single default stated"
+- "hardware flow control (RTS/CTS) pinout defined but flow_control setting not specified"
+- "many settable parameters exist but source organizes them as action param spaces."
+- "no unsolicited notification mechanism described in source - projector only responds to commands."
+- "no explicit multi-step macro sequences defined in source."
+- "specific voltage/current/power specifications not stated in source."
+- "lamp replacement moratorium periods not detailed beyond bit-flag naming."
+- "serial baud rate default not stated; source lists 115200/38400/19200/9600/4800 as options with no single default"
+- "data_rate for wired LAN is auto-switchable (10/100 Mbps) — no explicit configuration"
+- "input terminal numeric codes (DATA01 for INPUT SW CHANGE) defined in appendix not present in source"
+- "aspect value codes and eco mode value codes defined in appendix not present in source"
+- "sub input setting values for PIP/PbP defined in appendix not present in source"
 ```
 
 ---

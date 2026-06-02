@@ -37,14 +37,23 @@ last_checked_at: 2026-05-14T18:17:14.628Z
 generated_at: 2026-05-14T18:17:14.628Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model-to-endpoint mapping not fully documented — source notes only list models where certain endpoints are NOT present"
+  - "firmware version compatibility not stated in source"
+  - "no unsolicited event/notification mechanism documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "source does not document safety warnings, interlock procedures, or power-on sequencing"
+  - "exact model-to-endpoint availability matrix not fully specified"
+  - "no error response codes or error handling documented"
+  - "no rate limiting or concurrency guidance documented"
+  - "RTSP/SRT/RTMP streaming auth parameters (user/pass, passphrase) documented but not the control API auth"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.628Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1232,14 +1241,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.628Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 58 spec actions matched literally to source paths; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model-to-endpoint mapping not fully documented — source notes only list models where certain endpoints are NOT present"
+- "firmware version compatibility not stated in source"
+- "no unsolicited event/notification mechanism documented in source"
+- "no multi-step macro sequences documented in source"
+- "source does not document safety warnings, interlock procedures, or power-on sequencing"
+- "exact model-to-endpoint availability matrix not fully specified"
+- "no error response codes or error handling documented"
+- "no rate limiting or concurrency guidance documented"
+- "RTSP/SRT/RTMP streaming auth parameters (user/pass, passphrase) documented but not the control API auth"
 ```
 
 ---

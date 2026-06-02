@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T09:17:01.326Z
 last_checked_at: 2026-05-13T09:18:00.633Z
 generated_at: 2026-05-13T09:18:00.633Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit control not documented in source; commands differ per model"
+  - "flow control not specified in source"
+  - "structured variable inventory not extracted; commands provide data fields"
+  - "no unsolicited event notifications documented in source;"
+  - "no explicit multi-step macro sequences documented in source"
+  - "interlock switch states documented in error bitfield but no explicit"
+  - "wireless LAN unit control — \"see the operation manual of the wireless LAN unit to be used\""
+  - "input terminal value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+  - "aspect value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+  - "eco mode value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+  - "sub input setting values — \"see the Appendix 'Supplementary Information by Command'\""
+  - "base model type values — \"see the Appendix 'Supplementary Information by Command'\""
+  - "standby mode command acceptance — \"Some models cannot receive commands in standby mode\""
+  - "flow control (RTS/CTS used in physical pinout but software control not documented)"
 verification:
   verdict: verified
   checked_at: 2026-05-13T09:18:00.633Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched literally to source command bytes; transport parameters verified; full command set coverage achieved."
+  confidence: medium
+  summary: "All 53 spec actions matched literally to source command bytes; transport parameters verified; full command set coverage achieved. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -705,7 +719,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T09:17:01.326Z
 last_checked_at: 2026-05-13T09:18:00.633Z
 ```
 
@@ -716,14 +730,27 @@ verdict: verified
 checked_at: 2026-05-13T09:18:00.633Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched literally to source command bytes; transport parameters verified; full command set coverage achieved."
+confidence: medium
+summary: "All 53 spec actions matched literally to source command bytes; transport parameters verified; full command set coverage achieved. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit control not documented in source; commands differ per model"
+- "flow control not specified in source"
+- "structured variable inventory not extracted; commands provide data fields"
+- "no unsolicited event notifications documented in source;"
+- "no explicit multi-step macro sequences documented in source"
+- "interlock switch states documented in error bitfield but no explicit"
+- "wireless LAN unit control — \"see the operation manual of the wireless LAN unit to be used\""
+- "input terminal value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+- "aspect value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+- "eco mode value enumeration — \"see the Appendix 'Supplementary Information by Command'\""
+- "sub input setting values — \"see the Appendix 'Supplementary Information by Command'\""
+- "base model type values — \"see the Appendix 'Supplementary Information by Command'\""
+- "standby mode command acceptance — \"Some models cannot receive commands in standby mode\""
+- "flow control (RTS/CTS used in physical pinout but software control not documented)"
 ```
 
 ---

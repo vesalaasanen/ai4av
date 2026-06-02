@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:27.392Z
 last_checked_at: 2026-05-14T18:17:19.160Z
 generated_at: 2026-05-14T18:17:19.160Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "This manual (BDT140013 Rev 7.1) appears to be a generic NEC projector command reference. Confirm X462UN Series-specific command support."
+  - "flow control not mentioned in source"
+  - "Variables are settable parameters tracked independently of discrete actions."
+  - "The source does not document unsolicited event notifications from the projector."
+  - "No explicit multi-step macro sequences are documented in the source."
+  - "voltage, current, power specifications not stated in source"
+  - "Input terminal code values vary by model (some have alternatives like 1Ah vs 03h for COMPUTER3, A1h vs 1Ah for HDMI). Verify model-specific codes."
+  - "Eco mode values vary by model (Normal may be 00h or 01h). Verify model-specific values."
+  - "Aspect mode hex codes vary (e.g. FULL may be 09h or 10h). Verify model-specific values."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.160Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -528,7 +537,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:27.392Z
 last_checked_at: 2026-05-14T18:17:19.160Z
 ```
 
@@ -539,14 +548,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.160Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete."
+confidence: medium
+summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "This manual (BDT140013 Rev 7.1) appears to be a generic NEC projector command reference. Confirm X462UN Series-specific command support."
+- "flow control not mentioned in source"
+- "Variables are settable parameters tracked independently of discrete actions."
+- "The source does not document unsolicited event notifications from the projector."
+- "No explicit multi-step macro sequences are documented in the source."
+- "voltage, current, power specifications not stated in source"
+- "Input terminal code values vary by model (some have alternatives like 1Ah vs 03h for COMPUTER3, A1h vs 1Ah for HDMI). Verify model-specific codes."
+- "Eco mode values vary by model (Normal may be 00h or 01h). Verify model-specific values."
+- "Aspect mode hex codes vary (e.g. FULL may be 09h or 10h). Verify model-specific values."
 ```
 
 ---

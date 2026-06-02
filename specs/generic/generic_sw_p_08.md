@@ -30,14 +30,22 @@ last_checked_at: 2026-04-30T09:41:55.599Z
 generated_at: 2026-04-30T09:41:55.599Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "original ProBel SW-P-08 Issue 4 specification document not available; spec derived from Rascular implementation notes, Bitfocus Companion module, and open-source JS implementation"
+  - "salvo encoding details not in source"
+  - "no settable parameters described as Variables in source"
+  - "full event taxonomy for unsolicited device-originated messages not fully enumerated in source"
+  - "salvo definition format, salvo number encoding, and salvo execution byte structure not in source"
+  - "no safety warnings or interlock procedures in source"
+  - "original ProBel SW-P-08 Issue 4 PDF not retrieved; byte-level encoding derived from open-source JS implementations and Rascular notes"
+  - "salvo group byte encoding, salvo execution command number not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:41:55.599Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions matched standard outgoing commands; transport (TCP 2008, serial 9600 8N1) verified."
+  confidence: medium
+  summary: "All 12 spec actions matched standard outgoing commands; transport (TCP 2008, serial 9600 8N1) verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -358,14 +366,21 @@ verdict: verified
 checked_at: 2026-04-30T09:41:55.599Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions matched standard outgoing commands; transport (TCP 2008, serial 9600 8N1) verified."
+confidence: medium
+summary: "All 12 spec actions matched standard outgoing commands; transport (TCP 2008, serial 9600 8N1) verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "original ProBel SW-P-08 Issue 4 specification document not available; spec derived from Rascular implementation notes, Bitfocus Companion module, and open-source JS implementation"
+- "salvo encoding details not in source"
+- "no settable parameters described as Variables in source"
+- "full event taxonomy for unsolicited device-originated messages not fully enumerated in source"
+- "salvo definition format, salvo number encoding, and salvo execution byte structure not in source"
+- "no safety warnings or interlock procedures in source"
+- "original ProBel SW-P-08 Issue 4 PDF not retrieved; byte-level encoding derived from open-source JS implementations and Rascular notes"
+- "salvo group byte encoding, salvo execution command number not stated in source"
 ```
 
 ---

@@ -25,14 +25,27 @@ last_checked_at: 2026-05-04T06:03:28.006Z
 generated_at: 2026-05-04T06:03:28.006Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source states \"contact tech@keydigital.com for further details of RS-232C discrete command codes\" — the command set may be incomplete"
+  - "stop bits, flow control not stated in source"
+  - "stop bits not stated in source"
+  - "flow control not stated in source"
+  - "no continuous variable definitions found in source beyond action params"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "stop bits and flow control for RS-232 not stated in source"
+  - "overall saturation range may be incorrectly documented (shows {34-35})"
+  - "source references additional RS-232C discrete command codes available from tech@keydigital.com — command set may be incomplete"
+  - "response/acknowledgement format for commands not documented"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-04T06:03:28.006Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 37 spec actions matched literally against the source; transport parameters verified; command set fully represented."
+  confidence: medium
+  summary: "All 37 spec actions matched literally against the source; transport parameters verified; command set fully represented. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -430,14 +443,26 @@ verdict: verified
 checked_at: 2026-05-04T06:03:28.006Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 37 spec actions matched literally against the source; transport parameters verified; command set fully represented."
+confidence: medium
+summary: "All 37 spec actions matched literally against the source; transport parameters verified; command set fully represented. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source states \"contact tech@keydigital.com for further details of RS-232C discrete command codes\" — the command set may be incomplete"
+- "stop bits, flow control not stated in source"
+- "stop bits not stated in source"
+- "flow control not stated in source"
+- "no continuous variable definitions found in source beyond action params"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "stop bits and flow control for RS-232 not stated in source"
+- "overall saturation range may be incorrectly documented (shows {34-35})"
+- "source references additional RS-232C discrete command codes available from tech@keydigital.com — command set may be incomplete"
+- "response/acknowledgement format for commands not documented"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

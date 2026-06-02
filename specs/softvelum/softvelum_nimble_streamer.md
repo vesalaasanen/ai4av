@@ -24,14 +24,21 @@ last_checked_at: 2026-05-14T18:17:20.556Z
 generated_at: 2026-05-14T18:17:20.556Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical device specs not applicable — software streaming server"
+  - "token format/salt mechanism only partially described in source"
+  - "software server - not a hardware device with power/input traits"
+  - "Nimble Streamer is a server software; configuration via config file"
+  - "no unsolicited notifications described in source"
+  - "software server; no hardware safety concerns in source"
+  - "full config file parameters list not in source — only management_* params shown"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.556Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference."
+  confidence: medium
+  summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -364,14 +371,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.556Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference."
+confidence: medium
+summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical device specs not applicable — software streaming server"
+- "token format/salt mechanism only partially described in source"
+- "software server - not a hardware device with power/input traits"
+- "Nimble Streamer is a server software; configuration via config file"
+- "no unsolicited notifications described in source"
+- "software server; no hardware safety concerns in source"
+- "full config file parameters list not in source — only management_* params shown"
 ```
 
 ---

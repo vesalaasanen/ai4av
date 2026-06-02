@@ -19,19 +19,35 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:10.312Z
 last_checked_at: 2026-05-14T18:17:18.981Z
 generated_at: 2026-05-14T18:17:18.981Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "model series name \"Q AVT\" not confirmed in source; manual title is \"Projector Control Command Reference Manual\""
+  - "baud rate selectable 115200/38400/19200/9600/4800 bps, no default stated"
+  - "RTS/CTS hardware flow control pinout present but not explicitly configured"
+  - "structured feedback definitions require deeper parsing of response formats"
+  - "variables are command-specific; full enumeration requires parsing all query responses"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macro sequences described in source"
+  - "safety warnings not present in source; power-on notes that no other command"
+  - "full input terminal code table varies by model; appendix lists model-specific values"
+  - "aspect ratio hex codes vary by model; appendix lists alternatives"
+  - "eco mode hex codes vary by model; appendix lists alternatives"
+  - "serial flow control configuration not explicitly stated"
+  - "interlock or safety warnings not present in source"
+  - "TCP keepalive or connection persistence settings not stated"
+  - "command timing or polling intervals not stated"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.981Z
   matched_actions: 52
   action_count: 53
-  confidence: high
-  summary: "All 52 spec actions have direct semantic matches in the source command list; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 52 spec actions have direct semantic matches in the source command list; transport parameters verified; bidirectional coverage complete. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -509,7 +525,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:10.312Z
 last_checked_at: 2026-05-14T18:17:18.981Z
 ```
 
@@ -520,14 +536,29 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.981Z
 matched_actions: 52
 action_count: 53
-confidence: high
-summary: "All 52 spec actions have direct semantic matches in the source command list; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 52 spec actions have direct semantic matches in the source command list; transport parameters verified; bidirectional coverage complete. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "model series name \"Q AVT\" not confirmed in source; manual title is \"Projector Control Command Reference Manual\""
+- "baud rate selectable 115200/38400/19200/9600/4800 bps, no default stated"
+- "RTS/CTS hardware flow control pinout present but not explicitly configured"
+- "structured feedback definitions require deeper parsing of response formats"
+- "variables are command-specific; full enumeration requires parsing all query responses"
+- "no unsolicited event notifications documented"
+- "no multi-step macro sequences described in source"
+- "safety warnings not present in source; power-on notes that no other command"
+- "full input terminal code table varies by model; appendix lists model-specific values"
+- "aspect ratio hex codes vary by model; appendix lists alternatives"
+- "eco mode hex codes vary by model; appendix lists alternatives"
+- "serial flow control configuration not explicitly stated"
+- "interlock or safety warnings not present in source"
+- "TCP keepalive or connection persistence settings not stated"
+- "command timing or polling intervals not stated"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

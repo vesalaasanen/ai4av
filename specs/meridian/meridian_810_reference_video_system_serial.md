@@ -17,21 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - meridian-audio.info
+  - meridian-audio.com
 source_urls:
-  - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
-retrieved_at: 2026-05-04T18:01:40.170Z
+  - "https://www.meridian-audio.info/public/810-rs232-information[1899].pdf"
+  - "https://www.meridian-audio.info/public/810_video_system_user_guide[1293].pdf"
+  - https://www.meridian-audio.com/download/user_guides.html
+retrieved_at: 2026-05-21T12:39:22.586Z
 last_checked_at: 2026-05-27T15:39:42.373Z
 generated_at: 2026-05-27T15:39:42.373Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "projector model number not stated in source; unified 810 system only"
+  - "colour adjustment commands return numeric feedback but no discrete"
+  - "no unsolicited notifications described in source"
+  - "no multi-step sequences described in source"
+  - "lamp hour limit (1500h) is advisory only; no hard interlock described"
+  - "no safety interlock procedure for projector control via scaler"
+  - "lamp hour reset method not stated in source; UNRESOLVED: firmware version not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:39:42.373Z
   matched_actions: 63
   action_count: 63
-  confidence: high
-  summary: "All 63 spec actions matched their source commands one-to-one; transport parameters fully verified."
+  confidence: medium
+  summary: "All 63 spec actions matched their source commands one-to-one; transport parameters fully verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -473,9 +483,12 @@ Projector is controlled via Scaler — all PR_ commands routed through SC_ prefi
 ```yaml
 source_domains:
   - meridian-audio.info
+  - meridian-audio.com
 source_urls:
-  - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
-retrieved_at: 2026-05-04T18:01:40.170Z
+  - "https://www.meridian-audio.info/public/810-rs232-information[1899].pdf"
+  - "https://www.meridian-audio.info/public/810_video_system_user_guide[1293].pdf"
+  - https://www.meridian-audio.com/download/user_guides.html
+retrieved_at: 2026-05-21T12:39:22.586Z
 last_checked_at: 2026-05-27T15:39:42.373Z
 ```
 
@@ -486,14 +499,20 @@ verdict: verified
 checked_at: 2026-05-27T15:39:42.373Z
 matched_actions: 63
 action_count: 63
-confidence: high
-summary: "All 63 spec actions matched their source commands one-to-one; transport parameters fully verified."
+confidence: medium
+summary: "All 63 spec actions matched their source commands one-to-one; transport parameters fully verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "projector model number not stated in source; unified 810 system only"
+- "colour adjustment commands return numeric feedback but no discrete"
+- "no unsolicited notifications described in source"
+- "no multi-step sequences described in source"
+- "lamp hour limit (1500h) is advisory only; no hard interlock described"
+- "no safety interlock procedure for projector control via scaler"
+- "lamp hour reset method not stated in source; UNRESOLVED: firmware version not stated in source"
 ```
 
 ---

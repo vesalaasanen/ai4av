@@ -17,23 +17,39 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.crestron.com
-  - crestron.com
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
-  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
-retrieved_at: 2026-05-01T02:00:50.953Z
+retrieved_at: 2026-04-30T04:31:08.341Z
 last_checked_at: 2026-05-14T18:17:15.055Z
 generated_at: 2026-05-14T18:17:15.055Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact models within the IV-CAM-I Series are not enumerated in the source"
+  - "serial data bits, parity, stop bits, and flow control not stated in source"
+  - "no authentication or login procedure described in source"
+  - "data_bits not stated in source"
+  - "parity not stated in source"
+  - "stop_bits not stated in source"
+  - "flow_control not stated in source"
+  - "no continuous settable variables beyond the direct-position actions already"
+  - "source does not describe unsolicited notification events"
+  - "no multi-step sequences described in source"
+  - "source does not contain safety warnings, interlock procedures, or"
+  - "exact IV-CAM-I Series sub-models not enumerated"
+  - "serial data bits, parity, stop bits, flow control not specified"
+  - "command timing constraints and inter-command delays not specified"
+  - "maximum connection count or concurrent session limits not specified"
+  - "whether TCP connection is persistent or per-command not specified"
+  - "VISCA protocol version not stated"
+  - "applicability of CAM_MountMode to IV-CAM-I Series not confirmed"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.055Z
   matched_actions: 91
   action_count: 91
-  confidence: high
-  summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved."
+  confidence: medium
+  summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved. (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1203,11 +1219,9 @@ Zoom position lookup tables for 12x and 20x optical zoom ratios are provided in 
 ```yaml
 source_domains:
   - docs.crestron.com
-  - crestron.com
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
-  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
-retrieved_at: 2026-05-01T02:00:50.953Z
+retrieved_at: 2026-04-30T04:31:08.341Z
 last_checked_at: 2026-05-14T18:17:15.055Z
 ```
 
@@ -1218,14 +1232,31 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.055Z
 matched_actions: 91
 action_count: 91
-confidence: high
-summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved."
+confidence: medium
+summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved. (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact models within the IV-CAM-I Series are not enumerated in the source"
+- "serial data bits, parity, stop bits, and flow control not stated in source"
+- "no authentication or login procedure described in source"
+- "data_bits not stated in source"
+- "parity not stated in source"
+- "stop_bits not stated in source"
+- "flow_control not stated in source"
+- "no continuous settable variables beyond the direct-position actions already"
+- "source does not describe unsolicited notification events"
+- "no multi-step sequences described in source"
+- "source does not contain safety warnings, interlock procedures, or"
+- "exact IV-CAM-I Series sub-models not enumerated"
+- "serial data bits, parity, stop bits, flow control not specified"
+- "command timing constraints and inter-command delays not specified"
+- "maximum connection count or concurrent session limits not specified"
+- "whether TCP connection is persistent or per-command not specified"
+- "VISCA protocol version not stated"
+- "applicability of CAM_MountMode to IV-CAM-I Series not confirmed"
 ```
 
 ---

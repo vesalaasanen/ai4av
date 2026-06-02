@@ -19,19 +19,35 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:48.729Z
 last_checked_at: 2026-05-14T18:17:18.793Z
 generated_at: 2026-05-14T18:17:18.793Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific NP-VE303 input terminal codes not listed in the supplementary tables — they may share codes with another model family"
+  - "eco mode values for NP-VE303 not listed in the supplementary eco mode table"
+  - "aspect values for NP-VE303 not listed in the supplementary aspect table"
+  - "standby mode setting for receiving commands — NP-VE303 not listed in the standby mode table"
+  - "flow control not explicitly stated; RTS/CTS pins connected on D-SUB 9P"
+  - "specific aspect values for NP-VE303 not in source."
+  - "specific eco mode values for NP-VE303 not in source."
+  - "no unsolicited notification protocol described in source."
+  - "no multi-step macro sequences described in source."
+  - "specific safety interlock procedures not detailed beyond error flag reporting."
+  - "input terminal hex codes for NP-VE303 not found in supplementary tables"
+  - "eco mode values for NP-VE303 not found in supplementary eco mode table"
+  - "aspect adjust values for NP-VE303 not found in supplementary aspect table"
+  - "standby mode setting for NP-VE303 not found in standby mode table"
+  - "whether NP-VE303 supports LAN control or serial only"
+  - "default baud rate not stated (multiple supported: 115200/38400/19200/9600/4800) -->Spec generated above. Key points:"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.793Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions matched wire-level tokens in NEC VE303 serial source; bidirectional command coverage confirmed."
+  confidence: medium
+  summary: "All 52 spec actions matched wire-level tokens in NEC VE303 serial source; bidirectional command coverage confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -604,7 +620,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:48.729Z
 last_checked_at: 2026-05-14T18:17:18.793Z
 ```
 
@@ -615,14 +631,29 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.793Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions matched wire-level tokens in NEC VE303 serial source; bidirectional command coverage confirmed."
+confidence: medium
+summary: "All 52 spec actions matched wire-level tokens in NEC VE303 serial source; bidirectional command coverage confirmed. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific NP-VE303 input terminal codes not listed in the supplementary tables — they may share codes with another model family"
+- "eco mode values for NP-VE303 not listed in the supplementary eco mode table"
+- "aspect values for NP-VE303 not listed in the supplementary aspect table"
+- "standby mode setting for receiving commands — NP-VE303 not listed in the standby mode table"
+- "flow control not explicitly stated; RTS/CTS pins connected on D-SUB 9P"
+- "specific aspect values for NP-VE303 not in source."
+- "specific eco mode values for NP-VE303 not in source."
+- "no unsolicited notification protocol described in source."
+- "no multi-step macro sequences described in source."
+- "specific safety interlock procedures not detailed beyond error flag reporting."
+- "input terminal hex codes for NP-VE303 not found in supplementary tables"
+- "eco mode values for NP-VE303 not found in supplementary eco mode table"
+- "aspect adjust values for NP-VE303 not found in supplementary aspect table"
+- "standby mode setting for NP-VE303 not found in standby mode table"
+- "whether NP-VE303 supports LAN control or serial only"
+- "default baud rate not stated (multiple supported: 115200/38400/19200/9600/4800) -->Spec generated above. Key points:"
 ```
 
 ---

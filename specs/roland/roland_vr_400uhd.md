@@ -24,14 +24,23 @@ last_checked_at: 2026-05-05T05:41:50.750Z
 generated_at: 2026-05-05T05:41:50.750Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power on/off commands not documented in source"
+  - "flow control not stated in source"
+  - "read-back state query mechanism not fully documented"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "password format and configuration method not documented"
+  - "flow control for RS-232 not specified"
+  - "firmware version not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-05T05:41:50.750Z
   matched_actions: 46
   action_count: 46
-  confidence: high
-  summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified."
+  confidence: medium
+  summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -579,14 +588,22 @@ verdict: verified
 checked_at: 2026-05-05T05:41:50.750Z
 matched_actions: 46
 action_count: 46
-confidence: high
-summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified."
+confidence: medium
+summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power on/off commands not documented in source"
+- "flow control not stated in source"
+- "read-back state query mechanism not fully documented"
+- "no unsolicited event notifications documented"
+- "no multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "password format and configuration method not documented"
+- "flow control for RS-232 not specified"
+- "firmware version not stated"
 ```
 
 ---

@@ -17,21 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-solis-ig/Content/Topics/IP%20Control%20Guide.htm"
+retrieved_at: 2026-05-26T16:47:54.583Z
 last_checked_at: 2026-05-31T22:42:30.855Z
 generated_at: 2026-05-31T22:42:30.855Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control — source document covers only RS-232. Port number for IP control not stated in source."
+  - "serial port identifier not stated in source"
+  - "response payload structures not fully specified in source."
+  - "no persistent parameter storage commands identified in source."
+  - "no unsolicited notification mechanism described in source."
+  - "no multi-step macro sequences documented in source."
+  - "no safety warnings or interlock procedures stated in source."
+  - "TCP/IP control port and protocol details not stated in source. Firmware version compatibility range not stated. Response terminator format not documented."
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:42:30.855Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched verbatim with source hex codes and ASCII equivalents; transport parameters verified."
+  confidence: medium
+  summary: "All 50 spec actions matched verbatim with source hex codes and ASCII equivalents; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -480,9 +490,11 @@ Input 7 (VGA) and Input 8 (HDMI1) are out of letter sequence to remain compatibl
 ```yaml
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-solis-ig/Content/Topics/IP%20Control%20Guide.htm"
+retrieved_at: 2026-05-26T16:47:54.583Z
 last_checked_at: 2026-05-31T22:42:30.855Z
 ```
 
@@ -493,14 +505,21 @@ verdict: verified
 checked_at: 2026-05-31T22:42:30.855Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched verbatim with source hex codes and ASCII equivalents; transport parameters verified."
+confidence: medium
+summary: "All 50 spec actions matched verbatim with source hex codes and ASCII equivalents; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control — source document covers only RS-232. Port number for IP control not stated in source."
+- "serial port identifier not stated in source"
+- "response payload structures not fully specified in source."
+- "no persistent parameter storage commands identified in source."
+- "no unsolicited notification mechanism described in source."
+- "no multi-step macro sequences documented in source."
+- "no safety warnings or interlock procedures stated in source."
+- "TCP/IP control port and protocol details not stated in source. Firmware version compatibility range not stated. Response terminator format not documented."
 ```
 
 ---

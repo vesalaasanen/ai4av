@@ -16,1050 +16,450 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
+  - aca.im
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
-last_checked_at: 2026-05-31T22:41:20.902Z
-generated_at: 2026-05-31T22:41:20.902Z
+  - "https://aca.im/driver_docs/Sony/sony%20bravia%20simple%20ip%20control.pdf"
+retrieved_at: 2026-05-26T12:23:40.416Z
+last_checked_at: 2026-06-02T07:06:40.943Z
+generated_at: 2026-06-02T07:06:40.943Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "KDXG8599 model number does not appear verbatim in the source; source covers \"BRAVIA 2014 models\" generically. Confirm applicability against a real KDXG8599 unit before publishing."
+  - "no standalone variable registry documented in source."
+  - "no macro sequences described in source."
+  - "source contains no safety warnings, interlock procedures, or"
+  - "exact KDXG8599 hardware revision and firmware compatibility ranges are not stated; source describes \"BRAVIA 2014 models\" generically."
+  - "behavior when Simple IP Control is disabled in TV menus (assumed: TCP port 20060 closed) is not explicitly stated."
+  - "maximum concurrent client count for port 20060 not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T22:41:20.902Z
-  matched_actions: 121
-  action_count: 121
-  confidence: high
-  summary: "All 121 spec actions matched to source commands; transport parameters verified; bidirectional coverage complete."
+  checked_at: 2026-06-02T07:06:40.943Z
+  matched_actions: 28
+  action_count: 28
+  confidence: medium
+  summary: "All 28 spec actions matched to source FourCC tokens; all transport parameters (TCP 20060, fixed 24-byte frame, no auth) verified; full source coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-26
+created_at: 2026-06-02
 ---
 
 # Sony KDXG8599 Series Control Spec
 
 ## Summary
-Sony BRAVIA IP control protocol for 2014 models. Low-level TCP protocol on port 20060 with 24-byte fixed-size messages. Supports power, volume, channel, input, mute, PIP, and IR remote passthrough via `setIrccCode`. No authentication required.
+Sony BRAVIA Simple IP Control Protocol (Low Level Protocol) for 2014-era BRAVIA TV models. Control runs over TCP using a 24-byte fixed-size message format (header `*S`, 1-byte type, 4-byte FourCC function, 16-byte parameter, `LF` footer). Must be enabled on the TV via Network > Home Network Setup > IP Control > Simple IP Control (or via Hotel/Pro Mode > IP Control > Simple IP Control).
 
-<!-- UNRESOLVED: high-level WebAPI / JSON-RPC layer not documented here -->
+<!-- UNRESOLVED: KDXG8599 model number does not appear verbatim in the source; source covers "BRAVIA 2014 models" generically. Confirm applicability against a real KDXG8599 unit before publishing. -->
 
 ## Transport
 ```yaml
 protocols:
   - tcp
 addressing:
-  port: 20060  # stated: TCP port 20060
+  port: 20060
 auth:
   type: none  # inferred: no auth procedure in source
+connection:
+  keepalive: true
+  idle_timeout_seconds: 30  # server disconnects if no command for 30 s
+framing:
+  type: fixed_length
+  length_bytes: 24
+  header_bytes: "2A 53"        # *S
+  footer_byte: "0A"            # LF
+  encoding: ascii_in_byte_frame
 ```
 
 ## Traits
 ```yaml
-- powerable    # power on/off commands (POWR)
-- queryable    # status queries (getPowerStatus, getAudioVolume, etc.)
-- levelable    # volume, mute, picture mute controls
-- routable     # input source selection, channel change
+- powerable    # inferred from setPowerStatus / IR Power Off
+- queryable    # inferred from getPowerStatus, getAudioVolume, getInput, etc.
+- routable     # inferred from setInput / setInputSource
+- levelable    # inferred from setAudioVolume
 ```
 
 ## Actions
 ```yaml
-# setIrccCode - IR remote passthrough (Table 5 codes)
-- id: setIrccCode_pwrOff
-  label: IR Code - Power Off
+- id: set_ircc_code
+  label: Send IRCC (IR-like) Code
   kind: action
+  command: "*SCIRCC{code16}\n"   # 24-byte frame: 2A 53 43 'I' 'R' 'C' 'C' <16 ASCII digits> 0A
   params:
-    - name: code
-      type: integer
-      description: Parameter 0
-- id: setIrccCode_input
-  label: IR Code - Input
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 1
-- id: setIrccCode_gguide
-  label: IR Code - GGuide
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 2
-- id: setIrccCode_epg
-  label: IR Code - EPG
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 3
-- id: setIrccCode_favorites
-  label: IR Code - Favorites
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 4
-- id: setIrccCode_display
-  label: IR Code - Display
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 5
-- id: setIrccCode_home
-  label: IR Code - Home
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 6
-- id: setIrccCode_options
-  label: IR Code - Options
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 7
-- id: setIrccCode_return
-  label: IR Code - Return
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 8
-- id: setIrccCode_up
-  label: IR Code - Up
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 9
-- id: setIrccCode_down
-  label: IR Code - Down
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 10
-- id: setIrccCode_right
-  label: IR Code - Right
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 11
-- id: setIrccCode_left
-  label: IR Code - Left
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 12
-- id: setIrccCode_confirm
-  label: IR Code - Confirm
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 13
-- id: setIrccCode_red
-  label: IR Code - Red
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 14
-- id: setIrccCode_green
-  label: IR Code - Green
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 15
-- id: setIrccCode_yellow
-  label: IR Code - Yellow
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 16
-- id: setIrccCode_blue
-  label: IR Code - Blue
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 17
-- id: setIrccCode_num1
-  label: IR Code - Num 1
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 18
-- id: setIrccCode_num2
-  label: IR Code - Num 2
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 19
-- id: setIrccCode_num3
-  label: IR Code - Num 3
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 20
-- id: setIrccCode_num4
-  label: IR Code - Num 4
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 21
-- id: setIrccCode_num5
-  label: IR Code - Num 5
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 22
-- id: setIrccCode_num6
-  label: IR Code - Num 6
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 23
-- id: setIrccCode_num7
-  label: IR Code - Num 7
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 24
-- id: setIrccCode_num8
-  label: IR Code - Num 8
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 25
-- id: setIrccCode_num9
-  label: IR Code - Num 9
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 26
-- id: setIrccCode_num0
-  label: IR Code - Num 0
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 27
-- id: setIrccCode_num11
-  label: IR Code - Num 11
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 28
-- id: setIrccCode_num12
-  label: IR Code - Num 12
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 29
-- id: setIrccCode_volUp
-  label: IR Code - Volume Up
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 30
-- id: setIrccCode_volDown
-  label: IR Code - Volume Down
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 31
-- id: setIrccCode_mute
-  label: IR Code - Mute
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 32
-- id: setIrccCode_chUp
-  label: IR Code - Channel Up
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 33
-- id: setIrccCode_chDown
-  label: IR Code - Channel Down
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 34
-- id: setIrccCode_subtitle
-  label: IR Code - Subtitle
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 35
-- id: setIrccCode_cc
-  label: IR Code - Closed Caption
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 36
-- id: setIrccCode_enter
-  label: IR Code - Enter
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 37
-- id: setIrccCode_dot
-  label: IR Code - DOT
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 38
-- id: setIrccCode_analog
-  label: IR Code - Analog
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 39
-- id: setIrccCode_teletext
-  label: IR Code - Teletext
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 40
-- id: setIrccCode_exit
-  label: IR Code - Exit
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 41
-- id: setIrccCode_analog2
-  label: IR Code - Analog2
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 42
-- id: setIrccCode_ad
-  label: IR Code - *AD
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 43
-- id: setIrccCode_digital
-  label: IR Code - Digital
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 44
-- id: setIrccCode_analogQ
-  label: IR Code - Analog?
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 45
-- id: setIrccCode_bs
-  label: IR Code - BS
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 46
-- id: setIrccCode_cs
-  label: IR Code - CS
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 47
-- id: setIrccCode_bscs
-  label: IR Code - BS/CS
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 48
-- id: setIrccCode_ddata
-  label: IR Code - Ddata
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 49
-- id: setIrccCode_picOff
-  label: IR Code - Pic Off
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 50
-- id: setIrccCode_tvRadio
-  label: IR Code - Tv_Radio
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 51
-- id: setIrccCode_theater
-  label: IR Code - Theater
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 52
-- id: setIrccCode_sen
-  label: IR Code - SEN
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 53
-- id: setIrccCode_inetWidget
-  label: IR Code - Internet Widgets
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 54
-- id: setIrccCode_inetVideo
-  label: IR Code - Internet Video
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 55
-- id: setIrccCode_netflix
-  label: IR Code - Netflix
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 56
-- id: setIrccCode_sceneSel
-  label: IR Code - Scene Select
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 57
-- id: setIrccCode_mode3d
-  label: IR Code - Mode 3D
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 58
-- id: setIrccCodeimanual
-  label: IR Code - iManual
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 59
-- id: setIrccCode_audio
-  label: IR Code - Audio
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 60
-- id: setIrccCode_wide
-  label: IR Code - Wide
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 61
-- id: setIrccCode_jump
-  label: IR Code - Jump
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 62
-- id: setIrccCode_pap
-  label: IR Code - PAP
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 63
-- id: setIrccCode_myepg
-  label: IR Code - MyEPG
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 64
-- id: setIrccCode_progDesc
-  label: IR Code - Program Description
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 65
-- id: setIrccCode_writeCh
-  label: IR Code - Write Chapter
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 66
-- id: setIrccCode_trackId
-  label: IR Code - TrackID
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 67
-- id: setIrccCode_tenKey
-  label: IR Code - Ten Key
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 68
-- id: setIrccCode_appliCast
-  label: IR Code - AppliCast
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 69
-- id: setIrccCode_actvTVila
-  label: IR Code - acTVila
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 70
-- id: setIrccCode_delVideo
-  label: IR Code - Delete Video
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 71
-- id: setIrccCode_photoFrame
-  label: IR Code - Photo Frame
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 72
-- id: setIrccCode_tvPause
-  label: IR Code - TV Pause
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 73
-- id: setIrccCode_keyPad
-  label: IR Code - KeyPad
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 74
-- id: setIrccCode_media
-  label: IR Code - Media
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 75
-- id: setIrccCode_syncMenu
-  label: IR Code - Sync Menu
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 76
-- id: setIrccCode_fwd
-  label: IR Code - Forward
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 77
-- id: setIrccCode_play
-  label: IR Code - Play
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 78
-- id: setIrccCode_rewind
-  label: IR Code - Rewind
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 79
-- id: setIrccCode_prev
-  label: IR Code - Prev
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 80
-- id: setIrccCode_stop
-  label: IR Code - Stop
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 81
-- id: setIrccCode_next
-  label: IR Code - Next
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 82
-- id: setIrccCode_rec
-  label: IR Code - Rec
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 83
-- id: setIrccCode_pause
-  label: IR Code - Pause
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 84
-- id: setIrccCode_eject
-  label: IR Code - Eject
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 85
-- id: setIrccCode_flashPlus
-  label: IR Code - Flash Plus
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 86
-- id: setIrccCode_flashMinus
-  label: IR Code - Flash Minus
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 87
-- id: setIrccCode_topMenu
-  label: IR Code - TopMenu
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 88
-- id: setIrccCode_popupMenu
-  label: IR Code - PopupMenu
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 89
-- id: setIrccCode_rakuraku
-  label: IR Code - Rakuraku Start
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 90
-- id: setIrccCode_oneTouchRecStart
-  label: IR Code - One Touch Time Rec
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 91
-- id: setIrccCode_oneTouchView
-  label: IR Code - One Touch View
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 92
-- id: setIrccCode_oneTouchRec
-  label: IR Code - One Touch Rec
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 93
-- id: setIrccCode_oneTouchStop
-  label: IR Code - One Touch Stop
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 94
-- id: setIrccCode_dux
-  label: IR Code - DUX
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 95
-- id: setIrccCode_football
-  label: IR Code - Football Mode
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 96
-- id: setIrccCode_social
-  label: IR Code - Social
-  kind: action
-  params:
-    - name: code
-      type: integer
-      description: Parameter 97
+    - name: code16
+      type: enum
+      description: 16-character ASCII IR code from Table 5 (left-padded with '0'). Examples - Power Off=0000000000000000, Input=0000000000000001, Up=0000000000000009, Down=0000000000000010, Volume Up=0000000000000030, Volume Down=0000000000000031, Mute=0000000000000032, Channel Up=0000000000000033, Channel Down=0000000000000034, Home=0000000000000006, Confirm=0000000000000013, Return=0000000000000008, Netflix=0000000000000056, Play=0000000000000078, Stop=0000000000000081, Pause=0000000000000084, Num0=0000000000000027, Num1=0000000000000018, ... up to Social=0000000000000097. See source Table 5 for full list of ~95 codes.
 
-# Power
-- id: setPowerStatus
-  label: Set Power Status
+- id: set_power_status_off
+  label: Power Off (Standby)
   kind: action
-  params:
-    - name: status
-      type: integer
-      description: "0 = Standby (Off), 1 = Active (On)"
-- id: getPowerStatus
-  label: Get Power Status
-  kind: query
+  command: "*SCPOWR0000000000000000\n"
   params: []
 
-# Audio Volume
-- id: setAudioVolume
+- id: set_power_status_on
+  label: Power On (Active)
+  kind: action
+  command: "*SCPOWR0000000000000001\n"
+  params: []
+
+- id: get_power_status
+  label: Power Status Query
+  kind: query
+  command: "*EPOWR################\n"   # E type, 16 '#' parameter pad
+  params: []
+
+- id: set_audio_volume
   label: Set Audio Volume
   kind: action
+  command: "*SCVOLU{level16}\n"
   params:
-    - name: volume
+    - name: level16
       type: string
-      description: Decimal digit pad on the left with "0", e.g. "0000000000000029"
-- id: getAudioVolume
+      description: Volume value in decimal, left-padded with '0' to 16 ASCII characters. Example "0000000000000029" sets volume 29.
+
+- id: get_audio_volume
   label: Get Audio Volume
   kind: query
+  command: "*EVOLU################\n"
   params: []
 
-# Audio Mute
-- id: setAudioMute
-  label: Set Audio Mute
+- id: set_audio_mute_off
+  label: Audio Unmute
   kind: action
-  params:
-    - name: mute
-      type: integer
-      description: "0 = Unmute, 1 = Mute"
-- id: getAudioMute
+  command: "*SCAMUT0000000000000000\n"
+  params: []
+
+- id: set_audio_mute_on
+  label: Audio Mute
+  kind: action
+  command: "*SCAMUT0000000000000001\n"
+  params: []
+
+- id: get_audio_mute
   label: Get Audio Mute Status
   kind: query
+  command: "*EAMUT################\n"
   params: []
 
-# Channel (preset number)
-- id: setChannel
-  label: Set Channel by Preset Number
+- id: set_channel
+  label: Set Channel (preset number)
   kind: action
+  command: "*SCCHNN{channel16}\n"
   params:
-    - name: channel
+    - name: channel16
       type: string
-      description: "Preset channel number, e.g. '00000050.1000000' means channel 50.1, '00000006.0000000' means channel 6"
-- id: getChannel
-  label: Get Current Preset Channel
+      description: 16-char preset channel string with literal '.' separator. Example "00000050.1000000" = channel 50.1, "00000006.0000000" = channel 6.
+
+- id: get_channel
+  label: Get Current Channel
   kind: query
+  command: "*ECHNN################\n"
   params: []
 
-# Channel (triplet)
-- id: setTripletChannel
-  label: Set Channel by Triplet
+- id: set_triplet_channel
+  label: Set Channel (triplet, hexadecimal)
   kind: action
+  command: "*SCTCHN{triplet12}####\n"
   params:
-    - name: triplet
+    - name: triplet12
       type: string
-      description: "Triplet in hex, e.g. '7FE07FE00400' means 32736.32736.1024"
-- id: getTripletChannel
+      description: 12 hex characters representing triplet ID, padded by 4 '#' on the right. Example "7FE07FE00400" → 32736.32736.1024.
+
+- id: get_triplet_channel
   label: Get Current Triplet Channel
   kind: query
+  command: "*ETCHN################\n"
   params: []
 
-# Input Source
-- id: setInputSource
-  label: Set Input Source
+- id: set_input_source
+  label: Set TV Input Source (broadcast)
   kind: action
+  command: "*SCISRC{source16}\n"
   params:
-    - name: source
+    - name: source16
+      type: enum
+      description: TV broadcast input source, right-padded with '#' to 16 ASCII characters. Valid values from source - dvbt, dvbc, dvbs, isdbt, isdbbs, isdbcs, antenna, cable, isdbgt. Example "dvbt############".
+
+- id: get_input_source
+  label: Get TV Input Source
+  kind: query
+  command: "*EISRC################\n"
+  params: []
+
+- id: set_input
+  label: Set Active Input
+  kind: action
+  command: "*SCINPT{input16}\n"
+  params:
+    - name: input16
       type: string
-      description: "dvbt, dvbc, dvbs, isdbt, isdbbs, isdbcs, antenna, cable, isdbgt"
-- id: getInputSource
-  label: Get Current Input Source
+      description: 16-digit ASCII input descriptor. "0000000000000000" = TV. For external inputs the leading 8 digits encode input type and trailing 8 digits encode index (1-9999). HDMI(n) = "00000001" + 8-digit n. SCART(n) = "00000002" + n. Composite(n) = "00000003" + n. Component(n) = "00000004" + n. Screen Mirroring(n) = "00000005" + n. PC RGB Input(n) = "00000006" + n.
+
+- id: get_input
+  label: Get Active Input
   kind: query
+  command: "*EINPT################\n"
   params: []
 
-# Input (numeric)
-- id: setInput
-  label: Set Input
+- id: set_picture_mute_off
+  label: Disable Picture Mute
   kind: action
-  params:
-    - name: input
-      type: integer
-      description: "0 = TV, 1 = HDMI(1-9999), 2 = SCART(1-9999), 3 = Composite(1-9999), 4 = Component(1-9999), 5 = Screen Mirroring(1-9999), 6 = PC RGB Input(1-9999)"
-- id: getInput
-  label: Get Current Input
-  kind: query
+  command: "*SCPMUT0000000000000000\n"
   params: []
 
-# Picture Mute
-- id: setPictureMute
-  label: Set Picture Mute
+- id: set_picture_mute_on
+  label: Enable Picture Mute (black screen)
   kind: action
-  params:
-    - name: mute
-      type: integer
-      description: "0 = Disable (Picture mute off), 1 = Enable (make screen black)"
-- id: getPictureMute
+  command: "*SCPMUT0000000000000001\n"
+  params: []
+
+- id: get_picture_mute
   label: Get Picture Mute Status
   kind: query
+  command: "*EPMUT################\n"
   params: []
-- id: togglePictureMute
+
+- id: toggle_picture_mute
   label: Toggle Picture Mute
   kind: action
+  command: "*SCTPMU################\n"
   params: []
 
-# PIP
-- id: setPip
-  label: Set PIP
+- id: set_pip_off
+  label: Disable PIP
   kind: action
-  params:
-    - name: enable
-      type: integer
-      description: "0 = Disable PIP, 1 = Enable PIP"
-- id: getPip
+  command: "*SCPIPI0000000000000000\n"
+  params: []
+
+- id: set_pip_on
+  label: Enable PIP
+  kind: action
+  command: "*SCPIPI0000000000000001\n"
+  params: []
+
+- id: get_pip
   label: Get PIP Status
   kind: query
-  params: []
-- id: togglePip
-  label: Toggle PIP
-  kind: action
-  params: []
-- id: togglePipPosition
-  label: Toggle PIP Position
-  kind: action
+  command: "*EPIPI################\n"
   params: []
 
-# Network queries
-- id: getBroadcastAddress
-  label: Get Broadcast IPv4 Address
+- id: toggle_pip
+  label: Toggle PIP
+  kind: action
+  command: "*SCTPIP################\n"
+  params: []
+
+- id: toggle_pip_position
+  label: Toggle PIP Position
+  kind: action
+  command: "*SCTPPP################\n"
+  params: []
+
+- id: get_broadcast_address
+  label: Get Broadcast IPv4 Address (eth0)
   kind: query
+  command: "*EBADReth0############\n"   # 'eth0' followed by 12 '#' pads parameter to 16 bytes
   params:
     - name: interface
       type: string
-      description: "Interface identifier (e.g. 'eth0')"
-- id: getMacAddress
-  label: Get MAC Address
+      description: Network interface, right-padded with '#'. Source example uses "eth0". Reply pads broadcast address (e.g. "192.168.0.14") with '#' on the right.
+
+- id: get_mac_address
+  label: Get MAC Address (eth0)
   kind: query
+  command: "*EMADReth0############\n"
   params:
     - name: interface
       type: string
-      description: "Interface identifier (e.g. 'eth0')"
+      description: Network interface, right-padded with '#'. Source example uses "eth0". Reply returns MAC address right-padded with '#'.
 ```
 
 ## Feedbacks
 ```yaml
-# Answer messages (Type 0x41) returned from TV
-- id: powerStatus_response
+- id: power_state
   type: enum
-  values:
-    - 0  # Standby (Off)
-    - 1  # Active (On)
-- id: audioVolume_response
-  type: string
-  description: Volume value string padded with leading zeros
-- id: audioMute_response
+  values: [off, on]
+  source_function: POWR
+  answer_examples:
+    - "*APOWR0000000000000000\n"   # off
+    - "*APOWR0000000000000001\n"   # on
+
+- id: audio_volume
+  type: integer
+  description: Current audio volume value, returned as ASCII decimal left-padded with '0' in the 16-byte parameter.
+  source_function: VOLU
+
+- id: audio_mute
   type: enum
-  values:
-    - 0  # Not Muted
-    - 1  # Muted
-- id: channel_response
+  values: [not_muted, muted]
+  source_function: AMUT
+
+- id: channel_preset
   type: string
-  description: Preset channel number with decimal, e.g. "00000050.1000000"
-- id: tripletChannel_response
+  description: Preset channel number with '.' separator (e.g. "00000050.1000000").
+  source_function: CHNN
+  error_answer: "*ACHNNNNNNNNNNNNNNNNNN\n"   # "NN...NN" payload = no such channel
+
+- id: triplet_channel
   type: string
-  description: Triplet channel number as hex string
-- id: inputSource_response
+  description: 12 hex chars representing channel triplet, padded with '#'.
+  source_function: TCHN
+
+- id: input_source
   type: string
-  description: Input source string (dvbt, dvbc, etc.)
-- id: input_response
+  description: Current broadcast input source string (dvbt, dvbc, dvbs, isdbt, isdbbs, isdbcs, antenna, cable, isdbgt), right-padded with '#'.
+  source_function: ISRC
+
+- id: active_input
+  type: string
+  description: 16-digit ASCII input descriptor. "0...0" = TV; otherwise 8-digit type + 8-digit index as in set_input.
+  source_function: INPT
+
+- id: picture_mute
   type: enum
-  values:
-    - 0   # TV
-    - 1   # HDMI(1-9999)
-    - 2   # SCART(1-9999)
-    - 3   # Composite(1-9999)
-    - 4   # Component(1-9999)
-    - 5   # Screen Mirroring(1-9999)
-    - 6   # PC RGB Input(1-9999)
-- id: pictureMute_response
+  values: [disabled, enabled]
+  source_function: PMUT
+
+- id: pip
   type: enum
-  values:
-    - 0  # Disabled (Picture mute off)
-    - 1  # Enabled (Picture mute on)
-- id: pip_response
+  values: [disabled, enabled]
+  source_function: PIPI
+
+- id: broadcast_address
+  type: string
+  description: IPv4 broadcast address for requested interface, right-padded with '#'.
+  source_function: BADR
+
+- id: mac_address
+  type: string
+  description: MAC address of requested interface, right-padded with '#'.
+  source_function: MADR
+
+- id: answer_success
   type: enum
-  values:
-    - 0  # Disabled
-    - 1  # Enabled
-- id: broadcastAddress_response
-  type: string
-  description: IPv4 address string, e.g. "192.168.0.14"
-- id: macAddress_response
-  type: string
-  description: MAC address string, e.g. "XX:XX:XX:XX:XX:XX"
-- id: commandSuccess_response
-  type: string
-  description: "0x0000... = success"
-- id: commandError_response
-  type: string
-  description: "0xFFFF... = error / invalid parameter"
-- id: noSuchChannel_response
-  type: string
-  description: "NNNNNNNN... = no such channel"
-- id: inputNotFound_response
-  type: string
-  description: "NNNNNNNN... = not found (e.g. not tuned / no signal)"
+  values: [success]
+  description: Generic success answer - 16 ASCII '0' parameter on a Control acknowledgement.
+  example: "*A<FUNC>0000000000000000\n"
+
+- id: answer_error
+  type: enum
+  values: [error]
+  description: Generic error answer - 16 ASCII 'F' parameter (e.g. invalid parameter).
+  example: "*A<FUNC>FFFFFFFFFFFFFFFF\n"
 ```
 
 ## Variables
 ```yaml
-# No standalone settable parameters separate from action commands
+# Variables are exposed through set_audio_volume / get_audio_volume,
+# set_channel / get_channel, etc. No separate parameter store described in source.
+# UNRESOLVED: no standalone variable registry documented in source.
 ```
 
 ## Events
 ```yaml
-# Notify messages (Type 0x4E) sent unsolicited from TV
-- id: firePowerChange
-  type: enum
-  values:
-    - 0  # Sent when powering off
-    - 1  # Sent when powering on
-- id: fireChannelChange
-  type: string
-  description: Channel number string with decimal point
-- id: fireInputChange
-  type: enum
-  values:
-    - 0   # Sent when input change to TV happens
-    - 1   # HDMI(1-9999)
-    - 2   # SCART(1-9999)
-    - 3   # Composite(1-9999)
-    - 4   # Component(1-9999)
-    - 5   # Screen Mirroring(1-9999)
-    - 6   # PC RGB Input(1-9999)
-- id: fireVolumeChange
-  type: string
-  description: Volume value string
-- id: fireMuteChange
-  type: enum
-  values:
-    - 0  # Sent when unmuting
-    - 1  # Sent when muting
-- id: firePipChange
-  type: enum
-  values:
-    - 0  # Sent when PIP is disabled
-    - 1  # Sent when PIP is enabled
-- id: firePictureMuteChange
-  type: enum
-  values:
-    - 0  # Sent when picture mute is disabled
-    - 1  # Sent when picture mute is enabled
+- id: fire_power_change
+  type: notify
+  source_function: POWR
+  payloads:
+    - "*NPOWR0000000000000000\n"   # powering off
+    - "*NPOWR0000000000000001\n"   # powering on
+
+- id: fire_channel_change
+  type: notify
+  source_function: CHNN
+  description: Sent when channel changes. Payload uses the same 16-char preset format as set_channel.
+
+- id: fire_input_change
+  type: notify
+  source_function: INPT
+  description: Sent when active input changes. Payload uses the same 16-digit format as set_input (TV / HDMI / SCART / Composite / Component / Screen Mirroring / PC RGB Input).
+
+- id: fire_volume_change
+  type: notify
+  source_function: VOLU
+  description: Sent when volume changes. Payload is current volume value, ASCII decimal left-padded with '0'.
+
+- id: fire_mute_change
+  type: notify
+  source_function: AMUT
+  payloads:
+    - "*NAMUT0000000000000000\n"   # unmuting
+    - "*NAMUT0000000000000001\n"   # muting
+
+- id: fire_pip_change
+  type: notify
+  source_function: PIPI
+  payloads:
+    - "*NPIPI0000000000000000\n"   # PIP disabled
+    - "*NPIPI0000000000000001\n"   # PIP enabled
+
+- id: fire_picture_mute_change
+  type: notify
+  source_function: PMUT
+  payloads:
+    - "*NPMUT0000000000000000\n"   # picture mute off
+    - "*NPMUT0000000000000001\n"   # picture mute on
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macros described in source
+# UNRESOLVED: no macro sequences described in source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-<!-- UNRESOLVED: safety warnings / interlock procedures not present in source -->
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements. Power-off command is non-destructive (standby).
 ```
 
 ## Notes
-TCP connections kept alive but disconnected after 30 seconds of inactivity (server-side). 24-byte fixed message format: 2-byte header (0x2A 0x53), 1-byte type, 4-byte FourCC function code, 16-byte parameter, 1-byte footer (0x0A). IR `setIrccCode` sends IR remote control codes as defined in Table 5. High-level JSON-RPC/WebAPI layer referenced but not documented in this protocol spec.
-<!-- UNRESOLVED: high-level WebAPI protocol details, firmware compatibility, voltage/power specs, error recovery sequences -->
+- Protocol version 0.6 per source title.
+- Two control planes: High Level (HTTP / JSON-RPC, WebAPI) and Low Level (TCP / 24-byte binary). This spec covers the Low Level Protocol; all Low Level commands are also reachable via the High Level WebAPI per source §1.
+- Every frame is exactly 24 bytes: `0x2A 0x53` header, 1-byte type (`C`/`E`/`A`/`N`), 4-byte FourCC, 16-byte parameter, `0x0A` footer. Parameters use ASCII digits / hex chars / `'#'` padding as documented per command.
+- Parameter padding conventions vary by command — left-pad with `'0'` for numeric values (volume, channel preset), right-pad with `'#'` for variable-length strings (input source, interface name, MAC, broadcast address).
+- Common Answer parameters per source Table 3: `0000000000000000` = success, `FFFFFFFFFFFFFFFF` = error. `NNNNNNNNNNNNNNNN` returned by `setChannel` / `setTripletChannel` / `setInput` = not found.
+- Enquiry (`E`) requests use `################` (16 `'#'`) as the parameter.
+- TCP connection is persistent across requests; server closes after 30 s of inactivity — client must reconnect or keepalive with traffic.
+- IRCC code table (Table 5) lists ~95 codes; full enumeration is in the source. The action `set_ircc_code` accepts any code from that table as a 16-char left-padded ASCII parameter.
+
+<!-- UNRESOLVED: exact KDXG8599 hardware revision and firmware compatibility ranges are not stated; source describes "BRAVIA 2014 models" generically. -->
+<!-- UNRESOLVED: behavior when Simple IP Control is disabled in TV menus (assumed: TCP port 20060 closed) is not explicitly stated. -->
+<!-- UNRESOLVED: maximum concurrent client count for port 20060 not stated. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
-  - pro-bravia.sony.net
+  - aca.im
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
-  - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
-last_checked_at: 2026-05-31T22:41:20.902Z
+  - "https://aca.im/driver_docs/Sony/sony%20bravia%20simple%20ip%20control.pdf"
+retrieved_at: 2026-05-26T12:23:40.416Z
+last_checked_at: 2026-06-02T07:06:40.943Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T22:41:20.902Z
-matched_actions: 121
-action_count: 121
-confidence: high
-summary: "All 121 spec actions matched to source commands; transport parameters verified; bidirectional coverage complete."
+checked_at: 2026-06-02T07:06:40.943Z
+matched_actions: 28
+action_count: 28
+confidence: medium
+summary: "All 28 spec actions matched to source FourCC tokens; all transport parameters (TCP 20060, fixed 24-byte frame, no auth) verified; full source coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "KDXG8599 model number does not appear verbatim in the source; source covers \"BRAVIA 2014 models\" generically. Confirm applicability against a real KDXG8599 unit before publishing."
+- "no standalone variable registry documented in source."
+- "no macro sequences described in source."
+- "source contains no safety warnings, interlock procedures, or"
+- "exact KDXG8599 hardware revision and firmware compatibility ranges are not stated; source describes \"BRAVIA 2014 models\" generically."
+- "behavior when Simple IP Control is disabled in TV menus (assumed: TCP port 20060 closed) is not explicitly stated."
+- "maximum concurrent client count for port 20060 not stated."
 ```
 
 ---

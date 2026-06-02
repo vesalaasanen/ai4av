@@ -15,23 +15,30 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T17:33:54.652Z
 last_checked_at: 2026-05-16T17:33:54.652Z
 generated_at: 2026-05-16T17:33:54.652Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The source document is the \"BluOS Custom Integration API\" which covers many BluOS players (Bluesound, NAD Electronics, DALI Loudspeakers, etc.). The B400S model is not explicitly named in the source — spec is derived from the common BluOS CI API applicable to all standard BluOS players."
+  - "The API supports long polling on /Status and /SyncStatus which returns when state changes."
+  - "No multi-step macros are explicitly described in the source."
+  - "No electrical safety warnings or interlock procedures stated in source."
+  - "The source is the generic BluOS Custom Integration API v1.7, not a B400S-specific document. Physical input types available depend on the specific player hardware."
+  - "Authentication / session management: none described in source."
+  - "Error response format: source mentions <error> root element with <message> and <detail> child nodes for /Browse errors; full error handling across all endpoints not specified."
+  - "Maximum number of presets, queue length limits, or concurrent connection limits not stated in source."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T17:33:54.652Z
   matched_actions: 39
   action_count: 39
-  confidence: high
-  summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented."
+  confidence: medium
+  summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -659,11 +666,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T17:33:54.652Z
 last_checked_at: 2026-05-16T17:33:54.652Z
 ```
 
@@ -674,14 +679,22 @@ verdict: verified
 checked_at: 2026-05-16T17:33:54.652Z
 matched_actions: 39
 action_count: 39
-confidence: high
-summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented."
+confidence: medium
+summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The source document is the \"BluOS Custom Integration API\" which covers many BluOS players (Bluesound, NAD Electronics, DALI Loudspeakers, etc.). The B400S model is not explicitly named in the source — spec is derived from the common BluOS CI API applicable to all standard BluOS players."
+- "The API supports long polling on /Status and /SyncStatus which returns when state changes."
+- "No multi-step macros are explicitly described in the source."
+- "No electrical safety warnings or interlock procedures stated in source."
+- "The source is the generic BluOS Custom Integration API v1.7, not a B400S-specific document. Physical input types available depend on the specific player hardware."
+- "Authentication / session management: none described in source."
+- "Error response format: source mentions <error> root element with <message> and <detail> child nodes for /Browse errors; full error handling across all endpoints not specified."
+- "Maximum number of presets, queue length limits, or concurrent connection limits not stated in source."
+- "model-specific source not located"
 ```
 
 ---

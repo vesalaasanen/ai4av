@@ -27,13 +27,17 @@ protocol_coverage: []
 known_gaps:
   - FAULT
   - WAIT_TEST
+  - "no multi-step sequences described in source"
+  - "no explicit safety interlock procedures for power sequencing documented in source"
+  - "firmware version compatibility range not stated"
+  - "DHCP configuration details beyond \"default behavior\" not fully specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.075Z
   matched_actions: 63
   action_count: 63
-  confidence: high
-  summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified."
+  confidence: medium
+  summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -977,8 +981,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.075Z
 matched_actions: 63
 action_count: 63
-confidence: high
-summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified."
+confidence: medium
+summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -986,6 +990,10 @@ summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST corr
 ```yaml
 - FAULT
 - WAIT_TEST
+- "no multi-step sequences described in source"
+- "no explicit safety interlock procedures for power sequencing documented in source"
+- "firmware version compatibility range not stated"
+- "DHCP configuration details beyond \"default behavior\" not fully specified"
 ```
 
 ---

@@ -16,39 +16,56 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - fullcompass.com
+  - manua.ls
+  - manualslib.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
-last_checked_at: 2026-05-31T22:44:28.614Z
-generated_at: 2026-05-31T22:44:28.614Z
+  - https://res.cloudinary.com/avd/image/upload/v134228628/Resources/Vaddio/Cameras/Operation/342-0962-reva-zoomshot-for-avbmp-manual.pdf
+  - https://www.fullcompass.com/common/files/28647-VaddioZoomSHOT20Manual.pdf
+  - https://www.manua.ls/vaddio/zoomshot-20-qusb/manual
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+  - "https://www.manualslib.com/manual/975248/Vaddio-Zoomshot-20.html?page=17"
+retrieved_at: 2026-05-26T22:42:47.818Z
+last_checked_at: 2026-06-02T07:36:17.290Z
+generated_at: 2026-06-02T07:36:17.290Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Telnet ASCII API via Quick-Connect USB Ethernet port referenced in recovery notes but not present in this refined source"
+  - "AMX/Crestron module strings / get-set wrappers not present in this refined source"
+  - "no unsolicited notification behavior is described in the"
+  - "no multi-step sequences (e.g. power-on choreography, preset"
+  - "refined source contains no safety warnings, interlock"
+  - "firmware version compatibility range not stated in source."
+  - "VISCA ACK/completion packet shape (y0 4x FF) not enumerated in source; only the data-response packets (y0 50 ... FF) are listed."
+  - "command timing, debounce, and inter-command delay not stated in source."
+  - "RJ-45 to DB-9 cable diagram / null-modem requirement not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T22:44:28.614Z
-  matched_actions: 89
-  action_count: 89
-  confidence: high
-  summary: "All 89 spec actions matched to source commands with correct opcodes, parameters, and ranges; transport values verified verbatim."
+  checked_at: 2026-06-02T07:36:17.290Z
+  matched_actions: 115
+  action_count: 115
+  confidence: medium
+  summary: "All 115 spec action commands matched verbatim against source commands and inquiries; transport parameters verified against source specification. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
 # Vaddio ZoomSHOT 20 Control Spec
 
 ## Summary
-PTZ camera with RS-232 VISCA-like binary control protocol. 9600/8N1, no flow control. Protocol is similar to Sony VISCA but HD-Series specific commands are present. Supports power, zoom, focus, white balance, exposure, image enhancement, memory presets, and tally.
+RS-232 VISCA-like binary control protocol for the Vaddio ZoomSHOT 20 fixed-position HD camera. Source documents a full command set (power, zoom, focus, white balance, gain, exposure, image enhancements, tally, ICR filter) plus a matching inquiry set for state readback over an RJ-45 RS-232 port at 9600/8N1.
 
-<!-- UNRESOLVED: Telnet/TCP control via Quick-Connect USB Ethernet port mentioned in prior recovery notes but not in this source document — not included -->
+<!-- UNRESOLVED: Telnet ASCII API via Quick-Connect USB Ethernet port referenced in recovery notes but not present in this refined source -->
+<!-- UNRESOLVED: AMX/Crestron module strings / get-set wrappers not present in this refined source -->
 
 ## Transport
 ```yaml
+# RS-232 only per refined source. Telnet ASCII API noted in recovery notes
+# is not in the supplied refined document - see UNRESOLVED markers above.
 protocols:
   - serial
 serial:
@@ -63,866 +80,1393 @@ auth:
 
 ## Traits
 ```yaml
-- powerable
-- queryable
-- levelable  # zoom, focus, gain, iris, brightness, shutter, exposure compensation
+- powerable   # inferred from CAM_Power On/Off commands
+- levelable   # inferred from Zoom/Focus/Iris/Gain/Aperture/Bright/Shutter direct-set commands
+- queryable   # inferred from CAM_*Inq inquiry commands returning state
 ```
 
 ## Actions
 ```yaml
-# Address and IF management
-- id: address_set
-  label: Address Set (Broadcast)
+- id: address_set_broadcast
+  label: Address Set (Broadcast, Daisychain)
   kind: action
+  command: "88 30 01 FF"
   params: []
-  notes: "88 30 01 FF - daisychain addressing"
 
-- id: if_clear
+- id: if_clear_broadcast
   label: IF Clear (Broadcast)
   kind: action
+  command: "88 01 00 01 FF"
   params: []
-  notes: "88 01 00 01 FF"
 
 - id: command_cancel
   label: Command Cancel
   kind: action
+  command: "8x 2p FF"
   params:
-    - name: socket
+    - name: p
       type: integer
-      description: "Socket number (1 or 2)"
-  notes: "8x 2p FF"
+      description: Socket number (1 or 2)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Power
-- id: cam_power_on
-  label: Camera Power On
+- id: power_on
+  label: Power On
   kind: action
-  params: []
+  command: "8x 01 04 00 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-- id: cam_power_off
-  label: Camera Power Off (Standby)
+- id: power_off
+  label: Power Off (Standby)
   kind: action
-  params: []
+  command: "8x 01 04 00 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Stop
-- id: cam_zoom_stop
+- id: zoom_stop
   label: Zoom Stop
   kind: action
-  params: []
+  command: "8x 01 04 07 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Tele (Standard)
-- id: cam_zoom_tele_standard
+- id: zoom_tele_standard
   label: Zoom Tele (Standard)
   kind: action
-  params: []
+  command: "8x 01 04 07 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Wide (Standard)
-- id: cam_zoom_wide_standard
+- id: zoom_wide_standard
   label: Zoom Wide (Standard)
   kind: action
-  params: []
+  command: "8x 01 04 07 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Tele (Variable)
-- id: cam_zoom_tele_variable
+- id: zoom_tele_variable
   label: Zoom Tele (Variable)
   kind: action
+  command: "8x 01 04 07 2p FF"
   params:
-    - name: speed
+    - name: p
       type: integer
-      description: "Speed 0-7"
+      description: Speed (0-7)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Wide (Variable)
-- id: cam_zoom_wide_variable
+- id: zoom_wide_variable
   label: Zoom Wide (Variable)
   kind: action
+  command: "8x 01 04 07 3p FF"
   params:
-    - name: speed
+    - name: p
       type: integer
-      description: "Speed 0-7"
+      description: Speed (0-7)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Direct
-- id: cam_zoom_direct
+- id: zoom_direct
   label: Zoom Direct
   kind: action
+  command: "8x 01 04 47 0p 0q 0r 0s FF"
   params:
-    - name: position
+    - name: pqrs
       type: integer
-      description: "0x000-0x071A"
+      description: Zoom position (0x0000-0x071A)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Zoom - Direct (Variable)
-- id: cam_zoom_direct_variable
-  label: Zoom Direct (Variable Speed)
+- id: zoom_direct_variable
+  label: Zoom Direct (Variable)
   kind: action
+  command: "8x 01 7E 01 4A 0v 0p 0q 0r 0s FF"
   params:
-    - name: speed
+    - name: v
       type: integer
-      description: "0-7"
-    - name: position
+      description: Speed (0-7)
+    - name: pqrs
       type: integer
-      description: "0x000-0x071A"
+      description: Zoom position (0x0000-0x071A)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Stop
-- id: cam_focus_stop
+- id: focus_stop
   label: Focus Stop
   kind: action
-  params: []
+  command: "8x 01 04 08 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Far (Standard)
-- id: cam_focus_far_standard
+- id: focus_far_standard
   label: Focus Far (Standard)
   kind: action
-  params: []
+  command: "8x 01 04 08 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Near (Standard)
-- id: cam_focus_near_standard
+- id: focus_near_standard
   label: Focus Near (Standard)
   kind: action
-  params: []
+  command: "8x 01 04 08 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Far (Variable)
-- id: cam_focus_far_variable
+- id: focus_far_variable
   label: Focus Far (Variable)
   kind: action
+  command: "8x 01 04 08 2p FF"
   params:
-    - name: speed
+    - name: p
       type: integer
-      description: "Speed 0-7"
+      description: Speed (0-7)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Near (Variable)
-- id: cam_focus_near_variable
+- id: focus_near_variable
   label: Focus Near (Variable)
   kind: action
+  command: "8x 01 04 08 3p FF"
   params:
-    - name: speed
+    - name: p
       type: integer
-      description: "Speed 0-7"
+      description: Speed (0-7)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Auto
-- id: cam_focus_auto
-  label: Auto Focus
+- id: autofocus_on
+  label: AutoFocus On
   kind: action
-  params: []
+  command: "8x 01 04 38 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Manual
-- id: cam_focus_manual
-  label: Manual Focus
+- id: manualfocus_on
+  label: ManualFocus On
   kind: action
-  params: []
+  command: "8x 01 04 38 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Auto/Manual Toggle
-- id: cam_focus_auto_manual_toggle
-  label: Auto/Manual Focus Toggle
+- id: focus_auto_manual_toggle
+  label: Focus Auto/Manual Toggle
   kind: action
-  params: []
+  command: "8x 01 04 38 10 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Focus - Direct
-- id: cam_focus_direct
+- id: focus_direct
   label: Focus Direct
   kind: action
+  command: "8x 01 04 48 0p 0q 0r 0s FF"
   params:
-    - name: position
+    - name: pqrs
       type: integer
-      description: "0x0ed-0x0944 (dependent on zoom)"
+      description: Focus position (0x0ED-0x0944, dependent on zoom position)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# White Balance - Auto
-- id: cam_wb_auto
+- id: wb_auto
   label: White Balance Auto
   kind: action
-  params: []
+  command: "8x 01 04 35 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# White Balance - Manual
-- id: cam_wb_manual
+- id: wb_manual
   label: White Balance Manual
   kind: action
-  params: []
+  command: "8x 01 04 35 05 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# White Balance - Indoor
-- id: cam_wb_indoor
+- id: wb_indoor
   label: White Balance Indoor
   kind: action
-  params: []
+  command: "8x 01 04 35 01 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# White Balance - Outdoor
-- id: cam_wb_outdoor
+- id: wb_outdoor
   label: White Balance Outdoor
   kind: action
-  params: []
+  command: "8x 01 04 35 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# White Balance - One Push
-- id: cam_wb_one_push
+- id: wb_one_push
   label: White Balance One Push
   kind: action
-  params: []
+  command: "8x 01 04 35 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Red Gain - Reset
-- id: cam_rgain_reset
+- id: rgain_reset
   label: Red Gain Reset
   kind: action
-  params: []
+  command: "8x 01 04 03 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Red Gain - Up
-- id: cam_rgain_up
+- id: rgain_up
   label: Red Gain Up
   kind: action
-  params: []
+  command: "8x 01 04 03 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Red Gain - Down
-- id: cam_rgain_down
+- id: rgain_down
   label: Red Gain Down
   kind: action
-  params: []
+  command: "8x 01 04 03 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Red Gain - Direct
-- id: cam_rgain_direct
+- id: rgain_direct
   label: Red Gain Direct
   kind: action
+  command: "8x 01 04 43 0p 0q 0r 0s FF"
   params:
-    - name: value
+    - name: pqrs
       type: integer
-      description: "0x0000-0xFFFF"
+      description: Gain value (0x0000-0xFFFF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Blue Gain - Reset
-- id: cam_bgain_reset
+- id: bgain_reset
   label: Blue Gain Reset
   kind: action
-  params: []
+  command: "8x 01 04 04 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Blue Gain - Up
-- id: cam_bgain_up
+- id: bgain_up
   label: Blue Gain Up
   kind: action
-  params: []
+  command: "8x 01 04 04 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Blue Gain - Down
-- id: cam_bgain_down
+- id: bgain_down
   label: Blue Gain Down
   kind: action
-  params: []
+  command: "8x 01 04 04 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Blue Gain - Direct
-- id: cam_bgain_direct
+- id: bgain_direct
   label: Blue Gain Direct
   kind: action
+  command: "8x 01 04 44 43 0p 0q 0r 0s FF"
   params:
-    - name: value
+    - name: pqrs
       type: integer
-      description: "0x0000-0xFFFF"
+      description: Gain value (0x0000-0xFFFF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Auto Exposure - Full Auto
-- id: cam_ae_full_auto
+- id: ae_full_auto
   label: Auto Exposure Full Auto
   kind: action
-  params: []
+  command: "8x 01 04 39 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Auto Exposure - Manual
-- id: cam_ae_manual
+- id: ae_manual
   label: Auto Exposure Manual
   kind: action
-  params: []
+  command: "8x 01 04 39 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Auto Exposure - Shutter Priority
-- id: cam_ae_shutter_priority
+- id: ae_shutter_priority
   label: Auto Exposure Shutter Priority
   kind: action
-  params: []
+  command: "8x 01 04 39 0A FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Auto Exposure - Iris Priority
-- id: cam_ae_iris_priority
-  label: Auto Exposure Iris Priority
+- id: ae_iris_priority
+  label: Auto Exposure Iris Priority (default)
   kind: action
-  params: []
+  command: "8x 01 04 39 0B FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Iris - Reset
-- id: cam_iris_reset
+- id: iris_reset
   label: Iris Reset
   kind: action
-  params: []
+  command: "8x 01 04 0B 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Iris - Up
-- id: cam_iris_up
+- id: iris_up
   label: Iris Up
   kind: action
-  params: []
+  command: "8x 01 04 0B 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Iris - Down
-- id: cam_iris_down
+- id: iris_down
   label: Iris Down
   kind: action
-  params: []
+  command: "8x 01 04 0B 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Iris - Direct
-- id: cam_iris_direct
+- id: iris_direct
   label: Iris Direct
   kind: action
+  command: "8x 01 04 4B 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x08"
+      description: Iris value (0x00-0x08)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Gain - Reset
-- id: cam_gain_reset
+- id: gain_reset
   label: Gain Reset
   kind: action
-  params: []
+  command: "8x 01 04 0C 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Gain - Up
-- id: cam_gain_up
+- id: gain_up
   label: Gain Up
   kind: action
-  params: []
+  command: "8x 01 04 0C 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Gain - Down
-- id: cam_gain_down
+- id: gain_down
   label: Gain Down
   kind: action
-  params: []
+  command: "8x 01 04 0C 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Gain - Direct
-- id: cam_gain_direct
+- id: gain_direct
   label: Gain Direct
   kind: action
+  command: "8x 01 04 4C 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x2A"
+      description: Gain value (0x00-0x2A)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Brightness - Reset
-- id: cam_brightness_reset
+- id: bright_reset
   label: Brightness Reset
   kind: action
-  params: []
+  command: "8x 01 04 0D 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Brightness - Up
-- id: cam_brightness_up
+- id: bright_up
   label: Brightness Up
   kind: action
-  params: []
+  command: "8x 01 04 0D 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Brightness - Down
-- id: cam_brightness_down
+- id: bright_down
   label: Brightness Down
   kind: action
-  params: []
+  command: "8x 01 04 0D 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Brightness - Direct
-- id: cam_brightness_direct
+- id: bright_direct
   label: Brightness Direct
   kind: action
+  command: "8x 01 04 4D 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x01-0x64"
+      description: Brightness value (0x01-0x64)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Backlight - On
-- id: cam_backlight_on
-  label: Backlight Compensation On
+- id: backlight_on
+  label: Backlight On
   kind: action
-  params: []
+  command: "8x 01 04 33 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Backlight - Off
-- id: cam_backlight_off
-  label: Backlight Compensation Off
+- id: backlight_off
+  label: Backlight Off
   kind: action
-  params: []
+  command: "8x 01 04 33 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Aperture - Reset
-- id: cam_aperture_reset
+- id: aperture_reset
   label: Aperture Reset
   kind: action
-  params: []
+  command: "8x 01 04 02 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Aperture - Up
-- id: cam_aperture_up
+- id: aperture_up
   label: Aperture Up
   kind: action
-  params: []
+  command: "8x 01 04 02 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Aperture - Down
-- id: cam_aperture_down
+- id: aperture_down
   label: Aperture Down
   kind: action
-  params: []
+  command: "8x 01 04 02 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Aperture - Direct
-- id: cam_aperture_direct
+- id: aperture_direct
   label: Aperture Direct
   kind: action
+  command: "8x 01 04 42 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x1F"
+      description: Aperture value (0x00-0x1F)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Memory - Reset
-- id: cam_memory_reset
-  label: Memory Reset
+- id: memory_reset
+  label: Memory Reset (preset clear)
   kind: action
+  command: "8x 01 04 3F 00 0p FF"
   params:
-    - name: slot
+    - name: p
       type: integer
-      description: "0-15"
+      description: Memory number (0-0xF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Memory - Set
-- id: cam_memory_set
-  label: Memory Set (Save Preset)
+- id: memory_set
+  label: Memory Set (store preset)
   kind: action
+  command: "8x 01 04 3F 01 0p FF"
   params:
-    - name: slot
+    - name: p
       type: integer
-      description: "0-15"
+      description: Memory number (0-0xF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Memory - Recall
-- id: cam_memory_recall
-  label: Memory Recall (Load Preset)
+- id: memory_recall
+  label: Memory Recall (preset)
   kind: action
+  command: "8x 01 04 3F 02 0p FF"
   params:
-    - name: slot
+    - name: p
       type: integer
-      description: "0-15"
+      description: Memory number (0-0xF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Camera ID Write
-- id: cam_id_write
+- id: id_write
   label: Camera ID Write
   kind: action
+  command: "8x 01 04 22 0p 0q 0r 0s FF"
   params:
-    - name: id
+    - name: pqrs
       type: integer
-      description: "0x0000-0xFFFF"
+      description: ID value (0x0000-0xFFFF)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Mirror (Horizontal Flip) - On
-- id: cam_lr_reverse_on
-  label: Mirror On (Horizontal Flip)
+- id: lr_reverse_on
+  label: Mirror (Horizontal) On
   kind: action
-  params: []
+  command: "8x 01 04 61 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Mirror (Horizontal Flip) - Off
-- id: cam_lr_reverse_off
-  label: Mirror Off
+- id: lr_reverse_off
+  label: Mirror (Horizontal) Off
   kind: action
-  params: []
+  command: "8x 01 04 61 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# IR Receive - On
 - id: ir_receive_on
-  label: IR Receive On
+  label: IR Receive / Forwarding On
   kind: action
-  params: []
+  command: "8x 01 06 08 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# IR Receive - Off
 - id: ir_receive_off
-  label: IR Receive Off
+  label: IR Receive / Forwarding Off
   kind: action
-  params: []
+  command: "8x 01 06 08 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# IR Receive - On/Off Toggle
 - id: ir_receive_toggle
-  label: IR Receive On/Off Toggle
+  label: IR Receive On/Off (Toggle)
   kind: action
-  params: []
+  command: "8x 01 06 08 10 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Tally - On
 - id: tally_on
   label: Tally On
   kind: action
-  params: []
+  command: "8x 01 7E 01 0A 00 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Tally - Off
 - id: tally_off
   label: Tally Off
   kind: action
-  params: []
-
-# Gamma Enhancement
-- id: gamma_enhance
-  label: Gamma Enhancement
-  kind: action
+  command: "8x 01 7E 01 0A 00 03 FF"
   params:
-    - name: value
+    - name: x
       type: integer
-      description: "0x00-0x10"
+      description: Camera address (1-7)
 
-# Chroma Enhancement
-- id: chroma_enhance
-  label: Chroma Enhancement
+- id: gamma_set
+  label: Gamma Set
   kind: action
+  command: "8x 01 7E 54 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x64"
+      description: Gamma value (0x00-0x10)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Digital Image Stabilizer - On
+- id: chroma_set
+  label: Chroma Set
+  kind: action
+  command: "8x 01 7E 55 00 00 0p 0q FF"
+  params:
+    - name: pq
+      type: integer
+      description: Chroma value (0x00-0x64)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
 - id: dis_on
   label: Digital Image Stabilizer On
   kind: action
-  params: []
+  command: "8x 01 7E 57 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Digital Image Stabilizer - Off
 - id: dis_off
   label: Digital Image Stabilizer Off
   kind: action
-  params: []
+  command: "8x 01 7E 57 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Super Noise Reduction - On
 - id: snr_on
   label: Super Noise Reduction On
   kind: action
-  params: []
+  command: "8x 01 7E 58 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Super Noise Reduction - Off
 - id: snr_off
   label: Super Noise Reduction Off
   kind: action
-  params: []
+  command: "8x 01 7E 58 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# AGC Mode - Off
 - id: agc_off
   label: AGC Off
   kind: action
-  params: []
+  command: "8x 01 7E 59 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# AGC Mode - Low
 - id: agc_low
   label: AGC Low
   kind: action
-  params: []
+  command: "8x 01 7E 59 01 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# AGC Mode - Medium
 - id: agc_medium
   label: AGC Medium
   kind: action
-  params: []
+  command: "8x 01 7E 59 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# AGC Mode - High
 - id: agc_high
   label: AGC High
   kind: action
-  params: []
+  command: "8x 01 7E 59 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Shutter - Reset
-- id: cam_shutter_reset
+- id: shutter_reset
   label: Shutter Reset
   kind: action
-  params: []
+  command: "8x 01 04 0A 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Shutter - Up
-- id: cam_shutter_up
+- id: shutter_up
   label: Shutter Up
   kind: action
-  params: []
+  command: "8x 01 04 0A 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Shutter - Down
-- id: cam_shutter_down
+- id: shutter_down
   label: Shutter Down
   kind: action
-  params: []
+  command: "8x 01 04 0A 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Shutter - Direct
-- id: cam_shutter_direct
+- id: shutter_direct
   label: Shutter Direct
   kind: action
+  command: "8x 01 04 4A 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x1C"
+      description: Shutter value (0x00-0x1C)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - On
-- id: cam_expcomp_on
-  label: Exposure Compensation On (AE Off)
+- id: expcomp_on
+  label: Exposure Compensation On (AutoExposure Off)
   kind: action
-  params: []
+  command: "8x 01 04 3E 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - Off
-- id: cam_expcomp_off
-  label: Exposure Compensation Off (AE On)
+- id: expcomp_off
+  label: Exposure Compensation Off (AutoExposure On)
   kind: action
-  params: []
+  command: "8x 01 04 3E 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - Reset
-- id: cam_expcomp_reset
+- id: expcomp_reset
   label: Exposure Compensation Reset
   kind: action
-  params: []
+  command: "8x 01 04 0E 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - Up
-- id: cam_expcomp_up
+- id: expcomp_up
   label: Exposure Compensation Up
   kind: action
-  params: []
+  command: "8x 01 04 0E 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - Down
-- id: cam_expcomp_down
+- id: expcomp_down
   label: Exposure Compensation Down
   kind: action
-  params: []
+  command: "8x 01 04 0E 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# Exposure Compensation - Direct
-- id: cam_expcomp_direct
+- id: expcomp_direct
   label: Exposure Compensation Direct
   kind: action
+  command: "8x 01 04 4E 00 00 0p 0q FF"
   params:
-    - name: value
+    - name: pq
       type: integer
-      description: "0x00-0x2A"
+      description: Exposure compensation value (0x00-0x2A)
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# ICR Cut Filter - On
 - id: icr_on
-  label: ICR Cut Filter On (Filter Out)
+  label: ICR Cut Filter Out (Day mode)
   kind: action
-  params: []
+  command: "8x 01 04 01 02 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 
-# ICR Cut Filter - Off
 - id: icr_off
-  label: ICR Cut Filter Off (Filter In)
+  label: ICR Cut Filter In (Night mode)
   kind: action
-  params: []
+  command: "8x 01 04 01 03 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: power_inq
+  label: Power State Query
+  kind: query
+  command: "8x 09 04 00 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: zoom_pos_inq
+  label: Zoom Position Query
+  kind: query
+  command: "8x 09 04 47 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: focus_pos_inq
+  label: Focus Position Query
+  kind: query
+  command: "8x 09 04 48 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: wb_mode_inq
+  label: White Balance Mode Query
+  kind: query
+  command: "8x 09 04 35 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: rgain_inq
+  label: Red Gain Query
+  kind: query
+  command: "8x 09 04 43 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: bgain_inq
+  label: Blue Gain Query
+  kind: query
+  command: "8x 09 04 44 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: iris_inq
+  label: Iris Query
+  kind: query
+  command: "8x 09 04 4B FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: gain_inq
+  label: Gain Query
+  kind: query
+  command: "8x 09 04 4C FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: bright_inq
+  label: Brightness Query
+  kind: query
+  command: "8x 01 04 4D FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: backlight_mode_inq
+  label: Backlight Mode Query
+  kind: query
+  command: "8x 09 04 33 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: aperture_inq
+  label: Aperture Query
+  kind: query
+  command: "8x 09 04 42 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: memory_inq
+  label: Memory Preset Query
+  kind: query
+  command: "8x 09 04 3F FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: id_inq
+  label: Camera ID Query
+  kind: query
+  command: "8x 09 04 3F FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: receive_inq
+  label: IR Receive State Query
+  kind: query
+  command: "8x 09 06 08 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: lr_reverse_inq
+  label: Mirror (Horizontal) State Query
+  kind: query
+  command: "8x 09 04 61 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: tally_inq
+  label: Tally State Query
+  kind: query
+  command: "8x 09 7E 01 0A FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: gamma_inq
+  label: Gamma Query
+  kind: query
+  command: "8x 09 7E 54 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: chroma_inq
+  label: Chroma Query
+  kind: query
+  command: "8x 09 7E 55 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: dis_inq
+  label: Digital Image Stabilizer Query
+  kind: query
+  command: "8x 09 7E 57 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: snr_inq
+  label: Super Noise Reduction Query
+  kind: query
+  command: "8x 09 7E 58 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: agc_inq
+  label: AGC Mode Query
+  kind: query
+  command: "8x 09 7e 59 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: ae_mode_inq
+  label: Auto Exposure Mode Query
+  kind: query
+  command: "8x 09 04 39 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: shutter_pos_inq
+  label: Shutter Position Query
+  kind: query
+  command: "8x 09 04 4A FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: expcomp_mode_inq
+  label: Exposure Compensation Mode Query
+  kind: query
+  command: "8x 09 04 3E FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: expcomp_pos_inq
+  label: Exposure Compensation Position Query
+  kind: query
+  command: "8x 09 04 4E FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
+
+- id: icr_mode_inq
+  label: ICR Mode Query
+  kind: query
+  command: "8x 09 04 01 FF"
+  params:
+    - name: x
+      type: integer
+      description: Camera address (1-7)
 ```
 
 ## Feedbacks
 ```yaml
-# Query responses - power
 - id: power_state
-  label: Power State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, standby]
+  # y0 50 02 FF = On, y0 50 03 FF = Off (Standby) - per CAM_PowerInq response
 
-# Query responses - zoom
 - id: zoom_position
-  label: Zoom Position
   type: integer
-  range: [0, 0x071A]
+  range: [0, 1818]  # 0x0000-0x071A from CAM_ZoomPosInq response
+  # Response: y0 50 0p 0q 0r 0s FF
 
-# Query responses - focus
 - id: focus_position
-  label: Focus Position
   type: integer
-  range: [0x0ed, 0x0944]
+  range: [237, 2372]  # 0x0ED-0x0944 from CAM_FocusPosInq response; dependent on zoom
+  # Response: y0 50 0p 0q 0r 0s FF
 
-# Query responses - white balance mode
 - id: wb_mode
-  label: White Balance Mode
   type: enum
-  values:
-    - auto  # 50 00
-    - manual  # 50 05
-    - indoor  # 50 01
-    - outdoor  # 50 02
-    - one_push  # 50 03
+  values: [auto, manual, indoor, outdoor, one_push]
+  # y0 50 00=Auto, 05=Manual, 01=Indoor, 02=Outdoor, 03=One Push WB
 
-# Query responses - red gain
-- id: rgain_value
-  label: Red Gain Value
+- id: rgain
   type: integer
-  range: [0, 0xFFFF]
+  range: [0, 65535]  # 0x0000-0xFFFF from CAM_RGainInq response
 
-# Query responses - blue gain
-- id: bgain_value
-  label: Blue Gain Value
+- id: bgain
   type: integer
-  range: [0, 0xFFFF]
+  range: [0, 65535]  # 0x0000-0xFFFF from CAM_BGainInq response
 
-# Query responses - iris
-- id: iris_value
-  label: Iris Value
+- id: iris
   type: integer
-  range: [0, 0x08]
+  range: [0, 8]  # 0x00-0x08 from CAM_IrisInq response
 
-# Query responses - gain
-- id: gain_value
-  label: Gain Value
+- id: gain
   type: integer
-  range: [0, 0x2A]
+  range: [0, 42]  # 0x00-0x2A from CAM_GainInq response
 
-# Query responses - brightness
-- id: brightness_value
-  label: Brightness Value
+- id: bright
   type: integer
-  range: [1, 0x64]
+  range: [1, 100]  # 0x01-0x64 from CAM_BrightInq response
 
-# Query responses - backlight
 - id: backlight_mode
-  label: Backlight Compensation Mode
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per CAM_BacklightModeInq response
 
-# Query responses - aperture
-- id: aperture_value
-  label: Aperture Value
+- id: aperture
   type: integer
-  range: [0, 0x1F]
+  range: [0, 31]  # 0x00-0x1F from CAM_ApertureInq response
 
-# Query responses - memory (preset)
-- id: memory_slot
-  label: Memory Preset Slot
+- id: memory_preset
   type: integer
-  range: [0, 0xF]
+  range: [0, 15]  # 0x0-0xF from CAM_MemoryInq response
 
-# Query responses - camera ID
 - id: camera_id
-  label: Camera ID
   type: integer
-  range: [0, 0xFFFF]
+  range: [0, 65535]  # 0x0000-0xFFFF from CAM_IDInq response
 
-# Query responses - IR receive
 - id: ir_receive_state
-  label: IR Receive State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per CAM_ReceiveInq response
 
-# Query responses - mirror
 - id: lr_reverse_state
-  label: Mirror (LR Reverse) State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per CAM_LR_Reverse inquiry
 
-# Query responses - tally
 - id: tally_state
-  label: Tally State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per TallyInq response
 
-# Query responses - gamma
-- id: gamma_value
-  label: Gamma Value
+- id: gamma
   type: integer
-  range: [0, 0x10]
+  range: [0, 16]  # 0x00-0x10 from GMA.Enhance inquiry response
 
-# Query responses - chroma
-- id: chroma_value
-  label: Chroma Value
+- id: chroma
   type: integer
-  range: [0, 0x64]
+  range: [0, 100]  # 0x00-0x64 from CRM.Enhance inquiry response
 
-# Query responses - DIS
 - id: dis_state
-  label: Digital Image Stabilizer State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per DIS.Enhance inquiry
 
-# Query responses - SNR
 - id: snr_state
-  label: Super Noise Reduction State
   type: enum
-  values:
-    - on  # 50 02
-    - off  # 50 03
+  values: [on, off]
+  # y0 50 02 FF = On, y0 50 03 FF = Off - per SNR.Enhance inquiry
 
-# Query responses - AGC
 - id: agc_mode
-  label: AGC Mode
   type: enum
-  values:
-    - off  # 50 00
-    - low  # 50 01
-    - medium  # 50 02
-    - high  # 50 03
-    - manual  # 50 04
+  values: [off, low, medium, high, manual]
+  # y0 50 00=Off, 01=Low, 02=Medium, 03=High, 04=Manual AGC - per AGC.Enhance inquiry
 
-# Query responses - AE mode
 - id: ae_mode
-  label: Auto Exposure Mode
   type: enum
-  values:
-    - auto  # 50 00
-    - manual  # 50 03
-    - shutter_priority  # 50 0A
-    - iris_priority  # 50 0B
+  values: [full_auto, manual, shutter_priority, iris_priority]
+  # y0 50 00=Full Auto, 03=Manual, 0A=Shutter Priority, 0B=Iris/Exposure Priority
 
-# Query responses - shutter position
 - id: shutter_position
-  label: Shutter Position
   type: integer
-  range: [0, 0x1C]
+  range: [0, 28]  # 0x00-0x1C from CAM_ShutterPosInq response
 
-# Query responses - exp comp mode
 - id: expcomp_mode
-  label: Exposure Compensation Mode
   type: enum
-  values:
-    - on  # 50 02 (AE off)
-    - off  # 50 03 (AE on)
+  values: [on_ae_off, off_ae_on]
+  # y0 50 02 FF = On (AE Mode Off), y0 50 03 FF = Off (AE Mode On)
 
-# Query responses - exp comp position
 - id: expcomp_position
-  label: Exposure Compensation Position
   type: integer
-  range: [0, 0x2A]
+  range: [0, 42]  # 0x00-0x2A from CAM_ExpCompPosInq response
 
-# Query responses - ICR mode
 - id: icr_mode
-  label: ICR Cut Filter Mode
   type: enum
-  values:
-    - on  # 50 02 (filter out)
-    - off  # 50 03 (filter in)
+  values: [on_filter_out, off_filter_in]
+  # y0 50 02 FF = On (filter out, day mode), y0 50 03 FF = Off (filter in, night mode)
 ```
 
 ## Variables
 ```yaml
-# No standalone settable variables separate from discrete commands in this spec
+# Continuous settable parameters that have a range and an associated
+# direct-set command in the source. Range values come from the same
+# "Comments" column that limits the direct-set hex payload.
+- id: zoom_position
+  type: integer
+  range: [0, 1818]  # 0x0000-0x071A
+  set_command: "8x 01 04 47 0p 0q 0r 0s FF"
+
+- id: focus_position
+  type: integer
+  range: [237, 2372]  # 0x0ED-0x0944; valid range is zoom-position dependent
+  set_command: "8x 01 04 48 0p 0q 0r 0s FF"
+
+- id: rgain
+  type: integer
+  range: [0, 65535]
+  set_command: "8x 01 04 43 0p 0q 0r 0s FF"
+
+- id: bgain
+  type: integer
+  range: [0, 65535]
+  set_command: "8x 01 04 44 43 0p 0q 0r 0s FF"
+
+- id: iris
+  type: integer
+  range: [0, 8]
+  set_command: "8x 01 04 4B 00 00 0p 0q FF"
+
+- id: gain
+  type: integer
+  range: [0, 42]
+  set_command: "8x 01 04 4C 00 00 0p 0q FF"
+
+- id: bright
+  type: integer
+  range: [1, 100]
+  set_command: "8x 01 04 4D 00 00 0p 0q FF"
+
+- id: aperture
+  type: integer
+  range: [0, 31]
+  set_command: "8x 01 04 42 00 00 0p 0q FF"
+
+- id: gamma
+  type: integer
+  range: [0, 16]
+  set_command: "8x 01 7E 54 00 00 0p 0q FF"
+
+- id: chroma
+  type: integer
+  range: [0, 100]
+  set_command: "8x 01 7E 55 00 00 0p 0q FF"
+
+- id: shutter
+  type: integer
+  range: [0, 28]
+  set_command: "8x 01 04 4A 00 00 0p 0q FF"
+
+- id: expcomp
+  type: integer
+  range: [0, 42]
+  set_command: "8x 01 04 4E 00 00 0p 0q FF"
+
+- id: memory_preset
+  type: integer
+  range: [0, 15]
+  set_command: "8x 01 04 3F 01 0p FF"
+  # Also recall: 8x 01 04 3F 02 0p FF; clear: 8x 01 04 3F 00 0p FF
+
+- id: camera_id
+  type: integer
+  range: [0, 65535]
+  set_command: "8x 01 04 22 0p 0q 0r 0s FF"
+
+- id: zoom_speed
+  type: integer
+  range: [0, 7]
+  set_command: "8x 01 7E 01 4A 0v 0p 0q 0r 0s FF"
+  # Speed parameter v for the variable-speed direct zoom command only.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described in source
+# UNRESOLVED: no unsolicited notification behavior is described in the
+# refined source. VISCA-style completion/ACK packets (y0 50 ... FF) are
+# the response to a command or inquiry, not a push event.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences described in source
+# UNRESOLVED: no multi-step sequences (e.g. power-on choreography, preset
+# recall chains) are described in the refined source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
+# UNRESOLVED: refined source contains no safety warnings, interlock
+# procedures, or power-on sequencing requirements.
 ```
 
 ## Notes
-- Protocol is VISCA-like but not identical — some Sony VISCA commands not supported; HD-Series specific commands present
-- Zoom range: 0x000–0x071A; Focus range: 0x0ed–0x0944 (dependent on zoom position)
-- DIP switches configure IR channel (1/2/3), IR on/off, and image flip mode
-- HD Video rotary switch selects resolution (720p/1080i/1080p at various frame rates)
-<!-- UNRESOLVED: Telnet/TCP control interface not documented in this source -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: events/unsolicited notifications not stated in source --></parameter>
+- The "x" in every command packet is the camera address (1-7). The "y" in inquiry response packets is the response socket indicator (per VISCA convention); the refined source shows y0 as a fixed prefix in response listings.
+- The `8x 09 04 3F FF` inquiry opcode is shared by both `CAM_MemoryInq` and `CAM_IDInq` as printed in the source — both listings were captured verbatim, but a real device distinguishes the two responses only by context.
+- `CAM_Bright` inquiry packet is shown as `8x 01 04 4D FF` in the source's inquiry table (rather than the `09` inquiry byte used by every other query). Captured verbatim.
+- HD output resolution is selected via a hardware rotary switch (positions 0-F map to a fixed resolution table in the source) and is not controllable via serial.
+- A hardware DIP switch block selects IR routing (IR1/IR2/IR3), IR enable, and a Normal / Image-Flip mode; these are not serial-controllable.
+- "All Down" DIP position plus a power cycle resets the device to defaults.
+- Refined source warns: "similar to, but not identical to, Sony VISCA … not all VISCA commands are supported."
+- Recovery notes mention a Telnet ASCII API exposed over the Quick-Connect USB Ethernet port of the QC-USB variant, but the supplied refined document contains only the binary RS-232 protocol. Treat the Telnet surface as an open question for a follow-up refinement pass.
+
+<!-- UNRESOLVED: firmware version compatibility range not stated in source. -->
+<!-- UNRESOLVED: VISCA ACK/completion packet shape (y0 4x FF) not enumerated in source; only the data-response packets (y0 50 ... FF) are listed. -->
+<!-- UNRESOLVED: command timing, debounce, and inter-command delay not stated in source. -->
+<!-- UNRESOLVED: RJ-45 to DB-9 cable diagram / null-modem requirement not stated in source. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - fullcompass.com
+  - manua.ls
+  - manualslib.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
-last_checked_at: 2026-05-31T22:44:28.614Z
+  - https://res.cloudinary.com/avd/image/upload/v134228628/Resources/Vaddio/Cameras/Operation/342-0962-reva-zoomshot-for-avbmp-manual.pdf
+  - https://www.fullcompass.com/common/files/28647-VaddioZoomSHOT20Manual.pdf
+  - https://www.manua.ls/vaddio/zoomshot-20-qusb/manual
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+  - "https://www.manualslib.com/manual/975248/Vaddio-Zoomshot-20.html?page=17"
+retrieved_at: 2026-05-26T22:42:47.818Z
+last_checked_at: 2026-06-02T07:36:17.290Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T22:44:28.614Z
-matched_actions: 89
-action_count: 89
-confidence: high
-summary: "All 89 spec actions matched to source commands with correct opcodes, parameters, and ranges; transport values verified verbatim."
+checked_at: 2026-06-02T07:36:17.290Z
+matched_actions: 115
+action_count: 115
+confidence: medium
+summary: "All 115 spec action commands matched verbatim against source commands and inquiries; transport parameters verified against source specification. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Telnet ASCII API via Quick-Connect USB Ethernet port referenced in recovery notes but not present in this refined source"
+- "AMX/Crestron module strings / get-set wrappers not present in this refined source"
+- "no unsolicited notification behavior is described in the"
+- "no multi-step sequences (e.g. power-on choreography, preset"
+- "refined source contains no safety warnings, interlock"
+- "firmware version compatibility range not stated in source."
+- "VISCA ACK/completion packet shape (y0 4x FF) not enumerated in source; only the data-response packets (y0 50 ... FF) are listed."
+- "command timing, debounce, and inter-command delay not stated in source."
+- "RJ-45 to DB-9 cable diagram / null-modem requirement not stated in source."
 ```
 
 ---

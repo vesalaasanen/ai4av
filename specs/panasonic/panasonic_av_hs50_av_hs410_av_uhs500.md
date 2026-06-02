@@ -24,14 +24,23 @@ last_checked_at: 2026-05-14T18:17:19.586Z
 generated_at: 2026-05-14T18:17:19.586Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "AV-HS50 and AV-HS410 command compatibility with AV-UHS500 protocol not verified"
+  - "HTTP/REST not mentioned in source"
+  - "no power on/off commands in source"
+  - "no volume/gain/brightness commands found"
+  - "no standalone parameter variables documented separately from query commands"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "power on/off sequencing not documented in source"
+  - "error recovery procedures not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.586Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered."
+  confidence: medium
+  summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -484,14 +493,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.586Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered."
+confidence: medium
+summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "AV-HS50 and AV-HS410 command compatibility with AV-UHS500 protocol not verified"
+- "HTTP/REST not mentioned in source"
+- "no power on/off commands in source"
+- "no volume/gain/brightness commands found"
+- "no standalone parameter variables documented separately from query commands"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "power on/off sequencing not documented in source"
+- "error recovery procedures not stated in source"
 ```
 
 ---

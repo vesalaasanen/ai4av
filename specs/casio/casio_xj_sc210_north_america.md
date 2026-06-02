@@ -26,14 +26,18 @@ last_checked_at: 2026-05-14T18:17:14.906Z
 generated_at: 2026-05-14T18:17:14.906Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no settable parameters beyond discrete actions identified in source"
+  - "no multi-step sequences described in source"
+  - "firmware version compatibility not stated in source"
+  - "exact cooldown duration after power off not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.906Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage."
+  confidence: medium
+  summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -285,14 +289,17 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.906Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage."
+confidence: medium
+summary: "All 18 spec actions matched source commands; transport parameters verified; full command coverage. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no settable parameters beyond discrete actions identified in source"
+- "no multi-step sequences described in source"
+- "firmware version compatibility not stated in source"
+- "exact cooldown duration after power off not specified"
 ```
 
 ---

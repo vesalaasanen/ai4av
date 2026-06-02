@@ -21,20 +21,29 @@ source_domains:
   - convergingsystems.com
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
-  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
-retrieved_at: 2026-05-01T01:56:36.458Z
+retrieved_at: 2026-04-30T04:26:24.294Z
 last_checked_at: 2026-04-23T15:31:22.907Z
 generated_at: 2026-04-23T15:31:22.907Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "commissioning commands (setup, configuration) are out of scope per source"
+  - "no firmware version compatibility ranges stated"
+  - "e-Node default IP (192.168.1.1) mentioned as example only; actual address is DHCP or static"
+  - "no continuous variable state polling mechanism documented beyond Q=QY"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "commissioning commands for device setup are out of scope"
+  - "DHCP vs static IP addressing details not fully documented"
+  - "maximum command rate / throughput limits not stated"
+  - "error recovery behavior beyond '*' response for invalid commands"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:31:22.907Z
   matched_actions: 22
   action_count: 22
-  confidence: high
-  summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec."
+  confidence: medium
+  summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -320,8 +329,7 @@ source_domains:
   - convergingsystems.com
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
-  - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
-retrieved_at: 2026-05-01T01:56:36.458Z
+retrieved_at: 2026-04-30T04:26:24.294Z
 last_checked_at: 2026-04-23T15:31:22.907Z
 ```
 
@@ -332,14 +340,23 @@ verdict: verified
 checked_at: 2026-04-23T15:31:22.907Z
 matched_actions: 22
 action_count: 22
-confidence: high
-summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec."
+confidence: medium
+summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "commissioning commands (setup, configuration) are out of scope per source"
+- "no firmware version compatibility ranges stated"
+- "e-Node default IP (192.168.1.1) mentioned as example only; actual address is DHCP or static"
+- "no continuous variable state polling mechanism documented beyond Q=QY"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "commissioning commands for device setup are out of scope"
+- "DHCP vs static IP addressing details not fully documented"
+- "maximum command rate / throughput limits not stated"
+- "error recovery behavior beyond '*' response for invalid commands"
 ```
 
 ---

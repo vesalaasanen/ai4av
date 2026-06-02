@@ -47,19 +47,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:12.722Z
 last_checked_at: 2026-05-14T18:17:18.505Z
 generated_at: 2026-05-14T18:17:18.505Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit commands not documented in this source"
+  - "source lists 115200/38400/19200/9600/4800 bps as options; specific rate configured per device"
+  - "flow control not addressed in source"
+  - "no discrete settable parameters found that are not action-driven."
+  - "no unsolicited event notifications described in source."
+  - "no explicit multi-step sequences documented in source."
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "wireless LAN unit commands and configuration not documented"
+  - "HDBaseT interface commands not in this source"
+  - "precise flow control (RTS/CTS) configuration not addressed"
+  - "default IP address / DHCP behavior not stated"
+  - "command timing / inter-command delays not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.505Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched 1:1 to source commands; transport parameters verified verbatim; command catalogue fully represented."
+  confidence: medium
+  summary: "All 53 spec actions matched 1:1 to source commands; transport parameters verified verbatim; command catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -636,7 +648,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:12.722Z
 last_checked_at: 2026-05-14T18:17:18.505Z
 ```
 
@@ -647,14 +659,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.505Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched 1:1 to source commands; transport parameters verified verbatim; command catalogue fully represented."
+confidence: medium
+summary: "All 53 spec actions matched 1:1 to source commands; transport parameters verified verbatim; command catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit commands not documented in this source"
+- "source lists 115200/38400/19200/9600/4800 bps as options; specific rate configured per device"
+- "flow control not addressed in source"
+- "no discrete settable parameters found that are not action-driven."
+- "no unsolicited event notifications described in source."
+- "no explicit multi-step sequences documented in source."
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "wireless LAN unit commands and configuration not documented"
+- "HDBaseT interface commands not in this source"
+- "precise flow control (RTS/CTS) configuration not addressed"
+- "default IP address / DHCP behavior not stated"
+- "command timing / inter-command delays not specified"
 ```
 
 ---

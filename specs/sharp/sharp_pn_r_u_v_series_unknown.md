@@ -16,26 +16,37 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
+  - assets.sharpnecdisplays.us
   - business.sharpusa.com
+  - manua.ls
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/pn-pxx6_pn-mxx2_n_format_external_control_manual.pdf
+  - https://business.sharpusa.com/product-downloads
+  - https://sharp-displays.jp.sharp/dl/en/pj_soft/lineup.html
+  - https://www.manua.ls/sharp
+retrieved_at: 2026-05-13T20:42:25.950Z
 last_checked_at: 2026-05-18T17:02:35.807Z
 generated_at: 2026-05-18T17:02:35.807Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TV tuner commands (US-only), specific model variants not differentiated"
+  - "full VCP table is extensive; see section 8 of source"
+  - "monitor does not send unsolicited events;"
+  - "no explicit safety warnings found in source"
+  - "full VCP code table not included; section 8 lists OSD-to-command mappings only"
+  - "port number for RS-232 not applicable (serial-only)"
+  - "Ethernet cable type (crossover vs straight) not specified for TCP"
+  - "IP address configuration details beyond DHCP default"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:02:35.807Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim."
+  confidence: medium
+  summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -451,14 +462,17 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
+  - assets.sharpnecdisplays.us
   - business.sharpusa.com
+  - manua.ls
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - https://assets.sharpnecdisplays.us/documents/usermanuals/pn-pxx6_pn-mxx2_n_format_external_control_manual.pdf
+  - https://business.sharpusa.com/product-downloads
+  - https://sharp-displays.jp.sharp/dl/en/pj_soft/lineup.html
+  - https://www.manua.ls/sharp
+retrieved_at: 2026-05-13T20:42:25.950Z
 last_checked_at: 2026-05-18T17:02:35.807Z
 ```
 
@@ -469,14 +483,21 @@ verdict: verified
 checked_at: 2026-05-18T17:02:35.807Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim."
+confidence: medium
+summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TV tuner commands (US-only), specific model variants not differentiated"
+- "full VCP table is extensive; see section 8 of source"
+- "monitor does not send unsolicited events;"
+- "no explicit safety warnings found in source"
+- "full VCP code table not included; section 8 lists OSD-to-command mappings only"
+- "port number for RS-232 not applicable (serial-only)"
+- "Ethernet cable type (crossover vs straight) not specified for TCP"
+- "IP address configuration details beyond DHCP default"
 ```
 
 ---

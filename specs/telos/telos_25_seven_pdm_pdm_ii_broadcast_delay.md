@@ -25,14 +25,20 @@ last_checked_at: 2026-04-30T09:50:55.105Z
 generated_at: 2026-04-30T09:50:55.105Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 baud rate not stated in source (source only says \"choose standard values between 1200 and 115200 baud\")"
+  - "baud rate configurable 1200-115200, no default stated in source"
+  - "no explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "RS-232 baud rate, data bits, parity, stop bits not stated in source (configurable 1200–115200 only)"
+  - "firmware version not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:50:55.105Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 8 spec commands matched semantic counterparts in source; transport parameters verified."
+  confidence: medium
+  summary: "All 8 spec commands matched semantic counterparts in source; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -301,14 +307,19 @@ verdict: verified
 checked_at: 2026-04-30T09:50:55.105Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 8 spec commands matched semantic counterparts in source; transport parameters verified."
+confidence: medium
+summary: "All 8 spec commands matched semantic counterparts in source; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 baud rate not stated in source (source only says \"choose standard values between 1200 and 115200 baud\")"
+- "baud rate configurable 1200-115200, no default stated in source"
+- "no explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "RS-232 baud rate, data bits, parity, stop bits not stated in source (configurable 1200–115200 only)"
+- "firmware version not stated in source"
 ```
 
 ---

@@ -16,14 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:13:02.113Z
 last_checked_at: 2026-05-31T21:08:19.382Z
 generated_at: 2026-05-31T21:08:19.382Z
 firmware_coverage: "Not stated in source"
@@ -41,13 +37,23 @@ known_gaps:
   - VCP-00-12
   - VCP-00-92
   - VCP-00-87
+  - "full VCP code table not included in source excerpt; actions list incomplete"
+  - "full VCP code table not provided; many opcodes not documented in excerpt"
+  - "source defines VCP codes but full variable table not included in excerpt"
+  - "no unsolicited event messages described in source"
+  - "no multi-step macros explicitly described in source"
+  - "no safety warnings or interlock procedures explicitly stated in source"
+  - "full VCP code table (chapter 8) not included in source excerpt"
+  - "firmware compatibility range not stated"
+  - "voltage/power specs not in source"
+  - "error recovery sequences not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:08:19.382Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions (10 VCP page 00/02 + 8 CTL) map exactly to source commands; transport baud 9600, port 7142 confirmed verbatim; source contains ~80+ additional VCP codes not represented in the spec."
+  confidence: medium
+  summary: "All 18 spec actions (10 VCP page 00/02 + 8 CTL) map exactly to source commands; transport baud 9600, port 7142 confirmed verbatim; source contains ~80+ additional VCP codes not represented in the spec. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -391,14 +397,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:13:02.113Z
 last_checked_at: 2026-05-31T21:08:19.382Z
 ```
 
@@ -409,8 +411,8 @@ verdict: verified
 checked_at: 2026-05-31T21:08:19.382Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions (10 VCP page 00/02 + 8 CTL) map exactly to source commands; transport baud 9600, port 7142 confirmed verbatim; source contains ~80+ additional VCP codes not represented in the spec."
+confidence: medium
+summary: "All 18 spec actions (10 VCP page 00/02 + 8 CTL) map exactly to source commands; transport baud 9600, port 7142 confirmed verbatim; source contains ~80+ additional VCP codes not represented in the spec. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -428,6 +430,16 @@ summary: "All 18 spec actions (10 VCP page 00/02 + 8 CTL) map exactly to source 
 - VCP-00-12
 - VCP-00-92
 - VCP-00-87
+- "full VCP code table not included in source excerpt; actions list incomplete"
+- "full VCP code table not provided; many opcodes not documented in excerpt"
+- "source defines VCP codes but full variable table not included in excerpt"
+- "no unsolicited event messages described in source"
+- "no multi-step macros explicitly described in source"
+- "no safety warnings or interlock procedures explicitly stated in source"
+- "full VCP code table (chapter 8) not included in source excerpt"
+- "firmware compatibility range not stated"
+- "voltage/power specs not in source"
+- "error recovery sequences not documented"
 ```
 
 ---

@@ -35,13 +35,18 @@ known_gaps:
   - lvmon
   - confm
   - error
+  - "firmware version compatibility not fully stated beyond minimum versions"
+  - "no multi-step sequences explicitly described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "firmware version compatibility ranges beyond stated minimums not specified"
+  - "no power-on/off IP control command found (power is physical)"
 verification:
   verdict: verified
   checked_at: 2026-05-03T15:35:30.550Z
   matched_actions: 93
   action_count: 93
-  confidence: high
-  summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section."
+  confidence: medium
+  summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1216,8 +1221,8 @@ verdict: verified
 checked_at: 2026-05-03T15:35:30.550Z
 matched_actions: 93
 action_count: 93
-confidence: high
-summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section."
+confidence: medium
+summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1231,6 +1236,11 @@ summary: "All 93 spec actions matched their 5-byte wire tokens in the source com
 - lvmon
 - confm
 - error
+- "firmware version compatibility not fully stated beyond minimum versions"
+- "no multi-step sequences explicitly described in source"
+- "no safety warnings or interlock procedures found in source"
+- "firmware version compatibility ranges beyond stated minimums not specified"
+- "no power-on/off IP control command found (power is physical)"
 ```
 
 ---

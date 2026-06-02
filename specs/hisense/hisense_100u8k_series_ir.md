@@ -16,24 +16,27 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T15:59:26.659Z
 last_checked_at: 2026-05-14T18:17:16.031Z
 generated_at: 2026-05-14T18:17:16.031Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial port number not stated — RS-232 DB9 female connector documented but no default port number"
+  - "no IP/TCP control documented — only RS-232 and IR"
+  - "document does not describe unsolicited event notifications from TV"
+  - "no explicit multi-step macros documented in source"
+  - "no explicit safety warnings or interlock procedures beyond setup notes"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.031Z
   matched_actions: 161
   action_count: 161
-  confidence: high
-  summary: "All 232 actions matched source; transport verified."
+  confidence: medium
+  summary: "All 232 actions matched source; transport verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1482,12 +1485,10 @@ Power on via RS-232 requires enabling Power On Command in Custom Install menu be
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T15:59:26.659Z
 last_checked_at: 2026-05-14T18:17:16.031Z
 ```
 
@@ -1498,14 +1499,18 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.031Z
 matched_actions: 161
 action_count: 161
-confidence: high
-summary: "All 232 actions matched source; transport verified."
+confidence: medium
+summary: "All 232 actions matched source; transport verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial port number not stated — RS-232 DB9 female connector documented but no default port number"
+- "no IP/TCP control documented — only RS-232 and IR"
+- "document does not describe unsolicited event notifications from TV"
+- "no explicit multi-step macros documented in source"
+- "no explicit safety warnings or interlock procedures beyond setup notes"
 ```
 
 ---

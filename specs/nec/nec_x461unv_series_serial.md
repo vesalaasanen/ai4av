@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:24.540Z
 last_checked_at: 2026-05-14T18:17:19.106Z
 generated_at: 2026-05-14T18:17:19.106Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "standby mode compatibility varies by model; specific mode requirements not fully enumerated in source"
+  - "volume, brightness, contrast, hue, sharpness values are adjustable parameters"
+  - "no unsolicited event notifications documented in source."
+  - "no multi-step macros explicitly documented in source."
+  - "specific standby mode requirements for each X461UNV variant not enumerated in source"
+  - "all valid input terminal hex codes for this specific model not differentiated from common values"
+  - "data_flow_control (flow control type) not stated in source"
+  - "TCP/IP protocol variant (Telnet/raw TCP) not explicitly stated"
+  - "LAN authentication requirements not documented"
+  - "command timing/cooldown requirements not stated"
+  - "firmware version compatibility not stated"
+  - "protocol version number not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.106Z
   matched_actions: 49
   action_count: 52
-  confidence: high
-  summary: "All 49 spec actions matched source; transport verified"
+  confidence: medium
+  summary: "All 49 spec actions matched source; transport verified (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -722,7 +734,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:24.540Z
 last_checked_at: 2026-05-14T18:17:19.106Z
 ```
 
@@ -733,14 +745,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.106Z
 matched_actions: 49
 action_count: 52
-confidence: high
-summary: "All 49 spec actions matched source; transport verified"
+confidence: medium
+summary: "All 49 spec actions matched source; transport verified (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "standby mode compatibility varies by model; specific mode requirements not fully enumerated in source"
+- "volume, brightness, contrast, hue, sharpness values are adjustable parameters"
+- "no unsolicited event notifications documented in source."
+- "no multi-step macros explicitly documented in source."
+- "specific standby mode requirements for each X461UNV variant not enumerated in source"
+- "all valid input terminal hex codes for this specific model not differentiated from common values"
+- "data_flow_control (flow control type) not stated in source"
+- "TCP/IP protocol variant (Telnet/raw TCP) not explicitly stated"
+- "LAN authentication requirements not documented"
+- "command timing/cooldown requirements not stated"
+- "firmware version compatibility not stated"
+- "protocol version number not stated"
 ```
 
 ---

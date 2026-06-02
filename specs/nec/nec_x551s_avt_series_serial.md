@@ -19,19 +19,24 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:32.802Z
 last_checked_at: 2026-05-14T18:17:19.236Z
 generated_at: 2026-05-14T18:17:19.236Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — some hex values and mode values cannot be verified"
+  - "all settable parameters exposed via action commands"
+  - "no unsolicited event notifications documented"
+  - "no explicit safety warnings, interlock procedures, or power-on sequencing requirements found in source"
+  - "Appendix \"Supplementary Information by Command\" values (input terminals, aspect modes, eco modes) not fully provided in source — referenced but values incomplete"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.236Z
   matched_actions: 28
   action_count: 28
   confidence: low
-  summary: "All 51 spec actions matched source commands; transport verified"
+  summary: "All 51 spec actions matched source commands; transport verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -618,7 +623,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:32.802Z
 last_checked_at: 2026-05-14T18:17:19.236Z
 ```
 
@@ -630,13 +635,17 @@ checked_at: 2026-05-14T18:17:19.236Z
 matched_actions: 28
 action_count: 28
 confidence: low
-summary: "All 51 spec actions matched source commands; transport verified"
+summary: "All 51 spec actions matched source commands; transport verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — some hex values and mode values cannot be verified"
+- "all settable parameters exposed via action commands"
+- "no unsolicited event notifications documented"
+- "no explicit safety warnings, interlock procedures, or power-on sequencing requirements found in source"
+- "Appendix \"Supplementary Information by Command\" values (input terminals, aspect modes, eco modes) not fully provided in source — referenced but values incomplete"
 ```
 
 ---

@@ -18,24 +18,29 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/AT-HDVS-CAM_API.pdf
+retrieved_at: 2026-05-14T20:20:09.597Z
 last_checked_at: 2026-05-20T05:00:17.446Z
 generated_at: 2026-05-20T05:00:17.446Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no serial (RS-232) pinout or wiring documented — source only specifies TCP"
+  - "firmware version compatibility not stated"
+  - "maximum concurrent connections not stated"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "Pelco-D/Pelco-P checksum calculation not explicitly shown"
+  - "pan/tilt position coordinate range not documented (TBD noted in source for limit set)"
+  - "maximum number of concurrent TCP connections not stated"
+  - "whether VISCA and Pelco-D/P can be used simultaneously on same connection"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:00:17.446Z
   matched_actions: 103
   action_count: 103
-  confidence: high
-  summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands."
+  confidence: medium
+  summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1727,12 +1732,8 @@ Device uses VISCA protocol (Sony PTZ camera command set) with binary hex command
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/AT-HDVS-CAM_API.pdf
+retrieved_at: 2026-05-14T20:20:09.597Z
 last_checked_at: 2026-05-20T05:00:17.446Z
 ```
 
@@ -1743,14 +1744,22 @@ verdict: verified
 checked_at: 2026-05-20T05:00:17.446Z
 matched_actions: 103
 action_count: 103
-confidence: high
-summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands."
+confidence: medium
+summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no serial (RS-232) pinout or wiring documented — source only specifies TCP"
+- "firmware version compatibility not stated"
+- "maximum concurrent connections not stated"
+- "no multi-step macro sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "Pelco-D/Pelco-P checksum calculation not explicitly shown"
+- "pan/tilt position coordinate range not documented (TBD noted in source for limit set)"
+- "maximum number of concurrent TCP connections not stated"
+- "whether VISCA and Pelco-D/P can be used simultaneously on same connection"
 ```
 
 ---

@@ -27,14 +27,31 @@ last_checked_at: 2026-05-05T06:10:41.965Z
 generated_at: 2026-05-05T06:10:41.965Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-422A interface mentioned but pinout not detailed; RS-232C used as primary"
+  - "flow control not stated in source"
+  - "specific resolution values not detailed in source"
+  - "specific zoom levels not detailed"
+  - "dimmer levels not detailed"
+  - "specific mode values not detailed in source"
+  - "no discrete settable parameters separate from actions observed in source."
+  - "no unsolicited status notifications described in source."
+  - "no explicit multi-step command sequences described as macros in source."
+  - "no explicit interlock procedures for mechanical movement (disc tray) safety."
+  - "RS-422A interface details not fully specified; only RS-232C pinout provided"
+  - "HDMI format command has no documented resolution/value table"
+  - "zoom levels and dimmer levels not documented"
+  - "Mode command functionality not detailed"
+  - "AUTO TRANSFER MODE auto-reporting trigger conditions not specified"
+  - "HDMISelect command (63h) listed in command table but no detailed spec in source"
+  - "CALL command (67h) listed in command table but no detailed spec in source"
 verification:
   verdict: verified
   checked_at: 2026-05-05T06:10:41.965Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 37 spec actions matched literal command codes in source; transport parameters verified against serial interface specification."
+  confidence: medium
+  summary: "All 37 spec actions matched literal command codes in source; transport parameters verified against serial interface specification. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -480,14 +497,30 @@ verdict: verified
 checked_at: 2026-05-05T06:10:41.965Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 37 spec actions matched literal command codes in source; transport parameters verified against serial interface specification."
+confidence: medium
+summary: "All 37 spec actions matched literal command codes in source; transport parameters verified against serial interface specification. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-422A interface mentioned but pinout not detailed; RS-232C used as primary"
+- "flow control not stated in source"
+- "specific resolution values not detailed in source"
+- "specific zoom levels not detailed"
+- "dimmer levels not detailed"
+- "specific mode values not detailed in source"
+- "no discrete settable parameters separate from actions observed in source."
+- "no unsolicited status notifications described in source."
+- "no explicit multi-step command sequences described as macros in source."
+- "no explicit interlock procedures for mechanical movement (disc tray) safety."
+- "RS-422A interface details not fully specified; only RS-232C pinout provided"
+- "HDMI format command has no documented resolution/value table"
+- "zoom levels and dimmer levels not documented"
+- "Mode command functionality not detailed"
+- "AUTO TRANSFER MODE auto-reporting trigger conditions not specified"
+- "HDMISelect command (63h) listed in command table but no detailed spec in source"
+- "CALL command (67h) listed in command table but no detailed spec in source"
 ```
 
 ---

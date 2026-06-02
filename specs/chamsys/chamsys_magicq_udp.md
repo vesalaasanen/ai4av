@@ -28,14 +28,18 @@ last_checked_at: 2026-04-30T09:38:05.971Z
 generated_at: 2026-04-30T09:38:05.971Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial control section not included in this source; see `remote_control_serial.html` for serial variant"
+  - "discrete settable parameters not explicitly enumerated in source."
+  - "unsolicited event emission from MagicQ not described in source."
+  - "safety warnings or interlock procedures not found in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:38:05.971Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed."
+  confidence: medium
+  summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -234,14 +238,17 @@ verdict: verified
 checked_at: 2026-04-30T09:38:05.971Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed."
+confidence: medium
+summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial control section not included in this source; see `remote_control_serial.html` for serial variant"
+- "discrete settable parameters not explicitly enumerated in source."
+- "unsolicited event emission from MagicQ not described in source."
+- "safety warnings or interlock procedures not found in source"
 ```
 
 ---

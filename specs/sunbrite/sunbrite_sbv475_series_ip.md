@@ -17,21 +17,34 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
+  - docs.control4.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-v4-ig/Content/Topics/IP%20Control.htm"
+  - "https://help.snapone.com/sb-v4-ig/Content/Topics/IP%20Control%20Guide.htm"
+  - https://docs.control4.com/docs/product/sunbrite-veranda-series-2/ip-control-protocol/english/latest/sunbrite-veranda-series-2-ip-control-protocol-rev-b.pdf
+retrieved_at: 2026-05-27T14:24:59.634Z
 last_checked_at: 2026-05-31T22:42:31.566Z
 generated_at: 2026-05-31T22:42:31.566Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port not stated in source; IP control protocol details not documented in this doc"
+  - "TCP port number not stated in source"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP control protocol details, port number, and IP-level behavior not stated in source"
+  - "firmware version compatibility ranges not stated in source"
+  - "error handling and fault behavior not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:42:31.566Z
   matched_actions: 50
   action_count: 50
-  confidence: high
-  summary: "All 50 spec actions matched verbatim to source command table; serial transport parameters verified against source; one-to-one coverage."
+  confidence: medium
+  summary: "All 50 spec actions matched verbatim to source command table; serial transport parameters verified against source; one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -445,9 +458,14 @@ Input 7 (VGA) and Input 8 (HDMI1) are out of letter sequence to maintain compati
 ```yaml
 source_domains:
   - sunbritetv.com
+  - help.snapone.com
+  - docs.control4.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T18:05:01.545Z
+  - "https://help.snapone.com/sb-v4-ig/Content/Topics/IP%20Control.htm"
+  - "https://help.snapone.com/sb-v4-ig/Content/Topics/IP%20Control%20Guide.htm"
+  - https://docs.control4.com/docs/product/sunbrite-veranda-series-2/ip-control-protocol/english/latest/sunbrite-veranda-series-2-ip-control-protocol-rev-b.pdf
+retrieved_at: 2026-05-27T14:24:59.634Z
 last_checked_at: 2026-05-31T22:42:31.566Z
 ```
 
@@ -458,14 +476,21 @@ verdict: verified
 checked_at: 2026-05-31T22:42:31.566Z
 matched_actions: 50
 action_count: 50
-confidence: high
-summary: "All 50 spec actions matched verbatim to source command table; serial transport parameters verified against source; one-to-one coverage."
+confidence: medium
+summary: "All 50 spec actions matched verbatim to source command table; serial transport parameters verified against source; one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port not stated in source; IP control protocol details not documented in this doc"
+- "TCP port number not stated in source"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP control protocol details, port number, and IP-level behavior not stated in source"
+- "firmware version compatibility ranges not stated in source"
+- "error handling and fault behavior not documented in source"
 ```
 
 ---

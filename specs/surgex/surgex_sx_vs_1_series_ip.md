@@ -19,23 +19,27 @@ compatible_with:
 source_domains:
   - ametekesp.com
 source_urls:
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
-  - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
   - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
-  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
-retrieved_at: 2026-05-01T02:09:11.359Z
+retrieved_at: 2026-04-30T04:31:27.393Z
 last_checked_at: 2026-05-14T18:17:21.130Z
 generated_at: 2026-05-14T18:17:21.130Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variants in the SX-VS-1 Series family beyond SX-VS-1216 are not enumerated in source"
+  - "HTTPS/TLS configuration details beyond ssl boolean flag not documented"
+  - "specific power-on sequencing safety requirements not stated in source"
+  - "maximum inrush current or simultaneous outlet power-on limits not stated"
+  - "maximum number of outlets per model variant not explicitly stated (SX-VS-1216 has 16)"
+  - "SNMP trap payload format not documented"
+  - "firmware update procedure details beyond file upload not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.130Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation."
+  confidence: medium
+  summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -593,11 +597,8 @@ interlocks:
 source_domains:
   - ametekesp.com
 source_urls:
-  - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/axess-elite/surgex_axess-elite_user-manual.pdf
-  - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
   - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
-  - https://www.ametekesp.com/-/media/ametekesp/products/surgex/axess-elite-plus/b01-00014_rev-a_axess-elite-plus_user-manual.pdf
-retrieved_at: 2026-05-01T02:09:11.359Z
+retrieved_at: 2026-04-30T04:31:27.393Z
 last_checked_at: 2026-05-14T18:17:21.130Z
 ```
 
@@ -608,14 +609,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.130Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation."
+confidence: medium
+summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variants in the SX-VS-1 Series family beyond SX-VS-1216 are not enumerated in source"
+- "HTTPS/TLS configuration details beyond ssl boolean flag not documented"
+- "specific power-on sequencing safety requirements not stated in source"
+- "maximum inrush current or simultaneous outlet power-on limits not stated"
+- "maximum number of outlets per model variant not explicitly stated (SX-VS-1216 has 16)"
+- "SNMP trap payload format not documented"
+- "firmware update procedure details beyond file upload not documented"
 ```
 
 ---

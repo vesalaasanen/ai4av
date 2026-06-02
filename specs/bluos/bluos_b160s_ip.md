@@ -19,19 +19,26 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T17:46:59.255Z
 last_checked_at: 2026-05-16T17:13:38.665Z
 generated_at: 2026-05-16T17:13:38.665Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The source document is the BluOS Custom Integration API, which covers the entire BluOS product family (Bluesound, NAD Electronics, DALI, etc.). It does not enumerate which specific features or inputs are present on the B160S model versus other models. Input types available on the B160S (analog, optical, Bluetooth, etc.) are not confirmed by the source for this specific model."
+  - "no player-level settable parameters beyond the action endpoints above are documented in the source for per-player persistent configuration via the CI API."
+  - "whether the B160S sends any unsolicited TCP/HTTP notifications outside of long polling."
+  - "no multi-step macro sequences are documented in the source."
+  - "no power sequencing requirements or safety interlocks are described in the source for the B160S."
+  - "API version 1.7 (2025-04-09) is the source version. The spec does not document which BluOS firmware version maps to API version 1.7."
+  - "Specific input types physically available on the B160S are not enumerated in this API document."
 verification:
   verdict: verified
   checked_at: 2026-05-16T17:13:38.665Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented."
+  confidence: medium
+  summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -610,7 +617,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T17:46:59.255Z
 last_checked_at: 2026-05-16T17:13:38.665Z
 ```
 
@@ -621,14 +628,20 @@ verdict: verified
 checked_at: 2026-05-16T17:13:38.665Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented."
+confidence: medium
+summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The source document is the BluOS Custom Integration API, which covers the entire BluOS product family (Bluesound, NAD Electronics, DALI, etc.). It does not enumerate which specific features or inputs are present on the B160S model versus other models. Input types available on the B160S (analog, optical, Bluetooth, etc.) are not confirmed by the source for this specific model."
+- "no player-level settable parameters beyond the action endpoints above are documented in the source for per-player persistent configuration via the CI API."
+- "whether the B160S sends any unsolicited TCP/HTTP notifications outside of long polling."
+- "no multi-step macro sequences are documented in the source."
+- "no power sequencing requirements or safety interlocks are described in the source for the B160S."
+- "API version 1.7 (2025-04-09) is the source version. The spec does not document which BluOS firmware version maps to API version 1.7."
+- "Specific input types physically available on the B160S are not enumerated in this API document."
 ```
 
 ---

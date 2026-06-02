@@ -30,14 +30,25 @@ last_checked_at: 2026-05-14T18:17:15.645Z
 generated_at: 2026-05-14T18:17:15.645Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "USB, network, or other control interfaces not mentioned in source"
+  - "flow control not stated in source"
+  - "port number not stated in source"
+  - "no discrete settable parameters found in source beyond on/off commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "additional safety procedures not documented in source"
+  - "firmware version compatibility not stated in source"
+  - "USB or network control interfaces not mentioned in source"
+  - "lamp hour reset procedure not documented in source"
+  - "error recovery sequences not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.645Z
   matched_actions: 48
   action_count: 49
-  confidence: high
-  summary: "All 48 spec actions matched verbatim to source command table; all transport parameters verified."
+  confidence: medium
+  summary: "All 48 spec actions matched verbatim to source command table; all transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -438,14 +449,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.645Z
 matched_actions: 48
 action_count: 49
-confidence: high
-summary: "All 48 spec actions matched verbatim to source command table; all transport parameters verified."
+confidence: medium
+summary: "All 48 spec actions matched verbatim to source command table; all transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "USB, network, or other control interfaces not mentioned in source"
+- "flow control not stated in source"
+- "port number not stated in source"
+- "no discrete settable parameters found in source beyond on/off commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "additional safety procedures not documented in source"
+- "firmware version compatibility not stated in source"
+- "USB or network control interfaces not mentioned in source"
+- "lamp hour reset procedure not documented in source"
+- "error recovery sequences not documented in source"
 ```
 
 ---

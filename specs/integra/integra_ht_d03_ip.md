@@ -19,19 +19,27 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:33.420Z
 last_checked_at: 2026-05-14T18:17:17.051Z
 generated_at: 2026-05-14T18:17:17.051Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific HT-D03 feature subset not confirmed — source is a generic Integra ISCP protocol reference, not model-specific documentation"
+  - "all continuous parameters are expressed as discrete command codes in the ISCP protocol."
+  - "no multi-step macro sequences described in source"
+  - "power-on sequencing requirements not stated in source"
+  - "exact HT-D03 command subset not confirmed — source is a generic Integra ISCP protocol reference"
+  - "firmware version compatibility not stated in source"
+  - "maximum volume range (0-100 vs 0-80) depends on model, not confirmed for HT-D03"
+  - "XM/SIRIUS/HD Radio command availability for HT-D03 not confirmed"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.051Z
   matched_actions: 56
   action_count: 56
-  confidence: high
-  summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol."
+  confidence: medium
+  summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -800,7 +808,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:33.420Z
 last_checked_at: 2026-05-14T18:17:17.051Z
 ```
 
@@ -811,14 +819,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.051Z
 matched_actions: 56
 action_count: 56
-confidence: high
-summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol."
+confidence: medium
+summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific HT-D03 feature subset not confirmed — source is a generic Integra ISCP protocol reference, not model-specific documentation"
+- "all continuous parameters are expressed as discrete command codes in the ISCP protocol."
+- "no multi-step macro sequences described in source"
+- "power-on sequencing requirements not stated in source"
+- "exact HT-D03 command subset not confirmed — source is a generic Integra ISCP protocol reference"
+- "firmware version compatibility not stated in source"
+- "maximum volume range (0-100 vs 0-80) depends on model, not confirmed for HT-D03"
+- "XM/SIRIUS/HD Radio command availability for HT-D03 not confirmed"
 ```
 
 ---

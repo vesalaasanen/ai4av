@@ -15,23 +15,33 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - community.symcon.de
-source_urls:
-  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:16.949Z
 last_checked_at: 2026-05-14T18:17:16.949Z
 generated_at: 2026-05-14T18:17:16.949Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware versions compatible with this protocol version (1.15) not stated"
+  - "maximum concurrent connection limit beyond \"one\" noted in source — unclear if this refers to total TCP sessions or simultaneous controllers"
+  - "eISCP end-of-message character varies by model (\"[EOF]\" or \"[EOF][CR]\" or \"[EOF][CR][LF]\") — not pinned for DRX-R1.3 specifically"
+  - "no multi-step macro sequences described in source"
+  - "power-on sequencing requirements not stated in source"
+  - "fault behavior and error recovery sequences not stated in source"
+  - "exact eISCP end-of-message terminator for DRX-R1.3 not confirmed"
+  - "configurable TCP port range 49152-65535 stated but setup procedure not detailed"
+  - "tone commands for Front Wide (TFW), Front High (TFH), Surround (TSR), Surround Back (TSB), Subwoofer (TSW) documented but channel availability depends on speaker configuration"
+  - "Dolby Volume (DVL), Music Optimizer (MOT), Late Night (LTN), Re-EQ/Cinema Filter (RAS) commands documented but may vary by model"
+  - "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS) control external devices via RI link and are not direct receiver functions"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.949Z
   matched_actions: 132
   action_count: 141
-  confidence: high
-  summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1416,11 +1426,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - community.symcon.de
-source_urls:
-  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:16.949Z
 last_checked_at: 2026-05-14T18:17:16.949Z
 ```
 
@@ -1431,14 +1439,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.949Z
 matched_actions: 132
 action_count: 141
-confidence: high
-summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete."
+confidence: medium
+summary: "All 132 spec actions matched literal wire tokens in source; transport values verbatim; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware versions compatible with this protocol version (1.15) not stated"
+- "maximum concurrent connection limit beyond \"one\" noted in source — unclear if this refers to total TCP sessions or simultaneous controllers"
+- "eISCP end-of-message character varies by model (\"[EOF]\" or \"[EOF][CR]\" or \"[EOF][CR][LF]\") — not pinned for DRX-R1.3 specifically"
+- "no multi-step macro sequences described in source"
+- "power-on sequencing requirements not stated in source"
+- "fault behavior and error recovery sequences not stated in source"
+- "exact eISCP end-of-message terminator for DRX-R1.3 not confirmed"
+- "configurable TCP port range 49152-65535 stated but setup procedure not detailed"
+- "tone commands for Front Wide (TFW), Front High (TFH), Surround (TSR), Surround Back (TSB), Subwoofer (TSW) documented but channel availability depends on speaker configuration"
+- "Dolby Volume (DVL), Music Optimizer (MOT), Late Night (LTN), Re-EQ/Cinema Filter (RAS) commands documented but may vary by model"
+- "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS) control external devices via RI link and are not direct receiver functions"
+- "model-specific source not located"
 ```
 
 ---

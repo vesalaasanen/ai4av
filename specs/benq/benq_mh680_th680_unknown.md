@@ -18,26 +18,40 @@ compatible_with:
   required_options: []
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - benq.com
+  - scribd.com
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - "https://esupportdownload.benq.com/esupport/Projector/UserManual/Projector_um_User%20Manual_20131213_084751New_MH680_TH680_EN.pdf"
+  - https://www.benq.com/en-us/support/downloads-faq/products/projector/mh680/manual.html
+  - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:27:43.223Z
 last_checked_at: 2026-05-14T21:40:22.921Z
 generated_at: 2026-05-14T21:40:22.921Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "baud rate selectable via command (*baud=), not fixed"
+  - "hour range not stated in source"
+  - "all settable parameters also have write actions, no separate Variables needed"
+  - "no unsolicited notifications described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "ltim2 (Lamp2 Hour) not supported on this model per source"
+  - "micvol commands not supported on this model per source"
+  - "network/USB/wireless/HDBaseT source selection not supported on this model per source"
+  - "standby network/microphone settings not supported on this model per source"
+  - "baud rate is software-settable via *baud= command, not hard-configured"
+  - "firmware version not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:40:22.921Z
   matched_actions: 69
   action_count: 86
-  confidence: high
-  summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented."
+  confidence: medium
+  summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -906,14 +920,16 @@ Command wrapper format: `<CR>*cmd=value#<CR>` (carriage return delimited). Both 
 ```yaml
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - benq.com
+  - scribd.com
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - "https://esupportdownload.benq.com/esupport/Projector/UserManual/Projector_um_User%20Manual_20131213_084751New_MH680_TH680_EN.pdf"
+  - https://www.benq.com/en-us/support/downloads-faq/products/projector/mh680/manual.html
+  - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:27:43.223Z
 last_checked_at: 2026-05-14T21:40:22.921Z
 ```
 
@@ -924,14 +940,25 @@ verdict: verified
 checked_at: 2026-05-14T21:40:22.921Z
 matched_actions: 69
 action_count: 86
-confidence: high
-summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented."
+confidence: medium
+summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "baud rate selectable via command (*baud=), not fixed"
+- "hour range not stated in source"
+- "all settable parameters also have write actions, no separate Variables needed"
+- "no unsolicited notifications described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "ltim2 (Lamp2 Hour) not supported on this model per source"
+- "micvol commands not supported on this model per source"
+- "network/USB/wireless/HDBaseT source selection not supported on this model per source"
+- "standby network/microphone settings not supported on this model per source"
+- "baud rate is software-settable via *baud= command, not hard-configured"
+- "firmware version not stated in source"
 ```
 
 ---

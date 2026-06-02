@@ -19,19 +19,20 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+retrieved_at: 2026-05-22T21:58:50.831Z
 last_checked_at: 2026-05-26T13:19:02.078Z
 generated_at: 2026-05-26T13:19:02.078Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model compatibility matrix across AVR generations not fully specified in source"
 verification:
   verdict: verified
   checked_at: 2026-05-26T13:19:02.078Z
   matched_actions: 907
   action_count: 907
-  confidence: high
-  summary: "All 907 spec action units have verbatim wire-token matches in source; Z2/Z3 input variants (HDRADIO, LASTFM, FLICKR, AUX3-7, USB/IPOD, IPD, IRP, FVP plus Z3 PANDORA/SIRIUSXM/SPOTIFY) all documented in the Denon control protocol table; transport fully confirmed."
+  confidence: medium
+  summary: "All 907 spec action units have verbatim wire-token matches in source; Z2/Z3 input variants (HDRADIO, LASTFM, FLICKR, AUX3-7, USB/IPOD, IPD, IRP, FVP plus Z3 PANDORA/SIRIUSXM/SPOTIFY) all documented in the Denon control protocol table; transport fully confirmed. (1 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -5683,7 +5684,7 @@ source_domains:
   - heimkinoraum.de
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+retrieved_at: 2026-05-22T21:58:50.831Z
 last_checked_at: 2026-05-26T13:19:02.078Z
 ```
 
@@ -5694,14 +5695,14 @@ verdict: verified
 checked_at: 2026-05-26T13:19:02.078Z
 matched_actions: 907
 action_count: 907
-confidence: high
-summary: "All 907 spec action units have verbatim wire-token matches in source; Z2/Z3 input variants (HDRADIO, LASTFM, FLICKR, AUX3-7, USB/IPOD, IPD, IRP, FVP plus Z3 PANDORA/SIRIUSXM/SPOTIFY) all documented in the Denon control protocol table; transport fully confirmed."
+confidence: medium
+summary: "All 907 spec action units have verbatim wire-token matches in source; Z2/Z3 input variants (HDRADIO, LASTFM, FLICKR, AUX3-7, USB/IPOD, IPD, IRP, FVP plus Z3 PANDORA/SIRIUSXM/SPOTIFY) all documented in the Denon control protocol table; transport fully confirmed. (1 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model compatibility matrix across AVR generations not fully specified in source"
 ```
 
 ---

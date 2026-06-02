@@ -17,22 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+  - tech.bndh.io
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://tech.bndh.io/technical/hex-codes/
+  - https://tech.bndh.io/technical/bond-connect/
+retrieved_at: 2026-04-29T12:56:51.357Z
 last_checked_at: 2026-04-30T09:32:23.840Z
 generated_at: 2026-04-30T09:32:23.840Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific fan model names not stated in source"
+  - "full event taxonomy not enumerated in source"
+  - "specific macro sequences not documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "port number for HTTP not explicitly stated (assumed 80); UDP BPUP port 30007 stated explicitly in source"
+  - "max_speed value varies per device and must be queried at runtime"
+  - "specific device model names not enumerated in source"
+  - "firmware compatibility range not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:32:23.840Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions match source documentation one-to-one with correct parameters; transport parameters verified."
+  confidence: medium
+  summary: "All 44 spec actions match source documentation one-to-one with correct parameters; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -470,10 +480,12 @@ Base URL: `http://{bond_ip}/v2/`. Token obtained via power cycle then GET `/v2/t
 ```yaml
 source_domains:
   - docs-local.appbond.com
+  - tech.bndh.io
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://tech.bndh.io/technical/hex-codes/
+  - https://tech.bndh.io/technical/bond-connect/
+retrieved_at: 2026-04-29T12:56:51.357Z
 last_checked_at: 2026-04-30T09:32:23.840Z
 ```
 
@@ -484,14 +496,21 @@ verdict: verified
 checked_at: 2026-04-30T09:32:23.840Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions match source documentation one-to-one with correct parameters; transport parameters verified."
+confidence: medium
+summary: "All 44 spec actions match source documentation one-to-one with correct parameters; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific fan model names not stated in source"
+- "full event taxonomy not enumerated in source"
+- "specific macro sequences not documented in source"
+- "no safety warnings or interlock procedures in source"
+- "port number for HTTP not explicitly stated (assumed 80); UDP BPUP port 30007 stated explicitly in source"
+- "max_speed value varies per device and must be queried at runtime"
+- "specific device model names not enumerated in source"
+- "firmware compatibility range not stated"
 ```
 
 ---

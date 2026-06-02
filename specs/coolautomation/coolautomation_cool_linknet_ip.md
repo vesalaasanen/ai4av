@@ -1,5 +1,5 @@
 ---
-spec_id: admin/coolautomation-cool_linknet
+spec_id: admin/coolautomation-cool-linknet
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "CoolAutomation Cool Linknet Control Spec"
@@ -16,34 +16,42 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - coolautomation.com
+  - support.coolautomation.com
 source_urls:
-  - https://coolautomation.com/Lib/doc/prm/CoolAutomation-PRM-CoolMaster-v4.06.pdf
-retrieved_at: 2026-05-04T18:05:10.825Z
-last_checked_at: 2026-05-27T15:36:45.109Z
-generated_at: 2026-05-27T15:36:45.109Z
+  - https://support.coolautomation.com/hc/en-us/article_attachments/17317574262557/CM5-PRM.pdf
+  - https://support.coolautomation.com/hc/en-us/articles/4987468741789-ModBus-Integration-Guidelines
+  - https://support.coolautomation.com/hc/en-us/articles/4987523432221-REST-API-Integration-2019
+  - https://support.coolautomation.com/hc/en-us/articles/29441867901853-Modbus-Server-Integration-Registers-Sample
+  - https://support.coolautomation.com/hc/en-us/articles/4987429359005-BACnet-Integration-Guidelines
+retrieved_at: 2026-05-27T13:24:45.663Z
+last_checked_at: 2026-06-02T00:05:10.635Z
+generated_at: 2026-06-02T00:05:10.635Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Cool Linknet-specific model number / SKU not stated in source; the source uses the broader CoolMaster Product Line PRM that includes CooLinkNet."
+  - "source describes no unsolicited event stream; only the aserver prompt"
+  - "source contains no explicit safety warnings, interlock procedures, or"
+  - "Cool Linknet-specific hardware revisions, SKU variants, and any firmware version compatibility notes are not stated in the source. The PRM covers the broader CoolMaster Product Line."
 verification:
   verdict: verified
-  checked_at: 2026-05-27T15:36:45.109Z
-  matched_actions: 90
-  action_count: 90
-  confidence: high
-  summary: "All 90 spec actions matched literally to source command reference; transport parameters confirmed (TCP 10102, serial 9600/8N1); complete coverage of CoolMaster ASCII I/F protocol."
+  checked_at: 2026-06-02T00:05:10.635Z
+  matched_actions: 87
+  action_count: 87
+  confidence: medium
+  summary: "All 87 spec actions match verbatim source commands and both transport parameters (port 10102, 9600 8N1) are confirmed in the source. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
 # CoolAutomation Cool Linknet Control Spec
 
 ## Summary
-Cool Linknet is a CoolMaster Product Line gateway device providing ASCII I/F protocol over TCP/IP and RS-232 for controlling HVAC indoor units across multiple lines (L1-L8). Supports numerous HVAC brands (Daikin, Mitsubishi, LG, Samsung, etc.) via various bus interfaces (DIII-NET, H-Link, M-NET, KNX, ModBus, HDL). TCP/IP server (`aserver`) listens on port 10102.
+CoolAutomation Cool Linknet is a CoolMaster Product Line gateway that bridges HVAC indoor units on L1–L8 to a control system over RS-232 (DB9) and/or TCP/IP Ethernet using a text-based ASCII I/F protocol. This spec covers both transports: the ASCII I/F IP Server ("aserver") on TCP port 10102 and the RS-232 DB9 interface at 9600 8N1.
 
-<!-- UNRESOLVED: product model name appears only as "CoolMaster Product Line" in source; model "Cool Linknet" inferred from filename -->
+<!-- UNRESOLVED: Cool Linknet-specific model number / SKU not stated in source; the source uses the broader CoolMaster Product Line PRM that includes CooLinkNet. -->
 
 ## Transport
 ```yaml
@@ -51,7 +59,7 @@ protocols:
   - tcp
   - serial
 addressing:
-  port: 10102  # aserver default TCP port
+  port: 10102
 serial:
   baud_rate: 9600
   data_bits: 8
@@ -64,912 +72,925 @@ auth:
 
 ## Traits
 ```yaml
-- powerable    # on, off, allon, alloff commands present
-- queryable    # ls, ls2, query commands present
-- levelable    # temp, feed commands present
-- routable     # group, link commands present
+- powerable       # inferred from on/off/allon/alloff command examples
+- routable        # inferred from line/sddp/hdl routing command examples
+- queryable       # inferred from ls/ls2/query/ifconfig/set query examples
+- levelable       # inferred from temp/feed/fspeed level-setting command examples
 ```
 
 ## Actions
 ```yaml
+# Configuration Commands (section 6.2.1)
 - id: set
-  label: Set / Query Settings
+  label: Get/Set Cool Linknet settings
   kind: action
+  command: "set [SETTING] [VALUE]"  # e.g. "set echo 0", "set aserverport 12345"
   params:
     - name: setting
       type: string
-      description: Setting name (S/N, version, app, baud, echo, verbose, aserverport, aserverprompt, deg, melody, filtervisi, HVAClines, mmilock)
+      description: Setting name (S/N, version, app, baud, echo, verbose, aserverport, aserverprompt, deg, melody, filter visi, HVAC lines, mmi lock)
     - name: value
       type: string
-      description: New value (optional - omit to query)
-    - name: defaults
-      type: string
-      description: Use "defaults" to reset all settings
+      description: Setting value (defaults: baud 9600, aserverport 10102, echo 1, verbose 0)
 
 - id: set_defaults
-  label: Set Defaults
+  label: Restore all settings to defaults
   kind: action
-  params:
-    - name: defaults
-      type: string
-      description: Must be literal "defaults"
-
-- id: line_query
-  label: Query Line Status
-  kind: query
+  command: "set defaults"
   params: []
 
-- id: line_property
-  label: Configure Line Property
+- id: line_query
+  label: Query HVAC lines status
+  kind: query
+  command: "line"
+  params: []
+
+- id: line_set
+  label: Set HVAC line configuration
   kind: action
+  command: "line PROPERTY Ln VAL"  # e.g. "line master L4 0", "line baud L3 19200 8E1"
   params:
     - name: property
       type: string
-      description: Property (master, simul, myid, baud, haux, type, scan, DCOUT, slink)
-    - name: ln
+      description: master, simul, myid, baud, type, scan, DCOUT, slink, haux
+    - name: line
       type: string
-      description: Line L1-L8
-    - name: val
+      description: L1..L8
+    - name: value
       type: string
-      description: New value
+      description: Property value
 
-- id: ifconfig
-  label: Query Network Config
+- id: ifconfig_query
+  label: Query Ethernet network configuration
   kind: query
+  command: "ifconfig"
   params: []
 
 - id: ifconfig_set
-  label: Set Network Config
+  label: Set Ethernet network configuration
   kind: action
+  command: "ifconfig PROPERTY VALUE"  # e.g. "ifconfig IP 192.168.1.102"
   params:
     - name: property
       type: string
-      description: Property (IP, Netmask, Gateway, DNS1, DNS2)
+      description: IP, Netmask, Gateway, DNS1, DNS2
     - name: value
       type: string
-      description: Value or "DHCP"
+      description: IP address string, or "DHCP"
 
 - id: ifconfig_enable
   label: Enable Ethernet
   kind: action
-  params:
-    - name: enable
-      type: string
-      description: Must be literal "enable"
+  command: "ifconfig enable"
+  params: []
 
 - id: ifconfig_disable
   label: Disable Ethernet
   kind: action
-  params:
-    - name: disable
-      type: string
-      description: Must be literal "disable"
+  command: "ifconfig disable"
+  params: []
 
 - id: boot
   label: Enter Boot Mode
   kind: action
+  command: "boot"
   params: []
 
 - id: boot_reset
-  label: Reset Device
+  label: Reset Cool Linknet
   kind: action
-  params:
-    - name: N
-      type: integer
-      description: Must be 2 to reset
+  command: "boot 2"
+  params: []
 
-- id: sddp
-  label: Query SDDP Status
+- id: sddp_query
+  label: Query SDDP module status
   kind: query
+  command: "sddp"
   params: []
 
 - id: sddp_enable
-  label: Enable SDDP
+  label: Persistently enable SDDP module (effective after reset)
   kind: action
-  params:
-    - name: enable
-      type: string
-      description: Must be literal "enable"
+  command: "sddp enable"
+  params: []
 
 - id: sddp_disable
-  label: Disable SDDP
+  label: Persistently disable SDDP module (effective after reset)
   kind: action
-  params:
-    - name: disable
-      type: string
-      description: Must be literal "disable"
+  command: "sddp disable"
+  params: []
 
 - id: sddp_identify
-  label: Send SDDP Identify
+  label: Send SDDP IDENTIFY message to Control4 Composer
   kind: action
-  params:
-    - name: identify
-      type: string
-      description: Must be literal "identify"
+  command: "sddp identify"
+  params: []
 
 - id: sddp_offline
-  label: Signal SDDP Offline
+  label: Signal Cool Linknet going offline
   kind: action
-  params:
-    - name: offline
-      type: string
-      description: Must be literal "offline"
+  command: "sddp offline"
+  params: []
 
 - id: sddp_alive
-  label: Signal SDDP Alive
+  label: Signal Cool Linknet online
   kind: action
-  params:
-    - name: alive
-      type: string
-      description: Must be literal "alive"
+  command: "sddp alive"
+  params: []
 
-- id: knx
-  label: Query KNX Status
+- id: knx_query
+  label: Query KNX status
   kind: query
+  command: "knx"
   params: []
 
 - id: knx_addr
-  label: Set KNX Physical Address
+  label: Set KNX physical address
   kind: action
+  command: "knx addr AREA/LINE/DEVICE"
   params:
-    - name: area
-      type: integer
-      description: Area (0-15)
-    - name: line
-      type: integer
-      description: Line (0-15)
-    - name: device
-      type: integer
-      description: Device (0-255)
+    - name: address
+      type: string
+      description: KNX area/line/device address (e.g. 1/1/1)
 
 - id: knx_ram
-  label: Create KNX Group Database
+  label: Create KNX group Data Base (effective after reboot)
   kind: action
+  command: "knx ram R"
   params:
-    - name: R
+    - name: count
       type: integer
-      description: Number of groups
+      description: Number of KNX groups
 
 - id: knx_funcs
-  label: Print KNX Functions
+  label: List all available KNX group functions
   kind: query
+  command: "knx funcs"
   params: []
 
 - id: knx_group
-  label: List KNX Groups
+  label: List existing KNX groups
   kind: query
+  command: "knx group"
   params: []
 
-- id: knx_group_ga
-  label: List KNX Groups by Address
+- id: knx_group_address
+  label: List KNX groups for given group address
   kind: query
+  command: "knx group GA"
   params:
-    - name: GA
+    - name: ga
       type: string
-      description: Group address (Main/Mid/Sub or Main/Sub)
+      description: KNX group address (Main/Mid/Sub or Main/Sub)
 
 - id: knx_group_create
-  label: Create KNX Group
+  label: Create new KNX group linking GA to function and UID
   kind: action
+  command: "knx group GA FUNC DIRECTION UID"  # e.g. "knx group 10/0/1 M < L1.100"
   params:
-    - name: GA
+    - name: ga
       type: string
-      description: Group address
-    - name: func
+    - name: function
       type: string
-      description: Function (onoff, ST, RT, M, Fstep, F8, F%)
+      description: onoff, ST, RT, Mode, M, Fstep, F8, F%
     - name: direction
       type: string
-      description: "<" = input to CoolMaster, ">" = output from CoolMaster
-    - name: UID
+      description: "<" (input to Cool Linknet) or ">" (output from Cool Linknet)
+    - name: uid
       type: string
-      description: Indoor unit UID
+      description: Indoor Unit UID (Ln.XYY)
 
 - id: knx_group_delall
-  label: Delete All KNX Groups
+  label: Delete all KNX groups
   kind: action
-  params:
-    - name: dellall
-      type: string
-      description: Must be literal "dellall"
-
-- id: knx_group_delete
-  label: Delete KNX Group
-  kind: action
-  params:
-    - name: G
-      type: integer
-      description: Group number to delete (prefix with -)
-
-- id: props
-  label: List Properties
-  kind: query
+  command: "knx group dellall"
   params: []
 
-- id: props_delall
-  label: Delete All Properties
+- id: knx_group_delete
+  label: Delete KNX group number G
   kind: action
+  command: "knx group -G"
   params:
-    - name: delall
-      type: string
-      description: Must be literal "delall"
+    - name: g
+      type: integer
+      description: KNX group number to delete
+
+- id: props_query
+  label: List all stored Indoor Unit properties
+  kind: query
+  command: "props"
+  params: []
 
 - id: props_set
-  label: Set Indoor Unit Property
+  label: Change Indoor Unit property
   kind: action
+  command: "props UID_STRICT PROPERTY VAL"  # e.g. "props L6.204 name Kitchen", "props L1.101 mode +c+f+hx-h-d-hh-a"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID (Ln.XYY)
+      description: UID_STRICT in form Ln.XYY
     - name: property
       type: string
-      description: Property (name, visi, fspeed, mode, tlim, elock)
-    - name: val
+      description: name, visi, fspeed, mode, tlim, elock
+    - name: value
       type: string
-      description: Value
+      description: Property value
 
-- id: link
-  label: List Links
+- id: props_delall
+  label: Erase all Indoor Unit properties and return to defaults
+  kind: action
+  command: "props delall"
+  params: []
+
+- id: link_query
+  label: List existing links
   kind: query
+  command: "link"
   params: []
 
 - id: link_delall
-  label: Delete All Links
+  label: Delete all links
   kind: action
-  params:
-    - name: delall
-      type: string
-      description: Must be literal "delall"
+  command: "link delall"
+  params: []
 
 - id: link_delete
-  label: Delete Link
+  label: Delete link number L
   kind: action
+  command: "link -L"
   params:
-    - name: L
+    - name: l
       type: integer
-      description: Link number (prefix with -)
 
 - id: link_ram
-  label: Create Link Database
+  label: Create link Data Base for R groups (effective after reboot)
   kind: action
+  command: "link ram R"
   params:
-    - name: R
+    - name: count
       type: integer
-      description: Number of links
 
 - id: link_create
-  label: Create Link
+  label: Create new link between two Indoor Units
   kind: action
+  command: "link UID1_STRICT[=|~]UID2_STRICT"  # e.g. "link L3.082=L1.101"
   params:
-    - name: UID1_STRICT
+    - name: uid1
       type: string
-      description: Source UID
-    - name: type
+    - name: link_type
       type: string
-      description: "=" regular link, "~" haux link
-    - name: UID2_STRICT
+      description: "=" regular link or "~" haux link
+    - name: uid2
       type: string
-      description: Target UID
 
 - id: plug
-  label: Forward to CoolPlug
+  label: Forward ASCII I/F command to CoolPlug on CH line
   kind: action
+  command: "plug UID_STRICT ASCII_IF_COMMAND"  # e.g. "plug L3.080 set"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: CoolPlug UID
     - name: command
       type: string
       description: ASCII I/F command to forward
 
 - id: ad
-  label: Forward to CMNET-GR-GMV5
+  label: Forward ASCII I/F command to CMNET-GR-GMV5 device on GMV5 line
   kind: action
+  command: "ad Ln ASCII_IF_COMMAND"  # e.g. "ad L8 set"
   params:
-    - name: Ln
+    - name: line
       type: string
-      description: Line L8
+      description: HVAC line (e.g. L8)
     - name: command
       type: string
-      description: ASCII I/F command to forward
 
-- id: hdl
-  label: List HDL Configurations
+- id: hdl_query
+  label: List existing HDL AC configurations
   kind: query
+  command: "hdl"
   params: []
 
 - id: hdl_delall
-  label: Delete All HDL Configurations
+  label: Delete all HDL AC configurations
   kind: action
-  params:
-    - name: delall
-      type: string
-      description: Must be literal "delall"
+  command: "hdl delall"
+  params: []
 
 - id: hdl_delete
-  label: Delete HDL Configuration
+  label: Delete HDL AC configuration for specific Indoor Unit
   kind: action
+  command: "hdl - UID_STRICT"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID
 
 - id: hdl_create
-  label: Create HDL Configuration
+  label: Create HDL AC configuration for Indoor Unit
   kind: action
+  command: "hdl + UID_STRICT CHANNEL AC_NO ENABLE m0m1m2m3m4f0f1f2f3"  # e.g. "hdl + L2.301 2 2 1 ++----+-+"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID
     - name: channel
       type: integer
-      description: Line number in AC config table
-    - name: AC_No
+    - name: ac_no
       type: integer
-      description: AC number to bind
     - name: enable
       type: integer
-      description: 0=invalid, 1=valid
-    - name: modes
+      description: 0 invalid, 1 valid
+    - name: modes_fans
       type: string
-      description: 10-char modes string (m0m1m2m3m4f0f1f2f3, +=allowed, -=not allowed)
+      description: m0=cool m1=heat m2=fan m3=auto m4=dry f0=auto f1=high f2=medium f3=low; + allowed, - not allowed
 
-- id: hdl_eth
-  label: Query HDL Ethernet Status
+- id: hdl_eth_query
+  label: Print HDL ethernet status and packet counters
   kind: query
+  command: "hdl eth"
   params: []
 
 - id: hdl_eth_enable
-  label: Enable HDL over Ethernet
+  label: Enable HDL over ethernet (effective after reboot)
   kind: action
-  params:
-    - name: enable
-      type: string
-      description: Must be literal "enable"
+  command: "hdl eth enable"
+  params: []
 
 - id: hdl_eth_disable
-  label: Disable HDL over Ethernet
+  label: Disable HDL over ethernet (effective after reboot)
   kind: action
-  params:
-    - name: disable
-      type: string
-      description: Must be literal "disable"
+  command: "hdl eth disable"
+  params: []
 
 - id: hdl_eth_myid
-  label: Set HDL ID
+  label: Change HDL Subnet/Device ID in hex (effective after reboot)
   kind: action
+  command: "hdl eth myid ID"  # e.g. "hdl eth myid 0163"
   params:
-    - name: ID
+    - name: id
       type: string
-      description: Hex SubnetID+DeviceID (e.g. 0163)
+      description: 4 hex digits; MS byte = Subnet ID, LS byte = Device ID
 
 - id: simul
-  label: Simulate Indoor Units
+  label: Simulate CNT Indoor Units on HVAC Line Ln (not persistent across reset)
   kind: action
+  command: "simul [Ln] CNT"  # e.g. "simul L2 5"
   params:
-    - name: Ln
+    - name: line
       type: string
-      description: Line (optional)
-    - name: CNT
+      description: L1..L8 (optional; default = first not Unused line)
+    - name: count
       type: integer
-      description: Number of units to simulate
 
-- id: gpio
-  label: Query GPIO Status
+- id: gpio_query
+  label: Query GPIO functionality
   kind: query
+  command: "gpio"
   params: []
 
 - id: gpio_func
-  label: Set GPIO Function
+  label: Set GPIO function (effective after reboot)
   kind: action
+  command: "gpio func NAME FUNCTION"  # e.g. "gpio func A Unused"
   params:
-    - name: gpio_name
+    - name: name
       type: string
-      description: "A", "B", "C", or "D"
+      description: A, B, C, or D
     - name: function
       type: string
-      description: Function (Unused, ALL OFF, ALL ON, OOS, ALL INH, FLRS, BI, BO, AI)
+      description: Unused, ALL OFF, ALL ON, OOS, ALL INH, FLRS, BI, BO, AI
 
 - id: gpio_norm
-  label: Set GPIO Normal State
+  label: Set GPIO normal signal level state
   kind: action
+  command: "gpio norm NAME STATE"  # e.g. "gpio norm A C"
   params:
-    - name: gpio_name
+    - name: name
       type: string
-      description: "A", "B", "C", or "D"
-    - name: norm
+      description: A, B, C, or D
+    - name: state
       type: string
-      description: "c" (N.O. HI), "C" (N.C. LO), "o" (N.O. HI), "O" (N.C. LO)
+      description: "c/C" = N.C. (Normally Closed), "o/O" = N.O. (Normally Open)
 
 - id: info
-  label: Query DIP Switch Info
+  label: Query DIP switches position and DC output on L1/L2
   kind: query
+  command: "info"
   params: []
 
-- id: modbus
-  label: Query ModBus Config
+- id: modbus_query
+  label: Query ModBus configurations
   kind: query
+  command: "modbus"
   params: []
 
 - id: modbus_set
-  label: Set ModBus Config
+  label: Set ModBus setting
   kind: action
+  command: "modbus SETTING VALUE"  # e.g. "modbus IP enable", "modbus server port 500"
   params:
     - name: setting
       type: string
-      description: Setting (IP, server port, ignore)
+      description: IP, server port, ignore
     - name: value
       type: string
-      description: Value
 
 - id: modbus_cg4
-  label: List CoolGate 4 ModBus Addresses
+  label: List CoolGate 4 ModBus addresses of existing Indoor Units
   kind: query
+  command: "modbus cg4"
   params: []
 
+# HVAC Status and Control Commands (section 6.2.2)
 - id: on
-  label: Turn On Indoor Unit(s)
+  label: Turn on Indoor Unit(s)
   kind: action
+  command: "on [UID]"  # e.g. "on L1.102", "on L2*", "on"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
+      description: UID (Ln.XYY, Ln*, or omitted for all)
 
 - id: allon
-  label: Turn On All Indoor Units
+  label: Turn on all Indoor Units
   kind: action
+  command: "allon"
   params: []
 
 - id: off
-  label: Turn Off Indoor Unit(s)
+  label: Turn off Indoor Unit(s)
   kind: action
+  command: "off [UID]"  # e.g. "off L1.102", "off L2*", "off"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
 - id: alloff
-  label: Turn Off All Indoor Units
+  label: Turn off all Indoor Units
   kind: action
+  command: "alloff"
   params: []
 
 - id: cool
-  label: Set Cool Mode
+  label: Set operation mode to Cool
   kind: action
+  command: "cool [UID]"  # e.g. "cool L1.102", "cool L2*", "cool"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
 - id: heat
-  label: Set Heat Mode
+  label: Set operation mode to Heat
   kind: action
+  command: "heat [UID]"  # e.g. "heat L1.102", "heat L2*", "heat"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
-- id: fan
-  label: Set Fan Mode
+- id: fan_mode
+  label: Set operation mode to Fan
   kind: action
+  command: "fan [UID]"  # e.g. "fan L1.102", "fan L2*", "fan"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
 - id: dry
-  label: Set Dry Mode
+  label: Set operation mode to Dry
   kind: action
+  command: "dry [UID]"  # e.g. "dry L1.102", "dry L2*", "dry"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
 - id: auto
-  label: Set Auto Mode
+  label: Set operation mode to Auto
   kind: action
+  command: "auto [UID]"  # e.g. "auto L1.102", "auto L2*", "auto"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
 
 - id: temp
-  label: Set Temperature
+  label: Set Indoor Unit Set Temperature
   kind: action
+  command: "temp [UID] [±]TEMP"  # e.g. "temp L1.102 23", "temp L2* -2", "temp L2* 24.5"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
-    - name: TEMP
+    - name: temperature
       type: string
-      description: Temperature value or ±offset
+      description: "[±]nn or nn.n (precision depends on AC type: 0.1, 0.3, 0.5 or 1 °C)"
 
 - id: feed
-  label: Suggest Ambient Temperature
+  label: Suggest Ambient Temperature to Indoor Unit(s)
   kind: action
+  command: "feed [UID] [±]TEMP"  # e.g. "feed L1.102 23.5", "feed L2* -2"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
-    - name: TEMP
+    - name: temperature
       type: string
-      description: Temperature value or ±offset
+      description: "[±]nn or nn.n; 0 stops suggesting"
 
 - id: fspeed
-  label: Set Fan Speed
+  label: Set Indoor Unit Fan Speed
   kind: action
+  command: "fspeed [UID] SPEED"  # e.g. "fspeed L1.102 l", "fspeed L2* h", "fspeed m"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
     - name: speed
       type: string
-      description: v/V (quiet), l/L (low), m/M (medium), h/H (high), t/T (top), a/A (auto)
+      description: "v/V very-low, l/L low, m/M medium, h/H high, t/T top, a/A auto"
 
 - id: swing
-  label: Set Louver Position
+  label: Set Indoor Unit louver position
   kind: action
+  command: "swing [UID] POSITION"  # e.g. "swing L1.102 h", "swing 3"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
     - name: position
       type: string
-      description: h (horizontal), v (vertical), a (auto/swing), 3 (30°), 4 (45°), 6 (60°), - (stop)
+      description: "h horizontal, v vertical, a auto, 3 30°, 4 45°, 6 60°, - stop swing"
 
 - id: filt
   label: Reset Filter Sign
   kind: action
+  command: "filt [UID]"  # e.g. "filt L1.102", "filt L2*", "filt"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
 
 - id: ls
-  label: List Indoor Unit Status
+  label: List Indoor Unit(s) status (visible only)
   kind: query
+  command: "ls [UID]"  # e.g. "ls L2", "ls L2.101"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all visible)
 
-- id: lsplus
-  label: List All Indoor Units Including Invisible
+- id: ls_all
+  label: List all Indoor Unit(s) status including invisible ones
   kind: query
+  command: "ls+"  # or "ls" with no UID but listed from example
   params: []
 
 - id: ls2
-  label: List Indoor Unit Status (Decimal Precision)
+  label: List Indoor Unit(s) status with decimal temperature precision
   kind: query
+  command: "ls2 [UID]"  # e.g. "ls2 L2", "ls2 L2.101"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional)
 
 - id: query
-  label: Query Indoor Unit Property
+  label: Query one operation condition of an Indoor Unit
   kind: query
+  command: "query UID_STRICT CONDITION"  # e.g. "query L1.100 o"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID (Ln.XYY)
-    - name: property
+      description: UID_STRICT in form Ln.XYY
+    - name: condition
       type: string
-      description: "o" (on/off), "m" (mode), "f" (fan speed), "t" (set temp), "e" (failure), "a" (ambient temp), "h" (set temp 0.01°), "s" (louver)
+      description: "o On/Off, m Mode, f Fan Speed, t Set Temp, e Failure Code, a Ambient Temp, h Set Temp 0.01°, s Louver Position"
 
 - id: wh
-  label: Query Water Heater Status
-  kind: query
-  params:
-    - name: UID_STRICT
-      type: string
-      description: Water Heater UID
-
-- id: wh_control
-  label: Control Water Heater
+  label: Control Water Heater Unit (ME / P1P2 Altherma)
   kind: action
+  command: "wh UID_STRICT [OP]"  # e.g. "wh L1.101 w", "wh L4.000 t40", "wh L4.000 t+", "wh L4.000 b+", "wh L4.000"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Water Heater UID
     - name: operation
       type: string
-      description: "h" (heat), "e" (eco), "w" (hot), "a" (anti-freeze), "t[+|-|temp]" (tank), "b[+|-]" (booster)
+      description: "h heat, e eco, w hot, a anti-freeze, t<+|-> or t<temp> tank, b<+|-> booster, (no letter) print status"
 
-- id: main_list
-  label: List Main RC Settings
+- id: main_query
+  label: List main RC setting on a line
   kind: query
+  command: "main Ln"  # e.g. "main L2"
   params:
-    - name: Ln
+    - name: line
       type: string
-      description: Line (optional)
 
 - id: main_set
-  label: Set Main RC
+  label: Change Daikin Indoor Unit main RC setting
   kind: action
+  command: "main UID_STRICT 0|1"  # e.g. "main L2.206 0", "main L2.201 1"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID
     - name: value
       type: integer
-      description: 0=not main RC, 1=main RC
+      description: "0 unset, 1 set as main RC"
 
 - id: vam
-  label: Query Ventilation Unit
-  kind: query
-  params:
-    - name: UID_STRICT
-      type: string
-      description: Ventilation unit UID
-
-- id: vam_list
-  label: List Ventilation Units
-  kind: query
-  params: []
-
-- id: vam_control
   label: Control Ventilation Unit
   kind: action
+  command: "vam [UID_STRICT] OP"  # e.g. "vam L1.101 x", "vam L1.101 +"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Ventilation unit UID
-    - name: mode
+    - name: operation
       type: string
-      description: "a" (auto), "b" (bypass), "x" (heat exchange), "n" (normal), "l" (low), "L" (low fresh-up), "h" (high), "H" (high fresh-up), "s" (super high), "t" (top), "A" (auto fan), "+" (on), "-" (off)
+      description: "a auto, b bypass, x heat-exchange, n normal, S sleep, l low fan, L low-fan fresh-up, h high fan, H high-fan fresh-up, s super-high, t top, A auto fan, + on, - off"
 
 - id: lock_query
-  label: Query Lock Status
+  label: Query locks for specific or all Indoor Units
   kind: query
+  command: "lock [UID_STRICT]"  # e.g. "lock L1.103", "lock L2.101"
   params:
-    - name: UID_STRICT
+    - name: uid
       type: string
-      description: Indoor unit UID
 
 - id: lock_set
-  label: Set Lock
+  label: Lock/Unlock Indoor Unit(s)
   kind: action
+  command: "lock [UID] [-|+][o|m|t|n]"  # e.g. "lock L1.102 +m-t", "lock L5.002 +"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: Indoor unit UID
-    - name: locks
+    - name: lock_ops
       type: string
-      description: Lock options (+/- followed by o/m/t/n)
+      description: "Full +/- = lock/unlock all; o on/off, m mode, t setpoint, n on"
 
 - id: inhibit
-  label: Set Inhibit
+  label: Force Indoor Unit(s) to OFF state
   kind: action
+  command: "inhibit [UID] 0|1"  # e.g. "inhibit L1.102 1", "inhibit 0"
   params:
-    - name: UID
+    - name: uid
       type: string
-      description: UID (optional - omit for all)
     - name: value
       type: integer
-      description: 0=disable, 1=enable
+      description: "1 enable inhibit, 0 remove inhibit"
 
-- id: group
-  label: List Groups
+- id: group_query
+  label: List existing groups
   kind: query
+  command: "group"
   params: []
 
 - id: group_create
-  label: Create Group
+  label: Create new group; UID2 will follow UID1
   kind: action
+  command: "group UID1_STRICT UID2_STRICT"  # e.g. "group L5.001 L5.002"
   params:
-    - name: UID1_STRICT
+    - name: uid1
       type: string
-      description: Leader UID
-    - name: UID2_STRICT
+    - name: uid2
       type: string
-      description: Follower UID
-
-- id: group_delall
-  label: Delete All Groups
-  kind: action
-  params:
-    - name: delall
-      type: string
-      description: Must be literal "delall"
 
 - id: group_delete
-  label: Delete Group
+  label: Delete group number G
   kind: action
+  command: "group -G"
   params:
-    - name: G
+    - name: g
       type: integer
-      description: Group number (prefix with -)
+
+- id: group_delall
+  label: Delete all groups
+  kind: action
+  command: "group delall"
+  params: []
 
 - id: group_ram
-  label: Create Group Database
+  label: Create group Data Base for R groups (effective after reboot)
   kind: action
+  command: "group ram R"
   params:
-    - name: R
+    - name: count
       type: integer
-      description: Number of groups
 
-- id: va
-  label: List VA Associations
+- id: va_query
+  label: List all VA associations
   kind: query
+  command: "va"
   params: []
 
 - id: va_auto
-  label: Auto-associate VA
+  label: Automatically associate VA's with existing (visible) UID's
   kind: action
-  params:
-    - name: auto
-      type: string
-      description: Must be literal "auto"
+  command: "va auto"
+  params: []
 
 - id: va_delall
-  label: Delete All VA Associations
+  label: Delete all VA associations
   kind: action
-  params:
-    - name: delall
-      type: string
-      description: Must be literal "delall"
-
-- id: va_delete
-  label: Delete VA Association
-  kind: action
-  params:
-    - name: uid_or_va
-      type: string
-      description: UID_STRICT or VA number (prefix with -)
+  command: "va delall"
+  params: []
 
 - id: va_ram
-  label: Create VA Database
+  label: Create VA Data Base for R associations (effective after reboot)
   kind: action
+  command: "va ram R"
   params:
-    - name: R
+    - name: count
       type: integer
-      description: Number of associations
 
-- id: va_create
-  label: Create VA Association
+- id: va_delete
+  label: Delete VA association by UID or VA number
   kind: action
+  command: "va - UID_STRICT|VA"  # e.g. "va - L1.100", "va - 4"
   params:
-    - name: UID_STRICT
+    - name: target
       type: string
-      description: Indoor unit UID
-    - name: VA
+      description: UID_STRICT or VA number
+
+- id: va_add
+  label: Add new VA association
+  kind: action
+  command: "va + UID_STRICT VA"  # e.g. "va + L1.100 7"
+  params:
+    - name: uid
+      type: string
+    - name: va
       type: integer
-      description: Virtual address (001-200)
 ```
 
 ## Feedbacks
 ```yaml
-- id: exit_code
+- id: on_off
   type: enum
-  values:
-    - "0 OK"
-    - "1 No UID"
-    - "2 Not Strict UID"
-    - "3 Bad Format"
-    - "4 Failed"
-    - "5 Line Unused"
-    - "6 Unknown Command"
-    - "7 Bad HVAC Line"
-    - "8 Bad Function"
-    - "9 Bad Line Type"
-    - "10 Bad Parameter"
-    - "11 OK, Boot Required!"
-    - "12 Bad GPIO"
-    - "13 SDDP Disabled"
-    - "14 Virtual Address In Use"
-    - "15 Bad Property"
-    - "16 Number of lines exceeded"
-    - "17 Warning! Dip Switch State Incorrect"
-    - "18 SDDP Not Initialized"
-    - "80-86 ModBus Errors"
-    - "100 Collision"
-    - "101 Unsupported Feature"
-    - "102 Incorrect Indoor Type"
-    - "103 No ACK From Indoor"
-    - "104 Time Out on Receive"
-    - "105 CS Error In Received Message"
-    - "106 Line Init In Progress"
-    - "107 Line Error"
-    - "108 Feed Disabled"
-    - "150 HDL Not Initialized"
-    - "151 HDL DB Overflow"
-    - "152 HDL Eth Disabled"
-    - "200-206 Indoor/Group/VA/Properties DB Errors"
-    - "250 Link DB Overflow"
-    - "251 No CoolHub Line"
-    - "252 Auto Visibility Failed"
-    - "253 Link already exists"
-    - "307 KNX DB Overflow"
-    - "309 KNX Not Connected"
-    - "310 KNX Line Not Started"
+  values: [on, off]
 
-- id: indoor_status_celsius
-  type: string
-  description: Status line format "L2.102 OFF 20C 27C High Cool OK - 0" - UID(0-5), On/Off(7-9), SetTemp(11-12), RoomTemp(15-16), FanSpeed(19-22), Mode(24-27), FailureCode(29-32), FilterSign(34), Demand(36)
+- id: set_temperature
+  type: number
+  description: Set Temperature in current scale (Celsius or Fahrenheit per `deg` setting); precision 0.1, 0.3, 0.5 or 1 °C depending on AC type
 
-- id: indoor_status_fahrenheit
-  type: string
-  description: Same format with Fahrenheit temperatures
+- id: room_temperature
+  type: number
+  description: Ambient temperature in current scale
 
-- id: indoor_status_decimal_celsius
-  type: string
-  description: ls2 format "L1.102 ON  16.9C 27.0C High Cool OK - 0"
+- id: fan_speed
+  type: enum
+  values: [vlow, low, med, high, top, auto]
 
-- id: indoor_status_decimal_fahrenheit
+- id: operation_mode
+  type: enum
+  values: [cool, heat, fan, dry, auto]
+
+- id: failure_code
   type: string
-  description: ls2 format with Fahrenheit
+  description: "OK = no failure, otherwise Indoor Failure Code (e.g. U4)"
+
+- id: filter_sign
+  type: enum
+  values: ["-", "#"]
+
+- id: demand
+  type: enum
+  values: ["0", "1"]
+
+- id: louver_position
+  type: enum
+  values: [h, v, a, "3", "4", "6", x]
+
+- id: exit_code
+  type: object
+  description: Numeric `ERROR:N` or verbose form per section 6.1.2; e.g. 0 OK, 1 No UID, 6 Unknown Command, 18 SDDP Not Initialized
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: source does not enumerate explicit "settable parameters" separate from commands
-# All settable parameters are covered by Actions above
+- id: aserverport
+  type: integer
+  description: ASCII I/F IP Server TCP port (default 10102)
+
+- id: baud
+  type: integer
+  description: RS232 interface baud rate (default 9600, range 1200...115200)
+
+- id: echo
+  type: enum
+  values: ["0", "1"]
+  description: RS232 echo control; 0 disabled, 1 enabled (default 1)
+
+- id: verbose
+  type: enum
+  values: ["0", "1"]
+  description: Exit code format; 0 numeric, 1 verbose (default 0)
+
+- id: aserverprompt
+  type: enum
+  values: ["0", "1"]
+  description: ASCII I/F IP Server prompt character; 0 disabled, 1 enabled (default 1)
+
+- id: deg
+  type: enum
+  values: [C, F]
+  description: Temperature scale (C Celsius or F Fahrenheit) used for `temp`, `feed` and `ls` output
+
+- id: mmi_lock
+  type: enum
+  values: ["0", "1"]
+  description: Prohibit LCD touch screen operation (firmware ≥ 1.3.0)
+
+- id: ip_address
+  type: string
+  description: Ethernet IP address; "DHCP" or static IPv4 string (set via `ifconfig IP`)
+
+- id: netmask
+  type: string
+  description: Ethernet netmask (set via `ifconfig Netmask`)
+
+- id: gateway
+  type: string
+  description: Ethernet gateway (set via `ifconfig Gateway`)
+
+- id: dns1
+  type: string
+  description: Preferred DNS server (set via `ifconfig DNS1`)
+
+- id: dns2
+  type: string
+  description: Alternate DNS server (set via `ifconfig DNS2`)
+
+- id: modbus_ip_enabled
+  type: enum
+  values: [enable, disable]
+  description: ModBus IP server state (effective after reboot)
+
+- id: modbus_server_port
+  type: integer
+  description: ModBus IP server port (default 502)
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: source does not document unsolicited notifications from device
+# UNRESOLVED: source describes no unsolicited event stream; only the aserver prompt
+# character `>` is sent upon connection when enabled. No asynchronous event tokens
+# (e.g. status change notifications) are documented.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: source does not document multi-step command sequences as macros
+# No multi-step sequences are explicitly described in the source. The Cool Linknet
+# itself is a gateway and does not define macro sequences of its own.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: source contains no explicit safety warnings, interlock procedures, or
+# power-on sequencing requirements specific to the Cool Linknet unit. Per-HVAC
+# line interactions (e.g. inhibit forcing Indoor Unit OFF) are operational, not
+# safety-critical.
 ```
 
 ## Notes
+- The source document is the CoolMaster Product Line PRM, which the manufacturer explicitly states applies to CooLinkNet ("Communication between DTE and CooLinkNet via ASCII I/F..."). All commands above are therefore sourced from the CoolMaster PRM, not a Cool Linknet-specific manual.
+- Two transports available: RS-232 (DB9 female, 9600 8N1, no flow control) and TCP/IP Ethernet. Both use the same ASCII I/F command set.
+- ASCII I/F framing: commands to the device end with `<CR><LF>` or single `<CR>` (0x0D / 0x0A / 0x0D). Responses end with `<CR><LF>`. Commands are case-sensitive; the only separator between command name and parameters is a single space (0x20).
+- Prompt character: RS-232 unconditionally sends `>` after each response. Aserver prompt (`>`) is configurable via `set aserverprompt` and is enabled by default.
+- Exit codes can be returned as `ERROR:N` (numeric) or verbose text per section 6.1.2; the `verbose` setting toggles between them.
+- The `ls` and `ls2` commands return fixed-position status strings (see field-position tables in source). `ls2` adds decimal temperature precision.
+- The `query` command supports conditions: o (On/Off), m (Mode), f (Fan Speed), t (Set Temperature natural), e (Failure Code), a (Ambient Temperature), h (Set Temperature 0.01°), s (Louver Position).
+- Set Temperature precision varies by HVAC type: 0.1 °C (DK, ME, SM), 0.3 °C (FJ), 0.5 °C (SA, TO, PN, MH, LG), 1 °C (HT, GR, MD, CG, KT, TR, TI, MT, BSM).
+- `feed` (Ambient Temperature suggestion) is supported only for AC types ME, PBM, SI (firmware ≥ 0.4.7), EL, GRNS, UMM (GS538/9, SMT-HOA).
+- Line L3 is by default used for ModBus RTU RS485 and can also be shared with KNX, PlugBus (CoolHub), HDL buspro 4-wire, and ModBus RTU CoolGate 4/5.
+- Cool Linknet maintains a constant cloud connection to CoolRemote when TCP/IP networking has internet access.
+- The `props` command can set `elock` (Enforced Lock) on Indoor Units to inhibit external changes for: o (On/Off), m (Mode), t (Setpoint), c (Forced Cool), h (Forced Heat).
 
-- UID format: `Ln.XYY` where L=line (L1-L8, L* for any), X=encoded high digit for 4-digit HVAC systems, YY=indoor number. Example: `L1.102`.
-- Commands terminated with `<CR><LF>` or single `<CR>`. Responses terminated with `<CR><LF>`.
-- Prompt character `>` sent on RS232; configurable on TCP aserver.
-- aserver max 16 simultaneous connections, default port 10102.
-- HVAC Lines L1/L5 share resources (mutually exclusive); L2/L6 share resources.
-- L3 defaults to ModBus RTU RS485; L6/L7 can be linked into single L7 with polarity auto-detection.
-- Temperature precision varies by HVAC brand: DK/ME/SM=0.1°C, FJ/SA/TO/PN/MH/LG=0.5°C, HT/GR/MD/CG/KT/TR/TI/MT/BSM=1°C.
-- 4-digit indoor unit encoding uses hex-like scheme (0-9, A-F for first digit).
-- Exit codes include both CoolMaster native (0-18) and HVAC-specific errors (100-253) and ModBus errors (80-86).
-- KNX group functions: onoff (1.001), ST/RT (9.001), Mode (1.001), Fstep/F8/F% (1.001/5.010/5.001).
-- Supported HVAC brands: Daikin, Mitsubishi Electric, Mitsubishi Heavy, Fujitsu, Sanyo, Toshiba, Panasonic, Hitachi, Haier, LG, Samsung, Gree, Midea, Kentatsu, Chigo, Blue Star, TICA, Trane.
-
-<!-- UNRESOLVED: firmware version not stated in source -->
-<!-- UNRESOLVED: entity_id is placeholder — operator must fill from Convex dashboard -->
-<!-- UNRESOLVED: no unsolicited events documented — device may send responses only on commands -->
-<!-- UNRESOLVED: no macro definitions in source -->
-<!-- UNRESOLVED: no safety warnings or interlock procedures in source -->
+<!-- UNRESOLVED: Cool Linknet-specific hardware revisions, SKU variants, and any firmware version compatibility notes are not stated in the source. The PRM covers the broader CoolMaster Product Line. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - coolautomation.com
+  - support.coolautomation.com
 source_urls:
-  - https://coolautomation.com/Lib/doc/prm/CoolAutomation-PRM-CoolMaster-v4.06.pdf
-retrieved_at: 2026-05-04T18:05:10.825Z
-last_checked_at: 2026-05-27T15:36:45.109Z
+  - https://support.coolautomation.com/hc/en-us/article_attachments/17317574262557/CM5-PRM.pdf
+  - https://support.coolautomation.com/hc/en-us/articles/4987468741789-ModBus-Integration-Guidelines
+  - https://support.coolautomation.com/hc/en-us/articles/4987523432221-REST-API-Integration-2019
+  - https://support.coolautomation.com/hc/en-us/articles/29441867901853-Modbus-Server-Integration-Registers-Sample
+  - https://support.coolautomation.com/hc/en-us/articles/4987429359005-BACnet-Integration-Guidelines
+retrieved_at: 2026-05-27T13:24:45.663Z
+last_checked_at: 2026-06-02T00:05:10.635Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-27T15:36:45.109Z
-matched_actions: 90
-action_count: 90
-confidence: high
-summary: "All 90 spec actions matched literally to source command reference; transport parameters confirmed (TCP 10102, serial 9600/8N1); complete coverage of CoolMaster ASCII I/F protocol."
+checked_at: 2026-06-02T00:05:10.635Z
+matched_actions: 87
+action_count: 87
+confidence: medium
+summary: "All 87 spec actions match verbatim source commands and both transport parameters (port 10102, 9600 8N1) are confirmed in the source. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Cool Linknet-specific model number / SKU not stated in source; the source uses the broader CoolMaster Product Line PRM that includes CooLinkNet."
+- "source describes no unsolicited event stream; only the aserver prompt"
+- "source contains no explicit safety warnings, interlock procedures, or"
+- "Cool Linknet-specific hardware revisions, SKU variants, and any firmware version compatibility notes are not stated in the source. The PRM covers the broader CoolMaster Product Line."
 ```
 
 ---

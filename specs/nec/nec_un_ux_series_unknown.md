@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:09:38.592Z
 last_checked_at: 2026-05-18T16:38:02.195Z
 generated_at: 2026-05-18T16:38:02.195Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model names within UN UX Series not stated in source document (document is \"Projector Control Command Reference Manual\" BDT140013 Rev 7.1)"
+  - "input terminal and aspect value enums reference an Appendix not included in the refined source"
+  - "eco mode value enums reference an Appendix not included in the refined source"
+  - "sub input setting values for PIP reference an Appendix not included in the refined source"
+  - "flow control not stated; RTS/CTS pins present in pinout but no explicit flow control setting"
+  - "volume range not explicitly stated; gain parameter request returns range dynamically"
+  - "no unsolicited notification protocol described in source. All responses are command-reply."
+  - "no multi-step macro sequences described in source."
+  - "no explicit safety interlock procedures in source. Note: power on/off commands block other commands during execution (including cooling). Shutter close/open affects optical output directly."
+  - "exact input terminal hex-to-name mapping not available (referenced Appendix not in source)"
+  - "exact aspect ratio enum values not available (referenced Appendix not in source)"
+  - "exact eco mode enum values not available (referenced Appendix not in source)"
+  - "exact gain parameter ranges (min/max) per adjustment target not stated — returned dynamically via GAIN PARAMETER REQUEST 3"
+  - "default baud rate not stated; source lists 5 supported rates (4800–115200)"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:38:02.195Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section."
+  confidence: medium
+  summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -609,7 +623,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:09:38.592Z
 last_checked_at: 2026-05-18T16:38:02.195Z
 ```
 
@@ -620,14 +634,27 @@ verdict: verified
 checked_at: 2026-05-18T16:38:02.195Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section."
+confidence: medium
+summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model names within UN UX Series not stated in source document (document is \"Projector Control Command Reference Manual\" BDT140013 Rev 7.1)"
+- "input terminal and aspect value enums reference an Appendix not included in the refined source"
+- "eco mode value enums reference an Appendix not included in the refined source"
+- "sub input setting values for PIP reference an Appendix not included in the refined source"
+- "flow control not stated; RTS/CTS pins present in pinout but no explicit flow control setting"
+- "volume range not explicitly stated; gain parameter request returns range dynamically"
+- "no unsolicited notification protocol described in source. All responses are command-reply."
+- "no multi-step macro sequences described in source."
+- "no explicit safety interlock procedures in source. Note: power on/off commands block other commands during execution (including cooling). Shutter close/open affects optical output directly."
+- "exact input terminal hex-to-name mapping not available (referenced Appendix not in source)"
+- "exact aspect ratio enum values not available (referenced Appendix not in source)"
+- "exact eco mode enum values not available (referenced Appendix not in source)"
+- "exact gain parameter ranges (min/max) per adjustment target not stated — returned dynamically via GAIN PARAMETER REQUEST 3"
+- "default baud rate not stated; source lists 5 supported rates (4800–115200)"
 ```
 
 ---

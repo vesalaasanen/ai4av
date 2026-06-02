@@ -25,14 +25,19 @@ last_checked_at: 2026-04-26T22:32:30.100Z
 generated_at: 2026-04-26T22:32:30.100Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power supply voltage spec for RAV232 at 9600bps — external supply required but rating not stated"
+  - "BAUD command - appears in examples but not in command table"
+  - "power consumption at 1200bps — \"requires external power supply\" but voltage not stated"
+  - "firmware version — VER command exists but output format not captured"
+  - "RAV232 9600bps default vs command-switchable — confirm if 9600 is persistent"
 verification:
   verdict: verified
   checked_at: 2026-04-26T22:32:30.100Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet."
+  confidence: medium
+  summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -281,14 +286,18 @@ verdict: verified
 checked_at: 2026-04-26T22:32:30.100Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet."
+confidence: medium
+summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power supply voltage spec for RAV232 at 9600bps — external supply required but rating not stated"
+- "BAUD command - appears in examples but not in command table"
+- "power consumption at 1200bps — \"requires external power supply\" but voltage not stated"
+- "firmware version — VER command exists but output format not captured"
+- "RAV232 9600bps default vs command-switchable — confirm if 9600 is persistent"
 ```
 
 ---

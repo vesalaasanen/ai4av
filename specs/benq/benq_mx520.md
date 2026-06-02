@@ -2,13 +2,13 @@
 spec_id: admin/benq-mx520
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Benq MX520 Control Spec"
-manufacturer: Benq
+title: "BenQ MX520 Control Spec"
+manufacturer: BenQ
 model_family: MX520
 aliases: []
 compatible_with:
   manufacturers:
-    - Benq
+    - BenQ
   models:
     - MX520
   firmware: ""
@@ -22,37 +22,42 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
-last_checked_at: 2026-05-04T16:13:58.153Z
-generated_at: 2026-05-04T16:13:58.153Z
+last_checked_at: 2026-06-01T23:12:27.754Z
+generated_at: 2026-06-01T23:12:27.754Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "applicability of every command to MX520 — source note states \"function will vary from model to model\" (ex: source, audio settings, aspect ratio..etc). The MX520-specific applicability of each row is not enumerated in the source."
+  - "absolute numeric setpoints for contrast/brightness/color/sharpness"
+  - "source does not document unsolicited device-initiated events"
+  - "source does not document any multi-step sequences."
+  - "firmware version compatibility not stated in source. UNRESOLVED: per-row MX520 applicability not stated in source. UNRESOLVED: network/IP-control command surface not stated in source (only RS-232 documented). UNRESOLVED: continuous numeric setpoints for picture settings not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:13:58.153Z
+  checked_at: 2026-06-01T23:12:27.754Z
   matched_actions: 173
   action_count: 173
-  confidence: high
-  summary: "All 173 spec actions matched to explicit wire tokens in source command table; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 173 spec actions matched literally to source commands; all transport parameters (115200 baud, 8-bit, no parity, 1 stop bit, no flow control) verified in source; complete coverage. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-04
+created_at: 2026-06-02
 ---
 
-# Benq MX520 Control Spec
+# BenQ MX520 Control Spec
 
 ## Summary
-BenQ MX520 DLP projector with RS-232 ASCII control protocol. Commands follow `*cmd=val#<CR>` format. Default baud 115200, configurable 2400–115200 via OSD or command. No authentication required. Full command set includes power, source routing, audio, picture settings, lamp control, 3D, network standby, and OSD navigation.
+BenQ MX520 projector with RS-232 serial control using ASCII framed commands of the form `<CR>*cmd=val#<CR>`. Source documents the full command table covering power, source selection, audio, picture mode, picture settings, aspect, 3D, lamp control, baud, and miscellaneous settings plus their query variants.
 
-<!-- UNRESOLVED: LAN over RS232 function mentioned but not documented in detail -->
+<!-- UNRESOLVED: applicability of every command to MX520 — source note states "function will vary from model to model" (ex: source, audio settings, aspect ratio..etc). The MX520-specific applicability of each row is not enumerated in the source. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 115200  # default; changeable via OSD or *baud=cmd
+  baud_rate: 115200  # default per source; settable in OSD menu to 2400/4800/9600/14400/19200/38400/57600/115200
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -63,10 +68,10 @@ auth:
 
 ## Traits
 ```yaml
-- powerable      # power on/off commands present
-- queryable      # power status, lamp hours, source, mute, volume, brightness, contrast, color, sharpness, aspect, lamp mode, 3D, etc.
-- routable       # source selection (RGB, RGB2, YPbPr, YPbPr2, DVI-A, DVI-D, HDMI, HDMI2, Video, S-Video, Network, USB)
-- levelable      # volume, mic volume, brightness, contrast, color, sharpness, zoom
+- powerable  # inferred from power command examples
+- routable  # inferred from source-select command examples
+- queryable  # inferred from query command examples
+- levelable  # inferred from volume + brightness + contrast + color + sharpness control
 ```
 
 ## Actions
@@ -74,915 +79,1193 @@ auth:
 - id: power_on
   label: Power On
   kind: action
+  command: "\r*pow=on#\r"
   params: []
+
 - id: power_off
   label: Power Off
   kind: action
-  params: []
-- id: get_power_status
-  label: Get Power Status
-  kind: query
+  command: "\r*pow=off#\r"
   params: []
 
-# Source Selection
-- id: source_rgb
-  label: Select Computer 1 / YPbPr
-  kind: action
-  params: []
-- id: source_rgb2
-  label: Select Computer 2 / YPbPr2
-  kind: action
-  params: []
-- id: source_ypbr
-  label: Select Component
-  kind: action
-  params: []
-- id: source_ypbr2
-  label: Select Component2
-  kind: action
-  params: []
-- id: source_dviA
-  label: Select DVI-A
-  kind: action
-  params: []
-- id: source_dvid
-  label: Select DVI-D
-  kind: action
-  params: []
-- id: source_hdmi
-  label: Select HDMI
-  kind: action
-  params: []
-- id: source_hdmi2
-  label: Select HDMI 2
-  kind: action
-  params: []
-- id: source_vid
-  label: Select Composite Video
-  kind: action
-  params: []
-- id: source_svid
-  label: Select S-Video
-  kind: action
-  params: []
-- id: source_network
-  label: Select Network
-  kind: action
-  params: []
-- id: source_usbdisplay
-  label: Select USB Display
-  kind: action
-  params: []
-- id: source_usbreader
-  label: Select USB Reader
-  kind: action
-  params: []
-- id: get_source
-  label: Get Current Source
+- id: power_status
+  label: Power Status
   kind: query
+  command: "\r*pow=?#\r"
   params: []
 
-# Audio
+- id: select_computer1_rgb
+  label: Source - COMPUTER/YPbPr (RGB)
+  kind: action
+  command: "\r*sour=RGB#\r"
+  params: []
+
+- id: select_computer2_rgb
+  label: Source - COMPUTER 2/YPbPr2 (RGB2)
+  kind: action
+  command: "\r*sour=RGB2#\r"
+  params: []
+
+- id: select_component
+  label: Source - Component (YPbPr)
+  kind: action
+  command: "\r*sour=ypbr#\r"
+  params: []
+
+- id: select_component2
+  label: Source - Component 2 (YPbPr2)
+  kind: action
+  command: "\r*sour=ypbr2#\r"
+  params: []
+
+- id: select_dvi_a
+  label: Source - DVI-A
+  kind: action
+  command: "\r*sour=dviA#\r"
+  params: []
+
+- id: select_dvi_d
+  label: Source - DVI-D
+  kind: action
+  command: "\r*sour=dvid#\r"
+  params: []
+
+- id: select_hdmi
+  label: Source - HDMI
+  kind: action
+  command: "\r*sour=hdmi#\r"
+  params: []
+
+- id: select_hdmi2
+  label: Source - HDMI 2
+  kind: action
+  command: "\r*sour=hdmi2#\r"
+  params: []
+
+- id: select_composite
+  label: Source - Composite Video
+  kind: action
+  command: "\r*sour=vid#\r"
+  params: []
+
+- id: select_svideo
+  label: Source - S-Video
+  kind: action
+  command: "\r*sour=svid#\r"
+  params: []
+
+- id: select_network
+  label: Source - Network
+  kind: action
+  command: "\r*sour=network#\r"
+  params: []
+
+- id: select_usb_display
+  label: Source - USB Display
+  kind: action
+  command: "\r*sour=usbdisplay#\r"
+  params: []
+
+- id: select_usb_reader
+  label: Source - USB Reader
+  kind: action
+  command: "\r*sour=usbreader#\r"
+  params: []
+
+- id: current_source
+  label: Current Source
+  kind: query
+  command: "\r*sour=?#\r"
+  params: []
+
 - id: mute_on
   label: Mute On
   kind: action
+  command: "\r*mute=on#\r"
   params: []
+
 - id: mute_off
   label: Mute Off
   kind: action
+  command: "\r*mute=off#\r"
   params: []
-- id: get_mute_status
-  label: Get Mute Status
+
+- id: mute_status
+  label: Mute Status
   kind: query
+  command: "\r*mute=?#\r"
   params: []
+
 - id: volume_up
-  label: Volume Up
+  label: Volume +
   kind: action
+  command: "\r*vol=+#\r"
   params: []
+
 - id: volume_down
-  label: Volume Down
+  label: Volume -
   kind: action
-  params: []
-- id: get_volume
-  label: Get Volume Status
-  kind: query
-  params: []
-- id: micvol_up
-  label: Mic Volume Up
-  kind: action
-  params: []
-- id: micvol_down
-  label: Mic Volume Down
-  kind: action
-  params: []
-- id: get_micvol
-  label: Get Mic Volume Status
-  kind: query
-  params: []
-- id: audiosour_off
-  label: Audio Pass Through Off
-  kind: action
-  params: []
-- id: audiosour_rgb
-  label: Audio-Computer1
-  kind: action
-  params: []
-- id: audiosour_rgb2
-  label: Audio-Computer2
-  kind: action
-  params: []
-- id: audiosour_vid
-  label: Audio-Video/S-Video
-  kind: action
-  params: []
-- id: audiosour_ypbr
-  label: Audio-Component
-  kind: action
-  params: []
-- id: audiosour_hdmi
-  label: Audio-HDMI
-  kind: action
-  params: []
-- id: audiosour_hdmi2
-  label: Audio-HDMI2
-  kind: action
-  params: []
-- id: get_audiosour
-  label: Get Audio Pass Through Status
-  kind: query
+  command: "\r*vol=-#\r"
   params: []
 
-# Picture Mode
-- id: appmod_dynamic
-  label: Picture Mode Dynamic
-  kind: action
-  params: []
-- id: appmod_preset
-  label: Picture Mode Presentation
-  kind: action
-  params: []
-- id: appmod_srgb
-  label: Picture Mode sRGB
-  kind: action
-  params: []
-- id: appmod_bright
-  label: Picture Mode Bright
-  kind: action
-  params: []
-- id: appmod_livingroom
-  label: Picture Mode LivingRoom
-  kind: action
-  params: []
-- id: appmod_game
-  label: Picture Mode Game
-  kind: action
-  params: []
-- id: appmod_cine
-  label: Picture Mode Cinema
-  kind: action
-  params: []
-- id: appmod_std
-  label: Picture Mode Standard
-  kind: action
-  params: []
-- id: appmod_user1
-  label: Picture Mode User1
-  kind: action
-  params: []
-- id: appmod_user2
-  label: Picture Mode User2
-  kind: action
-  params: []
-- id: appmod_user3
-  label: Picture Mode User3
-  kind: action
-  params: []
-- id: appmod_isfday
-  label: Picture Mode ISF Day
-  kind: action
-  params: []
-- id: appmod_isfnight
-  label: Picture Mode ISF Night
-  kind: action
-  params: []
-- id: appmod_3d
-  label: Picture Mode 3D
-  kind: action
-  params: []
-- id: get_appmod
-  label: Get Picture Mode
+- id: volume_status
+  label: Volume Status
   kind: query
+  command: "\r*vol=?#\r"
   params: []
 
-# Picture Settings
+- id: mic_volume_up
+  label: Mic Volume +
+  kind: action
+  command: "\r*micvol=+#\r"
+  params: []
+
+- id: mic_volume_down
+  label: Mic Volume -
+  kind: action
+  command: "\r*micvol=-#\r"
+  params: []
+
+- id: mic_volume_status
+  label: Mic Volume Status
+  kind: query
+  command: "\r*micvol=?#\r"
+  params: []
+
+- id: audio_source_off
+  label: Audio Pass-Through Off
+  kind: action
+  command: "\r*audiosour=off#\r"
+  params: []
+
+- id: audio_source_rgb
+  label: Audio - Computer 1
+  kind: action
+  command: "\r*audiosour=RGB#\r"
+  params: []
+
+- id: audio_source_rgb2
+  label: Audio - Computer 2
+  kind: action
+  command: "\r*audiosour=RGB2#\r"
+  params: []
+
+- id: audio_source_vid
+  label: Audio - Video/S-Video
+  kind: action
+  command: "\r*audiosour=vid#\r"
+  params: []
+
+- id: audio_source_ypbr
+  label: Audio - Component
+  kind: action
+  command: "\r*audiosour=ypbr#\r"
+  params: []
+
+- id: audio_source_hdmi
+  label: Audio - HDMI
+  kind: action
+  command: "\r*audiosour=hdmi#\r"
+  params: []
+
+- id: audio_source_hdmi2
+  label: Audio - HDMI 2
+  kind: action
+  command: "\r*audiosour=hdmi2#\r"
+  params: []
+
+- id: audio_source_status
+  label: Audio Pass-Through Status
+  kind: query
+  command: "\r*audiosour=?#\r"
+  params: []
+
+- id: picture_mode_dynamic
+  label: Picture Mode - Dynamic
+  kind: action
+  command: "\r*appmod=dynamic#\r"
+  params: []
+
+- id: picture_mode_presentation
+  label: Picture Mode - Presentation
+  kind: action
+  command: "\r*appmod=preset#\r"
+  params: []
+
+- id: picture_mode_srgb
+  label: Picture Mode - sRGB
+  kind: action
+  command: "\r*appmod=srgb#\r"
+  params: []
+
+- id: picture_mode_bright
+  label: Picture Mode - Bright
+  kind: action
+  command: "\r*appmod=bright#\r"
+  params: []
+
+- id: picture_mode_living_room
+  label: Picture Mode - Living Room
+  kind: action
+  command: "\r*appmod=livingroom#\r"
+  params: []
+
+- id: picture_mode_game
+  label: Picture Mode - Game
+  kind: action
+  command: "\r*appmod=game#\r"
+  params: []
+
+- id: picture_mode_cinema
+  label: Picture Mode - Cinema
+  kind: action
+  command: "\r*appmod=cine#\r"
+  params: []
+
+- id: picture_mode_standard
+  label: Picture Mode - Standard
+  kind: action
+  command: "\r*appmod=std#\r"
+  params: []
+
+- id: picture_mode_user1
+  label: Picture Mode - User 1
+  kind: action
+  command: "\r*appmod=user1#\r"
+  params: []
+
+- id: picture_mode_user2
+  label: Picture Mode - User 2
+  kind: action
+  command: "\r*appmod=user2#\r"
+  params: []
+
+- id: picture_mode_user3
+  label: Picture Mode - User 3
+  kind: action
+  command: "\r*appmod=user3#\r"
+  params: []
+
+- id: picture_mode_isf_day
+  label: Picture Mode - ISF Day
+  kind: action
+  command: "\r*appmod=isfday#\r"
+  params: []
+
+- id: picture_mode_isf_night
+  label: Picture Mode - ISF Night
+  kind: action
+  command: "\r*appmod=isfnight#\r"
+  params: []
+
+- id: picture_mode_3d
+  label: Picture Mode - 3D
+  kind: action
+  command: "\r*appmod=threed#\r"
+  params: []
+
+- id: picture_mode_status
+  label: Picture Mode Status
+  kind: query
+  command: "\r*appmod=?#\r"
+  params: []
+
 - id: contrast_up
-  label: Contrast Up
+  label: Contrast +
   kind: action
+  command: "\r*con=+#\r"
   params: []
+
 - id: contrast_down
-  label: Contrast Down
+  label: Contrast -
   kind: action
+  command: "\r*con=-#\r"
   params: []
-- id: get_contrast
-  label: Get Contrast Value
+
+- id: contrast_status
+  label: Contrast Value
   kind: query
+  command: "\r*con=?#\r"
   params: []
+
 - id: brightness_up
-  label: Brightness Up
+  label: Brightness +
   kind: action
+  command: "\r*bri=+#\r"
   params: []
+
 - id: brightness_down
-  label: Brightness Down
+  label: Brightness -
   kind: action
+  command: "\r*bri=-#\r"
   params: []
-- id: get_brightness
-  label: Get Brightness Value
+
+- id: brightness_status
+  label: Brightness Value
   kind: query
+  command: "\r*bri=?#\r"
   params: []
+
 - id: color_up
-  label: Color Up
+  label: Color +
   kind: action
+  command: "\r*color=+#\r"
   params: []
+
 - id: color_down
-  label: Color Down
+  label: Color -
   kind: action
+  command: "\r*color=-#\r"
   params: []
-- id: get_color
-  label: Get Color Value
+
+- id: color_status
+  label: Color Value
   kind: query
+  command: "\r*color=?#\r"
   params: []
+
 - id: sharpness_up
-  label: Sharpness Up
+  label: Sharpness +
   kind: action
+  command: "\r*sharp=+#\r"
   params: []
+
 - id: sharpness_down
-  label: Sharpness Down
+  label: Sharpness -
   kind: action
-  params: []
-- id: get_sharpness
-  label: Get Sharpness Value
-  kind: query
+  command: "\r*sharp=-#\r"
   params: []
 
-# Color Temperature
-- id: ct_warmer
-  label: Color Temperature Warmer
-  kind: action
-  params: []
-- id: ct_warm
-  label: Color Temperature Warm
-  kind: action
-  params: []
-- id: ct_normal
-  label: Color Temperature Normal
-  kind: action
-  params: []
-- id: ct_cool
-  label: Color Temperature Cool
-  kind: action
-  params: []
-- id: ct_cooler
-  label: Color Temperature Cooler
-  kind: action
-  params: []
-- id: ct_native
-  label: Color Temperature Lamp Native
-  kind: action
-  params: []
-- id: get_ct
-  label: Get Color Temperature Status
+- id: sharpness_status
+  label: Sharpness Value
   kind: query
+  command: "\r*sharp=?#\r"
   params: []
 
-# Aspect Ratio
-- id: asp_4_3
-  label: Aspect Ratio 4:3
+- id: color_temp_warmer
+  label: Color Temperature - Warmer
   kind: action
-  params: []
-- id: asp_16_9
-  label: Aspect Ratio 16:9
-  kind: action
-  params: []
-- id: asp_16_10
-  label: Aspect Ratio 16:10
-  kind: action
-  params: []
-- id: asp_auto
-  label: Aspect Ratio Auto
-  kind: action
-  params: []
-- id: asp_real
-  label: Aspect Ratio Real
-  kind: action
-  params: []
-- id: asp_lbox
-  label: Aspect Ratio Letterbox
-  kind: action
-  params: []
-- id: asp_wide
-  label: Aspect Ratio Wide
-  kind: action
-  params: []
-- id: asp_anam
-  label: Aspect Ratio Anamorphic
-  kind: action
-  params: []
-- id: get_asp
-  label: Get Aspect Ratio Status
-  kind: query
+  command: "\r*ct=warmer#\r"
   params: []
 
-# Zoom and Auto
-- id: zoom_in
+- id: color_temp_warm
+  label: Color Temperature - Warm
+  kind: action
+  command: "\r*ct=warm#\r"
+  params: []
+
+- id: color_temp_normal
+  label: Color Temperature - Normal
+  kind: action
+  command: "\r*ct=normal#\r"
+  params: []
+
+- id: color_temp_cool
+  label: Color Temperature - Cool
+  kind: action
+  command: "\r*ct=cool#\r"
+  params: []
+
+- id: color_temp_cooler
+  label: Color Temperature - Cooler
+  kind: action
+  command: "\r*ct=cooler#\r"
+  params: []
+
+- id: color_temp_lamp_native
+  label: Color Temperature - Lamp Native
+  kind: action
+  command: "\r*ct=native#\r"
+  params: []
+
+- id: color_temp_status
+  label: Color Temperature Status
+  kind: query
+  command: "\r*ct=?#\r"
+  params: []
+
+- id: aspect_4_3
+  label: Aspect - 4:3
+  kind: action
+  command: "\r*asp=4:3#\r"
+  params: []
+
+- id: aspect_16_9
+  label: Aspect - 16:9
+  kind: action
+  command: "\r*asp=16:9#\r"
+  params: []
+
+- id: aspect_16_10
+  label: Aspect - 16:10
+  kind: action
+  command: "\r*asp=16:10#\r"
+  params: []
+
+- id: aspect_auto
+  label: Aspect - Auto
+  kind: action
+  command: "\r*asp=AUTO#\r"
+  params: []
+
+- id: aspect_real
+  label: Aspect - Real
+  kind: action
+  command: "\r*asp=REAL#\r"
+  params: []
+
+- id: aspect_letterbox
+  label: Aspect - Letterbox
+  kind: action
+  command: "\r*asp=LBOX#\r"
+  params: []
+
+- id: aspect_wide
+  label: Aspect - Wide
+  kind: action
+  command: "\r*asp=WIDE#\r"
+  params: []
+
+- id: aspect_anamorphic
+  label: Aspect - Anamorphic
+  kind: action
+  command: "\r*asp=ANAM#\r"
+  params: []
+
+- id: aspect_status
+  label: Aspect Status
+  kind: query
+  command: "\r*asp=?#\r"
+  params: []
+
+- id: digital_zoom_in
   label: Digital Zoom In
   kind: action
+  command: "\r*zoomI#\r"
   params: []
-- id: zoom_out
+
+- id: digital_zoom_out
   label: Digital Zoom Out
   kind: action
-  params: []
-- id: auto
-  label: Auto (Auto Sync)
-  kind: action
+  command: "\r*zoomO#\r"
   params: []
 
-# Brilliant Color
-- id: bc_on
+- id: auto_adjust
+  label: Auto Adjust
+  kind: action
+  command: "\r*auto#\r"
+  params: []
+
+- id: brilliant_color_on
   label: Brilliant Color On
   kind: action
+  command: "\r*BC=on#\r"
   params: []
-- id: bc_off
+
+- id: brilliant_color_off
   label: Brilliant Color Off
   kind: action
-  params: []
-- id: get_bc
-  label: Get Brilliant Color Status
-  kind: query
+  command: "\r*BC=off#\r"
   params: []
 
-# Projector Position
-- id: pp_ft
-  label: Position Front Table
-  kind: action
-  params: []
-- id: pp_re
-  label: Position Rear Table
-  kind: action
-  params: []
-- id: pp_rc
-  label: Position Rear Ceiling
-  kind: action
-  params: []
-- id: pp_fc
-  label: Position Front Ceiling
-  kind: action
-  params: []
-- id: get_pp
-  label: Get Projector Position Status
+- id: brilliant_color_status
+  label: Brilliant Color Status
   kind: query
+  command: "\r*BC=?#\r"
   params: []
 
-# Operation Settings
-- id: qas_on
+- id: projector_position_front_table
+  label: Projector Position - Front Table
+  kind: action
+  command: "\r*pp=FT#\r"
+  params: []
+
+- id: projector_position_rear_table
+  label: Projector Position - Rear Table
+  kind: action
+  command: "\r*pp=RE#\r"
+  params: []
+
+- id: projector_position_rear_ceiling
+  label: Projector Position - Rear Ceiling
+  kind: action
+  command: "\r*pp=RC#\r"
+  params: []
+
+- id: projector_position_front_ceiling
+  label: Projector Position - Front Ceiling
+  kind: action
+  command: "\r*pp=FC#\r"
+  params: []
+
+- id: projector_position_status
+  label: Projector Position Status
+  kind: query
+  command: "\r*pp=?#\r"
+  params: []
+
+- id: quick_auto_search_on
   label: Quick Auto Search On
   kind: action
+  command: "\r*QAS=on#\r"
   params: []
-- id: qas_off
+
+- id: quick_auto_search_off
   label: Quick Auto Search Off
   kind: action
-  params: []
-- id: get_qas
-  label: Get Quick Auto Search Status
-  kind: query
-  params: []
-- id: directpower_on
-  label: Direct Power On On
-  kind: action
-  params: []
-- id: directpower_off
-  label: Direct Power On Off
-  kind: action
-  params: []
-- id: get_directpower
-  label: Get Direct Power On Status
-  kind: query
-  params: []
-- id: autopower_on
-  label: Signal Power On On
-  kind: action
-  params: []
-- id: autopower_off
-  label: Signal Power On Off
-  kind: action
-  params: []
-- id: get_autopower
-  label: Get Signal Power On Status
-  kind: query
-  params: []
-- id: standbynet_on
-  label: Standby Network On
-  kind: action
-  params: []
-- id: standbynet_off
-  label: Standby Network Off
-  kind: action
-  params: []
-- id: get_standbynet
-  label: Get Standby Network Status
-  kind: query
-  params: []
-- id: standbymic_on
-  label: Standby Microphone On
-  kind: action
-  params: []
-- id: standbymic_off
-  label: Standby Microphone Off
-  kind: action
-  params: []
-- id: get_standbymic
-  label: Get Standby Microphone Status
-  kind: query
-  params: []
-- id: standbymnt_on
-  label: Standby Monitor Out On
-  kind: action
-  params: []
-- id: standbymnt_off
-  label: Standby Monitor Out Off
-  kind: action
-  params: []
-- id: get_standbymnt
-  label: Get Standby Monitor Out Status
-  kind: query
+  command: "\r*QAS=off#\r"
   params: []
 
-# Baud Rate Configuration
+- id: quick_auto_search_status
+  label: Quick Auto Search Status
+  kind: query
+  command: "\r*QAS=?#\r"
+  params: []
+
+- id: direct_power_on
+  label: Direct Power On
+  kind: action
+  command: "\r*directpower=on#\r"
+  params: []
+
+- id: direct_power_off
+  label: Direct Power Off
+  kind: action
+  command: "\r*directpower=off#\r"
+  params: []
+
+- id: direct_power_status
+  label: Direct Power Status
+  kind: query
+  command: "\r*directpower=?#\r"
+  params: []
+
+- id: signal_power_on
+  label: Signal Power On
+  kind: action
+  command: "\r*autopower=on#\r"
+  params: []
+
+- id: signal_power_off
+  label: Signal Power Off
+  kind: action
+  command: "\r*autopower=off#\r"
+  params: []
+
+- id: signal_power_status
+  label: Signal Power Status
+  kind: query
+  command: "\r*autopower=?#\r"
+  params: []
+
+- id: standby_network_on
+  label: Standby Settings - Network On
+  kind: action
+  command: "\r*standbynet=on#\r"
+  params: []
+
+- id: standby_network_off
+  label: Standby Settings - Network Off
+  kind: action
+  command: "\r*standbynet=off#\r"
+  params: []
+
+- id: standby_network_status
+  label: Standby Settings - Network Status
+  kind: query
+  command: "\r*standbynet=?#\r"
+  params: []
+
+- id: standby_mic_on
+  label: Standby Settings - Microphone On
+  kind: action
+  command: "\r*standbymic=on#\r"
+  params: []
+
+- id: standby_mic_off
+  label: Standby Settings - Microphone Off
+  kind: action
+  command: "\r*standbymic=off#\r"
+  params: []
+
+- id: standby_mic_status
+  label: Standby Settings - Microphone Status
+  kind: query
+  command: "\r*standbymic=?#\r"
+  params: []
+
+- id: standby_monitor_out_on
+  label: Standby Settings - Monitor Out On
+  kind: action
+  command: "\r*standbymnt=on#\r"
+  params: []
+
+- id: standby_monitor_out_off
+  label: Standby Settings - Monitor Out Off
+  kind: action
+  command: "\r*standbymnt=off#\r"
+  params: []
+
+- id: standby_monitor_out_status
+  label: Standby Settings - Monitor Out Status
+  kind: query
+  command: "\r*standbymnt=?#\r"
+  params: []
+
 - id: baud_2400
-  label: Set Baud Rate 2400
+  label: Baud Rate - 2400
   kind: action
+  command: "\r*baud=2400#\r"
   params: []
+
 - id: baud_4800
-  label: Set Baud Rate 4800
+  label: Baud Rate - 4800
   kind: action
+  command: "\r*baud=4800#\r"
   params: []
+
 - id: baud_9600
-  label: Set Baud Rate 9600
+  label: Baud Rate - 9600
   kind: action
+  command: "\r*baud=9600#\r"
   params: []
+
 - id: baud_14400
-  label: Set Baud Rate 14400
+  label: Baud Rate - 14400
   kind: action
+  command: "\r*baud=14400#\r"
   params: []
+
 - id: baud_19200
-  label: Set Baud Rate 19200
+  label: Baud Rate - 19200
   kind: action
+  command: "\r*baud=19200#\r"
   params: []
+
 - id: baud_38400
-  label: Set Baud Rate 38400
+  label: Baud Rate - 38400
   kind: action
+  command: "\r*baud=38400#\r"
   params: []
+
 - id: baud_57600
-  label: Set Baud Rate 57600
+  label: Baud Rate - 57600
   kind: action
+  command: "\r*baud=57600#\r"
   params: []
+
 - id: baud_115200
-  label: Set Baud Rate 115200
+  label: Baud Rate - 115200
   kind: action
-  params: []
-- id: get_baud
-  label: Get Current Baud Rate
-  kind: query
+  command: "\r*baud=115200#\r"
   params: []
 
-# Lamp Control
-- id: get_ltim
-  label: Get Lamp Hour
+- id: baud_status
+  label: Current Baud Rate
   kind: query
-  params: []
-- id: get_ltim2
-  label: Get Lamp2 Hour
-  kind: query
-  params: []
-- id: lampm_lnor
-  label: Lamp Mode Normal
-  kind: action
-  params: []
-- id: lampm_eco
-  label: Lamp Mode Eco
-  kind: action
-  params: []
-- id: lampm_seco
-  label: Lamp Mode Smart Eco
-  kind: action
-  params: []
-- id: lampm_dualbr
-  label: Lamp Mode Dual Brightest
-  kind: action
-  params: []
-- id: lampm_dualre
-  label: Lamp Mode Dual Reliable
-  kind: action
-  params: []
-- id: lampm_single
-  label: Lamp Mode Single Alternative
-  kind: action
-  params: []
-- id: lampm_singleeco
-  label: Lamp Mode Single Alternative Eco
-  kind: action
-  params: []
-- id: get_lampm
-  label: Get Lamp Mode Status
-  kind: query
+  command: "\r*baud=?#\r"
   params: []
 
-# Info
-- id: get_modelname
-  label: Get Model Name
+- id: lamp_hour
+  label: Lamp Hour
   kind: query
+  command: "\r*ltim=?#\r"
   params: []
 
-# Blank and Freeze
+- id: lamp2_hour
+  label: Lamp 2 Hour
+  kind: query
+  command: "\r*ltim2=?#\r"
+  params: []
+
+- id: lamp_mode_normal
+  label: Lamp Mode - Normal
+  kind: action
+  command: "\r*lampm=lnor#\r"
+  params: []
+
+- id: lamp_mode_eco
+  label: Lamp Mode - Eco
+  kind: action
+  command: "\r*lampm=eco#\r"
+  params: []
+
+- id: lamp_mode_smart_eco
+  label: Lamp Mode - Smart Eco
+  kind: action
+  command: "\r*lampm=seco#\r"
+  params: []
+
+- id: lamp_mode_dual_brightest
+  label: Lamp Mode - Dual Brightest (dual-lamp)
+  kind: action
+  command: "\r*lampm=dualbr#\r"
+  params: []
+
+- id: lamp_mode_dual_reliable
+  label: Lamp Mode - Dual Reliable (dual-lamp)
+  kind: action
+  command: "\r*lampm=dualre#\r"
+  params: []
+
+- id: lamp_mode_single_alternative
+  label: Lamp Mode - Single Alternative (dual-lamp)
+  kind: action
+  command: "\r*lampm=single#\r"
+  params: []
+
+- id: lamp_mode_single_alternative_eco
+  label: Lamp Mode - Single Alternative Eco (dual-lamp)
+  kind: action
+  command: "\r*lampm=singleeco#\r"
+  params: []
+
+- id: lamp_mode_status
+  label: Lamp Mode Status
+  kind: query
+  command: "\r*lampm=?#\r"
+  params: []
+
+- id: model_name
+  label: Model Name
+  kind: query
+  command: "\r*modelname=?#\r"
+  params: []
+
 - id: blank_on
   label: Blank On
   kind: action
+  command: "\r*blank=on#\r"
   params: []
+
 - id: blank_off
   label: Blank Off
   kind: action
+  command: "\r*blank=off#\r"
   params: []
-- id: get_blank
-  label: Get Blank Status
+
+- id: blank_status
+  label: Blank Status
   kind: query
+  command: "\r*blank=?#\r"
   params: []
+
 - id: freeze_on
   label: Freeze On
   kind: action
+  command: "\r*freeze=on#\r"
   params: []
+
 - id: freeze_off
   label: Freeze Off
   kind: action
-  params: []
-- id: get_freeze
-  label: Get Freeze Status
-  kind: query
+  command: "\r*freeze=off#\r"
   params: []
 
-# OSD Navigation
+- id: freeze_status
+  label: Freeze Status
+  kind: query
+  command: "\r*freeze=?#\r"
+  params: []
+
 - id: menu_on
   label: Menu On
   kind: action
+  command: "\r*menu=on#\r"
   params: []
+
 - id: menu_off
   label: Menu Off
   kind: action
-  params: []
-- id: nav_up
-  label: Up
-  kind: action
-  params: []
-- id: nav_down
-  label: Down
-  kind: action
-  params: []
-- id: nav_right
-  label: Right
-  kind: action
-  params: []
-- id: nav_left
-  label: Left
-  kind: action
-  params: []
-- id: nav_enter
-  label: Enter
-  kind: action
+  command: "\r*menu=off#\r"
   params: []
 
-# 3D
-- id: d3_off
-  label: 3D Sync Off
+- id: menu_up
+  label: Menu - Up
   kind: action
+  command: "\r*up#\r"
   params: []
-- id: d3_auto
-  label: 3D Auto
+
+- id: menu_down
+  label: Menu - Down
   kind: action
+  command: "\r*down#\r"
   params: []
-- id: d3_tb
-  label: 3D Sync Top/Bottom
+
+- id: menu_right
+  label: Menu - Right
   kind: action
+  command: "\r*right#\r"
   params: []
-- id: d3_fs
-  label: 3D Sync Frame Sequential
+
+- id: menu_left
+  label: Menu - Left
   kind: action
+  command: "\r*left#\r"
   params: []
-- id: d3_fp
-  label: 3D Frame Packing
+
+- id: menu_enter
+  label: Menu - Enter
   kind: action
+  command: "\r*enter#\r"
   params: []
-- id: d3_sbs
-  label: 3D Side by Side
+
+- id: threed_off
+  label: 3D Sync - Off
   kind: action
+  command: "\r*3d=off#\r"
   params: []
-- id: d3_da
-  label: 3D Inverter Disable
+
+- id: threed_auto
+  label: 3D Sync - Auto
   kind: action
+  command: "\r*3d=auto#\r"
   params: []
-- id: d3_iv
-  label: 3D Inverter Enable
+
+- id: threed_top_bottom
+  label: 3D Sync - Top-Bottom
   kind: action
+  command: "\r*3d=tb#\r"
   params: []
-- id: d3_2d3d
-  label: 2D to 3D
+
+- id: threed_frame_sequential
+  label: 3D Sync - Frame Sequential
   kind: action
+  command: "\r*3d=fs#\r"
   params: []
-- id: d3_nvidia
-  label: 3D NVIDIA
+
+- id: threed_framepacking
+  label: 3D - Frame Packing
   kind: action
+  command: "\r*3d=fp#\r"
   params: []
-- id: get_d3
-  label: Get 3D Sync Status
+
+- id: threed_side_by_side
+  label: 3D - Side by Side
+  kind: action
+  command: "\r*3d=sbs#\r"
+  params: []
+
+- id: threed_inverter_disable
+  label: 3D - Inverter Disable
+  kind: action
+  command: "\r*3d=da#\r"
+  params: []
+
+- id: threed_inverter
+  label: 3D - Inverter
+  kind: action
+  command: "\r*3d=iv#\r"
+  params: []
+
+- id: threed_2d_to_3d
+  label: 3D - 2D to 3D
+  kind: action
+  command: "\r*3d=2d3d#\r"
+  params: []
+
+- id: threed_nvidia
+  label: 3D - nVIDIA
+  kind: action
+  command: "\r*3d=nvidia#\r"
+  params: []
+
+- id: threed_status
+  label: 3D Sync Status
   kind: query
+  command: "\r*3d=?#\r"
   params: []
 
-# Remote Receiver
-- id: rr_fr
-  label: Remote Receiver Front+Rear
+- id: remote_receiver_front_rear
+  label: Remote Receiver - Front + Rear
   kind: action
+  command: "\r*rr=fr#\r"
   params: []
-- id: rr_f
-  label: Remote Receiver Front
+
+- id: remote_receiver_front
+  label: Remote Receiver - Front
   kind: action
+  command: "\r*rr=f#\r"
   params: []
-- id: rr_r
-  label: Remote Receiver Rear
+
+- id: remote_receiver_rear
+  label: Remote Receiver - Rear
   kind: action
+  command: "\r*rr=r#\r"
   params: []
-- id: get_rr
-  label: Get Remote Receiver Status
+
+- id: remote_receiver_status
+  label: Remote Receiver Status
   kind: query
+  command: "\r*rr=?#\r"
   params: []
 
-# Instant On
-- id: ins_on
-  label: Instant On On
+- id: instant_on
+  label: Instant On
   kind: action
+  command: "\r*ins=on#\r"
   params: []
-- id: ins_off
-  label: Instant On Off
+
+- id: instant_off
+  label: Instant Off
   kind: action
+  command: "\r*ins=off#\r"
   params: []
-- id: get_ins
-  label: Get Instant On Status
+
+- id: instant_status
+  label: Instant On Status
   kind: query
+  command: "\r*ins=?#\r"
   params: []
 
-# Lamp Saver
-- id: lpsaver_on
-  label: Lamp Saver On
+- id: lamp_saver_on
+  label: Lamp Saver Mode - On
   kind: action
+  command: "\r*lpsaver=on#\r"
   params: []
-- id: lpsaver_off
-  label: Lamp Saver Off
+
+- id: lamp_saver_off
+  label: Lamp Saver Mode - Off
   kind: action
+  command: "\r*lpsaver=off#\r"
   params: []
-- id: get_lpsaver
-  label: Get Lamp Saver Status
+
+- id: lamp_saver_status
+  label: Lamp Saver Mode Status
   kind: query
+  command: "\r*lpsaver=?#\r"
   params: []
 
-# Projection Log In Code
-- id: prjlogincode_on
-  label: Projection Log In Code On
+- id: prj_login_code_on
+  label: Projection Log In Code - On
   kind: action
+  command: "\r*prjlogincode=on#\r"
   params: []
-- id: prjlogincode_off
-  label: Projection Log In Code Off
+
+- id: prj_login_code_off
+  label: Projection Log In Code - Off
   kind: action
+  command: "\r*prjlogincode=off#\r"
   params: []
-- id: get_prjlogincode
-  label: Get Projection Log In Code Status
+
+- id: prj_login_code_status
+  label: Projection Log In Code Status
   kind: query
+  command: "\r*prjlogincode=?#\r"
   params: []
 
-# Broadcasting
 - id: broadcasting_on
-  label: Broadcasting On
+  label: Broadcasting - On
   kind: action
+  command: "\r*broadcasting=on#\r"
   params: []
+
 - id: broadcasting_off
-  label: Broadcasting Off
+  label: Broadcasting - Off
   kind: action
-  params: []
-- id: get_broadcasting
-  label: Get Broadcasting Status
-  kind: query
+  command: "\r*broadcasting=off#\r"
   params: []
 
-# AMX Device Discovery
-- id: amxdd_on
-  label: AMX Device Discovery On
-  kind: action
-  params: []
-- id: amxdd_off
-  label: AMX Device Discovery Off
-  kind: action
-  params: []
-- id: get_amxdd
-  label: Get AMX Device Discovery Status
+- id: broadcasting_status
+  label: Broadcasting Status
   kind: query
+  command: "\r*broadcasting=?#\r"
   params: []
 
-# Network
-- id: get_macaddr
-  label: Get MAC Address
-  kind: query
+- id: amx_discovery_on
+  label: AMX Device Discovery - On
+  kind: action
+  command: "\r*amxdd=on#\r"
   params: []
 
-# High Altitude
-- id: highaltitude_on
-  label: High Altitude Mode On
+- id: amx_discovery_off
+  label: AMX Device Discovery - Off
   kind: action
+  command: "\r*amxdd=off#\r"
   params: []
-- id: highaltitude_off
-  label: High Altitude Mode Off
-  kind: action
-  params: []
-- id: get_highaltitude
-  label: Get High Altitude Mode Status
+
+- id: amx_discovery_status
+  label: AMX Device Discovery Status
   kind: query
+  command: "\r*amxdd=?#\r"
+  params: []
+
+- id: mac_address
+  label: MAC Address
+  kind: query
+  command: "\r*macaddr=?#\r"
+  params: []
+
+- id: high_altitude_on
+  label: High Altitude Mode - On
+  kind: action
+  command: "\r*Highaltitude=on#\r"
+  params: []
+
+- id: high_altitude_off
+  label: High Altitude Mode - Off
+  kind: action
+  command: "\r*Highaltitude=off#\r"
+  params: []
+
+- id: high_altitude_status
+  label: High Altitude Mode Status
+  kind: query
+  command: "\r*Highaltitude=?#\r"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: power_status
-  type: enum
-  values: [on, off, standby, cooling]
-  note: Read via *pow=?#
-- id: source_status
-  type: enum
-  values: [RGB, RGB2, ypbr, ypbr2, dviA, dvid, hdmi, hdmi2, vid, svid, network, usbdisplay, usbreader]
-  note: Read via *sour=?#
-- id: mute_status
+- id: power_state
   type: enum
   values: [on, off]
-- id: volume_status
-  type: integer
-  note: Read via *vol=?#
-- id: micvol_status
-  type: integer
-  note: Read via *micvol=?#
-- id: audiosour_status
-  type: enum
-  values: [off, RGB, RGB2, vid, ypbr, hdmi, hdmi2]
-- id: appmod_status
-  type: enum
-  values: [dynamic, preset, srgb, bright, livingroom, game, cine, std, user1, user2, user3, isfday, isfnight, threed]
-- id: contrast_status
-  type: integer
-  note: Read via *con=?#
-- id: brightness_status
-  type: integer
-  note: Read via *bri=?#
-- id: color_status
-  type: integer
-  note: Read via *color=?#
-- id: sharpness_status
-  type: integer
-  note: Read via *sharp=?#
-- id: ct_status
-  type: enum
-  values: [warmer, warm, normal, cool, cooler, native]
-- id: asp_status
-  type: enum
-  values: ["4:3", "16:9", "16:10", AUTO, REAL, LBOX, WIDE, ANAM]
-- id: bc_status
+- id: mute_state
   type: enum
   values: [on, off]
-- id: pp_status
-  type: enum
-  values: [FT, RE, RC, FC]
-- id: qas_status
-  type: enum
-  values: [on, off]
-- id: directpower_status
-  type: enum
-  values: [on, off]
-- id: autopower_status
-  type: enum
-  values: [on, off]
-- id: standbynet_status
-  type: enum
-  values: [on, off]
-- id: standbymic_status
-  type: enum
-  values: [on, off]
-- id: standbymnt_status
-  type: enum
-  values: [on, off]
-- id: baud_status
+- id: volume_state
   type: integer
-  note: Read via *baud=?#; possible values 2400/4800/9600/14400/19200/38400/57600/115200
-- id: ltim_status
+  description: "Returned by *vol=?#"
+- id: mic_volume_state
   type: integer
-  note: Lamp hours; read via *ltim=?#
-- id: ltim2_status
-  type: integer
-  note: Lamp2 hours; read via *ltim2=?#
-- id: lampm_status
-  type: enum
-  values: [lnor, eco, seco, dualbr, dualre, single, singleeco]
-- id: modelname_status
+  description: "Returned by *micvol=?#"
+- id: audio_source_state
   type: string
-  note: Read via *modelname=?#
-- id: blank_status
-  type: enum
-  values: [on, off]
-- id: freeze_status
-  type: enum
-  values: [on, off]
-- id: d3_status
-  type: enum
-  values: [off, auto, tb, fs, fp, sbs, da, iv, "2d3d", nvidia]
-- id: rr_status
-  type: enum
-  values: [fr, f, r]
-- id: ins_status
-  type: enum
-  values: [on, off]
-- id: lpsaver_status
-  type: enum
-  values: [on, off]
-- id: prjlogincode_status
-  type: enum
-  values: [on, off]
-- id: broadcasting_status
-  type: enum
-  values: [on, off]
-- id: amxdd_status
-  type: enum
-  values: [on, off]
-- id: macaddr_status
+  description: "Returned by *audiosour=?#"
+- id: source_state
   type: string
-  note: MAC address; read via *macaddr=?#
-- id: highaltitude_status
+  description: "Returned by *sour=?#"
+- id: picture_mode_state
+  type: string
+  description: "Returned by *appmod=?#"
+- id: contrast_state
+  type: integer
+  description: "Returned by *con=?#"
+- id: brightness_state
+  type: integer
+  description: "Returned by *bri=?#"
+- id: color_state
+  type: integer
+  description: "Returned by *color=?#"
+- id: sharpness_state
+  type: integer
+  description: "Returned by *sharp=?#"
+- id: color_temp_state
+  type: string
+  description: "Returned by *ct=?#"
+- id: aspect_state
+  type: string
+  description: "Returned by *asp=?#"
+- id: brilliant_color_state
   type: enum
   values: [on, off]
-- id: error_illegal_format
+- id: projector_position_state
   type: string
-  note: Device echoes "Illegal format" when command structure is invalid
-- id: error_unsupported_item
+  description: "Returned by *pp=?#"
+- id: quick_auto_search_state
+  type: enum
+  values: [on, off]
+- id: direct_power_state
+  type: enum
+  values: [on, off]
+- id: signal_power_state
+  type: enum
+  values: [on, off]
+- id: standby_network_state
+  type: enum
+  values: [on, off]
+- id: standby_mic_state
+  type: enum
+  values: [on, off]
+- id: standby_monitor_out_state
+  type: enum
+  values: [on, off]
+- id: baud_rate_state
+  type: integer
+  description: "Returned by *baud=?#"
+- id: lamp_hour
+  type: integer
+  description: "Returned by *ltim=?#"
+- id: lamp2_hour
+  type: integer
+  description: "Returned by *ltim2=?#"
+- id: lamp_mode_state
   type: string
-  note: Device echoes "Unsupported item" when command valid but not supported by this model
-- id: error_block_item
+  description: "Returned by *lampm=?#"
+- id: model_name
   type: string
-  note: Device echoes "Block item" when command valid but cannot execute under current condition
+  description: "Returned by *modelname=?#"
+- id: blank_state
+  type: enum
+  values: [on, off]
+- id: freeze_state
+  type: enum
+  values: [on, off]
+- id: threed_state
+  type: string
+  description: "Returned by *3d=?#"
+- id: remote_receiver_state
+  type: string
+  description: "Returned by *rr=?#"
+- id: instant_state
+  type: enum
+  values: [on, off]
+- id: lamp_saver_state
+  type: enum
+  values: [on, off]
+- id: prj_login_code_state
+  type: enum
+  values: [on, off]
+- id: broadcasting_state
+  type: enum
+  values: [on, off]
+- id: amx_discovery_state
+  type: enum
+  values: [on, off]
+- id: mac_address
+  type: string
+  description: "Returned by *macaddr=?#"
+- id: high_altitude_state
+  type: enum
+  values: [on, off]
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete settable parameters beyond action commands; all settable values are action-based
+# No continuous / non-discrete parameters documented beyond +/- step commands above.
+# UNRESOLVED: absolute numeric setpoints for contrast/brightness/color/sharpness
+# not stated in source; only +/- relative steps are documented.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented in source; device only responds to commands
+# UNRESOLVED: source does not document unsolicited device-initiated events
+# over RS-232; all examples in the source are command/echo pairs.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences documented in source
+# UNRESOLVED: source does not document any multi-step sequences.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - note: Commands "*pow=on#" and all status queries remain active in low power standby mode (<0.5W)
-  - note: Lamp hours query (*ltim=?#) and power on command (*pow=on#) active during low power mode (<0.5W)
-  - note: "Unsupported item" and "Block item" responses not supported in power saving mode (standby power <1W)
+interlocks: []
+# No safety warnings, interlock procedures, or power-on sequencing requirements
+# are stated in the source.
 ```
 
 ## Notes
-Command format: `*cmd=val#<CR>` — all commands preceded by carriage return and suffixed with `#`. Case-insensitive (upper/lower case both accepted). Each input character is echoed; query commands echo the uppercase response.
+- Every command is bracketed by `<CR>` (ASCII 0x0D); the source's hex example for Power On is `0D 2A 70 6F 77 3D 6F 6E 23 0D`.
+- Each input character is echoed; for query commands the device additionally echoes `<CR>` (0x0D) followed by the response, e.g. `> *pow=?#*POW=ON#`.
+- Idle prompt: pressing Enter returns `3E,00` ("projector ready to accept RS-232 command"); after 5 s of no traffic, device returns `0D,0A,00`.
+- Error responses: `Illegal format`, `Unsupported item`, `Block item`. Items 5/6 are not supported in power saving (standby <1W).
+- Baud rate default 115200, settable in OSD to 2400/4800/9600/14400/19200/38400/57600/115200. Once baud is changed via RS-232 (`*baud=...#`), host must reconnect at the new rate.
+- Source note: "The above function will be vary from model to model" — applicability of every enumerated row to MX520 specifically is not confirmed in the source. Treat as a generic BenQ projector command set; per-model applicability requires verification.
+- Case-insensitive for input characters (per source note 2).
 
-Echo behavior:
-- Valid write command echoes: `> *cmd=val#*CMD=VAL#` + `<CR><LF>`
-- Enter (ASCII 13) alone echoes: `3E 00` — projector ready for command
-- No command for 5 seconds echoes: `0D 0A 00` — timeout
-- Illegal format: `"Illegal format"`
-- Unsupported item: `"Unsupported item"`
-- Blocked item: `"Block item"`
-
-Baud rate configurable via `*baud=val#` command or OSD menu. Default 115200.
-
-Power states: on, off, standby, cooling. Power-on command active in low power mode (<0.5W).
-
-Source note: function availability varies by model (source, audio settings, aspect ratio etc.).
-
-<!-- UNRESOLVED: LAN over RS232 function mentioned but not fully documented -->
-<!-- UNRESOLVED: USB reader / USB display protocol details not specified -->
-<!-- UNRESOLVED: dual-lamp commands (dualbr, dualre, single, singleeco) — device may be single-lamp variant -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source. UNRESOLVED: per-row MX520 applicability not stated in source. UNRESOLVED: network/IP-control command surface not stated in source (only RS-232 documented). UNRESOLVED: continuous numeric setpoints for picture settings not stated in source. -->
 
 ## Provenance
 
@@ -994,24 +1277,28 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
-last_checked_at: 2026-05-04T16:13:58.153Z
+last_checked_at: 2026-06-01T23:12:27.754Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:13:58.153Z
+checked_at: 2026-06-01T23:12:27.754Z
 matched_actions: 173
 action_count: 173
-confidence: high
-summary: "All 173 spec actions matched to explicit wire tokens in source command table; transport parameters verified verbatim."
+confidence: medium
+summary: "All 173 spec actions matched literally to source commands; all transport parameters (115200 baud, 8-bit, no parity, 1 stop bit, no flow control) verified in source; complete coverage. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "applicability of every command to MX520 — source note states \"function will vary from model to model\" (ex: source, audio settings, aspect ratio..etc). The MX520-specific applicability of each row is not enumerated in the source."
+- "absolute numeric setpoints for contrast/brightness/color/sharpness"
+- "source does not document unsolicited device-initiated events"
+- "source does not document any multi-step sequences."
+- "firmware version compatibility not stated in source. UNRESOLVED: per-row MX520 applicability not stated in source. UNRESOLVED: network/IP-control command surface not stated in source (only RS-232 documented). UNRESOLVED: continuous numeric setpoints for picture settings not stated in source."
 ```
 
 ---

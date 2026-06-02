@@ -24,14 +24,23 @@ last_checked_at: 2026-05-14T18:17:19.607Z
 generated_at: 2026-05-14T18:17:19.607Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power on/off commands not documented in source"
+  - "firmware version compatibility not stated in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "power on/off control not documented"
+  - "firmware version compatibility not stated"
+  - "no audio control commands documented"
+  - "no key/fill material loading commands documented"
+  - "no still store management commands documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.607Z
   matched_actions: 10
   action_count: 10
   confidence: low
-  summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage"
+  summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -576,13 +585,21 @@ checked_at: 2026-05-14T18:17:19.607Z
 matched_actions: 10
 action_count: 10
 confidence: low
-summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage"
+summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power on/off commands not documented in source"
+- "firmware version compatibility not stated in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "power on/off control not documented"
+- "firmware version compatibility not stated"
+- "no audio control commands documented"
+- "no key/fill material loading commands documented"
+- "no still store management commands documented"
 ```
 
 ---

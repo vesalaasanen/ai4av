@@ -17,21 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:44:45.608Z
 last_checked_at: 2026-05-18T16:37:59.335Z
 generated_at: 2026-05-18T16:37:59.335Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit spec outside scope of this doc"
+  - "appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, key codes referenced but full tables not in source)"
+  - "no unsolicited notifications described; all responses are synchronous to commands."
+  - "no explicit safety interlock procedure in source. Command notes warn against issuing commands during power on/off transitions (\"While this command is turning on the power, no other command can be accepted.\" / \"While this command is turning off the power (including the cooling time), no other command can be accepted.\")"
+  - "appendix tables (input terminal codes, aspect values, eco mode values, signal type values, key code full list beyond partial table shown) not included in source"
+  - "wireless LAN unit specs delegated to separate operation manual"
+  - "firmware version compatibility not stated"
+  - "error recovery sequences not described"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:37:59.335Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 33 spec actions verified against source with exact hex matches; transport parameters fully supported; bidirectional command coverage confirmed."
+  confidence: medium
+  summary: "All 33 spec actions verified against source with exact hex matches; transport parameters fully supported; bidirectional command coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -611,9 +621,11 @@ Serial: 9-pin D-SUB RS-232C, full duplex. TCP: port 7142. No login/auth describe
 ```yaml
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:44:45.608Z
 last_checked_at: 2026-05-18T16:37:59.335Z
 ```
 
@@ -624,14 +636,21 @@ verdict: verified
 checked_at: 2026-05-18T16:37:59.335Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 33 spec actions verified against source with exact hex matches; transport parameters fully supported; bidirectional command coverage confirmed."
+confidence: medium
+summary: "All 33 spec actions verified against source with exact hex matches; transport parameters fully supported; bidirectional command coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit spec outside scope of this doc"
+- "appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, key codes referenced but full tables not in source)"
+- "no unsolicited notifications described; all responses are synchronous to commands."
+- "no explicit safety interlock procedure in source. Command notes warn against issuing commands during power on/off transitions (\"While this command is turning on the power, no other command can be accepted.\" / \"While this command is turning off the power (including the cooling time), no other command can be accepted.\")"
+- "appendix tables (input terminal codes, aspect values, eco mode values, signal type values, key code full list beyond partial table shown) not included in source"
+- "wireless LAN unit specs delegated to separate operation manual"
+- "firmware version compatibility not stated"
+- "error recovery sequences not described"
 ```
 
 ---

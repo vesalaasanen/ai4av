@@ -15,23 +15,28 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - community.symcon.de
-source_urls:
-  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T22:21:45.671Z
 last_checked_at: 2026-05-16T22:21:45.671Z
 generated_at: 2026-05-16T22:21:45.671Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source document is the generic ISCP protocol spec (v1.15, 2009) applied to the HT-L05; model-specific command availability (e.g. XM/SIRIUS, HD Radio, Zone 3/4 presence) is not confirmed for the HT-L05 specifically."
+  - "no settable parameter variables beyond discrete actions/feedbacks found in source"
+  - "no multi-step sequences described explicitly in source"
+  - "HT-L05-specific model applicability of Zone 3, Zone 4, XM, SIRIUS, HD Radio, and RI bus commands not confirmed in source — this is a generic ISCP v1.15 protocol document."
+  - "eISCP packet end character variant (\"EOF\", \"EOF+CR\", or \"EOF+CR+LF\") for the HT-L05 not specified in source — \"depend on model\"."
+  - "Maximum volume ceiling (0x64 vs 0x50) for the HT-L05 not specified in source."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T22:21:45.671Z
   matched_actions: 98
   action_count: 98
-  confidence: high
-  summary: "All 98 spec action commands matched verbatim in source with correct parameter ranges; transport verified."
+  confidence: medium
+  summary: "All 98 spec action commands matched verbatim in source with correct parameter ranges; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1133,11 +1138,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - community.symcon.de
-source_urls:
-  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T22:21:45.671Z
 last_checked_at: 2026-05-16T22:21:45.671Z
 ```
 
@@ -1148,14 +1151,20 @@ verdict: verified
 checked_at: 2026-05-16T22:21:45.671Z
 matched_actions: 98
 action_count: 98
-confidence: high
-summary: "All 98 spec action commands matched verbatim in source with correct parameter ranges; transport verified."
+confidence: medium
+summary: "All 98 spec action commands matched verbatim in source with correct parameter ranges; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source document is the generic ISCP protocol spec (v1.15, 2009) applied to the HT-L05; model-specific command availability (e.g. XM/SIRIUS, HD Radio, Zone 3/4 presence) is not confirmed for the HT-L05 specifically."
+- "no settable parameter variables beyond discrete actions/feedbacks found in source"
+- "no multi-step sequences described explicitly in source"
+- "HT-L05-specific model applicability of Zone 3, Zone 4, XM, SIRIUS, HD Radio, and RI bus commands not confirmed in source — this is a generic ISCP v1.15 protocol document."
+- "eISCP packet end character variant (\"EOF\", \"EOF+CR\", or \"EOF+CR+LF\") for the HT-L05 not specified in source — \"depend on model\"."
+- "Maximum volume ceiling (0x64 vs 0x50) for the HT-L05 not specified in source."
+- "model-specific source not located"
 ```
 
 ---

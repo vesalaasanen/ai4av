@@ -17,21 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T15:23:54.227Z
 last_checked_at: 2026-05-20T11:28:33.817Z
 generated_at: 2026-05-20T11:28:33.817Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact product category (AVR vs pre-pro vs Blu-ray) not confirmed — source is a generic Denon \"Control Protocol Ver.06\" covering multiple AVR models"
+  - "flow control not stated; \"non procedural\" communication procedure noted"
+  - "no multi-step macro sequences described in source"
+  - "source contains no explicit safety warnings or interlock procedures"
+  - "protocol version \"Ver.06\" mentioned but no version compatibility range stated"
+  - "exact DN-V310 model capabilities vs full command set — source covers multiple Denon AVR models; not all commands may apply to DN-V310"
+  - "Zone 2/3 bass/treble ranges may differ by model (X4100 noted with extended range)"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:28:33.817Z
   matched_actions: 106
   action_count: 106
-  confidence: high
-  summary: "All 106 spec actions matched verbatim; transport verified."
+  confidence: medium
+  summary: "All 106 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1072,9 +1081,11 @@ interlocks: []
 ```yaml
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T15:23:54.227Z
 last_checked_at: 2026-05-20T11:28:33.817Z
 ```
 
@@ -1085,14 +1096,20 @@ verdict: verified
 checked_at: 2026-05-20T11:28:33.817Z
 matched_actions: 106
 action_count: 106
-confidence: high
-summary: "All 106 spec actions matched verbatim; transport verified."
+confidence: medium
+summary: "All 106 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact product category (AVR vs pre-pro vs Blu-ray) not confirmed — source is a generic Denon \"Control Protocol Ver.06\" covering multiple AVR models"
+- "flow control not stated; \"non procedural\" communication procedure noted"
+- "no multi-step macro sequences described in source"
+- "source contains no explicit safety warnings or interlock procedures"
+- "protocol version \"Ver.06\" mentioned but no version compatibility range stated"
+- "exact DN-V310 model capabilities vs full command set — source covers multiple Denon AVR models; not all commands may apply to DN-V310"
+- "Zone 2/3 bass/treble ranges may differ by model (X4100 noted with extended range)"
 ```
 
 ---

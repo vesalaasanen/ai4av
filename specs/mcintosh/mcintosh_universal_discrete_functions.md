@@ -26,14 +26,21 @@ last_checked_at: 2026-05-16T11:35:01.804Z
 generated_at: 2026-05-16T11:35:01.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "\"Universal Discrete Functions\" family name appears to be a database artifact; actual product is CR106"
+  - "no settable continuous parameters distinct from the actions above"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "firmware version compatibility range not stated"
+  - "\"Universal Discrete Functions\" family name may be a database artifact; actual product is CR106"
+  - "max concurrent connection count over TCP/IP not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:35:01.804Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec commands matched verbatim in source with correct wire tokens, parameters, and transport port 57012 115200 baud."
+  confidence: medium
+  summary: "All 27 spec commands matched verbatim in source with correct wire tokens, parameters, and transport port 57012 115200 baud. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -541,14 +548,20 @@ verdict: verified
 checked_at: 2026-05-16T11:35:01.804Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec commands matched verbatim in source with correct wire tokens, parameters, and transport port 57012 115200 baud."
+confidence: medium
+summary: "All 27 spec commands matched verbatim in source with correct wire tokens, parameters, and transport port 57012 115200 baud. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "\"Universal Discrete Functions\" family name appears to be a database artifact; actual product is CR106"
+- "no settable continuous parameters distinct from the actions above"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "firmware version compatibility range not stated"
+- "\"Universal Discrete Functions\" family name may be a database artifact; actual product is CR106"
+- "max concurrent connection count over TCP/IP not stated"
 ```
 
 ---

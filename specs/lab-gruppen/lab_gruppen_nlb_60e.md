@@ -24,14 +24,22 @@ last_checked_at: 2026-04-25T20:54:49.416Z
 generated_at: 2026-04-25T20:54:49.416Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no safety warnings or interlock procedures in source"
+  - "no discrete settable parameters beyond VDN table management"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "power-on sequencing not described"
+  - "firmware compatibility range not stated"
+  - "physical connection type (ethernet port) not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:54:49.416Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered."
+  confidence: medium
+  summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -304,14 +312,21 @@ verdict: verified
 checked_at: 2026-04-25T20:54:49.416Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered."
+confidence: medium
+summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no safety warnings or interlock procedures in source"
+- "no discrete settable parameters beyond VDN table management"
+- "no unsolicited event notifications described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "power-on sequencing not described"
+- "firmware compatibility range not stated"
+- "physical connection type (ethernet port) not stated"
 ```
 
 ---

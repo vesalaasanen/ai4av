@@ -19,19 +19,23 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:40.832Z
 last_checked_at: 2026-05-14T18:17:18.414Z
 generated_at: 2026-05-14T18:17:18.414Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal values vary by model; some hex codes have alternatives; refer to appendix for full list"
+  - "exact baud rate must be configured to match projector settings; document does not specify a single default baud rate"
+  - "some input terminal hex codes vary by model (e.g., HDMI=A1h or 1Ah); consult appendix for full per-model values"
+  - "standby mode requirements vary by model; some models require specific standby mode for LAN vs serial control"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.414Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions match NEC projector source; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 52 spec actions match NEC projector source; transport parameters verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -523,7 +527,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:40.832Z
 last_checked_at: 2026-05-14T18:17:18.414Z
 ```
 
@@ -534,14 +538,17 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.414Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions match NEC projector source; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 52 spec actions match NEC projector source; transport parameters verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal values vary by model; some hex codes have alternatives; refer to appendix for full list"
+- "exact baud rate must be configured to match projector settings; document does not specify a single default baud rate"
+- "some input terminal hex codes vary by model (e.g., HDMI=A1h or 1Ah); consult appendix for full per-model values"
+- "standby mode requirements vary by model; some models require specific standby mode for LAN vs serial control"
 ```
 
 ---

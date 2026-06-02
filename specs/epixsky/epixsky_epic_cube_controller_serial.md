@@ -19,20 +19,28 @@ source_domains:
   - epixsky.com
 source_urls:
   - https://www.epixsky.com/wp-content/uploads/2024/03/CUBE-Command-Sheet.pdf
-  - https://www.epixsky.com/wp-content/uploads/2024/03/epiXsky_Advanced-Pro-RS232-Serial-LED-Control-Command.pdf
-retrieved_at: 2026-05-27T13:25:55.753Z
+  - https://www.epixsky.com/wp-content/uploads/2024/03/All-Command-Sheets.pdf
+retrieved_at: 2026-05-20T21:53:20.399Z
 last_checked_at: 2026-05-26T07:42:03.501Z
 generated_at: 2026-05-26T07:42:03.501Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no HTTP, TCP, or UDP support documented"
+  - "port number not stated in source"
+  - "no unsolicited event notifications documented"
+  - "no multi-step sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "command response format not documented"
+  - "maximum concurrent commands per second not stated"
+  - "wired pinout for RS-232 connector not provided"
 verification:
   verdict: verified
   checked_at: 2026-05-26T07:42:03.501Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched to distinct source commands with correct semantics; transport parameters fully supported; coverage ratio 15/16 exceeds 0.9 threshold."
+  confidence: medium
+  summary: "All 15 spec actions matched to distinct source commands with correct semantics; transport parameters fully supported; coverage ratio 15/16 exceeds 0.9 threshold. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -223,8 +231,8 @@ source_domains:
   - epixsky.com
 source_urls:
   - https://www.epixsky.com/wp-content/uploads/2024/03/CUBE-Command-Sheet.pdf
-  - https://www.epixsky.com/wp-content/uploads/2024/03/epiXsky_Advanced-Pro-RS232-Serial-LED-Control-Command.pdf
-retrieved_at: 2026-05-27T13:25:55.753Z
+  - https://www.epixsky.com/wp-content/uploads/2024/03/All-Command-Sheets.pdf
+retrieved_at: 2026-05-20T21:53:20.399Z
 last_checked_at: 2026-05-26T07:42:03.501Z
 ```
 
@@ -235,14 +243,21 @@ verdict: verified
 checked_at: 2026-05-26T07:42:03.501Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched to distinct source commands with correct semantics; transport parameters fully supported; coverage ratio 15/16 exceeds 0.9 threshold."
+confidence: medium
+summary: "All 15 spec actions matched to distinct source commands with correct semantics; transport parameters fully supported; coverage ratio 15/16 exceeds 0.9 threshold. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no HTTP, TCP, or UDP support documented"
+- "port number not stated in source"
+- "no unsolicited event notifications documented"
+- "no multi-step sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "command response format not documented"
+- "maximum concurrent commands per second not stated"
+- "wired pinout for RS-232 connector not provided"
 ```
 
 ---

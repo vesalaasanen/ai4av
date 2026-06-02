@@ -22,19 +22,26 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T21:35:26.990Z
 last_checked_at: 2026-05-16T19:42:14.529Z
 generated_at: 2026-05-16T19:42:14.529Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Model-specific command support (which models have HDMI ARC, eARC, phono, etc.) is not stated in source. The CI580 multi-zone device uses non-standard port layout (11000/11010/11020/11030); this spec treats single-zone port 11000 as the default."
+  - "No settable parameters outside of discrete actions documented in source."
+  - "No multi-step macros are described explicitly in the source."
+  - "No explicit interlock or power-sequencing requirements stated in source."
+  - "Specific firmware version ranges for each model (M33 vs. Bluesound PULSE vs. NAD etc.) are not enumerated in the source. The spec assumes general BluOS API v1.7 compatibility."
+  - "Error response format beyond the <error><message/><detail/></error> structure mentioned for /Browse is not documented in source for other endpoints."
+  - "Authentication or access control mechanisms are not described; the API appears to be unauthenticated on the local network."
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:42:14.529Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions matched verbatim in the source with correct shapes and transport confirmed."
+  confidence: medium
+  summary: "All 31 spec actions matched verbatim in the source with correct shapes and transport confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -612,7 +619,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T21:35:26.990Z
 last_checked_at: 2026-05-16T19:42:14.529Z
 ```
 
@@ -623,14 +630,20 @@ verdict: verified
 checked_at: 2026-05-16T19:42:14.529Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions matched verbatim in the source with correct shapes and transport confirmed."
+confidence: medium
+summary: "All 31 spec actions matched verbatim in the source with correct shapes and transport confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Model-specific command support (which models have HDMI ARC, eARC, phono, etc.) is not stated in source. The CI580 multi-zone device uses non-standard port layout (11000/11010/11020/11030); this spec treats single-zone port 11000 as the default."
+- "No settable parameters outside of discrete actions documented in source."
+- "No multi-step macros are described explicitly in the source."
+- "No explicit interlock or power-sequencing requirements stated in source."
+- "Specific firmware version ranges for each model (M33 vs. Bluesound PULSE vs. NAD etc.) are not enumerated in the source. The spec assumes general BluOS API v1.7 compatibility."
+- "Error response format beyond the <error><message/><detail/></error> structure mentioned for /Browse is not documented in source for other endpoints."
+- "Authentication or access control mechanisms are not described; the API appears to be unauthenticated on the local network."
 ```
 
 ---

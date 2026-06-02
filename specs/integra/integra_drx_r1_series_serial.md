@@ -19,7 +19,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:26.686Z
 last_checked_at: 2026-05-14T18:17:16.965Z
 generated_at: 2026-05-14T18:17:16.965Z
 firmware_coverage: "Not stated in source"
@@ -34,13 +34,21 @@ known_gaps:
   - CMD
   - CCR
   - CDS
+  - "no continuously variable settable parameters distinct from the actions above"
+  - "no multi-step sequences described explicitly in source"
+  - "no power-on sequencing requirements or safety interlocks stated in source"
+  - "firmware version compatibility not stated in source"
+  - "exact DRX-R1 sub-models covered by this protocol not specified"
+  - "protocol version 1.15 is the document version; ISCP version 0x01 is the wire version — compatibility range unknown"
+  - "Tuner, XM, SIRIUS, HD Radio, and RI System commands not fully enumerated in Actions — these are model-optional and documented in source sections \"Tuner-related Command Support List\" through \"Dock-related Command Support List\""
+  - "video output selector (VOS) is Japanese model only"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.965Z
   matched_actions: 96
   action_count: 96
-  confidence: high
-  summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals."
+  confidence: medium
+  summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1897,7 +1905,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-04-29T09:20:31.200Z
+retrieved_at: 2026-04-29T09:20:26.686Z
 last_checked_at: 2026-05-14T18:17:16.965Z
 ```
 
@@ -1908,8 +1916,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.965Z
 matched_actions: 96
 action_count: 96
-confidence: high
-summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals."
+confidence: medium
+summary: "All 145 spec actions matched literally in source; transport parameters verified; core receiver control comprehensively represented; RI system commands are optional peripherals. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1924,6 +1932,14 @@ summary: "All 145 spec actions matched literally in source; transport parameters
 - CMD
 - CCR
 - CDS
+- "no continuously variable settable parameters distinct from the actions above"
+- "no multi-step sequences described explicitly in source"
+- "no power-on sequencing requirements or safety interlocks stated in source"
+- "firmware version compatibility not stated in source"
+- "exact DRX-R1 sub-models covered by this protocol not specified"
+- "protocol version 1.15 is the document version; ISCP version 0x01 is the wire version — compatibility range unknown"
+- "Tuner, XM, SIRIUS, HD Radio, and RI System commands not fully enumerated in Actions — these are model-optional and documented in source sections \"Tuner-related Command Support List\" through \"Dock-related Command Support List\""
+- "video output selector (VOS) is Japanese model only"
 ```
 
 ---

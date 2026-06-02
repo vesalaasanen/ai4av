@@ -26,14 +26,23 @@ last_checked_at: 2026-05-14T18:17:15.884Z
 generated_at: 2026-05-14T18:17:15.884Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "MIDI input described but not fully documented in source; full MIDI message catalog not included"
+  - "UDP port 53535 also accepts plain-text OSC; need explicit source confirmation before adding"
+  - "宏 not found in source; remove section if not applicable"
+  - "no safety warnings or interlock procedures stated in source"
+  - "MIDI Show Control (MSC) commands mentioned but full command catalog not documented in source"
+  - "Full MIDI Note On/Off/Controller/Program Change message documentation not in source"
+  - "Passcode format (string length, character set, etc.) not specified in source"
+  - "TCP connection timeout behavior not documented"
+  - "Maximum UDP datagram size not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.884Z
   matched_actions: 70
   action_count: 70
-  confidence: high
-  summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API."
+  confidence: medium
+  summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -771,14 +780,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.884Z
 matched_actions: 70
 action_count: 70
-confidence: high
-summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API."
+confidence: medium
+summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "MIDI input described but not fully documented in source; full MIDI message catalog not included"
+- "UDP port 53535 also accepts plain-text OSC; need explicit source confirmation before adding"
+- "宏 not found in source; remove section if not applicable"
+- "no safety warnings or interlock procedures stated in source"
+- "MIDI Show Control (MSC) commands mentioned but full command catalog not documented in source"
+- "Full MIDI Note On/Off/Controller/Program Change message documentation not in source"
+- "Passcode format (string length, character set, etc.) not specified in source"
+- "TCP connection timeout behavior not documented"
+- "Maximum UDP datagram size not stated in source"
 ```
 
 ---

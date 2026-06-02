@@ -19,7 +19,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-21T15:18:18.496Z
+retrieved_at: 2026-04-29T11:13:56.778Z
 last_checked_at: 2026-05-14T18:17:19.455Z
 generated_at: 2026-05-14T18:17:19.455Z
 firmware_coverage: "Not stated in source"
@@ -37,13 +37,29 @@ known_gaps:
   - TCT
   - TSR
   - TSB
+  - "exact TX-RZ sub-models covered by this protocol version not stated"
+  - "firmware version compatibility not stated"
+  - "Tone commands for all speaker zones (TFR, TFW, TFH, TCT, TSR, TSB, TSW, ZTN, TN3)"
+  - "Tuner commands (TUN, PRS, PRM) and HD Radio commands documented but model-dependent."
+  - "XM/SIRIUS commands model-dependent."
+  - "RI System commands (CCD, CT1, CT2, CDV, CMD, CCR, CDS) for external RI devices."
+  - "RECOUT selector (SLR), ISF mode, Memory setup (MEM), Display commands."
+  - "Feedbacks for tone (TFR, ZTN, TN3), sleep timer (SLP), dimmer (DIM),"
+  - "no multi-step sequences described in source"
+  - "full power-on sequencing requirements not stated in source"
+  - "fault behavior and error recovery not documented"
+  - "protocol version compatibility across firmware generations not stated"
+  - "maximum volume range for TX-RZ models specifically not confirmed"
+  - "behavior when TCP connection is lost during operation not documented"
+  - "RS-232 pinout details for DB9 connector (pin 2=TX, pin 3=RX, pin 5=GND, straight-thru cable)"
+  - "whether TX-RZ series supports Zone 4 commands or if that is limited to specific models"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.455Z
   matched_actions: 72
   action_count: 74
   confidence: low
-  summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol"
+  summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -963,7 +979,7 @@ source_domains:
   - community.symcon.de
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
-retrieved_at: 2026-05-21T15:18:18.496Z
+retrieved_at: 2026-04-29T11:13:56.778Z
 last_checked_at: 2026-05-14T18:17:19.455Z
 ```
 
@@ -975,7 +991,7 @@ checked_at: 2026-05-14T18:17:19.455Z
 matched_actions: 72
 action_count: 74
 confidence: low
-summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol"
+summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -993,6 +1009,22 @@ summary: "All 72 spec actions match literals in source; transport values confirm
 - TCT
 - TSR
 - TSB
+- "exact TX-RZ sub-models covered by this protocol version not stated"
+- "firmware version compatibility not stated"
+- "Tone commands for all speaker zones (TFR, TFW, TFH, TCT, TSR, TSB, TSW, ZTN, TN3)"
+- "Tuner commands (TUN, PRS, PRM) and HD Radio commands documented but model-dependent."
+- "XM/SIRIUS commands model-dependent."
+- "RI System commands (CCD, CT1, CT2, CDV, CMD, CCR, CDS) for external RI devices."
+- "RECOUT selector (SLR), ISF mode, Memory setup (MEM), Display commands."
+- "Feedbacks for tone (TFR, ZTN, TN3), sleep timer (SLP), dimmer (DIM),"
+- "no multi-step sequences described in source"
+- "full power-on sequencing requirements not stated in source"
+- "fault behavior and error recovery not documented"
+- "protocol version compatibility across firmware generations not stated"
+- "maximum volume range for TX-RZ models specifically not confirmed"
+- "behavior when TCP connection is lost during operation not documented"
+- "RS-232 pinout details for DB9 connector (pin 2=TX, pin 3=RX, pin 5=GND, straight-thru cable)"
+- "whether TX-RZ series supports Zone 4 commands or if that is limited to specific models"
 ```
 
 ---

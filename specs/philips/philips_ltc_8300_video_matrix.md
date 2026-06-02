@@ -26,14 +26,23 @@ last_checked_at: 2026-05-14T18:17:19.684Z
 generated_at: 2026-05-14T18:17:19.684Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP, HTTP, or REST control not documented in source — RS-232 only"
+  - "additional configurable parameters not fully enumerated"
+  - "no unsolicited event descriptions in source - device does not autonomously emit status"
+  - "full sequence download protocol complex - not fully specified in this spec"
+  - "safety-critical fault behavior and error recovery sequences not documented"
+  - "TCP/IP, HTTP, or REST control interface — RS-232 only documented"
+  - "firmware version for target LTC 8300 — CPU revision 8.1 document, actual device revision unknown"
+  - "binary command byte encodings — only text CCL commands documented; hex opcode tables reference only Receiver/Driver protocol"
+  - "authentication credential format — no login/auth procedure in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.684Z
   matched_actions: 121
   action_count: 135
-  confidence: high
-  summary: "All 121 spec actions match documented CCL commands; transport verbatim."
+  confidence: medium
+  summary: "All 121 spec actions match documented CCL commands; transport verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1296,14 +1305,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.684Z
 matched_actions: 121
 action_count: 135
-confidence: high
-summary: "All 121 spec actions match documented CCL commands; transport verbatim."
+confidence: medium
+summary: "All 121 spec actions match documented CCL commands; transport verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP, HTTP, or REST control not documented in source — RS-232 only"
+- "additional configurable parameters not fully enumerated"
+- "no unsolicited event descriptions in source - device does not autonomously emit status"
+- "full sequence download protocol complex - not fully specified in this spec"
+- "safety-critical fault behavior and error recovery sequences not documented"
+- "TCP/IP, HTTP, or REST control interface — RS-232 only documented"
+- "firmware version for target LTC 8300 — CPU revision 8.1 document, actual device revision unknown"
+- "binary command byte encodings — only text CCL commands documented; hex opcode tables reference only Receiver/Driver protocol"
+- "authentication credential format — no login/auth procedure in source"
 ```
 
 ---

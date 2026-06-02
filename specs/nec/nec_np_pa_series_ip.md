@@ -47,19 +47,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:22.476Z
 last_checked_at: 2026-05-14T18:17:18.574Z
 generated_at: 2026-05-14T18:17:18.574Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "authentication/login procedure not described in source"
+  - "command timing constraints beyond stated power-on/off lockout not documented"
+  - "Variables section not applicable - all settable parameters are discrete actions"
+  - "No unsolicited event notifications described in source - device only responds to commands"
+  - "No explicit multi-step macro sequences documented in source"
+  - "Safety warnings and interlock procedures not explicitly stated in source."
+  - "Input terminal values vary by model — see appendix for exact mappings"
+  - "Aspect ratio values, eco mode values, and sub input values vary by model — see appendix"
+  - "Serial baud rate must be configured on the projector; multiple rates supported (4800-115200 bps)"
+  - "Some models support wireless LAN control (NP-PA621U through NP-PA500U) but details not in this doc"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.574Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed."
+  confidence: medium
+  summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -654,7 +664,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:22.476Z
 last_checked_at: 2026-05-14T18:17:18.574Z
 ```
 
@@ -665,14 +675,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.574Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed."
+confidence: medium
+summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "authentication/login procedure not described in source"
+- "command timing constraints beyond stated power-on/off lockout not documented"
+- "Variables section not applicable - all settable parameters are discrete actions"
+- "No unsolicited event notifications described in source - device only responds to commands"
+- "No explicit multi-step macro sequences documented in source"
+- "Safety warnings and interlock procedures not explicitly stated in source."
+- "Input terminal values vary by model — see appendix for exact mappings"
+- "Aspect ratio values, eco mode values, and sub input values vary by model — see appendix"
+- "Serial baud rate must be configured on the projector; multiple rates supported (4800-115200 bps)"
+- "Some models support wireless LAN control (NP-PA621U through NP-PA500U) but details not in this doc"
 ```
 
 ---

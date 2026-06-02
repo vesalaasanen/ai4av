@@ -17,22 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+  - github.com
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://github.com/bondhome/api-v2
+retrieved_at: 2026-04-29T12:56:15.451Z
 last_checked_at: 2026-04-30T09:32:22.191Z
 generated_at: 2026-04-30T09:32:22.191Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not explicitly stated in source — no default port stated for HTTP"
+  - "explicit push event types not enumerated in source - consult BPUP topic paths for subscribed events"
+  - "no safety warnings or interlock procedures in source"
+  - "HTTP port not explicitly stated in source"
+  - "MQTT broker address/port not stated"
+  - "firmware version compatibility not stated"
+  - "voltage/power specifications not in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:32:22.191Z
   matched_actions: 57
   action_count: 57
-  confidence: high
-  summary: "All 57 spec actions matched to source feature sections with correct semantic mappings; all transport parameters verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 57 spec actions matched to source feature sections with correct semantic mappings; all transport parameters verified; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -538,10 +546,11 @@ interlocks: []
 ```yaml
 source_domains:
   - docs-local.appbond.com
+  - github.com
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://github.com/bondhome/api-v2
+retrieved_at: 2026-04-29T12:56:15.451Z
 last_checked_at: 2026-04-30T09:32:22.191Z
 ```
 
@@ -552,14 +561,20 @@ verdict: verified
 checked_at: 2026-04-30T09:32:22.191Z
 matched_actions: 57
 action_count: 57
-confidence: high
-summary: "All 57 spec actions matched to source feature sections with correct semantic mappings; all transport parameters verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 57 spec actions matched to source feature sections with correct semantic mappings; all transport parameters verified; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not explicitly stated in source — no default port stated for HTTP"
+- "explicit push event types not enumerated in source - consult BPUP topic paths for subscribed events"
+- "no safety warnings or interlock procedures in source"
+- "HTTP port not explicitly stated in source"
+- "MQTT broker address/port not stated"
+- "firmware version compatibility not stated"
+- "voltage/power specifications not in source"
 ```
 
 ---

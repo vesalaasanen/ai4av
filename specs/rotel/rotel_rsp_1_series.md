@@ -30,13 +30,22 @@ known_gaps:
   - "get_volume!"
   - "get_mute_status!"
   - "get_dsp_mode!"
+  - "power-on sequencing requirements not documented"
+  - "no discrete settable parameters beyond action commands - all level trims"
+  - "no unsolicited event descriptions in source - device sends responses"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "entity_id placeholder — fill in from Convex dashboard before ingestion"
+  - "full firmware compatibility range not stated — only V2.xx and V5.xx mentioned"
+  - "fault behavior and error recovery sequences not documented"
+  - "binary command encoding not applicable — this is ASCII protocol only"
 verification:
   verdict: verified
   checked_at: 2026-05-04T09:58:11.073Z
   matched_actions: 67
   action_count: 67
-  confidence: high
-  summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold."
+  confidence: medium
+  summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -501,8 +510,8 @@ verdict: verified
 checked_at: 2026-05-04T09:58:11.073Z
 matched_actions: 67
 action_count: 67
-confidence: high
-summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold."
+confidence: medium
+summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -513,6 +522,15 @@ summary: "All 67 spec actions match source commands exactly; transport params co
 - "get_volume!"
 - "get_mute_status!"
 - "get_dsp_mode!"
+- "power-on sequencing requirements not documented"
+- "no discrete settable parameters beyond action commands - all level trims"
+- "no unsolicited event descriptions in source - device sends responses"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "entity_id placeholder — fill in from Convex dashboard before ingestion"
+- "full firmware compatibility range not stated — only V2.xx and V5.xx mentioned"
+- "fault behavior and error recovery sequences not documented"
+- "binary command encoding not applicable — this is ASCII protocol only"
 ```
 
 ---

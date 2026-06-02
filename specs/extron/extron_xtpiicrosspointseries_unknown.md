@@ -18,25 +18,33 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - extron.com
   - media.extron.com
+  - extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-1736-02_P_xtp_ii_crosspoint.pdf
+  - https://media.extron.com/public/download/files/userman/68-1736-51_F_xtp_ii_cp.pdf
+  - https://www.extron.com/download/files/userman/68-1736-50_E.pdf
+  - https://www.extron.com
+retrieved_at: 2026-05-27T18:49:54.609Z
 last_checked_at: 2026-05-30T20:15:53.231Z
 generated_at: 2026-05-30T20:15:53.231Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Matrix size (input × output) not explicitly stated; inferred from port numbering tables"
+  - "password optional; source describes login flow but no default"
+  - "matrix size (input × output count) not explicitly stated in source"
+  - "model-specific port count not enumerated in source"
+  - "firmware version ranges not stated in source"
+  - "voltage/power specifications not in source"
+  - "default password for 1600/3200 models not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-30T20:15:53.231Z
   matched_actions: 190
   action_count: 190
-  confidence: high
-  summary: "All 190 semantic spec actions map one-to-one to SIS command table rows, with supported serial and TCP transport settings."
+  confidence: medium
+  summary: "All 190 semantic spec actions map one-to-one to SIS command table rows, with supported serial and TCP transport settings. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1675,13 +1683,14 @@ Matrix switcher SIS command protocol. Supports simultaneous serial (RS-232/RS-42
 
 ```yaml
 source_domains:
-  - extron.com
   - media.extron.com
+  - extron.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-1736-02_P_xtp_ii_crosspoint.pdf
+  - https://media.extron.com/public/download/files/userman/68-1736-51_F_xtp_ii_cp.pdf
+  - https://www.extron.com/download/files/userman/68-1736-50_E.pdf
+  - https://www.extron.com
+retrieved_at: 2026-05-27T18:49:54.609Z
 last_checked_at: 2026-05-30T20:15:53.231Z
 ```
 
@@ -1692,14 +1701,20 @@ verdict: verified
 checked_at: 2026-05-30T20:15:53.231Z
 matched_actions: 190
 action_count: 190
-confidence: high
-summary: "All 190 semantic spec actions map one-to-one to SIS command table rows, with supported serial and TCP transport settings."
+confidence: medium
+summary: "All 190 semantic spec actions map one-to-one to SIS command table rows, with supported serial and TCP transport settings. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Matrix size (input × output) not explicitly stated; inferred from port numbering tables"
+- "password optional; source describes login flow but no default"
+- "matrix size (input × output count) not explicitly stated in source"
+- "model-specific port count not enumerated in source"
+- "firmware version ranges not stated in source"
+- "voltage/power specifications not in source"
+- "default password for 1600/3200 models not stated"
 ```
 
 ---

@@ -19,22 +19,32 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000033-01-christe-lx500-rs232-basic-codes.pdf
+  - https://www.manualslib.com/manual/766245/Christie-Lx400.html
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+retrieved_at: 2026-05-14T22:31:21.318Z
 last_checked_at: 2026-05-15T21:21:52.923Z
 generated_at: 2026-05-15T21:21:52.923Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document title references LX380/450/500; LX400 not explicitly listed in compatibility table"
+  - "no IP/TCP/HTTP control documented — serial only"
+  - "no continuous settable variables documented; brightness/volume/zoom/focus/keystone/lens-shift are relative step commands only"
+  - "no multi-step sequences described in source"
+  - "LX400 not listed in source compatibility table; source covers LX380, LX450, LX500"
+  - "no pinout diagram for the dedicated serial cable"
+  - "C22, C26, C2C-C2F, C35-C39, C3E, C40-C42, C45, C48-C49, C4C-C4F, C55-C5C, C80-C88, C8B-C8D, C90-C9F marked as no function in source"
+  - "baud rate changeable in \"service mode\" — no details on accessing service mode"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:21:52.923Z
   matched_actions: 64
   action_count: 64
-  confidence: high
-  summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source."
+  confidence: medium
+  summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -549,10 +559,12 @@ interlocks:
 ```yaml
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000033-01-christe-lx500-rs232-basic-codes.pdf
+  - https://www.manualslib.com/manual/766245/Christie-Lx400.html
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+retrieved_at: 2026-05-14T22:31:21.318Z
 last_checked_at: 2026-05-15T21:21:52.923Z
 ```
 
@@ -563,14 +575,21 @@ verdict: verified
 checked_at: 2026-05-15T21:21:52.923Z
 matched_actions: 64
 action_count: 64
-confidence: high
-summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source."
+confidence: medium
+summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document title references LX380/450/500; LX400 not explicitly listed in compatibility table"
+- "no IP/TCP/HTTP control documented — serial only"
+- "no continuous settable variables documented; brightness/volume/zoom/focus/keystone/lens-shift are relative step commands only"
+- "no multi-step sequences described in source"
+- "LX400 not listed in source compatibility table; source covers LX380, LX450, LX500"
+- "no pinout diagram for the dedicated serial cable"
+- "C22, C26, C2C-C2F, C35-C39, C3E, C40-C42, C45, C48-C49, C4C-C4F, C55-C5C, C80-C88, C8B-C8D, C90-C9F marked as no function in source"
+- "baud rate changeable in \"service mode\" — no details on accessing service mode"
 ```
 
 ---

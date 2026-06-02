@@ -16,24 +16,33 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-05-14T18:17:16.178Z
 last_checked_at: 2026-05-14T18:17:16.178Z
 generated_at: 2026-05-14T18:17:16.178Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The model table in the source document was empty — specific sub-models covered by this spec are not listed. The title \"55Z670NK Series\" is taken from the device name provided by the submitter, not from an explicit model table in the source."
+  - "Power-On Input Source (POIS) command was present but truncated in source."
+  - "OSD Language query return values beyond English/Español/Français not confirmed."
+  - "No unsolicited notification mechanism described in source."
+  - "No multi-step sequences explicitly described in source."
+  - "The model table in the source was blank — specific model numbers in the 55Z670NK Series family are not documented here."
+  - "Power-On Input Source command (POIS) parameters were truncated in the refined source; full enumeration not captured."
+  - "Firmware version compatibility not stated in source."
+  - "Protocol version number not explicitly stated (document revision history goes to V3.6, but that is the doc version, not a protocol version field)."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.178Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 58 spec actions matched exactly; transport parameters verified; full command set documented in source."
+  confidence: medium
+  summary: "All 58 spec actions matched exactly; transport parameters verified; full command set documented in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1059,12 +1068,12 @@ interlocks:
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-05-14T18:17:16.178Z
 last_checked_at: 2026-05-14T18:17:16.178Z
 ```
 
@@ -1075,14 +1084,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.178Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 58 spec actions matched exactly; transport parameters verified; full command set documented in source."
+confidence: medium
+summary: "All 58 spec actions matched exactly; transport parameters verified; full command set documented in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The model table in the source document was empty — specific sub-models covered by this spec are not listed. The title \"55Z670NK Series\" is taken from the device name provided by the submitter, not from an explicit model table in the source."
+- "Power-On Input Source (POIS) command was present but truncated in source."
+- "OSD Language query return values beyond English/Español/Français not confirmed."
+- "No unsolicited notification mechanism described in source."
+- "No multi-step sequences explicitly described in source."
+- "The model table in the source was blank — specific model numbers in the 55Z670NK Series family are not documented here."
+- "Power-On Input Source command (POIS) parameters were truncated in the refined source; full enumeration not captured."
+- "Firmware version compatibility not stated in source."
+- "Protocol version number not explicitly stated (document revision history goes to V3.6, but that is the doc version, not a protocol version field)."
 ```
 
 ---

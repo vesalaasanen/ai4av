@@ -95,19 +95,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:10.350Z
 last_checked_at: 2026-05-14T18:17:18.488Z
 generated_at: 2026-05-14T18:17:18.488Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal hex codes vary by model — see supplementary tables in source"
+  - "eco mode values vary by model — see supplementary tables in source"
+  - "aspect values vary by model — see supplementary tables in source"
+  - "RTS/CTS pins wired but flow control mode not stated"
+  - "no continuously settable parameters beyond discrete actions"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no multi-step macro sequences described in source"
+  - "default baud rate not stated — multiple rates supported"
+  - "exact input terminal codes are model-dependent and listed in supplementary tables"
+  - "eco mode value mapping is model-dependent"
+  - "aspect value mapping is model-dependent"
+  - "no response timeout specified"
+  - "no maximum command rate or throttling specified"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.488Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched verbatim in NEC serial source; all transport parameters verified; command fidelity confirmed."
+  confidence: medium
+  summary: "All 53 spec actions matched verbatim in NEC serial source; all transport parameters verified; command fidelity confirmed. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -819,7 +833,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:10.350Z
 last_checked_at: 2026-05-14T18:17:18.488Z
 ```
 
@@ -830,14 +844,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.488Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched verbatim in NEC serial source; all transport parameters verified; command fidelity confirmed."
+confidence: medium
+summary: "All 53 spec actions matched verbatim in NEC serial source; all transport parameters verified; command fidelity confirmed. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal hex codes vary by model — see supplementary tables in source"
+- "eco mode values vary by model — see supplementary tables in source"
+- "aspect values vary by model — see supplementary tables in source"
+- "RTS/CTS pins wired but flow control mode not stated"
+- "no continuously settable parameters beyond discrete actions"
+- "no unsolicited event/notification mechanism described in source"
+- "no multi-step macro sequences described in source"
+- "default baud rate not stated — multiple rates supported"
+- "exact input terminal codes are model-dependent and listed in supplementary tables"
+- "eco mode value mapping is model-dependent"
+- "aspect value mapping is model-dependent"
+- "no response timeout specified"
+- "no maximum command rate or throttling specified"
+- "firmware version compatibility not stated"
 ```
 
 ---

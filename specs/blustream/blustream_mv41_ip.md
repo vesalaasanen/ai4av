@@ -19,19 +19,32 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:35:01.383Z
 last_checked_at: 2026-05-14T18:17:14.765Z
 generated_at: 2026-05-14T18:17:14.765Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document refers to CMX88AB throughout — relationship to MV41 not confirmed"
+  - "TCP/Telnet control port number not stated in source"
+  - "unclear whether web interface credentials apply to Telnet sessions"
+  - "Telnet/control port number not stated in source"
+  - "unclear whether these credentials apply to Telnet control or only web interface"
+  - "no settable parameters with queryable state documented in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "no other safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "source document title is \"CMX88AB Control Protocols\" — applicability to MV41 needs verification"
+  - "firmware version compatibility not stated in source"
+  - "command response formats not fully documented (e.g. STATUS output structure)"
+  - "input/output count for MV41 not confirmed — source implies up to 8 outputs and 8 inputs (CMX88AB is 8x8)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.765Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented."
+  confidence: medium
+  summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -291,7 +304,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:35:01.383Z
 last_checked_at: 2026-05-14T18:17:14.765Z
 ```
 
@@ -302,14 +315,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.765Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented."
+confidence: medium
+summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document refers to CMX88AB throughout — relationship to MV41 not confirmed"
+- "TCP/Telnet control port number not stated in source"
+- "unclear whether web interface credentials apply to Telnet sessions"
+- "Telnet/control port number not stated in source"
+- "unclear whether these credentials apply to Telnet control or only web interface"
+- "no settable parameters with queryable state documented in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "no other safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "source document title is \"CMX88AB Control Protocols\" — applicability to MV41 needs verification"
+- "firmware version compatibility not stated in source"
+- "command response formats not fully documented (e.g. STATUS output structure)"
+- "input/output count for MV41 not confirmed — source implies up to 8 outputs and 8 inputs (CMX88AB is 8x8)"
 ```
 
 ---

@@ -28,26 +28,28 @@ known_gaps:
   - "Sysex frame structure F0h F7h"
   - "DTR voltage 5-12 volts requirement"
   - "DIP switch preset configuration"
+  - "no firmware version or protocol revision stated in source"
+  - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.534Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented."
+  confidence: medium
+  summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-02
 ---
 
 # Shure P4800 Control Spec
 
 ## Summary
-The Shure P4800 is a 4×8 matrix mixer signal processor with RS-232 control. The protocol usesSysex format commands with a device ID (0–15) set via DIP switches. Commands cover preset changes, per-input and per-output mute/polarity/scaling/volume, and matrix mixpoint routing and level control. Query commands return current settings as Sysex response strings.
+The Shure P4800 is a 4-input, 8-output matrix mixer / system processor controlled over a 7-wire RS-232 interface using SysEx-style messages wrapped in F0h..F7h. Device ID is set via DIP switches (0 to 15). This spec covers preset recall, per-input and per-output settings (mute, polarity, +4/-10 scaling, pad, volume), matrix mixpoint settings, and full state queries.
 
-<!-- UNRESOLVED: no power on/off commands in source -->
-<!-- UNRESOLVED: no events/unsolicited notifications described in source -->
+<!-- UNRESOLVED: no firmware version or protocol revision stated in source -->
 
 ## Transport
 ```yaml
@@ -63,572 +65,937 @@ auth:
   type: none  # inferred: no auth procedure in source
 ```
 
+**Cable note (from source):** P4800 uses a 7-wire RS-232 port. Crestron/AMX controllers use 5-wire. A custom cable is required. The P4800 requires 5-12 V on the DTR line; a 1 kOhm resistor is needed for a 5 V supply. All other wires pass straight through.
+
 ## Traits
 ```yaml
-- queryable  # inferred from extensive query command tables
-- routable  # inferred from matrix mixpoint activate/deactivate commands
-- levelable  # inferred from volume control commands for inputs, outputs, and mixpoints
+# - routable        inferred: matrix mixpoint activate/deactivate commands present
+# - levelable       inferred: per-input, per-output, and per-mixpoint volume control present
+# - queryable       inferred: query commands for every setting present
 ```
 
 ## Actions
 ```yaml
+# SysEx frame format (set commands):
+#   F0h 00h 01h 00h <Device ID> 0Ah 69h <function> 00h <ID> <VA> F7h
+#
+# <Device ID>: 00h-0Fh, must match the DIP switch setting on the back of the P4800.
+# After every set command, the P4800 echoes the command and then sends a return string.
+# The 4th byte position (channel nibble) is 00h in all source examples.
+#
+# Volume-control formulas (from source):
+#   For input/output per-channel volume:
+#     <VA> = [2 * (Control Setting)] & 7Fh
+#     Control Setting range: -30 to +30 (1 unit = 1 dB).
+#   For mixpoint / mixer-output volume:
+#     <VA> = (Control Setting) & 7Fh
+#     Control Setting range: 0 to 127
+#       0       = -Infinity
+#       1-26    = -105 to -42.5 dB in 2.5 dB steps
+#       27-127  = -40.0 to +10.0 dB in 0.5 dB steps
+#   For relative (+/-) dB changes:
+#     <VA> = [2 * (dB Change)] & 7Fh
+#     Example: decrease by 2 dB => <VA> = 7Ch.
+
+# --- Preset recall (short-frame, not SysEx) ---
 - id: change_preset
   label: Change Preset
   kind: action
+  command: "C{device_id}{preset}"  # short frame: C <n> h <pp> h
   params:
     - name: device_id
       type: integer
-      description: Device ID (0-15), set via DIP switches
-    - name: preset_number
+      description: Device ID (0-15) set by DIP switches; sent as the second byte.
+    - name: preset
       type: integer
-      description: Preset number (1-128). Internal value is preset_number - 1 (range 0-127).
+      description: Preset number minus 1. Range 0 to 127 (i.e. presets 1 to 128).
 
-- id: input_mute_toggle
-  label: Toggle Input Mute
+# --- Inputs: Mute ---
+- id: input_toggle_mute
+  label: Input Toggle Mute
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 00 {input_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15 (DIP switch).
+    - name: input_id
       type: integer
-      description: Input number (1-4)
+      description: Input channel ID byte: 04h=Input 1, 05h=Input 2, 06h=Input 3, 07h=Input 4.
+- id: input_force_mute
+  label: Input Force Mute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 04h=Input 1, 05h=Input 2, 06h=Input 3, 07h=Input 4.
+- id: input_force_unmute
+  label: Input Force Unmute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 04h=Input 1, 05h=Input 2, 06h=Input 3, 07h=Input 4.
 
-- id: input_mute_force
-  label: Force Input Mute
+# --- Inputs: Polarity ---
+- id: input_toggle_polarity
+  label: Input Toggle Polarity
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 00 {input_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: Input number (1-4)
-    - name: muted
-      type: boolean
-      description: true = mute on, false = mute off
+      description: Input channel ID byte: 08h=Input 1, 09h=Input 2, 0Ah=Input 3, 0Bh=Input 4.
+- id: input_force_polarity_positive
+  label: Input Force Polarity (+)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 08h=Input 1, 09h=Input 2, 0Ah=Input 3, 0Bh=Input 4.
+- id: input_force_polarity_negative
+  label: Input Force Polarity (-)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 08h=Input 1, 09h=Input 2, 0Ah=Input 3, 0Bh=Input 4.
 
-- id: input_polarity_toggle
-  label: Toggle Input Polarity
+# --- Inputs: +4/-10 scaling ---
+- id: input_toggle_scaling
+  label: Input Toggle Scaling
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 00 {input_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: Input number (1-4)
+      description: Input channel ID byte: 0Ch=Input 1, 0Dh=Input 2, 0Eh=Input 3, 0Fh=Input 4.
+- id: input_force_scaling_plus4
+  label: Input Force +4 dBu Scaling
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 0Ch=Input 1, 0Dh=Input 2, 0Eh=Input 3, 0Fh=Input 4.
+- id: input_force_scaling_minus10
+  label: Input Force -10 dBV Scaling
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {input_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: input_id
+      type: integer
+      description: Input channel ID byte: 0Ch=Input 1, 0Dh=Input 2, 0Eh=Input 3, 0Fh=Input 4.
 
-- id: input_polarity_force
-  label: Force Input Polarity
+# --- Inputs: Volume (set absolute) ---
+- id: input_set_volume
+  label: Input Set Volume
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 00 00 {input_id} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: Input number (1-4)
-    - name: polarity
+      description: Input channel ID byte: 00h=Input 1, 01h=Input 2, 02h=Input 3, 03h=Input 4.
+    - name: va
       type: integer
-      description: 0 = (+), 1 = (-)
+      description: "<VA> = [2 * ControlSetting] AND 7Fh. ControlSetting range -30 to +30 (1 step = 1 dB)."
 
-- id: input_scaling_toggle
-  label: Toggle Input +4/-10 Scaling
+# --- Inputs: Volume (relative +/-) ---
+- id: input_change_volume
+  label: Input Change Volume (relative dB)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 04 00 {input_id} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: Input number (1-4)
+      description: Input channel ID byte: 00h=Input 1, 01h=Input 2, 02h=Input 3, 03h=Input 4.
+    - name: va
+      type: integer
+      description: "<VA> = [2 * dBChange] AND 7Fh. Example: -2 dB => <VA> = 7Ch."
 
-- id: input_scaling_force
-  label: Force Input Scaling
+# --- Outputs: Mute ---
+- id: output_toggle_mute
+  label: Output Toggle Mute
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 03 {output_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Input number (1-4)
-    - name: scaling
+      description: Output channel ID byte: 46h=Out 1, 47h=Out 2, 48h=Out 3, 49h=Out 4, 4Ah=Out 5, 4Bh=Out 6, 4Ch=Out 7, 4Dh=Out 8.
+- id: output_force_mute
+  label: Output Force Mute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 7F F7"
+  params:
+    - name: device_id
       type: integer
-      description: 0 = +4 dBu, 1 = -10 dBV
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output channel ID byte: 46h=Out 1 .. 4Dh=Out 8.
+- id: output_force_unmute
+  label: Output Force Unmute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output channel ID byte: 46h=Out 1 .. 4Dh=Out 8.
 
-- id: input_volume_set
-  label: Set Input Volume
+# --- Outputs: Polarity ---
+- id: output_toggle_polarity
+  label: Output Toggle Polarity
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 03 {output_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Input number (1-4)
-    - name: control_setting
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
+- id: output_force_polarity_positive
+  label: Output Force Polarity (+)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 00 F7"
+  params:
+    - name: device_id
       type: integer
-      description: Range -30 to +30. Each step = 1 dB. VA = (2 * control_setting) & 0x7F
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
+- id: output_force_polarity_negative
+  label: Output Force Polarity (-)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
 
-- id: input_volume_relative
-  label: Adjust Input Volume Relatively
+# --- Outputs: +4/-10 scaling ---
+- id: output_toggle_scaling
+  label: Output Toggle Scaling
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 03 {output_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: input
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Input number (1-4)
-    - name: db_change
+      description: Output scaling ID byte: 56h=Out 1, 57h=Out 2, 58h=Out 3, 59h=Out 4, 5Ah=Out 5, 5Bh=Out 6, 5Ch=Out 7, 5Dh=Out 8.
+- id: output_force_scaling_plus4
+  label: Output Force +4 dBu Scaling
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 00 F7"
+  params:
+    - name: device_id
       type: integer
-      description: dB change. VA = (2 * db_change) & 0x7F
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output scaling ID byte: 56h=Out 1 .. 5Dh=Out 8.
+- id: output_force_scaling_minus10
+  label: Output Force -10 dBV Scaling
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output scaling ID byte: 56h=Out 1 .. 5Dh=Out 8.
 
-- id: output_mute_toggle
-  label: Toggle Output Mute
+# --- Outputs: 20 dB Pad ---
+- id: output_toggle_pad
+  label: Output Toggle Pad (20 dB)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 03 {output_id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Output number (1-8)
+      description: Output pad ID byte: 5Eh=Out 1, 5Fh=Out 2, 60h=Out 3, 61h=Out 4, 62h=Out 5, 63h=Out 6, 64h=Out 7, 65h=Out 8.
+- id: output_force_pad_off
+  label: Output Force Pad Off
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output pad ID byte: 5Eh=Out 1 .. 65h=Out 8.
+- id: output_force_pad_on
+  label: Output Force Pad On
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 03 {output_id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: output_id
+      type: integer
+      description: Output pad ID byte: 5Eh=Out 1 .. 65h=Out 8.
 
-- id: output_mute_force
-  label: Force Output Mute
+# --- Outputs: Volume (set absolute) ---
+- id: output_set_volume
+  label: Output Set Volume
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 00 03 {output_id} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Output number (1-8)
-    - name: muted
-      type: boolean
-      description: true = mute on, false = mute off
+      description: Output volume ID byte: 3Eh=Out 1, 3Fh=Out 2, 40h=Out 3, 41h=Out 4, 42h=Out 5, 43h=Out 6, 44h=Out 7, 45h=Out 8.
+    - name: va
+      type: integer
+      description: "<VA> = [2 * ControlSetting] AND 7Fh. ControlSetting range -30 to +30 (1 step = 1 dB)."
 
-- id: output_polarity_toggle
-  label: Toggle Output Polarity
+# --- Outputs: Volume (relative +/-) ---
+- id: output_change_volume
+  label: Output Change Volume (relative dB)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 04 03 {output_id} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Output number (1-8)
+      description: Output volume ID byte: 3Eh=Out 1 .. 45h=Out 8.
+    - name: va
+      type: integer
+      description: "<VA> = [2 * dBChange] AND 7Fh. Example: -2 dB => <VA> = 7Ch."
 
-- id: output_polarity_force
-  label: Force Output Polarity
+# --- Matrix Mixer: Mute Mixpoint ---
+- id: mixpoint_toggle_mute
+  label: Mixpoint Toggle Mute
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 00 {id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Output number (1-8)
-    - name: polarity
+      description: "<ID> = NMIXPOINTS + 15 + (Mix Point #). NMIXPOINTS = 4 * NOUTPUTS (32 for 4x8)."
+- id: mixpoint_force_mute
+  label: Mixpoint Force Mute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {id} 7F F7"
+  params:
+    - name: device_id
       type: integer
-      description: 0 = (+), 1 = (-)
+      description: Device ID 0-15.
+    - name: id
+      type: integer
+      description: "<ID> = NMIXPOINTS + 15 + (Mix Point #)."
+- id: mixpoint_force_unmute
+  label: Mixpoint Force Unmute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {id} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: id
+      type: integer
+      description: "<ID> = NMIXPOINTS + 15 + (Mix Point #)."
 
-- id: output_scaling_toggle
-  label: Toggle Output +4/-10 Scaling
+# --- Matrix Mixer: Mute Mixer Output ---
+# Source explicitly flags Toggle Mute (Mixer Output) as BUG - DOES NOT WORK.
+- id: mixer_output_toggle_mute
+  label: Mixer Output Toggle Mute (BUG: does not work)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 {idmsb} {idlsb} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: Output number (1-8)
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) AND 7Fh."
+- id: mixer_output_force_mute
+  label: Mixer Output Force Mute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) AND 7Fh."
+- id: mixer_output_force_unmute
+  label: Mixer Output Force Unmute
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) AND 7Fh."
 
-- id: output_scaling_force
-  label: Force Output Scaling
+# --- Matrix Mixer: Polarity Mixpoint ---
+- id: mixpoint_toggle_polarity
+  label: Mixpoint Toggle Polarity
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 00 {id} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Output number (1-8)
-    - name: scaling
+      description: "<ID> = (2 * NMIXPOINTS) + 15 + (Mix Point #)."
+- id: mixpoint_force_polarity_positive
+  label: Mixpoint Force Polarity (+)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {id} 00 F7"
+  params:
+    - name: device_id
       type: integer
-      description: 0 = +4 dBu, 1 = -10 dBV
+      description: Device ID 0-15.
+    - name: id
+      type: integer
+      description: "<ID> = (2 * NMIXPOINTS) + 15 + (Mix Point #)."
+- id: mixpoint_force_polarity_negative
+  label: Mixpoint Force Polarity (-)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 00 {id} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: id
+      type: integer
+      description: "<ID> = (2 * NMIXPOINTS) + 15 + (Mix Point #)."
 
-- id: output_pad_toggle
-  label: Toggle Output Pad
+# --- Matrix Mixer: Polarity Mixer Output ---
+# Source explicitly flags Toggle Polarity (Mixer Output) as BUG - DOES NOT WORK.
+- id: mixer_output_toggle_polarity
+  label: Mixer Output Toggle Polarity (BUG: does not work)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 {idmsb} {idlsb} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: Output number (1-8)
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) AND 7Fh."
+- id: mixer_output_force_polarity_positive
+  label: Mixer Output Force Polarity (+)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) AND 7Fh."
+- id: mixer_output_force_polarity_negative
+  label: Mixer Output Force Polarity (-)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) AND 7Fh."
 
-- id: output_pad_force
-  label: Force Output Pad
+# --- Matrix Mixer: Volume Mixpoint ---
+- id: mixpoint_set_volume
+  label: Mixpoint Set Volume
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 00 00 {id} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Output number (1-8)
-    - name: engaged
-      type: boolean
-      description: true = pad on (20 dB), false = pad off
+      description: "<ID> = (Mix Point #) + 15."
+    - name: va
+      type: integer
+      description: "<VA> = ControlSetting AND 7Fh. Range 0-127: 0=-Inf, 1-26=-105 to -42.5 dB in 2.5 dB steps, 27-127=-40.0 to +10.0 dB in 0.5 dB steps."
+- id: mixpoint_change_volume
+  label: Mixpoint Change Volume (relative dB)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 05 00 {id} {va} F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: id
+      type: integer
+      description: "<ID> = (Mix Point #) + 15."
+    - name: va
+      type: integer
+      description: "<VA> = [2 * dBChange] AND 7Fh."
 
-- id: output_volume_set
-  label: Set Output Volume
+# --- Matrix Mixer: Volume Mixer Output ---
+# Source flags Increase/Decrease Volume (Mixer Output) as BUG - DOES NOT WORK.
+- id: mixer_output_set_volume
+  label: Mixer Output Set Volume
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 00 {idmsb} {idlsb} {va} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: Output number (1-8)
-    - name: control_setting
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
       type: integer
-      description: Range -30 to +30. Each step = 1 dB. VA = (2 * control_setting) & 0x7F
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + 15 + (NOutput #)) AND 7Fh."
+    - name: va
+      type: integer
+      description: "<VA> = ControlSetting AND 7Fh. Range 0-127: 0=-Inf, 1-26=-105 to -42.5 dB in 2.5 dB steps, 27-127=-40.0 to +10.0 dB in 0.5 dB steps."
+- id: mixer_output_change_volume
+  label: Mixer Output Change Volume (BUG: does not work)
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 05 {idmsb} {idlsb} {va} F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + 15 + (NOutput #)) AND 7Fh."
+    - name: va
+      type: integer
+      description: "<VA> = [2 * dBChange] AND 7Fh."
 
-- id: output_volume_relative
-  label: Adjust Output Volume Relatively
+# --- Matrix Mixer: Activate Mixpoint (route input to output) ---
+# Source explicitly flags Toggle Activation as BUG - DOES NOT WORK.
+- id: mixpoint_toggle_activation
+  label: Mixpoint Toggle Activation (BUG: does not work)
   kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 06 {idmsb} {idlsb} 00 F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: Output number (1-8)
-    - name: db_change
+      description: "<IDMSB> = [((3 * NMIXPOINTS) + 15 + (Mix Point #)) >> 7] AND 7Fh."
+    - name: idlsb
       type: integer
-      description: dB change. VA = (2 * db_change) & 0x7F
+      description: "<IDLSB> = ((3 * NMIXPOINTS) + 15 + (Mix Point #)) AND 7Fh."
+- id: mixpoint_force_activate
+  label: Mixpoint Force Activation
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 7F F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((3 * NMIXPOINTS) + 15 + (Mix Point #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((3 * NMIXPOINTS) + 15 + (Mix Point #)) AND 7Fh."
+- id: mixpoint_force_deactivate
+  label: Mixpoint Force Deactivation
+  kind: action
+  command: "F0 00 01 00 {device_id} 0A 69 01 {idmsb} {idlsb} 00 F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((3 * NMIXPOINTS) + 15 + (Mix Point #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((3 * NMIXPOINTS) + 15 + (Mix Point #)) AND 7Fh."
 
-- id: mixpoint_mute_toggle
-  label: Toggle Mixpoint Mute
-  kind: action
+# --- Queries ---
+# Each query echoes the command then sends a return string.
+# Return string device-ID byte is <Device ID + 10h>.
+- id: query_input_mute
+  label: Query Input Mute
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {input_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: Mix point number (1-NMIXPOINTS). ID = NMIXPOINTS + 15 + mix_point
-
-- id: mixpoint_mute_force
-  label: Force Mixpoint Mute
-  kind: action
+      description: Input ID byte: 04h=In1, 05h=In2, 06h=In3, 07h=In4.
+- id: query_input_polarity
+  label: Query Input Polarity
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {input_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-    - name: muted
-      type: boolean
-
-- id: mixpoint_polarity_toggle
-  label: Toggle Mixpoint Polarity
-  kind: action
+      description: Input ID byte: 08h=In1, 09h=In2, 0Ah=In3, 0Bh=In4.
+- id: query_input_scaling
+  label: Query Input Scaling
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {input_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-      description: ID = (2 * NMIXPOINTS) + 15 + mix_point
-
-- id: mixpoint_polarity_force
-  label: Force Mixpoint Polarity
-  kind: action
+      description: Input ID byte: 0Ch=In1, 0Dh=In2, 0Eh=In3, 0Fh=In4.
+- id: query_input_volume
+  label: Query Input Volume
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {input_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: input_id
       type: integer
-    - name: polarity
-      type: integer
-      description: 0 = (+), 1 = (-)
-
-- id: mixpoint_volume_set
-  label: Set Mixpoint Volume
-  kind: action
+      description: Input volume ID byte: 00h=In1, 01h=In2, 02h=In3, 03h=In4.
+- id: query_output_mute
+  label: Query Output Mute
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 03 {output_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: ID = mix_point + 15
-    - name: control_setting
-      type: integer
-      description: Range 0-127. Gain table: 0=-Infinity, 1-26=-105 to -42.5 dB (2.5 dB steps), 27-127=-40 to +10 dB (0.5 dB steps). VA = control_setting & 0x7F
-
-- id: mixpoint_volume_relative
-  label: Adjust Mixpoint Volume Relatively
-  kind: action
+      description: Output mute ID byte: 46h=Out1 .. 4Dh=Out8.
+- id: query_output_polarity
+  label: Query Output Polarity
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 03 {output_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-    - name: db_change
-      type: integer
-      description: VA = (2 * db_change) & 0x7F
-
-- id: mixer_output_mute_force
-  label: Force Mixer Output Mute
-  kind: action
+      description: Output polarity ID byte: 4Eh=Out1, 4Fh=Out2, 50h=Out3, 51h=Out4, 52h=Out5, 53h=Out6, 54h=Out7, 55h=Out8.
+- id: query_output_scaling
+  label: Query Output Scaling
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 03 {output_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Mixer output number
-    - name: muted
-      type: boolean
-      description: IDMSB = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + output) >> 7 & 0x7F; IDLSB = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + output) & 0x7F
-
-- id: mixer_output_mute_toggle
-  label: Toggle Mixer Output Mute
-  kind: action
+      description: Output scaling ID byte: 56h=Out1 .. 5Dh=Out8.
+- id: query_output_pad
+  label: Query Output Pad
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 03 {output_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-      description: Mixer output number. Source marks this command as listed but bugged.
-
-- id: mixer_output_polarity_force
-  label: Force Mixer Output Polarity
-  kind: action
+      description: Output pad ID byte: 5Eh=Out1 .. 65h=Out8.
+- id: query_output_volume
+  label: Query Output Volume
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 03 {output_id} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: output_id
       type: integer
-    - name: polarity
-      type: integer
-      description: 0 = (+), 1 = (-). IDMSB = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + output) >> 7 & 0x7F; IDLSB = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + output) & 0x7F
-
-- id: mixer_output_polarity_toggle
-  label: Toggle Mixer Output Polarity
-  kind: action
+      description: Output volume ID byte: 3Eh=Out1 .. 45h=Out8.
+- id: query_mixpoint_mute
+  label: Query Mixpoint Mute
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {id} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Mixer output number. Source marks this command as listed but bugged.
-
-- id: mixer_output_volume_set
-  label: Set Mixer Output Volume
-  kind: action
+      description: "<ID> = NMIXPOINTS + 15 + (Mix Point #)."
+- id: query_mixer_output_mute
+  label: Query Mixer Output Mute
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 {idmsb} {idlsb} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: IDMSB = ((4 * NMIXPOINTS) + 15 + output) >> 7 & 0x7F; IDLSB = ((4 * NMIXPOINTS) + 15 + output) & 0x7F
-    - name: control_setting
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
       type: integer
-      description: Range 0-127. Gain table: 0=-Infinity, 1-26=-105 to -42.5 dB, 27-127=-40 to +10 dB
-
-- id: mixer_output_volume_relative
-  label: Adjust Mixer Output Volume Relatively
-  kind: action
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + NOUTPUTS + 15 + (NOutput #)) AND 7Fh."
+- id: query_mixpoint_polarity
+  label: Query Mixpoint Polarity
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {id} F7"
   params:
     - name: device_id
       type: integer
-    - name: output
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Mixer output number. Source marks this command as listed but bugged.
-    - name: db_change
-      type: integer
-      description: VA = (2 * db_change) & 0x7F
-
-- id: mixpoint_activate
-  label: Activate Mixpoint (Route Input to Output)
-  kind: action
+      description: "<ID> = (2 * NMIXPOINTS) + 15 + (Mix Point #)."
+- id: query_mixer_output_polarity
+  label: Query Mixer Output Polarity
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 {idmsb} {idlsb} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: idmsb
       type: integer
-      description: IDMSB = ((3 * NMIXPOINTS) + 15 + mix_point) >> 7 & 0x7F; IDLSB = ((3 * NMIXPOINTS) + 15 + mix_point) & 0x7F
-    - name: activate
-      type: boolean
-      description: true = activate routing, false = deactivate
-
-- id: mixpoint_activate_toggle
-  label: Toggle Mixpoint Activation
-  kind: action
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + (2 * NOUTPUTS) + 15 + (NOutput #)) AND 7Fh."
+- id: query_mixpoint_volume
+  label: Query Mixpoint Volume
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 00 {id} F7"
   params:
     - name: device_id
       type: integer
-    - name: mix_point
+      description: Device ID 0-15.
+    - name: id
       type: integer
-      description: Source marks this command as listed but bugged.
+      description: "<ID> = (Mix Point #) + 15."
+- id: query_mixer_output_volume
+  label: Query Mixer Output Volume
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 {idmsb} {idlsb} F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((4 * NMIXPOINTS) + 15 + (NOutput #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((4 * NMIXPOINTS) + 15 + (NOutput #)) AND 7Fh."
+- id: query_mixpoint_activation
+  label: Query Mixpoint Activation
+  kind: query
+  command: "F0 00 01 00 {device_id} 0A 70 {idmsb} {idlsb} F7"
+  params:
+    - name: device_id
+      type: integer
+      description: Device ID 0-15.
+    - name: idmsb
+      type: integer
+      description: "<IDMSB> = [((3 * NMIXPOINTS) + 15 + (Mix Point #)) >> 7] AND 7Fh."
+    - name: idlsb
+      type: integer
+      description: "<IDLSB> = ((3 * NMIXPOINTS) + 15 + (Mix Point #)) AND 7Fh."
 ```
 
 ## Feedbacks
 ```yaml
-- id: input_mute_status
-  label: Input Mute Status
+- id: input_mute_state
   type: enum
-  query_command: '{"get":"inputMute"}'
-  values:
-    - unmuted  # VA = 00h
-    - muted    # VA = 7Fh
-  note: Device echoes command, then returns F0h 00h 01h 00h <DeviceID+10h> 0Ah 00h 00h <channel> <VA> 00h F7h
-
-- id: input_polarity_status
-  label: Input Polarity Status
+  values: [unmuted, muted]
+  description: "Return string: F0 00 01 00 <Device ID+10h> 0A 00 00 04h..07h <VA> 00 F7. <VA>=00h unmuted, 7Fh muted."
+- id: input_polarity_state
   type: enum
-  query_command: '{"get":"inputPolarity"}'
-  values:
-    - positive   # VA = 00h
-    - negative   # VA = 01h
-
-- id: input_scaling_status
-  label: Input Scaling Status
+  values: [positive, negative]
+  description: "Return string uses ID 08h..0Bh. <VA>=00h (+), 01h (-)."
+- id: input_scaling_state
   type: enum
-  query_command: '{"get":"inputScaling"}'
-  values:
-    - +4 dBu   # VA = 00h
-    - -10 dBV  # VA = 01h
-
-- id: input_volume_status
-  label: Input Volume Status
+  values: ["+4 dBu", "-10 dBV"]
+  description: "Return string uses ID 0Ch..0Fh. <VA>=00h (+4 dBu), 01h (-10 dBV)."
+- id: input_volume_state
   type: integer
-  query_command: '{"get":"inputVolume"}'
-  note: VA range -60 to +60. Divide by 2 to get dB scale. Response: F0h 00h 01h 00h <DeviceID+10h> 0Ah 00h 00h <channel> <VA> 00h F7h
-
-- id: output_mute_status
-  label: Output Mute Status
+  description: "Return string uses ID 00h..03h. <VA> range -60 to +60. Divide by 2 for dB."
+- id: output_mute_state
   type: enum
-  query_command: '{"get":"outputMute"}'
-  values:
-    - unmuted  # VA = 00h
-    - muted    # VA = 7Fh
-
-- id: output_polarity_status
-  label: Output Polarity Status
+  values: [unmuted, muted]
+  description: "Return string uses ID 46h..4Dh. <VA>=00h unmuted, 7Fh muted."
+- id: output_polarity_state
   type: enum
-  query_command: '{"get":"outputPolarity"}'
-  values:
-    - positive   # VA = 00h
-    - negative   # VA = 01h
-
-- id: output_scaling_status
-  label: Output Scaling Status
+  values: [positive, negative]
+  description: "Return string uses ID 4Eh..53h,54h,55h. <VA>=00h (+), 01h (-)."
+- id: output_scaling_state
   type: enum
-  query_command: '{"get":"outputScaling"}'
-  values:
-    - +4 dBu   # VA = 00h
-    - -10 dBV  # VA = 01h
-
-- id: output_pad_status
-  label: Output Pad Status
+  values: ["+4 dBu", "-10 dBV"]
+  description: "Return string uses ID 56h..5Dh. <VA>=00h (+4 dBu), 01h (-10 dBV)."
+- id: output_pad_state
   type: enum
-  query_command: '{"get":"outputPad"}'
-  values:
-    - off  # VA = 00h
-    - on   # VA = 01h (20 dB)
-
-- id: output_volume_status
-  label: Output Volume Status
+  values: [disengaged, engaged]
+  description: "Return string uses ID 5Eh..65h. <VA>=00h off, 01h on."
+- id: output_volume_state
   type: integer
-  query_command: '{"get":"outputVolume"}'
-  note: VA range -60 to +60. Divide by 2 to get dB scale.
-
-- id: mixpoint_mute_status
-  label: Mixpoint Mute Status
+  description: "Return string uses ID 3Eh..45h. <VA> range -60 to +60. Divide by 2 for dB."
+- id: mixpoint_mute_state
   type: enum
-  query_command: '{"get":"mixpointMute"}'
-  values:
-    - unmuted  # VA = 00h
-    - muted    # VA = 7Fh
-
-- id: mixer_output_mute_status
-  label: Mixer Output Mute Status
+  values: [unmuted, muted]
+  description: "Return string uses <ID>=NMIXPOINTS+15+MixPoint#. <VA>=00h unmuted, 7Fh muted."
+- id: mixer_output_mute_state
   type: enum
-  query_command: '{"get":"mixerOutputMute"}'
-  values:
-    - unmuted  # VA = 00h
-    - muted    # VA = 7Fh
-
-- id: mixpoint_polarity_status
-  label: Mixpoint Polarity Status
+  values: [unmuted, muted]
+  description: "Return string uses IDMSB/IDLSB. <VA>=00h unmuted, 7Fh muted."
+- id: mixpoint_polarity_state
   type: enum
-  query_command: '{"get":"mixpointPolarity"}'
-  values:
-    - positive   # VA = 00h
-    - negative   # VA = 01h
-
-- id: mixer_output_polarity_status
-  label: Mixer Output Polarity Status
+  values: [positive, negative]
+  description: "Return string uses <ID>=(2*NMIXPOINTS)+15+MixPoint#. <VA>=00h (+), 01h (-)."
+- id: mixer_output_polarity_state
   type: enum
-  query_command: '{"get":"mixerOutputPolarity"}'
-  values:
-    - positive   # VA = 00h
-    - negative   # VA = 01h
-
-- id: mixpoint_volume_status
-  label: Mixpoint Volume Status
+  values: [positive, negative]
+  description: "Return string uses IDMSB/IDLSB. <VA>=00h (+), 01h (-)."
+- id: mixpoint_volume_state
   type: integer
-  query_command: '{"get":"mixpointVolume"}'
-  note: VA = gain index 0-127. Gain table: 0=-Infinity, 1-26=-105 to -42.5 dB (2.5 dB steps), 27-127=-40 to +10 dB (0.5 dB steps).
-
-- id: mixer_output_volume_status
-  label: Mixer Output Volume Status
+  description: "Return string uses <ID>=MixPoint#+15. <VA>=0..127: 0=-Inf, 1-26=-105 to -42.5 dB in 2.5 dB steps, 27-127=-40.0 to +10.0 dB in 0.5 dB steps."
+- id: mixer_output_volume_state
   type: integer
-  query_command: '{"get":"mixerOutputVolume"}'
-  note: VA = gain index 0-127. Gain table: 0=-Infinity, 1-26=-105 to -42.5 dB (2.5 dB steps), 27-127=-40 to +10 dB (0.5 dB steps).
-
-- id: mixpoint_activation_status
-  label: Mixpoint Activation Status
+  description: "Return string uses IDMSB/IDLSB. <VA>=0..127 same table as mixpoint."
+- id: mixpoint_activation_state
   type: enum
-  query_command: '{"get":"mixpointActivate"}'
-  values:
-    - deactivated  # VA = 00h
-    - activated    # VA = 01h
-
-- id: preset_change_ack
-  label: Preset Change Acknowledgement
-  type: string
-  note: Device echoes the sent command string, then sends a return acknowledgement string.
+  values: [deactivated, activated]
+  description: "Return string uses IDMSB/IDLSB. <VA>=00h not activated, 01h activated."
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no standalone settable parameters described - all settings are action-based
-```
-
-## Events
-```yaml
-# UNRESOLVED: no unsolicited notifications described in source - device only responds to queries/commands
-```
-
-## Macros
-```yaml
-# UNRESOLVED: no explicit multi-step macros described in source
+- id: input_volume
+  type: integer
+  range: [-30, 30]
+  unit: dB
+  description: "Per-input channel volume. Control Setting; <VA> = [2 * value] AND 7Fh."
+- id: output_volume
+  type: integer
+  range: [-30, 30]
+  unit: dB
+  description: "Per-output channel volume. Same formula as input."
+- id: mixpoint_volume
+  type: integer
+  range: [0, 127]
+  unit: gain_table
+  description: "Mixpoint gain. <VA> = value AND 7Fh. 0=-Inf, 1-26=-105..-42.5 dB @ 2.5 dB, 27-127=-40..+10 dB @ 0.5 dB."
+- id: mixer_output_volume
+  type: integer
+  range: [0, 127]
+  unit: gain_table
+  description: "Mixer output gain. Same table as mixpoint."
+- id: preset
+  type: integer
+  range: [1, 128]
+  description: "Preset number. Sent as preset-1 (0..127) in the recall frame."
+- id: device_id
+  type: integer
+  range: [0, 15]
+  description: "Set via DIP switches on the rear of the P4800. Sent as a single hex nibble."
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - DTR voltage required: "The P4800 requires a voltage of 5 to 12 volts on the DTR line to accept data on the TX line."
-# UNRESOLVED: no firmware version compatibility stated in source
-# UNRESOLVED: no fault behavior or error recovery sequences described in source
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or power-on sequencing requirements.
 ```
 
 ## Notes
-The P4800 uses standard Sysex (F0h...F7h) command format. Device ID is 0–15 set via DIP switches. All multi-byte numeric values use little-endian or bitwise AND with 0x7F as documented per command.
+- Source flags four commands as BUG — DOES NOT WORK: Mixer Output Toggle Mute, Mixer Output Toggle Polarity, Mixpoint Toggle Activation, Mixer Output Change Volume. These are still emitted above for completeness because the source lists them as documented rows.
+- The source lists Output 7 and Output 8 polarity with the same ID byte 55h in the polarity section (4Eh, 4Fh, 50h, 51h, 52h, 53h, 55h, 55h). The query section uses 54h for Output 7. The set commands are transcribed verbatim from the source; the discrepancy is in the source, not introduced here.
+- NOUTPUTS equals 8 when no crossover/splitter is in the preset; each crossover/splitter channel reduces it. NMIXPOINTS = 4 * NOUTPUTS.
+- The P4800 requires 5-12 V on DTR; a 1 kOhm resistor to a 5 V supply is documented.
+- Preset recall uses a short 2-byte frame (C <n> h <pp> h), not a full SysEx frame; all other commands use the F0h..F7h SysEx frame.
+- After every set or query, the P4800 echoes the command and then sends a return string; the return-string device-ID byte is <Device ID + 10h>.
 
-**Known bugs noted in vendor doc:**
-- Mixer output mute toggle does not work — use force mute/unmute instead
-- Mixer output polarity toggle does not work — use force polarity instead
-- Output pad is present in both change and query sections
-- Mixer output volume relative increase/decrease does not work
-- Mixpoint activation toggle does not work — use force activation/deactivation instead
-
-**AMX string example** for preset change (device ID 15, preset #3): `SEND_STRING P4800,"$CF,$02"` — the "$" prefix denotes hexadecimal byte values in AMX syntax.
-
-**NMIXPOINTS** = 4 × NOUTPUTS. Default NOUTPUTS = 8 (4×8 mixer). Crossover/splitter usage reduces NOUTPUTS by (crossover channels - 1).
-
-<!-- UNRESOLVED: power on/off commands not present in source -->
-<!-- UNRESOLVED: no TCP/IP, HTTP, or REST interface described — serial-only device per title -->
-<!-- UNRESOLVED: no firmware version compatibility range stated in source -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source -->
 
 ## Provenance
 
@@ -648,8 +1015,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.534Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented."
+confidence: medium
+summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -658,6 +1025,9 @@ summary: "All 50 spec actions and feedbacks match source commands; all transport
 - "Sysex frame structure F0h F7h"
 - "DTR voltage 5-12 volts requirement"
 - "DIP switch preset configuration"
+- "no firmware version or protocol revision stated in source"
+- "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+- "firmware version compatibility not stated in source"
 ```
 
 ---

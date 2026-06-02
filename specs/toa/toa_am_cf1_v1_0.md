@@ -26,14 +26,22 @@ last_checked_at: 2026-04-27T15:47:24.452Z
 generated_at: 2026-04-27T15:47:24.452Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical form factor, audio channel counts, wattage, operating temperature range not stated in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "firmware version compatibility not stated in source"
+  - "physical dimensions, weight, power consumption not stated in source"
+  - "default username/password (admin/admin) noted in example but source does not state how to change credentials"
+  - "maximum concurrent TCP sessions not stated in source"
+  - "error code semantics beyond ACK/NACK not detailed in source"
+  - "factory reset procedure not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T15:47:24.452Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -414,14 +422,21 @@ verdict: verified
 checked_at: 2026-04-27T15:47:24.452Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical form factor, audio channel counts, wattage, operating temperature range not stated in source"
+- "no safety warnings or interlock procedures stated in source"
+- "firmware version compatibility not stated in source"
+- "physical dimensions, weight, power consumption not stated in source"
+- "default username/password (admin/admin) noted in example but source does not state how to change credentials"
+- "maximum concurrent TCP sessions not stated in source"
+- "error code semantics beyond ACK/NACK not detailed in source"
+- "factory reset procedure not documented in source"
 ```
 
 ---

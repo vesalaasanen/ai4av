@@ -19,20 +19,30 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:18.340Z
 last_checked_at: 2026-04-23T05:36:45.652Z
 generated_at: 2026-04-23T05:36:45.652Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RTSP-over-HTTP port 8557 stated for RTSP-over-HTTP; main RTSP port 554 explicitly stated"
+  - "RTSP primary port not stated; RTSP-over-HTTP port 8557 stated"
+  - "SIP port 5060 stated for device-side SIP; verify if this is device listening port"
+  - "plaintext auth is insecure alternative; credentials not stated"
+  - "powerable - no power on/off commands found in source"
+  - "No discrete settable parameters found outside of SIP settings and schedules"
+  - "No explicit multi-step sequences described in source"
+  - "No explicit safety warnings or interlock procedures in source"
+  - "Voltage/current/power specifications not stated in source"
+  - "Fault behavior and error recovery sequences not documented"
+  - "Firmware version compatibility ranges not stated beyond specific feature minimums"
 verification:
   verdict: verified
   checked_at: 2026-04-23T05:36:45.652Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "Every spec action matched a literal CGI endpoint in the source, transport verified, full API coverage confirmed."
+  confidence: medium
+  summary: "Every spec action matched a literal CGI endpoint in the source, transport verified, full API coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -396,8 +406,7 @@ source_domains:
   - doorbird.com
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
-  - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:18.340Z
 last_checked_at: 2026-04-23T05:36:45.652Z
 ```
 
@@ -408,14 +417,24 @@ verdict: verified
 checked_at: 2026-04-23T05:36:45.652Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "Every spec action matched a literal CGI endpoint in the source, transport verified, full API coverage confirmed."
+confidence: medium
+summary: "Every spec action matched a literal CGI endpoint in the source, transport verified, full API coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RTSP-over-HTTP port 8557 stated for RTSP-over-HTTP; main RTSP port 554 explicitly stated"
+- "RTSP primary port not stated; RTSP-over-HTTP port 8557 stated"
+- "SIP port 5060 stated for device-side SIP; verify if this is device listening port"
+- "plaintext auth is insecure alternative; credentials not stated"
+- "powerable - no power on/off commands found in source"
+- "No discrete settable parameters found outside of SIP settings and schedules"
+- "No explicit multi-step sequences described in source"
+- "No explicit safety warnings or interlock procedures in source"
+- "Voltage/current/power specifications not stated in source"
+- "Fault behavior and error recovery sequences not documented"
+- "Firmware version compatibility ranges not stated beyond specific feature minimums"
 ```
 
 ---

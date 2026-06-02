@@ -19,19 +19,24 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T21:09:54.783Z
 last_checked_at: 2026-05-16T19:32:27.434Z
 generated_at: 2026-05-16T19:32:27.434Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The source document is the BluOS Custom Integration API and does not name the M10 V Series explicitly — it covers all BluOS players generically. Port 11000 applies to standard BluOS players; the CI580 uses ports 11000/11010/11020/11030. Physical/electrical specifications not covered."
+  - "no persistent settable parameters beyond commands documented; populate from source if applicable"
+  - "no multi-step sequences described explicitly in source"
+  - "no safety warnings or interlock procedures found in source."
+  - "No power on/off commands found in source (only /reboot POST). Physical specifications, firmware compatibility ranges beyond the noted v3.8.0/v4.2.0 boundaries, and error response handling details are not documented in this source."
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:32:27.434Z
   matched_actions: 36
   action_count: 36
-  confidence: high
-  summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed."
+  confidence: medium
+  summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -654,7 +659,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T21:09:54.783Z
 last_checked_at: 2026-05-16T19:32:27.434Z
 ```
 
@@ -665,14 +670,18 @@ verdict: verified
 checked_at: 2026-05-16T19:32:27.434Z
 matched_actions: 36
 action_count: 36
-confidence: high
-summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed."
+confidence: medium
+summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The source document is the BluOS Custom Integration API and does not name the M10 V Series explicitly — it covers all BluOS players generically. Port 11000 applies to standard BluOS players; the CI580 uses ports 11000/11010/11020/11030. Physical/electrical specifications not covered."
+- "no persistent settable parameters beyond commands documented; populate from source if applicable"
+- "no multi-step sequences described explicitly in source"
+- "no safety warnings or interlock procedures found in source."
+- "No power on/off commands found in source (only /reboot POST). Physical specifications, firmware compatibility ranges beyond the noted v3.8.0/v4.2.0 boundaries, and error response handling details are not documented in this source."
 ```
 
 ---

@@ -19,19 +19,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:12.897Z
 last_checked_at: 2026-05-14T18:17:19.016Z
 generated_at: 2026-05-14T18:17:19.016Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model name not stated in source (\"UNKNOWN Series\"); LAN auth mechanism not described in source"
+  - "many parameters are settable but are command-based; no discrete variable"
+  - "no unsolicited notifications described in source"
+  - "no multi-step sequences explicitly described as macros in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "specific model name not confirmed — \"UNKNOWN Series\" used as placeholder; UNRESOLVED: HDBaseT control mentioned in signal types but no dedicated HDBaseT command section; UNRESOLVED: how to change baud rate not documented; UNRESOLVED: power consumption, voltage specs not provided (correctly — not safety critical)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.016Z
   matched_actions: 39
   action_count: 39
-  confidence: high
-  summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified."
+  confidence: medium
+  summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -560,7 +566,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:12.897Z
 last_checked_at: 2026-05-14T18:17:19.016Z
 ```
 
@@ -571,14 +577,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.016Z
 matched_actions: 39
 action_count: 39
-confidence: high
-summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified."
+confidence: medium
+summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model name not stated in source (\"UNKNOWN Series\"); LAN auth mechanism not described in source"
+- "many parameters are settable but are command-based; no discrete variable"
+- "no unsolicited notifications described in source"
+- "no multi-step sequences explicitly described as macros in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "specific model name not confirmed — \"UNKNOWN Series\" used as placeholder; UNRESOLVED: HDBaseT control mentioned in signal types but no dedicated HDBaseT command section; UNRESOLVED: how to change baud rate not documented; UNRESOLVED: power consumption, voltage specs not provided (correctly — not safety critical)"
 ```
 
 ---

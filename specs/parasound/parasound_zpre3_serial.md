@@ -19,22 +19,25 @@ compatible_with:
 source_domains:
   - cdn.shopify.com
 source_urls:
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
 retrieved_at: 2026-05-21T17:00:47.559Z
 last_checked_at: 2026-05-31T07:00:30.833Z
 generated_at: 2026-05-31T07:00:30.833Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "no power-on sequencing requirements documented"
+  - "command response timing / latency not specified"
+  - "error recovery behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:00:30.833Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 33 spec actions (25 controls + 8 query commands) matched literally in source; transport parameters verified against protocol specs table."
+  confidence: medium
+  summary: "All 33 spec actions (25 controls + 8 query commands) matched literally in source; transport parameters verified against protocol specs table. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -391,8 +394,6 @@ interlocks: []
 source_domains:
   - cdn.shopify.com
 source_urls:
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
 retrieved_at: 2026-05-21T17:00:47.559Z
 last_checked_at: 2026-05-31T07:00:30.833Z
@@ -405,14 +406,18 @@ verdict: verified
 checked_at: 2026-05-31T07:00:30.833Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 33 spec actions (25 controls + 8 query commands) matched literally in source; transport parameters verified against protocol specs table."
+confidence: medium
+summary: "All 33 spec actions (25 controls + 8 query commands) matched literally in source; transport parameters verified against protocol specs table. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "no power-on sequencing requirements documented"
+- "command response timing / latency not specified"
+- "error recovery behavior not documented"
 ```
 
 ---

@@ -24,14 +24,23 @@ last_checked_at: 2026-04-25T20:44:24.583Z
 generated_at: 2026-04-25T20:44:24.583Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical control interface (front panel, dedicated hardware) not documented"
+  - "/State endpoint structure not documented in source"
+  - "no discrete settable parameters documented outside of commands"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macro definitions in source"
+  - "no safety warnings or interlock procedures in source"
+  - "physical RS-232 / serial control — not mentioned in source"
+  - "firmware version compatibility — not stated in source"
+  - "/State response format — not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:44:24.583Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 32 spec actions matched to source command table; port, URL, and transport verified; no extraneous commands; full coverage."
+  confidence: medium
+  summary: "All 32 spec actions matched to source command table; port, URL, and transport verified; no extraneous commands; full coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -333,14 +342,22 @@ verdict: verified
 checked_at: 2026-04-25T20:44:24.583Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 32 spec actions matched to source command table; port, URL, and transport verified; no extraneous commands; full coverage."
+confidence: medium
+summary: "All 32 spec actions matched to source command table; port, URL, and transport verified; no extraneous commands; full coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical control interface (front panel, dedicated hardware) not documented"
+- "/State endpoint structure not documented in source"
+- "no discrete settable parameters documented outside of commands"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macro definitions in source"
+- "no safety warnings or interlock procedures in source"
+- "physical RS-232 / serial control — not mentioned in source"
+- "firmware version compatibility — not stated in source"
+- "/State response format — not documented in source"
 ```
 
 ---

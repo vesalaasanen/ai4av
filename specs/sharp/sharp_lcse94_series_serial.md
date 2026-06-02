@@ -16,38 +16,40 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
-  - business.sharpusa.com
+  - files.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-05-31T21:11:58.166Z
-generated_at: 2026-05-31T21:11:58.166Z
+  - http://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/LCDTVs/Manuals/tel_man_LC46_52_65SE94U.pdf
+retrieved_at: 2026-05-26T01:57:34.704Z
+last_checked_at: 2026-06-02T05:46:13.171Z
+generated_at: 2026-06-02T05:46:13.171Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware compatibility range not stated."
+  - "no continuous variable pool defined separately from action parameters in source."
+  - "source does not document unsolicited notifications."
+  - "source does not document multi-step sequences."
+  - "source contains no safety warnings or interlock procedures."
+  - "power-on-accepted behavior — `RSPW1` must be sent before `POWR1` is honored when TV is in standby rejection mode; exact timing not documented."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T21:11:58.166Z
+  checked_at: 2026-06-02T05:46:13.171Z
   matched_actions: 41
   action_count: 41
-  confidence: high
-  summary: "All 41 spec actions match command table entries one-to-one; all transport parameters verified in source; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 41 spec actions matched verbatim in source command table; transport parameters verified; full opcode coverage. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-26
+created_at: 2026-06-02
 ---
 
 # Sharp LCSE94 Series Control Spec
 
 ## Summary
-Sharp LCSE94 Series commercial display controlled via RS-232C. Eight-byte ASCII command protocol with 4-digit command + 4-digit parameter structure. Responses: `OK` or `ERR`. Serial settings: 9600 baud, 8N1, no flow control.
+RS-232C control spec for Sharp LCSE94 Series LCD TVs. PC sends 8-ASCII-code command frames over a cross-type RS-232C cable; TV replies with `OK` or `ERR` + CR. Covers power, input selection, AV mode, picture/sound adjustments, tuner channels, and PC-mode geometry.
 
-<!-- UNRESOLVED: power-on sequencing, fault behavior, error recovery not documented -->
+<!-- UNRESOLVED: firmware compatibility range not stated. -->
 
 ## Transport
 ```yaml
@@ -65,407 +67,433 @@ auth:
 
 ## Traits
 ```yaml
-- powerable    # power on/off commands present
-- routable     # input selection commands present
-- queryable    # "?" parameter returns current value
-- levelable    # volume, contrast, brightness, etc.
+- powerable   # inferred from POWR command
+- routable    # inferred from input-selection commands
+- queryable   # inferred from "?" parameter support on most commands
+- levelable   # inferred from VOLM, CONT, BRIT, BASS, TREB, etc.
 ```
 
 ## Actions
 ```yaml
-- id: power_on
-  label: Power On
+- id: power_on_command_accepted
+  label: Power On Command Accepted
   kind: action
+  command: "RSPW1___"
+  params: []
+
+- id: power_on_command_rejected
+  label: Power On Command Rejected
+  kind: action
+  command: "RSPW0___"
   params: []
 
 - id: power_off
-  label: Power Off
+  label: Power Off (Standby)
   kind: action
+  command: "POWR0___"
   params: []
 
-- id: power_set
-  label: Power Setting
+- id: power_on
+  label: Power On
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0=Off, 1=On
+  command: "POWR1___"
+  params: []
+
+- id: power_on_query
+  label: Power On Query
+  kind: query
+  command: "POWR____"
+  params: []
 
 - id: input_toggle
-  label: Input Selection (Toggle)
+  label: Input Toggle
   kind: action
+  command: "ITGD____"
   params: []
 
 - id: input_tv
-  label: Input TV
+  label: Select TV Tuner
   kind: action
+  command: "ITVD0___"
   params: []
 
-- id: input_av
-  label: Input 1-7
+- id: input_select_av
+  label: Select Input 1-7
   kind: action
+  command: "IAVD{n}__"
   params:
-    - name: port
+    - name: n
       type: integer
-      description: Input port number 1-7
+      description: Input terminal number (1-7)
 
-- id: input_sel_1
-  label: Input 1 Selection
+- id: input1_mode
+  label: INPUT1 Signal Mode
   kind: action
+  command: "INP1{m}__"
   params:
-    - name: mode
+    - name: m
       type: integer
       description: 0=AUTO, 1=VIDEO, 2=COMPONENT
 
-- id: input_sel_3
-  label: Input 3 Selection
+- id: input3_mode
+  label: INPUT3 Signal Mode
   kind: action
+  command: "INP3{m}__"
   params:
-    - name: mode
+    - name: m
       type: integer
       description: 0=AUTO, 1=VIDEO, 2=COMPONENT
 
 - id: av_mode
-  label: AV Mode Selection
+  label: AV Mode
   kind: action
+  command: "AVMD{m}__"
   params:
-    - name: mode
+    - name: m
       type: integer
       description: 0=Toggle, 1=STANDARD, 2=MOVIE, 3=GAME, 4=USER, 5=DYNAMIC(Fixed), 6=DYNAMIC, 7=PC, 8=xvYCC
 
 - id: volume
   label: Volume
   kind: action
+  command: "VOLM{level}__"
   params:
     - name: level
       type: integer
       description: 0-60
 
+- id: volume_query
+  label: Volume Query
+  kind: query
+  command: "VOLM____"
+  params: []
+
 - id: h_position
   label: H-Position
   kind: action
+  command: "HPOS{val}__"
   params:
-    - name: value
+    - name: val
       type: integer
-      description: Range varies by View Mode and signal type
+      description: Position value (range depends on View Mode / signal)
 
 - id: v_position
   label: V-Position
   kind: action
+  command: "VPOS{val}__"
   params:
-    - name: value
+    - name: val
       type: integer
-      description: Range varies by View Mode and signal type
+      description: Position value (range depends on View Mode / signal)
 
-- id: clock
+- id: clock_pc
   label: Clock (PC mode)
   kind: action
+  command: "CLCK{val}__"
   params:
-    - name: value
+    - name: val
       type: integer
-      description: 0-180
+      description: 0-180, PC mode only
 
-- id: phase
+- id: phase_pc
   label: Phase (PC mode)
   kind: action
+  command: "PHSE{val}__"
   params:
-    - name: value
+    - name: val
       type: integer
-      description: 0-40
+      description: 0-40, PC mode only
 
-- id: viewmode
-  label: View Mode
+- id: view_mode
+  label: View Mode (Wide)
   kind: action
+  command: "WIDE{m}___"
   params:
-    - name: mode
+    - name: m
       type: integer
-      description: 0=Toggle, 1=Side Bar[AV], 2=S.Stretch[AV], 3=Zoom[AV], 4=Stretch[AV], 5=Normal[PC], 6=Zoom[PC], 7=Stretch[PC], 8=Dot by Dot[PC], 9=Full Screen[AV]
+      description: 0=Toggle[AV], 1=Side Bar[AV], 2=S.Stretch[AV], 3=Zoom[AV], 4=Stretch[AV], 5=Normal[PC], 6=Zoom[PC], 7=Stretch[PC], 8=Dot by Dot[PC/AV], 9=Full Screen[AV]
 
 - id: mute
   label: Mute
   kind: action
+  command: "MUTE{m}___"
   params:
-    - name: value
+    - name: m
       type: integer
       description: 0=Toggle, 1=On, 2=Off
+
+- id: mute_query
+  label: Mute Query
+  kind: query
+  command: "MUTE____"
+  params: []
 
 - id: surround
   label: Surround
   kind: action
+  command: "ACSU{m}___"
   params:
-    - name: value
+    - name: m
       type: integer
       description: 0=Toggle, 1=On, 3=Off
 
 - id: audio_selection
-  label: Audio Selection
+  label: Audio Selection (Toggle)
   kind: action
+  command: "ACHA____"
   params: []
 
 - id: sleep_timer
   label: Sleep Timer
   kind: action
+  command: "OFTM{m}___"
   params:
-    - name: minutes
+    - name: m
       type: integer
-      description: 0=Off, 1=30, 2=60, 3=90, 4=120 (min)
+      description: 0=Off, 1=30min, 2=60min, 3=90min, 4=120min
 
-- id: analog_air_cable_ch
-  label: Analog Air/Cable Channel
+- id: analog_air_channel
+  label: Analog Air Channel
   kind: action
+  command: "ACCH{val}__"
   params:
-    - name: channel
+    - name: val
       type: integer
-      description: Air Analog 2-69ch, Cable Analog 1-135ch
+      description: Channel 2-69 (Air Analog)
 
-- id: analog_cable_ch
+- id: analog_cable_channel
   label: Analog Cable Channel
   kind: action
+  command: "ACCC{val}__"
   params:
-    - name: channel
+    - name: val
       type: integer
-      description: 1-135ch
+      description: Channel 1-135 (Cable Analog)
 
-- id: digital_air_ch
+- id: digital_air_channel
   label: Digital Air Channel
   kind: action
+  command: "DCCH{val}__"
   params:
-    - name: channel
+    - name: val
       type: integer
-      description: 2-69ch (major channel only)
+      description: Major channel 2-69 (Air Digital)
 
-- id: digital_cable_ch
+- id: digital_cable_channel
   label: Digital Cable Channel
   kind: action
+  command: "DCCC{val}__"
   params:
-    - name: channel
+    - name: val
       type: integer
-      description: 1-135ch (major channel only)
+      description: Major channel 1-135 (Cable Digital)
 
-- id: ch_updown
+- id: channel_up_down
   label: Channel Up/Down
   kind: action
+  command: "CHUP{d}___"
   params:
-    - name: direction
+    - name: d
       type: integer
-      description: 0=Down, 1=Up
+      description: 0=Channel Down, 1=Channel Up
 
 - id: opc
-  label: OPC (Optical Picture Control)
+  label: OPC (Backlight Sensor)
   kind: action
+  command: "OPC_{m}___"
   params:
-    - name: value
+    - name: m
       type: integer
       description: 0=Off, 1=On, 2=On:Display
 
 - id: backlight
   label: Backlight
   kind: action
+  command: "RCBC{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-16
 
 - id: contrast
   label: Contrast
   kind: action
+  command: "CONT{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-40
 
 - id: brightness
   label: Brightness
   kind: action
+  command: "BRIT{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-30
 
 - id: color
   label: Color
   kind: action
+  command: "COLR{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-30
 
 - id: tint
   label: Tint
   kind: action
+  command: "TINT{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-30
 
 - id: sharpness
   label: Sharpness
   kind: action
+  command: "SHRP{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: 0-10
-
-- id: h_position_pc
-  label: H-Position (PC)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Range varies by View Mode and signal type
-
-- id: v_position_pc
-  label: V-Position (PC)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Range varies by View Mode and signal type
-
-- id: clock_pc
-  label: Clock (PC)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0-180
-
-- id: phase_pc
-  label: Phase (PC)
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0-40
 
 - id: color_temperature
   label: Color Temperature
   kind: action
+  command: "CTMP{m}___"
   params:
-    - name: value
+    - name: m
       type: integer
       description: 0=High, 1=Mid-High, 2=Middle, 3=Mid-Low, 4=Low
 
 - id: fine_motion_advanced
   label: Fine Motion Advanced
   kind: action
+  command: "FMOD{m}___"
   params:
-    - name: value
+    - name: m
       type: integer
       description: 0=Off, 1=On
 
 - id: digital_noise_reduction
   label: Digital Noise Reduction
   kind: action
+  command: "DNRE{m}___"
   params:
-    - name: level
+    - name: m
       type: integer
       description: 0=Off, 1=Low, 2=High
 
 - id: treble
   label: Treble
   kind: action
+  command: "TREB{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: -15 to +15
 
 - id: bass
   label: Bass
   kind: action
+  command: "BASS{val}__"
   params:
-    - name: level
+    - name: val
       type: integer
       description: -15 to +15
 
 - id: balance
   label: Balance
   kind: action
+  command: "BALC{val}__"
   params:
-    - name: value
+    - name: val
       type: integer
-      description: L30 to R30
+      description: L30 (-30) to R30 (+30)
 ```
 
 ## Feedbacks
 ```yaml
-- id: response_code
+- id: ack_ok
   type: enum
-  values:
-    - OK
-    - ERR
-  description: All commands return either OK or ERR
+  values: [ok]
+  description: Normal response `OK\r`
 
-- id: query_response
-  type: string
-  description: When "?" is used as parameter, current setting value is returned
+- id: ack_err
+  type: enum
+  values: [err]
+  description: Problem response `ERR\r` (communication error, incorrect command, or out-of-range parameter)
 ```
 
 ## Variables
 ```yaml
-# All settable parameters also support query via "?" parameter
-# See Actions section for parameter ranges
+# UNRESOLVED: no continuous variable pool defined separately from action parameters in source.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described in source
+# UNRESOLVED: source does not document unsolicited notifications.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences documented in source
+# UNRESOLVED: source does not document multi-step sequences.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings, interlock procedures, or power-on sequencing documented
+# UNRESOLVED: source contains no safety warnings or interlock procedures.
 ```
 
 ## Notes
-Command format: 8 ASCII bytes + CR (0DH). Structure: C1 C2 C3 C4 P1 P2 P3 P4. Parameter aligned left, padded with spaces. Use `?` in parameter position to query current value.
-
-RS-232C connector: 9-pin D-sub male. Do not send multiple commands simultaneously — wait for OK response before sending next command.
-
-UNDERSCORE in parameter column requires SPACE character input.
-ASTERISK in parameter column requires numeric value within specified range.
-X in parameter column accepts any numeric value.
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: fault behavior and error recovery sequences not documented -->
-<!-- UNRESOLVED: OPC (Optical Picture Control) sensor details not documented -->
+- Command frame: 8 ASCII codes + CR (0x0D). Layout `C1 C2 C3 C4 P1 P2 P3 P4 \r`.
+- `_` in parameter column = space; pad parameter left-aligned, fill remainder with blanks.
+- `*` in parameter column = enter a value from the range in CONTROL CONTENTS.
+- `x` in parameter column = any numerical value (used as a placeholder slot).
+- `?` for parameter = query; device returns current setting value.
+- Out-of-range parameter returns `ERR`.
+- Send one command at a time; wait for `OK` before sending next.
+- Connector: RS-232C 9-pin D-sub male (use cross-type cable to PC).
+- H-POSITION / V-POSITION / CLOCK / PHASE valid ranges depend on current View Mode and input signal; see on-screen position-setting menu for actual range.
+- Source lists HPOS/VPOS/CLCK/PHSE once in AV section and again labeled "(PC)"; they are the same 4-letter opcodes with PC-mode value-range note. Listed here once each.
+<!-- UNRESOLVED: power-on-accepted behavior — `RSPW1` must be sent before `POWR1` is honored when TV is in standby rejection mode; exact timing not documented. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
-  - business.sharpusa.com
+  - files.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-05-31T21:11:58.166Z
+  - http://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/LCDTVs/Manuals/tel_man_LC46_52_65SE94U.pdf
+retrieved_at: 2026-05-26T01:57:34.704Z
+last_checked_at: 2026-06-02T05:46:13.171Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T21:11:58.166Z
+checked_at: 2026-06-02T05:46:13.171Z
 matched_actions: 41
 action_count: 41
-confidence: high
-summary: "All 41 spec actions match command table entries one-to-one; all transport parameters verified in source; complete bidirectional coverage."
+confidence: medium
+summary: "All 41 spec actions matched verbatim in source command table; transport parameters verified; full opcode coverage. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware compatibility range not stated."
+- "no continuous variable pool defined separately from action parameters in source."
+- "source does not document unsolicited notifications."
+- "source does not document multi-step sequences."
+- "source contains no safety warnings or interlock procedures."
+- "power-on-accepted behavior — `RSPW1` must be sent before `POWR1` is honored when TV is in standby rejection mode; exact timing not documented."
 ```
 
 ---

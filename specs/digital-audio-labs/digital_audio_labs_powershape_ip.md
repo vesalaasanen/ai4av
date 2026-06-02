@@ -19,19 +19,26 @@ source_domains:
   - digitalaudio.com
 source_urls:
   - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
-retrieved_at: 2026-05-04T18:03:06.286Z
+retrieved_at: 2026-04-30T04:31:37.803Z
 last_checked_at: 2026-04-24T14:41:25.165Z
 generated_at: 2026-04-24T14:41:25.165Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "IR remote control is described but not machine-protocol; excluded from this spec"
+  - "the source describes no unsolicited event messages."
+  - "no explicit multi-step macros described in source"
+  - "no formal interlock procedure described in source"
+  - "IR remote control uses NEC protocol — documented for user convenience but not machine-protocol; excluded from this spec"
+  - "specific firmware version compatibility not stated in source"
+  - "default VU meter state (rate=0, reports off) on power-on not explicitly confirmed"
 verification:
   verdict: verified
   checked_at: 2026-04-24T14:41:25.165Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual."
+  confidence: medium
+  summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -737,7 +744,7 @@ source_domains:
   - digitalaudio.com
 source_urls:
   - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
-retrieved_at: 2026-05-04T18:03:06.286Z
+retrieved_at: 2026-04-30T04:31:37.803Z
 last_checked_at: 2026-04-24T14:41:25.165Z
 ```
 
@@ -748,14 +755,20 @@ verdict: verified
 checked_at: 2026-04-24T14:41:25.165Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual."
+confidence: medium
+summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "IR remote control is described but not machine-protocol; excluded from this spec"
+- "the source describes no unsolicited event messages."
+- "no explicit multi-step macros described in source"
+- "no formal interlock procedure described in source"
+- "IR remote control uses NEC protocol — documented for user convenience but not machine-protocol; excluded from this spec"
+- "specific firmware version compatibility not stated in source"
+- "default VU meter state (rate=0, reports off) on power-on not explicitly confirmed"
 ```
 
 ---

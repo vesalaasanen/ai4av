@@ -16,25 +16,29 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - cdn.shopify.com
   - classic.mybluebolt.com
 source_urls:
-  - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_F1500-UPS_manual.pdf?v=1723587516"
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
-  - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S-2400S_com-prot.pdf?v=1725473819"
-retrieved_at: 2026-05-19T04:33:34.064Z
+retrieved_at: 2026-05-14T16:38:53.229Z
 last_checked_at: 2026-05-20T12:14:52.596Z
 generated_at: 2026-05-20T12:14:52.596Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 serial parameters (baud/data bits/parity/stop bits) not stated for SmartLink downstream communication"
+  - "no standalone settable parameters documented - all config via actions/queries"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures stated in source"
+  - "RS-232 serial config (baud/parity/data bits/stop bits) for SmartLink chain not stated in source"
+  - "authentication token format for BlueBOLT cloud not applicable to local UDP control"
+  - "binary command encoding (HDLC framing) not fully documented — only XML text layer shown"
 verification:
   verdict: verified
   checked_at: 2026-05-20T12:14:52.596Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 actions matched; transport verified."
+  confidence: medium
+  summary: "All 18 actions matched; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -529,13 +533,10 @@ BB-RS232 is an IP-to-SmartLink gateway. Downstream Furman Contractor Series devi
 
 ```yaml
 source_domains:
-  - cdn.shopify.com
   - classic.mybluebolt.com
 source_urls:
-  - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_F1500-UPS_manual.pdf?v=1723587516"
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
-  - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S-2400S_com-prot.pdf?v=1725473819"
-retrieved_at: 2026-05-19T04:33:34.064Z
+retrieved_at: 2026-05-14T16:38:53.229Z
 last_checked_at: 2026-05-20T12:14:52.596Z
 ```
 
@@ -546,14 +547,20 @@ verdict: verified
 checked_at: 2026-05-20T12:14:52.596Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 actions matched; transport verified."
+confidence: medium
+summary: "All 18 actions matched; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 serial parameters (baud/data bits/parity/stop bits) not stated for SmartLink downstream communication"
+- "no standalone settable parameters documented - all config via actions/queries"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings or interlock procedures stated in source"
+- "RS-232 serial config (baud/parity/data bits/stop bits) for SmartLink chain not stated in source"
+- "authentication token format for BlueBOLT cloud not applicable to local UDP control"
+- "binary command encoding (HDLC framing) not fully documented — only XML text layer shown"
 ```
 
 ---

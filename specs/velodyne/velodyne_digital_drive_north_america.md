@@ -26,14 +26,21 @@ last_checked_at: 2026-04-27T10:13:18.285Z
 generated_at: 2026-04-27T10:13:18.285Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version stated"
+  - "flow control not mentioned in source"
+  - "no additional settable parameters found in source"
+  - "no unsolicited notifications described in source"
+  - "no multi-step macros described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "response format for query commands not explicitly documented"
 verification:
   verdict: verified
   checked_at: 2026-04-27T10:13:18.285Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete."
+  confidence: medium
+  summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -261,14 +268,20 @@ verdict: verified
 checked_at: 2026-04-27T10:13:18.285Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete."
+confidence: medium
+summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version stated"
+- "flow control not mentioned in source"
+- "no additional settable parameters found in source"
+- "no unsolicited notifications described in source"
+- "no multi-step macros described in source"
+- "no safety warnings or interlock procedures in source"
+- "response format for query commands not explicitly documented"
 ```
 
 ---

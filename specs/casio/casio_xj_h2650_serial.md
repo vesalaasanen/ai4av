@@ -19,19 +19,26 @@ source_domains:
   - support.casio.com
 source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
-retrieved_at: 2026-05-04T15:21:02.043Z
+retrieved_at: 2026-05-20T00:27:05.504Z
 last_checked_at: 2026-05-22T13:30:17.445Z
 generated_at: 2026-05-22T13:30:17.445Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variants supported not stated beyond XJ-H2650"
+  - "no unsolicited event/notification protocol described in source"
+  - "no multi-step sequences described in source"
+  - "exact cooldown duration not stated in source"
+  - "exact cooldown time after power off not stated"
+  - "response timeout duration not stated"
+  - "maximum command queue depth not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-22T13:30:17.445Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented."
+  confidence: medium
+  summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -279,7 +286,7 @@ source_domains:
   - support.casio.com
 source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
-retrieved_at: 2026-05-04T15:21:02.043Z
+retrieved_at: 2026-05-20T00:27:05.504Z
 last_checked_at: 2026-05-22T13:30:17.445Z
 ```
 
@@ -290,14 +297,20 @@ verdict: verified
 checked_at: 2026-05-22T13:30:17.445Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented."
+confidence: medium
+summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variants supported not stated beyond XJ-H2650"
+- "no unsolicited event/notification protocol described in source"
+- "no multi-step sequences described in source"
+- "exact cooldown duration not stated in source"
+- "exact cooldown time after power off not stated"
+- "response timeout duration not stated"
+- "maximum command queue depth not stated"
 ```
 
 ---

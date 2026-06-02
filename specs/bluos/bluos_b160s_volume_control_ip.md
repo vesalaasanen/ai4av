@@ -19,19 +19,24 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T18:12:34.045Z
 last_checked_at: 2026-05-16T17:23:03.849Z
 generated_at: 2026-05-16T17:23:03.849Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "The source document is the BluOS Custom Integration API v1.7 and does not contain B160S-specific hardware details (physical I/O count, amplifier specs, supported input types for this model). Commands for firmware v3.8.0 vs v4.2.0 branches are documented for external input selection; exact firmware compatibility ranges for other endpoints are not stated."
+  - "no unsolicited push/WebSocket notifications documented; polling is the only mechanism."
+  - "no multi-step macro sequences explicitly described in source."
+  - "no power interlock or sequencing requirements stated in source."
+  - "B160S-specific hardware capabilities (number of analog/optical/HDMI inputs, amplifier specs) not documented in this API reference. The source is a generic BluOS CI API guide; B160S model-specific constraints are not stated."
 verification:
   verdict: verified
   checked_at: 2026-05-16T17:23:03.849Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed."
+  confidence: medium
+  summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -563,7 +568,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T18:12:34.045Z
 last_checked_at: 2026-05-16T17:23:03.849Z
 ```
 
@@ -574,14 +579,18 @@ verdict: verified
 checked_at: 2026-05-16T17:23:03.849Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed."
+confidence: medium
+summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "The source document is the BluOS Custom Integration API v1.7 and does not contain B160S-specific hardware details (physical I/O count, amplifier specs, supported input types for this model). Commands for firmware v3.8.0 vs v4.2.0 branches are documented for external input selection; exact firmware compatibility ranges for other endpoints are not stated."
+- "no unsolicited push/WebSocket notifications documented; polling is the only mechanism."
+- "no multi-step macro sequences explicitly described in source."
+- "no power interlock or sequencing requirements stated in source."
+- "B160S-specific hardware capabilities (number of analog/optical/HDMI inputs, amplifier specs) not documented in this API reference. The source is a generic BluOS CI API guide; B160S model-specific constraints are not stated."
 ```
 
 ---

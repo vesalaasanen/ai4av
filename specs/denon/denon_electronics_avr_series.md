@@ -33,14 +33,26 @@ last_checked_at: 2026-05-14T18:17:15.435Z
 generated_at: 2026-05-14T18:17:15.435Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "full surround mode parameter list is model-dependent; this spec lists common parameters only"
+  - "NS (network/USB/iPod/Bluetooth) on-screen display data format is complex binary; represented as opaque here"
+  - "many PS parameters are settable variables but are already represented as actions above"
+  - "no explicit multi-step macro sequences defined in source"
+  - "no explicit safety interlock procedures stated in source beyond timing constraints"
+  - "full model-by-model command compatibility not represented; source has per-model checkmark columns"
+  - "HD Radio commands are North America model only, not fully enumerated here"
+  - "Zone 2 bass/treble (Z2PS), channel setting (Z2CS), HPF (Z2HPF), HDMI audio (Z2HDA), sleep (Z2SLP), auto standby (Z2STBY) not enumerated as separate actions"
+  - "Zone 3 equivalents of Zone 2 sub-commands not enumerated"
+  - "PS commands for Audyssey DSX, Stage Width/Height, Graphic EQ, Room Size, Auro-3D preset/strength not enumerated"
+  - "PV Hue, DNR, Enhancer sub-commands not enumerated"
+  - "NS on-screen display binary flag format not fully decoded"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.435Z
   matched_actions: 141
   action_count: 141
-  confidence: high
-  summary: "All 173 spec actions have literal matches in source; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 173 spec actions have literal matches in source; transport parameters verified; bidirectional coverage complete. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1240,14 +1252,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.435Z
 matched_actions: 141
 action_count: 141
-confidence: high
-summary: "All 173 spec actions have literal matches in source; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 173 spec actions have literal matches in source; transport parameters verified; bidirectional coverage complete. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "full surround mode parameter list is model-dependent; this spec lists common parameters only"
+- "NS (network/USB/iPod/Bluetooth) on-screen display data format is complex binary; represented as opaque here"
+- "many PS parameters are settable variables but are already represented as actions above"
+- "no explicit multi-step macro sequences defined in source"
+- "no explicit safety interlock procedures stated in source beyond timing constraints"
+- "full model-by-model command compatibility not represented; source has per-model checkmark columns"
+- "HD Radio commands are North America model only, not fully enumerated here"
+- "Zone 2 bass/treble (Z2PS), channel setting (Z2CS), HPF (Z2HPF), HDMI audio (Z2HDA), sleep (Z2SLP), auto standby (Z2STBY) not enumerated as separate actions"
+- "Zone 3 equivalents of Zone 2 sub-commands not enumerated"
+- "PS commands for Audyssey DSX, Stage Width/Height, Graphic EQ, Room Size, Auro-3D preset/strength not enumerated"
+- "PV Hue, DNR, Enhancer sub-commands not enumerated"
+- "NS on-screen display binary flag format not fully decoded"
 ```
 
 ---

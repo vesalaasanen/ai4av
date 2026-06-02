@@ -16,24 +16,34 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+retrieved_at: 2026-05-04T05:54:39.218Z
 last_checked_at: 2026-05-04T05:54:39.218Z
 generated_at: 2026-05-04T05:54:39.218Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "model-specific IR command support varies by TV — user manual required for full IR compatibility; UNRESOLVED: whether TCP/IP control is available on this model"
+  - "no unsolicited event/notification structure described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "TCP/IP control availability — source documents only RS-232 and IR"
+  - "firmware version compatibility — doc applies to multiple Hisense series"
+  - "IR command Pronto CCF hex encoding details beyond hex code table"
+  - "error code enumeration for EROR responses"
+  - "Event/unsolicited notification structure if any"
 verification:
   verdict: verified
   checked_at: 2026-05-04T05:54:39.218Z
   matched_actions: 43
   action_count: 43
-  confidence: high
-  summary: "All 43 spec actions matched; transport verified."
+  confidence: medium
+  summary: "All 43 spec actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -491,12 +501,13 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+retrieved_at: 2026-05-04T05:54:39.218Z
 last_checked_at: 2026-05-04T05:54:39.218Z
 ```
 
@@ -507,14 +518,22 @@ verdict: verified
 checked_at: 2026-05-04T05:54:39.218Z
 matched_actions: 43
 action_count: 43
-confidence: high
-summary: "All 43 spec actions matched; transport verified."
+confidence: medium
+summary: "All 43 spec actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "model-specific IR command support varies by TV — user manual required for full IR compatibility; UNRESOLVED: whether TCP/IP control is available on this model"
+- "no unsolicited event/notification structure described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "TCP/IP control availability — source documents only RS-232 and IR"
+- "firmware version compatibility — doc applies to multiple Hisense series"
+- "IR command Pronto CCF hex encoding details beyond hex code table"
+- "error code enumeration for EROR responses"
+- "Event/unsolicited notification structure if any"
 ```
 
 ---

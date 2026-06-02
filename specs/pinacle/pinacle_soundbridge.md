@@ -26,14 +26,18 @@ last_checked_at: 2026-05-14T18:17:19.721Z
 generated_at: 2026-05-14T18:17:19.721Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "manufacturer stated as \"Roku\" in source; input specified \"Pinacle\" — using input value"
+  - "serial baud rate, data bits, parity, stop bits not stated in source"
+  - "TCP port 4444 not listed in main transport block — alternate RCP shell port"
+  - "manufacturer discrepancy — source says \"Roku\", input says \"Pinacle\""
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.721Z
   matched_actions: 141
   action_count: 141
-  confidence: high
-  summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage."
+  confidence: medium
+  summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1178,14 +1182,17 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.721Z
 matched_actions: 141
 action_count: 141
-confidence: high
-summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage."
+confidence: medium
+summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "manufacturer stated as \"Roku\" in source; input specified \"Pinacle\" — using input value"
+- "serial baud rate, data bits, parity, stop bits not stated in source"
+- "TCP port 4444 not listed in main transport block — alternate RCP shell port"
+- "manufacturer discrepancy — source says \"Roku\", input says \"Pinacle\""
 ```
 
 ---

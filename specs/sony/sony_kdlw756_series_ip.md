@@ -16,14 +16,12 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net
+retrieved_at: 2026-06-02T05:42:04.409Z
 last_checked_at: 2026-05-31T22:30:32.178Z
 generated_at: 2026-05-31T22:30:32.178Z
 firmware_coverage: "Not stated in source"
@@ -31,25 +29,29 @@ protocol_coverage: []
 known_gaps:
   - BADR
   - MADR
+  - "protocol may share variants across the broader BRAVIA Professional Displays line; for EU models the available command set depends on the RED-DA compliance specification (3 variants)."
+  - "no safety warnings, interlocks, or power-on sequencing requirements documented in source."
+  - "complete enumeration of every supported IR code; the table above reflects the codes documented in the source excerpt."
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:30:32.178Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched to their corresponding source commands (IRCC, POWR, TPOW, VOLU, AMUT, INPT, PMUT, TPMU, SCEN); transport verified; 2 unrepresented network diagnostic commands (BADR, MADR) are orthogonal to core AV control."
+  confidence: medium
+  summary: "All 15 spec actions matched to their corresponding source commands (IRCC, POWR, TPOW, VOLU, AMUT, INPT, PMUT, TPMU, SCEN); transport verified; 2 unrepresented network diagnostic commands (BADR, MADR) are orthogonal to core AV control. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-26
+created_at: 2026-06-02
 ---
 
 # Sony KDLW756 Series Control Spec
 
 ## Summary
-Sony Bravia Professional Display controlled over local network via Simple IP Control. TCP port 20060. Fixed 24-byte message format. Supports power, volume, mute, input routing, picture mute, scene settings, and IR command passthrough.
 
-<!-- UNRESOLVED: EU models have RED-DA variant specs with different commands; not documented here -->
+The Sony KDLW756 Series is a BRAVIA Professional Display monitor. This spec covers Sony's Simple IP Control protocol — a 24-byte fixed-frame TCP protocol on port 20060 — used to control power, input, volume, mute, picture mute, scene setting, and to send IR-equivalent codes. The KDLW756 implements Simple IP Control as part of the broader BRAVIA Professional Displays family.
+
+<!-- UNRESOLVED: protocol may share variants across the broader BRAVIA Professional Displays line; for EU models the available command set depends on the RED-DA compliance specification (3 variants). -->
 
 ## Transport
 ```yaml
@@ -61,255 +63,322 @@ auth:
   type: none  # inferred: no auth procedure in source
 ```
 
+Message framing — 24-byte fixed-size frames with the following byte layout:
+- Byte 0-1: Header `0x2A 0x53` (`*S`, fixed)
+- Byte 2: Message type — `0x43` C (Control), `0x45` E (Enquiry), `0x41` A (Answer), `0x4E` N (Notify)
+- Byte 3-6: 4-character FourCC command identifier
+- Byte 7-22: 16-byte parameter area
+- Byte 23: Footer `0x0A` (LF, fixed)
+
+ASCII rendering: `*S{type}{fourcc}{16-char params}\n`. Numeric parameter areas are zero-padded on the left; string parameter areas are padded on the right with `#`.
+
 ## Traits
 ```yaml
-- powerable
-- queryable
-- levelable
-- routable
+- powerable       # setPowerStatus, togglePowerStatus
+- routable        # setInput
+- queryable       # getPowerStatus, getAudioVolume, getAudioMute, getInput, getPictureMute, getSceneSetting, getBroadcastAddress, getMacAddress
+- levelable       # setAudioVolume
 ```
 
 ## Actions
 ```yaml
-- id: setPowerStatus
+- id: set_power_status
   label: Set Power Status
   kind: action
+  command: "*SCPOWR{power}\n"
   params:
     - name: power
-      type: integer
-      description: "0 = Standby (Off), 1 = Active (On)"
+      type: string
+      description: "16-character zero-padded decimal; rightmost digit is 0=Standby, 1=Active. Example: '0000000000000000' or '0000000000000001'."
 
-- id: getPowerStatus
+- id: get_power_status
   label: Get Power Status
-  kind: action
+  kind: query
+  command: "*SEPOWR0000000000000000\n"
   params: []
 
-- id: togglePowerStatus
+- id: toggle_power_status
   label: Toggle Power Status
   kind: action
+  command: "*SCTPOW0000000000000000\n"
   params: []
 
-- id: setAudioVolume
+- id: set_audio_volume
   label: Set Audio Volume
   kind: action
+  command: "*SCVOLU{volume}\n"
   params:
     - name: volume
-      type: integer
-      description: Decimal value, zero-padded left (e.g., 0000000000000029)
+      type: string
+      description: "16-digit zero-padded decimal. Source example: '0000000000000029'. Source does not state a min/max value."
 
-- id: getAudioVolume
+- id: get_audio_volume
   label: Get Audio Volume
-  kind: action
+  kind: query
+  command: "*SEVOLU0000000000000000\n"
   params: []
 
-- id: setAudioMute
+- id: set_audio_mute
   label: Set Audio Mute
   kind: action
+  command: "*SCAMUT{mute}\n"
   params:
     - name: mute
-      type: integer
-      description: "0 = Unmute, 1 = Mute"
+      type: string
+      description: "16-character zero-padded decimal; rightmost digit is 0=Unmute, 1=Mute."
 
-- id: getAudioMute
+- id: get_audio_mute
   label: Get Audio Mute
-  kind: action
+  kind: query
+  command: "*SEAMUT0000000000000000\n"
   params: []
 
-- id: setInput
+- id: set_input
   label: Set Input
   kind: action
+  command: "*SCINPT0000000{type}0000{number}\n"
   params:
-    - name: input
+    - name: type
       type: integer
-      description: "1 = HDMI, 3 = Composite, 4 = Component, 5 = Screen Mirroring"
+      values: [1, 3, 4, 5]
+      description: "Input type - 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring. Single character at byte 14 of the parameter area."
+    - name: number
+      type: integer
+      range: [1, 9999]
+      description: "Input number (1-9999), 4-digit zero-padded decimal at bytes 19-22 of the parameter area."
 
-- id: getInput
+- id: get_input
   label: Get Input
-  kind: action
+  kind: query
+  command: "*SEINPT0000000000000000\n"
   params: []
 
-- id: setPictureMute
+- id: set_picture_mute
   label: Set Picture Mute
   kind: action
+  command: "*SCPMUT{state}\n"
   params:
-    - name: mute
-      type: integer
-      description: "0 = Disable, 1 = Enable (black screen)"
+    - name: state
+      type: string
+      description: "16-character zero-padded decimal; rightmost digit is 0=Disable picture mute, 1=Enable picture mute (screen black)."
 
-- id: getPictureMute
+- id: get_picture_mute
   label: Get Picture Mute
-  kind: action
+  kind: query
+  command: "*SEPMUT0000000000000000\n"
   params: []
 
-- id: togglePictureMute
+- id: toggle_picture_mute
   label: Toggle Picture Mute
   kind: action
+  command: "*SCTPMU0000000000000000\n"
   params: []
 
-- id: setSceneSetting
+- id: set_scene_setting
   label: Set Scene Setting
   kind: action
+  command: "*SCSCEN{setting}\n"
   params:
-    - name: scene
+    - name: setting
       type: string
-      description: "auto, auto24pSync, general - case-sensitive, right-padded with #"
+      values:
+        - auto
+        - auto24pSync
+        - general
+      description: "Scene setting name (case-sensitive). Right-pad with `#` to fill 16 chars. Source example: 'auto24pSync#####'."
 
-- id: getSceneSetting
+- id: get_scene_setting
   label: Get Scene Setting
-  kind: action
+  kind: query
+  command: "*SESCEN0000000000000000\n"
   params: []
 
-- id: setIrccCode
-  label: Send IR Command
+- id: set_ircc_code
+  label: Send IR-Equivalent Code
   kind: action
+  command: "*SCIRCC{ir_code}\n"
   params:
-    - name: code
-      type: integer
-      description: IR command code (see IR Commands table)
+    - name: ir_code
+      type: string
+      description: "16-digit zero-padded decimal IR code. See the IR command table in Notes for valid values."
+
+- id: get_broadcast_address
+  label: Get Broadcast Address
+  kind: query
+  command: "*SEBADRETH00000000000000\n"
+  params: []
+
+- id: get_mac_address
+  label: Get MAC Address
+  kind: query
+  command: "*SEMADRETH00000000000000\n"
+  params: []
 ```
 
 ## Feedbacks
 ```yaml
-- id: powerState
+- id: power_state
   type: enum
-  values:
-    - "0"
-    - "1"
-  labels:
-    - "Standby (Off)"
-    - "Active (On)"
+  values: [standby, active]
+  # Answer format: *SAPOWR{16-pad}\n - rightmost char 0=standby, 1=active.
+  # Source: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 | Standby (Off)"
 
-- id: audioVolume
+- id: audio_volume
   type: integer
-  description: Current volume value
+  # Answer format: *SAVOLU{volume}\n - 16-digit zero-padded decimal.
+  # Source: "X X X X X X X X X X X X X X X X | Success with volume value."
 
-- id: audioMuteState
+- id: audio_mute
   type: enum
-  values:
-    - "0"
-    - "1"
-  labels:
-    - "Not Muted"
-    - "Muted"
+  values: [unmuted, muted]
+  # Answer format: *SAAMUT{16-pad}\n - rightmost char 0=unmuted, 1=muted.
 
-- id: inputState
+- id: current_input
+  type: object
+  # Answer format: *SAINPT0000000{type}0000{number}\n - type 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring; number 1-9999.
+
+- id: picture_mute
   type: enum
-  values:
-    - "1"
-    - "3"
-    - "4"
-    - "5"
-  labels:
-    - "HDMI"
-    - "Composite"
-    - "Component"
-    - "Screen Mirroring"
+  values: [disabled, enabled]
+  # Answer format: *SAPMUT{16-pad}\n - rightmost char 0=disabled, 1=enabled.
 
-- id: pictureMuteState
-  type: enum
-  values:
-    - "0"
-    - "1"
-  labels:
-    - "Disabled"
-    - "Enabled"
-
-- id: sceneSetting
+- id: scene_setting
   type: string
-  description: Current scene setting value
+  # Answer format: *SASCEN{16-pad}\n - scene name right-padded with `#` in 16-byte area.
 
-- id: broadcastAddress
+- id: broadcast_address
   type: string
-  description: IPv4 broadcast address of specified interface
+  # Answer format: *SABADR{16-pad}\n - IPv4 address right-padded with `#`.
+  # Source example: "1 9 2 . 1 6 8 . 0 . 1 4 # # # #" (192.168.0.14 + 4 #s).
 
-- id: macAddress
+- id: mac_address
   type: string
-  description: MAC address of specified interface
+  # Answer format: *SAMADR{16-pad}\n - MAC address right-padded with `#`.
 
-- id: commandResult
+- id: command_result
   type: enum
-  values:
-    - "0000000000000000"
-    - "FFFFFFFFFFFFFFFF"
-    - "NNNNNNNNNNNNNNNN"
-  labels:
-    - "Success"
-    - "Error"
-    - "Not Found / Not Available"
-```
-
-## Variables
-```yaml
-# UNRESOLVED: no standalone settable parameters beyond action params
+  values: [success, error, not_found, not_available]
+  # Common Answer (A) result for any control command.
+  # Parameter area: 16 x '0' = success, 16 x 'F' = error, 16 x 'N' = not found or not available for current input.
 ```
 
 ## Events
 ```yaml
-- id: firePowerChange
+- id: fire_power_change
   type: notify
-  params:
-    - name: state
-      type: integer
-      description: "0 = Powering off, 1 = Powering on"
+  command: "*SNPOWR{state}\n"
+  description: "Sent by the monitor on power state change. Rightmost char 0=powering off, 1=powering on."
 
-- id: fireInputChange
+- id: fire_input_change
   type: notify
-  params:
-    - name: input
-      type: integer
-      description: "1 = HDMI, 3 = Composite, 4 = Component, 5 = Screen Mirroring"
+  command: "*SNINPT{input}\n"
+  description: "Sent by the monitor on input change. Format: 16 x '0' for a generic change, or 0000000{type}0000{number} for the new input (type 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring; number 1-9999)."
 
-- id: fireVolumeChange
+- id: fire_volume_change
   type: notify
-  params:
-    - name: volume
-      type: integer
-      description: Current volume value
+  command: "*SNVOLU{volume}\n"
+  description: "Sent by the monitor on volume change. 16-digit zero-padded decimal in the parameter area."
 
-- id: fireMuteChange
+- id: fire_mute_change
   type: notify
-  params:
-    - name: state
-      type: integer
-      description: "0 = Unmuting, 1 = Muting"
+  command: "*SNAMUT{state}\n"
+  description: "Sent by the monitor on mute change. Rightmost char 0=unmuting, 1=muting."
 
-- id: firePictureMuteChange
+- id: fire_picture_mute_change
   type: notify
-  params:
-    - name: state
-      type: integer
-      description: "0 = Enabling picture mute, 1 = Disabling picture mute"
+  command: "*SNPMUT{state}\n"
+  description: "Sent by the monitor on picture mute change. Rightmost char 0=enabled (screen black), 1=disabled (normal)."
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences documented in source
+# No explicit multi-step sequences documented in source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: no safety warnings, interlocks, or power-on sequencing requirements documented in source.
 ```
 
 ## Notes
-Message format: 24-byte fixed length. Header 0x2A 0x53 (`*S`). Footer 0x0A (LF). Byte[2] = message type: 0x43 (Control), 0x45 (Enquiry), 0x41 (Answer), 0x4E (Notify). Bytes[3-6] = FourCC command code. Bytes[7-22] = parameters (16 bytes). IR command codes are decimal values from the IR Commands table (e.g., Display=5, Home=6, Volume Up=48).
-<!-- UNRESOLVED: EU RED-DA compliance variant differences not documented -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+
+- The KDLW756 is part of Sony's BRAVIA Professional Displays line; Simple IP Control is shared across this family. Command availability may vary by firmware, model, and region.
+- EU area models ship with 3 RED-DA compliance specifications. Settings and available commands differ per specification. Refer to Sony's RED-DA page for the affected command set.
+- The protocol uses 24-byte fixed-size frames. ASCII representation is shown in the `command:` field; the LF character (`0x0A`) is the literal 24th byte.
+- Numeric parameter values are left-padded with `0`; string parameter values are right-padded with `#`. Always pad to fill the 16-byte parameter area.
+- `setIrccCode` (FourCC `IRCC`) takes a 16-digit zero-padded decimal IR code. The source's IR Commands table (16-byte param value, rightmost digits):
+  - `0000000000000005` Display
+  - `0000000000000006` Home
+  - `0000000000000007` Options
+  - `0000000000000008` Return
+  - `0000000000000009` Up
+  - `0000000000000010` Down
+  - `0000000000000011` Right
+  - `0000000000000012` Left
+  - `0000000000000013` Confirm
+  - `0000000000000014` Red
+  - `0000000000000015` Green
+  - `0000000000000016` Yellow
+  - `0000000000000017` Blue
+  - `0000000000000018` Num1
+  - `0000000000000019` Num2
+  - `0000000000000020` Num3
+  - `0000000000000021` Num4
+  - `0000000000000022` Num5
+  - `0000000000000023` Num6
+  - `0000000000000024` Num7
+  - `0000000000000025` Num8
+  - `0000000000000026` Num9
+  - `0000000000000027` Num0
+  - `0000000000000030` Volume Up
+  - `0000000000000031` Volume Down
+  - `0000000000000032` Mute
+  - `0000000000000033` Channel Up
+  - `0000000000000034` Channel Down
+  - `0000000000000035` Subtitle
+  - `0000000000000038` DOT
+  - `0000000000000050` Picture Off
+  - `0000000000000061` Wide
+  - `0000000000000062` Jump
+  - `0000000000000076` Sync Menu
+  - `0000000000000077` Forward
+  - `0000000000000078` Play
+  - `0000000000000079` Rewind
+  - `0000000000000080` Prev
+  - `0000000000000081` Stop
+  - `0000000000000082` Next
+  - `0000000000000084` Pause
+  - `0000000000000086` Flash Plus
+  - `0000000000000087` Flash Minus
+  - `0000000000000098` TV Power
+  - `0000000000000099` Audio
+  - `0000000000000101` Input
+  - `0000000000000104` Sleep
+  - `0000000000000105` Sleep Timer
+  - `0000000000000108` Video 2
+  - `0000000000000110` Picture Mode
+  - `0000000000000121` Demo Surround
+  - `0000000000000124` HDMI 1
+  - `0000000000000125` HDMI 2
+  - `0000000000000126` HDMI 3
+  - `0000000000000127` HDMI 4
+  - `0000000000000129` Action Menu
+  - `0000000000000130` Help
+
+<!-- UNRESOLVED: complete enumeration of every supported IR code; the table above reflects the codes documented in the source excerpt. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net
+retrieved_at: 2026-06-02T05:42:04.409Z
 last_checked_at: 2026-05-31T22:30:32.178Z
 ```
 
@@ -320,8 +389,8 @@ verdict: verified
 checked_at: 2026-05-31T22:30:32.178Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched to their corresponding source commands (IRCC, POWR, TPOW, VOLU, AMUT, INPT, PMUT, TPMU, SCEN); transport verified; 2 unrepresented network diagnostic commands (BADR, MADR) are orthogonal to core AV control."
+confidence: medium
+summary: "All 15 spec actions matched to their corresponding source commands (IRCC, POWR, TPOW, VOLU, AMUT, INPT, PMUT, TPMU, SCEN); transport verified; 2 unrepresented network diagnostic commands (BADR, MADR) are orthogonal to core AV control. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -329,6 +398,9 @@ summary: "All 15 spec actions matched to their corresponding source commands (IR
 ```yaml
 - BADR
 - MADR
+- "protocol may share variants across the broader BRAVIA Professional Displays line; for EU models the available command set depends on the RED-DA compliance specification (3 variants)."
+- "no safety warnings, interlocks, or power-on sequencing requirements documented in source."
+- "complete enumeration of every supported IR code; the table above reflects the codes documented in the source excerpt."
 ```
 
 ---

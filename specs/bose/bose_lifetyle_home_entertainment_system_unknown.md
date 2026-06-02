@@ -1,8 +1,8 @@
 ---
-spec_id: admin/bose-cd20
+spec_id: admin/bose-lifetyle-home-entertainment-system
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Bose CD20 (Lifestyle 20/25/30) Control Spec"
+title: "Bose Lifestyle Home Entertainment System Control Spec"
 manufacturer: Bose
 model_family: "Lifestyle 20"
 aliases: []
@@ -13,347 +13,457 @@ compatible_with:
     - "Lifestyle 20"
     - "Lifestyle 25"
     - "Lifestyle 30"
-  firmware: "\"6.1+\""
+  firmware: "\"6.1 or later\""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.boseprofessional.com
-  - assets.bosecreative.com
+  - eserviceinfo.com
+  - files.remotecentral.com
 source_urls:
-  - https://assets.boseprofessional.com/m/4998082f60dfee56/original/ControlSpace-Serial-Protocol-v5-13.pdf
-  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
-  - https://assets.bosecreative.com/m/496577402d128874/original/SoundTouch-Web-API.pdf
-retrieved_at: 2026-05-16T00:42:17.003Z
-last_checked_at: 2026-05-26T06:08:52.231Z
-generated_at: 2026-05-26T06:08:52.231Z
-firmware_coverage: "\"6.1+\""
+  - "https://www.eserviceinfo.com/preview_html.php?fileid=60281&previewid=31157"
+  - "https://files.remotecentral.com/view/7121-18700-1/bose_t_&_v-class_home_theater_systems.html"
+retrieved_at: 2026-05-22T15:53:45.910Z
+last_checked_at: 2026-06-02T00:05:05.749Z
+generated_at: 2026-06-02T00:05:05.749Z
+firmware_coverage: "\"6.1 or later\""
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source does not state pinout beyond ring/tip; full mechanical drawings not provided"
+  - "no settable parameter values documented in source beyond discrete"
+  - "source does not document any multi-step sequences or named macros."
+  - "full electrical specs (max cable length, drive current) not in source"
+  - "ACK timeout value not specified — controller must choose its own wait timeout"
+  - "behavior when ACK not received within timeout (retry? abort?) not in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-26T06:08:52.231Z
-  matched_actions: 32
-  action_count: 32
-  confidence: high
-  summary: "All 32 spec actions matched verbatim to source TABLE 2 remote codes and TAP mode commands; baud/parity/bits/duplex verified; complete coverage of documented control set."
+  checked_at: 2026-06-02T00:05:05.749Z
+  matched_actions: 44
+  action_count: 44
+  confidence: medium
+  summary: "All 44 spec actions match literally with source Table 2 remote codes and section 5 TAP protocol; all transport parameters verified; complete coverage. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-22
+created_at: 2026-06-02
 ---
 
-# Bose CD20 (Lifestyle 20/25/30) Control Spec
+# Bose Lifestyle Home Entertainment System Control Spec
 
 ## Summary
-Bose CD20 music center serial control spec. RS-232 half-duplex, 5V signal level, TAP mode for consumer control. Firmware 6.1+ required. Baud switchable 1200/9600 (default 1200).
+RS-232 serial control spec for Bose Lifestyle 20/25/30 home entertainment systems. Internal Bose designation for the shared music center is CD20. Control runs over a 3.5 mm stereo phone jack (SER-IN ring, SER-OUT tip) at 5 V TTL levels (not true RS-232 — converter required). Half-duplex TAP mode is the only consumer-relevant protocol.
 
-<!-- UNRESOLVED: power consumption, voltage specs not in source -->
+<!-- UNRESOLVED: source does not state pinout beyond ring/tip; full mechanical drawings not provided -->
 
 ## Transport
 ```yaml
+# Serial-only device. 5V TTL levels - not true ±12V RS-232.
+# Source states "be careful not to connect directly to a PC RS232 port - use a RS232 to TTL converter".
 protocols:
   - serial
 serial:
-  baud_rate: 1200  # default; source allows 9600 also
+  baud_rate: 1200  # source: default and recommended; 9600 selectable but higher bit error rate
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not mentioned
-  duplex: half  # stated: software UART, half duplex only
-addressing:
-  port: null  # UNRESOLVED: port number not applicable for serial
+  flow_control: none  # half-duplex, no flow control documented
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: none  # inferred: no login/password procedure in source
 ```
 
 ## Traits
 ```yaml
-# inferred from command set:
-powerable: true
-levelable: true  # VOL UP/DN, SUR VOL UP/DN, MUTE, MUTE ALL
-routable: true    # input selection: VIDEO 1/2, AUX, CD, AM/FM, TAPE
-queryable: false  # UNRESOLVED: no query commands in source
+powerable: true   # ON/OFF remote code (00h)
+levelable: true   # VOL UP/DN, SUR VOL UP/DN, MUTE, MUTE ALL, CENTER, SURROUND, STEREO, STEREO+
+routable: true    # VIDEO 1/2, AUX, CD, AM/FM, TAPE input select codes
+queryable: false  # no query commands documented; all TAP codes are one-way fire-and-ACK
 ```
 
 ## Actions
 ```yaml
-- id: power_toggle
-  label: Power Toggle (ON/OFF)
+# === Serial port mode invocation (Idle mode) ===
+# Source: section 4.1. After reset CD20 monitors SER-IN and echoes any char back.
+# Three monitored 4-char sequences (CR = 0x0D) switch modes.
+
+- id: invoke_tap
+  label: Switch to TAP mode
   kind: action
+  command: "TAP\r"  # 4 bytes: 'T' 'A' 'P' 0x0D
   params: []
-  notes: HEX 00h, ASCII @
+
+- id: software_reset
+  label: Software reset (RST)
+  kind: action
+  command: "RST\r"  # 4 bytes: 'R' 'S' 'T' 0x0D
+  params: []
+
+- id: invoke_idle
+  label: Return to Idle mode
+  kind: action
+  command: "Bose"  # any-mode -> Idle escape sequence (per source section 4.1.1)
+  params: []
+
+# === TAP session control ===
+# Source: section 5. TAP mode is invoked from Idle via "TAP\r".
+# All subsequent commands follow: send 'a' preamble, wait for 'X' (TAP_ACK) or 'x' (TAP_NAK),
+# then send a 3-byte command (cmd, d1, d2), wait for ACK.
+
+- id: tap_preamble
+  label: TAP command preamble
+  kind: action
+  command: "a"  # 0x61 single byte; controller waits for 'X' before sending command
+  params: []
+
+- id: tap_exit
+  label: Exit TAP mode
+  kind: action
+  command: "a@@@"  # 4 bytes total: 'a' + 3 placeholder bytes (per source section 5.2)
+  params: []
+
+# === TAP zone setup ===
+# Source: section 5.4. Hex data byte required; only two zones documented.
+
+- id: select_zone_1
+  label: Select Zone 1
+  kind: action
+  command: "aA\x01@"  # cmd='A' (0x41), d1=0x01, d2=any
+  params: []
+
+- id: select_zone_2
+  label: Select Zone 2
+  kind: action
+  command: "aA\x02@"  # cmd='A' (0x41), d1=0x02, d2=any
+  params: []
+
+# === TAP_simul_remote command set ===
+# Source: section 5.5, Table 2. Format: 'a' preamble, then 3 bytes (cmd='E', d1=remote code char, d2=any).
+# d1 bits 7,6,5 are don't-care; bits 4..0 encode the remote code. Visible ASCII equivalents listed.
+# Each row of Table 2 enumerated as a distinct action per granularity rule.
+
+- id: power_on_off
+  label: Power On/Off (toggle)
+  kind: action
+  command: "aE@@"  # remote code 00h
+  params: []
 
 - id: vol_up
   label: Volume Up
   kind: action
+  command: "aEA@"  # remote code 01h
   params: []
-  notes: HEX 01h, ASCII A
 
 - id: skip_rev
-  label: Skip Reverse
+  label: Skip Reverse (previous track)
   kind: action
+  command: "aEB@"  # remote code 02h
   params: []
-  notes: HEX 02h, ASCII B
 
 - id: play_pause
-  label: Play/Pause
+  label: Play / Pause
   kind: action
+  command: "aEC@"  # remote code 03h
   params: []
-  notes: HEX 03h, ASCII C
 
 - id: skip_fwd
-  label: Skip Forward
+  label: Skip Forward (next track)
   kind: action
+  command: "aED@"  # remote code 04h
   params: []
-  notes: HEX 04h, ASCII D
 
 - id: vol_dn
   label: Volume Down
   kind: action
+  command: "aEE@"  # remote code 05h
   params: []
-  notes: HEX 05h, ASCII E
 
 - id: next_disc
   label: Next Disc
   kind: action
+  command: "aEF@"  # remote code 06h
   params: []
-  notes: HEX 06h, ASCII F
 
-- id: video_1
-  label: Video 1 Input
+- id: select_video_1
+  label: Select Input: Video 1
   kind: action
+  command: "aEG@"  # remote code 07h
   params: []
-  notes: HEX 07h, ASCII G
 
-- id: video_2
-  label: Video 2 Input
+- id: select_video_2
+  label: Select Input: Video 2
   kind: action
+  command: "aEH@"  # remote code 08h
   params: []
-  notes: HEX 08h, ASCII H
 
-- id: aux
-  label: AUX Input
+- id: select_aux
+  label: Select Input: AUX
   kind: action
+  command: "aEI@"  # remote code 09h
   params: []
-  notes: HEX 09h, ASCII I
 
-- id: cd
-  label: CD Input
+- id: select_cd
+  label: Select Input: CD
   kind: action
+  command: "aEJ@"  # remote code 0Ah
   params: []
-  notes: HEX 0Ah, ASCII J
 
-- id: am_fm
-  label: AM/FM Input
+- id: select_am_fm
+  label: Select Input: AM/FM (Tuner)
   kind: action
+  command: "aEK@"  # remote code 0Bh
   params: []
-  notes: HEX 0Bh, ASCII K
 
-- id: tape
-  label: Tape Input
+- id: select_tape
+  label: Select Input: Tape
   kind: action
+  command: "aEL@"  # remote code 0Ch
   params: []
-  notes: HEX 0Ch, ASCII L
 
 - id: stop
   label: Stop
   kind: action
+  command: "aEM@"  # remote code 0Dh
   params: []
-  notes: HEX 0Dh, ASCII M
 
 - id: mute
   label: Mute
   kind: action
+  command: "aEN@"  # remote code 0Eh
   params: []
-  notes: HEX 0Eh, ASCII N
 
 - id: mute_all
-  label: Mute All
+  label: Mute All Zones
   kind: action
+  command: "aEO@"  # remote code 0Fh
   params: []
-  notes: HEX 0Fh, ASCII O
 
 - id: random
-  label: Random
+  label: Random (shuffle)
   kind: action
+  command: "aEP@"  # remote code 10h
   params: []
-  notes: HEX 10h, ASCII P
 
 - id: sur_vol_up
   label: Surround Volume Up
   kind: action
+  command: "aEQ@"  # remote code 11h
   params: []
-  notes: HEX 11h, ASCII Q
 
 - id: sur_vol_dn
   label: Surround Volume Down
   kind: action
+  command: "aER@"  # remote code 12h
   params: []
-  notes: HEX 12h, ASCII R
 
 - id: surround
-  label: Surround Mode
+  label: Surround (mode cycle)
   kind: action
+  command: "aES@"  # remote code 13h
   params: []
-  notes: HEX 13h, ASCII S
 
 - id: stereo_plus
-  label: Stereo Plus
+  label: Stereo+ (mode)
   kind: action
+  command: "aET@"  # remote code 14h
   params: []
-  notes: HEX 14h, ASCII T
 
 - id: center
-  label: Center
+  label: Center (level/mode)
   kind: action
+  command: "aEU@"  # remote code 15h
   params: []
-  notes: HEX 15h, ASCII U
 
 - id: stereo
-  label: Stereo
+  label: Stereo (mode)
   kind: action
+  command: "aEV@"  # remote code 16h
   params: []
-  notes: HEX 16h, ASCII V
 
-- id: t0_t9
-  label: Tuner Presets T0-T9
+- id: digit_0
+  label: Digit 0
   kind: action
-  params:
-    - name: preset
-      type: integer
-      description: Preset number 0-9
-  notes: HEX 17h-20h, ASCII W-`
+  command: "aEW@"  # remote code 17h (T0)
+  params: []
+
+- id: digit_1
+  label: Digit 1
+  kind: action
+  command: "aEX@"  # remote code 18h (T1)
+  params: []
+
+- id: digit_2
+  label: Digit 2
+  kind: action
+  command: "aEY@"  # remote code 19h (T2)
+  params: []
+
+- id: digit_3
+  label: Digit 3
+  kind: action
+  command: "aEZ@"  # remote code 1Ah (T3)
+  params: []
+
+- id: digit_4
+  label: Digit 4
+  kind: action
+  command: "aE[@"  # remote code 1Bh (T4)
+  params: []
+
+- id: digit_5
+  label: Digit 5
+  kind: action
+  command: "aE\\@"  # remote code 1Ch (T5)
+  params: []
+
+- id: digit_6
+  label: Digit 6
+  kind: action
+  command: "aE]@"  # remote code 1Dh (T6)
+  params: []
+
+- id: digit_7
+  label: Digit 7
+  kind: action
+  command: "aE^@"  # remote code 1Eh (T7)
+  params: []
+
+- id: digit_8
+  label: Digit 8
+  kind: action
+  command: "aE_@"  # remote code 1Fh (T8)
+  params: []
+
+- id: digit_9
+  label: Digit 9
+  kind: action
+  command: "aE`@"  # remote code 20h (T9)
+  params: []
 
 - id: play
   label: Play
   kind: action
+  command: "aEa@"  # remote code 21h
   params: []
-  notes: HEX 21h, ASCII a
 
 - id: pause
   label: Pause
   kind: action
+  command: "aEb@"  # remote code 22h
   params: []
-  notes: HEX 22h, ASCII b
 
 - id: fast_rev
-  label: Fast Reverse
+  label: Fast Reverse (search)
   kind: action
+  command: "aEc@"  # remote code 23h
   params: []
-  notes: HEX 23h, ASCII c
 
 - id: fast_fwd
-  label: Fast Forward
+  label: Fast Forward (search)
   kind: action
+  command: "aEd@"  # remote code 24h
   params: []
-  notes: HEX 24h, ASCII d
-
-- id: tap_enter
-  label: Enter TAP Mode
-  kind: action
-  params: []
-  notes: send "TAP" from idle mode
-
-- id: tap_exit
-  label: Exit TAP Mode
-  kind: action
-  params: []
-  notes: send "axxx"
-
-- id: tap_select_zone_1
-  label: Select Zone 1
-  kind: action
-  params: []
-  notes: "A<0x1> in hex data format"
-
-- id: tap_select_zone_2
-  label: Select Zone 2
-  kind: action
-  params: []
-  notes: "A<0x2> in hex data format"
 ```
 
 ## Feedbacks
 ```yaml
-# UNRESOLVED: no response strings documented beyond X (ACK) and * (reset indicator)
 - id: tap_ack
-  label: TAP Acknowledgement
   type: enum
-  values:
-    - X  # command completed
-    - x  # command cannot be completed
+  values: [X]
+  description: TAP_ACK (0x58) - command accepted, sent after each TAP command
 
-- id: reset_indicator
-  label: Reset/Power-up Indicator
-  type: string
-  value: "*"  # sent 300ms after each power-up or reset
+- id: tap_nak
+  type: enum
+  values: [x]
+  description: TAP_NAK (0x78) - command could not be completed (e.g. CD Play with no disc)
+
+- id: power_up_marker
+  type: enum
+  values: ["*"]
+  description: ASCII '*' (0x2A) emitted ~300 ms after power-up or software reset; used to detect reset/power-break
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no settable parameters documented beyond remote simulation
+# UNRESOLVED: no settable parameter values documented in source beyond discrete
+# remote-key actions. No numeric parameter ranges, no enum setters.
+[]
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event messages documented
+- id: power_up_event
+  description: Device sends ASCII '*' (0x2A) ~300 ms after hardware reset or RST command; controller uses this to detect reset/power-break
+  payload: "*"
+
+- id: tap_ack_event
+  description: TAP_ACK 'X' (0x58) returned after every successful TAP command
+  payload: "X"
+
+- id: tap_nak_event
+  description: TAP_NAK 'x' (0x78) returned when a TAP command cannot be completed
+  payload: "x"
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macros documented
+# UNRESOLVED: source does not document any multi-step sequences or named macros.
+[]
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - Electrical signal is 5V RS-232 - do not connect directly to PC RS-232 port; use RS-232 to TTL converter
-  - After power-up (~300ms) or reset, CD20 sends "*" and enters IDLE mode; controller must explicitly invoke desired mode
-# UNRESOLVED: no safety interlocks or sequencing requirements beyond above
+interlocks: []
+# Source contains no safety warnings, interlock procedures, or power-on sequencing requirements.
+# The only "safety-adjacent" item is the explicit warning not to connect the 5V TTL
+# port directly to a PC RS-232 port (electrical damage to the unit), captured in Notes.
 ```
 
 ## Notes
-- TAP mode preamble byte "a" precedes all commands except mode-switch sequences
-- Commands are 3 bytes: command + 2 data bytes (send placeholder bytes for commands without data)
-- Controller must wait for ACK/NAK before sending next command (no concatenation)
-- Half-duplex only — cannot send and receive simultaneously
-- Baud rate switchable 1200/9600; 9600 has higher bit error rate; 1200 is recommended default
-- Serial port uses 3.5mm stereo phone jack (SER-IN ring, SER-OUT tip); 330 ohm series resistor; 10K pull-up to +5V
-- IDLE mode echoes any received character back to SER-OUT for testing
-- "Bose" character sequence returns to IDLE from any mode
-<!-- UNRESOLVED: port number, flow control settings, query commands, firmware compatibility beyond 6.1 -->
+- **Electrical warning (source, verbatim):** "be careful not to connect directly to a PC RS232 port - use a RS232 to TTL converter". The CD20 serial port uses 5 V TTL levels; idle state is 5 V. Direct connection will damage the unit or the PC.
+- **Half-duplex only.** Source: "the communication is only HALF DUPLEX" (single software timer). Controller must not transmit while expecting an ACK.
+- **Default baud is 1200** after power-up. 9600 is selectable but has a higher bit error rate per source.
+- **Software reset keypress** (for diagnostics): STORE+ERASE+ON on the front panel.
+- **Firmware check** (front panel, unit OFF): hold Skip Down + Tune Down + Source Select simultaneously. Display should read e.g. "Crev 6.1". Serial remote requires 6.1 or later.
+- **TAP_simul_remote d1 bits 7..5 are don't-care.** The visible-character column in Table 2 is the convenience mapping; the underlying encoding is the low 5 bits of d1.
+- **Zone select is hex** (`A<0x1>`, `A<0x2>`), unlike the rest of TAP commands which use ASCII data bytes.
+
+<!-- UNRESOLVED: full electrical specs (max cable length, drive current) not in source -->
+<!-- UNRESOLVED: ACK timeout value not specified — controller must choose its own wait timeout -->
+<!-- UNRESOLVED: behavior when ACK not received within timeout (retry? abort?) not in source -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - assets.boseprofessional.com
-  - assets.bosecreative.com
+  - eserviceinfo.com
+  - files.remotecentral.com
 source_urls:
-  - https://assets.boseprofessional.com/m/4998082f60dfee56/original/ControlSpace-Serial-Protocol-v5-13.pdf
-  - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
-  - https://assets.bosecreative.com/m/496577402d128874/original/SoundTouch-Web-API.pdf
-retrieved_at: 2026-05-16T00:42:17.003Z
-last_checked_at: 2026-05-26T06:08:52.231Z
+  - "https://www.eserviceinfo.com/preview_html.php?fileid=60281&previewid=31157"
+  - "https://files.remotecentral.com/view/7121-18700-1/bose_t_&_v-class_home_theater_systems.html"
+retrieved_at: 2026-05-22T15:53:45.910Z
+last_checked_at: 2026-06-02T00:05:05.749Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-26T06:08:52.231Z
-matched_actions: 32
-action_count: 32
-confidence: high
-summary: "All 32 spec actions matched verbatim to source TABLE 2 remote codes and TAP mode commands; baud/parity/bits/duplex verified; complete coverage of documented control set."
+checked_at: 2026-06-02T00:05:05.749Z
+matched_actions: 44
+action_count: 44
+confidence: medium
+summary: "All 44 spec actions match literally with source Table 2 remote codes and section 5 TAP protocol; all transport parameters verified; complete coverage. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source does not state pinout beyond ring/tip; full mechanical drawings not provided"
+- "no settable parameter values documented in source beyond discrete"
+- "source does not document any multi-step sequences or named macros."
+- "full electrical specs (max cable length, drive current) not in source"
+- "ACK timeout value not specified — controller must choose its own wait timeout"
+- "behavior when ACK not received within timeout (retry? abort?) not in source"
 ```
 
 ---

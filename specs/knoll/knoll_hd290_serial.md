@@ -17,8 +17,10 @@ compatible_with:
   required_options: []
 source_domains:
   - projector-database.com
+  - manualslib.com
 source_urls:
   - https://www.projector-database.com/pdf/knollhd108-178-290-292-an-en.pdf
+  - "https://www.manualslib.com/manual/287789/Knoll-Hd108.html?page=25"
 retrieved_at: 2026-05-21T03:56:51.060Z
 last_checked_at: 2026-05-26T20:03:36.690Z
 generated_at: 2026-05-26T20:03:36.690Z
@@ -28,13 +30,18 @@ known_gaps:
   - BOE
   - LMR
   - SYS
+  - "only HD290 confirmed; HD178 and HD292 listed in source title are not included in compatible_with"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macros described in source"
+  - "firmware version compatibility not stated in source"
+  - "only HD290 model listed; source title references HD178 and HD292 but these are not included"
 verification:
   verdict: verified
   checked_at: 2026-05-26T20:03:36.690Z
   matched_actions: 76
   action_count: 76
-  confidence: high
-  summary: "All 76 spec actions matched cleanly to source commands; transport verified; comprehensive coverage including major actions and read-only variables."
+  confidence: medium
+  summary: "All 76 spec actions matched cleanly to source commands; transport verified; comprehensive coverage including major actions and read-only variables. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -807,8 +814,10 @@ Command format: `(AAA####)` for write, `(AAA?)` for read. Response on error is `
 ```yaml
 source_domains:
   - projector-database.com
+  - manualslib.com
 source_urls:
   - https://www.projector-database.com/pdf/knollhd108-178-290-292-an-en.pdf
+  - "https://www.manualslib.com/manual/287789/Knoll-Hd108.html?page=25"
 retrieved_at: 2026-05-21T03:56:51.060Z
 last_checked_at: 2026-05-26T20:03:36.690Z
 ```
@@ -820,8 +829,8 @@ verdict: verified
 checked_at: 2026-05-26T20:03:36.690Z
 matched_actions: 76
 action_count: 76
-confidence: high
-summary: "All 76 spec actions matched cleanly to source commands; transport verified; comprehensive coverage including major actions and read-only variables."
+confidence: medium
+summary: "All 76 spec actions matched cleanly to source commands; transport verified; comprehensive coverage including major actions and read-only variables. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -830,6 +839,11 @@ summary: "All 76 spec actions matched cleanly to source commands; transport veri
 - BOE
 - LMR
 - SYS
+- "only HD290 confirmed; HD178 and HD292 listed in source title are not included in compatible_with"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macros described in source"
+- "firmware version compatibility not stated in source"
+- "only HD290 model listed; source title references HD178 and HD292 but these are not included"
 ```
 
 ---

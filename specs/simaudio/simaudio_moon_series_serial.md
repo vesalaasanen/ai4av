@@ -20,19 +20,27 @@ source_domains:
   - simaudio.com
 source_urls:
   - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
-retrieved_at: 2026-05-04T18:02:29.791Z
+retrieved_at: 2026-04-30T04:29:04.648Z
 last_checked_at: 2026-04-27T09:45:19.554Z
 generated_at: 2026-04-27T09:45:19.554Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "unsolicited event notifications not documented"
+  - "traits inferred from command examples"
+  - "no settable parameters documented beyond discrete commands"
+  - "no unsolicited notifications documented"
+  - "no multi-step sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "variables, events, macros sections not applicable or not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T09:45:19.554Z
   matched_actions: 42
   action_count: 42
-  confidence: high
-  summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual."
+  confidence: medium
+  summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -338,7 +346,7 @@ source_domains:
   - simaudio.com
 source_urls:
   - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
-retrieved_at: 2026-05-04T18:02:29.791Z
+retrieved_at: 2026-04-30T04:29:04.648Z
 last_checked_at: 2026-04-27T09:45:19.554Z
 ```
 
@@ -349,14 +357,21 @@ verdict: verified
 checked_at: 2026-04-27T09:45:19.554Z
 matched_actions: 42
 action_count: 42
-confidence: high
-summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual."
+confidence: medium
+summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "unsolicited event notifications not documented"
+- "traits inferred from command examples"
+- "no settable parameters documented beyond discrete commands"
+- "no unsolicited notifications documented"
+- "no multi-step sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "variables, events, macros sections not applicable or not documented in source"
 ```
 
 ---

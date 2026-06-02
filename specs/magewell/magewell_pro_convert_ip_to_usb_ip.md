@@ -18,22 +18,32 @@ compatible_with:
 source_domains:
   - magewell.com
 source_urls:
-  - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
-  - https://www.magewell.com/api-docs/usb-fusion-api/usb-fusion-api-en_US.pdf
   - https://www.magewell.com/api-docs/pro-convert-ip-to-usb-api/pro-convert-ip-to-usb-api-en_US.pdf
+  - https://www.magewell.com/api-docs/pro-convert-ip-to-usb-api/
+  - https://www.magewell.com/developer/27/detail
+  - https://www.magewell.com/developer
 retrieved_at: 2026-05-27T05:56:47.616Z
 last_checked_at: 2026-05-27T06:51:37.828Z
 generated_at: 2026-05-27T06:51:37.828Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 not mentioned in source"
+  - "default HTTP port not stated in source"
+  - "source does not document unsolicited push notifications"
+  - "source does not describe multi-step command sequences"
+  - "safety warnings not found in source"
+  - "default HTTP port not stated — port must be discovered or configured"
+  - "RS-232/serial not documented in source"
+  - "unsolicited event push notifications not documented"
+  - "firmware version compatibility ranges not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-27T06:51:37.828Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched API endpoints in source; transport and SHA256 auth verified."
+  confidence: medium
+  summary: "All 44 spec actions matched API endpoints in source; transport and SHA256 auth verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -736,9 +746,10 @@ The API uses JSON request/response with HTTP GET/POST methods. Authentication is
 source_domains:
   - magewell.com
 source_urls:
-  - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
-  - https://www.magewell.com/api-docs/usb-fusion-api/usb-fusion-api-en_US.pdf
   - https://www.magewell.com/api-docs/pro-convert-ip-to-usb-api/pro-convert-ip-to-usb-api-en_US.pdf
+  - https://www.magewell.com/api-docs/pro-convert-ip-to-usb-api/
+  - https://www.magewell.com/developer/27/detail
+  - https://www.magewell.com/developer
 retrieved_at: 2026-05-27T05:56:47.616Z
 last_checked_at: 2026-05-27T06:51:37.828Z
 ```
@@ -750,14 +761,22 @@ verdict: verified
 checked_at: 2026-05-27T06:51:37.828Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched API endpoints in source; transport and SHA256 auth verified."
+confidence: medium
+summary: "All 44 spec actions matched API endpoints in source; transport and SHA256 auth verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 not mentioned in source"
+- "default HTTP port not stated in source"
+- "source does not document unsolicited push notifications"
+- "source does not describe multi-step command sequences"
+- "safety warnings not found in source"
+- "default HTTP port not stated — port must be discovered or configured"
+- "RS-232/serial not documented in source"
+- "unsolicited event push notifications not documented"
+- "firmware version compatibility ranges not stated"
 ```
 
 ---

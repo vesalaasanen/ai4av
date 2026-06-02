@@ -88,19 +88,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:17.262Z
 last_checked_at: 2026-05-14T18:17:18.558Z
 generated_at: 2026-05-14T18:17:18.558Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact list of all compatible models is extensive; the source covers NP4100 through NP-VE303X series; only NP-P and related series are listed above as primary targets"
+  - "flow control not stated beyond RTS/CTS pin wiring"
+  - "no unsolicited event/notification mechanism documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no explicit safety interlock procedures or power-on sequencing requirements documented"
+  - "exact control ID and model code values for each projector model not specified in source"
+  - "no warm-up or cooldown timing values specified"
+  - "LAN connection parameters beyond TCP port 7142 not specified"
+  - "no notification/subscription mechanism for unsolicited status updates"
+  - "eco mode values are model-specific and require supplementary lookup tables"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.558Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions match verbatim command sequences in NEC P-series serial source; transport parameters confirmed."
+  confidence: medium
+  summary: "All 53 spec actions match verbatim command sequences in NEC P-series serial source; transport parameters confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -738,7 +748,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:17.262Z
 last_checked_at: 2026-05-14T18:17:18.558Z
 ```
 
@@ -749,14 +759,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.558Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions match verbatim command sequences in NEC P-series serial source; transport parameters confirmed."
+confidence: medium
+summary: "All 53 spec actions match verbatim command sequences in NEC P-series serial source; transport parameters confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact list of all compatible models is extensive; the source covers NP4100 through NP-VE303X series; only NP-P and related series are listed above as primary targets"
+- "flow control not stated beyond RTS/CTS pin wiring"
+- "no unsolicited event/notification mechanism documented in source"
+- "no multi-step macro sequences documented in source"
+- "no explicit safety interlock procedures or power-on sequencing requirements documented"
+- "exact control ID and model code values for each projector model not specified in source"
+- "no warm-up or cooldown timing values specified"
+- "LAN connection parameters beyond TCP port 7142 not specified"
+- "no notification/subscription mechanism for unsolicited status updates"
+- "eco mode values are model-specific and require supplementary lookup tables"
 ```
 
 ---

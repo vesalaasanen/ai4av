@@ -19,19 +19,24 @@ source_domains:
   - docs2.hubitat.com
 source_urls:
   - https://docs2.hubitat.com/en/apps/maker-api
-retrieved_at: 2026-05-03T09:18:51.697Z
+retrieved_at: 2026-04-30T04:31:15.212Z
 last_checked_at: 2026-04-25T20:45:36.528Z
 generated_at: 2026-04-25T20:45:36.528Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific sensor device models not documented — this spec covers the hub API platform itself"
+  - "no explicit multi-step macros documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "specific device models not listed — only generic device types (Switch, Dimmer, etc.) via capabilities array"
+  - "port number not explicitly stated — defaults to HTTP port 80 or HTTPS port 443 on the hub"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:45:36.528Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions matched corresponding endpoints in the Maker API source; transport parameters verified in URL format documentation."
+  confidence: medium
+  summary: "All 12 spec actions matched corresponding endpoints in the Maker API source; transport parameters verified in URL format documentation. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -290,7 +295,7 @@ source_domains:
   - docs2.hubitat.com
 source_urls:
   - https://docs2.hubitat.com/en/apps/maker-api
-retrieved_at: 2026-05-03T09:18:51.697Z
+retrieved_at: 2026-04-30T04:31:15.212Z
 last_checked_at: 2026-04-25T20:45:36.528Z
 ```
 
@@ -301,14 +306,18 @@ verdict: verified
 checked_at: 2026-04-25T20:45:36.528Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions matched corresponding endpoints in the Maker API source; transport parameters verified in URL format documentation."
+confidence: medium
+summary: "All 12 spec actions matched corresponding endpoints in the Maker API source; transport parameters verified in URL format documentation. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific sensor device models not documented — this spec covers the hub API platform itself"
+- "no explicit multi-step macros documented in source"
+- "no safety warnings or interlock procedures in source"
+- "specific device models not listed — only generic device types (Switch, Dimmer, etc.) via capabilities array"
+- "port number not explicitly stated — defaults to HTTP port 80 or HTTPS port 443 on the hub"
 ```
 
 ---

@@ -30,14 +30,20 @@ last_checked_at: 2026-05-21T10:50:41.108Z
 generated_at: 2026-05-21T10:50:41.108Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "detailed signal format specifications for 4K@60 boards beyond EDID values; multi-window memory structure not documented"
+  - "comprehensive variable enumeration - source documents individual get/set pairs"
+  - "device sends unsolicited notifications via UDP/TCP/RS-232C when status changes"
+  - "multi-step sequences not explicitly documented as macros"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "UDP notification port default (1147) stated but source does not confirm if configurable"
 verification:
   verdict: verified
   checked_at: 2026-05-21T10:50:41.108Z
   matched_actions: 112
   action_count: 112
-  confidence: high
-  summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source."
+  confidence: medium
+  summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1533,14 +1539,19 @@ verdict: verified
 checked_at: 2026-05-21T10:50:41.108Z
 matched_actions: 112
 action_count: 112
-confidence: high
-summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source."
+confidence: medium
+summary: "Merged from amendment (sidecar: data/skill-outputs-amendments/idk_fdx_s.amend.md). All 112 actions traced to source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "detailed signal format specifications for 4K@60 boards beyond EDID values; multi-window memory structure not documented"
+- "comprehensive variable enumeration - source documents individual get/set pairs"
+- "device sends unsolicited notifications via UDP/TCP/RS-232C when status changes"
+- "multi-step sequences not explicitly documented as macros"
+- "no explicit safety warnings or interlock procedures in source"
+- "UDP notification port default (1147) stated but source does not confirm if configurable"
 ```
 
 ---

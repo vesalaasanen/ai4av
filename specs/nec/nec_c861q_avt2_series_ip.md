@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:38.624Z
 last_checked_at: 2026-05-14T18:17:18.359Z
 generated_at: 2026-05-14T18:17:18.359Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" values are referenced but not fully enumerated in this spec; some hex values vary by model"
+  - "flow control not stated in source"
+  - "variables are primarily settable via Actions (picture_adjust, volume_adjust, eco_mode_set, etc.)"
+  - "no unsolicited event/notification mechanism described in source."
+  - "no explicit multi-step macro sequences described in source."
+  - "no safety-critical interlocks or voltage/power specifications in source."
+  - "model-specific variant hex values in Appendix not enumerated"
+  - "standby mode compatibility matrix by model not stated"
+  - "flow control (RTS/CTS) configuration not stated"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.359Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage."
+  confidence: medium
+  summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -489,7 +499,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:38.624Z
 last_checked_at: 2026-05-14T18:17:18.359Z
 ```
 
@@ -500,14 +510,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.359Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage."
+confidence: medium
+summary: "All 42 spec actions and feedbacks match NEC source; transport parameters verified; comprehensive command reference coverage. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" values are referenced but not fully enumerated in this spec; some hex values vary by model"
+- "flow control not stated in source"
+- "variables are primarily settable via Actions (picture_adjust, volume_adjust, eco_mode_set, etc.)"
+- "no unsolicited event/notification mechanism described in source."
+- "no explicit multi-step macro sequences described in source."
+- "no safety-critical interlocks or voltage/power specifications in source."
+- "model-specific variant hex values in Appendix not enumerated"
+- "standby mode compatibility matrix by model not stated"
+- "flow control (RTS/CTS) configuration not stated"
+- "firmware version compatibility not stated"
 ```
 
 ---

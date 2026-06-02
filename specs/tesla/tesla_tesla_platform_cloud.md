@@ -16,22 +16,32 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - support.tesmart.com
+  - developer.tesla.com
+  - github.com
 source_urls:
-  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
-retrieved_at: 2026-05-05T02:35:43.321Z
+  - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
+  - https://github.com/teslamotors/vehicle-command
+  - https://github.com/teslamotors/fleet-telemetry
+retrieved_at: 2026-05-10T12:18:55.972Z
 last_checked_at: 2026-05-10T12:18:55.972Z
 generated_at: 2026-05-10T12:18:55.972Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "physical vehicle control constraints (voltage, current, power specs) not applicable to cloud API"
+  - "конкретные ответы/feedback формат не описан в source"
+  - "this source describes only command-sending endpoints; vehicle event push notifications not documented here"
+  - "no explicit multi-step macros described in source"
+  - "response payload schema not documented in source"
+  - "rate limiting / throttle info not in source"
+  - "websocket/streaming events not covered in this endpoint doc"
 verification:
   verdict: verified
   checked_at: 2026-05-10T12:18:55.972Z
   matched_actions: 66
   action_count: 66
-  confidence: high
-  summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS."
+  confidence: medium
+  summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -575,10 +585,13 @@ Certain commands require specific firmware versions: `clear_pin_to_drive_admin` 
 
 ```yaml
 source_domains:
-  - support.tesmart.com
+  - developer.tesla.com
+  - github.com
 source_urls:
-  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
-retrieved_at: 2026-05-05T02:35:43.321Z
+  - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
+  - https://github.com/teslamotors/vehicle-command
+  - https://github.com/teslamotors/fleet-telemetry
+retrieved_at: 2026-05-10T12:18:55.972Z
 last_checked_at: 2026-05-10T12:18:55.972Z
 ```
 
@@ -589,14 +602,20 @@ verdict: verified
 checked_at: 2026-05-10T12:18:55.972Z
 matched_actions: 66
 action_count: 66
-confidence: high
-summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS."
+confidence: medium
+summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "physical vehicle control constraints (voltage, current, power specs) not applicable to cloud API"
+- "конкретные ответы/feedback формат не описан в source"
+- "this source describes only command-sending endpoints; vehicle event push notifications not documented here"
+- "no explicit multi-step macros described in source"
+- "response payload schema not documented in source"
+- "rate limiting / throttle info not in source"
+- "websocket/streaming events not covered in this endpoint doc"
 ```
 
 ---

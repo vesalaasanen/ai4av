@@ -15,11 +15,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:31:27.763Z
 last_checked_at: 2026-05-16T23:31:27.763Z
 generated_at: 2026-05-16T23:31:27.763Z
 firmware_coverage: "Not stated in source"
@@ -27,13 +25,20 @@ protocol_coverage: []
 known_gaps:
   - /Playlist
   - /RadioBrowse
+  - "The source document covers all BluOS-capable NAD products; NAD T778-specific input types (HDMI ARC, analog, optical, etc.) available on this model are not individually enumerated in the source."
+  - "no WebSocket or other push-notification mechanism described in source"
+  - "no multi-step macros described in source"
+  - "NAD T778-specific model capabilities (e.g. exact set of physical inputs, HDMI ARC/eARC support, preamp output behavior) not specified in source — source covers all BluOS devices generically."
+  - "firmware version compatibility for all API commands not stated; inputTypeIndex requires v4.2.0+, inputIndex requires v3.8.0 to v4.2.0."
+  - "volume range minimum/maximum values are device-configured (\"typically -80..0\") and not hard-coded in the API; the actual configured range for the T778 is not stated in source."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T23:31:27.763Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed."
+  confidence: medium
+  summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -515,11 +520,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T23:31:27.763Z
 last_checked_at: 2026-05-16T23:31:27.763Z
 ```
 
@@ -530,8 +533,8 @@ verdict: verified
 checked_at: 2026-05-16T23:31:27.763Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed."
+confidence: medium
+summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -539,6 +542,13 @@ summary: "All 37 spec actions map to literal source commands verbatim; transport
 ```yaml
 - /Playlist
 - /RadioBrowse
+- "The source document covers all BluOS-capable NAD products; NAD T778-specific input types (HDMI ARC, analog, optical, etc.) available on this model are not individually enumerated in the source."
+- "no WebSocket or other push-notification mechanism described in source"
+- "no multi-step macros described in source"
+- "NAD T778-specific model capabilities (e.g. exact set of physical inputs, HDMI ARC/eARC support, preamp output behavior) not specified in source — source covers all BluOS devices generically."
+- "firmware version compatibility for all API commands not stated; inputTypeIndex requires v4.2.0+, inputIndex requires v3.8.0 to v4.2.0."
+- "volume range minimum/maximum values are device-configured (\"typically -80..0\") and not hard-coded in the API; the actual configured range for the T778 is not stated in source."
+- "model-specific source not located"
 ```
 
 ---

@@ -31,14 +31,23 @@ last_checked_at: 2026-05-18T17:06:31.536Z
 generated_at: 2026-05-18T17:06:31.536Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-485 control described as via ARC devices, not directly documented in this protocol spec"
+  - "Controller numbers vary by product model - see appendix tables (Deuce 722, Zone Mix 760/761)"
+  - "No explicit event names/types defined - push data is raw controller format"
+  - "No explicit multi-step macros documented in source"
+  - "No safety warnings, interlock procedures, or power sequencing documented in source"
+  - "Product-specific controller number appendix (full table for Zone Mix 761 beyond line 1008, controller number ranges per model not summarized in source)"
+  - "Binary command encodings, fault behavior, error recovery sequences not documented in source"
+  - "Firmware version compatibility not stated in source"
+  - "Specific device model (Deuce vs Zone Mix) determination via controller number not explicitly mapped"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:06:31.536Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed."
+  confidence: medium
+  summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -432,14 +441,22 @@ verdict: verified
 checked_at: 2026-05-18T17:06:31.536Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed."
+confidence: medium
+summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-485 control described as via ARC devices, not directly documented in this protocol spec"
+- "Controller numbers vary by product model - see appendix tables (Deuce 722, Zone Mix 760/761)"
+- "No explicit event names/types defined - push data is raw controller format"
+- "No explicit multi-step macros documented in source"
+- "No safety warnings, interlock procedures, or power sequencing documented in source"
+- "Product-specific controller number appendix (full table for Zone Mix 761 beyond line 1008, controller number ranges per model not summarized in source)"
+- "Binary command encodings, fault behavior, error recovery sequences not documented in source"
+- "Firmware version compatibility not stated in source"
+- "Specific device model (Deuce vs Zone Mix) determination via controller number not explicitly mapped"
 ```
 
 ---

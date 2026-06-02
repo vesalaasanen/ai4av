@@ -25,14 +25,23 @@ last_checked_at: 2026-05-14T18:17:15.630Z
 generated_at: 2026-05-14T18:17:15.630Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP, HTTP, or network control described"
+  - "power commands present, but spec unclear on trait classification"
+  - "source describes settable parameters (volume up/down, keystone, lens shift)"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "lamp time numeric format (hours?) not stated in source"
+  - "temp read actual value format not stated in source"
+  - "volume command direction (up/down) inferred from position in table — not explicitly labeled"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.630Z
   matched_actions: 46
   action_count: 46
-  confidence: high
-  summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue."
+  confidence: medium
+  summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -499,14 +508,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.630Z
 matched_actions: 46
 action_count: 46
-confidence: high
-summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue."
+confidence: medium
+summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP, HTTP, or network control described"
+- "power commands present, but spec unclear on trait classification"
+- "source describes settable parameters (volume up/down, keystone, lens shift)"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "lamp time numeric format (hours?) not stated in source"
+- "temp read actual value format not stated in source"
+- "volume command direction (up/down) inferred from position in table — not explicitly labeled"
 ```
 
 ---

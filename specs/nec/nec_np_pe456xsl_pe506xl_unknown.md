@@ -20,19 +20,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:37:42.142Z
 last_checked_at: 2026-05-18T16:36:43.206Z
 generated_at: 2026-05-18T16:36:43.206Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value mapping referenced in Appendix but not included in source"
+  - "eco mode value mapping referenced in Appendix but not included in source"
+  - "aspect value mapping referenced in Appendix but not included in source"
+  - "flow_control not stated for serial"
+  - "flow control not stated in source"
+  - "no unsolicited event/notification protocol described in source"
+  - "no multi-step macro sequences described in source"
+  - "Appendix with input terminal, aspect, eco mode, and sub-input value mappings not included in source"
+  - "flow_control setting for serial not stated in source"
+  - "default baud rate not explicitly stated; 115200 listed first"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:36:43.206Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions match source command encodings verbatim; transport parameters confirmed in source documentation."
+  confidence: medium
+  summary: "All 28 spec actions match source command encodings verbatim; transport parameters confirmed in source documentation. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -576,7 +586,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:37:42.142Z
 last_checked_at: 2026-05-18T16:36:43.206Z
 ```
 
@@ -587,14 +597,23 @@ verdict: verified
 checked_at: 2026-05-18T16:36:43.206Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions match source command encodings verbatim; transport parameters confirmed in source documentation."
+confidence: medium
+summary: "All 28 spec actions match source command encodings verbatim; transport parameters confirmed in source documentation. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value mapping referenced in Appendix but not included in source"
+- "eco mode value mapping referenced in Appendix but not included in source"
+- "aspect value mapping referenced in Appendix but not included in source"
+- "flow_control not stated for serial"
+- "flow control not stated in source"
+- "no unsolicited event/notification protocol described in source"
+- "no multi-step macro sequences described in source"
+- "Appendix with input terminal, aspect, eco mode, and sub-input value mappings not included in source"
+- "flow_control setting for serial not stated in source"
+- "default baud rate not explicitly stated; 115200 listed first"
 ```
 
 ---

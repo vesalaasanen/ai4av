@@ -24,14 +24,22 @@ last_checked_at: 2026-05-14T18:17:19.703Z
 generated_at: 2026-05-14T18:17:19.703Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no unsolicited event/notification protocol described in source"
+  - "no multi-step macro sequences described in source"
+  - "power-on sequencing interlocks not fully documented"
+  - "firmware version compatibility not stated"
+  - "exact platform support matrix per command only partially documented"
+  - "scheduling page 8-15 support unclear beyond Dragon/Himalaya 2.0"
+  - "AnyTile resolution mode command (0x4E/0x4F) documentation incomplete"
+  - "MIC color calibration (0xFE) marked TBD in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.703Z
   matched_actions: 108
   action_count: 117
-  confidence: high
-  summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol."
+  confidence: medium
+  summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1471,14 +1479,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.703Z
 matched_actions: 108
 action_count: 117
-confidence: high
-summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol."
+confidence: medium
+summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no unsolicited event/notification protocol described in source"
+- "no multi-step macro sequences described in source"
+- "power-on sequencing interlocks not fully documented"
+- "firmware version compatibility not stated"
+- "exact platform support matrix per command only partially documented"
+- "scheduling page 8-15 support unclear beyond Dragon/Himalaya 2.0"
+- "AnyTile resolution mode command (0x4E/0x4F) documentation incomplete"
+- "MIC color calibration (0xFE) marked TBD in source"
 ```
 
 ---

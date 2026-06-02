@@ -21,19 +21,38 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:32:51.141Z
 last_checked_at: 2026-05-16T12:16:11.263Z
 generated_at: 2026-05-16T12:16:11.263Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+  - "eco mode value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+  - "aspect value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+  - "sub input value mapping for PIP/PbP (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+  - "base model type value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+  - "multiple supported (115200/38400/19200/9600/4800) - no single default stated"
+  - "flow control not stated in source"
+  - "no settable continuous variables beyond what Actions cover"
+  - "no unsolicited notification protocol described in source"
+  - "no multi-step macro sequences described in source"
+  - "interlock switch mentioned in error status (DATA09 Bit1) but no"
+  - "input terminal byte value mapping (appendix not in source)"
+  - "aspect value mapping (appendix not in source)"
+  - "eco mode value mapping (appendix not in source)"
+  - "sub input value mapping for PIP/PbP (appendix not in source)"
+  - "base model type value mapping (appendix not in source)"
+  - "default baud rate (multiple supported, no single default stated)"
+  - "flow control setting for serial"
+  - "firmware version compatibility"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:16:11.263Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched exactly to source hex sequences, transport fully verified."
+  confidence: medium
+  summary: "All 28 spec actions matched exactly to source hex sequences, transport fully verified. (19 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -597,7 +616,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:32:51.141Z
 last_checked_at: 2026-05-16T12:16:11.263Z
 ```
 
@@ -608,14 +627,32 @@ verdict: verified
 checked_at: 2026-05-16T12:16:11.263Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched exactly to source hex sequences, transport fully verified."
+confidence: medium
+summary: "All 28 spec actions matched exactly to source hex sequences, transport fully verified. (19 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+- "eco mode value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+- "aspect value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+- "sub input value mapping for PIP/PbP (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+- "base model type value mapping (referenced as \"Supplementary Information by Command\" appendix — not in source)"
+- "multiple supported (115200/38400/19200/9600/4800) - no single default stated"
+- "flow control not stated in source"
+- "no settable continuous variables beyond what Actions cover"
+- "no unsolicited notification protocol described in source"
+- "no multi-step macro sequences described in source"
+- "interlock switch mentioned in error status (DATA09 Bit1) but no"
+- "input terminal byte value mapping (appendix not in source)"
+- "aspect value mapping (appendix not in source)"
+- "eco mode value mapping (appendix not in source)"
+- "sub input value mapping for PIP/PbP (appendix not in source)"
+- "base model type value mapping (appendix not in source)"
+- "default baud rate (multiple supported, no single default stated)"
+- "flow control setting for serial"
+- "firmware version compatibility"
 ```
 
 ---

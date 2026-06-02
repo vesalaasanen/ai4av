@@ -18,25 +18,31 @@ compatible_with:
   required_options: []
 source_domains:
   - usermanual.wiki
-  - screenprofessional.de
-  - sim2usa.com
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
-  - https://screenprofessional.de/wp-content/uploads/2024/07/NERO4_IR_RS-232_Control_1.0_1.pdf
-  - https://www.sim2usa.com/en/service-support/archive/product/c3x.html
-retrieved_at: 2026-05-22T20:42:47.195Z
+retrieved_at: 2026-05-22T18:33:43.511Z
 last_checked_at: 2026-05-31T21:24:26.047Z
 generated_at: 2026-05-31T21:24:26.047Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no query commands returning current state found in source"
+  - "no query commands found in source. Device does not appear to support"
+  - "no event packet documentation found in source. Event packet format"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "query/feedback commands — no mechanism described for reading current parameter values"
+  - "event notifications — Event packet format exists but no specific events documented"
+  - "firmware version compatibility not stated"
+  - "gamma presets (01–12) meanings not described in source"
+  - "color temperature presets (01–36) meanings not described in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:24:26.047Z
   matched_actions: 149
   action_count: 149
-  confidence: high
-  summary: "All 149 spec action hex codes match literal source sequences; transport parameters verified verbatim; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 149 spec action hex codes match literal source sequences; transport parameters verified verbatim; complete bidirectional coverage. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -985,13 +991,9 @@ interlocks: []
 ```yaml
 source_domains:
   - usermanual.wiki
-  - screenprofessional.de
-  - sim2usa.com
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
-  - https://screenprofessional.de/wp-content/uploads/2024/07/NERO4_IR_RS-232_Control_1.0_1.pdf
-  - https://www.sim2usa.com/en/service-support/archive/product/c3x.html
-retrieved_at: 2026-05-22T20:42:47.195Z
+retrieved_at: 2026-05-22T18:33:43.511Z
 last_checked_at: 2026-05-31T21:24:26.047Z
 ```
 
@@ -1002,14 +1004,23 @@ verdict: verified
 checked_at: 2026-05-31T21:24:26.047Z
 matched_actions: 149
 action_count: 149
-confidence: high
-summary: "All 149 spec action hex codes match literal source sequences; transport parameters verified verbatim; complete bidirectional coverage."
+confidence: medium
+summary: "All 149 spec action hex codes match literal source sequences; transport parameters verified verbatim; complete bidirectional coverage. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no query commands returning current state found in source"
+- "no query commands found in source. Device does not appear to support"
+- "no event packet documentation found in source. Event packet format"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "query/feedback commands — no mechanism described for reading current parameter values"
+- "event notifications — Event packet format exists but no specific events documented"
+- "firmware version compatibility not stated"
+- "gamma presets (01–12) meanings not described in source"
+- "color temperature presets (01–36) meanings not described in source"
 ```
 
 ---

@@ -16,22 +16,39 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - webostv.developer.lge.com
+  - knowledge.tiffinmotorhomes.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-04-25T20:59:46.803Z
 last_checked_at: 2026-04-25T20:59:46.803Z
 generated_at: 2026-04-25T20:59:46.803Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated"
+  - "maximum concurrent connection count for IP control not stated"
+  - "flow control not stated in source"
+  - "IP control does not document a query/status read mechanism beyond OK/NG ack"
+  - "no distinct settable variables beyond the actions above; all parameters are passed inline with commands"
+  - "no unsolicited notification/event mechanism documented"
+  - "no multi-step macros documented in source"
+  - "no explicit safety warnings or interlock procedures beyond operational constraints noted above"
+  - "maximum concurrent TCP/IP connections not stated"
+  - "command rate limiting or minimum interval not stated"
+  - "connection timeout / keepalive behavior not stated"
+  - "whether IP control query commands exist beyond OK/NG acknowledgement"
+  - "protocol version number not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:59:46.803Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete."
+  confidence: medium
+  summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -678,10 +695,14 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - webostv.developer.lge.com
+  - knowledge.tiffinmotorhomes.com
+  - proaudioinc.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+retrieved_at: 2026-04-25T20:59:46.803Z
 last_checked_at: 2026-04-25T20:59:46.803Z
 ```
 
@@ -692,14 +713,26 @@ verdict: verified
 checked_at: 2026-04-25T20:59:46.803Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete."
+confidence: medium
+summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated"
+- "maximum concurrent connection count for IP control not stated"
+- "flow control not stated in source"
+- "IP control does not document a query/status read mechanism beyond OK/NG ack"
+- "no distinct settable variables beyond the actions above; all parameters are passed inline with commands"
+- "no unsolicited notification/event mechanism documented"
+- "no multi-step macros documented in source"
+- "no explicit safety warnings or interlock procedures beyond operational constraints noted above"
+- "maximum concurrent TCP/IP connections not stated"
+- "command rate limiting or minimum interval not stated"
+- "connection timeout / keepalive behavior not stated"
+- "whether IP control query commands exist beyond OK/NG acknowledgement"
+- "protocol version number not stated"
 ```
 
 ---

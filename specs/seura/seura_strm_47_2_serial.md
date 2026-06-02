@@ -18,23 +18,27 @@ compatible_with:
 source_domains:
   - storage.googleapis.com
 source_urls:
-  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
-  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
-  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
   - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
-retrieved_at: 2026-05-01T01:59:50.755Z
+retrieved_at: 2026-05-26T20:31:55.077Z
 last_checked_at: 2026-05-31T21:05:28.277Z
 generated_at: 2026-05-31T21:05:28.277Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "all settable parameters modeled as actions; no additional variables identified"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "SHA query response format not explicitly shown (inferred from pattern of other picture commands)"
+  - "GAM query not documented in source; only set command shown"
+  - "no power-on sequencing or warm-up delay documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:05:28.277Z
   matched_actions: 79
   action_count: 79
-  confidence: high
-  summary: "All 79 spec actions found verbatim in source; transport parameters confirmed; bidirectional command coverage is complete."
+  confidence: medium
+  summary: "All 79 spec actions found verbatim in source; transport parameters confirmed; bidirectional command coverage is complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -805,11 +809,8 @@ interlocks: []
 source_domains:
   - storage.googleapis.com
 source_urls:
-  - https://storage.googleapis.com/wp-stateless/2019/10/seura-rs232protocol-stm32.pdf
-  - https://storage.googleapis.com/wp-stateless/2020/10/RS232Control-ENT4.pdf
-  - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
   - https://storage.googleapis.com/wp-stateless/2019/10/RS232-protocol-entertainment-and-outdoor-tvs.pdf
-retrieved_at: 2026-05-01T01:59:50.755Z
+retrieved_at: 2026-05-26T20:31:55.077Z
 last_checked_at: 2026-05-31T21:05:28.277Z
 ```
 
@@ -820,14 +821,20 @@ verdict: verified
 checked_at: 2026-05-31T21:05:28.277Z
 matched_actions: 79
 action_count: 79
-confidence: high
-summary: "All 79 spec actions found verbatim in source; transport parameters confirmed; bidirectional command coverage is complete."
+confidence: medium
+summary: "All 79 spec actions found verbatim in source; transport parameters confirmed; bidirectional command coverage is complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "all settable parameters modeled as actions; no additional variables identified"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "SHA query response format not explicitly shown (inferred from pattern of other picture commands)"
+- "GAM query not documented in source; only set command shown"
+- "no power-on sequencing or warm-up delay documented"
 ```
 
 ---

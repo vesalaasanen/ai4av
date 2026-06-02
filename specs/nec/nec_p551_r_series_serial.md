@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:01.643Z
 last_checked_at: 2026-04-25T21:31:09.078Z
 generated_at: 2026-04-25T21:31:09.078Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal value table references an Appendix with model-specific values not included in source"
+  - "The source documents SET commands for some parameters but does not describe"
+  - "The source does not document unsolicited event notifications from the projector."
+  - "No explicit macro or multi-step sequence documentation found in source."
+  - "Full input terminal value table for command 018 requires Appendix which contains model-specific values"
+  - "Aspect value table has variant codes (e.g., ZOOM=07h or 08h) indicating model-specific differences"
+  - "Eco mode value table has variant codes (e.g., NORMAL=00h or 01h) indicating model-specific differences"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:31:09.078Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions map to distinct source command identifiers; transport parameters (port 7142, baud 115200, 8N1) verified verbatim; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 53 spec actions map to distinct source command identifiers; transport parameters (port 7142, baud 115200, 8N1) verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -617,7 +624,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:01.643Z
 last_checked_at: 2026-04-25T21:31:09.078Z
 ```
 
@@ -628,14 +635,20 @@ verdict: verified
 checked_at: 2026-04-25T21:31:09.078Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions map to distinct source command identifiers; transport parameters (port 7142, baud 115200, 8N1) verified verbatim; source command catalogue fully represented."
+confidence: medium
+summary: "All 53 spec actions map to distinct source command identifiers; transport parameters (port 7142, baud 115200, 8N1) verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal value table references an Appendix with model-specific values not included in source"
+- "The source documents SET commands for some parameters but does not describe"
+- "The source does not document unsolicited event notifications from the projector."
+- "No explicit macro or multi-step sequence documentation found in source."
+- "Full input terminal value table for command 018 requires Appendix which contains model-specific values"
+- "Aspect value table has variant codes (e.g., ZOOM=07h or 08h) indicating model-specific differences"
+- "Eco mode value table has variant codes (e.g., NORMAL=00h or 01h) indicating model-specific differences"
 ```
 
 ---

@@ -30,14 +30,20 @@ last_checked_at: 2026-04-27T09:04:50.206Z
 generated_at: 2026-04-27T09:04:50.206Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model numbers not enumerated in source — \"LW3 compatible devices\" per source language"
+  - "no safety warnings or interlock procedures in source"
+  - "full LW3 node tree not documented in source — device-specific; source recommends per-device User Manual Chapter 5-8 for LW3 Programmer's Reference"
+  - "GPIO pin count and capabilities not stated in source"
+  - "USB control command syntax not detailed in source"
+  - "DHCH state query (GET /MANAGEMENT/NETWORK.DhcpEnabled) shown but DHCP setting via SET not documented with example"
 verification:
   verdict: verified
   checked_at: 2026-04-27T09:04:50.206Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 semantic-id spec actions matched to documented LW3 commands; transport port and baud verified."
+  confidence: medium
+  summary: "All 13 semantic-id spec actions matched to documented LW3 commands; transport port and baud verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -355,14 +361,19 @@ verdict: verified
 checked_at: 2026-04-27T09:04:50.206Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 semantic-id spec actions matched to documented LW3 commands; transport port and baud verified."
+confidence: medium
+summary: "All 13 semantic-id spec actions matched to documented LW3 commands; transport port and baud verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model numbers not enumerated in source — \"LW3 compatible devices\" per source language"
+- "no safety warnings or interlock procedures in source"
+- "full LW3 node tree not documented in source — device-specific; source recommends per-device User Manual Chapter 5-8 for LW3 Programmer's Reference"
+- "GPIO pin count and capabilities not stated in source"
+- "USB control command syntax not detailed in source"
+- "DHCH state query (GET /MANAGEMENT/NETWORK.DhcpEnabled) shown but DHCP setting via SET not documented with example"
 ```
 
 ---

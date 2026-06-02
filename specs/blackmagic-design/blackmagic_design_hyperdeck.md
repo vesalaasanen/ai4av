@@ -43,13 +43,22 @@ known_gaps:
   - remote
   - uptime
   - "cache info"
+  - "specific firmware version compatibility not stated in source"
+  - "exact model feature differences beyond video format support not fully documented"
+  - "source describes authenticate command with username/password"
+  - "power-on sequencing requirements not stated in source"
+  - "exact model-to-feature mapping not fully documented (which models support NAS, slate, etc.)"
+  - "maximum concurrent client connections not stated (only that it is limited)"
+  - "whether authentication is required by default or only on certain configurations"
+  - "watchdog default period not stated"
+  - "protocol version number not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:22:09.404Z
   matched_actions: 39
   action_count: 39
-  confidence: high
-  summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol."
+  confidence: medium
+  summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -986,8 +995,8 @@ verdict: verified
 checked_at: 2026-04-23T15:22:09.404Z
 matched_actions: 39
 action_count: 39
-confidence: high
-summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol."
+confidence: medium
+summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1004,6 +1013,15 @@ summary: "All 39 spec actions matched verbatim in source; transport parameters v
 - remote
 - uptime
 - "cache info"
+- "specific firmware version compatibility not stated in source"
+- "exact model feature differences beyond video format support not fully documented"
+- "source describes authenticate command with username/password"
+- "power-on sequencing requirements not stated in source"
+- "exact model-to-feature mapping not fully documented (which models support NAS, slate, etc.)"
+- "maximum concurrent client connections not stated (only that it is limited)"
+- "whether authentication is required by default or only on certain configurations"
+- "watchdog default period not stated"
+- "protocol version number not stated"
 ```
 
 ---

@@ -18,23 +18,35 @@ compatible_with:
 source_domains:
   - extron.com
   - media.extron.com
+  - rental.imersis.ch
+  - manualslib.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/68-1339-01_E_SSP7_1_UG.pdf
+  - https://media.extron.com/public/download/files/userman/68-1339-50_RevC_SSP7p1_SUG.pdf
+  - http://rental.imersis.ch/wp-content/uploads/2024/05/EXTRON-SSP-7.1_Manual.pdf
+  - https://www.manualslib.com/manual/725401/Extron-Electronics-Ssp-7-1.html
+retrieved_at: 2026-05-14T16:19:13.075Z
 last_checked_at: 2026-05-16T12:16:07.602Z
 generated_at: 2026-05-16T12:16:07.602Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no power on/off commands found in source — device may lack remote power control"
+  - "flow control not stated in source"
+  - "no multi-step macro sequences explicitly defined in source"
+  - "no safety warnings or interlock procedures found in source."
+  - "no power on/off commands — device may require physical power toggle"
+  - "flow control setting not stated in source"
+  - "firmware upload protocol details not fully documented (binary format unknown)"
+  - "Telnet connection behavior beyond port 23 not documented (keepalive, timeout)"
+  - "maximum command rate / throttle limits not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:16:07.602Z
   matched_actions: 43
   action_count: 43
-  confidence: high
-  summary: "All 43 actions matched with correct opcodes and shapes, transport parameters verified, source fully represented."
+  confidence: medium
+  summary: "All 43 actions matched with correct opcodes and shapes, transport parameters verified, source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -905,11 +917,14 @@ interlocks: []
 source_domains:
   - extron.com
   - media.extron.com
+  - rental.imersis.ch
+  - manualslib.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/68-1339-01_E_SSP7_1_UG.pdf
+  - https://media.extron.com/public/download/files/userman/68-1339-50_RevC_SSP7p1_SUG.pdf
+  - http://rental.imersis.ch/wp-content/uploads/2024/05/EXTRON-SSP-7.1_Manual.pdf
+  - https://www.manualslib.com/manual/725401/Extron-Electronics-Ssp-7-1.html
+retrieved_at: 2026-05-14T16:19:13.075Z
 last_checked_at: 2026-05-16T12:16:07.602Z
 ```
 
@@ -920,14 +935,22 @@ verdict: verified
 checked_at: 2026-05-16T12:16:07.602Z
 matched_actions: 43
 action_count: 43
-confidence: high
-summary: "All 43 actions matched with correct opcodes and shapes, transport parameters verified, source fully represented."
+confidence: medium
+summary: "All 43 actions matched with correct opcodes and shapes, transport parameters verified, source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no power on/off commands found in source — device may lack remote power control"
+- "flow control not stated in source"
+- "no multi-step macro sequences explicitly defined in source"
+- "no safety warnings or interlock procedures found in source."
+- "no power on/off commands — device may require physical power toggle"
+- "flow control setting not stated in source"
+- "firmware upload protocol details not fully documented (binary format unknown)"
+- "Telnet connection behavior beyond port 23 not documented (keepalive, timeout)"
+- "maximum command rate / throttle limits not stated"
 ```
 
 ---

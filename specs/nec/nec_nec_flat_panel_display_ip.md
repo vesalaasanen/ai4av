@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:02.186Z
 last_checked_at: 2026-05-14T18:17:18.449Z
 generated_at: 2026-05-14T18:17:18.449Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device is described as \"Flat Panel Display\" in entity but manual title is \"Projector Control Command Reference Manual\" — model number BDT140013 Rev 7.1 may indicate a projector, not a flat panel display"
+  - "no flow control settings in source"
+  - "no discrete settable parameters documented separately from action commands"
+  - "no unsolicited event notifications documented - device only responds to commands"
+  - "command timing/latency requirements not stated in source"
+  - "maximum concurrent connections or connection limits not stated in source"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.449Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec commands matched literal source codes; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 53 spec commands matched literal source codes; transport parameters verified; bidirectional coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -691,7 +698,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:02.186Z
 last_checked_at: 2026-05-14T18:17:18.449Z
 ```
 
@@ -702,14 +709,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.449Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec commands matched literal source codes; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 53 spec commands matched literal source codes; transport parameters verified; bidirectional coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device is described as \"Flat Panel Display\" in entity but manual title is \"Projector Control Command Reference Manual\" — model number BDT140013 Rev 7.1 may indicate a projector, not a flat panel display"
+- "no flow control settings in source"
+- "no discrete settable parameters documented separately from action commands"
+- "no unsolicited event notifications documented - device only responds to commands"
+- "command timing/latency requirements not stated in source"
+- "maximum concurrent connections or connection limits not stated in source"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

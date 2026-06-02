@@ -30,14 +30,26 @@ last_checked_at: 2026-05-14T18:17:21.291Z
 generated_at: 2026-05-14T18:17:21.291Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model variant differences not enumerated in source"
+  - "username not stated in source"
+  - "password not stated in source"
+  - "no unsolicited event notifications described in source"
+  - "no explicit multi-step macros described in source"
+  - "no explicit safety warnings or interlock procedures beyond CCU dependency notes"
+  - "admin username/password not stated in source"
+  - "RTSP/RTMP streaming protocol details beyond port defaults (554/1935) not fully documented"
+  - "shutter speed values are enumerated for 60/59.94/30/29.97 and 50/25 fps but source does not specify which framerate is active"
+  - "CAM_Tally command hex documented but purpose/context not explained in source"
+  - "CAM_NR (noise reduction) documented but no corresponding Telnet command found in source"
+  - "CAM_PTZ_PresetSpeed RS-232 command documented but no corresponding Telnet API command found"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.291Z
   matched_actions: 31
   action_count: 32
-  confidence: high
-  summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source."
+  confidence: medium
+  summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -642,14 +654,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.291Z
 matched_actions: 31
 action_count: 32
-confidence: high
-summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source."
+confidence: medium
+summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model variant differences not enumerated in source"
+- "username not stated in source"
+- "password not stated in source"
+- "no unsolicited event notifications described in source"
+- "no explicit multi-step macros described in source"
+- "no explicit safety warnings or interlock procedures beyond CCU dependency notes"
+- "admin username/password not stated in source"
+- "RTSP/RTMP streaming protocol details beyond port defaults (554/1935) not fully documented"
+- "shutter speed values are enumerated for 60/59.94/30/29.97 and 50/25 fps but source does not specify which framerate is active"
+- "CAM_Tally command hex documented but purpose/context not explained in source"
+- "CAM_NR (noise reduction) documented but no corresponding Telnet command found in source"
+- "CAM_PTZ_PresetSpeed RS-232 command documented but no corresponding Telnet API command found"
 ```
 
 ---

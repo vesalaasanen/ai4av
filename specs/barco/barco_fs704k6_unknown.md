@@ -17,21 +17,33 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-15T00:49:00.445Z
 last_checked_at: 2026-05-15T21:12:44.366Z
 generated_at: 2026-05-15T21:12:44.366Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "exact list of available sources varies by projector model — source lists example names but states \"list contents will vary depending on the projector model\""
+  - "min value is dynamic - read illumination.sources.laser.minpower"
+  - "max value is dynamic - read illumination.sources.laser.maxpower"
+  - "no multi-step macro sequences explicitly described in source beyond the"
+  - "HTTP file endpoint base URL path is constructed from projector IP — no fixed base URL stated"
+  - "exact connector and source names vary by projector configuration"
+  - "zoom/focus/lens shift position value ranges not stated"
+  - "window position and size coordinate system/ranges not stated"
+  - "color preset names and color management properties not fully documented"
+  - "firmware upgrade command parameters not specified beyond method name"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:12:44.366Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched verbatim in source; transport parameters verified; complete API coverage confirmed."
+  confidence: medium
+  summary: "All 27 spec actions matched verbatim in source; transport parameters verified; complete API coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -595,9 +607,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-15T00:49:00.445Z
 last_checked_at: 2026-05-15T21:12:44.366Z
 ```
 
@@ -608,14 +621,24 @@ verdict: verified
 checked_at: 2026-05-15T21:12:44.366Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched verbatim in source; transport parameters verified; complete API coverage confirmed."
+confidence: medium
+summary: "All 27 spec actions matched verbatim in source; transport parameters verified; complete API coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "exact list of available sources varies by projector model — source lists example names but states \"list contents will vary depending on the projector model\""
+- "min value is dynamic - read illumination.sources.laser.minpower"
+- "max value is dynamic - read illumination.sources.laser.maxpower"
+- "no multi-step macro sequences explicitly described in source beyond the"
+- "HTTP file endpoint base URL path is constructed from projector IP — no fixed base URL stated"
+- "exact connector and source names vary by projector configuration"
+- "zoom/focus/lens shift position value ranges not stated"
+- "window position and size coordinate system/ranges not stated"
+- "color preset names and color management properties not fully documented"
+- "firmware upgrade command parameters not specified beyond method name"
 ```
 
 ---

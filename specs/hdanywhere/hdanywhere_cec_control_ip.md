@@ -38,19 +38,28 @@ source_domains:
   - docs.google.com
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
-retrieved_at: 2026-05-04T15:16:46.093Z
+retrieved_at: 2026-04-30T04:31:12.610Z
 last_checked_at: 2026-04-25T20:45:33.313Z
 generated_at: 2026-04-25T20:45:33.313Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "OAuth 2.0 listed under Protocol(s) but not detailed; relevance to local control unclear"
+  - "variables are returned by query APIs but are not independently settable"
+  - "document describes request/response pattern only; no unsolicited event"
+  - "sequences and functions are user-defined on the device; the API executes"
+  - "no explicit safety warnings or interlock procedures beyond ARC timing note"
+  - "OAuth 2.0 listed under Protocol(s) in source prologue but no auth procedure described for local control"
+  - "UDP state broadcast (Port 3000) mentioned but not detailed"
+  - "HDA Cloud features noted as \"development paused\""
+  - "uControl command IDs 0-102 listed in appendix but source does not specify which are CEC vs IR vs IP specific"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:45:33.313Z
   matched_actions: 36
   action_count: 36
-  confidence: high
-  summary: "All 36 spec actions map one-to-one to documented MHUB API endpoints; transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 36 spec actions map one-to-one to documented MHUB API endpoints; transport parameters verified verbatim in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -644,7 +653,7 @@ source_domains:
   - docs.google.com
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
-retrieved_at: 2026-05-04T15:16:46.093Z
+retrieved_at: 2026-04-30T04:31:12.610Z
 last_checked_at: 2026-04-25T20:45:33.313Z
 ```
 
@@ -655,14 +664,22 @@ verdict: verified
 checked_at: 2026-04-25T20:45:33.313Z
 matched_actions: 36
 action_count: 36
-confidence: high
-summary: "All 36 spec actions map one-to-one to documented MHUB API endpoints; transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 36 spec actions map one-to-one to documented MHUB API endpoints; transport parameters verified verbatim in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "OAuth 2.0 listed under Protocol(s) but not detailed; relevance to local control unclear"
+- "variables are returned by query APIs but are not independently settable"
+- "document describes request/response pattern only; no unsolicited event"
+- "sequences and functions are user-defined on the device; the API executes"
+- "no explicit safety warnings or interlock procedures beyond ARC timing note"
+- "OAuth 2.0 listed under Protocol(s) in source prologue but no auth procedure described for local control"
+- "UDP state broadcast (Port 3000) mentioned but not detailed"
+- "HDA Cloud features noted as \"development paused\""
+- "uControl command IDs 0-102 listed in appendix but source does not specify which are CEC vs IR vs IP specific"
 ```
 
 ---

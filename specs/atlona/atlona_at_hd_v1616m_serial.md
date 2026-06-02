@@ -17,25 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - atlona.com
+  - web.archive.org
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://web.archive.org/web/20201023090250/https://atlona.com/pdf/manuals/AT-HD-V1616M_V2.pdf
+  - https://web.archive.org/web/2015/https://atlona.com/pdf/manuals/AT-HD-V1616M.pdf
+retrieved_at: 2026-05-27T13:47:44.906Z
 last_checked_at: 2026-05-27T15:34:21.794Z
 generated_at: 2026-05-27T15:34:21.794Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "UDP/HTTP not mentioned — TCP/IP unknown"
+  - "no power commands in source"
+  - "no explicit response strings in source"
+  - "no discrete variables - routing state conveyed via Status queries"
+  - "no unsolicited notifications documented"
+  - "no multi-step macros documented"
+  - "no safety warnings in source"
+  - "TCP/IP support not stated, power commands not stated, event-driven feedback not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:34:21.794Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions matched verbatim with source; transport parameters fully verified; complete coverage of source command catalogue."
+  confidence: medium
+  summary: "All 24 spec actions matched verbatim with source; transport parameters fully verified; complete coverage of source command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -322,13 +329,12 @@ Command terminator required: `. ; ! " $ &` — without it command fails. Case-se
 ```yaml
 source_domains:
   - atlona.com
+  - web.archive.org
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
+  - https://web.archive.org/web/20201023090250/https://atlona.com/pdf/manuals/AT-HD-V1616M_V2.pdf
+  - https://web.archive.org/web/2015/https://atlona.com/pdf/manuals/AT-HD-V1616M.pdf
+retrieved_at: 2026-05-27T13:47:44.906Z
 last_checked_at: 2026-05-27T15:34:21.794Z
 ```
 
@@ -339,14 +345,21 @@ verdict: verified
 checked_at: 2026-05-27T15:34:21.794Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions matched verbatim with source; transport parameters fully verified; complete coverage of source command catalogue."
+confidence: medium
+summary: "All 24 spec actions matched verbatim with source; transport parameters fully verified; complete coverage of source command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "UDP/HTTP not mentioned — TCP/IP unknown"
+- "no power commands in source"
+- "no explicit response strings in source"
+- "no discrete variables - routing state conveyed via Status queries"
+- "no unsolicited notifications documented"
+- "no multi-step macros documented"
+- "no safety warnings in source"
+- "TCP/IP support not stated, power commands not stated, event-driven feedback not stated"
 ```
 
 ---

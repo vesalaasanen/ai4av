@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:09.362Z
 last_checked_at: 2026-05-14T18:17:18.960Z
 generated_at: 2026-05-14T18:17:18.960Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document header identifies model as BDT140013; file path suggests PLASMA SYNC 3300 — discrepancy not resolved"
+  - "baud rate configurable (115200/38400/19200/9600/4800 bps) but none fixed in source"
+  - "hardware flow control pins present (RTS/CTS) but no protocol stated"
+  - "projector may send asynchronous status changes - not documented."
+  - "no safety warnings or interlock procedures stated in source."
+  - "Appendix \"Supplementary Information by Command\" referenced but not included in source — input/output values for some commands (INPUT SW CHANGE, ASPECT ADJUST, ECO MODE, PIP/PBP sub inputs) are not fully documented"
+  - "wireless LAN unit specifications and configuration not documented (source directs to operation manual of wireless LAN unit)"
+  - "firmware version compatibility not stated in source"
+  - "authentication tokens or session management not documented — none described"
+  - "binary protocol byte-level timing requirements not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.960Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented."
+  confidence: medium
+  summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -660,7 +670,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:09.362Z
 last_checked_at: 2026-05-14T18:17:18.960Z
 ```
 
@@ -671,14 +681,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.960Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented."
+confidence: medium
+summary: "All 53 spec actions matched literal hexadecimal payloads in source; all transport parameters verified verbatim; command catalogue fully represented. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document header identifies model as BDT140013; file path suggests PLASMA SYNC 3300 — discrepancy not resolved"
+- "baud rate configurable (115200/38400/19200/9600/4800 bps) but none fixed in source"
+- "hardware flow control pins present (RTS/CTS) but no protocol stated"
+- "projector may send asynchronous status changes - not documented."
+- "no safety warnings or interlock procedures stated in source."
+- "Appendix \"Supplementary Information by Command\" referenced but not included in source — input/output values for some commands (INPUT SW CHANGE, ASPECT ADJUST, ECO MODE, PIP/PBP sub inputs) are not fully documented"
+- "wireless LAN unit specifications and configuration not documented (source directs to operation manual of wireless LAN unit)"
+- "firmware version compatibility not stated in source"
+- "authentication tokens or session management not documented — none described"
+- "binary protocol byte-level timing requirements not stated"
 ```
 
 ---

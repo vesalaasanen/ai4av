@@ -29,14 +29,20 @@ last_checked_at: 2026-04-30T15:23:26.169Z
 generated_at: 2026-04-30T15:23:26.169Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "matrix mode not available on M-9000M2 series (mixer mode only)."
+  - "no discrete settable parameters beyond action commands documented"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "connector pinout details beyond TX/RX/GND not confirmed"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:23:26.169Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions matched with correct opcodes; transport verified."
+  confidence: medium
+  summary: "All 16 spec actions matched with correct opcodes; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -384,14 +390,19 @@ verdict: verified
 checked_at: 2026-04-30T15:23:26.169Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions matched with correct opcodes; transport verified."
+confidence: medium
+summary: "All 16 spec actions matched with correct opcodes; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "matrix mode not available on M-9000M2 series (mixer mode only)."
+- "no discrete settable parameters beyond action commands documented"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "connector pinout details beyond TX/RX/GND not confirmed"
 ```
 
 ---

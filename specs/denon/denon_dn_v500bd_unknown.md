@@ -17,21 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T15:19:49.200Z
 last_checked_at: 2026-05-20T11:31:52.282Z
 generated_at: 2026-05-20T11:31:52.282Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact DN-V500BD feature subset not stated — source is a generic Denon AVR protocol doc covering many models; which commands the DN-V500BD actually responds to is not specified"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock or power-on sequencing beyond the 1s PWON delay"
+  - "exact DN-V500BD command subset — source is a multi-model AVR protocol doc, not DN-V500BD-specific"
+  - "firmware version compatibility not stated"
+  - "which surround modes and zone commands the DN-V500BD supports specifically"
+  - "whether DN-V500BD supports Zone 2/3, HD Radio, network streaming commands"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:31:52.282Z
   matched_actions: 164
   action_count: 164
-  confidence: high
-  summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified."
+  confidence: medium
+  summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1644,9 +1653,11 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T15:19:49.200Z
 last_checked_at: 2026-05-20T11:31:52.282Z
 ```
 
@@ -1657,14 +1668,20 @@ verdict: verified
 checked_at: 2026-05-20T11:31:52.282Z
 matched_actions: 164
 action_count: 164
-confidence: high
-summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified."
+confidence: medium
+summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact DN-V500BD feature subset not stated — source is a generic Denon AVR protocol doc covering many models; which commands the DN-V500BD actually responds to is not specified"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock or power-on sequencing beyond the 1s PWON delay"
+- "exact DN-V500BD command subset — source is a multi-model AVR protocol doc, not DN-V500BD-specific"
+- "firmware version compatibility not stated"
+- "which surround modes and zone commands the DN-V500BD supports specifically"
+- "whether DN-V500BD supports Zone 2/3, HD Radio, network streaming commands"
 ```
 
 ---

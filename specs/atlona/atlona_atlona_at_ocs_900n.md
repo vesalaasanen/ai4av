@@ -28,13 +28,22 @@ known_gaps:
   - export_config
   - import_config
   - upgrade
+  - "MQTT command/topic structure not covered in source document"
+  - "firmware version compatibility range not stated"
+  - "exact JSON payload structure of unsolicited UDP event messages not shown in source"
+  - "no multi-step sequences documented in source"
+  - "no additional safety warnings or interlock procedures stated in source"
+  - "MQTT topic/payload schema not in source"
+  - "Maximum number of concurrent WebSocket connections not stated"
+  - "Rate limiting or command throttling behavior not stated"
+  - "export_config / import_config / upgrade methods listed in method:help reply but not individually documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.106Z
   matched_actions: 16
   action_count: 30
-  confidence: high
-  summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented."
+  confidence: medium
+  summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -679,8 +688,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.106Z
 matched_actions: 16
 action_count: 30
-confidence: high
-summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented."
+confidence: medium
+summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -689,6 +698,15 @@ summary: "All 16 spec actions matched exactly in source; transport parameters ve
 - export_config
 - import_config
 - upgrade
+- "MQTT command/topic structure not covered in source document"
+- "firmware version compatibility range not stated"
+- "exact JSON payload structure of unsolicited UDP event messages not shown in source"
+- "no multi-step sequences documented in source"
+- "no additional safety warnings or interlock procedures stated in source"
+- "MQTT topic/payload schema not in source"
+- "Maximum number of concurrent WebSocket connections not stated"
+- "Rate limiting or command throttling behavior not stated"
+- "export_config / import_config / upgrade methods listed in method:help reply but not individually documented in source"
 ```
 
 ---

@@ -24,14 +24,22 @@ last_checked_at: 2026-04-30T14:54:06.582Z
 generated_at: 2026-04-30T14:54:06.582Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power consumption, thermal limits not stated in source"
+  - "LED behavior during normal operation not detailed (flash command only)"
+  - "specific event triggering conditions not enumerated in source (only general behavior described)"
+  - "no explicit multi-step macros defined in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Dante/AES67 audio transport parameters not detailed in source"
+  - "LED behavior (normal operation, status colors) not documented"
+  - "factory preset contents not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:54:06.582Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 32 spec actions found in source; transport verified."
+  confidence: medium
+  summary: "All 32 spec actions found in source; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -487,14 +495,21 @@ verdict: verified
 checked_at: 2026-04-30T14:54:06.582Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 32 spec actions found in source; transport verified."
+confidence: medium
+summary: "All 32 spec actions found in source; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power consumption, thermal limits not stated in source"
+- "LED behavior during normal operation not detailed (flash command only)"
+- "specific event triggering conditions not enumerated in source (only general behavior described)"
+- "no explicit multi-step macros defined in source"
+- "no safety warnings or interlock procedures in source"
+- "Dante/AES67 audio transport parameters not detailed in source"
+- "LED behavior (normal operation, status colors) not documented"
+- "factory preset contents not documented"
 ```
 
 ---

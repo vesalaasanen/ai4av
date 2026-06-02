@@ -15,23 +15,33 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - files.support.epson.com
-source_urls:
-  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:15.725Z
 last_checked_at: 2026-05-14T18:17:15.725Z
 generated_at: 2026-05-14T18:17:15.725Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "EH-QS100 Series is not explicitly listed in the \"Applicable models\" section of the source document. The source covers many older Epson projector models; command availability for EH-QS100 Series should be verified against device-specific documentation."
+  - "TCP/IP details (port number, session setup) are deferred to the ESC/VP.net protocol manual, which was not provided."
+  - "TCP port number not stated in source; refer to ESC/VP.net manual"
+  - "no settable continuous variables (e.g. volume, brightness, lens shift) documented in this source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "EH-QS100 Series not listed in applicable models — command set needs verification against device-specific documentation"
+  - "TCP port, session establishment, and ESC/VP.net protocol details not available in this source"
+  - "No volume, brightness, keystone, lens shift, or other adjustment commands documented in this source"
+  - "No warm-up/cooldown timing constraints documented"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.725Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification."
+  confidence: medium
+  summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -428,11 +438,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - files.support.epson.com
-source_urls:
-  - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:15.725Z
 last_checked_at: 2026-05-14T18:17:15.725Z
 ```
 
@@ -443,14 +451,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.725Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification."
+confidence: medium
+summary: "All 48 spec actions matched literal commands in ESC/VP21 reference; transport parameters verbatim in source communication specification. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "EH-QS100 Series is not explicitly listed in the \"Applicable models\" section of the source document. The source covers many older Epson projector models; command availability for EH-QS100 Series should be verified against device-specific documentation."
+- "TCP/IP details (port number, session setup) are deferred to the ESC/VP.net protocol manual, which was not provided."
+- "TCP port number not stated in source; refer to ESC/VP.net manual"
+- "no settable continuous variables (e.g. volume, brightness, lens shift) documented in this source"
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "EH-QS100 Series not listed in applicable models — command set needs verification against device-specific documentation"
+- "TCP port, session establishment, and ESC/VP.net protocol details not available in this source"
+- "No volume, brightness, keystone, lens shift, or other adjustment commands documented in this source"
+- "No warm-up/cooldown timing constraints documented"
+- "model-specific source not located"
 ```
 
 ---

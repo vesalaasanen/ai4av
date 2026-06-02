@@ -18,26 +18,39 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - files.sharpusa.com
   - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
-  - business.sharpusa.com
+  - github.com
+  - manualslib.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - http://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/LCDTVs/Manuals/tel_man_LC32SV40U_LC42SV50U_LC46SV50U.pdf
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+  - https://github.com/golliher/go-sharptv
+  - https://github.com/jdwhite/aquosctl
+  - https://www.manualslib.com/brand/sharp/
+retrieved_at: 2026-05-15T02:35:06.944Z
 last_checked_at: 2026-05-18T16:51:19.817Z
 generated_at: 2026-05-18T16:51:19.817Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP or other transport documented — serial only"
+  - "no response timeout specified"
+  - "no maximum command rate specified — source says wait for OK before next command"
+  - "no distinct settable variables beyond actions - parameter ranges documented inline"
+  - "no unsolicited notifications documented in source"
+  - "no multi-step sequences documented in source"
+  - "no additional safety/interlock procedures documented"
+  - "exact command byte encoding for all parameter positions not fully clear from OCR"
+  - "response timeout not specified"
+  - "maximum serial command rate not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:51:19.817Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified."
+  confidence: medium
+  summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -375,14 +388,17 @@ interlocks:
 
 ```yaml
 source_domains:
+  - files.sharpusa.com
   - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
-  - business.sharpusa.com
+  - github.com
+  - manualslib.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - http://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/LCDTVs/Manuals/tel_man_LC32SV40U_LC42SV50U_LC46SV50U.pdf
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+  - https://github.com/golliher/go-sharptv
+  - https://github.com/jdwhite/aquosctl
+  - https://www.manualslib.com/brand/sharp/
+retrieved_at: 2026-05-15T02:35:06.944Z
 last_checked_at: 2026-05-18T16:51:19.817Z
 ```
 
@@ -393,14 +409,23 @@ verdict: verified
 checked_at: 2026-05-18T16:51:19.817Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified."
+confidence: medium
+summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP or other transport documented — serial only"
+- "no response timeout specified"
+- "no maximum command rate specified — source says wait for OK before next command"
+- "no distinct settable variables beyond actions - parameter ranges documented inline"
+- "no unsolicited notifications documented in source"
+- "no multi-step sequences documented in source"
+- "no additional safety/interlock procedures documented"
+- "exact command byte encoding for all parameter positions not fully clear from OCR"
+- "response timeout not specified"
+- "maximum serial command rate not specified"
 ```
 
 ---

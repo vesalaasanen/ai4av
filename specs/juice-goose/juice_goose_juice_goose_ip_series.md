@@ -24,14 +24,27 @@ last_checked_at: 2026-05-14T18:17:17.120Z
 generated_at: 2026-05-14T18:17:17.120Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 data bits, parity, stop bits, and flow control not stated in source"
+  - "SNMP port not explicitly stated in source"
+  - "whether relay 4 exists on this model (source says 1,2,3 or 4 but only pods 1-3 documented)"
+  - "SNMP port not explicitly stated in source (standard is 161)"
+  - "not stated in source"
+  - "SNMP GET/getnext queries for reading relay state not documented in source"
+  - "no continuously variable parameters documented in source (relay states are discrete on/off/cycle)"
+  - "SEQUP and SEQDOWN are multi-step sequences but parameters are embedded in command; not broken out as macro steps in source"
+  - "no voltage/current ratings or load limits stated in source"
+  - "firmware version compatibility not stated in source"
+  - "SNMP GET/read operations not documented — only snmpset described"
+  - "whether relay/pod 4 exists on the iP 15 hardware (source mentions 1,2,3 or 4 but only 3 pods shown in RS232 commands)"
+  - "RS-232 data bits, parity, stop bits, flow control parameters not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.120Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented."
+  confidence: medium
+  summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -350,14 +363,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.120Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented."
+confidence: medium
+summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command catalogue represented. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 data bits, parity, stop bits, and flow control not stated in source"
+- "SNMP port not explicitly stated in source"
+- "whether relay 4 exists on this model (source says 1,2,3 or 4 but only pods 1-3 documented)"
+- "SNMP port not explicitly stated in source (standard is 161)"
+- "not stated in source"
+- "SNMP GET/getnext queries for reading relay state not documented in source"
+- "no continuously variable parameters documented in source (relay states are discrete on/off/cycle)"
+- "SEQUP and SEQDOWN are multi-step sequences but parameters are embedded in command; not broken out as macro steps in source"
+- "no voltage/current ratings or load limits stated in source"
+- "firmware version compatibility not stated in source"
+- "SNMP GET/read operations not documented — only snmpset described"
+- "whether relay/pod 4 exists on the iP 15 hardware (source mentions 1,2,3 or 4 but only 3 pods shown in RS232 commands)"
+- "RS-232 data bits, parity, stop bits, flow control parameters not stated"
 ```
 
 ---

@@ -22,19 +22,34 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:46:51.270Z
 last_checked_at: 2026-05-16T12:37:58.490Z
 generated_at: 2026-05-16T12:37:58.490Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values for PIP are incomplete"
+  - "wireless LAN connection details deferred to separate operation manual"
+  - "flow_control not stated in source"
+  - "flow control not stated in source"
+  - "no unsolicited notification protocol described in source; all responses are query/reply"
+  - "no multi-step macro sequences described in source"
+  - "full power-on sequencing timing not stated"
+  - "appendix with input terminal hex values not in source"
+  - "appendix with aspect ratio hex values not in source"
+  - "appendix with eco mode hex values not in source"
+  - "appendix with base model type hex values not in source"
+  - "appendix with PIP sub-input setting values not in source"
+  - "wireless LAN details deferred to separate operation manual"
+  - "default baud rate not stated"
+  - "flow control setting not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-16T12:37:58.490Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched verbatim in source; Feedbacks section enumerates all source query commands; comprehensive bidirectional coverage of command catalogue."
+  confidence: medium
+  summary: "All 28 spec actions matched verbatim in source; Feedbacks section enumerates all source query commands; comprehensive bidirectional coverage of command catalogue. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -621,7 +636,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:46:51.270Z
 last_checked_at: 2026-05-16T12:37:58.490Z
 ```
 
@@ -632,14 +647,28 @@ verdict: verified
 checked_at: 2026-05-16T12:37:58.490Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched verbatim in source; Feedbacks section enumerates all source query commands; comprehensive bidirectional coverage of command catalogue."
+confidence: medium
+summary: "All 28 spec actions matched verbatim in source; Feedbacks section enumerates all source query commands; comprehensive bidirectional coverage of command catalogue. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values for PIP are incomplete"
+- "wireless LAN connection details deferred to separate operation manual"
+- "flow_control not stated in source"
+- "flow control not stated in source"
+- "no unsolicited notification protocol described in source; all responses are query/reply"
+- "no multi-step macro sequences described in source"
+- "full power-on sequencing timing not stated"
+- "appendix with input terminal hex values not in source"
+- "appendix with aspect ratio hex values not in source"
+- "appendix with eco mode hex values not in source"
+- "appendix with base model type hex values not in source"
+- "appendix with PIP sub-input setting values not in source"
+- "wireless LAN details deferred to separate operation manual"
+- "default baud rate not stated"
+- "flow control setting not stated"
 ```
 
 ---

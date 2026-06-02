@@ -30,14 +30,27 @@ last_checked_at: 2026-05-18T17:08:14.907Z
 generated_at: 2026-05-18T17:08:14.907Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power on/off commands not documented in source"
+  - "detailed serial RS-232 command set not included in this source"
+  - "NMOS API field mappings require device-side help page confirmation"
+  - "RS-232 not covered in this source excerpt"
+  - "display_list and requested_display_mappings commands - referenced but details require API help page"
+  - "no explicit query response formats in source"
+  - "no settable parameters documented in this excerpt"
+  - "specific alarm IDs and event schemas not in this source excerpt"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source excerpt"
+  - "GPIO pin assignments not in source"
+  - "NMOS IS-04/IS-05 register paths not in source"
+  - "RTSP port usage (UDP 5004-5005) not documented as control interface"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:08:14.907Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues."
+  confidence: medium
+  summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -219,14 +232,26 @@ verdict: verified
 checked_at: 2026-05-18T17:08:14.907Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues."
+confidence: medium
+summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power on/off commands not documented in source"
+- "detailed serial RS-232 command set not included in this source"
+- "NMOS API field mappings require device-side help page confirmation"
+- "RS-232 not covered in this source excerpt"
+- "display_list and requested_display_mappings commands - referenced but details require API help page"
+- "no explicit query response formats in source"
+- "no settable parameters documented in this excerpt"
+- "specific alarm IDs and event schemas not in this source excerpt"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source excerpt"
+- "GPIO pin assignments not in source"
+- "NMOS IS-04/IS-05 register paths not in source"
+- "RTSP port usage (UDP 5004-5005) not documented as control interface"
 ```
 
 ---

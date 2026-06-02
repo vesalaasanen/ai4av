@@ -18,21 +18,31 @@ compatible_with:
 source_domains:
   - mylumens.com
 source_urls:
-  - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
-  - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
-retrieved_at: 2026-05-04T15:19:08.841Z
+  - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
+  - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
+retrieved_at: 2026-05-13T06:55:39.719Z
 last_checked_at: 2026-05-16T11:30:42.826Z
 generated_at: 2026-05-16T11:30:42.826Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP control documented; serial-only per source"
+  - "firmware version compatibility not stated"
+  - "flow control not stated (defaulting to none)"
+  - "flow control not stated in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "firmware version compatibility not stated in source"
+  - "no flow control setting stated in source"
+  - "response timing / latency not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:30:42.826Z
   matched_actions: 77
   action_count: 77
-  confidence: high
-  summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified."
+  confidence: medium
+  summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -790,9 +800,9 @@ interlocks: []
 source_domains:
   - mylumens.com
 source_urls:
-  - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
-  - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
-retrieved_at: 2026-05-04T15:19:08.841Z
+  - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
+  - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
+retrieved_at: 2026-05-13T06:55:39.719Z
 last_checked_at: 2026-05-16T11:30:42.826Z
 ```
 
@@ -803,14 +813,23 @@ verdict: verified
 checked_at: 2026-05-16T11:30:42.826Z
 matched_actions: 77
 action_count: 77
-confidence: high
-summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified."
+confidence: medium
+summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP control documented; serial-only per source"
+- "firmware version compatibility not stated"
+- "flow control not stated (defaulting to none)"
+- "flow control not stated in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures found in source"
+- "firmware version compatibility not stated in source"
+- "no flow control setting stated in source"
+- "response timing / latency not specified"
 ```
 
 ---

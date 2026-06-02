@@ -17,26 +17,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - tascam.com
-  - cf.tascam.com
   - tascam.eu
+  - cf.tascam.com
+  - manua.ls
 source_urls:
-  - https://tascam.com/wp-content/uploads/downloads/products/tascam/bd-mp1/rs232c_ethernet_protocol_bd-mp1_v0104_en.pdf
-  - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
-  - https://www.tascam.eu/en/docs/SS-CDR250N_RS-232C_v115.pdf
-retrieved_at: 2026-05-04T15:24:28.295Z
+  - "https://www.tascam.eu/en/docs/CD-RW901%20RS-232C_Protocol%20v100.pdf"
+  - https://cf.tascam.com/wp-content/uploads/downloads/products/old/833/rs-232c_protocol_cd-rw901mk2_v100_e.pdf
+  - https://www.tascam.eu/en/docs/CD-RW901SL_Manual.pdf
+  - https://www.manua.ls/tascam/cd-rw901/manual
+retrieved_at: 2026-05-14T02:48:57.845Z
 last_checked_at: 2026-05-18T17:08:14.187Z
 generated_at: 2026-05-18T17:08:14.187Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no standalone Variables section in source - all settable params are Actions"
+  - "populated from unsolicited status commands above"
+  - "no macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "port number not stated (configured on device panel)"
+  - "voltage/current/power specs not in control protocol section"
+  - "firmware version compatibility not stated in source"
+  - "binary encoding for error/caution codes not detailed — only ASCII return format shown"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:08:14.187Z
   matched_actions: 30
   action_count: 30
-  confidence: high
-  summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally."
+  confidence: medium
+  summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -642,14 +651,15 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - tascam.com
-  - cf.tascam.com
   - tascam.eu
+  - cf.tascam.com
+  - manua.ls
 source_urls:
-  - https://tascam.com/wp-content/uploads/downloads/products/tascam/bd-mp1/rs232c_ethernet_protocol_bd-mp1_v0104_en.pdf
-  - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
-  - https://www.tascam.eu/en/docs/SS-CDR250N_RS-232C_v115.pdf
-retrieved_at: 2026-05-04T15:24:28.295Z
+  - "https://www.tascam.eu/en/docs/CD-RW901%20RS-232C_Protocol%20v100.pdf"
+  - https://cf.tascam.com/wp-content/uploads/downloads/products/old/833/rs-232c_protocol_cd-rw901mk2_v100_e.pdf
+  - https://www.tascam.eu/en/docs/CD-RW901SL_Manual.pdf
+  - https://www.manua.ls/tascam/cd-rw901/manual
+retrieved_at: 2026-05-14T02:48:57.845Z
 last_checked_at: 2026-05-18T17:08:14.187Z
 ```
 
@@ -660,14 +670,21 @@ verdict: verified
 checked_at: 2026-05-18T17:08:14.187Z
 matched_actions: 30
 action_count: 30
-confidence: high
-summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally."
+confidence: medium
+summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no standalone Variables section in source - all settable params are Actions"
+- "populated from unsolicited status commands above"
+- "no macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "port number not stated (configured on device panel)"
+- "voltage/current/power specs not in control protocol section"
+- "firmware version compatibility not stated in source"
+- "binary encoding for error/caution codes not detailed — only ASCII return format shown"
 ```
 
 ---

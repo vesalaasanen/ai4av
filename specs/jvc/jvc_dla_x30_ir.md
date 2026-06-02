@@ -17,25 +17,27 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
-  - snapav.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+retrieved_at: 2026-04-30T04:26:45.673Z
 last_checked_at: 2026-05-14T18:17:17.254Z
 generated_at: 2026-05-14T18:17:17.254Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version stated in source"
+  - "source does not describe unsolicited event notifications."
+  - "no safety warnings or interlock procedures stated in source."
+  - "firmware version compatibility not stated in source"
+  - "LAN IP address configuration defaults stated but DHCP optional; static IP default 192.168.0.2"
+  - "no unsolicited event notifications described in source — polling required for all state"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.254Z
   matched_actions: 109
   action_count: 174
-  confidence: high
-  summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1333,13 +1335,9 @@ interlocks: []
 ```yaml
 source_domains:
   - support.jvc.com
-  - snapav.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+retrieved_at: 2026-04-30T04:26:45.673Z
 last_checked_at: 2026-05-14T18:17:17.254Z
 ```
 
@@ -1350,14 +1348,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.254Z
 matched_actions: 109
 action_count: 174
-confidence: high
-summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete."
+confidence: medium
+summary: "All 109 spec actions matched literally in source with correct hex codes; transport parameters (19200 baud, port 20554, 8-N-1) verified verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version stated in source"
+- "source does not describe unsolicited event notifications."
+- "no safety warnings or interlock procedures stated in source."
+- "firmware version compatibility not stated in source"
+- "LAN IP address configuration defaults stated but DHCP optional; static IP default 192.168.0.2"
+- "no unsolicited event notifications described in source — polling required for all state"
 ```
 
 ---

@@ -16,22 +16,36 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-05-14T18:17:17.585Z
 last_checked_at: 2026-05-14T18:17:17.585Z
 generated_at: 2026-05-14T18:17:17.585Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232C cable type (DE9 vs phone jack) varies by model series"
+  - "flow control not stated in source"
+  - "no discrete settable parameters documented as separate variables;"
+  - "no unsolicited event notifications documented;"
+  - "no multi-step macros documented in source"
+  - "power-on sequencing requirements not explicitly stated"
+  - "RS-232C cable connector type (DE9 vs phone jack) depends on model series"
+  - "flow control configuration not stated"
+  - "firmware version compatibility not stated"
+  - "IP control authentication for network-connected scenarios not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.585Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 30 spec actions matched literal command codes in source; transport parameters verified; complete command catalogue coverage."
+  confidence: medium
+  summary: "All 30 spec actions matched literal command codes in source; transport parameters verified; complete command catalogue coverage. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -447,10 +461,14 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-05-14T18:17:17.585Z
 last_checked_at: 2026-05-14T18:17:17.585Z
 ```
 
@@ -461,14 +479,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.585Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 30 spec actions matched literal command codes in source; transport parameters verified; complete command catalogue coverage."
+confidence: medium
+summary: "All 30 spec actions matched literal command codes in source; transport parameters verified; complete command catalogue coverage. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232C cable type (DE9 vs phone jack) varies by model series"
+- "flow control not stated in source"
+- "no discrete settable parameters documented as separate variables;"
+- "no unsolicited event notifications documented;"
+- "no multi-step macros documented in source"
+- "power-on sequencing requirements not explicitly stated"
+- "RS-232C cable connector type (DE9 vs phone jack) depends on model series"
+- "flow control configuration not stated"
+- "firmware version compatibility not stated"
+- "IP control authentication for network-connected scenarios not stated"
 ```
 
 ---

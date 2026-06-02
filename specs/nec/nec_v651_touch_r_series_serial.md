@@ -19,19 +19,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:16.828Z
 last_checked_at: 2026-05-14T18:17:19.034Z
 generated_at: 2026-05-14T18:17:19.034Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "V651-TOUCH-R-specific appendix values (input terminal codes, aspect modes, eco mode codes) vary across NEC model families — source provides generic NEC codes; real-world values may differ"
+  - "flow control not documented"
+  - "no unsolicited event/notification mechanism documented"
+  - "no explicit safety warnings or emergency procedures in source"
+  - "model-specific appendix values (input codes, aspect, eco modes) — this appears to be a generic NEC projector command reference; V651-TOUCH-R-specific values may differ"
+  - "HDBaseT control support — mentioned in selection signal types but no dedicated HDBaseT commands documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.034Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim."
+  confidence: medium
+  summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -572,7 +578,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:16.828Z
 last_checked_at: 2026-05-14T18:17:19.034Z
 ```
 
@@ -583,14 +589,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.034Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim."
+confidence: medium
+summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "V651-TOUCH-R-specific appendix values (input terminal codes, aspect modes, eco mode codes) vary across NEC model families — source provides generic NEC codes; real-world values may differ"
+- "flow control not documented"
+- "no unsolicited event/notification mechanism documented"
+- "no explicit safety warnings or emergency procedures in source"
+- "model-specific appendix values (input codes, aspect, eco modes) — this appears to be a generic NEC projector command reference; V651-TOUCH-R-specific values may differ"
+- "HDBaseT control support — mentioned in selection signal types but no dedicated HDBaseT commands documented"
 ```
 
 ---

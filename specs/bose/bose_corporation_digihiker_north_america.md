@@ -1,8 +1,8 @@
 ---
-spec_id: admin/bose-corporation-digihiker-north-america
+spec_id: admin/bose-corporation-controlspace-esp-ex-pm-ps-msa12x-endpoints
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Bose ControlSpace Serial Control Protocol Spec"
+title: "Bose Professional ControlSpace / PowerMatch / PowerShare / MSA12X / Endpoint Control Protocol"
 manufacturer: Bose
 model_family: "ControlSpace EX-1280C"
 aliases: []
@@ -33,9 +33,9 @@ compatible_with:
     - "PowerShare PS404D"
     - "PowerShare PS604D"
     - MSA12X
-    - "ControlSpace WP Endpoint"
-    - "ControlSpace EP Endpoint"
-    - "ControlSpace EX Dante Endpoint"
+    - "ControlSpace WP endpoints"
+    - "ControlSpace EP endpoints"
+    - "ControlSpace EX endpoints"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -47,31 +47,36 @@ source_urls:
   - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
   - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-05-14T18:17:14.822Z
-generated_at: 2026-05-14T18:17:14.822Z
+last_checked_at: 2026-06-02T00:05:04.908Z
+generated_at: 2026-06-02T00:05:04.908Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device-specific behavior differences (per-family firmware gates) are not exhaustively enumerated."
+  - "voltage/current ratings and safety interlock procedures are not described in this control-protocol document."
+  - "formal safety interlock procedures (e.g. emergency-stop, evacuation paging) are not enumerated in this control-protocol document."
+  - "device-specific firmware gates (which exact module index values each firmware version supports) are not enumerated."
+  - "timing parameters (e.g. maximum time between characters, command echo behavior) are described qualitatively in source but not as numeric timeouts."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.822Z
-  matched_actions: 39
-  action_count: 39
-  confidence: high
-  summary: "All 39 actions and 24 feedback entries matched source commands; all transport values verified."
+  checked_at: 2026-06-02T00:05:04.908Z
+  matched_actions: 77
+  action_count: 77
+  confidence: medium
+  summary: "All 77 spec actions have verbatim literal matches in the source and the source command catalogue is fully represented by the spec. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-30
+created_at: 2026-06-02
 ---
 
-# Bose ControlSpace Serial Control Protocol Spec
+# Bose Professional ControlSpace / PowerMatch / PowerShare / MSA12X / Endpoint Control Protocol
 
 ## Summary
-ASCII serial control protocol for Bose Professional ControlSpace processors (ESP, EX), PowerMatch and PowerShare amplifiers, MSA12X loudspeakers, and WP/EP/EX Dante endpoints. Supports RS-232, TCP/IP serial-over-Ethernet, and UDP transports. Commands cover system-level parameter sets and groups, device-level I/O volume/mute/signal/IP/reset/standby/fault/alarm, per-module DSP parameter control, MSA12X loudspeaker control, endpoint I/O control, and subscription-based change notifications.
+This spec covers the third-party ASCII control protocol used by Bose Professional audio products — ControlSpace ESP/EX signal processors, PowerMatch and PowerShare amplifiers, MSA12X powered steerable array loudspeakers, and the WP/EP/EX Dante endpoints. The protocol is transported as ASCII text terminated by `<CR>` over RS-232 (ESP/EX), TCP port 10055 (ESP/EX/PM/PS), and UDP port 49494 (MSA12X, endpoints). Commands are divided into System, Device, Module, MSA12X, Endpoint, and Subscription categories. Module commands reference user-defined or fixed module labels in the ControlSpace Designer design.
 
-<!-- UNRESOLVED: protocol version number not stated in source -->
-<!-- UNRESOLVED: firmware version compatibility ranges not stated -->
+<!-- UNRESOLVED: device-specific behavior differences (per-family firmware gates) are not exhaustively enumerated. -->
+<!-- UNRESOLVED: voltage/current ratings and safety interlock procedures are not described in this control-protocol document. -->
 
 ## Transport
 ```yaml
@@ -80,761 +85,868 @@ protocols:
   - tcp
   - udp
 addressing:
-  port: 10055  # TCP: ESP, EX, PowerMatch, PowerShare serial-over-Ethernet
+  tcp_port: 10055
+  udp_port: 49494
 serial:
-  baud_rate: 38400  # ESP-880/1240/4120/1600, EX-1280C/440C/1280
+  baud_rate: 38400
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none
-  # NOTE: ESP-00 uses baud_rate 115200
-  # NOTE: RS-232 available on ESP and EX only; 3-wire connection sufficient (CTS/RTS optional)
-  # NOTE: ESP uses 9-way D connector (DTE); EX uses miniature Phoenix connector
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
-### UDP Endpoints
-```yaml
-# MSA12X and WP/EP/EX endpoints use UDP port 49494
-# ESP/EX/PM/PS TCP port 10055
-# All commands terminated with <CR> (0x0D)
-# Maximum simultaneous SoIP connections per product:
-#   EX-1280C/12AEC/440C/1280, ESP-880/1240/4120/1600, PMxxxxN: 32
-#   ESP-00 Series II/00/88, PS404D/604D: 8
-#   MSA12X: 1
-```
+Notes on transport (from source):
+- RS-232: 3-wire connection is sufficient; CTS/RTS optional. 1U ESPs (880/1240/4120/1600) default to 38,400 baud. ESP-00 and EX default to 115,200 baud. 8 data bits, no parity, 1 stop bit for all.
+- Serial-over-TCP (port 10055) is for ESP, EX, PowerMatch (networked), PowerShare. Device acts as Server; the client must initiate the connection. Up to 32 simultaneous SoIP connections (8 for ESP-00/PS404D/PS604D). Port can be changed/disabled on 1U ESPs and EX via ControlSpace Designer.
+- Serial-over-UDP (port 49494) is used by MSA12X and WP/EP/EX endpoints. MSA12X supports 1 SoIP connection. Endpoints also send unsolicited UDP event notifications to an IP/port configured via the SASIP command.
+- ESP also sends "Ready" over RS-232 when boot completes; SoIP connections must be re-established after reboot.
 
 ## Traits
 ```yaml
-traits:
-  - powerable    # SY/STANDBY commands, RESET reboot
-  - queryable    # GS, GG, GN, GV, GM, GL, GY, GC, GF, GR, GH, GA queries
-  - levelable    # SV/GV volume, SG/GG group level, module gain/level params
-  - routable     # Router module, Matrix Mixer cross-points, Source Selector
+- powerable       # inferred from SY/Standby commands on PM/PS, MSA12X STANDBY
+- routable        # inferred from Router, Matrix Mixer, Source Selector, Conference Room Router commands
+- queryable       # inferred from GS, GG, GN, GV, GM, GL, GY, GF, GR, GH, GA, STATUS, VERSION, AUDIOLEVEL queries
+- levelable       # inferred from SV/GV volume, SG/GG group level, EQ, gain, delay, dynamics parameters
 ```
 
 ## Actions
 ```yaml
-# === SYSTEM COMMANDS (hex notation, apply across multiple devices) ===
-
+# ----------------------------------------------------------------------------
+# System Commands (System-level Parameter Sets, Groups, Room Combine)
+# ----------------------------------------------------------------------------
 - id: set_parameter_set
-  label: Set Parameter Set
+  label: Recall Parameter Set
   kind: action
-  description: "Recall/invoke Parameter Set n. SS n<CR>. n=1-FFh (1-255 decimal)."
+  command: "SS{n}"
   params:
     - name: n
-      type: integer
-      description: "Parameter Set number (1-255 decimal, sent as hex)"
-
-- id: set_group_master_level
+      type: hex
+      description: Parameter Set number, 1-FFh (1-255 decimal)
+- id: get_parameter_set
+  label: Get Last Invoked Parameter Set
+  kind: query
+  command: "GS"
+- id: set_group_level
   label: Set Group Master Level
   kind: action
-  description: "Set master level of Group n to level l. SG n,l<CR>. n=1-40h (1-64). l=0h (-60dB) to 90h (+12dB) in 0.5dB steps, FFh (-inf). PM/PS: 0h to 78h (0dB)."
+  command: "SG{n,l}"
   params:
     - name: n
-      type: integer
-      description: "Group number (1-64)"
+      type: hex
+      description: Group number, 1-40h (1-64 decimal)
     - name: l
-      type: integer
-      description: "Level in hex (0-144 decimal, 0.5dB steps, or 0-120 for PM/PS, or 255 for -inf)"
-
+      type: hex
+      description: Level, 0h (-60dB) to 90h (+12dB) in 0.5dB steps (ESP); PM/PS 0h-78h (0dB); FFh (-60.5dB/-inf)
+- id: get_group_level
+  label: Get Group Master Level
+  kind: query
+  command: "GG{n}"
 - id: set_group_level_increment
   label: Set Group Level Increment/Decrement
   kind: action
-  description: "Increment/decrement master level of Group n by x steps. SH n,d,x<CR>."
+  command: "SH{n,d,x}"
   params:
     - name: n
-      type: integer
-      description: "Group number (1-64)"
+      type: hex
+      description: Group number, 1-40h (1-64 decimal)
     - name: d
       type: integer
-      description: "Direction: 1=up, 0=down"
+      description: Direction, 1=up or 0=down
     - name: x
-      type: integer
-      description: "Number of 0.5dB steps (hex)"
-
-- id: set_group_master_mute
+      type: hex
+      description: Number of 0.5dB steps (e.g. 5dB = A)
+- id: set_group_mute
   label: Set Group Master Mute
   kind: action
-  description: "Set/change mute state for Group n. SN n,m<CR>."
+  command: "SN{n,m}"
   params:
     - name: n
-      type: integer
-      description: "Group number (1-64)"
+      type: hex
+      description: Group number, 1-40h (1-64 decimal)
     - name: m
-      type: string
-      description: "M=Mute, U=Unmute, T=Toggle"
-
+      type: enum
+      description: 'M=Mute, U=Un-mute, T=Toggle mute state'
+- id: get_group_mute
+  label: Get Group Master Mute
+  kind: query
+  command: "GN{n}"
 - id: set_room_combine
   label: Set Room Combine
   kind: action
-  description: "Join or split rooms in a Room Combine Group. SRC n,a,b,s<CR> or SRC \"N\",\"A\",\"B\",s<CR>. EX only."
+  command: "SRC{n,a,b,s}"
   params:
     - name: n
       type: integer
-      description: "Room Combine Group number (1-6) or group name string"
+      description: Room Combine Group number, 1-6 (EX only)
     - name: a
-      type: string
-      description: "First room number or name"
+      type: integer
+      description: Room number 1-6 (or name)
     - name: b
-      type: string
-      description: "Second room number or name"
+      type: integer
+      description: Room number 1-6 (or name)
     - name: s
-      type: string
-      description: "J=Join, S=Split"
-
+      type: enum
+      description: 'J=Join, S=Split'
+- id: get_room_combine
+  label: Get Room Combine
+  kind: query
+  command: "GRC{n,a,b}"
 - id: set_parameter_set_list
   label: Set Parameter Set List Selection
   kind: action
-  description: "Change current selection of Parameter Set List. SA \"A\">1=n<CR>."
+  command: 'SA"A">{1|2}={n}'
   params:
     - name: list_name
       type: string
-      description: "Parameter Set List name"
+      description: Parameter Set List name (quoted)
+    - name: index1
+      type: integer
+      description: Always 1 or 2 to select the list
     - name: n
       type: integer
-      description: "Index of Parameter Set to select"
+      description: Index of Parameter Set within the list
+- id: get_parameter_set_list
+  label: Get Parameter Set List Selection
+  kind: query
+  command: 'GA"A">{1|2}'
 
-# === DEVICE COMMANDS (hex notation) ===
-
+# ----------------------------------------------------------------------------
+# Device Commands (slot/channel level, mute, signal level, network, faults)
+# ----------------------------------------------------------------------------
 - id: set_io_volume
   label: Set Input/Output Volume
   kind: action
-  description: "Set volume for slot s, channel c, to level l. SV s,c,l<CR>. Ignored if channel muted. PM/PS outputs only."
+  command: "SV{s,c,l}"
   params:
     - name: s
-      type: integer
-      description: "Slot number (hex)"
+      type: hex
+      description: Slot number (see Source Tables 1-2 for slot map per device)
     - name: c
       type: integer
-      description: "Channel number (1-8 ESP, 1-4 PM/PS)"
+      description: Channel number 1-8 (ESP) or 1-4 (PM/PS)
     - name: l
-      type: integer
-      description: "Level in hex (0h=-60dB to 90h=+12dB, 0.5dB steps; PM/PS 0h to 78h=0dB)"
-
-- id: set_volume_increment
-  label: Set Volume Increment/Decrement
+      type: hex
+      description: 'Level 0h (-60dB) to 90h (+12dB), 0.5dB steps (ESP); 0h-78h (0dB) for PM/PS'
+- id: get_io_volume
+  label: Get Input/Output Volume
+  kind: query
+  command: "GV{s,c}"
+- id: set_io_volume_increment
+  label: Set Input/Output Volume Increment/Decrement
   kind: action
-  description: "Increment/decrement level of slot s, channel c. SI s,c,d,x<CR>. Ignored if muted."
+  command: "SI{s,c,d,x}"
   params:
     - name: s
-      type: integer
-      description: "Slot number (hex)"
+      type: hex
+      description: Slot number
     - name: c
       type: integer
-      description: "Channel number"
+      description: Channel number 1-8 (ESP) or 1-4 (PM/PS)
     - name: d
       type: integer
-      description: "Direction: 1=up, 0=down"
+      description: '1=up, 0=down'
     - name: x
-      type: integer
-      description: "Number of 0.5dB steps (hex)"
-
+      type: hex
+      description: Number of 0.5dB steps
 - id: set_io_mute
   label: Set Input/Output Mute
   kind: action
-  description: "Set/change mute status for slot s, channel c. SM s,c,m<CR>."
+  command: "SM{s,c,m}"
   params:
     - name: s
-      type: integer
-      description: "Slot number (hex)"
+      type: hex
+      description: Slot number
     - name: c
       type: integer
-      description: "Channel number"
+      description: Channel number 1-8 (ESP) or 1-4 (PM/PS)
     - name: m
-      type: string
-      description: "M=Mute, U=Unmute, T=Toggle"
-
+      type: enum
+      description: 'M=Mute, U=Un-mute, T=Toggle'
+- id: get_io_mute
+  label: Get Input/Output Mute
+  kind: query
+  command: "GM{s,c}"
+- id: get_signal_level
+  label: Get Signal Level
+  kind: query
+  command: "GL{s}"
+  params:
+    - name: s
+      type: hex
+      description: Slot index (see GL Indices table in source)
+- id: get_signal_level_param
+  label: Get Signal Level (Parameter)
+  kind: query
+  command: "GL{s,p}"
+  params:
+    - name: s
+      type: hex
+      description: Slot index
+    - name: p
+      type: integer
+      description: Parameter index (for AEC Input=1, ERL=2, ERLE=3)
+- id: get_ip_address
+  label: Get IP Address
+  kind: query
+  command: "IP"
 - id: set_ip_address
   label: Set IP Address
   kind: action
-  description: "Set/change device IP address. IP xxx.xxx.xxx.xxx<CR>. Takes effect after reboot."
+  command: "IP{ip}"
   params:
-    - name: address
+    - name: ip
       type: string
-      description: "IP address in dotted decimal"
-
+      description: 'Dotted quad xxx.xxx.xxx.xxx (takes effect after reboot)'
+- id: get_network_parameter
+  label: Get Network Parameter
+  kind: query
+  command: "NP{p}"
+  params:
+    - name: p
+      type: enum
+      description: 'T=Type (DHCP/Static), M=Subnet Mask, G=Default Gateway'
 - id: set_network_parameter
   label: Set Network Parameter
   kind: action
-  description: "Set subnet mask, gateway, or DHCP mode. NP p,v<CR>. NP F resets to defaults."
+  command: "NP{p,v}"
   params:
     - name: p
-      type: string
-      description: "T=Type(DHCP/Static), M=Subnet Mask, G=Default Gateway, F=Reset all"
+      type: enum
+      description: 'T, M, or G'
     - name: v
       type: string
-      description: "D=DHCP, S=Static, or xxx.xxx.xxx.xxx address. Omit for F."
-
-- id: reset_device
-  label: Reset/Reboot Device
+      description: 'D=DHCP, S=Static, or xxx.xxx.xxx.xxx (takes effect after reboot)'
+- id: reset_network_defaults
+  label: Reset Network Parameters to Defaults
   kind: action
-  description: "Instruct device to restart (equivalent to power-cycle). RESET<CR>. Reverts to power-on settings."
-
+  command: "NPF"
+- id: reset_reboot
+  label: Reset / Reboot Device
+  kind: action
+  command: "RESET"
 - id: set_standby
-  label: Set Standby Status
+  label: Set Standby State (PM/PS only)
   kind: action
-  description: "Set standby state for PowerMatch/PowerShare. SY s<CR>. Not supported on ESP."
+  command: "SY{s}"
   params:
     - name: s
-      type: string
-      description: "S=Standby, N=Normal"
-
+      type: enum
+      description: 'S=Standby, N=Normal'
+- id: get_standby
+  label: Get Standby State (PM/PS only)
+  kind: query
+  command: "GY"
+- id: get_configuration
+  label: Get Output Configuration (PM only)
+  kind: query
+  command: "GC"
 - id: set_fault_notification
-  label: Set Fault Notification
+  label: Set Fault Output Notification (PM only)
   kind: action
-  description: "Enable/disable unsolicited Fault Output state changes for PowerMatch. SF n<CR>. Not retained on power-down."
+  command: "SF{n}"
   params:
     - name: n
-      type: string
-      description: "O=On, F=Off"
-
+      type: enum
+      description: 'O=On, F=Off (preference not retained across power-cycle)'
+- id: get_fault_status
+  label: Get Fault Status (PM only)
+  kind: query
+  command: "GF"
 - id: clear_fault_alarms
-  label: Clear Fault/Alarms
+  label: Clear Fault/Alarms (PM only)
   kind: action
-  description: "Clear active alarm conditions and reset Fault Output on PowerMatch. CF<CR>."
-
+  command: "CF"
 - id: set_alarm_reporting
-  label: Set Alarm Reporting
+  label: Set Alarm Reporting (PM only)
   kind: action
-  description: "Enable/disable unsolicited alarm/fault notifications for PowerMatch. SR n<CR>. Not retained on power-down."
+  command: "SR{n}"
   params:
     - name: n
-      type: string
-      description: "O=On, F=Off"
-
+      type: enum
+      description: 'O=On, F=Off (preference not retained across power-cycle)'
+- id: get_alarm_status
+  label: Get Alarm Status (PM only)
+  kind: query
+  command: "GR{c}"
+  params:
+    - name: c
+      type: integer
+      description: 'Channel 1-8 (1-4 for PM4500N/PM4250N), or 0 for non-channel-specific alarms'
+- id: get_alarm_history
+  label: Get Alarm History (PM/PS only)
+  kind: query
+  command: "GH"
 - id: clear_alarm_history
-  label: Clear Alarm History
+  label: Clear Alarm History (PM/PS only)
   kind: action
-  description: "Clear internal alarm log on PowerMatch/PowerShare. CH<CR>."
+  command: "CH"
 
-# === MODULE COMMANDS (ASCII text notation) ===
-
+# ----------------------------------------------------------------------------
+# Module Commands (SA/GA/MA) - parameter ranges per module type are documented
+# in the source's "ESP/EX Module Indices" and "PowerMatch / PowerShare Module
+# Indices" sections. Each action below is a parameterized template; Index 1,
+# Index 2, and Value are user-defined per the per-module table in the source.
+# ----------------------------------------------------------------------------
 - id: set_module_parameter
   label: Set Module Parameter
   kind: action
-  description: "Set a DSP module parameter. SA \"Module Name\">Index1>Index2=Value<CR>. Response: ACK (0x06) or NAK nn."
+  command: 'SA"Module Name">{Index1}>{Index2}={Value}'
   params:
-    - name: module_name
+    - name: module
       type: string
-      description: "Unique module label from ControlSpace Designer"
-    - name: index_1
-      type: integer
-      description: "Primary index"
-    - name: index_2
-      type: integer
-      description: "Secondary index (optional)"
+      description: Module label (quoted; user-defined in ControlSpace Designer, or fixed for PM/PS)
+    - name: index1
+      type: string
+      description: Primary index - selects input, channel, sub-module, or section per module type
+    - name: index2
+      type: string
+      description: Secondary index (where applicable) - selects parameter per module type
     - name: value
       type: string
-      description: "Parameter value as ASCII text"
-
+      description: 'Value to set (range and format per module type - see source sections 6.1.x / 6.2.x)'
 - id: set_module_parameter_remote
-  label: Set Module Parameter on Remote Device
+  label: Set Module Parameter on a Different Device
   kind: action
-  description: "Set module parameter on different ESP device. SA @\"Device Name\" \"Module Name\">I1>I2=Value<CR>."
+  command: 'SA@"Device Name" "Module Name">{Index1}>{Index2}={Value}'
   params:
-    - name: device_name
+    - name: device
       type: string
-      description: "Unique device label from ControlSpace Designer"
-    - name: module_name
+      description: Device label (quoted; ESP network only - not for PM)
+    - name: module
       type: string
-      description: "Module label"
-    - name: index_1
-      type: integer
-      description: "Primary index"
-    - name: index_2
-      type: integer
-      description: "Secondary index (optional)"
+      description: Module label (quoted)
+    - name: index1
+      type: string
+      description: Primary index
+    - name: index2
+      type: string
+      description: Secondary index
     - name: value
       type: string
-      description: "Parameter value"
-
+      description: Value to set
+- id: get_module_parameter
+  label: Get Module Parameter
+  kind: query
+  command: 'GA"Module Name">{Index1}>{Index2}'
+- id: get_module_parameter_remote
+  label: Get Module Parameter on a Different Device
+  kind: query
+  command: 'GA@"Device Name" "Module Name">{Index1}>{Index2}'
 - id: invoke_module_action
-  label: Invoke Module Action
+  label: Invoke Module Action (MA) - PSTN/VoIP
   kind: action
-  description: "Invoke action for modules with actions (PSTN, VoIP). MA \"Module Name\">Index1=Parameter<CR>."
+  command: 'MA"Module Name">{Index1}={Parameter}'
   params:
-    - name: module_name
+    - name: module
       type: string
-      description: "Module label"
-    - name: index_1
+      description: Module label (PSTN In / VoIP In)
+    - name: index1
       type: integer
-      description: "Action index"
+      description: '1=Dial Key, 2=Make Call, 3=End Call, 4=Answer Call, 5=TransferCall (VoIP)'
     - name: parameter
       type: string
-      description: "Action parameter"
+      description: Dial digits, number, or SIP target
 
-# === MSA12X COMMANDS ===
-
-- id: msa_identify
-  label: MSA12X Identify Device
+# ----------------------------------------------------------------------------
+# MSA12X Commands (UDP port 49494)
+# ----------------------------------------------------------------------------
+- id: msa12x_find_unit
+  label: MSA12X Find Unit (LED flash 5s)
   kind: action
-  description: "Activate/deactivate Identify LED on MSA12X module. ID n s<CR>. n=module(1-3), s=1=On, 0=Off."
+  command: "FU{n}"
   params:
     - name: n
       type: integer
-      description: "Module in array (1, 2, or 3)"
+      description: 'Module within array: 1, 2, or 3 (2-module array uses 1 and 3)'
+- id: msa12x_identify
+  label: MSA12X Identify (persistent LED)
+  kind: action
+  command: "ID{n} {s}"
+  params:
+    - name: n
+      type: integer
+      description: 'Module 1, 2, or 3 (2-module array: 1 and 3)'
     - name: s
       type: integer
-      description: "1=On, 0=Off"
-
-- id: msa_find_unit
-  label: MSA12X Find Unit
-  kind: action
-  description: "Flash status LED for 5 seconds. FU n<CR>. n=module(1-3)."
-  params:
-    - name: n
-      type: integer
-      description: "Module in array (1, 2, or 3)"
-
-- id: msa_set_input_gain
+      description: '1=On, 0=Off'
+- id: msa12x_array_count
+  label: MSA12X Array Module Count
+  kind: query
+  command: "ARRAY"
+- id: msa12x_set_input_gain
   label: MSA12X Set Input Gain
   kind: action
-  description: "Set pre-amp gain for analog or Dante input. IG t g<CR>."
+  command: "IG{t} {g}"
   params:
     - name: t
-      type: string
-      description: "A=Analog, D=Dante"
+      type: enum
+      description: 'A=Analog, D=Dante'
     - name: g
       type: number
-      description: "Gain: 0.0, 14.0, or 24.0"
-
-- id: msa_set_input_source
+      description: 'Gain: 0.0, 14.0, or 24.0'
+- id: msa12x_get_input_gain
+  label: MSA12X Get Input Gain
+  kind: query
+  command: "IG{t} Q"
+  params:
+    - name: t
+      type: enum
+      description: 'A=Analog, D=Dante'
+- id: msa12x_set_input_source
   label: MSA12X Set Input Source
   kind: action
-  description: "Select input source when backup not active. INPUT 1 t<CR>."
+  command: "INPUT 1 {t}"
   params:
     - name: t
       type: integer
-      description: "0=Dante, 1=Analog"
-
-- id: msa_set_standby
-  label: MSA12X Set Standby
+      description: '0=Dante, 1=Analog (ignored if backup mode is active)'
+- id: msa12x_get_input_source
+  label: MSA12X Get Input Source
+  kind: query
+  command: "GINPUT"
+- id: msa12x_get_backup_strategy
+  label: MSA12X Get Input Backup Strategy
+  kind: query
+  command: "GBKSTG"
+- id: msa12x_set_standby
+  label: MSA12X Set Standby Action
   kind: action
-  description: "Enter/exit standby. STANDBY a<CR>."
+  command: "STANDBY {a}"
   params:
     - name: a
-      type: string
-      description: "NOW=enter standby, WAKE=exit standby"
-
-- id: msa_set_auto_standby
-  label: MSA12X Set Auto-Standby Timer
+      type: enum
+      description: 'NOW=enter Standby, WAKE=exit Standby'
+- id: msa12x_get_standby
+  label: MSA12X Get Standby State
+  kind: query
+  command: "GETSBST"
+- id: msa12x_set_autostandby_time
+  label: MSA12X Set Auto-Standby Wait Time (minutes)
   kind: action
-  description: "Set auto-standby wait time. STANDBY w<CR>. 0=disabled."
+  command: "STANDBY {w}"
   params:
     - name: w
       type: integer
-      description: "Wait time in minutes (0-120)"
-
-- id: msa_load_preset
+      description: 'Wait time in minutes, 0-120 (0 disables auto-standby)'
+- id: msa12x_get_autostandby_time
+  label: MSA12X Get Auto-Standby Wait Time
+  kind: query
+  command: "GETSBTIME"
+- id: msa12x_load_preset
   label: MSA12X Load Preset
   kind: action
-  description: "Recall stored preset configuration. LOAD p<CR>."
+  command: "LOAD {p}"
   params:
     - name: p
       type: integer
-      description: "Preset index 0-9 (preset number minus 1)"
+      description: 'Preset index 0-9 (preset number-1)'
+- id: msa12x_get_current_preset
+  label: MSA12X Get Last Invoked Preset
+  kind: query
+  command: "GCP"
+- id: msa12x_get_audio_level
+  label: MSA12X Get Audio Level
+  kind: query
+  command: "AUDIOLEVEL"
+- id: msa12x_get_status_warning
+  label: MSA12X Get Module Warning Status
+  kind: query
+  command: "STATUS 0 {n}"
+  params:
+    - name: n
+      type: integer
+      description: 'Module 1, 2, or 3'
+- id: msa12x_get_status_fault
+  label: MSA12X Get Module Fault Status
+  kind: query
+  command: "STATUS 1 {n}"
+  params:
+    - name: n
+      type: integer
+      description: 'Module 1, 2, or 3'
+- id: msa12x_get_firmware_version
+  label: MSA12X Get Module Firmware Version
+  kind: query
+  command: "VERSION {n}"
+  params:
+    - name: n
+      type: integer
+      description: 'Module 1, 2, or 3'
 
-# === ENDPOINT COMMANDS ===
-
-- id: endpoint_identify
-  label: Endpoint Identify Device
+# ----------------------------------------------------------------------------
+# Endpoint Commands (UDP port 49494) - WP/EP/EX Dante endpoints
+# ----------------------------------------------------------------------------
+- id: ep_find_unit
+  label: Endpoint Find Unit (LED flash 5s)
   kind: action
-  description: "Activate/deactivate Identify LED on endpoint. ID s<CR>. s=1=On, 0=Off."
+  command: "FU"
+- id: ep_identify
+  label: Endpoint Identify (persistent LED)
+  kind: action
+  command: "ID{s}"
   params:
     - name: s
       type: integer
-      description: "1=On, 0=Off"
-
-- id: endpoint_find_unit
-  label: Endpoint Find Unit
-  kind: action
-  description: "Flash power LED for 5 seconds. FU<CR>."
-
-- id: endpoint_set_input_gain
+      description: '1=On, 0=Off'
+- id: ep_set_input_gain
   label: Endpoint Set Input Gain
   kind: action
-  description: "Set pre-amp gain for input channel. IG c g<CR>."
+  command: "IG{c} {g}"
   params:
     - name: c
       type: integer
-      description: "Channel number"
+      description: Channel number
     - name: g
       type: number
-      description: "Gain value (model-dependent: 0.0/15.0/30.0/45.0 or 0.0/25.0/40.0)"
-
-- id: endpoint_set_input_source
-  label: Endpoint Set Input Source
-  kind: action
-  description: "Select input source for WP22BU channel 2. IS c s<CR>."
+      description: 'Gain per model: EX-4ML/EX-8ML/EP40 = 0/15/30/45 dB; EP22/WP22B/BU = 0/25/40 dB'
+- id: ep_get_input_gain
+  label: Endpoint Get Input Gain (EX-4ML/EX-8ML only)
+  kind: query
+  command: "IG{c} Q"
   params:
     - name: c
       type: integer
-      description: "Channel number (2 for WP22BU)"
+      description: 'Channel number, or 0 for all channels'
+- id: ep_set_input_source
+  label: Endpoint Set Input Source (WP22BU)
+  kind: action
+  command: "IS{c} {s}"
+  params:
+    - name: c
+      type: integer
+      description: 'Channel 2 only for WP22BU'
     - name: s
-      type: string
-      description: "A, B, or A+B"
-
-- id: endpoint_set_phantom_power
+      type: enum
+      description: 'A, B, or A+B'
+- id: ep_set_phantom_power
   label: Endpoint Set Phantom Power
   kind: action
-  description: "Activate/deactivate phantom power for input channel. PP c s<CR>."
+  command: "PP{c} {s}"
   params:
     - name: c
       type: integer
-      description: "Channel number (1-8)"
+      description: Channel number, 1-8
     - name: s
       type: integer
-      description: "1=On, 0=Off"
-
-- id: endpoint_set_output_gain
-  label: Endpoint Set Output Gain
-  kind: action
-  description: "Set output gain for EP22 channel. OG c g<CR>."
+      description: '1=On, 0=Off'
+- id: ep_get_phantom_power
+  label: Endpoint Get Phantom Power (EX-4ML/EX-8ML only)
+  kind: query
+  command: "PP{c} Q"
   params:
     - name: c
       type: integer
-      description: "Channel number"
+      description: 'Channel number, or 0 for all'
+- id: ep_set_output_gain
+  label: Endpoint Set Output Gain (EP22)
+  kind: action
+  command: "OG{c} {g}"
+  params:
+    - name: c
+      type: integer
+      description: Channel number
     - name: g
       type: number
-      description: "Gain: 0.0 or 10.0"
-
-- id: endpoint_set_logic_output
-  label: Endpoint Set Logic Output
+      description: 'Gain: 0.0 or 10.0'
+- id: ep_read_signal_level
+  label: Endpoint Read Signal Level (EX-4ML/EX-8ML)
+  kind: query
+  command: "RSL"
+- id: ep_write_logic_output
+  label: Endpoint Write Logic Output
   kind: action
-  description: "Set state of logic output on EX-4ML/EX-8ML. WLO p s<CR>."
+  command: "WLO{p} {s}"
   params:
     - name: p
       type: integer
-      description: "Logic output pin (1-16 for EX-8ML, 1-8 for EX-4ML)"
+      description: 'Output 1-16 (EX-8ML) or 1-8 (EX-4ML)'
     - name: s
       type: integer
-      description: "1=On, 0=Off"
-
-- id: endpoint_set_logic_event
-  label: Endpoint Set Logic Event
-  kind: action
-  description: "Configure automatic event notification on logic input change. EVNT p e<CR>."
+      description: '1=On, 0=Off'
+- id: ep_read_logic_output
+  label: Endpoint Read Logic Output
+  kind: query
+  command: "RLO{p}"
   params:
     - name: p
       type: integer
-      description: "Logic input (1-8 for EX-8ML, 1-4 for EX-4ML)"
-    - name: e
-      type: string
-      description: "RISE, FALL, BOTH, or OFF"
-
-- id: endpoint_set_event_ip
-  label: Endpoint Set Event Notification IP
-  kind: action
-  description: "Set IP address and port for UDP event notifications. SASIP a:p<CR>."
+      description: 'Output number, or 0 for all'
+- id: ep_read_logic_input
+  label: Endpoint Read Logic Input
+  kind: query
+  command: "RLI{p}"
   params:
-    - name: address
-      type: string
-      description: "IP address xxx.xxx.xxx.xxx"
-    - name: port
+    - name: p
       type: integer
-      description: "Port number"
-
-- id: endpoint_restore_defaults
+      description: 'Input 1-8 (EX-8ML) or 1-4 (EX-4ML), or 0 for all'
+- id: ep_set_logic_event
+  label: Endpoint Set Logic Event Notification
+  kind: action
+  command: "EVNT{p} {e}"
+  params:
+    - name: p
+      type: integer
+      description: Logic input number
+    - name: e
+      type: enum
+      description: 'RISE, FALL, BOTH, or OFF'
+- id: ep_set_event_notification_ip
+  label: Endpoint Set Event Notification IP/Port
+  kind: action
+  command: "SASIP{a}:{p}"
+  params:
+    - name: a
+      type: string
+      description: 'Target IP xxx.xxx.xxx.xxx'
+    - name: p
+      type: integer
+      description: Target UDP port
+- id: ep_query_audio_settings
+  label: Endpoint Query All Audio Settings
+  kind: query
+  command: "QUERY"
+- id: ep_restore_factory_defaults
   label: Endpoint Restore Factory Defaults
   kind: action
-  description: "Reset endpoint to factory settings. DEFAULTS<CR>. Gains=0.0, Phantom=Off, Logic outputs=Off."
+  command: "DEFAULTS"
+- id: ep_get_firmware_version
+  label: Endpoint Get Firmware Version
+  kind: query
+  command: "VERSION"
 
-# === SUBSCRIPTION COMMANDS ===
-
-- id: subscribe
+# ----------------------------------------------------------------------------
+# Subscription Commands (unsolicited updates)
+# ----------------------------------------------------------------------------
+- id: subscription_support_query
+  label: Query Device Subscription Support
+  kind: query
+  command: "SUB"
+- id: subscription_register
   label: Subscribe to Data Change
   kind: action
-  description: "Register for unsolicited updates when a parameter changes. SUB \"GET command\"<CR>."
+  command: 'SUB"{GET_command_text}"'
   params:
     - name: get_command
       type: string
-      description: "Full text of supported GET command to subscribe to"
-
-- id: unsubscribe
+      description: 'Quoted GET command text (System, Device, or Module GET command)'
+- id: subscription_unregister
   label: Unsubscribe from Data Change
   kind: action
-  description: "Stop unsolicited updates. UNS \"GET command\"<CR>."
+  command: 'UNS"{GET_command_text}"'
   params:
     - name: get_command
       type: string
-      description: "Full text of GET command to unsubscribe from"
+      description: 'Quoted GET command text (must match a prior subscription)'
 ```
 
 ## Feedbacks
 ```yaml
-# === SYSTEM QUERY RESPONSES ===
-
-- id: get_parameter_set
-  type: string
-  description: "Last invoked Parameter Set. GS<CR> -> S n<CR>. n=0-FF (0 if none recalled)."
-
-- id: get_group_master_level
-  type: string
-  description: "Group n master level. GG n<CR> -> GG n,l<CR>."
-
-- id: get_group_master_mute
-  type: string
-  description: "Group n mute state. GN n<CR> -> GN n,m<CR>. m=M(Muted)/U(Unmuted)."
-
-- id: get_room_combine
-  type: string
-  description: "Room combine state. GRC n<CR> -> GRC n,[a,b][c,d,f]<CR>. Brackets show joined rooms."
-
-- id: get_parameter_set_list
-  type: string
-  description: "Current selection of Parameter Set List. GA \"A\">2<CR> -> GA \"A\">2=n<CR>."
-
-# === DEVICE QUERY RESPONSES ===
-
-- id: get_io_volume
-  type: string
-  description: "Input/output volume for slot s, channel c. GV s,c<CR> -> GV s,c,l<CR>."
-
-- id: get_signal_level
-  type: string
-  description: "Current signal levels for channels in slot s. GL s<CR> -> GL s [1..N]<CR>. Returns hex array."
-
-- id: get_io_mute
-  type: string
-  description: "Mute status for slot s, channel c. GM s,c<CR> -> GM s,c,m<CR>."
-
-- id: get_ip_address
-  type: string
-  description: "Current IP address. IP<CR> -> IP xxx.xxx.xxx.xxx<CR>."
-
-- id: get_network_parameter
-  type: string
-  description: "Network setting. NP p<CR> -> NP p,v<CR>."
-
-- id: get_standby_status
-  type: string
-  description: "Standby state for PM/PS. GY<CR> -> GY s<CR>. s=S(Standby)/N(Normal)."
-
-- id: get_configuration
-  type: string
-  description: "PM output configuration. GC<CR> -> GC 1,2,...,8<CR>. IN/BL/B7/B1/PA/QL/Q7/Q1 per channel."
-
-- id: get_fault_status
-  type: string
-  description: "PM fault status. GF<CR> -> GF f<CR>. f=F(Fault)/C(No Fault)."
-
-- id: get_alarm_status
-  type: string
-  description: "PM alarm status for channel c. GR c<CR> -> GR c,s,t<CR>. s=severity(W/F/S), t=type(N/O/S/A/D/I/L/C/P/Z)."
-
-- id: get_alarm_history
-  type: string
-  description: "PM/PS alarm log dump. GH<CR> -> GH [Time,Date,Description...]<CR>."
-
-# === MODULE QUERY RESPONSES ===
-
-- id: get_module_parameter
-  type: string
-  description: "Query module parameter. GA \"Module Name\">I1>I2<CR> -> GA \"Module Name\">I1>I2=Value<CR>."
-
-# === MSA12X QUERY RESPONSES ===
-
-- id: msa_get_array_count
+- id: parameter_set_last_invoked
   type: integer
-  description: "Number of modules in MSA12X array. ARRAY<CR> -> ACK ARRAY n<CR>. n=1,2,3."
-
-- id: msa_get_input_gain
-  type: string
-  description: "Input gain for analog or Dante. IG t Q<CR> -> ACK IG t g<CR>."
-
-- id: msa_get_input_source
-  type: string
-  description: "Active input source. GINPUT<CR> -> ACK GINPUT ANALOG|DANTE<CR>."
-
-- id: msa_get_backup_strategy
-  type: string
-  description: "Backup strategy. GBKSTG<CR> -> ACK GBKSTG FORCE|SP 1<CR>."
-
-- id: msa_get_standby_state
+  description: Last invoked Parameter Set number, 0-FF (0 = none)
+- id: group_level
   type: integer
-  description: "Standby state. GETSBST<CR> -> ACK GETSBST s<CR>. 0=Not standby, 1=In standby."
-
-- id: msa_get_auto_standby_time
+  description: Group master level in 0.5dB steps (0=−60dB, 90=+12dB on ESP, 78=0dB on PM/PS, FF=−inf)
+- id: group_mute_state
+  type: enum
+  values: [muted, unmuted]
+- id: room_combine_state
+  type: string
+  description: 'Bracketed pairing list e.g. "GRC 1,[2,4,5][1,3]" indicating which rooms are joined'
+- id: io_volume
   type: integer
-  description: "Auto-standby wait time. GETSBTIME<CR> -> ACK GETSBTIME w<CR>. Minutes (0-120)."
-
-- id: msa_get_current_preset
+  description: 'I/O level in 0.5dB steps per slot/channel (see SV/GV action for ranges)'
+- id: io_mute_state
+  type: enum
+  values: [muted, unmuted]
+- id: signal_level_array
+  type: array
+  description: 'Hex array of channel levels; convert via formula 20*log10(level/16777215) where applicable (MSA12X AUDIOLEVEL)'
+- id: ip_address
+  type: string
+  description: 'Dotted quad xxx.xxx.xxx.xxx (response to IP query)'
+- id: network_parameter
+  type: string
+  description: 'D=DHCP, S=Static, or dotted quad (response to NP query)'
+- id: standby_state
+  type: enum
+  values: [standby, normal]
+- id: output_configuration
+  type: array
+  description: 'Per-channel config tokens: IN, BL, B7, B1, PA, QL, Q7, Q1 (PM only, GC response)'
+- id: fault_state
+  type: enum
+  values: [fault, no_fault]
+- id: alarm_status
+  type: string
+  description: '"GR c,s,t" - channel/severity(W|F|S|N)/type(N|O|S|A|D|I|L|C|P|Z)'
+- id: alarm_history
+  type: array
+  description: 'Array of [Time, Date, Description] entries from GH (PM/PS only)'
+- id: msa12x_audio_level
+  type: string
+  description: 'ACK AUDIOLEVEL i l - i in {1,18,19}, l is 32-bit hex (24-bit level)'
+- id: msa12x_warning_code
   type: integer
-  description: "Last recalled preset. GCP<CR> -> ACK GCP p<CR>. Index 0-9."
-
-- id: msa_get_audio_level
+  description: '0=None, 18=Signal Clip, 19=Amp Limiting, 20=High Temperature'
+- id: msa12x_fault_code
+  type: integer
+  description: '0=None, 1101=Driver Fault, 1104=Temperature Fault, 1105=Amp/Internal Connection Fault'
+- id: msa12x_firmware_version
   type: string
-  description: "Current audio level and presence. AUDIOLEVEL<CR> -> ACK AUDIOLEVEL i l<CR>. i=presence(1)/clip(18)/limit(19), l=24-bit hex level."
-
-- id: msa_get_module_status
+  description: 'Firmware version string e.g. "x.x" (per module)'
+- id: ep_logic_io_state
+  type: integer
+  description: '1=On, 0=Off (per pin, from RLI/RLO/RLI responses)'
+- id: ep_audio_settings_snapshot
   type: string
-  description: "Module warning/fault status. STATUS t n<CR>. t=0(warning)/1(fault). Warning codes: 0/18/19/20. Fault codes: 0/1101/1104/1105."
-
-- id: msa_get_firmware_version
+  description: 'ACK QUERY IG1=... PP1=... ID=... snapshot of all audio parameters (per model)'
+- id: ep_firmware_version
   type: string
-  description: "Firmware version for module. VERSION n<CR> -> ACK VERSION n x.x<CR>."
-
-# === ENDPOINT QUERY RESPONSES ===
-
-- id: endpoint_get_input_gain
-  type: string
-  description: "Input gain for channel. IG c Q<CR> -> ACK IG c g<CR>. EX-4ML/EX-8ML only."
-
-- id: endpoint_get_phantom_power
-  type: string
-  description: "Phantom power state for channel. PP c Q<CR> -> ACK PP c s<CR>. EX-4ML/EX-8ML only."
-
-- id: endpoint_get_signal_level
-  type: string
-  description: "Signal levels for all channels. RSL<CR> -> ACK RSL 1 2 ... 8<CR>. EX-4ML/EX-8ML only."
-
-- id: endpoint_get_logic_output
-  type: string
-  description: "Logic output state. RLO p<CR> -> ACK RLO p s<CR>. EX-4ML/EX-8ML."
-
-- id: endpoint_get_logic_input
-  type: string
-  description: "Logic input state. RLI p<CR> -> ACK RLI p s<CR>. EX-4ML/EX-8ML."
-
-- id: endpoint_query_audio_settings
-  type: string
-  description: "Snapshot of all audio parameters. QUERY<CR> -> ACK QUERY settings<CR>."
-
-- id: endpoint_get_firmware_version
-  type: string
-  description: "Firmware version. VERSION<CR> -> ACK VERSION x.x<CR>."
-
-# === SUBSCRIPTION ===
-
-- id: subscription_support
-  type: string
-  description: "Check subscription support. SUB<CR> -> SUB yes<CR> if supported."
+  description: 'Firmware version string from VERSION'
 ```
 
 ## Variables
 ```yaml
-# System-level settable parameters are represented as actions above.
-# Module parameters are addressed dynamically by module name + indices.
-# Key settable parameter categories accessible via SA/GA module commands:
-
-- id: module_input_level
+# Module parameters are addressable as Variables in ControlSpace Designer.
+# Each module type exposes a user-defined set of parameters; range/format
+# details per module are documented in source sections 6.1.x and 6.2.x.
+# Examples (representative - full set is per module type):
+- id: input_gain
   type: number
-  description: "Input module level (-60.5 to +12.0 dB, 0.5dB step). SA \"Input N\">3=value<CR>."
-
-- id: module_input_mute
-  type: string
-  description: "Input mute state. O=On, F=Off, T=Toggle. SA \"Input N\">4=value<CR>."
-
-- id: module_output_level
+  description: 'Pre-amp gain in dB. ESP/EX: 0/14/24/32/44/54/64 (Mic/Line II, 1U ESP, EX); legacy set differs. MSA12X: 0.0/14.0/24.0. Endpoints: per model 0/15/30/45 or 0/25/40 dB.'
+- id: input_type
+  type: enum
+  description: 'M=Mic, L=Line (Input module Index 1=1)'
+- id: input_mute
+  type: enum
+  description: 'O=On (muted), F=Off, T=Toggle'
+- id: phantom_power
+  type: enum
+  description: 'O=On, F=Off, T=Toggle'
+- id: output_level
   type: number
-  description: "Output module level (-60.5 to +12.0 dB, 0.5dB step). SA \"Output N\">1=value<CR>."
-
-- id: module_output_mute
-  type: string
-  description: "Output mute state. O=On, F=Off, T=Toggle. SA \"Output N\">2=value<CR>."
-
-- id: module_gain_level
-  type: number
-  description: "Gain module level (-60.5 to +12.0 dB, 0.5dB step). SA \"ModuleName\">1=value<CR>."
-
-- id: module_gain_mute
-  type: string
-  description: "Gain module mute. O=On, F=Off, T=Toggle. SA \"ModuleName\">2=value<CR>."
-
-- id: module_router_source
+  description: '−60.5 to +12.0 dB in 0.5 dB steps (most modules); PM/PS: −60.5 to 0.0 dB'
+- id: output_mute
+  type: enum
+  description: 'O=On (muted), F=Off, T=Toggle'
+- id: output_polarity
+  type: enum
+  description: 'O=On (inverted), F=Off, T=Toggle'
+- id: peq_band_frequency
   type: integer
-  description: "Router output routing. SA \"Router N\">output=input<CR>. Input 0=Off."
-
-- id: module_peq_band_frequency
+  description: '20 to 20000 Hz'
+- id: peq_band_q
   type: number
-  description: "Parametric EQ band frequency (20-20000 Hz). SA \"PEQ N\">band>1=value<CR>."
-
-- id: module_peq_band_gain
+  description: '0.10 to 10.0 in 0.1 steps'
+- id: peq_band_gain
   type: number
-  description: "Parametric EQ band gain (-20.0 to +20.0 dB). SA \"PEQ N\">band>3=value<CR>."
-
-- id: module_geq_band_gain
+  description: '−20.0 to +20.0 dB in 0.1 dB steps'
+- id: geq_band_gain
   type: number
-  description: "Graphic EQ band gain (-15.0 to +15.0 dB, 0.1dB step). SA \"GEQ N\">band=value<CR>."
-
-- id: module_delay_time
+  description: '−15.0 to +15.0 dB in 0.1 dB steps (per band of 31, 20Hz-20kHz)'
+- id: delay_time
   type: integer
-  description: "Delay time in samples (0-48000 for 1U ESP/EX, 0-144000 for ESP-00). SA \"Delay N\">tap>1=value<CR>."
-
-- id: module_compressor_threshold
+  description: 'Samples; ESP-00 up to 144000 (3s), 1U ESP/EX up to 48000 (1s), PM up to 144000 (3s), PS up to 2400 (50ms)'
+- id: limiter_peak_threshold
   type: number
-  description: "Compressor threshold (0 to -40 dBFS, 0.5 step). SA \"CompLim N\">2=value<CR>."
-
-- id: module_matrix_crosspoint_level
+  description: '0.5 to 71.0 V (or 142.0 for bridged), 0.5 step (PM Limiter)'
+- id: matrix_cross_point_level
   type: number
-  description: "Matrix Mixer cross-point level (-60.5 to 0.0 dB). SA \"Matrix N\">2>cp=value<CR>."
+  description: '−60.5 to 0.0 dB in 0.5 dB steps'
+- id: source_selector_input
+  type: integer
+  description: '1-16 (mono or stereo source selector module)'
+- id: router_output_input
+  type: integer
+  description: 'Output 1-32, Input 0-32 (0=Off)'
+- id: pstn_auto_answer_rings
+  type: integer
+  description: '0=Off to 8 rings (PSTN Input module)'
+- id: pstn_country_code
+  type: integer
+  description: '0 to 196 (see Appendix A in source)'
+- id: voip_account_status
+  type: string
+  description: 'NOT_CONFIGURED|CONFIGURED|P2P_REGISTERED|PROXY_REGISTERING|PROXY_REGISTERED|PROXY_TIMEOUT (VoIP module, read-only)'
+- id: voip_call_status
+  type: string
+  description: 'INCOMING|DIALING|RINGBACK|ACTIVE|HANGUP|HOLD_STATE_PEER (VoIP module, read-only)'
+- id: agc_target_level
+  type: number
+  description: '−40.0 to +24 dB, 1 dB step (AGC Enhanced)'
+- id: gate_threshold
+  type: number
+  description: '0 to −40 dBFS, 0.5 dB step'
+- id: ducker_threshold
+  type: number
+  description: '0 to −40 dBFS, 0.5 step'
+- id: pfs_dynamic_filter_release
+  type: integer
+  description: '1 to 43200 seconds'
 ```
 
 ## Events
 ```yaml
-# Unsolicited notifications the device sends
-
-- id: subscription_update
-  description: "Unsolicited parameter value update sent when a subscribed parameter changes. Format matches corresponding GET response."
-
-- id: pm_fault_notification
-  description: "PowerMatch unsolicited Fault Output state change. Format: GF f<CR>. Enabled via SF O<CR>."
-
-- id: pm_alarm_notification
-  description: "PowerMatch unsolicited alarm/fault event. Format: GR c,s,t,x<CR>. Enabled via SR O<CR>."
-
-- id: module_auto_notification
-  description: "Automatic module parameter change notification. Sent when module name prefixed with '#' in Designer and parameter changed by other devices. Not sent for serial-initiated changes."
-
+# Unsolicited notifications defined in source:
+- id: msa12x_event
+  description: 'Sent as UDP to the configured SASIP target. Format: ACK EVNT p e response, or RLI/RLO echoes of state changes.'
 - id: endpoint_logic_event
-  description: "UDP event notification when logic input changes on EX-4ML/EX-8ML. Sent to address configured via SASIP. Enabled via EVNT command."
-
-- id: esp_ready_after_reset
-  description: "ESP sends 'Ready' string on RS-232 after boot completes following RESET command."
+  description: 'UDP packet sent when configured via EVNT (RISE/FALL/BOTH). Format documented alongside EVNT command in source.'
+- id: subscribed_parameter_change
+  description: 'For System/Device/Module GET commands that have subscription support (e.g. GG, GN, GV, GM, GA), the current value is sent automatically when it changes. Sent on the same TCP connection that issued SUB.'
+- id: msa12x_warning_fault_change
+  description: 'For PowerMatch, SR O enables unsolicited GR c,s,t,x alarms; SF O enables unsolicited GF notifications.'
+- id: automatic_module_notification
+  description: 'Module commands on a module whose label is prefixed with "#" (e.g. "#Hall") cause a GA response to be sent automatically whenever parameters for that module change from other devices (CC-16/CC-64). Not sent when the change is via the serial command itself.'
 ```
 
 ## Macros
 ```yaml
-# No explicit multi-step macros defined in source.
-# Common pattern: follow SET with GET to confirm command success.
-# Example: SS b<CR> then GS<CR> to confirm Parameter Set recall.
+# Multi-step examples documented in source. Implementers can compose these
+# from the Actions above; they are not standalone device commands.
+- id: confirm_set_with_get
+  description: 'Per source: "Following a Set command with a Get is a useful way to confirm command success." Pattern: issue SA/SV/SN/etc, then issue matching GA/GV/GN query.'
+- id: boot_wait_then_reconnect
+  description: 'On RS-232, ESP sends "Ready" after boot. On SoIP, callers must re-establish the TCP/UDP connection after sufficient time has elapsed (varies by device and installed cards).'
+- id: controlspace_designer_link_break
+  description: 'When the device goes on-line with ControlSpace Designer, the SoIP third-party control connection is closed; the control system must re-establish it once on-line.'
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks:
-  - "Set Volume commands (SV, SI) ignored if channel is muted"
-  - "IP/Network changes only take effect after RESET/reboot"
-  - "PM/PS entering/exiting standby is not immediate; allow adequate time"
-  - "ControlSpace Designer connection closes third-party control socket when going online"
-  - "PM alarm reporting/fault notification preferences not retained on power-down"
-  - "Alarm/fault conditions that persist after CF clear will auto-reset"
-# UNRESOLVED: no explicit safety interlock sequences or power-on sequencing requirements stated in source
+confirmation_required_for:
+  - reset_reboot  # source: "all the current settings in the device will be lost and the device will revert to its power-on (flashed) settings"
+  - np_f  # reset all network parameters to defaults
+  - clear_fault_alarms  # alarms may re-trigger if conditions persist
+  - ep_restore_factory_defaults  # source: returns to factory settings; Preset 0 stored with those defaults
+  - ip_set  # change of network reachability
+interlocks: []
+# Source notes (no formal interlock list):
+# - Set Volume commands are ignored if the channel is muted (mute first, then set level).
+# - PowerMatch standby transitions are not immediate; allow time to complete.
+# - IP and NP changes only take effect after a device reboot.
+# - For MSA12X, if Backup Strategy is SP (Signal Presence), INPUT source changes are ignored.
+# - Endpoints paired with an EX processor: directly changing endpoint settings may be overridden by the processor's programmed settings.
+# - MSA12X is a Class-2 wiring device; nothing in the source describes AC mains interlocks.
+# UNRESOLVED: formal safety interlock procedures (e.g. emergency-stop, evacuation paging) are not enumerated in this control-protocol document.
 ```
 
 ## Notes
-- All commands use ASCII characters terminated with `<CR>` (0x0D).
-- System and Device commands use hexadecimal notation for numerical values; Module commands use plain ASCII decimal.
-- Module labels must be unique within a device; duplicate names cause SA/GA/MA to malfunction.
-- For ESP processors, Module commands can target a different device using `SA @"Device Name" "Module Name"` syntax.
-- For EX processors, inputs/outputs are composite modules; individual channels addressed by channel label (e.g. "Input 1"), not container.
-- GPO module: pin state O=On, F=Off, T=Toggle. ESP-00 can have two GPIO cards as separate modules.
-- Subscription (SUB/UNS) supports System GET commands (GS, GG, GN, GA list), Device GET commands (GV, GM), and Module GET commands (GA).
-- ESP-00 references apply equally to ESP-00 II and legacy ESP-00/ESP-88 unless specified.
-- ESP-880 references apply to ESP-880A and ESP-880AD unless specified.
-- ESP-1240 references apply to ESP-1240A and ESP-1240AD unless specified.
-- MSA12X 2-module arrays use module IDs 1 and 3 (not 1 and 2).
-- Endpoint EVNT/SASIP mechanism is used when endpoints paired with EX processors; changes may cause unexpected side-effects.
-- Delay module max: 3 seconds (ESP-00), 1 second (1U ESP/EX).
-- Serial-over-Ethernet: device acts as Server; client must initiate connection.
-
-<!-- UNRESOLVED: firmware version compatibility ranges not stated -->
-<!-- UNRESOLVED: protocol version number not stated -->
-<!-- UNRESOLVED: maximum command string length not stated -->
-<!-- UNRESOLVED: command processing latency/retry behavior not stated -->
+- All ASCII commands and responses are terminated with `<CR>` (carriage return, ASCII 0x0D). Hex values may be sent in upper or lower case; responses are always lower case.
+- Module Commands: Set commands and Get responses end with `=` followed by the value; multiple commands on one line are separated by `;`. Devices respond with `<ACK>` (ASCII 0x06) or `<NAK> nn` where `nn` is a 2-digit error code (01=Invalid Module Name, 02=Illegal Index, 03=Value out-of-range, 99=Unknown error).
+- MSA12X and Endpoint Commands: respond with literal "ACK" and echo of received command on success, or "NACK" on failure. (Not the raw ASCII `<ACK>`/`<NAK>` bytes used by Module Commands.)
+- Set/Get IP and NP changes do not take effect until the device is rebooted; pair with `RESET` to apply.
+- For Module commands, module labels must be unique within a device. If two modules share a name (e.g. an Output and a PEQ both called "Left"), SA/GA/MA will not work correctly.
+- Module names prefixed with `#` (set in ControlSpace Designer) cause automatic GA responses when other devices change that module's parameters.
+- For 8-channel PowerMatch and PowerShare devices, the `GL` command uses only Slot 1 (inputs) and Slot 2 (outputs) for all 8 channels.
+- Cross-point routing for the Standard Mixer uses an 8-hex-digit bitmask where each hex digit represents 4 outputs (little-endian within each digit).
+- Endpoint "Backup Strategy" (MSA12X): `FORCE` allows manual input selection via the `INPUT` command; `SP 1` (Signal Presence) makes the device auto-failover to Analog and ignores manual `INPUT` commands.
+- The source is a multi-product control protocol document; the device name "DigiHiker" provided in the input does not match any product in the source. This spec covers the protocol as it applies across the listed model family.
+<!-- UNRESOLVED: device-specific firmware gates (which exact module index values each firmware version supports) are not enumerated. -->
+<!-- UNRESOLVED: timing parameters (e.g. maximum time between characters, command echo behavior) are described qualitatively in source but not as numeric timeouts. -->
 
 ## Provenance
 
@@ -846,24 +958,28 @@ source_urls:
   - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
   - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-05-14T18:17:14.822Z
+last_checked_at: 2026-06-02T00:05:04.908Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.822Z
-matched_actions: 39
-action_count: 39
-confidence: high
-summary: "All 39 actions and 24 feedback entries matched source commands; all transport values verified."
+checked_at: 2026-06-02T00:05:04.908Z
+matched_actions: 77
+action_count: 77
+confidence: medium
+summary: "All 77 spec actions have verbatim literal matches in the source and the source command catalogue is fully represented by the spec. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device-specific behavior differences (per-family firmware gates) are not exhaustively enumerated."
+- "voltage/current ratings and safety interlock procedures are not described in this control-protocol document."
+- "formal safety interlock procedures (e.g. emergency-stop, evacuation paging) are not enumerated in this control-protocol document."
+- "device-specific firmware gates (which exact module index values each firmware version supports) are not enumerated."
+- "timing parameters (e.g. maximum time between characters, command echo behavior) are described qualitatively in source but not as numeric timeouts."
 ```
 
 ---

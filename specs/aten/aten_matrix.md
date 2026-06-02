@@ -32,14 +32,20 @@ last_checked_at: 2026-04-27T08:57:42.659Z
 generated_at: 2026-04-27T08:57:42.659Z
 firmware_coverage: "vm1600a: ≥4.3.423; vm3200: ≥2.1.204; vm3250: ≥2.1.208; vm51616h/vm5808h: ≥3.5.344; vm6404hb: ≥1.0.074"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/HTTP port number not stated in source"
+  - "source does not document unsolicited event notifications from device"
+  - "source does not document multi-step command sequences"
+  - "no safety warnings or interlock procedures in source"
+  - "HTTP/TCP port number not stated in source"
+  - "RS-232 serial support not covered in source (prior attempt noted RS-232 docs exist for VM0404 etc., but this spec covers REST API only)"
 verification:
   verdict: verified
   checked_at: 2026-04-27T08:57:42.659Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 37 spec actions map one-to-one to documented REST endpoints; transport parameters fully present; complete API coverage."
+  confidence: medium
+  summary: "All 37 spec actions map one-to-one to documented REST endpoints; transport parameters fully present; complete API coverage. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -662,14 +668,19 @@ verdict: verified
 checked_at: 2026-04-27T08:57:42.659Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 37 spec actions map one-to-one to documented REST endpoints; transport parameters fully present; complete API coverage."
+confidence: medium
+summary: "All 37 spec actions map one-to-one to documented REST endpoints; transport parameters fully present; complete API coverage. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/HTTP port number not stated in source"
+- "source does not document unsolicited event notifications from device"
+- "source does not document multi-step command sequences"
+- "no safety warnings or interlock procedures in source"
+- "HTTP/TCP port number not stated in source"
+- "RS-232 serial support not covered in source (prior attempt noted RS-232 docs exist for VM0404 etc., but this spec covers REST API only)"
 ```
 
 ---

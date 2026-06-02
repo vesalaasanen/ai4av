@@ -20,21 +20,31 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:38:51.830Z
 last_checked_at: 2026-05-20T05:20:50.840Z
 generated_at: 2026-05-20T05:20:50.840Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "which specific models have ECO mode vs standby only"
+  - "which specific models have laser vs LED vs other illumination"
+  - "source does not describe explicit safety interlocks or power sequencing"
+  - "maximum concurrent connections not stated"
+  - "JSON-RPC batch request support not stated"
+  - "command rate limits / throttling not stated"
+  - "which illumination source types (laser/LED/xenon) per model not stated"
+  - "HTTP file endpoint authentication requirements not stated"
+  - "network IP configuration method (DHCP/static) not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:20:50.840Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions match source commands; transport parameters verified in protocol documentation."
+  confidence: medium
+  summary: "All 34 spec actions match source commands; transport parameters verified in protocol documentation. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -669,9 +679,10 @@ interlocks: []
 ```yaml
 source_domains:
   - audiogeneral.com
+  - docs
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-05-14T11:38:51.830Z
 last_checked_at: 2026-05-20T05:20:50.840Z
 ```
 
@@ -682,14 +693,22 @@ verdict: verified
 checked_at: 2026-05-20T05:20:50.840Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions match source commands; transport parameters verified in protocol documentation."
+confidence: medium
+summary: "All 34 spec actions match source commands; transport parameters verified in protocol documentation. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "which specific models have ECO mode vs standby only"
+- "which specific models have laser vs LED vs other illumination"
+- "source does not describe explicit safety interlocks or power sequencing"
+- "maximum concurrent connections not stated"
+- "JSON-RPC batch request support not stated"
+- "command rate limits / throttling not stated"
+- "which illumination source types (laser/LED/xenon) per model not stated"
+- "HTTP file endpoint authentication requirements not stated"
+- "network IP configuration method (DHCP/static) not stated"
 ```
 
 ---

@@ -16,26 +16,30 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-04-29T12:25:02.551Z
 last_checked_at: 2026-04-30T09:49:36.743Z
 generated_at: 2026-04-30T09:49:36.743Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific LC Series model numbers not stated in source"
+  - "actual volume VCP code not specified"
+  - "no unsolicited event notifications defined in source"
+  - "no explicit multi-step macros defined in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "complete VCP code table not included - only subset shown in section 8"
+  - "specific model numbers within LC Series not specified"
+  - "DHCP default state only; static IP configuration commands not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:49:36.743Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched to source CTL/VCP commands; all transport parameters verified."
+  confidence: medium
+  summary: "All 17 spec actions matched to source CTL/VCP commands; all transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -445,14 +449,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-04-29T12:25:02.551Z
 last_checked_at: 2026-04-30T09:49:36.743Z
 ```
 
@@ -463,14 +463,21 @@ verdict: verified
 checked_at: 2026-04-30T09:49:36.743Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched to source CTL/VCP commands; all transport parameters verified."
+confidence: medium
+summary: "All 17 spec actions matched to source CTL/VCP commands; all transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific LC Series model numbers not stated in source"
+- "actual volume VCP code not specified"
+- "no unsolicited event notifications defined in source"
+- "no explicit multi-step macros defined in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "complete VCP code table not included - only subset shown in section 8"
+- "specific model numbers within LC Series not specified"
+- "DHCP default state only; static IP configuration commands not documented"
 ```
 
 ---

@@ -25,14 +25,22 @@ last_checked_at: 2026-05-03T15:37:15.786Z
 generated_at: 2026-05-03T15:37:15.786Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no serial/RS-232 interface documented; only REST over HTTPS"
+  - "firmware version compatibility not stated beyond per-command \"Active for Version\" notes"
+  - "no standalone settable parameters beyond those expressed as actions (e.g. setaudiogain is action-based)"
+  - "no multi-step sequences explicitly documented as macros"
+  - "source does not describe safety warnings, interlock procedures, or power-on sequencing"
+  - "binary/byte-level command encoding not documented (REST API only)"
+  - "maximum concurrent channels not stated (license-dependent)"
+  - "rate limiting behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-03T15:37:15.786Z
   matched_actions: 31
   action_count: 31
-  confidence: high
-  summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed."
+  confidence: medium
+  summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -637,14 +645,21 @@ verdict: verified
 checked_at: 2026-05-03T15:37:15.786Z
 matched_actions: 31
 action_count: 31
-confidence: high
-summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed."
+confidence: medium
+summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no serial/RS-232 interface documented; only REST over HTTPS"
+- "firmware version compatibility not stated beyond per-command \"Active for Version\" notes"
+- "no standalone settable parameters beyond those expressed as actions (e.g. setaudiogain is action-based)"
+- "no multi-step sequences explicitly documented as macros"
+- "source does not describe safety warnings, interlock procedures, or power-on sequencing"
+- "binary/byte-level command encoding not documented (REST API only)"
+- "maximum concurrent channels not stated (license-dependent)"
+- "rate limiting behavior not documented"
 ```
 
 ---

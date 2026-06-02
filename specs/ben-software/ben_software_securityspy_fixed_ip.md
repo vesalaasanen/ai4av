@@ -19,20 +19,29 @@ source_domains:
   - bensoftware.com
 source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
-  - https://bensoftware.com/securityspy/web-server-spec.html
-retrieved_at: 2026-06-01T10:59:21.972Z
+  - https://www.bensoftware.com/securityspy/
+retrieved_at: 2026-05-19T23:06:20.878Z
 last_checked_at: 2026-05-20T06:13:43.198Z
 generated_at: 2026-05-20T06:13:43.198Z
 firmware_coverage: "\""
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RTSP protocol details beyond basic endpoint — RTSP is mentioned as co-hosted on the HTTP port but full RTSP protocol mechanics are not documented"
+  - "HTTPS/RTSPS configuration details (default port 8001 mentioned but no HTTPS-specific endpoints documented)"
+  - "individual settable parameters (brightness, contrast, etc.) are documented as"
+  - "no multi-step macro sequences described in source"
+  - "source does not document safety warnings, interlock procedures, or power-on sequencing"
+  - "HTTPS/RTSPS endpoint details (port 8001 mentioned but no dedicated HTTPS commands documented)"
+  - "maximum concurrent connection limits not stated"
+  - "error response format for failed commands not documented beyond PTZ \"OK\""
+  - "rate limits or throttling behavior not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-20T06:13:43.198Z
   matched_actions: 30
   action_count: 30
-  confidence: high
-  summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -916,8 +925,8 @@ source_domains:
   - bensoftware.com
 source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
-  - https://bensoftware.com/securityspy/web-server-spec.html
-retrieved_at: 2026-06-01T10:59:21.972Z
+  - https://www.bensoftware.com/securityspy/
+retrieved_at: 2026-05-19T23:06:20.878Z
 last_checked_at: 2026-05-20T06:13:43.198Z
 ```
 
@@ -928,14 +937,22 @@ verdict: verified
 checked_at: 2026-05-20T06:13:43.198Z
 matched_actions: 30
 action_count: 30
-confidence: high
-summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RTSP protocol details beyond basic endpoint — RTSP is mentioned as co-hosted on the HTTP port but full RTSP protocol mechanics are not documented"
+- "HTTPS/RTSPS configuration details (default port 8001 mentioned but no HTTPS-specific endpoints documented)"
+- "individual settable parameters (brightness, contrast, etc.) are documented as"
+- "no multi-step macro sequences described in source"
+- "source does not document safety warnings, interlock procedures, or power-on sequencing"
+- "HTTPS/RTSPS endpoint details (port 8001 mentioned but no dedicated HTTPS commands documented)"
+- "maximum concurrent connection limits not stated"
+- "error response format for failed commands not documented beyond PTZ \"OK\""
+- "rate limits or throttling behavior not stated"
 ```
 
 ---

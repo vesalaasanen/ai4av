@@ -19,22 +19,29 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - sunbritetv.com
+  - docs.control4.com
 source_urls:
-  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - "https://docs.control4.com/help/sun/displays/veranda3api/Content/IP%20Control.htm"
+retrieved_at: 2026-05-26T20:45:51.885Z
 last_checked_at: 2026-05-31T22:43:11.729Z
 generated_at: 2026-05-31T22:43:11.729Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version compatibility stated"
+  - "no binary protocol encoding details"
+  - "no unsolicited event notifications documented"
+  - "source states no confirmation response is returned for any command"
+  - "no settable parameters documented as independent variables"
+  - "no unsolicited notifications documented"
+  - "no multi-step macro sequences documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:43:11.729Z
   matched_actions: 60
   action_count: 60
-  confidence: high
-  summary: "All 60 spec actions matched cleanly to source commands; transport port verified; complete one-to-one coverage."
+  confidence: medium
+  summary: "All 60 spec actions matched cleanly to source commands; transport port verified; complete one-to-one coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -416,10 +423,10 @@ Commands must be terminated by a carriage return. No confirmation response is re
 
 ```yaml
 source_domains:
-  - sunbritetv.com
+  - docs.control4.com
 source_urls:
-  - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - "https://docs.control4.com/help/sun/displays/veranda3api/Content/IP%20Control.htm"
+retrieved_at: 2026-05-26T20:45:51.885Z
 last_checked_at: 2026-05-31T22:43:11.729Z
 ```
 
@@ -430,14 +437,20 @@ verdict: verified
 checked_at: 2026-05-31T22:43:11.729Z
 matched_actions: 60
 action_count: 60
-confidence: high
-summary: "All 60 spec actions matched cleanly to source commands; transport port verified; complete one-to-one coverage."
+confidence: medium
+summary: "All 60 spec actions matched cleanly to source commands; transport port verified; complete one-to-one coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version compatibility stated"
+- "no binary protocol encoding details"
+- "no unsolicited event notifications documented"
+- "source states no confirmation response is returned for any command"
+- "no settable parameters documented as independent variables"
+- "no unsolicited notifications documented"
+- "no multi-step macro sequences documented"
 ```
 
 ---

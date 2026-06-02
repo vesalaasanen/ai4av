@@ -20,19 +20,31 @@ source_domains:
   - files.screeninnovations.com
 source_urls:
   - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
-retrieved_at: 2026-05-13T16:00:00.000Z
+retrieved_at: 2026-04-30T04:31:21.363Z
 last_checked_at: 2026-04-25T21:50:03.475Z
 generated_at: 2026-04-25T21:50:03.475Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device firmware version compatibility not stated in source"
+  - "RS-485 bus node ID assignment and validation procedure not detailed in source"
+  - "Telnet client connection persistence and keepalive behavior not documented"
+  - "broadcast command response handling not documented"
+  - "flow control not stated in source"
+  - "Telnet username/password mentioned but credentials not stated; HTTP has no auth"
+  - "Telnet client capture action - \"click capture button\" procedure not fully documented as API"
+  - "DESIGNATE TARGET command syntax not fully detailed"
+  - "explicit query commands and response format not stated in source"
+  - "no settable parameters documented as discrete variables"
+  - "unsolicited event notifications not documented in source"
+  - "safety warnings and interlock procedures not found in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:50:03.475Z
   matched_actions: 9
   action_count: 9
   confidence: low
-  summary: "All 9 spec actions found verbatim in source; transport parameters verified"
+  summary: "All 9 spec actions found verbatim in source; transport parameters verified (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -232,7 +244,7 @@ source_domains:
   - files.screeninnovations.com
 source_urls:
   - "https://files.screeninnovations.com/Downloads/Programming%20Guides/Shade/troy-programming-guide.pdf"
-retrieved_at: 2026-05-13T16:00:00.000Z
+retrieved_at: 2026-04-30T04:31:21.363Z
 last_checked_at: 2026-04-25T21:50:03.475Z
 ```
 
@@ -244,13 +256,24 @@ checked_at: 2026-04-25T21:50:03.475Z
 matched_actions: 9
 action_count: 9
 confidence: low
-summary: "All 9 spec actions found verbatim in source; transport parameters verified"
+summary: "All 9 spec actions found verbatim in source; transport parameters verified (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device firmware version compatibility not stated in source"
+- "RS-485 bus node ID assignment and validation procedure not detailed in source"
+- "Telnet client connection persistence and keepalive behavior not documented"
+- "broadcast command response handling not documented"
+- "flow control not stated in source"
+- "Telnet username/password mentioned but credentials not stated; HTTP has no auth"
+- "Telnet client capture action - \"click capture button\" procedure not fully documented as API"
+- "DESIGNATE TARGET command syntax not fully detailed"
+- "explicit query commands and response format not stated in source"
+- "no settable parameters documented as discrete variables"
+- "unsolicited event notifications not documented in source"
+- "safety warnings and interlock procedures not found in source"
 ```
 
 ---

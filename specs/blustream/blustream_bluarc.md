@@ -24,14 +24,26 @@ last_checked_at: 2026-05-14T18:17:14.675Z
 generated_at: 2026-05-14T18:17:14.675Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port number not stated in source"
+  - "firmware version compatibility not stated"
+  - "device marketed as \"Bluarc\" but source document identifies model as CMX88AB"
+  - "TCP port number not stated in source (Telnet mentioned but port unspecified)"
+  - "no settable continuous variables (e.g. volume, gain) documented in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "TCP/Telnet port number not stated in source"
+  - "exact response format for STATUS query not documented (field layout unknown)"
+  - "no mention of UDP, HTTP/REST, or OSC control interfaces"
+  - "firmware version compatibility not stated in source"
+  - "error codes or fault behavior not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.675Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate."
+  confidence: medium
+  summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -312,14 +324,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.675Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate."
+confidence: medium
+summary: "All 19 spec commands matched verbatim in source; transport parameters verified; core ASCII command catalogue is complete and accurate. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port number not stated in source"
+- "firmware version compatibility not stated"
+- "device marketed as \"Bluarc\" but source document identifies model as CMX88AB"
+- "TCP port number not stated in source (Telnet mentioned but port unspecified)"
+- "no settable continuous variables (e.g. volume, gain) documented in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step macro sequences documented in source"
+- "TCP/Telnet port number not stated in source"
+- "exact response format for STATUS query not documented (field layout unknown)"
+- "no mention of UDP, HTTP/REST, or OSC control interfaces"
+- "firmware version compatibility not stated in source"
+- "error codes or fault behavior not documented in source"
 ```
 
 ---

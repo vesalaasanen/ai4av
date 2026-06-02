@@ -16,26 +16,28 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:19:38.897Z
 last_checked_at: 2026-05-31T21:05:29.255Z
 generated_at: 2026-05-31T21:05:29.255Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN port stated as 7142; RS-232C port not stated (uses standard D-Sub 9-pin)"
+  - "specific VCP opcode table not included in source (referenced as chapter 8)"
+  - "detailed CTL command parameter structures not fully specified in excerpt"
+  - "firmware version compatibility not stated"
+  - "voltage/current/power specifications not stated"
+  - "error recovery sequences not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:05:29.255Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec actions map one-to-one to documented CTL and VCP message-type operations in the source; transport values confirmed verbatim."
+  confidence: medium
+  summary: "All 16 spec actions map one-to-one to documented CTL and VCP message-type operations in the source; transport values confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -256,14 +258,10 @@ Communication packet interval must exceed 600msec. Monitor disconnects TCP conne
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:19:38.897Z
 last_checked_at: 2026-05-31T21:05:29.255Z
 ```
 
@@ -274,14 +272,19 @@ verdict: verified
 checked_at: 2026-05-31T21:05:29.255Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec actions map one-to-one to documented CTL and VCP message-type operations in the source; transport values confirmed verbatim."
+confidence: medium
+summary: "All 16 spec actions map one-to-one to documented CTL and VCP message-type operations in the source; transport values confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN port stated as 7142; RS-232C port not stated (uses standard D-Sub 9-pin)"
+- "specific VCP opcode table not included in source (referenced as chapter 8)"
+- "detailed CTL command parameter structures not fully specified in excerpt"
+- "firmware version compatibility not stated"
+- "voltage/current/power specifications not stated"
+- "error recovery sequences not documented"
 ```
 
 ---

@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:59.209Z
 last_checked_at: 2026-04-26T21:18:37.678Z
 generated_at: 2026-04-26T21:18:37.678Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN authentication mechanism not documented in source"
+  - "precise input terminal hex codes vary by model; common values listed in appendix"
+  - "flow control not explicitly stated"
+  - "commands 053-3 through 053-11 detailed in source but not fully enumerated as actions above"
+  - "variables are primarily controlled via action parameters;"
+  - "no unsolicited event/notification mechanism described in source;"
+  - "no explicit multi-step macros described in source"
+  - "some models require specific standby modes for serial/LAN control;"
+  - "HDBaseT standby mode not available on all models"
+  - "LAN authentication mechanism not documented; no password or login procedure in source"
+  - "precise input terminal hex codes vary by model - appendix lists common values only"
+  - "standby mode requirements vary by model - specific requirements not enumerated"
+  - "DATA01-DATA12 field semantics for ERROR STATUS REQUEST sourced from bit table but mapping to exact model behavior unverified"
+  - "information request commands return reserved/undefined bytes; practical usage unclear"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:18:37.678Z
   matched_actions: 46
   action_count: 46
-  confidence: high
-  summary: "All 46 spec actions have literal one-to-one matches in source commands; transport parameters verified; source command set fully represented."
+  confidence: medium
+  summary: "All 46 spec actions have literal one-to-one matches in source commands; transport parameters verified; source command set fully represented. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -666,7 +680,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:59.209Z
 last_checked_at: 2026-04-26T21:18:37.678Z
 ```
 
@@ -677,14 +691,27 @@ verdict: verified
 checked_at: 2026-04-26T21:18:37.678Z
 matched_actions: 46
 action_count: 46
-confidence: high
-summary: "All 46 spec actions have literal one-to-one matches in source commands; transport parameters verified; source command set fully represented."
+confidence: medium
+summary: "All 46 spec actions have literal one-to-one matches in source commands; transport parameters verified; source command set fully represented. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN authentication mechanism not documented in source"
+- "precise input terminal hex codes vary by model; common values listed in appendix"
+- "flow control not explicitly stated"
+- "commands 053-3 through 053-11 detailed in source but not fully enumerated as actions above"
+- "variables are primarily controlled via action parameters;"
+- "no unsolicited event/notification mechanism described in source;"
+- "no explicit multi-step macros described in source"
+- "some models require specific standby modes for serial/LAN control;"
+- "HDBaseT standby mode not available on all models"
+- "LAN authentication mechanism not documented; no password or login procedure in source"
+- "precise input terminal hex codes vary by model - appendix lists common values only"
+- "standby mode requirements vary by model - specific requirements not enumerated"
+- "DATA01-DATA12 field semantics for ERROR STATUS REQUEST sourced from bit table but mapping to exact model behavior unverified"
+- "information request commands return reserved/undefined bytes; practical usage unclear"
 ```
 
 ---

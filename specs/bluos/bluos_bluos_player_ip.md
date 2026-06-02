@@ -15,23 +15,30 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T17:44:31.291Z
 last_checked_at: 2026-05-16T17:44:31.291Z
 generated_at: 2026-05-16T17:44:31.291Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "authentication/security model not described in source; no login or token procedure documented"
+  - "no unsolicited server-push event mechanism documented; all state changes are discovered via long-poll or regular poll"
+  - "no other explicit multi-step macros described in source"
+  - "no safety warnings or interlock procedures documented in source"
+  - "authentication/authorization model not described — no login, token, or session mechanism documented in source"
+  - "error response format not fully documented — source mentions <error> root element with <message> and <detail> nodes for /Browse errors only; error handling for other endpoints not described"
+  - "firmware version compatibility ranges for most API features not stated (exception: input selection commands in section 11.2 document v3.8.0 and v4.2.0 thresholds)"
+  - "HTTPS/TLS support not mentioned in source; assumed plain HTTP"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T17:44:31.291Z
   matched_actions: 36
   action_count: 36
-  confidence: high
-  summary: "All 36 spec actions confirmed verbatim in the BluOS Custom Integration API source with correct shapes and transport."
+  confidence: medium
+  summary: "All 36 spec actions confirmed verbatim in the BluOS Custom Integration API source with correct shapes and transport. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -667,11 +674,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T17:44:31.291Z
 last_checked_at: 2026-05-16T17:44:31.291Z
 ```
 
@@ -682,14 +687,22 @@ verdict: verified
 checked_at: 2026-05-16T17:44:31.291Z
 matched_actions: 36
 action_count: 36
-confidence: high
-summary: "All 36 spec actions confirmed verbatim in the BluOS Custom Integration API source with correct shapes and transport."
+confidence: medium
+summary: "All 36 spec actions confirmed verbatim in the BluOS Custom Integration API source with correct shapes and transport. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "authentication/security model not described in source; no login or token procedure documented"
+- "no unsolicited server-push event mechanism documented; all state changes are discovered via long-poll or regular poll"
+- "no other explicit multi-step macros described in source"
+- "no safety warnings or interlock procedures documented in source"
+- "authentication/authorization model not described — no login, token, or session mechanism documented in source"
+- "error response format not fully documented — source mentions <error> root element with <message> and <detail> nodes for /Browse errors only; error handling for other endpoints not described"
+- "firmware version compatibility ranges for most API features not stated (exception: input selection commands in section 11.2 document v3.8.0 and v4.2.0 thresholds)"
+- "HTTPS/TLS support not mentioned in source; assumed plain HTTP"
+- "model-specific source not located"
 ```
 
 ---

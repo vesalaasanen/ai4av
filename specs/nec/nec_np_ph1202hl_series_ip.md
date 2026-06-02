@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:30.761Z
 last_checked_at: 2026-05-14T18:17:18.632Z
 generated_at: 2026-05-14T18:17:18.632Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific input terminal hex codes for NP-PH1202HL not listed in the supplementary tables; the appendix tables only cover NP4100, NP-Mxxx, and NP-MExxx models"
+  - "eco mode value mapping for NP-PH1202HL not listed in appendix"
+  - "aspect value mapping for NP-PH1202HL not listed in appendix"
+  - "valid range not explicitly stated for NP-PH1202HL; gain parameter request returns range dynamically"
+  - "no unsolicited notification events documented in source; all responses are command-reply"
+  - "no multi-step sequences explicitly described in source"
+  - "full safety/interlock procedures not documented in this command reference"
+  - "input terminal hex codes for NP-PH1202HL not in appendix"
+  - "aspect value mapping for NP-PH1202HL not in appendix"
+  - "eco mode value mapping for NP-PH1202HL not in appendix"
+  - "standby mode LAN/serial command reception behavior for NP-PH1202HL not listed"
+  - "display signal type mapping may differ for NP-PH1202HL"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.632Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set."
+  confidence: medium
+  summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -628,7 +640,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:30.761Z
 last_checked_at: 2026-05-14T18:17:18.632Z
 ```
 
@@ -639,14 +651,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.632Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set."
+confidence: medium
+summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific input terminal hex codes for NP-PH1202HL not listed in the supplementary tables; the appendix tables only cover NP4100, NP-Mxxx, and NP-MExxx models"
+- "eco mode value mapping for NP-PH1202HL not listed in appendix"
+- "aspect value mapping for NP-PH1202HL not listed in appendix"
+- "valid range not explicitly stated for NP-PH1202HL; gain parameter request returns range dynamically"
+- "no unsolicited notification events documented in source; all responses are command-reply"
+- "no multi-step sequences explicitly described in source"
+- "full safety/interlock procedures not documented in this command reference"
+- "input terminal hex codes for NP-PH1202HL not in appendix"
+- "aspect value mapping for NP-PH1202HL not in appendix"
+- "eco mode value mapping for NP-PH1202HL not in appendix"
+- "standby mode LAN/serial command reception behavior for NP-PH1202HL not listed"
+- "display signal type mapping may differ for NP-PH1202HL"
 ```
 
 ---

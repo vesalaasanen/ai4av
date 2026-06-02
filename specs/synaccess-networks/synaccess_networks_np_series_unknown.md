@@ -17,21 +17,36 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.synaccess.com
+  - synaccess.readme.io
+  - github.com
 source_urls:
   - https://cdn.synaccess.com/documents/1094_NPStartup_V20.pdf
-retrieved_at: 2026-05-18T17:07:29.522Z
+  - https://synaccess.readme.io/docs/switching-an-outlet-on-or-off
+  - https://synaccess.readme.io/docs/getting-started
+  - https://synaccess.readme.io/reference/introduction-1
+  - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
+retrieved_at: 2026-05-15T06:27:52.847Z
 last_checked_at: 2026-05-18T17:08:12.700Z
 generated_at: 2026-05-18T17:08:12.700Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source mentions login/logout CLI commands but no auth procedure or credential format"
+  - "no settable continuous variables documented in source"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences documented in source"
+  - "source contains no safety warnings, interlock procedures, or power-on sequencing"
+  - "login/logout command credential flow not documented"
+  - "outlet group configuration method not documented"
+  - "HTTP API auth mechanism not documented"
+  - "email configuration method not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:08:12.700Z
   matched_actions: 25
   action_count: 25
-  confidence: high
-  summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -338,9 +353,15 @@ interlocks: []
 ```yaml
 source_domains:
   - cdn.synaccess.com
+  - synaccess.readme.io
+  - github.com
 source_urls:
   - https://cdn.synaccess.com/documents/1094_NPStartup_V20.pdf
-retrieved_at: 2026-05-18T17:07:29.522Z
+  - https://synaccess.readme.io/docs/switching-an-outlet-on-or-off
+  - https://synaccess.readme.io/docs/getting-started
+  - https://synaccess.readme.io/reference/introduction-1
+  - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
+retrieved_at: 2026-05-15T06:27:52.847Z
 last_checked_at: 2026-05-18T17:08:12.700Z
 ```
 
@@ -351,14 +372,22 @@ verdict: verified
 checked_at: 2026-05-18T17:08:12.700Z
 matched_actions: 25
 action_count: 25
-confidence: high
-summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented."
+confidence: medium
+summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source mentions login/logout CLI commands but no auth procedure or credential format"
+- "no settable continuous variables documented in source"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences documented in source"
+- "source contains no safety warnings, interlock procedures, or power-on sequencing"
+- "login/logout command credential flow not documented"
+- "outlet group configuration method not documented"
+- "HTTP API auth mechanism not documented"
+- "email configuration method not documented"
 ```
 
 ---

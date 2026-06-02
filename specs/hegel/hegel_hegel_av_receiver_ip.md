@@ -23,19 +23,24 @@ source_domains:
   - support.hegel.com
 source_urls:
   - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
-retrieved_at: 2026-05-01T02:09:21.845Z
+retrieved_at: 2026-04-30T04:31:40.082Z
 last_checked_at: 2026-04-23T06:41:18.710Z
 generated_at: 2026-04-23T06:41:18.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "daisy-chain / linking behavior not documented"
+  - "no discrete settable parameters beyond actions"
+  - "no unsolicited event notifications described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "input names per model not fully mapped; consult Hegel Input Table for model-specific assignments"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:41:18.710Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions found literal matches in source; transport parameters (TCP, port 50001) verified; command shapes match source ranges."
+  confidence: medium
+  summary: "All 12 spec actions found literal matches in source; transport parameters (TCP, port 50001) verified; command shapes match source ranges. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -221,7 +226,7 @@ source_domains:
   - support.hegel.com
 source_urls:
   - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
-retrieved_at: 2026-05-01T02:09:21.845Z
+retrieved_at: 2026-04-30T04:31:40.082Z
 last_checked_at: 2026-04-23T06:41:18.710Z
 ```
 
@@ -232,14 +237,18 @@ verdict: verified
 checked_at: 2026-04-23T06:41:18.710Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions found literal matches in source; transport parameters (TCP, port 50001) verified; command shapes match source ranges."
+confidence: medium
+summary: "All 12 spec actions found literal matches in source; transport parameters (TCP, port 50001) verified; command shapes match source ranges. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "daisy-chain / linking behavior not documented"
+- "no discrete settable parameters beyond actions"
+- "no unsolicited event notifications described in source"
+- "no safety warnings or interlock procedures in source"
+- "input names per model not fully mapped; consult Hegel Input Table for model-specific assignments"
 ```
 
 ---

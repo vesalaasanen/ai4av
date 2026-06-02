@@ -16,22 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - manualslib.com
+  - scribd.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://www.manualslib.com/manual/12664790/Lg-Rs-232c.html
+  - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
+retrieved_at: 2026-04-25T20:54:53.378Z
 last_checked_at: 2026-04-25T20:54:53.378Z
 generated_at: 2026-04-25T20:54:53.378Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "ISM Method (j p) is documented but only applies to Plasma TV models; this model is LCD"
+  - "flow control not stated in source"
+  - "no discrete settable parameters documented separately from actions;"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macros documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:54:53.378Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified."
+  confidence: medium
+  summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -624,10 +633,14 @@ Spec generated. Two protocols documented (RS-232C ASCII + TCP/IP Telnet), 48 act
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - manualslib.com
+  - scribd.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://www.manualslib.com/manual/12664790/Lg-Rs-232c.html
+  - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
+retrieved_at: 2026-04-25T20:54:53.378Z
 last_checked_at: 2026-04-25T20:54:53.378Z
 ```
 
@@ -638,14 +651,18 @@ verdict: verified
 checked_at: 2026-04-25T20:54:53.378Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified."
+confidence: medium
+summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "ISM Method (j p) is documented but only applies to Plasma TV models; this model is LCD"
+- "flow control not stated in source"
+- "no discrete settable parameters documented separately from actions;"
+- "no unsolicited event notifications documented"
+- "no multi-step macros documented"
 ```
 
 ---

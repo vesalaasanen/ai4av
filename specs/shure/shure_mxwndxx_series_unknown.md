@@ -16,28 +16,32 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - shure.com
   - content-files.shure.com
   - pubs.shure.com
+  - shure.com
+  - shure.stoplight.io
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
+  - https://content-files.shure.com/Pubs2/files/259490.pdf
+  - https://pubs.shure.com/command-strings/MXA310/en-US
+  - https://www.shure.com/en-US/docs/commandstrings/MXWneXt
+  - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+retrieved_at: 2026-05-13T21:29:23.231Z
 last_checked_at: 2026-05-18T17:06:28.853Z
 generated_at: 2026-05-18T17:06:28.853Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "MXWAPT GUI mute preference, external mute detailed configuration not fully documented"
+  - "power voltage specifications, fault recovery sequences, firmware compatibility ranges not stated in source"
+  - "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility"
 verification:
   verdict: verified
   checked_at: 2026-05-18T17:06:28.853Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants."
+  confidence: medium
+  summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -360,16 +364,17 @@ Channel number `x` in commands is ASCII 1-8. Using 0 reports all channels. All m
 
 ```yaml
 source_domains:
-  - shure.com
   - content-files.shure.com
   - pubs.shure.com
+  - shure.com
+  - shure.stoplight.io
 source_urls:
-  - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-  - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
+  - https://content-files.shure.com/Pubs2/files/259490.pdf
+  - https://pubs.shure.com/command-strings/MXA310/en-US
+  - https://www.shure.com/en-US/docs/commandstrings/MXWneXt
+  - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
-  - https://www.shure.com/en-US/docs/commandstrings/P300
-retrieved_at: 2026-04-30T13:38:16.296Z
+retrieved_at: 2026-05-13T21:29:23.231Z
 last_checked_at: 2026-05-18T17:06:28.853Z
 ```
 
@@ -380,14 +385,16 @@ verdict: verified
 checked_at: 2026-05-18T17:06:28.853Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants."
+confidence: medium
+summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "MXWAPT GUI mute preference, external mute detailed configuration not fully documented"
+- "power voltage specifications, fault recovery sequences, firmware compatibility ranges not stated in source"
+- "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility"
 ```
 
 ---

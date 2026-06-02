@@ -16,26 +16,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-04-29T12:34:58.370Z
 last_checked_at: 2026-04-23T08:25:58.852Z
 generated_at: 2026-04-23T08:25:58.852Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "product model number not stated in source, only \"Sharp Flat Panel Display\""
+  - "firmware version compatibility not stated in source"
+  - "TV tuner commands (marked *1) apply to US-only models"
+  - "flow control not stated in source"
+  - "full VCP table not fully extracted; representative entries shown"
+  - "no unsolicited notifications documented; monitor only replies"
+  - "no explicit multi-step macros documented beyond Save Current Settings"
+  - "no safety warnings or interlock procedures in source"
+  - "MAC address format not verified against real device"
+  - "VLAN/SNMP settings not documented in source"
+  - "precise OSD menu timeout values not stated"
+  - "TV tuner-specific commands (*1) apply only to US models; not verified"
+  - "some VCP codes listed as N/A in OSD table — not fully documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:25:58.852Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified."
+  confidence: medium
+  summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -442,14 +451,10 @@ Input terminal codes: 01=VGA(RGB), 05=AV, 09=Tuner1(TV), 0C=VGA(YPbPr), 11=HDMI1
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-04-29T12:34:58.370Z
 last_checked_at: 2026-04-23T08:25:58.852Z
 ```
 
@@ -460,14 +465,26 @@ verdict: verified
 checked_at: 2026-04-23T08:25:58.852Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified."
+confidence: medium
+summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "product model number not stated in source, only \"Sharp Flat Panel Display\""
+- "firmware version compatibility not stated in source"
+- "TV tuner commands (marked *1) apply to US-only models"
+- "flow control not stated in source"
+- "full VCP table not fully extracted; representative entries shown"
+- "no unsolicited notifications documented; monitor only replies"
+- "no explicit multi-step macros documented beyond Save Current Settings"
+- "no safety warnings or interlock procedures in source"
+- "MAC address format not verified against real device"
+- "VLAN/SNMP settings not documented in source"
+- "precise OSD menu timeout values not stated"
+- "TV tuner-specific commands (*1) apply only to US models; not verified"
+- "some VCP codes listed as N/A in OSD table — not fully documented in source"
 ```
 
 ---

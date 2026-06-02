@@ -35,26 +35,39 @@ compatible_with:
   required_options: []
 source_domains:
   - cisco.com
-  - developer.webex.com
 source_urls:
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
-  - https://developer.webex.com/docs/devices
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T22:56:18.279Z
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-115/api-reference-guide-roomos-115.pdf
+retrieved_at: 2026-05-27T04:41:35.847Z
 last_checked_at: 2026-05-27T06:51:41.563Z
 generated_at: 2026-05-27T06:51:41.563Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific SSH port not stated in source (only SSH mentioned, no port number)"
+  - "HTTP port implied as 80/443 but not explicitly stated as default"
+  - "firmware version compatibility range not stated"
+  - "the source is a large multi-product reference manual; not all commands apply to every model"
+  - "SSH port not explicitly stated in source"
+  - "source says \"Hardware flow control: Off\" for most devices"
+  - "full list of feedback paths not exhaustively enumerated;"
+  - "many more configuration variables exist (serial baud rate,"
+  - "source describes xEvent mechanism but does not exhaustively"
+  - "source describes macro system (xCommand Macros Macro Save/Activate)"
+  - "source does not document safety interlocks or confirmation"
+  - "SSH port number not stated in source"
+  - "HTTP/HTTPS default ports not explicitly stated"
+  - "WebSocket connection URL/path not detailed (refers to separate guide)"
+  - "firmware version compatibility not stated"
+  - "xConfiguration commands (hundreds of settings) not enumerated as separate actions"
+  - "xStatus queries not enumerated as separate actions (covered by generic xStatus mechanism)"
+  - "complete event catalogue not listed in source (only examples provided)"
 verification:
   verdict: verified
   checked_at: 2026-05-27T06:51:41.563Z
   matched_actions: 418
   action_count: 418
-  confidence: high
-  summary: "All 418 spec xCommand actions match source verbatim; transport confirmed."
+  confidence: medium
+  summary: "All 418 spec xCommand actions match source verbatim; transport confirmed. (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2960,14 +2973,9 @@ interlocks: []
 ```yaml
 source_domains:
   - cisco.com
-  - developer.webex.com
 source_urls:
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc72.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/sx-series/tc7/api-reference-guide/sx80-api-reference-guide-tc73.pdf
-  - https://developer.webex.com/docs/devices
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/camera/precisionhd/user_guide/precisionhd_1080p-720p_camera_user_guide.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-2602/api-reference-guide-roomos-2602.pdf
-retrieved_at: 2026-05-14T22:56:18.279Z
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-115/api-reference-guide-roomos-115.pdf
+retrieved_at: 2026-05-27T04:41:35.847Z
 last_checked_at: 2026-05-27T06:51:41.563Z
 ```
 
@@ -2978,14 +2986,31 @@ verdict: verified
 checked_at: 2026-05-27T06:51:41.563Z
 matched_actions: 418
 action_count: 418
-confidence: high
-summary: "All 418 spec xCommand actions match source verbatim; transport confirmed."
+confidence: medium
+summary: "All 418 spec xCommand actions match source verbatim; transport confirmed. (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific SSH port not stated in source (only SSH mentioned, no port number)"
+- "HTTP port implied as 80/443 but not explicitly stated as default"
+- "firmware version compatibility range not stated"
+- "the source is a large multi-product reference manual; not all commands apply to every model"
+- "SSH port not explicitly stated in source"
+- "source says \"Hardware flow control: Off\" for most devices"
+- "full list of feedback paths not exhaustively enumerated;"
+- "many more configuration variables exist (serial baud rate,"
+- "source describes xEvent mechanism but does not exhaustively"
+- "source describes macro system (xCommand Macros Macro Save/Activate)"
+- "source does not document safety interlocks or confirmation"
+- "SSH port number not stated in source"
+- "HTTP/HTTPS default ports not explicitly stated"
+- "WebSocket connection URL/path not detailed (refers to separate guide)"
+- "firmware version compatibility not stated"
+- "xConfiguration commands (hundreds of settings) not enumerated as separate actions"
+- "xStatus queries not enumerated as separate actions (covered by generic xStatus mechanism)"
+- "complete event catalogue not listed in source (only examples provided)"
 ```
 
 ---

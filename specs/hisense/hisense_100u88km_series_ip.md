@@ -16,12 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T16:27:43.952Z
 last_checked_at: 2026-05-14T18:17:15.986Z
 generated_at: 2026-05-14T18:17:15.986Z
 firmware_coverage: "Not stated in source"
@@ -31,13 +29,23 @@ known_gaps:
   - B2BM
   - USBM
   - PSHF
+  - "User-specified \"Known protocol: TCP/IP\" but source document only covers RS-232 serial and IR. No TCP port, IP addressing, or network protocol details in source."
+  - "Source document models (55F1600, 55U1600, 65U1600, 75U1600, 86U1600) do not include 100U88KM; protocol compatibility assumed."
+  - "No firmware version compatibility ranges stated."
+  - "TCP/IP transport claimed by user but no port, addressing, or protocol adaptation documented in source."
+  - "no unsolicited notification protocol documented in source"
+  - "no power-on sequencing requirements or safety interlocks beyond PWRE documented in source"
+  - "user claimed TCP/IP support but source only documents RS-232 serial"
+  - "source document models differ from 100U88KM; protocol compatibility assumed not verified"
+  - "no timing/latency specs for command-response cycle"
+  - "POIS query may have additional input values (HDMI1-4, VGA) not shown in truncated source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.986Z
   matched_actions: 42
   action_count: 42
-  confidence: high
-  summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec."
+  confidence: medium
+  summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1264,12 +1272,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-05-03T16:27:43.952Z
 last_checked_at: 2026-05-14T18:17:15.986Z
 ```
 
@@ -1280,8 +1286,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.986Z
 matched_actions: 42
 action_count: 42
-confidence: high
-summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec."
+confidence: medium
+summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1291,6 +1297,16 @@ summary: "All 73 spec actions match source mnemonics verbatim with correct shape
 - B2BM
 - USBM
 - PSHF
+- "User-specified \"Known protocol: TCP/IP\" but source document only covers RS-232 serial and IR. No TCP port, IP addressing, or network protocol details in source."
+- "Source document models (55F1600, 55U1600, 65U1600, 75U1600, 86U1600) do not include 100U88KM; protocol compatibility assumed."
+- "No firmware version compatibility ranges stated."
+- "TCP/IP transport claimed by user but no port, addressing, or protocol adaptation documented in source."
+- "no unsolicited notification protocol documented in source"
+- "no power-on sequencing requirements or safety interlocks beyond PWRE documented in source"
+- "user claimed TCP/IP support but source only documents RS-232 serial"
+- "source document models differ from 100U88KM; protocol compatibility assumed not verified"
+- "no timing/latency specs for command-response cycle"
+- "POIS query may have additional input values (HDMI1-4, VGA) not shown in truncated source"
 ```
 
 ---

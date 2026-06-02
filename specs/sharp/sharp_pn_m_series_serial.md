@@ -16,26 +16,29 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
   - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
+retrieved_at: 2026-05-02T23:19:32.799Z
 last_checked_at: 2026-05-14T18:17:20.470Z
 generated_at: 2026-05-14T18:17:20.470Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact PN-M model numbers (PN-M401, PN-M501, PN-M601, etc.) not listed in source; only \"PN-M Series\" referenced"
+  - "firmware version compatibility not stated in source"
+  - "LAN Telnet protocol details beyond login handshake not fully specified"
+  - "source does not document unsolicited event notifications from the monitor"
+  - "specific power-on sequencing requirements beyond POWER ON DELAY not detailed in source"
+  - "exact PN-M model variants not specified in source"
+  - "LAN protocol beyond basic Telnet login not fully documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.470Z
   matched_actions: 92
   action_count: 96
-  confidence: high
-  summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1331,14 +1334,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
-  - sharp-displays.jp.sharp
   - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
-  - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
+retrieved_at: 2026-05-02T23:19:32.799Z
 last_checked_at: 2026-05-14T18:17:20.470Z
 ```
 
@@ -1349,14 +1348,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.470Z
 matched_actions: 92
 action_count: 96
-confidence: high
-summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented."
+confidence: medium
+summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact PN-M model numbers (PN-M401, PN-M501, PN-M601, etc.) not listed in source; only \"PN-M Series\" referenced"
+- "firmware version compatibility not stated in source"
+- "LAN Telnet protocol details beyond login handshake not fully specified"
+- "source does not document unsolicited event notifications from the monitor"
+- "specific power-on sequencing requirements beyond POWER ON DELAY not detailed in source"
+- "exact PN-M model variants not specified in source"
+- "LAN protocol beyond basic Telnet login not fully documented"
 ```
 
 ---

@@ -19,28 +19,40 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - na.panasonic.com
-  - eww.pass.panasonic.co.jp
-  - eu.connect.panasonic.com
+  - docs.connect.panasonic.com
+  - ptzprotocols.com
+  - mediarealm.com.au
+  - github.com
+  - help.na.panasonic.com
 source_urls:
-  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
-  - https://eww.pass.panasonic.co.jp/pro-av/support/content/guide/DEF/RP50_120/RemoteControllerInterfaceSpecifications-E.pdf
-  - https://eww.pass.panasonic.co.jp/pav-ks/support/content/general_1/DEF/KAIROS_RestAPI_14_E.pdf
-  - https://eu.connect.panasonic.com/sites/default/files/media/2024-04/8475ef1uw_manual_en_8.pdf
-  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
-retrieved_at: 2026-04-30T04:41:48.960Z
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LF50_SerialCommandList.pdf
+  - "https://ptzprotocols.com/1%20TXB%20Protocols/TXB-Panasonic/Panasonic%20Camera%20Protocol_4.0.pdf"
+  - https://www.mediarealm.com.au/articles/panasonic-projector-commands/
+  - https://github.com/ssjoholm/panasonic-cn-cnt/blob/main/Panasonic-CN-CNT-Protocol-v1.md
+  - https://help.na.panasonic.com/manuals/
+retrieved_at: 2026-05-19T04:38:31.405Z
 last_checked_at: 2026-05-19T17:08:36.292Z
 generated_at: 2026-05-19T17:08:36.292Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN transport details (default port, addressing) not fully specified — network setup commands exist but default TCP port not stated"
+  - "firmware version compatibility not stated in source"
+  - "default LAN port not stated in source; configurable via SSU:LCP (1024-65535 excluding 4352 and 10000)"
+  - "source does not describe unsolicited notifications or event push model"
+  - "source does not describe multi-step macro sequences"
+  - "no additional safety warnings, interlock procedures, or power-on sequencing found in source"
+  - "LAN/TCP transport framing not specified — unclear if same STX/ETX framing or different"
+  - "default LAN port not stated"
+  - "maximum command queue depth or timing constraints beyond \"wait for response\""
+  - "firmware version compatibility range"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:08:36.292Z
   matched_actions: 102
   action_count: 102
-  confidence: high
-  summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive command coverage."
+  confidence: medium
+  summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive command coverage. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1639,16 +1651,18 @@ interlocks:
 
 ```yaml
 source_domains:
-  - na.panasonic.com
-  - eww.pass.panasonic.co.jp
-  - eu.connect.panasonic.com
+  - docs.connect.panasonic.com
+  - ptzprotocols.com
+  - mediarealm.com.au
+  - github.com
+  - help.na.panasonic.com
 source_urls:
-  - "https://na.panasonic.com/ns/303988_API_Panasonic_WX-SR200_Series_IF_Specification_VA.05-20221110.pdf?hsLang=en"
-  - https://eww.pass.panasonic.co.jp/pro-av/support/content/guide/DEF/RP50_120/RemoteControllerInterfaceSpecifications-E.pdf
-  - https://eww.pass.panasonic.co.jp/pav-ks/support/content/general_1/DEF/KAIROS_RestAPI_14_E.pdf
-  - https://eu.connect.panasonic.com/sites/default/files/media/2024-04/8475ef1uw_manual_en_8.pdf
-  - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
-retrieved_at: 2026-04-30T04:41:48.960Z
+  - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LF50_SerialCommandList.pdf
+  - "https://ptzprotocols.com/1%20TXB%20Protocols/TXB-Panasonic/Panasonic%20Camera%20Protocol_4.0.pdf"
+  - https://www.mediarealm.com.au/articles/panasonic-projector-commands/
+  - https://github.com/ssjoholm/panasonic-cn-cnt/blob/main/Panasonic-CN-CNT-Protocol-v1.md
+  - https://help.na.panasonic.com/manuals/
+retrieved_at: 2026-05-19T04:38:31.405Z
 last_checked_at: 2026-05-19T17:08:36.292Z
 ```
 
@@ -1659,14 +1673,23 @@ verdict: verified
 checked_at: 2026-05-19T17:08:36.292Z
 matched_actions: 102
 action_count: 102
-confidence: high
-summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive command coverage."
+confidence: medium
+summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive command coverage. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN transport details (default port, addressing) not fully specified — network setup commands exist but default TCP port not stated"
+- "firmware version compatibility not stated in source"
+- "default LAN port not stated in source; configurable via SSU:LCP (1024-65535 excluding 4352 and 10000)"
+- "source does not describe unsolicited notifications or event push model"
+- "source does not describe multi-step macro sequences"
+- "no additional safety warnings, interlock procedures, or power-on sequencing found in source"
+- "LAN/TCP transport framing not specified — unclear if same STX/ETX framing or different"
+- "default LAN port not stated"
+- "maximum command queue depth or timing constraints beyond \"wait for response\""
+- "firmware version compatibility range"
 ```
 
 ---

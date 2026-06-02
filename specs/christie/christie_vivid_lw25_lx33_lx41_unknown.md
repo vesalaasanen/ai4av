@@ -21,22 +21,33 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+  - qed-productions.com
+  - purelandsupply.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000507-01-christie-lx41_lw41-user-manual-technical-guide-multi-language.pdf
+  - https://www.qed-productions.com/downloads/christie/serial-communications.pdf
+  - "https://www.purelandsupply.com/Images/OwnersManuals/Christie/CHRISTIE%20LW25.pdf"
+retrieved_at: 2026-05-14T15:07:04.005Z
 last_checked_at: 2026-05-15T21:25:37.363Z
 generated_at: 2026-05-15T21:25:37.363Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document covers LX37/40/45/50/55 but entity is named Vivid LW25/LX33/LX41 — model overlap not confirmed"
+  - "firmware version compatibility not stated"
+  - "source does not document unsolicited notifications from projector"
+  - "source mentions abnormal temperature, lamp failure, and 90-second cooldown"
+  - "source document covers LX37/40/45/50/55 models but entity assigned to Vivid LW25/LX33/LX41 — model-to-protocol mapping not confirmed"
+  - "exact hex encoding format for extended commands partially ambiguous (underscore placement in C F_ xx_##)"
+  - "whether unsolicited event notifications exist"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:25:37.363Z
   matched_actions: 120
   action_count: 120
-  confidence: high
-  summary: "Every spec action matches a literal source command; transport parameters verified against documentation."
+  confidence: medium
+  summary: "Every spec action matches a literal source command; transport parameters verified against documentation. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1353,10 +1364,14 @@ interlocks: []
 ```yaml
 source_domains:
   - christiedigital.com
+  - qed-productions.com
+  - purelandsupply.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-000507-01-christie-lx41_lw41-user-manual-technical-guide-multi-language.pdf
+  - https://www.qed-productions.com/downloads/christie/serial-communications.pdf
+  - "https://www.purelandsupply.com/Images/OwnersManuals/Christie/CHRISTIE%20LW25.pdf"
+retrieved_at: 2026-05-14T15:07:04.005Z
 last_checked_at: 2026-05-15T21:25:37.363Z
 ```
 
@@ -1367,14 +1382,20 @@ verdict: verified
 checked_at: 2026-05-15T21:25:37.363Z
 matched_actions: 120
 action_count: 120
-confidence: high
-summary: "Every spec action matches a literal source command; transport parameters verified against documentation."
+confidence: medium
+summary: "Every spec action matches a literal source command; transport parameters verified against documentation. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document covers LX37/40/45/50/55 but entity is named Vivid LW25/LX33/LX41 — model overlap not confirmed"
+- "firmware version compatibility not stated"
+- "source does not document unsolicited notifications from projector"
+- "source mentions abnormal temperature, lamp failure, and 90-second cooldown"
+- "source document covers LX37/40/45/50/55 models but entity assigned to Vivid LW25/LX33/LX41 — model-to-protocol mapping not confirmed"
+- "exact hex encoding format for extended commands partially ambiguous (underscore placement in C F_ xx_##)"
+- "whether unsolicited event notifications exist"
 ```
 
 ---

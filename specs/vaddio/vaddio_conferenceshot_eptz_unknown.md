@@ -16,24 +16,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - manualslib.com
+  - legrandav.com
+  - fullcompass.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
+  - https://res.cloudinary.com/avd/image/upload/v134231220/Resources/Vaddio/Cameras/Operation/411-0054-30_Rev_A_ConferenceSHOT_ePTZ_Complete_Manual.pdf
+  - https://res.cloudinary.com/avd/image/upload/v134230356/Resources/Vaddio/Cameras/Operation/411-0054-30_Rev_A_ConferenceSHOT_ePTZ_Complete_Manual.pdf
+  - https://www.manualslib.com/manual/2567609/Legrand-Vaddio-Conferenceshot-Eptz.html
+  - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+retrieved_at: 2026-05-18T17:48:06.540Z
 last_checked_at: 2026-05-19T17:11:22.436Z
 generated_at: 2026-05-19T17:11:22.436Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial RS-232 not supported; only Telnet/TCP"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "serial RS-232 config not supported; TCP only"
+  - "baud rate, data bits, parity, stop bits not applicable (Telnet only)"
+  - "HTTP/REST API not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:11:22.436Z
   matched_actions: 40
   action_count: 40
-  confidence: high
-  summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue."
+  confidence: medium
+  summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -678,12 +689,17 @@ Telnet session: use `?` to discover available commands and valid parameter range
 
 ```yaml
 source_domains:
-  - fullcompass.com
   - res.cloudinary.com
+  - manualslib.com
+  - legrandav.com
+  - fullcompass.com
 source_urls:
-  - https://www.fullcompass.com/common/files/21194-VaddioClearVIEWHDUSBPTZincl9986990000Manual.pdf
-  - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/999-5675-000_Manual.pdf"
-retrieved_at: 2026-05-14T04:19:00.221Z
+  - https://res.cloudinary.com/avd/image/upload/v134231220/Resources/Vaddio/Cameras/Operation/411-0054-30_Rev_A_ConferenceSHOT_ePTZ_Complete_Manual.pdf
+  - https://res.cloudinary.com/avd/image/upload/v134230356/Resources/Vaddio/Cameras/Operation/411-0054-30_Rev_A_ConferenceSHOT_ePTZ_Complete_Manual.pdf
+  - https://www.manualslib.com/manual/2567609/Legrand-Vaddio-Conferenceshot-Eptz.html
+  - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
+  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
+retrieved_at: 2026-05-18T17:48:06.540Z
 last_checked_at: 2026-05-19T17:11:22.436Z
 ```
 
@@ -694,14 +710,19 @@ verdict: verified
 checked_at: 2026-05-19T17:11:22.436Z
 matched_actions: 40
 action_count: 40
-confidence: high
-summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue."
+confidence: medium
+summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial RS-232 not supported; only Telnet/TCP"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "serial RS-232 config not supported; TCP only"
+- "baud rate, data bits, parity, stop bits not applicable (Telnet only)"
+- "HTTP/REST API not documented in source"
 ```
 
 ---

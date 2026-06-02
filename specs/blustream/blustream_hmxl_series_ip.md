@@ -19,19 +19,31 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:35:00.695Z
 last_checked_at: 2026-05-14T18:17:14.748Z
 generated_at: 2026-05-14T18:17:14.748Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port number not stated in source — Telnet port assumed but unconfirmed"
+  - "scope of \"HMXL Series\" vs \"CMX88AB\" unclear — source document only references CMX88AB"
+  - "TCP port number not stated in source"
+  - "unclear whether credentials apply to Telnet control or only the web browser interface"
+  - "no settable continuous variables (e.g. volume, gain) described in source"
+  - "no unsolicited notification protocol described in source"
+  - "no multi-step sequences described in source"
+  - "TCP/Telnet control port number not stated"
+  - "whether Telnet session requires login credentials is ambiguous — credentials listed may be web-interface-only"
+  - "exact output/input count for the full HMXL Series is not stated; CMX88AB is 8×8"
+  - "no response format documentation for STATUS or other query commands"
+  - "no command timing or rate-limiting information"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.748Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 15 spec actions match verbatim in source command table; transport parameters verified; full command coverage."
+  confidence: medium
+  summary: "All 15 spec actions match verbatim in source command table; transport parameters verified; full command coverage. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -255,7 +267,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-04-29T08:35:00.695Z
 last_checked_at: 2026-05-14T18:17:14.748Z
 ```
 
@@ -266,14 +278,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.748Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 15 spec actions match verbatim in source command table; transport parameters verified; full command coverage."
+confidence: medium
+summary: "All 15 spec actions match verbatim in source command table; transport parameters verified; full command coverage. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port number not stated in source — Telnet port assumed but unconfirmed"
+- "scope of \"HMXL Series\" vs \"CMX88AB\" unclear — source document only references CMX88AB"
+- "TCP port number not stated in source"
+- "unclear whether credentials apply to Telnet control or only the web browser interface"
+- "no settable continuous variables (e.g. volume, gain) described in source"
+- "no unsolicited notification protocol described in source"
+- "no multi-step sequences described in source"
+- "TCP/Telnet control port number not stated"
+- "whether Telnet session requires login credentials is ambiguous — credentials listed may be web-interface-only"
+- "exact output/input count for the full HMXL Series is not stated; CMX88AB is 8×8"
+- "no response format documentation for STATUS or other query commands"
+- "no command timing or rate-limiting information"
 ```
 
 ---

@@ -29,14 +29,20 @@ last_checked_at: 2026-05-08T15:46:54.824Z
 generated_at: 2026-05-08T15:46:54.824Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no multi-step sequences explicitly described in source"
+  - "no explicit safety interlocks or power sequencing warnings found in source"
+  - "No TCP transport details for devices that might support it (source says UDP-only for SLDW devices)"
+  - "Firmware version compatibility ranges not stated"
+  - "Max concurrent client connections for non-subscription operations not stated"
+  - "UDP message size limits not explicitly stated (error 450 exists for response too long)"
 verification:
   verdict: verified
   checked_at: 2026-05-08T15:46:54.824Z
   matched_actions: 125
   action_count: 125
-  confidence: high
-  summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source."
+  confidence: medium
+  summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1417,14 +1423,19 @@ verdict: verified
 checked_at: 2026-05-08T15:46:54.824Z
 matched_actions: 125
 action_count: 125
-confidence: high
-summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source."
+confidence: medium
+summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no multi-step sequences explicitly described in source"
+- "no explicit safety interlocks or power sequencing warnings found in source"
+- "No TCP transport details for devices that might support it (source says UDP-only for SLDW devices)"
+- "Firmware version compatibility ranges not stated"
+- "Max concurrent client connections for non-subscription operations not stated"
+- "UDP message size limits not explicitly stated (error 450 exists for response too long)"
 ```
 
 ---

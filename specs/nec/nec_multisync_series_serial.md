@@ -15,23 +15,30 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-04-26T20:49:45.736Z
 last_checked_at: 2026-04-26T20:49:45.736Z
 generated_at: 2026-04-26T20:49:45.736Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific MultiSync model numbers not listed in source — \"MultiSync Series\" used as generic model name"
+  - "multiple rates supported (115200/38400/19200/9600/4800); source does not specify default"
+  - "variables are primarily controlled via Actions (picture_adjust, volume_adjust, etc.)"
+  - "no unsolicited event notifications documented in source"
+  - "no explicit safety warnings or interlock procedures beyond command timing constraints"
+  - "specific model numbers within MultiSync Series not enumerated in source"
+  - "appendix referenced for input terminal values, aspect values, eco mode values, and signal type values — full appendix tables not included in this document"
+  - "port number for serial connection not stated (only interface standard RS-232C stated)"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-04-26T20:49:45.736Z
   matched_actions: 51
   action_count: 51
-  confidence: high
-  summary: "All 51 spec actions matched to documented source commands; transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 51 spec actions matched to documented source commands; transport parameters verified verbatim in source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -641,11 +648,9 @@ Key code 02h = POWER ON, 03h = POWER OFF via remote control emulation.
 ## Provenance
 
 ```yaml
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-04-26T20:49:45.736Z
 last_checked_at: 2026-04-26T20:49:45.736Z
 ```
 
@@ -656,14 +661,22 @@ verdict: verified
 checked_at: 2026-04-26T20:49:45.736Z
 matched_actions: 51
 action_count: 51
-confidence: high
-summary: "All 51 spec actions matched to documented source commands; transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 51 spec actions matched to documented source commands; transport parameters verified verbatim in source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific MultiSync model numbers not listed in source — \"MultiSync Series\" used as generic model name"
+- "multiple rates supported (115200/38400/19200/9600/4800); source does not specify default"
+- "variables are primarily controlled via Actions (picture_adjust, volume_adjust, etc.)"
+- "no unsolicited event notifications documented in source"
+- "no explicit safety warnings or interlock procedures beyond command timing constraints"
+- "specific model numbers within MultiSync Series not enumerated in source"
+- "appendix referenced for input terminal values, aspect values, eco mode values, and signal type values — full appendix tables not included in this document"
+- "port number for serial connection not stated (only interface standard RS-232C stated)"
+- "model-specific source not located"
 ```
 
 ---

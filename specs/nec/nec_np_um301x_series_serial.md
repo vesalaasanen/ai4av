@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:43.328Z
 last_checked_at: 2026-05-14T18:17:18.753Z
 generated_at: 2026-05-14T18:17:18.753Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "NP-UM301X is not explicitly listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. Those per-model lookup tables cover other NEC families. Input terminal hex codes should be confirmed from the projector on-screen menu or a model-specific supplement."
+  - "standby mode command-reception capability not stated for NP-UM301X specifically"
+  - "RTS/CTS pins wired but no software flow control stated"
+  - "no unsolicited event/notification protocol described in source."
+  - "no multi-step macro sequences described in source."
+  - "exact input terminal hex codes for NP-UM301X not found in supplementary tables"
+  - "exact eco mode value codes for NP-UM301X not found in supplementary tables"
+  - "exact aspect value codes for NP-UM301X not found in supplementary tables"
+  - "ID2 model code value for NP-UM301X not stated"
+  - "default baud rate not stated (multiple supported: 115200/38400/19200/9600/4800)"
+  - "pin 7 (RTS) and pin 8 (CTS) are cross-wired but no hardware flow control behavior described"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.753Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands."
+  confidence: medium
+  summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -806,7 +817,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:43.328Z
 last_checked_at: 2026-05-14T18:17:18.753Z
 ```
 
@@ -817,14 +828,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.753Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands."
+confidence: medium
+summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "NP-UM301X is not explicitly listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. Those per-model lookup tables cover other NEC families. Input terminal hex codes should be confirmed from the projector on-screen menu or a model-specific supplement."
+- "standby mode command-reception capability not stated for NP-UM301X specifically"
+- "RTS/CTS pins wired but no software flow control stated"
+- "no unsolicited event/notification protocol described in source."
+- "no multi-step macro sequences described in source."
+- "exact input terminal hex codes for NP-UM301X not found in supplementary tables"
+- "exact eco mode value codes for NP-UM301X not found in supplementary tables"
+- "exact aspect value codes for NP-UM301X not found in supplementary tables"
+- "ID2 model code value for NP-UM301X not stated"
+- "default baud rate not stated (multiple supported: 115200/38400/19200/9600/4800)"
+- "pin 7 (RTS) and pin 8 (CTS) are cross-wired but no hardware flow control behavior described"
 ```
 
 ---

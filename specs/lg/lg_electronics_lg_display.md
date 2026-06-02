@@ -33,14 +33,25 @@ last_checked_at: 2026-05-14T05:46:51.840Z
 generated_at: 2026-05-14T05:46:51.840Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model numbers not listed in this generic companion manual. UNRESOLVED: firmware version compatibility not stated."
+  - "flow control not stated"
+  - "the protocol uses command/response pairs rather than independent state variables."
+  - "no unsolicited event notifications documented. Device only responds to commands."
+  - "no explicit safety warnings for voltage, current, or power specifications."
+  - "no explicit interlock procedure for sequencing multiple displays."
+  - "full list of specific LG Display model numbers this spec covers."
+  - "TCP/IP control additional authentication requirements beyond 3-digit passcode."
+  - "network protocol beyond Telnet (e.g., JSON-REST API) not documented."
+  - "UDP control not mentioned in source."
+  - "HTTP/REST control not mentioned in source."
 verification:
   verdict: verified
   checked_at: 2026-05-14T05:46:51.840Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified."
+  confidence: medium
+  summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -476,14 +487,24 @@ verdict: verified
 checked_at: 2026-05-14T05:46:51.840Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified."
+confidence: medium
+summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model numbers not listed in this generic companion manual. UNRESOLVED: firmware version compatibility not stated."
+- "flow control not stated"
+- "the protocol uses command/response pairs rather than independent state variables."
+- "no unsolicited event notifications documented. Device only responds to commands."
+- "no explicit safety warnings for voltage, current, or power specifications."
+- "no explicit interlock procedure for sequencing multiple displays."
+- "full list of specific LG Display model numbers this spec covers."
+- "TCP/IP control additional authentication requirements beyond 3-digit passcode."
+- "network protocol beyond Telnet (e.g., JSON-REST API) not documented."
+- "UDP control not mentioned in source."
+- "HTTP/REST control not mentioned in source."
 ```
 
 ---

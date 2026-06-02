@@ -19,19 +19,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:52.209Z
 last_checked_at: 2026-04-26T20:47:04.830Z
 generated_at: 2026-04-26T20:47:04.830Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced for input terminal values and aspect values not included in source text"
+  - "This device uses action-based commands with parameters rather than"
+  - "No unsolicited event notifications described in source."
+  - "No multi-step macro sequences described in source."
+  - "No safety warnings, interlock procedures, or power-on sequencing"
+  - "Appendix data for input terminal codes, aspect values, eco mode values, and sub input values not available in source"
+  - "Wireless LAN unit-specific documentation not included; requires separate manual"
+  - "Specific model compatibility (HT-1000 vs BDT140013 relationship) not clarified in source"
 verification:
   verdict: verified
   checked_at: 2026-04-26T20:47:04.830Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched to source commands with correct semantics; transport parameters verified; source fully represented in spec."
+  confidence: medium
+  summary: "All 53 spec actions matched to source commands with correct semantics; transport parameters verified; source fully represented in spec. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -688,7 +696,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:52.209Z
 last_checked_at: 2026-04-26T20:47:04.830Z
 ```
 
@@ -699,14 +707,21 @@ verdict: verified
 checked_at: 2026-04-26T20:47:04.830Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched to source commands with correct semantics; transport parameters verified; source fully represented in spec."
+confidence: medium
+summary: "All 53 spec actions matched to source commands with correct semantics; transport parameters verified; source fully represented in spec. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced for input terminal values and aspect values not included in source text"
+- "This device uses action-based commands with parameters rather than"
+- "No unsolicited event notifications described in source."
+- "No multi-step macro sequences described in source."
+- "No safety warnings, interlock procedures, or power-on sequencing"
+- "Appendix data for input terminal codes, aspect values, eco mode values, and sub input values not available in source"
+- "Wireless LAN unit-specific documentation not included; requires separate manual"
+- "Specific model compatibility (HT-1000 vs BDT140013 relationship) not clarified in source"
 ```
 
 ---

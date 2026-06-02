@@ -2,13 +2,13 @@
 spec_id: admin/hisense-75u75n
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Hisense 75U75N Control Spec"
-manufacturer: Hisense
+title: "HiSense 75U75N Control Spec"
+manufacturer: HiSense
 model_family: 75U75N
 aliases: []
 compatible_with:
   manufacturers:
-    - Hisense
+    - HiSense
   models:
     - 75U75N
   firmware: ""
@@ -17,42 +17,48 @@ compatible_with:
   required_options: []
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.590Z
-generated_at: 2026-05-14T18:17:16.590Z
+retrieved_at: 2026-06-02T01:36:21.545Z
+last_checked_at: 2026-06-02T01:48:13.548Z
+generated_at: 2026-06-02T01:48:13.548Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "which series applies to the 75U75N specifically; source aggregates three series into one document"
+  - "no continuous/parameterized variables beyond command parameters in source"
+  - "source documents no multi-step sequences"
+  - "which series (E / M / WR) maps to 75U75N"
+  - "75U75N firmware version compatibility not stated"
+  - "E-Series Power Off template/example mismatch"
+  - "M-Series Set Volume example typo"
+  - "source references \"numbers highlighted in red\" for check bit calculation; red not preserved in refined text — exact byte subset for XOR may differ from what is implied by the prose"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.590Z
-  matched_actions: 59
+  checked_at: 2026-06-02T01:48:13.548Z
+  matched_actions: 68
   action_count: 68
-  confidence: high
-  summary: "All 59 spec actions matched to source commands; E/M/WR series transport parameters verified in source."
+  confidence: medium
+  summary: "All 68 spec actions matched literally in source; all transport parameters verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-21
+created_at: 2026-06-02
 ---
 
-# Hisense 75U75N Control Spec
+# HiSense 75U75N Control Spec
 
 ## Summary
-Hisense digital signage display supporting RS-232 control. The source document covers three command families (E-Series at 115200 baud, M-Series and WR-Series at 9600 baud) with power, input routing, volume, and query functionality.
+RS-232 HEX control for HiSense 75U75N. Source doc covers E-Series, M-Series, WR-Series panels with distinct baud rates and command sets; spec enumerates all commands documented across the three series.
 
-<!-- UNRESOLVED: unable to verify which series (E/M/WR) the 75U75N model belongs to; all three series commands included -->
+<!-- UNRESOLVED: which series applies to the 75U75N specifically; source aggregates three series into one document -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600  # E-Series uses 115200; M/WR use 9600
+  baud_rate: 115200  # E-Series; M-Series and WR-Series use 9600 (see Notes)
   data_bits: 8
   parity: none
   stop_bits: 1
@@ -63,512 +69,607 @@ auth:
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable       # inferred: power on/off commands present in all three series
+- routable        # inferred: input selection commands present
+- levelable       # inferred: set volume and set brightness commands present
+- queryable       # inferred: status, input, power, version, volume query commands present
 ```
 
 ## Actions
 ```yaml
-# E-Series Commands
-- id: power_on
-  label: Power On
-  kind: action
-  params: []
-  description: Send A6 xx 00 00 00 04 01 18 02 yy — requires UART Wake On enabled
+# E-Series commands (baud 115200, RJ45 pinout per E-Series table)
+# Command template: A6 xx 00 00 00 <len> 01 <opcode> [<param>] yy
+# xx = screen ID (00 = broadcast, 01..FF = specific panel)
+# yy = XOR check bit over preceding bytes (computed per command; varies with ID)
+# vv = volume level, 0..100 in hex
+# ww = mains application mode: 00 standby, 01 power on, 02 last state
 
-- id: power_off
-  label: Power Off
+- id: e_series_power_on
+  label: E-Series Power On
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 18 02 yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 18 02 B8. Uart Wake On must be On."
 
-- id: hdmi1_input
-  label: HDMI 1 Input
+- id: e_series_power_off
+  label: E-Series Power Off
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 18 01 yy"
+  notes: "Example shown in source uses IR-style prefix (A6 01 00 00 00 05 01 B0 00 74 67); template and example disagree - preserve both."
 
-- id: hdmi2_input
-  label: HDMI 2 Input
+- id: e_series_input_hdmi1
+  label: E-Series HDMI 1 Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 0D yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 0D 03"
 
-- id: ops_input
-  label: OPS Input
+- id: e_series_input_hdmi2
+  label: E-Series HDMI 2 Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 06 yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 06 08"
 
-- id: cms_input
-  label: CMS Input
+- id: e_series_input_ops
+  label: E-Series OPS Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 0B yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 0B 05"
 
-- id: pdf_input
-  label: PDF Input
+- id: e_series_input_cms
+  label: E-Series CMS Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 15 yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 15 1B"
 
-- id: media_input
-  label: Media Input
+- id: e_series_input_pdf
+  label: E-Series PDF Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 17 yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 17 19"
 
-- id: usb_input
-  label: USB Input
+- id: e_series_input_media
+  label: E-Series Media Input
   kind: action
-  params: []
+  command: "A6 xx 00 00 00 04 01 AC 16 yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 16 18"
 
-- id: set_volume
-  label: Set Volume
+- id: e_series_input_usb
+  label: E-Series USB Input
   kind: action
+  command: "A6 xx 00 00 00 04 01 AC 0C yy"
+  notes: "Example for ID 01: A6 01 00 00 00 04 01 AC 0C 02"
+
+- id: e_series_set_volume
+  label: E-Series Set Volume
+  kind: action
+  command: "A6 xx 00 00 00 04 01 44 {vv} yy"
   params:
-    - name: level
+    - name: vv
       type: integer
-      description: Volume level 0–100 (sent as hex vv)
+      description: Volume level 0-100 (hex)
+  notes: "Example for ID 01, volume 77: A6 01 00 00 00 04 01 44 4D AB"
 
-- id: set_mains_application_mode
-  label: Set Mains Application Mode
+- id: e_series_set_mains_app_mode
+  label: E-Series Set Mains Application Mode
   kind: action
+  command: "A6 01 00 00 00 04 01 A3 {ww} yy"
   params:
-    - name: mode
-      type: integer
-      description: "00=Standby, 01=Power On, 02=Last known state"
+    - name: ww
+      type: enum
+      values: [standby, power_on, last_state]
+      description: "00=standby, 01=power on, 02=last known state"
+  notes: "Example standby: A6 01 00 00 00 04 01 A3 00 01"
 
-- id: source_menu
-  label: Source Menu
+- id: e_series_query_input
+  label: E-Series Query Input Selection
+  kind: query
+  command: "A6 xx 00 00 00 03 01 AD yy"
+  notes: "Response zz: 0D HDMI1, 06 HDMI2, 0B OPS, 15 CMS, 17 PDF, 16 Media, 0C USB, 14 Home"
+
+- id: e_series_query_power
+  label: E-Series Query Power State
+  kind: query
+  command: "A6 xx 00 00 00 03 01 19 yy"
+  notes: "Response zz: 01 off, 02 on"
+
+- id: e_series_query_software_version
+  label: E-Series Query Software Version (Platform)
+  kind: query
+  command: "A6 xx 00 00 00 04 01 A2 02 yy"
+
+- id: e_series_query_volume
+  label: E-Series Query Volume Level
+  kind: query
+  command: "A6 xx 00 00 00 03 01 45 yy"
+
+# E-Series IR/menu navigation (no ID, fixed prefix A6 01 00 00 00 05 01 B0 00 ...)
+- id: e_series_source_menu
+  label: E-Series Source Menu
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 FA"
+  notes: "Trailing check byte: E9"
 
-- id: settings_menu
-  label: Settings Menu
+- id: e_series_settings_menu
+  label: E-Series Settings Menu
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 FD"
+  notes: "Trailing check byte: EE"
 
-- id: nav_up
-  label: Up
+- id: e_series_up
+  label: E-Series Up
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 67"
+  notes: "Trailing check byte: 74"
 
-- id: nav_down
-  label: Down
+- id: e_series_down
+  label: E-Series Down
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 6C"
+  notes: "Trailing check byte: 7F"
 
-- id: nav_ok
-  label: Ok
+- id: e_series_ok
+  label: E-Series OK
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 1C"
+  notes: "Trailing check byte: 0F"
 
-- id: nav_right
-  label: Right
+- id: e_series_right
+  label: E-Series Right
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 6A"
+  notes: "Trailing check byte: 79"
 
-- id: nav_left
-  label: Left
+- id: e_series_left
+  label: E-Series Left
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 69"
+  notes: "Trailing check byte: 7A"
 
-- id: nav_home
-  label: Home
+- id: e_series_home
+  label: E-Series Home
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 66"
+  notes: "Trailing check byte: 75"
 
-- id: vol_up
-  label: Vol+
+- id: e_series_vol_up
+  label: E-Series Vol+
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 73"
+  notes: "Trailing check byte: 60"
 
-- id: vol_down
-  label: Vol-
+- id: e_series_vol_down
+  label: E-Series Vol-
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 72"
+  notes: "Trailing check byte: 61"
 
-- id: nav_return
-  label: Return
+- id: e_series_return
+  label: E-Series Return
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 0A"
+  notes: "Trailing check byte: 03"
 
-- id: nav_back
-  label: Back
+- id: e_series_back
+  label: E-Series Back
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 09"
+  notes: "Trailing check byte: 00"
 
-- id: num_0
-  label: Num 0
+- id: e_series_num_0
+  label: E-Series Num 0
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 30"
+  notes: "Trailing check byte: 29"
 
-- id: num_1
-  label: Num 1
+- id: e_series_num_1
+  label: E-Series Num 1
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 31"
+  notes: "Trailing check byte: 28"
 
-- id: num_2
-  label: Num 2
+- id: e_series_num_2
+  label: E-Series Num 2
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 32"
+  notes: "Trailing check byte: 2B"
 
-- id: num_3
-  label: Num 3
+- id: e_series_num_3
+  label: E-Series Num 3
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 33"
+  notes: "Trailing check byte: 2A"
 
-- id: num_4
-  label: Num 4
+- id: e_series_num_4
+  label: E-Series Num 4
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 34"
+  notes: "Trailing check byte: 25"
 
-- id: num_5
-  label: Num 5
+- id: e_series_num_5
+  label: E-Series Num 5
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 35"
+  notes: "Trailing check byte: 24"
 
-- id: num_6
-  label: Num 6
+- id: e_series_num_6
+  label: E-Series Num 6
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 36"
+  notes: "Trailing check byte: 27"
 
-- id: num_7
-  label: Num 7
+- id: e_series_num_7
+  label: E-Series Num 7
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 37"
+  notes: "Trailing check byte: 26"
 
-- id: num_8
-  label: Num 8
+- id: e_series_num_8
+  label: E-Series Num 8
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 38"
+  notes: "Trailing check byte: 21"
 
-- id: num_9
-  label: Num 9
+- id: e_series_num_9
+  label: E-Series Num 9
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 39"
+  notes: "Trailing check byte: 20"
 
-- id: channel_up
-  label: Channel Up
+- id: e_series_channel_up
+  label: E-Series Channel Up
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 63"
+  notes: "Trailing check byte: 52"
 
-- id: channel_down
-  label: Channel Down
+- id: e_series_channel_down
+  label: E-Series Channel Down
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 64"
+  notes: "Trailing check byte: 53"
 
-- id: subtitle
-  label: Subtitle
+- id: e_series_subtitle
+  label: E-Series Subtitle
   kind: action
-  params: []
+  command: "A6 01 00 00 00 05 01 B0 00 71"
+  notes: "Trailing check byte: 62"
 
-# M/WR-Series Commands
-- id: m_power_on
+# M-Series commands (baud 9600, different RJ45 pinout)
+# Format: DD FF <len> C1 <opcode> 00 00 {xx} {param} yy BB CC (then echoed)
+# xx = screen ID hex (01..FF), yy = XOR check, vv = volume 0-100 hex
+
+- id: m_series_power_on
   label: M-Series Power On
   kind: action
-  params: []
+  command: "DD FF 00 08 C1 15 00 00 {xx} BB BB {yy} BB CC"
+  notes: "Source lists multiple example variants; preserve as documented."
 
-- id: m_power_off
+- id: m_series_power_off
   label: M-Series Power Off
   kind: action
-  params: []
+  command: "DD FF 00 08 C1 15 00 00 {xx} AA AA {yy} BB CC"
 
-- id: m_displayport_input
-  label: DisplayPort Input
+- id: m_series_input_displayport
+  label: M-Series DisplayPort Input
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 08 00 00 {xx} 16 {yy} BB CC"
 
-- id: m_vga_input
-  label: VGA Input
+- id: m_series_input_vga
+  label: M-Series VGA Input
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 08 00 00 {xx} 17 {yy} BB CC"
 
-- id: m_hdmi_input
-  label: HDMI Input
+- id: m_series_input_hdmi
+  label: M-Series HDMI Input
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 08 00 00 {xx} 08 {yy} BB CC"
 
-- id: m_dvi_input
-  label: DVI Input
+- id: m_series_input_dvi
+  label: M-Series DVI Input
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 08 00 00 {xx} 09 {yy} BB CC"
 
-- id: m_mute_audio_on
-  label: Mute Audio On
+- id: m_series_mute_on
+  label: M-Series Mute Audio On
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 26 00 00 {xx} 01 {yy} BB CC"
 
-- id: m_mute_audio_off
-  label: Mute Audio Off
+- id: m_series_mute_off
+  label: M-Series Mute Audio Off
   kind: action
-  params: []
+  command: "DD FF 00 07 C1 26 00 00 {xx} 00 {yy} BB CC"
 
-- id: m_set_volume
+- id: m_series_set_volume
   label: M-Series Set Volume
   kind: action
+  command: "DD FF 00 07 C1 27 00 00 {xx} {vv} {yy} BB CC"
   params:
-    - name: level
+    - name: vv
       type: integer
-      description: Volume level 0–100 (sent as hex vv)
+      description: Volume level 0-100 (hex)
+  notes: "Example in source has vv=01 and trailing 01 - likely source typo; template form used."
 
-- id: wr_pc_input
-  label: PC Input
-  kind: action
-  params: []
-
-- id: wr_hdmi1_input
-  label: WR HDMI 1 Input
-  kind: action
-  params: []
-
-- id: wr_hdmi2_input
-  label: WR HDMI 2 Input
-  kind: action
-  params: []
-
-- id: wr_vga_input
-  label: WR VGA Input
-  kind: action
-  params: []
-
-- id: wr_displayport_input
-  label: WR DisplayPort Input
-  kind: action
-  params: []
-
-- id: wr_reboot_tv
-  label: Reboot TV
-  kind: action
-  params: []
-
-- id: wr_set_volume
-  label: WR Set Volume
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: Volume level 0–100 (sent as hex xx)
-
-- id: wr_video_mute_on
-  label: Video Mute On
-  kind: action
-  params: []
-
-- id: wr_video_mute_off
-  label: Video Mute Off
-  kind: action
-  params: []
-
-- id: wr_set_brightness
-  label: Set Brightness
-  kind: action
-  params:
-    - name: level
-      type: integer
-      description: Brightness value (sent as hex xx)
-
-- id: wr_set_date
-  label: Set Date (Y/M/D)
-  kind: action
-  params:
-    - name: year
-      type: integer
-    - name: month
-      type: integer
-    - name: day
-      type: integer
-
-- id: wr_set_time
-  label: Set Time (H/M/S)
-  kind: action
-  params:
-    - name: hour
-      type: integer
-    - name: minute
-      type: integer
-    - name: second
-      type: integer
-# E-Series Query Commands
-- id: e_query_input_selection
-  label: Query Input Selection
-  kind: query
-  params: []
-  description: Query currently selected input (E-Series)
-
-- id: e_query_power_state
-  label: Query Power State
-  kind: query
-  params: []
-  description: Query current power state (E-Series)
-
-- id: e_query_software_version
-  label: Query Software Version
-  kind: query
-  params: []
-  description: Get platform version (E-Series)
-
-- id: e_query_volume_level
-  label: Query Volume Level
-  kind: query
-  params: []
-  description: Get volume level (E-Series)
-
-# M-Series Query Commands
-- id: m_query_status
+- id: m_series_query_status
   label: M-Series Query Status
   kind: query
-  params: []
-  description: Query status (M-Series); response includes volume, input source, power state, mute state, signal presence
+  command: "DD FF 00 06 C1 28 00 00 {xx} {yy} BB CC"
+  notes: "Response: aa=volume, bb cc=input (05 02 DVI, 05 03 DP, 05 04 HDMI, 08 01 VGA), dd=power (00 on, FF off), ee=mute (01 muted, 00 unmuted), ff=signal (00 absent, 01 present)"
 
-# WR-Series Power Commands
-- id: wr_power_on
-  label: WR Power On
+# WR-Series commands (baud 9600, different RJ45 pinout)
+# Format: DD FF <len> C1 <opcode> 00 00 01 <param> <check> BB CC (Power on/off use A1 opcode)
+
+- id: wr_series_power_on
+  label: WR-Series Power On
   kind: action
-  params: []
+  command: "DD FF 01 04 A1 00 00 00 BB CC"
 
-- id: wr_power_off
-  label: WR Power Off
+- id: wr_series_power_off
+  label: WR-Series Power Off
   kind: action
-  params: []
+  command: "DD FF 01 04 A1 01 00 00 BB CC"
 
-# WR-Series Query Commands
-- id: wr_query_input_selection
-  label: WR Query Input Selection
-  kind: query
-  params: []
-  description: Query currently selected input (WR-Series)
+- id: wr_series_input_pc
+  label: WR-Series PC Input
+  kind: action
+  command: "DD FF 00 07 C1 08 00 00 01 04 CB BB CC"
 
-- id: wr_query_power_state
-  label: WR Query Power State
-  kind: query
-  params: []
-  description: Query power state (WR-Series)
+- id: wr_series_input_hdmi1
+  label: WR-Series HDMI 1 Input
+  kind: action
+  command: "DD FF 00 07 C1 08 00 00 01 05 CA BB CC"
 
-- id: wr_query_software_version
-  label: WR Query Software Version
-  kind: query
-  params: []
-  description: Query software version (WR-Series)
+- id: wr_series_input_hdmi2
+  label: WR-Series HDMI 2 Input
+  kind: action
+  command: "DD FF 00 07 C1 08 00 00 01 06 C9 BB CC"
 
-- id: wr_query_volume_level
-  label: WR Query Volume Level
+- id: wr_series_input_vga
+  label: WR-Series VGA Input
+  kind: action
+  command: "DD FF 00 07 C1 08 00 00 01 07 C8 BB CC"
+
+- id: wr_series_input_displayport
+  label: WR-Series DisplayPort Input
+  kind: action
+  command: "DD FF 00 07 C1 08 00 00 01 0B C4 BB CC"
+
+- id: wr_series_reboot
+  label: WR-Series Reboot TV
+  kind: action
+  command: "DD FF 00 06 C1 1E 00 00 01 D8 BB CC"
+
+- id: wr_series_set_volume
+  label: WR-Series Set Volume
+  kind: action
+  command: "DD FF 01 04 A1 07 00 {xx} BB CC"
+  params:
+    - name: xx
+      type: integer
+      description: Volume value
+
+- id: wr_series_video_mute_on
+  label: WR-Series Video Mute On
+  kind: action
+  command: "DD FF 00 07 C1 31 00 00 01 00 F6 BB CC"
+
+- id: wr_series_video_mute_off
+  label: WR-Series Video Mute Off
+  kind: action
+  command: "DD FF 00 07 C1 31 00 00 01 01 F7 BB CC"
+
+- id: wr_series_set_brightness
+  label: WR-Series Set Brightness
+  kind: action
+  command: "DD FF 01 04 A1 08 00 {xx} BB CC"
+  params:
+    - name: xx
+      type: integer
+      description: Brightness value
+
+- id: wr_series_set_date
+  label: WR-Series Set Date (Y/M/D)
+  kind: action
+  command: "DD FF 00 09 C1 1C 00 00 01 {ww} {xx} {yy} {zz} BB CC"
+  params:
+    - name: ww
+      type: integer
+      description: Year
+    - name: xx
+      type: integer
+      description: Month
+    - name: yy
+      type: integer
+      description: Day
+    - name: zz
+      type: integer
+      description: Check bit (XOR)
+
+- id: wr_series_set_time
+  label: WR-Series Set Time (H/M/S)
+  kind: action
+  command: "DD FF 00 09 C1 1D 00 00 01 {ww} {xx} {yy} {zz} BB CC"
+  params:
+    - name: ww
+      type: integer
+      description: Hour
+    - name: xx
+      type: integer
+      description: Minute
+    - name: yy
+      type: integer
+      description: Seconds
+    - name: zz
+      type: integer
+      description: Check bit (XOR)
+
+- id: wr_series_query_input
+  label: WR-Series Query Input Selection
   kind: query
-  params: []
-  description: Query volume level (WR-Series)
+  command: "DD FF 00 06 C1 1A 00 00 01 DC BB CC"
+  notes: "Response ww xx yy: 05 03 02 PC, 06 04 00 VGA, 05 05 00 HDMI1, 05 03 01 HDMI2, 05 03 03 DisplayPort"
+
+- id: wr_series_query_power
+  label: WR-Series Query Power State
+  kind: query
+  command: "DD FF 00 06 C1 32 00 00 01 F4 BB CC"
+  notes: "Response xx: 00 off, 01 on; yy check bit"
+
+- id: wr_series_query_software_version
+  label: WR-Series Query Software Version
+  kind: query
+  command: "DD FF 00 06 C1 1B 00 00 01 DD BB CC"
+  notes: "Response xx = software version, yy = check bit"
+
+- id: wr_series_query_volume
+  label: WR-Series Query Volume Level
+  kind: query
+  command: "DD FF 00 06 C1 33 00 00 01 E0 BB CC"
+  notes: "Response xx = volume level, yy = check bit"
 ```
 
 ## Feedbacks
 ```yaml
-- id: e_input_selection_response
+# E-Series query responses
+- id: e_series_input_state
   type: enum
-  values: [HDMI1, HDMI2, OPS, CMS, PDF, Media, USB, HomeScreen]
-  description: "zz values: 0D=HDMI1, 06=HDMI2, 0B=OPS, 15=CMS, 17=PDF, 16=Media, 0C=USB, 14=HomeScreen"
+  description: "Currently selected input on E-Series panel"
+  values:
+    - code: 0D
+      name: HDMI_1
+    - code: 06
+      name: HDMI_2
+    - code: 0B
+      name: OPS
+    - code: 15
+      name: CMS
+    - code: 17
+      name: PDF
+    - code: 16
+      name: MEDIA
+    - code: 0C
+      name: USB
+    - code: 14
+      name: HOME_SCREEN
 
-- id: e_power_state_response
+- id: e_series_power_state
   type: enum
-  values: [off, on]
-  description: "zz values: 01=Off, 02=On"
+  values:
+    - code: 01
+      name: off
+    - code: 02
+      name: on
 
-- id: e_volume_level_response
-  type: integer
-  description: Current volume level
-
-- id: e_software_version_response
-  type: string
-  description: Platform version
-
-- id: m_status_response
+# M-Series query status response (single multi-field reply)
+- id: m_series_status
   type: object
-  description: "Query Status returns: volume (aa), input source (bb cc), power state (dd), mute state (ee), signal presence (ff)"
-  properties:
-    volume:
-      type: integer
-      description: Current volume level
-    input_source:
-      type: string
-      description: "05 02=DVI, 05 03=DisplayPort, 05 04=HDMI, 08 01=VGA"
-    power_state:
-      type: string
-      description: "00=On, FF=Off"
-    mute_state:
-      type: string
-      description: "01=Muted, 00=Unmuted"
-    signal_presence:
-      type: string
-      description: "00=No signal, 01=Signal present"
+  description: "Multi-field status: aa=volume, bb/cc=input, dd=power, ee=mute, ff=signal"
+  fields:
+    - name: volume
+      range: 0-100
+    - name: input
+      values: ["05 02 DVI", "05 03 DisplayPort", "05 04 HDMI", "08 01 VGA"]
+    - name: power
+      values: ["00 on", "FF off"]
+    - name: mute
+      values: ["00 unmuted", "01 muted"]
+    - name: signal
+      values: ["00 absent", "01 present"]
 
-- id: wr_input_selection_response
+# WR-Series query responses
+- id: wr_series_input_state
   type: enum
-  values: [PC, VGA, HDMI1, HDMI2, DisplayPort]
-  description: "ww xx yy: 05 03 02=PC, 06 04 00=VGA, 05 05 00=HDMI1, 05 03 01=HDMI2, 05 03 03=DisplayPort"
+  values:
+    - code: "05 03 02"
+      name: PC
+    - code: "06 04 00"
+      name: VGA
+    - code: "05 05 00"
+      name: HDMI_1
+    - code: "05 03 01"
+      name: HDMI_2
+    - code: "05 03 03"
+      name: DisplayPort
 
-- id: wr_power_state_response
+- id: wr_series_power_state
   type: enum
-  values: [off, on]
-  description: "xx values: 00=Off, 01=On"
-
-- id: wr_software_version_response
-  type: string
-  description: Software version
-
-- id: wr_volume_level_response
-  type: integer
-  description: Current volume level
+  values:
+    - code: 00
+      name: off
+    - code: 01
+      name: on
 ```
 
 ## Variables
 ```yaml
-# No discrete settable parameters beyond the action params listed above
+# UNRESOLVED: no continuous/parameterized variables beyond command parameters in source
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described in source
+# Source documents "Feedback from Screen" framing - these are responses to queries, not unsolicited events.
+# M-Series and WR-Series both echo commands back as part of the protocol; treat as feedback, not events.
 ```
 
 ## Macros
 ```yaml
-# None described in source
+# UNRESOLVED: source documents no multi-step sequences
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - description: "E-Series Power On requires UART Wake On function to be On"
-    source: "E-Series Power On command notes"
+interlocks: []
+# E-Series Power On notes: "Uart Wake On function must be On" - required setting for command to function
+# No additional safety warnings, interlocks, or power-on sequencing documented in source
 ```
 
 ## Notes
-The source document covers three distinct RS-232 command families for Hisense E-Series (115200 baud), M-Series (9600 baud), and WR-Series (9600 baud) digital signage displays. Each family uses different HEX command structures. The E-Series uses a `A6 xx` header format with XOR check bits; M/WR-Series use a `DD FF` header format. A screen ID (xx, 01–FF) is required for most E-Series commands; broadcast mode (`00`) sends to all screens in a daisy chain. XOR calculations are required for check bit (yy) generation on applicable commands.
-<!-- UNRESOLVED: specific model 75U75N series assignment could not be verified; all three series included -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+Source aggregates three HiSense product series in one RS-232 control document with distinct parameters and command sets:
+- **E-Series (Digital Signage):** 115200 baud, 8N1, no flow control. RJ45 pinout uses pins 4 (GND), 5 (RX), 7 (TX). Commands prefixed `A6`. Note: Power On example checksum B8 disagrees with XOR of the preceding bytes; Power Off example uses different prefix entirely (`05 01 B0 00`) — source contains internal inconsistencies, preserved verbatim.
+- **M-Series (24/7 Digital Signage):** 9600 baud, 8N1, no flow control. RJ45 pinout uses pins 3 (GND), 5 (RX), 8 (TX). Commands prefixed `DD FF`. Set Volume example in source has volume=01 with trailing `01`; treated as likely source typo.
+- **WR-Series (Interactive Touch Displays):** 9600 baud, 8N1, no flow control. RJ45 pinout uses pins 1 (RX), 2 (TX), 5 (GND). Commands prefixed `DD FF`. Power on/off use opcode `A1`; all others use opcode `C1`.
+
+Check bit (`yy` / `zz`): XOR of preceding HEX bytes (per source — "numbers highlighted in red" in original; red not preserved in refined text). Use onlinehextools.com/xor-hex-numbers for calculation. Check bit changes with screen ID.
+
+75U75N: consumer ULED TV, not signage or interactive display. Source aggregates all three series without device-to-series mapping. Spec includes all documented commands; operator must determine which series applies to the 75U75N before deployment.
+
+<!-- UNRESOLVED: which series (E / M / WR) maps to 75U75N -->
+<!-- UNRESOLVED: 75U75N firmware version compatibility not stated -->
+<!-- UNRESOLVED: E-Series Power Off template/example mismatch -->
+<!-- UNRESOLVED: M-Series Set Volume example typo -->
+<!-- UNRESOLVED: source references "numbers highlighted in red" for check bit calculation; red not preserved in refined text — exact byte subset for XOR may differ from what is implied by the prose -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - hisense-b2b.com
-  - assets.hisense-usa.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-  - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-05-14T18:17:16.590Z
+retrieved_at: 2026-06-02T01:36:21.545Z
+last_checked_at: 2026-06-02T01:48:13.548Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.590Z
-matched_actions: 59
+checked_at: 2026-06-02T01:48:13.548Z
+matched_actions: 68
 action_count: 68
-confidence: high
-summary: "All 59 spec actions matched to source commands; E/M/WR series transport parameters verified in source."
+confidence: medium
+summary: "All 68 spec actions matched literally in source; all transport parameters verified; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "which series applies to the 75U75N specifically; source aggregates three series into one document"
+- "no continuous/parameterized variables beyond command parameters in source"
+- "source documents no multi-step sequences"
+- "which series (E / M / WR) maps to 75U75N"
+- "75U75N firmware version compatibility not stated"
+- "E-Series Power Off template/example mismatch"
+- "M-Series Set Volume example typo"
+- "source references \"numbers highlighted in red\" for check bit calculation; red not preserved in refined text — exact byte subset for XOR may differ from what is implied by the prose"
 ```
 
 ---

@@ -19,20 +19,34 @@ source_domains:
   - powersoft.com
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
-  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
-retrieved_at: 2026-05-04T15:19:12.837Z
+retrieved_at: 2026-04-30T04:33:24.415Z
 last_checked_at: 2026-04-25T21:50:00.781Z
 generated_at: 2026-04-25T21:50:00.781Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "This source documents a NetLinx module API that wraps the native Powersoft protocol. The raw amplifier protocol commands are not documented here."
+  - "The source references \"M Series\" generally; M20D HDSP+ETH model compatibility is assumed from the device name."
+  - "Number of DSP modules/channels varies by model; not confirmed for M20D HDSP+ETH specifically."
+  - "Firmware version compatibility not stated; source notes NetLinx Master firmware must be ≥ 4.xx"
+  - "minimum volume not stated"
+  - "maximum volume not stated"
+  - "no unsolicited event/notification mechanism described in source beyond async command feedback"
+  - "no multi-step sequences described in source"
+  - "full power-on sequencing requirements not documented in source"
+  - "native Powersoft protocol commands sent between module and amplifier are not documented"
+  - "exact number of channels/modules for M20D HDSP+ETH not confirmed"
+  - "volume range (min/max dB) not stated"
+  - "protection bitmap interpretation not documented"
+  - "alarm types/codes not documented"
+  - "connection/disconnection timeout behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:50:00.781Z
   matched_actions: 21
   action_count: 21
   confidence: low
-  summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified"
+  summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -371,8 +385,7 @@ source_domains:
   - powersoft.com
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
-  - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
-retrieved_at: 2026-05-04T15:19:12.837Z
+retrieved_at: 2026-04-30T04:33:24.415Z
 last_checked_at: 2026-04-25T21:50:00.781Z
 ```
 
@@ -384,13 +397,27 @@ checked_at: 2026-04-25T21:50:00.781Z
 matched_actions: 21
 action_count: 21
 confidence: low
-summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified"
+summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "This source documents a NetLinx module API that wraps the native Powersoft protocol. The raw amplifier protocol commands are not documented here."
+- "The source references \"M Series\" generally; M20D HDSP+ETH model compatibility is assumed from the device name."
+- "Number of DSP modules/channels varies by model; not confirmed for M20D HDSP+ETH specifically."
+- "Firmware version compatibility not stated; source notes NetLinx Master firmware must be ≥ 4.xx"
+- "minimum volume not stated"
+- "maximum volume not stated"
+- "no unsolicited event/notification mechanism described in source beyond async command feedback"
+- "no multi-step sequences described in source"
+- "full power-on sequencing requirements not documented in source"
+- "native Powersoft protocol commands sent between module and amplifier are not documented"
+- "exact number of channels/modules for M20D HDSP+ETH not confirmed"
+- "volume range (min/max dB) not stated"
+- "protection bitmap interpretation not documented"
+- "alarm types/codes not documented"
+- "connection/disconnection timeout behavior not documented"
 ```
 
 ---

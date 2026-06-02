@@ -18,24 +18,25 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AT-LINE-PRO2_RS232.xls
+retrieved_at: 2026-05-19T19:21:35.183Z
 last_checked_at: 2026-05-20T04:51:32.153Z
 generated_at: 2026-05-20T04:51:32.153Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "flow control not stated in source"
+  - "no unsolicited event notifications described in source"
+  - "flow control (RTS/CTS/XON/XOFF) not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "unsolicited event notifications not described in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T04:51:32.153Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -391,12 +392,8 @@ RS-232 pinout: AT-LINE-PRO2 pins 2(TxD), 3(RxD), 5(GND) connect to remote contro
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/rs232/AT-LINE-PRO2_RS232.xls
+retrieved_at: 2026-05-19T19:21:35.183Z
 last_checked_at: 2026-05-20T04:51:32.153Z
 ```
 
@@ -407,14 +404,18 @@ verdict: verified
 checked_at: 2026-05-20T04:51:32.153Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "flow control not stated in source"
+- "no unsolicited event notifications described in source"
+- "flow control (RTS/CTS/XON/XOFF) not stated in source"
+- "firmware version compatibility not stated in source"
+- "unsolicited event notifications not described in source"
 ```
 
 ---

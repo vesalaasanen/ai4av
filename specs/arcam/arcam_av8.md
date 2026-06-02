@@ -1,19 +1,19 @@
 ---
-spec_id: admin/arcam-avr390-avr550-avr850-avr860-sr250
+spec_id: admin/arcam-av860
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Arcam AVR390/AVR550/AVR850/AV860/SR250 Control Spec"
+title: "Arcam AV860 Control Spec"
 manufacturer: Arcam
-model_family: AVR390
+model_family: AV860
 aliases: []
 compatible_with:
   manufacturers:
     - Arcam
   models:
+    - AV860
     - AVR390
     - AVR550
     - AVR850
-    - AV860
     - SR250
   firmware: ""
   hardware_revisions: []
@@ -24,30 +24,37 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:47.446Z
-last_checked_at: 2026-05-14T18:17:14.023Z
-generated_at: 2026-05-14T18:17:14.023Z
+last_checked_at: 2026-06-01T20:45:17.953Z
+generated_at: 2026-06-01T20:45:17.953Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware version compatibility not stated"
+  - "variables are implicitly covered by parameterized actions above"
+  - "no multi-step sequences explicitly documented in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "firmware version compatibility not stated in source"
+  - "maximum concurrent connection count not stated"
+  - "DAB commands reference AVR450/750 models — applicability to AV860 unclear"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.023Z
-  matched_actions: 44
-  action_count: 49
-  confidence: high
-  summary: "All 44 spec actions matched literal source opcodes; transport params verified; comprehensive protocol coverage."
+  checked_at: 2026-06-01T20:45:17.953Z
+  matched_actions: 54
+  action_count: 54
+  confidence: medium
+  summary: "All 54 spec actions matched to source command codes with correct opcodes; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-01
 ---
 
-# Arcam AVR390/AVR550/AVR850/AV860/SR250 Control Spec
+# Arcam AV860 Control Spec
 
 ## Summary
-Arcam AVR series AV receivers supporting both RS-232 and IP (NET) control interfaces. The protocol uses a binary packet format with start delimiter `0x21`, zone addressing (zone 1 or zone 2), command codes, and end delimiter `0x0D`. Power, volume, source routing, tuner, and audio processing commands are documented. IP control uses port 50000. No authentication is required.
+Arcam AV860 and related AVR-series audio/video receivers with RS-232 and IP control. Binary protocol using `<St><Zn><Cc><Dl><Data><Et>` framing (start 0x21, end 0x0D). Supports two zones, power, volume, mute, source selection, decode mode queries, equalisation, tuner control, network playback status, and RC5 IR command simulation.
 
-<!-- UNRESOLVED: AV8 model name in input does not appear in source document; source covers AVR390/AVR550/AVR850/AV860/SR250. UNRESOLVED: firmware compatibility range not stated. -->
+<!-- UNRESOLVED: exact firmware version compatibility not stated -->
 
 ## Transport
 ```yaml
@@ -55,7 +62,7 @@ protocols:
   - serial
   - tcp
 addressing:
-  port: 50000  # IP control port; RS232 port not stated in source
+  port: 50000  # IP control port stated in source
 serial:
   baud_rate: 38400
   data_bits: 8
@@ -68,775 +75,712 @@ auth:
 
 ## Traits
 ```yaml
-- powerable
-- routable
-- queryable
-- levelable
+- powerable    # power on/off/standby commands
+- queryable    # extensive query commands for state
+- levelable    # volume, treble, bass, balance, sub trim, lipsync
+- routable     # source selection, video input selection
 ```
 
 ## Actions
 ```yaml
-- id: power
-  label: Power
-  kind: action
-  params:
-    - name: zone
-      type: integer
-      description: Zone number (0x01 = Zone 1, 0x02 = Zone 2)
-    - name: state
-      type: enum
-      values:
-        - 0x00 - Request power state (query mode)
-        - 0xF0 - Zone is in stand-by
-        - 0x01 - Zone is powered on
-  protocol_hint: 0x00
+# === SYSTEM COMMANDS ===
 
-- id: display_brightness
-  label: Display Brightness
-  kind: action
+- id: power_query
+  label: Request Power State
+  kind: query
+  command: "0x21 {zone} 0x00 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-      description: Zone number (0x01 = Zone 1)
-    - name: level
-      type: enum
-      values:
-        - 0xF0 - Request brightness (query mode)
-        - 0x00 - Front panel is off
-        - 0x01 - Front panel L1
-        - 0x02 - Front panel L2
-  protocol_hint: 0x01
+      description: "Zone number (0x01=Zone1, 0x02=Zone2)"
 
-- id: headphones
-  label: Headphones
-  kind: action
+- id: display_brightness_query
+  label: Request Display Brightness
+  kind: query
+  command: "0x21 {zone} 0x01 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: state
-      type: enum
-      values:
-        - 0xF0 - Request headphone connection status
-        - 0x00 - Headphones not connected
-        - 0x01 - Headphones connected
-  protocol_hint: 0x02
+      description: "Zone number"
 
-- id: fm_genre
-  label: FM Genre
-  kind: action
+- id: headphones_query
+  label: Request Headphone Status
+  kind: query
+  command: "0x21 {zone} 0x02 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-      description: Request FM program type
-  protocol_hint: 0x03
+      description: "Zone number"
 
-- id: software_version
-  label: Software Version
-  kind: action
+- id: fm_genre_query
+  label: Request FM Genre
+  kind: query
+  command: "0x21 {zone} 0x03 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: version_type
-      type: enum
-      values:
-        - 0xF0 - RS232 protocol version
-        - 0xF1 - Host version
-        - 0xF2 - OSD version
-        - 0xF3 - DSP version
-        - 0xF4 - NET version
-        - 0xF5 - IAP version
-  protocol_hint: 0x04
+      description: "Zone number"
 
-- id: factory_reset
-  label: Factory Reset
-  kind: action
+- id: software_version_query
+  label: Request Software Version
+  kind: query
+  command: "0x21 0x01 0x04 0x01 {component} 0x0D"
   params:
-    - name: zone
+    - name: component
       type: integer
-    - name: confirm
-      type: constant
-      value: 0xAA 0xAA
-      description: Confirmation pattern (0xAA 0xAA) to avoid accidental restore
-  protocol_hint: 0x05
+      description: "0xF0=RS232 version, 0xF1=Host, 0xF2=OSD, 0xF3=DSP, 0xF4=NET, 0xF5=IAP"
 
-- id: save_restore_secure
-  label: Save/Restore Secure Copy
+- id: restore_factory_defaults
+  label: Restore Factory Defaults
   kind: action
+  command: "0x21 0x01 0x05 0x02 0xAA 0xAA 0x0D"
+  params: []
+
+- id: save_restore_settings
+  label: Save/Restore Secure Settings Copy
+  kind: action
+  command: "0x21 0x01 0x06 0x07 {operation} 0x55 0x55 {pin1} {pin2} {pin3} {pin4} 0x0D"
   params:
-    - name: zone
+    - name: operation
       type: integer
-    - name: mode
-      type: enum
-      values:
-        - 0x00 - Save secure backup
-        - 0x01 - Restore secure backup
-    - name: pin
-      type: string
-      description: 4-digit PIN (0x55 0x55 prefix + 4 pin digits)
-  protocol_hint: 0x06
+      description: "0x00=Save, 0x01=Restore"
+    - name: pin1
+      type: integer
+      description: "Pin digit 1"
+    - name: pin2
+      type: integer
+      description: "Pin digit 2"
+    - name: pin3
+      type: integer
+      description: "Pin digit 3"
+    - name: pin4
+      type: integer
+      description: "Pin digit 4"
 
 - id: simulate_rc5
   label: Simulate RC5 IR Command
   kind: action
+  command: "0x21 {zone} 0x08 0x02 {system_code} {command_code} 0x0D"
   params:
     - name: zone
       type: integer
-    - name: rc5_system
+      description: "Zone number"
+    - name: system_code
       type: integer
-      description: RC5 System code
-    - name: rc5_command
+      description: "RC5 system code"
+    - name: command_code
       type: integer
-      description: RC5 Command code
-  protocol_hint: 0x08
+      description: "RC5 command code"
 
-- id: display_info_type
-  label: Display Information Type
+- id: display_info_type_set
+  label: Set Display Information Type
   kind: action
+  command: "0x21 {zone} 0x09 0x01 {display_type} 0x0D"
   params:
     - name: zone
       type: integer
-    - name: type
-      type: enum
-      values:
-        - 0x00 - Set display to Processing mode
-        - 0xE0 - Cycle through all displayable info
-        - 0xF0 - Request current display type
-        - FM-specific: 0x01 Radio text, 0x02 Programme type, 0x03 Signal strength
-        - DAB-specific: 0x01 Radio text, 0x02 Genre, 0x03 Signal quality, 0x04 Bit rate
-        - NET/USB: 0x01 Track, 0x02 Artist, 0x03 Album, 0x04 audio type, 0x05 rate
-  protocol_hint: 0x09
+      description: "Zone number"
+    - name: display_type
+      type: integer
+      description: "0x00=Processing mode, 0xE0=Cycle, 0xF0=Request current, 0x01-0x05 source-specific info"
 
-- id: video_selection
-  label: Video Selection
-  kind: action
+- id: request_current_source
+  label: Request Current Source
+  kind: query
+  command: "0x21 {zone} 0x1D 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
+      description: "Zone number"
+
+- id: headphone_override
+  label: Headphone Override
+  kind: action
+  command: "0x21 {zone} 0x1F 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: state
+      type: integer
+      description: "0x00=Clear (speakers muted with headphones), 0x01=Set (speakers unmuted)"
+
+# === INPUT COMMANDS ===
+
+- id: video_selection_set
+  label: Set Video Input
+  kind: action
+  command: "0x21 {zone} 0x0A 0x01 {source} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
     - name: source
-      type: enum
-      values:
-        - 0x00 - BD
-        - 0x01 - SAT
-        - 0x02 - AV
-        - 0x03 - PVR
-        - 0x04 - VCR
-        - 0x05 - Game
-        - 0x06 - STB
-        - 0xF0 - Request current input
-  protocol_hint: 0x0A
+      type: integer
+      description: "0x00=BD, 0x01=SAT, 0x02=AV, 0x03=PVR, 0x04=VCR, 0x05=Game, 0x06=STB, 0xF0=Request current"
 
-- id: select_audio_input
-  label: Select Analogue/Digital Audio Input
-  kind: action
+- id: video_selection_query
+  label: Request Video Input
+  kind: query
+  command: "0x21 {zone} 0x0A 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: input
-      type: enum
-      values:
-        - 0x00 - Use analogue audio
-        - 0x01 - Use digital audio
-        - 0x02 - Use HDMI audio
-        - 0xF0 - Request current audio type
-  protocol_hint: 0x0B
+      description: "Zone number"
 
-- id: imax_enhanced
-  label: IMAX Enhanced
+- id: select_analogue_digital
+  label: Select Analogue/Digital Audio
   kind: action
+  command: "0x21 {zone} 0x0B 0x01 {audio_type} 0x0D"
   params:
     - name: zone
       type: integer
-    - name: mode
-      type: enum
-      values:
-        - 0xF0 - Request current IMAX Enhanced state
-        - 0xF1 - IMAX Enhanced Auto
-        - 0xF2 - IMAX Enhanced On
-        - 0xF3 - IMAX Enhanced Off
-  protocol_hint: 0x0C
+      description: "Zone number"
+    - name: audio_type
+      type: integer
+      description: "0x00=Analogue, 0x01=Digital, 0x02=HDMI, 0xF0=Request current"
 
-- id: volume
-  label: Set/Request Volume
+# === OUTPUT COMMANDS ===
+
+- id: set_volume
+  label: Set Volume
   kind: action
+  command: "0x21 {zone} 0x0D 0x01 {level} 0x0D"
   params:
     - name: zone
       type: integer
+      description: "Zone number"
     - name: level
       type: integer
-      description: 0x00-0x63 (0-99dB); 0xF0 = request current volume
-  protocol_hint: 0x0D
+      description: "0x00(0)-0x63(99) volume level, 0xF0=Request current"
 
-- id: mute_status
+- id: request_volume
+  label: Request Volume
+  kind: query
+  command: "0x21 {zone} 0x0D 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+
+- id: request_mute_status
   label: Request Mute Status
-  kind: action
+  kind: query
+  command: "0x21 {zone} 0x0E 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x0E
+      description: "Zone number"
 
-- id: direct_mode_status
+- id: request_direct_mode
   label: Request Direct Mode Status
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x0F
+  kind: query
+  command: "0x21 0x01 0x0F 0x01 0xF0 0x0D"
+  params: []
 
-- id: decode_mode_2ch
-  label: Request Decode Mode (2ch)
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-    - name: mode
-      type: enum
-      values:
-        - 0x01 - Stereo
-        - 0x04 - Dolby Surround
-        - 0x07 - Neo:6 Cinema
-        - 0x08 - Neo:6 Music
-        - 0x09 - 5/7 Ch Stereo
-        - 0x0A - DTS Neural:X
-        - 0x0B - Reserved
-        - 0x0C - DTS Virtual:X
-  protocol_hint: 0x10
+- id: request_decode_mode_2ch
+  label: Request Decode Mode 2ch
+  kind: query
+  command: "0x21 0x01 0x10 0x01 0xF0 0x0D"
+  params: []
 
-- id: decode_mode_mch
-  label: Request Decode Mode (Multi-channel)
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-    - name: mode
-      type: enum
-      values:
-        - 0x01 - Stereo down-mix
-        - 0x02 - Multi-channel mode
-        - 0x03 - DTS-ES / Neural:X mode
-        - 0x06 - Dolby Surround mode
-        - 0x0B - Reserved
-        - 0x0C - DTS Virtual:X
-  protocol_hint: 0x11
+- id: request_decode_mode_mch
+  label: Request Decode Mode MCH
+  kind: query
+  command: "0x21 0x01 0x11 0x01 0xF0 0x0D"
+  params: []
 
-- id: rds_information
+- id: request_rds_info
   label: Request RDS Information
-  kind: action
+  kind: query
+  command: "0x21 {zone} 0x12 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x12
+      description: "Zone number"
 
-- id: video_output_resolution
+- id: request_video_output_resolution
   label: Request Video Output Resolution
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x13
+  kind: query
+  command: "0x21 0x01 0x13 0x01 0xF0 0x0D"
+  params: []
 
-- id: menu_status
+# === MENU COMMANDS ===
+
+- id: request_menu_status
   label: Request Menu Status
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x14
+  kind: query
+  command: "0x21 0x01 0x14 0x01 0xF0 0x0D"
+  params: []
 
-- id: tuner_preset
-  label: Request Tuner Preset
+- id: request_tuner_preset
+  label: Request/Set Tuner Preset
   kind: action
+  command: "0x21 {zone} 0x15 0x01 {preset} 0x0D"
   params:
     - name: zone
       type: integer
+      description: "Zone number"
     - name: preset
       type: integer
-      description: "0x01-0x32 (1-50): request specific preset; 0xF0: request current"
-  protocol_hint: 0x15
+      description: "0x01-0x32 (1-50) preset number, 0xF0=Request current"
 
 - id: tune
-  label: Tune FM Frequency
+  label: Tune Frequency
   kind: action
+  command: "0x21 {zone} 0x16 0x01 {direction} 0x0D"
   params:
     - name: zone
       type: integer
+      description: "Zone number"
     - name: direction
-      type: enum
-      values:
-        - 0x00 - Decrement frequency by 1 step (0.05MHz)
-        - 0x01 - Increment frequency by 1 step (0.05MHz)
-        - 0xF0 - Request current tuner frequency
-  protocol_hint: 0x16
+      type: integer
+      description: "0x00=Decrement, 0x01=Increment, 0xF0=Request current frequency"
 
-- id: dab_station
+- id: request_dab_station
   label: Request DAB Station
-  kind: action
+  kind: query
+  command: "0x21 {zone} 0x18 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x18
+      description: "Zone number"
 
-- id: dab_genre
-  label: DAB Programme Type/Category
-  kind: action
+- id: request_dab_genre
+  label: Request DAB Programme Type
+  kind: query
+  command: "0x21 {zone} 0x19 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x19
+      description: "Zone number"
 
-- id: dab_dls_pdt
-  label: DLS/PDT Information
-  kind: action
+- id: request_dls_pdt
+  label: Request DLS/PDT Info
+  kind: query
+  command: "0x21 {zone} 0x1A 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x1A
+      description: "Zone number"
 
-- id: preset_details
+- id: request_preset_details
   label: Request Preset Details
-  kind: action
+  kind: query
+  command: "0x21 {zone} 0x1B 0x01 {preset} 0x0D"
   params:
     - name: zone
       type: integer
+      description: "Zone number"
     - name: preset
       type: integer
       description: "0x01-0x32 (1-50) preset number"
-  protocol_hint: 0x1B
 
 - id: network_playback_status
-  label: Network Playback Status
-  kind: action
+  label: Request Network Playback Status
+  kind: query
+  command: "0x21 {zone} 0x1C 0x01 0xF0 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x1C
+      description: "Zone number"
 
-- id: current_source
-  label: Request Current Source
+- id: imax_enhanced_set
+  label: Set IMAX Enhanced
   kind: action
+  command: "0x21 {zone} 0x0C 0x01 {state} 0x0D"
   params:
     - name: zone
       type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x1D
+      description: "Zone number"
+    - name: state
+      type: integer
+      description: "0xF0=Request, 0xF1=Auto, 0xF2=On, 0xF3=Off"
 
-- id: input_name
+- id: imax_enhanced_query
+  label: Request IMAX Enhanced State
+  kind: query
+  command: "0x21 {zone} 0x0C 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+
+# === SETUP ADJUSTMENT COMMANDS ===
+
+- id: treble_eq_set
+  label: Set Treble Equalisation
+  kind: action
+  command: "0x21 {zone} 0x35 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x0C=0 to +12dB, 0x81-0x8C=-1 to -12dB, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: bass_eq_set
+  label: Set Bass Equalisation
+  kind: action
+  command: "0x21 {zone} 0x36 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x0C=0 to +12dB, 0x81-0x8C=-1 to -12dB, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: room_eq_set
+  label: Set Room Equalisation
+  kind: action
+  command: "0x21 {zone} 0x37 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: state
+      type: integer
+      description: "0xF0=Request, 0xF1=On, 0xF2=Off"
+
+- id: dolby_volume_set
+  label: Set Dolby Volume
+  kind: action
+  command: "0x21 {zone} 0x38 0x01 {state} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: state
+      type: integer
+      description: "0x00=Off, 0x01=On, 0xF0=Request current"
+
+- id: dolby_leveller_set
+  label: Set Dolby Leveller
+  kind: action
+  command: "0x21 {zone} 0x39 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x0A=0-10, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement, 0xFF=Off"
+
+- id: dolby_volume_calibration_offset_set
+  label: Set Dolby Volume Calibration Offset
+  kind: action
+  command: "0x21 {zone} 0x3A 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x0F=0-15dB, 0x80-0x8F=-1 to -15dB, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: balance_set
+  label: Set Balance
+  kind: action
+  command: "0x21 {zone} 0x3B 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x06=0-6, 0x81-0x86=-1 to -6, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: subwoofer_trim_set
+  label: Set Subwoofer Trim
+  kind: action
+  command: "0x21 {zone} 0x3F 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x14=positive in 0.5dB steps, 0x81-0x94=negative in 0.5dB steps, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: lipsync_delay_set
+  label: Set Lipsync Delay
+  kind: action
+  command: "0x21 {zone} 0x40 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00-0x32=delay in 5ms steps, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: compression_set
+  label: Set Dynamic Range Compression
+  kind: action
+  command: "0x21 {zone} 0x41 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00=Off, 0x01=Medium, 0x02=High, 0xF0=Request"
+
+- id: request_video_params
+  label: Request Incoming Video Parameters
+  kind: query
+  command: "0x21 {zone} 0x42 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+
+- id: request_audio_format
+  label: Request Incoming Audio Format
+  kind: query
+  command: "0x21 {zone} 0x43 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+
+- id: request_audio_sample_rate
+  label: Request Incoming Audio Sample Rate
+  kind: query
+  command: "0x21 {zone} 0x44 0x01 0xF0 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+
+- id: sub_stereo_trim_set
+  label: Set Sub Stereo Trim
+  kind: action
+  command: "0x21 {zone} 0x45 0x01 {value} 0x0D"
+  params:
+    - name: zone
+      type: integer
+      description: "Zone number"
+    - name: value
+      type: integer
+      description: "0x00=0dB, 0x81-0x94=-0.5 to -10dB in 0.5dB steps, 0xF0=Request, 0xF1=Increment, 0xF2=Decrement"
+
+- id: zone1_osd_set
+  label: Set Zone 1 OSD On/Off
+  kind: action
+  command: "0x21 0x01 0x4E 0x01 {state} 0x0D"
+  params:
+    - name: state
+      type: integer
+      description: "0xF0=Request, 0xF1=On, 0xF2=Off"
+
+- id: video_output_switching_set
+  label: Set HDMI Video Output
+  kind: action
+  command: "0x21 0x01 0x4F 0x01 {output} 0x0D"
+  params:
+    - name: output
+      type: integer
+      description: "0x02=HDMI Out 1, 0x03=HDMI Out 2, 0x04=HDMI Out 1&2, 0xF0=Request current"
+
+- id: set_input_name
   label: Set/Request Input Name
   kind: action
+  command: "0x21 0x01 0x20 {length} {name_ascii} 0x0D"
   params:
-    - name: zone
+    - name: length
       type: integer
-    - name: name
+      description: "0x01 for query, or character count (max 10) for setting"
+    - name: name_ascii
       type: string
-      description: ASCII name (up to 10 chars); 0xF0 to query
-  protocol_hint: 0x20
+      description: "Input name in ASCII (max 10 chars), or 0xF0 for query"
 
 - id: fm_scan
   label: FM Scan Up/Down
   kind: action
+  command: "0x21 0x01 0x23 0x01 {direction} 0x0D"
   params:
-    - name: zone
-      type: integer
     - name: direction
-      type: enum
-      values:
-        - 0x01 - Scan up
-        - 0x02 - Scan down
-  protocol_hint: 0x23
+      type: integer
+      description: "0x01=Scan up, 0x02=Scan down"
 
 - id: dab_scan
   label: DAB Scan
   kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: scan
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x24
+  command: "0x21 0x01 0x24 0x01 0xF0 0x0D"
+  params: []
 
 - id: heartbeat
   label: Heartbeat
   kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: ping
-      type: constant
-      value: 0xF0
-      description: Resets EuP standby timer
-  protocol_hint: 0x25
+  command: "0x21 0x01 0x25 0x01 0xF0 0x0D"
+  params: []
 
 - id: reboot
-  label: Reboot
+  label: Reboot Unit
   kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: confirm
-      type: constant
-      value: "REBOOT"  # ASCII 0x52 0x45 0x42 0x4F 0x4F 0x54
-  protocol_hint: 0x26
+  command: "0x21 0x01 0x26 0x06 0x52 0x45 0x42 0x4F 0x4F 0x54 0x0D"
+  params: []
 
-- id: treble_eq
-  label: Treble Equalisation
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x0C = 0dB-+12dB; 0x81-0x8C = -1dB--12dB; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x35
-
-- id: bass_eq
-  label: Bass Equalisation
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x0C = 0dB-+12dB; 0x81-0x8C = -1dB--12dB; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x36
-
-- id: room_eq
-  label: Room Equalisation
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: state
-      type: enum
-      values:
-        - 0xF0 - Request current Room EQ state
-        - 0xF1 - Room EQ on
-        - 0xF2 - Room EQ off
-  protocol_hint: 0x37
-
-- id: dolby_volume
-  label: Dolby Volume
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: state
-      type: enum
-      values:
-        - 0x00 - Dolby Volume off
-        - 0x01 - Dolby Volume on
-        - 0xF0 - Request current Dolby Volume mode
-  protocol_hint: 0x38
-
-- id: dolby_leveller
-  label: Dolby Leveller
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x0A = level 0-10; 0xF0=request; 0xF1=inc; 0xF2=dec; 0xFF=off"
-  protocol_hint: 0x39
-
-- id: dolby_volume_offset
-  label: Dolby Volume Calibration Offset
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x0F = 0-+15dB; 0x80-0x8F = -1--15dB; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x3A
-
-- id: balance
-  label: Balance
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x06 = 0-+6; 0x81-0x86 = -1--6; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x3B
-
-- id: subwoofer_trim
-  label: Subwoofer Trim
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x14 = positive trim in 0.5dB steps; 0x81-0x94 = negative trim in 0.5dB steps; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x3F
-
-- id: lipsync_delay
-  label: Lipsync Delay
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00-0x32 = delay in 5ms steps (0-250ms); 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x40
-
-- id: compression
-  label: Compression
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: level
-      type: enum
-      values:
-        - 0x00 - Off
-        - 0x01 - Medium
-        - 0x02 - High
-        - 0xF0 - Request current setting
-  protocol_hint: 0x41
-
-- id: incoming_video_params
-  label: Request Incoming Video Parameters
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x42
-
-- id: incoming_audio_format
-  label: Request Incoming Audio Format
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x43
-
-- id: incoming_audio_sample_rate
-  label: Request Incoming Audio Sample Rate
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: query
-      type: constant
-      value: 0xF0
-  protocol_hint: 0x44
-
-- id: sub_stereo_trim
-  label: Set/Request Sub Stereo Trim
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: value
-      type: integer
-      description: "0x00 = 0dB; 0x81-0x94 = -0.5dB--10dB in 0.5dB steps; 0xF0=request; 0xF1=inc; 0xF2=dec"
-  protocol_hint: 0x45
-
-- id: zone1_osd
-  label: Set/Request Zone 1 OSD
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: state
-      type: enum
-      values:
-        - 0xF0 - Request current OSD state
-        - 0xF1 - OSD On
-        - 0xF2 - OSD Off
-  protocol_hint: 0x4E
-
-- id: video_output_switching
-  label: Set/Request Video Output Switching
-  kind: action
-  params:
-    - name: zone
-      type: integer
-    - name: output
-      type: enum
-      values:
-        - 0x02 - HDMI Output 1
-        - 0x03 - HDMI Output 2
-        - 0x04 - HDMI Output 1 & 2
-        - 0xF0 - Request current setting
-  protocol_hint: 0x4F
+- id: amx_device_discovery
+  label: AMX Duet Device Discovery
+  kind: query
+  command: "AMX\r"
+  params: []
 ```
 
 ## Feedbacks
 ```yaml
-# All commands return a response with answer codes:
-#   0x00 - Status update (OK)
-#   0x82 - Zone Invalid
-#   0x83 - Command not recognised
-#   0x84 - Parameter not recognised
-#   0x85 - Command invalid at this time
-#   0x86 - Invalid data length
+- id: power_state
+  type: enum
+  values: [standby, on]
+  description: "Response to power query (0x00). Data: 0x00=standby, 0x01=on"
 
-# Response format: <St> <Zn> <Cc> <Ac> <Dl> <Data> <Et>
-#   St = 0x21, Et = 0x0D
+- id: display_brightness
+  type: enum
+  values: [off, L1, L2]
+  description: "Response to display brightness query (0x01). Data: 0x00=off, 0x01=L1, 0x02=L2"
 
-# UNRESOLVED: complete feedback enumeration for all response data values
-# not fully enumerated above; populate from command/response tables as needed
+- id: headphone_status
+  type: enum
+  values: [not_connected, connected]
+  description: "Response to headphone query (0x02). Data: 0x00=not connected, 0x01=connected"
+
+- id: answer_code
+  type: enum
+  values: [status_update, zone_invalid, command_not_recognised, parameter_not_recognised, command_invalid_now, invalid_data_length]
+  description: "Answer codes in responses: 0x00=OK, 0x82-0x86 errors"
+
+- id: source_state
+  type: enum
+  values: [follow_zone1, CD, BD, AV, SAT, PVR, VCR, AUX, DISPLAY, FM, DAB, NET, USB, STB, GAME]
+  description: "Current source response (0x1D)"
+
+- id: volume_level
+  type: integer
+  values: [0, 99]
+  description: "Volume level 0-99 (0x00-0x63)"
+
+- id: mute_state
+  type: enum
+  values: [muted, not_muted]
+  description: "Mute status (0x0E). 0x00=muted, 0x01=not muted"
+
+- id: direct_mode_state
+  type: enum
+  values: [off, on]
+  description: "Direct mode status (0x0F). 0x00=off, 0x01=on"
+
+- id: decode_mode_2ch
+  type: enum
+  values: [stereo, dolby_surround, neo6_cinema, neo6_music, 5_7ch_stereo, dts_neural_x, dts_virtual_x]
+  description: "2ch decode mode (0x10)"
+
+- id: decode_mode_mch
+  type: enum
+  values: [stereo_downmix, multichannel, dts_es_neural_x, dolby_surround, dts_virtual_x]
+  description: "MCH decode mode (0x11)"
+
+- id: video_output_resolution
+  type: enum
+  values: [sd_progressive, 720p, 1080i, 1080p, preferred, bypass, 4k]
+  description: "Video output resolution (0x13)"
+
+- id: menu_status
+  type: enum
+  values: [none, setup, trim, bass, treble, sync, sub, tuner, network, usb]
+  description: "Open menu state (0x14)"
+
+- id: network_playback_state
+  type: enum
+  values: [navigating, playing, paused, busy]
+  description: "Network playback status (0x1C). 0x00=navigating, 0x01=playing, 0x02=paused, 0xFF=busy"
+
+- id: imax_enhanced_state
+  type: enum
+  values: [off, on, auto]
+  description: "IMAX Enhanced state (0x0C). 0x00=off, 0x01=on, 0x02=auto"
+
+- id: audio_format
+  type: enum
+  values: [PCM, analogue_direct, dolby_digital, dolby_digital_ex, dolby_digital_surround, dolby_digital_plus, dolby_digital_true_hd, DTS, DTS_96_24, DTS_ES_matrix, DTS_ES_discrete, DTS_ES_matrix_96_24, DTS_ES_discrete_96_24, DTS_HD_master_audio, DTS_HD_high_res, DTS_low_bitrate, DTS_core, PCM_zero, unsupported, undetected, dolby_atmos, DTS_X, IMAX_ENHANCED]
+  description: "Incoming audio format (0x43)"
+
+- id: audio_channel_config
+  type: enum
+  values: [dual_mono, centre_only, stereo_only, stereo_mono_surround, stereo_surround_LR, stereo_surround_LR_mono_back, stereo_surround_LR_back_LR, stereo_surround_LR_matrix_back_LR, stereo_centre, stereo_centre_mono_surround, stereo_centre_surround_LR, stereo_centre_surround_LR_mono_back, stereo_centre_surround_LR_back_LR, stereo_centre_surround_LR_matrix_back_LR, stereo_downmix_LtRt, stereo_only_LoRo]
+  description: "Audio channel configuration (0x43 Data2)"
+
+- id: audio_sample_rate
+  type: enum
+  values: [32kHz, 44_1kHz, 48kHz, 88_2kHz, 96kHz, 176_4kHz, 192kHz, unknown, undetected]
+  description: "Incoming audio sample rate (0x44)"
+
+- id: compression_state
+  type: enum
+  values: [off, medium, high]
+  description: "Compression setting (0x41)"
+
+- id: room_eq_state
+  type: enum
+  values: [off, on, not_calculated]
+  description: "Room EQ state (0x37). 0x00=off, 0x01=on, 0x02=not calculated"
+
+- id: dolby_volume_state
+  type: enum
+  values: [off, on]
+  description: "Dolby Volume state (0x38)"
+
+- id: zone1_osd_state
+  type: enum
+  values: [on, off]
+  description: "Zone 1 OSD state (0x4E). 0x00=On, 0x01=Off"
 ```
 
 ## Variables
 ```yaml
-# Audio format (0x43 response):
-- id: audio_format
-  type: enum
-  values:
-    - 0x00 - PCM
-    - 0x01 - Analogue Direct
-    - 0x02 - Dolby Digital
-    - 0x03 - Dolby Digital EX
-    - 0x04 - Dolby Digital Surround
-    - 0x05 - Dolby Digital Plus
-    - 0x06 - Dolby Digital True HD
-    - 0x07 - DTS
-    - 0x08 - DTS 96/24
-    - 0x09 - DTS ES Matrix
-    - 0x0A - DTS ES Discrete
-    - 0x0B - DTS ES Matrix 96/24
-    - 0x0C - DTS ES Discrete 96/24
-    - 0x0D - DTS HD Master Audio
-    - 0x0E - DTS HD High Res Audio
-    - 0x0F - DTS Low Bit Rate
-    - 0x10 - DTS Core
-    - 0x13 - PCM Zero
-    - 0x14 - Unsupported
-    - 0x15 - Undetected
-    - 0x16 - Dolby Atmos
-    - 0x17 - DTS:X
-    - 0x18 - IMAX ENHANCED
-
-# Audio channel configuration (Data2 of 0x43 response):
-- id: audio_channel_config
-  type: enum
-  values:
-    - 0x00 - Dual Mono
-    - 0x01 - Centre only
-    - 0x02 - Stereo only
-    - 0x03 - Stereo + mono surround
-    - 0x04 - Stereo + Surround L & R
-    - 0x05 - Stereo + Surround L & R + mono Surround Back
-    - 0x06 - Stereo + Surround L & R + Surround Back L & R
-    - 0x07 - Stereo + Surround L & R (matrix for surround back)
-    - 0x08 - Stereo + Centre
-    - 0x09 - Stereo + Centre + mono surround
-    - 0x0A - Stereo + Centre + Surround L & R
-    - 0x0B - Stereo + Centre + Surround L & R + mono Surround Back
-    - 0x0C - Stereo + Centre + Surround L & R + Surround Back L & R
-    - 0x0D - Stereo + Centre + Surround L & R (matrix for surround back)
-    - 0x0E - Stereo Downmix Lt Rt
-    - 0x0F - Stereo Only (Lo Ro)
-    - 0x10-0x1C - Various configurations with LFE
-
-# Video resolution (0x13 response):
-- id: video_resolution
-  type: enum
-  values:
-    - 0x02 - SD Progressive
-    - 0x03 - 720p
-    - 0x04 - 1080i
-    - 0x05 - 1080p
-    - 0x06 - Preferred
-    - 0x07 - Bypass
-    - 0x08 - 4k
-
-# Audio sample rate (0x44 response):
-- id: audio_sample_rate
-  type: enum
-  values:
-    - 0x00 - 32 KHz
-    - 0x01 - 44.1 KHz
-    - 0x02 - 48 KHz
-    - 0x03 - 88.2 KHz
-    - 0x04 - 96 KHz
-    - 0x05 - 176.4 KHz
-    - 0x06 - 192 KHz
-    - 0x07 - Unknown
-    - 0x08 - Undetected
+# UNRESOLVED: variables are implicitly covered by parameterized actions above
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: The device sends unsolicited status updates when state changes
-# via front panel or IR remote (e.g. display brightness, decode mode changes).
-# Specific event message formats not fully documented in source.
+# Device sends unsolicited status updates when state changes from front panel or IR input.
+# Any state change (volume, source, decode mode, display brightness) is relayed to RC.
+# No explicit event subscription mechanism documented.
 ```
 
 ## Macros
 ```yaml
-# AMX Duet discovery: send "AMX\r" - device responds with identification string
-# Response format: "AMXB\<Device-SDKClass=Receiver\>\<Device-Make=ARCAM\>\<Device-Model=...\>\<Device-Revision=x.y.z\>\r"
+# UNRESOLVED: no multi-step sequences explicitly documented in source
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for:
-  - factory_reset  # Requires 0xAA 0xAA confirmation pattern
-  - reboot          # Requires ASCII "REBOOT" payload
+  - restore_factory_defaults  # requires 0xAA 0xAA confirmation pattern
+  - save_restore_settings     # requires 0x55 0x55 confirmation + PIN
+  - reboot                    # sends literal "REBOOT" ASCII as confirmation
 interlocks: []
-# UNRESOLVED: no explicit safety warnings or interlock procedures in source
+# UNRESOLVED: no explicit safety interlock procedures documented in source
 ```
 
 ## Notes
-- Command packet format: `<St> <Zn> <Cc> <Dl> <Data> <Et>` where St=`0x21`, Et=`0x0D`
-- Response packet format: `<St> <Zn> <Cc> <Ac> <Dl> <Data> <Et>`
-- Zone 1 is the master zone; Zone 2 is secondary
-- RC5 commands can be simulated via command 0x08 using RC5 system/command codes from the IR code tables
-- Device responds to each command within 3 seconds; RC may send further commands before previous response received
-- Commands 0xF0–0xFF are reserved for test functions and should not be used
-- IP control port is 50000; RS232 port number not explicitly stated in source
-- No login or authentication procedure described — auth.type is none
-<!-- UNRESOLVED: RS232 port number not stated in source. UNRESOLVED: unsolicited event message formats not fully documented. -->
+- Binary protocol: all commands use `<0x21><Zone><CC><Dl><Data><0x0D>` framing.
+- Zone 1 = 0x01 (master), Zone 2 = 0x02.
+- Commands 0xF0-0xFF reserved for test functions — must not be used.
+- Response format includes answer code: `<0x21><Zone><CC><Ac><Dl><Data><0x0D>`.
+- Answer codes: 0x00=OK, 0x82=zone invalid, 0x83=command not recognised, 0x84=parameter not recognised, 0x85=command invalid now (e.g. OSD showing), 0x86=invalid data length.
+- AV responds within 3 seconds. RC may send further commands before response received.
+- RC5 IR simulation (0x08) enables any IR function via serial/IP. Full RC5 code table documented.
+- Control disabled by default — enable via front panel (hold DIRECT 4s) or OSD menu.
+- IP control port 50000.
+- AMX Duet discovery: send "AMX\r" to get device class/make/model/revision.
+
+<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+<!-- UNRESOLVED: maximum concurrent connection count not stated -->
+<!-- UNRESOLVED: DAB commands reference AVR450/750 models — applicability to AV860 unclear -->
 
 ## Provenance
 
@@ -846,24 +790,30 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:47.446Z
-last_checked_at: 2026-05-14T18:17:14.023Z
+last_checked_at: 2026-06-01T20:45:17.953Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.023Z
-matched_actions: 44
-action_count: 49
-confidence: high
-summary: "All 44 spec actions matched literal source opcodes; transport params verified; comprehensive protocol coverage."
+checked_at: 2026-06-01T20:45:17.953Z
+matched_actions: 54
+action_count: 54
+confidence: medium
+summary: "All 54 spec actions matched to source command codes with correct opcodes; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware version compatibility not stated"
+- "variables are implicitly covered by parameterized actions above"
+- "no multi-step sequences explicitly documented in source"
+- "no explicit safety interlock procedures documented in source"
+- "firmware version compatibility not stated in source"
+- "maximum concurrent connection count not stated"
+- "DAB commands reference AVR450/750 models — applicability to AV860 unclear"
 ```
 
 ---

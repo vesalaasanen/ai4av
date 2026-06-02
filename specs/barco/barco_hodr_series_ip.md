@@ -39,13 +39,23 @@ known_gaps:
   - notification.dismiss
   - notification.list
   - signal.subscribe
+  - "exact Hodr series model names not listed in this document; source primarily references UDX-4K22, UDX-4K32, UDX-W32"
+  - "firmware version compatibility not stated"
+  - "no explicit multi-step macro sequences described in source."
+  - "source mentions best practices like verifying projector state before power commands,"
+  - "exact Hodr-series specific model identifiers not listed in this document"
+  - "firmware version compatibility ranges not stated"
+  - "ECO mode wake-on-LAN details beyond mentioning it as an option"
+  - "maximum concurrent connection limits not stated"
+  - "TCP keepalive / connection timeout behavior not stated"
+  - "serial cable pinout beyond pin 2-2, 3-3, 5-5 not fully specified (crossover vs straight)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.378Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set."
+  confidence: medium
+  summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -542,8 +552,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.378Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set."
+confidence: medium
+summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -561,6 +571,16 @@ summary: "All 40 spec actions matched literally; transport parameters verified; 
 - notification.dismiss
 - notification.list
 - signal.subscribe
+- "exact Hodr series model names not listed in this document; source primarily references UDX-4K22, UDX-4K32, UDX-W32"
+- "firmware version compatibility not stated"
+- "no explicit multi-step macro sequences described in source."
+- "source mentions best practices like verifying projector state before power commands,"
+- "exact Hodr-series specific model identifiers not listed in this document"
+- "firmware version compatibility ranges not stated"
+- "ECO mode wake-on-LAN details beyond mentioning it as an option"
+- "maximum concurrent connection limits not stated"
+- "TCP keepalive / connection timeout behavior not stated"
+- "serial cable pinout beyond pin 2-2, 3-3, 5-5 not fully specified (crossover vs straight)"
 ```
 
 ---

@@ -16,22 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - justaddpower.happyfox.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+retrieved_at: 2026-05-14T18:17:17.601Z
 last_checked_at: 2026-05-14T18:17:17.601Z
 generated_at: 2026-05-14T18:17:17.601Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "ISM Method (j p) applies to plasma models only; this is an LCD model"
+  - "variables for picture settings (contrast, brightness, color, tint,"
+  - "no unsolicited event/notification mechanism described in source."
+  - "no explicit safety warnings or confirmation requirements found in source"
+  - "flow control (hardware RTS/CTS or XON/XOFF) not specified in source"
+  - "RS-232C connector pinout not fully specified beyond TXD/RXD/GND"
+  - "TCP/IP connection timeout or keepalive behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.601Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 31 spec actions matched literal commands in source with correct transport parameters."
+  confidence: medium
+  summary: "All 31 spec actions matched literal commands in source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -530,10 +539,12 @@ interlocks:
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - proaudioinc.com
+  - justaddpower.happyfox.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+retrieved_at: 2026-05-14T18:17:17.601Z
 last_checked_at: 2026-05-14T18:17:17.601Z
 ```
 
@@ -544,14 +555,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.601Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 31 spec actions matched literal commands in source with correct transport parameters."
+confidence: medium
+summary: "All 31 spec actions matched literal commands in source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "ISM Method (j p) applies to plasma models only; this is an LCD model"
+- "variables for picture settings (contrast, brightness, color, tint,"
+- "no unsolicited event/notification mechanism described in source."
+- "no explicit safety warnings or confirmation requirements found in source"
+- "flow control (hardware RTS/CTS or XON/XOFF) not specified in source"
+- "RS-232C connector pinout not fully specified beyond TXD/RXD/GND"
+- "TCP/IP connection timeout or keepalive behavior not documented"
 ```
 
 ---

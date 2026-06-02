@@ -17,22 +17,29 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-000825-02-christie-lit-man-usr-fhq981-l.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-102271-04-christie-lit-tech-ref-gs-700-850-api.pdf
+  - https://www.manualslib.com/manual/2301065/Christie-Rs232.html
+retrieved_at: 2026-05-14T14:49:43.541Z
 last_checked_at: 2026-05-20T10:00:33.965Z
 generated_at: 2026-05-20T10:00:33.965Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Ethernet control not documented in source. Only RS232C documented."
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Ethernet/Web control not documented. Only RS232C documented.OPS module is optional. No firmware version stated."
 verification:
   verdict: verified
   checked_at: 2026-05-20T10:00:33.965Z
   matched_actions: 86
   action_count: 86
-  confidence: high
-  summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified."
+  confidence: medium
+  summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -602,10 +609,12 @@ Interface Select: RS232 or OPS-RS232 modes prevent monitor from lowering power c
 ```yaml
 source_domains:
   - christiedigital.com
+  - manualslib.com
 source_urls:
-  - https://www.christiedigital.com/globalassets/resources/public/020-102207-08-christie-lit-man-ref-spyder-commands.pdf
-  - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
-retrieved_at: 2026-05-04T15:10:58.851Z
+  - https://www.christiedigital.com/globalassets/resources/public/020-000825-02-christie-lit-man-usr-fhq981-l.pdf
+  - https://www.christiedigital.com/globalassets/resources/public/020-102271-04-christie-lit-tech-ref-gs-700-850-api.pdf
+  - https://www.manualslib.com/manual/2301065/Christie-Rs232.html
+retrieved_at: 2026-05-14T14:49:43.541Z
 last_checked_at: 2026-05-20T10:00:33.965Z
 ```
 
@@ -616,14 +625,18 @@ verdict: verified
 checked_at: 2026-05-20T10:00:33.965Z
 matched_actions: 86
 action_count: 86
-confidence: high
-summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified."
+confidence: medium
+summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Ethernet control not documented in source. Only RS232C documented."
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "Ethernet/Web control not documented. Only RS232C documented.OPS module is optional. No firmware version stated."
 ```
 
 ---

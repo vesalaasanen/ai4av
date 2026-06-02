@@ -26,14 +26,16 @@ last_checked_at: 2026-05-19T16:48:54.582Z
 generated_at: 2026-05-19T16:48:54.582Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no explicit safety warnings or interlock procedures in source"
+  - "control command registration (@GEC/@SEC) has variable-length, variant-dependent parameters and is not represented as a structured action entry."
 verification:
   verdict: verified
   checked_at: 2026-05-19T16:48:54.582Z
   matched_actions: 61
   action_count: 61
-  confidence: high
-  summary: "All 61 actions matched verbatim in source; transport verified; 54 query feedbacks including @GRC/@GCC/@GLG confirmed against source."
+  confidence: medium
+  summary: "All 61 actions matched verbatim in source; transport verified; 54 query feedbacks including @GRC/@GCC/@GLG confirmed against source. (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1244,14 +1246,15 @@ verdict: verified
 checked_at: 2026-05-19T16:48:54.582Z
 matched_actions: 61
 action_count: 61
-confidence: high
-summary: "All 61 actions matched verbatim in source; transport verified; 54 query feedbacks including @GRC/@GCC/@GLG confirmed against source."
+confidence: medium
+summary: "All 61 actions matched verbatim in source; transport verified; 54 query feedbacks including @GRC/@GCC/@GLG confirmed against source. (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no explicit safety warnings or interlock procedures in source"
+- "control command registration (@GEC/@SEC) has variable-length, variant-dependent parameters and is not represented as a structured action entry."
 ```
 
 ---

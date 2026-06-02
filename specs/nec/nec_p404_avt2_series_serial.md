@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:56.711Z
 last_checked_at: 2026-04-26T21:16:53.687Z
 generated_at: 2026-04-26T21:16:53.687Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal codes, aspect values, eco mode values, and signal type values are partially documented in the Appendix section of this source only."
+  - "variables that are settable but not discrete actions are covered"
+  - "no unsolicited event notifications documented in source"
+  - "no explicit safety warnings for voltage, current, or power specifications in source"
+  - "Appendix values (input terminal codes beyond basic set, aspect values, eco mode values, signal type values) referenced throughout command descriptions but only partially enumerated in this source document."
+  - "HDBaseT control mentioned in source but no explicit HDBaseT command set documented."
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:16:53.687Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match documented source commands with correct semantic intent; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 53 spec actions match documented source commands with correct semantic intent; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -639,7 +646,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:56.711Z
 last_checked_at: 2026-04-26T21:16:53.687Z
 ```
 
@@ -650,14 +657,20 @@ verdict: verified
 checked_at: 2026-04-26T21:16:53.687Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match documented source commands with correct semantic intent; transport parameters verified verbatim."
+confidence: medium
+summary: "All 53 spec actions match documented source commands with correct semantic intent; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source — input terminal codes, aspect values, eco mode values, and signal type values are partially documented in the Appendix section of this source only."
+- "variables that are settable but not discrete actions are covered"
+- "no unsolicited event notifications documented in source"
+- "no explicit safety warnings for voltage, current, or power specifications in source"
+- "Appendix values (input terminal codes beyond basic set, aspect values, eco mode values, signal type values) referenced throughout command descriptions but only partially enumerated in this source document."
+- "HDBaseT control mentioned in source but no explicit HDBaseT command set documented."
+- "firmware version compatibility not stated in source"
 ```
 
 ---

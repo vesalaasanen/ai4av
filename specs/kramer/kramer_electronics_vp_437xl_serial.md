@@ -1,5 +1,5 @@
 ---
-spec_id: admin/kramer-vp-437xl
+spec_id: admin/kramer-electronics-vp-437xl
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Kramer Electronics VP-437xl Control Spec"
@@ -18,752 +18,932 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.kramerav.com
+  - www1.kramerav.com
 source_urls:
   - https://cdn.kramerav.com/web/downloads/manuals/protocol_2000_rev0_51.pdf
   - https://cdn.kramerav.com/web/downloads/manuals/site-ctrl_user_guide.pdf
   - https://cdn.kramerav.com/web/downloads/manuals/rs232nul.pdf
+  - https://www1.kramerav.com/page/knowledgebase-control
 retrieved_at: 2026-05-21T03:34:15.568Z
-last_checked_at: 2026-05-26T20:04:54.588Z
-generated_at: 2026-05-26T20:04:54.588Z
+last_checked_at: 2026-06-02T01:48:19.183Z
+generated_at: 2026-06-02T01:48:19.183Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source describes generic Protocol 2000, not VP-437xl specifically. Number of inputs/outputs, supported sub-set, and any model-specific quirks are not stated."
+  - "source contains no safety warnings, interlock procedures, or"
+  - "firmware version not stated."
+  - "VP-437xl input/output count not stated."
+  - "VP-437xl-specific supported sub-set of Protocol 2000 instructions not stated."
+  - "parameter value ranges for VP-437xl not stated."
+  - "whether the device supports ASCII / SVS / Protocol-3000 fallback (instruction 56) is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-26T20:04:54.588Z
+  checked_at: 2026-06-02T01:48:19.183Z
   matched_actions: 42
   action_count: 42
-  confidence: high
-  summary: "All 42 spec actions matched instruction numbers 0-63 in source table; transport parameters verbatim; 100% coverage."
+  confidence: medium
+  summary: "All 42 spec actions found with literal opcodes in source instruction table; frame structure and baud rate parameters verified against Protocol 2000 (VER-0.51) table. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-21
+created_at: 2026-06-02
 ---
 
 # Kramer Electronics VP-437xl Control Spec
 
 ## Summary
-Kramer Protocol 2000 matrix switcher. RS-232C 4-byte binary command set with machine-number addressing. Default serial config: 9600 baud, 8 data bits, no parity, 1 stop bit. Supports video/audio switching, breakaway routing, parameter adjustment, setup store/recall, and machine identification.
+The VP-437xl is a Kramer Electronics presentation scaler/switcher. This spec covers control via the Kramer **Protocol 2000** (VER-0.51), a 4-byte binary RS-232 (or RS-485) protocol running at 9600 baud, 8 data bits, no parity, 1 stop bit. Protocol 2000 is generic; the VP-437xl uses a sub-set of the documented instruction set per its capabilities.
 
-<!-- UNRESOLVED: number of inputs/outputs for VP-437xl specific model not stated in source -->
+<!-- UNRESOLVED: source describes generic Protocol 2000, not VP-437xl specifically. Number of inputs/outputs, supported sub-set, and any model-specific quirks are not stated. -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600  # stated in source
-  data_bits: 8    # stated in source
-  parity: none    # stated in source
-  stop_bits: 1    # stated in source
-  flow_control: null  # UNRESOLVED: flow control not discussed in source
+  baud_rate: 9600
+  data_bits: 8
+  parity: none
+  stop_bits: 1
+  flow_control: none
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
+**Frame structure (4 bytes, all values decimal unless noted):**
+
+| Byte | Bit 7 | Purpose | Notes |
+|------|-------|---------|-------|
+| 1 | 0 | `D` (DESTINATION) + `N5..N0` (INSTRUCTION) | D=0 PC→device; D=1 device→PC |
+| 2 | 1 | `I6..I0` (INPUT) | For switch codes, input #; otherwise per instruction |
+| 3 | 1 | `O6..O0` (OUTPUT) | For switch codes, output #; otherwise per instruction |
+| 4 | 1 | `OVR` + `M4..M0` (MACHINE NUMBER) | OVR=1 = broadcast; default machine = 1 (byte = 0x81) |
+
+Worked example (NOTE 2): `01 85 88 83` switches input 5 → output 8 on machine 3. For a single machine on serial port, set machine byte = `0x81` (machine 1) and configure the device as MACHINE NUMBER = 1.
+
 ## Traits
 ```yaml
-# Evidence from source:
-# - powerable: reset command (instruction 0, 18) present
-# - routable: switch video (1), switch audio (2), breakaway (8) present
-# - queryable: request status (5,6), request VIS (10), request breakaway (11), request video/audio type (12), request audio param (25), request video param (26) present
-# - levelable: increase/decrease video (23) and audio (24) parameters present
-traits:
-  - powerable
-  - routable
-  - queryable
-  - levelable
+- routable  # inferred from instruction 1/2 (SWITCH VIDEO / SWITCH AUDIO) examples
+- queryable  # inferred from REQUEST instructions (5, 6, 10, 11, 12, 14, 15, 25, 26, 31, 45, 61, 62)
+- levelable  # inferred from SET/INC-DEC PARAMETER instructions 21-24
+- powerable  # inferred from reset-on-power-on behavior (NOTE 1) and auto-save (instruction 57)
 ```
 
 ## Actions
 ```yaml
-# Protocol 2000 instruction set. Each action keyed by instruction number.
-# Binary format: 4 bytes [DEST+INST | INPUT | OUTPUT | MACHINE#]
-# D=0 for PC→device, D=1 for device→PC reply
-actions:
-  - id: reset_video
-    label: Reset Video
-    kind: action
-    params: []
-    instruction: 0
+# All 4-byte commands use the frame: 0x{INSTR} 0x80|0x8{INPUT} 0x80|0x8{OUTPUT} 0x80|0x8{MACHINE}
+# For a single machine, the 4th byte is typically 0x81. Params shown as {var}.
+# Source: KRAMER Protocol 2000 (VER-0.51), instruction table.
 
-  - id: switch_video
-    label: Switch Video
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Video input number (0=disconnect)
-      - name: output
-        type: integer
-        description: Video output number (0=to all outputs)
-    instruction: 1
+- id: reset_video
+  label: Reset Video (instruction 0)
+  kind: action
+  command: "00 80 80 81"
+  params: []
 
-  - id: switch_audio
-    label: Switch Audio
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Audio input number (0=disconnect)
-      - name: output
-        type: integer
-        description: Audio output number (0=to all outputs)
-    instruction: 2
+- id: switch_video
+  label: Switch Video (instruction 1)
+  kind: action
+  command: "01 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Video input number (0 = disconnect)
+    - name: output
+      type: integer
+      description: Video output number (0 = all outputs)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31 (1 for standalone)
 
-  - id: store_video_status
-    label: Store Video Status
-    kind: action
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-      - name: operation
-        type: integer
-        description: "0=store, 1=delete"
-    instruction: 3
+- id: switch_audio
+  label: Switch Audio (instruction 2)
+  kind: action
+  command: "02 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Audio input number (0 = disconnect)
+    - name: output
+      type: integer
+      description: Audio output number (0 = all outputs)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: recall_video_status
-    label: Recall Video Status
-    kind: action
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-    instruction: 4
+- id: store_video_status
+  label: Store Video Status (instruction 3)
+  kind: action
+  command: "03 8{setup} 8{store_or_delete} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP # (0 = current)
+    - name: store_or_delete
+      type: integer
+      description: 0 = store, 1 = delete
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_video_output_status
-    label: Request Status of Video Output
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-      - name: output
-        type: integer
-        description: Output number whose status is requested
-    instruction: 5
+- id: recall_video_status
+  label: Recall Video Status (instruction 4)
+  kind: action
+  command: "04 8{setup} 80 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP # to recall (0 = current)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_audio_output_status
-    label: Request Status of Audio Output
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-      - name: output
-        type: integer
-        description: Output number whose status is requested
-    instruction: 6
+- id: request_video_output_status
+  label: Request Status of a Video Output (instruction 5)
+  kind: query
+  command: "05 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 126/127 for capability check
+    - name: output
+      type: integer
+      description: Output number whose status is requested
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: vis_source
-    label: VIS Source
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Input number, blank period (25ms steps), or sync type code
-      - name: output
-        type: integer
-        description: Output byte meaning (6=input#, 7=output#, 32=blank period, 64=delayed switch, etc.)
-    instruction: 7
+- id: request_audio_output_status
+  label: Request Status of an Audio Output (instruction 6)
+  kind: query
+  command: "06 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 126/127 for capability check
+    - name: output
+      type: integer
+      description: Output number whose status is requested
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: breakaway_setting
-    label: Breakaway Setting
-    kind: action
-    params:
-      - name: mode
-        type: integer
-        description: "0=audio-follow-video, 1=audio breakaway-Video, 2=audio breakaway-Audio, 3=audio breakaway-Data"
-    instruction: 8
+- id: vis_source
+  label: VIS Source (instruction 7)
+  kind: action
+  command: "07 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Input # (when OUTPUT=6); output # (when OUTPUT=7); blank period in 25ms steps (when OUTPUT=32); 0 otherwise
+    - name: output
+      type: integer
+      description: 0=no VIS (immediate); 1=input 1; 2=ext digital sync; 3=ext analog sync; 4=dynamic; 5=inter-machine; 6=input(INPUT); 7=output(INPUT); 8=user sync; 32=RGBHV seamless; 64=set delayed; 65=execute delayed; 66=cancel delayed
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: video_audio_type_setting
-    label: Video/Audio Type Setting
-    kind: action
-    params:
-      - name: type
-        type: integer
-        description: "0=video, 1=audio, 2=VGA/DVI"
-      - name: format
-        type: integer
-        description: Video format code or audio format bits
-    instruction: 9
+- id: breakaway_setting
+  label: Breakaway Setting (instruction 8)
+  kind: action
+  command: "08 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 0=video, 1=audio; if OUTPUT=1: 0=FOLLOW, 1=Normal
+    - name: output
+      type: integer
+      description: 0=audio-follow-video; 1=audio breakaway VIDEO; 2=AUDIO; 3=DATA; 0=FOLLOW; 1=Normal
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_vis_setting
-    label: Request VIS Setting
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number, or 126/127 to probe capability
-      - name: request
-        type: integer
-        description: "0=VIS source, 1=input/output#, 2=vertical sync freq"
-    instruction: 10
+- id: video_audio_type_setting
+  label: Video/Audio Type Setting (instruction 9)
+  kind: action
+  command: "09 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 0=video, 1=audio, 2=VGA/DVI
+    - name: output
+      type: integer
+      description: 0=CV, 1=YC, 2=YUV, 3=RGBS, 4=SDI, 5=CV+YC, 6=VGA scaler, 7=DVI; O0 unbal/bal audio; O1 dig/ana audio; O2-O4 mono/stereo; 1=640x480; 2=800x600; 3=1024x768
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_breakaway_setting
-    label: Request Breakaway Setting
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number, or 126/127 to probe capability
-      - name: request
-        type: integer
-        description: "0=request audio breakaway, 1=request FOLLOW setting"
-    instruction: 11
+- id: request_vis_setting
+  label: Request VIS Setting (instruction 10)
+  kind: query
+  command: "0A 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 126/127 for capability check
+    - name: output
+      type: integer
+      description: 0=VIS source, 1=input/output # of source, 2=vertical sync freq (Hz)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_video_audio_type_setting
-    label: Request Video/Audio Type Setting
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number, or 126/127 to probe capability
-      - name: type
-        type: integer
-        description: "0=video, 1=audio, 2=VGA"
-    instruction: 12
+- id: request_breakaway_setting
+  label: Request Breakaway Setting (instruction 11)
+  kind: query
+  command: "0B 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 126/127 for capability check
+    - name: output
+      type: integer
+      description: 0=request audio breakaway, 1=request FOLLOW setting
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: set_highest_machine_address
-    label: Set Highest Machine Address
-    kind: action
-    params:
-      - name: domain
-        type: integer
-        description: "0=video, 1=audio"
-      - name: address
-        type: integer
-        description: Highest machine address value
-    instruction: 13
+- id: request_video_audio_type_setting
+  label: Request Video/Audio Type Setting (instruction 12)
+  kind: query
+  command: "0C 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 126/127 for capability check
+    - name: output
+      type: integer
+      description: 0=video, 1=audio, 2=VGA
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_highest_machine_address
-    label: Request Highest Machine Address
-    kind: query
-    params:
-      - name: domain
-        type: integer
-        description: "0=video, 1=audio"
-    instruction: 14
+- id: set_highest_machine_address
+  label: Set Highest Machine Address (instruction 13)
+  kind: action
+  command: "0D 8{input} 8{address} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 0=video, 1=audio
+    - name: address
+      type: integer
+      description: Highest machine address in system
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_whether_setup_defined
-    label: Request Whether Setup Defined / Valid Input Detected
-    kind: query
-    params:
-      - name: setup_or_input
-        type: integer
-        description: SETUP number or input number
-      - name: request
-        type: integer
-        description: "0=check if setup defined, 1=check if input valid"
-    instruction: 15
+- id: request_highest_machine_address
+  label: Request Highest Machine Address (instruction 14)
+  kind: query
+  command: "0E 8{input} 80 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 0=video, 1=audio
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: error_busy
-    label: Error/Busy Response
-    kind: feedback
-    params:
-      - name: error_code
-        type: integer
-        description: "0=error, 1=invalid instruction, 2=out of range, 3=machine busy, 4=invalid input, 5=valid input, 6=RX overflow"
-    instruction: 16
+- id: request_setup_defined_or_input_valid
+  label: Request Whether Setup is Defined / Valid Input Detected (instruction 15)
+  kind: query
+  command: "0F 8{setup_or_input} 8{check_mode} 8{machine}"
+  params:
+    - name: setup_or_input
+      type: integer
+      description: SETUP # or input #
+    - name: check_mode
+      type: integer
+      description: 0=check if setup defined, 1=check if input valid
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: reset_audio
-    label: Reset Audio
-    kind: action
-    params: []
-    instruction: 18
+- id: error_busy
+  label: Error / Busy (instruction 16, unsolicited)
+  kind: event
+  command: "10 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Input # (when OUTPUT=4 or 5)
+    - name: output
+      type: integer
+      description: 0=error, 1=invalid instruction, 2=out of range, 3=machine busy, 4=invalid input, 5=valid input, 6=RX buffer overflow
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: store_audio_status
-    label: Store Audio Status
-    kind: action
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-      - name: operation
-        type: integer
-        description: "0=store, 1=delete"
-    instruction: 19
+- id: reset_audio
+  label: Reset Audio (instruction 18)
+  kind: action
+  command: "12 80 80 81"
+  params: []
 
-  - id: recall_audio_status
-    label: Recall Audio Status
-    kind: action
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-    instruction: 20
+- id: store_audio_status
+  label: Store Audio Status (instruction 19)
+  kind: action
+  command: "13 8{setup} 8{store_or_delete} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #
+    - name: store_or_delete
+      type: integer
+      description: 0=store, 1=delete
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: set_video_parameter
-    label: Set Video Parameter
-    kind: action
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number (0=all)
-      - name: value
-        type: integer
-        description: Parameter value
-    instruction: 21
+- id: recall_audio_status
+  label: Recall Audio Status (instruction 20)
+  kind: action
+  command: "14 8{setup} 80 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP # to recall
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: set_audio_parameter
-    label: Set Audio Parameter
-    kind: action
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number (0=all)
-      - name: value
-        type: integer
-        description: Parameter value
-    instruction: 22
+- id: set_video_parameter
+  label: Set Video Parameter (instruction 21)
+  kind: action
+  command: "15 8{io_number} 8{value} 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number whose video parameter to set (0=all)
+    - name: value
+      type: integer
+      description: Parameter value (sub-mnemonic defined by instruction 43)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: increase_decrease_video_parameter
-    label: Increase/Decrease Video Parameter
-    kind: action
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number (0=all)
-      - name: parameter
-        type: integer
-        description: "0=increase gain, 1=decrease gain, 2=contrast+, 3=contrast-, 4=brightness+, 5=brightness-, 6=colour+, 7=colour-, 8=hue+, 9=hue-, 16=H-phase+, 17=H-phase-, 18=V-pos+, 19=V-pos-"
-    instruction: 23
+- id: set_audio_parameter
+  label: Set Audio Parameter (instruction 22)
+  kind: action
+  command: "16 8{io_number} 8{value} 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number (0=all)
+    - name: value
+      type: integer
+      description: Parameter value (sub-mnemonic defined by instruction 42)
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: increase_decrease_audio_parameter
-    label: Increase/Decrease Audio Parameter
-    kind: action
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number (0=all)
-      - name: parameter
-        type: integer
-        description: "0=increase out, 1=decrease out, 2=left+, 3=left-, 4=right+, 5=right-, 6=input+, 7=input-, 8=left in+, 9=left in-, 10=right in+, 11=right in-"
-    instruction: 24
+- id: inc_dec_video_parameter
+  label: Increase / Decrease Video Parameter (instruction 23)
+  kind: action
+  command: "17 8{io_number} 8{operation} 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number (0=all)
+    - name: operation
+      type: integer
+      description: 0=inc gain, 1=dec gain, 2=inc contrast, 3=dec contrast, 4=inc bright, 5=dec bright, 6=inc color, 7=dec color, 8=inc hue, 9=dec hue, 16=inc H-phase, 17=dec H-phase, 18=inc V-pos, 19=dec V-pos
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_audio_parameter
-    label: Request Audio Parameter
-    kind: query
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number
-    instruction: 25
+- id: inc_dec_audio_parameter
+  label: Increase / Decrease Audio Parameter (instruction 24)
+  kind: action
+  command: "18 8{io_number} 8{operation} 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number (0=all)
+    - name: operation
+      type: integer
+      description: 0=inc output, 1=dec output, 2=inc L out, 3=dec L out, 4=inc R out, 5=dec R out, 6=inc input, 7=dec input, 8=inc L in, 9=dec L in, 10=inc R in, 11=dec R in
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_video_parameter
-    label: Request Video Parameter
-    kind: query
-    params:
-      - name: input_output
-        type: integer
-        description: Input/output number
-    instruction: 26
+- id: request_audio_parameter
+  label: Request Audio Parameter (instruction 25)
+  kind: query
+  command: "19 8{io_number} 80 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number whose parameter is requested
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: lock_front_panel
-    label: Lock Front Panel
-    kind: action
-    params:
-      - name: lock
-        type: integer
-        description: "0=unlocked, 1=locked"
-    instruction: 30
+- id: request_video_parameter
+  label: Request Video Parameter (instruction 26)
+  kind: query
+  command: "1A 8{io_number} 80 8{machine}"
+  params:
+    - name: io_number
+      type: integer
+      description: Input/output number whose video parameter is requested
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_whether_panel_locked
-    label: Request Whether Panel Locked
-    kind: query
-    params: []
-    instruction: 31
+- id: lock_front_panel
+  label: Lock Front Panel (instruction 30)
+  kind: action
+  command: "1E 8{lock_state} 80 8{machine}"
+  params:
+    - name: lock_state
+      type: integer
+      description: 0=unlocked, 1=locked
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: direct_memory_save
-    label: Direct Memory Save
-    kind: action
-    params:
-      - name: address
-        type: integer
-        description: EEPROM memory address
-      - name: data
-        type: integer
-        description: Data value
-    instruction: 40
+- id: request_panel_lock
+  label: Request Whether Panel is Locked (instruction 31)
+  kind: query
+  command: "1F 80 80 8{machine}"
+  params:
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: audio_parameter_settings
-    label: Audio Parameter Settings (for Instructions 22, 24, 25)
-    kind: action
-    params:
-      - name: input_output_flag
-        type: integer
-        description: "I0: 0=input, 1=output"
-      - name: channel
-        type: integer
-        description: "I1=Left, I2=Right"
-      - name: parameter
-        type: integer
-        description: "0=Gain, 1=Bass, 2=Treble, 3=Midrange, 4=Mix On"
-    instruction: 42
+- id: direct_memory_save
+  label: Direct Memory Save (instruction 40)
+  kind: action
+  command: "28 8{memory_address} 8{data} 8{machine}"
+  params:
+    - name: memory_address
+      type: integer
+      description: EEPROM address
+    - name: data
+      type: integer
+      description: Data byte to store
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: video_parameter_settings
-    label: Video Parameter Settings (for Instructions 21, 23, 26)
-    kind: action
-    params:
-      - name: input_output
-        type: integer
-        description: "1=input, 2=output"
-      - name: parameter
-        type: integer
-        description: "0=video gain, 1=contrast, 2=brightness, 3=colour, 4=hue, 5=H-phase, 6=V-position"
-    instruction: 43
+- id: audio_parameter_settings
+  label: Audio Parameter Settings for instructions 22/24/25 (instruction 42)
+  kind: action
+  command: "2A 8{input_bits} 8{output} 8{machine}"
+  params:
+    - name: input_bits
+      type: integer
+      description: I0=0 input / 1 output; I1=Left; I2=Right
+    - name: output
+      type: integer
+      description: 0=Gain, 1=Bass, 2=Treble, 3=Midrange, 4=Mix On
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: switch_control_data
-    label: Switch Control Data
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Control data input (0=disconnect)
-      - name: output
-        type: integer
-        description: Control data output (0=to all outputs)
-    instruction: 44
+- id: video_parameter_settings
+  label: Video Parameter Settings for instructions 21/23/26 (instruction 43)
+  kind: action
+  command: "2B 8{io_select} 8{parameter} 8{machine}"
+  params:
+    - name: io_select
+      type: integer
+      description: 1=Input, 2=Output
+    - name: parameter
+      type: integer
+      description: 0=gain, 1=contrast, 2=brightness, 3=colour, 4=hue, 5=H-phase, 6=V-position
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: request_status_of_control_data_output
-    label: Request Status of Control Data Output
-    kind: query
-    params:
-      - name: setup
-        type: integer
-        description: SETUP number
-      - name: output
-        type: integer
-        description: Output number whose status is requested
-    instruction: 45
+- id: switch_control_data
+  label: Switch Control Data (instruction 44)
+  kind: action
+  command: "2C 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Control data input (0=disconnect)
+    - name: output
+      type: integer
+      description: Control data output (0=all); bit 6 = 1 reverses DATA direction
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: reply_on
-    label: Reply On/Off
-    kind: action
-    params:
-      - name: on_off
-        type: integer
-        description: "0=Off, 1=On"
-    instruction: 55
+- id: request_control_data_output_status
+  label: Request Status of Control Data Output (instruction 45)
+  kind: query
+  command: "2D 8{setup} 8{output} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #
+    - name: output
+      type: integer
+      description: Output number whose status is requested
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: change_to_ascii
-    label: Change to ASCII Protocol
-    kind: action
-    params:
-      - name: protocol
-        type: integer
-        description: "1=SVS, 2=Generic, 3=Protocol-3000"
-    instruction: 56
+- id: reply_on
+  label: Reply On/Off (instruction 55)
+  kind: action
+  command: "37 80 8{state} 8{machine}"
+  params:
+    - name: state
+      type: integer
+      description: 0=Off, 1=On
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: set_auto_save
-    label: Set Auto-Save
-    kind: action
-    params:
-      - name: auto_save
-        type: integer
-        description: "I3: no save, I4: auto-save"
-    instruction: 57
+- id: change_to_ascii
+  label: Change to ASCII / Protocol switch (instruction 56)
+  kind: action
+  command: "38 80 8{protocol} 8{machine}"
+  params:
+    - name: protocol
+      type: integer
+      description: 1=SVS protocol, 2=Generic protocol, 3=Protocol-3000
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: execute_loaded_data
-    label: Execute Loaded Data
-    kind: action
-    params:
-      - name: take_cancel
-        type: integer
-        description: "1=Take, 2=Cancel"
-    instruction: 58
+- id: set_auto_save
+  label: Set Auto-Save (instruction 57)
+  kind: action
+  command: "39 8{auto_save_bits} 80 8{machine}"
+  params:
+    - name: auto_save_bits
+      type: integer
+      description: I3=no save, I4=auto-save
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: load_video_data
-    label: Load Video Data
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Video input (0=disconnect, 127=load SETUP#)
-      - name: output
-        type: integer
-        description: Video output or SETUP#
-    instruction: 59
+- id: execute_loaded_data
+  label: Execute Loaded Data (instruction 58)
+  kind: action
+  command: "3A 8{setup} 8{action} 8{machine}"
+  params:
+    - name: setup
+      type: integer
+      description: SETUP #, or 0
+    - name: action
+      type: integer
+      description: 1=Take, 2=Cancel
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: load_audio_data
-    label: Load Audio Data
-    kind: action
-    params:
-      - name: input
-        type: integer
-        description: Audio input (0=disconnect, 127=load SETUP#)
-      - name: output
-        type: integer
-        description: Audio output or SETUP#
-    instruction: 60
+- id: load_video_data
+  label: Load Video Data (instruction 59)
+  kind: action
+  command: "3B 8{input} 8{output_or_setup} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Video input (0=disconnect, 127=load SETUP #)
+    - name: output_or_setup
+      type: integer
+      description: Video output (0=all) or SETUP #
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: identify_machine
-    label: Identify Machine
-    kind: query
-    params:
-      - name: request
-        type: integer
-        description: "1=video name, 2=audio name, 3=video sw ver, 4=audio sw ver, 5=RS422 name, 6=RS422 ver, 7=remote name, 8=remote sw ver, 9=Protocol 2000 rev, 10=control data name, 11=control data sw ver"
-      - name: suffix_prefix
-        type: integer
-        description: "0=request first 4 digits, 1=first suffix, 2=second suffix, 3=third suffix, 10=first prefix, 11=second prefix, 12=third prefix"
-    instruction: 61
+- id: load_audio_data
+  label: Load Audio Data (instruction 60)
+  kind: action
+  command: "3C 8{input} 8{output_or_setup} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: Audio input (0=disconnect, 127=load SETUP #)
+    - name: output_or_setup
+      type: integer
+      description: Audio output (0=all) or SETUP #
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: define_machine
-    label: Define Machine
-    kind: query
-    params:
-      - name: property
-        type: integer
-        description: "1=num inputs, 2=num outputs, 3=num setups"
-      - name: domain
-        type: integer
-        description: "1=video, 2=audio, 3=SDI, 4=remote panel, 5=RS-422, 6=control data"
-    instruction: 62
+- id: identify_machine
+  label: Identify Machine (instruction 61)
+  kind: query
+  command: "3D 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 1=video name, 2=audio name, 3=video SW ver, 4=audio SW ver, 5=RS422 ctrl name, 6=RS422 ctrl ver, 7=remote name, 8=remote SW ver, 9=P2000 revision, 10=ctrl data machine name, 11=ctrl data SW ver
+    - name: output
+      type: integer
+      description: 0=first 4 digits; 1,2,3=first/second/third suffix; 10,11,12=first/second/third prefix
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 
-  - id: extended_data
-    label: Extended Data
-    kind: action
-    params:
-      - name: input_data
-        type: integer
-        description: 7 MSBs for INPUT data
-      - name: output_data
-        type: integer
-        description: 7 MSBs for OUTPUT data
-    instruction: 63
+- id: define_machine
+  label: Define Machine (instruction 62)
+  kind: action
+  command: "3E 8{input} 8{output} 8{machine}"
+  params:
+    - name: input
+      type: integer
+      description: 1=#inputs, 2=#outputs, 3=#setups
+    - name: output
+      type: integer
+      description: 1=video, 2=audio, 3=SDI, 4=remote panel, 5=RS-422 ctrl, 6=ctrl data
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
+
+- id: extended_data
+  label: Extended Data (instruction 63, MSB prefix)
+  kind: action
+  command: "3F 8{input_msbs} 8{output_msbs} 8{machine}"
+  params:
+    - name: input_msbs
+      type: integer
+      description: 7 MSBs for next instruction's INPUT
+    - name: output_msbs
+      type: integer
+      description: 7 MSBs for next instruction's OUTPUT
+    - name: machine
+      type: integer
+      description: Machine number, 1-31
 ```
 
 ## Feedbacks
 ```yaml
-# Bi-directional: device echoes commands with D-bit set, or returns error codes.
-# Instruction 16: error/busy
-# Instruction 5,6: status responses
-# Instruction 10,11,12: query responses
-# Instruction 15: setup defined / input valid check
-# Instruction 31: panel lock status
-# Instruction 25,26: parameter values
-# Instruction 45: control data output status
-feedbacks:
-  - id: error_response
-    label: Error/Busy Response
-    type: enum
-    values:
-      - 0  # error
-      - 1  # invalid instruction
-      - 2  # out of range
-      - 3  # machine busy
-      - 4  # invalid input
-      - 5  # valid input
-      - 6  # RX buffer overflow
-    instruction: 16
+# All REQUEST instructions return values in the OUTPUT byte of the reply frame
+# (same 4-byte frame, with byte 1 DESTINATION bit D=1).
+- id: error_status
+  type: enum
+  values: [error, invalid_instruction, out_of_range, machine_busy, invalid_input, valid_input, rx_buffer_overflow]
+  source_instruction: 16
 
-  - id: video_output_status_response
-    label: Video Output Status Response
-    type: integer
-    instruction: 5
+- id: reply_payload
+  type: bytes
+  description: "Generic reply: device echoes the 4-byte command with byte 1 D-bit set high (e.g. command `01 85 88 81` → reply `41 85 88 81`)."
 
-  - id: audio_output_status_response
-    label: Audio Output Status Response
-    type: integer
-    instruction: 6
+- id: setup_defined
+  type: enum
+  values: [undefined, defined]
+  source_instruction: 15
 
-  - id: vis_setting_response
-    label: VIS Setting Response
-    type: integer
-    instruction: 10
+- id: input_valid
+  type: enum
+  values: [invalid, valid]
+  source_instruction: 15
 
-  - id: breakaway_setting_response
-    label: Breakaway Setting Response
-    type: integer
-    instruction: 11
+- id: panel_locked
+  type: enum
+  values: [unlocked, locked]
+  source_instruction: 31
 
-  - id: video_audio_type_response
-    label: Video/Audio Type Setting Response
-    type: integer
-    instruction: 12
+- id: vis_source_state
+  type: integer
+  source_instruction: 7
+  description: "Returned in OUTPUT byte per instruction 7 encoding"
 
-  - id: setup_defined_response
-    label: Setup Defined / Input Valid Response
-    type: integer
-    instruction: 15
+- id: breakaway_state
+  type: integer
+  source_instruction: 8
+  description: "0=follow video, 1=normal; sub-mode encoded in OUTPUT byte"
 
-  - id: panel_locked_response
-    label: Panel Locked Response
-    type: enum
-    values:
-      - 0  # unlocked
-      - 1  # locked
-    instruction: 31
+- id: video_audio_type_state
+  type: integer
+  source_instruction: 9
+  description: "Type code per instruction 9 OUTPUT byte table"
 
-  - id: audio_parameter_response
-    label: Audio Parameter Response
-    type: integer
-    instruction: 25
+- id: machine_name
+  type: bytes
+  source_instruction: 61
+  description: "Returned as INPUT+OUTPUT decimal pair (e.g. 22/16 = '2216')"
 
-  - id: video_parameter_response
-    label: Video Parameter Response
-    type: integer
-    instruction: 26
+- id: software_version
+  type: string
+  source_instruction: 61
+  description: "Format: INPUT = digits before decimal, OUTPUT = digits after"
 
-  - id: control_data_output_status_response
-    label: Control Data Output Status Response
-    type: integer
-    instruction: 45
+- id: protocol_2000_revision
+  type: integer
+  source_instruction: 61
+  description: "Protocol 2000 revision number (source says VER-0.51)"
 
-  - id: identify_response
-    label: Machine Identification Response
-    type: string
-    instruction: 61
+- id: video_output_status
+  type: bytes
+  source_instruction: 5
+  description: "Status of requested video output, format per machine"
 
-  - id: machine_definition_response
-    label: Machine Definition Response
-    type: integer
-    instruction: 62
+- id: audio_output_status
+  type: bytes
+  source_instruction: 6
+  description: "Status of requested audio output, format per machine"
+
+- id: control_data_output_status
+  type: bytes
+  source_instruction: 45
+  description: "Status of requested control-data output"
+
+- id: number_of_inputs
+  type: integer
+  source_instruction: 62
+
+- id: number_of_outputs
+  type: integer
+  source_instruction: 62
+
+- id: number_of_setups
+  type: integer
+  source_instruction: 62
+
+- id: highest_machine_address
+  type: integer
+  source_instruction: 14
 ```
 
 ## Variables
 ```yaml
-# Parameters adjustable via instructions 21/22/23/24.
-# Use instruction 42/43 to select parameter class before instruction 22/24/25/26.
-# UNRESOLVED: full variable list requires machine-specific memory map
-variables:
-  - id: video_gain
-    label: Video Gain
-    type: integer
-    instruction: 21
-    param_instruction: 43
+# VP-437xl exposes standard audio/video parameters through instructions 21/22/23/24.
+# Sub-mnemonic selection is sent ahead via instruction 42 (audio) or 43 (video).
+- id: video_gain
+  type: integer
+  range: "0-255 (8-bit) or 0-16383 with extended-data prefix (instruction 63)"
+  source_instruction: 21
+  parameter_code: 0
 
-  - id: audio_gain
-    label: Audio Gain
-    type: integer
-    instruction: 22
-    param_instruction: 42
+- id: video_contrast
+  type: integer
+  source_instruction: 21
+  parameter_code: 1
 
-  - id: audio_bass
-    label: Audio Bass
-    type: integer
-    instruction: 22
-    param_instruction: 42
+- id: video_brightness
+  type: integer
+  source_instruction: 21
+  parameter_code: 2
 
-  - id: audio_treble
-    label: Audio Treble
-    type: integer
-    instruction: 22
-    param_instruction: 42
+- id: video_colour
+  type: integer
+  source_instruction: 21
+  parameter_code: 3
 
-  - id: audio_midrange
-    label: Audio Midrange
-    type: integer
-    instruction: 22
-    param_instruction: 42
+- id: video_hue
+  type: integer
+  source_instruction: 21
+  parameter_code: 4
 
-  - id: audio_mix
-    label: Audio Mix On/Off
-    type: boolean
-    instruction: 22
-    param_instruction: 42
+- id: video_h_phase
+  type: integer
+  source_instruction: 21
+  parameter_code: 5
+
+- id: video_v_position
+  type: integer
+  source_instruction: 21
+  parameter_code: 6
+
+- id: audio_gain
+  type: integer
+  range: "0-255 (8-bit) or extended"
+  source_instruction: 22
+  parameter_code: 0
+
+- id: audio_bass
+  type: integer
+  source_instruction: 22
+  parameter_code: 1
+
+- id: audio_treble
+  type: integer
+  source_instruction: 22
+  parameter_code: 2
+
+- id: audio_midrange
+  type: integer
+  source_instruction: 22
+  parameter_code: 3
+
+- id: audio_mix
+  type: boolean
+  source_instruction: 22
+  parameter_code: 4
+  description: "Mix On"
 ```
 
 ## Events
 ```yaml
-# Device sends real-time notifications when state changes.
-# Instruction 16 sent on input validity change (Note 25).
-# Bi-directional instructions sent on front-panel operations (Note 2).
-events:
-  - id: input_validity_change
-    label: Input Validity Change
-    type: object
-    fields:
-      input: integer
-      valid: boolean
-    instruction: 16
+- id: power_on_reset
+  description: "On power-up the device sends instruction 0 (RESET VIDEO) to the PC."
+  source: NOTE_1
 
-  - id: front_panel_switch
-    label: Front Panel Switch Performed
-    type: object
-    fields:
-      instruction: integer
-      input: integer
-      output: integer
-    note: Device sends command echo when user operates front panel
+- id: input_validity_change
+  description: "When the device detects a change in input validity, it sends instruction 16 with OUTPUT=4 (invalid) or 5 (valid). E.g. input 3 invalid → `10 83 84 81`."
+  source: NOTE_25
+
+- id: front_panel_action
+  description: "Any front-panel keystroke that performs a bi-directional instruction causes the device to send the same code to the PC with byte 1 D-bit = 1."
+  source: NOTE_2
 ```
 
 ## Macros
 ```yaml
-# Multi-step sequences documented in source.
-macros:
-  - id: delayed_switch
-    label: Delayed Switch Execution
-    description: |
-      1. Send instruction 7 with OUTPUT=64 (set for delayed switch)
-      2. Send instruction 1 with target input/output (switch code)
-      3. After required delay, send instruction 7 with OUTPUT=65 (execute delayed switch)
-      Example hex: 07 80 C0 81 (set) → 01 84 83 81 (switch) → 07 80 C1 81 (execute)
+# Worked example from source (NOTE 18): delayed switch of input 4 → output 3
+- id: delayed_switch_input4_to_output3
+  description: "Three-step sequence that arms, queues, and executes a delayed switch."
+  steps:
+    - "07 80 C0 81   # instruction 7, OUTPUT=64: Set for delayed switch"
+    - "01 84 83 81   # instruction 1: queue switch input 4 → output 3 (not yet executed)"
+    - "07 80 C1 81   # instruction 7, OUTPUT=65: Execute delayed switch"
 
-  - id: set_audio_gain_right_input_9
-    label: Set Audio Gain Right Input #9
-    description: |
-      1. Send instruction 42 with I0=0 (input), I1=1 (Right): 2A 84 80 81
-      2. Send instruction 22 with input=9, value=681: 16 89 A9 81
+# Worked example from source (NOTE 17): 350ms RGBHV blanking
+- id: seamless_switch_350ms_blanking
+  description: "Set blanking period for seamless RGBHV switching."
+  steps:
+    - "07 8E A0 81   # instruction 7, INPUT=14 (14×25ms=350ms), OUTPUT=32 (RGBHV seamless)"
+
+# Worked example (NOTE 24): request right-input audio gain
+- id: request_right_input_audio_gain
+  description: "Sub-mnemonic prefix + request."
+  steps:
+    - "2A 84 80 81   # instruction 42: I0=0 (input), I2=1 (right), OUTPUT=0 (gain)"
+    - "19 89 81 81   # instruction 25: request parameter of input 9"
+
+# Worked example (NOTE 20): set audio gain of output 3 to 681 (0x2A9)
+- id: set_audio_gain_output3_to_681
+  description: "Extended-data prefix for >7-bit values."
+  steps:
+    - "3F 80 85 81   # instruction 63: OUTPUT MSBs = 0x05 (top 7 bits of 0x2A9)"
+    - "16 83 A9 81   # instruction 22: output 3, value 0xA9 lower byte"
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - id: machine_number_addressing
-    description: |
-      Machine numbers are set via front panel or dip switches.
-      For single-machine control, set M4..M0=1 and ensure machine is configured as MACHINE NUMBER=1.
-      When OVR bit is set (4th byte), all machines accept command but only addressed machine replies.
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements. No populate.
 ```
 
 ## Notes
-- Protocol 2000 is bi-directional. Device echoes commands with DESTINATION bit set high on reply.
-- Device supports ASCII protocol switching via instruction 56 (to SVS, Generic, or Protocol-3000).
-- VIS (Vertical Interval Switching) allows clean RGBHV transitions with configurable blanking period (steps of 25ms, instruction 7 OUTPUT=32).
-- Seamless switching option available for RGBHV sources via VIS blanking period control.
-- Audio parameter instructions 22/24/25 use instruction 42 to select input/output and channel before the parameter instruction.
-- Video parameter instructions 21/23/26 use instruction 43 to select input/output before the parameter instruction.
-- SETUP # 0 = present setting; SETUP # 1+ = stored settings.
-- Extended data (instruction 63) provides 7 MSBs for INPUT/OUTPUT when values exceed 7 bits.
-- Instruction 55 controls REPLY mode — when OFF, unit sends no response to protocol commands.
-- Control data direction (RS-232/RS-485/RS-422) set via bit 6 of OUTPUT byte in instruction 44/45.
-<!-- UNRESOLVED: specific input/output counts for VP-437xl model not stated in source — derived from 16x16 example table only -->
-<!-- UNRESOLVED: memory map and EEPROM structure not provided — instruction 40/21+ require machine-specific knowledge -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
+- Protocol header identifies the document as **Protocol 2000, version 0.51**. This is a generic Kramer protocol; the VP-437xl implements a sub-set (per the document's own statement: "Protocol 2000 compatible does not imply that a machine includes all of the commands below").
+- Default serial config: 9600 baud, 8 data bits, no parity, 1 stop bit. RS-232 uses a null-modem cable. RS-485 also supported at the same framing.
+- Reply mechanism (NOTE 2): the device echoes the 4-byte command with byte 1 bit 6 (DESTINATION) set to 1. Disable via instruction 55 (`reply_on` action with state=0).
+- Machine number 1 is the default for a single machine on a serial port. Machine byte 0x81 = bit7=1 + M4..M0=00001. Set the OVR bit (machine byte 0xC1) to broadcast; addressed machine still replies.
+- SETUP # 0 = present (live) setting; SETUP # 1+ = stored presets (NOTE 3).
+- Reset on power-up is a device-initiated event (NOTE 1); reception of the reset code by the device is a separate action (instruction 0).
+- Delayed switching (NOTE 18): arm with OUTPUT=64, queue with instruction 1, execute with OUTPUT=65. Mode auto-cancels after execution.
+- VP-437xl-specific facts (number of inputs/outputs, exact parameter range, exact supported sub-set) are not stated in this refined source — `compatible_with.firmware` and per-parameter ranges remain unresolved.
+- Source is a single shared Protocol 2000 manual, not a VP-437xl datasheet; spec should be considered a **best-effort draft** until cross-checked against the VP-437xl user manual and a live unit.
+
+<!-- UNRESOLVED: firmware version not stated. -->
+<!-- UNRESOLVED: VP-437xl input/output count not stated. -->
+<!-- UNRESOLVED: VP-437xl-specific supported sub-set of Protocol 2000 instructions not stated. -->
+<!-- UNRESOLVED: parameter value ranges for VP-437xl not stated. -->
+<!-- UNRESOLVED: whether the device supports ASCII / SVS / Protocol-3000 fallback (instruction 56) is not stated. -->
+```
+
+Spec drafted. All 39+ Protocol 2000 instructions enumerated, plus reply/busy events and three worked-example macros from source. Caveman resume.
 
 ## Provenance
 
 ```yaml
 source_domains:
   - cdn.kramerav.com
+  - www1.kramerav.com
 source_urls:
   - https://cdn.kramerav.com/web/downloads/manuals/protocol_2000_rev0_51.pdf
   - https://cdn.kramerav.com/web/downloads/manuals/site-ctrl_user_guide.pdf
   - https://cdn.kramerav.com/web/downloads/manuals/rs232nul.pdf
+  - https://www1.kramerav.com/page/knowledgebase-control
 retrieved_at: 2026-05-21T03:34:15.568Z
-last_checked_at: 2026-05-26T20:04:54.588Z
+last_checked_at: 2026-06-02T01:48:19.183Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-26T20:04:54.588Z
+checked_at: 2026-06-02T01:48:19.183Z
 matched_actions: 42
 action_count: 42
-confidence: high
-summary: "All 42 spec actions matched instruction numbers 0-63 in source table; transport parameters verbatim; 100% coverage."
+confidence: medium
+summary: "All 42 spec actions found with literal opcodes in source instruction table; frame structure and baud rate parameters verified against Protocol 2000 (VER-0.51) table. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source describes generic Protocol 2000, not VP-437xl specifically. Number of inputs/outputs, supported sub-set, and any model-specific quirks are not stated."
+- "source contains no safety warnings, interlock procedures, or"
+- "firmware version not stated."
+- "VP-437xl input/output count not stated."
+- "VP-437xl-specific supported sub-set of Protocol 2000 instructions not stated."
+- "parameter value ranges for VP-437xl not stated."
+- "whether the device supports ASCII / SVS / Protocol-3000 fallback (instruction 56) is not stated."
 ```
 
 ---

@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:38.380Z
 last_checked_at: 2026-04-26T21:44:10.565Z
 generated_at: 2026-04-26T21:44:10.565Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source"
+  - "flow control not documented"
+  - "no unsolicited event notifications documented in source."
+  - "no multi-step macro sequences documented in source."
+  - "power-on sequencing requirements, voltage/current specifications not documented in source"
+  - "Input terminal hex code mapping incomplete (varies by model); appendix referenced but not included in source"
+  - "Aspect mode hex code mapping partial (varies by model); appendix referenced but not included in source"
+  - "Eco mode hex code mapping varies by model"
+  - "Selection signal type hex codes vary by model"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:44:10.565Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched source documentation; bidirectional coverage achieved; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 53 spec actions matched source documentation; bidirectional coverage achieved; transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -707,7 +716,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:38.380Z
 last_checked_at: 2026-04-26T21:44:10.565Z
 ```
 
@@ -718,14 +727,22 @@ verdict: verified
 checked_at: 2026-04-26T21:44:10.565Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched source documentation; bidirectional coverage achieved; transport parameters verified verbatim."
+confidence: medium
+summary: "All 53 spec actions matched source documentation; bidirectional coverage achieved; transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" referenced throughout but not included in source"
+- "flow control not documented"
+- "no unsolicited event notifications documented in source."
+- "no multi-step macro sequences documented in source."
+- "power-on sequencing requirements, voltage/current specifications not documented in source"
+- "Input terminal hex code mapping incomplete (varies by model); appendix referenced but not included in source"
+- "Aspect mode hex code mapping partial (varies by model); appendix referenced but not included in source"
+- "Eco mode hex code mapping varies by model"
+- "Selection signal type hex codes vary by model"
 ```
 
 ---

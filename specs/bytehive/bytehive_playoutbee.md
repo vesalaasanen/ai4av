@@ -24,14 +24,21 @@ last_checked_at: 2026-05-14T18:17:14.871Z
 generated_at: 2026-05-14T18:17:14.871Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "security model not described in source"
+  - "no discrete settable parameters not tied to actions documented"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "authentication model not described in source"
+  - "error response formats not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.871Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -353,14 +360,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.871Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage."
+confidence: medium
+summary: "All 34 spec actions matched literals in source with correct shapes and transport parameters; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "security model not described in source"
+- "no discrete settable parameters not tied to actions documented"
+- "no unsolicited event notifications described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "authentication model not described in source"
+- "error response formats not documented"
 ```
 
 ---

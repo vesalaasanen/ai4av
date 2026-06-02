@@ -20,19 +20,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:34:00.101Z
 last_checked_at: 2026-05-16T11:35:07.012Z
 generated_at: 2026-05-16T11:35:07.012Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN unit manual not included; external wireless LAN module required but specs not provided"
+  - "source does not describe unsolicited event/notification messages"
+  - "no explicit multi-step macro sequences defined in source"
+  - "no voltage, current, power specifications in source"
+  - "appendix \"Supplementary Information by Command\" values not provided"
+  - "key code list appendix values not fully enumerated beyond sample codes"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:35:07.012Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions found in source with matching semantics; transport parameters verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 53 spec actions found in source with matching semantics; transport parameters verified; source command catalogue fully represented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -621,7 +627,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:34:00.101Z
 last_checked_at: 2026-05-16T11:35:07.012Z
 ```
 
@@ -632,14 +638,19 @@ verdict: verified
 checked_at: 2026-05-16T11:35:07.012Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions found in source with matching semantics; transport parameters verified; source command catalogue fully represented."
+confidence: medium
+summary: "All 53 spec actions found in source with matching semantics; transport parameters verified; source command catalogue fully represented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN unit manual not included; external wireless LAN module required but specs not provided"
+- "source does not describe unsolicited event/notification messages"
+- "no explicit multi-step macro sequences defined in source"
+- "no voltage, current, power specifications in source"
+- "appendix \"Supplementary Information by Command\" values not provided"
+- "key code list appendix values not fully enumerated beyond sample codes"
 ```
 
 ---

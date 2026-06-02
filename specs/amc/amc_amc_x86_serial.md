@@ -27,14 +27,21 @@ last_checked_at: 2026-05-22T13:30:14.145Z
 generated_at: 2026-05-22T13:30:14.145Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "command/return/error reference tables were embedded images (omitted from refined source); only text descriptions available. Some XOir-specific command variants present but not applicable to X86."
+  - "no settable persistent variables beyond action params identified in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "command/return/error reference tables were images omitted from refined source; complete command list may be larger"
+  - "firmware version compatibility not stated"
+  - "maximum concurrent connection or command queuing behavior not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-22T13:30:14.145Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete."
+  confidence: medium
+  summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -444,14 +451,20 @@ verdict: verified
 checked_at: 2026-05-22T13:30:14.145Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete."
+confidence: medium
+summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "command/return/error reference tables were embedded images (omitted from refined source); only text descriptions available. Some XOir-specific command variants present but not applicable to X86."
+- "no settable persistent variables beyond action params identified in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "command/return/error reference tables were images omitted from refined source; complete command list may be larger"
+- "firmware version compatibility not stated"
+- "maximum concurrent connection or command queuing behavior not stated"
 ```
 
 ---

@@ -18,23 +18,27 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:37:27.528Z
 last_checked_at: 2026-05-17T00:37:27.528Z
 generated_at: 2026-05-17T00:37:27.528Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no persistent user-settable variables beyond those covered in Actions/Feedbacks"
+  - "source does not describe unsolicited notifications from the device"
+  - "no multi-step macro sequences described in source"
+  - "HDBaseT remote control binary packet format fully documented in source (section 6) but not decomposed into structured Actions entries — operator should expand if binary tunneling control is required."
+  - "Source mentions \"H2X Source Lockout Command Calculator\" for custom ZONE_R bitmask strings — tool not described in this document."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-17T00:37:27.528Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 29 actions matched literally in source; transport parameters verified; comprehensive coverage of ASCII command set."
+  confidence: medium
+  summary: "All 29 actions matched literally in source; transport parameters verified; comprehensive coverage of ASCII command set. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -697,11 +701,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:37:27.528Z
 last_checked_at: 2026-05-17T00:37:27.528Z
 ```
 
@@ -712,14 +714,19 @@ verdict: verified
 checked_at: 2026-05-17T00:37:27.528Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 29 actions matched literally in source; transport parameters verified; comprehensive coverage of ASCII command set."
+confidence: medium
+summary: "All 29 actions matched literally in source; transport parameters verified; comprehensive coverage of ASCII command set. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no persistent user-settable variables beyond those covered in Actions/Feedbacks"
+- "source does not describe unsolicited notifications from the device"
+- "no multi-step macro sequences described in source"
+- "HDBaseT remote control binary packet format fully documented in source (section 6) but not decomposed into structured Actions entries — operator should expand if binary tunneling control is required."
+- "Source mentions \"H2X Source Lockout Command Calculator\" for custom ZONE_R bitmask strings — tool not described in this document."
+- "model-specific source not located"
 ```
 
 ---

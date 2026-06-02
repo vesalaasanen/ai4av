@@ -16,25 +16,37 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - extron.com
   - media.extron.com
+  - manualslib.com
+  - extron.com
+  - placeos.github.io
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-2721-01_D.pdf
+  - https://www.manualslib.com/manual/2924114/Extron-Electronics-AXP-64-C-AT.html
+  - https://www.extron.com/article/tech92
+  - https://placeos.github.io/drivers/Extron/SIS.html
+  - https://www.extron.com/download/
+retrieved_at: 2026-05-13T00:31:32.824Z
 last_checked_at: 2026-05-20T11:51:14.807Z
 generated_at: 2026-05-20T11:51:14.807Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no serial (RS-232) configuration found in source — only Ethernet described"
+  - "Dante controller configuration details not included (named by convention only)"
+  - "no power on/off commands found in source"
+  - "no standalone settable variables beyond action params identified in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "no firmware version compatibility range stated"
+  - "DSP software-only controls (Configure Digital I/O dialog) not documented as SIS commands"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:51:14.807Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 19 spec actions matched; transport verified."
+  confidence: medium
+  summary: "All 19 spec actions matched; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -354,13 +366,17 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - extron.com
   - media.extron.com
+  - manualslib.com
+  - extron.com
+  - placeos.github.io
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://media.extron.com/public/download/files/userman/68-2721-01_D.pdf
+  - https://www.manualslib.com/manual/2924114/Extron-Electronics-AXP-64-C-AT.html
+  - https://www.extron.com/article/tech92
+  - https://placeos.github.io/drivers/Extron/SIS.html
+  - https://www.extron.com/download/
+retrieved_at: 2026-05-13T00:31:32.824Z
 last_checked_at: 2026-05-20T11:51:14.807Z
 ```
 
@@ -371,14 +387,21 @@ verdict: verified
 checked_at: 2026-05-20T11:51:14.807Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 19 spec actions matched; transport verified."
+confidence: medium
+summary: "All 19 spec actions matched; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no serial (RS-232) configuration found in source — only Ethernet described"
+- "Dante controller configuration details not included (named by convention only)"
+- "no power on/off commands found in source"
+- "no standalone settable variables beyond action params identified in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "no firmware version compatibility range stated"
+- "DSP software-only controls (Configure Digital I/O dialog) not documented as SIS commands"
 ```
 
 ---

@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-22T22:39:05.619Z
 last_checked_at: 2026-05-31T06:48:45.485Z
 generated_at: 2026-05-31T06:48:45.485Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN not fully documented in source"
+  - "no single default stated; source lists 115200/38400/19200/9600/4800 bps"
+  - "RTS/CTS shown in pinout but no flow control config stated"
+  - "feedbacks defined by response structure in source"
+  - "detailed variable mappings require appendix \"Supplementary Information by Command\""
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences described in source"
+  - "power-on sequencing, voltage/current specs not stated"
+  - "appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, sub input values)"
+  - "wireless LAN unit details deferred to separate operation manual"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:48:45.485Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match semantically to source commands with identical purpose and parameters; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 53 spec actions match semantically to source commands with identical purpose and parameters; transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -501,7 +512,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-22T22:39:05.619Z
 last_checked_at: 2026-05-31T06:48:45.485Z
 ```
 
@@ -512,14 +523,24 @@ verdict: verified
 checked_at: 2026-05-31T06:48:45.485Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match semantically to source commands with identical purpose and parameters; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 53 spec actions match semantically to source commands with identical purpose and parameters; transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN not fully documented in source"
+- "no single default stated; source lists 115200/38400/19200/9600/4800 bps"
+- "RTS/CTS shown in pinout but no flow control config stated"
+- "feedbacks defined by response structure in source"
+- "detailed variable mappings require appendix \"Supplementary Information by Command\""
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences described in source"
+- "power-on sequencing, voltage/current specs not stated"
+- "appendix \"Supplementary Information by Command\" values not included (input terminal codes, aspect values, eco mode values, sub input values)"
+- "wireless LAN unit details deferred to separate operation manual"
+- "firmware version compatibility not stated"
 ```
 
 ---

@@ -24,14 +24,22 @@ last_checked_at: 2026-04-24T14:43:53.922Z
 generated_at: 2026-04-24T14:43:53.922Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 not mentioned in source"
+  - "no discrete settable parameters beyond action commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences documented in source"
+  - "no other safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated"
+  - "port 23 (Telnet) not mentioned — TCP-only with JSON on 11881"
+  - "WebSocket path is /websocket but auth type unstated"
 verification:
   verdict: verified
   checked_at: 2026-04-24T14:43:53.922Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration."
+  confidence: medium
+  summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -252,14 +260,21 @@ verdict: verified
 checked_at: 2026-04-24T14:43:53.922Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration."
+confidence: medium
+summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 not mentioned in source"
+- "no discrete settable parameters beyond action commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences documented in source"
+- "no other safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated"
+- "port 23 (Telnet) not mentioned — TCP-only with JSON on 11881"
+- "WebSocket path is /websocket but auth type unstated"
 ```
 
 ---

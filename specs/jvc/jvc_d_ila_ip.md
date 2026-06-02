@@ -38,25 +38,31 @@ compatible_with:
   required_options: []
 source_domains:
   - support.jvc.com
-  - snapav.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+retrieved_at: 2026-04-30T04:26:39.184Z
 last_checked_at: 2026-05-14T18:17:17.138Z
 generated_at: 2026-05-14T18:17:17.138Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility ranges not stated"
+  - "exact model-to-firmware mapping not stated"
+  - "LAN control only supported on DLA-X7/X9/X30/X70/X90/RS50/60/45/55/65 per source; RS-232C applies to all models"
+  - "Remote Control Emulation table contains many more entries for colour temp,"
+  - "no continuous variable ranges documented - all values are discrete enum selections"
+  - "no explicit safety interlocks or power-on sequencing documented in source"
+  - "maximum command rate / minimum inter-command delay not specified beyond acknowledgement wait"
+  - "LAN connection limit (max simultaneous connections) not stated"
+  - "Colour Profile and Colour Management enquiry codes not documented"
+  - "Picture Mode enquiry code not documented (no feedback for current picture mode)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.138Z
   matched_actions: 124
   action_count: 124
-  confidence: high
-  summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified."
+  confidence: medium
+  summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1108,13 +1114,9 @@ interlocks:
 ```yaml
 source_domains:
   - support.jvc.com
-  - snapav.com
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
-  - http://www.support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/ProjectionScreens/ProtocolsAndDrivers/LX-NZ3_External_Command_List.pdf
-retrieved_at: 2026-04-30T04:26:48.085Z
+retrieved_at: 2026-04-30T04:26:39.184Z
 last_checked_at: 2026-05-14T18:17:17.138Z
 ```
 
@@ -1125,14 +1127,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.138Z
 matched_actions: 124
 action_count: 124
-confidence: high
-summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified."
+confidence: medium
+summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility ranges not stated"
+- "exact model-to-firmware mapping not stated"
+- "LAN control only supported on DLA-X7/X9/X30/X70/X90/RS50/60/45/55/65 per source; RS-232C applies to all models"
+- "Remote Control Emulation table contains many more entries for colour temp,"
+- "no continuous variable ranges documented - all values are discrete enum selections"
+- "no explicit safety interlocks or power-on sequencing documented in source"
+- "maximum command rate / minimum inter-command delay not specified beyond acknowledgement wait"
+- "LAN connection limit (max simultaneous connections) not stated"
+- "Colour Profile and Colour Management enquiry codes not documented"
+- "Picture Mode enquiry code not documented (no feedback for current picture mode)"
 ```
 
 ---

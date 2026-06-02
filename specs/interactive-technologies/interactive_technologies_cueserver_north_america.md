@@ -27,14 +27,32 @@ last_checked_at: 2026-05-04T16:58:20.009Z
 generated_at: 2026-05-04T16:58:20.009Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial port configuration (baud rate, data bits, parity, stop bits) not included in source excerpt"
+  - "HTTP port number and base URL not stated in source"
+  - "detailed command syntax for most CueScript commands not in source excerpt"
+  - "KiNET, sACN, Art-Net, CueStation protocol details not in source excerpt"
+  - "HTTP port number not stated in source"
+  - "HTTP base URL / path prefix not stated (CGI paths like /exe.cgi, /get.cgi, /pcmd.cgi, /set.cgi inferred from endpoint names)"
+  - "serial config not in source excerpt"
+  - "the following action commands are listed in source but syntax/params not fully documented:"
+  - "response formats for get.cgi endpoints not documented in source excerpt"
+  - "set.cgi parameter names/types not documented in source excerpt"
+  - "no unsolicited event/notification details in source excerpt"
+  - "macro definition format and stored macro structure not documented in source excerpt"
+  - "no safety warnings or interlock procedures in source excerpt"
+  - "serial port configuration not in source excerpt"
+  - "HTTP CGI API full URL patterns and response formats not in source excerpt"
+  - "effect properties, system variables list not in source excerpt"
+  - "KiNET and CueStation protocol details not in source excerpt"
+  - "Ethernet port numbers table referenced but not included in excerpt"
 verification:
   verdict: verified
   checked_at: 2026-05-04T16:58:20.009Z
   matched_actions: 60
   action_count: 60
-  confidence: high
-  summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified."
+  confidence: medium
+  summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified. (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -801,14 +819,31 @@ verdict: verified
 checked_at: 2026-05-04T16:58:20.009Z
 matched_actions: 60
 action_count: 60
-confidence: high
-summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified."
+confidence: medium
+summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified. (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial port configuration (baud rate, data bits, parity, stop bits) not included in source excerpt"
+- "HTTP port number and base URL not stated in source"
+- "detailed command syntax for most CueScript commands not in source excerpt"
+- "KiNET, sACN, Art-Net, CueStation protocol details not in source excerpt"
+- "HTTP port number not stated in source"
+- "HTTP base URL / path prefix not stated (CGI paths like /exe.cgi, /get.cgi, /pcmd.cgi, /set.cgi inferred from endpoint names)"
+- "serial config not in source excerpt"
+- "the following action commands are listed in source but syntax/params not fully documented:"
+- "response formats for get.cgi endpoints not documented in source excerpt"
+- "set.cgi parameter names/types not documented in source excerpt"
+- "no unsolicited event/notification details in source excerpt"
+- "macro definition format and stored macro structure not documented in source excerpt"
+- "no safety warnings or interlock procedures in source excerpt"
+- "serial port configuration not in source excerpt"
+- "HTTP CGI API full URL patterns and response formats not in source excerpt"
+- "effect properties, system variables list not in source excerpt"
+- "KiNET and CueStation protocol details not in source excerpt"
+- "Ethernet port numbers table referenced but not included in excerpt"
 ```
 
 ---

@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:36.891Z
 last_checked_at: 2026-04-25T21:39:03.482Z
 generated_at: 2026-04-25T21:39:03.482Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document does not specify HDBaseT control protocol details"
+  - "source documents adjustable parameters as Actions rather than persistent Variables."
+  - "source document describes only command-response pattern, not unsolicited device events."
+  - "no explicit multi-step macros described in source."
+  - "Appendix \"Supplementary Information by Command\" values (input terminal codes, aspect codes, eco mode codes, signal type codes) are model-dependent and partially documented with alternatives"
+  - "HDBaseT standby mode not detailed in source"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:39:03.482Z
   matched_actions: 53
   action_count: 53
   confidence: low
-  summary: "All 53 spec actions matched source including queries; transport verified"
+  summary: "All 53 spec actions matched source including queries; transport verified (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -603,7 +610,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:36.891Z
 last_checked_at: 2026-04-25T21:39:03.482Z
 ```
 
@@ -615,13 +622,19 @@ checked_at: 2026-04-25T21:39:03.482Z
 matched_actions: 53
 action_count: 53
 confidence: low
-summary: "All 53 spec actions matched source including queries; transport verified"
+summary: "All 53 spec actions matched source including queries; transport verified (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document does not specify HDBaseT control protocol details"
+- "source documents adjustable parameters as Actions rather than persistent Variables."
+- "source document describes only command-response pattern, not unsolicited device events."
+- "no explicit multi-step macros described in source."
+- "Appendix \"Supplementary Information by Command\" values (input terminal codes, aspect codes, eco mode codes, signal type codes) are model-dependent and partially documented with alternatives"
+- "HDBaseT standby mode not detailed in source"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

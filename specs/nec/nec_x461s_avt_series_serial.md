@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:22.425Z
 last_checked_at: 2026-04-25T21:34:43.411Z
 generated_at: 2026-04-25T21:34:43.411Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Some command parameters reference an Appendix \"Supplementary Information by Command\" that is not included in this source document"
+  - "flow control not specified in source"
+  - "Variables that can be set and queried independently of discrete actions"
+  - "No unsolicited event/notification format described in source."
+  - "No explicit multi-step macros described in source."
+  - "Specific standby mode requirements per model not detailed in source"
+  - "Baud rate selection method ( DIP switch / menu setting ) not described in source"
+  - "Control ID configuration method not described in source"
+  - "Model code (ID2) values not enumerated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:34:43.411Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions map cleanly to source commands with matching semantics; transport parameters verified; full catalogue coverage."
+  confidence: medium
+  summary: "All 53 spec actions map cleanly to source commands with matching semantics; transport parameters verified; full catalogue coverage. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -569,7 +578,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:22.425Z
 last_checked_at: 2026-04-25T21:34:43.411Z
 ```
 
@@ -580,14 +589,22 @@ verdict: verified
 checked_at: 2026-04-25T21:34:43.411Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions map cleanly to source commands with matching semantics; transport parameters verified; full catalogue coverage."
+confidence: medium
+summary: "All 53 spec actions map cleanly to source commands with matching semantics; transport parameters verified; full catalogue coverage. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Some command parameters reference an Appendix \"Supplementary Information by Command\" that is not included in this source document"
+- "flow control not specified in source"
+- "Variables that can be set and queried independently of discrete actions"
+- "No unsolicited event/notification format described in source."
+- "No explicit multi-step macros described in source."
+- "Specific standby mode requirements per model not detailed in source"
+- "Baud rate selection method ( DIP switch / menu setting ) not described in source"
+- "Control ID configuration method not described in source"
+- "Model code (ID2) values not enumerated in source"
 ```
 
 ---

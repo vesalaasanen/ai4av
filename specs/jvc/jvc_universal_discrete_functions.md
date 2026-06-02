@@ -45,14 +45,20 @@ last_checked_at: 2026-05-14T18:17:17.289Z
 generated_at: 2026-05-14T18:17:17.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "command timing specifications beyond 50ms break detection not stated. UNRESOLVED:firmware version compatibility not stated."
+  - "continuous adjustment parameters (brightness, contrast, colour,"
+  - "projector sends unsolicited events only via acknowledgement"
+  - "no multi-step macro sequences documented in source."
+  - "power-on sequencing, lamp replacement warnings not stated in source."
+  - "LAN default IP address (192.168.0.2), subnet mask, gateway — network settings stated but not as command parameters. UNRESOLVED: DHCP On/Off default not stated explicitly. UNRESOLVED: command timeout beyond 5 seconds not characterized."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.289Z
   matched_actions: 171
   action_count: 313
-  confidence: high
-  summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source."
+  confidence: medium
+  summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2288,14 +2294,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.289Z
 matched_actions: 171
 action_count: 313
-confidence: high
-summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source."
+confidence: medium
+summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "command timing specifications beyond 50ms break detection not stated. UNRESOLVED:firmware version compatibility not stated."
+- "continuous adjustment parameters (brightness, contrast, colour,"
+- "projector sends unsolicited events only via acknowledgement"
+- "no multi-step macro sequences documented in source."
+- "power-on sequencing, lamp replacement warnings not stated in source."
+- "LAN default IP address (192.168.0.2), subnet mask, gateway — network settings stated but not as command parameters. UNRESOLVED: DHCP On/Off default not stated explicitly. UNRESOLVED: command timeout beyond 5 seconds not characterized."
 ```
 
 ---

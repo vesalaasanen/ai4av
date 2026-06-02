@@ -20,19 +20,25 @@ source_domains:
   - sunbritetv.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+retrieved_at: 2026-04-30T04:32:15.108Z
 last_checked_at: 2026-05-14T18:17:21.070Z
 generated_at: 2026-05-14T18:17:21.070Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control path not documented in source"
+  - "no discrete settable parameters documented separate from actions"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macros documented in source"
+  - "TCP/IP control path referenced in filename but not documented in source"
+  - "firmware version compatibility ranges not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.070Z
   matched_actions: 45
   action_count: 46
-  confidence: high
-  summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented."
+  confidence: medium
+  summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -359,7 +365,7 @@ source_domains:
   - sunbritetv.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+retrieved_at: 2026-04-30T04:32:15.108Z
 last_checked_at: 2026-05-14T18:17:21.070Z
 ```
 
@@ -370,14 +376,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.070Z
 matched_actions: 45
 action_count: 46
-confidence: high
-summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented."
+confidence: medium
+summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control path not documented in source"
+- "no discrete settable parameters documented separate from actions"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macros documented in source"
+- "TCP/IP control path referenced in filename but not documented in source"
+- "firmware version compatibility ranges not stated"
 ```
 
 ---

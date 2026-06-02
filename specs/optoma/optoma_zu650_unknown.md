@@ -16,22 +16,35 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - optomaeurope.com
+  - region-resource.optoma.com
 source_urls:
-  - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
-retrieved_at: 2026-05-02T12:10:27.190Z
+  - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
+  - https://region-resource.optoma.com/products/import/Documents/cf45148a-8c4b-4489-8689-b9b1c8d09d14.pdf
+retrieved_at: 2026-05-15T02:07:53.142Z
 last_checked_at: 2026-05-18T16:41:56.484Z
 generated_at: 2026-05-18T16:41:56.484Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Telnet/HTTP/Crestron/PJ Link/AMX transport details (ports, auth, command syntax) not provided in source"
+  - "firmware version compatibility not stated in source"
+  - "TCP port for Telnet or HTTP interfaces not stated"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings or interlock procedures found in source"
+  - "TCP/IP control port not stated (Telnet/HTTP interfaces exist but port numbers not documented)"
+  - "Crestron/PJ Link/AMX/Extron integration details not documented"
+  - "WLAN IP configuration write commands not fully specified (read-only responses shown)"
+  - "EDID settings (HDMI1/2, HDBaseT) have no command codes in source"
+  - "Network Reset has no command code in source"
+  - "ProService menu has no commands documented"
+  - "Change Password procedure not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:41:56.484Z
   matched_actions: 152
   action_count: 152
-  confidence: high
-  summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification."
+  confidence: medium
+  summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1880,10 +1893,11 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - optomaeurope.com
+  - region-resource.optoma.com
 source_urls:
-  - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
-retrieved_at: 2026-05-02T12:10:27.190Z
+  - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
+  - https://region-resource.optoma.com/products/import/Documents/cf45148a-8c4b-4489-8689-b9b1c8d09d14.pdf
+retrieved_at: 2026-05-15T02:07:53.142Z
 last_checked_at: 2026-05-18T16:41:56.484Z
 ```
 
@@ -1894,14 +1908,25 @@ verdict: verified
 checked_at: 2026-05-18T16:41:56.484Z
 matched_actions: 152
 action_count: 152
-confidence: high
-summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification."
+confidence: medium
+summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Telnet/HTTP/Crestron/PJ Link/AMX transport details (ports, auth, command syntax) not provided in source"
+- "firmware version compatibility not stated in source"
+- "TCP port for Telnet or HTTP interfaces not stated"
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings or interlock procedures found in source"
+- "TCP/IP control port not stated (Telnet/HTTP interfaces exist but port numbers not documented)"
+- "Crestron/PJ Link/AMX/Extron integration details not documented"
+- "WLAN IP configuration write commands not fully specified (read-only responses shown)"
+- "EDID settings (HDMI1/2, HDBaseT) have no command codes in source"
+- "Network Reset has no command code in source"
+- "ProService menu has no commands documented"
+- "Change Password procedure not documented"
 ```
 
 ---

@@ -19,19 +19,28 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-05-04T06:15:26.245Z
 last_checked_at: 2026-05-04T05:40:40.906Z
 generated_at: 2026-05-04T05:40:40.906Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP port number not stated in source (Telnet section referenced but no port given)"
+  - "no settable continuous parameters (e.g. volume/gain) documented in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "no other safety warnings or interlock procedures found in source"
+  - "exact model-to-command-set mapping not confirmed"
+  - "number of inputs/outputs for C66CS variant not confirmed (CMX88AB implies 8x8)"
+  - "firmware version compatibility not stated in source"
+  - "TCP port number not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-04T05:40:40.906Z
   matched_actions: 15
   action_count: 15
-  confidence: high
-  summary: "All 15 spec actions matched verbatim in source command table; transport parameters verified."
+  confidence: medium
+  summary: "All 15 spec actions matched verbatim in source command table; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -264,7 +273,7 @@ source_domains:
   - blustream.com.au
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
-retrieved_at: 2026-04-29T08:34:59.348Z
+retrieved_at: 2026-05-04T06:15:26.245Z
 last_checked_at: 2026-05-04T05:40:40.906Z
 ```
 
@@ -275,14 +284,22 @@ verdict: verified
 checked_at: 2026-05-04T05:40:40.906Z
 matched_actions: 15
 action_count: 15
-confidence: high
-summary: "All 15 spec actions matched verbatim in source command table; transport parameters verified."
+confidence: medium
+summary: "All 15 spec actions matched verbatim in source command table; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP port number not stated in source (Telnet section referenced but no port given)"
+- "no settable continuous parameters (e.g. volume/gain) documented in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "no other safety warnings or interlock procedures found in source"
+- "exact model-to-command-set mapping not confirmed"
+- "number of inputs/outputs for C66CS variant not confirmed (CMX88AB implies 8x8)"
+- "firmware version compatibility not stated in source"
+- "TCP port number not stated in source"
 ```
 
 ---

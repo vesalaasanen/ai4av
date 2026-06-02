@@ -16,22 +16,34 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
+  - justaddpower.happyfox.com
+  - gscs-b2c.lge.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=9zWKGeMAX3TQzc4LFccwg"
+retrieved_at: 2026-04-25T21:02:34.409Z
 last_checked_at: 2026-04-25T21:02:34.409Z
 generated_at: 2026-04-25T21:02:34.409Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "IR remote control codes are documented but out of scope for serial control spec"
+  - "no standalone settable parameters beyond discrete actions"
+  - "no unsolicited event notifications documented"
+  - "no explicit multi-step sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "port number (RS-232C DB-9 or 3.5mm jack) not specified in source"
+  - "command timing requirements not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:02:34.409Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 27 spec actions matched literally to source commands; transport parameters verified verbatim; complete RS-232 serial control coverage."
+  confidence: medium
+  summary: "All 27 spec actions matched literally to source commands; transport parameters verified verbatim; complete RS-232 serial control coverage. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -390,10 +402,14 @@ IR codes are documented for wired remote control but are out of scope for the RS
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
+  - justaddpower.happyfox.com
+  - gscs-b2c.lge.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=9zWKGeMAX3TQzc4LFccwg"
+retrieved_at: 2026-04-25T21:02:34.409Z
 last_checked_at: 2026-04-25T21:02:34.409Z
 ```
 
@@ -404,14 +420,21 @@ verdict: verified
 checked_at: 2026-04-25T21:02:34.409Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 27 spec actions matched literally to source commands; transport parameters verified verbatim; complete RS-232 serial control coverage."
+confidence: medium
+summary: "All 27 spec actions matched literally to source commands; transport parameters verified verbatim; complete RS-232 serial control coverage. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "IR remote control codes are documented but out of scope for serial control spec"
+- "no standalone settable parameters beyond discrete actions"
+- "no unsolicited event notifications documented"
+- "no explicit multi-step sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "port number (RS-232C DB-9 or 3.5mm jack) not specified in source"
+- "command timing requirements not stated in source"
 ```
 
 ---

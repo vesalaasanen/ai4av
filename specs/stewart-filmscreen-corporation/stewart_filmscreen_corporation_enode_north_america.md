@@ -27,14 +27,28 @@ last_checked_at: 2026-04-30T09:49:39.963Z
 generated_at: 2026-04-30T09:49:39.963Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific eNode model variants (e.g., eNode/dmx) referenced in source but not fully documented"
+  - "RS-232c via IBT-100 adapter - baud rate, data bits, parity, stop bits not stated in source"
+  - "DISSOLVE.1, DISSOLVE.2, DISSOLVE.3, DISSOLVE.5 commands listed as WIP - not fully specified"
+  - "RGB VALUE=R.G.B command listed as WIP - not fully specified"
+  - "RGBW command listed as WIP - not fully specified"
+  - "source does not specify unsolicited event notifications beyond NOTIFY feedback"
+  - "specific interlock procedures for motor retraction/extension safety not detailed"
+  - "IBT-100 serial adapter baud rate/settings not specified in source"
+  - "DISSOLVE commands marked WIP — values not fully defined"
+  - "STATUS=? command listed but crossed out; behavior unknown"
+  - "PRESET.X=XX.XX command listed but crossed out; behavior unknown"
+  - "DMX fixture-specific configuration beyond channel mapping not detailed"
+  - "e-Node Pilot application details not documented"
+  - "Specific voltage/current/power specifications for eNode hardware not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:49:39.963Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified."
+  confidence: medium
+  summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -554,14 +568,27 @@ verdict: verified
 checked_at: 2026-04-30T09:49:39.963Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified."
+confidence: medium
+summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific eNode model variants (e.g., eNode/dmx) referenced in source but not fully documented"
+- "RS-232c via IBT-100 adapter - baud rate, data bits, parity, stop bits not stated in source"
+- "DISSOLVE.1, DISSOLVE.2, DISSOLVE.3, DISSOLVE.5 commands listed as WIP - not fully specified"
+- "RGB VALUE=R.G.B command listed as WIP - not fully specified"
+- "RGBW command listed as WIP - not fully specified"
+- "source does not specify unsolicited event notifications beyond NOTIFY feedback"
+- "specific interlock procedures for motor retraction/extension safety not detailed"
+- "IBT-100 serial adapter baud rate/settings not specified in source"
+- "DISSOLVE commands marked WIP — values not fully defined"
+- "STATUS=? command listed but crossed out; behavior unknown"
+- "PRESET.X=XX.XX command listed but crossed out; behavior unknown"
+- "DMX fixture-specific configuration beyond channel mapping not detailed"
+- "e-Node Pilot application details not documented"
+- "Specific voltage/current/power specifications for eNode hardware not stated"
 ```
 
 ---

@@ -19,24 +19,27 @@ compatible_with:
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+retrieved_at: 2026-04-30T04:31:58.301Z
 last_checked_at: 2026-05-14T18:17:20.117Z
 generated_at: 2026-05-14T18:17:20.117Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "product family variants (MKII hardware differences) not detailed in source"
+  - "no discrete settable parameters beyond Actions; volume and trim"
+  - "no unsolicited event descriptions in source; device sends"
+  - "no multi-step macro sequences described in source."
+  - "no safety interlock procedures stated in source."
+  - "coax/optical source inputs (coax1-3, opt1-3) referenced in feedback"
+  - "video8 source listed in feedback but video8 not in action table."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.117Z
   matched_actions: 54
   action_count: 71
-  confidence: high
-  summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected."
+  confidence: medium
+  summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -516,12 +519,8 @@ commands but not in source selection action table; possible documentation gap. -
 source_domains:
   - rotel.com
 source_urls:
-  - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
-  - "https://rotel.com/sites/default/files/product/rs232/RT1080%20Protocol.pdf"
-  - "https://www.rotel.com/sites/default/files/product/rs232/RX1050%20Protocol.pdf"
-retrieved_at: 2026-04-30T04:32:04.962Z
+retrieved_at: 2026-04-30T04:31:58.301Z
 last_checked_at: 2026-05-14T18:17:20.117Z
 ```
 
@@ -532,14 +531,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.117Z
 matched_actions: 54
 action_count: 71
-confidence: high
-summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected."
+confidence: medium
+summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "product family variants (MKII hardware differences) not detailed in source"
+- "no discrete settable parameters beyond Actions; volume and trim"
+- "no unsolicited event descriptions in source; device sends"
+- "no multi-step macro sequences described in source."
+- "no safety interlock procedures stated in source."
+- "coax/optical source inputs (coax1-3, opt1-3) referenced in feedback"
+- "video8 source listed in feedback but video8 not in action table."
 ```
 
 ---

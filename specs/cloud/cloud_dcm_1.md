@@ -28,14 +28,19 @@ last_checked_at: 2026-04-30T09:39:44.971Z
 generated_at: 2026-04-30T09:39:44.971Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Emergency mute behavior during fault conditions not stated"
+  - "flow control not stated in source"
+  - "No explicit event/push notification descriptions in source."
+  - "No safety warnings or interlock procedures in source."
+  - "Maximum message length not stated. Flow control (RTS/CTS) not stated. DTR/DSR support not stated."
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:39:44.971Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched cleanly to source; all transport parameters verified; comprehensive command coverage."
+  confidence: medium
+  summary: "All 44 spec actions matched cleanly to source; all transport parameters verified; comprehensive command coverage. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -715,14 +720,18 @@ verdict: verified
 checked_at: 2026-04-30T09:39:44.971Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched cleanly to source; all transport parameters verified; comprehensive command coverage."
+confidence: medium
+summary: "All 44 spec actions matched cleanly to source; all transport parameters verified; comprehensive command coverage. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Emergency mute behavior during fault conditions not stated"
+- "flow control not stated in source"
+- "No explicit event/push notification descriptions in source."
+- "No safety warnings or interlock procedures in source."
+- "Maximum message length not stated. Flow control (RTS/CTS) not stated. DTR/DSR support not stated."
 ```
 
 ---

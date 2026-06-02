@@ -29,14 +29,26 @@ last_checked_at: 2026-04-27T10:13:16.685Z
 generated_at: 2026-04-27T10:13:16.685Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device firmware version, full CoCon API action list, routing commands not in this doc"
+  - "exact API base path not stated in source"
+  - "serial config not covered in this source"
+  - "no query commands in this source"
+  - "only camera-related commands present; full device action set not in this doc"
+  - "no response/ack format documented for TLVCAM1/TLVCAM2 inbound commands"
+  - "no device state variables in this source"
+  - "full event list from CoCon API not in this source"
+  - "no multi-step macros in this source"
+  - "no safety warnings or interlock procedures in source"
+  - "full CoCon API action/feedback list not in this source; only camera protocol covered"
+  - "device power, input/output routing, level control not in this source"
 verification:
   verdict: verified
   checked_at: 2026-04-27T10:13:16.685Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented."
+  confidence: medium
+  summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -235,14 +247,25 @@ verdict: verified
 checked_at: 2026-04-27T10:13:16.685Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented."
+confidence: medium
+summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device firmware version, full CoCon API action list, routing commands not in this doc"
+- "exact API base path not stated in source"
+- "serial config not covered in this source"
+- "no query commands in this source"
+- "only camera-related commands present; full device action set not in this doc"
+- "no response/ack format documented for TLVCAM1/TLVCAM2 inbound commands"
+- "no device state variables in this source"
+- "full event list from CoCon API not in this source"
+- "no multi-step macros in this source"
+- "no safety warnings or interlock procedures in source"
+- "full CoCon API action/feedback list not in this source; only camera protocol covered"
+- "device power, input/output routing, level control not in this source"
 ```
 
 ---

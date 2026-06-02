@@ -28,14 +28,26 @@ last_checked_at: 2026-04-30T09:52:01.935Z
 generated_at: 2026-04-30T09:52:01.935Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact Solaro model variants (e.g. Solaro QR1, QR5) not stated — source says \"Solaro Series\""
+  - "firmware version compatibility not stated in source"
+  - "UDP subscription port 10008 - no separate addressing field for secondary protocol"
+  - "variable list is dynamic per device configuration (set up in Xilica Designer)"
+  - "no macro sequences described in source"
+  - "no safety interlock procedures stated in source"
+  - "raw value scaling factor for SETRAW/GETRAW/INCRAW/DECRAW not documented"
+  - "maximum number of subscriptions (error 107 implies a limit but value not stated)"
+  - "maximum number of control groups (error 112 implies a limit but value not stated)"
+  - "maximum control objects per group (error 113 implies a limit but value not stated)"
+  - "verbose/simple mode (section 8) marked as future implementation"
+  - "string data values (filter types, slopes, AFS settings, ramp types) — enumerated in section 11 but mapping to control objects not specified"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:52:01.935Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions matched literally; transport parameters verified."
+  confidence: medium
+  summary: "All 21 spec actions matched literally; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -433,14 +445,25 @@ verdict: verified
 checked_at: 2026-04-30T09:52:01.935Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions matched literally; transport parameters verified."
+confidence: medium
+summary: "All 21 spec actions matched literally; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact Solaro model variants (e.g. Solaro QR1, QR5) not stated — source says \"Solaro Series\""
+- "firmware version compatibility not stated in source"
+- "UDP subscription port 10008 - no separate addressing field for secondary protocol"
+- "variable list is dynamic per device configuration (set up in Xilica Designer)"
+- "no macro sequences described in source"
+- "no safety interlock procedures stated in source"
+- "raw value scaling factor for SETRAW/GETRAW/INCRAW/DECRAW not documented"
+- "maximum number of subscriptions (error 107 implies a limit but value not stated)"
+- "maximum number of control groups (error 112 implies a limit but value not stated)"
+- "maximum control objects per group (error 113 implies a limit but value not stated)"
+- "verbose/simple mode (section 8) marked as future implementation"
+- "string data values (filter types, slopes, AFS settings, ramp types) — enumerated in section 11 but mapping to control objects not specified"
 ```
 
 ---

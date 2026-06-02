@@ -17,21 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - projector-database.com
+  - manualshelf.com
 source_urls:
   - https://www.projector-database.com/pdf/knollhd108-178-290-292-an-en.pdf
-retrieved_at: 2026-05-21T03:56:51.060Z
+  - https://www.manualshelf.com/manual/knoll-systems/knoll-systems-projector-hd178/user-s-manual-english.html
+retrieved_at: 2026-05-21T03:24:26.751Z
 last_checked_at: 2026-05-26T20:04:53.718Z
 generated_at: 2026-05-26T20:04:53.718Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "document covers HD178, HD290, HD292 — only HD292 listed as input model"
+  - "no unsolicited notification mechanism described"
+  - "remove if not applicable"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no macro/multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power sequencing requirements described"
+  - "CSM range 0-2 stated but REC709=3 in table — conflict not resolvable from source"
 verification:
   verdict: verified
   checked_at: 2026-05-26T20:04:53.718Z
   matched_actions: 94
   action_count: 94
-  confidence: high
-  summary: "All 94 spec actions matched verbatim against source command table with correct ranges and enums; transport parameters verified; 100% coverage."
+  confidence: medium
+  summary: "All 94 spec actions matched verbatim against source command table with correct ranges and enums; transport parameters verified; 100% coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -856,9 +865,11 @@ interlocks: []
 ```yaml
 source_domains:
   - projector-database.com
+  - manualshelf.com
 source_urls:
   - https://www.projector-database.com/pdf/knollhd108-178-290-292-an-en.pdf
-retrieved_at: 2026-05-21T03:56:51.060Z
+  - https://www.manualshelf.com/manual/knoll-systems/knoll-systems-projector-hd178/user-s-manual-english.html
+retrieved_at: 2026-05-21T03:24:26.751Z
 last_checked_at: 2026-05-26T20:04:53.718Z
 ```
 
@@ -869,14 +880,20 @@ verdict: verified
 checked_at: 2026-05-26T20:04:53.718Z
 matched_actions: 94
 action_count: 94
-confidence: high
-summary: "All 94 spec actions matched verbatim against source command table with correct ranges and enums; transport parameters verified; 100% coverage."
+confidence: medium
+summary: "All 94 spec actions matched verbatim against source command table with correct ranges and enums; transport parameters verified; 100% coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "document covers HD178, HD290, HD292 — only HD292 listed as input model"
+- "no unsolicited notification mechanism described"
+- "remove if not applicable"
+- "no unsolicited event/notification mechanism described in source"
+- "no macro/multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power sequencing requirements described"
+- "CSM range 0-2 stated but REC709=3 in table — conflict not resolvable from source"
 ```
 
 ---

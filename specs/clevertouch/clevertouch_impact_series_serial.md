@@ -18,21 +18,36 @@ compatible_with:
   required_options: []
 source_domains:
   - old.support.clevertouch.com
+  - clevertouch.zendesk.com
+  - aveosystems.com
 source_urls:
   - "https://old.support.clevertouch.com/Support/RS232%20code%20for%20Clevertouch%20Plus.pdf"
-retrieved_at: 2026-05-14T15:06:43.923Z
+  - https://clevertouch.zendesk.com/hc/en-gb/articles/23384984694674-Clevertouch-Quick-Tips-RS232-and-IP-commands
+  - https://aveosystems.com/wp-content/uploads/product_pdfs/Clevertouch_Mira_Connect.pdf
+retrieved_at: 2026-05-04T15:23:22.675Z
 last_checked_at: 2026-05-04T16:13:59.277Z
 generated_at: 2026-05-04T16:13:59.277Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no response/acknowledgement format documented for action commands (only status queries have reply codes)"
+  - "flow_control not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "flow control not stated in source"
+  - "no settable persistent parameters documented beyond action-level volume/channel"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "no acknowledgement/response format documented for action commands"
+  - "no timing constraints or inter-command delay documented"
+  - "WHDI input listed in status reply but no select command provided"
 verification:
   verdict: verified
   checked_at: 2026-05-04T16:13:59.277Z
   matched_actions: 72
   action_count: 72
-  confidence: high
-  summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -635,9 +650,13 @@ interlocks: []
 ```yaml
 source_domains:
   - old.support.clevertouch.com
+  - clevertouch.zendesk.com
+  - aveosystems.com
 source_urls:
   - "https://old.support.clevertouch.com/Support/RS232%20code%20for%20Clevertouch%20Plus.pdf"
-retrieved_at: 2026-05-14T15:06:43.923Z
+  - https://clevertouch.zendesk.com/hc/en-gb/articles/23384984694674-Clevertouch-Quick-Tips-RS232-and-IP-commands
+  - https://aveosystems.com/wp-content/uploads/product_pdfs/Clevertouch_Mira_Connect.pdf
+retrieved_at: 2026-05-04T15:23:22.675Z
 last_checked_at: 2026-05-04T16:13:59.277Z
 ```
 
@@ -648,14 +667,24 @@ verdict: verified
 checked_at: 2026-05-04T16:13:59.277Z
 matched_actions: 72
 action_count: 72
-confidence: high
-summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no response/acknowledgement format documented for action commands (only status queries have reply codes)"
+- "flow_control not stated in source"
+- "firmware version compatibility not stated in source"
+- "flow control not stated in source"
+- "no settable persistent parameters documented beyond action-level volume/channel"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "no acknowledgement/response format documented for action commands"
+- "no timing constraints or inter-command delay documented"
+- "WHDI input listed in status reply but no select command provided"
 ```
 
 ---

@@ -18,23 +18,27 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:43:30.390Z
 last_checked_at: 2026-05-17T00:43:30.390Z
 generated_at: 2026-05-17T00:43:30.390Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source Zone Lockout custom parameter strings require the H2X Source Lockout Command Calculator tool, not fully enumerable from source alone. HDBaseT remote device passthrough commands use binary/HEX framing distinct from ASCII matrix commands."
+  - "no standalone settable variables beyond actions/feedbacks described above"
+  - "source does not describe unsolicited notifications from the device"
+  - "source does not describe multi-step macros"
+  - "No web/REST API endpoints documented in this source. No authentication/session handling described. No firmware download URLs or version compatibility matrix fully enumerated."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-17T00:43:30.390Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 29 spec actions matched verbatim in source; all transport parameters verified."
+  confidence: medium
+  summary: "All 29 spec actions matched verbatim in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -693,11 +697,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:43:30.390Z
 last_checked_at: 2026-05-17T00:43:30.390Z
 ```
 
@@ -708,14 +710,19 @@ verdict: verified
 checked_at: 2026-05-17T00:43:30.390Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 29 spec actions matched verbatim in source; all transport parameters verified."
+confidence: medium
+summary: "All 29 spec actions matched verbatim in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source Zone Lockout custom parameter strings require the H2X Source Lockout Command Calculator tool, not fully enumerable from source alone. HDBaseT remote device passthrough commands use binary/HEX framing distinct from ASCII matrix commands."
+- "no standalone settable variables beyond actions/feedbacks described above"
+- "source does not describe unsolicited notifications from the device"
+- "source does not describe multi-step macros"
+- "No web/REST API endpoints documented in this source. No authentication/session handling described. No firmware download URLs or version compatibility matrix fully enumerated."
+- "model-specific source not located"
 ```
 
 ---

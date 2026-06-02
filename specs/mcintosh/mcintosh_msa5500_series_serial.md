@@ -17,24 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - mcintoshlabs.com
-  - raw.githubusercontent.com
 source_urls:
-  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
-retrieved_at: 2026-05-04T15:10:09.003Z
+retrieved_at: 2026-04-30T04:25:00.445Z
 last_checked_at: 2026-04-25T21:10:09.769Z
 generated_at: 2026-04-25T21:10:09.769Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "baud rate not stated in source"
+  - "no multi-step sequences described in source"
+  - "no power-on sequencing requirements or safety warnings stated in source"
+  - "RS-232 baud rate not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "protocol version not stated in source"
+  - "maximum command rate / throttling not stated in source"
+  - "connection keep-alive or timeout behavior not stated in source"
+  - "passthru mode details not documented beyond error message"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:10:09.769Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions (33 command actions plus 16 query feedbacks) matched with complete fidelity to source protocol table; all transport parameters verified."
+  confidence: medium
+  summary: "All 49 spec actions (33 command actions plus 16 query feedbacks) matched with complete fidelity to source protocol table; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -480,12 +486,9 @@ interlocks:
 ```yaml
 source_domains:
   - mcintoshlabs.com
-  - raw.githubusercontent.com
 source_urls:
-  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
-retrieved_at: 2026-05-04T15:10:09.003Z
+retrieved_at: 2026-04-30T04:25:00.445Z
 last_checked_at: 2026-04-25T21:10:09.769Z
 ```
 
@@ -496,14 +499,22 @@ verdict: verified
 checked_at: 2026-04-25T21:10:09.769Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions (33 command actions plus 16 query feedbacks) matched with complete fidelity to source protocol table; all transport parameters verified."
+confidence: medium
+summary: "All 49 spec actions (33 command actions plus 16 query feedbacks) matched with complete fidelity to source protocol table; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "baud rate not stated in source"
+- "no multi-step sequences described in source"
+- "no power-on sequencing requirements or safety warnings stated in source"
+- "RS-232 baud rate not stated in source"
+- "firmware version compatibility not stated in source"
+- "protocol version not stated in source"
+- "maximum command rate / throttling not stated in source"
+- "connection keep-alive or timeout behavior not stated in source"
+- "passthru mode details not documented beyond error message"
 ```
 
 ---

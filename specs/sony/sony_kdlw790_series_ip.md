@@ -4,52 +4,54 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Sony KDLW790 Series Control Spec"
 manufacturer: Sony
-model_family: "Sony KDLW790 Series"
+model_family: "KDLW790 Series"
 aliases: []
 compatible_with:
   manufacturers:
     - Sony
   models:
-    - "Sony KDLW790 Series"
+    - "KDLW790 Series"
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control
+retrieved_at: 2026-05-27T14:21:06.369Z
 last_checked_at: 2026-05-31T22:30:33.049Z
 generated_at: 2026-05-31T22:30:33.049Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source is the generic Sony BRAVIA \"Simple IP control\" page; per-family firmware constraints and KDLW790-specific quirks not stated. EU models have RED-DA compliance variants with differing command availability — not enumerated here."
+  - "full parameter structure for the interface selector beyond"
+  - "KDLW790-specific firmware version range supporting this protocol not stated. EU RED-DA variant command availability not enumerated. KDLW790-specific quirks (e.g. max volume, input count, supported scene list) not stated in this generic source."
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:30:33.049Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched FourCC codes and message types in the source; transport parameters verified; full command coverage."
+  confidence: medium
+  summary: "All 17 spec actions matched FourCC codes and message types in the source; transport parameters verified; full command coverage. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-27
+created_at: 2026-06-02
 ---
 
 # Sony KDLW790 Series Control Spec
 
 ## Summary
+Sony BRAVIA Professional Display Simple IP control protocol over TCP port 20060. Fixed 24-byte messages with a 2-byte header (`*S` = 0x2A 0x53), 1-byte message type (Control/Enquiry/Answer/Notify), 4-byte FourCC command, 16-byte parameter field, and 1-byte LF footer (0x0A). Commands cover power, input select, volume, mute, picture mute, scene setting, IR pass-through, plus network info queries (broadcast address, MAC).
 
-Sony KDLW790 Series BRAVIA professional displays use Simple IP Control — a binary protocol over TCP port 20060 with fixed-length 24-byte messages. The protocol supports power, volume, mute, input selection, picture mute, scene settings, IR remote code emulation, and network info queries. The device also emits unsolicited notify messages on state changes.
+<!-- UNRESOLVED: source is the generic Sony BRAVIA "Simple IP control" page; per-family firmware constraints and KDLW790-specific quirks not stated. EU models have RED-DA compliance variants with differing command availability — not enumerated here. -->
 
 ## Transport
-
 ```yaml
 protocols:
   - tcp
@@ -59,467 +61,342 @@ auth:
   type: none  # inferred: no auth procedure in source
 ```
 
-## Data Format
-
-```yaml
-description: |
-  Fixed 24-byte messages. Structure:
-    Byte 0-1:   Header  - 0x2A 0x53 (*S)
-    Byte 2:     Message Type - C (Control), E (Enquiry), A (Answer), N (Notify)
-    Byte 3-6:   FourCC command identifier
-    Byte 7-22:  Parameters (16 bytes, zero-padded)
-    Byte 23:    Footer - 0x0A (LF)
-  Control (C) and Enquiry (E) are client→monitor.
-  Answer (A) is monitor→client reply.
-  Notify (N) is unsolicited monitor→client event.
-```
-
 ## Traits
-
 ```yaml
-traits:
-  - powerable
-  - levelable
-  - queryable
-  - routable
+- powerable    # inferred from setPowerStatus / togglePowerStatus
+- routable     # inferred from setInput / getInput
+- queryable    # inferred from get* enquiry commands
+- levelable    # inferred from setAudioVolume
 ```
 
 ## Actions
-
 ```yaml
-actions:
-  - id: set_power_status
-    label: Set Power Status
-    kind: action
-    fourcc: POWR
-    message_type: C
-    description: "Set power state. Param 0000000000000000 = Standby (Off), 0000000000000001 = Active (On)."
-    params:
-      - name: state
-        type: enum
-        values:
-          - "off"
-          - "on"
-        description: "Power state to set"
+# Protocol envelope (fixed for every command):
+#   bytes 0-1   : header 0x2A 0x53  ("*S")
+#   byte  2     : message type (0x43=C, 0x45=E, 0x41=A, 0x4E=N)
+#   bytes 3-6   : FourCC command (ASCII)
+#   bytes 7-22  : 16-byte parameter field (left/right padded with '0' or '#')
+#   byte  23    : footer 0x0A (LF)
+# `command` field below shows bytes 0-22 as ASCII; 0x0A footer is implicit on the wire.
 
-  - id: get_power_status
-    label: Get Power Status
-    kind: query
-    fourcc: POWR
-    message_type: E
-    description: "Query current power status."
-    params: []
+- id: set_ircc_code
+  label: Send IR Remote Code
+  kind: action
+  command: "*SCIRCC{ir_code:16-chars-right-padded-with-#}"
+  params:
+    - name: ir_code
+      type: string
+      description: |
+        IR command code, 2 hex digits left-padded with zeros, then right-padded
+        with '#' to fill the 16-byte param field. Supported codes:
+        Display=05, Home=06, Options=07, Return=08, Up=09, Down=10, Right=11,
+        Left=12, Confirm=13, Red=14, Green=15, Yellow=16, Blue=17,
+        Num1=18, Num2=19, Num3=20, Num4=21, Num5=22, Num6=23, Num7=24,
+        Num8=25, Num9=26, Num0=27, VolumeUp=30, VolumeDown=31, Mute=32,
+        ChannelUp=33, ChannelDown=34, Subtitle=35, DOT=38, PictureOff=50,
+        Wide=61, Jump=62, SyncMenu=76, Forward=77, Play=78, Rewind=79,
+        Prev=80, Stop=81, Next=82, Pause=84, FlashPlus=86, FlashMinus=87,
+        TVPower=98, Audio=99, Input=101, Sleep=104, SleepTimer=105, Video2=108,
+        PictureMode=110, DemoSurround=121, HDMI1=124, HDMI2=125, HDMI3=126,
+        HDMI4=127, ActionMenu=129, Help=130.
 
-  - id: toggle_power_status
-    label: Toggle Power Status
-    kind: action
-    fourcc: TPOW
-    message_type: C
-    description: "Toggles current power status."
-    params: []
+- id: set_power_status
+  label: Set Power Status
+  kind: action
+  command: "*SCPOWR000000000000000{power}"
+  params:
+    - name: power
+      type: integer
+      enum: [0, 1]
+      description: "0 = Standby (Off), 1 = Active (On)"
 
-  - id: set_audio_volume
-    label: Set Audio Volume
-    kind: action
-    fourcc: VOLU
-    message_type: C
-    description: "Set volume level. Value zero-padded in 16-byte param field, e.g. 0000000000000029."
-    params:
-      - name: volume
-        type: integer
-        description: "Volume level (decimal, zero-padded to 16 digits)"
+- id: get_power_status
+  label: Get Power Status
+  kind: query
+  command: "*SEPOWR0000000000000000"
 
-  - id: get_audio_volume
-    label: Get Audio Volume
-    kind: query
-    fourcc: VOLU
-    message_type: E
-    description: "Retrieve current audio volume level."
-    params: []
+- id: toggle_power_status
+  label: Toggle Power Status
+  kind: action
+  command: "*SCTPOW0000000000000000"
 
-  - id: set_audio_mute
-    label: Set Audio Mute
-    kind: action
-    fourcc: AMUT
-    message_type: C
-    description: "Set audio mute state. Param 0000000000000000 = Unmute, 0000000000000001 = Mute."
-    params:
-      - name: mute
-        type: enum
-        values:
-          - "off"
-          - "on"
-        description: "Mute state to set"
+- id: set_audio_volume
+  label: Set Audio Volume
+  kind: action
+  command: "*SCVOLU{volume:2-digit-right-padded-with-0}"
+  params:
+    - name: volume
+      type: integer
+      description: "Volume value 0-99, right-padded with '0' to fill 16 bytes (e.g. 29 -> 0000000000000029)"
 
-  - id: get_audio_mute
-    label: Get Audio Mute
-    kind: query
-    fourcc: AMUT
-    message_type: E
-    description: "Query current audio mute status."
-    params: []
+- id: get_audio_volume
+  label: Get Audio Volume
+  kind: query
+  command: "*SEVOLU0000000000000000"
 
-  - id: set_input
-    label: Set Input
-    kind: action
-    fourcc: INPT
-    message_type: C
-    description: "Change input source. Input type code in byte 10, port number (1-9999) in bytes 14-17."
-    params:
-      - name: input_type
-        type: enum
-        values:
-          - hdmi
-          - composite
-          - component
-          - screen_mirroring
-        description: "Input type: hdmi(1), composite(3), component(4), screen_mirroring(5)"
-      - name: port
-        type: integer
-        description: "Port number (1-9999)"
+- id: set_audio_mute
+  label: Set Audio Mute
+  kind: action
+  command: "*SCAMUT000000000000000{mute}"
+  params:
+    - name: mute
+      type: integer
+      enum: [0, 1]
+      description: "0 = Unmute, 1 = Mute"
 
-  - id: get_input
-    label: Get Input
-    kind: query
-    fourcc: INPT
-    message_type: E
-    description: "Query current input source."
-    params: []
+- id: get_audio_mute
+  label: Get Audio Mute
+  kind: query
+  command: "*SEAMUT0000000000000000"
 
-  - id: set_picture_mute
-    label: Set Picture Mute
-    kind: action
-    fourcc: PMUT
-    message_type: C
-    description: "Set picture mute state. 0000000000000000 = disable (screen visible), 0000000000000001 = enable (screen black)."
-    params:
-      - name: state
-        type: enum
-        values:
-          - "off"
-          - "on"
-        description: "Picture mute state"
+- id: set_input
+  label: Set Input
+  kind: action
+  command: "*SCINPT00000000000{input_type}000{number:4-digit}"
+  params:
+    - name: input_type
+      type: integer
+      enum: [1, 3, 4, 5]
+      description: "1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring (occupies byte 14 of 16-byte param field)"
+    - name: number
+      type: integer
+      description: "Input number 1-9999 (occupies bytes 19-22, 4 ASCII digits)"
 
-  - id: get_picture_mute
-    label: Get Picture Mute
-    kind: query
-    fourcc: PMUT
-    message_type: E
-    description: "Query picture mute status."
-    params: []
+- id: get_input
+  label: Get Current Input
+  kind: query
+  command: "*SEINPT0000000000000000"
 
-  - id: toggle_picture_mute
-    label: Toggle Picture Mute
-    kind: action
-    fourcc: TPMU
-    message_type: C
-    description: "Toggle picture mute state."
-    params: []
+- id: set_picture_mute
+  label: Set Picture Mute
+  kind: action
+  command: "*SCPMUT000000000000000{mute}"
+  params:
+    - name: mute
+      type: integer
+      enum: [0, 1]
+      description: "0 = Disabled (picture shown), 1 = Enabled (screen blacked)"
 
-  - id: set_scene_setting
-    label: Set Scene Setting
-    kind: action
-    fourcc: SCEN
-    message_type: C
-    description: "Change scene setting. Parameter string is case-sensitive, right-padded with #."
-    params:
-      - name: scene
-        type: enum
-        values:
-          - auto
-          - auto24pSync
-          - general
-        description: "Scene setting name (case-sensitive)"
+- id: get_picture_mute
+  label: Get Picture Mute
+  kind: query
+  command: "*SEPMUT0000000000000000"
 
-  - id: get_scene_setting
-    label: Get Scene Setting
-    kind: query
-    fourcc: SCEN
-    message_type: E
-    description: "Query current scene setting."
-    params: []
+- id: toggle_picture_mute
+  label: Toggle Picture Mute
+  kind: action
+  command: "*SCTPMU0000000000000000"
 
-  - id: set_ircc_code
-    label: Send IR Command
-    kind: action
-    fourcc: IRCC
-    message_type: C
-    description: "Sends codes equivalent to IR remote controller buttons. 44 supported IR codes."
-    params:
-      - name: ir_code
-        type: enum
-        values:
-          - display
-          - home
-          - options
-          - return
-          - up
-          - down
-          - right
-          - left
-          - confirm
-          - red
-          - green
-          - yellow
-          - blue
-          - num1
-          - num2
-          - num3
-          - num4
-          - num5
-          - num6
-          - num7
-          - num8
-          - num9
-          - num0
-          - volume_up
-          - volume_down
-          - mute
-          - channel_up
-          - channel_down
-          - subtitle
-          - dot
-          - picture_off
-          - wide
-          - jump
-          - sync_menu
-          - forward
-          - play
-          - rewind
-          - prev
-          - stop
-          - next
-          - pause
-          - flash_plus
-          - flash_minus
-          - tv_power
-          - audio
-          - input
-          - sleep
-          - sleep_timer
-          - video_2
-          - picture_mode
-          - demo_surround
-          - hdmi_1
-          - hdmi_2
-          - hdmi_3
-          - hdmi_4
-          - action_menu
-          - help
-        description: "IR remote command code"
+- id: set_scene_setting
+  label: Set Scene Setting
+  kind: action
+  command: "*SCSCEN{scene:right-padded-with-#}"
+  params:
+    - name: scene
+      type: string
+      enum: [auto, auto24pSync, general]
+      description: "Scene name, case-sensitive, right-padded with '#' to fill 16 bytes (e.g. auto24pSync#####)"
 
-  - id: get_broadcast_address
-    label: Get Broadcast Address
-    kind: query
-    fourcc: BADR
-    message_type: E
-    description: "Retrieve broadcast IPv4 address for a specified network interface."
-    params:
-      - name: interface
-        type: string
-        description: "Interface identifier, e.g. eth0"
+- id: get_scene_setting
+  label: Get Scene Setting
+  kind: query
+  command: "*SESCEN0000000000000000"
 
-  - id: get_mac_address
-    label: Get MAC Address
-    kind: query
-    fourcc: MADR
-    message_type: E
-    description: "Retrieve MAC address for a specified network interface."
-    params:
-      - name: interface
-        type: string
-        description: "Interface identifier, e.g. eth0"
+- id: get_broadcast_address
+  label: Get Broadcast Address
+  kind: query
+  command: "*SEBADRETH00000000000000"
+  # UNRESOLVED: full parameter structure for the interface selector beyond
+  # "eth0" prefix not exhaustively stated; this matches the single example given.
+
+- id: get_mac_address
+  label: Get MAC Address
+  kind: query
+  command: "*SEMADRETH00000000000000"
+  # UNRESOLVED: full parameter structure for the interface selector beyond
+  # "eth0" prefix not exhaustively stated; this matches the single example given.
 ```
 
 ## Feedbacks
-
 ```yaml
-feedbacks:
-  - id: power_state
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Current power status (from getPowerStatus answer)"
+- id: power_state
+  type: enum
+  values: [standby, active]
+  description: "Returned in answer (A) message for getPowerStatus: 0=Standby, 1=Active. 'F'*16 = error."
 
-  - id: audio_volume
-    type: integer
-    description: "Current audio volume level (from getAudioVolume answer)"
+- id: audio_volume_value
+  type: integer
+  description: "Returned in answer for getAudioVolume: 0-99 left-padded with zeros in 16-byte field."
 
-  - id: audio_mute_state
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Current audio mute status (from getAudioMute answer)"
+- id: audio_mute_state
+  type: enum
+  values: [unmuted, muted]
+  description: "Returned in answer for getAudioMute: 0=Not Muted, 1=Muted. 'F'*16 = error."
 
-  - id: current_input
-    type: string
-    description: "Current input source and port (from getInput answer)"
+- id: current_input
+  type: object
+  description: |
+    Returned in answer for getInput / fireInputChange. Format matches
+    setInput param layout: byte 14 = input type (1=HDMI, 3=Composite,
+    4=Component, 5=Screen Mirroring); bytes 19-22 = 4-digit number (1-9999).
+    'N'*16 = Not Found. 'F'*16 = Error.
 
-  - id: picture_mute_state
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Current picture mute status (from getPictureMute answer)"
+- id: picture_mute_state
+  type: enum
+  values: [disabled, enabled]
+  description: "Returned in answer for getPictureMute: 0=Disabled, 1=Enabled. 'F'*16 = error."
 
-  - id: scene_setting
-    type: string
-    description: "Current scene setting value (from getSceneSetting answer)"
+- id: scene_setting_value
+  type: string
+  description: "Returned in answer for getSceneSetting: scene name right-padded with '#'. 'N'*16 = Not available for current input. 'F'*16 = error."
 
-  - id: broadcast_address
-    type: string
-    description: "Broadcast IPv4 address of specified interface"
+- id: broadcast_address
+  type: string
+  description: "Returned in answer for getBroadcastAddress: IPv4 broadcast address as ASCII dots-and-digits, right-padded with '#'. 'F'*16 = error."
 
-  - id: mac_address
-    type: string
-    description: "MAC address of specified interface"
+- id: mac_address
+  type: string
+  description: "Returned in answer for getMacAddress: MAC address as 12 hex digits, right-padded with '#'. 'F'*16 = error."
+
+- id: command_result
+  type: enum
+  values: [success, error]
+  description: "Generic answer (A) acknowledgement for any Control message: '0'*16 = Success, 'F'*16 = Error."
 ```
 
 ## Variables
-
 ```yaml
-variables:
-  - id: volume
-    type: integer
-    min: 0
-    max: null  # UNRESOLVED: max volume not stated in source
-    description: "Audio volume level"
+- id: power
+  type: enum
+  values: [off, on]
+  settable_via: set_power_status
+  queryable_via: get_power_status
+  enum_codes:
+    off: 0
+    on: 1
 
-  - id: power_state
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Power status"
+- id: input_select
+  type: object
+  settable_via: set_input
+  queryable_via: get_input
+  fields:
+    - name: input_type
+      enum: [hdmi, composite, component, screen_mirroring]
+      enum_codes:
+        hdmi: 1
+        composite: 3
+        component: 4
+        screen_mirroring: 5
+    - name: number
+      type: integer
+      range: [1, 9999]
 
-  - id: audio_mute
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Audio mute state"
+- id: audio_volume
+  type: integer
+  range: [0, 99]
+  settable_via: set_audio_volume
+  queryable_via: get_audio_volume
 
-  - id: picture_mute
-    type: enum
-    values:
-      - "off"
-      - "on"
-    description: "Picture mute state"
+- id: audio_mute
+  type: enum
+  values: [unmuted, muted]
+  settable_via: set_audio_mute
+  queryable_via: get_audio_mute
+  enum_codes:
+    unmuted: 0
+    muted: 1
 
-  - id: input_source
-    type: string
-    description: "Active input source"
+- id: picture_mute
+  type: enum
+  values: [disabled, enabled]
+  settable_via: set_picture_mute
+  queryable_via: get_picture_mute
+  enum_codes:
+    disabled: 0
+    enabled: 1
 
-  - id: scene_setting
-    type: string
-    description: "Active scene setting"
+- id: scene_setting
+  type: string
+  enum: [auto, auto24pSync, general]
+  settable_via: set_scene_setting
+  queryable_via: get_scene_setting
 ```
 
 ## Events
-
 ```yaml
-events:
-  - id: fire_power_change
-    fourcc: POWR
-    message_type: N
-    description: "Unsolicited notify when power state changes. Param 0000000000000000 = powering off, 0000000000000001 = powering on."
-    payload:
-      - name: state
-        type: enum
-        values:
-          - "off"
-          - "on"
+# Notify messages (type byte = 0x4E 'N') are unsolicited, monitor -> client.
+# Same 24-byte envelope as control/answer messages; command FourCC mirrors
+# the corresponding state variable.
 
-  - id: fire_input_change
-    fourcc: INPT
-    message_type: N
-    description: "Unsolicited notify when input changes."
-    payload:
-      - name: input_type
-        type: enum
-        values:
-          - hdmi
-          - composite
-          - component
-          - screen_mirroring
-      - name: port
-        type: integer
+- id: power_change
+  description: "Sent on power state transition. Parameter last byte: 0=powering off, 1=powering on."
+  message_type: notify
+  command: "*SNPOWR000000000000000{state}"
+  params:
+    - name: state
+      type: integer
+      enum: [0, 1]
 
-  - id: fire_volume_change
-    fourcc: VOLU
-    message_type: N
-    description: "Unsolicited notify when volume level changes."
-    payload:
-      - name: volume
-        type: integer
+- id: input_change
+  description: "Sent when active input changes. Param layout matches setInput (type in byte 14, 4-digit number in bytes 19-22)."
+  message_type: notify
+  command: "*SNINPT{16-byte param: 0000000{type}000{number}}"
 
-  - id: fire_mute_change
-    fourcc: AMUT
-    message_type: N
-    description: "Unsolicited notify when mute state changes. Param 0000000000000000 = unmuting, 0000000000000001 = muting."
-    payload:
-      - name: state
-        type: enum
-        values:
-          - "off"
-          - "on"
+- id: volume_change
+  description: "Sent when audio volume changes. 16-byte param carries the new volume value, same format as setAudioVolume."
+  message_type: notify
+  command: "*SNVOLU{16-byte volume param}"
 
-  - id: fire_picture_mute_change
-    fourcc: PMUT
-    message_type: N
-    description: "Unsolicited notify when picture mute state changes. Param 0000000000000000 = enabled, 0000000000000001 = disabled."
-    payload:
-      - name: state
-        type: enum
-        values:
-          - "on"
-          - "off"
+- id: mute_change
+  description: "Sent on audio mute state change. Last param byte: 0=unmuting, 1=muting."
+  message_type: notify
+  command: "*SNAMUT000000000000000{state}"
+  params:
+    - name: state
+      type: integer
+      enum: [0, 1]
+
+- id: picture_mute_change
+  description: "Sent on picture mute state change. Last param byte: 0=muted, 1=unmuted (note: polarity is inverted vs. setPictureMute)."
+  message_type: notify
+  command: "*SNPMUT000000000000000{state}"
+  params:
+    - name: state
+      type: integer
+      enum: [0, 1]
 ```
 
 ## Macros
-
 ```yaml
-# UNRESOLVED: no multi-step sequences described in source
+[]
 ```
 
 ## Safety
-
 ```yaml
-confirmation_required_for: []
-interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+[]
 ```
 
 ## Notes
+- All messages are exactly 24 bytes. The 0x0A LF footer (byte 23) is implicit in the `command` fields above; the visible ASCII payload is bytes 0-22.
+- Parameter fields are 16 ASCII characters. Numeric values are left-padded with '0' (e.g. volume 29 -> `0000000000000029`). String values like scene names and IR codes are right-padded with '#'. Unused bytes in a control message (toggle, enquiry) are filled with '0'.
+- The KDLW790 series is a Sony BRAVIA Professional Display family; the Simple IP control protocol is shared across BRAVIA Pro models. This spec reflects the generic Simple IP control command set, not KDLW790-specific behaviour.
+- EU-area models: 3 RED-DA compliance variants exist with differing settings and available commands. See https://pro-bravia.sony.net/setup/device-settings/red-da/ for the per-variant command list — not transcribed here.
+- The simple `netcat` example in the source treats the 24-byte payload as opaque ASCII; in practice, parameter bytes may include any printable ASCII digit or '#' padding, but never a literal 0x0A inside the param field (since 0x0A terminates the message).
+- Monitor-side prerequisite: Remote Device Control and Simple IP Control must be enabled in [Settings] -> [Network & Internet] before the port is open.
 
-- EU area models have 3 specifications based on RED-DA compliance; settings and available commands differ.
-- Simple IP Control must be enabled on the display via Settings → Network & Internet → Home network → IP control → Simple IP control.
-- Remote device control must also be enabled via Settings → Network & Internet → Remote device settings → Control remotely.
-- Scene setting parameter strings are case-sensitive and right-padded with `#` to fill 16 bytes.
-- Volume parameter is zero-padded decimal in 16-byte field (e.g. `0000000000000029` for volume 29).
-- Answer messages return all zeros (0000000000000000) for success, all Fs (FFFFFFFFFFFFFFFF) for error, or all Ns (NNNNNNNNNNNNNNNN) for not found/not available.
-- IR commands are sent via the `setIrccCode` action with specific parameter codes; 44 distinct IR codes supported.
-
-<!-- UNRESOLVED: maximum volume level not stated in source -->
-<!-- UNRESOLVED: firmware version compatibility not stated in source -->
-<!-- UNRESOLVED: connection limits / concurrent client count not stated in source -->
-<!-- UNRESOLVED: command rate limits or timing constraints not stated in source -->
-<!-- UNRESOLVED: keep-alive or connection timeout behavior not stated in source -->
+<!-- UNRESOLVED: KDLW790-specific firmware version range supporting this protocol not stated. EU RED-DA variant command availability not enumerated. KDLW790-specific quirks (e.g. max volume, input count, supported scene list) not stated in this generic source. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control
+retrieved_at: 2026-05-27T14:21:06.369Z
 last_checked_at: 2026-05-31T22:30:33.049Z
 ```
 
@@ -530,14 +407,16 @@ verdict: verified
 checked_at: 2026-05-31T22:30:33.049Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched FourCC codes and message types in the source; transport parameters verified; full command coverage."
+confidence: medium
+summary: "All 17 spec actions matched FourCC codes and message types in the source; transport parameters verified; full command coverage. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source is the generic Sony BRAVIA \"Simple IP control\" page; per-family firmware constraints and KDLW790-specific quirks not stated. EU models have RED-DA compliance variants with differing command availability — not enumerated here."
+- "full parameter structure for the interface selector beyond"
+- "KDLW790-specific firmware version range supporting this protocol not stated. EU RED-DA variant command availability not enumerated. KDLW790-specific quirks (e.g. max volume, input count, supported scene list) not stated in this generic source."
 ```
 
 ---

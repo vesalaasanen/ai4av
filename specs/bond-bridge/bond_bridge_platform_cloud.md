@@ -17,22 +17,31 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+  - github.com
+  - bondhome-product-docs.s3.amazonaws.com
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://github.com/bondhome/api-v2
+  - "https://bondhome-product-docs.s3.amazonaws.com/BD-1000/%5BBond+Bridge%5D+Spec+Sheet.pdf"
+retrieved_at: 2026-04-29T13:01:15.036Z
 last_checked_at: 2026-05-14T18:17:14.785Z
 generated_at: 2026-05-14T18:17:14.785Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not stated in source (HTTP defaults assumed)"
+  - "token expiration/renewal policy not stated"
+  - "no safety warnings or interlock procedures found in source"
+  - "HTTP port not explicitly stated in source"
+  - "firmware version compatibility ranges not stated"
+  - "max concurrent connections or rate limits not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.785Z
   matched_actions: 167
   action_count: 182
-  confidence: high
-  summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified."
+  confidence: medium
+  summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1704,10 +1713,13 @@ Device signal encoding: CQ format or hex. CQ uses `0`/`1` for single bits, `C`-`
 ```yaml
 source_domains:
   - docs-local.appbond.com
+  - github.com
+  - bondhome-product-docs.s3.amazonaws.com
 source_urls:
   - https://docs-local.appbond.com/
-  - https://docs-local.appbond.com
-retrieved_at: 2026-04-29T13:04:25.772Z
+  - https://github.com/bondhome/api-v2
+  - "https://bondhome-product-docs.s3.amazonaws.com/BD-1000/%5BBond+Bridge%5D+Spec+Sheet.pdf"
+retrieved_at: 2026-04-29T13:01:15.036Z
 last_checked_at: 2026-05-14T18:17:14.785Z
 ```
 
@@ -1718,14 +1730,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.785Z
 matched_actions: 167
 action_count: 182
-confidence: high
-summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified."
+confidence: medium
+summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not stated in source (HTTP defaults assumed)"
+- "token expiration/renewal policy not stated"
+- "no safety warnings or interlock procedures found in source"
+- "HTTP port not explicitly stated in source"
+- "firmware version compatibility ranges not stated"
+- "max concurrent connections or rate limits not stated"
 ```
 
 ---

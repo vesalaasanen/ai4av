@@ -19,19 +19,24 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-26T20:10:49.317Z
 last_checked_at: 2026-05-31T06:54:47.800Z
 generated_at: 2026-05-31T06:54:47.800Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN spec not detailed in source; model number exact match not confirmed"
+  - "no standalone variable parameters outside of action/feedback flow; all settable params are action-driven"
+  - "no unsolicited event notifications described in source; device only responds to commands"
+  - "no multi-step macro sequences documented in source"
+  - "wireless LAN unit manual reference only; TCP port 7142 stated for LAN but serial must be manually configured at one of 5 baud rates; firmware version compatibility not stated; input terminal value mappings deferred to appendix not included in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T06:54:47.800Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match their source counterparts; all transport parameters verified in source documentation."
+  confidence: medium
+  summary: "All 53 spec actions match their source counterparts; all transport parameters verified in source documentation. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -572,7 +577,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-26T20:10:49.317Z
 last_checked_at: 2026-05-31T06:54:47.800Z
 ```
 
@@ -583,14 +588,18 @@ verdict: verified
 checked_at: 2026-05-31T06:54:47.800Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match their source counterparts; all transport parameters verified in source documentation."
+confidence: medium
+summary: "All 53 spec actions match their source counterparts; all transport parameters verified in source documentation. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN spec not detailed in source; model number exact match not confirmed"
+- "no standalone variable parameters outside of action/feedback flow; all settable params are action-driven"
+- "no unsolicited event notifications described in source; device only responds to commands"
+- "no multi-step macro sequences documented in source"
+- "wireless LAN unit manual reference only; TCP port 7142 stated for LAN but serial must be manually configured at one of 5 baud rates; firmware version compatibility not stated; input terminal value mappings deferred to appendix not included in source"
 ```
 
 ---

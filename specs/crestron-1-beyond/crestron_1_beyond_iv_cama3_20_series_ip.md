@@ -17,23 +17,36 @@ compatible_with:
   required_options: []
 source_domains:
   - docs.crestron.com
-  - crestron.com
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
-  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
-retrieved_at: 2026-05-01T02:00:50.953Z
+retrieved_at: 2026-04-30T04:31:08.610Z
 last_checked_at: 2026-05-14T18:17:15.070Z
 generated_at: 2026-05-14T18:17:15.070Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "mount mode restriction — CAM_MountMode applies only to IV-CAM-P12 and IV-CAM-P20 models, not confirmed for IV-CAMA3-20 Series"
+  - "data bits not stated - VISCA default"
+  - "parity not stated - VISCA default"
+  - "stop bits not stated - VISCA default"
+  - "flow control not stated in source"
+  - "Variables are settable parameters not covered by discrete actions."
+  - "no unsolicited event notifications described in source."
+  - "no multi-step macro sequences described in source."
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "CAM_MountMode commands (Stand/Ceiling) are documented for IV-CAM-P12 and IV-CAM-P20 only — applicability to IV-CAMA3-20 Series not confirmed"
+  - "data_bits, parity, stop_bits for serial — VISCA default 8/N/1 inferred but not stated"
+  - "flow_control settings for serial not stated"
+  - "TCP connection persistence / keepalive behavior not documented"
+  - "command timing and retry behavior not documented"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.070Z
   matched_actions: 80
   action_count: 83
-  confidence: high
-  summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified."
+  confidence: medium
+  summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -986,11 +999,9 @@ Pan speed range: 0x01 (low) to 0x18 (high, 24). Tilt speed range: 0x01 (low) to 
 ```yaml
 source_domains:
   - docs.crestron.com
-  - crestron.com
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
-  - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
-retrieved_at: 2026-05-01T02:00:50.953Z
+retrieved_at: 2026-04-30T04:31:08.610Z
 last_checked_at: 2026-05-14T18:17:15.070Z
 ```
 
@@ -1001,14 +1012,28 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.070Z
 matched_actions: 80
 action_count: 83
-confidence: high
-summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified."
+confidence: medium
+summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "mount mode restriction — CAM_MountMode applies only to IV-CAM-P12 and IV-CAM-P20 models, not confirmed for IV-CAMA3-20 Series"
+- "data bits not stated - VISCA default"
+- "parity not stated - VISCA default"
+- "stop bits not stated - VISCA default"
+- "flow control not stated in source"
+- "Variables are settable parameters not covered by discrete actions."
+- "no unsolicited event notifications described in source."
+- "no multi-step macro sequences described in source."
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "CAM_MountMode commands (Stand/Ceiling) are documented for IV-CAM-P12 and IV-CAM-P20 only — applicability to IV-CAMA3-20 Series not confirmed"
+- "data_bits, parity, stop_bits for serial — VISCA default 8/N/1 inferred but not stated"
+- "flow_control settings for serial not stated"
+- "TCP connection persistence / keepalive behavior not documented"
+- "command timing and retry behavior not documented"
+- "firmware version compatibility not stated"
 ```
 
 ---

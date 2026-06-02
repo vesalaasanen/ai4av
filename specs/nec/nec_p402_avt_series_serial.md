@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:51.998Z
 last_checked_at: 2026-05-14T18:17:18.835Z
 generated_at: 2026-05-14T18:17:18.835Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "lamp count (single vs dual) not confirmed for this specific model"
+  - "source lists 115200/38400/19200/9600/4800 bps as options; specific model default not stated"
+  - "RTS/CTS handshaking present in pinout but flow control not explicitly configured"
+  - "variables are settable parameters not tied to discrete actions."
+  - "no unsolicited event notifications described in source."
+  - "no explicit safety warnings or interlock procedures in source."
+  - "full input terminal code table not reproduced here (see Appendix of source)"
+  - "full aspect mode code table not reproduced here (see Appendix of source)"
+  - "eco mode code variants not fully enumerated (source shows multiple equivalent codes)"
+  - "standby mode requirements vary by model — some require specific standby mode for serial/LAN control"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.835Z
   matched_actions: 31
   action_count: 53
-  confidence: high
-  summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source."
+  confidence: medium
+  summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -739,7 +749,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:51.998Z
 last_checked_at: 2026-05-14T18:17:18.835Z
 ```
 
@@ -750,14 +760,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.835Z
 matched_actions: 31
 action_count: 53
-confidence: high
-summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source."
+confidence: medium
+summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "lamp count (single vs dual) not confirmed for this specific model"
+- "source lists 115200/38400/19200/9600/4800 bps as options; specific model default not stated"
+- "RTS/CTS handshaking present in pinout but flow control not explicitly configured"
+- "variables are settable parameters not tied to discrete actions."
+- "no unsolicited event notifications described in source."
+- "no explicit safety warnings or interlock procedures in source."
+- "full input terminal code table not reproduced here (see Appendix of source)"
+- "full aspect mode code table not reproduced here (see Appendix of source)"
+- "eco mode code variants not fully enumerated (source shows multiple equivalent codes)"
+- "standby mode requirements vary by model — some require specific standby mode for serial/LAN control"
 ```
 
 ---

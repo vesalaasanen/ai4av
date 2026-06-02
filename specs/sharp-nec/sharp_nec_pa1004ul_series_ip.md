@@ -19,19 +19,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:34.666Z
 last_checked_at: 2026-05-14T18:17:20.411Z
 generated_at: 2026-05-14T18:17:20.411Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "PA1004UL model not listed in appendix tables (input codes, aspect values, eco modes); values shown are from related NEC/NP projector families"
+  - "no discrete settable parameters outside of action commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "PA1004UL-specific input terminal codes, aspect values, and eco mode values not in source appendix; LED status codes not documented; command timing/cooling time not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.411Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation."
+  confidence: medium
+  summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -596,7 +602,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:34.666Z
 last_checked_at: 2026-05-14T18:17:20.411Z
 ```
 
@@ -607,14 +613,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.411Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation."
+confidence: medium
+summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "PA1004UL model not listed in appendix tables (input codes, aspect values, eco modes); values shown are from related NEC/NP projector families"
+- "no discrete settable parameters outside of action commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "PA1004UL-specific input terminal codes, aspect values, and eco mode values not in source appendix; LED status codes not documented; command timing/cooling time not specified"
 ```
 
 ---

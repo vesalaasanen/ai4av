@@ -24,14 +24,24 @@ last_checked_at: 2026-05-14T18:17:19.854Z
 generated_at: 2026-05-14T18:17:19.854Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model variants within UltraLux Series not specified"
+  - "SNMP is read-only monitoring only — not a control protocol"
+  - "no unsolicited notification events described in source"
+  - "no multi-step sequences described in source"
+  - "source mentions \"hard power\" vs \"soft power\" distinction but no"
+  - "SNMP details not fully represented as a separate transport — SNMP is monitoring-only"
+  - "exact Blacklevel Brightness value range for set command — get returns -350 to 350 but set example shows value 50"
+  - "firmware version compatibility not stated in source"
+  - "command timing / inter-command delay requirements not stated"
+  - "RS232 cable pinout not specified beyond \"standard straight-through\""
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.854Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified."
+  confidence: medium
+  summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -482,14 +492,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.854Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified."
+confidence: medium
+summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model variants within UltraLux Series not specified"
+- "SNMP is read-only monitoring only — not a control protocol"
+- "no unsolicited notification events described in source"
+- "no multi-step sequences described in source"
+- "source mentions \"hard power\" vs \"soft power\" distinction but no"
+- "SNMP details not fully represented as a separate transport — SNMP is monitoring-only"
+- "exact Blacklevel Brightness value range for set command — get returns -350 to 350 but set example shows value 50"
+- "firmware version compatibility not stated in source"
+- "command timing / inter-command delay requirements not stated"
+- "RS232 cable pinout not specified beyond \"standard straight-through\""
 ```
 
 ---

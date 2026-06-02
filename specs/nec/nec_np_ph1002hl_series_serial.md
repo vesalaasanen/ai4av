@@ -19,19 +19,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:27.253Z
 last_checked_at: 2026-05-14T18:17:18.613Z
 generated_at: 2026-05-14T18:17:18.613Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "NP-PH1002HL Series is not listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. The exact hex parameter values for those commands are model-specific and not documented for this model in the source."
+  - "not stated, but RTS/CTS pins present on connector"
+  - "NP-PH1002HL Series not listed in input terminal code table"
+  - "NP-PH1002HL Series not listed in aspect value table"
+  - "NP-PH1002HL Series not listed in eco mode value table"
+  - "no unsolicited notification mechanism described in source."
+  - "no multi-step macro sequences described in source."
+  - "no explicit safety warnings or interlock procedures in the command reference."
+  - "NP-PH1002HL Series is not listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. The hex parameter values for input_switch, aspect_adjust, eco_mode_set, and audio_select_set are model-specific and must be determined from a NP-PH1002HL-specific source."
+  - "standby mode setting for receiving POWER ON command not documented for NP-PH1002HL Series."
+  - "the specific sub-input values for PIP/PbP commands reference an appendix not included in this source."
+  - "flow control method not stated despite RTS/CTS pins being present on the serial connector."
+  - "response timeout and command retry behavior not documented."
+  - "maximum command queue depth or rate limiting not documented."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.613Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions (28 control + 25 feedback) matched literally in NEC PH1002HL serial source; transport parameters verified."
+  confidence: medium
+  summary: "All 53 spec actions (28 control + 25 feedback) matched literally in NEC PH1002HL serial source; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -878,7 +892,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:27.253Z
 last_checked_at: 2026-05-14T18:17:18.613Z
 ```
 
@@ -889,14 +903,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.613Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions (28 control + 25 feedback) matched literally in NEC PH1002HL serial source; transport parameters verified."
+confidence: medium
+summary: "All 53 spec actions (28 control + 25 feedback) matched literally in NEC PH1002HL serial source; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "NP-PH1002HL Series is not listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. The exact hex parameter values for those commands are model-specific and not documented for this model in the source."
+- "not stated, but RTS/CTS pins present on connector"
+- "NP-PH1002HL Series not listed in input terminal code table"
+- "NP-PH1002HL Series not listed in aspect value table"
+- "NP-PH1002HL Series not listed in eco mode value table"
+- "no unsolicited notification mechanism described in source."
+- "no multi-step macro sequences described in source."
+- "no explicit safety warnings or interlock procedures in the command reference."
+- "NP-PH1002HL Series is not listed in the supplementary tables for input terminal codes, aspect values, or eco mode values. The hex parameter values for input_switch, aspect_adjust, eco_mode_set, and audio_select_set are model-specific and must be determined from a NP-PH1002HL-specific source."
+- "standby mode setting for receiving POWER ON command not documented for NP-PH1002HL Series."
+- "the specific sub-input values for PIP/PbP commands reference an appendix not included in this source."
+- "flow control method not stated despite RTS/CTS pins being present on the serial connector."
+- "response timeout and command retry behavior not documented."
+- "maximum command queue depth or rate limiting not documented."
 ```
 
 ---

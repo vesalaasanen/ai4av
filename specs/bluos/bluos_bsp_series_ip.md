@@ -15,23 +15,29 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:31:02.107Z
 last_checked_at: 2026-05-16T18:31:02.107Z
 generated_at: 2026-05-16T18:31:02.107Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific BSP Series model numbers are not listed in the source document; the source covers all BluOS players generically"
+  - "no explicit settable parameter registry beyond what is covered in Actions/Feedbacks; volume range can be adjusted via BluOS Controller app (Settings -> Player -> Audio) but not via the API described in this document."
+  - "no explicit multi-step macros defined in source."
+  - "no explicit safety warnings or interlock procedures stated in source."
+  - "specific BSP Series model numbers that implement this API are not enumerated in the source. The source covers \"BluOS players\" generically across Bluesound, NAD, and DALI product lines."
+  - "authentication — source contains no login or credential procedure, so none is inferred. However, it is unclear whether the API enforces network-level isolation or whether any access control applies in enterprise environments."
+  - "error response format — source mentions <error> root element with <message> and <detail> text nodes for /Browse errors but does not document the general error response schema for other endpoints."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T18:31:02.107Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed."
+  confidence: medium
+  summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -630,11 +636,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T18:31:02.107Z
 last_checked_at: 2026-05-16T18:31:02.107Z
 ```
 
@@ -645,14 +649,21 @@ verdict: verified
 checked_at: 2026-05-16T18:31:02.107Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed."
+confidence: medium
+summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific BSP Series model numbers are not listed in the source document; the source covers all BluOS players generically"
+- "no explicit settable parameter registry beyond what is covered in Actions/Feedbacks; volume range can be adjusted via BluOS Controller app (Settings -> Player -> Audio) but not via the API described in this document."
+- "no explicit multi-step macros defined in source."
+- "no explicit safety warnings or interlock procedures stated in source."
+- "specific BSP Series model numbers that implement this API are not enumerated in the source. The source covers \"BluOS players\" generically across Bluesound, NAD, and DALI product lines."
+- "authentication — source contains no login or credential procedure, so none is inferred. However, it is unclear whether the API enforces network-level isolation or whether any access control applies in enterprise environments."
+- "error response format — source mentions <error> root element with <message> and <detail> text nodes for /Browse errors but does not document the general error response schema for other endpoints."
+- "model-specific source not located"
 ```
 
 ---

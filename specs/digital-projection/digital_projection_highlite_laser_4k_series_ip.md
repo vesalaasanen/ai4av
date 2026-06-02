@@ -17,24 +17,34 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+  - web.archive.org
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+  - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+retrieved_at: 2026-05-01T01:55:45.642Z
 last_checked_at: 2026-05-14T18:17:15.544Z
 generated_at: 2026-05-14T18:17:15.544Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "command timing (delay between commands) not stated"
+  - "power on/off commands not found in source — power state queried via `status"
+  - "parity not stated"
+  - "stop bits not stated"
+  - "flow control not stated"
+  - "unsolicited event notifications not documented in source"
+  - "multi-step macros not explicitly documented in source"
+  - "power-on sequencing requirements not explicitly stated"
+  - "inter-command delay timing not stated"
+  - "firmware version compatibility not stated"
+  - "exact parity and stop bits for RS-232 not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.544Z
   matched_actions: 159
   action_count: 227
-  confidence: high
-  summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage."
+  confidence: medium
+  summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1935,12 +1945,11 @@ interlocks:
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+  - web.archive.org
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+  - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
+retrieved_at: 2026-05-01T01:55:45.642Z
 last_checked_at: 2026-05-14T18:17:15.544Z
 ```
 
@@ -1951,14 +1960,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.544Z
 matched_actions: 159
 action_count: 227
-confidence: high
-summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage."
+confidence: medium
+summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "command timing (delay between commands) not stated"
+- "power on/off commands not found in source — power state queried via `status"
+- "parity not stated"
+- "stop bits not stated"
+- "flow control not stated"
+- "unsolicited event notifications not documented in source"
+- "multi-step macros not explicitly documented in source"
+- "power-on sequencing requirements not explicitly stated"
+- "inter-command delay timing not stated"
+- "firmware version compatibility not stated"
+- "exact parity and stop bits for RS-232 not stated"
 ```
 
 ---

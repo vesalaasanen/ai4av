@@ -19,7 +19,8 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+  - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
+retrieved_at: 2026-05-12T11:36:23.135Z
 last_checked_at: 2026-05-14T18:17:15.789Z
 generated_at: 2026-05-14T18:17:15.789Z
 firmware_coverage: "Not stated in source"
@@ -27,13 +28,28 @@ protocol_coverage: []
 known_gaps:
   - "SOURCE 25"
   - "SOURCE C3"
+  - "L890E not listed in applicable models — confirmation that it uses identical ESC/VP21 commands is assumed from the general protocol description"
+  - "TCP/IP port number not stated in source"
+  - "no authentication procedure described anywhere in source"
+  - "HDMI / HDBaseT / USB source commands specific to L890E not in this source"
+  - "TCP port not stated in source"
+  - "L890E-specific input commands (HDBaseT, USB display, etc.) not documented in this source"
+  - "settable parameters with INC/DEC/INIT step values mentioned but specific parameter names not enumerated in source"
+  - "no unsolicited notification format described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing described in source"
+  - "L890E-specific input mapping (which physical ports correspond to Input 1/2/3/5/A/C/D) not in this source"
+  - "TCP connection establishment procedure (e.g., whether a login handshake or initial colon wait is required) not documented"
+  - "command termination character (CR 0x0D confirmed for null command; assumed for all commands)"
+  - "response timeout values not stated"
+  - "maximum concurrent connection count not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.789Z
   matched_actions: 43
   action_count: 43
-  confidence: high
-  summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict."
+  confidence: medium
+  summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -422,7 +438,8 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+  - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
+retrieved_at: 2026-05-12T11:36:23.135Z
 last_checked_at: 2026-05-14T18:17:15.789Z
 ```
 
@@ -433,8 +450,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.789Z
 matched_actions: 43
 action_count: 43
-confidence: high
-summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict."
+confidence: medium
+summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -442,6 +459,21 @@ summary: "All 49 spec actions matched literally in source command table; transpo
 ```yaml
 - "SOURCE 25"
 - "SOURCE C3"
+- "L890E not listed in applicable models — confirmation that it uses identical ESC/VP21 commands is assumed from the general protocol description"
+- "TCP/IP port number not stated in source"
+- "no authentication procedure described anywhere in source"
+- "HDMI / HDBaseT / USB source commands specific to L890E not in this source"
+- "TCP port not stated in source"
+- "L890E-specific input commands (HDBaseT, USB display, etc.) not documented in this source"
+- "settable parameters with INC/DEC/INIT step values mentioned but specific parameter names not enumerated in source"
+- "no unsolicited notification format described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings, interlock procedures, or power-on sequencing described in source"
+- "L890E-specific input mapping (which physical ports correspond to Input 1/2/3/5/A/C/D) not in this source"
+- "TCP connection establishment procedure (e.g., whether a login handshake or initial colon wait is required) not documented"
+- "command termination character (CR 0x0D confirmed for null command; assumed for all commands)"
+- "response timeout values not stated"
+- "maximum concurrent connection count not stated"
 ```
 
 ---

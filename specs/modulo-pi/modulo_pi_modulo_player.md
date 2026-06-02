@@ -26,13 +26,20 @@ firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "setPlayListProperty (not implemented)"
+  - "authentication mechanism not documented; UNRESOLVED: command timing/flow control requirements not stated"
+  - "port 28686 documented for Modulo Player controls; second port handling not specified in schema"
+  - "no standalone settable variables documented; all parameters are action-embedded"
+  - "no unsolicited event notifications documented"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "second port (28686) mapping to Transport.addressing not expressible in current schema; UNRESOLVED: full error code/behavior documentation absent"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.179Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed."
+  confidence: medium
+  summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -533,14 +540,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.179Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed."
+confidence: medium
+summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "setPlayListProperty (not implemented)"
+- "authentication mechanism not documented; UNRESOLVED: command timing/flow control requirements not stated"
+- "port 28686 documented for Modulo Player controls; second port handling not specified in schema"
+- "no standalone settable variables documented; all parameters are action-embedded"
+- "no unsolicited event notifications documented"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "second port (28686) mapping to Transport.addressing not expressible in current schema; UNRESOLVED: full error code/behavior documentation absent"
 ```
 
 ---

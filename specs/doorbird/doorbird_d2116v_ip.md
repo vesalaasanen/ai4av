@@ -18,9 +18,8 @@ compatible_with:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:27.986Z
 last_checked_at: 2026-04-23T06:41:18.279Z
 generated_at: 2026-04-23T06:41:18.279Z
 firmware_coverage: "Not stated in source"
@@ -29,13 +28,21 @@ known_gaps:
   - rtsp-over-http:8557
   - 720p-variant
   - 1080p-variant
+  - "serial/RS-232 not mentioned in source; device may support RS-232 but it is not documented"
+  - "port 443 stated for HTTPS but not listed separately; TLS cert is self-signed"
+  - "variables not clearly distinguished from actions in source"
+  - "macro definitions not explicitly documented as reusable sequences"
+  - "serial/RS-232 configuration not documented"
+  - "voltage/current/power specifications not in source"
+  - "firmware compatibility range not stated"
+  - "relay contact ratings not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:41:18.279Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions match source endpoints verbatim; transport parameters verified in source; spec fully represents command catalogue."
+  confidence: medium
+  summary: "All 24 spec actions match source endpoints verbatim; transport parameters verified in source; spec fully represents command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -418,9 +425,8 @@ interlocks:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:27.986Z
 last_checked_at: 2026-04-23T06:41:18.279Z
 ```
 
@@ -431,8 +437,8 @@ verdict: verified
 checked_at: 2026-04-23T06:41:18.279Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions match source endpoints verbatim; transport parameters verified in source; spec fully represents command catalogue."
+confidence: medium
+summary: "All 24 spec actions match source endpoints verbatim; transport parameters verified in source; spec fully represents command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -441,6 +447,14 @@ summary: "All 24 spec actions match source endpoints verbatim; transport paramet
 - rtsp-over-http:8557
 - 720p-variant
 - 1080p-variant
+- "serial/RS-232 not mentioned in source; device may support RS-232 but it is not documented"
+- "port 443 stated for HTTPS but not listed separately; TLS cert is self-signed"
+- "variables not clearly distinguished from actions in source"
+- "macro definitions not explicitly documented as reusable sequences"
+- "serial/RS-232 configuration not documented"
+- "voltage/current/power specifications not in source"
+- "firmware compatibility range not stated"
+- "relay contact ratings not stated"
 ```
 
 ---

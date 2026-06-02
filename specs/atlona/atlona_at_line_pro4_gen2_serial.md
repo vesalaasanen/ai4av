@@ -18,24 +18,30 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2_V3.pdf
+  - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2.pdf
+retrieved_at: 2026-05-27T13:13:49.365Z
 last_checked_at: 2026-05-30T20:17:00.301Z
 generated_at: 2026-05-30T20:17:00.301Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "flow control not stated in source"
+  - "no settable variables beyond those covered by Actions (all params are discrete values or ranges passed via S commands)"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Set commands for OSDHPOSITION, OSDVPOSITION, OSDTIMEOUT, OSDBACKGROUND, AUDIOMUTE not documented in source"
+  - "power command value mapping may be swapped (S POWER 0 = ON, S POWER 1 = OFF per source text) — verify on device"
+  - "firmware version compatibility not stated in source"
+  - "no IP/TCP control documented — source covers RS-232 only"
 verification:
   verdict: verified
   checked_at: 2026-05-30T20:17:00.301Z
   matched_actions: 78
   action_count: 78
-  confidence: high
-  summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset."
+  confidence: medium
+  summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -900,12 +906,9 @@ interlocks: []
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2_V3.pdf
+  - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2.pdf
+retrieved_at: 2026-05-27T13:13:49.365Z
 last_checked_at: 2026-05-30T20:17:00.301Z
 ```
 
@@ -916,14 +919,22 @@ verdict: verified
 checked_at: 2026-05-30T20:17:00.301Z
 matched_actions: 78
 action_count: 78
-confidence: high
-summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset."
+confidence: medium
+summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "flow control not stated in source"
+- "no settable variables beyond those covered by Actions (all params are discrete values or ranges passed via S commands)"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "Set commands for OSDHPOSITION, OSDVPOSITION, OSDTIMEOUT, OSDBACKGROUND, AUDIOMUTE not documented in source"
+- "power command value mapping may be swapped (S POWER 0 = ON, S POWER 1 = OFF per source text) — verify on device"
+- "firmware version compatibility not stated in source"
+- "no IP/TCP control documented — source covers RS-232 only"
 ```
 
 ---

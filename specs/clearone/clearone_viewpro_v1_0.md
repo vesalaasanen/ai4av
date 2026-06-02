@@ -16,14 +16,14 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - kb.clearone.com
-  - keydigital.org
-  - officeplusuae.com
+  - web.archive.org
 source_urls:
-  - https://kb.clearone.com
-  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
-retrieved_at: 2026-05-15T09:22:58.682Z
+  - "https://web.archive.org/web/20240626112103/https://www.clearone.com/sites/default/files/2019-07/StreamNet%20Integration%20and%20Programmers%20Guide.pdf"
+  - "https://web.archive.org/web/20240627004859/https://www.clearone.com/sites/default/files/2019-07/VIEW%20VIRTUAL%20MATRIX%20Control%20and%20Installation%20Guide.pdf"
+  - "https://web.archive.org/web/20240626092836/https://www.clearone.com/sites/default/files/2019-07/Using%201-Way%20RS232%20to%20Control%20Sources.pdf"
+  - "https://web.archive.org/web/20240626060739/https://www.clearone.com/sites/default/files/2019-07/VIEW%20Pro%20Decoder%20Install%20%26%20User%20Manual.pdf"
+  - https://web.archive.org/web/20240627011557/https://www.clearone.com/sites/default/files/2020-01/VIEW_Pro_Encoder_Installation_Manual.pdf
+retrieved_at: 2026-04-26T11:42:14.624Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 generated_at: 2026-04-26T11:42:14.624Z
 firmware_coverage: "Not stated in source"
@@ -31,13 +31,24 @@ protocol_coverage: []
 known_gaps:
   - "#MACRO"
   - "#SET"
+  - "ViewPro v1.0 is not explicitly named in the source document; the document is a general StreamNet protocol guide. Specific ViewPro features beyond StreamNet standard commands are unknown."
+  - "#MACRO command mentioned but no macro definitions or syntax documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing found in source"
+  - "ViewPro v1.0 model not explicitly mentioned in source; document is general StreamNet protocol guide"
+  - "No firmware version compatibility stated"
+  - "#SET command mentioned but not documented"
+  - "#MACRO command mentioned but no syntax or definitions provided"
+  - "GPIO/LUA driver details mentioned but not documented"
+  - "No error response format documented"
+  - "Multicast address is configurable, not fixed"
+  - "UDP subscription configuration requires StreamNet Dealer Setup Program"
 verification:
   verdict: verified
   checked_at: 2026-04-26T11:42:14.624Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 45 spec actions matched literally to source; transport parameters verified; comprehensive coverage of StreamNet Renderer protocol commands."
+  confidence: medium
+  summary: "All 45 spec actions matched literally to source; transport parameters verified; comprehensive coverage of StreamNet Renderer protocol commands. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -613,14 +624,14 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - kb.clearone.com
-  - keydigital.org
-  - officeplusuae.com
+  - web.archive.org
 source_urls:
-  - https://kb.clearone.com
-  - https://www.keydigital.org/web/content/86542/ClearOne_Collaborate_ModuleManual.pdf
-  - https://officeplusuae.com/wp-content/uploads/2024/11/DOC-0579-001v1.0_BMA_360D_Cmd_Ref_Man_2023_09_27.pdf
-retrieved_at: 2026-05-15T09:22:58.682Z
+  - "https://web.archive.org/web/20240626112103/https://www.clearone.com/sites/default/files/2019-07/StreamNet%20Integration%20and%20Programmers%20Guide.pdf"
+  - "https://web.archive.org/web/20240627004859/https://www.clearone.com/sites/default/files/2019-07/VIEW%20VIRTUAL%20MATRIX%20Control%20and%20Installation%20Guide.pdf"
+  - "https://web.archive.org/web/20240626092836/https://www.clearone.com/sites/default/files/2019-07/Using%201-Way%20RS232%20to%20Control%20Sources.pdf"
+  - "https://web.archive.org/web/20240626060739/https://www.clearone.com/sites/default/files/2019-07/VIEW%20Pro%20Decoder%20Install%20%26%20User%20Manual.pdf"
+  - https://web.archive.org/web/20240627011557/https://www.clearone.com/sites/default/files/2020-01/VIEW_Pro_Encoder_Installation_Manual.pdf
+retrieved_at: 2026-04-26T11:42:14.624Z
 last_checked_at: 2026-04-26T11:42:14.624Z
 ```
 
@@ -631,8 +642,8 @@ verdict: verified
 checked_at: 2026-04-26T11:42:14.624Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 45 spec actions matched literally to source; transport parameters verified; comprehensive coverage of StreamNet Renderer protocol commands."
+confidence: medium
+summary: "All 45 spec actions matched literally to source; transport parameters verified; comprehensive coverage of StreamNet Renderer protocol commands. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -640,6 +651,17 @@ summary: "All 45 spec actions matched literally to source; transport parameters 
 ```yaml
 - "#MACRO"
 - "#SET"
+- "ViewPro v1.0 is not explicitly named in the source document; the document is a general StreamNet protocol guide. Specific ViewPro features beyond StreamNet standard commands are unknown."
+- "#MACRO command mentioned but no macro definitions or syntax documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing found in source"
+- "ViewPro v1.0 model not explicitly mentioned in source; document is general StreamNet protocol guide"
+- "No firmware version compatibility stated"
+- "#SET command mentioned but not documented"
+- "#MACRO command mentioned but no syntax or definitions provided"
+- "GPIO/LUA driver details mentioned but not documented"
+- "No error response format documented"
+- "Multicast address is configurable, not fixed"
+- "UDP subscription configuration requires StreamNet Dealer Setup Program"
 ```
 
 ---

@@ -20,22 +20,31 @@ compatible_with:
   required_options: []
 source_domains:
   - leviton.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://leviton.com/content/dam/leviton/lighting-controls/controls/product_documents/instruction_sheet/D42AV-D4200-AV-Interface-English-Instruction-Sheet.pdf
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
-retrieved_at: 2026-05-14T23:54:54.918Z
+  - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
+retrieved_at: 2026-05-14T17:11:49.440Z
 last_checked_at: 2026-05-16T11:27:45.657Z
 generated_at: 2026-05-16T11:27:45.657Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model differences between D42AV / D4200 / D4100 not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "no multi-step macro sequences explicitly documented"
+  - "factory default (DE) requires physical button hold - potential safety consideration"
+  - "maximum number of nodes / groups / scenes supported"
+  - "Z-Wave command class details — source references Zensys spec appendices but does not include them"
+  - "exact response timing requirements between commands"
+  - "whether TCP/IP control is available in addition to serial"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:27:45.657Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions map to documented source commands with correct semantic coverage; transport parameters verbatim in source; no material gaps."
+  confidence: medium
+  summary: "All 21 spec actions map to documented source commands with correct semantic coverage; transport parameters verbatim in source; no material gaps. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -491,10 +500,11 @@ interlocks: []
 ```yaml
 source_domains:
   - leviton.com
+  - applicationmarket.crestron.com
 source_urls:
-  - https://leviton.com/content/dam/leviton/lighting-controls/controls/product_documents/instruction_sheet/D42AV-D4200-AV-Interface-English-Instruction-Sheet.pdf
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
-retrieved_at: 2026-05-14T23:54:54.918Z
+  - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
+retrieved_at: 2026-05-14T17:11:49.440Z
 last_checked_at: 2026-05-16T11:27:45.657Z
 ```
 
@@ -505,14 +515,21 @@ verdict: verified
 checked_at: 2026-05-16T11:27:45.657Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions map to documented source commands with correct semantic coverage; transport parameters verbatim in source; no material gaps."
+confidence: medium
+summary: "All 21 spec actions map to documented source commands with correct semantic coverage; transport parameters verbatim in source; no material gaps. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model differences between D42AV / D4200 / D4100 not stated in source"
+- "firmware version compatibility not stated in source"
+- "no multi-step macro sequences explicitly documented"
+- "factory default (DE) requires physical button hold - potential safety consideration"
+- "maximum number of nodes / groups / scenes supported"
+- "Z-Wave command class details — source references Zensys spec appendices but does not include them"
+- "exact response timing requirements between commands"
+- "whether TCP/IP control is available in addition to serial"
 ```
 
 ---

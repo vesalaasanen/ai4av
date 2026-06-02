@@ -24,14 +24,22 @@ last_checked_at: 2026-04-25T21:43:52.466Z
 generated_at: 2026-04-25T21:43:52.466Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial port config (baud rate, data bits, parity, stop bits) not stated in source"
+  - "no standalone settable parameters documented separately from actions"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "serial port configuration not documented, though protocol tables list \"UDP/TCP/Serial Port\" as supported"
+  - "authentication mechanism not described"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:43:52.466Z
   matched_actions: 29
   action_count: 29
   confidence: low
-  summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage"
+  summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -379,13 +387,20 @@ checked_at: 2026-04-25T21:43:52.466Z
 matched_actions: 29
 action_count: 29
 confidence: low
-summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage"
+summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial port config (baud rate, data bits, parity, stop bits) not stated in source"
+- "no standalone settable parameters documented separately from actions"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "serial port configuration not documented, though protocol tables list \"UDP/TCP/Serial Port\" as supported"
+- "authentication mechanism not described"
+- "firmware version compatibility not stated"
 ```
 
 ---

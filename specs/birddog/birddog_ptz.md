@@ -24,14 +24,25 @@ last_checked_at: 2026-05-14T18:17:14.644Z
 generated_at: 2026-05-14T18:17:14.644Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific PTZ pan/tilt/zoom continuous-move commands not documented — only speed settings and preset recall/save are described"
+  - "no error response codes or error handling documented"
+  - "firmware version compatibility not stated"
+  - "no settable continuous variables distinct from actions identified in source;"
+  - "no unsolicited notification/event mechanism documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "continuous PTZ move (pan left/right, tilt up/down, zoom in/out) commands not documented"
+  - "no rate limiting or command timing constraints documented"
+  - "specific firmware version compatibility for this API version 2.0 not stated"
+  - "product-specific endpoint availability matrix not fully documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.644Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters."
+  confidence: medium
+  summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1271,14 +1282,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.644Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters."
+confidence: medium
+summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific PTZ pan/tilt/zoom continuous-move commands not documented — only speed settings and preset recall/save are described"
+- "no error response codes or error handling documented"
+- "firmware version compatibility not stated"
+- "no settable continuous variables distinct from actions identified in source;"
+- "no unsolicited notification/event mechanism documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "continuous PTZ move (pan left/right, tilt up/down, zoom in/out) commands not documented"
+- "no rate limiting or command timing constraints documented"
+- "specific firmware version compatibility for this API version 2.0 not stated"
+- "product-specific endpoint availability matrix not fully documented"
 ```
 
 ---

@@ -19,19 +19,36 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:37.839Z
 last_checked_at: 2026-05-14T18:17:20.429Z
 generated_at: 2026-05-14T18:17:20.429Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "PA804UL-specific input terminal codes not listed in the appendix — appendix covers other NEC models only"
+  - "PA804UL-specific eco mode values not listed in the appendix — appendix covers other NEC models only"
+  - "PA804UL-specific aspect values not listed in the appendix — appendix covers other NEC models only"
+  - "standby mode settings for receiving commands — PA804UL not listed in the standby mode table"
+  - "source lists 115200/38400/19200/9600/4800 bps - default not stated"
+  - "flow control not explicitly stated; communication mode is full duplex"
+  - "source does not document unsolicited events or push notifications"
+  - "source does not describe multi-step macro sequences"
+  - "source mentions interlock switch in error status (DATA09 Bit1) but no interlock"
+  - "PA804UL-specific input terminal hex codes not in appendix"
+  - "PA804UL-specific aspect mode values not in appendix"
+  - "PA804UL-specific eco mode values not in appendix"
+  - "PA804UL standby mode settings for serial/LAN command reception not in table"
+  - "flow control setting not explicitly stated for serial"
+  - "default baud rate not stated (multiple supported)"
+  - "command timing / minimum inter-command delay not documented"
+  - "maximum concurrent connection count for TCP not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.429Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec action/feedback commands matched literally in source; hex sequences verified; transport parameters confirmed."
+  confidence: medium
+  summary: "All 53 spec action/feedback commands matched literally in source; hex sequences verified; transport parameters confirmed. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -645,7 +662,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:37.839Z
 last_checked_at: 2026-05-14T18:17:20.429Z
 ```
 
@@ -656,14 +673,30 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.429Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec action/feedback commands matched literally in source; hex sequences verified; transport parameters confirmed."
+confidence: medium
+summary: "All 53 spec action/feedback commands matched literally in source; hex sequences verified; transport parameters confirmed. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "PA804UL-specific input terminal codes not listed in the appendix — appendix covers other NEC models only"
+- "PA804UL-specific eco mode values not listed in the appendix — appendix covers other NEC models only"
+- "PA804UL-specific aspect values not listed in the appendix — appendix covers other NEC models only"
+- "standby mode settings for receiving commands — PA804UL not listed in the standby mode table"
+- "source lists 115200/38400/19200/9600/4800 bps - default not stated"
+- "flow control not explicitly stated; communication mode is full duplex"
+- "source does not document unsolicited events or push notifications"
+- "source does not describe multi-step macro sequences"
+- "source mentions interlock switch in error status (DATA09 Bit1) but no interlock"
+- "PA804UL-specific input terminal hex codes not in appendix"
+- "PA804UL-specific aspect mode values not in appendix"
+- "PA804UL-specific eco mode values not in appendix"
+- "PA804UL standby mode settings for serial/LAN command reception not in table"
+- "flow control setting not explicitly stated for serial"
+- "default baud rate not stated (multiple supported)"
+- "command timing / minimum inter-command delay not documented"
+- "maximum concurrent connection count for TCP not documented"
 ```
 
 ---

@@ -16,24 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - k.kramerav.com
+  - cdn.kramerav.com
 source_urls:
-  - https://k.kramerav.com/downloads/manuals/VP-719xl.pdf
-  - https://k.kramerav.com/downloads/protocols/protocol_3000_3.0_master_user.pdf
-  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
-retrieved_at: 2026-05-02T08:13:25.835Z
+  - https://cdn.kramerav.com/web/downloads/protocols/vp-723xl.pdf
+retrieved_at: 2026-05-14T18:17:17.329Z
 last_checked_at: 2026-05-14T18:17:17.329Z
 generated_at: 2026-05-14T18:17:17.329Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control not documented in source. Only RS-232 documented."
+  - "no standalone variable table in source; all parameters"
+  - "no unsolicited event notifications documented in source"
+  - "no explicit multi-step macro sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on"
+  - "TCP/IP, HTTP, or network control not documented in source"
+  - "firmware version for specific VP-723XL North America unit not stated"
+  - "no power-on sequencing, safety interlock, or fault behavior documented"
+  - "exact default baud rate for VP-723XL not confirmed in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.329Z
   matched_actions: 119
   action_count: 192
-  confidence: high
-  summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings."
+  confidence: medium
+  summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2037,12 +2044,10 @@ The source documents two distinct RS-232 protocols. The **Old protocol** (all fi
 
 ```yaml
 source_domains:
-  - k.kramerav.com
+  - cdn.kramerav.com
 source_urls:
-  - https://k.kramerav.com/downloads/manuals/VP-719xl.pdf
-  - https://k.kramerav.com/downloads/protocols/protocol_3000_3.0_master_user.pdf
-  - https://k.kramerav.com/downloads/manuals/VS-808xl.pdf
-retrieved_at: 2026-05-02T08:13:25.835Z
+  - https://cdn.kramerav.com/web/downloads/protocols/vp-723xl.pdf
+retrieved_at: 2026-05-14T18:17:17.329Z
 last_checked_at: 2026-05-14T18:17:17.329Z
 ```
 
@@ -2053,14 +2058,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.329Z
 matched_actions: 119
 action_count: 192
-confidence: high
-summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings."
+confidence: medium
+summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control not documented in source. Only RS-232 documented."
+- "no standalone variable table in source; all parameters"
+- "no unsolicited event notifications documented in source"
+- "no explicit multi-step macro sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on"
+- "TCP/IP, HTTP, or network control not documented in source"
+- "firmware version for specific VP-723XL North America unit not stated"
+- "no power-on sequencing, safety interlock, or fault behavior documented"
+- "exact default baud rate for VP-723XL not confirmed in source"
 ```
 
 ---

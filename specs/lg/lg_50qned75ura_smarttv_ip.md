@@ -1,8 +1,8 @@
 ---
-spec_id: admin/lg-50qned75ura-control
+spec_id: admin/lg-50qned75ura-smarttv
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "LG 50QNED75URA Control Spec"
+title: "LG 50QNED75URA SmartTV Control Spec"
 manufacturer: LG
 model_family: 50QNED75URA
 aliases: []
@@ -16,34 +16,39 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-26T14:29:48.591Z
-generated_at: 2026-04-26T14:29:48.591Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T02:28:51.191Z
+last_checked_at: 2026-06-02T03:24:40.559Z
+generated_at: 2026-06-02T03:24:40.559Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control is hinted at the request level but not documented in this source. IR codes are included only as reference; they are not a wired control protocol."
+  - "source describes no unsolicited push notifications from the device."
+  - "source describes no multi-step sequences."
+  - "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
+  - "TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to \"page A18\" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described."
 verification:
   verdict: verified
-  checked_at: 2026-04-26T14:29:48.591Z
-  matched_actions: 26
-  action_count: 26
-  confidence: high
-  summary: "All 26 spec actions match source commands with correct wire mnemonics, data ranges, and transport parameters verified."
+  checked_at: 2026-06-02T03:24:40.559Z
+  matched_actions: 28
+  action_count: 28
+  confidence: medium
+  summary: "All 28 spec actions match source commands with correct opcodes, data ranges, and parameters; transport layer fully verified against baud/bits/parity/encoding. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-18
+created_at: 2026-06-02
 ---
 
-# LG 50QNED75URA Control Spec
+# LG 50QNED75URA SmartTV Control Spec
 
 ## Summary
-LG commercial TV supporting RS-232C serial control at 9600 baud, 8N1. Commands are ASCII-formatted with Set ID addressing (range 1–99, or 0 for broadcast). No authentication required.
+RS-232C serial control spec for LG 50QNED75URA SmartTV. Covers power, input select, picture/sound parameters, OSD, key lock, tile-mode configuration, and diagnostic queries via an ASCII framed protocol at 9600 baud.
 
-<!-- UNRESOLVED: tile mode and IR code sections apply to video wall deployments; consumer TV use is limited to commands 01–16 -->
+<!-- UNRESOLVED: TCP/IP control is hinted at the request level but not documented in this source. IR codes are included only as reference; they are not a wired control protocol. -->
 
 ## Transport
 ```yaml
@@ -55,347 +60,500 @@ serial:
   parity: none
   stop_bits: 1
   flow_control: none
+  encoding: ascii
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
 ## Traits
 ```yaml
-- powerable      # inferred: power on/off commands documented
-- routable       # inferred: input select commands documented
-- levelable      # inferred: volume, contrast, brightness, color, tint, sharpness support
-- queryable      # inferred: read commands (FF data) present for multiple parameters
+# - powerable       (ka command present)
+# - routable        (kb input select present)
+# - levelable       (kf volume, kg contrast, kh brightness, ki color, kj tint, kk sharpness, kt balance present)
+# - queryable       (FF data byte = read; status acks for ka/kb/.../kz return present state)
+- powerable
+- routable
+- levelable
+- queryable
 ```
 
 ## Actions
 ```yaml
-- id: power
+# Command frame:  [C1][C2][ ][SetID][ ][Data]\r
+#   [ ] = ASCII space 0x20
+#   \r  = ASCII carriage return 0x0D
+#   SetID: ASCII 1-99 (1-based); "0" = broadcast (no ack check)
+#   Data: 1-2 hex byte(s) ASCII, or "FF" to read status.
+# Acknowledgement (read or accepted write): [C2][ ][SetID][ ][OK][Data][x]
+# Negative acknowledgement:                  [C2][ ][SetID][ ][NG][Data][x]
+# SetID token below = {SetID}; data token below = {Data} (hex).
+
+- id: power_set
   label: Power
   kind: action
+  command: "ka {SetID} {Data}\r"  # Data: 00=Off, 01=On
   params:
-    - name: state
+    - name: SetID
       type: integer
-      description: "0 = Off, 1 = On"
+      description: Set ID 1-99, or 0 for broadcast
+    - name: Data
+      type: integer
+      description: '00H = Power Off, 01H = Power On'
 
-- id: input_select
-  label: Input Select
+- id: power_query
+  label: Power Status Query
+  kind: query
+  command: "ka {SetID} FF\r"  # Response: ka {SetID} OK {Data} - 00=Off, 01=On
+  params:
+    - name: SetID
+      type: integer
+      description: Set ID 1-99
+
+- id: input_select_set
+  label: Input Select (Main Picture)
   kind: action
+  command: "kb {SetID} {Data}\r"  # Data: 02=AV, 04=Component1, 05=Component2, 06=RGB(DTV), 07=RGB(PC), 08=HDMI(DTV), 09=HDMI(PC)
   params:
-    - name: input
+    - name: SetID
       type: integer
-      description: "2=AV, 4=Component1, 5=Component2, 6=RGB-DTV, 7=RGB-PC, 8=HDMI-DTV, 9=HDMI-PC"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Input source code (02H-09H)
 
-- id: aspect_ratio
+- id: input_select_query
+  label: Input Select Query
+  kind: query
+  command: "kb {SetID} FF\r"  # Response: kb {SetID} OK {Data}
+  params:
+    - name: SetID
+      type: integer
+      description: Set ID 1-99
+
+- id: aspect_ratio_set
   label: Aspect Ratio
   kind: action
+  command: "kc {SetID} {Data}\r"  # Data: 01=4:3, 02=16:9, 03=Horizon, 04=Zoom1, 05=Zoom2, 06=Original, 07=14:9, 08=Full (EU), 09=1:1 (PC)
   params:
-    - name: ratio
+    - name: SetID
       type: integer
-      description: "1=4:3, 2=16:9, 3=Horizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full, 9=1:1"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Aspect ratio code (01H-09H)
 
-- id: screen_mute
+- id: screen_mute_set
   label: Screen Mute
   kind: action
+  command: "kd {SetID} {Data}\r"  # Data: 00=mute off, 01=mute on
   params:
-    - name: state
+    - name: SetID
       type: integer
-      description: "0=Off (picture on), 1=On (picture off)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '00H = Picture On, 01H = Picture Off'
 
-- id: volume_mute
+- id: volume_mute_set
   label: Volume Mute
   kind: action
+  command: "ke {SetID} {Data}\r"  # Data: 00=mute on, 01=mute off
   params:
-    - name: state
+    - name: SetID
       type: integer
-      description: "0=Mute on, 1=Mute off"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '00H = Mute On (Volume Off), 01H = Mute Off (Volume On)'
 
-- id: volume_control
+- id: volume_set
   label: Volume Control
   kind: action
+  command: "kf {SetID} {Data}\r"  # Data: 00H-64H (0-100 steps)
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H (0–100), hex; 0=Step0, 64=Step100"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Volume 00H-64H (0-100)
 
-- id: contrast
+- id: contrast_set
   label: Contrast
   kind: action
+  command: "kg {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H (0–100)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Contrast 00H-64H
 
-- id: brightness
+- id: brightness_set
   label: Brightness
   kind: action
+  command: "kh {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H (0–100)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Brightness 00H-64H
 
-- id: color
-  label: Color
+- id: color_set
+  label: Color (Video only)
   kind: action
+  command: "ki {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H (0–100)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Color 00H-64H
 
-- id: tint
-  label: Tint
+- id: tint_set
+  label: Tint (Video only)
   kind: action
+  command: "kj {SetID} {Data}\r"  # Data: 00H-64H (00=-50 Red, 64=+50 Green)
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H; 00=Red-50, 64=Green+50"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Tint 00H (red) - 64H (green)
 
-- id: sharpness
-  label: Sharpness
+- id: sharpness_set
+  label: Sharpness (Video only)
   kind: action
+  command: "kk {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H (0–100)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Sharpness 00H-64H
 
-- id: osd_select
+- id: osd_select_set
   label: OSD Select
   kind: action
+  command: "kl {SetID} {Data}\r"  # Data: 00=OSD Off, 01=OSD On
   params:
-    - name: state
+    - name: SetID
       type: integer
-      description: "0=OSD Off, 1=OSD On"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '00H = OSD Off, 01H = OSD On'
 
-- id: remote_lock
+- id: remote_lock_set
   label: Remote Lock / Key Lock
   kind: action
+  command: "km {SetID} {Data}\r"  # Data: 00=Off, 01=On. Locks both remote and local keys.
   params:
-    - name: state
+    - name: SetID
       type: integer
-      description: "0=Off, 1=On"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '00H = Off, 01H = On'
 
-- id: balance
+- id: balance_set
   label: Balance
   kind: action
+  command: "kt {SetID} {Data}\r"  # Data: 00H-64H (L50 - R50)
   params:
-    - name: level
+    - name: SetID
       type: integer
-      description: "Range 00H–64H; L50 at 00, R50 at 64"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Balance 00H (L50) - 64H (R50)
 
-- id: color_temperature
+- id: color_temperature_set
   label: Color Temperature
   kind: action
+  command: "ku {SetID} {Data}\r"  # Data: 00=Normal, 01=Cool, 02=Warm, 03=User
   params:
-    - name: mode
+    - name: SetID
       type: integer
-      description: "0=Normal, 1=Cool, 2=Warm, 3=User"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '00H=Normal, 01H=Cool, 02H=Warm, 03H=User'
 
-- id: abnormal_state
-  label: Abnormal State Read
+- id: abnormal_state_query
+  label: Abnormal State (Standby power-off reason)
+  kind: query
+  command: "kz {SetID} FF\r"  # Response: kz {SetID} OK {Data}
+  params:
+    - name: SetID
+      type: integer
+      description: Set ID 1-99
+
+- id: ism_mode_set
+  label: ISM Mode (afterimage prevention)
   kind: action
+  command: "jp {SetID} {Data}\r"  # Data: 01=Inversion, 02=Orbiter, 04=White Wash, 08=Normal
   params:
-    - name: read
+    - name: SetID
       type: integer
-      const: 255
-      description: "Send FF to read; returns 0=Normal, 1=No signal, 2=Off-RC, 3=Off-sleep, 4=Off-RS232C, 6=AC-down, 8=Off-timer, 9=Off-auto"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: '01H=Inversion, 02H=Orbiter, 04H=White Wash, 08H=Normal'
 
-- id: ism_mode
-  label: ISM Mode
+- id: auto_configure
+  label: Auto Configure (RGB PC only)
   kind: action
+  command: "ju {SetID} 01\r"  # Data fixed to 01H: trigger auto position/shake adjust
   params:
-    - name: mode
+    - name: SetID
       type: integer
-      description: "1=Inversion, 2=Orbiter, 4=White Wash, 8=Normal"
+      description: Set ID 1-99
 
-- id: auto_config
-  label: Auto Configure
+- id: ir_key_send
+  label: Send IR Remote Key Code
   kind: action
+  command: "mc {SetID} {Data}\r"  # Data: IR key code (see IR codes table in source; e.g. 08=Power, 09=Mute, 0B=Input, 43=Menu)
   params:
-    - name: execute
+    - name: SetID
       type: integer
-      const: 1
-      description: "Send 01 to execute; works in RGB(PC) mode only"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: IR key code (Hex). Source refers to "page A18" for full table; only partial keys enumerated inline.
 
-- id: tile_mode
+- id: tile_mode_set
   label: Tile Mode
   kind: action
+  command: "dd {SetID} {Data}\r"  # Data: 00=Off, otherwise 2-digit tile config (col x row) e.g. 12=1x2, 13=1x3, 14=1x4, ..., 44=4x4. Data cannot be 0X or X0 except 00.
   params:
-    - name: mode
+    - name: SetID
       type: integer
-      description: "00=Off; 12–44 for column x row configurations (e.g., 12=1x2, 44=4x4)"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Tile mode 00H-44H (col x row, 0X/X0 invalid except 00)
 
-- id: tile_h_size
-  label: Tile H Size
+- id: tile_h_size_set
+  label: Tile Horizontal Size
   kind: action
+  command: "dg {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: size
+    - name: SetID
       type: integer
-      description: "Range 00H–64H"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Horizontal tile size 00H-64H
 
-- id: tile_v_size
-  label: Tile V Size
+- id: tile_v_size_set
+  label: Tile Vertical Size
   kind: action
+  command: "dh {SetID} {Data}\r"  # Data: 00H-64H
   params:
-    - name: size
+    - name: SetID
       type: integer
-      description: "Range 00H–64H"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Vertical tile size 00H-64H
 
 - id: tile_id_set
   label: Tile ID Set
   kind: action
+  command: "di {SetID} {Data}\r"  # Data: 00H-10H
   params:
-    - name: id
+    - name: SetID
       type: integer
-      description: "Range 00H–10H"
+      description: Set ID 1-99
+    - name: Data
+      type: integer
+      description: Tile ID 00H-10H
 
-- id: key
-  label: Send IR Key Code
-  kind: action
-  params:
-    - name: keycode
-      type: integer
-      description: "Key code value (decimal); see IR code table"
-- id: elapsed_time_return
-  label: Elapsed Time Return
+- id: elapsed_time_query
+  label: Elapsed Time (used hours)
   kind: query
+  command: "dl {SetID} FF\r"  # Response: dl {SetID} OK {Data} (Data = used hours, hex)
   params:
-    - name: read
+    - name: SetID
       type: integer
-      const: 255
-      description: "Send FF to read; returns used hours in hexadecimal"
+      description: Set ID 1-99
 
-- id: temperature_value_read
-  label: Temperature Value Read
+- id: temperature_value_query
+  label: Internal Temperature Value
   kind: query
+  command: "dn {SetID} FF\r"  # Response: dn {SetID} OK {Data} (Data = 1 byte hex temperature)
   params:
-    - name: read
+    - name: SetID
       type: integer
-      const: 255
-      description: "Send FF to read; returns internal temperature, 1 byte hexadecimal"
+      description: Set ID 1-99
 
 - id: lamp_fault_check
   label: Lamp Fault Check
   kind: query
+  command: "dp {SetID} FF\r"  # Response: dp {SetID} OK {Data} - 00=Lamp Fault, 01=Lamp OK
   params:
-    - name: read
+    - name: SetID
       type: integer
-      const: 255
-      description: "Send FF to read; returns 0=Lamp Fault, 1=Lamp OK"
+      description: Set ID 1-99
 ```
 
 ## Feedbacks
 ```yaml
 - id: power_state
-  label: Power State
   type: enum
-  values:
-    - 0  # Off
-    - 1  # On
+  values: [off, on]
+  source: "ka ack data 00/01"
 
-- id: input_state
-  label: Input State
+- id: input_source
   type: enum
-  values:
-    - 2   # AV
-    - 4   # Component1
-    - 5   # Component2
-    - 6   # RGB-DTV
-    - 7   # RGB-PC
-    - 8   # HDMI-DTV
-    - 9   # HDMI-PC
+  values: [av, component1, component2, rgb_dtv, rgb_pc, hdmi_dtv, hdmi_pc]
+  source: "kb ack data 02/04/05/06/07/08/09"
 
-- id: abnormal_state_response
-  label: Abnormal State
+- id: volume_mute_state
   type: enum
-  values:
-    - 0   # Normal (power on, signal exists)
-    - 1   # No signal (power on)
-    - 2   # Turned off by remote control
-    - 3   # Turned off by sleep timer
-    - 4   # Turned off by RS-232C
-    - 6   # AC down
-    - 8   # Turned off by off timer
-    - 9   # Turned off by auto off function
+  values: [mute_on, mute_off]
+  source: "ke ack data 00/01"
 
-- id: elapsed_time
-  label: Elapsed Time
-  type: integer
-  description: "Used hours in hexadecimal"
+- id: screen_mute_state
+  type: enum
+  values: [picture_on, picture_off]
+  source: "kd ack data 00/01"
 
-- id: temperature_value
-  label: Temperature Value
-  type: integer
-  description: "Internal temperature, 1 byte hex"
+- id: osd_state
+  type: enum
+  values: [osd_off, osd_on]
+  source: "kl ack data 00/01"
+
+- id: remote_lock_state
+  type: enum
+  values: [off, on]
+  source: "km ack data 00/01"
+
+- id: color_temperature
+  type: enum
+  values: [normal, cool, warm, user]
+  source: "ku ack data 00/01/02/03"
+
+- id: abnormal_state
+  type: enum
+  values: [normal, no_signal, off_by_remote, off_by_sleep, off_by_rs232, ac_down, off_by_offtime, off_by_autoff]
+  source: "kz ack data 00/01/02/03/04/06/08/09"
 
 - id: lamp_fault
-  label: Lamp Fault
   type: enum
-  values:
-    - 0   # Lamp fault
-    - 1   # Lamp OK
+  values: [fault, ok]
+  source: "dp ack data 00/01"
 ```
 
 ## Variables
 ```yaml
-# Level parameters (contrast, brightness, color, tint, sharpness, volume, balance)
-# use same 00H–64H range; no separate variables needed — actions cover them.
+# Numeric level parameters share the same 00H-64H step encoding.
+- id: volume_level
+  type: integer
+  range: "00H-64H"
+  command: kf
+
+- id: contrast_level
+  type: integer
+  range: "00H-64H"
+  command: kg
+
+- id: brightness_level
+  type: integer
+  range: "00H-64H"
+  command: kh
+
+- id: color_level
+  type: integer
+  range: "00H-64H"
+  command: ki
+
+- id: tint_level
+  type: integer
+  range: "00H-64H"
+  notes: "00H = -50 (red), 64H = +50 (green)"
+  command: kj
+
+- id: sharpness_level
+  type: integer
+  range: "00H-64H"
+  command: kk
+
+- id: balance_level
+  type: integer
+  range: "00H-64H"
+  notes: "00H = L50, 64H = R50"
+  command: kt
+
+- id: aspect_ratio
+  type: integer
+  range: "01H-09H"
+  command: kc
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described; device only responds to commands
+# UNRESOLVED: source describes no unsolicited push notifications from the device.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step sequences described in source
+# UNRESOLVED: source describes no multi-step sequences.
 ```
 
 ## Safety
 ```yaml
+# UNRESOLVED: source contains no explicit safety warnings, interlocks, or power-on sequencing requirements.
 confirmation_required_for: []
-interlocks:
-  - Tile mode data cannot be set to 0X or X0 except 00
-  - Auto configure works only in RGB(PC) mode
-  # UNRESOLVED: no explicit safety warnings or interlock procedures in source
+interlocks: []
 ```
 
 ## Notes
-- Command format: `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where Cr = 0x0D, space = 0x20
-- Set ID range 1–99; 0 = broadcast (no ACK returned)
-- Read mode: send `FF` as data value
-- ACK format: `[Command2][ ][Set ID][ ][OK/NG][Data][x]`
-- Tile mode examples: 12=1x2, 13=1x3, 14=1x4, ... 44=4x4
+- Frame terminator is `0x0D` (CR); field separator is `0x20` (space). String terminator in ack is literal `x`.
+- `{SetID}` field is ASCII numeric 1-99. `0` = broadcast — source warns that ack messages from multiple sets will collide and should not be checked.
+- For write commands, appending `FF` as the data byte (`ka {SetID} FF\r`) reads present state and the device replies with the OK ack carrying the current value.
+- Source mentions an IR key code "page A18" that is not included in this excerpt; only the partial table inline in this document is represented.
+- "ip" in the source filename is misleading — the document body is purely RS-232C serial. No TCP/IP framing, port, or HTTP path is described.
 
-<!-- UNRESOLVED: TCP/IP protocol not documented in source — serial RS-232C only -->
-<!-- UNRESOLVED: firmware version not stated in source -->
-<!-- UNRESOLVED: port number for TCP/IP control not applicable (serial-only protocol documented) -->
+<!-- UNRESOLVED: TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to "page A18" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
-last_checked_at: 2026-04-26T14:29:48.591Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T02:28:51.191Z
+last_checked_at: 2026-06-02T03:24:40.559Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T14:29:48.591Z
-matched_actions: 26
-action_count: 26
-confidence: high
-summary: "All 26 spec actions match source commands with correct wire mnemonics, data ranges, and transport parameters verified."
+checked_at: 2026-06-02T03:24:40.559Z
+matched_actions: 28
+action_count: 28
+confidence: medium
+summary: "All 28 spec actions match source commands with correct opcodes, data ranges, and parameters; transport layer fully verified against baud/bits/parity/encoding. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control is hinted at the request level but not documented in this source. IR codes are included only as reference; they are not a wired control protocol."
+- "source describes no unsolicited push notifications from the device."
+- "source describes no multi-step sequences."
+- "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
+- "TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to \"page A18\" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described."
 ```
 
 ---

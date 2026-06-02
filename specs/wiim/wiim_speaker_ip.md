@@ -19,19 +19,30 @@ source_domains:
   - wiimhome.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+retrieved_at: 2026-04-30T04:31:33.737Z
 last_checked_at: 2026-04-27T10:13:21.152Z
 generated_at: 2026-04-27T10:13:21.152Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no specific port number stated in source (standard HTTPS implied but not confirmed)"
+  - "no authentication or login procedure described in source"
+  - "port number not stated in source"
+  - "source does not describe unsolicited notifications or event subscription mechanism"
+  - "no multi-step macro sequences described in source"
+  - "reboot and immediate shutdown commands exist but no safety warnings or"
+  - "no port number explicitly stated — standard HTTPS (443) is assumed but unconfirmed"
+  - "no authentication or login mechanism described"
+  - "no firmware version compatibility range stated"
+  - "no unsolicited event/notification mechanism described"
+  - "the source references WiiM Mini as an example device; exact model coverage is unclear"
 verification:
   verdict: verified
   checked_at: 2026-04-27T10:13:21.152Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions have literal command matches in source; transport protocol and URL structure verified."
+  confidence: medium
+  summary: "All 24 spec actions have literal command matches in source; transport protocol and URL structure verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -359,7 +370,7 @@ source_domains:
   - wiimhome.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+retrieved_at: 2026-04-30T04:31:33.737Z
 last_checked_at: 2026-04-27T10:13:21.152Z
 ```
 
@@ -370,14 +381,24 @@ verdict: verified
 checked_at: 2026-04-27T10:13:21.152Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions have literal command matches in source; transport protocol and URL structure verified."
+confidence: medium
+summary: "All 24 spec actions have literal command matches in source; transport protocol and URL structure verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no specific port number stated in source (standard HTTPS implied but not confirmed)"
+- "no authentication or login procedure described in source"
+- "port number not stated in source"
+- "source does not describe unsolicited notifications or event subscription mechanism"
+- "no multi-step macro sequences described in source"
+- "reboot and immediate shutdown commands exist but no safety warnings or"
+- "no port number explicitly stated — standard HTTPS (443) is assumed but unconfirmed"
+- "no authentication or login mechanism described"
+- "no firmware version compatibility range stated"
+- "no unsolicited event/notification mechanism described"
+- "the source references WiiM Mini as an example device; exact model coverage is unclear"
 ```
 
 ---

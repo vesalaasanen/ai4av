@@ -24,14 +24,25 @@ last_checked_at: 2026-05-14T18:17:18.396Z
 generated_at: 2026-05-14T18:17:18.396Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "flow_control not explicitly stated; full-duplex communication mode noted"
+  - "valid range not explicitly stated; gain parameter request returns upper/lower limits dynamically"
+  - "no unsolicited event/notification protocol described in source"
+  - "no multi-step sequences explicitly described in source"
+  - "full safety interlock procedures not documented in source"
+  - "specific projector models covered by this command reference not enumerated in source"
+  - "default serial baud rate not stated (only supported rates listed)"
+  - "flow control method not stated (full-duplex mode noted)"
+  - "command timing/latency specifications not stated"
+  - "maximum concurrent connection count not stated"
+  - "protocol version not stated (document revision BDT140013 Rev 7.1)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.396Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage."
+  confidence: medium
+  summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1077,14 +1088,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.396Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage."
+confidence: medium
+summary: "All 51 spec actions matched verbatim in source; transport parameters (port 7142, serial rates, data format) verified in manual; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "flow_control not explicitly stated; full-duplex communication mode noted"
+- "valid range not explicitly stated; gain parameter request returns upper/lower limits dynamically"
+- "no unsolicited event/notification protocol described in source"
+- "no multi-step sequences explicitly described in source"
+- "full safety interlock procedures not documented in source"
+- "specific projector models covered by this command reference not enumerated in source"
+- "default serial baud rate not stated (only supported rates listed)"
+- "flow control method not stated (full-duplex mode noted)"
+- "command timing/latency specifications not stated"
+- "maximum concurrent connection count not stated"
+- "protocol version not stated (document revision BDT140013 Rev 7.1)"
 ```
 
 ---

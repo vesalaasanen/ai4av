@@ -20,7 +20,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T20:44:22.026Z
 last_checked_at: 2026-05-16T19:22:51.129Z
 generated_at: 2026-05-16T19:22:51.129Z
 firmware_coverage: "Not stated in source"
@@ -28,13 +28,19 @@ protocol_coverage: []
 known_gaps:
   - /RadioBrowse
   - /Settings
+  - "the source is a CI-subset of the full BluOS API; undocumented endpoints exist but are out of scope"
+  - "populate from source, or remove section if not applicable"
+  - "source contains no explicit safety warnings or interlock procedures beyond the reboot command."
+  - "The source is a CI subset of the full BluOS API; additional endpoints exist in the full protocol. API version covered is 1.7 (dated 2025-04-09)."
+  - "No error response codes or error handling behavior is specified beyond a generic <error><message/></error> XML structure for /Browse errors."
+  - "Authentication/authorization model is not addressed in the source; assumed none required."
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:22:51.129Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 32 spec actions matched source endpoints with correct shapes; transport verified; mute polarity confirmed by source examples in 3.4/3.5."
+  summary: "All 32 spec actions matched source endpoints with correct shapes; transport verified; mute polarity confirmed by source examples in 3.4/3.5. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -589,7 +595,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T20:44:22.026Z
 last_checked_at: 2026-05-16T19:22:51.129Z
 ```
 
@@ -601,7 +607,7 @@ checked_at: 2026-05-16T19:22:51.129Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 32 spec actions matched source endpoints with correct shapes; transport verified; mute polarity confirmed by source examples in 3.4/3.5."
+summary: "All 32 spec actions matched source endpoints with correct shapes; transport verified; mute polarity confirmed by source examples in 3.4/3.5. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -609,6 +615,12 @@ summary: "All 32 spec actions matched source endpoints with correct shapes; tran
 ```yaml
 - /RadioBrowse
 - /Settings
+- "the source is a CI-subset of the full BluOS API; undocumented endpoints exist but are out of scope"
+- "populate from source, or remove section if not applicable"
+- "source contains no explicit safety warnings or interlock procedures beyond the reboot command."
+- "The source is a CI subset of the full BluOS API; additional endpoints exist in the full protocol. API version covered is 1.7 (dated 2025-04-09)."
+- "No error response codes or error handling behavior is specified beyond a generic <error><message/></error> XML structure for /Browse errors."
+- "Authentication/authorization model is not addressed in the source; assumed none required."
 ```
 
 ---

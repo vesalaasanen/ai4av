@@ -19,7 +19,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T20:18:50.703Z
 last_checked_at: 2026-05-16T19:11:51.402Z
 generated_at: 2026-05-16T19:11:51.402Z
 firmware_coverage: "Not stated in source"
@@ -27,13 +27,21 @@ protocol_coverage: []
 known_gaps:
   - /Action
   - /RadioBrowse
+  - "the source document is the generic BluOS Custom Integration API and covers many product models (Bluesound, NAD, DALI, etc.); it is not specific to the C 700. C 700-specific input types, hardware capabilities, and firmware compatibility range are not stated."
+  - "no API endpoint for reading or setting the configured volume range bounds."
+  - "no unsolicited event/webhook mechanism documented in the source."
+  - "no multi-step macro sequences explicitly described in the source."
+  - "no power-on sequencing requirements, electrical interlocks, or"
+  - "C 700-specific hardware capabilities (supported inputs, output configuration, amplifier class, etc.) are not stated in the source API document. The API is generic across all BluOS players."
+  - "authentication and HTTPS/TLS support not addressed in source."
+  - "error response format for HTTP-level errors (4xx/5xx) not documented in source; only XML <error> root element is described for browse errors."
 verification:
   verdict: verified
   checked_at: 2026-05-16T19:11:51.402Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions match verbatim HTTP paths in the BluOS CI API source; only /Action and /RadioBrowse not represented."
+  confidence: medium
+  summary: "All 34 spec actions match verbatim HTTP paths in the BluOS CI API source; only /Action and /RadioBrowse not represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -699,7 +707,7 @@ source_domains:
   - bluos.io
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-03T07:12:55.041Z
+retrieved_at: 2026-05-16T20:18:50.703Z
 last_checked_at: 2026-05-16T19:11:51.402Z
 ```
 
@@ -710,8 +718,8 @@ verdict: verified
 checked_at: 2026-05-16T19:11:51.402Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions match verbatim HTTP paths in the BluOS CI API source; only /Action and /RadioBrowse not represented."
+confidence: medium
+summary: "All 34 spec actions match verbatim HTTP paths in the BluOS CI API source; only /Action and /RadioBrowse not represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -719,6 +727,14 @@ summary: "All 34 spec actions match verbatim HTTP paths in the BluOS CI API sour
 ```yaml
 - /Action
 - /RadioBrowse
+- "the source document is the generic BluOS Custom Integration API and covers many product models (Bluesound, NAD, DALI, etc.); it is not specific to the C 700. C 700-specific input types, hardware capabilities, and firmware compatibility range are not stated."
+- "no API endpoint for reading or setting the configured volume range bounds."
+- "no unsolicited event/webhook mechanism documented in the source."
+- "no multi-step macro sequences explicitly described in the source."
+- "no power-on sequencing requirements, electrical interlocks, or"
+- "C 700-specific hardware capabilities (supported inputs, output configuration, amplifier class, etc.) are not stated in the source API document. The API is generic across all BluOS players."
+- "authentication and HTTPS/TLS support not addressed in source."
+- "error response format for HTTP-level errors (4xx/5xx) not documented in source; only XML <error> root element is described for browse errors."
 ```
 
 ---

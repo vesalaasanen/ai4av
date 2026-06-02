@@ -21,19 +21,27 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:44:09.028Z
 last_checked_at: 2026-05-16T11:35:04.404Z
 generated_at: 2026-05-16T11:35:04.404Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "flow control not stated; RTS/CTS handshake pins present in pinout"
+  - "volume/brightness values readable via GAIN PARAMETER REQUEST and"
+  - "no unsolicited event notifications described in source."
+  - "no multi-step macro sequences described in source."
+  - "no explicit voltage/power/current specifications in source."
+  - "Appendix \"Supplementary Information by Command\" referenced for input terminal values, aspect values, eco mode values, base model type values, and sub input values — not included in this source document."
+  - "wireless LAN unit specifications and port configuration not stated beyond \"see operation manual of wireless LAN unit\"."
+  - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:35:04.404Z
   matched_actions: 28
   action_count: 53
-  confidence: high
-  summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented."
+  confidence: medium
+  summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -724,7 +732,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:44:09.028Z
 last_checked_at: 2026-05-16T11:35:04.404Z
 ```
 
@@ -735,14 +743,21 @@ verdict: verified
 checked_at: 2026-05-16T11:35:04.404Z
 matched_actions: 28
 action_count: 53
-confidence: high
-summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented."
+confidence: medium
+summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "flow control not stated; RTS/CTS handshake pins present in pinout"
+- "volume/brightness values readable via GAIN PARAMETER REQUEST and"
+- "no unsolicited event notifications described in source."
+- "no multi-step macro sequences described in source."
+- "no explicit voltage/power/current specifications in source."
+- "Appendix \"Supplementary Information by Command\" referenced for input terminal values, aspect values, eco mode values, base model type values, and sub input values — not included in this source document."
+- "wireless LAN unit specifications and port configuration not stated beyond \"see operation manual of wireless LAN unit\"."
+- "firmware version compatibility not stated in source."
 ```
 
 ---

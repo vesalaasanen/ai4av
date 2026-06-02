@@ -18,22 +18,28 @@ compatible_with:
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+  - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-900-MoIP-Serial_IR_Control%20Info_190124.pdf"
+retrieved_at: 2026-04-29T09:06:48.329Z
 last_checked_at: 2026-05-14T18:17:14.597Z
 generated_at: 2026-05-14T18:17:14.597Z
 firmware_coverage: 3.0.4.8
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware compatibility range not stated — only v3.0.4.8 referenced in doc header"
+  - "no continuous settable parameters beyond discrete actions"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility range not stated"
+  - "no mention of connection keepalive or timeout behavior"
+  - "no mention of connection encryption or TLS support"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.597Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 21 spec actions match source wire tokens literally."
+  confidence: medium
+  summary: "All 21 spec actions match source wire tokens literally. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -405,10 +411,9 @@ interlocks: []
 source_domains:
   - snapav.com
 source_urls:
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/B100-B300_RS232_Protocol.pdf
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
-  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
-retrieved_at: 2026-05-01T01:55:36.443Z
+  - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-900-MoIP-Serial_IR_Control%20Info_190124.pdf"
+retrieved_at: 2026-04-29T09:06:48.329Z
 last_checked_at: 2026-05-14T18:17:14.597Z
 ```
 
@@ -419,14 +424,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.597Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 21 spec actions match source wire tokens literally."
+confidence: medium
+summary: "All 21 spec actions match source wire tokens literally. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware compatibility range not stated — only v3.0.4.8 referenced in doc header"
+- "no continuous settable parameters beyond discrete actions"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility range not stated"
+- "no mention of connection keepalive or timeout behavior"
+- "no mention of connection encryption or TLS support"
 ```
 
 ---

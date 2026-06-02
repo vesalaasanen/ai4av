@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:01.262Z
 last_checked_at: 2026-04-25T21:29:50.963Z
 generated_at: 2026-04-25T21:29:50.963Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific input terminal hex values vary by model - Appendix references model-specific supplements"
+  - "multiple rates supported (115200/38400/19200/9600/4800 bps); no default stated"
+  - "flow control not documented"
+  - "full table too large; major codes:"
+  - "no discrete variables separate from query responses documented"
+  - "no unsolicited event notifications documented; device only responds to commands"
+  - "no multi-step macro sequences documented"
+  - "full input terminal code table varies by model - Appendix references model-specific supplements"
+  - "aspect and eco mode hex codes vary by model - Appendix references model-specific supplements"
+  - "audio select values vary by model - Appendix references model-specific supplements"
+  - "selection signal type values vary by model - Appendix references model-specific supplements"
+  - "base model type values not enumerated - Appendix references model-specific supplements"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:29:50.963Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions have literal matches in the source command reference; transport parameters verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 53 spec actions have literal matches in the source command reference; transport parameters verified; bidirectional coverage complete. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -537,7 +549,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:01.262Z
 last_checked_at: 2026-04-25T21:29:50.963Z
 ```
 
@@ -548,14 +560,25 @@ verdict: verified
 checked_at: 2026-04-25T21:29:50.963Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions have literal matches in the source command reference; transport parameters verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 53 spec actions have literal matches in the source command reference; transport parameters verified; bidirectional coverage complete. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific input terminal hex values vary by model - Appendix references model-specific supplements"
+- "multiple rates supported (115200/38400/19200/9600/4800 bps); no default stated"
+- "flow control not documented"
+- "full table too large; major codes:"
+- "no discrete variables separate from query responses documented"
+- "no unsolicited event notifications documented; device only responds to commands"
+- "no multi-step macro sequences documented"
+- "full input terminal code table varies by model - Appendix references model-specific supplements"
+- "aspect and eco mode hex codes vary by model - Appendix references model-specific supplements"
+- "audio select values vary by model - Appendix references model-specific supplements"
+- "selection signal type values vary by model - Appendix references model-specific supplements"
+- "base model type values not enumerated - Appendix references model-specific supplements"
 ```
 
 ---

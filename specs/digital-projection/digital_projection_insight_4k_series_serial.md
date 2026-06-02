@@ -18,24 +18,30 @@ compatible_with:
   required_options: []
 source_domains:
   - digitalprojection.co.uk
+  - manualslib.com
 source_urls:
-  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+  - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
+retrieved_at: 2026-04-30T20:23:55.028Z
 last_checked_at: 2026-05-14T18:17:15.561Z
 generated_at: 2026-05-14T18:17:15.561Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "3D commands not fully decoded (value ranges partially described)."
+  - "no unsolicited event documentation in source"
+  - "no macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "lamp2/lamp3/lamp4 hours/strikes/serial/status — query responses not explicitly documented for lamps 2-4"
+  - "3D sync polarity values not fully decoded beyond pos/neg"
+  - "mcgg/tcgg data format x,y coordinates need leading zero prefix (e.g. 0.663,0.332)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.561Z
   matched_actions: 79
   action_count: 108
-  confidence: high
-  summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout."
+  confidence: medium
+  summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -973,12 +979,11 @@ Gamma values 10-30 correspond to gamma 1.0-3.0.
 ```yaml
 source_domains:
   - digitalprojection.co.uk
+  - manualslib.com
 source_urls:
-  - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+  - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
+retrieved_at: 2026-04-30T20:23:55.028Z
 last_checked_at: 2026-05-14T18:17:15.561Z
 ```
 
@@ -989,14 +994,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.561Z
 matched_actions: 79
 action_count: 108
-confidence: high
-summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout."
+confidence: medium
+summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "3D commands not fully decoded (value ranges partially described)."
+- "no unsolicited event documentation in source"
+- "no macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "lamp2/lamp3/lamp4 hours/strikes/serial/status — query responses not explicitly documented for lamps 2-4"
+- "3D sync polarity values not fully decoded beyond pos/neg"
+- "mcgg/tcgg data format x,y coordinates need leading zero prefix (e.g. 0.663,0.332)"
 ```
 
 ---

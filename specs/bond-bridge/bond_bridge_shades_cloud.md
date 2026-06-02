@@ -17,22 +17,29 @@ compatible_with:
   required_options: []
 source_domains:
   - docs-local.appbond.com
+  - tech.bndh.io
 source_urls:
-  - https://docs-local.appbond.com/
   - https://docs-local.appbond.com
+  - https://tech.bndh.io/technical/hex-codes
+  - https://tech.bndh.io/technical/ethernet
 retrieved_at: 2026-04-29T13:04:25.772Z
 last_checked_at: 2026-04-30T14:38:40.314Z
 generated_at: 2026-04-30T14:38:40.314Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port 80 assumed for HTTP; source uses http:// URLs without explicit port declaration"
+  - "no safety warnings or interlock procedures in source"
+  - "HTTP port number not explicitly stated; UNRESOLVED: firmware version compatibility not stated"
+  - "voltage/power specs not applicable to hub device"
+  - "exact error recovery sequences not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:38:40.314Z
   matched_actions: 81
   action_count: 81
-  confidence: high
-  summary: "All 81 spec actions matched source commands; transport parameters verified."
+  confidence: medium
+  summary: "All 81 spec actions matched source commands; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -604,9 +611,11 @@ Device discovery via mDNS: `ping BB18038.local` or `avahi-browse -a | grep bond`
 ```yaml
 source_domains:
   - docs-local.appbond.com
+  - tech.bndh.io
 source_urls:
-  - https://docs-local.appbond.com/
   - https://docs-local.appbond.com
+  - https://tech.bndh.io/technical/hex-codes
+  - https://tech.bndh.io/technical/ethernet
 retrieved_at: 2026-04-29T13:04:25.772Z
 last_checked_at: 2026-04-30T14:38:40.314Z
 ```
@@ -618,14 +627,18 @@ verdict: verified
 checked_at: 2026-04-30T14:38:40.314Z
 matched_actions: 81
 action_count: 81
-confidence: high
-summary: "All 81 spec actions matched source commands; transport parameters verified."
+confidence: medium
+summary: "All 81 spec actions matched source commands; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port 80 assumed for HTTP; source uses http:// URLs without explicit port declaration"
+- "no safety warnings or interlock procedures in source"
+- "HTTP port number not explicitly stated; UNRESOLVED: firmware version compatibility not stated"
+- "voltage/power specs not applicable to hub device"
+- "exact error recovery sequences not documented in source"
 ```
 
 ---

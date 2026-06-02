@@ -18,21 +18,31 @@ compatible_with:
   required_options: []
 source_domains:
   - sunbritetv.com
+  - snapav.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
+retrieved_at: 2026-05-26T20:49:57.399Z
 last_checked_at: 2026-05-31T22:43:12.555Z
 generated_at: 2026-05-31T22:43:12.555Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP control capability not confirmed in source; source documents only RS-232 protocol"
+  - "no standalone settable parameters documented; all commands are discrete actions"
+  - "no unsolicited event notifications documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing requirements stated in source"
+  - "TCP/IP protocol support not confirmed in source despite user-claimed Known protocol"
+  - "firmware version compatibility range not stated in source"
+  - "error codes and fault behavior not documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:43:12.555Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 49 spec actions matched to source commands; transport parameters (9600,8,1,none) confirmed; source fully represented."
+  confidence: medium
+  summary: "All 49 spec actions matched to source commands; transport parameters (9600,8,1,none) confirmed; source fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -398,9 +408,11 @@ Input 7 (VGA) and Input 8 (HDMI1) are documented as out of letter sequence to re
 ```yaml
 source_domains:
   - sunbritetv.com
+  - snapav.com
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
-retrieved_at: 2026-05-04T15:18:20.447Z
+  - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
+retrieved_at: 2026-05-26T20:49:57.399Z
 last_checked_at: 2026-05-31T22:43:12.555Z
 ```
 
@@ -411,14 +423,21 @@ verdict: verified
 checked_at: 2026-05-31T22:43:12.555Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 49 spec actions matched to source commands; transport parameters (9600,8,1,none) confirmed; source fully represented."
+confidence: medium
+summary: "All 49 spec actions matched to source commands; transport parameters (9600,8,1,none) confirmed; source fully represented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP control capability not confirmed in source; source documents only RS-232 protocol"
+- "no standalone settable parameters documented; all commands are discrete actions"
+- "no unsolicited event notifications documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing requirements stated in source"
+- "TCP/IP protocol support not confirmed in source despite user-claimed Known protocol"
+- "firmware version compatibility range not stated in source"
+- "error codes and fault behavior not documented in source"
 ```
 
 ---

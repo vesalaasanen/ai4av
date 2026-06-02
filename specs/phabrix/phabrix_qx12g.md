@@ -26,14 +26,23 @@ last_checked_at: 2026-05-14T18:17:19.660Z
 generated_at: 2026-05-14T18:17:19.660Z
 firmware_coverage: "\"5.4\""
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 control not documented in source — no evidence of serial control for this device"
+  - "event-driven push notifications not described in source."
+  - "populate from source if explicit macros are described."
+  - "safety warnings and interlock procedures not present in source document."
+  - "serial/RS-232 control support not found in source"
+  - "SFP+ firmware mode API not covered — document explicitly applies to SDI mode only"
+  - "event-driven push notifications not described — all communication is request/response"
+  - "physical connection details (power, environmental) not covered"
+  - "firmware update procedure not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:19.660Z
   matched_actions: 47
   action_count: 51
-  confidence: high
-  summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed."
+  confidence: medium
+  summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1120,14 +1129,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:19.660Z
 matched_actions: 47
 action_count: 51
-confidence: high
-summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed."
+confidence: medium
+summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 control not documented in source — no evidence of serial control for this device"
+- "event-driven push notifications not described in source."
+- "populate from source if explicit macros are described."
+- "safety warnings and interlock procedures not present in source document."
+- "serial/RS-232 control support not found in source"
+- "SFP+ firmware mode API not covered — document explicitly applies to SDI mode only"
+- "event-driven push notifications not described — all communication is request/response"
+- "physical connection details (power, environmental) not covered"
+- "firmware update procedure not documented"
 ```
 
 ---

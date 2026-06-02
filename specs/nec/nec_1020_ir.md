@@ -19,19 +19,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:11.182Z
 last_checked_at: 2026-05-14T18:17:18.251Z
 generated_at: 2026-05-14T18:17:18.251Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "appendix \"Supplementary Information by Command\" values not included in source"
+  - "source lists multiple baud rates (115200/38400/19200/9600/4800); no single default stated"
+  - "eco mode values (see appendix \"Supplementary Information by Command\")"
+  - "aspect ratio values (see appendix \"Supplementary Information by Command\")"
+  - "input terminal numeric codes (see appendix \"Supplementary Information by Command\")"
+  - "sub input setting values (see appendix \"Supplementary Information by Command\")"
+  - "base model type values (see appendix \"Supplementary Information by Command\")"
+  - "source does not document unsolicited event notifications"
+  - "no explicit multi-step macros documented in source"
+  - "no explicit safety warnings or interlock procedures beyond command timing notes"
+  - "appendix command value tables not included; contact NEC for complete value specifications"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.251Z
   matched_actions: 48
   action_count: 53
-  confidence: high
-  summary: "All 48 spec actions match verbatim with source command bytes; transport parameters verified; complete protocol coverage."
+  confidence: medium
+  summary: "All 48 spec actions match verbatim with source command bytes; transport parameters verified; complete protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -614,7 +625,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:11.182Z
 last_checked_at: 2026-05-14T18:17:18.251Z
 ```
 
@@ -625,14 +636,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.251Z
 matched_actions: 48
 action_count: 53
-confidence: high
-summary: "All 48 spec actions match verbatim with source command bytes; transport parameters verified; complete protocol coverage."
+confidence: medium
+summary: "All 48 spec actions match verbatim with source command bytes; transport parameters verified; complete protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "appendix \"Supplementary Information by Command\" values not included in source"
+- "source lists multiple baud rates (115200/38400/19200/9600/4800); no single default stated"
+- "eco mode values (see appendix \"Supplementary Information by Command\")"
+- "aspect ratio values (see appendix \"Supplementary Information by Command\")"
+- "input terminal numeric codes (see appendix \"Supplementary Information by Command\")"
+- "sub input setting values (see appendix \"Supplementary Information by Command\")"
+- "base model type values (see appendix \"Supplementary Information by Command\")"
+- "source does not document unsolicited event notifications"
+- "no explicit multi-step macros documented in source"
+- "no explicit safety warnings or interlock procedures beyond command timing notes"
+- "appendix command value tables not included; contact NEC for complete value specifications"
 ```
 
 ---

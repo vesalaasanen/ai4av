@@ -25,14 +25,24 @@ last_checked_at: 2026-04-30T15:22:12.346Z
 generated_at: 2026-04-30T15:22:12.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP or HTTP control not documented; serial-only confirmed"
+  - "flow control not stated in source"
+  - "power on/off commands not present in source"
+  - "query commands returning state not documented"
+  - "volume/gain/brightness control not applicable to matrix"
+  - "response strings or acknowledgement patterns not documented in source"
+  - "unsolicited notifications from device not documented"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP control path not documented"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:22:12.346Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched source; transport verified."
+  confidence: medium
+  summary: "All 10 spec actions matched source; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -211,14 +221,23 @@ verdict: verified
 checked_at: 2026-04-30T15:22:12.346Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched source; transport verified."
+confidence: medium
+summary: "All 10 spec actions matched source; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP or HTTP control not documented; serial-only confirmed"
+- "flow control not stated in source"
+- "power on/off commands not present in source"
+- "query commands returning state not documented"
+- "volume/gain/brightness control not applicable to matrix"
+- "response strings or acknowledgement patterns not documented in source"
+- "unsolicited notifications from device not documented"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP control path not documented"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

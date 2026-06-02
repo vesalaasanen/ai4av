@@ -16,24 +16,34 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-05-04T21:56:29.087Z
 last_checked_at: 2026-05-14T18:17:16.673Z
 generated_at: 2026-05-14T18:17:16.673Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP transport expected (entity ID suffix _ip, user-stated protocol) but not documented in this source. Port number unknown."
+  - "specific model variants / supported series names not listed (Models section empty in source)"
+  - "TCP/IP expected per family metadata but no port stated in source; serial commands likely tunnel over TCP"
+  - "TCP port not stated in source"
+  - "No settable non-discrete parameters beyond those captured as Actions"
+  - "no multi-step sequences documented in source"
+  - "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
+  - "supported model series names not listed in source (Models section blank)"
+  - "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.673Z
   matched_actions: 45
   action_count: 45
-  confidence: high
-  summary: "All 67 spec actions matched source commands with correct opcodes and parameters; transport values confirmed verbatim in source documentation."
+  confidence: medium
+  summary: "All 67 spec actions matched source commands with correct opcodes and parameters; transport values confirmed verbatim in source documentation. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -926,12 +936,13 @@ Protocol uses fixed-length ASCII frames: `OPERATION(1) CLIENT_ID(3) COMMAND(4) D
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-05-04T21:56:29.087Z
 last_checked_at: 2026-05-14T18:17:16.673Z
 ```
 
@@ -942,14 +953,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.673Z
 matched_actions: 45
 action_count: 45
-confidence: high
-summary: "All 67 spec actions matched source commands with correct opcodes and parameters; transport values confirmed verbatim in source documentation."
+confidence: medium
+summary: "All 67 spec actions matched source commands with correct opcodes and parameters; transport values confirmed verbatim in source documentation. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP transport expected (entity ID suffix _ip, user-stated protocol) but not documented in this source. Port number unknown."
+- "specific model variants / supported series names not listed (Models section empty in source)"
+- "TCP/IP expected per family metadata but no port stated in source; serial commands likely tunnel over TCP"
+- "TCP port not stated in source"
+- "No settable non-discrete parameters beyond those captured as Actions"
+- "no multi-step sequences documented in source"
+- "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
+- "supported model series names not listed in source (Models section blank)"
+- "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
 ```
 
 ---

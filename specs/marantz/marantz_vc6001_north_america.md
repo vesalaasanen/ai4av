@@ -37,13 +37,23 @@ known_gaps:
   - Z3CV
   - Z3HPF
   - Z3PS
+  - "IR control, front panel button behavior, device discovery protocols"
+  - "many PS (parameter) commands act as settable variables but are documented"
+  - "complete event catalog not explicitly enumerated in source."
+  - "no explicit multi-step macros described in source."
+  - "no explicit safety warnings, interlock procedures, or power-on sequencing"
+  - "complete list of model-specific command limitations"
+  - "Ethernet IP address configuration method not stated in source"
+  - "RS-232 cable wiring requirements beyond DB-9 pinout"
+  - "factory reset procedure not documented"
+  - "firmware update mechanism not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.018Z
   matched_actions: 55
   action_count: 55
-  confidence: high
-  summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec."
+  confidence: medium
+  summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -653,8 +663,8 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.018Z
 matched_actions: 55
 action_count: 55
-confidence: high
-summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec."
+confidence: medium
+summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -672,6 +682,16 @@ summary: "All 77 spec actions matched literally to source; transport parameters 
 - Z3CV
 - Z3HPF
 - Z3PS
+- "IR control, front panel button behavior, device discovery protocols"
+- "many PS (parameter) commands act as settable variables but are documented"
+- "complete event catalog not explicitly enumerated in source."
+- "no explicit multi-step macros described in source."
+- "no explicit safety warnings, interlock procedures, or power-on sequencing"
+- "complete list of model-specific command limitations"
+- "Ethernet IP address configuration method not stated in source"
+- "RS-232 cable wiring requirements beyond DB-9 pinout"
+- "factory reset procedure not documented"
+- "firmware update mechanism not documented"
 ```
 
 ---

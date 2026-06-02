@@ -24,14 +24,20 @@ last_checked_at: 2026-04-23T08:15:05.299Z
 generated_at: 2026-04-23T08:15:05.299Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source does not describe unsolicited event notifications"
+  - "no explicit multi-step macros described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "appendix values (input terminal codes, aspect values, eco mode values) not included - source references appendix not present in extracted text"
+  - "wireless LAN unit details not in source"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:15:05.299Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions found verbatim in source command table; transport parameters (port 7142, baud rates, serial config) verified in connection specifications."
+  confidence: medium
+  summary: "All 28 spec actions found verbatim in source command table; transport parameters (port 7142, baud rates, serial config) verified in connection specifications. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -518,14 +524,19 @@ verdict: verified
 checked_at: 2026-04-23T08:15:05.299Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions found verbatim in source command table; transport parameters (port 7142, baud rates, serial config) verified in connection specifications."
+confidence: medium
+summary: "All 28 spec actions found verbatim in source command table; transport parameters (port 7142, baud rates, serial config) verified in connection specifications. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source does not describe unsolicited event notifications"
+- "no explicit multi-step macros described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "appendix values (input terminal codes, aspect values, eco mode values) not included - source references appendix not present in extracted text"
+- "wireless LAN unit details not in source"
+- "firmware version compatibility not stated"
 ```
 
 ---

@@ -31,14 +31,22 @@ last_checked_at: 2026-05-05T05:41:49.532Z
 generated_at: 2026-05-05T05:41:49.532Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power save mode behavior only documented as \"power status query returns 0 incl power save mode on/off\" — specific commands to configure power save not present"
+  - "no discrete settable parameters beyond action commands"
+  - "no unsolicited event documentation found in source"
+  - "no multi-step macro sequences documented in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "power save mode configuration commands not documented"
+  - "TV minor channel number handling not fully clarified"
+  - "Telnet-specific behavior beyond socket protocol not detailed"
 verification:
   verdict: verified
   checked_at: 2026-05-05T05:41:49.532Z
   matched_actions: 17
   action_count: 17
-  confidence: high
-  summary: "All 17 spec actions matched source commands with correct shapes and parameters; transport values verified against source; spec represents control command set comprehensively."
+  confidence: medium
+  summary: "All 17 spec actions matched source commands with correct shapes and parameters; transport values verified against source; spec represents control command set comprehensively. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -359,14 +367,21 @@ verdict: verified
 checked_at: 2026-05-05T05:41:49.532Z
 matched_actions: 17
 action_count: 17
-confidence: high
-summary: "All 17 spec actions matched source commands with correct shapes and parameters; transport values verified against source; spec represents control command set comprehensively."
+confidence: medium
+summary: "All 17 spec actions matched source commands with correct shapes and parameters; transport values verified against source; spec represents control command set comprehensively. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power save mode behavior only documented as \"power status query returns 0 incl power save mode on/off\" — specific commands to configure power save not present"
+- "no discrete settable parameters beyond action commands"
+- "no unsolicited event documentation found in source"
+- "no multi-step macro sequences documented in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "power save mode configuration commands not documented"
+- "TV minor channel number handling not fully clarified"
+- "Telnet-specific behavior beyond socket protocol not detailed"
 ```
 
 ---

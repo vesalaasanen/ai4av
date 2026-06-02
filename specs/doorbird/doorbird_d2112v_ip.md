@@ -19,21 +19,30 @@ compatible_with:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:25.612Z
 last_checked_at: 2026-04-23T06:39:48.980Z
 generated_at: 2026-04-23T06:39:48.980Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "SIP and RTSP port numbers are defaults and may differ per configuration"
+  - "auth credentials format not stated (user/password from DoorBird App)"
+  - "power on/off commands not found in source"
+  - "input/output routing not applicable to door station"
+  - "no discrete settable parameters found separate from action params"
+  - "rfid and keypad events mentioned as \"coming soon\""
+  - "no explicit multi-step sequences documented"
+  - "safety-critical fields not explicitly stated in source"
+  - "RTSP-over-HTTP port 8557 is default, may be configurable"
+  - "SIP port 5060 is default, may differ per proxy configuration"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:39:48.980Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set."
+  confidence: medium
+  summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -354,9 +363,8 @@ interlocks: []
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
-retrieved_at: 2026-04-30T04:32:18.464Z
+retrieved_at: 2026-04-30T04:32:25.612Z
 last_checked_at: 2026-04-23T06:39:48.980Z
 ```
 
@@ -367,14 +375,23 @@ verdict: verified
 checked_at: 2026-04-23T06:39:48.980Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set."
+confidence: medium
+summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "SIP and RTSP port numbers are defaults and may differ per configuration"
+- "auth credentials format not stated (user/password from DoorBird App)"
+- "power on/off commands not found in source"
+- "input/output routing not applicable to door station"
+- "no discrete settable parameters found separate from action params"
+- "rfid and keypad events mentioned as \"coming soon\""
+- "no explicit multi-step sequences documented"
+- "safety-critical fields not explicitly stated in source"
+- "RTSP-over-HTTP port 8557 is default, may be configurable"
+- "SIP port 5060 is default, may differ per proxy configuration"
 ```
 
 ---

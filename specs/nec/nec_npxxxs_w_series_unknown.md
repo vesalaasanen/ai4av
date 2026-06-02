@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:43:21.107Z
 last_checked_at: 2026-05-18T16:38:00.056Z
 generated_at: 2026-05-18T16:38:00.056Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN control specifics not documented — see operation manual of wireless LAN unit"
+  - "multiple rates supported (115200/38400/19200/9600/4800); source lists options, no single default"
+  - "no unsolicited event notifications documented"
+  - "no explicit multi-step macros documented"
+  - "power on/off interlock - no other commands accepted during power transition"
+  - "wireless LAN control protocol — not documented; requires wireless LAN unit operation manual"
+  - "input terminal numeric codes — referenced as Appendix, not included in source"
+  - "aspect ratio values — referenced as Appendix, not included in source"
+  - "eco mode values — referenced as Appendix, not included in source"
+  - "key code full list — partial list in source, see Table \"Key code list\""
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:38:00.056Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match source commands; transport parameters verified against source."
+  confidence: medium
+  summary: "All 53 spec actions match source commands; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -536,7 +546,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T08:43:21.107Z
 last_checked_at: 2026-05-18T16:38:00.056Z
 ```
 
@@ -547,14 +557,23 @@ verdict: verified
 checked_at: 2026-05-18T16:38:00.056Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match source commands; transport parameters verified against source."
+confidence: medium
+summary: "All 53 spec actions match source commands; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN control specifics not documented — see operation manual of wireless LAN unit"
+- "multiple rates supported (115200/38400/19200/9600/4800); source lists options, no single default"
+- "no unsolicited event notifications documented"
+- "no explicit multi-step macros documented"
+- "power on/off interlock - no other commands accepted during power transition"
+- "wireless LAN control protocol — not documented; requires wireless LAN unit operation manual"
+- "input terminal numeric codes — referenced as Appendix, not included in source"
+- "aspect ratio values — referenced as Appendix, not included in source"
+- "eco mode values — referenced as Appendix, not included in source"
+- "key code full list — partial list in source, see Table \"Key code list\""
 ```
 
 ---

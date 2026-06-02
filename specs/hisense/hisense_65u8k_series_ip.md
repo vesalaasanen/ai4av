@@ -16,24 +16,32 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-04-30T04:31:49.212Z
 last_checked_at: 2026-05-14T18:17:16.525Z
 generated_at: 2026-05-14T18:17:16.525Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source document title is \"RS-232/IR Protocol for Hisense® Prosumer TV\" — no TCP/IP transport is described. The input metadata stated \"Known protocol: TCP/IP\" but the source contains no TCP port, no IP addressing, and no socket-level protocol. This spec reflects serial-only control as stated in the source."
+  - "Specific model numbers were blank in the source \"Models\" section; entity ID supplied by caller."
+  - "Power-on via RS-232 requires the TV's Custom Install menu to be enabled (code 7310); this is a setup prerequisite, not a command sequence."
+  - "Power-On Input Selection (POIS) command was partially visible in source (truncated)."
+  - "No unsolicited notification mechanism described in source."
+  - "No multi-step macro sequences described in source."
+  - "Source document \"Models\" section was blank; specific model numbers that implement this protocol (beyond \"Prosumer TV\" and \"65U8K Series\" from entity metadata) are not stated."
+  - "Power-On Input Selection (POIS) command table was truncated in the source excerpt and could not be fully reconstructed."
+  - "Firmware version compatibility not stated in source."
+  - "RS-232 multi-drop wiring topology (daisy-chain vs. star) not described in source."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:16.525Z
   matched_actions: 74
   action_count: 74
-  confidence: high
-  summary: "All 104 spec actions match literally to source commands; all transport parameters verified verbatim in RS-232C specification section."
+  confidence: medium
+  summary: "All 104 spec actions match literally to source commands; all transport parameters verified verbatim in RS-232C specification section. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -902,12 +910,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - hisense-b2b.com
   - assets.hisense-usa.com
 source_urls:
-  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-04-30T04:31:43.572Z
+retrieved_at: 2026-04-30T04:31:49.212Z
 last_checked_at: 2026-05-14T18:17:16.525Z
 ```
 
@@ -918,14 +924,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:16.525Z
 matched_actions: 74
 action_count: 74
-confidence: high
-summary: "All 104 spec actions match literally to source commands; all transport parameters verified verbatim in RS-232C specification section."
+confidence: medium
+summary: "All 104 spec actions match literally to source commands; all transport parameters verified verbatim in RS-232C specification section. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source document title is \"RS-232/IR Protocol for Hisense® Prosumer TV\" — no TCP/IP transport is described. The input metadata stated \"Known protocol: TCP/IP\" but the source contains no TCP port, no IP addressing, and no socket-level protocol. This spec reflects serial-only control as stated in the source."
+- "Specific model numbers were blank in the source \"Models\" section; entity ID supplied by caller."
+- "Power-on via RS-232 requires the TV's Custom Install menu to be enabled (code 7310); this is a setup prerequisite, not a command sequence."
+- "Power-On Input Selection (POIS) command was partially visible in source (truncated)."
+- "No unsolicited notification mechanism described in source."
+- "No multi-step macro sequences described in source."
+- "Source document \"Models\" section was blank; specific model numbers that implement this protocol (beyond \"Prosumer TV\" and \"65U8K Series\" from entity metadata) are not stated."
+- "Power-On Input Selection (POIS) command table was truncated in the source excerpt and could not be fully reconstructed."
+- "Firmware version compatibility not stated in source."
+- "RS-232 multi-drop wiring topology (daisy-chain vs. star) not described in source."
 ```
 
 ---

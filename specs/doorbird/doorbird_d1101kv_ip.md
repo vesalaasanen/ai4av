@@ -18,21 +18,28 @@ compatible_with:
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:18.464Z
 last_checked_at: 2026-04-23T05:36:49.936Z
 generated_at: 2026-04-23T05:36:49.936Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial/RS-232 interface not supported per source — device is IP-only"
+  - "device state parameters exposed as settable variables not enumerated in source"
+  - "rfid and keypad events mentioned as \"coming soon\" - not active in source"
+  - "multi-step sequences not explicitly defined in source"
+  - "no explicit safety warnings or interlock procedures stated in source"
+  - "voltage/current/power specifications not provided in source"
+  - "fault behavior and error recovery sequences not detailed in source"
+  - "exact firmware version compatibility range not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T05:36:49.936Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 spec actions matched verbatim in source HTTP CGI endpoints with correct transport parameters and authentication methods."
+  confidence: medium
+  summary: "All 24 spec actions matched verbatim in source HTTP CGI endpoints with correct transport parameters and authentication methods. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -422,7 +429,6 @@ interlocks: []
 source_domains:
   - doorbird.com
 source_urls:
-  - https://www.doorbird.com/downloads/api_lan.pdf
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:18.464Z
 last_checked_at: 2026-04-23T05:36:49.936Z
@@ -435,14 +441,21 @@ verdict: verified
 checked_at: 2026-04-23T05:36:49.936Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 spec actions matched verbatim in source HTTP CGI endpoints with correct transport parameters and authentication methods."
+confidence: medium
+summary: "All 24 spec actions matched verbatim in source HTTP CGI endpoints with correct transport parameters and authentication methods. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial/RS-232 interface not supported per source — device is IP-only"
+- "device state parameters exposed as settable variables not enumerated in source"
+- "rfid and keypad events mentioned as \"coming soon\" - not active in source"
+- "multi-step sequences not explicitly defined in source"
+- "no explicit safety warnings or interlock procedures stated in source"
+- "voltage/current/power specifications not provided in source"
+- "fault behavior and error recovery sequences not detailed in source"
+- "exact firmware version compatibility range not stated"
 ```
 
 ---

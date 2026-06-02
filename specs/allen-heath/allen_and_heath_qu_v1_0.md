@@ -20,24 +20,29 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - support.allen-heath.com
   - allen-heath.com
 source_urls:
-  - https://support.allen-heath.com/hc/en-gb/articles/45146889174801-Avantis-MIDI-TCP-IP-Protocol
   - https://www.allen-heath.com/content/uploads/2023/06/Qu_MIDI_Protocol_V1.9.pdf
-retrieved_at: 2026-05-04T17:32:11.098Z
+retrieved_at: 2026-04-30T04:34:27.258Z
 last_checked_at: 2026-04-22T22:08:00.086Z
 generated_at: 2026-04-22T22:08:00.086Z
 firmware_coverage: V1.9+
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "USB serial config (baud rate) not stated — USB is class-compliant, no driver required for Mac"
+  - "no explicit multi-step macros described in source"
+  - "no explicit interlock or sequencing procedures in source"
+  - "USB baud rate not stated (USB is class-compliant, operates at device-level speed)"
+  - "TCP/IP address configuration not described in source"
+  - "firmware version compatibility beyond V1.9 not stated"
+  - "binary encoding of all NRPN parameter values — only hex ranges provided, not full enumeration"
 verification:
   verdict: verified
   checked_at: 2026-04-22T22:08:00.086Z
   matched_actions: 42
   action_count: 42
-  confidence: high
-  summary: "All 42 spec actions matched literally in source; transport parameters verified; comprehensive command coverage with no fabrications or shape drift."
+  confidence: medium
+  summary: "All 42 spec actions matched literally in source; transport parameters verified; comprehensive command coverage with no fabrications or shape drift. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -619,12 +624,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - support.allen-heath.com
   - allen-heath.com
 source_urls:
-  - https://support.allen-heath.com/hc/en-gb/articles/45146889174801-Avantis-MIDI-TCP-IP-Protocol
   - https://www.allen-heath.com/content/uploads/2023/06/Qu_MIDI_Protocol_V1.9.pdf
-retrieved_at: 2026-05-04T17:32:11.098Z
+retrieved_at: 2026-04-30T04:34:27.258Z
 last_checked_at: 2026-04-22T22:08:00.086Z
 ```
 
@@ -635,14 +638,20 @@ verdict: verified
 checked_at: 2026-04-22T22:08:00.086Z
 matched_actions: 42
 action_count: 42
-confidence: high
-summary: "All 42 spec actions matched literally in source; transport parameters verified; comprehensive command coverage with no fabrications or shape drift."
+confidence: medium
+summary: "All 42 spec actions matched literally in source; transport parameters verified; comprehensive command coverage with no fabrications or shape drift. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "USB serial config (baud rate) not stated — USB is class-compliant, no driver required for Mac"
+- "no explicit multi-step macros described in source"
+- "no explicit interlock or sequencing procedures in source"
+- "USB baud rate not stated (USB is class-compliant, operates at device-level speed)"
+- "TCP/IP address configuration not described in source"
+- "firmware version compatibility beyond V1.9 not stated"
+- "binary encoding of all NRPN parameter values — only hex ranges provided, not full enumeration"
 ```
 
 ---

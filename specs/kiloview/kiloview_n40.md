@@ -24,14 +24,23 @@ last_checked_at: 2026-04-25T20:53:42.415Z
 generated_at: 2026-04-25T20:53:42.415Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document is labeled \"Kiloview N60\" — N40 API parity not explicitly confirmed"
+  - "firmware version compatibility not stated in source"
+  - "the source does not describe unsolicited push events or WebSocket subscriptions."
+  - "no multi-step macro sequences described in source"
+  - "source contains no explicit safety warnings, interlock procedures,"
+  - "firmware version compatibility ranges not stated"
+  - "maximum concurrent API connections not stated"
+  - "error code catalog not provided beyond result=\"error\" with msg field"
+  - "whether unsolicited event/WebSocket push exists is not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-25T20:53:42.415Z
   matched_actions: 32
   action_count: 32
-  confidence: high
-  summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation."
+  confidence: medium
+  summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -717,14 +726,22 @@ verdict: verified
 checked_at: 2026-04-25T20:53:42.415Z
 matched_actions: 32
 action_count: 32
-confidence: high
-summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation."
+confidence: medium
+summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document is labeled \"Kiloview N60\" — N40 API parity not explicitly confirmed"
+- "firmware version compatibility not stated in source"
+- "the source does not describe unsolicited push events or WebSocket subscriptions."
+- "no multi-step macro sequences described in source"
+- "source contains no explicit safety warnings, interlock procedures,"
+- "firmware version compatibility ranges not stated"
+- "maximum concurrent API connections not stated"
+- "error code catalog not provided beyond result=\"error\" with msg field"
+- "whether unsolicited event/WebSocket push exists is not documented"
 ```
 
 ---

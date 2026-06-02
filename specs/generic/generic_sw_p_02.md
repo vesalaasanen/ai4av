@@ -30,14 +30,24 @@ last_checked_at: 2026-04-27T14:52:18.031Z
 generated_at: 2026-04-27T14:52:18.031Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "manufacturer entity bootstrap not confirmed; protocol also implemented by Rascular, Snell, Grass Valley"
+  - "flow control not stated in source"
+  - "TCP port not stated in source"
+  - "auth mechanism not described in source"
+  - "no unsolicited event definitions found in source."
+  - "no safety warnings or interlock procedures stated in source."
+  - "TCP port number not stated in source"
+  - "flow control configuration not stated in source"
+  - "auth type not stated in source"
+  - "unsolicited event conditions not fully enumerated"
 verification:
   verdict: verified
   checked_at: 2026-04-27T14:52:18.031Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference."
+  confidence: medium
+  summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -520,14 +530,23 @@ verdict: verified
 checked_at: 2026-04-27T14:52:18.031Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference."
+confidence: medium
+summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "manufacturer entity bootstrap not confirmed; protocol also implemented by Rascular, Snell, Grass Valley"
+- "flow control not stated in source"
+- "TCP port not stated in source"
+- "auth mechanism not described in source"
+- "no unsolicited event definitions found in source."
+- "no safety warnings or interlock procedures stated in source."
+- "TCP port number not stated in source"
+- "flow control configuration not stated in source"
+- "auth type not stated in source"
+- "unsolicited event conditions not fully enumerated"
 ```
 
 ---

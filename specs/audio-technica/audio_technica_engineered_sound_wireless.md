@@ -30,14 +30,23 @@ last_checked_at: 2026-05-14T18:17:14.169Z
 generated_at: 2026-05-14T18:17:14.169Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Serial/RS-232 not supported — IP only"
+  - "all settable parameters are exposed as Actions above;"
+  - "no explicit multi-step macros described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "TX-specific commands (sections 4.16) have incomplete parameter documentation in source — only command names listed without full format details"
+  - "CHG-specific commands (section 4.17) have incomplete parameter documentation in source"
+  - "Dante commands are read-only queries with no write/control capability documented"
+  - "Battery charging error flags documented but no command to read them shown"
+  - "Master table and preset operations (sections 4.5-4.8) have abbreviated documentation in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.169Z
   matched_actions: 63
   action_count: 63
-  confidence: high
-  summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1216,14 +1225,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.169Z
 matched_actions: 63
 action_count: 63
-confidence: high
-summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Serial/RS-232 not supported — IP only"
+- "all settable parameters are exposed as Actions above;"
+- "no explicit multi-step macros described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "TX-specific commands (sections 4.16) have incomplete parameter documentation in source — only command names listed without full format details"
+- "CHG-specific commands (section 4.17) have incomplete parameter documentation in source"
+- "Dante commands are read-only queries with no write/control capability documented"
+- "Battery charging error flags documented but no command to read them shown"
+- "Master table and preset operations (sections 4.5-4.8) have abbreviated documentation in source"
 ```
 
 ---

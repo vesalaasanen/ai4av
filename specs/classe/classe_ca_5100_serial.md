@@ -19,20 +19,28 @@ compatible_with:
 source_domains:
   - support.classeaudio.com
 source_urls:
-  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CDP_102_202_300_502_RS232_Protocol.pdf
-retrieved_at: 2026-05-31T18:20:38.998Z
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_Delta_Amps_RS232_Protocol.pdf
+retrieved_at: 2026-05-31T19:03:52.409Z
 last_checked_at: 2026-05-31T20:56:04.828Z
 generated_at: 2026-05-31T20:56:04.828Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source documents only a subset of the full Delta/CT protocol; full command catalogue size unknown"
+  - "amp=x and INPx=B/S appear to be persistent per-channel settings"
+  - "no unsolicited notifications documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing documented"
+  - "CA-5100 channel count not stated — affects expected heatsink line count in chk response"
+  - "full Delta/CT command catalogue size unknown — source covers limited subset"
+  - "IR remote codes, automation guide, and RS232 protocol PDF not accessible for richer spec"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:56:04.828Z
   matched_actions: 12
   action_count: 12
-  confidence: high
-  summary: "All 12 spec actions matched literally to source commands with correct shapes and transport parameters fully verified."
+  confidence: medium
+  summary: "All 12 spec actions matched literally to source commands with correct shapes and transport parameters fully verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -245,8 +253,8 @@ interlocks: []
 source_domains:
   - support.classeaudio.com
 source_urls:
-  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CDP_102_202_300_502_RS232_Protocol.pdf
-retrieved_at: 2026-05-31T18:20:38.998Z
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_Delta_Amps_RS232_Protocol.pdf
+retrieved_at: 2026-05-31T19:03:52.409Z
 last_checked_at: 2026-05-31T20:56:04.828Z
 ```
 
@@ -257,14 +265,21 @@ verdict: verified
 checked_at: 2026-05-31T20:56:04.828Z
 matched_actions: 12
 action_count: 12
-confidence: high
-summary: "All 12 spec actions matched literally to source commands with correct shapes and transport parameters fully verified."
+confidence: medium
+summary: "All 12 spec actions matched literally to source commands with correct shapes and transport parameters fully verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source documents only a subset of the full Delta/CT protocol; full command catalogue size unknown"
+- "amp=x and INPx=B/S appear to be persistent per-channel settings"
+- "no unsolicited notifications documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing documented"
+- "CA-5100 channel count not stated — affects expected heatsink line count in chk response"
+- "full Delta/CT command catalogue size unknown — source covers limited subset"
+- "IR remote codes, automation guide, and RS232 protocol PDF not accessible for richer spec"
 ```
 
 ---

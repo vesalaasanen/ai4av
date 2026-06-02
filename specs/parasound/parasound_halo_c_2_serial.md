@@ -20,21 +20,24 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
-retrieved_at: 2026-05-21T17:00:47.559Z
+retrieved_at: 2026-05-21T16:56:39.590Z
 last_checked_at: 2026-05-31T07:00:29.370Z
 generated_at: 2026-05-31T07:00:29.370Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no safety warnings or interlock procedures found in source"
+  - "firmware version compatibility not stated in source"
+  - "maximum command rate / minimum inter-command delay not stated"
+  - "error recovery or timeout behavior not documented"
+  - "no TCP/IP control documented — serial only"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:00:29.370Z
   matched_actions: 108
   action_count: 108
-  confidence: high
-  summary: "All 108 spec actions matched literal command codes from source; transport parameters verified; source command set fully represented."
+  confidence: medium
+  summary: "All 108 spec actions matched literal command codes from source; transport parameters verified; source command set fully represented. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1205,9 +1208,7 @@ source_domains:
   - cdn.shopify.com
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/C1_C2_RS232Codes.pdf?v=1719694110"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/200_Pre_Int-rs-232-guide.pdf?v=1718769361"
-  - "https://cdn.shopify.com/s/files/1/0763/0864/4159/files/Zpre3RS-232Guide.pdf?v=1718771526"
-retrieved_at: 2026-05-21T17:00:47.559Z
+retrieved_at: 2026-05-21T16:56:39.590Z
 last_checked_at: 2026-05-31T07:00:29.370Z
 ```
 
@@ -1218,14 +1219,18 @@ verdict: verified
 checked_at: 2026-05-31T07:00:29.370Z
 matched_actions: 108
 action_count: 108
-confidence: high
-summary: "All 108 spec actions matched literal command codes from source; transport parameters verified; source command set fully represented."
+confidence: medium
+summary: "All 108 spec actions matched literal command codes from source; transport parameters verified; source command set fully represented. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no safety warnings or interlock procedures found in source"
+- "firmware version compatibility not stated in source"
+- "maximum command rate / minimum inter-command delay not stated"
+- "error recovery or timeout behavior not documented"
+- "no TCP/IP control documented — serial only"
 ```
 
 ---

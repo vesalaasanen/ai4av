@@ -30,14 +30,21 @@ last_checked_at: 2026-05-03T16:17:34.638Z
 generated_at: 2026-05-03T16:17:34.638Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "no explicit multi-step sequences described in source"
+  - "source does not describe safety interlocks or power-on sequencing."
+  - "maximum command throughput / rate limiting not specified"
+  - "COMP threshold numeric range mapping to dB not explicitly stated"
+  - "COMP gain numeric range mapping to dB not explicitly stated"
+  - "EQ band gain numeric range not explicitly stated"
 verification:
   verdict: verified
   checked_at: 2026-05-03T16:17:34.638Z
   matched_actions: 163
   action_count: 163
-  confidence: high
-  summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks."
+  confidence: medium
+  summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2215,14 +2222,20 @@ verdict: verified
 checked_at: 2026-05-03T16:17:34.638Z
 matched_actions: 163
 action_count: 163
-confidence: high
-summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks."
+confidence: medium
+summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "no explicit multi-step sequences described in source"
+- "source does not describe safety interlocks or power-on sequencing."
+- "maximum command throughput / rate limiting not specified"
+- "COMP threshold numeric range mapping to dB not explicitly stated"
+- "COMP gain numeric range mapping to dB not explicitly stated"
+- "EQ band gain numeric range not explicitly stated"
 ```
 
 ---

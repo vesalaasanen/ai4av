@@ -4,14 +4,13 @@ schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Barco Loki Control Spec"
 manufacturer: Barco
-model_family: "Barco Loki"
+model_family: Loki
 aliases: []
 compatible_with:
   manufacturers:
     - Barco
   models:
-    - "Barco Loki"
-    - "UDX (Pulse-based projectors)"
+    - Loki
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,35 +19,36 @@ source_domains:
   - audiogeneral.com
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-06-01T22:38:26.750Z
 last_checked_at: 2026-05-20T05:53:51.437Z
 generated_at: 2026-05-20T05:53:51.437Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "spec covers one model name; full UDX family also shares this API."
+  - "no explicit safety warnings, lamp-cooling timers, or interlock procedures stated beyond the above power-state guards."
+  - "full property catalog (~hundreds of RW properties) not exhaustively reproduced in this spec — the source lists them all under \"Alphabetical list of all properties\" and the implementer should introspect the live device or read that section when filling in additional Variables."
 verification:
   verdict: verified
   checked_at: 2026-05-20T05:53:51.437Z
   matched_actions: 82
   action_count: 82
-  confidence: high
-  summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed."
+  confidence: medium
+  summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-16
+created_at: 2026-06-02
 ---
 
 # Barco Loki Control Spec
 
 ## Summary
+Barco Pulse projector family (UDX-titled reference; Loki-named spec). JSON-RPC 2.0 facade over TCP port 9090, plus RS-232 serial. Source is the "Power User Reference guide" rev 1.7 (2019-03-04), which covers Pulse API across TCP/IP and RS-232.
 
-The Barco Loki is a Pulse-based projector controlled via a JSON-RPC 2.0 API (referred to as the Pulse API). It supports both TCP/IP (port 9090) and RS-232 serial connections. This spec covers power control, input source selection, image settings, illumination, optics, and environment monitoring via the structured JSON-RPC method/property/signal interface.
-
-<!-- UNRESOLVED: specific Loki hardware model identifiers not confirmed in source; document covers "Pulse-based projectors" and UDX series generically -->
+<!-- UNRESOLVED: spec covers one model name; full UDX family also shares this API. -->
 
 ## Transport
-
 ```yaml
 protocols:
   - tcp
@@ -62,1053 +62,489 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: optional
-  # Authentication is optional: normal end-user access requires no authentication.
-  # A passcode-based authenticate method is available for elevated (power user / service) access.
-  # Method: authenticate, params: { code: <integer passcode> }
+  type: code  # source describes "authenticate" JSON-RPC call with `code` param; skipped for normal end user
 ```
 
 ## Traits
-
 ```yaml
-- powerable       # inferred from system.poweron / system.poweroff commands
-- routable        # inferred from image.window.main.source set/get commands
-- queryable       # inferred from property.get commands returning device state
-- levelable       # inferred from image.brightness, image.contrast, illumination.sources.laser.power controls
+- powerable       # system.poweron / system.poweroff documented
+- routable        # image.window.main.source set documented
+- queryable       # property.get documented
+- levelable       # image.brightness, illumination.sources.laser.power, image.color.p7.custom.* documented
 ```
 
 ## Actions
-
 ```yaml
-- id: power_on
-  label: Power On
-  kind: action
-  params: []
-  notes: >
-    JSON-RPC method: system.poweron. Returns null on success.
-    Best practice: verify system.state is "standby" or "ready" before issuing.
-
-- id: power_off
-  label: Power Off
-  kind: action
-  params: []
-  notes: >
-    JSON-RPC method: system.poweroff. Returns null on success.
-    Best practice: verify system.state is "on" before issuing.
-
-- id: reboot
-  label: Reboot
-  kind: action
-  params: []
-  notes: JSON-RPC method: system.reboot. Powers off projector first.
-
-- id: goto_ready
-  label: Go To Ready State
-  kind: action
-  params: []
-  notes: JSON-RPC method: system.gotoready.
-
-- id: goto_eco
-  label: Go To ECO State
-  kind: action
-  params: []
-  notes: JSON-RPC method: system.gotoeco.
-
-- id: select_source
-  label: Select Input Source
-  kind: action
-  params:
-    - name: source
-      type: string
-      description: >
-        Source name string, e.g. "DisplayPort 1", "HDMI", "DVI 1", "DVI 2",
-        "DisplayPort 2", "Dual DVI", "Dual DisplayPort", "Dual Head DVI",
-        "Dual Head DisplayPort", "HDBaseT", "SDI"
-  notes: >
-    JSON-RPC method: property.set, property: "image.window.main.source", value: <source string>
-
-- id: set_brightness
-  label: Set Image Brightness
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Normalized brightness offset. 0 = default, range -1.0 to 1.0, precision 0.01.
-  notes: JSON-RPC method: property.set, property: "image.brightness"
-
-- id: set_contrast
-  label: Set Image Contrast
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Normalized contrast/gain. 1 = default, range 0 to 2, precision 0.01.
-  notes: JSON-RPC method: property.set, property: "image.contrast"
-
-- id: set_saturation
-  label: Set Image Saturation
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Normalized saturation. 1 = default, range 0 to 2, precision 0.01.
-  notes: JSON-RPC method: property.set, property: "image.saturation"
-
-- id: set_sharpness
-  label: Set Image Sharpness
-  kind: action
-  params:
-    - name: value
-      type: integer
-      description: Normalized sharpness. Range -2 to 8.
-  notes: JSON-RPC method: property.set, property: "image.sharpness"
-
-- id: set_gamma
-  label: Set Image Gamma
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Gamma value. Default 2.2, range 1 to 3, precision 0.1.
-  notes: JSON-RPC method: property.set, property: "image.gamma"
-
-- id: set_intensity
-  label: Set Image Intensity
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Intensity. Range 0 to 1, step 0.1, precision 0.01.
-  notes: JSON-RPC method: property.set, property: "image.intensity"
-
-- id: set_laser_power
-  label: Set Laser Power
-  kind: action
-  params:
-    - name: value
-      type: float
-      description: Target laser power in percent (0 to 100).
-  notes: JSON-RPC method: property.set, property: "illumination.sources.laser.power"
-
-- id: set_shutter_target
-  label: Set Shutter Position
-  kind: action
-  params:
-    - name: target
-      type: enum
-      values: ["Open", "Closed"]
-      description: Target shutter position.
-  notes: JSON-RPC method: property.set, property: "optics.shutter.target"
-
-- id: toggle_shutter
-  label: Toggle Shutter
-  kind: action
-  params: []
-  notes: JSON-RPC method: optics.shutter.toggle. Toggles between Open and Closed.
-
-- id: set_orientation
-  label: Set Image Orientation
-  kind: action
-  params:
-    - name: orientation
-      type: enum
-      values: ["DESKTOP_FRONT", "DESKTOP_REAR", "CEILING_FRONT", "CEILING_REAR"]
-  notes: JSON-RPC method: property.set, property: "image.orientation"
-
-- id: set_scaling_mode
-  label: Set Scaling Mode
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: ["Fill", "OneToOne", "FillScreen", "Stretch"]
-  notes: JSON-RPC method: property.set, property: "image.window.main.scalingmode"
-
-- id: set_display_mode
-  label: Set Display Mode
-  kind: action
-  params:
-    - name: mode
-      type: enum
-      values: ["Mono", "AutoStereo", "ActiveStereo", "NightVision", "IGPixelShift"]
-  notes: JSON-RPC method: property.set, property: "image.display.desireddisplaymode"
-
-- id: set_resolution
-  label: Set Resolution
-  kind: action
-  params:
-    - name: resolution
-      type: string
-      description: Resolution description string (use image.resolution.list to enumerate options).
-  notes: JSON-RPC method: property.set, property: "image.resolution.resolution"
-
-- id: enable_warp
-  label: Enable/Disable Warp
-  kind: action
-  params:
-    - name: enable
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "image.processing.warp.enable"
-
-- id: set_warp_file
-  label: Select Warp File
-  kind: action
-  params:
-    - name: filename
-      type: string
-  notes: JSON-RPC method: property.set, property: "image.processing.warp.file.selected"
-
-- id: enable_warp_file
-  label: Enable/Disable File Warp
-  kind: action
-  params:
-    - name: enable
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "image.processing.warp.file.enable"
-
-- id: set_blend_file
-  label: Select Blend Mask File
-  kind: action
-  params:
-    - name: filename
-      type: string
-  notes: JSON-RPC method: property.set, property: "image.processing.blend.file.selected"
-
-- id: enable_blend_file
-  label: Enable/Disable File Blend
-  kind: action
-  params:
-    - name: enable
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "image.processing.blend.file.enable"
-
-- id: set_blacklevel_file
-  label: Select Black Level Mask File
-  kind: action
-  params:
-    - name: filename
-      type: string
-  notes: JSON-RPC method: property.set, property: "image.processing.blacklevel.file.selected"
-
-- id: enable_blacklevel_file
-  label: Enable/Disable Black Level File Correction
-  kind: action
-  params:
-    - name: enable
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "image.processing.blacklevel.file.enable"
-
-- id: show_test_pattern
-  label: Show/Hide Test Pattern
-  kind: action
-  params:
-    - name: show
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "image.testpattern.show"
-
-- id: select_test_pattern
-  label: Select Test Pattern
-  kind: action
-  params:
-    - name: id
-      type: string
-      description: Unique pattern ID (use image.testpattern.list to enumerate).
-  notes: JSON-RPC method: property.set, property: "image.testpattern.selected"
-
-- id: system_reset
-  label: Reset Domains
-  kind: action
-  params:
-    - name: domains
-      type: array
-      description: >
-        List of domain enum values to reset:
-        ImageConnector, ImageSource, ImageFeatures, ImageRealColor, ImageWarp,
-        ImageBlend, ImageOrientation, ImageResolution, ImageStereo, ImageDisplay,
-        ImageTestPattern, ImageConvergence, UserInterface, Optics, Illumination,
-        Network, Screen, System, LightMeasurement, Dmx
-  notes: JSON-RPC method: system.reset. Asynchronous; completion signalled by system.performed signal.
-
-- id: system_reset_all
-  label: Reset All Domains
-  label: Reset All Domains
-  kind: action
-  params: []
-  notes: JSON-RPC method: system.resetall.
-
-- id: send_key_click
-  label: Send Remote Control Key Click
-  kind: action
-  params:
-    - name: key
-      type: enum
-      values:
-        - RC_SHUTTER_OPEN
-        - RC_SHUTTER_CLOSE
-        - RC_POWER_ON
-        - RC_POWER_OFF
-        - RC_OSD
-        - RC_LCD
-        - RC_PATTERN
-        - RC_RGB
-        - RC_ZOOM_PLUS
-        - RC_ZOOM_MINUS
-        - RC_SHIFT_LEFT
-        - RC_SHIFT_UP
-        - RC_SHIFT_RIGHT
-        - RC_SHIFT_DOWN
-        - RC_FOCUS_PLUS
-        - RC_FOCUS_MINUS
-        - RC_MENU
-        - RC_DEFAULT
-        - RC_BACK
-        - RC_UP
-        - RC_LEFT
-        - RC_OK
-        - RC_RIGHT
-        - RC_DOWN
-        - RC_ADDRESS
-        - RC_INPUT
-        - RC_MACRO
-        - RC_1
-        - RC_2
-        - RC_3
-        - RC_4
-        - RC_5
-        - RC_6
-        - RC_7
-        - RC_8
-        - RC_9
-        - RC_0
-        - RC_ASTERISK
-        - RC_NUMBER
-        - KP_LEFT
-        - KP_UP
-        - KP_OK
-        - KP_RIGHT
-        - KP_DOWN
-        - KP_MENU
-        - KP_POWER
-        - KP_BACK
-        - KP_OSD
-        - KP_LENS
-        - KP_PATTERN
-        - KP_SHUTTER
-        - KP_INPUT
-        - KP_STANDBY
-  notes: JSON-RPC method: keydispatcher.sendclickevent. Sends press + release.
-
-- id: property_subscribe
-  label: Subscribe to Property Changes
-  kind: action
-  params:
-    - name: property
-      type: string_or_array
-      description: Property name or array of property names (dot-notation).
-  notes: JSON-RPC method: property.subscribe. Client receives property.changed notifications.
-
-- id: property_unsubscribe
-  label: Unsubscribe from Property Changes
-  kind: action
-  params:
-    - name: property
-      type: string_or_array
-      description: Property name or array of property names.
-  notes: JSON-RPC method: property.unsubscribe.
-
-- id: signal_subscribe
-  label: Subscribe to Signal
-  kind: action
-  params:
-    - name: signal
-      type: string_or_array
-      description: Signal name or array of signal names.
-  notes: JSON-RPC method: signal.subscribe. Client receives signal.callback notifications.
-
-- id: signal_unsubscribe
-  label: Unsubscribe from Signal
-  kind: action
-  params:
-    - name: signal
-      type: string_or_array
-  notes: JSON-RPC method: signal.unsubscribe.
-
-- id: lens_shift_to_center
-  label: Shift Lens to Center
-  kind: action
-  params: []
-  notes: JSON-RPC method: optics.shifttocenter.
-
-- id: enable_clo
-  label: Enable Constant Light Output (CLO)
-  kind: action
-  params:
-    - name: enable
-      type: boolean
-  notes: JSON-RPC method: property.set, property: "illumination.clo.enable"
-
-- id: clo_engage
-  label: Engage CLO at Current Light Level
-  kind: action
-  params: []
-  notes: JSON-RPC method: illumination.clo.engage.
-
 - id: authenticate
-  label: Authenticate (Elevated Access)
+  label: Authenticate (raise access level)
   kind: action
+  command: '{"jsonrpc":"2.0","method":"authenticate","params":{"code":98765}}'
   params:
     - name: code
       type: integer
-      description: Secret passcode for elevated access level.
-  notes: >
-    JSON-RPC method: authenticate. Only required for access levels above normal end-user.
-    Returns true on success.
-- id: property_get
-  label: Get Property Value
-  kind: query
+      description: Pass code (example: 98765)
+- id: system_poweron
+  label: Power On
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"system.poweron"}'
+  params: []
+- id: system_poweroff
+  label: Power Off
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"system.poweroff"}'
+  params: []
+- id: eco_wake_rs232
+  label: Wake from ECO (RS-232 ASCII)
+  kind: action
+  command: ':POWR1\r'
+  params: []
+- id: property_set
+  label: Set property value
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"<name>","value":<value>}}'
   params:
     - name: property
       type: string
-      description: Property name or array of property names (dot-notation).
-  notes: "JSON-RPC method: property.get. Returns current value(s) of the named property/properties."
-
-- id: introspect
-  label: Introspect API Object
+      description: Property dot-path (e.g. image.window.main.source)
+    - name: value
+      type: any
+      description: JSON value (string/integer/float/boolean/object/array)
+- id: property_get
+  label: Get property value
   kind: query
+  command: '{"jsonrpc":"2.0","method":"property.get","params":{"property":"<name>"}}'
+  params:
+    - name: property
+      type: string
+      description: Property dot-path
+- id: property_get_multi
+  label: Get multiple property values
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"property.get","params":{"property":["<a>","<b>"]}}'
+  params:
+    - name: property
+      type: array
+      description: Array of property dot-paths
+- id: property_subscribe
+  label: Subscribe to property change notifications
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.subscribe","params":{"property":"<name>"}}'
+  params:
+    - name: property
+      type: string
+      description: Property dot-path
+- id: property_subscribe_multi
+  label: Subscribe to multiple property change notifications
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.subscribe","params":{"property":["<a>","<b>"]}}'
+  params:
+    - name: property
+      type: array
+      description: Array of property dot-paths
+- id: property_unsubscribe
+  label: Unsubscribe from property change notifications
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":"<name>"}}'
+  params:
+    - name: property
+      type: string
+      description: Property dot-path
+- id: property_unsubscribe_multi
+  label: Unsubscribe from multiple properties
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":["<a>","<b>"]}}'
+  params:
+    - name: property
+      type: array
+      description: Array of property dot-paths
+- id: signal_subscribe
+  label: Subscribe to a signal
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":"<name>"}}'
+  params:
+    - name: signal
+      type: string
+      description: Signal dot-path (e.g. modelupdated)
+- id: signal_subscribe_multi
+  label: Subscribe to multiple signals
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":["<a>","<b>"]}}'
+  params:
+    - name: signal
+      type: array
+      description: Array of signal dot-paths
+- id: signal_unsubscribe
+  label: Unsubscribe from a signal
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":"<name>"}}'
+  params:
+    - name: signal
+      type: string
+      description: Signal dot-path
+- id: signal_unsubscribe_multi
+  label: Unsubscribe from multiple signals
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":["<a>","<b>"]}}'
+  params:
+    - name: signal
+      type: array
+      description: Array of signal dot-paths
+- id: introspect
+  label: Introspect object metadata
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"introspect","params":{"object":"<name>","recursive":true}}'
   params:
     - name: object
       type: string
-      description: Object name to introspect (dot-notation). Omit or leave empty to introspect everything.
+      description: Object dot-path
     - name: recursive
       type: boolean
-      description: If false, only list one level of object names.
-  notes: "JSON-RPC method: introspect. Returns metadata for the specified object."
-
-- id: get_environment_control_blocks
-  label: Get Environment Control Blocks
+      description: Recursive listing (default true)
+- id: introspect_positional
+  label: Introspect (positional params form)
   kind: query
+  command: '{"jsonrpc":"2.0","method":"introspect","params":["<name>",true]}'
+  params:
+    - name: object
+      type: string
+      description: Object dot-path
+    - name: recursive
+      type: boolean
+      description: Recursive flag
+- id: image_source_list
+  label: List available sources
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.source.list"}'
+  params: []
+- id: image_connector_list
+  label: List available connectors
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.connector.list"}'
+  params: []
+- id: image_source_listconnectors
+  label: List connectors for a source
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.source.<sourcename>.listconnectors"}'
+  params:
+    - name: sourcename
+      type: string
+      description: Lowercase name with non-word chars stripped (e.g. displayport1)
+- id: environment_getcontrolblocks
+  label: Query environment sensors
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"<type>","valuetype":"<valuetype>"}}'
   params:
     - name: type
       type: string
-      description: "Block type (Sensor, Filter, Controller, Actuator, Alarm, GenericBlock)."
+      description: Sensor type (Sensor, Filter, Controller, Actuator, Alarm, GenericBlock)
     - name: valuetype
       type: string
-      description: "Value type (Temperature, Speed, PWM, Voltage, etc.)."
-  notes: "JSON-RPC method: environment.getcontrolblocks."
-
-- id: get_alarm_info
-  label: Get Alarm Info
-  kind: query
-  params: []
-  notes: "JSON-RPC method: environment.getalarminfo."
-
-- id: list_reset_domains
-  label: List Reset Domains
-  kind: query
-  params: []
-  notes: "JSON-RPC method: system.listresetdomains."
-
-- id: system_activity
-  label: Signal User Activity
+      description: Value type (Temperature, Speed, Voltage, Current, Power, etc.)
+- id: ledctrl_blink
+  label: Blink an LED (example method invocation)
   kind: action
-  params: []
-  notes: "JSON-RPC method: system.activity. Resets timeout countdown timers."
-
-- id: list_firmware_components
-  label: List Firmware Components
-  kind: query
-  params: []
-  notes: "JSON-RPC method: firmware.listcomponents."
-
-- id: list_firmware_component_version_status
-  label: List Firmware Component Version Status
-  kind: query
-  params: []
-  notes: "JSON-RPC method: firmware.listcomponentversionstatus."
-
-- id: schedule_firmware_component_upgrade
-  label: Schedule Component Firmware Upgrade
-  kind: action
-  params: []
-  notes: "JSON-RPC method: firmware.schedulecomponentupgrade."
-
-- id: dismiss_notification
-  label: Dismiss Notification
-  kind: action
+  command: '{"jsonrpc":"2.0","method":"ledctrl.blink","params":{"led":"<name>","color":"<color>","period":<n>}}'
   params:
-    - name: id
+    - name: led
       type: string
-      description: Notification id.
-    - name: response
+      description: LED name (e.g. systemstatus)
+    - name: color
       type: string
-      description: "Response enum: NONE, OK, CANCEL, IGNORE, YES, NO, SUPPRESS."
-  notes: "JSON-RPC method: notification.dismiss."
-
-- id: list_notifications
-  label: List Active Notifications
-  kind: query
-  params: []
-  notes: "JSON-RPC method: notification.list."
-
-- id: log_notifications
-  label: List Saved Notifications
-  kind: query
-  params:
-    - name: minimumseverity
-      type: string
-      description: "Minimum severity enum: INFO, CAUTION, WARNING, ERROR, CRITICAL."
-    - name: start
+      description: LED color (e.g. red)
+    - name: period
       type: integer
-    - name: count
-      type: integer
-  notes: "JSON-RPC method: notification.log."
-
-- id: suppress_notification
-  label: Suppress Notification Code
+      description: Blink period
+- id: warp_enable
+  label: Enable global warping
   kind: action
-  params:
-    - name: code
-      type: string
-  notes: "JSON-RPC method: notification.suppress."
-
-- id: unsuppress_notification
-  label: Unsuppress Notification Code
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.enable","value":true}}'
+  params: []
+- id: warp_file_select
+  label: Select uploaded warp file
   kind: action
-  params:
-    - name: code
-      type: string
-  notes: "JSON-RPC method: notification.unsuppress."
-
-- id: unsuppress_all_notifications
-  label: Unsuppress All Notification Codes
-  kind: action
-  params: []
-  notes: "JSON-RPC method: notification.unsuppressall."
-
-- id: list_suppressed_notifications
-  label: List Suppressed Notification Codes
-  kind: query
-  params: []
-  notes: "JSON-RPC method: notification.listsuppressed."
-
-- id: send_key_press_event
-  label: Send Remote Control Key Press Event
-  kind: action
-  params:
-    - name: key
-      type: string
-      description: Key code enum value.
-  notes: "JSON-RPC method: keydispatcher.sendpressevent."
-
-- id: send_key_release_event
-  label: Send Remote Control Key Release Event
-  kind: action
-  params:
-    - name: key
-      type: string
-      description: Key code enum value.
-  notes: "JSON-RPC method: keydispatcher.sendreleaseevent."
-
-- id: list_connectors
-  label: List Input Connectors
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.connector.list."
-
-- id: list_sources
-  label: List Available Input Sources
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.source.list."
-
-- id: list_display_modes
-  label: List Available Display Modes
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.display.listdisplaymodes."
-
-- id: list_resolutions
-  label: List Available Resolutions
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.resolution.list."
-
-- id: list_test_patterns
-  label: List Available Test Patterns
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.testpattern.list."
-
-- id: list_test_pattern_files
-  label: List Custom Test Pattern Files
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.testpattern.file.list."
-
-- id: delete_test_pattern_file
-  label: Delete Test Pattern File
-  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.selected","value":"<filename>"}}'
   params:
     - name: filename
       type: string
-  notes: "JSON-RPC method: image.testpattern.file.delete."
-
-- id: set_test_pattern_properties
-  label: Set Test Pattern Properties
+      description: Warp grid file name (e.g. warp.xml)
+- id: warp_file_enable
+  label: Enable warp grid file
   kind: action
-  params:
-    - name: id
-      type: string
-    - name: properties
-      type: array
-      description: Array of key/value pairs.
-  notes: "JSON-RPC method: image.testpattern.setproperties."
-
-- id: list_warp_files
-  label: List Warp Files
-  kind: query
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.enable","value":true}}'
   params: []
-  notes: "JSON-RPC method: image.processing.warp.file.list."
-
-- id: delete_warp_file
-  label: Delete Warp File
+- id: warp_file_upload
+  label: Upload warp grid file (HTTP POST)
   kind: action
+  command: 'curl -X POST -F file=@<file> http://<address>/api/image/processing/warp/file/transfer'
   params:
-    - name: filename
+    - name: file
       type: string
-  notes: "JSON-RPC method: image.processing.warp.file.delete."
-
-- id: list_blend_files
-  label: List Blend Files
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.processing.blend.file.list."
-
-- id: delete_blend_file
-  label: Delete Blend File
+      description: Local warp grid file
+    - name: address
+      type: string
+      description: Projector IP address
+- id: blend_file_select
+  label: Select uploaded blend mask
   kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.selected","value":"<filename>"}}'
   params:
     - name: filename
       type: string
-  notes: "JSON-RPC method: image.processing.blend.file.delete."
-
-- id: list_blacklevel_files
-  label: List Black Level Files
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.processing.blacklevel.file.list."
-
-- id: delete_blacklevel_file
-  label: Delete Black Level File
+      description: Blend mask file name (e.g. mask.png)
+- id: blend_file_enable
+  label: Enable blend mask
   kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.enable","value":true}}'
+  params: []
+- id: blend_file_upload
+  label: Upload blend mask (HTTP POST)
+  kind: action
+  command: 'curl -X POST -F file=@<file> http://<address>/api/image/processing/blend/file/transfer'
+  params:
+    - name: file
+      type: string
+      description: Local blend mask file
+    - name: address
+      type: string
+      description: Projector IP address
+- id: blacklevel_file_select
+  label: Select uploaded black-level mask
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.selected","value":"<filename>"}}'
   params:
     - name: filename
       type: string
-  notes: "JSON-RPC method: image.processing.blacklevel.file.delete."
-
-- id: get_warp_grid
-  label: Get Warp Grid Points
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.processing.warpgrid.getgrid."
-
-- id: get_warp_grid_size
-  label: Get Warp Grid Size
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.processing.warpgrid.getgridsize."
-
-- id: calibrate_focus
-  label: Calibrate Focus Motor
+      description: Black level mask file name (e.g. blacklevel.png)
+- id: blacklevel_file_enable
+  label: Enable black-level mask
   kind: action
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.enable","value":true}}'
   params: []
-  notes: "JSON-RPC method: optics.focus.calibrate."
-
-- id: calibrate_lens_shift_horizontal
-  label: Calibrate Horizontal Lens Shift Motor
+- id: blacklevel_file_upload
+  label: Upload black-level mask (HTTP POST)
   kind: action
-  params: []
-  notes: "JSON-RPC method: optics.lensshift.horizontal.calibrate."
-
-- id: calibrate_lens_shift_vertical
-  label: Calibrate Vertical Lens Shift Motor
+  command: 'curl -X POST -F file=@<file> http://<address>/api/image/processing/blacklevel/file/transfer'
+  params:
+    - name: file
+      type: string
+      description: Local black-level mask file
+    - name: address
+      type: string
+      description: Projector IP address
+- id: set_input_source
+  label: Set active source
   kind: action
-  params: []
-  notes: "JSON-RPC method: optics.lensshift.vertical.calibrate."
-
-- id: calibrate_zoom
-  label: Calibrate Zoom Motor
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.window.main.source","value":"<source>"}}'
+  params:
+    - name: source
+      type: string
+      description: Source name (e.g. DisplayPort 1, HDMI, DVI 1, DVI 2, DisplayPort 2, Dual DVI, Dual DisplayPort, Dual Head DVI, Dual Head DisplayPort, HDBaseT, SDI)
+- id: set_laser_power
+  label: Set laser power percent
   kind: action
-  params: []
-  notes: "JSON-RPC method: optics.zoom.calibrate."
-
-- id: get_light_output
-  label: Get Light Output (Lumens)
-  kind: query
-  params: []
-  notes: "JSON-RPC method: lightmeasurement.getlightoutput."
-
-- id: list_network_devices
-  label: List Network Devices
-  kind: query
-  params: []
-  notes: "JSON-RPC method: network.list."
-
-- id: get_system_date
-  label: Get System Date (UTC)
-  kind: query
-  params: []
-  notes: "JSON-RPC method: system.getsystemdate."
-
-- id: list_statistics_counters
-  label: List Statistics Counters
-  kind: query
-  params: []
-  notes: "JSON-RPC method: statistics.listcounters."
-
-- id: get_laser_serial_number
-  label: Get Laser Serial Number
-  kind: query
-  params: []
-  notes: "JSON-RPC method: illumination.laser.getserialnumber."
-
-- id: list_remote_control_sensors
-  label: List IR Remote Control Sensors
-  kind: query
-  params: []
-  notes: "JSON-RPC method: remotecontrol.listsensors."
-
-- id: list_dmx_modes
-  label: List DMX Modes
-  kind: query
-  params: []
-  notes: "JSON-RPC method: dmx.listmodes."
-
-- id: list_dmx_channels
-  label: List DMX Channels
-  kind: query
-  params: []
-  notes: "JSON-RPC method: dmx.listchannels."
-
-- id: next_rgb_mode
-  label: Cycle to Next RGB Mode
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.sources.laser.power","value":<pct>}}'
+  params:
+    - name: pct
+      type: number
+      description: Power percent (bounded by minpower/maxpower)
+- id: set_image_brightness
+  label: Set image brightness
   kind: action
-  params: []
-  notes: "JSON-RPC method: image.color.rgbmode.nextrgbmode."
-
-- id: list_windows
-  label: List Available Windows
-  kind: query
-  params: []
-  notes: "JSON-RPC method: image.window.list."
+  command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.brightness","value":<v>}}'
+  params:
+    - name: v
+      type: number
+      description: Normalized brightness, -1 to 1, step 0.01
 ```
 
 ## Feedbacks
-
 ```yaml
 - id: system_state
-  label: System State
   type: enum
-  values: ["boot", "eco", "standby", "ready", "conditioning", "on", "deconditioning", "error", "service"]
-  notes: >
-    JSON-RPC property: system.state (read-only).
-    Subscribe via property.subscribe for change notifications.
-
+  values: [boot, eco, standby, ready, conditioning, on, deconditioning]
+  notes: Returned by property.get on system.state
 - id: illumination_state
-  label: Illumination State
   type: enum
-  values: ["On", "Off"]
-  notes: JSON-RPC property: illumination.state (read-only).
-
-- id: shutter_position
-  label: Shutter Position
-  type: enum
-  values: ["Open", "Closed"]
-  notes: JSON-RPC property: optics.shutter.position (read-only).
-
-- id: active_source
-  label: Active Source
-  type: string
-  notes: >
-    JSON-RPC property: image.window.main.source (read/write).
-    Empty string indicates no source selected.
-
+  values: [On, Off]
+  notes: Returned by property.get on illumination.state
 - id: alarm_state
-  label: Alarm State
   type: enum
-  values: ["Fatal", "Error", "Alert", "Warning", "Ok"]
-  notes: JSON-RPC property: environment.alarmstate (read-only).
-
-- id: laser_power
-  label: Laser Power (current)
-  type: float
-  notes: JSON-RPC property: illumination.sources.laser.power (read/write, %).
-
-- id: laser_max_power
-  label: Laser Max Power
-  type: float
-  notes: JSON-RPC property: illumination.sources.laser.maxpower (read-only, %).
-
-- id: laser_min_power
-  label: Laser Min Power
-  type: float
-  notes: JSON-RPC property: illumination.sources.laser.minpower (read-only, %).
-
-- id: laser_is_power_limited
-  label: Laser Power Limited
-  type: boolean
-  notes: JSON-RPC property: illumination.sources.laser.ispowerlimited (read-only).
-
-- id: laser_power_limit_reason
-  label: Laser Power Limit Reason
+  values: [Fatal, Error, Alert, Warning, Ok]
+  notes: Returned by property.get on environment.alarmstate
+- id: gsm_pinstate
+  type: enum
+  values: [Accepted, Failed, Locked, Unknown]
+  notes: Returned by property.get on gsm.pinstate
+- id: illumination_clo_availability
+  type: enum
+  values: [Available, SensorUnavailable, PendingWarmup, Unavailable, Unknown]
+- id: illumination_clo_state
+  type: enum
+  values: [Ok, TooDim, TooBright]
+- id: active_source
   type: string
-  notes: JSON-RPC property: illumination.sources.laser.powerlimitreason (read-only).
-
-- id: display_mode
-  label: Current Display Mode
-  type: enum
-  values: ["Mono", "AutoStereo", "ActiveStereo", "NightVision", "IGPixelShift"]
-  notes: JSON-RPC property: image.display.displaymode (read-only).
-
-- id: display_frequency
-  label: Display Frequency
-  type: float
-  notes: JSON-RPC property: image.display.frequency (read-only).
-
-- id: firmware_version
-  label: Firmware Version
-  type: string
-  notes: JSON-RPC property: firmware.firmwareversion (read-only).
-
-- id: network_state
-  label: Network Device State
-  type: enum
-  values: ["CONNECTED", "DISCONNECTED"]
-  notes: JSON-RPC property: network.device.lan.state (read-only).
-
-- id: clo_state
-  label: CLO State
-  type: enum
-  values: ["Ok", "TooDim", "TooBright"]
-  notes: JSON-RPC property: illumination.clo.state (read-only).
-
-- id: clo_availability
-  label: CLO Availability
-  type: enum
-  values: ["Available", "SensorUnavailable", "PendingWarmup", "Unavailable", "Unknown"]
-  notes: JSON-RPC property: illumination.clo.availability (read-only).
-
-- id: lens_present
-  label: Lens Present
+  notes: Returned by property.get on image.window.main.source
+- id: dmx_connectionstate_active
   type: boolean
-  notes: JSON-RPC property: optics.lenspresent (read-only).
-
-- id: connector_detected_signal
-  label: Connector Detected Signal Info
+  notes: True if a DMX/Artnet packet was received in last 10 s
+- id: detected_signal
   type: object
-  notes: >
-    JSON-RPC property: image.connector.[connector].detectedsignal (read-only).
-    Returns: active (bool), name (string), resolution, timing params, color_space, scan, gamma_type, etc.
+  notes: image.connector.<name>.detectedsignal (active, name, resolution, frequency, scan, color_space, signal_range, chroma_sampling, gamma_type, etc.)
+- id: environment_temperatures
+  type: object
+  notes: environment.getcontrolblocks with valuetype Temperature
+- id: environment_fan_speeds
+  type: object
+  notes: environment.getcontrolblocks with valuetype Speed
 ```
 
 ## Variables
-
 ```yaml
-- id: image_brightness
-  label: Image Brightness
+# Documented RW property examples (all set via property.set / read via property.get).
+# Use the source's exhaustive property catalog to extend.
+- name: image.window.main.source
+  type: string
+  settable: true
+  notes: Active source name
+- name: illumination.sources.laser.power
   type: float
-  constraints: {min: -1, max: 1, precision: 0.01}
-  notes: JSON-RPC property: image.brightness (read/write).
-
-- id: image_contrast
-  label: Image Contrast
+  settable: true
+  notes: Target laser power percent
+- name: illumination.sources.laser.minpower
   type: float
-  constraints: {min: 0, max: 2, precision: 0.01}
-  notes: JSON-RPC property: image.contrast (read/write).
-
-- id: image_saturation
-  label: Image Saturation
+  settable: false
+- name: illumination.sources.laser.maxpower
   type: float
-  constraints: {min: 0, max: 2, precision: 0.01}
-  notes: JSON-RPC property: image.saturation (read/write).
-
-- id: image_sharpness
-  label: Image Sharpness
-  type: integer
-  constraints: {min: -2, max: 8}
-  notes: JSON-RPC property: image.sharpness (read/write).
-
-- id: image_gamma
-  label: Image Gamma
-  type: float
-  constraints: {min: 1, max: 3, precision: 0.1}
-  notes: JSON-RPC property: image.gamma (read/write). Default 2.2.
-
-- id: image_intensity
-  label: Image Intensity
-  type: float
-  constraints: {min: 0, max: 1, step: 0.1, precision: 0.01}
-  notes: JSON-RPC property: image.intensity (read/write).
-
-- id: illumination_laser_power
-  label: Laser Power Target
-  type: float
-  constraints: {min: 0, max: 100}
-  notes: JSON-RPC property: illumination.sources.laser.power (read/write, in percent).
-
-- id: clo_setpoint
-  label: CLO Setpoint (target luminosity)
-  type: float
-  notes: JSON-RPC property: illumination.clo.setpoint (read/write).
-
-- id: clo_scale
-  label: CLO Scale (setpoint scale %)
-  type: float
-  notes: JSON-RPC property: illumination.clo.scale (read/write).
-
-- id: screen_luminance
-  label: Screen Luminance
-  type: float
-  constraints: {min: 50, max: 10000, step: 10}
-  notes: JSON-RPC property: screen.luminance (read/write, cd/m2).
-
-- id: screen_hdr_boost
-  label: HDR Boost Intensity
-  type: float
-  constraints: {min: 0.8, max: 1.2, step: 0.01}
-  notes: JSON-RPC property: screen.hdrboost (read/write).
-
-- id: transport_delay_desired
-  label: Desired Transport Delay
-  type: integer
-  notes: JSON-RPC property: image.processing.transportdelay.desired (read/write).
-
-- id: image_orientation
-  label: Image Orientation
-  type: enum
-  values: ["DESKTOP_FRONT", "DESKTOP_REAR", "CEILING_FRONT", "CEILING_REAR"]
-  notes: JSON-RPC property: image.orientation (read/write).
-
-- id: initial_state
-  label: Initial State on Power-up
-  type: enum
-  values: ["boot", "eco", "standby", "ready", "conditioning", "on", "service", "deconditioning", "error"]
-  notes: JSON-RPC property: system.initialstate (read/write).
-
-- id: eco_enable
-  label: ECO Mode Enabled
+  settable: false
+- name: illumination.clo.enable
   type: boolean
-  notes: JSON-RPC property: system.eco.enable (read/write).
-
-- id: dmx_artnet_enable
-  label: ArtNet Enabled
+  settable: true
+- name: illumination.clo.setpoint
+  type: float
+  settable: true
+- name: illumination.clo.scale
+  type: float
+  settable: true
+- name: image.brightness
+  type: float
+  settable: true
+  range: [-1, 1]
+- name: image.processing.warp.enable
   type: boolean
-  notes: JSON-RPC property: dmx.artnet (read/write).
-
-- id: dmx_start_channel
-  label: DMX Start Channel
+  settable: true
+- name: image.processing.warp.file.selected
+  type: string
+  settable: true
+- name: image.processing.warp.file.enable
+  type: boolean
+  settable: true
+- name: image.processing.blend.file.selected
+  type: string
+  settable: true
+- name: image.processing.blend.file.enable
+  type: boolean
+  settable: true
+- name: image.processing.blacklevel.file.selected
+  type: string
+  settable: true
+- name: image.processing.blacklevel.file.enable
+  type: boolean
+  settable: true
+- name: dmx.artnet
+  type: boolean
+  settable: true
+- name: dmx.artnetnet
   type: integer
-  constraints: {min: 1, max: 512}
-  notes: JSON-RPC property: dmx.startchannel (read/write).
-
-- id: rgb_mode
-  label: RGB Mode
-  type: enum
-  values: ["Full", "Red", "Green", "Blue", "RedGreen", "GreenBlue", "BlueRed"]
-  notes: JSON-RPC property: image.color.rgbmode.rgbmode (read/write).
+  settable: true
+- name: dmx.artnetuniverse
+  type: integer
+  settable: true
+- name: dmx.mode
+  type: string
+  settable: true
+- name: dmx.shutdown
+  type: boolean
+  settable: true
+- name: dmx.shutdowntimeout
+  type: integer
+  settable: true
+  notes: Minutes
+- name: dmx.startchannel
+  type: integer
+  settable: true
+  range: [1, 512]
+- name: gsm.pin
+  type: string
+  settable: true
+# Source contains a much longer RW property list (image.color.p7.custom.*,
+# image.blackcontentdetection.*, etc.) - populate from refined source as needed.
 ```
 
 ## Events
-
 ```yaml
-# Unsolicited notifications delivered as JSON-RPC notifications (no id field, no response expected).
-
 - id: property_changed
-  label: Property Changed
-  notes: >
-    JSON-RPC method: property.changed. Params: { property: [ { "name": value }, ... ] }
-    Sent when any subscribed property changes value.
-
+  description: Unsolicited property change notification from server
+  payload: '{"jsonrpc":"2.0","method":"property.changed","params":{"property":[{"<dot.path>":<value>}]}}'
 - id: signal_callback
-  label: Signal Callback
-  notes: >
-    JSON-RPC method: signal.callback. Params: { signal: [ { "name": { args } }, ... ] }
-    Sent when a subscribed signal fires.
-
-- id: model_updated
-  label: Model Updated
-  notes: >
-    Signal: modelupdated. Args: object (string), newobject (bool), accesslevel (enum).
-    Fires when API objects are added or removed (e.g. after firmware change).
-
-- id: notification_emitted
-  label: Notification Emitted
-  notes: >
-    Signal: notification.emitted. Args: notification object with severity, id, code, message, timeout, actions.
-    Severity values: INFO, CAUTION, WARNING, ERROR, CRITICAL.
-
-- id: system_performed
-  label: System Reset Performed
-  notes: >
-    Signal: system.performed. Args: domains [ enum ].
-    Emitted when one or more reset domains complete their reset.
-
-- id: warp_grid_changed
-  label: Warp Grid Changed
-  notes: Signal: image.processing.warpgrid.gridchanged. Args: grid [ { x: float, y: float } ].
-
-- id: source_changed
-  label: Source Changed
-  notes: >
-    Delivered as property.changed notification on "image.window.main.source".
-    Two notifications: first deselection (empty string), then selection (source name).
+  description: Signal callback notification from server
+  payload: '{"jsonrpc":"2.0","method":"signal.callback","params":{"signal":[{"<dot.path>":{"arg":<value>}}]}}'
+- id: modelupdated_signal
+  description: Object added or removed in introspection tree
+  payload: '{"jsonrpc":"2.0","method":"signal.callback","params":{"signal":[{"introspect.objectchanged":{"object":"<path>","newobject":true}}]}}'
 ```
 
 ## Macros
-
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences defined in source beyond individual API calls.
-# Example workflow (not a defined macro): power on sequence requires polling system.state
-# until "standby" or "ready" before issuing system.poweron.
+- id: wake_from_eco
+  label: Wake projector from ECO mode
+  steps:
+    - "Send WOL frame (projector MAC) - alternative path"
+    - "Or send :POWR1\\r on RS-232"
+    - "Or issue power button on remote / keypad"
+- id: select_input_pipeline
+  label: Get sources, pick one, set active
+  steps:
+    - "image.source.list - get available source names"
+    - "image.connector.list - list connectors"
+    - "property.set image.window.main.source = <name>"
+    - "property.subscribe image.window.main.source - get change notifications"
+- id: apply_warp_grid
+  label: Upload + apply a warp grid file
+  steps:
+    - "property.set image.processing.warp.enable = true"
+    - "curl POST warp grid to /api/image/processing/warp/file/transfer"
+    - "property.set image.processing.warp.file.selected = <name>"
+    - "property.set image.processing.warp.file.enable = true"
+- id: apply_blend_mask
+  label: Upload + apply a blend mask image
+  steps:
+    - "curl POST mask to /api/image/processing/blend/file/transfer"
+    - "property.set image.processing.blend.file.selected = <name>"
+    - "property.set image.processing.blend.file.enable = true"
+- id: apply_blacklevel_mask
+  label: Upload + apply a black-level mask
+  steps:
+    - "curl POST mask to /api/image/processing/blacklevel/file/transfer"
+    - "property.set image.processing.blacklevel.file.selected = <name>"
+    - "property.set image.processing.blacklevel.file.enable = true"
 ```
 
 ## Safety
-
 ```yaml
 confirmation_required_for:
-  - system.poweroff   # source recommends verifying system.state == "on" before issuing
-  - system.poweron    # source recommends verifying system.state == "standby" or "ready" before issuing
-  - system.reset      # asynchronous; subsequent reset calls fail until domains complete
-  - system.resetall   # resets all domains simultaneously
+  - system.poweroff
+  - dmx.shutdown
 interlocks:
-  - description: >
-      ECO mode wake-up via serial requires a special ASCII command ":POWR1\r" on RS-232
-      (not the standard JSON-RPC method), or Wake-on-LAN, or physical button press.
-  - description: >
-      property.set should not be issued for the same property again until confirmation
-      response is received (per source best practice note).
+  - "system.poweron is a no-op if projector already on or transitioning between states - verify state is 'standby' or 'ready' first"
+  - "system.poweroff is a no-op if projector already off or transitioning - verify state is 'on' first"
+  - "ECO-mode wake requires WOL, physical button, or RS-232 :POWR1 - JSON-RPC system.poweron may not wake from ECO"
+# UNRESOLVED: no explicit safety warnings, lamp-cooling timers, or interlock procedures stated beyond the above power-state guards.
 ```
 
 ## Notes
+JSON-RPC 2.0 envelopes are line-delimited JSON; "params" member may be absent (e.g. system.poweron) and is ignored if present. Parameter order does not matter; only the key/value binding matters. Authentication is optional for normal end-user access; raise access level by calling `authenticate` with a passcode (`code` is an integer — example value 98765 shown in source, actual codes are projector-specific). ECO-mode projectors will not respond to JSON-RPC `system.poweron` while in ECO — wake via WOL, physical button, or RS-232 `:POWR1\r` first. Property.set requests should be confirmed before sending another for the same property to avoid flooding. `property.subscribe` only sends notifications on change; use `property.get` to fetch the current value. The Pulse API surface is dynamic — peripheral / lens / configuration presence gates which properties exist; use `introspect` to enumerate what the connected unit exposes. Source document was the UDX-tagged Power User Reference guide (rev 1.7, 2019-03-04) — file endpoints, property list, and method list apply to Loki as part of the Pulse family.
 
-The Barco Loki uses the Pulse API: JSON-RPC 2.0 framed messages over either TCP (port 9090) or RS-232 (19200 baud, 8N1). All commands are JSON objects with `jsonrpc`, `method`, and optional `params` and `id` fields.
-
-**Protocol framing:** No explicit message delimiter is documented. Each JSON object is a complete request. The `id` field correlates requests to responses; omit it for fire-and-forget calls.
-
-**Authentication:** For normal end-user operations (power, source selection, image settings), authentication is not required. Call `authenticate` with the passcode only when power-user or higher access is needed.
-
-**HTTP file endpoints:** A secondary HTTP API at `http://[projector-ip]/api/[endpoint]` supports file upload/download for warp grids, blend masks, black level masks, EDID files, test patterns, and firmware. These use standard HTTP POST (multipart/form-data) and GET, not JSON-RPC.
-
-**Introspection:** The API supports runtime introspection via the `introspect` method, allowing clients to discover available objects, methods, properties, and signals dynamically.
-
-**Property access levels:** The `modelupdated` signal reports an `accesslevel` field indicating which access tier can see a given object. Some properties/methods are only accessible at power-user or service-partner level after authentication.
-
-**ECO mode:** On projectors with ECO mode, waking from ECO via RS-232 requires sending the ASCII string `:POWR1\r` — this is a legacy serial command, not a JSON-RPC message.
-
-<!-- UNRESOLVED: specific Barco Loki hardware article number or model identifier not found in source; the document covers "Pulse-based projectors" and UDX variants generically. -->
-<!-- UNRESOLVED: authentication passcode value not stated in source (intentionally secret). -->
-<!-- UNRESOLVED: complete list of available source names is device-dependent; use image.source.list to enumerate at runtime. -->
-<!-- UNRESOLVED: warp grid XML file format not detailed in this document. -->
+<!-- UNRESOLVED: full property catalog (~hundreds of RW properties) not exhaustively reproduced in this spec — the source lists them all under "Alphabetical list of all properties" and the implementer should introspect the live device or read that section when filling in additional Variables. -->
 
 ## Provenance
 
@@ -1117,7 +553,7 @@ source_domains:
   - audiogeneral.com
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-06-01T22:38:26.750Z
 last_checked_at: 2026-05-20T05:53:51.437Z
 ```
 
@@ -1128,14 +564,16 @@ verdict: verified
 checked_at: 2026-05-20T05:53:51.437Z
 matched_actions: 82
 action_count: 82
-confidence: high
-summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed."
+confidence: medium
+summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "spec covers one model name; full UDX family also shares this API."
+- "no explicit safety warnings, lamp-cooling timers, or interlock procedures stated beyond the above power-state guards."
+- "full property catalog (~hundreds of RW properties) not exhaustively reproduced in this spec — the source lists them all under \"Alphabetical list of all properties\" and the implementer should introspect the live device or read that section when filling in additional Variables."
 ```
 
 ---

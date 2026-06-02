@@ -28,14 +28,33 @@ last_checked_at: 2026-04-30T15:23:23.126Z
 generated_at: 2026-04-30T15:23:23.126Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN authentication credentials not stated in source (web interface mentions user/password but no defaults)"
+  - "no standalone settable parameters found beyond discrete commands"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "TCP keepalive/heartbeat interval not stated"
+  - "maximum concurrent LAN sessions not specified"
+  - "command timeout values not stated"
+  - "firmware version compatibility not stated"
+  - "error code enumeration beyond ERR not detailed"
+  - "LAN encryption type (HTTP/HTTPS) not stated"
+  - "DHCP can be enabled but specific procedure not documented"
+  - "broadcast/discovery mechanism not documented"
+  - "RS-232C connector pin 4/6 crossover note - source says depends on controlling device but doesn't specify which devices need it"
+  - "network reboot/reset timing not documented"
+  - "username/password default credentials not stated"
+  - "whether telnet or raw TCP used for LAN control not specified"
+  - "anamorphic mode values - source shows \"2.35:1\" but command param only shows 0/1/2 - ambiguity"
+  - "picture mode \"User2\" uses two-digit param \"10\" - single char or two-char?"
+  - "RGB frequency check returns ***.* format - format and precision not fully specified"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:23:23.126Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "All 47 spec actions matched source commands; transport verified."
+  confidence: medium
+  summary: "All 47 spec actions matched source commands; transport verified. (19 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -440,14 +459,32 @@ verdict: verified
 checked_at: 2026-04-30T15:23:23.126Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "All 47 spec actions matched source commands; transport verified."
+confidence: medium
+summary: "All 47 spec actions matched source commands; transport verified. (19 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN authentication credentials not stated in source (web interface mentions user/password but no defaults)"
+- "no standalone settable parameters found beyond discrete commands"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "TCP keepalive/heartbeat interval not stated"
+- "maximum concurrent LAN sessions not specified"
+- "command timeout values not stated"
+- "firmware version compatibility not stated"
+- "error code enumeration beyond ERR not detailed"
+- "LAN encryption type (HTTP/HTTPS) not stated"
+- "DHCP can be enabled but specific procedure not documented"
+- "broadcast/discovery mechanism not documented"
+- "RS-232C connector pin 4/6 crossover note - source says depends on controlling device but doesn't specify which devices need it"
+- "network reboot/reset timing not documented"
+- "username/password default credentials not stated"
+- "whether telnet or raw TCP used for LAN control not specified"
+- "anamorphic mode values - source shows \"2.35:1\" but command param only shows 0/1/2 - ambiguity"
+- "picture mode \"User2\" uses two-digit param \"10\" - single char or two-char?"
+- "RGB frequency check returns ***.* format - format and precision not fully specified"
 ```
 
 ---

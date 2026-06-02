@@ -1,20 +1,21 @@
 ---
-spec_id: admin/panasonic-wx-sr202p-wireless-microphone-system-v2-0
+spec_id: admin/panasonic-wx-sr200-series-wireless-microphone
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Panasonic WX-SR200 Series Control Spec"
+title: "Panasonic WX-SR200 Series Wireless Microphone I/F Specification"
 manufacturer: Panasonic
 model_family: WX-SR204
 aliases: []
 compatible_with:
   manufacturers:
     - Panasonic
+    - "Panasonic Connect Co., Ltd."
   models:
     - WX-SR204
     - WX-SR202
     - WX-SR204DN
     - WX-SR202DN
-    - WX-SZ600
+    - WZ-SZ600
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -32,26 +33,36 @@ last_checked_at: 2026-04-29T11:21:29.322Z
 generated_at: 2026-04-29T11:21:29.322Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "WX-SR202P specifically is not named in the source. The WX-SR200 series"
+  - "no safety warnings, interlocks, or power-on sequencing"
+  - "- WX-SR202P specifically is not named in this document; the WX-SR200"
 verification:
   verdict: verified
   checked_at: 2026-04-29T11:21:29.322Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim."
+  confidence: medium
+  summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-29
+created_at: 2026-06-02
 ---
 
-# Panasonic WX-SR200 Series Control Spec
+# Panasonic WX-SR200 Series Wireless Microphone I/F Specification
 
 ## Summary
-Panasonic 1.9 GHz band digital wireless microphone system. Controlled via IPv4 TCP/IP and UDP/IP on 100Base-TX. Receivers use MD5 authentication (SHA-256 for DN models); charger uses SHA-256 only. Control port 50003, UDP telemetry port 50004. Supports up to 2 simultaneous control terminals.
+The WX-SR200 series is a 1.9 GHz digital wireless microphone system. Receivers
+(WX-SR204 / WX-SR202 / WX-SR204DN / WX-SR202DN) and the WZ-SZ600 charger are
+controlled over 100Base-TX Ethernet using a custom binary TCP/UDP protocol.
+TCP port 50003 carries control commands; UDP port 50004 carries unsolicited
+radio-wave and audio-level data. Authentication uses MD5 (or SHA-256 on
+SR204/SR202DN/SR204DN and the charger) of the device password concatenated
+with a per-session nonce.
 
-<!-- UNRESOLVED: device power on/off commands not present in source -->
+<!-- UNRESOLVED: WX-SR202P specifically is not named in the source. The WX-SR200 series
+     family is covered; the "P" suffix is not documented here. -->
 
 ## Transport
 ```yaml
@@ -59,538 +70,364 @@ protocols:
   - tcp
   - udp
 addressing:
-  port: 50003  # TCP control command port (receiver and charger)
+  port: 50003  # TCP control command waiting port (receiver and charger)
+  udp_port: 50004  # UDP destination for level data distribution (receiver -> control terminal)
+serial: null  # N/A: LAN protocol, not serial
 auth:
-  type: password  # MD5 for SR200/SR202/SR204; SHA-256 for DN models and charger
-  hash_algorithm:
-    - md5  # WX-SR204, WX-SR202, WX-SR202DN, WX-SR204DN
-    - sha256  # WX-SR204DN, WX-SR202DN, WX-SZ600
+  type: digest  # MD5 (or SHA-256 on SR204/SR202DN/SR204DN/charger) of "password:nonce"
+  hash_algorithms:
+    - md5
+    - sha-256  # SR204, SR202DN, SR204DN, and WZ-SZ600 only
+  nonce_source: 8-byte ASCII lowercase alphabetic, delivered in connection response
+  max_password_length: 32  # bytes (ASCII)
 ```
+
+All frames use big-endian byte order. The header is fixed at 20 bytes:
+`Common identifier (4) | Header size (2, 0x0014) | Transaction number (2)
+| Command identifier (2) | Reserve (6) | Command data length (4)`.
+The common identifier is `0x53523200` ("SR2\0") for receivers and
+`0x535A3600` ("SZ6\0") for the charger. The transaction number wraps
+1-65535 for requests/updates; the responder echoes the same value. UDP
+delivery commands use a fixed transaction number of 0.
 
 ## Traits
 ```yaml
-- queryable  # current data acquisition, volume request, operation mode request, mic charge status request
-- levelable  # volume change with absolute/relative modes
+# - queryable: current-data, volume, operation-mode, mic-charge-status,
+#   charger-data requests all return state
+# - levelable: per-mic absolute / relative volume change + mute bit
 ```
 
 ## Actions
 ```yaml
+# Each action is keyed by the 2-byte command identifier. The data section
+# format per command is documented in the source. The header section
+# (20 bytes) is prepended automatically per the frame layout.
+
+# === Receiver (WX-SR200 series) ===
+
 - id: connection_request
   label: Connection Request
   kind: action
+  command: "0xE001"
   params:
     - name: current_time
       type: string
-      description: Control terminal current time in ASCII YYYYMMDDHHMMSS format
-  source: 5.1
+      description: ASCII 14-byte timestamp "YYYYMMDDhhmmss" of the control terminal
 
 - id: authentication_request
   label: Authentication Request
   kind: action
+  command: "0xF001"
   params:
     - name: auth_data
       type: string
-      description: MD5 or SHA-256 hash of "password:randomNumberData"
-  source: 5.3
+      description: MD5 or SHA-256 hash of "password:nonce" (lowercase hex, 32 or 64 bytes)
 
 - id: current_data_acquisition_request
-  label: Current Data Acquisition Request (Keep-Alive)
-  kind: action
+  label: Current Data Acquisition Request
+  kind: query
+  command: "0x0021"
   params: []
-  source: 5.5
+
+- id: level_data_distribution_request
+  label: Level Data Distribution Request (start/stop)
+  kind: action
+  command: "0x0031"
+  params:
+    - name: identifier
+      type: enum
+      values: [start, stop]
+      description: 0x0000 = start, 0x0001 = stop
+    - name: distribution_type
+      type: enum
+      values: [level_only, level_and_mic_status]
+      description: 0x0000 = level only (5.7.2), 0x0001 = level + mic status (5.7.3, SR204/SR202DN/SR204DN v6.00R00+)
 
 - id: operation_mode_change
   label: Operation Mode Change
   kind: action
+  command: "0x0140"
   params:
     - name: mode
-      type: integer
-      description: 0x0000=Local (front panel), 0x0001=Remote (control terminal)
-  source: 5.8
+      type: enum
+      values: [local, remote]
+      description: 0x0000 = local (front-panel volume), 0x0001 = remote (terminal-controlled)
 
 - id: operation_mode_request
   label: Operation Mode Request
-  kind: action
+  kind: query
+  command: "0x0141"
   params: []
-  source: 5.9
 
 - id: volume_change
   label: Volume Change
   kind: action
+  command: "0x0150"
   params:
-    - name: method
+    - name: setting_method
+      type: enum
+      values: [absolute, relative]
+      description: 0x0000 = absolute, 0x0001 = relative
+    - name: mic_select_bitmap
       type: integer
-      description: 0x0000=Absolute, 0x0001=Relative
-    - name: mic_mask
-      type: integer
-      description: Bitmask of microphones (Bit0=Mic1, ..., Bit15=Mic16)
-    - name: mic1_volume
-      type: integer
-      description: Volume 0x00-0x3F (6 bits); Bit7=Mute
-    - name: mic2_volume
-      type: integer
-    - name: mic3_volume
-      type: integer
-    - name: mic4_volume
-      type: integer
-    - name: mic5_volume
-      type: integer
-    - name: mic6_volume
-      type: integer
-    - name: mic7_volume
-      type: integer
-    - name: mic8_volume
-      type: integer
-    - name: mic9_volume
-      type: integer
-    - name: mic10_volume
-      type: integer
-    - name: mic11_volume
-      type: integer
-    - name: mic12_volume
-      type: integer
-    - name: mic13_volume
-      type: integer
-    - name: mic14_volume
-      type: integer
-    - name: mic15_volume
-      type: integer
-    - name: mic16_volume
-      type: integer
-  source: 5.11
+      description: 16-bit bitmap, bit 0 = Mic1 ... bit 15 = Mic16. 1 = apply this command
+    - name: volume_per_mic
+      type: bytes
+      description: 16 bytes, one per mic. Bit 6:0 = 0x00-0x3F volume (abs) or +/- delta (rel). Bit 7 = mute (abs) or direction (rel: 0=up, 1=down)
+  notes: |
+    Requires operation mode = remote (0x0140 with 0x0001). If relative deltas
+    exceed 0x00-0x3F, clamp to min/max.
 
 - id: volume_request
   label: Volume Request
-  kind: action
+  kind: query
+  command: "0x0151"
   params: []
-  source: 5.12
 
 - id: mic_pairing_request
   label: Mic Pairing Request
   kind: action
+  command: "0x0071"
   params:
-    - name: mode
+    - name: pairing_mode
+      type: enum
+      values: [start, stop]
+      description: 0x0000 = start pairing, 0x0001 = stop pairing
+    - name: pairing_channel
       type: integer
-      description: 0x0000=Start pairing, 0x0001=Stop pairing
-    - name: channel
-      type: integer
-      description: Channel 0x0000-Ch1 ... 0x000F-Ch16
-  source: 5.14
+      description: Channel 1-16, encoded 0x0000-0x000F
 
 - id: mic_talking_status_change
   label: Mic Talking Status Change
   kind: action
+  command: "0x0081"
   params:
-    - name: status
+    - name: talking
+      type: enum
+      values: [stop, start]
+      description: 0x0000 = stop, 0x0001 = start
+    - name: mic_id
       type: integer
-      description: 0x0000=Stop talk, 0x0001=Start talk
-    - name: mic_number
-      type: integer
-      description: Mic number 0x0000=Mic1 ... 0x0063=Mic100
-    - name: all_mics
-      type: integer
-      description: 0xFFFF=All microphones (only when status=0x0000 Stop talk)
-  source: 5.16
+      description: Microphone registration number 1-100 (encoded 0x0000-0x0063), or 0xFFFF for all mics (only with stop)
+  notes: |
+    Available on SR204 / SR202DN / SR204DN v6.00R00 or later.
 
-- id: level_data_distribution_request
-  label: Level Data Distribution Request
-  kind: action
-  params:
-    - name: distribution_type
-      type: integer
-      description: 0x0000=Start, 0x0001=Stop
-    - name: distribution_mode
-      type: integer
-      description: 0x0000=Level data only, 0x0001=Level data and mic status
-  source: 5.7.1
+# === Charger (WZ-SZ600) ===
 
-# Charger actions
 - id: charger_connection_request
   label: Charger Connection Request
   kind: action
+  command: "0x4011"
   params: []
-  source: 7.1
 
 - id: charger_authentication_request
   label: Charger Authentication Request
   kind: action
+  command: "0x4031"
   params:
     - name: auth_data
       type: string
-      description: SHA-256 hash of "password:randomNumberData" (64 bytes)
-  source: 7.3
+      description: SHA-256 hash of "password:nonce" (lowercase hex, 64 bytes)
 
 - id: mic_charge_status_request
-  label: Mic Charge Status Request (Keep-Alive)
-  kind: action
+  label: Mic Charge Status Request
+  kind: query
+  command: "0x2071"
   params: []
-  source: 7.5
 
 - id: charger_data_request
   label: Charger Data Request
-  kind: action
+  kind: query
+  command: "0x2041"
   params: []
-  source: 7.7
 ```
 
 ## Feedbacks
 ```yaml
 - id: connection_response
-  type: object
+  command: "0xE002"
+  description: Receiver returns connection result + 8-byte ASCII nonce
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-    - name: random_number
-      type: string
-      description: 8-byte ASCII random number for auth
-  source: 5.2
+    notification_code: 0x00000000 = OK, other = NG
+    nonce: 8-byte ASCII lowercase alphabet
 
 - id: authentication_response
-  type: object
+  command: "0xF002"
+  description: Authentication result
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-  source: 5.4
+    notification_code: 0x00000000 = OK, other = NG
 
-- id: current_data_response
-  type: object
+- id: current_data
+  command: "0x0022"
+  description: 160-byte current data block (see source section 6)
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-    - name: current_data
-      type: object
-      description: 160 bytes - see Variables section
-  source: 5.6
+    data_version: 8 bytes
+    ext_receiver_1_state: enum (0x00=off, 0x01=connected, 0x0F=error)
+    ext_receiver_2_state: enum
+    ext_receiver_3_state: enum
+    operation_mode: enum (0x00=local, 0x01=remote)
+    antenna_1_to_8_state: 8 bytes (Bit 0-6 state, Bit 7 PHS detected)
+    mic_1_to_16_block: 16 x 8-byte block per mic
+  notes: |
+    Per-mic block = registration_number | state (off/connected/error) |
+    battery_level (red/orange/green) | radio_wave_level (0x00-0x3F, MSB=error)
+    | audio_level (0x0000-0xFFFF) | antenna_number (0x00-0x07) |
+    volume (0x00-0x3F, MSB=mute)
 
-- id: operation_mode_response
-  type: object
+- id: operation_mode
+  command: "0x0142"
+  description: Current operation mode
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-    - name: mode
-      type: integer
-      description: 0x0000=Local, 0x0001=Remote
-  source: 5.10
+    mode: enum (0x0000=local, 0x0001=remote)
 
 - id: volume_response
-  type: object
+  command: "0x0152"
+  description: Current per-mic volume
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-    - name: mic1_volume
-      type: integer
-      description: Volume 0x00-0x3F; Bit7=Mute; 0xFF=not registered
-    - name: mic2_volume
-      type: integer
-    - name: mic3_volume
-      type: integer
-    - name: mic4_volume
-      type: integer
-    - name: mic5_volume
-      type: integer
-    - name: mic6_volume
-      type: integer
-    - name: mic7_volume
-      type: integer
-    - name: mic8_volume
-      type: integer
-    - name: mic9_volume
-      type: integer
-    - name: mic10_volume
-      type: integer
-    - name: mic11_volume
-      type: integer
-    - name: mic12_volume
-      type: integer
-    - name: mic13_volume
-      type: integer
-    - name: mic14_volume
-      type: integer
-    - name: mic15_volume
-      type: integer
-    - name: mic16_volume
-      type: integer
-  source: 5.13
+    notification_code: 0x00000000 = OK
+    mic_1_to_16_volume: 16 bytes (Bit 0-6 = 0x00-0x3F, Bit 7 = mute). 0xFF = unregistered.
 
 - id: mic_pairing_response
-  type: object
+  command: "0x0072"
+  description: Pairing mode + channel + result
   fields:
-    - name: mode
-      type: integer
-      description: 0x0000=Start, 0x0001=Stop
-    - name: channel
-      type: integer
-      description: Channel 0x0000-Ch1 ... 0x000F-Ch16
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-  source: 5.15
+    pairing_mode: enum
+    pairing_channel: 0x0000-0x000F
+    notification_code: 0x00000000 = OK, other = NG
 
-- id: level_data_distribution
-  type: object
-  description: UDP delivery every ~100ms when streaming active
-  fields:
-    - name: channel_count
-      type: integer
-      description: Fixed 0x10 (16 channels)
-    - name: mic1_radio_level
-      type: integer
-      description: 0x00-0x3F; MSB=error flag
-    - name: mic1_audio_level
-      type: integer
-      description: 0x0000-0xFFFF
-    - name: mic2_radio_level
-      type: integer
-    - name: mic2_audio_level
-      type: integer
-    # ... mic3-16 same pattern
-  source: 5.7.2
-
-- id: level_data_and_mic_status_distribution
-  type: object
-  description: Extended UDP delivery (requires firmware 6.00R00 on SR204/SR202DN/SR204DN)
-  fields:
-    - name: mic1_radio_level
-      type: integer
-    - name: mic1_audio_level
-      type: integer
-    - name: mic1_status
-      type: integer
-      description: 0x00=Power OFF, 0x01=Connected, 0x0F=Connection error
-    - name: mic1_registration
-      type: integer
-      description: 0x00=Mic1 ... 0x63=Mic100, 0xFF=Unused
-    # ... mic2-16 same pattern
-  source: 5.7.3
-
-# Charger feedbacks
 - id: charger_connection_response
-  type: object
+  command: "0x4012"
+  description: Charger connection result + nonce; flags initial-password-not-set
   fields:
-    - name: boot_mode
-      type: integer
-      description: 0x0000=Normal, 0x0001=Maintenance
-    - name: result
-      type: integer
-      description: 0x00000000=OK, 0xFFFFFFFF=Initial password not set, other=NG
-    - name: random_number
-      type: string
-      description: 8-byte ASCII random number for auth
-  source: 7.2
+    mode: 0x0000=normal boot, 0x0001=maintenance
+    notification_code: 0x00000000=OK, 0xFFFFFFFF=initial password not set, other=NG
+    nonce: 8-byte ASCII
 
 - id: charger_authentication_response
-  type: object
+  command: "0x4032"
+  description: Charger authentication result
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-  source: 7.4
+    notification_code: 0x00000000 = OK, other = NG
 
-- id: mic_charge_status_response
-  type: object
+- id: mic_charge_status
+  command: "0x2072"
+  description: 64-byte charge status for up to 4 ports
   fields:
-    - name: charger_version
-      type: string
-      description: ASCII e.g. "1.00R000"
-    - name: port1_status
-      type: integer
-      description: 0x0000=No mic, 0x0001=charging, 0x0002=complete, 0x0003=abnormal
-    - name: port1_elapsed
-      type: integer
-      description: Charge elapsed minutes 0x0000-0x05A0
-    - name: port2_status
-      type: integer
-    - name: port2_elapsed
-      type: integer
-    - name: port3_status
-      type: integer
-    - name: port3_elapsed
-      type: integer
-    - name: port3_coil_state
-      type: integer
-      description: 0x0000=Laying down, 0x0001=standing
-    - name: port4_status
-      type: integer
-    - name: port4_elapsed
-      type: integer
-    - name: port4_coil_state
-      type: integer
-  source: 7.6
+    charger_version: 8-byte ASCII
+    port_1_to_4: 4 x (status, charge_elapsed_minutes, reserve1, reserve2 [, coil_state])
+  notes: |
+    Port status: 0x0000=no mic, 0x0001=charging, 0x0002=complete,
+    0x0003=abnormal. Charge elapsed: 0x0000-0x05A0 minutes. Coil state
+    (ports 3-4 only): 0x0000=laying down, 0x0001=standing.
 
-- id: charger_data_response
-  type: object
+- id: charger_data
+  command: "0x2042"
+  description: 64-byte charger config block
   fields:
-    - name: result
-      type: integer
-      description: 0x00000000=OK, other=NG
-    - name: charger_data
-      type: object
-      description: 64 bytes - see Variables section
-  source: 7.8
+    notification_code: 0x00000000 = OK, other = NG
+    data_version: 8 bytes
+    unit_name: 32 bytes UTF-8 (<=10 chars)
+    version_info: 8-byte ASCII
+    ip_address: 4 bytes
+    subnet_mask: 4 bytes
+    gateway: 4 bytes
+    port_number: 2 bytes
 ```
 
 ## Variables
 ```yaml
-# Current data format (160 bytes) - source Table 6
-- id: receiver_data_version
-  type: string
-  description: 8-byte data version field
-
-- id: wireless_receiver_state
-  type: enum
-  values:
-    - 0x00: Power OFF
-    - 0x01: Connected
-    - 0x0F: Connection error
-
-- id: operation_mode
-  type: enum
-  values:
-    - 0x00: Local mode
-    - 0x01: Remote mode
-
-- id: wireless_antenna_state
-  type: object
-  description: 8 antennas, each 1 byte
-  fields:
-    - name: antenna_1_state
-      type: integer
-      description: Bits0-6=state (0x00=OFF, 0x01=Connected, 0x0F=Error), Bit7=PHS detected
-    - name: antenna_2_state
-      type: integer
-    - name: antenna_3_state
-      type: integer
-    - name: antenna_4_state
-      type: integer
-    - name: antenna_5_state
-      type: integer
-    - name: antenna_6_state
-      type: integer
-    - name: antenna_7_state
-      type: integer
-    - name: antenna_8_state
-      type: integer
-
-- id: microphone_state
-  type: object
-  description: Per-microphone data (Mic1-Mic16, 8 bytes each)
-  fields:
-    - name: registration_number
-      type: integer
-      description: 0x00=Mic1 ... 0x63=Mic100, 0xFF=Unused
-    - name: state
-      type: enum
-      values:
-        - 0x00: Power OFF
-        - 0x01: Connected
-        - 0x0F: Connection error
-    - name: battery_level
-      type: enum
-      values:
-        - 0x00: Red (low)
-        - 0x01: Orange (mid)
-        - 0x02: Green (high)
-    - name: radio_level
-      type: integer
-      description: 0x00-0x3F; MSB=error flag
-    - name: audio_level
-      type: integer
-      description: 0x0000-0xFFFF
-    - name: connection_antenna
-      type: integer
-      description: 0x00=Antenna1 ... 0x07=Antenna8
-    - name: volume
-      type: integer
-      description: 0x00-0x3F; MSB=Mute flag
-
-- id: data_change_status
-  type: enum
-  values:
-    - 0x00: Normal Operation
-    - 0x01: During microphone pairing
-
-- id: mic_pairing_channel
-  type: integer
-  description: 0x00=Ch1 ... 0x0F=Ch16
-
-- id: sync_state
-  type: enum
-  values:
-    - 0x00: Stand-alone mode
-    - 0x01: Main mode
-    - 0x02: Sub mode (synchronized)
-    - 0x03: Sub mode (sync error)
-
-# Charger data format (64 bytes) - source Table 8
-- id: charger_data_version
-  type: string
-  description: ASCII e.g. "1.00R000"
-
-- id: charger_unit_name
-  type: string
-  description: UTF-8, max 10 characters
-
-- id: charger_version
-  type: string
-  description: ASCII e.g. "1.00R000"
-
-- id: charger_ip_address
-  type: string
-  description: IPv4 address
-
-- id: charger_subnet_mask
-  type: string
-
-- id: charger_gateway
-  type: string
-
-- id: charger_port_number
-  type: integer
+# Per-mic mutable parameters exposed as discrete actions/volume-change payloads.
+# Variables not directly settable as discrete values are not modeled here.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: device does not send unsolicited events; all responses are triggered by commands
+- id: level_data_distribution
+  command: "0x0032"
+  transport: udp
+  port: 50004
+  cadence: ~100 ms
+  description: |
+    Unsolicited radio-wave and audio level for up to 16 microphones.
+    52-byte payload: 16 x (radio_wave_level (1), audio_level (2))
+    + 2 reserve bytes. Radio wave level 0x00-0x3F (MSB = error).
+  notes: |
+    Sent only after a level_data_distribution_request (0x0031) with
+    distribution_type = level_only (identifier 0x0000).
+
+- id: level_data_and_mic_status_distribution
+  command: "0x0172"
+  transport: udp
+  port: 50004
+  cadence: ~100 ms
+  description: |
+    Unsolicited radio-wave, audio level AND mic connection status for up
+    to 16 microphones. 68-byte payload: 16 x (radio_wave_level (1),
+    audio_level (2), status (1), registration_number (1)) + 2 reserve.
+    Status 0x00=off, 0x01=connected, 0x0F=connection_error.
+  notes: |
+    Sent only after a level_data_distribution_request (0x0031) with
+    distribution_type = level_and_mic_status (identifier 0x0001).
+    Requires SR204 / SR202DN / SR204DN v6.00R00 or later.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macros described in source
+# Recommended sequence to establish a control session (from source section 5):
+# 1. TCP connect to port 50003
+# 2. Send connection_request (0xE001) with current_time payload
+# 3. Receive connection_response (0xE002), extract nonce
+# 4. Send authentication_request (0xF001) with MD5/SHA-256 of "password:nonce"
+# 5. Receive authentication_response (0xF002), check notification_code == OK
+# 6. Send current_data_acquisition_request (0x0021) every <=5 s as keep-alive
+# 7. Optionally send level_data_distribution_request (0x0031) to start UDP event stream
+# 8. On exit, stop UDP stream and close TCP socket
+session_handshake:
+  steps:
+    - connection_request
+    - connection_response
+    - authentication_request
+    - authentication_response
+    - current_data_acquisition_request  # repeat <=5 s for keep-alive
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - id: volume_control_requires_remote_mode
-    description: Volume change requires operation mode set to Remote (0x0001) first via operation_mode_change
-  - id: keep_alive_interval
-    description: Control terminal must send keep-alive (current_data_acquisition_request) every 5 seconds or connection is dropped
-# UNRESOLVED: no safety warnings or interlock procedures explicitly stated in source
+interlocks: []
+# UNRESOLVED: no safety warnings, interlocks, or power-on sequencing
+# requirements are documented in the source.
 ```
 
 ## Notes
-Authentication data generation: `"receiver_password:randomNumberData"` converted to MD5 (32 hex chars, lowercase) or SHA-256 (64 hex chars) depending on model. DN models and charger support SHA-256 only; older models use MD5.
+- Authentication is challenge-response: the device returns an 8-byte ASCII
+  nonce in the connection response; the client hashes `password:nonce` with
+  MD5 (or SHA-256 on supported models) and sends it back in the
+  authentication request. The receiver returns NG with a specific
+  notification code `0xFFFFFFFF` if the charger has no initial password set.
+- Volume changes (`0x0150`) are rejected (NG) by the receiver when the
+  current operation mode is local. Use `operation_mode_change` to switch to
+  remote first.
+- The receiver delivers UDP level data at ~100 ms cadence. Stale keep-alive
+  (no current_data_acquisition_request within 5 s) causes the device to
+  drop the TCP connection.
+- Up to 2 control terminals may be connected simultaneously.
+- Source revision A.05 (2022-11-10); spec covers the WX-SR200 series plus
+  WZ-SZ600 charger. Commands 0x0172 (level+mic status) and 0x0081 (mic
+  talking status) require SR204 / SR202DN / SR204DN firmware v6.00R00+.
 
-Level data and microphone status distribution (0x0172) requires firmware 6.00R00 on WX-SR204/SR202DN/SR204DN. Other models do not support this command.
-
-Radio wave level to LED indication mapping: Green5=0x29-0x3F, Green4=0x26-0x28, Green3=0x23-0x25, Green2=0x20-0x22, Green1=0x1D-0x1F, Off=0x00-0x1C.
-
-Audio level to LED indication mapping: Red=0x3FFF-0x7FFF, Orange=0x1449-0x3FFE, Green=0x00A4-0x1448, Off=0x0000-0x00A3.
-
-Keep-alive is current_data_acquisition_request (0x0021). For charger, keep-alive is mic_charge_status_request (0x2071). Both must be sent every 5 seconds.
-
-Charger (WX-SZ600) uses SHA-256 authentication only and different command IDs (0x4xxx range vs 0xExxx for receivers).
-
-Command byte order is big endian throughout.
-<!-- UNRESOLVED: device power on/off commands not found in source -->
-<!-- UNRESOLVED: default receiver password not stated in source -->
-<!-- UNRESOLVED: firmware version compatibility ranges not fully enumerated beyond 6.00R00 for extended status commands -->
+<!-- UNRESOLVED:
+  - WX-SR202P specifically is not named in this document; the WX-SR200
+    family (SR202/SR204/SR202DN/SR204DN) is covered. Operator should
+    confirm whether the "P" suffix is a regional / distributor variant
+    that uses the same protocol.
+  - Default IP address, subnet, gateway of the device are not stated in
+    the source (they are stored in the charger data response 0x2042 but
+    no factory default is documented).
+  - Exact maximum number of registered microphones per receiver is not
+    stated; the registration_number field allows 1-100, but only 16
+    antennas / mic slots are reported in the level distribution events.
+-->
 
 ## Provenance
 
@@ -614,14 +451,16 @@ verdict: verified
 checked_at: 2026-04-29T11:21:29.322Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim."
+confidence: medium
+summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "WX-SR202P specifically is not named in the source. The WX-SR200 series"
+- "no safety warnings, interlocks, or power-on sequencing"
+- "- WX-SR202P specifically is not named in this document; the WX-SR200"
 ```
 
 ---

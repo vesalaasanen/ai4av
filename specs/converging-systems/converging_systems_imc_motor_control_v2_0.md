@@ -26,14 +26,24 @@ last_checked_at: 2026-04-22T22:08:38.883Z
 generated_at: 2026-04-22T22:08:38.883Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial baud rate/port config not stated in source"
+  - "auth is configurable (enable/disable) in e-Node Pilot; default state not stated"
+  - "serial baud rate, data bits, parity, stop bits not stated in source"
+  - "no standalone settable parameters found in source beyond action commands"
+  - "no unsolicited event documentation found in source beyond NOTIFY system"
+  - "no explicit multi-step macro sequences documented in source"
+  - "power-on sequencing requirements not stated in source"
+  - "serial baud rate not stated in source (RS-232 via IBT-100 adapter)"
+  - "PRESET.X=XX.XX motor command not available per source"
+  - "STATUS=? motor query not available per source"
 verification:
   verdict: verified
   checked_at: 2026-04-22T22:08:38.883Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue."
+  confidence: medium
+  summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -601,14 +611,23 @@ verdict: verified
 checked_at: 2026-04-22T22:08:38.883Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue."
+confidence: medium
+summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial baud rate/port config not stated in source"
+- "auth is configurable (enable/disable) in e-Node Pilot; default state not stated"
+- "serial baud rate, data bits, parity, stop bits not stated in source"
+- "no standalone settable parameters found in source beyond action commands"
+- "no unsolicited event documentation found in source beyond NOTIFY system"
+- "no explicit multi-step macro sequences documented in source"
+- "power-on sequencing requirements not stated in source"
+- "serial baud rate not stated in source (RS-232 via IBT-100 adapter)"
+- "PRESET.X=XX.XX motor command not available per source"
+- "STATUS=? motor query not available per source"
 ```
 
 ---

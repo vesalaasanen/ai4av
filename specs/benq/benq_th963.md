@@ -24,14 +24,23 @@ last_checked_at: 2026-05-14T18:17:14.514Z
 generated_at: 2026-05-14T18:17:14.514Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "no TCP/IP control documentation found — only RS-232"
+  - "volume/micvol query returns value but range not stated in source"
+  - "contrast/brightness/color/sharpness query returns value but range not stated in source"
+  - "power-off during cooling period behavior not specified"
+  - "lamp safety interlocks not documented"
+  - "exact volume/micvol numeric range not stated"
+  - "exact contrast/brightness/color/sharpness numeric range not stated"
+  - "lamp hour response format (integer? with unit?) not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.514Z
   matched_actions: 54
   action_count: 54
-  confidence: high
-  summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim."
+  confidence: medium
+  summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -781,14 +790,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.514Z
 matched_actions: 54
 action_count: 54
-confidence: high
-summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim."
+confidence: medium
+summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "no TCP/IP control documentation found — only RS-232"
+- "volume/micvol query returns value but range not stated in source"
+- "contrast/brightness/color/sharpness query returns value but range not stated in source"
+- "power-off during cooling period behavior not specified"
+- "lamp safety interlocks not documented"
+- "exact volume/micvol numeric range not stated"
+- "exact contrast/brightness/color/sharpness numeric range not stated"
+- "lamp hour response format (integer? with unit?) not specified"
 ```
 
 ---

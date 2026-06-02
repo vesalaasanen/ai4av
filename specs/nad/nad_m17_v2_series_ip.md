@@ -15,23 +15,28 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T22:51:54.816Z
 last_checked_at: 2026-05-16T22:51:54.816Z
 generated_at: 2026-05-16T22:51:54.816Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Source document is the BluOS Custom Integration API v1.7, which covers all BluOS-based NAD products. Device-specific input types and physical input count for the M17 V2 are not enumerated in this document."
+  - "BluOS uses long-polling rather than unsolicited push events. Clients detect"
+  - "No multi-step macros are described explicitly in the source."
+  - "M17 V2 Series-specific input list (physical connectors and their inputTypeIndex strings) is not enumerated in the BluOS API document. Integrators must query /RadioBrowse?service=Capture or /Settings?id=capture to discover available inputs at runtime."
+  - "Firmware version compatibility ranges (which BluOS firmware versions ship on NAD M17 V2) are not stated in source."
+  - "Whether the NAD M17 V2 supports the Doorbell Chime endpoint or BluOS HUB inputs is not confirmed in this document."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-16T22:51:54.816Z
   matched_actions: 33
   action_count: 33
-  confidence: high
-  summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed."
+  confidence: medium
+  summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -458,11 +463,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - bluos.io
-source_urls:
-  - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
-retrieved_at: 2026-05-01T00:18:29.488Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-16T22:51:54.816Z
 last_checked_at: 2026-05-16T22:51:54.816Z
 ```
 
@@ -473,14 +476,20 @@ verdict: verified
 checked_at: 2026-05-16T22:51:54.816Z
 matched_actions: 33
 action_count: 33
-confidence: high
-summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed."
+confidence: medium
+summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Source document is the BluOS Custom Integration API v1.7, which covers all BluOS-based NAD products. Device-specific input types and physical input count for the M17 V2 are not enumerated in this document."
+- "BluOS uses long-polling rather than unsolicited push events. Clients detect"
+- "No multi-step macros are described explicitly in the source."
+- "M17 V2 Series-specific input list (physical connectors and their inputTypeIndex strings) is not enumerated in the BluOS API document. Integrators must query /RadioBrowse?service=Capture or /Settings?id=capture to discover available inputs at runtime."
+- "Firmware version compatibility ranges (which BluOS firmware versions ship on NAD M17 V2) are not stated in source."
+- "Whether the NAD M17 V2 supports the Doorbell Chime endpoint or BluOS HUB inputs is not confirmed in this document."
+- "model-specific source not located"
 ```
 
 ---

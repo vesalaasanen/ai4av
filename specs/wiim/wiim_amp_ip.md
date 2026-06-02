@@ -17,22 +17,36 @@ compatible_with:
   required_options: []
 source_domains:
   - wiimhome.com
+  - github.com
+  - developer.arylic.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+  - https://github.com/cvdlinden/wiim-httpapi/blob/main/openapi.md
+  - https://developer.arylic.com/httpapi/
+  - https://github.com/cvdlinden/wiim-httpapi
+retrieved_at: 2026-04-29T15:03:42.082Z
 last_checked_at: 2026-05-14T18:17:21.496Z
 generated_at: 2026-05-14T18:17:21.496Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - setPlayerCmd:hex_playlist
+  - "port number not stated in source; standard HTTPS implied but not confirmed"
+  - "source does not describe unsolicited notifications or event subscription mechanism"
+  - "source does not describe multi-step macro sequences"
+  - "port number not stated — standard HTTPS (443) is implied but not confirmed"
+  - "no event/notification subscription mechanism described"
+  - "firmware version compatibility not stated"
+  - "maximum concurrent connection limit not stated"
+  - "command rate limits not stated"
+  - "error response codes beyond OK/Failed not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.496Z
   matched_actions: 23
   action_count: 23
-  confidence: high
-  summary: "All 33 spec actions matched literally with source; transport parameters verified."
+  confidence: medium
+  summary: "All 33 spec actions matched literally with source; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -446,9 +460,14 @@ interlocks: []
 ```yaml
 source_domains:
   - wiimhome.com
+  - github.com
+  - developer.arylic.com
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
-retrieved_at: 2026-05-04T15:17:31.886Z
+  - https://github.com/cvdlinden/wiim-httpapi/blob/main/openapi.md
+  - https://developer.arylic.com/httpapi/
+  - https://github.com/cvdlinden/wiim-httpapi
+retrieved_at: 2026-04-29T15:03:42.082Z
 last_checked_at: 2026-05-14T18:17:21.496Z
 ```
 
@@ -459,14 +478,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.496Z
 matched_actions: 23
 action_count: 23
-confidence: high
-summary: "All 33 spec actions matched literally with source; transport parameters verified."
+confidence: medium
+summary: "All 33 spec actions matched literally with source; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - setPlayerCmd:hex_playlist
+- "port number not stated in source; standard HTTPS implied but not confirmed"
+- "source does not describe unsolicited notifications or event subscription mechanism"
+- "source does not describe multi-step macro sequences"
+- "port number not stated — standard HTTPS (443) is implied but not confirmed"
+- "no event/notification subscription mechanism described"
+- "firmware version compatibility not stated"
+- "maximum concurrent connection limit not stated"
+- "command rate limits not stated"
+- "error response codes beyond OK/Failed not documented"
 ```
 
 ---

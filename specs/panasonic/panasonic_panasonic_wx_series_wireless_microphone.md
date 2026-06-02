@@ -29,18 +29,22 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
-last_checked_at: 2026-05-04T08:04:40.870Z
-generated_at: 2026-05-04T08:04:40.870Z
+last_checked_at: 2026-06-02T12:02:42.392Z
+generated_at: 2026-06-02T12:02:42.392Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no explicit safety warnings or interlock procedures found in source"
+  - "firmware version compatibility ranges not stated"
+  - "error recovery / fault behavior sequences not documented"
+  - "charger coil state (ports 3-4) physical meaning not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T08:04:40.870Z
+  checked_at: 2026-06-02T12:02:42.392Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec command_ids match verbatim in source with correct parameter shapes and transport (50003 TCP, 50004 UDP, MD5/SHA-256 auth)."
+  confidence: medium
+  summary: "All 14 spec action command IDs verified verbatim in source; all 12 feedback command IDs also present in source feedbacks; transport port 50003/50004, MD5/SHA-256, 2 connections, 5s keepalive all confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -125,9 +129,10 @@ actions:
   - id: receiver_connect
     label: Connect to Receiver
     kind: action
+    command: "0xE001"
     command_id: "0xE001"
     direction: control_terminal_to_receiver
-    description: "Initiate TCP connection to receiver. Sends control terminal timestamp (14 bytes ASCII, e.g. 20171006090102)."
+    description: "Initiate TCP connection to receiver. Sends control terminal timestamp (14 bytes ASCII, e.g. 20171006090102). Command data length: 0x00000026 (38 bytes)."
     params:
       - name: current_time
         type: string
@@ -136,9 +141,10 @@ actions:
   - id: receiver_authenticate
     label: Authenticate to Receiver
     kind: action
+    command: "0xF001"
     command_id: "0xF001"
     direction: control_terminal_to_receiver
-    description: "Send authentication data derived from connection response random number and receiver password."
+    description: "Send authentication data derived from connection response random number and receiver password. Command data length: 0x00000038 (56 bytes) for MD5 or 0x00000058 (88 bytes) for SHA-256."
     params:
       - name: authentication_data
         type: bytes
@@ -147,6 +153,7 @@ actions:
   - id: current_data_request
     label: Request Current Data (Keepalive)
     kind: action
+    command: "0x0021"
     command_id: "0x0021"
     direction: control_terminal_to_receiver
     description: "Request current operational data. Also serves as keepalive; must be sent every 5 seconds."
@@ -155,6 +162,7 @@ actions:
   - id: level_data_distribution_start
     label: Start Level Data Distribution
     kind: action
+    command: "0x0031"
     command_id: "0x0031"
     direction: control_terminal_to_receiver
     description: "Start/stop UDP delivery of radio wave and audio level data (~100ms interval)."
@@ -175,9 +183,10 @@ actions:
   - id: operation_mode_change
     label: Set Operation Mode
     kind: action
+    command: "0x0140"
     command_id: "0x0140"
     direction: control_terminal_to_receiver
-    description: "Switch between local (front panel) and remote (control terminal) volume control. Remote mode disables front panel volume."
+    description: "Switch between local (front panel) and remote (control terminal) volume control. Remote mode disables front panel volume. Command data length: 0x0000001A (26 bytes)."
     params:
       - name: mode
         type: enum
@@ -188,7 +197,8 @@ actions:
 
   - id: operation_mode_request
     label: Request Operation Mode
-    kind: action
+    kind: query
+    command: "0x0141"
     command_id: "0x0141"
     direction: control_terminal_to_receiver
     description: "Query current operation mode. Returns operation mode response (0x0142)."
@@ -197,9 +207,10 @@ actions:
   - id: volume_change
     label: Change Volume
     kind: action
+    command: "0x0150"
     command_id: "0x0150"
     direction: control_terminal_to_receiver
-    description: "Change volume for selected microphones. Requires remote mode. Supports absolute and relative values. Bit 7 of volume byte = mute."
+    description: "Change volume for selected microphones. Requires remote mode. Supports absolute and relative values. Bit 7 of volume byte = mute. Command data length: 0x0000002A (42 bytes)."
     params:
       - name: setting_method
         type: enum
@@ -220,7 +231,8 @@ actions:
 
   - id: volume_request
     label: Request Volume
-    kind: action
+    kind: query
+    command: "0x0151"
     command_id: "0x0151"
     direction: control_terminal_to_receiver
     description: "Query current volume for all microphones. Returns volume response (0x0152)."
@@ -229,6 +241,7 @@ actions:
   - id: mic_pairing
     label: Mic Pairing
     kind: action
+    command: "0x0071"
     command_id: "0x0071"
     direction: bidirectional
     description: "Enter/exit microphone pairing mode for a specific channel."
@@ -248,6 +261,7 @@ actions:
   - id: mic_talking_status_change
     label: Change Mic Talking Status
     kind: action
+    command: "0x0081"
     command_id: "0x0081"
     direction: control_terminal_to_receiver
     description: "Start or stop microphone talking. Requires firmware 6.00R00+ on WX-SR204/SR202DN/SR204DN."
@@ -267,6 +281,7 @@ actions:
   - id: charger_connect
     label: Connect to Charger
     kind: action
+    command: "0x4011"
     command_id: "0x4011"
     direction: control_terminal_to_charger
     description: "Initiate TCP connection to WX-SZ600 charger."
@@ -275,9 +290,10 @@ actions:
   - id: charger_authenticate
     label: Authenticate to Charger
     kind: action
+    command: "0x4031"
     command_id: "0x4031"
     direction: control_terminal_to_charger
-    description: "Authenticate to charger using SHA-256 hash of password and random number."
+    description: "Authenticate to charger using SHA-256 hash of password and random number. Command data length: 0x00000058 (88 bytes)."
     params:
       - name: authentication_data
         type: bytes
@@ -285,7 +301,8 @@ actions:
 
   - id: mic_charge_status_request
     label: Request Mic Charge Status
-    kind: action
+    kind: query
+    command: "0x2071"
     command_id: "0x2071"
     direction: control_terminal_to_charger
     description: "Request charging status for all charge ports. Also serves as charger keepalive."
@@ -293,7 +310,8 @@ actions:
 
   - id: charger_data_request
     label: Request Charger Data
-    kind: action
+    kind: query
+    command: "0x2041"
     command_id: "0x2041"
     direction: control_terminal_to_charger
     description: "Request charger configuration data (unit name, version, IP settings, port)."
@@ -631,24 +649,27 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
-last_checked_at: 2026-05-04T08:04:40.870Z
+last_checked_at: 2026-06-02T12:02:42.392Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T08:04:40.870Z
+checked_at: 2026-06-02T12:02:42.392Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec command_ids match verbatim in source with correct parameter shapes and transport (50003 TCP, 50004 UDP, MD5/SHA-256 auth)."
+confidence: medium
+summary: "All 14 spec action command IDs verified verbatim in source; all 12 feedback command IDs also present in source feedbacks; transport port 50003/50004, MD5/SHA-256, 2 connections, 5s keepalive all confirmed. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no explicit safety warnings or interlock procedures found in source"
+- "firmware version compatibility ranges not stated"
+- "error recovery / fault behavior sequences not documented"
+- "charger coil state (ports 3-4) physical meaning not fully documented"
 ```
 
 ---

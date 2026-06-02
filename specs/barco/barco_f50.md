@@ -37,13 +37,24 @@ known_gaps:
   - optics.lensshift.horizontal.calibrate
   - peripheral.frame.horizontal.calibrate
   - statistics.listcounters
+  - "specific F50 input connectors and supported resolutions not fully enumerated — connector list varies by projector model"
+  - "firmware version compatibility range not stated"
+  - "default pass code value not stated in source"
+  - "no explicit safety interlocks or power-on sequencing requirements stated in source"
+  - "no explicit error recovery sequences stated in source"
+  - "exact list of available sources for F50 model not confirmed — image.source.list response varies by model"
+  - "maximum concurrent JSON-RPC sessions not stated"
+  - "TCP keepalive or heartbeat mechanism not documented"
+  - "serial cable pinout details beyond pin 2-2, 3-3, 5-5 not specified"
+  - "exact voltage/current/power specifications not stated in this document"
+  - "error code catalog or comprehensive error handling not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:17:15.384Z
   matched_actions: 30
   action_count: 30
-  confidence: high
-  summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively."
+  confidence: medium
+  summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -826,8 +837,8 @@ verdict: verified
 checked_at: 2026-04-23T15:17:15.384Z
 matched_actions: 30
 action_count: 30
-confidence: high
-summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively."
+confidence: medium
+summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -845,6 +856,17 @@ summary: "All 30 spec actions verified as literal command-level matches in sourc
 - optics.lensshift.horizontal.calibrate
 - peripheral.frame.horizontal.calibrate
 - statistics.listcounters
+- "specific F50 input connectors and supported resolutions not fully enumerated — connector list varies by projector model"
+- "firmware version compatibility range not stated"
+- "default pass code value not stated in source"
+- "no explicit safety interlocks or power-on sequencing requirements stated in source"
+- "no explicit error recovery sequences stated in source"
+- "exact list of available sources for F50 model not confirmed — image.source.list response varies by model"
+- "maximum concurrent JSON-RPC sessions not stated"
+- "TCP keepalive or heartbeat mechanism not documented"
+- "serial cable pinout details beyond pin 2-2, 3-3, 5-5 not specified"
+- "exact voltage/current/power specifications not stated in this document"
+- "error code catalog or comprehensive error handling not documented"
 ```
 
 ---

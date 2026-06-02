@@ -27,14 +27,21 @@ last_checked_at: 2026-05-14T18:17:15.804Z
 generated_at: 2026-05-14T18:17:15.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source doc header lists K-01XD/K-03XD as target models, not P-03UNI explicitly — command set assumed shared across Esoteric RS-232C-equipped players"
+  - "no variable parameters documented beyond discrete actions"
+  - "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+  - "source doc explicitly targets K-01XD/K-03XD models — P-03UNI compatibility assumed from shared RS-232C interface"
+  - "no firmware version compatibility range stated"
+  - "pin 2/3 assignment documented but full DB-9 pinout not specified"
+  - "maximum cable length not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.804Z
   matched_actions: 35
   action_count: 35
-  confidence: high
-  summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -484,14 +491,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.804Z
 matched_actions: 35
 action_count: 35
-confidence: high
-summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim."
+confidence: medium
+summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source doc header lists K-01XD/K-03XD as target models, not P-03UNI explicitly — command set assumed shared across Esoteric RS-232C-equipped players"
+- "no variable parameters documented beyond discrete actions"
+- "no safety warnings, interlock procedures, or power-on sequencing documented in source"
+- "source doc explicitly targets K-01XD/K-03XD models — P-03UNI compatibility assumed from shared RS-232C interface"
+- "no firmware version compatibility range stated"
+- "pin 2/3 assignment documented but full DB-9 pinout not specified"
+- "maximum cable length not specified"
 ```
 
 ---

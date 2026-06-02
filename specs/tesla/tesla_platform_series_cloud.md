@@ -16,22 +16,31 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - support.tesmart.com
+  - developer.tesla.com
 source_urls:
-  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
-retrieved_at: 2026-05-05T02:35:43.321Z
+  - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
+retrieved_at: 2026-05-10T12:18:55.027Z
 last_checked_at: 2026-05-10T12:18:55.027Z
 generated_at: 2026-05-10T12:18:55.027Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "auth mechanism (virtual key signing) not documented in source"
+  - "virtual key auth described but credential format not stated"
+  - "traits inferred from command categories but not explicitly listed"
+  - "response formats not documented in source"
+  - "vehicle state variables not documented in source"
+  - "unsolicited events not documented in source"
+  - "no macro sequences documented in source"
+  - "no explicit safety warnings in source"
+  - "response schema, error codes, rate limits not in source"
 verification:
   verdict: verified
   checked_at: 2026-05-10T12:18:55.027Z
   matched_actions: 66
   action_count: 66
-  confidence: high
-  summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift."
+  confidence: medium
+  summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -472,10 +481,10 @@ All endpoints use `POST /api/1/vehicles/{vin}/command/{command_name}`. VIN must 
 
 ```yaml
 source_domains:
-  - support.tesmart.com
+  - developer.tesla.com
 source_urls:
-  - https://support.tesmart.com/hc/en-us/article_attachments/10269851509913
-retrieved_at: 2026-05-05T02:35:43.321Z
+  - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
+retrieved_at: 2026-05-10T12:18:55.027Z
 last_checked_at: 2026-05-10T12:18:55.027Z
 ```
 
@@ -486,14 +495,22 @@ verdict: verified
 checked_at: 2026-05-10T12:18:55.027Z
 matched_actions: 66
 action_count: 66
-confidence: high
-summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift."
+confidence: medium
+summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "auth mechanism (virtual key signing) not documented in source"
+- "virtual key auth described but credential format not stated"
+- "traits inferred from command categories but not explicitly listed"
+- "response formats not documented in source"
+- "vehicle state variables not documented in source"
+- "unsolicited events not documented in source"
+- "no macro sequences documented in source"
+- "no explicit safety warnings in source"
+- "response schema, error codes, rate limits not in source"
 ```
 
 ---

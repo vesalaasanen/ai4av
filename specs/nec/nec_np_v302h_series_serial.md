@@ -20,19 +20,32 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:45.772Z
 last_checked_at: 2026-05-14T18:17:18.771Z
 generated_at: 2026-05-14T18:17:18.771Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact input terminal code values for V302H model not listed in appendix tables (tables show other NP-series models)"
+  - "RTS/CTS handshaking noted in pinout but no explicit flow_control setting"
+  - "commands 053-5, 053-6, 053-7, 053-10, 053-11 fully documented but listed as SET/REQUEST variants of lens operations already covered above"
+  - "no discrete settable parameters outside of action commands - all parameters"
+  - "no unsolicited event notifications described in source - all communication"
+  - "no multi-step macro sequences explicitly defined in source."
+  - "no safety voltage/current/power specifications stated in source"
+  - "no interlock switch procedures beyond cover status monitoring (DATA09-01 in error status)"
+  - "V302H-specific input terminal codes, aspect values, and eco mode values not present in appendix — those tables list other NP-series models"
+  - "ID1/ID2 values are projector-specific and must be set to match the target device"
+  - "TCP port 7142 is stated for LAN; serial port number is host-dependent"
+  - "standby mode command reception capability varies by model — V302H not listed in standby mode table"
+  - "RTS/CTS handshaking noted in pinout (pins 7/8) but flow_control setting not explicitly documented"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.771Z
   matched_actions: 48
   action_count: 48
-  confidence: high
-  summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented."
+  confidence: medium
+  summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -703,7 +716,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:45.772Z
 last_checked_at: 2026-05-14T18:17:18.771Z
 ```
 
@@ -714,14 +727,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.771Z
 matched_actions: 48
 action_count: 48
-confidence: high
-summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented."
+confidence: medium
+summary: "All 58 spec actions match source commands with correct transport parameters; command catalogue fully represented. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact input terminal code values for V302H model not listed in appendix tables (tables show other NP-series models)"
+- "RTS/CTS handshaking noted in pinout but no explicit flow_control setting"
+- "commands 053-5, 053-6, 053-7, 053-10, 053-11 fully documented but listed as SET/REQUEST variants of lens operations already covered above"
+- "no discrete settable parameters outside of action commands - all parameters"
+- "no unsolicited event notifications described in source - all communication"
+- "no multi-step macro sequences explicitly defined in source."
+- "no safety voltage/current/power specifications stated in source"
+- "no interlock switch procedures beyond cover status monitoring (DATA09-01 in error status)"
+- "V302H-specific input terminal codes, aspect values, and eco mode values not present in appendix — those tables list other NP-series models"
+- "ID1/ID2 values are projector-specific and must be set to match the target device"
+- "TCP port 7142 is stated for LAN; serial port number is host-dependent"
+- "standby mode command reception capability varies by model — V302H not listed in standby mode table"
+- "RTS/CTS handshaking noted in pinout (pins 7/8) but flow_control setting not explicitly documented"
 ```
 
 ---

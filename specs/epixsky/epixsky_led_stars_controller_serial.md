@@ -18,21 +18,28 @@ compatible_with:
 source_domains:
   - epixsky.com
 source_urls:
-  - https://www.epixsky.com/wp-content/uploads/2024/03/CUBE-Command-Sheet.pdf
   - https://www.epixsky.com/wp-content/uploads/2024/03/epiXsky_Advanced-Pro-RS232-Serial-LED-Control-Command.pdf
+  - https://www.epixsky.com/wp-content/uploads/2023/02/epiXsky_Advanced-Pro-RS232-Serial-LED-Product-Manual.pdf
+  - https://www.epixsky.com/wp-content/uploads/2024/04/EpiXsky_Advanced-Pro-RS232-Serial-LED-Control-Marketing.pdf
 retrieved_at: 2026-05-27T13:25:55.753Z
 last_checked_at: 2026-05-27T15:36:44.922Z
 generated_at: 2026-05-27T15:36:44.922Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no power-on sequence, fault behavior, or error response codes stated in source"
+  - "no settable discrete parameters beyond action commands"
+  - "no unsolicited notifications described in source"
+  - "no explicit multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "response format for Xstat and addr commands not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:36:44.922Z
   matched_actions: 59
   action_count: 59
-  confidence: high
-  summary: "All 59 spec actions matched verbatim in source; transport parameters verified; complete command coverage."
+  confidence: medium
+  summary: "All 59 spec actions matched verbatim in source; transport parameters verified; complete command coverage. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -438,8 +445,9 @@ Address prefix `X` = controller address (1–8); `9` = universal broadcast (all 
 source_domains:
   - epixsky.com
 source_urls:
-  - https://www.epixsky.com/wp-content/uploads/2024/03/CUBE-Command-Sheet.pdf
   - https://www.epixsky.com/wp-content/uploads/2024/03/epiXsky_Advanced-Pro-RS232-Serial-LED-Control-Command.pdf
+  - https://www.epixsky.com/wp-content/uploads/2023/02/epiXsky_Advanced-Pro-RS232-Serial-LED-Product-Manual.pdf
+  - https://www.epixsky.com/wp-content/uploads/2024/04/EpiXsky_Advanced-Pro-RS232-Serial-LED-Control-Marketing.pdf
 retrieved_at: 2026-05-27T13:25:55.753Z
 last_checked_at: 2026-05-27T15:36:44.922Z
 ```
@@ -451,14 +459,19 @@ verdict: verified
 checked_at: 2026-05-27T15:36:44.922Z
 matched_actions: 59
 action_count: 59
-confidence: high
-summary: "All 59 spec actions matched verbatim in source; transport parameters verified; complete command coverage."
+confidence: medium
+summary: "All 59 spec actions matched verbatim in source; transport parameters verified; complete command coverage. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no power-on sequence, fault behavior, or error response codes stated in source"
+- "no settable discrete parameters beyond action commands"
+- "no unsolicited notifications described in source"
+- "no explicit multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "response format for Xstat and addr commands not documented"
 ```
 
 ---

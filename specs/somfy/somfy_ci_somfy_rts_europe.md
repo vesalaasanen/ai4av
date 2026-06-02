@@ -1,16 +1,16 @@
 ---
-spec_id: admin/somfy-ci-somfy-rts-europe
+spec_id: admin/somfy-ci-somfy-rts
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Somfy CI-SOMFY-RTS (Europe) Control Spec"
+title: "Somfy CI-SOMFY-RTS Control Spec"
 manufacturer: Somfy
-model_family: "CI-SOMFY-RTS (Europe)"
+model_family: CI-SOMFY-RTS
 aliases: []
 compatible_with:
   manufacturers:
     - Somfy
   models:
-    - "CI-SOMFY-RTS (Europe)"
+    - CI-SOMFY-RTS
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -24,26 +24,32 @@ last_checked_at: 2026-05-14T18:17:20.591Z
 generated_at: 2026-05-14T18:17:20.591Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source describes the SDN RS485 protocol generically; per-product limits (speed ranges, IP count maxima) are deferred to per-motor technical datasheets that are not in this source."
+  - "settable parameters are exposed via SET_* actions above"
+  - "source documents no unsolicited event/notification messages."
+  - "no multi-step macro sequences are documented in the source."
+  - "voltage/current/power specifications are not stated in this"
+  - "- Motor-specific speed ranges and IP_MAX / UI_MAX limits depend on per-motor datasheets not included in this source."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.591Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 30 spec actions matched to source SDN protocol commands; transport parameters (4800 baud, odd parity) verified; bidirectional coverage complete."
+  confidence: medium
+  summary: "All 30 spec actions matched to source SDN protocol commands; transport parameters (4800 baud, odd parity) verified; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-20
+created_at: 2026-06-02
 ---
 
-# Somfy CI-SOMFY-RTS (Europe) Control Spec
+# Somfy CI-SOMFY-RTS Control Spec
 
 ## Summary
-RS485-based motor/tube controller using the Somfy Device Network (SDN) protocol. Supports point-to-point, group, and broadcast addressing. Controls window treatments, screens, and similar motorized shading via serial RS485 at 4800 baud with odd parity. Protocol includes settings (SET), control (CTRL), and status (GET/POST) message categories with acknowledgment handling.
+Somfy Digital Network (SDN) RS485 control protocol for Somfy motorized window covering products, including the RS485 RTS transmitter (NodeType 05h) and associated motor product families. Spec covers serial framing, addressing modes (point-to-point, group, broadcast), device management, configuration, motor control, and status query messages.
 
-<!-- UNRESOLVED: This spec covers only the RS485 RTS transmitter family. Other NodeTypes listed (Ø30, Glydea, Ø50, Ø40) are not covered. -->
+<!-- UNRESOLVED: source describes the SDN RS485 protocol generically; per-product limits (speed ranges, IP count maxima) are deferred to per-motor technical datasheets that are not in this source. -->
 
 ## Transport
 ```yaml
@@ -55,390 +61,493 @@ serial:
   parity: odd
   stop_bits: 1
   flow_control: none
-addressing:
-  format: nodeid  # 3-byte NodeID; 6-byte group address; 24-bit broadcast FFFFFFh
+  bus: rs485
+  notes: |
+    Character coding NRZ. Least significant bit sent first.
+    All data bits MUST be inverted (bitwise NOT) before transmission
+    for backward compatibility with earliest protocol versions.
+    Example: byte 58h on the wire is transmitted as A7h.
+    Timing requirements:
+      Tc   = max 1 ms between consecutive characters in a message
+      Tfree = min 3 ms bus free timeout
+      Trep = 5 ms typ, 255 ms max - slave reply delay (partially randomized)
+      Treq = min 10 ms - master inactivity before sending a new request
 auth:
   type: none  # inferred: no auth procedure in source
-notes:
-  - All data bits inverted before transmission (backward compatibility)
-  - LSB-first transmission order
-  - No synchronization byte; message ends with bus inactivity
-  - Master must wait Treq=10ms minimum after last bus activity before transmitting
-  - Slave reply delay Trep=5ms-255ms (partially randomized)
 ```
 
 ## Traits
 ```yaml
-- powerable      # inferred: CTRL_MOVETO includes UP/DOWN limit movement
-- routable       # inferred: group and broadcast addressing modes present
-- queryable      # inferred: GET_MOTOR_POSITION, GET_MOTOR_STATUS, GET_NODE_ADDR etc.
-- levelable      # inferred: CTRL_MOVETO with position percentage (0-100%)
+- queryable        # inferred from GET_* query commands present
+- levelable        # inferred from CTRL_MOVETO with Function 04h (move to % of travel)
 ```
 
 ## Actions
 ```yaml
-# Device Control
-- id: ctrl_moveto
-  label: Move to Position
-  kind: action
-  params:
-    - name: function
-      type: integer
-      description: "0=Down limit, 1=Up limit, 2=Intermediate position, 4=Position %"
-    - name: position
-      type: integer
-      description: "Position: IP index (0-15) for function 2, or % (0-100) for function 4"
+# All SDN messages share the common frame:
+#   [MSG][ACK/LEN][NODE TYPE][SOURCE@(3)][DEST@(3)][DATA...][CHECKSUM]
+# CHECKSUM = sum of the complements of every byte from MSG through last DATA byte.
+# Minimum frame length 11 bytes (no DATA); maximum 32 bytes (21 DATA bytes).
+# `command:` below holds the MSG opcode byte verbatim from §6 of the source;
+# the full frame is constructed by the controller per the addressing rules in §5.
 
-- id: ctrl_stop
-  label: Stop Motor
-  kind: action
-  params:
-    - name: reserved
-      type: integer
-      description: Reserved byte (set to 00h)
+- id: get_node_addr
+  label: Get Node Address (GET_NODE_ADDR)
+  kind: query
+  command: "40h"
+  params: []
+  notes: |
+    Used to discover devices on the bus. With many devices present, replies
+    from all devices are not guaranteed.
 
-# Device Configuration - Settings
 - id: set_group_addr
-  label: Set Group Address
+  label: Set Group Address (SET_GROUP_ADDR)
   kind: action
+  command: "51h"
   params:
     - name: group_index
       type: integer
-      description: Group table entry (0-15)
+      description: Entry in the group table (0..15)
     - name: group_id
       type: integer
-      description: 24-bit group address
+      description: 24-bit associated group NodeID
+
+- id: get_group_addr
+  label: Get Group Address (GET_GROUP_ADDR)
+  kind: query
+  command: "41h"
+  params:
+    - name: group_index
+      type: integer
+      description: Entry in the group table (0..15)
+
+- id: get_node_app_version
+  label: Get Firmware Revision (GET_NODE_APP_VERSION)
+  kind: query
+  command: "74h"
+  params: []
 
 - id: set_node_label
-  label: Set Node Label
+  label: Set User-Defined Text Label (SET_NODE_LABEL)
   kind: action
+  command: "55h"
   params:
     - name: label
       type: string
-      description: 16-character text label (fill with spaces if shorter)
+      description: 16-character ASCII label; pad short strings with spaces.
+
+- id: get_node_label
+  label: Get User-Defined Text Label (GET_NODE_LABEL)
+  kind: query
+  command: "45h"
+  params: []
 
 - id: set_local_ui
-  label: Set Local UI
+  label: Set HMI/Local UI Lock (SET_LOCAL_UI)
   kind: action
+  command: "17h"
   params:
     - name: function
-      type: integer
-      description: "0=Enable/Unlock, 1=Disable/Lock"
+      type: enum
+      description: |
+        00h = Enable/Unlock
+        01h = Disable/Lock
     - name: ui_index
-      type: integer
-      description: "0=All, 1=DCT, 2=Local stimulus, 3=Radio/BT, 4=Touch Motion, 5=LEDs"
+      type: enum
+      description: |
+        00h = All local controls and feedbacks
+        01h = DCT input
+        02h = Local stimuli (e.g. radio pairing pushbutton)
+        03h = Local Radio access (e.g. Bluetooth)
+        04h = Touch Motion feature
+        05h = LEDs
     - name: priority
       type: integer
-      description: Lock priority (0-FFh, higher = higher priority)
+      description: 0..255; higher value = higher priority
+
+- id: get_local_ui
+  label: Get HMI/Local UI Status (GET_LOCAL_UI)
+  kind: query
+  command: "27h"
+  params:
+    - name: ui_index
+      type: integer
+      description: UI item index (01h..UI_MAX); see set_local_ui enum.
 
 - id: set_motor_ip
-  label: Set Intermediate Position
+  label: Set Intermediate Position (SET_MOTOR_IP)
   kind: action
+  command: "15h"
   params:
     - name: function
-      type: integer
-      description: "0=Delete IP, 1=Set at current pos, 3=Set at %, 4=Divide range"
+      type: enum
+      description: |
+        00h = Delete IP (value ignored; NACK IP_NOT_SET if IP doesn't exist)
+        01h = Set IP at the current position (value ignored)
+        03h = Set IP at the specified position (value = percentage)
+        04h = Divide full range into N equally spaced IPs (value = IP count; ip_index ignored)
     - name: ip_index
       type: integer
-      description: IP entry index (1-16)
+      description: Intermediate Position index (1..16)
     - name: value
       type: integer
-      description: Position % or IP count depending on function
+      description: 16-bit function-dependent value (position % or IP count).
+
+- id: get_motor_ip
+  label: Get Intermediate Position (GET_MOTOR_IP)
+  kind: query
+  command: "25h"
+  params:
+    - name: ip_index
+      type: integer
+      description: IP index (1..16)
 
 - id: set_motor_rolling_speed
-  label: Set Motor Speed
+  label: Set Motor Rolling Speed (SET_MOTOR_ROLLING_SPEED)
   kind: action
+  command: "13h"
   params:
     - name: up_speed
       type: integer
-      description: UP direction speed (RPM)
+      description: UP movement speed (rpm). DC motors only. Range per motor datasheet.
     - name: down_speed
       type: integer
-      description: DOWN direction speed (RPM)
+      description: DOWN movement speed (rpm). DC motors only. Range per motor datasheet.
     - name: slow_speed
       type: integer
-      description: Adjustment speed (RPM)
-
-- id: set_network_lock
-  label: Set Network Lock
-  kind: action
-  params:
-    - name: function
-      type: integer
-      description: "0=Unlock, 1=Lock at current position, 3=Save lock on power cycle, 4=Do not save"
-    - name: priority
-      type: integer
-      description: Lock priority (0-FFh)
-
-# Queries - GET (slave responds with POST)
-- id: get_node_addr
-  label: Get Node Address
-  kind: action
-  params: []
-
-- id: get_group_addr
-  label: Get Group Address
-  kind: action
-  params:
-    - name: group_index
-      type: integer
-      description: Group table entry (0-15)
-
-- id: get_node_app_version
-  label: Get Firmware Version
-  kind: action
-  params: []
-
-- id: get_node_label
-  label: Get Node Label
-  kind: action
-  params: []
-
-- id: get_local_ui
-  label: Get Local UI Status
-  kind: action
-  params:
-    - name: ui_index
-      type: integer
-      description: UI index (01h-UI_MAX)
-
-- id: get_motor_ip
-  label: Get Intermediate Position
-  kind: action
-  params:
-    - name: ip_index
-      type: integer
-      description: IP entry index (1-16)
+      description: Adjustment movement speed (rpm). DC motors only. Range per motor datasheet.
+  notes: |
+    Speed adjustment is only available on DC motors. Default speed and valid
+    speed range are motor-specific; refer to the device technical datasheet.
 
 - id: get_motor_rolling_speed
-  label: Get Motor Speed
-  kind: action
+  label: Get Motor Rolling Speed (GET_MOTOR_ROLLING_SPEED)
+  kind: query
+  command: "23h"
   params: []
+
+- id: set_network_lock
+  label: Set Network Lock (SET_NETWORK_LOCK)
+  kind: action
+  command: "16h"
+  params:
+    - name: function
+      type: enum
+      description: |
+        00h = Unlock
+        01h = Lock device at current position
+        03h = Save NETWORK_LOCK upon power cycle (priority ignored)
+        04h = Do not save NETWORK_LOCK upon power cycle (priority ignored)
+    - name: priority
+      type: integer
+      description: 0..255; higher value = higher priority
 
 - id: get_network_lock
-  label: Get Network Lock Status
-  kind: action
+  label: Get Network Lock Status (GET_NETWORK_LOCK)
+  kind: query
+  command: "26h"
   params: []
+
+- id: ctrl_moveto
+  label: Move to Position (CTRL_MOVETO)
+  kind: action
+  command: "03h"
+  params:
+    - name: function
+      type: enum
+      description: |
+        00h = Move to DOWN limit (position ignored)
+        01h = Move to UP limit (position ignored)
+        02h = Move to Intermediate Position (position = IP index 0..15)
+        04h = Move to position in % of full travel (position = 0..100)
+    - name: position
+      type: integer
+      description: 16-bit function-dependent value (IP index or percentage).
+
+- id: ctrl_stop
+  label: Stop (CTRL_STOP)
+  kind: action
+  command: "02h"
+  params: []
+  notes: Motor stops immediately without speed ramp-down.
 
 - id: get_motor_position
-  label: Get Motor Position
-  kind: action
+  label: Get Motor Position (GET_MOTOR_POSITION)
+  kind: query
+  command: "0Ch"
   params: []
+  notes: Position is reported even while the motor is running.
 
 - id: get_motor_status
-  label: Get Motor Status
-  kind: action
+  label: Get Motor Status (GET_MOTOR_STATUS)
+  kind: query
+  command: "0Eh"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-# ACK / NACK
-- id: ack
-  label: Acknowledge
-  type: object
-  properties:
-    - name: reserved
-      type: integer
-      description: Always 0
-
-- id: nack
-  label: Negative Acknowledge
-  type: object
-  properties:
-    - name: error_code
-      type: integer
-      description: "01h=Data out of range, 10h=Unknown message, 11h=Length error, FFh=Busy"
-
-# POST responses
 - id: post_node_addr
-  label: Node Address Response
-  type: object
-  properties:
-    - name: node_id
-      type: string
-      description: 3-byte NodeID (no data payload)
+  label: Node Address Reply (POST_NODE_ADDR)
+  command: "60h"
+  type: response
+  notes: |
+    Reply to GET_NODE_ADDR. NodeID carried in frame header (SOURCE@); no DATA payload.
 
 - id: post_group_addr
-  label: Group Address Response
-  type: object
-  properties:
+  label: Group Address Reply (POST_GROUP_ADDR)
+  command: "61h"
+  type: response
+  fields:
     - name: group_index
       type: integer
+      description: 8-bit entry in the group table (0..15)
     - name: group_id
       type: integer
-      description: 24-bit group address
+      description: 24-bit associated group address
+
+- id: ack
+  label: Acknowledge (ACK)
+  command: "7Fh"
+  type: response
+  notes: |
+    Sent only when ACK bit was set to 1 in the originating CTRL/GET/SET request.
+    Indicates: for SET, parameters saved; for CTRL, execution started (not necessarily finished).
+
+- id: nack
+  label: Negative Acknowledge (NACK)
+  command: "6Fh"
+  type: error
+  fields:
+    - name: error_code
+      type: enum
+      values:
+        - "01h: Data out of range (DATA fields not within expected range)"
+        - "10h: Unknown message (MSG identifier unknown)"
+        - "11h: Message Length Error (frame below minimum length)"
+        - "FFh: Busy - cannot process message"
+  notes: |
+    Additional NACK codes mentioned but not enumerated in this section:
+    NACK(LOW_PRIORITY) - SET_LOCAL_UI / network lock with insufficient priority.
+    NACK(NODE_IS_LOCKED) - CTRL/SET refused while network is locked.
+    NACK(IP_NOT_SET) - SET_MOTOR_IP delete on non-existent IP.
 
 - id: post_node_app_version
-  label: Firmware Version Response
-  type: object
-  properties:
+  label: Firmware Revision Reply (POST_NODE_APP_VERSION)
+  command: "75h"
+  type: response
+  fields:
     - name: app_reference
       type: integer
       description: 24-bit firmware part number
     - name: app_index_letter
       type: string
-      description: ASCII major revision (41h-5Ah)
+      description: 8-bit ASCII A..Z (41h..5Ah), firmware major revision
     - name: app_index_number
       type: integer
-      description: Firmware revision number
+      description: 8-bit firmware revision number
     - name: reserved
       type: integer
+      description: 8-bit reserved
 
 - id: post_node_label
-  label: Node Label Response
-  type: object
-  properties:
+  label: Node Label Reply (POST_NODE_LABEL)
+  command: "65h"
+  type: response
+  fields:
     - name: label
       type: string
-      description: 16-character string
+      description: 16-character ASCII string
 
 - id: post_local_ui
-  label: Local UI Status Response
-  type: object
-  properties:
+  label: Local UI Status Reply (POST_LOCAL_UI)
+  command: "37h"
+  type: response
+  fields:
     - name: ui_index
       type: integer
+      description: UI item index (01h..UI_MAX)
     - name: status
-      type: integer
-      description: "0=Enabled/Unlocked, 1=Disabled/Locked"
+      type: enum
+      values:
+        - "00h: Enabled/Unlocked"
+        - "01h: Disabled/Locked"
     - name: source_addr
       type: integer
-      description: NodeID of locking device
+      description: 24-bit NodeID of the device that sent the lock command (zero when unlocked)
     - name: priority
       type: integer
+      description: 0..255; higher value = higher priority (zero when unlocked)
 
 - id: post_motor_ip
-  label: Intermediate Position Response
-  type: object
-  properties:
+  label: Intermediate Position Reply (POST_MOTOR_IP)
+  command: "35h"
+  type: response
+  fields:
     - name: ip_index
       type: integer
+      description: IP index (1..16)
     - name: reserved
       type: integer
+      description: 16-bit reserved
     - name: ip_position_percentage
       type: integer
-      description: "0-100, or FFh if IP not set"
+      description: 0..100, or FFh when the IP is not set
 
 - id: post_motor_rolling_speed
-  label: Motor Speed Response
-  type: object
-  properties:
+  label: Motor Rolling Speed Reply (POST_MOTOR_ROLLING_SPEED)
+  command: "33h"
+  type: response
+  fields:
     - name: up_speed
       type: integer
+      description: UP movement speed (per device datasheet)
     - name: down_speed
       type: integer
+      description: DOWN movement speed (per device datasheet)
     - name: slow_speed
       type: integer
+      description: Adjustment movement speed (per device datasheet)
 
 - id: post_network_lock
-  label: Network Lock Status Response
-  type: object
-  properties:
+  label: Network Lock Status Reply (POST_NETWORK_LOCK)
+  command: "36h"
+  type: response
+  fields:
     - name: status
-      type: integer
-      description: "0=Unlocked, 1=Locked"
+      type: enum
+      values:
+        - "00h: Unlocked"
+        - "01h: Locked"
     - name: source_addr
       type: integer
-      description: NodeID of locking device
+      description: 24-bit NodeID of the device that sent the lock command
     - name: priority
       type: integer
+      description: 0..255; higher value = higher priority
     - name: saved
-      type: integer
-      description: "0=Not restored on power cycle, 1=Will be restored"
+      type: enum
+      values:
+        - "00h: Lock will not be restored on power cycle"
+        - "01h: Lock will be restored on power cycle"
 
 - id: post_motor_position
-  label: Motor Position Response
-  type: object
-  properties:
+  label: Motor Position Reply (POST_MOTOR_POSITION)
+  command: "0Dh"
+  type: response
+  fields:
     - name: position_pulse
       type: integer
-      description: Raw position in pulses
+      description: 16-bit pulse count between UP_LIMIT and DOWN_LIMIT
     - name: position_percentage
       type: integer
-      description: "0-100"
+      description: 0..100
     - name: reserved
       type: integer
+      description: 8-bit reserved
     - name: ip
       type: integer
-      description: "IP index (01h-IP_MAX) or FFh if not at IP"
+      description: |
+        Current IP (01h..IP_MAX), or FFh if the position does not correspond
+        to any IP. If position corresponds to several IPs, the first matching
+        IP on the list is returned.
 
 - id: post_motor_status
-  label: Motor Status Response
-  type: object
-  properties:
+  label: Motor Status Reply (POST_MOTOR_STATUS)
+  command: "0Fh"
+  type: response
+  fields:
     - name: status
-      type: integer
-      description: "0=Stopped, 1=Running, 2=Blocked, 3=Locked"
+      type: enum
+      values:
+        - "00h: Stopped"
+        - "01h: Running (during movement)"
+        - "02h: Blocked (thermal protection, obstacle)"
+        - "03h: Locked (NETWORK_LOCK by another device)"
     - name: direction
-      type: integer
-      description: "0=Going DOWN, 1=Going UP, FFh=Unknown"
+      type: enum
+      values:
+        - "00h: Going DOWN"
+        - "01h: Going UP (if stopped, indicates last movement direction)"
+        - "FFh: Unknown"
     - name: source
-      type: integer
-      description: "0=Internal, 1=Network, 2=Local UI"
+      type: enum
+      values:
+        - "00h: Internal (limit/IP/position reached, over-current, obstacle, thermal)"
+        - "01h: Network message (any SDN bus message)"
+        - "02h: Local UI (DCT, local stimulus, local wireless)"
     - name: cause
-      type: integer
-      description: "00h=Target reached, 01h=Explicit command, 02h=Wink, 20h=Obstacle, 21h=Over-current, 22h=Thermal, 30h=Run time exceeded, 32h=Timeout, FFh=Reset/PowerUp"
+      type: enum
+      values:
+        - "00h: Target reached (limit or IP or already there)"
+        - "01h: Explicit command (network or local UI)"
+        - "02h: Wink"
+        - "20h: Obstacle detection"
+        - "21h: Over-current protection"
+        - "22h: Thermal protection"
+        - "30h: Run time exceeded (continuous runtime limit)"
+        - "32h: Timeout exceeded (CTRL_MOVE > 2 min, adjustment canceled)"
+        - "FFh: Reset / PowerUp (power recycled or no command after startup)"
 ```
 
 ## Variables
 ```yaml
-# Settable parameters (not discrete actions)
-- id: motor_ip_position
-  label: Motor Intermediate Position %
-  type: integer
-  min: 0
-  max: 100
-  description: Position percentage for a stored intermediate position
-
-- id: motor_speed
-  label: Motor Rolling Speed
-  type: object
-  properties:
-    up_speed: integer
-    down_speed: integer
-    slow_speed: integer
-  description: RPM values for up/down/slow motor movements
-
-- id: network_lock
-  label: Network Lock State
-  type: object
-  properties:
-    function: integer
-    priority: integer
-  description: Lock state and priority level
+# UNRESOLVED: settable parameters are exposed via SET_* actions above
+# (node label, group table entries, intermediate positions, rolling speeds,
+# local UI lock state, network lock state). No separate variable-style
+# polling interface is documented in the source.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: The document does not describe unsolicited event messages sent by the device without a prior GET request.
-# SDN is a master-slave polling protocol; all responses are reactive to GET/CTRL commands.
+# UNRESOLVED: source documents no unsolicited event/notification messages.
+# All device-originated messages (POST_*, ACK, NACK) are responses to master
+# requests, not asynchronous events.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: The document does not describe explicit multi-step macro sequences.
+# UNRESOLVED: no multi-step macro sequences are documented in the source.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks:
-  - When NETWORK_LOCK is active, only CTRL_NETWORK_LOCK with equal/higher priority unlocks
-  - Movement commands rejected while NETWORK_LOCK active at lower priority; NACK returned
-  - Motor immediately stops on CTRL_STOP without speed ramp-down
-  - Obstacle detection causes blocked status (thermal/over-current also block motor)
-warnings:
-  - Use acknowledgments to detect missed messages; implement retry on NACK or timeout
-  - Avoid ACK requests in group/broadcast mode to prevent collisions
-  - Avoid feedback requests in group/broadcast mode to prevent collisions
+  - id: network_lock
+    description: |
+      SET_NETWORK_LOCK / CTRL_NETWORK_LOCK locks the device against network
+      commands at a configurable priority level. While locked, only
+      CTRL_NETWORK_LOCK messages with equal or higher priority are accepted;
+      all other CTRL_xxx and SET_MOTOR_LIMITS / SET_TILT_LIMITS messages are
+      rejected with NACK(NODE_IS_LOCKED).
+  - id: motor_blocked
+    description: |
+      Motor reports POST_MOTOR_STATUS status=02h (Blocked) when it cannot move
+      due to thermal protection or obstacle detection. Cause field indicates
+      the specific protection event (20h obstacle, 21h over-current,
+      22h thermal, 30h run-time exceeded).
+  - id: ctrl_move_timeout
+    description: |
+      Continuous adjustment movement is canceled if more than 2 minutes
+      elapse without a new command (cause 32h Timeout exceeded).
+# UNRESOLVED: voltage/current/power specifications are not stated in this
+# source and must be taken from per-motor technical datasheets.
 ```
 
 ## Notes
-SDN protocol uses a binary message format with 11-byte minimum and 32-byte maximum frames. Message structure: MSG(1) | ACK/LEN(1) | NODE_TYPE(1) | SOURCE@ (3) | DEST@ (3) | DATA (0–21) | CHECKSUM(1). All data bits are inverted before bus transmission (NOT byte-value). SOURCE@ and DEST@ use LSB-first byte order. Group addressing uses destination 000000h; broadcast uses destination FFFFFFh. Slave response delay (Trep) is randomized between 5–255ms to reduce collisions. No auth/password mechanism described in source.
-<!-- UNRESOLVED: Specific speed RPM values and motor datasheet references not included — values vary by motor model -->
-<!-- UNRESOLVED: TCP/IP transport not applicable to this device (RS485 only) -->
-<!-- UNRESOLVED: Firmware version compatibility range not stated in source -->
+- Source: SDN RS485 protocol specification (§3–§6 covered).
+- Addressing modes available on every message: point-to-point (DEST@ = device NodeID), group (DEST@ = 000000h, SOURCE@ = GroupID, device must have GroupID in its group table), broadcast (DEST@ = FFFFFFh). NodeType filtering is available via the NODE TYPE byte (byte 3): SOURCE NodeType = 0h for masters; DEST NodeType used to address a product family (02h Ø30 DC RS485, 05h RS485 RTS transmitter, 06h Glydea RS485, 07h Ø50 AC RS485, 08h Ø50 DC RS485, 09h Ø40 AC RS485 reserved).
+- SOURCE@ and DEST@ are transmitted LSBF: a device labelled NodeID 05:04:03 appears in bytes 4..6 as `03 04 05`.
+- Acknowledgements: ACK bit in byte 2 of any CTRL/SET/GET request opts in to ACK/NACK feedback. Recommended for reliability; group/broadcast addressing should NOT request ACK or feedback to reduce bus collisions.
+- DATA length in §6 tables is the **minimum** DATA length; received messages may carry additional trailing bytes.
+- Reserved DATA fields must be present in transmitted messages and set to 00h or FFh.
+
+<!-- UNRESOLVED:
+  - Motor-specific speed ranges and IP_MAX / UI_MAX limits depend on per-motor datasheets not included in this source.
+  - Firmware version compatibility is not stated.
+  - Electrical specifications (voltage, current, RS485 termination) are not in this source.
+-->
 
 ## Provenance
 
@@ -458,14 +567,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.591Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 30 spec actions matched to source SDN protocol commands; transport parameters (4800 baud, odd parity) verified; bidirectional coverage complete."
+confidence: medium
+summary: "All 30 spec actions matched to source SDN protocol commands; transport parameters (4800 baud, odd parity) verified; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source describes the SDN RS485 protocol generically; per-product limits (speed ranges, IP count maxima) are deferred to per-motor technical datasheets that are not in this source."
+- "settable parameters are exposed via SET_* actions above"
+- "source documents no unsolicited event/notification messages."
+- "no multi-step macro sequences are documented in the source."
+- "voltage/current/power specifications are not stated in this"
+- "- Motor-specific speed ranges and IP_MAX / UI_MAX limits depend on per-motor datasheets not included in this source."
 ```
 
 ---

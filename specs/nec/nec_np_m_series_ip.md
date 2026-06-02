@@ -92,19 +92,30 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:07.823Z
 last_checked_at: 2026-05-14T18:17:18.470Z
 generated_at: 2026-05-14T18:17:18.470Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "full model-specific input terminal mappings not fully populated; only representative models documented in appendix"
+  - "multiple baud rates supported (115200/38400/19200/9600/4800); no default stated"
+  - "flow control not mentioned in source"
+  - "whether discrete numeric parameters (e.g., network IP, DHCP enable) have dedicated set commands not listed in this document"
+  - "the source describes only query-response interaction; no unsolicited event messages documented"
+  - "no explicit multi-step macros documented in source"
+  - "source documents power on/off command behavior and interlock switch status (DATA09 Bit1),"
+  - "PORT NUMBERS for wired LAN service — only port 7142 stated; no HTTP/REST endpoints documented"
+  - "Authentication mechanism for LAN control — no login/password procedure described in source"
+  - "Firmware version compatibility — source does not state version ranges"
+  - "Full input terminal code mappings for all models — appendix only covers listed models; other NP-M variants may differ"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.470Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 52 spec actions matched literal hex command codes in NEC projector IP source; transport parameters verified; complete protocol coverage."
+  confidence: medium
+  summary: "All 52 spec actions matched literal hex command codes in NEC projector IP source; transport parameters verified; complete protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -754,7 +765,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:07.823Z
 last_checked_at: 2026-05-14T18:17:18.470Z
 ```
 
@@ -765,14 +776,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.470Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 52 spec actions matched literal hex command codes in NEC projector IP source; transport parameters verified; complete protocol coverage."
+confidence: medium
+summary: "All 52 spec actions matched literal hex command codes in NEC projector IP source; transport parameters verified; complete protocol coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "full model-specific input terminal mappings not fully populated; only representative models documented in appendix"
+- "multiple baud rates supported (115200/38400/19200/9600/4800); no default stated"
+- "flow control not mentioned in source"
+- "whether discrete numeric parameters (e.g., network IP, DHCP enable) have dedicated set commands not listed in this document"
+- "the source describes only query-response interaction; no unsolicited event messages documented"
+- "no explicit multi-step macros documented in source"
+- "source documents power on/off command behavior and interlock switch status (DATA09 Bit1),"
+- "PORT NUMBERS for wired LAN service — only port 7142 stated; no HTTP/REST endpoints documented"
+- "Authentication mechanism for LAN control — no login/password procedure described in source"
+- "Firmware version compatibility — source does not state version ranges"
+- "Full input terminal code mappings for all models — appendix only covers listed models; other NP-M variants may differ"
 ```
 
 ---

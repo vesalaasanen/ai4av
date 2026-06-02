@@ -11,8 +11,6 @@ compatible_with:
     - Barco
   models:
     - Wodan
-    - UDX-4K22
-    - UDX-W32
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -21,35 +19,43 @@ source_domains:
   - audiogeneral.com
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-06-01T22:43:05.087Z
 last_checked_at: 2026-05-20T06:11:59.127Z
 generated_at: 2026-05-20T06:11:59.127Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document is the Barco \"UDX\" reference guide (1.7, 2019-03-04). The Wodan is assumed to share the Pulse API but the source does not name Wodan anywhere; commands here are based on the UDX reference applied to the Wodan family. Per-model feature availability must be verified via `introspect`."
+  - "many hundreds of `image.color.p7.*`, `image.color.p7.native.*`, `dmx.monitor.channel*`, `image.processing.*`, `environment.*`, `system.*` properties are documented in the source. The Actions/Variables sections below capture the representative set; the full list is available by calling `introspect` on the projector."
+  - "many additional RW properties exist beyond the catalogue"
+  - "no other multi-step sequences documented in source beyond the"
+  - "source contains no safety warnings, interlock procedures, or"
+  - "firmware version range that this reference applies to is not stated beyond \"1.7\" of the document; the spec's `compatible_with.firmware` field is left blank."
+  - "the source lists hundreds of properties; this spec enumerates the most prominent ones. The complete list is available at runtime via `introspect` and the alphabetical property catalogue in the source PDF (page-by-page beyond line 2038 of the refined markdown)."
+  - "DMX channel function/offset/value is read for channels 01..14 but the \"function\" strings and DMX channel mapping table are not reproduced in the source excerpt we have. They are R-only and must be introspected or read at runtime."
 verification:
   verdict: verified
   checked_at: 2026-05-20T06:11:59.127Z
   matched_actions: 64
   action_count: 64
-  confidence: high
-  summary: "All 64 spec actions matched their JSON-RPC methods and properties in the source document; transport parameters verified."
+  confidence: medium
+  summary: "All 64 spec actions matched their JSON-RPC methods and properties in the source document; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-16
+created_at: 2026-06-01
 ---
 
 # Barco Wodan Control Spec
 
 ## Summary
+JSON-RPC 2.0 facade API for Barco Pulse-based projectors. Operators use TCP/IP on port 9090 or RS-232 (19200/8/N/1, no flow control) to invoke methods, read/write properties, and subscribe to notifications. The same commands are available on both transports.
 
-The Barco Wodan is a Barco projector family controlled via the Pulse API, a JSON-RPC 2.0 protocol accessible over TCP/IP (port 9090) or RS-232 serial. This spec covers the network and serial control interface for power, input source selection, illumination, image adjustment, and environment monitoring as described in the "RS232 and Network Command Catalog for JSON RPC/Pulse Based Projectors" reference guide v1.7.
+<!-- UNRESOLVED: source document is the Barco "UDX" reference guide (1.7, 2019-03-04). The Wodan is assumed to share the Pulse API but the source does not name Wodan anywhere; commands here are based on the UDX reference applied to the Wodan family. Per-model feature availability must be verified via `introspect`. -->
 
-<!-- UNRESOLVED: The Wodan model is referenced in the source document title but many property entries list "UDX" model variants (UDX-4K22, UDX-W32, All). It is unclear which properties apply exclusively to the Wodan vs. the full UDX family. Use introspection at runtime to discover the exact API surface for a specific unit. -->
+<!-- UNRESOLVED: many hundreds of `image.color.p7.*`, `image.color.p7.native.*`, `dmx.monitor.channel*`, `image.processing.*`, `environment.*`, `system.*` properties are documented in the source. The Actions/Variables sections below capture the representative set; the full list is available by calling `introspect` on the projector. -->
 
 ## Transport
-
 ```yaml
 protocols:
   - tcp
@@ -63,650 +69,1129 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: optional
-  # Auth note: For normal end-user access, authentication can be skipped.
-  # A session can authenticate with a numeric passcode to elevate access level.
-  # Method: authenticate, params: {"code": <integer>}
-  # Authentication is only required for higher-privilege operations.
+  type: passcode  # optional: skip for normal end-user access per source
+  method: authenticate
+  description: "Optional. A passcode-based authenticate method raises the access level above normal end-user. Can be skipped for end-user commands."
+  notes: |
+    The source states "A client session must start with an authentication request
+    containing a secret pass code... Authentication is only necessary when a
+    higher level than normal end user is required. For normal end user access
+    the authentication can be skipped."
 ```
 
 ## Traits
-
 ```yaml
-- powerable       # inferred from system.poweron / system.poweroff commands
-- routable        # inferred from image.window.main.source set commands
-- queryable       # inferred from property.get commands returning state
-- levelable       # inferred from image.brightness, illumination.sources.laser.power controls
+- powerable       # inferred: system.poweron / system.poweroff documented
+- queryable       # inferred: property.get / environment.getcontrolblocks documented
+- routable        # inferred: image.window.main.source selection documented
+- levelable       # inferred: illumination.sources.laser.power, image.brightness settable
+- subscribable    # inferred: property.subscribe / signal.subscribe documented
 ```
 
 ## Actions
-
 ```yaml
-- id: power_on
-  label: Power On
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"system.poweron"}. Result is null on success.
-    Verify system.state is "standby" or "ready" before sending; ignored if already on
-    or in state transition.
-  params: []
+# All payloads below are JSON-RPC 2.0 requests. Same wire format over TCP and serial.
 
-- id: power_off
-  label: Power Off
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"system.poweroff"}. Result is null on success.
-    Verify system.state is "on" before sending; ignored if already off or in transition.
-  params: []
-
-- id: set_input_source
-  label: Set Input Source
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.window.main.source","value":"<source-name>"}}.
-    Use image.source.list to retrieve available source names before setting.
-  params:
-    - name: source
-      type: string
-      description: >
-        Source name string, e.g. "DisplayPort 1", "DisplayPort 2", "HDMI", "DVI 1",
-        "DVI 2", "HDBaseT", "SDI", "Dual DVI", "Dual DisplayPort", "Dual Head DVI",
-        "Dual Head DisplayPort". Available sources depend on the specific projector model.
-
-- id: list_sources
-  label: List Available Sources
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"image.source.list"}. Returns array of source name strings.
-  params: []
-
-- id: list_connectors
-  label: List Available Connectors
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"image.connector.list"}. Returns array of connector name strings.
-  params: []
-
-- id: set_brightness
-  label: Set Image Brightness
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.brightness","value":<float>}}.
-    Range: -1.0 to 1.0, precision 0.01. 0 is default.
-  params:
-    - name: value
-      type: float
-      description: Normalized brightness offset. 0 = default, 1 = 100% offset. Range -1 to 1.
-
-- id: set_laser_power
-  label: Set Laser Power
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.sources.laser.power","value":<float>}}.
-    Value is percentage. Read illumination.sources.laser.minpower and illumination.sources.laser.maxpower
-    first to determine valid range (dynamic, depends on lens and projector state).
-  params:
-    - name: value
-      type: float
-      description: Laser power in percent. Range is dynamic; read min/maxpower properties first.
-
-- id: enable_warp
-  label: Enable Warp Processing
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.enable","value":true}}.
-  params:
-    - name: enable
-      type: boolean
-      description: true to enable warp, false to disable.
-
-- id: select_warp_file
-  label: Select Warp Grid File
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.selected","value":"<filename>"}}.
-    File must be uploaded first via HTTP POST to /api/image/processing/warp/file/transfer.
-  params:
-    - name: filename
-      type: string
-      description: Filename of the warp grid XML file previously uploaded to the projector.
-
-- id: enable_warp_file
-  label: Enable Warp File Processing
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.enable","value":true}}.
-  params:
-    - name: enable
-      type: boolean
-      description: true to enable grid file warping.
-
-- id: select_blend_file
-  label: Select Blend Mask File
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.selected","value":"<filename>"}}.
-    File must be uploaded via HTTP POST to /api/image/processing/blend/file/transfer.
-    Supported formats: PNG (up to 16-bit), JPEG, TIFF (grayscale; color accepted but only blue channel used).
-  params:
-    - name: filename
-      type: string
-      description: Filename of the blend mask image previously uploaded.
-
-- id: enable_blend_file
-  label: Enable Blend Mask
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.enable","value":true}}.
-  params:
-    - name: enable
-      type: boolean
-      description: true to enable blend mask.
-
-- id: select_blacklevel_file
-  label: Select Black Level Mask File
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.selected","value":"<filename>"}}.
-    File must be uploaded via HTTP POST to /api/image/processing/blacklevel/file/transfer.
-  params:
-    - name: filename
-      type: string
-      description: Filename of the black level mask image previously uploaded.
-
-- id: enable_blacklevel_file
-  label: Enable Black Level Mask
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.enable","value":true}}.
-  params:
-    - name: enable
-      type: boolean
-      description: true to enable black level mask.
-
+# ─── Authentication ───────────────────────────────────────────────
 - id: authenticate
-  label: Authenticate Session
+  label: Authenticate session
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"authenticate","params":{"code":<integer>},"id":1}.
-    Only required for elevated access levels beyond normal end-user. Returns {"result":true} on success.
+  command: |
+    {"jsonrpc":"2.0","method":"authenticate","params":{"code":<passcode>},"id":1}
   params:
     - name: code
       type: integer
-      description: Numeric passcode for the desired access level.
+      description: Secret pass code (example in source: 98765)
+  notes: |
+    Required only for access levels above normal end-user.
 
-- id: property_get
-  label: Get Property Value
+# ─── System / Power ──────────────────────────────────────────────
+- id: system_poweron
+  label: Power on projector
   kind: action
-  notes: >
-    Generic property read. Send {"jsonrpc":"2.0","method":"property.get","params":{"property":"<name>"}}.
-    Can also accept an array of property names to read multiple values at once.
+  command: '{"jsonrpc":"2.0","method":"system.poweron"}'
+  notes: |
+    Idempotent if already on or transitioning. Source recommends verifying
+    system.state is "standby" or "ready" before issuing.
+
+- id: system_poweroff
+  label: Power off projector
+  kind: action
+  command: '{"jsonrpc":"2.0","method":"system.poweroff"}'
+  notes: |
+    Idempotent if already off or transitioning. Source recommends verifying
+    system.state is "on" before issuing.
+
+- id: system_state_get
+  label: Get projector state
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"property.get","params":{"property":"system.state"},"id":1}'
+  notes: |
+    Response value is one of: boot, eco, standby, ready, conditioning, on,
+    deconditioning.
+
+# ─── Properties (generic verbs) ──────────────────────────────────
+- id: property_set
+  label: Set property value
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"<dot.path>","value":<value>},"id":<n>}
   params:
     - name: property
       type: string
-      description: Dot-notation property name, e.g. "system.state", "image.brightness".
+      description: Dot-notation property path (e.g. image.brightness, illumination.sources.laser.power)
+    - name: value
+      type: string
+      description: Value appropriate to the property type (string, integer, float, boolean, object, array)
+  notes: |
+    "Best practice: wait for confirmation before setting the same property again."
+    Some properties are read-only (R) per the source catalogue.
+
+- id: property_get
+  label: Get property value
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"<dot.path>"},"id":<n>}
+
+- id: property_get_multiple
+  label: Get multiple property values
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":["<dot.path.a>","<dot.path.b>"]},"id":<n>}
 
 - id: property_subscribe
-  label: Subscribe to Property Changes
+  label: Subscribe to property change notifications
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.subscribe","params":{"property":"<name>"}}.
-    Can accept a single string or array of strings. Generates property.changed notifications on change.
-  params:
-    - name: property
-      type: string_or_array
-      description: Property name or array of property names to subscribe to.
+  command: |
+    {"jsonrpc":"2.0","method":"property.subscribe","params":{"property":"<dot.path>"},"id":<n>}
+
+- id: property_subscribe_multiple
+  label: Subscribe to multiple property change notifications
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.subscribe","params":{"property":["<dot.path.a>","<dot.path.b>"]},"id":<n>}
 
 - id: property_unsubscribe
-  label: Unsubscribe from Property Changes
+  label: Unsubscribe from property change notifications
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":"<name>"}}.
-  params:
-    - name: property
-      type: string_or_array
-      description: Property name or array of property names to unsubscribe from.
+  command: |
+    {"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":"<dot.path>"},"id":<n>}
 
-- id: signal_subscribe
-  label: Subscribe to Signal
+- id: property_unsubscribe_multiple
+  label: Unsubscribe from multiple property change notifications
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":"<name>"}}.
-    Can accept string or array. Generates signal.callback notifications.
-  params:
-    - name: signal
-      type: string_or_array
-      description: Signal name or array of signal names, e.g. "modelupdated".
+  command: |
+    {"jsonrpc":"2.0","method":"property.unsubscribe","params":{"property":["<dot.path.a>","<dot.path.b>"]},"id":<n>}
+
+# ─── Signals ─────────────────────────────────────────────────────
+- id: signal_subscribe
+  label: Subscribe to signal
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":"<dot.path>"},"id":<n>}
+
+- id: signal_subscribe_multiple
+  label: Subscribe to multiple signals
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":["<sig.a>","<sig.b>"]},"id":<n>}
 
 - id: signal_unsubscribe
-  label: Unsubscribe from Signal
+  label: Unsubscribe from signal
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":"<name>"}}.
-  params:
-    - name: signal
-      type: string_or_array
-      description: Signal name or array of signal names.
+  command: |
+    {"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":"<dot.path>"},"id":<n>}
 
-- id: introspect
-  label: Introspect API Objects
+- id: signal_unsubscribe_multiple
+  label: Unsubscribe from multiple signals
   kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"introspect","params":{"object":"<name>","recursive":<bool>}}.
-    Default object is "" (introspects everything). recursive=false lists only one level of objects.
-    Results are restricted by the client's authenticated access level.
+  command: |
+    {"jsonrpc":"2.0","method":"signal.unsubscribe","params":{"signal":["<sig.a>","<sig.b>"]},"id":<n>}
+
+# ─── Introspection ───────────────────────────────────────────────
+- id: introspect
+  label: Introspect API
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"introspect","params":{"object":"<dot.path>","recursive":<bool>},"id":<n>}
   params:
     - name: object
       type: string
-      description: Dot-notation object name to introspect. Empty string introspects everything.
+      description: Dot-notation object name; default empty introspects everything
     - name: recursive
       type: boolean
-      description: If true (default), recurse into child objects. If false, list one level only.
+      description: true=full tree, false=one level (default true)
+  notes: |
+    Positional array form also accepted: params:["<object>",<recursive>].
 
-- id: get_temperatures
-  label: Get Temperature Readings
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"Sensor","valuetype":"Temperature"}}.
-    Returns a dictionary of sensor name to temperature reading (float, degrees Celsius).
-  params: []
+# ─── Sources / Connectors ────────────────────────────────────────
+- id: image_source_list
+  label: List available sources
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.source.list","id":1}'
+  notes: |
+    Returns names such as DVI 1, DVI 2, DisplayPort 1, DisplayPort 2, Dual DVI,
+    Dual DisplayPort, Dual Head DVI, Dual Head DisplayPort, HDBaseT, HDMI, SDI.
+    Exact list varies by projector model.
 
-- id: get_fan_speeds
-  label: Get Fan Speed Readings
-  kind: action
-  notes: >
-    Send {"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"Sensor","valuetype":"Speed"}}.
-    Returns a dictionary of fan name to speed reading (int, RPM).
-  params: []
-- id: set_contrast
-  label: Set Image Contrast
-  kind: action
-  notes: "Send property.set with property image.contrast. Range: 0 to 2."
+- id: image_connector_list
+  label: List available connectors
+  kind: query
+  command: '{"jsonrpc":"2.0","method":"image.connector.list","id":3}'
+  notes: |
+    Returns names such as DVI 1, DVI 2, DisplayPort 1, DisplayPort 2, HDBaseT,
+    HDMI, SDI (model-dependent).
+
+- id: image_source_listconnectors
+  label: List connectors used by a source
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"image.source.<source>.listconnectors","id":<n>}
   params:
-    - name: value
-      type: float
-      description: Normalized contrast. 1 = default. Range 0 to 2.
-
-- id: set_saturation
-  label: Set Image Saturation
-  kind: action
-  notes: "Send property.set with property image.saturation. Range: 0 to 2."
-  params:
-    - name: value
-      type: float
-      description: Normalized saturation. 1 = default. Range 0 to 2.
-
-- id: set_gamma
-  label: Set Image Gamma
-  kind: action
-  notes: "Send property.set with property image.gamma. Default 2.2. Range 1 to 3."
-  params:
-    - name: value
-      type: float
-      description: Gamma value. Range 1 to 3.
-
-- id: set_intensity
-  label: Set Image Intensity
-  kind: action
-  notes: "Send property.set with property image.intensity. Range 0 to 1."
-  params:
-    - name: value
-      type: float
-      description: Image intensity. Range 0 to 1.
-
-- id: set_orientation
-  label: Set Image Orientation
-  kind: action
-  notes: "Send property.set with property image.orientation."
-  params:
-    - name: value
+    - name: source
       type: string
-      description: "Orientation: DESKTOP_FRONT, DESKTOP_REAR, CEILING_FRONT, CEILING_REAR."
+      description: |
+        Source object name (lowercase, no non-word chars). Example: "DisplayPort 1"
+        -> "displayport1". For source "HDMI" -> "hdmi".
+  notes: |
+    Returns array of {name, gridposition:{row,column,plane}} objects.
 
-- id: set_rgb_mode
-  label: Set RGB Mode
+- id: image_window_main_source_set
+  label: Set active source on main window
   kind: action
-  notes: "Send property.set with property image.color.rgbmode.rgbmode."
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.window.main.source","value":"<source name>"},"id":<n>}
   params:
-    - name: value
+    - name: source name
       type: string
-      description: "RGB mode: Full, Red, Green, Blue, RedGreen, GreenBlue, BlueRed."
+      description: One of the names returned by image.source.list (e.g. "DisplayPort 1", "HDMI")
 
-- id: set_p7_redgain
-  label: Set P7 Red Gain
+- id: image_window_main_source_get
+  label: Get active source on main window
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"image.window.main.source"},"id":<n>}
+
+- id: image_connector_detectedsignal
+  label: Get detected signal on a connector
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"image.connector.<connector>.detectedsignal"},"id":<n>}
+  notes: |
+    Returns object with active, name, vertical_total, horizontal_total,
+    vertical_resolution, horizontal_resolution, vertical_sync_width,
+    vertical_front_porch, vertical_back_porch, horizontal_sync_width,
+    horizontal_front_porch, horizontal_back_porch, horizontal_frequency,
+    vertical_frequency, pixel_rate, scan, bits_per_component, color_space,
+    signal_range, chroma_sampling, gamma_type.
+
+# ─── Illumination ────────────────────────────────────────────────
+- id: illumination_state_get
+  label: Get illumination state
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"illumination.state"},"id":0}
+  notes: |
+    Returns "On" or "Off".
+
+- id: illumination_subscribe
+  label: Subscribe to illumination state changes
   kind: action
-  notes: "Send property.set with property image.color.p7.custom.redgain."
+  command: |
+    {"jsonrpc":"2.0","method":"property.subscribe","params":{"property":"illumination.state"},"id":1}
+
+- id: illumination_introspect
+  label: Introspect illumination sources
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"introspect","params":{"property":"illumination.sources","recursive":false},"id":2}
+  notes: |
+    Returns object names of available illumination sources (e.g. laser, led, lamp).
+
+- id: illumination_laser_power_get
+  label: Get laser power (%)
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"illumination.sources.laser.power"},"id":3}
+
+- id: illumination_laser_power_set
+  label: Set laser power (%)
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.sources.laser.power","value":<percent>},"id":5}
+  notes: |
+    Confirmed in source example with value 40. Range is dynamic (read minpower/maxpower).
+
+- id: illumination_laser_maxpower_get
+  label: Get maximum laser power (%)
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"illumination.sources.laser.maxpower"},"id":5}
+
+- id: illumination_laser_minpower_get
+  label: Get minimum laser power (%)
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"illumination.sources.laser.minpower"},"id":6}
+
+- id: illumination_clo_enable_set
+  label: Enable constant light output
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.clo.enable","value":<bool>}}
+  notes: |
+    Property is RW per source catalogue.
+
+- id: illumination_clo_setpoint_set
+  label: Set CLO target luminosity
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.clo.setpoint","value":<float>}}
+
+- id: illumination_clo_scale_set
+  label: Set CLO scale percentage
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"illumination.clo.scale","value":<float>}}
+
+# ─── Picture (image.*) ───────────────────────────────────────────
+- id: image_brightness_get
+  label: Get image brightness
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"image.brightness"},"id":7}
+  notes: |
+    Range -1..1, step-size 1, precision 0.01. 0 = default, 1 = 100% offset.
+
+- id: image_brightness_set
+  label: Set image brightness
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.brightness","value":<float>},"id":9}
   params:
     - name: value
       type: float
-      description: Desired red gain for P7 custom color management.
+      description: -1.0 .. 1.0 (step 0.01)
 
-- id: set_connector_colorspace
-  label: Set Connector Color Space Override
+- id: image_introspect
+  label: Introspect image service
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"introspect","params":{"object":"image","recursive":false},"id":6}
+  notes: |
+    Use to discover available picture properties (contrast, saturation, gamma, etc.)
+    before reading/writing.
+
+# ─── Warping / Blending / Black-level (image.processing.*) ───────
+- id: warp_enable_set
+  label: Globally enable warp
   kind: action
-  notes: "Send property.set with property image.connector.l1displayport.colorspace (or other connector object name)."
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.enable","value":true},"id":10}
+
+- id: warp_file_select
+  label: Select uploaded warp grid file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.selected","value":"<filename>"},"id":11}
+  notes: |
+    Filename returned from the prior upload. Example in source: "warp.xml".
+
+- id: warp_file_enable
+  label: Enable warp grid file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.enable","value":true},"id":12}
+
+- id: blend_file_select
+  label: Select uploaded blend mask file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.selected","value":"<filename>"},"id":13}
+
+- id: blend_file_enable
+  label: Enable blend mask file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.enable","value":true},"id":14}
+
+- id: blacklevel_file_select
+  label: Select uploaded black-level mask file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.selected","value":"<filename>"},"id":15}
+
+- id: blacklevel_file_enable
+  label: Enable black-level mask file
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.enable","value":true},"id":16}
+
+# ─── File upload/download (HTTP) ─────────────────────────────────
+# The serial and TCP transports are JSON-RPC. File transfer is HTTP, not JSON-RPC.
+- id: warp_file_upload_http
+  label: Upload warp grid file (HTTP)
+  kind: action
+  command: "curl -F file=@<file> http://<host>/api/image/processing/warp/file/transfer"
   params:
-    - name: value
+    - name: file
       type: string
-      description: "Color space: Auto, RGB, REC709, REC601, REC2020."
-
-- id: set_shutter
-  label: Set Shutter Position
-  kind: action
-  notes: "Send property.set with property optics.shutter.target."
-  params:
-    - name: value
+      description: Local path to warp XML file
+    - name: host
       type: string
-      description: "Shutter target: Open or Closed."
+      description: Projector IP address (e.g. 192.168.1.100)
+  notes: |
+    -X POST is implied by -F. Same file endpoint also supports download via GET.
+    Source example: http://192.168.1.100/api/image/processing/warp/file/transfer
+    Optional sub-path for selecting a specific file:
+    /api/image/processing/warp/file/transfer/warpgrid.xml
 
-- id: set_lensshift_horizontal
-  label: Set Horizontal Lens Shift
+- id: warp_file_download_http
+  label: Download current warp grid file (HTTP)
   kind: action
-  notes: "Send property.set with property optics.lensshift.horizontal.target. Read min/maxposition first."
+  command: "curl -O -J http://<host>/api/image/processing/warp/file/transfer"
   params:
-    - name: value
+    - name: host
+      type: string
+      description: Projector IP address
+
+- id: blend_file_upload_http
+  label: Upload blend mask file (HTTP)
+  kind: action
+  command: "curl -F file=@<file> http://<host>/api/image/processing/blend/file/transfer"
+  params:
+    - name: file
+      type: string
+      description: PNG/JPEG/TIFF, grayscale, 8 or 16 bit, resolution per projector
+  notes: |
+    Mask resolution must match: WUXGA 1920x1200, WQXGA 1280x800, 4K 1280x800,
+    4K Cinemascope 1280x540.
+
+- id: blacklevel_file_upload_http
+  label: Upload black-level mask file (HTTP)
+  kind: action
+  command: "curl -F file=@<file> http://<host>/api/image/processing/blacklevel/file/transfer"
+  params:
+    - name: file
+      type: string
+      description: PNG/JPEG/TIFF, grayscale (color images accepted but only blue channel used)
+  notes: |
+    Mask resolution must match: WUXGA 1920x1200, WQXGA 1280x800, 4K 1280x800,
+    4K Cinemascope 1280x540.
+
+# ─── Environment (sensors) ───────────────────────────────────────
+- id: environment_getcontrolblocks_temperatures
+  label: Get all temperature sensors
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"Sensor","valuetype":"Temperature"},"id":18}
+  notes: |
+    Response is a dictionary keyed by sensor name (e.g.
+    environment.laser.board0.bank0.temperature, environment.temperature.inlet,
+    environment.fan.psu.tacho).
+
+- id: environment_getcontrolblocks_fanspeeds
+  label: Get all fan speeds (tacho)
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"environment.getcontrolblocks","params":{"type":"Sensor","valuetype":"Speed"},"id":19}
+
+- id: environment_alarmstate_get
+  label: Get environment alarm state
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"environment.alarmstate"}}
+  notes: |
+    Enum: Fatal, Error, Alert, Warning, Ok.
+
+# ─── DMX / ArtNet ────────────────────────────────────────────────
+- id: dmx_artnet_set
+  label: Enable/disable ArtNet
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.artnet","value":<bool>}}
+
+- id: dmx_artnetnet_set
+  label: Set ArtNet net
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.artnetnet","value":<int>}}
+
+- id: dmx_artnetuniverse_set
+  label: Set ArtNet universe
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.artnetuniverse","value":<int>}}
+
+- id: dmx_mode_set
+  label: Set DMX mode
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.mode","value":"<mode>"}}
+  notes: |
+    "Basic" mode exposes 2 channels; "extended" mode exposes more (per source note).
+
+- id: dmx_startchannel_set
+  label: Set DMX start channel
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.startchannel","value":<int>}}
+  notes: |
+    Range 1..512 per source.
+
+- id: dmx_shutdown_set
+  label: Enable/disable DMX shutdown
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.shutdown","value":<bool>}}
+
+- id: dmx_shutdowntimeout_set
+  label: Set DMX shutdown timeout (minutes)
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"dmx.shutdowntimeout","value":<int>}}
+
+- id: dmx_monitor_channel_function_get
+  label: Get DMX channel function description
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"dmx.monitor.channel<NN>.function"}}
+  notes: |
+    Source documents channels 01..14 with per-model availability (e.g. channel
+    03+ only on UDX-4K22 / UDX-W32).
+
+- id: dmx_monitor_channel_offset_get
+  label: Get DMX channel offset
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"dmx.monitor.channel<NN>.offset"}}
+
+- id: dmx_monitor_channel_value_get
+  label: Get DMX channel value
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"dmx.monitor.channel<NN>.value"}}
+
+- id: dmx_connectionstate_get
+  label: Get DMX connection state
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"dmx.monitor.connectionstate.active"}}
+  notes: |
+    true = a DMX (ArtNet off) or ArtNet (ArtNet on) packet was received in the
+    last 10 seconds.
+
+# ─── GSM (SIM) ───────────────────────────────────────────────────
+- id: gsm_available_get
+  label: Get GSM card presence
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"gsm.available"}}
+
+- id: gsm_pin_set
+  label: Set SIM PIN
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"property.set","params":{"property":"gsm.pin","value":"<pin>"}}
+
+- id: gsm_pinstate_get
+  label: Get SIM PIN state
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"gsm.pinstate"}}
+  notes: |
+    Enum: Accepted, Failed, Locked, Unknown.
+
+# ─── ECO wake ────────────────────────────────────────────────────
+- id: eco_wake_rs232
+  label: Wake projector from ECO mode (RS-232)
+  kind: action
+  command: ":POWR1\r"
+  notes: |
+    Source documents this as one of four wake methods (WOL, IR remote, keypad,
+    serial). Listed in the source under "ECO mode". ASCII command terminator is
+    carriage-return.
+
+- id: eco_wake_wol
+  label: Wake projector from ECO mode (Wake-on-LAN)
+  kind: action
+  command: "WOL packet to projector MAC address"
+  notes: |
+    Source lists WOL as one of four wake methods; no payload format detailed in source.
+
+# ─── LED control ─────────────────────────────────────────────────
+- id: ledctrl_blink
+  label: Blink a status LED
+  kind: action
+  command: |
+    {"jsonrpc":"2.0","method":"ledctrl.blink","params":{"led":"<name>","color":"<color>","period":<int>},"id":3}
+  params:
+    - name: led
+      type: string
+      description: Example in source: "systemstatus"
+    - name: color
+      type: string
+      description: Example in source: "red"
+    - name: period
       type: integer
-      description: Target horizontal lens shift position.
+      description: Example in source: 42
 
-- id: set_lensshift_vertical
-  label: Set Vertical Lens Shift
-  kind: action
-  notes: "Send property.set with property optics.lensshift.vertical.target. Read min/maxposition first."
-  params:
-    - name: value
-      type: integer
-      description: Target vertical lens shift position.
+# ─── System / Firmware (informational) ──────────────────────────
+- id: firmware_firmwareversion_get
+  label: Get firmware version
+  kind: query
+  command: |
+    {"jsonrpc":"2.0","method":"property.get","params":{"property":"firmware.firmwareversion"}}
+  notes: |
+    Returns string. Source also documents system.firmwareversion, system.serialnumber,
+    system.modelname, system.familyname, system.articlenumber, system.colorwheel,
+    system.colorwheelname, system.initialstate - all R (read) per the catalogue.
 
-- id: set_scaling_mode
-  label: Set Window Scaling Mode
+# ─── Auto-discovery of model-specific API ────────────────────────
+- id: modelupdated_subscribe
+  label: Subscribe to modelupdated signal
   kind: action
-  notes: "Send property.set with property image.window.main.scalingmode."
-  params:
-    - name: value
-      type: string
-      description: "Scaling mode: Fill, OneToOne, FillScreen, Stretch."
-
-- id: set_testpattern
-  label: Show Test Pattern
-  kind: action
-  notes: "Set image.testpattern.show to display, image.testpattern.selected to pick pattern id."
-  params:
-    - name: show
-      type: boolean
-      description: true to display, false to hide.
-    - name: selected
-      type: string
-      description: Unique id of the test pattern.
-
-- id: set_display_mode
-  label: Set Desired Display Mode
-  kind: action
-  notes: "Send property.set with property image.display.desireddisplaymode."
-  params:
-    - name: value
-      type: string
-      description: "Display mode: Mono, AutoStereo, ActiveStereo, NightVision, IGPixelShift."
+  command: |
+    {"jsonrpc":"2.0","method":"signal.subscribe","params":{"signal":"modelupdated"},"id":2}
+  notes: |
+    Triggers when new objects arrive or are removed. Pairs with the
+    introspect.objectchanged callback notification.
 ```
 
 ## Feedbacks
-
 ```yaml
+# Observable states returned by the device.
+
 - id: system_state
-  label: Projector System State
-  property: system.state
   type: enum
-  values:
-    - boot         # projector is booting up
-    - eco          # projector is in ECO/power save mode
-    - standby      # projector is in standby mode
-    - ready        # projector is in ready mode
-    - conditioning # projector is warming up
-    - on           # projector is on
-    - deconditioning # projector is cooling down
-  notes: >
-    Read with property.get {"property":"system.state"}. Subscribe with property.subscribe
-    to receive property.changed notifications on state transitions.
+  values: [boot, eco, standby, ready, conditioning, on, deconditioning]
+  property: system.state
+  description: "Projector lifecycle state."
 
 - id: illumination_state
-  label: Illumination (Light Source) State
-  property: illumination.state
   type: enum
-  values:
-    - "On"
-    - "Off"
-  notes: Subscribe to illumination.state for change notifications.
-
-- id: active_source
-  label: Currently Active Input Source
-  property: image.window.main.source
-  type: string
-  notes: >
-    Returns the name of the currently active source (e.g. "DisplayPort 1").
-    Subscribe for change notifications; two notifications are sent on source switch
-    (deselect old source: empty string, then select new source: source name).
-
-- id: laser_power
-  label: Laser Power Level
-  property: illumination.sources.laser.power
-  type: float
-  notes: Current laser power as a percentage. Read/Write.
-
-- id: laser_minpower
-  label: Laser Minimum Power
-  property: illumination.sources.laser.minpower
-  type: float
-  notes: Minimum allowable laser power in percent. Read-only. Dynamic value.
-
-- id: laser_maxpower
-  label: Laser Maximum Power
-  property: illumination.sources.laser.maxpower
-  type: float
-  notes: Maximum allowable laser power in percent. Read-only. Dynamic value.
-
-- id: laser_ispowerlimited
-  label: Laser Power Limited Flag
-  property: illumination.sources.laser.ispowerlimited
-  type: boolean
-  notes: True if laser power is currently being limited by the system.
-
-- id: laser_powerlimitreason
-  label: Laser Power Limit Reason
-  property: illumination.sources.laser.powerlimitreason
-  type: string
-  notes: If power is limited, gives the reason string.
-
-- id: image_brightness
-  label: Image Brightness
-  property: image.brightness
-  type: float
-  notes: Normalized brightness offset. 0 = default. Range -1 to 1, precision 0.01.
+  values: [On, Off]
+  property: illumination.state
+  description: "Whether the light source is on."
 
 - id: environment_alarmstate
-  label: Environment Alarm State
+  type: enum
+  values: [Fatal, Error, Alert, Warning, Ok]
   property: environment.alarmstate
+
+- id: illumination_clo_availability
   type: enum
-  values:
-    - Fatal
-    - Error
-    - Alert
-    - Warning
-    - Ok
-  notes: Read-only alarm state from the environment service.
-
-- id: firmware_version
-  label: Firmware Version
-  property: firmware.firmwareversion
-  type: string
-  notes: Currently installed firmware version string. Read-only.
-
-- id: clo_state
-  label: Constant Light Output (CLO) State
-  property: illumination.clo.state
-  type: enum
-  values:
-    - Ok
-    - TooDim
-    - TooBright
-  notes: State of the CLO feature. Read-only.
-
-- id: clo_availability
-  label: CLO Availability
+  values: [Available, SensorUnavailable, PendingWarmup, Unavailable, Unknown]
   property: illumination.clo.availability
-  type: enum
-  values:
-    - Available
-    - SensorUnavailable
-    - PendingWarmup
-    - Unavailable
-    - Unknown
-  notes: Current availability of the CLO feature.
 
-- id: dmx_connection_active
-  label: DMX Connection Active
-  property: dmx.monitor.connectionstate.active
+- id: illumination_clo_state
+  type: enum
+  values: [Ok, TooDim, TooBright]
+  property: illumination.clo.state
+
+- id: gsm_pinstate
+  type: enum
+  values: [Accepted, Failed, Locked, Unknown]
+  property: gsm.pinstate
+
+- id: image_window_main_source
+  type: string
+  property: image.window.main.source
+  description: "Active source name (e.g. 'DisplayPort 1', 'HDMI')."
+
+- id: illumination_sources_laser_power
+  type: float
+  property: illumination.sources.laser.power
+  description: "Current target power in percent."
+
+- id: illumination_sources_laser_maxpower
+  type: float
+  property: illumination.sources.laser.maxpower
+  description: "Dynamic maximum power in percent."
+
+- id: illumination_sources_laser_minpower
+  type: float
+  property: illumination.sources.laser.minpower
+  description: "Dynamic minimum power in percent."
+
+- id: illumination_sources_laser_ispowerlimited
   type: boolean
-  notes: >
-    True if a DMX or ArtNet packet was received in the last 10 seconds. Read-only.
+  property: illumination.sources.laser.ispowerlimited
+
+- id: illumination_sources_laser_powerlimitreason
+  type: string
+  property: illumination.sources.laser.powerlimitreason
+
+- id: image_brightness
+  type: float
+  property: image.brightness
+  description: "Normalized brightness offset. -1..1, step 0.01."
+
+- id: image_connector_detectedsignal
+  type: object
+  property: image.connector.<name>.detectedsignal
+  description: |
+    {active, name, vertical_total, horizontal_total, vertical_resolution,
+    horizontal_resolution, vertical_sync_width, vertical_front_porch,
+    vertical_back_porch, horizontal_sync_width, horizontal_front_porch,
+    horizontal_back_porch, horizontal_frequency, vertical_frequency,
+    pixel_rate, scan, bits_per_component, color_space, signal_range,
+    chroma_sampling, gamma_type}
+
+- id: environment_temperatures
+  type: object
+  method: environment.getcontrolblocks (type=Sensor, valuetype=Temperature)
+  description: "Dictionary keyed by sensor path (e.g. environment.temperature.inlet)."
+
+- id: environment_fan_speeds
+  type: object
+  method: environment.getcontrolblocks (type=Sensor, valuetype=Speed)
+  description: "Dictionary keyed by fan tacho path (e.g. environment.fan.psu.tacho)."
+
+- id: firmware_firmwareversion
+  type: string
+  property: firmware.firmwareversion
+  description: "Firmware version string."
+
+- id: dmx_connectionstate_active
+  type: boolean
+  property: dmx.connectionstate.active
+  description: "true = packet received in the last 10s."
+
+- id: gsm_available
+  type: boolean
+  property: gsm.available
 ```
 
 ## Variables
-
 ```yaml
-- id: illumination_clo_enable
-  label: Constant Light Output Enable
-  property: illumination.clo.enable
-  type: boolean
-  notes: True if CLO is enabled. Read/Write.
+# Settable parameters (RW properties). Read-only (R) properties are in Feedbacks.
+# Each entry: name / type / property / constraints-from-source.
 
-- id: illumination_clo_scale
-  label: CLO Scale
-  property: illumination.clo.scale
+- property: image.brightness
   type: float
-  notes: Percentage to scale the CLO setpoint by. Read/Write.
+  access: RW
+  constraints: { min: -1, max: 1, step_size: 1, precision: 0.01 }
 
-- id: illumination_clo_setpoint
-  label: CLO Target Luminosity Setpoint
-  property: illumination.clo.setpoint
+- property: image.color.p7.custom.redgain
   type: float
-  notes: Target luminosity of the light source for CLO. Read/Write.
+  access: RW
+  description: "Desired red gain value."
 
-- id: dmx_artnet
-  label: ArtNet Enabled
-  property: dmx.artnet
-  type: boolean
-  notes: Enable/disable ArtNet protocol. Read/Write.
+- property: image.color.p7.custom.redx
+  type: float
+  access: RW
+  description: "Desired red x in xy-coordinates."
 
-- id: dmx_artnetnet
-  label: ArtNet Net Selection
-  property: dmx.artnetnet
+- property: image.color.p7.custom.redy
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.redlum
+  type: float
+  access: RW
+  description: "Desired red luminance."
+
+- property: image.color.p7.custom.greengain
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.greenx
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.greeny
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.greenlum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.bluegain
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.bluex
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.bluey
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.bluelum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.cyangain
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.cyanx
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.cyany
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.cyanlum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.magentagain
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.magentax
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.magentay
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.magentalum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.yellowgain
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.yellowx
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.yellowy
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.yellowlum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.whitegain
+  type: float
+  access: RW
+  description: "Desired white gain value."
+
+- property: image.color.p7.custom.whitex
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.whitey
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.whitelum
+  type: float
+  access: RW
+
+- property: image.color.p7.custom.whitetemperature
   type: integer
-  notes: ArtNet net selection. Read/Write.
+  access: RW
+  constraints: { min: 3200, max: 13000, step_size: 100, precision: 1 }
+  description: "Desired white point temperature (K)."
 
-- id: dmx_artnetuniverse
-  label: ArtNet Universe Selection
-  property: dmx.artnetuniverse
-  type: integer
-  notes: ArtNet universe selection. Read/Write.
+- property: image.color.p7.custom.whitemode
+  type: enum
+  access: RW
+  values: [Coordinates, Temperature]
 
-- id: dmx_mode
-  label: DMX Mode
-  property: dmx.mode
+- property: image.color.p7.custom.mode
   type: string
-  notes: Current DMX mode. Read/Write.
+  access: RW
+  description: "Color mode (description not provided in source)."
 
-- id: dmx_startchannel
-  label: DMX Start Channel
-  property: dmx.startchannel
-  type: integer
-  notes: DMX start channel [1..512]. Read/Write.
+- property: image.color.p7.native.c1
+  type: object  # {x: float, y: float, lum: float}
+  access: RW
+  description: "Native C1 in xy-coordinates + luminance."
 
-- id: dmx_shutdown
-  label: DMX Shutdown Enabled
-  property: dmx.shutdown
+- property: image.color.p7.native.c2
+  type: object  # {x: float, y: float, lum: float}
+  access: RW
+  description: "Native C2 in xy-coordinates + luminance."
+
+- property: illumination.sources.laser.power
+  type: float
+  access: RW
+  description: "Target laser power in percent. Range dynamic; query minpower/maxpower."
+
+- property: illumination.clo.enable
   type: boolean
-  notes: Shutdown enabled or not. Read/Write.
+  access: RW
+  description: "Constant light output enable."
 
-- id: dmx_shutdowntimeout
-  label: DMX Shutdown Timeout
-  property: dmx.shutdowntimeout
+- property: illumination.clo.setpoint
+  type: float
+  access: RW
+  description: "Target luminosity of the light source."
+
+- property: illumination.clo.scale
+  type: float
+  access: RW
+  description: "Percentage to scale the setpoint by."
+
+- property: dmx.artnet
+  type: boolean
+  access: RW
+  description: "ArtNet enabled."
+
+- property: dmx.artnetnet
   type: integer
-  notes: Timeout for DMX-triggered shutdown in minutes. Read/Write.
+  access: RW
+
+- property: dmx.artnetuniverse
+  type: integer
+  access: RW
+
+- property: dmx.mode
+  type: string
+  access: RW
+
+- property: dmx.startchannel
+  type: integer
+  access: RW
+  constraints: { min: 1, max: 512 }
+
+- property: dmx.shutdown
+  type: boolean
+  access: RW
+
+- property: dmx.shutdowntimeout
+  type: integer
+  access: RW
+  description: "Shutdown timeout in minutes."
+
+- property: gsm.pin
+  type: string
+  access: RW
+  description: "SIM PIN code."
+
+- property: image.processing.warp.enable
+  type: boolean
+  access: RW
+  description: "Globally enable warp."
+
+- property: image.processing.warp.file.selected
+  type: string
+  access: RW
+  description: "Filename of the uploaded warp grid to use."
+
+- property: image.processing.warp.file.enable
+  type: boolean
+  access: RW
+
+- property: image.processing.blend.file.selected
+  type: string
+  access: RW
+
+- property: image.processing.blend.file.enable
+  type: boolean
+  access: RW
+
+- property: image.processing.blacklevel.file.selected
+  type: string
+  access: RW
+
+- property: image.processing.blacklevel.file.enable
+  type: boolean
+  access: RW
+
+- property: image.blackcontentdetection.enable
+  type: boolean
+  access: RW
+  description: "DEPRECATED per source. Enable/disable black content detection."
+
+- property: image.blackcontentdetection.dimminginterval
+  type: integer
+  access: RW
+  constraints: { min: 0, max: 3000, step_size: 10, precision: 1 }
+  description: "DEPRECATED. Dimming interval in ms."
+
+- property: image.blackcontentdetection.sampleinterval
+  type: integer
+  access: RW
+  constraints: { min: 500, max: 3000, step_size: 10, precision: 1 }
+  description: "DEPRECATED. Sample interval in ms."
+
+- property: image.blackcontentdetection.threshold
+  type: integer
+  access: RW
+  constraints: { min: 0, max: 255, step_size: 1, precision: 1 }
+  description: "DEPRECATED. Threshold offset."
+
+# system.* RW properties (additional settable items the source enumerates):
+- property: system.colorwheel
+  type: string
+  access: RW
+  description: "From source catalogue (read-by-default; presence implies RW)."
+
+- property: system.error.timeout.enable
+  type: boolean
+  access: RW
+
+- property: system.error.timeout.duration
+  type: integer
+  access: RW
+
+- property: system.eco.enable
+  type: boolean
+  access: RW
+
+- property: system.license.option.flexbrightness.enabled
+  type: boolean
+  access: RW
+
+- property: system.license.option.flexbrightness.maximumlightoutput
+  type: float
+  access: RW
+
+- property: system.on.timeout.enable
+  type: boolean
+  access: RW
+
+- property: system.on.timeout.duration
+  type: integer
+  access: RW
+
+- property: system.ready.timeout.enable
+  type: boolean
+  access: RW
+
+- property: system.ready.timeout.duration
+  type: integer
+  access: RW
+
+# UNRESOLVED: many additional RW properties exist beyond the catalogue
+# (e.g. lens motorization, geometry, picture-mode, advanced color temperatures
+# for non-p7 paths, network settings, time, locale, OSD, scheduler). Discover
+# via `introspect` on the running projector.
 ```
 
 ## Events
-
 ```yaml
+# Unsolicited notifications the device sends. Client must implement the
+# notification handler; no response required.
+
 - id: property_changed
-  label: Property Changed Notification
-  notes: >
-    Unsolicited notification from server when a subscribed property changes.
-    Format: {"jsonrpc":"2.0","method":"property.changed","params":{"property":[{"<property-name>": <value>},...]}}.
-    Client must implement a property.changed handler to receive these.
+  description: "Sent when a subscribed property value changes."
+  payload: |
+    {
+      "jsonrpc": "2.0",
+      "method": "property.changed",
+      "params": {
+        "property": [
+          { "<dot.path>": <new value> }
+        ]
+      }
+    }
+  notes: |
+    The source example for image.window.main.source shows two notifications in
+    sequence: first the old value becomes empty (deselected), then the new
+    value appears.
 
 - id: signal_callback
-  label: Signal Callback Notification
-  notes: >
-    Unsolicited notification from server when a subscribed signal fires.
-    Format: {"jsonrpc":"2.0","method":"signal.callback","params":{"signal":[{"<signal-name>":{"arg1":<v>,...}},...]}}.
-    Client must implement a signal.callback handler.
+  description: "Sent for each subscribed signal that fires."
+  payload: |
+    {
+      "jsonrpc": "2.0",
+      "method": "signal.callback",
+      "params": {
+        "signal": [
+          { "<dot.path>": { <arg1>: <v1>, <arg2>: <v2> } }
+        ]
+      }
+    }
 
-- id: modelupdated
-  label: Model Updated Signal
-  notes: >
-    Signal fired when new objects arrive or objects are removed from the API model.
-    Subscribe with signal.subscribe {"signal":"modelupdated"}.
-    Callback payload: {"introspect.objectchanged":{"object":"<name>","newobject":<bool>}}.
-    isnew=true means a new object appeared; isnew=false means an object was removed.
+- id: introspect_objectchanged
+  description: |
+    Callback for the modelupdated signal; reports that an object has arrived
+    or been removed.
+  payload: |
+    {
+      "jsonrpc": "2.0",
+      "method": "signal.callback",
+      "params": {
+        "signal": [
+          { "introspect.objectchanged": { "object": "<dot.path>", "newobject": <bool> } }
+        ]
+      }
+    }
 ```
 
 ## Macros
-
 ```yaml
-# UNRESOLVED: no multi-step macro sequences described explicitly in source beyond
-# the warp/blend enable workflows, which are documented as discrete Actions above.
+# Multi-step sequences the source documents explicitly.
+
+- id: warp_upload_and_activate
+  label: Upload warp grid, select, and enable
+  description: |
+    Three-step sequence from the source's "Warping with grid files" chapter.
+  steps:
+    - id: warp_enable
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.enable","value":true}}'
+    - id: warp_upload_http
+      command: "curl -F file=@warp.xml http://<host>/api/image/processing/warp/file/transfer"
+      transport: http
+    - id: warp_select
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.selected","value":"warp.xml"}}'
+    - id: warp_file_enable
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.warp.file.enable","value":true}}'
+
+- id: blend_upload_and_activate
+  label: Upload blend mask, select, and enable
+  steps:
+    - id: blend_upload_http
+      command: "curl -F file=@mask.png http://<host>/api/image/processing/blend/file/transfer"
+      transport: http
+    - id: blend_select
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.selected","value":"mask.png"}}'
+    - id: blend_enable
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blend.file.enable","value":true}}'
+
+- id: blacklevel_upload_and_activate
+  label: Upload black-level mask, select, and enable
+  steps:
+    - id: blacklevel_upload_http
+      command: "curl -F file=@blacklevel.png http://<host>/api/image/processing/blacklevel/file/transfer"
+      transport: http
+    - id: blacklevel_select
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.selected","value":"blacklevel.png"}}'
+    - id: blacklevel_enable
+      command: '{"jsonrpc":"2.0","method":"property.set","params":{"property":"image.processing.blacklevel.file.enable","value":true}}'
+
+# UNRESOLVED: no other multi-step sequences documented in source beyond the
+# three warp/blend/blacklevel macros above.
 ```
 
 ## Safety
-
 ```yaml
 confirmation_required_for: []
-interlocks:
-  - description: >
-      Power on is ignored if projector is already on or in a state transition.
-      Always verify system.state is "standby" or "ready" before sending system.poweron.
-  - description: >
-      Power off is ignored if projector is already off or in a state transition.
-      Always verify system.state is "on" before sending system.poweroff.
-  - description: >
-      ECO mode wake-up requires Wake-on-LAN (MAC address), physical button press,
-      or a special RS-232 ASCII command ":POWR1\r". TCP/IP commands will not wake
-      a projector from ECO mode.
-# UNRESOLVED: no explicit electrical safety warnings or interlock sequences stated in source.
+interlocks: []
+# UNRESOLVED: source contains no safety warnings, interlock procedures, or
+# power-on sequencing requirements. Source does recommend verifying system.state
+# before poweron/poweroff, but does not call this a safety interlock.
 ```
 
 ## Notes
+- The source document is Barco's UDX Pulse API Power User Reference, document version 1.7 dated 2019-03-04. It is being applied to the Wodan on the assumption that the Wodan shares the Pulse API; the source itself never names "Wodan." Verify against a real device or call `introspect` before relying on any property.
+- Wire format is JSON-RPC 2.0 over both TCP (port 9090) and RS-232 (19200 baud, 8 data bits, no parity, 1 stop bit, no flow control). Parameters may be passed by name or position; order is not significant.
+- Authentication is optional for end-user commands. The `authenticate` method takes a `code` (integer) parameter; the example in source uses `98765`.
+- File transfer is HTTP, not JSON-RPC. Endpoints: `/api/image/processing/warp/file/transfer`, `/api/image/processing/blend/file/transfer`, `/api/image/processing/blacklevel/file/transfer`. Uploads use `curl -F file=@<file> http://<host>/api/...`; downloads use `curl -O -J http://<host>/api/...`. The full `192.168.1.100` URL example in source is `http://192.168.1.100/api/image/processing/warp/file/transfer`.
+- ECO-mode wake methods: WOL packet (MAC address), IR remote, keypad, or serial `":POWR1\r"`. Source does not document the WOL magic-packet format in detail.
+- Best practice from source: "wait for the confirmation of the property.set before setting the same property again. Continuously setting the same property without waiting for confirmation may flood the server with unnecessary request and may reduce performance."
+- Subscribing to a property does not return its current value; you must also call `property.get` to seed state. Notifications are only sent on actual value change.
+- The source explicitly states: "Parts of the API are dynamic, other parts depend on peripherals or other factors. This means that the documentation shown here may not be complete with respect to a specific projector with a specific configuration. For example, if a lens is mounted that does not have motorized zoom, that part of the API will not be available, even if it's shown here." The recommended discovery mechanism is `introspect`.
 
-**Protocol:** The Pulse API uses JSON-RPC 2.0 over a persistent TCP connection to port 9090, or via RS-232 at 19200 baud. All commands and responses use JSON objects. The same command set is available on both transports.
+<!-- UNRESOLVED: firmware version range that this reference applies to is not stated beyond "1.7" of the document; the spec's `compatible_with.firmware` field is left blank. -->
 
-**Request IDs:** The `id` field in requests is optional but recommended; it allows matching responses to requests. Notifications from the server (property.changed, signal.callback) do not include an `id` and must not receive a response.
+<!-- UNRESOLVED: the source lists hundreds of properties; this spec enumerates the most prominent ones. The complete list is available at runtime via `introspect` and the alphabetical property catalogue in the source PDF (page-by-page beyond line 2038 of the refined markdown). -->
 
-**Property set best practice:** Wait for confirmation of a property.set before sending another set on the same property. Flooding the server with rapid successive sets to the same property may degrade performance.
-
-**Authentication:** For normal end-user operations (power, source select, image adjust), no authentication is needed. Authentication with a numeric code is required only for higher-privilege operations. The protocol does not specify what code value(s) are valid — these are device-configured.
-
-**Dynamic API:** Parts of the API are model-dependent and hardware-dependent (e.g., lens type affects available motorized zoom properties; DMX extended mode exposes additional channels). Use the introspect method to discover the actual API surface of a specific unit at runtime.
-
-**ECO mode wake:** A projector in ECO mode cannot be woken via TCP/IP. Use Wake-on-LAN (requires the projector's MAC address), the physical power button, or the RS-232 serial command `:POWR1\r`.
-
-**HTTP file upload endpoint:** Warp grid, blend mask, and black level mask files can be uploaded via HTTP POST to `http://<ip>/api/<path>/file/transfer`. File formats supported: PNG (up to 16-bit), JPEG, TIFF. Color images are accepted but only the blue channel is used (grayscale images saved as RGB are supported this way).
-
-**Source naming:** Source object names used in method calls (e.g. `image.source.displayport1.listconnectors`) are derived by stripping non-word characters and lowercasing the display name (e.g. "DisplayPort 1" → "displayport1").
-
-**Illumination power range:** The min and max laser power values are dynamic and depend on projector configuration (lens type, lens position, etc.). Always read these before constraining a power set command.
-
-<!-- UNRESOLVED: Wodan-specific model numbers are not listed in the source property tables; most properties list "All" or specific UDX variants (UDX-4K22, UDX-W32). The mapping of "Wodan" to specific property availability is not documented in this source. -->
-<!-- UNRESOLVED: No color management property ranges (image.color.p7.*) are fully documented with min/max constraints in the reviewed sections. -->
-<!-- UNRESOLVED: RS-232 cable pinout: pin 2 to pin 2, pin 3 to pin 3, pin 5 to pin 5 (9-pin female host to 9-pin male projector), but full null-modem vs straight-through configuration is not explicitly confirmed. -->
+<!-- UNRESOLVED: DMX channel function/offset/value is read for channels 01..14 but the "function" strings and DMX channel mapping table are not reproduced in the source excerpt we have. They are R-only and must be introspected or read at runtime. -->
 
 ## Provenance
 
@@ -715,7 +1200,7 @@ source_domains:
   - audiogeneral.com
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
-retrieved_at: 2026-04-29T08:34:54.418Z
+retrieved_at: 2026-06-01T22:43:05.087Z
 last_checked_at: 2026-05-20T06:11:59.127Z
 ```
 
@@ -726,14 +1211,21 @@ verdict: verified
 checked_at: 2026-05-20T06:11:59.127Z
 matched_actions: 64
 action_count: 64
-confidence: high
-summary: "All 64 spec actions matched their JSON-RPC methods and properties in the source document; transport parameters verified."
+confidence: medium
+summary: "All 64 spec actions matched their JSON-RPC methods and properties in the source document; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document is the Barco \"UDX\" reference guide (1.7, 2019-03-04). The Wodan is assumed to share the Pulse API but the source does not name Wodan anywhere; commands here are based on the UDX reference applied to the Wodan family. Per-model feature availability must be verified via `introspect`."
+- "many hundreds of `image.color.p7.*`, `image.color.p7.native.*`, `dmx.monitor.channel*`, `image.processing.*`, `environment.*`, `system.*` properties are documented in the source. The Actions/Variables sections below capture the representative set; the full list is available by calling `introspect` on the projector."
+- "many additional RW properties exist beyond the catalogue"
+- "no other multi-step sequences documented in source beyond the"
+- "source contains no safety warnings, interlock procedures, or"
+- "firmware version range that this reference applies to is not stated beyond \"1.7\" of the document; the spec's `compatible_with.firmware` field is left blank."
+- "the source lists hundreds of properties; this spec enumerates the most prominent ones. The complete list is available at runtime via `introspect` and the alphabetical property catalogue in the source PDF (page-by-page beyond line 2038 of the refined markdown)."
+- "DMX channel function/offset/value is read for channels 01..14 but the \"function\" strings and DMX channel mapping table are not reproduced in the source excerpt we have. They are R-only and must be introspected or read at runtime."
 ```
 
 ---

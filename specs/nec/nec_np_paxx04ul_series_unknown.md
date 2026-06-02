@@ -17,21 +17,35 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:38:54.077Z
 last_checked_at: 2026-05-18T16:36:42.443Z
 generated_at: 2026-05-18T16:36:42.443Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values reference this appendix but actual enum tables are absent"
+  - "flow_control not stated for serial"
+  - "wireless LAN communication conditions reference separate operation manual"
+  - "flow control not stated in source"
+  - "no unsolicited notification protocol described in source"
+  - "no multi-step macro sequences described in source"
+  - "Appendix \"Supplementary Information by Command\" not in source — missing enum tables for input terminals, aspect values, eco mode values, base model types, sub-input values"
+  - "flow_control setting for serial not stated"
+  - "default baud rate not stated"
+  - "ID1 (control ID) default value and configuration method not stated"
+  - "ID2 (model code) values for PAxx04UL series not stated"
+  - "no firmware version compatibility stated -->Spec generated. Key gaps: Appendix tables missing (input terminal enums, aspect values, eco mode values, model codes). Baud rate default and flow control unstated. Serial + TCP on port 7142. 40+ commands with full hex frames documented."
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:36:42.443Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -645,9 +659,11 @@ interlocks: []
 ```yaml
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:38:54.077Z
 last_checked_at: 2026-05-18T16:36:42.443Z
 ```
 
@@ -658,14 +674,25 @@ verdict: verified
 checked_at: 2026-05-18T16:36:42.443Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, and sub-input values reference this appendix but actual enum tables are absent"
+- "flow_control not stated for serial"
+- "wireless LAN communication conditions reference separate operation manual"
+- "flow control not stated in source"
+- "no unsolicited notification protocol described in source"
+- "no multi-step macro sequences described in source"
+- "Appendix \"Supplementary Information by Command\" not in source — missing enum tables for input terminals, aspect values, eco mode values, base model types, sub-input values"
+- "flow_control setting for serial not stated"
+- "default baud rate not stated"
+- "ID1 (control ID) default value and configuration method not stated"
+- "ID2 (model code) values for PAxx04UL series not stated"
+- "no firmware version compatibility stated -->Spec generated. Key gaps: Appendix tables missing (input terminal enums, aspect values, eco mode values, model codes). Baud rate default and flow control unstated. Serial + TCP on port 7142. 40+ commands with full hex frames documented."
 ```
 
 ---

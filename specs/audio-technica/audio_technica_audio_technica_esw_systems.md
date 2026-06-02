@@ -2,7 +2,7 @@
 spec_id: admin/audio-technica-esw-systems
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Audio-Technica Engineered Sound Wireless Systems Control Spec"
+title: "Audio-Technica ESW Systems Control Spec"
 manufacturer: Audio-Technica
 model_family: ESW-R4180DAN
 aliases: []
@@ -26,31 +26,34 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
-last_checked_at: 2026-05-03T16:28:17.924Z
-generated_at: 2026-05-03T16:28:17.924Z
+last_checked_at: 2026-06-01T23:12:15.192Z
+generated_at: 2026-06-01T23:12:15.192Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - rpresetcall
+  - "firmware version ranges per model not stated; voltage/current/power spec not stated."
+  - "source describes behavior around rmastercall / rpresetcall producing"
+  - "source does not document additional safety interlocks (e.g. RF exposure, lockout-tagout) for control commands."
+  - "firmware version compatibility ranges per model not stated in source; voltage, current, power, and weight specifications not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-03T16:28:17.924Z
-  matched_actions: 134
-  action_count: 134
-  confidence: high
-  summary: "All 134 spec actions matched verbatim in the source command list; only rpresetcall is in source but not spec, below the short threshold."
+  checked_at: 2026-06-01T23:12:15.192Z
+  matched_actions: 197
+  action_count: 197
+  confidence: medium
+  summary: "All 197 spec actions matched literally in source; transport ports 17200/17000/17001/17100 confirmed; coverage exceeds source table of 196 commands. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-03
+created_at: 2026-06-02
 ---
 
-# Audio-Technica Engineered Sound Wireless Systems Control Spec
+# Audio-Technica ESW Systems Control Spec
 
 ## Summary
-IP control specification for Audio-Technica Engineered Sound Wireless (ESW) systems, covering the ESW-R4180DAN receiver unit (RU), ESW-CHG4/ESW-CHG5 chargers (CHG), and ESW-T4101/4102/4106/4107 transmitters (TX). Uses TCP for control commands (set/get/request) and UDP for status change notifications. ASCII-based command protocol with space-delimited fields and CR termination.
+IP control protocol for Audio-Technica Engineered Sound Wireless (ESW) Systems. Covers the RUD receiver (ESW-R4180DAN), CHG chargers (ESW-CHG4/CHG5) and TX transmitters (ESW-T4101/4102/4106/4107). Control plane uses TCP port 17200 (set/get/request commands, ACK/NAK/Answer); status notifications multicast via UDP port 17000 (configurable). Commands are ASCII, space-delimited, CR-terminated. One host connection at a time.
 
-<!-- UNRESOLVED: firmware version compatibility range not stated -->
+<!-- UNRESOLVED: firmware version ranges per model not stated; voltage/current/power spec not stated. -->
 
 ## Transport
 ```yaml
@@ -58,1768 +61,1866 @@ protocols:
   - tcp
   - udp
 addressing:
-  port: 17200
-  # UDP notification port: 17000 (factory default, configurable via snoticeportno)
-  # UDP CHG linkage port: 17001 (fixed)
-  # UDP synchronous port: 17100 (fixed)
+  port: 17200           # TCP control, fixed
+  udp_ports:
+    - 17000             # notification (configurable)
+    - 17001             # CHG linkage, fixed
+    - 17100             # sync between RUs, fixed
 auth:
   type: none  # inferred: no auth procedure in source
+# Framing: ASCII, space-delimited (0x20), CR (0x0D) terminated; max 287 bytes
 ```
 
 ## Traits
 ```yaml
-traits:
-  - queryable    # extensive get commands for device state
-  - levelable    # volume, gain, RF power control
-  - powerable    # reboot commands present
+- powerable       # inferred: rreboot, rfactoryreset present
+- queryable       # inferred: g* commands return state
+- levelable       # inferred: schvolume (Ch volume), schhpf (HPF) present
+- routable        # inferred: smixout, schmixout (Ch8 output, mix assignment) present
 ```
 
 ## Actions
 ```yaml
-# Command format: <command> <handshake:O|S> <modelId:0000> <unitId:00> <continue:NC> [params]<CR>
-# O = One-Way, S = ACK/NAK method
-# All commands use TCP unless noted (UDP notifications prefixed with "MD")
-# RUD = ESW-R4180DAN, CHG = ESW-CHG4/ESW-CHG5, TX = ESW-T4101/4102/4106/4107
-
-# ── Management ──
+# ---------- Management ----------
 - id: gmymodel
-  label: Get Model Name
-  kind: action
-  description: Acquire model name and DECT mode
-  transport: tcp
-  target: [RUD, CHG]
+  label: Model Name Acquisition
+  kind: query
+  command: "gmymodel O 0000 00 NC"
   params: []
 
 - id: gmyversion
-  label: Get Version Information
-  kind: action
-  description: Acquire file/MCU/FPGA/DECT version strings
-  transport: tcp
-  target: [RUD]
+  label: Version Information Acquisition
+  kind: query
+  command: "gmyversion O 0000 00 NC"
   params: []
 
 - id: smyname
-  label: Set Device Name
+  label: Device Name Setting
   kind: action
-  description: Set RU or CHG device name
-  transport: tcp
-  target: [RUD, CHG]
+  command: 'smyname S 0000 00 NC "{name}"'
   params:
     - name: name
       type: string
-      description: Device name (ASCII 0x20-0x7E excl 0x22)
+      description: Device name; ASCII 0x20-0x7E excluding 0x22
 
 - id: gmyname
-  label: Get Device Name
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Device Name Acquisition
+  kind: query
+  command: "gmyname O 0000 00 NC"
+  params: []
+
+- id: nmyname
+  label: Device Name Notification
+  kind: notify
+  command: "MD nmyname 0000 00 NC"
   params: []
 
 - id: slocationname
-  label: Set Location Name
+  label: Location Name Setting
   kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  command: 'slocationname S 0000 00 NC "{location}"'
   params:
-    - name: location_name
+    - name: location
       type: string
-      description: Location name (ASCII 0x20-0x7E excl 0x22)
 
 - id: glocationname
-  label: Get Location Name
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Location Name Acquisition
+  kind: query
+  command: "glocationname O 0000 00 NC"
+  params: []
+
+- id: nlocationname
+  label: Location Name Notification
+  kind: notify
+  command: "MD nlocationname 0000 00 NC"
   params: []
 
 - id: schname
-  label: Set Channel Name
+  label: Channel Name Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: 'schname S 0000 00 NC {ch},"{ch_name}"'
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: Channel number (1-8)
     - name: ch_name
       type: string
-      description: Channel name
 
 - id: gchname
-  label: Get Channel Name
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel Name Acquisition
+  kind: query
+  command: "gchname O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: Channel number (1-8)
 
-- id: smydeviceid
-  label: Set Device ID
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
-  params:
-    - name: device_id
-      type: integer
-      description: Device ID (0-255)
-
-- id: gmydeviceid
-  label: Get Device ID
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+- id: nchname
+  label: Channel Name Notification
+  kind: notify
+  command: "MD nchname 0000 00 NC"
   params: []
 
-# ── Communication ──
-- id: shdmode
-  label: Set RF Mode
+- id: smydeviceid
+  label: Device ID Setting
   kind: action
-  description: Set RF mode. ~10s delay before ACK.
-  transport: tcp
-  target: [RUD]
+  command: "smydeviceid S 0000 00 NC {id}"
   params:
-    - name: rf_mode
+    - name: id
       type: integer
-      description: "1=Standard, 2=HD mode"
+      description: 0 to 255
+
+- id: gmydeviceid
+  label: Device ID Acquisition
+  kind: query
+  command: "gmydeviceid O 0000 00 NC"
+  params: []
+
+- id: nmydeviceid
+  label: Device ID Notification
+  kind: notify
+  command: "MD nmydeviceid 0000 00 NC"
+  params: []
+
+# ---------- Communication ----------
+- id: shdmode
+  label: RF Mode Setting
+  kind: action
+  command: "shdmode S 0000 00 NC {mode}"
+  params:
+    - name: mode
+      type: integer
+      description: 1=Standard, 2=HD mode (ACK ~10s)
 
 - id: ghdmode
-  label: Get RF Mode
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: RF Mode Acquisition
+  kind: query
+  command: "ghdmode O 0000 00 NC"
+  params: []
+
+- id: nhdmode
+  label: RF Mode Notification
+  kind: notify
+  command: "MD nhdmode 0000 00 NC"
   params: []
 
 - id: srfpower
-  label: Set Transmission Output
+  label: Transmission Output Setting
   kind: action
-  description: Set RF transmission power level (value depends on DECT mode)
-  transport: tcp
-  target: [RUD]
+  command: "srfpower S 0000 00 NC {power}"
   params:
-    - name: rf_power
+    - name: power
       type: integer
-      description: "0=MAX, 1=HIGH/Max, 2=HIGH/unavailable, 3=MID, 4=LOW, 5=MIN"
+      description: 0=MAX, 1=HIGH/Max, 2=HIGH or NAK, 3=MID, 4=LOW, 5=MIN (validity depends on DECT mode)
 
 - id: grfpower
-  label: Get Transmission Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Transmission Output Acquisition
+  kind: query
+  command: "grfpower O 0000 00 NC"
   params: []
 
-# ── Audio ──
+- id: nrfpower
+  label: Transmission Output Notification
+  kind: notify
+  command: "MD nrfpower 0000 00 NC"
+  params: []
+
+# ---------- Audio ----------
 - id: schmute
-  label: Set Channel Mute
+  label: Channel Mute Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "schmute S 0000 00 NC {ch},{mute}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: Channel number (1-8)
     - name: mute
       type: integer
-      description: "0=Enable (unmute), 1=Mute"
+      description: 0=Enable, 1=Disable (per source)
 
 - id: gchmute
-  label: Get Channel Mute
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel Mute Acquisition
+  kind: query
+  command: "gchmute O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: Channel number (1-8)
+
+- id: nchmute
+  label: Channel Mute Notification
+  kind: notify
+  command: "MD nchmute 0000 00 NC"
+  params: []
 
 - id: schvolume
-  label: Set Channel Volume
+  label: Channel Volume Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "schvolume S 0000 00 NC {ch},{volume}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: Channel number (1-8)
     - name: volume
       type: integer
-      description: "0 to 40. 0=-30dB, 30=0dB, 40=+10dB (1dB steps)"
+      description: 0 (-30 dB) to 30 (0 dB); up to 40 (+10 dB), 1 dB step
 
 - id: gchvolume
-  label: Get Channel Volume
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel Volume Acquisition
+  kind: query
+  command: "gchvolume O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
+- id: nchvolume
+  label: Channel Volume Notification
+  kind: notify
+  command: "MD nchvolume 0000 00 NC"
+  params: []
+
 - id: schhpf
-  label: Set Channel High Pass Filter
+  label: Channel High Pass Filter Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "schhpf S 0000 00 NC {ch},{hpf}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
     - name: hpf
       type: integer
-      description: "0=OFF, 1=80Hz, 2=120Hz, 3=160Hz"
+      description: 0=OFF, 1=80Hz, 2=120Hz, 3=160Hz
 
 - id: gchhpf
-  label: Get Channel High Pass Filter
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel High Pass Filter Acquisition
+  kind: query
+  command: "gchhpf O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
+
+- id: nchhpf
+  label: Channel High Pass Filter Notification
+  kind: notify
+  command: "MD nchhpf 0000 00 NC"
+  params: []
 
 - id: schafmetersetting
-  label: Set Channel Meter
+  label: Channel Meter Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "schafmetersetting S 0000 00 NC {ch},{setting}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: meter_setting
+    - name: setting
       type: integer
-      description: "0=PRE, 1=POST"
+      description: 0=PRE, 1=POST
 
 - id: gchafmetersetting
-  label: Get Channel Meter
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel Meter Acquisition
+  kind: query
+  command: "gchafmetersetting O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
+
+- id: nchafmetersetting
+  label: Channel Meter Notification
+  kind: notify
+  command: "MD nchafmetersetting 0000 00 NC"
+  params: []
 
 - id: smixout
-  label: Set Ch8 Output
+  label: Ch8 Output Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "smixout S 0000 00 NC {setting}"
   params:
-    - name: mode
+    - name: setting
       type: integer
-      description: "0=Discrete, 1=MIXOUT"
+      description: 0=Discrete, 1=Mixout
 
 - id: gmixout
-  label: Get Ch8 Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Ch8 Output Acquisition
+  kind: query
+  command: "gmixout O 0000 00 NC"
+  params: []
+
+- id: nmixout
+  label: Ch8 Output Notification
+  kind: notify
+  command: "MD nmixout 0000 00 NC"
   params: []
 
 - id: schmixout
-  label: Set Channel Mix Assignment
+  label: Channel Mix Assignment Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "schmixout S 0000 00 NC {ch},{setting}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: mixout
+    - name: setting
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: gchmixout
-  label: Get Channel Mix Assignment
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Channel Mix Assignment Acquisition
+  kind: query
+  command: "gchmixout O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Roaming ──
+- id: nchmixout
+  label: Channel Mix Assignment Notification
+  kind: notify
+  command: "MD nchmixout 0000 00 NC"
+  params: []
+
+# ---------- Roaming ----------
 - id: sroamingmode
-  label: Set Roaming Mode
+  label: Roaming Setting
   kind: action
-  description: ~15s delay before ACK.
-  transport: tcp
-  target: [RUD]
+  command: "sroamingmode S 0000 00 NC {mode}"
   params:
-    - name: roaming_mode
+    - name: mode
       type: integer
-      description: "0=Disable, 1=Enable"
+      description: 0=Disable, 1=Enable (ACK ~15s)
 
 - id: groamingmode
-  label: Get Roaming Mode
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Acquisition
+  kind: query
+  command: "groamingmode O 0000 00 NC"
+  params: []
+
+- id: nroamingmode
+  label: Roaming Notification
+  kind: notify
+  command: "MD nroamingmode 0000 00 NC"
   params: []
 
 - id: sroamingthreshold
-  label: Set Roaming Threshold
+  label: Roaming Threshold Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "sroamingthreshold S 0000 00 NC {ch},{threshold}"
   params:
+    - name: ch
+      type: integer
     - name: threshold
-      type: string
-      description: "0=OFF, -85 to -50 (dBm, 1dBm steps)"
+      type: integer
+      description: 0=OFF, -85 to -50 (dBm, 1 dB step)
 
 - id: groamingthreshold
-  label: Get Roaming Threshold
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Threshold Acquisition
+  kind: query
+  command: "groamingthreshold O 0000 00 NC {ch}"
+  params:
+    - name: ch
+      type: integer
+
+- id: nroamingthreshold
+  label: Roaming Threshold Notification
+  kind: notify
+  command: "MD nroamingthreshold 0000 00 NC"
   params: []
 
-# ── Master Table (Normal) ──
+# ---------- Master Table (Normal) ----------
 - id: smastermixout
-  label: Set Master Table Ch8 Output
+  label: Master Table Ch8 Output Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "smastermixout S 0000 00 NC {setting}"
   params:
-    - name: mode
+    - name: setting
       type: integer
-      description: "0=Discrete, 1=MIXOUT"
+      description: 0=Discrete, 1=Mixout
 
 - id: gmastermixout
-  label: Get Master Table Ch8 Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Master Table Ch8 Output Acquisition
+  kind: query
+  command: "gmastermixout O 0000 00 NC"
+  params: []
+
+- id: nmastermixout
+  label: Master Table Ch8 Output Notification
+  kind: notify
+  command: "MD nmastermixout 0000 00 NC"
   params: []
 
 - id: smasterchmixout
-  label: Set Master Table Channel Mix Assignment
+  label: Master Table Channel Mix Assignment Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "smasterchmixout S 0000 00 NC {ch},{setting}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: mixout
+    - name: setting
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: gmasterchmixout
-  label: Get Master Table Channel Mix Assignment
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Master Table Channel Mix Assignment Acquisition
+  kind: query
+  command: "gmasterchmixout O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Preset (Normal) ──
+- id: nmasterchmixout
+  label: Master Table Channel Mix Assignment Notification
+  kind: notify
+  command: "MD nmasterchmixout 0000 00 NC"
+  params: []
+
+# ---------- Preset (Normal) ----------
 - id: spresetname
-  label: Set Preset Name
+  label: Preset Name Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: 'spresetname S 0000 00 NC {preset},"{name}"'
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-      description: Preset number (1-8)
-    - name: preset_name
+      description: 1 to 8
+    - name: name
       type: string
 
 - id: gpresetname
-  label: Get Preset Name
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Preset Name Acquisition
+  kind: query
+  command: "gpresetname O 0000 00 NC {preset}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
+
+- id: npresetname
+  label: Preset Name Notification
+  kind: notify
+  command: "MD npresetname 0000 00 NC"
+  params: []
 
 - id: spresetmixout
-  label: Set Preset Ch8 Output
+  label: Preset Ch8 Output Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "spresetmixout S 0000 00 NC {preset},{setting}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: mode
+    - name: setting
       type: integer
-      description: "0=Discrete, 1=MIXOUT"
+      description: 0=Discrete, 1=Mixout
 
 - id: gpresetmixout
-  label: Get Preset Ch8 Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Preset Ch8 Output Acquisition
+  kind: query
+  command: "gpresetmixout O 0000 00 NC {preset}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
+
+- id: npresetmixout
+  label: Preset Ch8 Output Notification
+  kind: notify
+  command: "MD npresetmixout 0000 00 NC"
+  params: []
 
 - id: spresetchmixout
-  label: Set Preset Channel Mix Assignment
+  label: Preset Channel Mix Assignment Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "spresetchmixout S 0000 00 NC {preset},{ch},{setting}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: mixout
+    - name: setting
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: gpresetchmixout
-  label: Get Preset Channel Mix Assignment
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Preset Channel Mix Assignment Acquisition
+  kind: query
+  command: "gpresetchmixout O 0000 00 NC {preset},{ch}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Master Table (Roaming) ──
+- id: npresetchmixout
+  label: Preset Channel Mix Assignment Notification
+  kind: notify
+  command: "MD npresetchmixout 0000 00 NC"
+  params: []
+
+# ---------- Master Table (Roaming) ----------
 - id: srmgmastermixout
-  label: Set Roaming Master Table Ch8 Output
+  label: Roaming Master Table Ch8 Output Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "srmgmastermixout S 0000 00 NC {setting}"
   params:
-    - name: mode
+    - name: setting
       type: integer
-      description: "0=Discrete, 1=MIXOUT"
+      description: 0=Discrete, 1=Mixout
 
 - id: grmgmastermixout
-  label: Get Roaming Master Table Ch8 Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Master Table Ch8 Output Acquisition
+  kind: query
+  command: "grmgmastermixout O 0000 00 NC"
+  params: []
+
+- id: nrmgmastermixout
+  label: Roaming Master Table Ch8 Output Notification
+  kind: notify
+  command: "MD nrmgmastermixout 0000 00 NC"
   params: []
 
 - id: srmgmasterchmixout
-  label: Set Roaming Master Table Channel Mix Assignment
+  label: Roaming Master Table Channel Mix Assignment Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "srmgmasterchmixout S 0000 00 NC {ch},{setting}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: mixout
+    - name: setting
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: grmgmasterchmixout
-  label: Get Roaming Master Table Channel Mix Assignment
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Master Table Channel Mix Assignment Acquisition
+  kind: query
+  command: "grmgmasterchmixout O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Preset (Roaming) ──
+- id: nrmgmasterchmixout
+  label: Roaming Master Table Channel Mix Assignment Notification
+  kind: notify
+  command: "MD nrmgmasterchmixout 0000 00 NC"
+  params: []
+
+# ---------- Preset (Roaming) ----------
 - id: srmgpresetname
-  label: Set Roaming Preset Name
+  label: Roaming Preset Name Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: 'srmgpresetname S 0000 00 NC {preset},"{name}"'
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-      description: Roaming preset number (1-8)
-    - name: preset_name
+      description: 1 to 8
+    - name: name
       type: string
 
 - id: grmgpresetname
-  label: Get Roaming Preset Name
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Preset Name Acquisition
+  kind: query
+  command: "grmgpresetname O 0000 00 NC {preset}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
+
+- id: nrmgpresetname
+  label: Roaming Preset Name Notification
+  kind: notify
+  command: "MD nrmgpresetname 0000 00 NC"
+  params: []
 
 - id: srmgpresetmixout
-  label: Set Roaming Preset Ch8 Output
+  label: Roaming Preset Ch8 Output Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "srmgpresetmixout S 0000 00 NC {preset},{setting}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: mode
+    - name: setting
       type: integer
-      description: "0=Discrete, 1=MIXOUT"
+      description: 0=Discrete, 1=Mixout
 
 - id: grmgpresetmixout
-  label: Get Roaming Preset Ch8 Output
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Preset Ch8 Output Acquisition
+  kind: query
+  command: "grmgpresetmixout O 0000 00 NC {preset}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
+
+- id: nrmgpresetmixout
+  label: Roaming Preset Ch8 Output Notification
+  kind: notify
+  command: "MD nrmgpresetmixout 0000 00 NC"
+  params: []
 
 - id: srmgpresetchmixout
-  label: Set Roaming Preset Channel Mix Assignment
+  label: Roaming Preset Channel Mix Assignment Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "srmgpresetchmixout S 0000 00 NC {preset},{ch},{setting}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: ch_no
+    - name: ch
       type: integer
-    - name: mixout
+    - name: setting
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: grmgpresetchmixout
-  label: Get Roaming Preset Channel Mix Assignment
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Roaming Preset Channel Mix Assignment Acquisition
+  kind: query
+  command: "grmgpresetchmixout O 0000 00 NC {preset},{ch}"
   params:
-    - name: preset_no
+    - name: preset
       type: integer
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Level ──
+- id: nrmgpresetchmixout
+  label: Roaming Preset Channel Mix Assignment Notification
+  kind: notify
+  command: "MD nrmgpresetchmixout 0000 00 NC"
+  params: []
+
+# ---------- Level ----------
 - id: glevelrf
-  label: Get RF Level
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: RF Level Acquisition
+  kind: query
+  command: "glevelrf O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
 - id: glevelafrx
-  label: Get AF Level
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: AF Level Acquisition
+  kind: query
+  command: "glevelafrx O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
-      description: "0=Mixout, 1-8=Ch1-Ch8"
+      description: 0=Mixout, 1-8=Ch1-Ch8
 
 - id: glevelbatttx
-  label: Get TX Battery Level
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: TX Battery Level Acquisition
+  kind: query
+  command: "glevelbatttx O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
+
+- id: nlevelbatttx
+  label: TX Battery Level Notification
+  kind: notify
+  command: "MD nlevelbatttx 0000 00 NC"
+  params: []
+
+- id: nlevelall
+  label: All Levels Notification
+  kind: notify
+  command: "MD nlevelall 0000 00 NC"
+  params: []
 
 - id: glevelbatt
-  label: Get CHG Battery Level
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: Battery Level Acquisition (CHG)
+  kind: query
+  command: "glevelbatt O 0000 00 NC {port}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-      description: Charging port number (1-8)
+      description: 1 to 8
 
-# ── Status ──
+- id: nlevelbatt
+  label: Battery Level Notification (CHG)
+  kind: notify
+  command: "MD nlevelbatt 0000 00 NC"
+  params: []
+
+# ---------- Status ----------
 - id: gststx
-  label: Get TX Status
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: TX Status Acquisition
+  kind: query
+  command: "gststx O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
-# ── Operation ──
+- id: nststx
+  label: TX Status Notification
+  kind: notify
+  command: "MD nststx 0000 00 NC"
+  params: []
+
+# ---------- Operation ----------
 - id: rreboot
   label: Reboot Request
   kind: action
-  description: Reboots RU or CHG. ACK received before reboot. Connection disconnects.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "rreboot S 0000 00 NC"
+  params: []
+
+- id: nreboot
+  label: Reboot Notification
+  kind: notify
+  command: "MD nreboot 0000 00 NC"
   params: []
 
 - id: rfactoryreset
   label: Factory Reset Request
   kind: action
-  description: Requires reboot after execution to apply factory defaults.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "rfactoryreset S 0000 00 NC"
+  params: []
+
+- id: nfactoryreset
+  label: Factory Reset Notification
+  kind: notify
+  command: "MD nfactoryreset 0000 00 NC"
   params: []
 
 - id: rledflash
   label: LED Lighting Request
   kind: action
-  description: Identify flash stops ~5s after start.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "rledflash S 0000 00 NC {target},{operation}"
   params:
     - name: target
       type: integer
-      description: "0=System (RU only), 1-8=CHG port number"
+      description: 0=System (RU only), 1-8=CHG Port Number
     - name: operation
       type: integer
-      description: "0=Flash stop, 1=Identify flash start"
+      description: 0=Stop, 1=Identify (auto-stops ~5s)
 
 - id: rmastercall
   label: Master Table Call Request
   kind: action
-  description: ~5s to ACK. Triggers Last Preset Call Notification.
-  transport: tcp
-  target: [RUD]
+  command: "rmastercall S 0000 00 NC"
   params: []
 
-- id: rlastpreset
-  label: Last Preset Call Request
+- id: rpresetcall
+  label: Preset Call Request
   kind: action
-  transport: tcp
-  target: [RUD]
-  params: []
+  command: "rpresetcall S 0000 00 NC {preset}"
+  params:
+    - name: preset
+      type: integer
+      description: 1 to 8 (ACK ~5s)
 
 - id: glastpreset
-  label: Get Last Preset Call
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Last Preset Call Acquisition
+  kind: query
+  command: "glastpreset O 0000 00 NC"
+  params: []
+
+- id: nlastpreset
+  label: Last Preset Call Notification
+  kind: notify
+  command: "MD nlastpreset 0000 00 NC"
   params: []
 
 - id: rudpecho
   label: UDP Transmission Request
   kind: action
-  description: Triggers UDP Transmission Notification.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "rudpecho S 0000 00 NC"
   params: []
 
-# ── Network ──
+- id: nudpecho
+  label: UDP Transmission Notification
+  kind: notify
+  command: "MD nudpecho 0000 00 NC"
+  params: []
+
+# ---------- Network ----------
 - id: sipnet
-  label: Set IP Network Information
+  label: IP Network Information Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
-  params:
-    - name: ip_config_mode
-      type: integer
-      description: "0=Auto, 1=Static"
-    - name: ip_address
-      type: string
-    - name: subnet_mask
-      type: string
-    - name: gateway
-      type: string
-    - name: upnp
-      type: integer
-      description: "0=OFF, 1=ON"
-
-- id: gipnet
-  label: Get IP Network Information
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
-  params: []
-
-# ── Notification Settings ──
-- id: snoticemode
-  label: Set Notification Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  command: 'sipnet S 0000 00 NC {mode},{ip},{mask},{gw},{upnp}'
   params:
     - name: mode
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=Auto, 1=Static
+    - name: ip
+      type: string
+    - name: mask
+      type: string
+    - name: gw
+      type: string
+    - name: upnp
+      type: integer
+      description: 0=OFF, 1=ON
+  notes: Reboot required for changes to take effect.
+
+- id: gipnet
+  label: IP Network Information Acquisition
+  kind: query
+  command: "gipnet O 0000 00 NC"
+  params: []
+
+- id: nipnet
+  label: IP Network Information Notification
+  kind: notify
+  command: "MD nipnet 0000 00 NC"
+  params: []
+
+# ---------- Notification ----------
+- id: snoticemode
+  label: Notification Mode Setting
+  kind: action
+  command: "snoticemode S 0000 00 NC {mode}"
+  params:
+    - name: mode
+      type: integer
+      description: 0=OFF, 1=ON
 
 - id: gnoticemode
-  label: Get Notification Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Notification Mode Acquisition
+  kind: query
+  command: "gnoticemode O 0000 00 NC"
+  params: []
+
+- id: nnoticemode
+  label: Notification Mode Notification
+  kind: notify
+  command: "MD nnoticemode 0000 00 NC"
   params: []
 
 - id: snoticelevel
-  label: Set Level Notification
+  label: Level Notification Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "snoticelevel S 0000 00 NC {mode}"
   params:
-    - name: level_notification
+    - name: mode
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
 
 - id: gnoticelevel
-  label: Get Level Notification
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Level Notification Acquisition
+  kind: query
+  command: "gnoticelevel O 0000 00 NC"
+  params: []
+
+- id: nnoticelevel
+  label: Level Notification
+  kind: notify
+  command: "MD nnoticelevel 0000 00 NC"
   params: []
 
 - id: snoticelevelinterval
-  label: Set Level Notification Interval
+  label: Level Notification Intervals Setting
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "snoticelevelinterval S 0000 00 NC {interval}"
   params:
     - name: interval
       type: integer
-      description: "1-600 (100ms to 60000ms, 100ms/step)"
+      description: 1 (100ms) to 600 (60000ms), 100ms/step
 
 - id: gnoticelevelinterval
-  label: Get Level Notification Interval
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Level Notification Intervals Acquisition
+  kind: query
+  command: "gnoticelevelinterval O 0000 00 NC"
+  params: []
+
+- id: nnoticelevelinterval
+  label: Level Notification Intervals Notification
+  kind: notify
+  command: "MD nnoticelevelinterval 0000 00 NC"
   params: []
 
 - id: snoticeaddress
-  label: Set Multicast Address
+  label: Multicast Address Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "snoticeaddress S 0000 00 NC {addr}"
   params:
-    - name: address
+    - name: addr
       type: string
-      description: Multicast address (224.0.0.0 to 239.255.255.255)
+      description: 224.0.0.0 to 239.255.255.255
+  notes: Reboot required.
 
 - id: gnoticeaddress
-  label: Get Multicast Address
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Multicast Address Acquisition
+  kind: query
+  command: "gnoticeaddress O 0000 00 NC"
+  params: []
+
+- id: nnoticeaddress
+  label: Multicast Address Notification
+  kind: notify
+  command: "MD nnoticeaddress 0000 00 NC"
   params: []
 
 - id: snoticeportno
-  label: Set Multicast Port Number
+  label: Multicast Port Number Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "snoticeportno S 0000 00 NC {port}"
   params:
     - name: port
       type: integer
-      description: "1-65535"
+      description: 1 to 65535
+  notes: Reboot required.
 
 - id: gnoticeportno
-  label: Get Multicast Port Number
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Multicast Port Number Acquisition
+  kind: query
+  command: "gnoticeportno O 0000 00 NC"
   params: []
 
-# ── Log / NTP / DST ──
+- id: nnoticeportno
+  label: Multicast Port Number Notification
+  kind: notify
+  command: "MD nnoticeportno 0000 00 NC"
+  params: []
+
+# ---------- Log / NTP / DST ----------
 - id: slogmode
-  label: Set System Log Mode
+  label: System Log Setting (Syslog)
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "slogmode S 0000 00 NC {mode}"
   params:
-    - name: syslog_mode
+    - name: mode
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
+  notes: Reboot required.
 
 - id: glogmode
-  label: Get System Log Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: System Log Acquisition
+  kind: query
+  command: "glogmode O 0000 00 NC"
+  params: []
+
+- id: nlogmode
+  label: System Log Notification
+  kind: notify
+  command: "MD nlogmode 0000 00 NC"
   params: []
 
 - id: sntpmode
-  label: Set NTP Mode
+  label: NTP Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sntpmode S 0000 00 NC {mode}"
   params:
-    - name: ntp_mode
+    - name: mode
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
+  notes: Reboot required.
 
 - id: gntpmode
-  label: Get NTP Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: NTP Acquisition
+  kind: query
+  command: "gntpmode O 0000 00 NC"
+  params: []
+
+- id: nntpmode
+  label: NTP Notification
+  kind: notify
+  command: "MD nntpmode 0000 00 NC"
   params: []
 
 - id: sntpserveraddress
-  label: Set NTP Server Address
+  label: NTP Server Address Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sntpserveraddress S 0000 00 NC {addr}"
   params:
-    - name: address
+    - name: addr
       type: string
+  notes: Reboot required.
 
 - id: gntpserveraddress
-  label: Get NTP Server Address
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: NTP Server Address Acquisition
+  kind: query
+  command: "gntpserveraddress O 0000 00 NC"
+  params: []
+
+- id: nntpserveraddress
+  label: NTP Server Address Notification
+  kind: notify
+  command: "MD nntpserveraddress 0000 00 NC"
   params: []
 
 - id: sntpserverportno
-  label: Set NTP Server Port
+  label: NTP Server Port Number Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sntpserverportno S 0000 00 NC {port}"
   params:
     - name: port
       type: integer
-      description: "1-65535"
+      description: 1 to 65535
+  notes: Reboot required.
 
 - id: gntpserverportno
-  label: Get NTP Server Port
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: NTP Server Port Number Acquisition
+  kind: query
+  command: "gntpserverportno O 0000 00 NC"
+  params: []
+
+- id: nntpserverportno
+  label: NTP Server Port Number Notification
+  kind: notify
+  command: "MD nntpserverportno 0000 00 NC"
   params: []
 
 - id: sntptimezone
-  label: Set NTP Time Zone
+  label: NTP Time Zone Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: 'sntptimezone S 0000 00 NC {tz}'
   params:
-    - name: timezone
+    - name: tz
       type: string
-      description: "-12:00 to +14:00 (30min steps)"
+      description: -12:00 to +14:00, 30-min steps (e.g. +09:00)
+  notes: Reboot required.
 
 - id: gntptimezone
-  label: Get NTP Time Zone
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: NTP Time Zone Acquisition
+  kind: query
+  command: "gntptimezone O 0000 00 NC"
+  params: []
+
+- id: nntptimezone
+  label: NTP Time Zone Notification
+  kind: notify
+  command: "MD nntptimezone 0000 00 NC"
   params: []
 
 - id: sdstmode
-  label: Set Daylight Saving Time Mode
+  label: Daylight Saving Time Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sdstmode S 0000 00 NC {mode}"
   params:
-    - name: dst_mode
+    - name: mode
       type: integer
-      description: "0=OFF, 1=ON"
+      description: 0=OFF, 1=ON
+  notes: Reboot required.
 
 - id: gdstmode
-  label: Get Daylight Saving Time Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: Daylight Saving Time Acquisition
+  kind: query
+  command: "gdstmode O 0000 00 NC"
+  params: []
+
+- id: ndstmode
+  label: Daylight Saving Time Notification
+  kind: notify
+  command: "MD ndstmode 0000 00 NC"
   params: []
 
 - id: sdstdatetime
-  label: Set DST Start/End Dates
+  label: DST Start/End Dates Setting
   kind: action
-  description: Requires reboot to apply.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sdstdatetime S 0000 00 NC {start},{end}"
   params:
-    - name: start_date
+    - name: start
       type: string
-      description: "MMDDHHmm (30min steps)"
-    - name: end_date
+      description: MMDDHHmm, 01010000-12312300, 30-min step
+    - name: end
       type: string
-      description: "MMDDHHmm (30min steps)"
+  notes: Reboot required.
 
 - id: gdstdatetime
-  label: Get DST Start/End Dates
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: DST Start/End Dates Acquisition
+  kind: query
+  command: "gdstdatetime O 0000 00 NC"
   params: []
 
-# ── Dante ──
+- id: ndstdatetime
+  label: DST Start/End Dates Notification
+  kind: notify
+  command: "MD ndstdatetime 0000 00 NC"
+  params: []
+
+# ---------- Dante ----------
 - id: gdantenet
-  label: Get Dante IP Setting
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Dante IP Setting Acquisition
+  kind: query
+  command: "gdantenet O 0000 00 NC"
   params: []
 
 - id: gdantedevicename
-  label: Get Dante Device Name
-  kind: action
-  transport: tcp
-  target: [RUD]
-  params: []
+  label: Dante Device Name Acquisition
+  kind: query
+  command: "gdantedevicename O 0000 00 NC {ch}"
+  params:
+    - name: ch
+      type: integer
 
 - id: gdantechannellabel
-  label: Get Dante Channel Label
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Dante Channel Label Name Acquisition
+  kind: query
+  command: "gdantechannellabel O 0000 00 NC {ch}"
   params:
-    - name: ch_no
+    - name: ch
       type: integer
 
 - id: gdantemodelname
-  label: Get Dante Model Name
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Dante Information Acquisition
+  kind: query
+  command: "gdantemodelname O 0000 00 NC"
   params: []
 
 - id: gdanteversion
-  label: Get Dante FW Version
-  kind: action
-  transport: tcp
-  target: [RUD]
+  label: Dante FW Version Acquisition
+  kind: query
+  command: "gdanteversion O 0000 00 NC"
   params: []
 
-# ── TX ──
+# ---------- TX ----------
 - id: gtxmodel
-  label: Get TX Model Name
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: TX Model Name Acquisition
+  kind: query
+  command: "gtxmodel O 0000 00 NC {port}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-      description: Charging port (1-8)
+      description: 1-8 (CHG charging port)
 
 - id: gtxversion
-  label: Get TX Version
-  kind: action
-  transport: tcp
-  target: [CHG]
-  params:
-    - name: charging_port_no
-      type: integer
+  label: TX Version Acquisition
+  kind: query
+  command: "gtxversion O 0000 00 NC"
+  params: []
 
 - id: stxname
-  label: Set TX Device Name
+  label: TX Device Name Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: 'stxname S 0000 00 NC {port},"{name}"'
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: tx_name
+    - name: name
       type: string
 
 - id: gtxname
-  label: Get TX Device Name
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Device Name Acquisition
+  kind: query
+  command: "gtxname O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
-      description: "RU: Ch No (1-8), CHG: Charging port (1-8)"
+      description: 1-8 (RU Ch or CHG port)
+
+- id: ntxname
+  label: TX Device Name Notification
+  kind: notify
+  command: "MD ntxname 0000 00 NC"
+  params: []
 
 - id: stxlocationname
-  label: Set TX Location Name
+  label: TX Location Name Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: 'stxlocationname S 0000 00 NC {port},"{location}"'
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: location_name
+    - name: location
       type: string
 
 - id: gtxlocationname
-  label: Get TX Location Name
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Location Name Acquisition
+  kind: query
+  command: "gtxlocationname O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxlocationname
+  label: TX Location Name Notification
+  kind: notify
+  command: "MD ntxlocationname 0000 00 NC"
+  params: []
 
 - id: stxdeviceid
-  label: Set TX Device ID
+  label: TX Device ID Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "stxdeviceid S 0000 00 NC {port},{id}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: device_id
+    - name: id
       type: integer
-      description: "0-255"
+      description: 0-255
 
 - id: gtxdeviceid
-  label: Get TX Device ID
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Device ID Acquisition
+  kind: query
+  command: "gtxdeviceid O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxdeviceid
+  label: TX Device ID Notification
+  kind: notify
+  command: "MD ntxdeviceid 0000 00 NC"
+  params: []
 
 - id: gtxkind
-  label: Get TX Type
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Type Acquisition
+  kind: query
+  command: "gtxkind O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
-      description: "Returns: 0=HH, 1=BP, 2=BD, 3=DS"
 
 - id: stxmicgain
-  label: Set TX Gain
+  label: TX Gain Setting
   kind: action
-  description: BP only.
-  transport: tcp
-  target: [RUD, CHG]
+  command: "stxmicgain S 0000 00 NC {ch_or_port},{gain}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
-    - name: mic_gain
+    - name: gain
       type: integer
-      description: "1=-9dB to 11=+21dB (3dB steps)"
+      description: 1 (-9 dB) to 11 (+21 dB), 3 dB step (BP only)
 
 - id: gtxmicgain
-  label: Get TX Gain
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Gain Acquisition
+  kind: query
+  command: "gtxmicgain O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxmicgain
+  label: TX Gain Notification
+  kind: notify
+  command: "MD ntxmicgain 0000 00 NC"
+  params: []
 
 - id: stxintmicgain
-  label: Set TX Internal Mic Gain
+  label: TX Internal Mic Gain Setting
   kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  command: "stxintmicgain S 0000 00 NC {ch_or_port},{gain}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
-    - name: int_mic_gain
+    - name: gain
       type: integer
-      description: "1=-9dB to 11=+21dB (3dB steps)"
+      description: 1-11, 3 dB step
 
 - id: gtxintmicgain
-  label: Get TX Internal Mic Gain
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Internal Mic Gain Acquisition
+  kind: query
+  command: "gtxintmicgain O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
 
+- id: ntxintmicgain
+  label: TX Internal Mic Gain Notification
+  kind: notify
+  command: "MD ntxintmicgain 0000 00 NC"
+  params: []
+
 - id: stxmicpolar
-  label: Set TX Directivity
+  label: TX Directivity Setting
   kind: action
-  description: BD only.
-  transport: tcp
-  target: [CHG]
+  command: "stxmicpolar S 0000 00 NC {port},{polar}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
     - name: polar
       type: integer
-      description: "0=Omni, 1=Cardioid"
+      description: 0=Omni, 1=Cardioid (BD only)
 
 - id: gtxmicpolar
-  label: Get TX Directivity
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Directivity Acquisition
+  kind: query
+  command: "gtxmicpolar O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxmicpolar
+  label: TX Directivity Notification
+  kind: notify
+  command: "MD ntxmicpolar 0000 00 NC"
+  params: []
 
 - id: stxmutedisable
-  label: Set TX Mute Function
+  label: TX Mute Function Setting
   kind: action
-  description: BD only.
-  transport: tcp
-  target: [CHG]
+  command: "stxmutedisable S 0000 00 NC {port},{value}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: mute_function
+    - name: value
       type: integer
+  notes: BD only.
 
 - id: gtxmutedisable
-  label: Get TX Mute Function
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Mute Function Acquisition
+  kind: query
+  command: "gtxmutedisable O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxmutedisable
+  label: TX Mute Function Notification
+  kind: notify
+  command: "MD ntxmutedisable 0000 00 NC"
+  params: []
 
 - id: stxmutemode
-  label: Set TX Mute Mode
+  label: TX Mute Mode Setting
   kind: action
-  description: BD and DS only.
-  transport: tcp
-  target: [CHG]
+  command: "stxmutemode S 0000 00 NC {port},{mode}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: mute_mode
+    - name: mode
       type: integer
-      description: "0=Toggle, 1=Push to Talk, 2=Push to Mute"
+      description: 0=Toggle, 1=Push to Talk, 2=Push to Mute (BD and DS)
 
 - id: gtxmutemode
-  label: Get TX Mute Mode
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Mute Mode Acquisition
+  kind: query
+  command: "gtxmutemode O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxmutemode
+  label: TX Mute Mode Notification
+  kind: notify
+  command: "MD ntxmutemode 0000 00 NC"
+  params: []
 
 - id: stxmutedefault
-  label: Set TX Default Mute
+  label: TX Default Mute Setting
   kind: action
-  description: BD and DS only. Valid only when mute mode is Toggle.
-  transport: tcp
-  target: [CHG]
+  command: "stxmutedefault S 0000 00 NC {port},{mode}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: default_mute
+    - name: mode
       type: integer
-      description: "0=Default Unmute, 1=Default Mute"
+      description: 0=Default Unmute, 1=Default Mute (only when mode=0 Toggle)
 
 - id: gtxmutedefault
-  label: Get TX Default Mute
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: TX Default Mute Acquisition
+  kind: query
+  command: "gtxmutedefault O 0000 00 NC {ch_or_port}"
   params:
-    - name: port_or_ch
+    - name: ch_or_port
       type: integer
+
+- id: ntxdefaultmute
+  label: TX Default Mute Notification
+  kind: notify
+  command: "MD ntxdefaultmute 0000 00 NC"
+  params: []
 
 - id: stxmutecolor
-  label: Set TX Mute LED Color
+  label: TX Mute LED Color Setting
   kind: action
-  description: BD and DS only.
-  transport: tcp
-  target: [CHG]
+  command: "stxmutecolor S 0000 00 NC {port},{value}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: led_color
+    - name: value
       type: integer
-      description: "0=OFF, 1=Red, 2=Green, 3=Yellow, 4=Blue, 5=Magenta, 6=Cyan, 7=White"
+      description: 0=OFF, 1=... (BD and DS)
 
 - id: gtxmutecolor
-  label: Get TX Mute LED Color
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: TX Mute LED Color Acquisition
+  kind: query
+  command: "gtxmutecolor O 0000 00 NC {ch_or_port}"
   params:
-    - name: charging_port_no
+    - name: ch_or_port
       type: integer
+
+- id: ntxmutecolor
+  label: TX Mute LED Color Notification
+  kind: notify
+  command: "MD ntxmutecolor 0000 00 NC"
+  params: []
 
 - id: stxunmutecolor
-  label: Set TX Unmute LED Color
+  label: TX Mute Reset LED Color Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "stxunmutecolor S 0000 00 NC {port},{value}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: led_color
+    - name: value
       type: integer
+      description: 0=OFF, 1=...
 
 - id: gtxunmutecolor
-  label: Get TX Unmute LED Color
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: TX Mute Reset LED Color Acquisition
+  kind: query
+  command: "gtxunmutecolor O 0000 00 NC {ch_or_port}"
   params:
-    - name: charging_port_no
+    - name: ch_or_port
       type: integer
+
+- id: ntxunmutecolor
+  label: TX Mute Reset LED Color Notification
+  kind: notify
+  command: "MD ntxunmutecolor 0000 00 NC"
+  params: []
 
 - id: stxbattalert
-  label: Set TX Battery Level Alert
+  label: TX Battery Level Alert Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "stxbattalert S 0000 00 NC {port},{value}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: alert_time
+    - name: value
       type: integer
-      description: "0=OFF, 1=60min before, 2=90min before, 3=120min before"
+      description: 0=OFF, 1=60min, 2=90min, 3=120min
 
 - id: gtxbattalert
-  label: Get TX Battery Level Alert
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: TX Battery Level Alert Acquisition
+  kind: query
+  command: "gtxbattalert O 0000 00 NC {ch_or_port}"
   params:
-    - name: charging_port_no
+    - name: ch_or_port
       type: integer
+
+- id: ntxbattalert
+  label: TX Battery Level Alert Notification
+  kind: notify
+  command: "MD ntxbattalert 0000 00 NC"
+  params: []
 
 - id: rtxledflash
   label: TX LED Lighting Request
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "rtxledflash S 0000 00 NC {port}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: flash_pattern
-      type: integer
-      description: "0=No action, 1=Identify, 2=Pattern 2"
+      description: 1-8
+  notes: Source quotes flag 1=Identify, 2=Pattern 2 (BP/HH vs BD/DS differ).
 
 - id: rtxreboot
   label: TX Reboot Request
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "rtxreboot S 0000 00 NC {port}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
 
 - id: rtxfactoryreset
   label: TX Factory Reset Request
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "rtxfactoryreset S 0000 00 NC {port}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
 
-# ── CHG ──
+# ---------- CHG ----------
 - id: gchgmodelname
-  label: Get CHG Model Name
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: CHG Model Name Acquisition
+  kind: query
+  command: "gchgmodelname O 0000 00 NC"
   params: []
 
 - id: gchgversionarray
-  label: Get CHG FW Version Array
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: CHG FW Version Acquisition
+  kind: query
+  command: "gchgversionarray O 0000 00 NC"
   params: []
 
 - id: gchgvdevicearray
-  label: Get CHG Device Linked Info
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: CHG Device Linked Information Acquisition
+  kind: query
+  command: "gchgvdevicearray O 0000 00 NC"
   params: []
 
 - id: schgportch
-  label: Set CHG Port Assignment
+  label: CHG Port Assignment Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "schgportch S 0000 00 NC {port},{ch}"
   params:
-    - name: charging_port_no
+    - name: port
       type: integer
-    - name: assign_ch
+      description: 1-8
+    - name: ch
       type: integer
-      description: "0=Not assigned, 1-8=CH number"
+      description: 0=Not assigned, 1-8=CH number
 
 - id: gchgportch
-  label: Get CHG Port Assignment
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: CHG Port Assignment Acquisition
+  kind: query
+  command: "gchgportch O 0000 00 NC"
+  params: []
+
+- id: nchgportch
+  label: CHG Port Assignment Notification
+  kind: notify
+  command: "MD nchgportch 0000 00 NC"
   params: []
 
 - id: schglinkbtnlock
-  label: Set CHG Link Button Lock
+  label: CHG Link Button Lock Setting
   kind: action
-  transport: tcp
-  target: [CHG]
+  command: "schglinkbtnlock S 0000 00 NC {mode}"
   params:
-    - name: lock_mode
+    - name: mode
       type: integer
-      description: "0=Always Unlock, 1=Hold 2s to unlock, 2=Always Lock"
+      description: 0=Always Unlock, 1=Hold 2s to unlock, 2=Always Lock
 
 - id: gchglinkbtnlock
-  label: Get CHG Link Button Lock
-  kind: action
-  transport: tcp
-  target: [CHG]
+  label: CHG Link Button Lock Acquisition
+  kind: query
+  command: "gchglinkbtnlock O 0000 00 NC"
   params: []
 
-# ── Other ──
+- id: nchglinkbtnlock
+  label: CHG Link Button Lock Notification
+  kind: notify
+  command: "MD nchglinkbtnlock 0000 00 NC"
+  params: []
+
+# ---------- Other ----------
 - id: sledoff
-  label: Set LED
+  label: LED Setting
   kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  command: "sledoff S 0000 00 NC {mode}"
   params:
-    - name: led_mode
+    - name: mode
       type: integer
-      description: "0=LED ON, 1=LED OFF"
+      description: 0=LED ON, 1=LED OFF
 
 - id: gledoff
-  label: Get LED
-  kind: action
-  transport: tcp
-  target: [RUD, CHG]
+  label: LED Acquisition
+  kind: query
+  command: "gledoff O 0000 00 NC"
+  params: []
+
+- id: nledoff
+  label: LED Notification
+  kind: notify
+  command: "MD nledoff 0000 00 NC"
   params: []
 
 - id: rwalktest
   label: Walktest Request
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "rwalktest S 0000 00 NC {mode}"
   params:
-    - name: walktest_mode
+    - name: mode
       type: integer
-      description: "0=Normal operation, 1=Walktest operation"
+      description: 0=Normal, 1=Walktest
+
+- id: nwalktest
+  label: Walktest Notification
+  kind: notify
+  command: "MD nwalktest 0000 00 NC"
+  params: []
 
 - id: rsitesurvey
   label: DECT RF Scan Request
   kind: action
-  transport: tcp
-  target: [RUD]
+  command: "rsitesurvey S 0000 00 NC {mode} {threshold}"
   params:
-    - name: scan_mode
+    - name: mode
       type: integer
-      description: "0=Normal, 1=DECT RF scan"
+      description: 0=Normal, 1=DECT RF scan
     - name: threshold
       type: string
-      description: "0 or -82 to -62 dBm"
+      description: 0 or -82 to -62 dBm
+
+- id: nsitesurvey
+  label: DECT RF Scan Notification
+  kind: notify
+  command: "MD nsitesurvey 0000 00 NC"
+  params: []
+
+# ---------- Application Log ----------
+- id: napplog
+  label: Application Log Notification
+  kind: notify
+  command: "MD napplog 0000 00 NC"
+  params: []
 ```
 
 ## Feedbacks
 ```yaml
-# TCP Answer responses (get command results)
-- id: model_name
-  type: string
-  description: Response to gmymodel - model name and DECT mode
-
-- id: version_info
-  type: string
-  description: Response to gmyversion - file/MCU/FPGA/DECT versions
-
-- id: device_name
-  type: string
-  description: Response to gmyname
-
-- id: location_name
-  type: string
-  description: Response to glocationname
-
-- id: channel_name
-  type: string
-  description: Response to gchname
-
-- id: device_id
-  type: integer
-  description: Response to gmydeviceid (1-255)
-
-- id: rf_mode
+- id: power_state
+  description: Inferred from reboot notification; nreboot reports operation-at-reset + reset type.
+- id: ch_mute
   type: enum
-  values: ["1", "2"]
-  description: "1=Standard, 2=HD mode"
-
+  values: [0, 1]
+  description: 0=Enable (mute on), 1=Disable - note source labels 0=Enable, 1 unspecified
+- id: ch_volume
+  type: integer
+  range: 0-40
+  description: 0 (-30 dB) to 30 (0 dB), up to 40 (+10 dB)
+- id: ch_hpf
+  type: enum
+  values: [0, 1, 2, 3]
+  description: 0=OFF, 1=80Hz, 2=120Hz, 3=160Hz
 - id: rf_power
   type: enum
-  values: ["0", "1", "2", "3", "4", "5"]
-  description: "0=MAX, 1=HIGH, 2=unavailable, 3=MID, 4=LOW, 5=MIN"
-
-- id: channel_mute
-  type: enum
-  values: ["0", "1"]
-  description: "0=Enable (unmute), 1=Mute"
-
-- id: channel_volume
-  type: integer
-  description: "0-40. 0=-30dB, 30=0dB, 40=+10dB"
-
-- id: channel_hpf
-  type: enum
-  values: ["0", "1", "2", "3"]
-  description: "0=OFF, 1=80Hz, 2=120Hz, 3=160Hz"
-
-- id: ch8_output
-  type: enum
-  values: ["0", "1"]
-  description: "0=Discrete, 1=MIXOUT"
-
-- id: channel_mix_assignment
-  type: enum
-  values: ["0", "1"]
-  description: "0=OFF, 1=ON"
-
-- id: roaming_mode
-  type: enum
-  values: ["0", "1"]
-  description: "0=Disable, 1=Enable"
-
-- id: roaming_threshold
-  type: string
-  description: "0=OFF, -85 to -50 dBm"
-
-- id: rf_level
-  type: integer
-  description: "RSSI: 0=no LINK, 1=-90dBm+, 2=-84dBm+, 3=-78dBm+, 4=-72dBm+, 5=-66dBm+, 6=-60dBm+, 7=-54dBm+"
-
-- id: af_level
-  type: integer
-  description: "0=no LINK, 1=-50dBFS+, 2=-40dBFS+, 3=-30dBFS+, 4=-20dBFS+, 5=-12dBFS+, 6=-6dBFS+, 7=-1dBFS+"
-
+  values: [0, 1, 2, 3, 4, 5]
+  description: 0=MAX, 1=HIGH/Max, 2=HIGH or NAK, 3=MID, 4=LOW, 5=MIN
 - id: tx_battery_level
   type: integer
-  description: "0-100 percent"
-
-- id: tx_battery_life
-  type: string
-  description: "HHMM remaining (0000-9959)"
-
-- id: tx_status
-  type: string
-  description: "LINK status, DECT ID, external mic status"
-
-- id: ip_network_info
-  type: string
-  description: "IP config mode, address, subnet, gateway, UPnP, MAC"
-
-- id: notification_mode
+  range: 0-100
+- id: rssi
   type: enum
-  values: ["0", "1"]
-  description: "0=OFF, 1=ON"
-
-- id: last_preset
-  type: string
-  description: "0=Master Table, 1-8=Preset number"
-
+  values: [0, 1, 2, 3, 4, 5, 6, 7]
+  description: 0=No link/<-90 dBm, 1=-90..-84, 2=-84..-78, 3=-78..-72, 4=-72..-66, 5=-66..-60, 6=-60..-54, 7=>=-54
+- id: af_level
+  type: enum
+  values: [0, 1, 2, 3, 4, 5, 6, 7]
+  description: 0=<-50 dBFS, 1=-50..-40, 2=-40..-30, 3=-30..-20, 4=-20..-12, 5=-12..-6, 6=-6..-1, 7=>=-1
 - id: tx_type
   type: enum
-  values: ["0", "1", "2", "3"]
-  description: "0=HH, 1=BP, 2=BD, 3=DS"
-
-- id: tx_gain
-  type: integer
-  description: "1=-9dB to 11=+21dB (3dB steps)"
-
-- id: chg_battery_level
-  type: string
-  description: "Port status, battery level (0-100), cycle, health, time to full, temp, error flag"
-
-- id: ack
+  values: [0, 1, 2, 3]
+  description: 0=HH, 1=BP, 2=BD, 3=DS
+- id: ch8_output
   type: enum
-  values: ["ACK", "NAK"]
-  description: "ACK or NAK with error code (01=Syntax, 02=Invalid command, 04=Parameter error, 90=Busy, 99=Other)"
-
-- id: dante_net
+  values: [0, 1]
+  description: 0=Discrete, 1=Mixout
+- id: ch_mixout
+  type: enum
+  values: [0, 1]
+  description: 0=OFF, 1=ON
+- id: roaming_mode
+  type: enum
+  values: [0, 1]
+  description: 0=Disable, 1=Enable
+- id: roaming_threshold
   type: string
-  description: "Dante IP config, address, subnet, gateway, MAC, VLAN mode"
-
-- id: dante_version
-  type: string
-  description: "Dante FW and HW version"
+  description: 0=OFF, or -85 to -50 dBm
+- id: tx_external_mic
+  type: enum
+  values: [0, 1]
+  description: 0=Not connected, 1=Connected (BP only)
+- id: chg_link_btn_lock
+  type: enum
+  values: [0, 1, 2]
+  description: 0=Always Unlock, 1=Hold 2s, 2=Always Lock
+- id: link_status
+  type: enum
+  values: [0, 1]
+  description: 0=No LINK, 1=During LINK
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no distinct settable variables beyond what is covered by set commands in Actions
+# Settable scalars not represented as discrete action ids.
+- id: notification_mode
+  type: enum
+  values: [0, 1]
+  description: 0=OFF, 1=ON
+- id: level_notification
+  type: enum
+  values: [0, 1]
+  description: 0=OFF, 1=ON
+- id: level_notification_interval
+  type: integer
+  range: 1-600
+  description: 1=100ms, 600=60000ms
+- id: multicast_address
+  type: string
+  description: 224.0.0.0 to 239.255.255.255
+- id: multicast_port
+  type: integer
+  range: 1-65535
+- id: ntp_timezone
+  type: string
+  description: -12:00 to +14:00, 30-min steps
+- id: dst_start
+  type: string
+  description: MMDDHHmm
+- id: dst_end
+  type: string
+  description: MMDDHHmm
+- id: led_setting
+  type: enum
+  values: [0, 1]
+  description: 0=LED ON, 1=LED OFF
+- id: mic_gain
+  type: integer
+  range: 1-11
+  description: 1=-9 dB, 11=+21 dB, 3 dB step
+- id: mic_polar
+  type: enum
+  values: [0, 1]
+  description: 0=Omni, 1=Cardioid
+- id: tx_mute_mode
+  type: enum
+  values: [0, 1, 2]
+  description: 0=Toggle, 1=Push to Talk, 2=Push to Mute
+- id: tx_default_mute
+  type: enum
+  values: [0, 1]
+  description: 0=Default Unmute, 1=Default Mute
+- id: tx_battery_alert
+  type: enum
+  values: [0, 1, 2, 3]
+  description: 0=OFF, 1=60min, 2=90min, 3=120min
+- id: walktest_mode
+  type: enum
+  values: [0, 1]
+- id: site_survey_mode
+  type: enum
+  values: [0, 1]
+- id: site_survey_threshold
+  type: string
+  description: 0 or -82 to -62 dBm
+- id: chg_port_assign_ch
+  type: integer
+  range: 0-8
+  description: 0=Not assigned
 ```
 
 ## Events
 ```yaml
-# UDP multicast notifications (prefixed with "MD" in protocol)
-- id: nmyname
-  description: Device name changed notification
-  transport: udp
-
-- id: nlocationname
-  description: Location name changed notification
-  transport: udp
-
-- id: nchname
-  description: Channel name changed notification
-  transport: udp
-
-- id: nmydeviceid
-  description: Device ID changed notification
-  transport: udp
-
-- id: nhdmode
-  description: RF mode changed notification
-  transport: udp
-
-- id: nrfpower
-  description: Transmission output changed notification
-  transport: udp
-
-- id: nchmute
-  description: Channel mute changed notification
-  transport: udp
-
-- id: nchvolume
-  description: Channel volume changed notification
-  transport: udp
-
-- id: nchhpf
-  description: Channel HPF changed notification
-  transport: udp
-
-- id: nchafmetersetting
-  description: Channel meter setting changed notification
-  transport: udp
-
-- id: nmixout
-  description: Ch8 output changed notification
-  transport: udp
-
-- id: nchmixout
-  description: Channel mix assignment changed notification
-  transport: udp
-
-- id: nroamingmode
-  description: Roaming mode changed notification
-  transport: udp
-
-- id: nroamingthreshold
-  description: Roaming threshold changed notification
-  transport: udp
-
-- id: nmastermixout
-  description: Master table Ch8 output changed notification
-  transport: udp
-
-- id: nmasterchmixout
-  description: Master table channel mix assignment changed notification
-  transport: udp
-
-- id: npresetname
-  description: Preset name changed notification
-  transport: udp
-
-- id: npresetmixout
-  description: Preset Ch8 output changed notification
-  transport: udp
-
-- id: npresetchmixout
-  description: Preset channel mix assignment changed notification
-  transport: udp
-
-- id: nlevelbatttx
-  description: TX battery level changed notification
-  transport: udp
-
-- id: nlevelbatt
-  description: CHG battery level updated notification
-  transport: udp
-
-- id: nlevelall
-  description: All levels periodic notification (interval configurable)
-  transport: udp
-
-- id: nststx
-  description: TX status changed notification
-  transport: udp
-
-- id: nreboot
-  description: Reboot notification (local/remote, reset type)
-  transport: udp
-
-- id: nfactoryreset
-  description: Factory reset notification
-  transport: udp
-
-- id: nlastpreset
-  description: Last preset call notification (after master/preset call)
-  transport: udp
-
-- id: nudpecho
-  description: UDP transmission notification
-  transport: udp
-
-- id: nipnet
-  description: IP network info changed notification
-  transport: udp
-
-- id: nnoticemode
-  description: Notification mode changed notification
-  transport: udp
-
-- id: nnoticelevel
-  description: Level notification setting changed notification
-  transport: udp
-
-- id: nnoticelevelinterval
-  description: Level notification interval changed notification
-  transport: udp
-
-- id: nnoticeaddress
-  description: Multicast address changed notification
-  transport: udp
-
-- id: nnoticeportno
-  description: Multicast port changed notification
-  transport: udp
-
-- id: nlogmode
-  description: System log mode changed notification
-  transport: udp
-
-- id: nntpmode
-  description: NTP mode changed notification
-  transport: udp
-
-- id: nntpserveraddress
-  description: NTP server address changed notification
-  transport: udp
-
-- id: nntpserverportno
-  description: NTP server port changed notification
-  transport: udp
-
-- id: nntptimezone
-  description: NTP time zone changed notification
-  transport: udp
-
-- id: ndstmode
-  description: DST mode changed notification
-  transport: udp
-
-- id: ndstdatetime
-  description: DST start/end dates changed notification
-  transport: udp
-
-- id: ntxname
-  description: TX device name changed notification
-  transport: udp
-
-- id: ntxlocationname
-  description: TX location name changed notification
-  transport: udp
-
-- id: ntxdeviceid
-  description: TX device ID changed notification
-  transport: udp
-
-- id: ntxmicgain
-  description: TX gain changed notification
-  transport: udp
-
-- id: ntxintmicgain
-  description: TX internal mic gain changed notification
-  transport: udp
-
-- id: ntxmicpolar
-  description: TX directivity changed notification
-  transport: udp
-
-- id: ntxmutedisable
-  description: TX mute function changed notification
-  transport: udp
-
-- id: ntxmutemode
-  description: TX mute mode changed notification
-  transport: udp
-
-- id: ntxmutedefault
-  description: TX default mute changed notification
-  transport: udp
-
-- id: ntxmutecolor
-  description: TX mute LED color changed notification
-  transport: udp
-
-- id: ntxunmutecolor
-  description: TX unmute LED color changed notification
-  transport: udp
-
-- id: ntxbattalert
-  description: TX battery alert changed notification
-  transport: udp
-
-- id: nchgportch
-  description: CHG port assignment changed notification
-  transport: udp
-
-- id: nchglinkbtnlock
-  description: CHG link button lock changed notification
-  transport: udp
-
-- id: nledoff
-  description: LED setting changed notification
-  transport: udp
-
-- id: nwalktest
-  description: Walktest periodic RSSI notification (per channel, dBm)
-  transport: udp
-
-- id: nsitesurvey
-  description: DECT RF scan periodic notification (carriers used, free, used1, used2, busy)
-  transport: udp
-
 - id: napplog
-  description: Application log notification (UDP, unaffected by notification settings)
-  transport: udp
-
+  description: Application log notification (UDP, unsolicited). Carries model name, log level, device ID, message text.
+- id: nsitesurvey
+  description: DECT RF scan notification (UDP, periodic during scan). Carriers-used, free, used1/2, busy.
+- id: nwalktest
+  description: Walktest notification (UDP, periodic during walktest). Per-Ch RSSI dBm.
+- id: nlevelall
+  description: All-levels notification (UDP, periodic per level_notification_interval).
+- id: nledoff
+  description: LED setting changed.
+- id: nreboot
+  description: Device rebooted; reports operation-at-reset and reset type.
+- id: nfactoryreset
+  description: Device factory-reset notification.
+- id: nreboot_notification
+  description: MD␣nreboot␣0000␣00␣NC␣{op_at_reset},{reset_type}
+- id: nmyname
+  description: Device name change.
+- id: nchname
+  description: Channel name change.
+- id: nlocationname
+  description: Location name change.
+- id: nmydeviceid
+  description: Device ID change.
+- id: nnoticemode
+  description: Notification mode change.
+- id: nnoticelevel
+  description: Level notification change.
+- id: nnoticelevelinterval
+  description: Notification interval change.
+- id: nnoticeaddress
+  description: Multicast address change.
+- id: nnoticeportno
+  description: Multicast port change.
+- id: nlogmode
+  description: Syslog mode change.
+- id: nntpmode
+  description: NTP enable mode change.
+- id: nntpserveraddress
+  description: NTP server address change.
+- id: nntpserverportno
+  description: NTP server port change.
+- id: nntptimezone
+  description: NTP time zone change.
+- id: ndstmode
+  description: DST mode change.
+- id: ndstdatetime
+  description: DST start/end date change.
+- id: nchmute
+  description: Channel mute state change.
+- id: nchvolume
+  description: Channel volume change.
+- id: nchhpf
+  description: Channel HPF change.
+- id: nchafmetersetting
+  description: Channel meter setting change.
+- id: nmixout
+  description: Ch8 output change.
+- id: nchmixout
+  description: Channel mix assignment change.
+- id: nroamingmode
+  description: Roaming mode change.
+- id: nroamingthreshold
+  description: Roaming threshold change.
+- id: nmastermixout
+  description: Master table Ch8 output change.
+- id: nmasterchmixout
+  description: Master table mix assignment change.
+- id: npresetname
+  description: Preset name change.
+- id: npresetmixout
+  description: Preset Ch8 output change.
+- id: npresetchmixout
+  description: Preset mix assignment change.
 - id: nrmgmastermixout
-  description: Roaming master table Ch8 output changed notification
-  transport: udp
-
+  description: Roaming master Ch8 output change.
 - id: nrmgmasterchmixout
-  description: Roaming master table channel mix assignment changed notification
-  transport: udp
-
+  description: Roaming master mix assignment change.
 - id: nrmgpresetname
-  description: Roaming preset name changed notification
-  transport: udp
-
+  description: Roaming preset name change.
 - id: nrmgpresetmixout
-  description: Roaming preset Ch8 output changed notification
-  transport: udp
-
+  description: Roaming preset Ch8 output change.
 - id: nrmgpresetchmixout
-  description: Roaming preset channel mix assignment changed notification
-  transport: udp
+  description: Roaming preset mix assignment change.
+- id: nlevelbatttx
+  description: TX battery level change.
+- id: nlevelbatt
+  description: CHG battery level change.
+- id: nststx
+  description: TX status change.
+- id: nlastpreset
+  description: Last preset/master-table call notification.
+- id: nudpecho
+  description: UDP transmission echo.
+- id: nipnet
+  description: IP network info change.
+- id: nhdmode
+  description: RF mode change.
+- id: nrfpower
+  description: RF power change.
+- id: ntxname
+  description: TX device name change.
+- id: ntxlocationname
+  description: TX location name change.
+- id: ntxdeviceid
+  description: TX device ID change.
+- id: ntxmicgain
+  description: TX mic gain change.
+- id: ntxintmicgain
+  description: TX internal mic gain change.
+- id: ntxmicpolar
+  description: TX directivity change.
+- id: ntxmutedisable
+  description: TX mute function change.
+- id: ntxmutemode
+  description: TX mute mode change.
+- id: ntxdefaultmute
+  description: TX default mute change.
+- id: ntxmutecolor
+  description: TX mute LED color change.
+- id: ntxunmutecolor
+  description: TX unmute LED color change.
+- id: ntxbattalert
+  description: TX battery alert setting change.
+- id: nchgportch
+  description: CHG port assignment change.
+- id: nchglinkbtnlock
+  description: CHG link button lock change.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit multi-step sequences described in source
+# UNRESOLVED: source describes behavior around rmastercall / rpresetcall producing
+# an nlastpreset, but does not author the macro as a discrete sequence with
+# exact timing. Not reproduced here as fabricated steps.
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
+confirmation_required_for:
+  - rfactoryreset   # factory reset wipes settings; source notes device must reboot to apply
+  - rtxfactoryreset # TX factory reset; same caveat
 interlocks: []
-# Notes: rreboot disconnects TCP and reboots device. rfactoryreset requires
-# subsequent reboot to apply factory defaults. shdmode takes ~10s for ACK.
-# sroamingmode takes ~15s for ACK. rmastercall takes ~5s for ACK.
-# Connection limited to 1 host at a time. Commands are asynchronously processed;
-# next command can be sent without waiting for ACK/NAK, but some return NAK 90 (BUSY).
-# UNRESOLVED: no explicit safety warnings or interlock procedures in source
+# UNRESOLVED: source does not document additional safety interlocks (e.g. RF exposure, lockout-tagout) for control commands.
 ```
 
 ## Notes
-- Command format: `<command><SP><handshake(O|S)><SP>0000<SP>00<SP>NC<SP>[params]<CR(0x0D)>`
-- Handshake modes: `O` = One-Way (no response expected), `S` = ACK/NAK method
-- ACK format: `<command><SP>0000<SP>00<SP>NC<SP>ACK<CR>`
-- NAK format: `<command><SP>0000<SP>00<SP>NC<SP>NAK<SP><error_code><CR>`
-- UDP notification format: `MD<SP><command><SP>0000<SP>00<SP>NC<SP>[params]<CR>`
-- Divided messages use Continue Select: `CS` (head), `CM` (middle), `CE` (end)
-- Max message length: 287 bytes including CR
-- TCP port 17200 is fixed and cannot be changed
-- UDP notification port 17000 is configurable (factory default 17000)
-- Many settings require reboot to take effect (IP network, multicast address/port, syslog, NTP, DST)
-- Notification Mode must be ON (1) for most UDP notifications to be sent
-- Level notifications additionally require Level Notification Setting ON and are sent at configurable intervals
-- TX commands addressed via RU use channel number; via CHG use charging port number
+- Command framing: ASCII, space (0x20) delimiter, CR (0x0D) terminator. Max 287 bytes per message (32-byte Ethernet header + 255-byte payload).
+- TCP port 17200 is fixed for control; UDP 17000 (notification, configurable), 17001 (CHG linkage, fixed), 17100 (RU sync, fixed).
+- Only one host TCP connection is allowed at a time; additional connections are refused.
+- Set commands (s* / sx* / sr*) use HandShake select "S" — device responds with ACK/NAK.
+- Get commands (g* / gx* / gl*) use HandShake select "O" — device responds with Answer.
+- Request commands (r* / rx*) use HandShake select "S" — ACK/NAK; some generate follow-up notifications (e.g. rreboot → nreboot, rfactoryreset → nfactoryreset, rsitesurvey → nsitesurvey, rudpecho → nudpecho).
+- Information notifications (n* / nx* / ni*) are prefixed with "MD" and sent via UDP multicast.
+- Response time notes from source: shdmode ~10s ACK, sroamingmode ~15s ACK, rmastercall / rpresetcall ~5s ACK, rledflash identify ~5s auto-stop.
+- Per-channel mute, volume, HPF, and mix-assignment commands take Ch No. (1-8) and value. Mixout is addressed as Ch 0 for level queries.
+- RF power value validity depends on DECT mode; see source tables 4-2-4/5/6.
+- Roaming and DECT-related notifications are suppressed when snoticemode=0; some are additionally suppressed when snoticelevel=0 (see source per-event notes).
+- Battery alert values: 0=OFF, 1=60 min, 2=90 min, 3=120 min before depletion.
+- Battery error flags on CHG include bit fields for warning/error states; see source Table 4-113/114.
+- The source uses parameter characters in two forms: quoted ASCII strings (e.g. "MyName") for names, and unquoted integers (e.g. 1, 30) for numerics.
+- gchgvdevicearray and gchgversionarray share the same command string in some source examples — likely a source-document typo; both opcode names retained per source.
 
-<!-- UNRESOLVED: exact LED color value mapping for TX mute/unmute LED beyond the listed values not fully documented -->
-<!-- UNRESOLVED: DECT mode value mapping (returned by gmymodel) ranges not fully specified -->
-<!-- UNRESOLVED: maximum number of simultaneous TX links per RU not stated -->
+<!-- UNRESOLVED: firmware version compatibility ranges per model not stated in source; voltage, current, power, and weight specifications not stated. -->
 
 ## Provenance
 
@@ -1829,24 +1930,27 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
-last_checked_at: 2026-05-03T16:28:17.924Z
+last_checked_at: 2026-06-01T23:12:15.192Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T16:28:17.924Z
-matched_actions: 134
-action_count: 134
-confidence: high
-summary: "All 134 spec actions matched verbatim in the source command list; only rpresetcall is in source but not spec, below the short threshold."
+checked_at: 2026-06-01T23:12:15.192Z
+matched_actions: 197
+action_count: 197
+confidence: medium
+summary: "All 197 spec actions matched literally in source; transport ports 17200/17000/17001/17100 confirmed; coverage exceeds source table of 196 commands. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- rpresetcall
+- "firmware version ranges per model not stated; voltage/current/power spec not stated."
+- "source describes behavior around rmastercall / rpresetcall producing"
+- "source does not document additional safety interlocks (e.g. RF exposure, lockout-tagout) for control commands."
+- "firmware version compatibility ranges per model not stated in source; voltage, current, power, and weight specifications not stated."
 ```
 
 ---

@@ -18,21 +18,28 @@ compatible_with:
   required_options: []
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:47:09.557Z
 last_checked_at: 2026-05-18T16:38:01.471Z
 generated_at: 2026-05-18T16:38:01.471Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "flow control not explicitly stated; full-duplex mode noted"
+  - "min/max not stated; available via gain parameter request"
+  - "no unsolicited notification protocol described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock sequences documented in source"
 verification:
   verdict: verified
   checked_at: 2026-05-18T16:38:01.471Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete."
+  confidence: medium
+  summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -573,9 +580,11 @@ notes: >-
 ```yaml
 source_domains:
   - sharpdisplays.eu
+  - assets.sharpnecdisplays.us
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+  - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
+retrieved_at: 2026-05-13T08:47:09.557Z
 last_checked_at: 2026-05-18T16:38:01.471Z
 ```
 
@@ -586,14 +595,18 @@ verdict: verified
 checked_at: 2026-05-18T16:38:01.471Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete."
+confidence: medium
+summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "flow control not explicitly stated; full-duplex mode noted"
+- "min/max not stated; available via gain parameter request"
+- "no unsolicited notification protocol described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock sequences documented in source"
 ```
 
 ---

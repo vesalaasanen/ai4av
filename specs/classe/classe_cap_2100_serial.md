@@ -19,20 +19,27 @@ compatible_with:
 source_domains:
   - support.classeaudio.com
 source_urls:
-  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CDP_102_202_300_502_RS232_Protocol.pdf
-retrieved_at: 2026-05-31T18:20:38.998Z
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CAP-2100_RS232_Protocol.pdf
+retrieved_at: 2026-05-31T18:33:50.782Z
 last_checked_at: 2026-05-31T20:56:05.670Z
 generated_at: 2026-05-31T20:56:05.670Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no HTTP, TCP, UDP, or OSC support documented"
+  - "no standalone settable parameters beyond discrete actions"
+  - "no multi-step macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "selectable baud rates mentioned in source (system setup allows other baud selections) but specific baud rates not enumerated"
+  - "trigger voltage/current specifications not stated"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-31T20:56:05.670Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 28 spec actions matched distinct source commands with correct parameters and transport verified."
+  confidence: medium
+  summary: "All 28 spec actions matched distinct source commands with correct parameters and transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -318,8 +325,8 @@ interlocks: []
 source_domains:
   - support.classeaudio.com
 source_urls:
-  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CDP_102_202_300_502_RS232_Protocol.pdf
-retrieved_at: 2026-05-31T18:20:38.998Z
+  - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_CAP-2100_RS232_Protocol.pdf
+retrieved_at: 2026-05-31T18:33:50.782Z
 last_checked_at: 2026-05-31T20:56:05.670Z
 ```
 
@@ -330,14 +337,20 @@ verdict: verified
 checked_at: 2026-05-31T20:56:05.670Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 28 spec actions matched distinct source commands with correct parameters and transport verified."
+confidence: medium
+summary: "All 28 spec actions matched distinct source commands with correct parameters and transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no HTTP, TCP, UDP, or OSC support documented"
+- "no standalone settable parameters beyond discrete actions"
+- "no multi-step macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "selectable baud rates mentioned in source (system setup allows other baud selections) but specific baud rates not enumerated"
+- "trigger voltage/current specifications not stated"
+- "firmware version compatibility not stated"
 ```
 
 ---

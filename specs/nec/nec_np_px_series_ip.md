@@ -15,23 +15,39 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:18.649Z
 last_checked_at: 2026-05-14T18:17:18.649Z
 generated_at: 2026-05-14T18:17:18.649Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact NP-PX model variants not listed in source; source covers multiple NEC projector families (NP4100, NP-Mxxx, NP-MExxx, NP-MCxxx). Specific NP-PX model names and input terminal codes are not documented."
+  - "no firmware version compatibility ranges stated"
+  - "command timing constraints beyond \"no other command accepted during power on/off\" not documented"
+  - "appendix \"Supplementary Information by Command\" values for input terminal, aspect, eco mode per model are partially listed but NP-PX-specific values are absent"
+  - "default baud rate not stated"
+  - "RTS/CTS wiring shown but software flow control not specified"
+  - "min/max values not stated in source, queryable via gain parameter request"
+  - "values vary by model, see supplementary eco mode table"
+  - "no unsolicited notification / event push mechanism described in source."
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety warnings, power-on sequencing requirements, or"
+  - "NP-PX-specific input terminal codes not in source"
+  - "NP-PX-specific aspect values not in source"
+  - "NP-PX-specific eco mode values not in source"
+  - "default values for all gain parameters not stated"
+  - "command response timeout not documented"
+  - "maximum command rate / minimum inter-command delay not documented"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.649Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions have literal command matches in NEC PX IP source; all transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 53 spec actions have literal command matches in NEC PX IP source; all transport parameters verified verbatim. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -637,11 +653,9 @@ notes: >
 ## Provenance
 
 ```yaml
-source_domains:
-  - sharpdisplays.eu
-source_urls:
-  - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:18.649Z
 last_checked_at: 2026-05-14T18:17:18.649Z
 ```
 
@@ -652,14 +666,31 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.649Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions have literal command matches in NEC PX IP source; all transport parameters verified verbatim."
+confidence: medium
+summary: "All 53 spec actions have literal command matches in NEC PX IP source; all transport parameters verified verbatim. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact NP-PX model variants not listed in source; source covers multiple NEC projector families (NP4100, NP-Mxxx, NP-MExxx, NP-MCxxx). Specific NP-PX model names and input terminal codes are not documented."
+- "no firmware version compatibility ranges stated"
+- "command timing constraints beyond \"no other command accepted during power on/off\" not documented"
+- "appendix \"Supplementary Information by Command\" values for input terminal, aspect, eco mode per model are partially listed but NP-PX-specific values are absent"
+- "default baud rate not stated"
+- "RTS/CTS wiring shown but software flow control not specified"
+- "min/max values not stated in source, queryable via gain parameter request"
+- "values vary by model, see supplementary eco mode table"
+- "no unsolicited notification / event push mechanism described in source."
+- "no multi-step macro sequences described in source"
+- "no explicit safety warnings, power-on sequencing requirements, or"
+- "NP-PX-specific input terminal codes not in source"
+- "NP-PX-specific aspect values not in source"
+- "NP-PX-specific eco mode values not in source"
+- "default values for all gain parameters not stated"
+- "command response timeout not documented"
+- "maximum command rate / minimum inter-command delay not documented"
+- "model-specific source not located"
 ```
 
 ---

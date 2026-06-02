@@ -19,19 +19,25 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:07.985Z
 last_checked_at: 2026-04-25T21:32:24.909Z
 generated_at: 2026-04-25T21:32:24.909Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "LAN port number TCP 7142 stated for wired LAN control; serial baud rate is selectable (115200/38400/19200/9600/4800) — default not stated. UNRESOLVED: standby mode requirements vary by model — not enumerated in source."
+  - "selectable 115200/38400/19200/9600/4800 - default not stated"
+  - "no unsolicited event notifications documented in source"
+  - "no explicit multi-step macro sequences documented in source"
+  - "no explicit safety warnings, voltage/power specs, or interlock procedures stated in source"
+  - "serial default baud rate not stated. UNRESOLVED: specific standby mode required for serial vs LAN control not enumerated per model. UNRESOLVED: firmware version compatibility not stated."
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:32:24.909Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions match source commands one-to-one with correct parameters and transport values fully supported."
+  confidence: medium
+  summary: "All 53 spec actions match source commands one-to-one with correct parameters and transport values fully supported. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -591,7 +597,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:07.985Z
 last_checked_at: 2026-04-25T21:32:24.909Z
 ```
 
@@ -602,14 +608,19 @@ verdict: verified
 checked_at: 2026-04-25T21:32:24.909Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions match source commands one-to-one with correct parameters and transport values fully supported."
+confidence: medium
+summary: "All 53 spec actions match source commands one-to-one with correct parameters and transport values fully supported. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "LAN port number TCP 7142 stated for wired LAN control; serial baud rate is selectable (115200/38400/19200/9600/4800) — default not stated. UNRESOLVED: standby mode requirements vary by model — not enumerated in source."
+- "selectable 115200/38400/19200/9600/4800 - default not stated"
+- "no unsolicited event notifications documented in source"
+- "no explicit multi-step macro sequences documented in source"
+- "no explicit safety warnings, voltage/power specs, or interlock procedures stated in source"
+- "serial default baud rate not stated. UNRESOLVED: specific standby mode required for serial vs LAN control not enumerated per model. UNRESOLVED: firmware version compatibility not stated."
 ```
 
 ---

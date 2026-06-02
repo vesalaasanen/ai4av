@@ -19,19 +19,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:57:58.041Z
 last_checked_at: 2026-05-16T11:38:05.063Z
 generated_at: 2026-05-16T11:38:05.063Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wireless LAN control not documented beyond mention of external unit"
+  - "actual range not stated in source"
+  - "valid values in Appendix, not in source"
+  - "no unsolicited notification mechanism described in source."
+  - "no explicit multi-step sequences described in source."
+  - "power on/off commands block other commands during execution"
+  - "input terminal value mappings (Appendix referenced but not in source)"
+  - "aspect, eco mode, sub input setting values (Appendix referenced but not in source)"
+  - "firmware version compatibility"
+  - "wireless LAN control commands"
 verification:
   verdict: verified
   checked_at: 2026-05-16T11:38:05.063Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched their corresponding source commands; transport parameters port 7142 baud rates 8N1 serial+TCP verified verbatim in source; complete bidirectional coverage with no gaps."
+  confidence: medium
+  summary: "All 53 spec actions matched their corresponding source commands; transport parameters port 7142 baud rates 8N1 serial+TCP verified verbatim in source; complete bidirectional coverage with no gaps. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -567,7 +577,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-05-13T07:57:58.041Z
 last_checked_at: 2026-05-16T11:38:05.063Z
 ```
 
@@ -578,14 +588,23 @@ verdict: verified
 checked_at: 2026-05-16T11:38:05.063Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched their corresponding source commands; transport parameters port 7142 baud rates 8N1 serial+TCP verified verbatim in source; complete bidirectional coverage with no gaps."
+confidence: medium
+summary: "All 53 spec actions matched their corresponding source commands; transport parameters port 7142 baud rates 8N1 serial+TCP verified verbatim in source; complete bidirectional coverage with no gaps. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wireless LAN control not documented beyond mention of external unit"
+- "actual range not stated in source"
+- "valid values in Appendix, not in source"
+- "no unsolicited notification mechanism described in source."
+- "no explicit multi-step sequences described in source."
+- "power on/off commands block other commands during execution"
+- "input terminal value mappings (Appendix referenced but not in source)"
+- "aspect, eco mode, sub input setting values (Appendix referenced but not in source)"
+- "firmware version compatibility"
+- "wireless LAN control commands"
 ```
 
 ---

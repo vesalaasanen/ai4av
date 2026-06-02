@@ -19,19 +19,26 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:15.747Z
 last_checked_at: 2026-04-26T21:36:04.248Z
 generated_at: 2026-04-26T21:36:04.248Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "wired LAN auth type not stated in source"
+  - "no standalone settable parameters found in source beyond action params"
+  - "no unsolicited event definitions in source"
+  - "no explicit multi-step macro definitions in source"
+  - "power-on sequencing requirements not explicitly stated"
+  - "wired LAN authentication mechanism not stated"
+  - "standby mode configuration required for command reception not detailed for all models"
 verification:
   verdict: verified
   checked_at: 2026-04-26T21:36:04.248Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched source commands; transport verified."
+  confidence: medium
+  summary: "All 53 spec actions matched source commands; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -723,7 +730,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:15.747Z
 last_checked_at: 2026-04-26T21:36:04.248Z
 ```
 
@@ -734,14 +741,20 @@ verdict: verified
 checked_at: 2026-04-26T21:36:04.248Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched source commands; transport verified."
+confidence: medium
+summary: "All 53 spec actions matched source commands; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "wired LAN auth type not stated in source"
+- "no standalone settable parameters found in source beyond action params"
+- "no unsolicited event definitions in source"
+- "no explicit multi-step macro definitions in source"
+- "power-on sequencing requirements not explicitly stated"
+- "wired LAN authentication mechanism not stated"
+- "standby mode configuration required for command reception not detailed for all models"
 ```
 
 ---

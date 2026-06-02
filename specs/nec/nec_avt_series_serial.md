@@ -19,19 +19,31 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:18.794Z
 last_checked_at: 2026-05-14T18:17:18.286Z
 generated_at: 2026-05-14T18:17:18.286Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "supported model list is not enumerated in source; only \"AVT Series\" referenced as product family name"
+  - "standby mode compatibility varies by model; specific mode requirements not enumerated"
+  - "all settable values are modeled as Actions with params. No standalone Variables section applicable."
+  - "no unsolicited event/notification mechanism described in source. Device only responds to commands."
+  - "voltage, current, power consumption specifications not present in source"
+  - "fault behavior and error recovery sequences beyond error code list not detailed"
+  - "firmware version compatibility not stated"
+  - "ID2 (model code) values not enumerated in source"
+  - "exact supported models list not provided; document covers \"AVT Series\" as generic family"
+  - "standby mode compatibility matrix (which models support which standby modes for LAN vs serial) not provided"
+  - "command timing / inter-command delay requirements not stated"
+  - "HDBaseT control support implied by input code BFh but not explicitly documented as separate transport"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.286Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 54 spec actions verified against source; every command byte sequence found literally; transport parameters (port 7142, baud rates, data format) all confirmed."
+  confidence: medium
+  summary: "All 54 spec actions verified against source; every command byte sequence found literally; transport parameters (port 7142, baud rates, data format) all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -551,7 +563,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:51:18.794Z
 last_checked_at: 2026-05-14T18:17:18.286Z
 ```
 
@@ -562,14 +574,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.286Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 54 spec actions verified against source; every command byte sequence found literally; transport parameters (port 7142, baud rates, data format) all confirmed."
+confidence: medium
+summary: "All 54 spec actions verified against source; every command byte sequence found literally; transport parameters (port 7142, baud rates, data format) all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "supported model list is not enumerated in source; only \"AVT Series\" referenced as product family name"
+- "standby mode compatibility varies by model; specific mode requirements not enumerated"
+- "all settable values are modeled as Actions with params. No standalone Variables section applicable."
+- "no unsolicited event/notification mechanism described in source. Device only responds to commands."
+- "voltage, current, power consumption specifications not present in source"
+- "fault behavior and error recovery sequences beyond error code list not detailed"
+- "firmware version compatibility not stated"
+- "ID2 (model code) values not enumerated in source"
+- "exact supported models list not provided; document covers \"AVT Series\" as generic family"
+- "standby mode compatibility matrix (which models support which standby modes for LAN vs serial) not provided"
+- "command timing / inter-command delay requirements not stated"
+- "HDBaseT control support implied by input code BFh but not explicitly documented as separate transport"
 ```
 
 ---

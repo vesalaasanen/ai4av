@@ -23,22 +23,28 @@ compatible_with:
 source_domains:
   - developer.arylic.com
 source_urls:
-  - https://developer.arylic.com/tcpapi/
   - https://developer.arylic.com/uartapi/
-  - https://developer.arylic.com/httpapi/
-retrieved_at: 2026-05-15T03:37:14.439Z
+retrieved_at: 2026-05-15T00:36:07.249Z
 last_checked_at: 2026-05-15T21:12:43.521Z
 generated_at: 2026-05-15T21:12:43.521Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact product model mapping to A31 platform not fully specified — source lists Up2Stream PRO, MA400/HA400, M400/H400"
+  - "TCP port number not stated in source"
+  - "all settable parameters are modeled as action params with feedback counterparts above"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "TRE/MID tone ranges not explicitly stated (assumed [-10,10] by analogy with BAS)"
+  - "volume range stated as example values only; exact range likely [0,100] but upper bound not confirmed"
+  - "PST preset number range not stated"
+  - "response timing / latency characteristics not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:12:43.521Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands."
+  confidence: medium
+  summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -824,10 +830,8 @@ interlocks: []
 source_domains:
   - developer.arylic.com
 source_urls:
-  - https://developer.arylic.com/tcpapi/
   - https://developer.arylic.com/uartapi/
-  - https://developer.arylic.com/httpapi/
-retrieved_at: 2026-05-15T03:37:14.439Z
+retrieved_at: 2026-05-15T00:36:07.249Z
 last_checked_at: 2026-05-15T21:12:43.521Z
 ```
 
@@ -838,14 +842,21 @@ verdict: verified
 checked_at: 2026-05-15T21:12:43.521Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands."
+confidence: medium
+summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact product model mapping to A31 platform not fully specified — source lists Up2Stream PRO, MA400/HA400, M400/H400"
+- "TCP port number not stated in source"
+- "all settable parameters are modeled as action params with feedback counterparts above"
+- "no explicit safety warnings or interlock procedures in source"
+- "TRE/MID tone ranges not explicitly stated (assumed [-10,10] by analogy with BAS)"
+- "volume range stated as example values only; exact range likely [0,100] but upper bound not confirmed"
+- "PST preset number range not stated"
+- "response timing / latency characteristics not stated"
 ```
 
 ---

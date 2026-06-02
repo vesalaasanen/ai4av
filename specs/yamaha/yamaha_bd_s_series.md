@@ -26,14 +26,19 @@ last_checked_at: 2026-05-12T14:58:23.763Z
 generated_at: 2026-05-12T14:58:23.763Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source covers BD-S2900 only; applicability to other BD-S models not confirmed"
+  - "firmware version compatibility not stated"
+  - "no explicit safety warnings or interlock procedures in source beyond command guard table"
+  - "exact cable pinout (DB-9 vs DB-25) not specified"
+  - "maximum cable length not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-12T14:58:23.763Z
   matched_actions: 42
   action_count: 42
-  confidence: high
-  summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage."
+  confidence: medium
+  summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -459,14 +464,18 @@ verdict: verified
 checked_at: 2026-05-12T14:58:23.763Z
 matched_actions: 42
 action_count: 42
-confidence: high
-summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage."
+confidence: medium
+summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source covers BD-S2900 only; applicability to other BD-S models not confirmed"
+- "firmware version compatibility not stated"
+- "no explicit safety warnings or interlock procedures in source beyond command guard table"
+- "exact cable pinout (DB-9 vs DB-25) not specified"
+- "maximum cable length not specified"
 ```
 
 ---

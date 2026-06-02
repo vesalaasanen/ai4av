@@ -24,14 +24,24 @@ last_checked_at: 2026-05-14T18:17:17.364Z
 generated_at: 2026-05-14T18:17:17.364Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document title references \"Microphone / Wireless\" but content describes AM16/12 matrix mixer — entity may be mismatched"
+  - "flow control not explicitly stated; wiring diagram shows RTS/CTS pins but usage not described"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no multi-step macro sequences explicitly described in source"
+  - "source does not describe power sequencing, interlock, or safety procedures"
+  - "firmware version compatibility range not stated"
+  - "maximum number of daisy-chained LecNet devices not stated"
+  - "command response timing constraints beyond the 25ms minimum"
+  - "programmable input/output configuration commands (only query and simulate are documented)"
+  - "expansion port control details beyond crosspoint routing"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.364Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source."
+  confidence: medium
+  summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -387,14 +397,23 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.364Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source."
+confidence: medium
+summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document title references \"Microphone / Wireless\" but content describes AM16/12 matrix mixer — entity may be mismatched"
+- "flow control not explicitly stated; wiring diagram shows RTS/CTS pins but usage not described"
+- "no unsolicited event/notification mechanism described in source"
+- "no multi-step macro sequences explicitly described in source"
+- "source does not describe power sequencing, interlock, or safety procedures"
+- "firmware version compatibility range not stated"
+- "maximum number of daisy-chained LecNet devices not stated"
+- "command response timing constraints beyond the 25ms minimum"
+- "programmable input/output configuration commands (only query and simulate are documented)"
+- "expansion port control details beyond crosspoint routing"
 ```
 
 ---

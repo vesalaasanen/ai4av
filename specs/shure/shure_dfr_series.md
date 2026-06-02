@@ -24,14 +24,24 @@ last_checked_at: 2026-04-23T08:25:59.202Z
 generated_at: 2026-04-23T08:25:59.202Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device may support additional models in DFR Series (e.g., DFR8) — not documented in source"
+  - "exact response string format for each query type not fully detailed in source."
+  - "variables for read/write parameters not explicitly separated from actions in source."
+  - "no unsolicited event notifications described in source."
+  - "no multi-step macro sequences described in source."
+  - "no safety warnings or interlock procedures in source."
+  - "firmware version compatibility not stated"
+  - "power on/off commands not present in source"
+  - "exact response format for QRY command not detailed"
+  - "error codes/negative acknowledgements not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-23T08:25:59.202Z
   matched_actions: 26
   action_count: 26
-  confidence: high
-  summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes."
+  confidence: medium
+  summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -490,14 +500,23 @@ verdict: verified
 checked_at: 2026-04-23T08:25:59.202Z
 matched_actions: 26
 action_count: 26
-confidence: high
-summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes."
+confidence: medium
+summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device may support additional models in DFR Series (e.g., DFR8) — not documented in source"
+- "exact response string format for each query type not fully detailed in source."
+- "variables for read/write parameters not explicitly separated from actions in source."
+- "no unsolicited event notifications described in source."
+- "no multi-step macro sequences described in source."
+- "no safety warnings or interlock procedures in source."
+- "firmware version compatibility not stated"
+- "power on/off commands not present in source"
+- "exact response format for QRY command not detailed"
+- "error codes/negative acknowledgements not documented"
 ```
 
 ---

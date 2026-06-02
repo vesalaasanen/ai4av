@@ -16,26 +16,29 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+retrieved_at: 2026-04-30T04:30:58.917Z
 last_checked_at: 2026-05-14T18:17:20.963Z
 generated_at: 2026-05-14T18:17:20.963Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "max volume not stated in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures found in source"
+  - "maximum volume level not stated in source"
+  - "maximum number of concurrent TCP connections not stated"
+  - "connection timeout / keepalive behavior not stated"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.963Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete."
+  confidence: medium
+  summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -372,14 +375,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+retrieved_at: 2026-04-30T04:30:58.917Z
 last_checked_at: 2026-05-14T18:17:20.963Z
 ```
 
@@ -390,14 +389,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.963Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete."
+confidence: medium
+summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "max volume not stated in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures found in source"
+- "maximum volume level not stated in source"
+- "maximum number of concurrent TCP connections not stated"
+- "connection timeout / keepalive behavior not stated"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

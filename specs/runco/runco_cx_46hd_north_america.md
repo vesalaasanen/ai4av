@@ -29,14 +29,23 @@ last_checked_at: 2026-04-30T09:48:23.226Z
 generated_at: 2026-04-30T09:48:23.226Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP support not mentioned in source"
+  - "no explicit query commands returning device state found"
+  - "no discrete settable parameters beyond actions; no variable readback documented"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP or network control not mentioned in source"
+  - "firmware version compatibility not stated"
+  - "no query commands for current device state documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:48:23.226Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified."
+  confidence: medium
+  summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -289,14 +298,22 @@ verdict: verified
 checked_at: 2026-04-30T09:48:23.226Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified."
+confidence: medium
+summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP support not mentioned in source"
+- "no explicit query commands returning device state found"
+- "no discrete settable parameters beyond actions; no variable readback documented"
+- "no unsolicited event notifications documented"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP or network control not mentioned in source"
+- "firmware version compatibility not stated"
+- "no query commands for current device state documented"
 ```
 
 ---

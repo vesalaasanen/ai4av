@@ -40,19 +40,31 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+retrieved_at: 2026-04-29T13:19:31.882Z
 last_checked_at: 2026-05-14T18:17:15.741Z
 generated_at: 2026-05-14T18:17:15.741Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port number not stated; refers to separate ESC/VP.net protocol manual"
+  - "USB connection details not provided"
+  - "Full command set may be larger than what is documented here — only core commands listed"
+  - "TCP port not stated in source (see ESC/VP.net manual)"
+  - "no settable continuous variables (e.g. volume, brightness) explicitly documented in source"
+  - "no unsolicited notification events documented in source"
+  - "no multi-step sequences described in source"
+  - "no explicit safety interlocks or power-on sequencing warnings found beyond model-specific PWR ON preparation notes"
+  - "TCP/IP port number and connection procedure — see ESC/VP.net protocol manual"
+  - "USB connection details — referenced but not documented in this source"
+  - "complete list of INC/DEC/INIT commands not provided"
+  - "firmware version compatibility not stated in source -->The spec is generated above. Key points:"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.741Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete."
+  confidence: medium
+  summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -244,7 +256,7 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+retrieved_at: 2026-04-29T13:19:31.882Z
 last_checked_at: 2026-05-14T18:17:15.741Z
 ```
 
@@ -255,14 +267,25 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.741Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete."
+confidence: medium
+summary: "All 11 spec actions match literal commands in source; serial transport (9600/8N1) verified; core command families complete. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port number not stated; refers to separate ESC/VP.net protocol manual"
+- "USB connection details not provided"
+- "Full command set may be larger than what is documented here — only core commands listed"
+- "TCP port not stated in source (see ESC/VP.net manual)"
+- "no settable continuous variables (e.g. volume, brightness) explicitly documented in source"
+- "no unsolicited notification events documented in source"
+- "no multi-step sequences described in source"
+- "no explicit safety interlocks or power-on sequencing warnings found beyond model-specific PWR ON preparation notes"
+- "TCP/IP port number and connection procedure — see ESC/VP.net protocol manual"
+- "USB connection details — referenced but not documented in this source"
+- "complete list of INC/DEC/INIT commands not provided"
+- "firmware version compatibility not stated in source -->The spec is generated above. Key points:"
 ```
 
 ---

@@ -24,14 +24,18 @@ last_checked_at: 2026-04-23T06:41:18.822Z
 generated_at: 2026-04-23T06:41:18.822Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "webhook/Channel push notification callback endpoint details not documented here"
+  - "Channel resource schema, notification format, expiry behavior"
+  - "no safety warnings in source"
+  - "Channel push notification callback URL format, Pub/Sub topic setup, notification payload schema"
 verification:
   verdict: verified
   checked_at: 2026-04-23T06:41:18.822Z
   matched_actions: 37
   action_count: 37
-  confidence: high
-  summary: "All 37 spec actions matched exactly in source reference; transport parameters verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 37 spec actions matched exactly in source reference; transport parameters verified; complete bidirectional coverage. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -415,14 +419,17 @@ verdict: verified
 checked_at: 2026-04-23T06:41:18.822Z
 matched_actions: 37
 action_count: 37
-confidence: high
-summary: "All 37 spec actions matched exactly in source reference; transport parameters verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 37 spec actions matched exactly in source reference; transport parameters verified; complete bidirectional coverage. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "webhook/Channel push notification callback endpoint details not documented here"
+- "Channel resource schema, notification format, expiry behavior"
+- "no safety warnings in source"
+- "Channel push notification callback URL format, Pub/Sub topic setup, notification payload schema"
 ```
 
 ---

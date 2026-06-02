@@ -25,14 +25,22 @@ last_checked_at: 2026-04-30T09:48:25.048Z
 generated_at: 2026-04-30T09:48:25.048Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP, HTTP, or REST control documented"
+  - "no queryable variables documented - X011X shows info but no discrete get commands"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macro sequences documented"
+  - "no voltage, current, or power specifications - only lamp wattage modes stated"
+  - "TCP/IP, HTTP, REST, or network control not documented"
+  - "firmware version compatibility not stated in source"
+  - "fault behavior and error recovery not documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T09:48:25.048Z
   matched_actions: 69
   action_count: 69
-  confidence: high
-  summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim."
+  confidence: medium
+  summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -483,14 +491,21 @@ verdict: verified
 checked_at: 2026-04-30T09:48:25.048Z
 matched_actions: 69
 action_count: 69
-confidence: high
-summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim."
+confidence: medium
+summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP, HTTP, or REST control documented"
+- "no queryable variables documented - X011X shows info but no discrete get commands"
+- "no unsolicited event notifications documented"
+- "no multi-step macro sequences documented"
+- "no voltage, current, or power specifications - only lamp wattage modes stated"
+- "TCP/IP, HTTP, REST, or network control not documented"
+- "firmware version compatibility not stated in source"
+- "fault behavior and error recovery not documented"
 ```
 
 ---

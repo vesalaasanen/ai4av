@@ -24,14 +24,29 @@ last_checked_at: 2026-05-14T18:17:21.227Z
 generated_at: 2026-05-14T18:17:21.227Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "complete command enumeration exceeds scope; representative actions documented"
+  - "no explicit power on/off commands found in source"
+  - "audio routing matrix present in data models but no explicit routing commands documented"
+  - "many commands; partial list from source"
+  - "partial list"
+  - "complete model definitions exceed scope; key models noted"
+  - "complete event enumeration exceeds scope"
+  - "no explicit multi-step macro sequences documented"
+  - "no safety warnings, interlock procedures, or power-on sequencing"
+  - "firmware version compatibility not stated in source"
+  - "complete command list exceeds 300+ entries; representative subset documented"
+  - "authentication mechanism not described in source"
+  - "audio routing command details not fully documented"
+  - "voting template management commands partial list only"
+  - "meeting agenda commands partial list only"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.227Z
   matched_actions: 62
   action_count: 64
-  confidence: high
-  summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified."
+  confidence: medium
+  summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -948,14 +963,28 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.227Z
 matched_actions: 62
 action_count: 64
-confidence: high
-summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified."
+confidence: medium
+summary: "All 62 spec actions matched to documented CoCon API endpoints; transport parameters verified. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "complete command enumeration exceeds scope; representative actions documented"
+- "no explicit power on/off commands found in source"
+- "audio routing matrix present in data models but no explicit routing commands documented"
+- "many commands; partial list from source"
+- "partial list"
+- "complete model definitions exceed scope; key models noted"
+- "complete event enumeration exceeds scope"
+- "no explicit multi-step macro sequences documented"
+- "no safety warnings, interlock procedures, or power-on sequencing"
+- "firmware version compatibility not stated in source"
+- "complete command list exceeds 300+ entries; representative subset documented"
+- "authentication mechanism not described in source"
+- "audio routing command details not fully documented"
+- "voting template management commands partial list only"
+- "meeting agenda commands partial list only"
 ```
 
 ---

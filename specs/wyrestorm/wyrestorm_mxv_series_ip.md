@@ -18,23 +18,29 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:31:20.452Z
 last_checked_at: 2026-05-17T00:31:20.452Z
 generated_at: 2026-05-17T00:31:20.452Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Web UI and front-panel control are mentioned but not documented in the API source; authentication/login procedure not described"
+  - "no persistent variable parameters (outside of actions/feedbacks above) found in source"
+  - "no unsolicited notification/event messages documented in source"
+  - "no explicit multi-step macros described in source"
+  - "web UI and front-panel control interfaces are referenced but not documented in the API source"
+  - "no documented error responses or NACK format found in source"
+  - "H2XC models may have feature differences from H2X models; source does not enumerate per-model differences beyond firmware version thresholds"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-17T00:31:20.452Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 29 spec actions matched verbatim in source with correct command syntax; transport configuration confirmed."
+  confidence: medium
+  summary: "All 29 spec actions matched verbatim in source with correct command syntax; transport configuration confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -694,11 +700,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - digis.ru
-source_urls:
-  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:31:20.452Z
 last_checked_at: 2026-05-17T00:31:20.452Z
 ```
 
@@ -709,14 +713,21 @@ verdict: verified
 checked_at: 2026-05-17T00:31:20.452Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 29 spec actions matched verbatim in source with correct command syntax; transport configuration confirmed."
+confidence: medium
+summary: "All 29 spec actions matched verbatim in source with correct command syntax; transport configuration confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Web UI and front-panel control are mentioned but not documented in the API source; authentication/login procedure not described"
+- "no persistent variable parameters (outside of actions/feedbacks above) found in source"
+- "no unsolicited notification/event messages documented in source"
+- "no explicit multi-step macros described in source"
+- "web UI and front-panel control interfaces are referenced but not documented in the API source"
+- "no documented error responses or NACK format found in source"
+- "H2XC models may have feature differences from H2X models; source does not enumerate per-model differences beyond firmware version thresholds"
+- "model-specific source not located"
 ```
 
 ---

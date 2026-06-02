@@ -17,33 +17,47 @@ compatible_with:
   required_options: []
 source_domains:
   - neoprointegrator.us
+  - drivers.control4.com
+  - manualslib.com
 source_urls:
   - https://neoprointegrator.us/wp-content/uploads/2024/01/DOC42-00007-I_Serial-Protocols.pdf
+  - https://drivers.control4.com/avswitch_232_neothings_Tahoe_v23_enc.c4i
+  - https://neoprointegrator.us/wp-content/uploads/2024/01/NeoPro-Tahoe-UserGuide.pdf
+  - https://www.manualslib.com/manual/4219559/Neopro-Tahoe-Veo.html
 retrieved_at: 2026-05-21T15:02:21.118Z
-last_checked_at: 2026-05-31T06:54:49.443Z
-generated_at: 2026-05-31T06:54:49.443Z
+last_checked_at: 2026-06-02T04:20:04.097Z
+generated_at: 2026-06-02T04:20:04.097Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source covers the broader Neothings/NeoPro family (protocols named Avalon, Borrego, Concord, Delano, Eureka, Fallbrook, Gillespie, Hawthorne, Imperial, Juneau). The Tahoe-specific protocol variant is not named in the source."
+  - "the source describes a family of protocol variants (Avalon, Borrego,"
+  - "per-protocol route command shape is variant-specific. The source"
+  - "device-driven state-change notifications (unsolicited messages)"
+  - "persistent setup parameters exist (the source mentions a `[?S]"
+  - "the source does not describe any unsolicited device-to-host"
+  - "the source mentions a \"virtual board\" (B0) concept for"
+  - "the source contains no safety warnings, interlock procedures,"
+  - "firmware version compatibility, voltage/current draw, fault behavior, and error-recovery sequences are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-05-31T06:54:49.443Z
-  matched_actions: 14
-  action_count: 14
-  confidence: high
-  summary: "All 14 spec actions match source protocol sections; transport parameters exact; bidirectional coverage complete."
+  checked_at: 2026-06-02T04:20:04.097Z
+  matched_actions: 2
+  action_count: 2
+  confidence: medium
+  summary: "Both spec actions (command envelope and version query) are documented verbatim in source; transport parameters match exactly. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-05-21
+created_at: 2026-06-02
 ---
 
 # Neothings Tahoe Control Spec
 
 ## Summary
-Matrix video/audio switcher controllable via RS-232C. Protocol: 9600 baud, 8N1. Command format: ASCII wrapped in square brackets `[command]`. Max response time: 150ms. Supports routing, query, and mute commands across multiple board types.
+RS-232 serial control for the Neothings Tahoe matrix switch. Commands are human-readable ASCII wrapped in square brackets, terminated by the closing bracket (no CR/LF required). The Tahoe is part of the Neothings product family, and the source document describes the family-level serial protocol; the specific protocol variant for Tahoe is not identified in the source.
 
-<!-- UNRESOLVED: specific Tahoe model variant (e.g., 8x4, 8x8) not stated in source; supported board types vary by model -->
+<!-- UNRESOLVED: source covers the broader Neothings/NeoPro family (protocols named Avalon, Borrego, Concord, Delano, Eureka, Fallbrook, Gillespie, Hawthorne, Imperial, Juneau). The Tahoe-specific protocol variant is not named in the source. -->
 
 ## Transport
 ```yaml
@@ -59,267 +73,192 @@ auth:
   type: none  # inferred: no auth procedure in source
 ```
 
+**RS-232 pinout (from source):**
+- Pin 2: Transmit (data out of unit)
+- Pin 3: Receive (data into unit)
+- Pin 5: Ground
+- Pin 1: for reference only
+
+The matrix is also controllable via USB COM port with identical settings (9600 8N1, no flow control). Per the source, the control system does not distinguish between USB and RS-232 ports.
+
 ## Traits
 ```yaml
-- powerable  # UNRESOLVED: no explicit power commands; routing persists after power outage per source
-- routable  # evidenced by routing command syntax
-- queryable  # evidenced by ?B, ?D, ?E, ?F, ?G, ?H, ?I, ?J query commands
+- routable   # inferred from per-input/per-output routing command examples
+- queryable  # inferred from [?Bx]-style state query examples
 ```
 
 ## Actions
 ```yaml
-- id: route_avalon
-  label: Route (Avalon Protocol)
-  kind: action
-  params:
-    - name: board
-      type: enum
-      values: [B0, B1, B2]
-      description: Board number (B0=virtual all, B1=component video, B2=digital audio)
-    - name: board_type
-      type: enum
-      values: [C4, C8, B4, B8, 00]
-      description: Board type (C4=8x4 comp, C8=8x8 comp, B4=8x4 audio, B8=8x8 audio)
-    - name: input
-      type: integer
-      description: Source input 1-8, or 0 for mute
-    - name: output
-      type: integer
-      description: Output 1-8
+# UNRESOLVED: the source describes a family of protocol variants (Avalon, Borrego,
+# Concord, Delano, Eureka, Fallbrook, Gillespie, Hawthorne, Imperial, Juneau).
+# The Tahoe's specific protocol variant is not identified in the source, so the
+# routing opcodes below cannot be populated without fabrication. Only the
+# cross-protocol envelope and version query pattern are common to every variant
+# in the family and are listed verbatim.
 
-- id: route_borrego
-  label: Route (Borrego Protocol)
+- id: send_command_envelope
+  label: Send bracketed command
   kind: action
+  command: "[{payload}]"
   params:
-    - name: board
-      type: enum
-      values: [B0, B1, B2, B3]
-    - name: board_type
-      type: enum
-      values: [C4, C8, B4, B8, A4, A8, 00]
-    - name: input
-      type: integer
-      description: 0=mute, 1-8=source
-    - name: output
-      type: integer
+    - name: payload
+      type: string
+      description: Protocol-specific command body. The closing `]` triggers processing; no CR/LF required. All commands are case sensitive; spaces are not allowed between the brackets.
+  notes: |
+    Maximum processing time before response: 150 ms. The serial port does NOT
+    echo sent characters. When sending a string of commands, wait at least
+    150 ms between each command. Any character outside the matching `[ ]`
+    braces is ignored; characters inside the braces are processed and an
+    error response is returned if invalid.
 
-- id: route_concord
-  label: Route (Concord Protocol)
-  kind: action
-  params:
-    - name: board
-      type: enum
-      values: [B0, B1, B2, B3]
-    - name: input
-      type: integer
-      description: 0=mute, 1-8=source
-    - name: output
-      type: integer
+# The following entries represent the family-level command patterns the source
+# documents. The Tahoe may use any one of the variants - the source does not
+# state which.
 
-- id: route_delano
-  label: Route (Delano Protocol)
-  kind: action
-  params:
-    - name: video
-      type: string
-      value: "DV"
-    - name: input
-      type: string
-      description: Two-digit input 00=mute, 01-08=source
-    - name: output
-      type: string
-      description: Two-digit output 01-16
+# UNRESOLVED: per-protocol route command shape is variant-specific. The source
+# documents the following shapes across the family:
+#   - Avalon / Borrego:  [Bx,Xx,X,Y]   (board, board-type, input, output)
+#   - Concord:           [Bx,X,Y]      (board, input, output)
+#   - Delano:            [DV,XX,YY]    (video, input, output)
+#   - Eureka / Gillespie:[EX,XX,YY] / [GX,XX,YY]  (audio-variant, input, output)
+#   - Fallbrook:         [FV,XX,YY]
+#   - Hawthorne:         [HV,XX,YY]
+#   - Imperial:          [IV,XX,YY]
+#   - Juneau:            [JV,XX,YY]
+# Inputs use 0 (mute) or 1-8 (sources). Outputs use 1-8 (model-dependent max).
+# Tahoe's variant is not stated in source.
 
-- id: route_eureka
-  label: Route (Eureka Protocol)
-  kind: action
-  params:
-    - name: matrix_type
-      type: enum
-      values: [ED, EA, E0]
-      description: ED=digital audio, EA=analog audio, E0=both
-    - name: input
-      type: string
-      description: Two-digit input 00=mute, 01-08=source
-    - name: output
-      type: string
-      description: Two-digit output 01-08
-
-- id: route_fallbrook
-  label: Route (Fallbrook Protocol)
-  kind: action
-  params:
-    - name: video
-      type: string
-      value: "FV"
-    - name: input
-      type: string
-      description: Two-digit input 00=mute, 01-08=source
-    - name: output
-      type: string
-      description: Two-digit output 01-16
-
-- id: route_gillespie
-  label: Route (Gillespie Protocol)
-  kind: action
-  params:
-    - name: matrix_type
-      type: enum
-      values: [GD, GA, G0]
-    - name: input
-      type: string
-    - name: output
-      type: string
-
-- id: route_hawthorne
-  label: Route (Hawthorne Protocol)
-  kind: action
-  params:
-    - name: video
-      type: string
-      value: "HV"
-    - name: input
-      type: string
-      description: Two-digit, 00=mute
-    - name: output
-      type: string
-      description: Two-digit output 01-08
-
-- id: route_imperial
-  label: Route (Imperial Protocol)
-  kind: action
-  params:
-    - name: video
-      type: string
-      value: "IV"
-    - name: input
-      type: string
-    - name: output
-      type: string
-
-- id: route_juneau
-  label: Route (Juneau Protocol)
-  kind: action
-  params:
-    - name: video
-      type: string
-      value: "JV"
-    - name: input
-      type: string
-      description: Two-digit input 01-08, 00=mute
-    - name: output
-      type: string
-      description: Two-digit output 01-16
-
-- id: mute
-  label: Mute Output
-  kind: action
-  params:
-    - name: output
-      type: integer
-      description: Output number to mute
-
-- id: query_board
-  label: Query Board State
+- id: version_query
+  label: Version / product ID query
   kind: query
+  command: "[V,{prefix}{major}{minor}]"
   params:
-    - name: board
+    - name: prefix
       type: string
-      description: Board identifier (e.g., B0, B1, B2, D, E, F, G, H, I, J)
-  response: bracketed matrix state
-
-- id: query_version
-  label: Query Version
-  kind: query
-  params:
-    - name: protocol_prefix
-      type: string
-      description: Protocol letter (A=Avalon, B=Borrego, C=Concord, D=Delano, E=Eureka, F=Fallbrook, G=Gillespie, H=Hawthorne, I=Imperial, J=Juneau)
-    - name: version
-      type: string
-      description: Two-digit version number
-  response: "[V,<prefix><version>]"
-
-- id: query_setup
-  label: Query Setup Parameters
-  kind: query
-  params:
-    - name: board
-      type: string
-      description: "?S" for setup, "?E" for Eureka, "?H" for Hawthorne etc.
+      description: Single-letter family prefix. Tahoe's prefix is not stated in the source; the family uses A (Avalon), B (Borrego), C (Concord), D (Delano), E (Eureka), F (Fallbrook), G (Gillespie), H (Hawthorne), I (Imperial), J (Juneau).
+    - name: major
+      type: integer
+      description: Major firmware version digit.
+    - name: minor
+      type: integer
+      description: Minor firmware version digit.
+  notes: |
+    The source's version query is documented only as a pattern that returns
+    the product ID and version (e.g. `[V,A12]` = Avalon v1.2). It is unclear
+    from the source whether the device sends this on operator request or
+    whether the bracketed form itself is a request the device echoes back.
+    Verify against a real device before depending on the response payload.
 ```
 
 ## Feedbacks
 ```yaml
-- id: routing_response
-  description: Echo of routing command on success
-  pattern: "\\[B.,[BCADEFGHIJ0-9]+,[0-9]+,[0-9]+\\]"
+- id: syntax_error
+  type: enum
+  values: [error]
+  description: |
+    Any command syntax error results in the response `[E]`. The device only
+    attempts to process content between matching `[ ]` braces.
 
-- id: query_board_response
-  description: Full board state on query
-  pattern: "\\[\\[.*\\]\\]"
+- id: route_echo
+  type: object
+  description: |
+    Successful routing commands are echoed back verbatim. Example:
+    sending `[B0,00,2,4]` returns `[B0,00,2,4]`. (Avalon example; Tahoe's
+    echo payload will match whatever variant it uses.)
 
-- id: query_version_response
-  description: Version string
-  pattern: "\\[V,[A-J][0-9]+\\]"
+- id: matrix_state
+  type: object
+  description: |
+    Query responses return the full state of the matrix wrapped in an outer
+    pair of square brackets, with one `[Bx,...]` sub-structure per output.
+    Example Avalon 8x4 response to `[?B0]`:
+    `[[B1,C4,3,1][B1,C4,2,2][B1,C4,6,3][B1,C4,2,4][B2,B4,3,1][B2,B4,2,2][B2,B4,3,3][B2,B4,2,4]]`
+    Tahoe's query prefix and sub-structure shape are not stated in source.
 
-- id: error
-  description: Syntax error response
-  pattern: "\\[E\\]"
+# UNRESOLVED: device-driven state-change notifications (unsolicited messages)
+# are not described in the source.
 ```
 
 ## Variables
 ```yaml
-# UNRESOLVED: no discrete settable parameters documented; routing state managed via actions
+# UNRESOLVED: persistent setup parameters exist (the source mentions a `[?S]`
+# query that "returns all setup parameters" on the Hawthorne variant and
+# notes that routing state is "stored in backup memory and will still be set
+# after a power outage"), but the parameter set is not enumerated in the
+# source.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications documented
+# UNRESOLVED: the source does not describe any unsolicited device-to-host
+# notifications. Remove this section if Tahoe has no async events.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no explicit macro sequences documented
+# UNRESOLVED: the source mentions a "virtual board" (B0) concept for
+# controlling all switching levels in parallel, but does not document any
+# user-defined multi-step macro facility. Remove if Tahoe has no macros.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: the source contains no safety warnings, interlock procedures,
+# or power-on sequencing requirements. Do not infer.
 ```
 
 ## Notes
-Command timing: wait 150ms between commands when sending strings. Serial port does not echo characters. Commands are case-sensitive ASCII, no spaces allowed within brackets. Routing commands persist after power outage (stored in backup memory).
-<!-- UNRESOLVED: specific Tahoe model variant (8x4 vs 8x8) not confirmed in source; protocol variant (Avalon/Borrego/Concord/etc.) selection depends on actual Tahoe hardware revision -->
+- All commands are case sensitive; no spaces are allowed between the brackets.
+- The closing `]` triggers the device to process the command; no CR/LF required.
+- The serial port does NOT echo sent characters. Responses arrive within 150 ms max.
+- When sending a string of commands, wait ≥150 ms between each.
+- Routing state is stored in non-volatile memory and survives power loss (per source).
+- The source describes ten protocol variants for the broader NeoPro/Neothings family. The Tahoe is not explicitly mapped to any of them in the source; verification against a real device is required before driving Tahoe-specific opcodes.
+- The Hawthorne variant additionally documents a `[?S]` query returning all setup parameters; the parameter list itself is not enumerated in the source.
+
+<!-- UNRESOLVED: firmware version compatibility, voltage/current draw, fault behavior, and error-recovery sequences are not stated in the source. -->
 
 ## Provenance
 
 ```yaml
 source_domains:
   - neoprointegrator.us
+  - drivers.control4.com
+  - manualslib.com
 source_urls:
   - https://neoprointegrator.us/wp-content/uploads/2024/01/DOC42-00007-I_Serial-Protocols.pdf
+  - https://drivers.control4.com/avswitch_232_neothings_Tahoe_v23_enc.c4i
+  - https://neoprointegrator.us/wp-content/uploads/2024/01/NeoPro-Tahoe-UserGuide.pdf
+  - https://www.manualslib.com/manual/4219559/Neopro-Tahoe-Veo.html
 retrieved_at: 2026-05-21T15:02:21.118Z
-last_checked_at: 2026-05-31T06:54:49.443Z
+last_checked_at: 2026-06-02T04:20:04.097Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-31T06:54:49.443Z
-matched_actions: 14
-action_count: 14
-confidence: high
-summary: "All 14 spec actions match source protocol sections; transport parameters exact; bidirectional coverage complete."
+checked_at: 2026-06-02T04:20:04.097Z
+matched_actions: 2
+action_count: 2
+confidence: medium
+summary: "Both spec actions (command envelope and version query) are documented verbatim in source; transport parameters match exactly. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source covers the broader Neothings/NeoPro family (protocols named Avalon, Borrego, Concord, Delano, Eureka, Fallbrook, Gillespie, Hawthorne, Imperial, Juneau). The Tahoe-specific protocol variant is not named in the source."
+- "the source describes a family of protocol variants (Avalon, Borrego,"
+- "per-protocol route command shape is variant-specific. The source"
+- "device-driven state-change notifications (unsolicited messages)"
+- "persistent setup parameters exist (the source mentions a `[?S]"
+- "the source does not describe any unsolicited device-to-host"
+- "the source mentions a \"virtual board\" (B0) concept for"
+- "the source contains no safety warnings, interlock procedures,"
+- "firmware version compatibility, voltage/current draw, fault behavior, and error-recovery sequences are not stated in the source."
 ```
 
 ---

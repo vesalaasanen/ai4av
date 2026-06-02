@@ -17,21 +17,33 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T23:00:23.780Z
 last_checked_at: 2026-05-20T11:26:01.694Z
 generated_at: 2026-05-20T11:26:01.694Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact firmware version compatibility not stated"
+  - "maximum concurrent connection count not stated"
+  - "variables not separately documented; all settable parameters"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlock procedures documented in source"
+  - "maximum concurrent TCP connections not stated"
+  - "protocol version number not stated (document titled \"Control Protocol Ver.06\")"
+  - "firmware version compatibility not stated"
+  - "network discovery / IP configuration method not stated"
+  - "specific DN-A7100 feature differences vs other models in the protocol document not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-20T11:26:01.694Z
   matched_actions: 205
   action_count: 205
-  confidence: high
-  summary: "All 205 spec actions matched verbatim in source; transport parameters verified."
+  confidence: medium
+  summary: "All 205 spec actions matched verbatim in source; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2006,9 +2018,11 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
+  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-retrieved_at: 2026-04-29T23:27:42.130Z
+  - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
+retrieved_at: 2026-05-14T23:00:23.780Z
 last_checked_at: 2026-05-20T11:26:01.694Z
 ```
 
@@ -2019,14 +2033,23 @@ verdict: verified
 checked_at: 2026-05-20T11:26:01.694Z
 matched_actions: 205
 action_count: 205
-confidence: high
-summary: "All 205 spec actions matched verbatim in source; transport parameters verified."
+confidence: medium
+summary: "All 205 spec actions matched verbatim in source; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact firmware version compatibility not stated"
+- "maximum concurrent connection count not stated"
+- "variables not separately documented; all settable parameters"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlock procedures documented in source"
+- "maximum concurrent TCP connections not stated"
+- "protocol version number not stated (document titled \"Control Protocol Ver.06\")"
+- "firmware version compatibility not stated"
+- "network discovery / IP configuration method not stated"
+- "specific DN-A7100 feature differences vs other models in the protocol document not stated"
 ```
 
 ---

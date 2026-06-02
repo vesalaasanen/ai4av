@@ -25,14 +25,25 @@ last_checked_at: 2026-04-30T15:20:36.891Z
 generated_at: 2026-04-30T15:20:36.891Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no TCP/IP or other transport mentioned; RS-232 only"
+  - "response format partially documented — byte semantics unclear"
+  - "flow control not stated in source"
+  - "exact byte-level response parsing not fully documented in source"
+  - "no continuous variable parameters documented beyond fade interval (action-based)"
+  - "no multi-step sequences described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "flow control setting not stated"
+  - "mute output parameter range 1–5 vs 4 physical outputs unexplained"
+  - "response format byte semantics only partially documented"
+  - "no power on/off command documented"
 verification:
   verdict: verified
   checked_at: 2026-04-30T15:20:36.891Z
   matched_actions: 13
   action_count: 13
-  confidence: high
-  summary: "All 13 spec actions matched literally; transport verified."
+  confidence: medium
+  summary: "All 13 spec actions matched literally; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -231,14 +242,24 @@ verdict: verified
 checked_at: 2026-04-30T15:20:36.891Z
 matched_actions: 13
 action_count: 13
-confidence: high
-summary: "All 13 spec actions matched literally; transport verified."
+confidence: medium
+summary: "All 13 spec actions matched literally; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no TCP/IP or other transport mentioned; RS-232 only"
+- "response format partially documented — byte semantics unclear"
+- "flow control not stated in source"
+- "exact byte-level response parsing not fully documented in source"
+- "no continuous variable parameters documented beyond fade interval (action-based)"
+- "no multi-step sequences described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "flow control setting not stated"
+- "mute output parameter range 1–5 vs 4 physical outputs unexplained"
+- "response format byte semantics only partially documented"
+- "no power on/off command documented"
 ```
 
 ---

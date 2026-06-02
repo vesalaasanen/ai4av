@@ -19,22 +19,30 @@ source_domains:
   - digitalprojection.co.uk
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+retrieved_at: 2026-04-30T04:24:54.659Z
 last_checked_at: 2026-05-14T18:17:15.596Z
 generated_at: 2026-05-14T18:17:15.596Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "power-on sequencing requirements not stated"
+  - "populate from source, or remove section if not applicable"
+  - "source does not describe unsolicited event notifications"
+  - "source does not describe multi-step macros"
+  - "power-on sequencing requirements not stated in source"
+  - "firmware version compatibility not stated"
+  - "port numbers for serial (only baud rate stated)"
+  - "default IP address (192.168.0.100) noted for network setup but not confirmed as static"
+  - "fault behavior and error recovery sequences"
+  - "binary command byte encodings (source uses ASCII text format only)"
+  - "protocol version numbers not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.596Z
   matched_actions: 176
   action_count: 204
-  confidence: high
-  summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified."
+  confidence: medium
+  summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1802,10 +1810,7 @@ source_domains:
   - digitalprojection.co.uk
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
-  - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
-  - "http://digitalprojection.co.uk/dpdownloads/DP%20Resources%20115-759G/content/protocol/Protocol%20Guide%20Rev%20D.pdf"
-retrieved_at: 2026-05-01T00:18:24.749Z
+retrieved_at: 2026-04-30T04:24:54.659Z
 last_checked_at: 2026-05-14T18:17:15.596Z
 ```
 
@@ -1816,14 +1821,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.596Z
 matched_actions: 176
 action_count: 204
-confidence: high
-summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified."
+confidence: medium
+summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "power-on sequencing requirements not stated"
+- "populate from source, or remove section if not applicable"
+- "source does not describe unsolicited event notifications"
+- "source does not describe multi-step macros"
+- "power-on sequencing requirements not stated in source"
+- "firmware version compatibility not stated"
+- "port numbers for serial (only baud rate stated)"
+- "default IP address (192.168.0.100) noted for network setup but not confirmed as static"
+- "fault behavior and error recovery sequences"
+- "binary command byte encodings (source uses ASCII text format only)"
+- "protocol version numbers not stated"
 ```
 
 ---

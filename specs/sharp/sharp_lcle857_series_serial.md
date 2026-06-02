@@ -16,26 +16,28 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:33:31.512Z
 last_checked_at: 2026-05-31T21:11:57.359Z
 generated_at: 2026-05-31T21:11:57.359Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "This doc also describes LAN control but TCP port only — no auth scheme stated for either transport."
+  - "RS-232C port not stated, only baud given"
+  - "chapter 8 OSD table not included in source excerpt"
+  - "No unsolicited event descriptions found in source"
+  - "no safety warnings, interlock procedures, or power sequencing stated"
+  - "chapter 8 OSD menu and contrast table for each command not included in source excerpt. UNRESOLVED: firmware version compatibility not stated. UNRESOLVED: RS-232C port number not stated (only baud rate). UNRESOLVED: whether auth is required for LAN — no procedure described but port 7142 is exposed."
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:11:57.359Z
   matched_actions: 16
   action_count: 16
-  confidence: high
-  summary: "All 16 spec action units map directly to source CTL commands and VCP get/set operations; transport values (9600bps 8N1, port 7142) confirmed verbatim; source command catalogue is essentially fully represented by spec."
+  confidence: medium
+  summary: "All 16 spec action units map directly to source CTL commands and VCP get/set operations; transport values (9600bps 8N1, port 7142) confirmed verbatim; source command catalogue is essentially fully represented by spec. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -298,14 +300,10 @@ Backlight example: OP code page=00h, code=10h, range 0–100 (0064h), stored val
 
 ```yaml
 source_domains:
-  - assets.sharpnecdisplays.us
   - sharp-displays.jp.sharp
-  - business.sharpusa.com
 source_urls:
-  - https://assets.sharpnecdisplays.us/documents/usermanuals/4tb-series-operation-manual.pdf
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
-  - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
-retrieved_at: 2026-04-30T10:43:39.739Z
+retrieved_at: 2026-05-26T01:33:31.512Z
 last_checked_at: 2026-05-31T21:11:57.359Z
 ```
 
@@ -316,14 +314,19 @@ verdict: verified
 checked_at: 2026-05-31T21:11:57.359Z
 matched_actions: 16
 action_count: 16
-confidence: high
-summary: "All 16 spec action units map directly to source CTL commands and VCP get/set operations; transport values (9600bps 8N1, port 7142) confirmed verbatim; source command catalogue is essentially fully represented by spec."
+confidence: medium
+summary: "All 16 spec action units map directly to source CTL commands and VCP get/set operations; transport values (9600bps 8N1, port 7142) confirmed verbatim; source command catalogue is essentially fully represented by spec. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "This doc also describes LAN control but TCP port only — no auth scheme stated for either transport."
+- "RS-232C port not stated, only baud given"
+- "chapter 8 OSD table not included in source excerpt"
+- "No unsolicited event descriptions found in source"
+- "no safety warnings, interlock procedures, or power sequencing stated"
+- "chapter 8 OSD menu and contrast table for each command not included in source excerpt. UNRESOLVED: firmware version compatibility not stated. UNRESOLVED: RS-232C port number not stated (only baud rate). UNRESOLVED: whether auth is required for LAN — no procedure described but port 7142 is exposed."
 ```
 
 ---

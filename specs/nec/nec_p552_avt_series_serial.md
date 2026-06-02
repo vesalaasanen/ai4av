@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:03.329Z
 last_checked_at: 2026-05-14T18:17:18.943Z
 generated_at: 2026-05-14T18:17:18.943Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "input terminal code values vary by model; some codes are model-dependent"
+  - "commands 053-7, 053-10, 053-11 fully detailed hex values not captured above"
+  - "continuous adjustable parameters are handled via Actions (picture_adjust, volume_adjust, etc.)"
+  - "no unsolicited event descriptions found in source; device sends responses only on command"
+  - "no explicit multi-step macro sequences described in source"
+  - "no explicit safety warnings or interlock procedures in source"
+  - "detailed hex command codes for 053-7, 053-10, 053-11, 319-10 not fully enumerated"
+  - "HDBaseT control mentioned but not detailed"
+  - "viewer/USB input code values not fully enumerated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.943Z
   matched_actions: 28
   action_count: 28
-  confidence: high
-  summary: "All 53 spec actions matched their source commands with correct semantics; transport parameters verified verbatim in source."
+  confidence: medium
+  summary: "All 53 spec actions matched their source commands with correct semantics; transport parameters verified verbatim in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -477,7 +486,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:03.329Z
 last_checked_at: 2026-05-14T18:17:18.943Z
 ```
 
@@ -488,14 +497,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.943Z
 matched_actions: 28
 action_count: 28
-confidence: high
-summary: "All 53 spec actions matched their source commands with correct semantics; transport parameters verified verbatim in source."
+confidence: medium
+summary: "All 53 spec actions matched their source commands with correct semantics; transport parameters verified verbatim in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "input terminal code values vary by model; some codes are model-dependent"
+- "commands 053-7, 053-10, 053-11 fully detailed hex values not captured above"
+- "continuous adjustable parameters are handled via Actions (picture_adjust, volume_adjust, etc.)"
+- "no unsolicited event descriptions found in source; device sends responses only on command"
+- "no explicit multi-step macro sequences described in source"
+- "no explicit safety warnings or interlock procedures in source"
+- "detailed hex command codes for 053-7, 053-10, 053-11, 319-10 not fully enumerated"
+- "HDBaseT control mentioned but not detailed"
+- "viewer/USB input code values not fully enumerated"
 ```
 
 ---

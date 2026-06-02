@@ -16,26 +16,29 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - mcintoshlabs.com
-  - raw.githubusercontent.com
-source_urls:
-  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
-  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
-retrieved_at: 2026-05-04T15:10:09.003Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:18.130Z
 last_checked_at: 2026-05-14T18:17:18.130Z
 generated_at: 2026-05-14T18:17:18.130Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility range not stated"
+  - "maximum command rate / minimum inter-command delay not stated"
+  - "no multi-step sequences explicitly described in source"
+  - "no explicit power-on sequencing requirements stated in source"
+  - "maximum command throughput / minimum inter-command delay not stated"
+  - "TCP connection persistence behavior (keep-alive, timeout) not stated"
+  - "firmware version compatibility not stated"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.130Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified."
+  confidence: medium
+  summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -839,14 +842,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - mcintoshlabs.com
-  - raw.githubusercontent.com
-source_urls:
-  - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
-  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-  - https://raw.githubusercontent.com/RobKikta/IntoBlue/master/McIntosh_RS232ControlApplicationNote.pdf
-retrieved_at: 2026-05-04T15:10:09.003Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-14T18:17:18.130Z
 last_checked_at: 2026-05-14T18:17:18.130Z
 ```
 
@@ -857,14 +855,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.130Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified."
+confidence: medium
+summary: "All 73 spec actions matched literally in source with correct parameters and transport values fully verified. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility range not stated"
+- "maximum command rate / minimum inter-command delay not stated"
+- "no multi-step sequences explicitly described in source"
+- "no explicit power-on sequencing requirements stated in source"
+- "maximum command throughput / minimum inter-command delay not stated"
+- "TCP connection persistence behavior (keep-alive, timeout) not stated"
+- "firmware version compatibility not stated"
+- "model-specific source not located"
 ```
 
 ---

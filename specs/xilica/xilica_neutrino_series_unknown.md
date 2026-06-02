@@ -18,21 +18,36 @@ compatible_with:
   required_options: []
 source_domains:
   - cdn.xilica.com
+  - cn.xilica.com
+  - proaudio-technik.de
+  - starfelt.se
+  - manualmachine.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://cn.xilica.com/wp-content/uploads/2022/01/210630045859_XIL003_UserManual_Neutrino.pdf
+  - "https://www.proaudio-technik.de/media/pdf/12/9f/12/560401_Xilica%20Solaro%20Third%20Party%20Guide.pdf"
+  - https://www.starfelt.se/manualer/1100890092_3rdpart.pdf
+  - https://manualmachine.com/xilica/neutrino/1808966-user-manual/
+retrieved_at: 2026-05-19T04:24:08.275Z
 last_checked_at: 2026-05-19T17:13:34.336Z
 generated_at: 2026-05-19T17:13:34.336Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "firmware version compatibility not stated in source"
+  - "specific DSP parameters (gain, EQ, filter, etc.) are user-defined"
+  - "device-initiated events other than parameter change notifications"
+  - "no explicit multi-step macro sequences documented."
+  - "serial/RS-232 support — source documents only TCP/UDP"
+  - "TCP port assumed 10007 for command channel; UDP 10008 for subscription broadcasts — stated in source"
+  - "voltage, current, power specifications — not applicable to control protocol"
 verification:
   verdict: verified
   checked_at: 2026-05-19T17:13:34.336Z
   matched_actions: 21
   action_count: 21
-  confidence: high
-  summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed."
+  confidence: medium
+  summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -323,9 +338,17 @@ Control objects must be pre-configured in Xilica Designer before use over the AP
 ```yaml
 source_domains:
   - cdn.xilica.com
+  - cn.xilica.com
+  - proaudio-technik.de
+  - starfelt.se
+  - manualmachine.com
 source_urls:
   - https://cdn.xilica.com/designer/FAQ/X22_Solaro_API_Guide.pdf
-retrieved_at: 2026-05-04T18:05:07.642Z
+  - https://cn.xilica.com/wp-content/uploads/2022/01/210630045859_XIL003_UserManual_Neutrino.pdf
+  - "https://www.proaudio-technik.de/media/pdf/12/9f/12/560401_Xilica%20Solaro%20Third%20Party%20Guide.pdf"
+  - https://www.starfelt.se/manualer/1100890092_3rdpart.pdf
+  - https://manualmachine.com/xilica/neutrino/1808966-user-manual/
+retrieved_at: 2026-05-19T04:24:08.275Z
 last_checked_at: 2026-05-19T17:13:34.336Z
 ```
 
@@ -336,14 +359,20 @@ verdict: verified
 checked_at: 2026-05-19T17:13:34.336Z
 matched_actions: 21
 action_count: 21
-confidence: high
-summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed."
+confidence: medium
+summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "firmware version compatibility not stated in source"
+- "specific DSP parameters (gain, EQ, filter, etc.) are user-defined"
+- "device-initiated events other than parameter change notifications"
+- "no explicit multi-step macro sequences documented."
+- "serial/RS-232 support — source documents only TCP/UDP"
+- "TCP port assumed 10007 for command channel; UDP 10008 for subscription broadcasts — stated in source"
+- "voltage, current, power specifications — not applicable to control protocol"
 ```
 
 ---

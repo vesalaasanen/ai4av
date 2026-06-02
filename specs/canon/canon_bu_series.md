@@ -24,14 +24,28 @@ last_checked_at: 2026-04-23T15:28:39.241Z
 generated_at: 2026-04-23T15:28:39.241Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact command byte format/hex encoding not documented — source describes signals at the control-system level (Crestron module), not raw serial protocol"
+  - "no query/response command syntax shown — only signal names and types"
+  - "flow control not stated in source"
+  - "cable pinout beyond \"CNSP-124\" not documented"
+  - "not applicable for serial"
+  - "exact values not specified in source"
+  - "analog parameter ranges (min/max) not stated in source"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences explicitly documented in source"
+  - "source mentions initialization and power commands but no explicit"
+  - "raw serial command byte format and checksum not documented"
+  - "analog parameter ranges and step sizes not stated"
+  - "response time / latency characteristics not stated"
+  - "protocol version not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-23T15:28:39.241Z
   matched_actions: 71
   action_count: 71
-  confidence: high
-  summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -623,14 +637,27 @@ verdict: verified
 checked_at: 2026-04-23T15:28:39.241Z
 matched_actions: 71
 action_count: 71
-confidence: high
-summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact command byte format/hex encoding not documented — source describes signals at the control-system level (Crestron module), not raw serial protocol"
+- "no query/response command syntax shown — only signal names and types"
+- "flow control not stated in source"
+- "cable pinout beyond \"CNSP-124\" not documented"
+- "not applicable for serial"
+- "exact values not specified in source"
+- "analog parameter ranges (min/max) not stated in source"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences explicitly documented in source"
+- "source mentions initialization and power commands but no explicit"
+- "raw serial command byte format and checksum not documented"
+- "analog parameter ranges and step sizes not stated"
+- "response time / latency characteristics not stated"
+- "protocol version not stated"
 ```
 
 ---

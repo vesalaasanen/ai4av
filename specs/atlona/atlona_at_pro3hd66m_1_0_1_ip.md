@@ -18,24 +18,31 @@ compatible_with:
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PRO3HD66M_V2.pdf
+  - https://atlona.com/downloads/AMX_AT-PRO3HD66M.zip
+  - https://atlona.com/downloads/Neets_AT-PRO3HD66M.zip
+retrieved_at: 2026-05-19T19:45:48.289Z
 last_checked_at: 2026-05-20T04:51:36.750Z
 generated_at: 2026-05-20T04:51:36.750Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "voltage/power specs not stated in source"
+  - "TCP port number not stated in source - operator must set port after connecting"
+  - "no discrete settable parameters outside of action commands in source"
+  - "no unsolicited event descriptions in source - device may send spontaneous"
+  - "no explicit multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP port number not stated in source — operator must configure"
+  - "unsolicited event messages not documented in source"
+  - "firmware version compatibility range not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-20T04:51:36.750Z
   matched_actions: 34
   action_count: 34
-  confidence: high
-  summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented."
+  confidence: medium
+  summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -472,12 +479,10 @@ Commands are case-sensitive ASCII terminated with carriage return (`\r`). Failed
 source_domains:
   - atlona.com
 source_urls:
-  - https://atlona.com/pdf/AT-HDR-H2H-44MA_API.pdf
-  - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-44M_API.pdf
-  - https://atlona.com/pdf/AT-OCS-900N_API.pdf
-  - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
-retrieved_at: 2026-04-30T10:17:04.860Z
+  - https://atlona.com/pdf/manuals/AT-PRO3HD66M_V2.pdf
+  - https://atlona.com/downloads/AMX_AT-PRO3HD66M.zip
+  - https://atlona.com/downloads/Neets_AT-PRO3HD66M.zip
+retrieved_at: 2026-05-19T19:45:48.289Z
 last_checked_at: 2026-05-20T04:51:36.750Z
 ```
 
@@ -488,14 +493,22 @@ verdict: verified
 checked_at: 2026-05-20T04:51:36.750Z
 matched_actions: 34
 action_count: 34
-confidence: high
-summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented."
+confidence: medium
+summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "voltage/power specs not stated in source"
+- "TCP port number not stated in source - operator must set port after connecting"
+- "no discrete settable parameters outside of action commands in source"
+- "no unsolicited event descriptions in source - device may send spontaneous"
+- "no explicit multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP port number not stated in source — operator must configure"
+- "unsolicited event messages not documented in source"
+- "firmware version compatibility range not stated in source"
 ```
 
 ---

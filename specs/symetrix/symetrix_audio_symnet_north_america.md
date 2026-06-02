@@ -24,14 +24,18 @@ last_checked_at: 2026-04-27T15:36:58.534Z
 generated_at: 2026-04-27T15:36:58.534Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "controller number maps for Symnet models not present in source; only generic Jupiter protocol described"
+  - "no safety warnings or interlock procedures in source"
+  - "RS-485 control mentioned but no RS-485 protocol details; ARC devices referenced but not covered"
+  - "specific Symnet model controller number maps not in source; generic Jupiter mapping only"
 verification:
   verdict: verified
   checked_at: 2026-04-27T15:36:58.534Z
   matched_actions: 19
   action_count: 19
-  confidence: high
-  summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630)."
+  confidence: medium
+  summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -350,14 +354,17 @@ verdict: verified
 checked_at: 2026-04-27T15:36:58.534Z
 matched_actions: 19
 action_count: 19
-confidence: high
-summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630)."
+confidence: medium
+summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "controller number maps for Symnet models not present in source; only generic Jupiter protocol described"
+- "no safety warnings or interlock procedures in source"
+- "RS-485 control mentioned but no RS-485 protocol details; ARC devices referenced but not covered"
+- "specific Symnet model controller number maps not in source; generic Jupiter mapping only"
 ```
 
 ---

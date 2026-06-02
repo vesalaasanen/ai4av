@@ -17,23 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - shinybowusa.com
+  - manualslib.com
 source_urls:
   - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - "https://www.manualslib.com/manual/1854379/Shinybow-Usa-8x2-Multivideo-To-Vga-Switcher-Series.html?page=8"
+retrieved_at: 2026-05-21T21:31:27.380Z
 last_checked_at: 2026-05-31T21:21:14.612Z
 generated_at: 2026-05-31T21:21:14.612Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no standalone settable parameters documented"
+  - "no unsolicited event notifications documented"
+  - "no multi-step macros documented"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "RS-232 connector pinout not stated in source"
+  - "command timing or inter-command delay requirements not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-05-31T21:21:14.612Z
   matched_actions: 10
   action_count: 10
-  confidence: high
-  summary: "All 10 spec actions matched distinct source control commands; transport params verified; complete bidirectional coverage."
+  confidence: medium
+  summary: "All 10 spec actions matched distinct source control commands; transport params verified; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -227,11 +234,11 @@ After receiving `SBASKSTA`, device sends 10 sequential feedback responses: power
 ```yaml
 source_domains:
   - shinybowusa.com
+  - manualslib.com
 source_urls:
   - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-  - https://www.shinybowusa.com/PDF/RS232_Protocol_SB-5544BNC_SB-5548BNC.pdf
-  - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
-retrieved_at: 2026-05-21T22:00:46.782Z
+  - "https://www.manualslib.com/manual/1854379/Shinybow-Usa-8x2-Multivideo-To-Vga-Switcher-Series.html?page=8"
+retrieved_at: 2026-05-21T21:31:27.380Z
 last_checked_at: 2026-05-31T21:21:14.612Z
 ```
 
@@ -242,14 +249,20 @@ verdict: verified
 checked_at: 2026-05-31T21:21:14.612Z
 matched_actions: 10
 action_count: 10
-confidence: high
-summary: "All 10 spec actions matched distinct source control commands; transport params verified; complete bidirectional coverage."
+confidence: medium
+summary: "All 10 spec actions matched distinct source control commands; transport params verified; complete bidirectional coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no standalone settable parameters documented"
+- "no unsolicited event notifications documented"
+- "no multi-step macros documented"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "RS-232 connector pinout not stated in source"
+- "command timing or inter-command delay requirements not stated in source"
 ```
 
 ---

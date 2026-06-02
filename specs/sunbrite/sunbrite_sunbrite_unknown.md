@@ -30,13 +30,21 @@ firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Input 2 - NA"
+  - "no TCP/IP or HTTP support documented"
+  - "flow control not stated in source"
+  - "no continuous variables documented - discrete command/response pairs only"
+  - "no unsolicited event notifications documented"
+  - "no macro sequences documented"
+  - "no safety warnings or interlock procedures in source"
+  - "flow control configuration not stated in source"
+  - "full variable state readback not documented — only discrete command acknowledgements"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.023Z
   matched_actions: 49
   action_count: 49
-  confidence: high
-  summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded."
+  confidence: medium
+  summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -417,14 +425,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.023Z
 matched_actions: 49
 action_count: 49
-confidence: high
-summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded."
+confidence: medium
+summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "Input 2 - NA"
+- "no TCP/IP or HTTP support documented"
+- "flow control not stated in source"
+- "no continuous variables documented - discrete command/response pairs only"
+- "no unsolicited event notifications documented"
+- "no macro sequences documented"
+- "no safety warnings or interlock procedures in source"
+- "flow control configuration not stated in source"
+- "full variable state readback not documented — only discrete command acknowledgements"
 ```
 
 ---

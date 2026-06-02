@@ -28,14 +28,19 @@ last_checked_at: 2026-04-27T10:13:14.101Z
 generated_at: 2026-04-27T10:13:14.101Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "RS-232 port not available on all models; Zone Mix 760 units manufactured before December 1, 2007 lack RS-232"
+  - "full controller number tables require model-specific appendix reference"
+  - "no explicit multi-step macros defined in source"
+  - "no safety warnings or interlock procedures in source"
+  - "specific controller number mappings are model-dependent; full tables span appendices A-D"
 verification:
   verdict: verified
   checked_at: 2026-04-27T10:13:14.101Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified."
+  confidence: medium
+  summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -353,14 +358,18 @@ verdict: verified
 checked_at: 2026-04-27T10:13:14.101Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified."
+confidence: medium
+summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "RS-232 port not available on all models; Zone Mix 760 units manufactured before December 1, 2007 lack RS-232"
+- "full controller number tables require model-specific appendix reference"
+- "no explicit multi-step macros defined in source"
+- "no safety warnings or interlock procedures in source"
+- "specific controller number mappings are model-dependent; full tables span appendices A-D"
 ```
 
 ---

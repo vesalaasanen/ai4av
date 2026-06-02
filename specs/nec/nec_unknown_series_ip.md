@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:11.848Z
 last_checked_at: 2026-05-14T18:17:18.999Z
 generated_at: 2026-05-14T18:17:18.999Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "specific model names within the UNKNOWN Series are not enumerated in the source"
+  - "flow control not stated in source"
+  - "actual range not stated, inferred from 8-bit values"
+  - "source does not document unsolicited event notifications from the device"
+  - "safety warnings related to lamp replacement, dust exposure, or portrait cover orientation not explicitly documented"
+  - "specific input terminal hex codes vary by model - source references appendix for full list"
+  - "base model type values not enumerated in source"
+  - "protocol version not stated in source"
+  - "HDBaseT standby mode availability not fully clarified"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.999Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 54 hex-encoded command patterns match source section 3 verbatim; all transport parameters verified; no extra commands in source."
+  confidence: medium
+  summary: "All 54 hex-encoded command patterns match source section 3 verbatim; all transport parameters verified; no extra commands in source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -672,7 +681,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:53:11.848Z
 last_checked_at: 2026-05-14T18:17:18.999Z
 ```
 
@@ -683,14 +692,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.999Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 54 hex-encoded command patterns match source section 3 verbatim; all transport parameters verified; no extra commands in source."
+confidence: medium
+summary: "All 54 hex-encoded command patterns match source section 3 verbatim; all transport parameters verified; no extra commands in source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "specific model names within the UNKNOWN Series are not enumerated in the source"
+- "flow control not stated in source"
+- "actual range not stated, inferred from 8-bit values"
+- "source does not document unsolicited event notifications from the device"
+- "safety warnings related to lamp replacement, dust exposure, or portrait cover orientation not explicitly documented"
+- "specific input terminal hex codes vary by model - source references appendix for full list"
+- "base model type values not enumerated in source"
+- "protocol version not stated in source"
+- "HDBaseT standby mode availability not fully clarified"
 ```
 
 ---

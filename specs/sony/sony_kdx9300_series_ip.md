@@ -16,26 +16,34 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/ircc-ip/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+retrieved_at: 2026-05-27T15:15:11.753Z
 last_checked_at: 2026-05-31T22:40:37.732Z
 generated_at: 2026-05-31T22:40:37.732Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "port number not stated in source"
+  - "firmware version compatibility not stated in source"
+  - "source documents notification APIs in getSupportedApiInfo response structure"
+  - "no explicit safety warnings or interlock procedures found in source"
+  - "firmware version compatibility not stated"
+  - "IRCC endpoint for sending remote control codes referenced but not documented"
+  - "notification/websocket event subscription mechanism not documented"
+  - "maximum concurrent connection limit not specified"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:40:37.732Z
   matched_actions: 47
   action_count: 47
-  confidence: high
-  summary: "All 47 spec actions match verbatim JSON-RPC method names in the source with correct shapes and parameters; transport base_url and PSK auth confirmed."
+  confidence: medium
+  summary: "All 47 spec actions match verbatim JSON-RPC method names in the source with correct shapes and parameters; transport base_url and PSK auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -861,14 +869,14 @@ interlocks:
 
 ```yaml
 source_domains:
-  - sony.com
-  - pro.sony
   - pro-bravia.sony.net
 source_urls:
-  - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
-  - https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf
+  - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-retrieved_at: 2026-04-30T04:31:02.425Z
+  - https://pro-bravia.sony.net/remote-display-control/ircc-ip/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+retrieved_at: 2026-05-27T15:15:11.753Z
 last_checked_at: 2026-05-31T22:40:37.732Z
 ```
 
@@ -879,14 +887,21 @@ verdict: verified
 checked_at: 2026-05-31T22:40:37.732Z
 matched_actions: 47
 action_count: 47
-confidence: high
-summary: "All 47 spec actions match verbatim JSON-RPC method names in the source with correct shapes and parameters; transport base_url and PSK auth confirmed."
+confidence: medium
+summary: "All 47 spec actions match verbatim JSON-RPC method names in the source with correct shapes and parameters; transport base_url and PSK auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "port number not stated in source"
+- "firmware version compatibility not stated in source"
+- "source documents notification APIs in getSupportedApiInfo response structure"
+- "no explicit safety warnings or interlock procedures found in source"
+- "firmware version compatibility not stated"
+- "IRCC endpoint for sending remote control codes referenced but not documented"
+- "notification/websocket event subscription mechanism not documented"
+- "maximum concurrent connection limit not specified"
 ```
 
 ---

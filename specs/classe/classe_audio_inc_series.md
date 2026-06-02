@@ -25,14 +25,22 @@ last_checked_at: 2026-04-24T14:43:52.833Z
 generated_at: 2026-04-24T14:43:52.833Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "only RS-232 documented; TCP/IP control not present in source"
+  - "no discrete settable parameters beyond action commands"
+  - "no unsolicited event descriptions in source; automatic status updates"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP/IP control interface not documented in source"
+  - "firmware version compatibility not stated in source"
+  - "video output debug commands (DBGVIDOUT) parameters not fully specified in source"
 verification:
   verdict: verified
   checked_at: 2026-04-24T14:43:52.833Z
   matched_actions: 56
   action_count: 56
-  confidence: high
-  summary: "Complete correspondence between spec and refined source; all claims substantiated."
+  confidence: medium
+  summary: "Complete correspondence between spec and refined source; all claims substantiated. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -505,14 +513,21 @@ verdict: verified
 checked_at: 2026-04-24T14:43:52.833Z
 matched_actions: 56
 action_count: 56
-confidence: high
-summary: "Complete correspondence between spec and refined source; all claims substantiated."
+confidence: medium
+summary: "Complete correspondence between spec and refined source; all claims substantiated. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "only RS-232 documented; TCP/IP control not present in source"
+- "no discrete settable parameters beyond action commands"
+- "no unsolicited event descriptions in source; automatic status updates"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP/IP control interface not documented in source"
+- "firmware version compatibility not stated in source"
+- "video output debug commands (DBGVIDOUT) parameters not fully specified in source"
 ```
 
 ---

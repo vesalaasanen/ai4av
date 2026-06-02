@@ -17,25 +17,32 @@ compatible_with:
   required_options: []
 source_domains:
   - extron.com
-  - media.extron.com
+  - usermanual.wiki
+  - manualshelf.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/MVC121manual_revCforweb.pdf
+  - https://usermanual.wiki/Extron-Electronic/ExtronElectronicMvc121UsersManual541924.1092380054.pdf
+  - https://www.extron.com
+  - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
+retrieved_at: 2026-05-13T00:44:59.443Z
 last_checked_at: 2026-05-15T21:38:58.162Z
 generated_at: 2026-05-15T21:38:58.162Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Zpx firmware upload"
+  - "no settable parameters beyond discrete actions identified"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "firmware version compatibility not stated in source"
+  - "no TCP/IP or network control mentioned — RS-232 only"
 verification:
   verdict: verified
   checked_at: 2026-05-15T21:38:58.162Z
   matched_actions: 22
   action_count: 22
-  confidence: high
-  summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec."
+  confidence: medium
+  summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -303,12 +310,14 @@ interlocks: []
 ```yaml
 source_domains:
   - extron.com
-  - media.extron.com
+  - usermanual.wiki
+  - manualshelf.com
 source_urls:
-  - https://www.extron.com/download/files/userman/Matrix3200_6400_Wideband_A.pdf
-  - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
-  - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
-retrieved_at: 2026-05-01T02:11:30.714Z
+  - https://www.extron.com/download/files/userman/MVC121manual_revCforweb.pdf
+  - https://usermanual.wiki/Extron-Electronic/ExtronElectronicMvc121UsersManual541924.1092380054.pdf
+  - https://www.extron.com
+  - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
+retrieved_at: 2026-05-13T00:44:59.443Z
 last_checked_at: 2026-05-15T21:38:58.162Z
 ```
 
@@ -319,14 +328,19 @@ verdict: verified
 checked_at: 2026-05-15T21:38:58.162Z
 matched_actions: 22
 action_count: 22
-confidence: high
-summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec."
+confidence: medium
+summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "Zpx firmware upload"
+- "no settable parameters beyond discrete actions identified"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "firmware version compatibility not stated in source"
+- "no TCP/IP or network control mentioned — RS-232 only"
 ```
 
 ---

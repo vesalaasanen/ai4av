@@ -16,22 +16,36 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - raw.githubusercontent.com
+  - webostv.developer.lge.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
+  - https://webostv.developer.lge.com/develop/references/audio
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-05-14T18:17:17.618Z
 last_checked_at: 2026-05-14T18:17:17.618Z
 generated_at: 2026-05-14T18:17:17.618Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port number not stated in source"
+  - "specific model numbers not stated in source"
+  - "TCP port number not stated in source"
+  - "no settable continuous variables beyond those covered in Actions/Feedbacks"
+  - "no unsolicited event/notification mechanism described in source"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "TCP port number for IP control not documented"
+  - "specific OLED model numbers not stated"
+  - "firmware version compatibility not stated"
+  - "maximum command rate / timing constraints not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:17.618Z
   matched_actions: 27
   action_count: 27
-  confidence: high
-  summary: "All 47 spec actions (27 Actions + 20 Feedbacks) matched literally in source; complete command catalogue coverage."
+  confidence: medium
+  summary: "All 47 spec actions (27 Actions + 20 Feedbacks) matched literally in source; complete command catalogue coverage. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -699,10 +713,13 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - raw.githubusercontent.com
+  - webostv.developer.lge.com
+  - justaddpower.com
 source_urls:
-  - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
-retrieved_at: 2026-05-04T18:02:55.956Z
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
+  - https://webostv.developer.lge.com/develop/references/audio
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-05-14T18:17:17.618Z
 last_checked_at: 2026-05-14T18:17:17.618Z
 ```
 
@@ -713,14 +730,24 @@ verdict: verified
 checked_at: 2026-05-14T18:17:17.618Z
 matched_actions: 27
 action_count: 27
-confidence: high
-summary: "All 47 spec actions (27 Actions + 20 Feedbacks) matched literally in source; complete command catalogue coverage."
+confidence: medium
+summary: "All 47 spec actions (27 Actions + 20 Feedbacks) matched literally in source; complete command catalogue coverage. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port number not stated in source"
+- "specific model numbers not stated in source"
+- "TCP port number not stated in source"
+- "no settable continuous variables beyond those covered in Actions/Feedbacks"
+- "no unsolicited event/notification mechanism described in source"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "TCP port number for IP control not documented"
+- "specific OLED model numbers not stated"
+- "firmware version compatibility not stated"
+- "maximum command rate / timing constraints not stated"
 ```
 
 ---

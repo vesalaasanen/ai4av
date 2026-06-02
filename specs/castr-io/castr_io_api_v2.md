@@ -24,14 +24,22 @@ last_checked_at: 2026-05-03T15:26:41.058Z
 generated_at: 2026-05-03T15:26:41.058Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "complete iframe postMessage event catalog beyond watch time not documented"
+  - "API versioning details beyond title reference to \"v2\" not stated"
+  - "no runtime-settable variables beyond embed-time URL parameters"
+  - "source mentions postMessage watch-time delivery but no unsolicited event catalog"
+  - "no multi-step sequences described in source"
+  - "no safety warnings or interlock procedures in source"
+  - "complete postMessage event schema not documented beyond watch time"
+  - "no API versioning info beyond \"v2\" in title"
 verification:
   verdict: verified
   checked_at: 2026-05-03T15:26:41.058Z
   matched_actions: 24
   action_count: 24
-  confidence: high
-  summary: "All 24 URL query parameters in the spec match verbatim entries in the source with correct shapes and no extras omitted."
+  confidence: medium
+  summary: "All 24 URL query parameters in the spec match verbatim entries in the source with correct shapes and no extras omitted. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -322,14 +330,21 @@ verdict: verified
 checked_at: 2026-05-03T15:26:41.058Z
 matched_actions: 24
 action_count: 24
-confidence: high
-summary: "All 24 URL query parameters in the spec match verbatim entries in the source with correct shapes and no extras omitted."
+confidence: medium
+summary: "All 24 URL query parameters in the spec match verbatim entries in the source with correct shapes and no extras omitted. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "complete iframe postMessage event catalog beyond watch time not documented"
+- "API versioning details beyond title reference to \"v2\" not stated"
+- "no runtime-settable variables beyond embed-time URL parameters"
+- "source mentions postMessage watch-time delivery but no unsolicited event catalog"
+- "no multi-step sequences described in source"
+- "no safety warnings or interlock procedures in source"
+- "complete postMessage event schema not documented beyond watch time"
+- "no API versioning info beyond \"v2\" in title"
 ```
 
 ---

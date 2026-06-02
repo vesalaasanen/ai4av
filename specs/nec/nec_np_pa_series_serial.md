@@ -47,19 +47,33 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:25.396Z
 last_checked_at: 2026-05-14T18:17:18.593Z
 generated_at: 2026-05-14T18:17:18.593Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact model-specific input terminal hex codes vary by model — see supplementary tables in source"
+  - "eco mode values vary by model subgroup"
+  - "some models cannot receive commands in standby mode — see Appendix \"Standby Mode setting for receiving commands\""
+  - "flow control not explicitly stated; RTS/CTS pins connected in pinout"
+  - "range not stated; use gain_parameter request to discover"
+  - "no unsolicited event/notification mechanism described in source."
+  - "no multi-step macro sequences described in source"
+  - "source mentions interlock switch (DATA09 Bit1) but no explicit"
+  - "exact control ID (ID1) and model code (ID2) values not specified in source — likely configured per projector"
+  - "supported input terminal codes are model-specific; only representative examples listed"
+  - "eco mode, aspect ratio values are model-specific"
+  - "maximum/minimum values for picture and volume adjustment ranges not stated; must be queried via gain parameter request (060-1)"
+  - "standby mode command reception capability varies by model"
+  - "document revision is BDT140013 Rev 7.1 / BDT140014 Rev 29.0; firmware compatibility ranges not stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:18.593Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage."
+  confidence: medium
+  summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -724,7 +738,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T13:51:21.081Z
+retrieved_at: 2026-04-29T13:52:25.396Z
 last_checked_at: 2026-05-14T18:17:18.593Z
 ```
 
@@ -735,14 +749,27 @@ verdict: verified
 checked_at: 2026-05-14T18:17:18.593Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage."
+confidence: medium
+summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact model-specific input terminal hex codes vary by model — see supplementary tables in source"
+- "eco mode values vary by model subgroup"
+- "some models cannot receive commands in standby mode — see Appendix \"Standby Mode setting for receiving commands\""
+- "flow control not explicitly stated; RTS/CTS pins connected in pinout"
+- "range not stated; use gain_parameter request to discover"
+- "no unsolicited event/notification mechanism described in source."
+- "no multi-step macro sequences described in source"
+- "source mentions interlock switch (DATA09 Bit1) but no explicit"
+- "exact control ID (ID1) and model code (ID2) values not specified in source — likely configured per projector"
+- "supported input terminal codes are model-specific; only representative examples listed"
+- "eco mode, aspect ratio values are model-specific"
+- "maximum/minimum values for picture and volume adjustment ranges not stated; must be queried via gain parameter request (060-1)"
+- "standby mode command reception capability varies by model"
+- "document revision is BDT140013 Rev 7.1 / BDT140014 Rev 29.0; firmware compatibility ranges not stated"
 ```
 
 ---

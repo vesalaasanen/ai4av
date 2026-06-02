@@ -19,19 +19,28 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:19.549Z
 last_checked_at: 2026-04-25T21:56:02.981Z
 generated_at: 2026-04-25T21:56:02.981Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "standby mode command acceptance varies by model — NP-P627UL specific standby mode not confirmed"
+  - "variables are primarily queryable state, not settable discrete parameters."
+  - "no unsolicited event notifications described in source."
+  - "no multi-step macro sequences are described in the source."
+  - "no explicit safety interlock procedures stated in source."
+  - "input terminal code mapping for NP-P627UL not in appendix — adjacent NP-M series codes may not apply"
+  - "aspect ratio code values for NP-P627UL not stated in appendix"
+  - "eco mode code values for NP-P627UL not stated in appendix"
+  - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
   checked_at: 2026-04-25T21:56:02.981Z
   matched_actions: 53
   action_count: 53
-  confidence: high
-  summary: "All 53 spec actions matched source commands; transport parameters verified against manual."
+  confidence: medium
+  summary: "All 53 spec actions matched source commands; transport parameters verified against manual. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -552,7 +561,7 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-04-29T10:09:32.506Z
+retrieved_at: 2026-04-29T10:09:19.549Z
 last_checked_at: 2026-04-25T21:56:02.981Z
 ```
 
@@ -563,14 +572,22 @@ verdict: verified
 checked_at: 2026-04-25T21:56:02.981Z
 matched_actions: 53
 action_count: 53
-confidence: high
-summary: "All 53 spec actions matched source commands; transport parameters verified against manual."
+confidence: medium
+summary: "All 53 spec actions matched source commands; transport parameters verified against manual. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "standby mode command acceptance varies by model — NP-P627UL specific standby mode not confirmed"
+- "variables are primarily queryable state, not settable discrete parameters."
+- "no unsolicited event notifications described in source."
+- "no multi-step macro sequences are described in the source."
+- "no explicit safety interlock procedures stated in source."
+- "input terminal code mapping for NP-P627UL not in appendix — adjacent NP-M series codes may not apply"
+- "aspect ratio code values for NP-P627UL not stated in appendix"
+- "eco mode code values for NP-P627UL not stated in appendix"
+- "firmware version compatibility not stated in source"
 ```
 
 ---

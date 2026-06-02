@@ -24,14 +24,20 @@ last_checked_at: 2026-05-14T18:17:14.413Z
 generated_at: 2026-05-14T18:17:14.413Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "NC axis/channel/group parameter tables are extensive; only representative entries included. Full NC parameter coverage would require per-device instantiation."
+  - "no explicit multi-step macro sequences in source"
+  - "power-on sequencing and safety interlock procedures not stated in source"
+  - "NC axis/channel/group parameter tables are extensive (hundreds of entries); only representative actions included. Full coverage requires per-device instantiation with specific axis/channel/group IDs."
+  - "Secure ADS (port 8016) TLS handshake details not documented in source."
+  - "ADS fragmentation protocol for large payloads not documented."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.413Z
   matched_actions: 69
   action_count: 72
-  confidence: high
-  summary: "All 69 spec actions matched source verbatim; transport ports confirmed."
+  confidence: medium
+  summary: "All 69 spec actions matched source verbatim; transport ports confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1049,14 +1055,19 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.413Z
 matched_actions: 69
 action_count: 72
-confidence: high
-summary: "All 69 spec actions matched source verbatim; transport ports confirmed."
+confidence: medium
+summary: "All 69 spec actions matched source verbatim; transport ports confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "NC axis/channel/group parameter tables are extensive; only representative entries included. Full NC parameter coverage would require per-device instantiation."
+- "no explicit multi-step macro sequences in source"
+- "power-on sequencing and safety interlock procedures not stated in source"
+- "NC axis/channel/group parameter tables are extensive (hundreds of entries); only representative actions included. Full coverage requires per-device instantiation with specific axis/channel/group IDs."
+- "Secure ADS (port 8016) TLS handshake details not documented in source."
+- "ADS fragmentation protocol for large payloads not documented."
 ```
 
 ---

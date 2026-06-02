@@ -18,20 +18,30 @@ compatible_with:
 source_domains:
   - rakocontrols.com
 source_urls:
-  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
-retrieved_at: 2026-05-04T18:02:21.672Z
+  - https://rakocontrols.com/media/1512/rako-rs232-command-summary.pdf
+  - https://rakocontrols.com/media/2065/accessing-the-rako-hub.pdf
+  - https://rakocontrols.com/media/1956/accessing-the-rako-bridge-v222.pdf
+  - https://rakocontrols.com/integration/system-integration/
+retrieved_at: 2026-05-22T17:22:30.713Z
 last_checked_at: 2026-05-31T07:07:38.318Z
 generated_at: 2026-05-31T07:07:38.318Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "Rako dimmer/wireless device models supported not enumerated in source"
+  - "whether battery low notifications (instruction 10) are sent asynchronously from battery-powered devices"
+  - "RASOFT software-defined profiles (EEPROM 63-127) not documented as macro sequences"
+  - "power sequencing requirements not stated in source"
+  - "COMMAND instructions 9, 11, 14 table entries empty in source"
+  - "ps1-ps4 instructions (3-6) not fully documented, SCENE recommended instead"
+  - "full RASOFT profile data format (EEPROM 63-127) not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-31T07:07:38.318Z
   matched_actions: 11
   action_count: 11
-  confidence: high
-  summary: "All 11 spec actions matched verbatim to source commands; transport parameters (9600 baud, 8/N/1, port 9761) verified; complete protocol coverage."
+  confidence: medium
+  summary: "All 11 spec actions matched verbatim to source commands; transport parameters (9600 baud, 8/N/1, port 9761) verified; complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -308,8 +318,11 @@ TCP connection on port 9761. Serial 9600/8/N/1. Hardware flow control via CTS li
 source_domains:
   - rakocontrols.com
 source_urls:
-  - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
-retrieved_at: 2026-05-04T18:02:21.672Z
+  - https://rakocontrols.com/media/1512/rako-rs232-command-summary.pdf
+  - https://rakocontrols.com/media/2065/accessing-the-rako-hub.pdf
+  - https://rakocontrols.com/media/1956/accessing-the-rako-bridge-v222.pdf
+  - https://rakocontrols.com/integration/system-integration/
+retrieved_at: 2026-05-22T17:22:30.713Z
 last_checked_at: 2026-05-31T07:07:38.318Z
 ```
 
@@ -320,14 +333,20 @@ verdict: verified
 checked_at: 2026-05-31T07:07:38.318Z
 matched_actions: 11
 action_count: 11
-confidence: high
-summary: "All 11 spec actions matched verbatim to source commands; transport parameters (9600 baud, 8/N/1, port 9761) verified; complete protocol coverage."
+confidence: medium
+summary: "All 11 spec actions matched verbatim to source commands; transport parameters (9600 baud, 8/N/1, port 9761) verified; complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "Rako dimmer/wireless device models supported not enumerated in source"
+- "whether battery low notifications (instruction 10) are sent asynchronously from battery-powered devices"
+- "RASOFT software-defined profiles (EEPROM 63-127) not documented as macro sequences"
+- "power sequencing requirements not stated in source"
+- "COMMAND instructions 9, 11, 14 table entries empty in source"
+- "ps1-ps4 instructions (3-6) not fully documented, SCENE recommended instead"
+- "full RASOFT profile data format (EEPROM 63-127) not documented"
 ```
 
 ---

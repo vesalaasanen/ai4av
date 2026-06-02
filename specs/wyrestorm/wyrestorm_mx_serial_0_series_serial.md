@@ -22,19 +22,26 @@ source_domains:
   - digis.ru
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+retrieved_at: 2026-04-29T12:48:05.737Z
 last_checked_at: 2026-05-14T18:17:21.626Z
 generated_at: 2026-05-14T18:17:21.626Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source does not document unsolicited notification events from the device"
+  - "no explicit multi-step macro sequences in source"
+  - "source does not contain safety warnings or interlock procedures"
+  - "no unsolicited event/notification mechanism documented"
+  - "no power-on sequencing or safety interlock requirements documented"
+  - "firmware version compatibility ranges not fully specified"
+  - "default IP address may vary by unit; only one default stated"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.626Z
   matched_actions: 29
   action_count: 29
-  confidence: high
-  summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters."
+  confidence: medium
+  summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -703,7 +710,7 @@ source_domains:
   - digis.ru
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
-retrieved_at: 2026-05-01T00:40:25.191Z
+retrieved_at: 2026-04-29T12:48:05.737Z
 last_checked_at: 2026-05-14T18:17:21.626Z
 ```
 
@@ -714,14 +721,20 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.626Z
 matched_actions: 29
 action_count: 29
-confidence: high
-summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters."
+confidence: medium
+summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source does not document unsolicited notification events from the device"
+- "no explicit multi-step macro sequences in source"
+- "source does not contain safety warnings or interlock procedures"
+- "no unsolicited event/notification mechanism documented"
+- "no power-on sequencing or safety interlock requirements documented"
+- "firmware version compatibility ranges not fully specified"
+- "default IP address may vary by unit; only one default stated"
 ```
 
 ---

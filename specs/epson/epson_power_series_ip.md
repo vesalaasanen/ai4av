@@ -51,19 +51,32 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+retrieved_at: 2026-05-04T07:41:10.112Z
 last_checked_at: 2026-05-14T18:17:15.771Z
 generated_at: 2026-05-14T18:17:15.771Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "TCP/IP port number not stated — source refers to ESC/VP.net protocol manual for network details"
+  - "USB connection details not included in source — refers to appendix not present"
+  - "Full command set may be larger; source tables are truncated/incomplete"
+  - "TCP port not stated in source; refers to ESC/VP.net manual"
+  - "no settable continuous variables (volume, brightness, etc.) found in this source excerpt"
+  - "no unsolicited notification events described in source"
+  - "no multi-step macro sequences described in source"
+  - "no explicit safety interlocks or fault recovery described in source"
+  - "TCP/IP port number and connection procedure not documented — refers to separate ESC/VP.net manual"
+  - "USB control connection details not included"
+  - "Full command table may include additional commands (brightness, contrast, volume, etc.) not present in this excerpt"
+  - "Model-specific command availability not fully captured — see source tables for per-model matrix"
+  - "SPWRLVL command details only partially documented (TW200/TW200H use case)"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:15.771Z
   matched_actions: 9
   action_count: 9
-  confidence: high
-  summary: "All 13 spec actions matched with correct wire literals and verified transport."
+  confidence: medium
+  summary: "All 13 spec actions matched with correct wire literals and verified transport. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -254,7 +267,7 @@ source_domains:
   - files.support.epson.com
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
-retrieved_at: 2026-05-03T09:03:33.104Z
+retrieved_at: 2026-05-04T07:41:10.112Z
 last_checked_at: 2026-05-14T18:17:15.771Z
 ```
 
@@ -265,14 +278,26 @@ verdict: verified
 checked_at: 2026-05-14T18:17:15.771Z
 matched_actions: 9
 action_count: 9
-confidence: high
-summary: "All 13 spec actions matched with correct wire literals and verified transport."
+confidence: medium
+summary: "All 13 spec actions matched with correct wire literals and verified transport. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "TCP/IP port number not stated — source refers to ESC/VP.net protocol manual for network details"
+- "USB connection details not included in source — refers to appendix not present"
+- "Full command set may be larger; source tables are truncated/incomplete"
+- "TCP port not stated in source; refers to ESC/VP.net manual"
+- "no settable continuous variables (volume, brightness, etc.) found in this source excerpt"
+- "no unsolicited notification events described in source"
+- "no multi-step macro sequences described in source"
+- "no explicit safety interlocks or fault recovery described in source"
+- "TCP/IP port number and connection procedure not documented — refers to separate ESC/VP.net manual"
+- "USB control connection details not included"
+- "Full command table may include additional commands (brightness, contrast, volume, etc.) not present in this excerpt"
+- "Model-specific command availability not fully captured — see source tables for per-model matrix"
+- "SPWRLVL command details only partially documented (TW200/TW200H use case)"
 ```
 
 ---

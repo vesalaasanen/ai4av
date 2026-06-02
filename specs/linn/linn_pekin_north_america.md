@@ -2,15 +2,15 @@
 spec_id: admin/linn-pekin-north-america
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "Linn Pekin (North America) Control Spec"
+title: "Linn Pekin Control Spec"
 manufacturer: Linn
-model_family: "Linn Pekin (North America)"
+model_family: Pekin
 aliases: []
 compatible_with:
   manufacturers:
     - Linn
   models:
-    - "Linn Pekin (North America)"
+    - Pekin
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,534 +20,665 @@ source_domains:
 source_urls:
   - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-05-14T18:17:17.689Z
-generated_at: 2026-05-14T18:17:17.689Z
+last_checked_at: 2026-06-02T03:24:56.031Z
+generated_at: 2026-06-02T03:24:56.031Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "serial data_bits, parity, stop_bits, flow_control not stated in source"
+  - "not stated in source"
+  - "source has no explicit safety warnings or interlock procedures"
+  - "serial data_bits/parity/stop_bits/flow_control not stated; firmware version compatibility ranges not stated; status codes 25 (0x1A) and 26–47 reserved but not enumerated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.689Z
-  matched_actions: 59
-  action_count: 60
-  confidence: high
-  summary: "All 59 spec actions matched to explicit source commands; complete bidirectional coverage of documented command set."
+  checked_at: 2026-06-02T03:24:56.031Z
+  matched_actions: 64
+  action_count: 64
+  confidence: medium
+  summary: "All 64 spec actions matched literals in source; transport parameters verified; spec fully represents all source command families. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-04-22
+created_at: 2026-06-02
 ---
 
-# Linn Pekin (North America) Control Spec
+# Linn Pekin Control Spec
 
 ## Summary
-Linn Pekin is an RS-232 controlled tuner. Communication is ASCII over serial at configurable baud rates (2400–38400, default 9600). Host sends enclosed commands (`$command$`) with optional source/group/destination identifiers; device replies with initial acknowledgement followed by final response. Supports polling for multi-device daisy-chain detection.
+RS-232 ASCII control spec for Linn Pekin AM/FM tuner (North America region). Slave device — replies only after host command. Messages wrapped in `$...$` delimiters, terminated CR+LF. Initial response within 10 ms, then final response. Supports device/group/destination identifiers and polling for daisy-chained links.
 
-<!-- UNRESOLVED: no power on/off commands found in source -->
+<!-- UNRESOLVED: serial data_bits, parity, stop_bits, flow_control not stated in source -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
 serial:
-  baud_rate: 9600  # default; configurable: 2400, 4800, 9600, 19200, 38400
-  data_bits: 8
-  parity: none
-  stop_bits: 1
-  flow_control: none
+  baud_rate: 9600  # default; settable to 2400/4800/9600/19200/38400 via $BAUD$
+  data_bits: null  # UNRESOLVED: not stated in source
+  parity: null  # UNRESOLVED: not stated in source
+  stop_bits: null  # UNRESOLVED: not stated in source
+  flow_control: null  # UNRESOLVED: not stated in source
 auth:
   type: none  # inferred: no auth procedure in source
 ```
 
+Message framing: line-terminated ASCII. Each command enclosed in `$...$`, terminated with CR LF (0x0D 0x0A). Optional prefix identifiers: `#source_id#` `&group_id&` `@destination_id@` (each ≤20 alnum chars, no spaces inside).
+
 ## Traits
 ```yaml
-# Add only traits supported by evidence from source:
-# - powerable       UNRESOLVED: no power on/off commands in source
-# - routable        UNRESOLVED: not a routing device
-# - queryable       present: TUNE?, SCAN?, BAND?, STEREO?, MONO?, COUNTRY?, STORE?, PRESET?, MUTETHR?, SIGNAL?, MUTE?, IR?, OPTION?, VERSION?, CHECKSUM?, COUNTER POWER?
-# - levelable       present: MUTETHR (threshold 0-31), MUTE
+- queryable  # inferred from query commands (TUNE?, BAND?, etc.)
 ```
 
 ## Actions
 ```yaml
-# System commands (from section 2)
+# --- System / Identity (Section 2) ---
 - id: id_write
-  label: ID Write
+  label: Write Product Identifier
   kind: action
+  command: "$ID identifier$"
   params:
     - name: identifier
       type: string
-      description: Product identifier (max 20 alphanumeric chars)
+      description: Unique product id, ≤20 alnum chars
 
 - id: id_remove
-  label: ID Remove
+  label: Remove Product Identifier
   kind: action
+  command: "$ID ~ identifier$"
   params:
     - name: identifier
       type: string
 
 - id: id_query
-  label: ID Query
-  kind: action
+  label: Return Product Identifier
+  kind: query
+  command: "$ID ?$"
   params: []
 
 - id: gid_write
-  label: GID Write
+  label: Write Group Identifier
   kind: action
+  command: "$GID identifier$"
   params:
     - name: identifier
       type: string
-      description: Group identifier (max 20 alphanumeric chars)
 
 - id: gid_remove
-  label: GID Remove
+  label: Remove From Group
   kind: action
+  command: "$GID ~ identifier$"
   params:
     - name: identifier
       type: string
 
 - id: gid_query
-  label: GID Query
-  kind: action
+  label: Return Group Identifiers
+  kind: query
+  command: "$GID ?$"
   params: []
 
-- id: baud
-  label: BAUD
+- id: baud_set
+  label: Set Baud Rate
   kind: action
+  command: "$BAUD baudrate$"
   params:
     - name: baudrate
-      type: integer
-      description: Baud rate from [2400, 4800, 9600, 19200, 38400]
+      type: enum
+      values: [2400, 4800, 9600, 19200, 38400]
 
 - id: baud_query
-  label: BAUD Query
-  kind: action
+  label: Return Baud Rate
+  kind: query
+  command: "$BAUD ?$"
   params: []
 
 - id: reset
-  label: RESET
+  label: Reset Communications Buffer
   kind: action
+  command: "$RESET$"
   params: []
 
 - id: echo
-  label: ECHO
+  label: Echo Text
   kind: action
+  command: "$ECHO text$"
   params:
     - name: text
       type: string
 
 - id: poll_start
-  label: POLL START
+  label: Poll Start
   kind: action
+  command: "$POLL START$"
   params: []
 
 - id: poll_id
-  label: POLL ID
-  kind: action
+  label: Poll ID
+  kind: query
+  command: "$POLL ID$"
   params: []
 
 - id: poll_sleep
-  label: POLL SLEEP
+  label: Poll Sleep
   kind: action
-  params: []
+  command: "@destination_id@$POLL SLEEP$"
+  params:
+    - name: destination_id
+      type: string
 
 - id: poll_done
-  label: POLL DONE
+  label: Poll Done
   kind: action
+  command: "$POLL DONE$"
   params: []
 
-- id: status
-  label: STATUS
-  kind: action
+- id: status_query
+  label: Last Command Status
+  kind: query
+  command: "$STATUS$"
   params: []
 
-# Linn Pekin commands (section 3)
-- id: tune
-  label: TUNE
-  kind: action
+# --- Command Help (Section 1.4.1.1) ---
+- id: help_command
+  label: Command Help (specific command)
+  kind: query
+  command: "$? cmnd$"
   params:
-    - name: value
+    - name: cmnd
+      type: string
+
+- id: help_commandset
+  label: Command Set Help
+  kind: query
+  command: "$? ?$"
+  params: []
+
+# --- TUNE (Section 3.3.1) ---
+- id: tune_decrease
+  label: Decrease Frequency
+  kind: action
+  command: "$TUNE -$"
+  params: []
+
+- id: tune_increase
+  label: Increase Frequency
+  kind: action
+  command: "$TUNE +$"
+  params: []
+
+- id: tune_select
+  label: Select Frequency
+  kind: action
+  command: "$TUNE n$"
+  params:
+    - name: n
       type: integer
-      description: Frequency in MHz × 10 (e.g., 9780 for 97.8 MHz); +/− to adjust by 1
-
-- id: tune_plus
-  label: TUNE+
-  kind: action
-  params: []
-
-- id: tune_minus
-  label: TUNE-
-  kind: action
-  params: []
+      description: Frequency in 10 kHz units, e.g. 97.8 MHz = 9780
 
 - id: tune_query
-  label: TUNE Query
-  kind: action
+  label: Return Current Frequency
+  kind: query
+  command: "$TUNE ?$"
   params: []
 
+# --- SCAN (Section 3.3.2) ---
 - id: scan_mode_query
-  label: SCAN MODE Query
-  kind: action
+  label: Return Scan Mode
+  kind: query
+  command: "$SCAN MODE ?$"
   params: []
 
 - id: scan_mode_search
-  label: SCAN MODE SEARCH
+  label: Select Single Scan Mode
   kind: action
+  command: "$SCAN MODE SEARCH$"
   params: []
 
 - id: scan_mode_scan
-  label: SCAN MODE SCAN
+  label: Select Repeat Scan Mode
   kind: action
+  command: "$SCAN MODE SCAN$"
   params: []
 
-- id: scan_minus
-  label: SCAN-
+- id: scan_decrease
+  label: Scan Down
   kind: action
+  command: "$SCAN -$"
   params: []
 
-- id: scan_plus
-  label: SCAN+
+- id: scan_increase
+  label: Scan Up
   kind: action
+  command: "$SCAN +$"
   params: []
 
 - id: scan_stop
-  label: SCAN STOP
+  label: Stop Scan
   kind: action
+  command: "$SCAN STOP$"
   params: []
 
-- id: scan_query
-  label: SCAN Query
-  kind: action
+- id: scan_status
+  label: Return Scan Status
+  kind: query
+  command: "$SCAN ?$"
   params: []
 
+# --- BAND (Section 3.3.3) ---
 - id: band_am
-  label: BAND AM
+  label: Select AM Band
   kind: action
+  command: "$BAND AM$"
   params: []
 
 - id: band_fm
-  label: BAND FM
+  label: Select FM Band
   kind: action
+  command: "$BAND FM$"
   params: []
 
 - id: band_query
-  label: BAND Query
-  kind: action
+  label: Return Current Band
+  kind: query
+  command: "$BAND ?$"
   params: []
 
-- id: mono_on
-  label: MONO ON
-  kind: action
+# --- STEREO (Section 3.3.4) ---
+- id: stereo_query
+  label: Return Stereo Status
+  kind: query
+  command: "$STEREO ?$"
   params: []
 
-- id: mono_off
-  label: MONO OFF
+# --- MONO (Section 3.3.5) ---
+- id: mono_enable
+  label: Enable Mono
   kind: action
+  command: "$MONO Y$"
+  params: []
+
+- id: mono_disable
+  label: Disable Mono
+  kind: action
+  command: "$MONO N$"
   params: []
 
 - id: mono_query
-  label: MONO Query
-  kind: action
+  label: Return Mono Status
+  kind: query
+  command: "$MONO ?$"
   params: []
 
-- id: store
-  label: STORE
+# --- COUNTRY (Section 3.3.6) ---
+- id: country_query
+  label: Return Country of Operation
+  kind: query
+  command: "$COUNTRY ?$"
+  params: []
+
+# --- STORE (Section 3.3.7) ---
+- id: store_preset
+  label: Store Preset
   kind: action
+  command: "$STORE n$"
   params:
-    - name: preset
+    - name: n
       type: integer
-      description: Preset number 1-80
+      description: Preset number (1 to 80)
 
 - id: store_query
-  label: STORE Query
-  kind: action
+  label: Return Empty Preset
+  kind: query
+  command: "$STORE ?$"
   params: []
 
 - id: store_all
-  label: STORE ALL
+  label: Store All Presets
   kind: action
+  command: "$STORE ALL$"
   params: []
 
+# --- PRESET (Section 3.3.8) ---
 - id: preset_clear
-  label: PRESET CLEAR
+  label: Clear Preset
   kind: action
+  command: "$PRESET CLEAR n$"
   params:
-    - name: preset
+    - name: n
       type: integer
-      description: Preset number 1-80
+      description: Preset number (1 to 80)
 
 - id: preset_clear_all
-  label: PRESET CLEAR ALL
+  label: Clear All Presets
   kind: action
+  command: "$PRESET CLEAR ALL$"
   params: []
 
-- id: preset_minus
-  label: PRESET-
+- id: preset_previous
+  label: Previous Preset
   kind: action
+  command: "$PRESET -$"
   params: []
 
-- id: preset_plus
-  label: PRESET+
+- id: preset_next
+  label: Next Preset
   kind: action
+  command: "$PRESET +$"
   params: []
 
-- id: preset
-  label: PRESET
+- id: preset_select
+  label: Select Preset
   kind: action
+  command: "$PRESET n$"
   params:
-    - name: preset
+    - name: n
       type: integer
-      description: Preset number 1-80
+      description: Preset number (1 to 80)
 
 - id: preset_query
-  label: PRESET Query
-  kind: action
+  label: Return Current Preset
+  kind: query
+  command: "$PRESET ?$"
   params: []
 
-- id: mutethr_minus
-  label: MUTETHR-
+# --- MUTETHR (Section 3.3.9) ---
+- id: mutethr_decrease
+  label: Decrease Mute Threshold
   kind: action
+  command: "$MUTETHR -$"
   params: []
 
-- id: mutethr_plus
-  label: MUTETHR+
+- id: mutethr_increase
+  label: Increase Mute Threshold
   kind: action
+  command: "$MUTETHR +$"
   params: []
 
-- id: mutethr
-  label: MUTETHR
+- id: mutethr_set
+  label: Set Mute Threshold
   kind: action
+  command: "$MUTETHR n$"
   params:
-    - name: value
+    - name: n
       type: integer
-      description: Mute threshold value (0-31)
+      description: Mute threshold value (0 to 31)
 
 - id: mutethr_query
-  label: MUTETHR Query
-  kind: action
+  label: Return Mute Threshold
+  kind: query
+  command: "$MUTETHR ?$"
   params: []
 
+# --- SIGNAL (Section 3.3.10) ---
 - id: signal_query
-  label: SIGNAL Query
-  kind: action
+  label: Return Signal Strength
+  kind: query
+  command: "$SIGNAL ?$"
   params: []
 
-- id: mute_on
-  label: MUTE ON
+# --- MUTE (Section 3.3.11) ---
+- id: mute_enable
+  label: Enable Mute
   kind: action
+  command: "$MUTE Y$"
   params: []
 
-- id: mute_off
-  label: MUTE OFF
+- id: mute_disable
+  label: Disable Mute
   kind: action
+  command: "$MUTE N$"
   params: []
 
 - id: mute_query
-  label: MUTE Query
-  kind: action
+  label: Return Mute Status
+  kind: query
+  command: "$MUTE ?$"
   params: []
 
-- id: ir_on
-  label: IR ON
+# --- IR (Section 3.3.12) ---
+- id: ir_enable
+  label: Enable IR Control
   kind: action
+  command: "$IR Y$"
   params: []
 
-- id: ir_off
-  label: IR OFF
+- id: ir_disable
+  label: Disable IR Control
   kind: action
+  command: "$IR N$"
   params: []
 
 - id: ir_query
-  label: IR Query
-  kind: action
+  label: Return IR Control Status
+  kind: query
+  command: "$IR ?$"
   params: []
 
-- id: init
-  label: INIT
+# --- INIT (Section 3.3.13) ---
+- id: init_factory_defaults
+  label: Factory Defaults Reset
   kind: action
+  command: "$INIT$"
   params: []
 
+# --- OPTION (Section 3.3.14) ---
 - id: option_query_all
-  label: OPTION Query All
-  kind: action
+  label: Return All Options
+  kind: query
+  command: "$OPTION ?$"
   params: []
 
-- id: option_query
-  label: OPTION Query
-  kind: action
+- id: option_query_one
+  label: Return Specific Option
+  kind: query
+  command: "$OPTION number ?$"
   params:
     - name: number
       type: integer
-      description: Option number
 
 - id: option_set
-  label: OPTION Set
+  label: Set Option
   kind: action
+  command: "$OPTION number setting$"
   params:
     - name: number
       type: integer
-      description: Option number
     - name: setting
       type: string
-      description: Setting value
+      description: Product will restart after option change
 
-- id: version_software_query
-  label: VERSION SOFTWARE Query
-  kind: action
+# --- VERSION (Section 3.3.15) ---
+- id: version_software
+  label: Return Software Version
+  kind: query
+  command: "$VERSION SOFTWARE ?$"
   params: []
 
-- id: version_hardware_query
-  label: VERSION HARDWARE Query
-  kind: action
+- id: version_hardware
+  label: Return Hardware Version
+  kind: query
+  command: "$VERSION HARDWARE ?$"
   params: []
 
+# --- CHECKSUM (Section 3.3.16) ---
 - id: checksum_query
-  label: CHECKSUM Query
-  kind: action
+  label: Return Software Checksum
+  kind: query
+  command: "$CHECKSUM ?$"
   params: []
 
+# --- COUNTER (Section 3.3.17) ---
 - id: counter_power_query
-  label: COUNTER POWER Query
-  kind: action
+  label: Return Total Powered Time
+  kind: query
+  command: "$COUNTER POWER ?$"
   params: []
 ```
 
 ## Feedbacks
 ```yaml
-# Responses are structured: (Source_ID) (Group_ID) (Destination_ID) !<Response> NL
-# Initial response: ! for ack, !$FAIL n$ for invalid command
-# Final response: !$Status_String$
-- id: initial_ack
-  type: string
-  description: "! response - command received and understood"
-- id: initial_fail
-  type: string
-  description: "!$FAIL n$ - invalid command; n is status code (see Status Codes)"
-- id: final_response
-  type: string
-  description: "!$<status>$ - final response after task completion"
-- id: final_fail
-  type: string
-  description: "!$FAIL n$ - task could not be completed; n is status code"
-- id: status_code
-  type: integer
-  description: Status code 0-47, general use codes 0-23, product-specific 24-47
-  values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-```
-
-## Variables
-```yaml
-# Settable parameters not discrete actions:
+# Each query/response enumerated in source.
 - id: baud_rate
-  type: integer
+  type: enum
   values: [2400, 4800, 9600, 19200, 38400]
-  default: 9600
-  description: Serial baud rate - set via $BAUD n$, query via $BAUD ?$
-
-- id: mute_threshold
-  type: integer
-  range: [0, 31]
-  description: Mute threshold - set via $MUTETHR n$, query via $MUTETHR ?$
-
-- id: mono_state
-  type: enum
-  values: [on, off]
-  description: Mono state - set via $MONO Y/N/ON/OFF$, query via $MONO ?$
-
-- id: mute_state
-  type: enum
-  values: [on, off]
-  description: Mute state - set via $MUTE Y/N/ON/OFF$, query via $MUTE ?$
-
-- id: ir_state
-  type: enum
-  values: [on, off]
-  description: IR control state - set via $IR Y/N/ON/OFF$, query via $IR ?$
 
 - id: scan_mode
   type: enum
   values: [SEARCH, SCAN]
-  description: Scan mode - set via $SCAN MODE SEARCH/SCAN$, query via $SCAN MODE ?$
 
 - id: scan_status
   type: enum
   values: [STOP, PAUSED, SCANNING]
-  description: Scan status - query via $SCAN ?$
-
-- id: frequency
-  type: integer
-  description: Current frequency in MHz × 10 - query via $TUNE ?$
 
 - id: band
   type: enum
   values: [AM, FM]
-  description: Frequency band - set via $BAND AM/FM$, query via $BAND ?$
 
-- id: stereo_status
+- id: stereo_state
   type: enum
   values: [ON, OFF]
-  description: Stereo status - query via $STEREO ?$
+
+- id: mono_state
+  type: enum
+  values: [ON, OFF]
 
 - id: country
   type: enum
   values: [EUROPE, USA, JAPAN]
-  description: Country of operation - query via $COUNTRY ?$
+
+- id: preset_index
+  type: integer
+  description: Preset number 1 to 80
+
+- id: mute_threshold
+  type: integer
+  description: 0 to 31
 
 - id: signal_strength
   type: integer
-  description: Signal strength value - query via $SIGNAL ?$
 
-- id: product_id
-  type: string
-  description: Product identifier - set/removed via $ID identifier$, query via $ID ?$
+- id: mute_state
+  type: enum
+  values: [ON, OFF]
 
-- id: group_id
+- id: ir_state
+  type: enum
+  values: [ON, OFF]
+
+- id: frequency_tune
+  type: integer
+  description: Frequency in 10 kHz units (decimal point removed)
+
+- id: option_settings
   type: string
-  description: Group identifier - set/removed via $GID identifier$, query via $GID ?$
+  description: number:setting pairs separated by spaces
+
+- id: software_version
+  type: string
+  description: Format SpppMMmm (ppp=product, MM=major, mm=minor)
+
+- id: hardware_version
+  type: string
+  description: Format PCAShhhLr (hhh=board, r=revision)
+
+- id: software_checksum
+  type: string
+  description: 4-digit hex
+
+- id: power_on_time
+  type: string
+  description: Format days:hours:minutes:seconds
+
+- id: status_code
+  type: integer
+  description: See Section 2.4.1.1 (0x00 = no error, 0x01-0x17 = specific errors)
+
+- id: product_identifier
+  type: string
+
+- id: group_identifiers
+  type: string
+  description: List of currently defined group ids
+```
+
+## Variables
+```yaml
+# None - all settable parameters are modeled as discrete actions above.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: Linn Pekin is a slave device - it does not transmit unsolicited messages
-# except: power_up_message feature toggled via front panel - !$PEKIN$ on power-up
-# (activated by holding RECORD key and switching on)
+- id: power_up_message
+  description: |
+    Transmitted on power-up when feature is enabled. Toggled by holding
+    RECORD key on front panel while switching product on. Front panel shows
+    'rS232 - on' (enabled) or 'rS232 - oFF' (disabled).
+  payload: "!$PEKIN$"
+
+- id: initial_response
+  description: |
+    Acknowledges valid command receipt. Format:
+    (Source_ID) (Group_ID) (Destination_ID) !NL
+    Expected within 10 ms of command.
+
+- id: initial_response_failure
+  description: |
+    Returned for invalid command. Format:
+    (Source_ID) (Group_ID) (Destination_ID) !$FAIL n$NL
+    No final response follows.
+
+- id: final_response
+  description: |
+    Returned on task completion. Format:
+    (Source_ID) (Group_ID) (Destination_ID) !$Status_String$NL
+
+- id: final_response_failure
+  description: |
+    Returned when task could not complete. Format:
+    (Source_ID) (Group_ID) (Destination_ID) !$FAIL n$NL
 ```
 
 ## Macros
 ```yaml
-# Polling sequence (section 2.3.2) - auto-detect devices on daisy-chain:
-# 1. $POLL START$      - opens return path switches
-# 2. $POLL ID$        - read first device ID
-# 3. @id1@$POLL SLEEP$ - put first device to sleep
-# 4. $POLL ID$        - read second device ID
-# 5. @id2@$POLL SLEEP$ - put second device to sleep
-# ... repeat until timeout ...
-# N. $POLL DONE$       - resync all devices
+# Polling sequence (Section 2.3.2) - explicit multi-step example from source.
+- id: poll_enumerate
+  description: |
+    Auto-detect all devices on daisy-chained RS-232 link. Open all return
+    path switches, then iteratively identify and put each device to sleep
+    until none respond. Close with POLL DONE to resync.
+  steps:
+    - command: "$POLL START$"
+      description: Open return path switches; only first device in chain can respond
+    - command: "$POLL ID$"
+      description: Read first product identifier (pid)
+    - command: "@dest_1_id@$POLL SLEEP$"
+      description: Put first device to sleep using id from previous step
+    - command: "$POLL ID$"
+      description: Read second product identifier
+    - command: "@dest_2_id@$POLL SLEEP$"
+      description: Put second device to sleep
+    - command: "$POLL ID$"
+      description: Repeat until no response (timeout)
+    - command: "$POLL DONE$"
+      description: Resync all products on link
 ```
 
 ## Safety
 ```yaml
-confirmation_required_for: []
-interlocks:
-  - "POLL SLEEP must be used with the product identifier returned by POLL ID - otherwise all products stop responding and polling fails"
-  - "In group mode, products do not acknowledge commands to avoid comms clash from all responding simultaneously"
-  - "If a product in the daisy-chain is switched off, the chain is broken; removed product requires re-establishment via joining cable"
-# UNRESOLVED: power-on sequencing, voltage/current specs not in source
+confirmation_required_for:
+  - $INIT$  # factory defaults reset
+  - $PRESET CLEAR n$
+  - $PRESET CLEAR ALL$
+  - $OPTION number setting$  # triggers product restart
+interlocks: []
+<!-- UNRESOLVED: source has no explicit safety warnings or interlock procedures -->
 ```
 
 ## Notes
-- Commands are ASCII, enclosed in `$` delimiters: `$COMMAND param$`
-- Line terminator: carriage return (0x0D) + line feed (0x0A)
-- Host should wait for final response before sending next command (initial response within 10 ms)
-- Source, group, and destination identifiers use `#source_id#`, `&group_id&`, `@destination_id@` syntax — all optional (see section 1.3 for combination rules)
-- Power-up message: `!$PEKIN$` — can be enabled/disabled via front panel RECORD key + power toggle
-- Product default baud: 9600; BAUD change takes effect on final response
-- Factory reset: `$INIT$`
-- Command help: `$? cmnd$` returns parameter syntax; `$? ?$` returns full command list
+Baud rate defaults to 9600 on init. `$BAUD$` issues initial response at current rate, final response at new rate. Group mode: products sharing a group id do not acknowledge commands (avoids response clash). A product may be a member of at most 5 groups. On power-up all return-path switches are closed. If a chained product is powered off or removed, the chain breaks. Commands and parameters must be separated by at least one space. `Y`/`ON` enables a feature, `N`/`OFF` disables. Status codes 0–47 reserved; 25–47 marked reserved in source.
 
-<!-- UNRESOLVED: firmware version compatibility not stated -->
-<!-- UNRESOLVED: voltage/current/power specifications not in source -->
-<!-- UNRESOLVED: binary command encodings not applicable — ASCII only -->
+<!-- UNRESOLVED: serial data_bits/parity/stop_bits/flow_control not stated; firmware version compatibility ranges not stated; status codes 25 (0x1A) and 26–47 reserved but not enumerated in source -->
 
 ## Provenance
 
@@ -557,24 +688,27 @@ source_domains:
 source_urls:
   - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-05-14T18:17:17.689Z
+last_checked_at: 2026-06-02T03:24:56.031Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.689Z
-matched_actions: 59
-action_count: 60
-confidence: high
-summary: "All 59 spec actions matched to explicit source commands; complete bidirectional coverage of documented command set."
+checked_at: 2026-06-02T03:24:56.031Z
+matched_actions: 64
+action_count: 64
+confidence: medium
+summary: "All 64 spec actions matched literals in source; transport parameters verified; spec fully represents all source command families. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "serial data_bits, parity, stop_bits, flow_control not stated in source"
+- "not stated in source"
+- "source has no explicit safety warnings or interlock procedures"
+- "serial data_bits/parity/stop_bits/flow_control not stated; firmware version compatibility ranges not stated; status codes 25 (0x1A) and 26–47 reserved but not enumerated in source"
 ```
 
 ---

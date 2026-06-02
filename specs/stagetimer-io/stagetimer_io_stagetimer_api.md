@@ -25,14 +25,22 @@ last_checked_at: 2026-05-14T18:17:21.000Z
 generated_at: 2026-05-14T18:17:21.000Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "WebSocket socket event not fully documented (playback_status mentioned but not detailed)"
+  - "no standalone device configuration parameters found in source"
+  - "socket event \"playback_status\" mentioned but not fully documented;"
+  - "no safety warnings or interlock procedures in source"
+  - "WebSocket event documentation incomplete"
+  - "create_timer response model not shown in source"
+  - "delete_timer response model not shown in source"
+  - "show_message/hide_message response model incomplete"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:21.000Z
   matched_actions: 44
   action_count: 44
-  confidence: high
-  summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters."
+  confidence: medium
+  summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -849,14 +857,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:21.000Z
 matched_actions: 44
 action_count: 44
-confidence: high
-summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters."
+confidence: medium
+summary: "All 46 spec actions matched their corresponding REST endpoints in the source documentation with 100% coverage and correct transport parameters. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "WebSocket socket event not fully documented (playback_status mentioned but not detailed)"
+- "no standalone device configuration parameters found in source"
+- "socket event \"playback_status\" mentioned but not fully documented;"
+- "no safety warnings or interlock procedures in source"
+- "WebSocket event documentation incomplete"
+- "create_timer response model not shown in source"
+- "delete_timer response model not shown in source"
+- "show_message/hide_message response model incomplete"
 ```
 
 ---

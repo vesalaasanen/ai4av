@@ -25,14 +25,21 @@ last_checked_at: 2026-05-01T00:09:26.025Z
 generated_at: 2026-05-01T00:09:26.025Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "no firmware version compatibility stated"
+  - "flow control not stated"
+  - "COM port number not stated"
+  - "no unsolicited event notifications described in source"
+  - "no multi-step macro sequences described in source"
+  - "no safety warnings or interlock procedures stated in source"
+  - "response format/echo behavior not documented"
 verification:
   verdict: verified
   checked_at: 2026-05-01T00:09:26.025Z
   matched_actions: 14
   action_count: 14
-  confidence: high
-  summary: "All 14 spec actions matched literally in source command table with correct parameters and ranges."
+  confidence: medium
+  summary: "All 14 spec actions matched literally in source command table with correct parameters and ranges. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -272,14 +279,20 @@ verdict: verified
 checked_at: 2026-05-01T00:09:26.025Z
 matched_actions: 14
 action_count: 14
-confidence: high
-summary: "All 14 spec actions matched literally in source command table with correct parameters and ranges."
+confidence: medium
+summary: "All 14 spec actions matched literally in source command table with correct parameters and ranges. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "no firmware version compatibility stated"
+- "flow control not stated"
+- "COM port number not stated"
+- "no unsolicited event notifications described in source"
+- "no multi-step macro sequences described in source"
+- "no safety warnings or interlock procedures stated in source"
+- "response format/echo behavior not documented"
 ```
 
 ---

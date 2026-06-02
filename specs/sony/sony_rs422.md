@@ -31,14 +31,23 @@ last_checked_at: 2026-05-14T18:17:20.786Z
 generated_at: 2026-05-14T18:17:20.786Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source document is VISCA over IP; RS-422 serial variant not present in this source."
+  - "IP address set via setup software, not stated in source"
+  - "source documents PTZ parameters as discrete commands, not as settable Variables."
+  - "source describes only request/response pattern (controller queries, device replies)."
+  - "no explicit multi-step macros described in source."
+  - "device name input \"Sony RS422\" does not match source document (ILME-FR7 VISCA over IP). Source describes UDP-based VISCA over IP, not RS-422 serial protocol."
+  - "RS-422 serial variant command set not present in this source document."
+  - "firmware version compatibility not stated in source."
+  - "authentication credentials or token format not applicable (no auth)."
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:20.786Z
   matched_actions: 111
   action_count: 122
-  confidence: high
-  summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified."
+  confidence: medium
+  summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1386,14 +1395,22 @@ verdict: verified
 checked_at: 2026-05-14T18:17:20.786Z
 matched_actions: 111
 action_count: 122
-confidence: high
-summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified."
+confidence: medium
+summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source document is VISCA over IP; RS-422 serial variant not present in this source."
+- "IP address set via setup software, not stated in source"
+- "source documents PTZ parameters as discrete commands, not as settable Variables."
+- "source describes only request/response pattern (controller queries, device replies)."
+- "no explicit multi-step macros described in source."
+- "device name input \"Sony RS422\" does not match source document (ILME-FR7 VISCA over IP). Source describes UDP-based VISCA over IP, not RS-422 serial protocol."
+- "RS-422 serial variant command set not present in this source document."
+- "firmware version compatibility not stated in source."
+- "authentication credentials or token format not applicable (no auth)."
 ```
 
 ---

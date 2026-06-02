@@ -24,14 +24,22 @@ last_checked_at: 2026-05-14T18:17:14.346Z
 generated_at: 2026-05-14T18:17:14.346Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "exact projector model names not stated in source; source refers generically to \"Pulse services\""
+  - "firmware version compatibility ranges not stated in source"
+  - "no explicit multi-step macro sequences described in source"
+  - "source does not describe explicit safety interlock procedures."
+  - "exact projector model names and hardware variants not stated in source"
+  - "maximum concurrent TCP/serial connection limits not stated"
+  - "JSON-RPC message size limits or fragmentation behavior not documented"
+  - "error recovery sequences and fault behavior not documented beyond error response objects"
 verification:
   verdict: verified
   checked_at: 2026-05-14T18:17:14.346Z
   matched_actions: 38
   action_count: 38
-  confidence: high
-  summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed."
+  confidence: medium
+  summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -960,14 +968,21 @@ verdict: verified
 checked_at: 2026-05-14T18:17:14.346Z
 matched_actions: 38
 action_count: 38
-confidence: high
-summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed."
+confidence: medium
+summary: "All 43 spec actions matched literally in source; transport parameters (port 9090, 19200 baud, 8-N-1) verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "exact projector model names not stated in source; source refers generically to \"Pulse services\""
+- "firmware version compatibility ranges not stated in source"
+- "no explicit multi-step macro sequences described in source"
+- "source does not describe explicit safety interlock procedures."
+- "exact projector model names and hardware variants not stated in source"
+- "maximum concurrent TCP/serial connection limits not stated"
+- "JSON-RPC message size limits or fragmentation behavior not documented"
+- "error recovery sequences and fault behavior not documented beyond error response objects"
 ```
 
 ---

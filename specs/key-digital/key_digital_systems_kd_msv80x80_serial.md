@@ -19,21 +19,32 @@ compatible_with:
 source_domains:
   - keydigital.com
 source_urls:
-  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
-  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
-retrieved_at: 2026-05-04T15:19:02.622Z
+  - "http://keydigital.com/Control%20Mods%20Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
+retrieved_at: 2026-05-27T14:56:56.795Z
 last_checked_at: 2026-05-27T15:39:42.209Z
 generated_at: 2026-05-27T15:39:42.209Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "source only covers KD-MSV8X8 (8×8); no info on whether protocol applies to other KD-MSV models"
+  - "no response format documented beyond mention of numeric/verbose modes"
+  - "no power on/off commands in source"
+  - "source does not document response format or returned values"
+  - "no settable continuous parameters beyond discrete actions above"
+  - "no unsolicited notification protocol documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings, interlock procedures, or power-on sequencing in source"
+  - "response payload format for numeric and verbose modes not documented"
+  - "no power on/off or standby commands found in source"
+  - "no audio-related commands documented; unclear whether audio follows video or has separate control"
+  - "EDID/HDCP management not covered in source"
 verification:
   verdict: verified
   checked_at: 2026-05-27T15:39:42.209Z
   matched_actions: 18
   action_count: 18
-  confidence: high
-  summary: "All 18 spec actions matched against source with correct command formats and transport parameters verified."
+  confidence: medium
+  summary: "All 18 spec actions matched against source with correct command formats and transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -297,9 +308,8 @@ interlocks: []
 source_domains:
   - keydigital.com
 source_urls:
-  - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
-  - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
-retrieved_at: 2026-05-04T15:19:02.622Z
+  - "http://keydigital.com/Control%20Mods%20Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
+retrieved_at: 2026-05-27T14:56:56.795Z
 last_checked_at: 2026-05-27T15:39:42.209Z
 ```
 
@@ -310,14 +320,25 @@ verdict: verified
 checked_at: 2026-05-27T15:39:42.209Z
 matched_actions: 18
 action_count: 18
-confidence: high
-summary: "All 18 spec actions matched against source with correct command formats and transport parameters verified."
+confidence: medium
+summary: "All 18 spec actions matched against source with correct command formats and transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "source only covers KD-MSV8X8 (8×8); no info on whether protocol applies to other KD-MSV models"
+- "no response format documented beyond mention of numeric/verbose modes"
+- "no power on/off commands in source"
+- "source does not document response format or returned values"
+- "no settable continuous parameters beyond discrete actions above"
+- "no unsolicited notification protocol documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings, interlock procedures, or power-on sequencing in source"
+- "response payload format for numeric and verbose modes not documented"
+- "no power on/off or standby commands found in source"
+- "no audio-related commands documented; unclear whether audio follows video or has separate control"
+- "EDID/HDCP management not covered in source"
 ```
 
 ---

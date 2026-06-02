@@ -19,26 +19,29 @@ compatible_with:
   required_options: []
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:28:27.942Z
 last_checked_at: 2026-05-14T21:40:25.007Z
 generated_at: 2026-05-14T21:40:25.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "models MX731/MX732/MX733 may have feature differences not reflected in unified command table"
+  - "no unsolicited notification messages documented in source"
+  - "no multi-step macro sequences documented in source"
+  - "no safety warnings or interlock procedures in source"
+  - "Lamp2 Hour, Microphone Volume, Network Standby, Remote Receiver, Lamp Saver, Projection Login Code, Broadcasting, AMX Device Discovery, Mac Address — marked No in support column, not implemented"
+  - "some models (MX731 vs MX732 vs MX733) may have hardware differences affecting supported commands"
 verification:
   verdict: verified
   checked_at: 2026-05-14T21:40:25.007Z
   matched_actions: 94
   action_count: 101
-  confidence: high
-  summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation."
+  confidence: medium
+  summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -617,14 +620,11 @@ Command envelope: `<CR>*key=value#<CR>` for serial; same envelope works with/wit
 ```yaml
 source_domains:
   - esupportdownload.benq.com
-  - benqimage.blob.core.windows.net
-  - benq.eu
+  - audiogeneral.com
 source_urls:
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR/Control%20Protocols/LK935/LK935_RS232%20Control%20Guide_0_Windows.pdf"
-  - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
-  - https://www.benq.eu/content/dam/bb/en/product/projector/professional-installation/pu9730/quick-start-guide/pu9730-rs232-control-guide-0-windows7-windows8-winxp.pdf
-  - "https://esupportdownload.benq.com/esupport/PROJECTOR%20FOR%20CONSUMER/Control%20Protocols/W4000i/W4000i_RS232%20Control%20Guide_1.0.1_Windows_250409142447.pdf"
-retrieved_at: 2026-04-29T15:29:17.103Z
+  - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
+  - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
+retrieved_at: 2026-05-14T20:28:27.942Z
 last_checked_at: 2026-05-14T21:40:25.007Z
 ```
 
@@ -635,14 +635,19 @@ verdict: verified
 checked_at: 2026-05-14T21:40:25.007Z
 matched_actions: 94
 action_count: 101
-confidence: high
-summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation."
+confidence: medium
+summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "models MX731/MX732/MX733 may have feature differences not reflected in unified command table"
+- "no unsolicited notification messages documented in source"
+- "no multi-step macro sequences documented in source"
+- "no safety warnings or interlock procedures in source"
+- "Lamp2 Hour, Microphone Volume, Network Standby, Remote Receiver, Lamp Saver, Projection Login Code, Broadcasting, AMX Device Discovery, Mac Address — marked No in support column, not implemented"
+- "some models (MX731 vs MX732 vs MX733) may have hardware differences affecting supported commands"
 ```
 
 ---

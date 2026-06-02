@@ -24,14 +24,22 @@ last_checked_at: 2026-04-30T14:54:07.573Z
 generated_at: 2026-04-30T14:54:07.573Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
-known_gaps: []
+known_gaps:
+  - "device classification — this is a software automation tool, not hardware AV control module"
+  - "source shows subscribe mechanism but response format not documented"
+  - "subscription push events not documented in source"
+  - "no multi-step sequences documented in source"
+  - "no safety warnings in source - software automation tool controls host directly; user responsible for command intent"
+  - "subscription response format not documented"
+  - "pressSpecial parameters not fully specified in source"
+  - "firmware version compatibility not stated"
 verification:
   verdict: verified
   checked_at: 2026-04-30T14:54:07.573Z
   matched_actions: 20
   action_count: 20
-  confidence: high
-  summary: "All 20 spec actions verified verbatim; transport confirmed."
+  confidence: medium
+  summary: "All 20 spec actions verified verbatim; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -363,14 +371,21 @@ verdict: verified
 checked_at: 2026-04-30T14:54:07.573Z
 matched_actions: 20
 action_count: 20
-confidence: high
-summary: "All 20 spec actions verified verbatim; transport confirmed."
+confidence: medium
+summary: "All 20 spec actions verified verbatim; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-[]
+- "device classification — this is a software automation tool, not hardware AV control module"
+- "source shows subscribe mechanism but response format not documented"
+- "subscription push events not documented in source"
+- "no multi-step sequences documented in source"
+- "no safety warnings in source - software automation tool controls host directly; user responsible for command intent"
+- "subscription response format not documented"
+- "pressSpecial parameters not fully specified in source"
+- "firmware version compatibility not stated"
 ```
 
 ---

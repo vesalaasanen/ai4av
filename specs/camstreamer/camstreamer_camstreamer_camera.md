@@ -27,13 +27,17 @@ protocol_coverage: []
 known_gaps:
   - "wss://events websocket"
   - "graphql API"
+  - "video encoding specs (codec, bitrate ranges) not explicitly stated in source"
+  - "port number not stated in source (IPADDR[:PORT] used as placeholder)"
+  - "serial/RS-232 not mentioned in source"
+  - "TCP socket control not mentioned; HTTP REST only"
 verification:
   verdict: verified
   checked_at: 2026-04-22T19:45:06.507Z
   matched_actions: 8
   action_count: 8
-  confidence: high
-  summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API."
+  confidence: medium
+  summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -411,8 +415,8 @@ verdict: verified
 checked_at: 2026-04-22T19:45:06.507Z
 matched_actions: 8
 action_count: 8
-confidence: high
-summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API."
+confidence: medium
+summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -420,6 +424,10 @@ summary: "All 8 HTTP REST actions matched source endpoints; transport verified; 
 ```yaml
 - "wss://events websocket"
 - "graphql API"
+- "video encoding specs (codec, bitrate ranges) not explicitly stated in source"
+- "port number not stated in source (IPADDR[:PORT] used as placeholder)"
+- "serial/RS-232 not mentioned in source"
+- "TCP socket control not mentioned; HTTP REST only"
 ```
 
 ---
