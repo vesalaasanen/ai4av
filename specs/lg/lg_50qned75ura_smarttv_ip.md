@@ -26,9 +26,9 @@ source_urls:
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
   - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
-retrieved_at: 2026-06-02T03:24:40.559Z
-last_checked_at: 2026-06-02T03:24:40.559Z
-generated_at: 2026-06-02T03:24:40.559Z
+retrieved_at: 2026-06-02T17:22:59.371Z
+last_checked_at: 2026-06-02T17:22:59.371Z
+generated_at: 2026-06-02T17:22:59.371Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to \"page A18\" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:40.559Z
+  checked_at: 2026-06-02T17:22:59.371Z
   matched_actions: 28
   action_count: 28
   confidence: medium
@@ -545,15 +545,15 @@ source_urls:
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
   - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
-retrieved_at: 2026-06-02T03:24:40.559Z
-last_checked_at: 2026-06-02T03:24:40.559Z
+retrieved_at: 2026-06-02T17:22:59.371Z
+last_checked_at: 2026-06-02T17:22:59.371Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:40.559Z
+checked_at: 2026-06-02T17:22:59.371Z
 matched_actions: 28
 action_count: 28
 confidence: medium

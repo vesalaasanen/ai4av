@@ -23,8 +23,8 @@ source_urls:
   - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
   - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-06-02T02:29:33.269Z
-generated_at: 2026-06-02T02:29:33.269Z
+last_checked_at: 2026-06-02T17:22:45.109Z
+generated_at: 2026-06-02T17:22:45.109Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "no safety warnings, interlocks, or power-sequencing requirements"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:33.269Z
+  checked_at: 2026-06-02T17:22:45.109Z
   matched_actions: 18
   action_count: 18
   confidence: medium
@@ -266,14 +266,14 @@ source_urls:
   - "http://keydigital.com/Control Mods Codes/KD-MSV8X8/RS-232/KD-MSV8X8_232_Commands.pdf"
   - https://www.manualslib.com/manual/602639/Key-Digital-Kd-Msv8x8-Fatboy.html
 retrieved_at: 2026-04-29T16:42:38.486Z
-last_checked_at: 2026-06-02T02:29:33.269Z
+last_checked_at: 2026-06-02T17:22:45.109Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:33.269Z
+checked_at: 2026-06-02T17:22:45.109Z
 matched_actions: 18
 action_count: 18
 confidence: medium

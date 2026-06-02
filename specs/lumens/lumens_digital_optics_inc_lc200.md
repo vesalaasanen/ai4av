@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-04-30T04:36:36.133Z
-last_checked_at: 2026-06-01T21:44:42.519Z
-generated_at: 2026-06-01T21:44:42.519Z
+last_checked_at: 2026-06-02T17:23:17.259Z
+generated_at: 2026-06-02T17:23:17.259Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,7 @@ known_gaps:
   - "firmware version compatibility not stated in source. UNRESOLVED: voltage, current, and power draw specifications not stated in source. UNRESOLVED: fault/recovery behavior beyond the documented ACK/NAK scheme not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:42.519Z
+  checked_at: 2026-06-02T17:23:17.259Z
   matched_actions: 38
   action_count: 38
   confidence: medium
@@ -548,14 +548,14 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-04-30T04:36:36.133Z
-last_checked_at: 2026-06-01T21:44:42.519Z
+last_checked_at: 2026-06-02T17:23:17.259Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:42.519Z
+checked_at: 2026-06-02T17:23:17.259Z
 matched_actions: 38
 action_count: 38
 confidence: medium

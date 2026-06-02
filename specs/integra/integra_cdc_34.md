@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:22.333Z
-last_checked_at: 2026-06-02T10:14:07.044Z
-generated_at: 2026-06-02T10:14:07.044Z
+last_checked_at: 2026-06-02T17:22:35.266Z
+generated_at: 2026-06-02T17:22:35.266Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -29,7 +29,7 @@ known_gaps:
   - "entity slug \"integra_cdc_34\" does not match the source document which covers AV receivers, not the CDC-3.4 CD changer. All commands are from the ISCP v1.15 AV receiver source verbatim."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:07.044Z
+  checked_at: 2026-06-02T17:22:35.266Z
   matched_actions: 815
   action_count: 815
   confidence: medium
@@ -5457,14 +5457,14 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:22.333Z
-last_checked_at: 2026-06-02T10:14:07.044Z
+last_checked_at: 2026-06-02T17:22:35.266Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:07.044Z
+checked_at: 2026-06-02T17:22:35.266Z
 matched_actions: 815
 action_count: 815
 confidence: medium

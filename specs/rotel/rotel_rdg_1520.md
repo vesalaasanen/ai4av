@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:41:32.014Z
-last_checked_at: 2026-06-02T05:46:08.605Z
-generated_at: 2026-06-02T05:46:08.605Z
+last_checked_at: 2026-06-02T17:23:56.604Z
+generated_at: 2026-06-02T17:23:56.604Z
 firmware_coverage: "\"V1.1.5\""
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "source contains no safety warnings, interlocks, or power-on sequencing requirements"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T05:46:08.605Z
+  checked_at: 2026-06-02T17:23:56.604Z
   matched_actions: 64
   action_count: 64
   confidence: medium
@@ -597,14 +597,14 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:41:32.014Z
-last_checked_at: 2026-06-02T05:46:08.605Z
+last_checked_at: 2026-06-02T17:23:56.604Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T05:46:08.605Z
+checked_at: 2026-06-02T17:23:56.604Z
 matched_actions: 64
 action_count: 64
 confidence: medium

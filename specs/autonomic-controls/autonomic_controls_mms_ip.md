@@ -24,8 +24,8 @@ source_urls:
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
   - https://autonomic.atlassian.net/wiki
 retrieved_at: 2026-05-19T22:32:35.415Z
-last_checked_at: 2026-06-01T23:12:17.497Z
-generated_at: 2026-06-01T23:12:17.497Z
+last_checked_at: 2026-06-02T17:21:33.828Z
+generated_at: 2026-06-02T17:21:33.828Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware version compatibility, specific MMS hardware SKUs, default admin credentials (none documented — auth assumed none), full enumeration of all possible event reasons beyond StateChanged/ReportState, behavior when MMS rejects a command"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:17.497Z
+  checked_at: 2026-06-02T17:21:33.828Z
   matched_actions: 68
   action_count: 68
   confidence: medium
@@ -957,14 +957,14 @@ source_urls:
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
   - https://autonomic.atlassian.net/wiki
 retrieved_at: 2026-05-19T22:32:35.415Z
-last_checked_at: 2026-06-01T23:12:17.497Z
+last_checked_at: 2026-06-02T17:21:33.828Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:17.497Z
+checked_at: 2026-06-02T17:21:33.828Z
 matched_actions: 68
 action_count: 68
 confidence: medium

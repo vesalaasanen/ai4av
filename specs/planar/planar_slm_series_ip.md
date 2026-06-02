@@ -22,8 +22,8 @@ source_urls:
   - https://www.planar.com/media/foolqxpw/planar-simplicity-m-series_user-manual_slmxx-models.pdf
   - https://www.planar.com/products/large-format-lcd-displays/modules-drivers/
 retrieved_at: 2026-04-29T11:49:31.376Z
-last_checked_at: 2026-06-02T04:20:10.760Z
-generated_at: 2026-06-02T04:20:10.760Z
+last_checked_at: 2026-06-02T17:23:48.211Z
+generated_at: 2026-06-02T17:23:48.211Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware version range, exact electrical ratings, factory defaults not enumerated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:10.760Z
+  checked_at: 2026-06-02T17:23:48.211Z
   matched_actions: 86
   action_count: 86
   confidence: medium
@@ -984,14 +984,14 @@ source_urls:
   - https://www.planar.com/media/foolqxpw/planar-simplicity-m-series_user-manual_slmxx-models.pdf
   - https://www.planar.com/products/large-format-lcd-displays/modules-drivers/
 retrieved_at: 2026-04-29T11:49:31.376Z
-last_checked_at: 2026-06-02T04:20:10.760Z
+last_checked_at: 2026-06-02T17:23:48.211Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:10.760Z
+checked_at: 2026-06-02T17:23:48.211Z
 matched_actions: 86
 action_count: 86
 confidence: medium

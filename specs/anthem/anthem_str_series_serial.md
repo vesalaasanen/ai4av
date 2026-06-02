@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://storage.googleapis.com/sandbox1-anthemav/an/STR-IP-RS232-20251205192153957.xlsx
 retrieved_at: 2026-04-30T04:24:14.903Z
-last_checked_at: 2026-06-01T23:12:06.864Z
-generated_at: 2026-06-01T23:12:06.864Z
+last_checked_at: 2026-06-02T17:21:12.654Z
+generated_at: 2026-06-02T17:21:12.654Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "no safety warnings, interlocks, or power-on sequencing requirements"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:06.864Z
+  checked_at: 2026-06-02T17:21:12.654Z
   matched_actions: 48
   action_count: 48
   confidence: medium
@@ -668,14 +668,14 @@ source_domains:
 source_urls:
   - https://storage.googleapis.com/sandbox1-anthemav/an/STR-IP-RS232-20251205192153957.xlsx
 retrieved_at: 2026-04-30T04:24:14.903Z
-last_checked_at: 2026-06-01T23:12:06.864Z
+last_checked_at: 2026-06-02T17:21:12.654Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:06.864Z
+checked_at: 2026-06-02T17:21:12.654Z
 matched_actions: 48
 action_count: 48
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:36.196Z
-last_checked_at: 2026-05-14T18:17:18.323Z
-generated_at: 2026-05-14T18:17:18.323Z
+last_checked_at: 2026-06-02T19:39:08.476Z
+generated_at: 2026-06-02T19:39:08.476Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "default serial baud rate not stated — must be configured from the documented options (115200/38400/19200/9600/4800)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.323Z
-  matched_actions: 47
+  checked_at: 2026-06-02T19:39:08.476Z
+  matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions matched their source hex sequences verbatim including the corrected picture_adjust FFh byte; transport values verified; source and spec share an identical 53-command catalogue. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -155,7 +155,8 @@ auth:
     - name: value
       type: integer
       description: 16-bit signed adjustment value (low-order byte first)
-  command_format: "03h 10h 00h 00h 05h <DATA01> <DATA02> <DATA03> <DATA04> <CKS>"
+  command_format: "03h 10h 00h 00h 05h <DATA01> FFh <DATA02> <DATA03> <DATA04> <CKS>"
+  example: "03h 10h 00h 00h 05h 00h FFh 00h 0Ah 00h 21h"
 
 - id: volume_adjust
   label: Volume Adjust
@@ -633,18 +634,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:36.196Z
-last_checked_at: 2026-05-14T18:17:18.323Z
+last_checked_at: 2026-06-02T19:39:08.476Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.323Z
-matched_actions: 47
+checked_at: 2026-06-02T19:39:08.476Z
+matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 47 spec action command codes match NEC projector source verbatim; transport parameters verified; bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions matched their source hex sequences verbatim including the corrected picture_adjust FFh byte; transport values verified; source and spec share an identical 53-command catalogue. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

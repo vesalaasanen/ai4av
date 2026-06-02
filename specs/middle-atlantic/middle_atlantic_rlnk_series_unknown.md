@@ -30,8 +30,8 @@ source_urls:
   - "https://www.markertek.com/Attachments/Manuals/MIDDLE%20ATLANTIC/RLNK-215-Manual.pdf"
   - https://files.avprosupply.com/files/attachments/13508/middle-atlantic-rlnk-215-manual.pdf
 retrieved_at: 2026-05-27T02:31:54.772Z
-last_checked_at: 2026-06-01T22:35:53.262Z
-generated_at: 2026-06-01T22:35:53.262Z
+last_checked_at: 2026-06-02T17:23:32.036Z
+generated_at: 2026-06-02T17:23:32.036Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "per-firmware-version command gating is not stated; voltage/current/power ratings are not stated; physical pinout of the RS-232 DB connector is not stated; default delay values for sequencing are not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:35:53.262Z
+  checked_at: 2026-06-02T17:23:32.036Z
   matched_actions: 53
   action_count: 53
   confidence: medium
@@ -769,14 +769,14 @@ source_urls:
   - "https://www.markertek.com/Attachments/Manuals/MIDDLE%20ATLANTIC/RLNK-215-Manual.pdf"
   - https://files.avprosupply.com/files/attachments/13508/middle-atlantic-rlnk-215-manual.pdf
 retrieved_at: 2026-05-27T02:31:54.772Z
-last_checked_at: 2026-06-01T22:35:53.262Z
+last_checked_at: 2026-06-02T17:23:32.036Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:35:53.262Z
+checked_at: 2026-06-02T17:23:32.036Z
 matched_actions: 53
 action_count: 53
 confidence: medium

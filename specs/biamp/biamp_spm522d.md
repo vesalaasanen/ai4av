@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://downloads.biamp.com/assets/docs/default-source/manuals/spm522d_rs-232_control_manual.pdf
 retrieved_at: 2026-05-04T15:18:53.366Z
-last_checked_at: 2026-06-01T21:44:43.452Z
-generated_at: 2026-06-01T21:44:43.452Z
+last_checked_at: 2026-06-02T17:21:44.470Z
+generated_at: 2026-06-02T17:21:44.470Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "firmware compatibility ranges other than the two dates explicitly stated; physical connector type and pinout; max cable length; default device number assignment procedure (DIP/jumper config not described in this excerpt)."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:43.452Z
+  checked_at: 2026-06-02T17:21:44.470Z
   matched_actions: 78
   action_count: 78
   confidence: medium
@@ -823,14 +823,14 @@ source_domains:
 source_urls:
   - https://downloads.biamp.com/assets/docs/default-source/manuals/spm522d_rs-232_control_manual.pdf
 retrieved_at: 2026-05-04T15:18:53.366Z
-last_checked_at: 2026-06-01T21:44:43.452Z
+last_checked_at: 2026-06-02T17:21:44.470Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:43.452Z
+checked_at: 2026-06-02T17:21:44.470Z
 matched_actions: 78
 action_count: 78
 confidence: medium

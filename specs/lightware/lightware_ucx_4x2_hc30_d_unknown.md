@@ -27,8 +27,8 @@ source_urls:
   - https://www.ivojo.co.uk/instruction-books/lightware/lightware-ucx-4x2-hc30d.pdf
   - https://www.lightware.com/en/support/online-user-manuals
 retrieved_at: 2026-05-13T05:56:11.478Z
-last_checked_at: 2026-06-02T10:14:07.829Z
-generated_at: 2026-06-02T10:14:07.829Z
+last_checked_at: 2026-06-02T17:23:12.879Z
+generated_at: 2026-06-02T17:23:12.879Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "no safety warnings, interlocks, or power-on sequencing procedures"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:07.829Z
+  checked_at: 2026-06-02T17:23:12.879Z
   matched_actions: 23
   action_count: 23
   confidence: medium
@@ -409,14 +409,14 @@ source_urls:
   - https://www.ivojo.co.uk/instruction-books/lightware/lightware-ucx-4x2-hc30d.pdf
   - https://www.lightware.com/en/support/online-user-manuals
 retrieved_at: 2026-05-13T05:56:11.478Z
-last_checked_at: 2026-06-02T10:14:07.829Z
+last_checked_at: 2026-06-02T17:23:12.879Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:07.829Z
+checked_at: 2026-06-02T17:23:12.879Z
 matched_actions: 23
 action_count: 23
 confidence: medium

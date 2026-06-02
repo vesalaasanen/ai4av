@@ -25,9 +25,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T01:48:27.009Z
-last_checked_at: 2026-06-02T01:48:27.009Z
-generated_at: 2026-06-02T01:48:27.009Z
+retrieved_at: 2026-06-02T17:22:58.572Z
+last_checked_at: 2026-06-02T17:22:58.572Z
+generated_at: 2026-06-02T17:22:58.572Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,7 +43,7 @@ known_gaps:
   - "tile-mode value `11` (1×1) is not explicitly listed in the source table; only 00 and the 12-44 grid are documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:27.009Z
+  checked_at: 2026-06-02T17:22:58.572Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -576,15 +576,15 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T01:48:27.009Z
-last_checked_at: 2026-06-02T01:48:27.009Z
+retrieved_at: 2026-06-02T17:22:58.572Z
+last_checked_at: 2026-06-02T17:22:58.572Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:27.009Z
+checked_at: 2026-06-02T17:22:58.572Z
 matched_actions: 27
 action_count: 27
 confidence: medium

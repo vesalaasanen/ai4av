@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:51.998Z
-last_checked_at: 2026-05-14T18:17:18.835Z
-generated_at: 2026-05-14T18:17:18.835Z
+last_checked_at: 2026-06-02T17:26:32.679Z
+generated_at: 2026-06-02T17:26:32.679Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "standby mode requirements vary by model — some require specific standby mode for serial/LAN control"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.835Z
-  matched_actions: 31
+  checked_at: 2026-06-02T17:26:32.679Z
+  matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions map 1-to-1 to the 53 source commands with matching parameters and transport values confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -750,18 +750,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:51.998Z
-last_checked_at: 2026-05-14T18:17:18.835Z
+last_checked_at: 2026-06-02T17:26:32.679Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.835Z
-matched_actions: 31
+checked_at: 2026-06-02T17:26:32.679Z
+matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 31 spec actions match documented source commands one-to-one with correct semantics; transport parameters verified against source. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions map 1-to-1 to the 53 source commands with matching parameters and transport values confirmed. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

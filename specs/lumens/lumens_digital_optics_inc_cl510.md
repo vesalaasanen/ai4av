@@ -22,8 +22,8 @@ source_urls:
   - "https://www.mylumens.com/Download/RS132%20-%20CL510,V02%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/CL510,V01%20RS-232%20command%20set_1_2.pdf"
 retrieved_at: 2026-04-26T18:08:49.991Z
-last_checked_at: 2026-06-02T05:46:07.112Z
-generated_at: 2026-06-02T05:46:07.112Z
+last_checked_at: 2026-06-02T17:23:16.518Z
+generated_at: 2026-06-02T17:23:16.518Z
 firmware_coverage: "PVL303 / PVM105"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "serial flow control not stated; AC 50/60 Hz return value encoding not specified; reg3 row description contains source-side ambiguity; firmware compatibility range beyond PVL303 / PVM105 unknown; Ethernet command set not included."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T05:46:07.112Z
+  checked_at: 2026-06-02T17:23:16.518Z
   matched_actions: 64
   action_count: 64
   confidence: medium
@@ -677,14 +677,14 @@ source_urls:
   - "https://www.mylumens.com/Download/RS132%20-%20CL510,V02%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/CL510,V01%20RS-232%20command%20set_1_2.pdf"
 retrieved_at: 2026-04-26T18:08:49.991Z
-last_checked_at: 2026-06-02T05:46:07.112Z
+last_checked_at: 2026-06-02T17:23:16.518Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T05:46:07.112Z
+checked_at: 2026-06-02T17:23:16.518Z
 matched_actions: 64
 action_count: 64
 confidence: medium

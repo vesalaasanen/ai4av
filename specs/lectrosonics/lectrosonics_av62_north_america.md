@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.lectrosonics.com/wp-content/uploads/filr/7421/av62man.pdf
 retrieved_at: 2026-04-29T16:53:22.425Z
-last_checked_at: 2026-06-02T02:29:35.936Z
-generated_at: 2026-06-02T02:29:35.936Z
+last_checked_at: 2026-06-02T17:22:48.043Z
+generated_at: 2026-06-02T17:22:48.043Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "firmware version compatibility range, voltage/current specs, and any safety interlocks not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:35.936Z
+  checked_at: 2026-06-02T17:22:48.043Z
   matched_actions: 23
   action_count: 23
   confidence: medium
@@ -575,14 +575,14 @@ source_domains:
 source_urls:
   - https://www.lectrosonics.com/wp-content/uploads/filr/7421/av62man.pdf
 retrieved_at: 2026-04-29T16:53:22.425Z
-last_checked_at: 2026-06-02T02:29:35.936Z
+last_checked_at: 2026-06-02T17:22:48.043Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:35.936Z
+checked_at: 2026-06-02T17:22:48.043Z
 matched_actions: 23
 action_count: 23
 confidence: medium

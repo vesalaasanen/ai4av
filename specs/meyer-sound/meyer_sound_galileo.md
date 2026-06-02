@@ -26,8 +26,8 @@ source_urls:
   - https://docs.meyersound.com/products/en/user-guide---galileo-galaxy.html
   - https://applicationmarket.crestron.com/meyer-sound-galileo/
 retrieved_at: 2026-04-26T18:21:57.350Z
-last_checked_at: 2026-06-02T04:56:30.034Z
-generated_at: 2026-06-02T04:56:30.034Z
+last_checked_at: 2026-06-02T17:23:31.251Z
+generated_at: 2026-06-02T17:23:31.251Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,7 +47,7 @@ known_gaps:
   - "firmware version requirements for the control-plane server are not stated; some control point default values may differ across GALAXY 408 / 816 / 816-AES / Bluehorn variants. The \"Additional documents\" row that appears inside the input-EQ table (line 593 of the source) appears to be a markdown extraction artifact rather than a real control point and has been omitted."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:30.034Z
+  checked_at: 2026-06-02T17:23:31.251Z
   matched_actions: 134
   action_count: 134
   confidence: medium
@@ -1830,14 +1830,14 @@ source_urls:
   - https://docs.meyersound.com/products/en/user-guide---galileo-galaxy.html
   - https://applicationmarket.crestron.com/meyer-sound-galileo/
 retrieved_at: 2026-04-26T18:21:57.350Z
-last_checked_at: 2026-06-02T04:56:30.034Z
+last_checked_at: 2026-06-02T17:23:31.251Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:30.034Z
+checked_at: 2026-06-02T17:23:31.251Z
 matched_actions: 134
 action_count: 134
 confidence: medium

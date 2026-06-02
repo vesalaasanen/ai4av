@@ -20,14 +20,11 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-05-14T18:17:14.106Z
-generated_at: 2026-05-14T18:17:14.106Z
+last_checked_at: 2026-06-02T17:26:31.138Z
+generated_at: 2026-06-02T17:26:31.138Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - export_config
-  - import_config
-  - upgrade
   - "MQTT command/topic structure not covered in source document"
   - "firmware version compatibility range not stated"
   - "exact JSON payload structure of unsolicited UDP event messages not shown in source"
@@ -39,11 +36,11 @@ known_gaps:
   - "export_config / import_config / upgrade methods listed in method:help reply but not individually documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.106Z
-  matched_actions: 16
+  checked_at: 2026-06-02T17:26:31.138Z
+  matched_actions: 30
   action_count: 30
   confidence: medium
-  summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 30 spec action units (16 actions + 14 feedbacks with query_command) match verbatim source commands; transport parameters confirmed; source catalogue is exactly 30 commands. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -678,26 +675,23 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-05-14T18:17:14.106Z
+last_checked_at: 2026-06-02T17:26:31.138Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.106Z
-matched_actions: 16
+checked_at: 2026-06-02T17:26:31.138Z
+matched_actions: 30
 action_count: 30
 confidence: medium
-summary: "All 16 spec actions matched exactly in source; transport parameters verified; three methods (export_config, import_config, upgrade) in help output but undocumented. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 30 spec action units (16 actions + 14 feedbacks with query_command) match verbatim source commands; transport parameters confirmed; source catalogue is exactly 30 commands. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- export_config
-- import_config
-- upgrade
 - "MQTT command/topic structure not covered in source document"
 - "firmware version compatibility range not stated"
 - "exact JSON payload structure of unsolicited UDP event messages not shown in source"

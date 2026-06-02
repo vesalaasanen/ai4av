@@ -24,9 +24,9 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
-retrieved_at: 2026-06-02T03:24:42.118Z
-last_checked_at: 2026-06-02T03:24:42.118Z
-generated_at: 2026-06-02T03:24:42.118Z
+retrieved_at: 2026-06-02T17:23:00.941Z
+last_checked_at: 2026-06-02T17:23:00.941Z
+generated_at: 2026-06-02T17:23:00.941Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "TCP/IP control parameters (port, credentials, command mapping) — source contains none. The \"Known protocol\" hint in the request did not match source content."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:42.118Z
+  checked_at: 2026-06-02T17:23:00.941Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -574,15 +574,15 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
-retrieved_at: 2026-06-02T03:24:42.118Z
-last_checked_at: 2026-06-02T03:24:42.118Z
+retrieved_at: 2026-06-02T17:23:00.941Z
+last_checked_at: 2026-06-02T17:23:00.941Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:42.118Z
+checked_at: 2026-06-02T17:23:00.941Z
 matched_actions: 27
 action_count: 27
 confidence: medium

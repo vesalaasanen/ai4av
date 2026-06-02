@@ -20,11 +20,12 @@ source_domains:
 source_urls:
   - https://hive.run/knowledge-base/files/resources/UDP_Command_List.pdf
 retrieved_at: 2026-04-30T04:41:21.039Z
-last_checked_at: 2026-05-14T18:17:16.780Z
-generated_at: 2026-05-14T18:17:16.780Z
+last_checked_at: 2026-06-02T17:26:38.800Z
+generated_at: 2026-06-02T17:26:38.800Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - "localSVPatch.SetPatchDouble(\"/LAYER 1/MOVEMENT SPEED/Value\", X)"
   - "exact hardware capabilities, number of layers supported, maximum resolution, codec support details not stated"
   - "no separate variable definitions in source beyond the action parameters"
   - "no unsolicited notification mechanism described in source."
@@ -40,11 +41,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.780Z
-  matched_actions: 63
+  checked_at: 2026-06-02T17:26:38.800Z
+  matched_actions: 72
   action_count: 72
   confidence: medium
-  summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 72 spec actions match verbatim source commands; only MOVEMENT SPEED (reserved for future use) is in source but not spec, giving 0.98 coverage ratio. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1203,23 +1204,24 @@ source_domains:
 source_urls:
   - https://hive.run/knowledge-base/files/resources/UDP_Command_List.pdf
 retrieved_at: 2026-04-30T04:41:21.039Z
-last_checked_at: 2026-05-14T18:17:16.780Z
+last_checked_at: 2026-06-02T17:26:38.800Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.780Z
-matched_actions: 63
+checked_at: 2026-06-02T17:26:38.800Z
+matched_actions: 72
 action_count: 72
 confidence: medium
-summary: "All 63 spec actions match source commands verbatim; transport parameters confirmed; spec fully represents documented Hive Beeblade UDP API. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 72 spec actions match verbatim source commands; only MOVEMENT SPEED (reserved for future use) is in source but not spec, giving 0.98 coverage ratio. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- "localSVPatch.SetPatchDouble(\"/LAYER 1/MOVEMENT SPEED/Value\", X)"
 - "exact hardware capabilities, number of layers supported, maximum resolution, codec support details not stated"
 - "no separate variable definitions in source beyond the action parameters"
 - "no unsolicited notification mechanism described in source."

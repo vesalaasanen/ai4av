@@ -21,16 +21,16 @@ source_domains:
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:48:23.776Z
-last_checked_at: 2026-06-02T01:48:23.776Z
-generated_at: 2026-06-02T01:48:23.776Z
+retrieved_at: 2026-06-02T17:22:55.190Z
+last_checked_at: 2026-06-02T17:22:55.190Z
+generated_at: 2026-06-02T17:22:55.190Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source is a generic LG commercial display RS-232 protocol reference, not a 49UJ-specific document. The 49UJ is presumed to implement this protocol, but no explicit confirmation appears in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:23.776Z
+  checked_at: 2026-06-02T17:22:55.190Z
   matched_actions: 41
   action_count: 41
   confidence: medium
@@ -626,15 +626,15 @@ source_domains:
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:48:23.776Z
-last_checked_at: 2026-06-02T01:48:23.776Z
+retrieved_at: 2026-06-02T17:22:55.190Z
+last_checked_at: 2026-06-02T17:22:55.190Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:23.776Z
+checked_at: 2026-06-02T17:22:55.190Z
 matched_actions: 41
 action_count: 41
 confidence: medium

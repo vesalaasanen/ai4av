@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-04-30T04:26:55.366Z
-last_checked_at: 2026-06-02T05:46:07.837Z
-generated_at: 2026-06-02T05:46:07.837Z
+last_checked_at: 2026-06-02T17:23:29.620Z
+generated_at: 2026-06-02T17:23:29.620Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "factory default activity names, audio profile names, video profile names, display configuration names, and speaker configuration names are not enumerated in the source; they are user-editable pre-configured values. Firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T05:46:07.837Z
+  checked_at: 2026-06-02T17:23:29.620Z
   matched_actions: 292
   action_count: 292
   confidence: medium
@@ -2445,14 +2445,14 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-04-30T04:26:55.366Z
-last_checked_at: 2026-06-02T05:46:07.837Z
+last_checked_at: 2026-06-02T17:23:29.620Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T05:46:07.837Z
+checked_at: 2026-06-02T17:23:29.620Z
 matched_actions: 292
 action_count: 292
 confidence: medium

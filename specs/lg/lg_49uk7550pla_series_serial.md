@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T01:48:24.519Z
-last_checked_at: 2026-06-02T01:48:24.519Z
-generated_at: 2026-06-02T01:48:24.519Z
+retrieved_at: 2026-06-02T17:22:55.915Z
+last_checked_at: 2026-06-02T17:22:55.915Z
+generated_at: 2026-06-02T17:22:55.915Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "per-command query feedback shapes for every command (source documents the FF mechanism generically rather than per-row), exact serial timing (inter-byte and response timeout), behaviour during firmware update / channel scan, complete list of region-specific tune-command variations beyond the examples given."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:24.519Z
+  checked_at: 2026-06-02T17:22:55.915Z
   matched_actions: 51
   action_count: 51
   confidence: medium
@@ -781,15 +781,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T01:48:24.519Z
-last_checked_at: 2026-06-02T01:48:24.519Z
+retrieved_at: 2026-06-02T17:22:55.915Z
+last_checked_at: 2026-06-02T17:22:55.915Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:24.519Z
+checked_at: 2026-06-02T17:22:55.915Z
 matched_actions: 51
 action_count: 51
 confidence: medium

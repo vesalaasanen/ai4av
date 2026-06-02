@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-04-29T13:46:22.662Z
-last_checked_at: 2026-06-01T20:45:22.895Z
-generated_at: 2026-06-01T20:45:22.895Z
+last_checked_at: 2026-06-02T17:22:50.680Z
+generated_at: 2026-06-02T17:22:50.680Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "no explicit power-on sequencing, interlock, or hazard warnings in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:22.895Z
+  checked_at: 2026-06-02T17:22:50.680Z
   matched_actions: 176
   action_count: 176
   confidence: medium
@@ -1679,14 +1679,14 @@ source_domains:
 source_urls:
   - https://www.lexicon.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwb6944f6d/pdfs/RS232_Protocol_Documentation.pdf
 retrieved_at: 2026-04-29T13:46:22.662Z
-last_checked_at: 2026-06-01T20:45:22.895Z
+last_checked_at: 2026-06-02T17:22:50.680Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:22.895Z
+checked_at: 2026-06-02T17:22:50.680Z
 matched_actions: 176
 action_count: 176
 confidence: medium

@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T04:20:01.745Z
-last_checked_at: 2026-06-02T04:20:01.745Z
-generated_at: 2026-06-02T04:20:01.745Z
+retrieved_at: 2026-06-02T17:22:36.797Z
+last_checked_at: 2026-06-02T17:22:36.797Z
+generated_at: 2026-06-02T17:22:36.797Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:01.745Z
+  checked_at: 2026-06-02T17:22:36.797Z
   matched_actions: 176
   action_count: 176
   confidence: medium
@@ -1446,15 +1446,15 @@ RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR) forward to Onkyo RI-
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T04:20:01.745Z
-last_checked_at: 2026-06-02T04:20:01.745Z
+retrieved_at: 2026-06-02T17:22:36.797Z
+last_checked_at: 2026-06-02T17:22:36.797Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:01.745Z
+checked_at: 2026-06-02T17:22:36.797Z
 matched_actions: 176
 action_count: 176
 confidence: medium

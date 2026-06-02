@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/e0mf2zl1/020-1321-01a_qe-series-rs232-user-manual-wm.pdf
 retrieved_at: 2026-05-27T11:24:36.810Z
-last_checked_at: 2026-06-02T04:56:36.506Z
-generated_at: 2026-06-02T04:56:36.506Z
+last_checked_at: 2026-06-02T17:23:47.472Z
+generated_at: 2026-06-02T17:23:47.472Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "firmware version gating not stated; specific QE9850/QE9850T model-specific behavior beyond the shared protocol is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:36.506Z
+  checked_at: 2026-06-02T17:23:47.472Z
   matched_actions: 110
   action_count: 110
   confidence: medium
@@ -1334,14 +1334,14 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/e0mf2zl1/020-1321-01a_qe-series-rs232-user-manual-wm.pdf
 retrieved_at: 2026-05-27T11:24:36.810Z
-last_checked_at: 2026-06-02T04:56:36.506Z
+last_checked_at: 2026-06-02T17:23:47.472Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:36.506Z
+checked_at: 2026-06-02T17:23:47.472Z
 matched_actions: 110
 action_count: 110
 confidence: medium

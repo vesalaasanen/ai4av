@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
 retrieved_at: 2026-04-30T04:31:52.314Z
-last_checked_at: 2026-06-02T03:24:56.958Z
-generated_at: 2026-06-02T03:24:56.958Z
+last_checked_at: 2026-06-02T17:23:15.773Z
+generated_at: 2026-06-02T17:23:15.773Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "behavior on power loss, error recovery sequences, fault behavior are not described in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:56.958Z
+  checked_at: 2026-06-02T17:23:15.773Z
   matched_actions: 215
   action_count: 215
   confidence: medium
@@ -2177,14 +2177,14 @@ source_domains:
 source_urls:
   - https://www.lumagen.com/s/Tip0011_RS232CommandInterface_111023.pdf
 retrieved_at: 2026-04-30T04:31:52.314Z
-last_checked_at: 2026-06-02T03:24:56.958Z
+last_checked_at: 2026-06-02T17:23:15.773Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:56.958Z
+checked_at: 2026-06-02T17:23:15.773Z
 matched_actions: 215
 action_count: 215
 confidence: medium

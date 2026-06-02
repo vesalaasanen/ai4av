@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-04-30T04:31:02.945Z
-last_checked_at: 2026-06-02T01:48:10.257Z
-generated_at: 2026-06-02T01:48:10.257Z
+last_checked_at: 2026-06-02T17:22:19.000Z
+generated_at: 2026-06-02T17:22:19.000Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "source does not document safety warnings, interlock procedures,"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:10.257Z
+  checked_at: 2026-06-02T17:22:19.000Z
   matched_actions: 16
   action_count: 16
   confidence: medium
@@ -403,14 +403,14 @@ source_domains:
 source_urls:
   - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
 retrieved_at: 2026-04-30T04:31:02.945Z
-last_checked_at: 2026-06-02T01:48:10.257Z
+last_checked_at: 2026-06-02T17:22:19.000Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:10.257Z
+checked_at: 2026-06-02T17:22:19.000Z
 matched_actions: 16
 action_count: 16
 confidence: medium

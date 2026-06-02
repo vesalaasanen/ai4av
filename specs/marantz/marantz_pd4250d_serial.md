@@ -24,8 +24,8 @@ source_urls:
   - https://www.marantz.com/on/demandware.static/-/Library-Sites-marantz_northamerica_shared/default/dw8fd12025/./archive-downloads/dfu_pd4250d_final_eng.pdf
   - "https://www.manualslib.com/manual/98953/Marantz-Pd4250d.html?page=32"
 retrieved_at: 2026-05-27T19:07:10.611Z
-last_checked_at: 2026-06-02T04:56:28.540Z
-generated_at: 2026-06-02T04:56:28.540Z
+last_checked_at: 2026-06-02T17:23:27.235Z
+generated_at: 2026-06-02T17:23:27.235Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "specific PD4250D applicability of the AV-receiver command set not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:28.540Z
+  checked_at: 2026-06-02T17:23:27.235Z
   matched_actions: 136
   action_count: 136
   confidence: medium
@@ -1564,14 +1564,14 @@ source_urls:
   - https://www.marantz.com/on/demandware.static/-/Library-Sites-marantz_northamerica_shared/default/dw8fd12025/./archive-downloads/dfu_pd4250d_final_eng.pdf
   - "https://www.manualslib.com/manual/98953/Marantz-Pd4250d.html?page=32"
 retrieved_at: 2026-05-27T19:07:10.611Z
-last_checked_at: 2026-06-02T04:56:28.540Z
+last_checked_at: 2026-06-02T17:23:27.235Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:28.540Z
+checked_at: 2026-06-02T17:23:27.235Z
 matched_actions: 136
 action_count: 136
 confidence: medium

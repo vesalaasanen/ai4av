@@ -22,8 +22,8 @@ source_urls:
   - https://www.planar.com/media/tghnvl0f/020-1397-00b_ultrares-x-series_rs232-user-manual-wm.pdf
   - https://www.planar.com/media/v2mototw/020-1397-00c-ultrares-series-rs232-user-manual.pdf
 retrieved_at: 2026-05-01T02:08:48.725Z
-last_checked_at: 2026-06-02T04:20:12.528Z
-generated_at: 2026-06-02T04:20:12.528Z
+last_checked_at: 2026-06-02T17:23:50.505Z
+generated_at: 2026-06-02T17:23:50.505Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware version compatibility, voltage/current specs, fault"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:12.528Z
+  checked_at: 2026-06-02T17:23:50.505Z
   matched_actions: 132
   action_count: 132
   confidence: medium
@@ -1279,14 +1279,14 @@ source_urls:
   - https://www.planar.com/media/tghnvl0f/020-1397-00b_ultrares-x-series_rs232-user-manual-wm.pdf
   - https://www.planar.com/media/v2mototw/020-1397-00c-ultrares-series-rs232-user-manual.pdf
 retrieved_at: 2026-05-01T02:08:48.725Z
-last_checked_at: 2026-06-02T04:20:12.528Z
+last_checked_at: 2026-06-02T17:23:50.505Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:12.528Z
+checked_at: 2026-06-02T17:23:50.505Z
 matched_actions: 132
 action_count: 132
 confidence: medium

@@ -29,8 +29,8 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
-last_checked_at: 2026-06-02T12:02:42.392Z
-generated_at: 2026-06-02T12:02:42.392Z
+last_checked_at: 2026-06-02T17:23:40.601Z
+generated_at: 2026-06-02T17:23:40.601Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "charger coil state (ports 3-4) physical meaning not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T12:02:42.392Z
+  checked_at: 2026-06-02T17:23:40.601Z
   matched_actions: 14
   action_count: 14
   confidence: medium
@@ -649,14 +649,14 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-05-04T06:33:17.959Z
-last_checked_at: 2026-06-02T12:02:42.392Z
+last_checked_at: 2026-06-02T17:23:40.601Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T12:02:42.392Z
+checked_at: 2026-06-02T17:23:40.601Z
 matched_actions: 14
 action_count: 14
 confidence: medium

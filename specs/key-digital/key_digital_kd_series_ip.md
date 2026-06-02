@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
 retrieved_at: 2026-05-08T15:21:29.666Z
-last_checked_at: 2026-06-02T01:48:17.348Z
-generated_at: 2026-06-02T01:48:17.348Z
+last_checked_at: 2026-06-02T17:22:44.388Z
+generated_at: 2026-06-02T17:22:44.388Z
 firmware_coverage: "\"1.02\""
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "exact System Address prefix syntax (position, separator, whether prefix consumes the leading 'SP' of mnemonics)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:17.348Z
+  checked_at: 2026-06-02T17:22:44.388Z
   matched_actions: 22
   action_count: 22
   confidence: medium
@@ -408,14 +408,14 @@ source_domains:
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
 retrieved_at: 2026-05-08T15:21:29.666Z
-last_checked_at: 2026-06-02T01:48:17.348Z
+last_checked_at: 2026-06-02T17:22:44.388Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:17.348Z
+checked_at: 2026-06-02T17:22:44.388Z
 matched_actions: 22
 action_count: 22
 confidence: medium

@@ -22,9 +22,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:45.198Z
-last_checked_at: 2026-06-02T03:24:45.198Z
-generated_at: 2026-06-02T03:24:45.198Z
+retrieved_at: 2026-06-02T17:23:04.046Z
+last_checked_at: 2026-06-02T17:23:04.046Z
+generated_at: 2026-06-02T17:23:04.046Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:45.198Z
+  checked_at: 2026-06-02T17:23:04.046Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -558,15 +558,15 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:45.198Z
-last_checked_at: 2026-06-02T03:24:45.198Z
+retrieved_at: 2026-06-02T17:23:04.046Z
+last_checked_at: 2026-06-02T17:23:04.046Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:45.198Z
+checked_at: 2026-06-02T17:23:04.046Z
 matched_actions: 27
 action_count: 27
 confidence: medium

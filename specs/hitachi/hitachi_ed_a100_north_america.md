@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://support.maxellproav.com/wp-content/uploads/Support/OG/Hitachi_ED-A100_UM_Technical.pdf
 retrieved_at: 2026-04-30T04:24:57.970Z
-last_checked_at: 2026-06-01T20:45:20.520Z
-generated_at: 2026-06-01T20:45:20.520Z
+last_checked_at: 2026-06-02T17:22:32.242Z
+generated_at: 2026-06-02T17:22:32.242Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "value ranges for increment/decrement parameters not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:20.520Z
+  checked_at: 2026-06-02T17:22:32.242Z
   matched_actions: 381
   action_count: 381
   confidence: medium
@@ -2536,14 +2536,14 @@ source_domains:
 source_urls:
   - https://support.maxellproav.com/wp-content/uploads/Support/OG/Hitachi_ED-A100_UM_Technical.pdf
 retrieved_at: 2026-04-30T04:24:57.970Z
-last_checked_at: 2026-06-01T20:45:20.520Z
+last_checked_at: 2026-06-02T17:22:32.242Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:20.520Z
+checked_at: 2026-06-02T17:22:32.242Z
 matched_actions: 381
 action_count: 381
 confidence: medium

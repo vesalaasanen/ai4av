@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-04-30T04:31:17.466Z
-last_checked_at: 2026-06-02T01:48:19.941Z
-generated_at: 2026-06-02T01:48:19.941Z
+last_checked_at: 2026-06-02T17:22:51.416Z
+generated_at: 2026-06-02T17:22:51.416Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "GET_MACADDRESS interface token spelling discrepancy ('wire' in §3.5 vs 'wired' in §7.2)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:19.941Z
+  checked_at: 2026-06-02T17:22:51.416Z
   matched_actions: 34
   action_count: 34
   confidence: medium
@@ -650,14 +650,14 @@ source_domains:
 source_urls:
   - https://raw.githubusercontent.com/WesSouza/lgtv-ip-control/main/docs/LG_IP.pdf
 retrieved_at: 2026-04-30T04:31:17.466Z
-last_checked_at: 2026-06-02T01:48:19.941Z
+last_checked_at: 2026-06-02T17:22:51.416Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:19.941Z
+checked_at: 2026-06-02T17:22:51.416Z
 matched_actions: 34
 action_count: 34
 confidence: medium

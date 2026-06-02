@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://rotel.com/sites/default/files/product/rs232/RCX1500%20Protocol.pdf"
 retrieved_at: 2026-05-22T15:27:30.889Z
-last_checked_at: 2026-06-02T04:20:15.660Z
-generated_at: 2026-06-02T04:20:15.660Z
+last_checked_at: 2026-06-02T17:23:55.685Z
+generated_at: 2026-06-02T17:23:55.685Z
 firmware_coverage: "\">=1.1.5\""
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:15.660Z
+  checked_at: 2026-06-02T17:23:55.685Z
   matched_actions: 83
   action_count: 83
   confidence: medium
@@ -634,14 +634,14 @@ source_domains:
 source_urls:
   - "https://rotel.com/sites/default/files/product/rs232/RCX1500%20Protocol.pdf"
 retrieved_at: 2026-05-22T15:27:30.889Z
-last_checked_at: 2026-06-02T04:20:15.660Z
+last_checked_at: 2026-06-02T17:23:55.685Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:15.660Z
+checked_at: 2026-06-02T17:23:55.685Z
 matched_actions: 83
 action_count: 83
 confidence: medium

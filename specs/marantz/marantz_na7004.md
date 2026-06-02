@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:40.220Z
-last_checked_at: 2026-06-02T08:46:04.660Z
-generated_at: 2026-06-02T08:46:04.660Z
+last_checked_at: 2026-06-02T17:23:25.423Z
+generated_at: 2026-06-02T17:23:25.423Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -29,7 +29,7 @@ known_gaps:
   - "populate from source, or remove section if not applicable"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T08:46:04.660Z
+  checked_at: 2026-06-02T17:23:25.423Z
   matched_actions: 767
   action_count: 767
   confidence: medium
@@ -5078,14 +5078,14 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:40.220Z
-last_checked_at: 2026-06-02T08:46:04.660Z
+last_checked_at: 2026-06-02T17:23:25.423Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T08:46:04.660Z
+checked_at: 2026-06-02T17:23:25.423Z
 matched_actions: 767
 action_count: 767
 confidence: medium

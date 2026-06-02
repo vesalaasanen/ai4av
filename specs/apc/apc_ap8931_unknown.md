@@ -28,8 +28,8 @@ source_urls:
   - https://manualmachine.com/apc/ap8941/392271-user-manual/
   - https://www.mouser.com/datasheet/3/187/8/AP8931_document.pdf
 retrieved_at: 2026-05-14T10:59:22.676Z
-last_checked_at: 2026-06-01T23:12:07.651Z
-generated_at: 2026-06-01T23:12:07.651Z
+last_checked_at: 2026-06-02T17:21:14.265Z
+generated_at: 2026-06-02T17:21:14.265Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,7 +44,7 @@ known_gaps:
   - "TCP port numbers for Telnet/SSH not stated in source (do not assume 22/23). Serial data bits, parity, stop bits, flow control not stated (do not assume 8N1). Firmware version compatibility range not stated. Source does not document unsolicited event notifications or macro scripting. The `current` command may be unsupported on AP8931 per source note."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:07.651Z
+  checked_at: 2026-06-02T17:21:14.265Z
   matched_actions: 36
   action_count: 36
   confidence: medium
@@ -651,14 +651,14 @@ source_urls:
   - https://manualmachine.com/apc/ap8941/392271-user-manual/
   - https://www.mouser.com/datasheet/3/187/8/AP8931_document.pdf
 retrieved_at: 2026-05-14T10:59:22.676Z
-last_checked_at: 2026-06-01T23:12:07.651Z
+last_checked_at: 2026-06-02T17:21:14.265Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:07.651Z
+checked_at: 2026-06-02T17:21:14.265Z
 matched_actions: 36
 action_count: 36
 confidence: medium

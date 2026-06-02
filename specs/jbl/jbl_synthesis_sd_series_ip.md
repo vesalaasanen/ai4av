@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw51dc9ad1/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-04-30T04:31:15.235Z
-last_checked_at: 2026-06-01T21:44:37.004Z
-generated_at: 2026-06-01T21:44:37.004Z
+last_checked_at: 2026-06-02T17:22:40.496Z
+generated_at: 2026-06-02T17:22:40.496Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "control 4 SDDP packet format not documented in source; only declared supported."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:37.004Z
+  checked_at: 2026-06-02T17:22:40.496Z
   matched_actions: 62
   action_count: 62
   confidence: medium
@@ -785,14 +785,14 @@ source_domains:
 source_urls:
   - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw51dc9ad1/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-04-30T04:31:15.235Z
-last_checked_at: 2026-06-01T21:44:37.004Z
+last_checked_at: 2026-06-02T17:22:40.496Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:37.004Z
+checked_at: 2026-06-02T17:22:40.496Z
 matched_actions: 62
 action_count: 62
 confidence: medium

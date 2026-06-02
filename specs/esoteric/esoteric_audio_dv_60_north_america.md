@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
 retrieved_at: 2026-05-12T09:53:46.083Z
-last_checked_at: 2026-06-02T00:54:02.852Z
-generated_at: 2026-06-02T00:54:02.852Z
+last_checked_at: 2026-06-02T17:22:14.495Z
+generated_at: 2026-06-02T17:22:14.495Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "behaviour on power-off (whether RS-232 remains active in standby), error recovery semantics beyond NAK, and any retransmit policy are not documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:54:02.852Z
+  checked_at: 2026-06-02T17:22:14.495Z
   matched_actions: 99
   action_count: 99
   confidence: medium
@@ -898,14 +898,14 @@ source_domains:
 source_urls:
   - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
 retrieved_at: 2026-05-12T09:53:46.083Z
-last_checked_at: 2026-06-02T00:54:02.852Z
+last_checked_at: 2026-06-02T17:22:14.495Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:54:02.852Z
+checked_at: 2026-06-02T17:22:14.495Z
 matched_actions: 99
 action_count: 99
 confidence: medium

@@ -25,8 +25,8 @@ source_urls:
   - https://www.scribd.com/document/649294226/RS232-forLGTV
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-codes
 retrieved_at: 2026-05-12T20:12:47.191Z
-last_checked_at: 2026-06-02T03:24:50.662Z
-generated_at: 2026-06-02T03:24:50.662Z
+last_checked_at: 2026-06-02T17:23:09.860Z
+generated_at: 2026-06-02T17:23:09.860Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "firmware version compatibility; exact response formatting of FF queries for level-style commands; whether Network IP Control session accepts multiple commands per connection or is one-shot (source example sends VOLUME_MUTE then quits, leaving multi-command session behaviour implicit)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:50.662Z
+  checked_at: 2026-06-02T17:23:09.860Z
   matched_actions: 83
   action_count: 83
   confidence: medium
@@ -1231,14 +1231,14 @@ source_urls:
   - https://www.scribd.com/document/649294226/RS232-forLGTV
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-codes
 retrieved_at: 2026-05-12T20:12:47.191Z
-last_checked_at: 2026-06-02T03:24:50.662Z
+last_checked_at: 2026-06-02T17:23:09.860Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:50.662Z
+checked_at: 2026-06-02T17:23:09.860Z
 matched_actions: 83
 action_count: 83
 confidence: medium

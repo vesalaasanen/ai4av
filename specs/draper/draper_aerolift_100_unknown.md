@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-14T15:35:22.030Z
-last_checked_at: 2026-06-02T00:54:00.603Z
-generated_at: 2026-06-02T00:54:00.603Z
+last_checked_at: 2026-06-02T17:22:10.516Z
+generated_at: 2026-06-02T17:22:10.516Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "factory-default values for min load and stall thresholds not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:54:00.603Z
+  checked_at: 2026-06-02T17:22:10.516Z
   matched_actions: 15
   action_count: 15
   confidence: medium
@@ -362,14 +362,14 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-14T15:35:22.030Z
-last_checked_at: 2026-06-02T00:54:00.603Z
+last_checked_at: 2026-06-02T17:22:10.516Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:54:00.603Z
+checked_at: 2026-06-02T17:22:10.516Z
 matched_actions: 15
 action_count: 15
 confidence: medium

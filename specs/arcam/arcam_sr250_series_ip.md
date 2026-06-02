@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-06-01T20:32:58.752Z
-last_checked_at: 2026-06-01T20:45:18.764Z
-generated_at: 2026-06-01T20:45:18.764Z
+last_checked_at: 2026-06-02T17:21:21.403Z
+generated_at: 2026-06-02T17:21:21.403Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "per-channel/per-zone RC5 codes for Zone 2 are fully listed in"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:18.764Z
+  checked_at: 2026-06-02T17:21:21.403Z
   matched_actions: 51
   action_count: 51
   confidence: medium
@@ -755,14 +755,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-06-01T20:32:58.752Z
-last_checked_at: 2026-06-01T20:45:18.764Z
+last_checked_at: 2026-06-02T17:21:21.403Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:18.764Z
+checked_at: 2026-06-02T17:21:21.403Z
 matched_actions: 51
 action_count: 51
 confidence: medium

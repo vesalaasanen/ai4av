@@ -22,8 +22,8 @@ source_urls:
   - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
   - https://applicationmarket.crestron.com/ad-notam-dfu/
 retrieved_at: 2026-04-29T20:56:19.246Z
-last_checked_at: 2026-06-01T23:12:03.716Z
-generated_at: 2026-06-01T23:12:03.716Z
+last_checked_at: 2026-06-02T17:21:09.608Z
+generated_at: 2026-06-02T17:21:09.608Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "which model variants enable 5V/12V out, Zoom 3, and ASP:ZM3 not specified in source beyond the 24VDC Zoom 3 note"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:03.716Z
+  checked_at: 2026-06-02T17:21:09.608Z
   matched_actions: 161
   action_count: 161
   confidence: medium
@@ -1248,14 +1248,14 @@ source_urls:
   - https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf
   - https://applicationmarket.crestron.com/ad-notam-dfu/
 retrieved_at: 2026-04-29T20:56:19.246Z
-last_checked_at: 2026-06-01T23:12:03.716Z
+last_checked_at: 2026-06-02T17:21:09.608Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:03.716Z
+checked_at: 2026-06-02T17:21:09.608Z
 matched_actions: 161
 action_count: 161
 confidence: medium

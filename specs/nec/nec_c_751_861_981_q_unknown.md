@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T07:44:09.028Z
-last_checked_at: 2026-05-16T11:35:04.404Z
-generated_at: 2026-05-16T11:35:04.404Z
+last_checked_at: 2026-06-02T17:26:30.332Z
+generated_at: 2026-06-02T17:26:30.332Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T11:35:04.404Z
-  matched_actions: 28
+  checked_at: 2026-06-02T17:26:30.332Z
+  matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec action units match verbatim hex sequences or named commands in the source; transport values confirmed; all 38 source commands are represented in the spec. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -733,18 +733,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T07:44:09.028Z
-last_checked_at: 2026-05-16T11:35:04.404Z
+last_checked_at: 2026-06-02T17:26:30.332Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T11:35:04.404Z
-matched_actions: 28
+checked_at: 2026-06-02T17:26:30.332Z
+matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 28 spec actions matched to source commands with exact hex tokens; transport parameters verified; source command catalogue fully represented. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec action units match verbatim hex sequences or named commands in the source; transport values confirmed; all 38 source commands are represented in the spec. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

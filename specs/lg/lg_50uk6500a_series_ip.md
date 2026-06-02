@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.manualslib.com/manual/2692857/Lg-Uk6500.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:42.892Z
-last_checked_at: 2026-06-02T03:24:42.892Z
-generated_at: 2026-06-02T03:24:42.892Z
+retrieved_at: 2026-06-02T17:23:01.670Z
+last_checked_at: 2026-06-02T17:23:01.670Z
+generated_at: 2026-06-02T17:23:01.670Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "firmware version compatibility range not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:42.892Z
+  checked_at: 2026-06-02T17:23:01.670Z
   matched_actions: 26
   action_count: 26
   confidence: medium
@@ -469,15 +469,15 @@ source_domains:
 source_urls:
   - https://www.manualslib.com/manual/2692857/Lg-Uk6500.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:42.892Z
-last_checked_at: 2026-06-02T03:24:42.892Z
+retrieved_at: 2026-06-02T17:23:01.670Z
+last_checked_at: 2026-06-02T17:23:01.670Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:42.892Z
+checked_at: 2026-06-02T17:23:01.670Z
 matched_actions: 26
 action_count: 26
 confidence: medium

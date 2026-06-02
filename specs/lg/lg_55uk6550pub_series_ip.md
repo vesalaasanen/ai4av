@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:47.390Z
-last_checked_at: 2026-06-02T03:24:47.390Z
-generated_at: 2026-06-02T03:24:47.390Z
+retrieved_at: 2026-06-02T17:23:06.492Z
+last_checked_at: 2026-06-02T17:23:06.492Z
+generated_at: 2026-06-02T17:23:06.492Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware version compatibility not stated. UNRESOLVED: WOL magic packet format not in source. UNRESOLVED: 3D / Extended 3D / ISM applicability to 55UK6550PUB not confirmed."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:47.390Z
+  checked_at: 2026-06-02T17:23:06.492Z
   matched_actions: 29
   action_count: 29
   confidence: medium
@@ -690,15 +690,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:47.390Z
-last_checked_at: 2026-06-02T03:24:47.390Z
+retrieved_at: 2026-06-02T17:23:06.492Z
+last_checked_at: 2026-06-02T17:23:06.492Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:47.390Z
+checked_at: 2026-06-02T17:23:06.492Z
 matched_actions: 29
 action_count: 29
 confidence: medium

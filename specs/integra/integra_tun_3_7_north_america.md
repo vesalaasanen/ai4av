@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:35.442Z
-last_checked_at: 2026-06-02T01:48:15.829Z
-generated_at: 2026-06-02T01:48:15.829Z
+last_checked_at: 2026-06-02T17:22:38.265Z
+generated_at: 2026-06-02T17:22:38.265Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "eISCP exact receive-buffer handling and \"Reserved\" byte semantics beyond 0x000000 not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:15.829Z
+  checked_at: 2026-06-02T17:22:38.265Z
   matched_actions: 91
   action_count: 91
   confidence: medium
@@ -1162,14 +1162,14 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:35.442Z
-last_checked_at: 2026-06-02T01:48:15.829Z
+last_checked_at: 2026-06-02T17:22:38.265Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:15.829Z
+checked_at: 2026-06-02T17:22:38.265Z
 matched_actions: 91
 action_count: 91
 confidence: medium

@@ -24,8 +24,8 @@ source_urls:
   - "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000331602.pdf"
   - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
 retrieved_at: 2026-05-04T23:49:31.345Z
-last_checked_at: 2026-06-02T03:24:52.167Z
-generated_at: 2026-06-02T03:24:52.167Z
+last_checked_at: 2026-06-02T17:23:11.355Z
+generated_at: 2026-06-02T17:23:11.355Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "source contains no explicit safety warnings, interlock procedures,"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:52.167Z
+  checked_at: 2026-06-02T17:23:11.355Z
   matched_actions: 26
   action_count: 26
   confidence: medium
@@ -510,14 +510,14 @@ source_urls:
   - "https://gscs-b2c.lge.com/open/downloadFile?fileId=KROWM000331602.pdf"
   - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
 retrieved_at: 2026-05-04T23:49:31.345Z
-last_checked_at: 2026-06-02T03:24:52.167Z
+last_checked_at: 2026-06-02T17:23:11.355Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:52.167Z
+checked_at: 2026-06-02T17:23:11.355Z
 matched_actions: 26
 action_count: 26
 confidence: medium

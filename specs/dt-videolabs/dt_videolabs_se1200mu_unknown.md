@@ -26,8 +26,8 @@ source_urls:
   - https://www.datavideo.com/us/protocol/list
   - https://datavideo.zendesk.com/hc/en-us/articles/360058612373-SE-1200MU-RS-232-serial-commands-Crestron-control-and-command-strings-examples
 retrieved_at: 2026-05-18T06:31:11.014Z
-last_checked_at: 2026-06-02T02:29:19.268Z
-generated_at: 2026-06-02T02:29:19.268Z
+last_checked_at: 2026-06-02T17:22:13.757Z
+generated_at: 2026-06-02T17:22:13.757Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "voltage/current/power specs absent; protocol version number absent; firmware compatibility range beyond v1.3.3.x not stated; configurable IP / DHCP / multi-unit behavior available \"through host configuration files, which are not normally made available to the user\" — not formally documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:19.268Z
+  checked_at: 2026-06-02T17:22:13.757Z
   matched_actions: 26
   action_count: 26
   confidence: medium
@@ -1766,14 +1766,14 @@ source_urls:
   - https://www.datavideo.com/us/protocol/list
   - https://datavideo.zendesk.com/hc/en-us/articles/360058612373-SE-1200MU-RS-232-serial-commands-Crestron-control-and-command-strings-examples
 retrieved_at: 2026-05-18T06:31:11.014Z
-last_checked_at: 2026-06-02T02:29:19.268Z
+last_checked_at: 2026-06-02T17:22:13.757Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:19.268Z
+checked_at: 2026-06-02T17:22:13.757Z
 matched_actions: 26
 action_count: 26
 confidence: medium

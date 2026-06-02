@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
-last_checked_at: 2026-06-02T00:05:15.164Z
-generated_at: 2026-06-02T00:05:15.164Z
+last_checked_at: 2026-06-02T17:22:05.938Z
+generated_at: 2026-06-02T17:22:05.938Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "MU/MV command parameter sets not enumerated in supplied source; firmware version not stated; 9L, 9N, 9O, 9P, 9Q, 9R, 9S, 9T, 9U, 9V NS codes not listed in source (only 90-94, 9A-9M, 9W shown)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:15.164Z
+  checked_at: 2026-06-02T17:22:05.938Z
   matched_actions: 60
   action_count: 60
   confidence: medium
@@ -538,14 +538,14 @@ source_domains:
 source_urls:
   - https://assets.denon.com/documentmaster/uk/dnp720ae_se_system_protocol_ver1_03.pdf
 retrieved_at: 2026-04-29T16:29:23.093Z
-last_checked_at: 2026-06-02T00:05:15.164Z
+last_checked_at: 2026-06-02T17:22:05.938Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:15.164Z
+checked_at: 2026-06-02T17:22:05.938Z
 matched_actions: 60
 action_count: 60
 confidence: medium

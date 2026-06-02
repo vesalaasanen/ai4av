@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T01:48:21.514Z
-last_checked_at: 2026-06-02T01:48:21.514Z
-generated_at: 2026-06-02T01:48:21.514Z
+retrieved_at: 2026-06-02T17:22:52.925Z
+last_checked_at: 2026-06-02T17:22:52.925Z
+generated_at: 2026-06-02T17:22:52.925Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "the source does not define device-side multi-step sequences"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:21.514Z
+  checked_at: 2026-06-02T17:22:52.925Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -923,15 +923,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T01:48:21.514Z
-last_checked_at: 2026-06-02T01:48:21.514Z
+retrieved_at: 2026-06-02T17:22:52.925Z
+last_checked_at: 2026-06-02T17:22:52.925Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:21.514Z
+checked_at: 2026-06-02T17:22:52.925Z
 matched_actions: 27
 action_count: 27
 confidence: medium

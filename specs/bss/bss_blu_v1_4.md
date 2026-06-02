@@ -35,8 +35,8 @@ source_domains:
 source_urls:
   - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:34:55.903Z
-last_checked_at: 2026-06-02T00:05:07.292Z
-generated_at: 2026-06-02T00:05:07.292Z
+last_checked_at: 2026-06-02T17:21:50.501Z
+generated_at: 2026-06-02T17:21:50.501Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,7 +47,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or power-on sequencing"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:07.292Z
+  checked_at: 2026-06-02T17:21:50.501Z
   matched_actions: 11
   action_count: 11
   confidence: medium
@@ -378,14 +378,14 @@ source_domains:
 source_urls:
   - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:34:55.903Z
-last_checked_at: 2026-06-02T00:05:07.292Z
+last_checked_at: 2026-06-02T17:21:50.501Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:07.292Z
+checked_at: 2026-06-02T17:21:50.501Z
 matched_actions: 11
 action_count: 11
 confidence: medium

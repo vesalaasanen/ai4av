@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-14T23:03:23.630Z
-last_checked_at: 2026-06-02T00:54:01.371Z
-generated_at: 2026-06-02T00:54:01.371Z
+last_checked_at: 2026-06-02T17:22:11.390Z
+generated_at: 2026-06-02T17:22:11.390Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "relationship between LS101 product name and MC1 controller — source covers MC1; LS101 likely uses MC1 internally"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:54:01.371Z
+  checked_at: 2026-06-02T17:22:11.390Z
   matched_actions: 10
   action_count: 10
   confidence: medium
@@ -313,14 +313,14 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-14T23:03:23.630Z
-last_checked_at: 2026-06-02T00:54:01.371Z
+last_checked_at: 2026-06-02T17:22:11.390Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:54:01.371Z
+checked_at: 2026-06-02T17:22:11.390Z
 matched_actions: 10
 action_count: 10
 confidence: medium

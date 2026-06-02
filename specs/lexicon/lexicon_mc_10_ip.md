@@ -22,8 +22,8 @@ source_urls:
   - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
   - https://www.manualslib.com/manual/1934747/Harman-Lexicon-Mc-10.html
 retrieved_at: 2026-04-29T13:38:14.712Z
-last_checked_at: 2026-06-01T20:45:22.079Z
-generated_at: 2026-06-01T20:45:22.079Z
+last_checked_at: 2026-06-02T17:22:49.600Z
+generated_at: 2026-06-02T17:22:49.600Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware version compatibility ranges; whether port 50000 is configurable; behavior when control is disabled (presumably no response); maximum frame Data length (source says n limited to 255 for response, no command-side cap stated)."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:22.079Z
+  checked_at: 2026-06-02T17:22:49.600Z
   matched_actions: 227
   action_count: 227
   confidence: medium
@@ -1728,14 +1728,14 @@ source_urls:
   - https://www.lexicondsp.pl/upload/mc10/RS232_Protocol_Documentation.pdf
   - https://www.manualslib.com/manual/1934747/Harman-Lexicon-Mc-10.html
 retrieved_at: 2026-04-29T13:38:14.712Z
-last_checked_at: 2026-06-01T20:45:22.079Z
+last_checked_at: 2026-06-02T17:22:49.600Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:22.079Z
+checked_at: 2026-06-02T17:22:49.600Z
 matched_actions: 227
 action_count: 227
 confidence: medium

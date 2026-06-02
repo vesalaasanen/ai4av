@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T01:48:26.155Z
-last_checked_at: 2026-06-02T01:48:26.155Z
-generated_at: 2026-06-02T01:48:26.155Z
+retrieved_at: 2026-06-02T17:22:57.649Z
+last_checked_at: 2026-06-02T17:22:57.649Z
+generated_at: 2026-06-02T17:22:57.649Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware compatibility range, exact WOL packet format, IP power-on command (if any beyond WOL)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:26.155Z
+  checked_at: 2026-06-02T17:22:57.649Z
   matched_actions: 82
   action_count: 82
   confidence: medium
@@ -967,15 +967,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T01:48:26.155Z
-last_checked_at: 2026-06-02T01:48:26.155Z
+retrieved_at: 2026-06-02T17:22:57.649Z
+last_checked_at: 2026-06-02T17:22:57.649Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:26.155Z
+checked_at: 2026-06-02T17:22:57.649Z
 matched_actions: 82
 action_count: 82
 confidence: medium

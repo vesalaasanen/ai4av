@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.scribd.com/document/649294226/RS232-forLGTV
   - https://www.justaddpower.com/docs/manuals/rs232/lg.pdf
-retrieved_at: 2026-06-02T03:24:46.638Z
-last_checked_at: 2026-06-02T03:24:46.638Z
-generated_at: 2026-06-02T03:24:46.638Z
+retrieved_at: 2026-06-02T17:23:05.749Z
+last_checked_at: 2026-06-02T17:23:05.749Z
+generated_at: 2026-06-02T17:23:05.749Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "maximum polling rate, minimum inter-command delay, and timeout/retry behaviour for both RS-232 and IP surfaces are not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:46.638Z
+  checked_at: 2026-06-02T17:23:05.749Z
   matched_actions: 30
   action_count: 30
   confidence: medium
@@ -913,15 +913,15 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.scribd.com/document/649294226/RS232-forLGTV
   - https://www.justaddpower.com/docs/manuals/rs232/lg.pdf
-retrieved_at: 2026-06-02T03:24:46.638Z
-last_checked_at: 2026-06-02T03:24:46.638Z
+retrieved_at: 2026-06-02T17:23:05.749Z
+last_checked_at: 2026-06-02T17:23:05.749Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:46.638Z
+checked_at: 2026-06-02T17:23:05.749Z
 matched_actions: 30
 action_count: 30
 confidence: medium

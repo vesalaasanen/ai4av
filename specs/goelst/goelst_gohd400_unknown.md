@@ -22,8 +22,8 @@ source_urls:
   - https://m.media-amazon.com/images/I/91YBOvh13VL.pdf
   - https://www.manualslib.com/manual/3031436/Goelectronic-Gohd400.html
 retrieved_at: 2026-05-14T23:43:01.333Z
-last_checked_at: 2026-06-01T22:35:51.497Z
-generated_at: 2026-06-01T22:35:51.497Z
+last_checked_at: 2026-06-02T17:22:19.747Z
+generated_at: 2026-06-02T17:22:19.747Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated; Pan/Tilt absolute/relative position encodings marked TBD in source; preset ID bounds not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:35:51.497Z
+  checked_at: 2026-06-02T17:22:19.747Z
   matched_actions: 194
   action_count: 194
   confidence: medium
@@ -2361,14 +2361,14 @@ source_urls:
   - https://m.media-amazon.com/images/I/91YBOvh13VL.pdf
   - https://www.manualslib.com/manual/3031436/Goelectronic-Gohd400.html
 retrieved_at: 2026-05-14T23:43:01.333Z
-last_checked_at: 2026-06-01T22:35:51.497Z
+last_checked_at: 2026-06-02T17:22:19.747Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:35:51.497Z
+checked_at: 2026-06-02T17:22:19.747Z
 matched_actions: 194
 action_count: 194
 confidence: medium

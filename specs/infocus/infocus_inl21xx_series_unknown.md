@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://cdn.infocus.com/2026/02/b7RCq21d-InFocus_Generic_RS232_Commands.xlsx
 retrieved_at: 2026-05-15T02:06:44.135Z
-last_checked_at: 2026-06-01T22:35:52.402Z
-generated_at: 2026-06-01T22:35:52.402Z
+last_checked_at: 2026-06-02T17:22:34.488Z
+generated_at: 2026-06-02T17:22:34.488Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "firmware version compatibility not stated in source. The \"INL21xx series\" model range is named only in S036's range note; the source does not enumerate which model numbers belong to the series."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:35:52.402Z
+  checked_at: 2026-06-02T17:22:34.488Z
   matched_actions: 136
   action_count: 136
   confidence: medium
@@ -1564,14 +1564,14 @@ source_domains:
 source_urls:
   - https://cdn.infocus.com/2026/02/b7RCq21d-InFocus_Generic_RS232_Commands.xlsx
 retrieved_at: 2026-05-15T02:06:44.135Z
-last_checked_at: 2026-06-01T22:35:52.402Z
+last_checked_at: 2026-06-02T17:22:34.488Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:35:52.402Z
+checked_at: 2026-06-02T17:22:34.488Z
 matched_actions: 136
 action_count: 136
 confidence: medium

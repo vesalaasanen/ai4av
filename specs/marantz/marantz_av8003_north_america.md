@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:26.819Z
-last_checked_at: 2026-06-02T08:46:05.845Z
-generated_at: 2026-06-02T08:46:05.845Z
+last_checked_at: 2026-06-02T17:23:22.913Z
+generated_at: 2026-06-02T17:23:22.913Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,7 @@ known_gaps:
   - "HDMI CEC control protocol not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T08:46:05.845Z
+  checked_at: 2026-06-02T17:23:22.913Z
   matched_actions: 856
   action_count: 856
   confidence: medium
@@ -5612,14 +5612,14 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:26.819Z
-last_checked_at: 2026-06-02T08:46:05.845Z
+last_checked_at: 2026-06-02T17:23:22.913Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T08:46:05.845Z
+checked_at: 2026-06-02T17:23:22.913Z
 matched_actions: 856
 action_count: 856
 confidence: medium

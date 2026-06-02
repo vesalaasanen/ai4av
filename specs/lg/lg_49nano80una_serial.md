@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T01:48:20.704Z
-last_checked_at: 2026-06-02T01:48:20.704Z
-generated_at: 2026-06-02T01:48:20.704Z
+retrieved_at: 2026-06-02T17:22:52.186Z
+last_checked_at: 2026-06-02T17:22:52.186Z
+generated_at: 2026-06-02T17:22:52.186Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,7 +43,7 @@ known_gaps:
   - "Power command works in both standby and on-state with RS-232C cable, but only when TV is on with USB-to-Serial converter. Source explicitly notes this asymmetry."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:20.704Z
+  checked_at: 2026-06-02T17:22:52.186Z
   matched_actions: 28
   action_count: 28
   confidence: medium
@@ -548,15 +548,15 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T01:48:20.704Z
-last_checked_at: 2026-06-02T01:48:20.704Z
+retrieved_at: 2026-06-02T17:22:52.186Z
+last_checked_at: 2026-06-02T17:22:52.186Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:20.704Z
+checked_at: 2026-06-02T17:22:52.186Z
 matched_actions: 28
 action_count: 28
 confidence: medium

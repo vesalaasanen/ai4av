@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
 retrieved_at: 2026-04-30T04:34:47.223Z
-last_checked_at: 2026-06-01T23:12:08.375Z
-generated_at: 2026-06-01T23:12:08.375Z
+last_checked_at: 2026-06-02T17:21:15.041Z
+generated_at: 2026-06-02T17:21:15.041Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "TCP listener ports for Telnet/SSH not stated in source. Serial data_bits/parity/stop_bits/flow_control not stated. Firmware compatibility range not stated. SSH host-key formats and KEX algorithms not stated. RADIUS integration details not stated (referenced indirectly via \"list\" output variants)."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:08.375Z
+  checked_at: 2026-06-02T17:21:15.041Z
   matched_actions: 28
   action_count: 28
   confidence: medium
@@ -389,14 +389,14 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Apc/ApcCommandLineInterfaceUsersManual470947.999847818.pdf
 retrieved_at: 2026-04-30T04:34:47.223Z
-last_checked_at: 2026-06-01T23:12:08.375Z
+last_checked_at: 2026-06-02T17:21:15.041Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:08.375Z
+checked_at: 2026-06-02T17:21:15.041Z
 matched_actions: 28
 action_count: 28
 confidence: medium

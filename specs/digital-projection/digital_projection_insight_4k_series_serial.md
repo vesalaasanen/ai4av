@@ -23,8 +23,8 @@ source_urls:
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
   - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
 retrieved_at: 2026-04-30T20:23:55.028Z
-last_checked_at: 2026-05-14T18:17:15.561Z
-generated_at: 2026-05-14T18:17:15.561Z
+last_checked_at: 2026-06-02T17:26:34.181Z
+generated_at: 2026-06-02T17:26:34.181Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "mcgg/tcgg data format x,y coordinates need leading zero prefix (e.g. 0.663,0.332)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.561Z
-  matched_actions: 79
+  checked_at: 2026-06-02T17:26:34.181Z
+  matched_actions: 108
   action_count: 108
   confidence: medium
-  summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 108 spec actions matched to source commands; transport parameters confirmed; full bidirectional coverage of all 81 source command tokens. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -984,18 +984,18 @@ source_urls:
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
   - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
 retrieved_at: 2026-04-30T20:23:55.028Z
-last_checked_at: 2026-05-14T18:17:15.561Z
+last_checked_at: 2026-06-02T17:26:34.181Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.561Z
-matched_actions: 79
+checked_at: 2026-06-02T17:26:34.181Z
+matched_actions: 108
 action_count: 108
 confidence: medium
-summary: "All 79 spec actions matched source commands; transport parameters verified verbatim; semantic-id convention properly applied throughout. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 108 spec actions matched to source commands; transport parameters confirmed; full bidirectional coverage of all 81 source command tokens. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

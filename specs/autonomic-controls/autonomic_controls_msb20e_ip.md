@@ -23,8 +23,8 @@ source_urls:
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/overview
 retrieved_at: 2026-05-19T22:02:55.877Z
-last_checked_at: 2026-06-01T23:12:18.235Z
-generated_at: 2026-06-01T23:12:18.235Z
+last_checked_at: 2026-06-02T17:21:34.550Z
+generated_at: 2026-06-02T17:21:34.550Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:18.235Z
+  checked_at: 2026-06-02T17:21:34.550Z
   matched_actions: 60
   action_count: 60
   confidence: medium
@@ -912,14 +912,14 @@ source_urls:
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/Amplifiers/ProtocolsAndDrivers/Autonomic%20MAS%20Control%20Protocol.pdf"
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/overview
 retrieved_at: 2026-05-19T22:02:55.877Z
-last_checked_at: 2026-06-01T23:12:18.235Z
+last_checked_at: 2026-06-02T17:21:34.550Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:18.235Z
+checked_at: 2026-06-02T17:21:34.550Z
 matched_actions: 60
 action_count: 60
 confidence: medium

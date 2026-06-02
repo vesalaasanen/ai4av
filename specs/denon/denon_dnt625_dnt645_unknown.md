@@ -23,8 +23,8 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:21:12.776Z
-last_checked_at: 2026-06-02T12:02:40.883Z
-generated_at: 2026-06-02T12:02:40.883Z
+last_checked_at: 2026-06-02T17:22:05.203Z
+generated_at: 2026-06-02T17:22:05.203Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "multicast HD Radio channel count per station not bounded (1–8 stated, but no upper limit on total channels)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T12:02:40.883Z
+  checked_at: 2026-06-02T17:22:05.203Z
   matched_actions: 565
   action_count: 565
   confidence: medium
@@ -3474,14 +3474,14 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:21:12.776Z
-last_checked_at: 2026-06-02T12:02:40.883Z
+last_checked_at: 2026-06-02T17:22:05.203Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T12:02:40.883Z
+checked_at: 2026-06-02T17:22:05.203Z
 matched_actions: 565
 action_count: 565
 confidence: medium

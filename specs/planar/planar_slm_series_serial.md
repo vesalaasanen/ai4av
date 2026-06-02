@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-06-02T04:20:11.557Z
-generated_at: 2026-06-02T04:20:11.557Z
+last_checked_at: 2026-06-02T17:23:48.967Z
+generated_at: 2026-06-02T17:23:48.967Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware compatibility ranges; binary/hex command encodings (protocol is ASCII only); SSH credential defaults; numeric KEY values for the few keys whose decimal codes were not transcribed (4, 7, 8, 10, 11, 16)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:11.557Z
+  checked_at: 2026-06-02T17:23:48.967Z
   matched_actions: 226
   action_count: 226
   confidence: medium
@@ -2011,14 +2011,14 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/evgb35qb/020-1430-00a_planar-simplicity-m-series-rs232-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:27.764Z
-last_checked_at: 2026-06-02T04:20:11.557Z
+last_checked_at: 2026-06-02T17:23:48.967Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:11.557Z
+checked_at: 2026-06-02T17:23:48.967Z
 matched_actions: 226
 action_count: 226
 confidence: medium

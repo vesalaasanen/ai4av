@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/440918/020-1359-03a_vm_series_rs232_manual.pdf
 retrieved_at: 2026-04-30T04:27:34.098Z
-last_checked_at: 2026-06-01T20:45:23.757Z
-generated_at: 2026-06-01T20:45:23.757Z
+last_checked_at: 2026-06-02T17:23:51.981Z
+generated_at: 2026-06-02T17:23:51.981Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "firmware version compatibility ranges, Auto Signal Detecting (0xAE/0xAF) packet layout, power-on/cold-start timing tolerances."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:23.757Z
+  checked_at: 2026-06-02T17:23:51.981Z
   matched_actions: 31
   action_count: 31
   confidence: medium
@@ -549,14 +549,14 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/440918/020-1359-03a_vm_series_rs232_manual.pdf
 retrieved_at: 2026-04-30T04:27:34.098Z
-last_checked_at: 2026-06-01T20:45:23.757Z
+last_checked_at: 2026-06-02T17:23:51.981Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:23.757Z
+checked_at: 2026-06-02T17:23:51.981Z
 matched_actions: 31
 action_count: 31
 confidence: medium

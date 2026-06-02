@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.datasatdigital.com/download/53/rs20i/207628/tn-h413-01-rev-b1-rs20i-control.pdf
 retrieved_at: 2026-05-04T15:21:18.866Z
-last_checked_at: 2026-06-02T00:53:59.111Z
-generated_at: 2026-06-02T00:53:59.111Z
+last_checked_at: 2026-06-02T17:22:00.537Z
+generated_at: 2026-06-02T17:22:00.537Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "serial default baud rate, parity, stop bits, flow control not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:53:59.111Z
+  checked_at: 2026-06-02T17:22:00.537Z
   matched_actions: 52
   action_count: 52
   confidence: medium
@@ -584,14 +584,14 @@ source_domains:
 source_urls:
   - https://www.datasatdigital.com/download/53/rs20i/207628/tn-h413-01-rev-b1-rs20i-control.pdf
 retrieved_at: 2026-05-04T15:21:18.866Z
-last_checked_at: 2026-06-02T00:53:59.111Z
+last_checked_at: 2026-06-02T17:22:00.537Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:53:59.111Z
+checked_at: 2026-06-02T17:22:00.537Z
 matched_actions: 52
 action_count: 52
 confidence: medium

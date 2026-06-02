@@ -22,9 +22,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:48.944Z
-last_checked_at: 2026-06-02T03:24:48.944Z
-generated_at: 2026-06-02T03:24:48.944Z
+retrieved_at: 2026-06-02T17:23:09.130Z
+last_checked_at: 2026-06-02T17:23:09.130Z
+generated_at: 2026-06-02T17:23:09.130Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "complete IR key code list cross-references page A18 of the vendor manual, not fully present in the refined excerpt; the entries 00 (\"L\") and 01 (\"M\") appear truncated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:48.944Z
+  checked_at: 2026-06-02T17:23:09.130Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -567,15 +567,15 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:48.944Z
-last_checked_at: 2026-06-02T03:24:48.944Z
+retrieved_at: 2026-06-02T17:23:09.130Z
+last_checked_at: 2026-06-02T17:23:09.130Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:48.944Z
+checked_at: 2026-06-02T17:23:09.130Z
 matched_actions: 27
 action_count: 27
 confidence: medium

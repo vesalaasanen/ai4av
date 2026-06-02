@@ -21,8 +21,8 @@ source_urls:
   - "https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw45d0257f/pdfs/JBL%20Synthesis%20SDP-75_Automation%20Protocol%20Guide.pdf"
   - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw07c644ac/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-05-12T19:04:37.910Z
-last_checked_at: 2026-06-02T01:48:16.561Z
-generated_at: 2026-06-02T01:48:16.561Z
+last_checked_at: 2026-06-02T17:22:38.988Z
+generated_at: 2026-06-02T17:22:38.988Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "- Firmware compatibility range for this protocol not stated (source example shows versions 4.0.0 and 3.8.7 in welcome banners but no published min/max)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:16.561Z
+  checked_at: 2026-06-02T17:22:38.988Z
   matched_actions: 28
   action_count: 28
   confidence: medium
@@ -465,14 +465,14 @@ source_urls:
   - "https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw45d0257f/pdfs/JBL%20Synthesis%20SDP-75_Automation%20Protocol%20Guide.pdf"
   - https://www.jblsynthesis.com/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw07c644ac/pdfs/RS232_SDR35_38_SDP55_58_SH289E_E_2Jun21.pdf
 retrieved_at: 2026-05-12T19:04:37.910Z
-last_checked_at: 2026-06-02T01:48:16.561Z
+last_checked_at: 2026-06-02T17:22:38.988Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:16.561Z
+checked_at: 2026-06-02T17:22:38.988Z
 matched_actions: 28
 action_count: 28
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:00.374Z
-last_checked_at: 2026-06-02T04:20:09.956Z
-generated_at: 2026-06-02T04:20:09.956Z
+last_checked_at: 2026-06-02T17:23:46.730Z
+generated_at: 2026-06-02T17:23:46.730Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "firmware version compatibility, voltage/power specs, fault recovery, and per-port credentials not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:09.956Z
+  checked_at: 2026-06-02T17:23:46.730Z
   matched_actions: 106
   action_count: 106
   confidence: medium
@@ -1011,14 +1011,14 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/q2zg4yzj/020-1449-00a_ultrares-p-series-urpxx2-serial-commands-user-manual.pdf
 retrieved_at: 2026-04-30T04:27:00.374Z
-last_checked_at: 2026-06-02T04:20:09.956Z
+last_checked_at: 2026-06-02T17:23:46.730Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:09.956Z
+checked_at: 2026-06-02T17:23:46.730Z
 matched_actions: 106
 action_count: 106
 confidence: medium

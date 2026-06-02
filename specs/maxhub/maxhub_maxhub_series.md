@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://sgp-cstore-pub.maxhub.com/maxhub_global_public/software/v6/IFP%20V6%20RS-232%20&%20LAN%20Protocol%20%20Specification%20-0725.pdf"
 retrieved_at: 2026-04-26T18:17:06.345Z
-last_checked_at: 2026-06-02T04:56:29.299Z
-generated_at: 2026-06-02T04:56:29.299Z
+last_checked_at: 2026-06-02T17:23:30.443Z
+generated_at: 2026-06-02T17:23:30.443Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,7 @@ known_gaps:
   - "firmware version compatibility, command timeouts, keep-alive, and any LAN authentication are not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:29.299Z
+  checked_at: 2026-06-02T17:23:30.443Z
   matched_actions: 79
   action_count: 79
   confidence: medium
@@ -726,14 +726,14 @@ source_domains:
 source_urls:
   - "https://sgp-cstore-pub.maxhub.com/maxhub_global_public/software/v6/IFP%20V6%20RS-232%20&%20LAN%20Protocol%20%20Specification%20-0725.pdf"
 retrieved_at: 2026-04-26T18:17:06.345Z
-last_checked_at: 2026-06-02T04:56:29.299Z
+last_checked_at: 2026-06-02T17:23:30.443Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:29.299Z
+checked_at: 2026-06-02T17:23:30.443Z
 matched_actions: 79
 action_count: 79
 confidence: medium

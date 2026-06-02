@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T03:24:39.842Z
-last_checked_at: 2026-06-02T03:24:39.842Z
-generated_at: 2026-06-02T03:24:39.842Z
+retrieved_at: 2026-06-02T17:22:53.649Z
+last_checked_at: 2026-06-02T17:22:53.649Z
+generated_at: 2026-06-02T17:22:53.649Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "which specific xb input codes (e.g. HDMI3/HDMI4, ISDB-BS) the 49NANO81UNA accepts — only stated as \"depends on model and signal\"."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:39.842Z
+  checked_at: 2026-06-02T17:22:53.649Z
   matched_actions: 31
   action_count: 31
   confidence: medium
@@ -568,15 +568,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T03:24:39.842Z
-last_checked_at: 2026-06-02T03:24:39.842Z
+retrieved_at: 2026-06-02T17:22:53.649Z
+last_checked_at: 2026-06-02T17:22:53.649Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:39.842Z
+checked_at: 2026-06-02T17:22:53.649Z
 matched_actions: 31
 action_count: 31
 confidence: medium

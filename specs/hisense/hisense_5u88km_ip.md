@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-06-02T10:14:04.825Z
-generated_at: 2026-06-02T10:14:04.825Z
+last_checked_at: 2026-06-02T17:22:24.465Z
+generated_at: 2026-06-02T17:22:24.465Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "source describes configuration preconditions for RS-232 (Custom Install"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:04.825Z
+  checked_at: 2026-06-02T17:22:24.465Z
   matched_actions: 112
   action_count: 112
   confidence: medium
@@ -1125,14 +1125,14 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:43.572Z
-last_checked_at: 2026-06-02T10:14:04.825Z
+last_checked_at: 2026-06-02T17:22:24.465Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:04.825Z
+checked_at: 2026-06-02T17:22:24.465Z
 matched_actions: 112
 action_count: 112
 confidence: medium

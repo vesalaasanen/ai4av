@@ -24,8 +24,8 @@ source_urls:
   - https://mans.io/files/viewer/2563745/40
   - https://www.manualslib.com/manual/515002/Runco-Rs232.html
 retrieved_at: 2026-04-29T22:01:18.063Z
-last_checked_at: 2026-05-14T18:17:20.172Z
-generated_at: 2026-05-14T18:17:20.172Z
+last_checked_at: 2026-06-02T17:26:33.428Z
+generated_at: 2026-06-02T17:26:33.428Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "no IP/network control protocol documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.172Z
-  matched_actions: 57
+  checked_at: 2026-06-02T17:26:33.428Z
+  matched_actions: 88
   action_count: 88
   confidence: medium
-  summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 88 spec actions matched one-to-one against source Table 6-1; parameter ranges, transport settings, and coverage are consistent with the source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -778,18 +778,18 @@ source_urls:
   - https://mans.io/files/viewer/2563745/40
   - https://www.manualslib.com/manual/515002/Runco-Rs232.html
 retrieved_at: 2026-04-29T22:01:18.063Z
-last_checked_at: 2026-05-14T18:17:20.172Z
+last_checked_at: 2026-06-02T17:26:33.428Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.172Z
-matched_actions: 57
+checked_at: 2026-06-02T17:26:33.428Z
+matched_actions: 88
 action_count: 88
 confidence: medium
-summary: "All 57 spec actions map cleanly to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 88 spec actions matched one-to-one against source Table 6-1; parameter ranges, transport settings, and coverage are consistent with the source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

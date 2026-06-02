@@ -21,8 +21,8 @@ source_urls:
   - https://docs.audio-technica.com/all/ATDM-0604a_IP_Control_Protocol_Specifications_EN_Ver1.2_web_231118.pdf
   - https://docs.audio-technica.com/us/ATDM-0604_IP_Control_Protcol_Specification_EN_Ver1.1.3_web_200821.pdf
 retrieved_at: 2026-05-07T07:24:57.105Z
-last_checked_at: 2026-06-01T23:12:14.456Z
-generated_at: 2026-06-01T23:12:14.456Z
+last_checked_at: 2026-06-02T17:21:30.749Z
+generated_at: 2026-06-02T17:21:30.749Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware version compatibility matrix at the end of the source is cut off (table 6.x) — exact version constraints not captured. The level_meter_notice / fbs_notice parameter count and exact field list depend on firmware; the spec enumerates the documented parameter set. GPO control via ES954/ES964 button press is described in the source as a derived behaviour of `s_operator_general` button_link + `s_gpo_setting` function=0, but the exact LED behaviour is not specified."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:14.456Z
+  checked_at: 2026-06-02T17:21:30.749Z
   matched_actions: 141
   action_count: 141
   confidence: medium
@@ -2158,14 +2158,14 @@ source_urls:
   - https://docs.audio-technica.com/all/ATDM-0604a_IP_Control_Protocol_Specifications_EN_Ver1.2_web_231118.pdf
   - https://docs.audio-technica.com/us/ATDM-0604_IP_Control_Protcol_Specification_EN_Ver1.1.3_web_200821.pdf
 retrieved_at: 2026-05-07T07:24:57.105Z
-last_checked_at: 2026-06-01T23:12:14.456Z
+last_checked_at: 2026-06-02T17:21:30.749Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:14.456Z
+checked_at: 2026-06-02T17:21:30.749Z
 matched_actions: 141
 action_count: 141
 confidence: medium

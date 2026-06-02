@@ -23,9 +23,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/audio
   - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T03:24:45.912Z
-last_checked_at: 2026-06-02T03:24:45.912Z
-generated_at: 2026-06-02T03:24:45.912Z
+retrieved_at: 2026-06-02T17:23:04.920Z
+last_checked_at: 2026-06-02T17:23:04.920Z
+generated_at: 2026-06-02T17:23:04.920Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware version not stated in source. Set-ID/feature availability per firmware revision not stated. Network IP Control region coverage beyond \"USA only\" not stated. Full IP-control command set may include AUDIO_TREBLE / AUDIO_BASS that the source's IP section did not list explicitly. 3D support on 55NU850BAUA is not stated in this source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:45.912Z
+  checked_at: 2026-06-02T17:23:04.920Z
   matched_actions: 29
   action_count: 29
   confidence: medium
@@ -705,15 +705,15 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/audio
   - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T03:24:45.912Z
-last_checked_at: 2026-06-02T03:24:45.912Z
+retrieved_at: 2026-06-02T17:23:04.920Z
+last_checked_at: 2026-06-02T17:23:04.920Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:45.912Z
+checked_at: 2026-06-02T17:23:04.920Z
 matched_actions: 29
 action_count: 29
 confidence: medium

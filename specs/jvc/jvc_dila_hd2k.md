@@ -42,8 +42,8 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:41.240Z
-last_checked_at: 2026-06-01T22:29:17.623Z
-generated_at: 2026-06-01T22:29:17.623Z
+last_checked_at: 2026-06-02T17:22:41.364Z
+generated_at: 2026-06-02T17:22:41.364Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -55,7 +55,7 @@ known_gaps:
   - "Firmware version requirements, voltage/power specifications, fault-recovery sequences, and per-model feature gates beyond those noted inline are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:29:17.623Z
+  checked_at: 2026-06-02T17:22:41.364Z
   matched_actions: 327
   action_count: 327
   confidence: medium
@@ -2214,14 +2214,14 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILARemoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:41.240Z
-last_checked_at: 2026-06-01T22:29:17.623Z
+last_checked_at: 2026-06-02T17:22:41.364Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:29:17.623Z
+checked_at: 2026-06-02T17:22:41.364Z
 matched_actions: 327
 action_count: 327
 confidence: medium

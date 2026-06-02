@@ -690,7 +690,7 @@ auth:
   label: Input Component (Remote Emulation)
   kind: action
   params: []
-  hex: "21 89 01 52 43 37 33 34 34 0A"
+  hex: "21 89 01 52 43 37 33 34 44 0A"
 
 - id: input_video_rc
   label: Input Video (Remote Emulation)

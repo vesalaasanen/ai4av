@@ -25,8 +25,8 @@ source_urls:
   - https://neoprointegrator.us/wp-content/uploads/2024/01/NeoPro-Tahoe-UserGuide.pdf
   - https://www.manualslib.com/manual/4219559/Neopro-Tahoe-Veo.html
 retrieved_at: 2026-05-21T15:02:21.118Z
-last_checked_at: 2026-06-02T04:20:04.097Z
-generated_at: 2026-06-02T04:20:04.097Z
+last_checked_at: 2026-06-02T17:23:35.982Z
+generated_at: 2026-06-02T17:23:35.982Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "firmware version compatibility, voltage/current draw, fault behavior, and error-recovery sequences are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:04.097Z
+  checked_at: 2026-06-02T17:23:35.982Z
   matched_actions: 2
   action_count: 2
   confidence: medium
@@ -233,14 +233,14 @@ source_urls:
   - https://neoprointegrator.us/wp-content/uploads/2024/01/NeoPro-Tahoe-UserGuide.pdf
   - https://www.manualslib.com/manual/4219559/Neopro-Tahoe-Veo.html
 retrieved_at: 2026-05-21T15:02:21.118Z
-last_checked_at: 2026-06-02T04:20:04.097Z
+last_checked_at: 2026-06-02T17:23:35.982Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:04.097Z
+checked_at: 2026-06-02T17:23:35.982Z
 matched_actions: 2
 action_count: 2
 confidence: medium

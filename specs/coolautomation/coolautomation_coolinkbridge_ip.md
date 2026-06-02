@@ -25,8 +25,8 @@ source_urls:
   - https://coolautomation.com/products/coolinkbridge/
   - https://coolautomation.com/products/api/
 retrieved_at: 2026-04-29T21:22:41.675Z
-last_checked_at: 2026-06-02T00:53:58.358Z
-generated_at: 2026-06-02T00:53:58.358Z
+last_checked_at: 2026-06-02T17:21:56.618Z
+generated_at: 2026-06-02T17:21:56.618Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "TCP/IP, port, HTTP, REST, authentication, and any cloud/Coohub-specific endpoints for the CooLinkBridge are not described in this source. The baud-rate list in `set` includes 18200 (likely a typo for 19200) — preserved verbatim from the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:53:58.358Z
+  checked_at: 2026-06-02T17:21:56.618Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -520,14 +520,14 @@ source_urls:
   - https://coolautomation.com/products/coolinkbridge/
   - https://coolautomation.com/products/api/
 retrieved_at: 2026-04-29T21:22:41.675Z
-last_checked_at: 2026-06-02T00:53:58.358Z
+last_checked_at: 2026-06-02T17:21:56.618Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:53:58.358Z
+checked_at: 2026-06-02T17:21:56.618Z
 matched_actions: 27
 action_count: 27
 confidence: medium

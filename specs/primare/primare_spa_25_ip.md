@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://primare.net/wp-content/uploads/2022/09/SPA25-RS232-Command-list-2023-02-23.pdf
 retrieved_at: 2026-04-30T04:28:52.339Z
-last_checked_at: 2026-06-02T10:14:10.965Z
-generated_at: 2026-06-02T10:14:10.965Z
+last_checked_at: 2026-06-02T17:23:53.456Z
+generated_at: 2026-06-02T17:23:53.456Z
 firmware_coverage: "\"2.08\""
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "remote-key codes 0x25, 0x26 are skipped in source table between PLAY/PAUSE(long press)=0x24 and NEXT=0x27 — assignment unknown."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:10.965Z
+  checked_at: 2026-06-02T17:23:53.456Z
   matched_actions: 130
   action_count: 130
   confidence: medium
@@ -965,14 +965,14 @@ source_domains:
 source_urls:
   - https://primare.net/wp-content/uploads/2022/09/SPA25-RS232-Command-list-2023-02-23.pdf
 retrieved_at: 2026-04-30T04:28:52.339Z
-last_checked_at: 2026-06-02T10:14:10.965Z
+last_checked_at: 2026-06-02T17:23:53.456Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:10.965Z
+checked_at: 2026-06-02T17:23:53.456Z
 matched_actions: 130
 action_count: 130
 confidence: medium

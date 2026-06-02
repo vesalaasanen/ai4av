@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:47.446Z
-last_checked_at: 2026-06-01T20:45:17.953Z
-generated_at: 2026-06-01T20:45:17.953Z
+last_checked_at: 2026-06-02T17:21:16.517Z
+generated_at: 2026-06-02T17:21:16.517Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "DAB commands reference AVR450/750 models — applicability to AV860 unclear"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T20:45:17.953Z
+  checked_at: 2026-06-02T17:21:16.517Z
   matched_actions: 54
   action_count: 54
   confidence: medium
@@ -790,14 +790,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:47.446Z
-last_checked_at: 2026-06-01T20:45:17.953Z
+last_checked_at: 2026-06-02T17:21:16.517Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T20:45:17.953Z
+checked_at: 2026-06-02T17:21:16.517Z
 matched_actions: 54
 action_count: 54
 confidence: medium

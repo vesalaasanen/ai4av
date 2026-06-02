@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:37:52.209Z
-last_checked_at: 2026-06-01T23:12:20.487Z
-generated_at: 2026-06-01T23:12:20.487Z
+last_checked_at: 2026-06-02T17:21:36.054Z
+generated_at: 2026-06-02T17:21:36.054Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "- firmware compatibility range not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:20.487Z
+  checked_at: 2026-06-02T17:21:36.054Z
   matched_actions: 33
   action_count: 33
   confidence: medium
@@ -561,14 +561,14 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:37:52.209Z
-last_checked_at: 2026-06-01T23:12:20.487Z
+last_checked_at: 2026-06-02T17:21:36.054Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:20.487Z
+checked_at: 2026-06-02T17:21:36.054Z
 matched_actions: 33
 action_count: 33
 confidence: medium

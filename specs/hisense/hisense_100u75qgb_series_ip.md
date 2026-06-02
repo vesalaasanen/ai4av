@@ -24,8 +24,8 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-14T10:38:42.272Z
-last_checked_at: 2026-05-16T11:20:35.722Z
-generated_at: 2026-05-16T11:20:35.722Z
+last_checked_at: 2026-06-02T19:39:07.664Z
+generated_at: 2026-06-02T19:39:07.664Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "TCP/IP port number not stated in source (TCP not supported by this doc)"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T11:20:35.722Z
-  matched_actions: 49
+  checked_at: 2026-06-02T19:39:07.664Z
+  matched_actions: 68
   action_count: 68
   confidence: medium
-  summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 68 spec actions match verbatim source hex sequences across E/M/WR series; e_power_off byte 6 now correctly 04; transport verified; source fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -100,8 +100,8 @@ auth:
     - name: screen_id
       type: integer
       description: Screen ID 01-FF
-  hex: "A6 xx 00 00 00 05 01 18 01 yy"
-  example: "A6 01 00 00 00 05 01 18 01 B0"
+  hex: "A6 xx 00 00 00 04 01 18 01 yy"
+  example: "A6 01 00 00 00 04 01 18 01 BB"
 
 - id: e_hdmi1_input
   label: E Series HDMI 1 Input
@@ -762,18 +762,18 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-14T10:38:42.272Z
-last_checked_at: 2026-05-16T11:20:35.722Z
+last_checked_at: 2026-06-02T19:39:07.664Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T11:20:35.722Z
-matched_actions: 49
+checked_at: 2026-06-02T19:39:07.664Z
+matched_actions: 68
 action_count: 68
 confidence: medium
-summary: "All 49 spec actions matched source opcodes exactly; transport parameters verified; full protocol coverage across E/M/WR series. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 68 spec actions match verbatim source hex sequences across E/M/WR series; e_power_off byte 6 now correctly 04; transport verified; source fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

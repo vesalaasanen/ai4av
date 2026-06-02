@@ -26,9 +26,9 @@ source_urls:
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
   - https://www.crestron.com/Partners/Integrated-Partners/LG
   - https://github.com/CommandFusion/LG-TV-RS232
-retrieved_at: 2026-06-02T03:24:44.417Z
-last_checked_at: 2026-06-02T03:24:44.417Z
-generated_at: 2026-06-02T03:24:44.417Z
+retrieved_at: 2026-06-02T17:23:03.237Z
+last_checked_at: 2026-06-02T17:23:03.237Z
+generated_at: 2026-06-02T17:23:03.237Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "flow control (RTS/CTS, XON/XOFF, none) for RS-232 not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:44.417Z
+  checked_at: 2026-06-02T17:23:03.237Z
   matched_actions: 60
   action_count: 60
   confidence: medium
@@ -717,15 +717,15 @@ source_urls:
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
   - https://www.crestron.com/Partners/Integrated-Partners/LG
   - https://github.com/CommandFusion/LG-TV-RS232
-retrieved_at: 2026-06-02T03:24:44.417Z
-last_checked_at: 2026-06-02T03:24:44.417Z
+retrieved_at: 2026-06-02T17:23:03.237Z
+last_checked_at: 2026-06-02T17:23:03.237Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:44.417Z
+checked_at: 2026-06-02T17:23:03.237Z
 matched_actions: 60
 action_count: 60
 confidence: medium

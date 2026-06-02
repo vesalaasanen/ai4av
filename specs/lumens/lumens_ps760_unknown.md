@@ -22,8 +22,8 @@ source_urls:
   - "https://www.lumens.cn/Download/PS760%20RS-232%20command%20set%202012-0611.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:57:56.276Z
-last_checked_at: 2026-06-02T04:56:25.105Z
-generated_at: 2026-06-02T04:56:25.105Z
+last_checked_at: 2026-06-02T17:23:19.526Z
+generated_at: 2026-06-02T17:23:19.526Z
 firmware_coverage: "\"PVC127 or later (PVC128 added Key Tone command E5h)\""
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "source does not specify the controller-side serial port number, cable length limits, or electrical isolation requirements."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:25.105Z
+  checked_at: 2026-06-02T17:23:19.526Z
   matched_actions: 73
   action_count: 73
   confidence: medium
@@ -851,14 +851,14 @@ source_urls:
   - "https://www.lumens.cn/Download/PS760%20RS-232%20command%20set%202012-0611.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:57:56.276Z
-last_checked_at: 2026-06-02T04:56:25.105Z
+last_checked_at: 2026-06-02T17:23:19.526Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:25.105Z
+checked_at: 2026-06-02T17:23:19.526Z
 matched_actions: 73
 action_count: 73
 confidence: medium

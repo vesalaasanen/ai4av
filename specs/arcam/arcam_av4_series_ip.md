@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:44.959Z
-last_checked_at: 2026-06-01T22:29:01.809Z
-generated_at: 2026-06-01T22:29:01.809Z
+last_checked_at: 2026-06-02T17:21:15.789Z
+generated_at: 2026-06-02T17:21:15.789Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "firmware version compatibility ranges not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:29:01.809Z
+  checked_at: 2026-06-02T17:21:15.789Z
   matched_actions: 52
   action_count: 52
   confidence: medium
@@ -774,14 +774,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:44.959Z
-last_checked_at: 2026-06-01T22:29:01.809Z
+last_checked_at: 2026-06-02T17:21:15.789Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:29:01.809Z
+checked_at: 2026-06-02T17:21:15.789Z
 matched_actions: 52
 action_count: 52
 confidence: medium

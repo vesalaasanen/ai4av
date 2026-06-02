@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/m5fk5dtw/020-1359-03a_vm_series_rs232_manual-1.pdf
 retrieved_at: 2026-04-30T04:27:29.643Z
-last_checked_at: 2026-06-01T22:29:19.887Z
-generated_at: 2026-06-01T22:29:19.887Z
+last_checked_at: 2026-06-02T17:23:49.710Z
+generated_at: 2026-06-02T17:23:49.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:29:19.887Z
+  checked_at: 2026-06-02T17:23:49.710Z
   matched_actions: 31
   action_count: 31
   confidence: medium
@@ -684,14 +684,14 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/m5fk5dtw/020-1359-03a_vm_series_rs232_manual-1.pdf
 retrieved_at: 2026-04-30T04:27:29.643Z
-last_checked_at: 2026-06-01T22:29:19.887Z
+last_checked_at: 2026-06-02T17:23:49.710Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:29:19.887Z
+checked_at: 2026-06-02T17:23:49.710Z
 matched_actions: 31
 action_count: 31
 confidence: medium

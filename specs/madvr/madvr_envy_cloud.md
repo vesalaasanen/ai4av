@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-26T17:04:37.161Z
-last_checked_at: 2026-06-02T04:56:26.827Z
-generated_at: 2026-06-02T04:56:26.827Z
+last_checked_at: 2026-06-02T17:23:21.084Z
+generated_at: 2026-06-02T17:23:21.084Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware version compatibility, full option/value catalogue, EDID block format, 3DLUT file format, exact set of supported color spaces/transfer characteristics (only examples listed in source)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:26.827Z
+  checked_at: 2026-06-02T17:23:21.084Z
   matched_actions: 58
   action_count: 58
   confidence: medium
@@ -819,14 +819,14 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-26T17:04:37.161Z
-last_checked_at: 2026-06-02T04:56:26.827Z
+last_checked_at: 2026-06-02T17:23:21.084Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:26.827Z
+checked_at: 2026-06-02T17:23:21.084Z
 matched_actions: 58
 action_count: 58
 confidence: medium

@@ -30,8 +30,8 @@ source_urls:
   - https://help.na.panasonic.com/manuals/
   - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LFB70_SerialCommandList.pdf
 retrieved_at: 2026-05-13T13:15:38.484Z
-last_checked_at: 2026-06-02T04:56:34.845Z
-generated_at: 2026-06-02T04:56:34.845Z
+last_checked_at: 2026-06-02T17:23:42.829Z
+generated_at: 2026-06-02T17:23:42.829Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "LAN default port not stated; authentication mechanism not stated; firmware version compatibility not stated; binary hex/byte-level encodings for STX/ETX framed commands shown only for two examples (Power On, Picture +85) — full table of binary encodings for all mnemonics not provided."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:34.845Z
+  checked_at: 2026-06-02T17:23:42.829Z
   matched_actions: 372
   action_count: 372
   confidence: medium
@@ -2842,14 +2842,14 @@ source_urls:
   - https://help.na.panasonic.com/manuals/
   - https://docs.connect.panasonic.com/prodisplays/support/download/pdf/LFB70_SerialCommandList.pdf
 retrieved_at: 2026-05-13T13:15:38.484Z
-last_checked_at: 2026-06-02T04:56:34.845Z
+last_checked_at: 2026-06-02T17:23:42.829Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:34.845Z
+checked_at: 2026-06-02T17:23:42.829Z
 matched_actions: 372
 action_count: 372
 confidence: medium

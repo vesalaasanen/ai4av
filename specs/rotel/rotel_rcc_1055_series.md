@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:55.596Z
-last_checked_at: 2026-06-02T10:14:11.748Z
-generated_at: 2026-06-02T10:14:11.748Z
+last_checked_at: 2026-06-02T17:23:54.913Z
+generated_at: 2026-06-02T17:23:54.913Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "no explicit status-query commands documented; power/transport state is observable only via unsolicited feedback strings when the front panel changes."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:11.748Z
+  checked_at: 2026-06-02T17:23:54.913Z
   matched_actions: 37
   action_count: 37
   confidence: medium
@@ -397,14 +397,14 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RCC1055%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:55.596Z
-last_checked_at: 2026-06-02T10:14:11.748Z
+last_checked_at: 2026-06-02T17:23:54.913Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:11.748Z
+checked_at: 2026-06-02T17:23:54.913Z
 matched_actions: 37
 action_count: 37
 confidence: medium

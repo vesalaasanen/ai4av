@@ -23,8 +23,8 @@ source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-06-02T04:56:31.595Z
-generated_at: 2026-06-02T04:56:31.595Z
+last_checked_at: 2026-06-02T17:23:38.255Z
+generated_at: 2026-06-02T17:23:38.255Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware compatibility range; other BDP-series model coverage (BDP-93/95/103/105 etc.); error code catalogue beyond generic OK/ER."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:31.595Z
+  checked_at: 2026-06-02T17:23:38.255Z
   matched_actions: 80
   action_count: 80
   confidence: medium
@@ -740,14 +740,14 @@ source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.0.pdf
 retrieved_at: 2026-04-26T19:11:33.779Z
-last_checked_at: 2026-06-02T04:56:31.595Z
+last_checked_at: 2026-06-02T17:23:38.255Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:31.595Z
+checked_at: 2026-06-02T17:23:38.255Z
 matched_actions: 80
 action_count: 80
 confidence: medium

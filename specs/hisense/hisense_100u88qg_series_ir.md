@@ -97,9 +97,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
 
 ## Actions
 
-### RS-232 — Power
-
 ```yaml
+# === RS-232 — Power ===
 - id: pwre_set
   label: "Power On Command Enable (RS-232 remote boot)"
   kind: action
@@ -140,11 +139,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Input
-
-```yaml
+# === RS-232 — Input ===
 - id: inpt_set
   label: "Set Input Source"
   kind: action
@@ -176,11 +172,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Picture
-
-```yaml
+# === RS-232 — Picture ===
 - id: pmod_set
   label: "Set Picture Mode"
   kind: action
@@ -424,11 +417,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Sound
-
-```yaml
+# === RS-232 — Sound ===
 - id: amod_set
   label: "Set Sound Mode"
   kind: action
@@ -533,11 +523,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Tuner / Channel
-
-```yaml
+# === RS-232 — Tuner / Channel ===
 - id: tunr_set
   label: "Set Tuner Mode"
   kind: action
@@ -585,11 +572,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Caption / Language / System
-
-```yaml
+# === RS-232 — Caption / Language / System ===
 - id: cc_set
   label: "Set Caption Control"
   kind: action
@@ -684,11 +668,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### RS-232 — Power-on / Lock / Menu policy
-
-```yaml
+# === RS-232 — Power-on / Lock / Menu policy ===
 - id: pbtn_set
   label: "Set Power Off Control Mode"
   kind: action
@@ -940,11 +921,8 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
       type: string
     - name: checksum
       type: string
-```
 
-### Discrete IR Codes (NEC-format hex; full Pronto CCF in source)
-
-```yaml
+# === Discrete IR Codes (NEC-format hex; full Pronto CCF in source) ===
 # IR protocol is NEC-format 38 kHz carrier; the 4-byte code = [04][FB][data][~data].
 # Each entry is one distinct function as documented in the source.
 # `command:` carries the complete 4-byte hex code, space-separated.

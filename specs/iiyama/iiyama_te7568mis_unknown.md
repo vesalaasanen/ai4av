@@ -22,8 +22,8 @@ source_urls:
   - https://iiyama.com/f/e814fb38675840f086adb2ecd13f84e8_te7568mis-usermanual-e-revf.pdf
   - https://iiyama.com/pdf/Product/552/gb_en.pdf
 retrieved_at: 2026-05-13T05:27:13.010Z
-last_checked_at: 2026-06-02T02:29:32.395Z
-generated_at: 2026-06-02T02:29:32.395Z
+last_checked_at: 2026-06-02T17:22:33.716Z
+generated_at: 2026-06-02T17:22:33.716Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "aspect-ratio status query, TV-channel commands, firmware version range, and any device-side retry/timeout behavior not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:32.395Z
+  checked_at: 2026-06-02T17:22:33.716Z
   matched_actions: 69
   action_count: 69
   confidence: medium
@@ -564,14 +564,14 @@ source_urls:
   - https://iiyama.com/f/e814fb38675840f086adb2ecd13f84e8_te7568mis-usermanual-e-revf.pdf
   - https://iiyama.com/pdf/Product/552/gb_en.pdf
 retrieved_at: 2026-05-13T05:27:13.010Z
-last_checked_at: 2026-06-02T02:29:32.395Z
+last_checked_at: 2026-06-02T17:22:33.716Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:32.395Z
+checked_at: 2026-06-02T17:22:33.716Z
 matched_actions: 69
 action_count: 69
 confidence: medium

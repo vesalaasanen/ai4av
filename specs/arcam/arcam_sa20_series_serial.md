@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:56.528Z
-last_checked_at: 2026-06-01T22:29:09.121Z
-generated_at: 2026-06-01T22:29:09.121Z
+last_checked_at: 2026-06-02T17:21:20.586Z
+generated_at: 2026-06-02T17:21:20.586Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "advanced RC5 codes section heading present in source but no command table was provided in the refined excerpt; only Basic Functions enumerated."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:29:09.121Z
+  checked_at: 2026-06-02T17:21:20.586Z
   matched_actions: 166
   action_count: 166
   confidence: medium
@@ -1783,14 +1783,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:56.528Z
-last_checked_at: 2026-06-01T22:29:09.121Z
+last_checked_at: 2026-06-02T17:21:20.586Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:29:09.121Z
+checked_at: 2026-06-02T17:21:20.586Z
 matched_actions: 166
 action_count: 166
 confidence: medium

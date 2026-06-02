@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
 retrieved_at: 2026-04-30T04:33:16.764Z
-last_checked_at: 2026-06-01T21:44:41.559Z
-generated_at: 2026-06-01T21:44:41.559Z
+last_checked_at: 2026-06-02T17:23:18.797Z
+generated_at: 2026-06-02T17:23:18.797Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "source does not state firmware compatibility range, voltage/current/power specs, fault-recovery sequences, protocol version, default credentials, or NAK retry/recovery procedure."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:41.559Z
+  checked_at: 2026-06-02T17:23:18.797Z
   matched_actions: 43
   action_count: 43
   confidence: medium
@@ -632,14 +632,14 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS182%20-%20LC300_LC300S%20command%20set%20-%20LCB103.pdf"
 retrieved_at: 2026-04-30T04:33:16.764Z
-last_checked_at: 2026-06-01T21:44:41.559Z
+last_checked_at: 2026-06-02T17:23:18.797Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:41.559Z
+checked_at: 2026-06-02T17:23:18.797Z
 matched_actions: 43
 action_count: 43
 confidence: medium

@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-30T02:55:48.096Z
-last_checked_at: 2026-05-14T18:17:21.602Z
-generated_at: 2026-05-14T18:17:21.602Z
+last_checked_at: 2026-06-02T19:39:10.118Z
+generated_at: 2026-06-02T19:39:10.118Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "default username/password for IP interface not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.602Z
-  matched_actions: 42
+  checked_at: 2026-06-02T19:39:10.118Z
+  matched_actions: 60
   action_count: 60
   confidence: medium
-  summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 60 spec actions confirmed verbatim in source; get_cablec_out carries explicit command GET CABLEC_IN which the source documents for output cable queries; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -536,6 +536,8 @@ auth:
 - id: get_cablec_out
   label: Query Output Cable Connection Status
   kind: query
+  command: "GET CABLEC_IN prm1"
+  notes: "Output cable status uses the same GET CABLEC_IN command; prm1 accepts output identifiers. The source documents no separate GET CABLEC_OUT token."
   params:
     - name: prm1
       type: string
@@ -799,18 +801,18 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-30T02:55:48.096Z
-last_checked_at: 2026-05-14T18:17:21.602Z
+last_checked_at: 2026-06-02T19:39:10.118Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.602Z
-matched_actions: 42
+checked_at: 2026-06-02T19:39:10.118Z
+matched_actions: 60
 action_count: 60
 confidence: medium
-summary: "All 42 spec actions map to documented commands in source; transport parameters verified literal in source documentation. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 60 spec actions confirmed verbatim in source; get_cablec_out carries explicit command GET CABLEC_IN which the source documents for output cable queries; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

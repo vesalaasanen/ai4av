@@ -1,6 +1,6 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-02T15:46:14.181Z",
+  "generated_at": "2026-06-02T20:16:23.983Z",
   "spec_count": 901,
   "specs": [
     {
@@ -18,7 +18,7 @@
       "actionCount": 112,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "50d1ab38138ae72816a28912ea12b7bbaa0e3c9ade9e01460197ea2e066531c8"
+      "contentHash": "60490fcfe825b611518f1de4322bea05467800a86262b2c27582ea5c219625bb"
     },
     {
       "specId": "admin/ad-notam-dfu",
@@ -35,7 +35,7 @@
       "actionCount": 161,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "04aee1a38e5779c46bf09c3496d927f130f5e047823cda83998869105d3e1c23"
+      "contentHash": "a0621e4c685e81dbdff9232252456357fa79525188f7cdbc707495929d56bfac"
     },
     {
       "specId": "admin/ad-notam-dtv",
@@ -52,7 +52,7 @@
       "actionCount": 161,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6f7ea7cf64307f911ec214f1ecc69ee8149ff54ccb46331cf828b2fea94ab2f6"
+      "contentHash": "93b65e65a4ce65d484a0b39354adcdce85ba755a0d62ebda682d800814368a06"
     },
     {
       "specId": "admin/adnotam-cs-101",
@@ -69,7 +69,7 @@
       "actionCount": 112,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "197aea6726888835be6de488a2171bf019169dfd61a39db171f7b6c1177b6cb4"
+      "contentHash": "3c74e3c6c4c909c472effda43287fb7093c99036e0d8e313668c9f9393bd66fb"
     },
     {
       "specId": "admin/adder-aim",
@@ -176,7 +176,7 @@
       "actionCount": 78,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "057493e4e9f0f5d17767fa9635b96df5fe50bf1ac15f7108dcc138e745173424"
+      "contentHash": "72e63c2049e8a5d832c480c57ddf7e1745714796ce3d383fa66d9dbe973e751f"
     },
     {
       "specId": "admin/analog-way-coreplay-solo",
@@ -266,7 +266,7 @@
       "actionCount": 48,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f82356faec3bed2335dfcb00e952a4d23ba9f44a884fac32921a3aabc501903d"
+      "contentHash": "47bd769135789eea277c8f5975f49b47c86d363aead131c3ecf116f91ca775df"
     },
     {
       "specId": "admin/apart-unknown",
@@ -317,7 +317,7 @@
       "actionCount": 85,
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
-      "contentHash": "6572e992de84b95f356520a4960ae645576bd81d0b218cbf140b9314f64a64c2"
+      "contentHash": "7c0f9a0a06e75d78a60fbc9efa07300879a668d4d81d58322c37500089de3619"
     },
     {
       "specId": "admin/apc-ap8931",
@@ -334,7 +334,7 @@
       "actionCount": 36,
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
-      "contentHash": "d046925ef811bd84e9e65c137fd75f08b41a48c1f5cb8dc4b44c618b56aaa6f8"
+      "contentHash": "064ca4f2987c946da019c50c0122e87901144289aa8bc9f76b707c037494dba4"
     },
     {
       "specId": "admin/apc-pdu",
@@ -351,7 +351,7 @@
       "actionCount": 28,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "06a4db1913e1dc4cc4d5618a59fb937f8569179a4e74e4f92ac8007d58612b0a"
+      "contentHash": "ad175dee662d5886de1fe52269ea0d43bb66edcb0e6fd0bb6fba1bb3b844046b"
     },
     {
       "specId": "admin/apc-rack-pdu",
@@ -389,7 +389,7 @@
       "actionCount": 52,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "25c6f8f5f7869b7f35512456f6f3250ddb490a0c4c527d7651f45739880c35dc"
+      "contentHash": "d22b8838293ce5ac6cc47660def60bc6de8a49a2254ba19bdade9d30a729d470"
     },
     {
       "specId": "admin/arcam-av860",
@@ -410,7 +410,7 @@
       "actionCount": 54,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d2b4f728e652da85760c867bb788cbeac3cb5f0e4a624d3b7a75b567ae009159"
+      "contentHash": "049076cefc9ba0ba8f6382ccbe7382437588090e0542f87698c043882e859cce"
     },
     {
       "specId": "admin/arcam-avr-series",
@@ -431,7 +431,7 @@
       "actionCount": 51,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "027012f6a808655902a8836ccc970890ca476b8c6ab4cd5d1c2f9f80cf0860be"
+      "contentHash": "ef53e82d407fb149ccafdb87d96b5f1d4af078db1ea93867ab038e49a8643512"
     },
     {
       "specId": "admin/arcam-avr-series",
@@ -452,7 +452,7 @@
       "actionCount": 167,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "99ce08a68586949954d8b0c1c310699adcb0741a90e4b22b77cf2535eb66f761"
+      "contentHash": "397ad78b95f0d8b617aa811a838b4856fcb32f9144cbda1e3a50029436512f9a"
     },
     {
       "specId": "admin/arcam-avr-av860",
@@ -473,7 +473,7 @@
       "actionCount": 51,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "67fa90efe98801df7704cefc6281c9860ca9c4e88e09ff868cdd5f2512e218f2"
+      "contentHash": "717e88c7dd159227c02c486ec383bfd660801c7e177fba0a0a4a7d20d57c4df1"
     },
     {
       "specId": "admin/arcam-avr390-avr550-avr850-av860-sr250",
@@ -494,7 +494,7 @@
       "actionCount": 51,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1d51daf5c1a4b357f75d9b0567fe600474f7c5c8449b0c1e8488f60768031091"
+      "contentHash": "25e210d1769fd9f88ccb518c1bfbf1d618e36995bfa00fb2926b6c14d432d40f"
     },
     {
       "specId": "admin/arcam-sa20-series",
@@ -516,7 +516,7 @@
       "actionCount": 166,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8b51c2d7e900a2b55a4e8e24e0a10a5cf3a82cb7d86930efa5565a914e652a9c"
+      "contentHash": "74ab83e3995028cd28ebcbd361e2ca9e2c219bd3fc2edcfd81074974974b5031"
     },
     {
       "specId": "admin/arcam-sr250-series",
@@ -533,7 +533,7 @@
       "actionCount": 51,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "7fc00f392d580608fcc4b4300e6497d1ceb5522c3c7156b7e863b76c8405e334"
+      "contentHash": "1c120b704607c0afb3a9519427508878c882fe6bcc6a4b8458b58f64441a73bb"
     },
     {
       "specId": "admin/arylic-a31-platform-tcp-api",
@@ -646,7 +646,7 @@
       "actionCount": 75,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "52090a848053139781521245cfb5e5bfb0eca463769393c5c4094fd3e2979f5c"
+      "contentHash": "0313bc75f8fd38b07b40fb7740975c3c514d1ae2d75eba8c3a931007bf5aeee4"
     },
     {
       "specId": "admin/atlona-at-dvi0808",
@@ -748,7 +748,7 @@
       "actionCount": 46,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ca77457c33cead57d72174071a56fe8ad016328d22ce77597e71d6697ade2ea6"
+      "contentHash": "900e69d1b904132a5937ad77b771aed1d138f73ff01028a6e5b974e2a8b106a2"
     },
     {
       "specId": "admin/atlona-at-hdvs-cam",
@@ -783,7 +783,7 @@
       "actionCount": 50,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "60ca4380e718386f061c676150a4a8190fb616761628e6c057ea17f7c4e2bf9a"
+      "contentHash": "7e8ea7629327e4e70e74bd4e359f2df80eee44c48dc94d33d08cf358ff5515dd"
     },
     {
       "specId": "admin/atlona-at-line-pro2",
@@ -834,7 +834,7 @@
       "actionCount": 27,
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "32609f36a2eeacaf49767cbee80fe34706005eadb90b27868abf46f4ac2ffbdc"
+      "contentHash": "23816cea48abb796928b83e2a9de5673573aec4261f62914a75d45453f5b7432"
     },
     {
       "specId": "admin/atlona-at-pro3hd44m",
@@ -885,7 +885,7 @@
       "actionCount": 27,
       "sourceDomainCount": 1,
       "sourceUrlCount": 4,
-      "contentHash": "c7196eb0d152008612591bb9d1d7fb6597272d7a3eda1c586f9c2b1c34ce13f1"
+      "contentHash": "4991f4844cd17d5583f8b71550fd5c7887d95b8078ae98f82cf8121e943dd69b"
     },
     {
       "specId": "admin/atlona-at-prohd85m-sr",
@@ -936,7 +936,7 @@
       "actionCount": 16,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "2169cf5be024b675759e9ea00aa2a3eae8464277577e6f0ae3709fa7fc5b0289"
+      "contentHash": "ec0055d7aa5527118f16a3074ef99f88fc4433c521e4da7c2eeb7539b698cffe"
     },
     {
       "specId": "admin/audac-mtx-matrix-switches",
@@ -954,7 +954,7 @@
       "actionCount": 21,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "f7bf7422ecfe275a2dbfd5f600e26698ca97daaf58b7e90b701fdfa36b61f6e0"
+      "contentHash": "b71a73d95202d770f65fdb281b30e2a625b3cf9dce094b115b459d69a3fbfa8a"
     },
     {
       "specId": "admin/audio-authority-avatrix",
@@ -971,7 +971,7 @@
       "actionCount": 38,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "401561d751057429d00e94937f13efedce7f731054d41b54bf63938cca2e3874"
+      "contentHash": "261d37db390ee1e580a99c2b4afc1feb910c468d193264e002dce5dad4c0ccfb"
     },
     {
       "specId": "admin/audio-authority-avatrix",
@@ -989,7 +989,7 @@
       "actionCount": 39,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "b76e753516e213a06675a9ce8cbc4d3b4db0ccd87c1af100512116a81f3270b5"
+      "contentHash": "6ccf9f0fbfb19d6a2897cdb53c44ae55b32d663004841341c5b079aa8e7e1c60"
     },
     {
       "specId": "admin/audio-research-corporation-dspre",
@@ -1060,7 +1060,7 @@
       "actionCount": 93,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "aab6d8ccd226e2c38fda238b42dee52635def9a85927f8b96f6ff1215871b1b1"
+      "contentHash": "e2a7734132e18992beadfe854351c4377ba9d3535400dccdafb75da1127b9c35"
     },
     {
       "specId": "admin/audio-technica-atdm-0604a",
@@ -1077,7 +1077,7 @@
       "actionCount": 141,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "9a6270c3d834816c4779c1f5752d4772911722aaf2a8c61f2e1ddd4cfe24ca15"
+      "contentHash": "38a98d34274cc43ea3fe2cab73019a63289aed133d9e1e6531c3d8a62bc14be0"
     },
     {
       "specId": "admin/audio-technica-esw-systems",
@@ -1100,7 +1100,7 @@
       "actionCount": 197,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "fbe38a14fb033fcc57df230b8bc4ffc07c99b58a3b69f5253f7fc2b2b66b4028"
+      "contentHash": "71f36da4b3359dbad8534f1283015f2175555c5d1b7e1d6ccf332533f618e2de"
     },
     {
       "specId": "admin/audio-technica-system-20-pro",
@@ -1187,7 +1187,7 @@
       "actionCount": 71,
       "sourceDomainCount": 1,
       "sourceUrlCount": 5,
-      "contentHash": "7602b310f65b955e5adffdba9fc7f49e99b8644e4ec3101e713036f37bd121ce"
+      "contentHash": "2b94979548fe0173f411167ed19ee6bffa43aa59e97ee3a9024f00e803271793"
     },
     {
       "specId": "admin/autonomic-controls-mcs-ex-series",
@@ -1204,7 +1204,7 @@
       "actionCount": 75,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e4eeb06b672e023a8fec6a45df31192b8351ce0e6eae0eeabe72a454879c5d7a"
+      "contentHash": "e23ce91c67f43d00d0aac0e01b3b8c5a4476a41dac7902ffa301995b0ff01bcb"
     },
     {
       "specId": "admin/autonomic-controls-mms-2a",
@@ -1238,7 +1238,7 @@
       "actionCount": 68,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "a8e84c50566603afdbd521b95ce25ce359f43f1a526335f5020427f3f9d67fd1"
+      "contentHash": "029b273553c94b56e6912763fff42176292acf810642ea83a80171be4a3d7a30"
     },
     {
       "specId": "admin/autonomic-controls-msb20e",
@@ -1255,7 +1255,7 @@
       "actionCount": 60,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "8514bd5fd82728476db200a2ca39b5b730926401e886d41b685693788c8d2060"
+      "contentHash": "3b057fc17fe5d820ac86a4660683643f9fca5bf49ba64aad1dfdc0f5b67aad25"
     },
     {
       "specId": "admin/aver-evc-series",
@@ -1297,7 +1297,7 @@
       "actionCount": 83,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "b940324da385dbd6db83fdcd50707b662336eb94e9b17bef6a03a87970fac17c"
+      "contentHash": "77ca34722cb7dabbc9ca526a51c235e26ab556ea49a8b9da7382a0b342cd1c55"
     },
     {
       "specId": "admin/avpro-edge-ac-aex-rc-hub-series",
@@ -1446,7 +1446,7 @@
       "actionCount": 33,
       "sourceDomainCount": 2,
       "sourceUrlCount": 1,
-      "contentHash": "3f79f9f72c66dc5b82fd1edb8d188225e98382144cf8cba16eff3b87ac910b06"
+      "contentHash": "97de93b0e180a886f455a610feb49c96ab321b48ef682339a654a575f0b9f676"
     },
     {
       "specId": "admin/barco-pulse-api",
@@ -1466,7 +1466,7 @@
       "actionCount": 67,
       "sourceDomainCount": 2,
       "sourceUrlCount": 1,
-      "contentHash": "b28bc11a3f68e692c72d760e8d10005392339f566ba29a1b7752ce000578b2ec"
+      "contentHash": "5ad5a5ce118c3464ba238ce521d7c7237ac266f8a55ddbc7073ddece377439ed"
     },
     {
       "specId": "admin/barco-event-master-v1-0",
@@ -1483,7 +1483,7 @@
       "actionCount": 188,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "9e34ba416e12138a6ccf310849bf200e4cc0ff3197f5d81d68d1b754d10af88c"
+      "contentHash": "c3092fb3dbdde10be175a8d5b5b7037c1eca0a91608c21791211e532bb08159f"
     },
     {
       "specId": "admin/barco-event-master-xml",
@@ -1730,7 +1730,7 @@
       "actionCount": 158,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "98161f651d8e5f4c27e7356e2373ab1887e8c8ba713c7b5246e226e64caf28a5"
+      "contentHash": "c746d782caf9559888e19e87d792d11f0dec82a3b63d9eef89002139e79d1dd8"
     },
     {
       "specId": "admin/barco-njord",
@@ -1747,7 +1747,7 @@
       "actionCount": 38,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1f8bcc068c9a795cb5c13abeada187be876f701f7f24ff2dd9fccfd7fac61f8b"
+      "contentHash": "00fb62d6d912ccc059b740083d5db6dda79ccfe4d4dd7e708e1f57d6eea59b4e"
     },
     {
       "specId": "admin/barco-pds",
@@ -1901,7 +1901,7 @@
       "actionCount": 173,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "05aa586085eeee78ac1623c291efe2f44017d9ebbfada2d0b7562bd3959fdf23"
+      "contentHash": "4f67826d545c22501d758e43e82dfef65b6d5311704c5cdf266630c514936e14"
     },
     {
       "specId": "admin/benq-m-series",
@@ -1953,7 +1953,7 @@
       "actionCount": 173,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "be77f7bfb90e0e0078d46226c8c41e058d0f07898d46a106a29ad3b74228b899"
+      "contentHash": "54f169f6c0f6dbed415220c9fc5315c61223a9f6315dc78c68f1d02f88dbbce7"
     },
     {
       "specId": "admin/benq-mx731-mx732-mx733",
@@ -2008,7 +2008,7 @@
       "actionCount": 113,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "2e64fdc2d70d6136f3cfda166d194b0a822c36b02d75b39157f57ee2dbafc038"
+      "contentHash": "59d52a65c8495c5dcd0167f949c65249b0a1acb83b3992827b55e736198de3fe"
     },
     {
       "specId": "admin/benq-st550-650-430k",
@@ -2101,7 +2101,7 @@
       "actionCount": 74,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "0e9e9275bcbaeee3a62d6071c25d30743123d3397197f9db3856d096779eb550"
+      "contentHash": "a460de5a1a13d87e14c6d0f714e1d1818027eee266a44c83dd2513698be3b94e"
     },
     {
       "specId": "admin/biamp-spm522d",
@@ -2118,7 +2118,7 @@
       "actionCount": 78,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "62e85b9fb4a8ab780e2884679c97cadbb364674dc6aef17ab1cd53a2c4f35463"
+      "contentHash": "0d033c3dd072112cbc1bb1ae62543936382bf3705ba338ecf582b1f9b9f2e06b"
     },
     {
       "specId": "admin/binary-b-660-mtrx-8x8",
@@ -2675,7 +2675,7 @@
       "actionCount": 15,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f1d5c31b4e1fc54a6ef0d6631588f07d3b8272ca866097c16e60b575d43ff967"
+      "contentHash": "d4d730f23042da428574e3ecff90146f85d0f6ce687d6b39a961a07d8e6eeb7a"
     },
     {
       "specId": "admin/blustream-c44",
@@ -2900,7 +2900,7 @@
       "actionCount": 138,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "ab818942d097df2b2b5ab748298a103d66f70d8221e36dc691a22b34d83901d7"
+      "contentHash": "965887850f88e01b6601ca5dbe78dd5ecd43e06cf4b822e02977004ca3defcf6"
     },
     {
       "specId": "admin/bose-controlspace-protocol",
@@ -2944,7 +2944,7 @@
       "actionCount": 76,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "51ba7baef4f493af2d6e5e545b240fd0a041bca47e9327b6d3d4ce019aeaa442"
+      "contentHash": "43076bf035e20763b2b0fedf578473fa5cc46128881cef4373e03b9c359be133"
     },
     {
       "specId": "admin/bose-controlspace-ex-440c",
@@ -2961,7 +2961,7 @@
       "actionCount": 82,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "e4e612a89c50b0a484944e62493c9e5b003de06d9791361858500d7861b97279"
+      "contentHash": "af1963e31f57bf4528a0b50020440f2179bc8604593f0607d9c192301866a5c9"
     },
     {
       "specId": "admin/bose-controlspace-powermatch-series",
@@ -3022,7 +3022,7 @@
       "actionCount": 77,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "79261ac4df70e71f2baa8f502856d0f8cee9e851be792bbc5ecd259cbba2eeb6"
+      "contentHash": "590a13aa19d93f87e92b15b857d7f692d4597d1a16aa891ab0ae2ffd65907c25"
     },
     {
       "specId": "admin/bose-lifetyle-home-entertainment-system",
@@ -3041,7 +3041,7 @@
       "actionCount": 44,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "3407996fd635afcf1aa0e9242cd5e35f0a0553c71872b6e8fb2217448608a9a7"
+      "contentHash": "75b1cefa4d477fd4330573d0c9ef7b613bdf92eba3462fce5d9b53ef8c703c6d"
     },
     {
       "specId": "admin/brompton-technology-tessera-led-processor-control",
@@ -3080,7 +3080,7 @@
       "actionCount": 9,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f1ea872d02f841d125141ceb14fb4e0d7ef99152d4718136bb7e1bd0c86b41aa"
+      "contentHash": "2d42ee4c6d3a71bfe56ea602a08de4f05593b42f1701ff059b74159251a1ac33"
     },
     {
       "specId": "admin/bss-blu-v1-4",
@@ -3112,7 +3112,7 @@
       "actionCount": 11,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "34f940e2afa95fe4f75367be51546892be7859fa064031436af64a4c905aa900"
+      "contentHash": "ce728e351a9240b08ec7e418625628304092905a44b0727acf90087e2391f72a"
     },
     {
       "specId": "admin/bss-soundweb-london",
@@ -3386,7 +3386,7 @@
       "actionCount": 153,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f7f2d81d4ae4e925f808c997d87dc49922d4306ed6e87a42b70dbaf901f42301"
+      "contentHash": "fd80bc38104d7c61b5f06374aa577202ccc75c2de289cf9f6a667b85450fdbeb"
     },
     {
       "specId": "admin/christie-cp-2210-2215-2230-2000m",
@@ -3406,7 +3406,7 @@
       "actionCount": 153,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "748eba7a7bf42b204bb336c1368fc4ddbcb5b2eeaba2f5f8978232060ff70849"
+      "contentHash": "ff7dadc75a9d8afe06ffba0c86d97aac0d5a7a6c03ca0e492f7637646f18043d"
     },
     {
       "specId": "admin/christie-d4k-series",
@@ -3424,7 +3424,7 @@
       "actionCount": 160,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "433d0c20ac5fdbd9bc26251cbcfc1b87200f04c1815d63862da99712822bab92"
+      "contentHash": "9dc0218ef5e9db44c41f697805d300b5651df0e3c4795fa184b1d41bd3f93a1e"
     },
     {
       "specId": "admin/christie-digital-e-series",
@@ -3441,7 +3441,7 @@
       "actionCount": 225,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "476dd7037b9f880cf7caca2008a92fe17cb6faf9fbc372d54d1e4ba360e21bb7"
+      "contentHash": "bfc5c93000ffc9c63fd945048e5fe167cc69afebcfd7469ef2f84f390216d9f0"
     },
     {
       "specId": "admin/christie-digital-lx-55",
@@ -3492,7 +3492,7 @@
       "actionCount": 66,
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
-      "contentHash": "6c6cce4029ef4373e74f5c641fc7b06e6ee176c01f654ea1a0e3b89f94ddf961"
+      "contentHash": "022ae336df3e0598a546334d4e3d5cf84189a888d507f33e4e08764398f47f12"
     },
     {
       "specId": "admin/christie-lx400",
@@ -3639,7 +3639,7 @@
       "actionCount": 94,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "6c808bce0b27a7c2e2509d605ef498df0169630dbf188d9293482d9f1feff62c"
+      "contentHash": "74d01932d5876234d384d5686e25448e00020ef5ac76cb5b1a8769004e2a2b8c"
     },
     {
       "specId": "admin/cisco-webex-room-kit-series-ce914",
@@ -3969,7 +3969,7 @@
       "actionCount": 87,
       "sourceDomainCount": 1,
       "sourceUrlCount": 5,
-      "contentHash": "82455e2384a69f6af36d7cc3d70ff6b5c8f6699055aae262d46863f8aab91cea"
+      "contentHash": "7c028aa9dcaaba1d3a21961b0e1ea70ac407248d25123eae9c2b1861e9c14e66"
     },
     {
       "specId": "admin/coolautomation-coolinkbridge",
@@ -3986,7 +3986,7 @@
       "actionCount": 27,
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
-      "contentHash": "4271ce9e41c7a9c0ab90055becb242e5b6566d04ad0fde473ce844011447cc7c"
+      "contentHash": "35a041e7a35330de78770e907cb14d6d1b69d0279722fd948a15c13ece31ff09"
     },
     {
       "specId": "admin/crestron-1-beyond-iv-cam-i-series",
@@ -4040,7 +4040,7 @@
       "actionCount": 126,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4dd9db7579d1a2d1f1c01ca95d11455995349176d2e9f3406c742f5d605c380f"
+      "contentHash": "624cc6d6a063a2adf812785a4f4a8e92014634fa8863b1252605b0126fffbb8c"
     },
     {
       "specId": "admin/cyp-cs9000",
@@ -4057,7 +4057,7 @@
       "actionCount": 70,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1f038c658f0d339750f9862378c292a834c686efdd4422ec50e22a0b3475f05e"
+      "contentHash": "4a4ba2093aeb2352dce929b409703781f569874f3a260a72d5b737ab223f8950"
     },
     {
       "specId": "admin/d-box-odyssee",
@@ -4074,7 +4074,7 @@
       "actionCount": 21,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "1db1a9e479866bbf63e8a889015acf397a3a86ddaf10f430e1713655e85c2446"
+      "contentHash": "c7c0f4b64be6b87c12c1fd97340768b0eddfcb33a9b47cb05657a6c4b76c2b92"
     },
     {
       "specId": "admin/dbox-digital-satellite",
@@ -4091,7 +4091,7 @@
       "actionCount": 21,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d0d3f27bf6668eece280328c5d0f439b0b105b68b796a27470fae2ec49d5ff92"
+      "contentHash": "f7215e63985e856ee5ad754f7c74b7bb2bf6b443d7126797676d5d9a807b8324"
     },
     {
       "specId": "admin/dataprobe-iboot-pdu8",
@@ -4125,7 +4125,7 @@
       "actionCount": 18,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "523b9fdaf83281a8b37c5dcf997bac6a4c56dc6ef0d4cd5e66ee500c984ec463"
+      "contentHash": "dfe27f13c6c2b24e884ed904d7c352f4cbcc4011086ae91708c13297fe9eda54"
     },
     {
       "specId": "admin/datasat-digital-entertainment-rs20i",
@@ -4142,7 +4142,7 @@
       "actionCount": 52,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "76a4aeb2a3cab9efdeb129095749a0d7741ae1167e2c060a437440b3c349a5b9"
+      "contentHash": "66c4d2f73bf86a1d1d87d3267c0db45d7bffae5d0c28417802514d5395cf4713"
     },
     {
       "specId": "admin/dataton-watchout-7",
@@ -4244,7 +4244,7 @@
       "actionCount": 864,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "0950bdee9a401064c563f689d198b6f4fc0f1a44896e91c60de5dce7d85e69f7"
+      "contentHash": "651557b6b46140fee5bd493ebc803bb0756b242642684b0a8bb55087cca7784c"
     },
     {
       "specId": "admin/denon-avr-control",
@@ -4312,7 +4312,7 @@
       "actionCount": 856,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6d09c5a2feb04b197a46370c9af663c5476b113c89ae189884da2da292abb0e0"
+      "contentHash": "4f5b4e68d32048d9627c79d29dd50737eadaf36e7f489c984304d37a2400681f"
     },
     {
       "specId": "admin/denon-avr-discrete-codes",
@@ -4327,7 +4327,7 @@
       "actionCount": 841,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1172bed430b44516100227d45862e769a97489cafee3ae3300b88857c6e1762e"
+      "contentHash": "ecf493350a918e586d416f4dc2864e0d88ae2bd8770e791bd28d5e022c907ac8"
     },
     {
       "specId": "admin/denon-dn-500r-700r",
@@ -4347,7 +4347,7 @@
       "actionCount": 924,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "45e4070cbd5e0c64a8ab23ac19f3725012e19ce8c9b9b971aa2a1354c09fa06b"
+      "contentHash": "0478bbcc7b98c66dec2db257d419a8af713458ff36fe2804273dc507fd945b37"
     },
     {
       "specId": "admin/denon-dn-a7100",
@@ -4416,7 +4416,7 @@
       "actionCount": 565,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "7f4f25d97fe56133b0fc1d2dbac0535c31795c0f6fc90792033ab574da869bf6"
+      "contentHash": "df402f97fca4769f3fd857430ed989040e22d7eec84efe5471c53624de3212cd"
     },
     {
       "specId": "admin/denon-electronics-avr-series",
@@ -4476,7 +4476,7 @@
       "actionCount": 60,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4b84e467ad1cf5fdf3c063dd18b351531bbbdc6e94098e8baf1f01523d8614cd"
+      "contentHash": "3cfe6e44cd2046b0d254c562cc44d12fa50615340acd08eb69621d6b0a718d07"
     },
     {
       "specId": "admin/denon-avr-s700-s900-x1100-x2100-x3100-x4100-x5200-x7200",
@@ -4518,7 +4518,7 @@
       "actionCount": 98,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "df1590c983f7ae7b4a8a2f270654b1af38265ee184314d4904e07b90933141bd"
+      "contentHash": "2b7064fe010898313424bcc15b44adf5525389a7b61a96d174ffb1048deaf420"
     },
     {
       "specId": "admin/depili-mvision-wuxgaled",
@@ -4535,7 +4535,7 @@
       "actionCount": 52,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "d404d09edf5662f059b75dd9ba276a2124ade0b8f9300d673ee5cffd56b73e93"
+      "contentHash": "36df65be4e5dab207f861df6b21fcc6c6e284703587cd82ad7cfb88fce83b271"
     },
     {
       "specId": "admin/devialet-astra",
@@ -4663,7 +4663,7 @@
       "actionCount": 239,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "50b906597452667e245188de692c97e63c4919d0b77b27d7c70dc2cbaee2ec55"
+      "contentHash": "0c198d49ede71235eec9ee7a88e9e2ac89324ce27e387cf11154cba3d6ff84b5"
     },
     {
       "specId": "admin/digital-projection-highlite-660-series",
@@ -4729,7 +4729,7 @@
       "actionCount": 108,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "d18ba71c963fa955d0aa4d16f864ea22beaa10997fc2f72459f121b38dc5f28e"
+      "contentHash": "66cbdfeee827939dfb73f91523ec4b633736bc36762ca0817cd4efa3f8aad16b"
     },
     {
       "specId": "admin/digital_projection-mercury-quad-series",
@@ -4769,7 +4769,7 @@
       "actionCount": 300,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "b239ad0dca0a3dc62866e7c74967b5c149fcca8b58fb6a5f38cf0c5a6137086d"
+      "contentHash": "37d872bbe99b452d29f5432fad2d406a4feb9e66b4464558ea18531b1ef568b4"
     },
     {
       "specId": "admin/doorbird-d1100e_series",
@@ -4820,7 +4820,7 @@
       "actionCount": 27,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5cc78f7c2d01759c7d79302bc266aa21412aac18a5fb98a1ec47e09b5d3368b5"
+      "contentHash": "9e07fb8fed1b6450583a526f4a712f828cdc713aaa35897aac75c053b52ceb05"
     },
     {
       "specId": "admin/doorbird-d2102kv",
@@ -4991,7 +4991,7 @@
       "actionCount": 15,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "64b2febc1d12f1d3aba01ad19a5196d28e4269e9fdc3d035e6fc33124b037205"
+      "contentHash": "368918fe07190c79d050f8ed94be89d239a518085c566efacc41cdb78c380def"
     },
     {
       "specId": "admin/draper-euroscreencb",
@@ -5026,7 +5026,7 @@
       "actionCount": 10,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "444ca5555359d1e6412aad2750f616d5a2940f47c167bf6103c558e193183668"
+      "contentHash": "a044e8a98d07cd01fba5caee9dcd01af0c805b2f3c39d28c6f3f8cd9f78551d4"
     },
     {
       "specId": "admin/draper-mc1",
@@ -5043,7 +5043,7 @@
       "actionCount": 17,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "454619c883ea1d8e26e4d0ee53dcf6307c5263b0fa1c18febd6bc799b1458d81"
+      "contentHash": "65e43d66567652d48959270f4cc708cd0d0415be15fa7398731b919b0e22aff4"
     },
     {
       "specId": "admin/dt-videolabs-tbx-2201",
@@ -5060,7 +5060,7 @@
       "actionCount": 52,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "8f0472964e2847b697bb05fbbc1b5f6919158b490b4e9120a0900af8d2766054"
+      "contentHash": "c46b073134dfef04bc803759e522f8c64c9720813f7a38682a224b15be0c124e"
     },
     {
       "specId": "admin/dt-videolabs-hdr60-hdr70",
@@ -5095,7 +5095,7 @@
       "actionCount": 26,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "a01c7ab32350418bf91919406d03f0bce62ebaf51d08c21135900b47074e1a32"
+      "contentHash": "b1d57aa832a19f563ccef5631b391b60c54ee7ffd5b2e4d24edead3810500716"
     },
     {
       "specId": "admin/eiki-lc-x986-north-america",
@@ -5321,7 +5321,7 @@
       "actionCount": 99,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1b492ba09c060a1267aa58715790c4dd5148781162a28aacbb74d206a68abb6b"
+      "contentHash": "bf26ebc63d5367e832f81bb9dc1eae0c72d5aa749430b53b3c161d863907cfa4"
     },
     {
       "specId": "admin/esoteric-audio-p-03uni",
@@ -5418,7 +5418,7 @@
       "actionCount": 62,
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
-      "contentHash": "237d8478f9fc1aad30759f82815f29d865c06a15d523a24df13ed76275537fb2"
+      "contentHash": "61d90b93cc8a129d7f157b9b53024a6de604ae617c2d61c65ee4fa3de3666ce7"
     },
     {
       "specId": "admin/extron-dtp2-crosspoint-82",
@@ -5454,7 +5454,7 @@
       "actionCount": 179,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "9af135bf9701dbd3895f1d0d41c4a93292c13cde03f974ff38b30dd29c3f36d1"
+      "contentHash": "6e91d1e0f4414bb146686c1b404c62f136bb434bbfa28b1b58e09300fee651b2"
     },
     {
       "specId": "admin/extron-foxbox-tx-dvi-plus",
@@ -5556,7 +5556,7 @@
       "actionCount": 245,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "8d81453b6729087befb684529d2f41eca3b80b5b95b4057d42ed96624c8808f9"
+      "contentHash": "210d8ae7d67504a3a30b5d662397f3abb2ad36ea99ca89292278384637aad9e1"
     },
     {
       "specId": "admin/extron-mps602",
@@ -5665,7 +5665,7 @@
       "actionCount": 36,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "bd6effbcb56f6d7cc45be0a3e94275daa428975da913c1ebbcb9ddb8a103d864"
+      "contentHash": "d30319a8e3de97d2a9c6b338e1f11ea5d61d8d32fc6ef8ef6ce9d3086c098cb8"
     },
     {
       "specId": "admin/figure_53-gobutton_3",
@@ -5805,7 +5805,7 @@
       "actionCount": 25,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "b505cde085b1af1f3c1937930b0fd77f36fb411e7ea3f046542345218fad31a7"
+      "contentHash": "da87751d78f1cb1000b5b0c16c41e5975cd7119a5cc9613578c0bf30a33ae059"
     },
     {
       "specId": "admin/global-cache-itachwf2-series",
@@ -5827,7 +5827,7 @@
       "actionCount": 16,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b4544d10d3afb60d593fe8aed09c4ce10b92b2d2cadea3cf1fcb0a0d1812b835"
+      "contentHash": "170875a5499efca5204672f4bbd363b6e1c983ed077f4769f845f5c443c8c1f8"
     },
     {
       "specId": "admin/global-cache-unified-tcp-api",
@@ -5928,7 +5928,7 @@
       "actionCount": 194,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "1e5e7ef9cd758c2535b0ed56c3002308dc86dc9bbd7f891bf5d568e597ce2811"
+      "contentHash": "2dcf55e8a739be653edebe96a10af2c1009d5fa411c6f27c7c5baac9ab892948"
     },
     {
       "specId": "admin/google-calendar-api-v3",
@@ -6125,7 +6125,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "5408041d1693bd32bf915077a1bea1cf6eefc39a642e3353e19e184bc935b8be"
+      "contentHash": "0040c9bbc2b46c38109c3bfb53bc0bcb5d9f2f18aa469e6f8541b5659b180951"
     },
     {
       "specId": "admin/hisense-100u7qg-pro-series",
@@ -6190,10 +6190,10 @@
       ],
       "revision": 1,
       "path": "specs/hisense/hisense_100u88qg_series_ir.md",
-      "actionCount": 3,
+      "actionCount": 125,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5f72d3ee2fe37064f97cbd12b8fec373470fdb28fa769596136a1363e285e837"
+      "contentHash": "70049bcd0899db4b9892390f1c45ceb60cdcd0477a9e215aeb349469d10466b3"
     },
     {
       "specId": "admin/hisense-100u8k-series",
@@ -6227,7 +6227,7 @@
       "actionCount": 69,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "31463a7dc92269a2c554f77fa4e293cdb56733977617e969fa7522b4fd391441"
+      "contentHash": "c53ae7b253871ba3af50ec68907b191391bf810cb182f4a16b70b36368aa6d56"
     },
     {
       "specId": "admin/hisense-55u75qg-series",
@@ -6261,7 +6261,7 @@
       "actionCount": 121,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "9313ae4915e29a7d6e284bcf1ab7fb2918d3a76aed059b20847e5b0e91728002"
+      "contentHash": "40a77107f6c9ddb1743032215b20528c3c504783785402905c85dd7d538d03bf"
     },
     {
       "specId": "admin/hisense-55z670nk-series",
@@ -6295,7 +6295,7 @@
       "actionCount": 120,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "63a2bb061f455d979592ef5156b98f80b8e03bc375017149dd4950432c824caa"
+      "contentHash": "8c880ec8a7b52ddad5c43bc7988b578e030a4a4eecc824cec16732255253aadd"
     },
     {
       "specId": "admin/hisense-5qd78n",
@@ -6312,7 +6312,7 @@
       "actionCount": 111,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "305a3c654e48d5d4f0fe63d6a80693600de3721ad36e14d920f01448f6c1f270"
+      "contentHash": "1935c5c465658419e48398479b19cd554ddb177a44282aa2eedf6de0e905d76e"
     },
     {
       "specId": "admin/hisense-5u63kua",
@@ -6380,7 +6380,7 @@
       "actionCount": 112,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1191e22b859c5e51198671fcc8f4ceaa6d647b08310c6a8238b44293b8023475"
+      "contentHash": "0a08dcdaca759479d701d700999d10361895cd351886facfcc1f5586daab3190"
     },
     {
       "specId": "admin/hisense-5u88lm",
@@ -6397,7 +6397,7 @@
       "actionCount": 87,
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
-      "contentHash": "eadd8de94a1d4748b68acd825914a3efe1f7b41ecd1afc0cce815edfe75abac9"
+      "contentHash": "6ad5fd14936eaa6485650e4e07ac44f05f53b508cc98034f050873034c47b9dd"
     },
     {
       "specId": "admin/hisense-5u8k",
@@ -6431,7 +6431,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c06f5d60c4f08a09480767dbaee2c98f3b14234363d30b0aeeb80c88d2419384"
+      "contentHash": "e910346bb4f23f5abcbde986ecff52dc56391b10c88fb7c06b5d32927a9eb2d6"
     },
     {
       "specId": "admin/hisense-65u67kua-series",
@@ -6448,7 +6448,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b8a89859538fdcd5973fd7e2ee6d0c1f8107bd106ccbfb8b31c30eedefa87b26"
+      "contentHash": "a96a9badf3280ca5a6c22663539aa2271128bec4a0effba134b05e07b6895b19"
     },
     {
       "specId": "admin/hisense-65u75sua-series",
@@ -6533,7 +6533,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "179daeb5b119ac0c067e070f6c036fe9711676a8103c6ec51e5835fd594571a2"
+      "contentHash": "725b4664f805dd1961b0910531a933bf98ea20074791756fa10498980cbe508d"
     },
     {
       "specId": "admin/hisense-65u8k-series",
@@ -6567,7 +6567,7 @@
       "actionCount": 69,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "27a2f8263d5173d132e2c09d0bc87e2d66ef435e969882bc95c7caf05a11a377"
+      "contentHash": "02478f032255ea6da9e91dc3942b3514cdb00c9918da51b634a1331e99faa186"
     },
     {
       "specId": "admin/hisense-75u67kua",
@@ -6601,7 +6601,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "cba089f4544a04d4c07ed58f645ed41ee3978fcd848f1a580fee0933b12f5470"
+      "contentHash": "41bf78f805f32c1b10fd9bb7fa0de443098df5921c5da4345056598eb1ff474c"
     },
     {
       "specId": "admin/hisense-75u75qgb-series",
@@ -6618,7 +6618,7 @@
       "actionCount": 68,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "451d3cc51f7fc5eaa09fa14288c61bbb50db2b656c61269b6e80d5804ff9be5c"
+      "contentHash": "deae21e9f675d3712b64b74d135e2f4094a5187928e79548bfeb486c0f59f8f3"
     },
     {
       "specId": "admin/hisense-75u78k",
@@ -6635,7 +6635,7 @@
       "actionCount": 10,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6f13bb422bf6ad918e4af2a2e890e122816c5ce7a2d9071a62d72afed6f5f474"
+      "contentHash": "5734292f7efc5e7076abe3af9c0e9daec932ff4a26aa65ee0bba808d1dddd358"
     },
     {
       "specId": "admin/hisense-75u9n",
@@ -6720,7 +6720,7 @@
       "actionCount": 381,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1de10d0c22e346ef357f5f9829b390e032a80fe83ce3c555d90df2fa5c6ef945"
+      "contentHash": "d5a527e6938436d76f68bc2e6fd77f08a91346c5e55a845ceb2aad8de8bdbaac"
     },
     {
       "specId": "admin/hive-beeblade",
@@ -6737,7 +6737,7 @@
       "actionCount": 72,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "93a6ffa0239040f1ffc810692b61e0d27ed00b59e29f40a0db3a643ab2472f3a"
+      "contentHash": "c936e9d19cb8f36c392ef659b645912e77e1390b9b98a05430c0a4c8de18a962"
     },
     {
       "specId": "admin/honeywell-rth9585wf",
@@ -6827,7 +6827,7 @@
       "actionCount": 69,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "fabc57d04177a77d24c5df278cd829015c8e32cff26ae6a8eed5b9e029613df2"
+      "contentHash": "897d5b03059331dfd7228e990f1dae839a655a256a8bb29d01a247eb1ea34d69"
     },
     {
       "specId": "admin/infocus-inl21xx-series",
@@ -6844,7 +6844,7 @@
       "actionCount": 136,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d03cbef1e5a81027e00f6fbf0a4e1f08e1e851e15ad910f163b6e9fe88a5feb1"
+      "contentHash": "fa1b181bd7fd4885719bcb17a56050b09bb357b33cbb7dd7297fbf51e813a8d4"
     },
     {
       "specId": "admin/inogeni-inogeni_series",
@@ -6895,7 +6895,7 @@
       "actionCount": 815,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "cc043d92e196c63f3d7df1655fca8ffefed4ce747dcb283df030d81cea59723f"
+      "contentHash": "969f997d5dc48f9852a549aa7d50241f7e90eeb647af54244091e414477d0b02"
     },
     {
       "specId": "admin/integra-dmi-40-4",
@@ -6912,7 +6912,7 @@
       "actionCount": 91,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "699fc5985834c27e12d03c9ff3d4e36b010b631bd666cf9377fcfe29de2a8338"
+      "contentHash": "2a354fb98dd05c823207959a8471ef7df020a049654efdd3bbe6b7d7009760e8"
     },
     {
       "specId": "admin/integra-drx-r1-3-series",
@@ -6980,7 +6980,7 @@
       "actionCount": 176,
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "22466bc0fe01131d68a6b8fce4cb472b42d5f6c5fe66c15791082d050529f938"
+      "contentHash": "8113637a3c4b54ffa5d85d93176ba286845136fd3bc126f40488817275b41846"
     },
     {
       "specId": "admin/integra-dtx-8-9-series",
@@ -6998,7 +6998,7 @@
       "actionCount": 322,
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "06b267633bee79298ce53de1448904ef73859614580e0ec28df3e234a80e3434"
+      "contentHash": "26225205fced52f174e286b10d69c6c298fd62a2a5607d2b82c334f83b99ee86"
     },
     {
       "specId": "admin/integra-ht-d03",
@@ -7049,7 +7049,7 @@
       "actionCount": 91,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ea8faf7b0b3db7dfe303c12728cc28da9048e47a0177ce4b458e976fd4b04d1f"
+      "contentHash": "935d533b6fd8a29876f0fe3af905466eaa4ed9ec5b96a23e1ddd1c3a2a4d4e0a"
     },
     {
       "specId": "admin/interactive-technologies-cueserver",
@@ -7102,7 +7102,7 @@
       "actionCount": 28,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "a3045d871e7687f89b5db21a762a3cedd3599b23b4a555df6275c21f0c147e61"
+      "contentHash": "020020bfef5697a59705e6300c61f9571ac7566915d0b556fb66c0da33ad4560"
     },
     {
       "specId": "admin/jbl-sdr-3-series",
@@ -7122,7 +7122,7 @@
       "actionCount": 254,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4aafe369728dbfaba00a3dd530d4a6e7e6403b86877c202e5f04cf999573b554"
+      "contentHash": "93f54399ff84b3869a13ab31237ee2ac9a36eb513ddd5fbad63a740084163317"
     },
     {
       "specId": "admin/jbl-synthesis-sd-series",
@@ -7142,7 +7142,7 @@
       "actionCount": 62,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8cb13d3805b10188338d44f2ec923b434faaeb6972d0bd63dd58b3b27ec78632"
+      "contentHash": "ce5a67461288f326f6064a544a9c85bc8b99680791eb7fe1853b6465e6790bc2"
     },
     {
       "specId": "admin/juice-goose-ip-15-snmp-series",
@@ -7196,7 +7196,7 @@
       "actionCount": 329,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "595c5124f0d1aa7dec62e0937be13c61384ed0e054d5f659d3f445c32759e2a9"
+      "contentHash": "7f4cb0498dc8d4caf8153df2a8d64b16e5139ce2bab6b708cb04cdf1fcb5a753"
     },
     {
       "specId": "admin/jvc-d-ila-projector",
@@ -7273,7 +7273,7 @@
       "actionCount": 327,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1ed57d0d93ce4c9a415034e9a36ce966d402abb7007b315f0add29740ac10482"
+      "contentHash": "ed72b26cb119bcdcbcee8e6bf8d09d873f299762b549aa19c39a11fcbe4096d1"
     },
     {
       "specId": "admin/jvc-dla-sx21-north-america",
@@ -7290,7 +7290,7 @@
       "actionCount": 329,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "dd2187aed21b446a920a27bc57a87486469d7970d3903570f949135a2fe09d96"
+      "contentHash": "42cdfede87703cf17fb9139ae8ebb2daaa204ad37e836f91a166980e70627731"
     },
     {
       "specId": "admin/jvc-dla-x30",
@@ -7307,7 +7307,7 @@
       "actionCount": 174,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "9b1e33450cf4d4683cecfc960582b18a9bd95359baf18f3d9640e0966bde44f0"
+      "contentHash": "26eed0cdb2c560a816061deb24daf2f1b8f60316b3a6a15d17d2cb354dea041b"
     },
     {
       "specId": "admin/jvc-dla-x500r",
@@ -7401,7 +7401,7 @@
       "actionCount": 313,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "7d52054a0df1fbedfb0a7463f67a0af5dc657cd90e7af24dd21a62d55da88019"
+      "contentHash": "fa1cd0c5f411531ff2888d6b902f78fc8379c3b2f51cc38c01e58ccd27ccb53b"
     },
     {
       "specId": "admin/jvc-d-ila-x_be_we",
@@ -7457,7 +7457,7 @@
       "actionCount": 22,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c7d82d9c6e95e1d580e075a5693a9d59b2a2431db08d15f770f86b21a3c477d5"
+      "contentHash": "e22a19052b8abb2bd48a8c9fa8de0ab6e4926a944d0b157c0470093c45a869c0"
     },
     {
       "specId": "admin/key-digital-systems-kd-msw8x4",
@@ -7525,7 +7525,7 @@
       "actionCount": 18,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "444f3847d6bf82a8e62b996f2e9721a531b092081c5c97c6f0b40103197d16c9"
+      "contentHash": "aee0641156e56cc6818f5658baae5383766d192bcf5d7bde546443018449d1b1"
     },
     {
       "specId": "admin/key-digital-systems-kdmsw8x4-series",
@@ -7610,7 +7610,7 @@
       "actionCount": 192,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "959018ec93de471099f4b4abcd6bd458928c3f8ff5d2a9a18e63f6053171c945"
+      "contentHash": "8f7157e6cda10193ea6cbe70de450e4afef25e48689519a7888cf64b0a9c79ca"
     },
     {
       "specId": "admin/kramer-vs-808xl",
@@ -7627,7 +7627,7 @@
       "actionCount": 41,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e1366ad06f2c948a9a9cfab07d66057c1e4a5312aecc00ba48dd737be79e821c"
+      "contentHash": "1170a0d0ed2cf44c9c6dcf00a7c1dcd957d5fd8a3ad47f5e00a9ec02d3a3b186"
     },
     {
       "specId": "admin/kramer-electronics-vp-437xl",
@@ -7644,7 +7644,7 @@
       "actionCount": 42,
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
-      "contentHash": "b2ddc87e7b1083a5d726f7a094b12cb75350b66ddd926bd7320bc420c6981481"
+      "contentHash": "831f71f75eaf3f2dc99b0b6b3872e8f98492edc43f417b8d8268849757cb4c23"
     },
     {
       "specId": "admin/kramer-vp720xl-724xl",
@@ -7664,7 +7664,7 @@
       "actionCount": 225,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4aede9148909b45344b07c4d232ba51ea892dece285f0c6a996b06694999056b"
+      "contentHash": "7834128d625613f9aaf19338de9ee295948433e2df1a5a62fde420dfb83665fe"
     },
     {
       "specId": "admin/kramer-vp720xl-vp724xl",
@@ -7718,7 +7718,7 @@
       "actionCount": 23,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "a816877bd93d31bacde1646854b81a7fad9ae8f2c024eb414878c90929535da5"
+      "contentHash": "c218c41b8ca1a2246b00d3208ef36e20c0892605f786724e0da9bd316feef68a"
     },
     {
       "specId": "admin/lectrosonics-dsp4-4-north-america",
@@ -7825,7 +7825,7 @@
       "actionCount": 227,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "a58638227ed1b49835eff3717e52daa6837dcf7f4a7a891b50db0d24783c8ff6"
+      "contentHash": "b7c12f1e64e961e56b44e2c5e71b1ac0fc02194d55d2a4e56244cc0f24c715bb"
     },
     {
       "specId": "admin/lexicon-mc-8-mc-8b",
@@ -7843,7 +7843,7 @@
       "actionCount": 72,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "8ebbf0f99e322c9b1d90be27f396b13431d1f0b9df92c43f0329767d55f31e42"
+      "contentHash": "a9b553850cd431ddcb8611c1f32777b014c4deba249d7172b3a27b0b26ab96e2"
     },
     {
       "specId": "admin/lexicon-rv-series",
@@ -7862,7 +7862,7 @@
       "actionCount": 176,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "98926a34bffd53c631b05c22f677c991ddbf0bcbbe9950f2fdcf64befeb2cd69"
+      "contentHash": "dbe36fb99a9abcb9eacb650be7f147a772b319521b2c88b7b59e1fe9708b3d7a"
     },
     {
       "specId": "admin/lg-2018-ethernet-v1-4",
@@ -7879,7 +7879,7 @@
       "actionCount": 34,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "34dde8c3563e7b8f152e6a63f302c12dfaac8ffd854fa2df943962d544ba150b"
+      "contentHash": "8589d6d4f5d24a1911a81b5f33f0ad99800aac84a78f8566c09ac9f78743057a"
     },
     {
       "specId": "admin/lg-32lb660bpsb-series",
@@ -7964,7 +7964,7 @@
       "actionCount": 28,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "89653ab076170c6e967be6013f5773fe18ec11a4382e4bcf6da36cfdc98169ac"
+      "contentHash": "75825bc31a9922efa203d644c905c2753f547a3d54bea3a7be69f02a710f01ec"
     },
     {
       "specId": "admin/lg-49nano81ana",
@@ -7981,7 +7981,7 @@
       "actionCount": 27,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "57b6107ae5222c5dd2ffd07c17b5270edfc94b9b8bc6929b180813e195253be6"
+      "contentHash": "aac3e582422f94a4bcd62e7df2ef342c172107ba5eea42a28b2afa09c0cdced1"
     },
     {
       "specId": "admin/lg-49nano81una",
@@ -7998,7 +7998,7 @@
       "actionCount": 31,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "35852019024577d81cd13b8f512e06eff98f6374178300cef2f1f11e0662dfb1"
+      "contentHash": "d10f3514fd8b7c567936f11ea9ddf7be874a676f7d423610233acd76415c181a"
     },
     {
       "specId": "admin/lg-49nano86una",
@@ -8083,7 +8083,7 @@
       "actionCount": 41,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "d45184097a10edfbdf632c368b07fe4b64083567a70c034ce6632d833afa23cf"
+      "contentHash": "ea83b679edbabd0940eba8c03e94fa00d1fa9d3dbcb00ec688b920d8a99e6a8a"
     },
     {
       "specId": "admin/lg-49uj6050-smarttv",
@@ -8100,7 +8100,7 @@
       "actionCount": 26,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "c2bb84748f53c12cb1ee7df2bb5a37267f407762afda85ac3da31b632b5f5c3e"
+      "contentHash": "59810ab0812e58b50c1cf2d0766d939b6a195f1f0c7d2c742acc7f7c4b0fe2ce"
     },
     {
       "specId": "admin/lg-49uk7550pla-series",
@@ -8117,7 +8117,7 @@
       "actionCount": 51,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "5db780decf2884c8448cf3df3f0064e32f274e92c1735c87550305402014eee0"
+      "contentHash": "99fb2c7738861d42ea6811340490d6337496b0c6af1582d4f3bd446f98ae8ca1"
     },
     {
       "specId": "admin/lg-49uk7700pud-smarttv-series",
@@ -8134,7 +8134,7 @@
       "actionCount": 62,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "c3eff247aea0d15c3693556f7f705b55cf46959eb4c12a38191b6abfc8251f1d"
+      "contentHash": "4871e9869e887b845d7ea7d28d81a114662b0aa67502993951c6cc2d85e9d688"
     },
     {
       "specId": "admin/lg-50nu830bzua-series",
@@ -8151,7 +8151,7 @@
       "actionCount": 82,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "89c468dd688f0aa7d3073b78d892b7b6d41536099a66d1298f8868687af24f00"
+      "contentHash": "11667b2d4a458211ae84ae0d7549d6af7d4422689e00bc7d75afb4b41af24291"
     },
     {
       "specId": "admin/lg-50qned74baa-series",
@@ -8168,7 +8168,7 @@
       "actionCount": 27,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "f0d9962c435eef6c22678e31d22b364d98871136ef89e52ce23495dcd201de0b"
+      "contentHash": "d3e43227f0ab0c3014b5e56c07cb3caadd772fd640550badb1808c96ade631bd"
     },
     {
       "specId": "admin/lg-50qned75ura",
@@ -8202,7 +8202,7 @@
       "actionCount": 28,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "b4a9f4c8fa6c160922f7a4d58195cdba25508fc3d3e16b4d1b501e71ab32bd8a"
+      "contentHash": "36cbc4e3f2a73f49ed585a52eddce5b90b9eb4ec3c0f6c736eb65a5eb5f4b74c"
     },
     {
       "specId": "admin/lg-50qned85tua-smarttv-series",
@@ -8219,7 +8219,7 @@
       "actionCount": 63,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "c69627b6b86c9dee0bc053e7db66ff47fc7c5985eb3faec1c45c41bbed988273"
+      "contentHash": "f7a997b59286ab1c38d6199491471c35cac28cf1aaf0fec1ad31d71211a6b71e"
     },
     {
       "specId": "admin/lg-50qned86bta-series",
@@ -8236,7 +8236,7 @@
       "actionCount": 27,
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
-      "contentHash": "a4a34ca36457fb1bb0055015b8aeb682f58c45cbab25994d536900c9f89cf9a1"
+      "contentHash": "0137a19820f7e5cbaf3be49825445d1c2dc7960dba149cd1f8f95456b69c29a2"
     },
     {
       "specId": "admin/lg-50uk6500a-series",
@@ -8253,7 +8253,7 @@
       "actionCount": 26,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "79e5ce5b67dbc5cfd6e2d42e25cfc12be975e27fadb1fff390b6be20ba28381a"
+      "contentHash": "a120dcb9feb07ed1b4550f16c9b35d79548105ac8c75bbb7bf95b3d0ba7ea2c5"
     },
     {
       "specId": "admin/lg-50un6955zuf",
@@ -8287,7 +8287,7 @@
       "actionCount": 60,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "dd315ddb812fac6b23be314ec103ba071424dda683f5f1fd818fcdbc55d9f5cc"
+      "contentHash": "9401bbef252b1f789c93be92a201bdb0949b743757970bae7a5fda4715f94f28"
     },
     {
       "specId": "admin/lg-55c8p-series",
@@ -8304,7 +8304,7 @@
       "actionCount": 27,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "3be20e4748e8c6c922e7752403c30d9c44073ec2c7db16eb7211b5bbfca5d10f"
+      "contentHash": "0acb94c3344572e2f1124edf9f3a086127f2c8523b7e3e8ece0bc3c9f117abff"
     },
     {
       "specId": "admin/lg-55nano79una",
@@ -8355,7 +8355,7 @@
       "actionCount": 29,
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
-      "contentHash": "5609acb912e2f65e5f39955dc401d60579b47dd3bea6bc4036b02edbe90c25bf"
+      "contentHash": "478a050ac979d01cc956cdc884563aa6762e9f1e347c15778c2fa3b1f3e597a8"
     },
     {
       "specId": "admin/lg-55nu850bpsa",
@@ -8372,7 +8372,7 @@
       "actionCount": 30,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "570465d0fb0550d676b43c9c498c8f354a67e6b4392b2d132e9e7ddd19c28fde"
+      "contentHash": "bd0a64c98ab78a1f03aa742c426420d24f5176850044c196942f2f4ed71d98a9"
     },
     {
       "specId": "admin/lg-55qned85ura-serial",
@@ -8406,7 +8406,7 @@
       "actionCount": 29,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "6770f7e7887f04aa4ccc352cc736e426765683258ff29f298a5e7267d5d6404e"
+      "contentHash": "24b5da7a9a2d0fd5e8cb08a67949c6493b7ab244ac6e773d870cf64b0f16970f"
     },
     {
       "specId": "admin/lg-55uk6550pub-smarttv-series",
@@ -8423,7 +8423,7 @@
       "actionCount": 57,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "eab440cd8dc7f5bfb31bce55cdd61a966bb925fbe7855ea31a65a7cb851d51a4"
+      "contentHash": "b0fb6d2eb6e139dbeaaefe541b87b18dedf7dbc82edec61d4fe3967adfb7dad9"
     },
     {
       "specId": "admin/lg-55um7300pua-smarttv",
@@ -8440,7 +8440,7 @@
       "actionCount": 54,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "30148e689f0269596ffba73415db911a14ad1305ddee80d7855e5cff17222519"
+      "contentHash": "635c76bb61e72125f296d55dc071b1f9bd1bf23544e2d4970f338e4874c25874"
     },
     {
       "specId": "admin/lg-65b8p-series",
@@ -8457,7 +8457,7 @@
       "actionCount": 27,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "cdbb1edc3a793bd52e5ea91eed5e73e3edb2f30a3517b88624e9c556ec4864e6"
+      "contentHash": "ca619ef09d88fae5124cbb2b0f753b8f95a5c01f66e98b3b90e8f9838740a0a5"
     },
     {
       "specId": "admin/lg-86qned90uqa",
@@ -8491,7 +8491,7 @@
       "actionCount": 83,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "c688c2331b144125f2e5899cbed2c82daa6ded37a2bd436854e73c712132b003"
+      "contentHash": "66cf232ff0ba93067a2618c03206d84f23698b83050ea3459a3a9e59b7e1df2f"
     },
     {
       "specId": "admin/lg-electronics-l-series",
@@ -8508,7 +8508,7 @@
       "actionCount": 58,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "de0f095292e7d538fd607adeb89dd744f60c4dce6144a3987b868b79e0eacb20"
+      "contentHash": "e029e859a4f03a2e2a5e725d4e0abc785a22c4c53e64c15e7d30934414b86344"
     },
     {
       "specId": "admin/lg-electronics-m4210c",
@@ -8526,7 +8526,7 @@
       "actionCount": 26,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "2e77096986af055138af9a960a44296583e70d761050f49c9f0ea8f1f5531152"
+      "contentHash": "a7b4b36fd5c220b839da8025be151ef7a41531a1bcf2e46b8240deb05731cc55"
     },
     {
       "specId": "admin/lg_electronics-lg_display",
@@ -8594,7 +8594,7 @@
       "actionCount": 36,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "377f20096d205d7672d7f017b48f84712b8958889175f4e567b837e75af8fbe4"
+      "contentHash": "35503b940cdab7febd792451f08c7676511645aa5c7a2d9b6917f67c3a519146"
     },
     {
       "specId": "admin/lightware-ucx-4x2-hc30d",
@@ -8611,7 +8611,7 @@
       "actionCount": 23,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "4f969823555f0ea43b05377937af80ecbc264f3f4cde0d304c76a9a8f007cdb9"
+      "contentHash": "e85038b1d364512108f1d12c272222adf85741efb6bf6799561be21a88f28562"
     },
     {
       "specId": "admin/linkplay-wiim-ci-mod-a80",
@@ -8696,7 +8696,7 @@
       "actionCount": 71,
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
-      "contentHash": "008551dcffb17c5f53d7cdd4af9559434587322d9ceb889ae0a88beb488f819e"
+      "contentHash": "ebfa660c2ff2188c163b27bf6fca3ce88a1dd23790b2f236a579101246184279"
     },
     {
       "specId": "admin/linn-lpec-protocol",
@@ -8733,7 +8733,7 @@
       "actionCount": 56,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "943eb498c08fe306c58cc4a0841bdd62a1575fa852e426ccb18db8592ee18299"
+      "contentHash": "7f630c199cce458076d5d137effa091d93d082ee915a9b34575cb5a8a95ba96d"
     },
     {
       "specId": "admin/linn-pekin-north-america",
@@ -8750,7 +8750,7 @@
       "actionCount": 64,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b098a3ba66686b874595f63129e81928269ecff8393e160a39ff578b4a1c3f4c"
+      "contentHash": "d94e6a32d9fb9b7d337f5503d1e40c5c985d5d4b6a5a20344e2df861b3e8ca49"
     },
     {
       "specId": "admin/louth-vdcp",
@@ -8784,7 +8784,7 @@
       "actionCount": 215,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "19ce3244e3e653f71c46287fda0f20034a9593d3800f9f3935430fd0e1b29a74"
+      "contentHash": "372f93d982637040be42bc07c1fe0d2fa0d924922ab39c3eb020b4d92ac7958e"
     },
     {
       "specId": "admin/lumens-dc265",
@@ -8819,7 +8819,7 @@
       "actionCount": 64,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "bb30f6a47c88a880dcdfbd48d86660229cc3bfe60642e7a76f5acd30d3c15bde"
+      "contentHash": "398b24fcec51d306ef709dd1c9019a5d33cb79040273782db751a189d4ca4f93"
     },
     {
       "specId": "admin/lumens-digital-optics-inc-lc200",
@@ -8836,7 +8836,7 @@
       "actionCount": 38,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "7c5d404eb17d8dc7cf26d52174f244d7a40a9fdbe237f25f5425de168f47af87"
+      "contentHash": "e9f88e585b4dd0fcf72f10a73bcd53c8186939c9ace0774e2fff60c3469189b2"
     },
     {
       "specId": "admin/lumens-digital-optics-inc-ps750",
@@ -8853,7 +8853,7 @@
       "actionCount": 79,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "3bb9c82ca8a22fc7abae6ecd278f454094c2e0f83b8f4ddf825cebc89b14aade"
+      "contentHash": "f7c6553eda95404ee7e4ad931dc6a3b9dc21dcae9f66e28b7e2edf812013aa0a"
     },
     {
       "specId": "admin/lumens-lc300-media-processor-v2-0",
@@ -8871,7 +8871,7 @@
       "actionCount": 43,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ed82ba3e031d676dee66400d34db09f82cd8fc6b5d29f6deaf082582941a3ac6"
+      "contentHash": "75d9ec3ce7aa18e29a4c6539c995141a8ec58a3463da033320c95e92fe910105"
     },
     {
       "specId": "admin/lumens-ps752",
@@ -8905,7 +8905,7 @@
       "actionCount": 73,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "8bbe340303525a407d32d45ea76753e7a9385a3a1323f03979dbfbef9109061c"
+      "contentHash": "3202e6e2d3afa758c2bc7a5a907f67dbcdfd80fb641014325d9fe0752ce013ec"
     },
     {
       "specId": "admin/lutron-grx-prg-grx-ci-prg",
@@ -8923,7 +8923,7 @@
       "actionCount": 54,
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
-      "contentHash": "0583db684d0610b448a843d0b87c7ee643aa18990033031c0283bb9466b2fe61"
+      "contentHash": "90b78d7385ca2a63d95cd43a4cf828598a98c65a129a18c44f7c2582a42351eb"
     },
     {
       "specId": "admin/madvr-envy",
@@ -8940,7 +8940,7 @@
       "actionCount": 58,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "07d8c300a618eeeb24a59f61c818769c8506c4b2f55d92078cb7888366f10066"
+      "contentHash": "d4c272e7a3bdbdbe2bd4f2f68dfc9fbe2862c6b8574bfd1b442d40b3935e25a4"
     },
     {
       "specId": "admin/madvr-envy",
@@ -8957,7 +8957,7 @@
       "actionCount": 58,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e34ef858570d7224df555cdba6a0d0ef01501eabd768c00f5031a1c8805057a5"
+      "contentHash": "b54025a1b6b0cddc1edff829d3c4ebb32c5ce9243b9e533aa4b636407d720482"
     },
     {
       "specId": "admin/madvr-labs-envy",
@@ -8974,7 +8974,7 @@
       "actionCount": 58,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "528f408a2c8b6fd1a25e517c514270e0b29e79023e6482dfec8c8f361db7b770"
+      "contentHash": "360b7e3f948e6c07d216206addcfa51f694030905a7cd1ea0100236e434e1a0f"
     },
     {
       "specId": "admin/magewell-pro-convert-series",
@@ -9050,7 +9050,7 @@
       "actionCount": 856,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f5bfa042bb3ea3d02ba2f89b34a0de3ee09d4b185f994b09182b2a6a13f177d0"
+      "contentHash": "b7b5f05233cd4676c220e8fbf2132162c8499c1c399fcf3c3fb0559dcdc48822"
     },
     {
       "specId": "admin/marantz-cinema-series",
@@ -9084,7 +9084,7 @@
       "actionCount": 104,
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "be75dd01f553b4083aae16c1a8d09013cfc0158cce7c3c7d8ec7bd7bfd7a47f2"
+      "contentHash": "816e10c14bc58a09ee0c76f5ceaa1366c145e384bf7120fa2a298787141b8c9a"
     },
     {
       "specId": "admin/marantz-marantz_unknown",
@@ -9101,7 +9101,7 @@
       "actionCount": 857,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "fc33e289b28512df92c917a9ff659d7e62519fe3982f672677e1c4399b930066"
+      "contentHash": "981bb36b06d37cb80b5f7cce9704287f365c4f2dd4f8432f5c8547db18bf847f"
     },
     {
       "specId": "admin/marantz-na7004",
@@ -9118,7 +9118,7 @@
       "actionCount": 767,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "61ef137aa51b6dec336a280790d4991305a8043ab4a620b26bb4191e49d6de04"
+      "contentHash": "9a3d5c26286a4ac733f214a3d4e43c6e67b1282d5e7b780da0dadc30eb4b7f93"
     },
     {
       "specId": "admin/marantz-nr-series",
@@ -9135,7 +9135,7 @@
       "actionCount": 853,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "a10f5bb4eecab6f82481580b83ed46128b77a4faa33921e8bfeb093c5763880b"
+      "contentHash": "3eff4e79f8f0de740b36c3977e7963ec775560c95ff97bee660fb05d5b0de53f"
     },
     {
       "specId": "admin/marantz-pd4250d",
@@ -9152,7 +9152,7 @@
       "actionCount": 136,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "484353e15c0bc62c39c831952ee39ef68d19640c59db0ead71217fc563c26655"
+      "contentHash": "d7f78adec24a6a2d08225136ef7c84daf3ea1215dfbcea0301fbd0b85f78daa5"
     },
     {
       "specId": "admin/marantz-universal-discrete-functions",
@@ -9169,7 +9169,7 @@
       "actionCount": 767,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "45ff0fd01d598f11299b5c1e71ed62dacc7d9e52b5ae0947ffe5c741c6298b9f"
+      "contentHash": "0447b52b809579cda48f87e0545656945592d1f8e7f03b9891c962d23bd521ac"
     },
     {
       "specId": "admin/marantz-vc6001-north-america",
@@ -9203,7 +9203,7 @@
       "actionCount": 767,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b70dc458eb5f8161b42837bf49881026784e135e784be8ad4b4595a1a3e2da9f"
+      "contentHash": "0c65ff5f2332d047792d68db09dd73a80a7591fba26aac9f4d3a216f11f200bd"
     },
     {
       "specId": "admin/mark-levinson-no502-media-console",
@@ -9237,7 +9237,7 @@
       "actionCount": 292,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "57540717ac024023f1c10568c373a92ad7e68a088ce223c016c1c274e9ba9756"
+      "contentHash": "395bda6905f5c26532405221ad376a650a070d17f8257071c0a7b51ff4ee69f3"
     },
     {
       "specId": "admin/marshall-cv355-30x-ip",
@@ -9272,7 +9272,7 @@
       "actionCount": 79,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1178a6057aadf89774d635699db5b3aa601818c03f3fbaf36f5dfe669986718c"
+      "contentHash": "e3468eaa2505ecd22f5915f1b3439dcb5753b48595280e5c4df98b373ccdd3ee"
     },
     {
       "specId": "admin/mcintosh-c2800-series",
@@ -9378,7 +9378,7 @@
       "actionCount": 134,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "37757c83e4d7495acb2de6f226289cfde1c61b3d8b0f6167ff23cd7f5d011718"
+      "contentHash": "e9aac748792af78cb757e3a3a64b4b376f83cbaffdc529c70423238739a82ed4"
     },
     {
       "specId": "admin/middle-atlantic-rlnk-series",
@@ -9397,7 +9397,7 @@
       "actionCount": 53,
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
-      "contentHash": "7693b39143426c1976dbe1eafa1276231fa6530e496956ee2650d6e9414acefa"
+      "contentHash": "ed1829979386622e4af34b1f8d4f5902a2b9a002aa527e5ef0360a5a140c880a"
     },
     {
       "specId": "admin/middle-atlantic-upx-rlnk-2000r-2",
@@ -9414,7 +9414,7 @@
       "actionCount": 62,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "50d73822701fc772ea6a60b3117f153a42ce47ab84e7a146fc71bac4bb285848"
+      "contentHash": "317d69b9711d07f34a46d225e3517c07e6092852b882c138405c3febb97b6030"
     },
     {
       "specId": "admin/modulo-pi-modulo-player",
@@ -9567,7 +9567,7 @@
       "actionCount": 53,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d1c85404b3aefca928b168940259d854133c11d54c722cc389ae247123ac96b8"
+      "contentHash": "9ae38bf297939a7322cd2a40651845346bb1756d0591ebb8bfbd9c830ef0a2a0"
     },
     {
       "specId": "admin/nec-42xp10",
@@ -9620,7 +9620,7 @@
       "actionCount": 53,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "09359f772a02c4a720fdae463ffe975973fea5d8008b00eab02e72194d2e5df1"
+      "contentHash": "73213e3a7c351ced89872ad8e1c8217125b5e3c196855a9680b128e3eb647e0a"
     },
     {
       "specId": "admin/nec-c431-c501-c551",
@@ -9656,7 +9656,7 @@
       "actionCount": 53,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d69a21f11e4328b06685e348c41a2740a5e38adb070f5d9da691ac49663a2dae"
+      "contentHash": "9c93df119bc8fdf46ffd00985116f2e58e747ffa2cd4ed1405f8fd9e93f4d682"
     },
     {
       "specId": "admin/nec-c651q-series",
@@ -9708,7 +9708,7 @@
       "actionCount": 28,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "3a361205417360de295f7bd2597a1d6f48f59d613d246b816067eec25af13048"
+      "contentHash": "fb1611d0ebc095507cc68a481f6548d002a6dd6072797a640a8479d978d2dbf8"
     },
     {
       "specId": "admin/nec-c751q-series",
@@ -10913,7 +10913,7 @@
       "actionCount": 53,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "cc728db16e81028dea7594543bbb709d20f3a5c37ad648040a84a03406e33f36"
+      "contentHash": "519caff8723e86f6ef5a83ce46e1728c5caa05621e0ec7b84b2521e7270b5c1c"
     },
     {
       "specId": "admin/nec-p402-tmx4p-series",
@@ -11836,7 +11836,7 @@
       "actionCount": 2,
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
-      "contentHash": "3b32a3a5023fcc98cc43d96ab1e53e5c7511671927187f2ceca84bf8fca0ae8f"
+      "contentHash": "2d11ae503c318fbdd541421fe8318b3a75bd01987ecf11a0774ccd19be0031df"
     },
     {
       "specId": "admin/niles-ics-system",
@@ -11977,7 +11977,7 @@
       "actionCount": 175,
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "09294ad4f73af9ec44d44cf220310a536590df34726cc04ba5c7cc4ffa30b143"
+      "contentHash": "da02abae252657e559d53c344aca89a40ce366a20652a0d6e0e7855080389390"
     },
     {
       "specId": "admin/oppo-bdp-series",
@@ -11998,7 +11998,7 @@
       "actionCount": 99,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4ba7c5592183f430f8eb200c714348f073cae7e127ba8d8d6d9813511d9e547b"
+      "contentHash": "922ac0ea7ebd76118fe54dca51159f998cc1b792067c5c50738d0cddd7930e09"
     },
     {
       "specId": "admin/oppo-digital-bdp-series",
@@ -12015,7 +12015,7 @@
       "actionCount": 80,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "faf1944e4e4c1e756bed7e133ec157a8c2eda8a336e152ca209c89a8073bdd08"
+      "contentHash": "bb5f1b7d84f59e6c265b1af2a0f5f852d96345b553f69e223393991ddc4d548d"
     },
     {
       "specId": "admin/optoma-eh7500",
@@ -12032,7 +12032,7 @@
       "actionCount": 165,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "aff01eba70d19d09e02718bd4eeadcd560a7bd022ca4b70d2dd81e138557b46e"
+      "contentHash": "1aeaac3d80034136ce8884067c5c49dfd49ea810b53b02749d384f390c883b36"
     },
     {
       "specId": "admin/optoma-zu650",
@@ -12143,7 +12143,7 @@
       "actionCount": 14,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "fd1b5ab50e05ff9cae69284bd4429d4c437bb09c90cafb34ae256bfcb8e5ab5b"
+      "contentHash": "a09c8d94da331c748304f379deafba15924091b2e1b801b112acc3bb33bd5980"
     },
     {
       "specId": "admin/panasonic-th-55lfv6-60",
@@ -12161,7 +12161,7 @@
       "actionCount": 295,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "af1da9d0645f02f20927bc84ed98a3666d8d122d0ee5d889e5fa2767e8de13d0"
+      "contentHash": "3b40e21d2bd7533d160190716af8bc80a21d2d25abcbb1267479462e1bfe131f"
     },
     {
       "specId": "admin/panasonic-th-xxlf50j-xxlf50u",
@@ -12199,7 +12199,7 @@
       "actionCount": 218,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "643e1260caad463f25ea5a01b10c8862f5899d2ccbfacf47c9c2ae2aa01135fa"
+      "contentHash": "7c331ed5c41c7313b552a00440dd6a443dbe14883a0779e69cf49f2e381888c7"
     },
     {
       "specId": "admin/panasonic-thxxlfb70-series",
@@ -12218,7 +12218,7 @@
       "actionCount": 372,
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
-      "contentHash": "1cd026f64ba0f1365eec71e1073a820b5844b13b7ecadbf43a0bfc1cafa3e3f2"
+      "contentHash": "e62c0aeac79e9abf8067f54f3832c13e834ed6d5fe7c759522fda7a81a385709"
     },
     {
       "specId": "admin/panasonic-wx-sr200-series-wireless-microphone",
@@ -12320,7 +12320,7 @@
       "actionCount": 14,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "87e88f9d74f7a64294a4ff1b13b6fffa96be7292406a1f20b2b1283379260152"
+      "contentHash": "2d04868c458312e19f384d5f8d4df7305a02b65d98a05615e4ad0efce6ca8c05"
     },
     {
       "specId": "admin/phabrix-qx",
@@ -12476,7 +12476,7 @@
       "actionCount": 58,
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "2ed22b76ac54733cf129a4d2b2134672bb1e3533482e0d1cd1229ee114ae5dea"
+      "contentHash": "3b949475abab1d18fef8b20f4a87d84688e56e2603a47da51f63a1caaf0a4943"
     },
     {
       "specId": "admin/planar-ultrares-p-series",
@@ -12493,7 +12493,7 @@
       "actionCount": 106,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ea60ea9241fbd069c5b3669ad640b47fac56ff8b8f0d0c131427720d13345f03"
+      "contentHash": "5768bbbbd1720b824fd7fbd10546f52a8333c054397f951ba920baacc47d0dc2"
     },
     {
       "specId": "admin/planar-qe9850-qe9850t",
@@ -12511,7 +12511,7 @@
       "actionCount": 110,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e2116b1b34b994009c52718e3cceef77094be866fdbd1220ac35a103e9257003"
+      "contentHash": "0647345a82901cb64381f8853ef19a93e3336735b9bdf5b72b7b0b78e3234370"
     },
     {
       "specId": "admin/planar-ra-series-displays",
@@ -12545,7 +12545,7 @@
       "actionCount": 86,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "7db2808c33ea0f9f3d70b266e7f8a78e3cb2936b66b94e3261063d4e49de8094"
+      "contentHash": "52dd66c9fc37543fd6ee691caf15e45b78e4f61e35ad564977da712f9d6fd6de"
     },
     {
       "specId": "admin/planar-slm-series",
@@ -12562,7 +12562,7 @@
       "actionCount": 226,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d37cbddf6f309c1573467758dce6740a50b35396c3a147c5146bb40996385294"
+      "contentHash": "ceeece92e00740c2902566aea143a984644af5d7042a3af65b4f86085a53e937"
     },
     {
       "specId": "admin/planar-vm-series",
@@ -12583,7 +12583,7 @@
       "actionCount": 31,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "91c1712efaba09c3e13408f71e859c741b2a51b8c5e5cac80f182b5299d98c91"
+      "contentHash": "0f3eb60a5a0141b579e2b66d3bc505e5234c06ca6f17c14cf99dfa9f7356e2ec"
     },
     {
       "specId": "admin/planar-ultralux-series",
@@ -12617,7 +12617,7 @@
       "actionCount": 132,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "2f51239ac853d23586ddfceeb94e552a6816572128f5fa31deff79af715e1d7f"
+      "contentHash": "e9dd067b5437b0592cca52ba04a06e8b199a9066b0cf78b81878eb1428dfc83f"
     },
     {
       "specId": "admin/planar-urxx51-series",
@@ -12634,7 +12634,7 @@
       "actionCount": 106,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "3b83331eb5909efe50f1a317b7e7371eafeedda4ef1e7fcc87464d114a35ac35"
+      "contentHash": "ae1b801862f762f0ff4dd76b1d9fc365a58163969d3db77a823b586ccd5ae294"
     },
     {
       "specId": "admin/planar-vm55lx-series",
@@ -12655,7 +12655,7 @@
       "actionCount": 31,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4252989a2255d32301ea89bef80b154919485c4ceb027720fbd3e9bbed4b98d1"
+      "contentHash": "e958aec924864029b944cbb834ac49e625efc4893fd962c455450e42f5c503d8"
     },
     {
       "specId": "admin/powersoft-m20d-hdsp-eth",
@@ -12724,7 +12724,7 @@
       "actionCount": 130,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "55dd3a26b3c522aab46ff25b92e592c4542d8252799b0d3406020c3feefa306a"
+      "contentHash": "bb3bc046c43525b94628ade710cfc99662686ee2f9c0e47e6d331a2fb038ef94"
     },
     {
       "specId": "admin/primare-spa2-series",
@@ -12741,7 +12741,7 @@
       "actionCount": 44,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8c2821cb0d9d46d8a57e81b4cddba2f9387085acedc2a4ee08df5568c3e5c8b1"
+      "contentHash": "9f1c9011d875d400af5a11a8cb6ffc266d6d5246eb26856cf7c4154392c9c62d"
     },
     {
       "specId": "admin/pulse-eight-proaudio-series",
@@ -12932,7 +12932,7 @@
       "actionCount": 44,
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
-      "contentHash": "0b46207381d2ba8de5c565a2b06853bf3801788049b5a2229ffb44eedee29ca4"
+      "contentHash": "13bfa478cf3e9e371e0b652c55c890cdf5ca239782229903f9e62841c70ae35f"
     },
     {
       "specId": "admin/request-multimedia-audio-request-pro-zone-north-america",
@@ -13037,7 +13037,7 @@
       "actionCount": 37,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "84d08a82e362be5a84f8cbb8aba7c148888a127934ceb9c672442136116b2211"
+      "contentHash": "1624ef6aa635c0e7af02996c418728157d97587980ad4555d3123cdb32a9c209"
     },
     {
       "specId": "admin/rotel-rcx-1500",
@@ -13054,7 +13054,7 @@
       "actionCount": 83,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "57f16b04a0d67ea7240c53476fcfb79c18c561ac3f5dc25a339a98720b930a18"
+      "contentHash": "3793b229ba341d2d3a00a2fd08dfb8b07b7cfdf34b5a1e0edfd6604a1fe5b69b"
     },
     {
       "specId": "admin/rotel-rdg-1520",
@@ -13072,7 +13072,7 @@
       "actionCount": 64,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "3530039445b95c137788a3d057ac897643b929ce61b37abe73e4d17f964db778"
+      "contentHash": "c3af78c0c15b8b94642b595d485f1c73950667cff4040e486210f32103abade7"
     },
     {
       "specId": "admin/rotel-rkb-850-8100",
@@ -13112,7 +13112,7 @@
       "actionCount": 45,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "aed6de86487b3862ae0d4c3ac4a63a5784f8616de549be58c629fe4c0b5b4502"
+      "contentHash": "c27e7ba975b92bdd7e8734b0aee72f786487c89b4d45c11e38482792f6b44179"
     },
     {
       "specId": "admin/rotel-rsp-1582",
@@ -13147,7 +13147,7 @@
       "actionCount": 71,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5937c1eb091647fdbc70ea965fce5e83d2bb67f2702705d9987a1b67a08bff54"
+      "contentHash": "1d0dcb9d9a2973c30a0be2dd9e560394dab30516e420f9cf7333ecbfc486af91"
     },
     {
       "specId": "admin/rotel-rsx-1057",
@@ -13301,7 +13301,7 @@
       "actionCount": 88,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "0496eba50f2b4aa389d0f7821639ea3e79efc6f96b03ebb3bb5b3a8978df3075"
+      "contentHash": "ea94a568d15d1ea026cc5d76b0b64af1bedc188d7a69784a48e0314f19a84964"
     },
     {
       "specId": "admin/samsung-sdp-xxxdxx-series",
@@ -16341,7 +16341,7 @@
       "actionCount": 60,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "cb2c509e3743530c356a93cced1b0f91d8af694011a6e91deaaca2ec3ca0f0f5"
+      "contentHash": "9cd986a3ef2ca9d388d5475b4f78153a86040fd2b7f334765486e7c83822cdd7"
     },
     {
       "specId": "admin/wyrestorm-mx-serial-0-series",

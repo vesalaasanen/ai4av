@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T00:05:13.669Z
-generated_at: 2026-06-02T00:05:13.669Z
+last_checked_at: 2026-06-02T17:22:01.278Z
+generated_at: 2026-06-02T17:22:01.278Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "behavior when ENQ is combined with an unrecognized mnemonic not stated explicitly."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:13.669Z
+  checked_at: 2026-06-02T17:22:01.278Z
   matched_actions: 21
   action_count: 21
   confidence: medium
@@ -533,14 +533,14 @@ source_domains:
 source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T00:05:13.669Z
+last_checked_at: 2026-06-02T17:22:01.278Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:13.669Z
+checked_at: 2026-06-02T17:22:01.278Z
 matched_actions: 21
 action_count: 21
 confidence: medium

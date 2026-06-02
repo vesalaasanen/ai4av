@@ -25,8 +25,8 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - "https://cdn.inmusicbrands.com/DenonPro/cdn/1109/documents/DN-700R%20-%20Serial%20Command%20Protocol%20Guide%20-%20v1.1.pdf"
 retrieved_at: 2026-05-27T18:33:00.286Z
-last_checked_at: 2026-06-02T06:13:06.231Z
-generated_at: 2026-06-02T06:13:06.231Z
+last_checked_at: 2026-06-02T17:22:04.456Z
+generated_at: 2026-06-02T17:22:04.456Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "firmware version compatibility not stated in source (compatible_with.firmware left blank)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T06:13:06.231Z
+  checked_at: 2026-06-02T17:22:04.456Z
   matched_actions: 924
   action_count: 924
   confidence: medium
@@ -6369,14 +6369,14 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - "https://cdn.inmusicbrands.com/DenonPro/cdn/1109/documents/DN-700R%20-%20Serial%20Command%20Protocol%20Guide%20-%20v1.1.pdf"
 retrieved_at: 2026-05-27T18:33:00.286Z
-last_checked_at: 2026-06-02T06:13:06.231Z
+last_checked_at: 2026-06-02T17:22:04.456Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T06:13:06.231Z
+checked_at: 2026-06-02T17:22:04.456Z
 matched_actions: 924
 action_count: 924
 confidence: medium

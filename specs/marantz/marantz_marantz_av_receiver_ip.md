@@ -17,12 +17,17 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-14T18:17:17.893Z
-last_checked_at: 2026-05-14T18:17:17.893Z
-generated_at: 2026-05-14T18:17:17.893Z
+retrieved_at: 2026-06-02T17:26:36.487Z
+last_checked_at: 2026-06-02T17:26:36.487Z
+generated_at: 2026-06-02T17:26:36.487Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - SY
+  - UG
+  - RM
+  - NSA
+  - NSE
   - "specific Marantz model numbers not stated in source (document title references Denon but protocol applies to Marantz AV receivers)"
   - "firmware version compatibility not stated in source"
   - "no explicit multi-step macro sequences documented in source"
@@ -33,11 +38,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.893Z
-  matched_actions: 102
+  checked_at: 2026-06-02T17:26:36.487Z
+  matched_actions: 128
   action_count: 128
   confidence: medium
-  summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 128 spec actions match verbatim source commands across power, volume, input, zone, network, tuner, and system control sections; 5 source-only commands (SY/UG/RM/NSA/NSE) do not breach the short threshold. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1226,24 +1231,29 @@ interlocks:
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-14T18:17:17.893Z
-last_checked_at: 2026-05-14T18:17:17.893Z
+retrieved_at: 2026-06-02T17:26:36.487Z
+last_checked_at: 2026-06-02T17:26:36.487Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.893Z
-matched_actions: 102
+checked_at: 2026-06-02T17:26:36.487Z
+matched_actions: 128
 action_count: 128
 confidence: medium
-summary: "All 102 spec actions matched literally in source; transport parameters verified; comprehensive coverage of documented command set. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 128 spec actions match verbatim source commands across power, volume, input, zone, network, tuner, and system control sections; 5 source-only commands (SY/UG/RM/NSA/NSE) do not breach the short threshold. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- SY
+- UG
+- RM
+- NSA
+- NSE
 - "specific Marantz model numbers not stated in source (document title references Denon but protocol applies to Marantz AV receivers)"
 - "firmware version compatibility not stated in source"
 - "no explicit multi-step macro sequences documented in source"

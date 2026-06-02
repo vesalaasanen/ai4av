@@ -22,8 +22,8 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ManualsAndGuides/AV-HX-8X8-HA-16_Manual.pdf
   - https://www.avace.com/pdf/HX-1616-HDBT_PDF.pdf
 retrieved_at: 2026-05-19T22:17:09.303Z
-last_checked_at: 2026-06-02T00:54:06.895Z
-generated_at: 2026-06-02T00:54:06.895Z
+last_checked_at: 2026-06-02T17:21:35.309Z
+generated_at: 2026-06-02T17:21:35.309Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware version compatibility not stated in source; voltage/current/power specs not stated; fault and error-recovery behavior not stated; the Z50/Z51 vs Z61/Z62/Z63 discrepancy should be resolved against a physical unit before relying on either."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:54:06.895Z
+  checked_at: 2026-06-02T17:21:35.309Z
   matched_actions: 83
   action_count: 83
   confidence: medium
@@ -1148,14 +1148,14 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ManualsAndGuides/AV-HX-8X8-HA-16_Manual.pdf
   - https://www.avace.com/pdf/HX-1616-HDBT_PDF.pdf
 retrieved_at: 2026-05-19T22:17:09.303Z
-last_checked_at: 2026-06-02T00:54:06.895Z
+last_checked_at: 2026-06-02T17:21:35.309Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:54:06.895Z
+checked_at: 2026-06-02T17:21:35.309Z
 matched_actions: 83
 action_count: 83
 confidence: medium

@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - "https://rotel.com/sites/default/files/product/rs232/RKB850%20Protocol.pdf"
 retrieved_at: 2026-05-22T17:44:40.251Z
-last_checked_at: 2026-06-02T05:46:09.348Z
-generated_at: 2026-06-02T05:46:09.348Z
+last_checked_at: 2026-06-02T17:23:57.386Z
+generated_at: 2026-06-02T17:23:57.386Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "behaviour when an invalid command is sent (NAK / silent drop) not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T05:46:09.348Z
+  checked_at: 2026-06-02T17:23:57.386Z
   matched_actions: 45
   action_count: 45
   confidence: medium
@@ -649,14 +649,14 @@ source_domains:
 source_urls:
   - "https://rotel.com/sites/default/files/product/rs232/RKB850%20Protocol.pdf"
 retrieved_at: 2026-05-22T17:44:40.251Z
-last_checked_at: 2026-06-02T05:46:09.348Z
+last_checked_at: 2026-06-02T17:23:57.386Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T05:46:09.348Z
+checked_at: 2026-06-02T17:23:57.386Z
 matched_actions: 45
 action_count: 45
 confidence: medium

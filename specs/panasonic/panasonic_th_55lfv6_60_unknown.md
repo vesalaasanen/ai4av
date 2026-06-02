@@ -24,8 +24,8 @@ source_urls:
   - https://pna-b2b-storage-mkt.s3.amazonaws.com/production/266931_cq1_SerialCommandList_u_en.pdf
   - https://docs.connect.panasonic.com/prodisplays/
 retrieved_at: 2026-05-13T11:24:04.598Z
-last_checked_at: 2026-06-02T04:56:34.018Z
-generated_at: 2026-06-02T04:56:34.018Z
+last_checked_at: 2026-06-02T17:23:42.066Z
+generated_at: 2026-06-02T17:23:42.066Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "maximum end-to-end cable length for RS-232C is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:34.018Z
+  checked_at: 2026-06-02T17:23:42.066Z
   matched_actions: 295
   action_count: 295
   confidence: medium
@@ -3224,14 +3224,14 @@ source_urls:
   - https://pna-b2b-storage-mkt.s3.amazonaws.com/production/266931_cq1_SerialCommandList_u_en.pdf
   - https://docs.connect.panasonic.com/prodisplays/
 retrieved_at: 2026-05-13T11:24:04.598Z
-last_checked_at: 2026-06-02T04:56:34.018Z
+last_checked_at: 2026-06-02T17:23:42.066Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:34.018Z
+checked_at: 2026-06-02T17:23:42.066Z
 matched_actions: 295
 action_count: 295
 confidence: medium

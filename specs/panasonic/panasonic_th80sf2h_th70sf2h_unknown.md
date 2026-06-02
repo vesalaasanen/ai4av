@@ -27,8 +27,8 @@ source_urls:
   - https://eu.connect.panasonic.com/sites/default/files/media/document/2017-12/sf2huw_manual_en.pdf
   - https://www.manualowl.com/m/Panasonic/TH-80SF2H/Manual/515989
 retrieved_at: 2026-05-18T03:13:52.321Z
-last_checked_at: 2026-06-02T10:14:09.339Z
-generated_at: 2026-06-02T10:14:09.339Z
+last_checked_at: 2026-06-02T17:23:41.332Z
+generated_at: 2026-06-02T17:23:41.332Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "firmware compatibility version range, voltage/current draw,"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:09.339Z
+  checked_at: 2026-06-02T17:23:41.332Z
   matched_actions: 218
   action_count: 218
   confidence: medium
@@ -2370,14 +2370,14 @@ source_urls:
   - https://eu.connect.panasonic.com/sites/default/files/media/document/2017-12/sf2huw_manual_en.pdf
   - https://www.manualowl.com/m/Panasonic/TH-80SF2H/Manual/515989
 retrieved_at: 2026-05-18T03:13:52.321Z
-last_checked_at: 2026-06-02T10:14:09.339Z
+last_checked_at: 2026-06-02T17:23:41.332Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:09.339Z
+checked_at: 2026-06-02T17:23:41.332Z
 matched_actions: 218
 action_count: 218
 confidence: medium

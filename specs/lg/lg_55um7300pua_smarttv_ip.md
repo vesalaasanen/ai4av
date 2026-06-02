@@ -23,9 +23,9 @@ source_urls:
   - https://www.openhab.org/addons/bindings/lgtvserial/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
-retrieved_at: 2026-06-02T04:20:02.894Z
-last_checked_at: 2026-06-02T04:20:02.894Z
-generated_at: 2026-06-02T04:20:02.894Z
+retrieved_at: 2026-06-02T17:23:08.049Z
+last_checked_at: 2026-06-02T17:23:08.049Z
+generated_at: 2026-06-02T17:23:08.049Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "whether non-USA firmwares expose the IP control telnet interface is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:02.894Z
+  checked_at: 2026-06-02T17:23:08.049Z
   matched_actions: 54
   action_count: 54
   confidence: medium
@@ -773,15 +773,15 @@ source_urls:
   - https://www.openhab.org/addons/bindings/lgtvserial/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
-retrieved_at: 2026-06-02T04:20:02.894Z
-last_checked_at: 2026-06-02T04:20:02.894Z
+retrieved_at: 2026-06-02T17:23:08.049Z
+last_checked_at: 2026-06-02T17:23:08.049Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:02.894Z
+checked_at: 2026-06-02T17:23:08.049Z
 matched_actions: 54
 action_count: 54
 confidence: medium

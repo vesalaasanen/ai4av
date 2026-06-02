@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf
 retrieved_at: 2026-05-15T05:53:55.561Z
-last_checked_at: 2026-06-02T02:29:34.497Z
-generated_at: 2026-06-02T02:29:34.497Z
+last_checked_at: 2026-06-02T17:22:47.288Z
+generated_at: 2026-06-02T17:22:47.288Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,7 +43,7 @@ known_gaps:
   - "source describes \"Y 3 29 X\" and \"Y 4 29\" cross-references for HT/HW group parameter storage; the meaning of the trailing \"X\" placeholder is not fully clarified in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:34.497Z
+  checked_at: 2026-06-02T17:22:47.288Z
   matched_actions: 225
   action_count: 225
   confidence: medium
@@ -1617,14 +1617,14 @@ source_domains:
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf
 retrieved_at: 2026-05-15T05:53:55.561Z
-last_checked_at: 2026-06-02T02:29:34.497Z
+last_checked_at: 2026-06-02T17:22:47.288Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:34.497Z
+checked_at: 2026-06-02T17:22:47.288Z
 matched_actions: 225
 action_count: 225
 confidence: medium

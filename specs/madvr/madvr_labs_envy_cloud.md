@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-30T04:34:22.833Z
-last_checked_at: 2026-06-02T04:56:27.647Z
-generated_at: 2026-06-02T04:56:27.647Z
+last_checked_at: 2026-06-02T17:23:22.104Z
+generated_at: 2026-06-02T17:23:22.104Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "firmware version compatibility range, voltage/current draw, MAC-address slot count, and 3DLUT byte-length validation rules not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:27.647Z
+  checked_at: 2026-06-02T17:23:22.104Z
   matched_actions: 58
   action_count: 58
   confidence: medium
@@ -672,14 +672,14 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-30T04:34:22.833Z
-last_checked_at: 2026-06-02T04:56:27.647Z
+last_checked_at: 2026-06-02T17:23:22.104Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:27.647Z
+checked_at: 2026-06-02T17:23:22.104Z
 matched_actions: 58
 action_count: 58
 confidence: medium

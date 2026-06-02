@@ -22,8 +22,8 @@ source_urls:
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX_Commands_Manual.pdf
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX48_88_UserManual.pdf
 retrieved_at: 2026-05-27T13:53:21.367Z
-last_checked_at: 2026-06-02T00:05:00.608Z
-generated_at: 2026-06-02T00:05:00.608Z
+last_checked_at: 2026-06-02T17:21:27.141Z
+generated_at: 2026-06-02T17:21:27.141Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "Maximum command rate, latency, and timeout behavior not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:00.608Z
+  checked_at: 2026-06-02T17:21:27.141Z
   matched_actions: 21
   action_count: 21
   confidence: medium
@@ -355,14 +355,14 @@ source_urls:
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX_Commands_Manual.pdf
   - https://downloads.pvs.global/downloads/audac/products/manuals/MTX48_88_UserManual.pdf
 retrieved_at: 2026-05-27T13:53:21.367Z
-last_checked_at: 2026-06-02T00:05:00.608Z
+last_checked_at: 2026-06-02T17:21:27.141Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:00.608Z
+checked_at: 2026-06-02T17:21:27.141Z
 matched_actions: 21
 action_count: 21
 confidence: medium

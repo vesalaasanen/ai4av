@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-05-14T18:17:18.306Z
-generated_at: 2026-05-14T18:17:18.306Z
+last_checked_at: 2026-06-02T19:39:09.281Z
+generated_at: 2026-06-02T19:39:09.281Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "TCP connection keepalive or timeout behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.306Z
-  matched_actions: 45
+  checked_at: 2026-06-02T19:39:09.281Z
+  matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage. (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions match source commands 1-to-1 and all corrected remote_key_code examples (02h=POWER ON, 03h=POWER OFF, 0Dh=HELP, 13h=MUTE, 84h=VOLUME UP, 85h=VOLUME DOWN) are confirmed verbatim in §3.19 key code table; transport verified. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -198,7 +198,7 @@ auth:
   params:
     - name: key_code
       type: integer
-      description: Key code (e.g., 02h=POWER ON, 03h=POWER OFF, 0Dh=MUTE, 85h=VOLUME UP, 86h=VOLUME DOWN)
+      description: Key code (e.g., 02h=POWER ON, 03h=POWER OFF, 0Dh=HELP, 13h=MUTE, 84h=VOLUME UP, 85h=VOLUME DOWN)
 
 - id: shutter_close
   label: Shutter Close
@@ -706,18 +706,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:21.081Z
-last_checked_at: 2026-05-14T18:17:18.306Z
+last_checked_at: 2026-06-02T19:39:09.281Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.306Z
-matched_actions: 45
+checked_at: 2026-06-02T19:39:09.281Z
+matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 45 spec actions matched verbatim against source commands with correct hex codes and parameters. Transport verified against source. Spec provides comprehensive coverage. (15 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions match source commands 1-to-1 and all corrected remote_key_code examples (02h=POWER ON, 03h=POWER OFF, 0Dh=HELP, 13h=MUTE, 84h=VOLUME UP, 85h=VOLUME DOWN) are confirmed verbatim in §3.19 key code table; transport verified. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

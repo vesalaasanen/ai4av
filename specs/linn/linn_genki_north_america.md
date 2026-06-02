@@ -24,8 +24,8 @@ source_urls:
   - https://applicationmarket.crestron.com/linn-genki-north-america/
   - https://docs.linn.co.uk/wiki
 retrieved_at: 2026-04-26T16:30:03.751Z
-last_checked_at: 2026-06-02T03:24:54.530Z
-generated_at: 2026-06-02T03:24:54.530Z
+last_checked_at: 2026-06-02T17:23:13.584Z
+generated_at: 2026-06-02T17:23:13.584Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:54.530Z
+  checked_at: 2026-06-02T17:23:13.584Z
   matched_actions: 72
   action_count: 72
   confidence: medium
@@ -802,14 +802,14 @@ source_urls:
   - https://applicationmarket.crestron.com/linn-genki-north-america/
   - https://docs.linn.co.uk/wiki
 retrieved_at: 2026-04-26T16:30:03.751Z
-last_checked_at: 2026-06-02T03:24:54.530Z
+last_checked_at: 2026-06-02T17:23:13.584Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:54.530Z
+checked_at: 2026-06-02T17:23:13.584Z
 matched_actions: 72
 action_count: 72
 confidence: medium

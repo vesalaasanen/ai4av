@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:43:32.341Z
-last_checked_at: 2026-06-01T21:44:45.768Z
-generated_at: 2026-06-01T21:44:45.768Z
+last_checked_at: 2026-06-02T17:22:21.363Z
+generated_at: 2026-06-02T17:22:21.363Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "no power state query command found; only power-on-command enable/disable query (PWRE) documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:45.768Z
+  checked_at: 2026-06-02T17:22:21.363Z
   matched_actions: 69
   action_count: 69
   confidence: medium
@@ -1016,14 +1016,14 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:43:32.341Z
-last_checked_at: 2026-06-01T21:44:45.768Z
+last_checked_at: 2026-06-02T17:22:21.363Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:45.768Z
+checked_at: 2026-06-02T17:22:21.363Z
 matched_actions: 69
 action_count: 69
 confidence: medium

@@ -22,8 +22,8 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
-last_checked_at: 2026-06-01T23:12:27.754Z
-generated_at: 2026-06-01T23:12:27.754Z
+last_checked_at: 2026-06-02T17:21:41.421Z
+generated_at: 2026-06-02T17:21:41.421Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware version compatibility not stated in source. UNRESOLVED: per-row MX520 applicability not stated in source. UNRESOLVED: network/IP-control command surface not stated in source (only RS-232 documented). UNRESOLVED: continuous numeric setpoints for picture settings not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:27.754Z
+  checked_at: 2026-06-02T17:21:41.421Z
   matched_actions: 173
   action_count: 173
   confidence: medium
@@ -1277,14 +1277,14 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/PU9530/RS232%20Control%20Guide_0_Windows7_Windows8_WinXP.pdf"
 retrieved_at: 2026-05-04T08:14:40.555Z
-last_checked_at: 2026-06-01T23:12:27.754Z
+last_checked_at: 2026-06-02T17:21:41.421Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:27.754Z
+checked_at: 2026-06-02T17:21:41.421Z
 matched_actions: 173
 action_count: 173
 confidence: medium

@@ -23,8 +23,8 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
 retrieved_at: 2026-04-30T12:05:07.146Z
-last_checked_at: 2026-06-02T03:24:51.404Z
-generated_at: 2026-06-02T03:24:51.404Z
+last_checked_at: 2026-06-02T17:23:10.591Z
+generated_at: 2026-06-02T17:23:10.591Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "voltage, current, power consumption, and standby power draw not in source. UNRESOLVED: firmware version compatibility ranges. UNRESOLVED: protocol version numbers. UNRESOLVED: full IR key code list has ~50 entries; included as enum in `key` action (RS-232) and `key_action_ip` action (TCP) but consult source lines 7-37 for any subtle regional differences (e.g. 4C ATSC-only). UNRESOLVED: specific L Series submodel numbers (L3200/L3700/L4200) — source does not name these; the control spec applies to the whole L Series with model-dependent feature flags."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:51.404Z
+  checked_at: 2026-06-02T17:23:10.591Z
   matched_actions: 58
   action_count: 58
   confidence: medium
@@ -667,14 +667,14 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
 retrieved_at: 2026-04-30T12:05:07.146Z
-last_checked_at: 2026-06-02T03:24:51.404Z
+last_checked_at: 2026-06-02T17:23:10.591Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:51.404Z
+checked_at: 2026-06-02T17:23:10.591Z
 matched_actions: 58
 action_count: 58
 confidence: medium

@@ -21,11 +21,16 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:58.301Z
-last_checked_at: 2026-05-14T18:17:20.117Z
-generated_at: 2026-05-14T18:17:20.117Z
+last_checked_at: 2026-06-02T17:26:34.997Z
+generated_at: 2026-06-02T17:26:34.997Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - get_current_power
+  - get_current_source
+  - get_volume
+  - get_mute_status
+  - get_dsp_mode
   - "product family variants (MKII hardware differences) not detailed in source"
   - "no discrete settable parameters beyond Actions; volume and trim"
   - "no unsolicited event descriptions in source; device sends"
@@ -35,11 +40,11 @@ known_gaps:
   - "video8 source listed in feedback but video8 not in action table."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.117Z
-  matched_actions: 54
+  checked_at: 2026-06-02T17:26:34.997Z
+  matched_actions: 71
   action_count: 71
   confidence: medium
-  summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 71 spec actions map 1-to-1 to source command tokens; transport values (port 9596, 115200-8N1) confirmed verbatim; 5 source query commands represented in Feedbacks section. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -521,23 +526,28 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1576%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:31:58.301Z
-last_checked_at: 2026-05-14T18:17:20.117Z
+last_checked_at: 2026-06-02T17:26:34.997Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.117Z
-matched_actions: 54
+checked_at: 2026-06-02T17:26:34.997Z
+matched_actions: 71
 action_count: 71
 confidence: medium
-summary: "All 54 spec actions have literal matches in source; transport parameters (115200 baud, 8N1, TCP 9596) verified verbatim; no shape drift or fabricated commands detected. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 71 spec actions map 1-to-1 to source command tokens; transport values (port 9596, 115200-8N1) confirmed verbatim; 5 source query commands represented in Feedbacks section. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- get_current_power
+- get_current_source
+- get_volume
+- get_mute_status
+- get_dsp_mode
 - "product family variants (MKII hardware differences) not detailed in source"
 - "no discrete settable parameters beyond Actions; volume and trim"
 - "no unsolicited event descriptions in source; device sends"

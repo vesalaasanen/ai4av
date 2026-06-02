@@ -30,8 +30,8 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Digital_Projection/Digital_Projection_Titan_Serial_v2_0_Help.pdf
   - "https://www.manualslib.com/manual/1206365/Digital-Projection-Titan-SxPlus600.html?page=137"
 retrieved_at: 2026-06-01T06:24:14.868Z
-last_checked_at: 2026-06-02T10:14:02.420Z
-generated_at: 2026-06-02T10:14:02.420Z
+last_checked_at: 2026-06-02T17:22:08.866Z
+generated_at: 2026-06-02T17:22:08.866Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "lamp1.status/lamp2.status/lamp3.status/lamp4.status return integer codes mapped in source; enumerating all 20 states as Feedbacks is inferred from the status table"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:02.420Z
+  checked_at: 2026-06-02T17:22:08.866Z
   matched_actions: 300
   action_count: 300
   confidence: medium
@@ -2465,14 +2465,14 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Digital_Projection/Digital_Projection_Titan_Serial_v2_0_Help.pdf
   - "https://www.manualslib.com/manual/1206365/Digital-Projection-Titan-SxPlus600.html?page=137"
 retrieved_at: 2026-06-01T06:24:14.868Z
-last_checked_at: 2026-06-02T10:14:02.420Z
+last_checked_at: 2026-06-02T17:22:08.866Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:02.420Z
+checked_at: 2026-06-02T17:22:08.866Z
 matched_actions: 300
 action_count: 300
 confidence: medium

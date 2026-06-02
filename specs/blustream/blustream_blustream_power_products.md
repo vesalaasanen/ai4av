@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
-last_checked_at: 2026-06-02T10:14:00.850Z
-generated_at: 2026-06-02T10:14:00.850Z
+last_checked_at: 2026-06-02T17:21:45.200Z
+generated_at: 2026-06-02T17:21:45.200Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:00.850Z
+  checked_at: 2026-06-02T17:21:45.200Z
   matched_actions: 15
   action_count: 15
   confidence: medium
@@ -278,14 +278,14 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.416Z
-last_checked_at: 2026-06-02T10:14:00.850Z
+last_checked_at: 2026-06-02T17:21:45.200Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:00.850Z
+checked_at: 2026-06-02T17:21:45.200Z
 matched_actions: 15
 action_count: 15
 confidence: medium

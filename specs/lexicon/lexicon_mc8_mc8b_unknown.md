@@ -24,8 +24,8 @@ source_urls:
   - https://www.manualslib.com/manual/382538/Lexicon-Mc-8-V1-0-Serial-Communications-Protocol-Definition-Rev-1-4.html
   - https://www.manualslib.com/products/Lexicon-Mc-8-V2-0-Serial-Protocol-Definition-Rev-1-7-2417200.html
 retrieved_at: 2026-05-14T17:15:09.378Z
-last_checked_at: 2026-06-01T21:44:38.529Z
-generated_at: 2026-06-01T21:44:38.529Z
+last_checked_at: 2026-06-02T17:22:48.780Z
+generated_at: 2026-06-02T17:22:48.780Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "behaviour when a command is sent to a zone that does not exist (e.g. 0x03) is not separately documented beyond the answer-code table."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T21:44:38.529Z
+  checked_at: 2026-06-02T17:22:48.780Z
   matched_actions: 72
   action_count: 72
   confidence: medium
@@ -1133,14 +1133,14 @@ source_urls:
   - https://www.manualslib.com/manual/382538/Lexicon-Mc-8-V1-0-Serial-Communications-Protocol-Definition-Rev-1-4.html
   - https://www.manualslib.com/products/Lexicon-Mc-8-V2-0-Serial-Protocol-Definition-Rev-1-7-2417200.html
 retrieved_at: 2026-05-14T17:15:09.378Z
-last_checked_at: 2026-06-01T21:44:38.529Z
+last_checked_at: 2026-06-02T17:22:48.780Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T21:44:38.529Z
+checked_at: 2026-06-02T17:22:48.780Z
 matched_actions: 72
 action_count: 72
 confidence: medium

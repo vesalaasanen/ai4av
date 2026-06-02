@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-19T04:26:26.016Z
-last_checked_at: 2026-06-01T23:12:24.364Z
-generated_at: 2026-06-01T23:12:24.364Z
+last_checked_at: 2026-06-02T17:21:38.388Z
+generated_at: 2026-06-02T17:21:38.388Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "authentication passcode value not stated. The source shows `98765` as a literal example value in the documentation."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:24.364Z
+  checked_at: 2026-06-02T17:21:38.388Z
   matched_actions: 158
   action_count: 158
   confidence: medium
@@ -2680,14 +2680,14 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-19T04:26:26.016Z
-last_checked_at: 2026-06-01T23:12:24.364Z
+last_checked_at: 2026-06-02T17:21:38.388Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:24.364Z
+checked_at: 2026-06-02T17:21:38.388Z
 matched_actions: 158
 action_count: 158
 confidence: medium

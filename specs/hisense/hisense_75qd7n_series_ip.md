@@ -22,8 +22,8 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/en/Attachment/DownloadFile?downloadId=791"
 retrieved_at: 2026-05-04T09:35:29.268Z
-last_checked_at: 2026-06-02T10:14:06.296Z
-generated_at: 2026-06-02T10:14:06.296Z
+last_checked_at: 2026-06-02T17:22:29.198Z
+generated_at: 2026-06-02T17:22:29.198Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "75QD7N model not named in source; firmware version not stated; voltage/current not stated; POIS exact row count not fully read."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:06.296Z
+  checked_at: 2026-06-02T17:22:29.198Z
   matched_actions: 69
   action_count: 69
   confidence: medium
@@ -810,14 +810,14 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/en/Attachment/DownloadFile?downloadId=791"
 retrieved_at: 2026-05-04T09:35:29.268Z
-last_checked_at: 2026-06-02T10:14:06.296Z
+last_checked_at: 2026-06-02T17:22:29.198Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:06.296Z
+checked_at: 2026-06-02T17:22:29.198Z
 matched_actions: 69
 action_count: 69
 confidence: medium

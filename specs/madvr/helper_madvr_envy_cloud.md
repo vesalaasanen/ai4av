@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-29T17:04:40.031Z
-last_checked_at: 2026-06-02T02:29:26.328Z
-generated_at: 2026-06-02T02:29:26.328Z
+last_checked_at: 2026-06-02T17:22:20.576Z
+generated_at: 2026-06-02T17:22:20.576Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "full list of \"well known\" aspect ratio indices (source lists 119,133,137,143,166,175,178,185,190,200,210,220,235,239,240,255,266,276) and what each maps to."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T02:29:26.328Z
+  checked_at: 2026-06-02T17:22:20.576Z
   matched_actions: 58
   action_count: 58
   confidence: medium
@@ -886,14 +886,14 @@ source_domains:
 source_urls:
   - https://madvrenvy.com/wp-content/uploads/EnvyIpControl.pdf
 retrieved_at: 2026-04-29T17:04:40.031Z
-last_checked_at: 2026-06-02T02:29:26.328Z
+last_checked_at: 2026-06-02T17:22:20.576Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T02:29:26.328Z
+checked_at: 2026-06-02T17:22:20.576Z
 matched_actions: 58
 action_count: 58
 confidence: medium

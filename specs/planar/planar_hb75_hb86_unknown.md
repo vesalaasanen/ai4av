@@ -27,8 +27,8 @@ source_urls:
   - https://manuals.plus/planar/planar-hb-series-huddle-board-manual-hb75-hb86.pdf
   - https://www.planar.com/media/439297/020-1393-00a_planar-hb-series-huddle-board_rs232-user-manual.pdf
 retrieved_at: 2026-05-18T09:37:15.005Z
-last_checked_at: 2026-06-02T04:56:35.653Z
-generated_at: 2026-06-02T04:56:35.653Z
+last_checked_at: 2026-06-02T17:23:46.004Z
+generated_at: 2026-06-02T17:23:46.004Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "no additional safety warnings or interlock procedures documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:35.653Z
+  checked_at: 2026-06-02T17:23:46.004Z
   matched_actions: 58
   action_count: 58
   confidence: medium
@@ -586,14 +586,14 @@ source_urls:
   - https://manuals.plus/planar/planar-hb-series-huddle-board-manual-hb75-hb86.pdf
   - https://www.planar.com/media/439297/020-1393-00a_planar-hb-series-huddle-board_rs232-user-manual.pdf
 retrieved_at: 2026-05-18T09:37:15.005Z
-last_checked_at: 2026-06-02T04:56:35.653Z
+last_checked_at: 2026-06-02T17:23:46.004Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:35.653Z
+checked_at: 2026-06-02T17:23:46.004Z
 matched_actions: 58
 action_count: 58
 confidence: medium

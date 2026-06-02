@@ -27,8 +27,8 @@ source_urls:
   - https://www.ad-notam.com/attachment/244/download/dfu_rs232_protocol_v03_01_20131111.pdf
   - https://applicationmarket.crestron.com/ad-notam-cs-101/
 retrieved_at: 2026-06-01T22:37:06.903Z
-last_checked_at: 2026-06-01T23:12:02.803Z
-generated_at: 2026-06-01T23:12:02.803Z
+last_checked_at: 2026-06-02T17:21:08.800Z
+generated_at: 2026-06-02T17:21:08.800Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or power-on"
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:02.803Z
+  checked_at: 2026-06-02T17:21:08.800Z
   matched_actions: 112
   action_count: 112
   confidence: medium
@@ -872,14 +872,14 @@ source_urls:
   - https://www.ad-notam.com/attachment/244/download/dfu_rs232_protocol_v03_01_20131111.pdf
   - https://applicationmarket.crestron.com/ad-notam-cs-101/
 retrieved_at: 2026-06-01T22:37:06.903Z
-last_checked_at: 2026-06-01T23:12:02.803Z
+last_checked_at: 2026-06-02T17:21:08.800Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:02.803Z
+checked_at: 2026-06-02T17:21:08.800Z
 matched_actions: 112
 action_count: 112
 confidence: medium

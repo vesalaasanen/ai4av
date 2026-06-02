@@ -19,9 +19,9 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T01:48:13.548Z
-last_checked_at: 2026-06-02T01:48:13.548Z
-generated_at: 2026-06-02T01:48:13.548Z
+retrieved_at: 2026-06-02T17:22:29.996Z
+last_checked_at: 2026-06-02T17:22:29.996Z
+generated_at: 2026-06-02T17:22:29.996Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "source references \"numbers highlighted in red\" for check bit calculation; red not preserved in refined text — exact byte subset for XOR may differ from what is implied by the prose"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:13.548Z
+  checked_at: 2026-06-02T17:22:29.996Z
   matched_actions: 68
   action_count: 68
   confidence: medium
@@ -644,15 +644,15 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T01:48:13.548Z
-last_checked_at: 2026-06-02T01:48:13.548Z
+retrieved_at: 2026-06-02T17:22:29.996Z
+last_checked_at: 2026-06-02T17:22:29.996Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:13.548Z
+checked_at: 2026-06-02T17:22:29.996Z
 matched_actions: 68
 action_count: 68
 confidence: medium

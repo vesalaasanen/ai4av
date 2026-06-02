@@ -27,8 +27,8 @@ source_urls:
   - https://www.manualslib.com/manual/1839068/Middle-Atlantic-Products-Racklink.html
   - "https://www.markertek.com/Attachments/Manuals/Middle%20Atlantic/RLNK-SW820R-SP-Manual.pdf"
 retrieved_at: 2026-05-27T02:36:30.545Z
-last_checked_at: 2026-06-02T04:56:30.829Z
-generated_at: 2026-06-02T04:56:30.829Z
+last_checked_at: 2026-06-02T17:23:32.993Z
+generated_at: 2026-06-02T17:23:32.993Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,7 +43,7 @@ known_gaps:
   - "source's status-change set-subcommand length (0x06) vs. described byte count (6+); flagged above"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:30.829Z
+  checked_at: 2026-06-02T17:23:32.993Z
   matched_actions: 62
   action_count: 62
   confidence: medium
@@ -950,14 +950,14 @@ source_urls:
   - https://www.manualslib.com/manual/1839068/Middle-Atlantic-Products-Racklink.html
   - "https://www.markertek.com/Attachments/Manuals/Middle%20Atlantic/RLNK-SW820R-SP-Manual.pdf"
 retrieved_at: 2026-05-27T02:36:30.545Z
-last_checked_at: 2026-06-02T04:56:30.829Z
+last_checked_at: 2026-06-02T17:23:32.993Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:30.829Z
+checked_at: 2026-06-02T17:23:32.993Z
 matched_actions: 62
 action_count: 62
 confidence: medium

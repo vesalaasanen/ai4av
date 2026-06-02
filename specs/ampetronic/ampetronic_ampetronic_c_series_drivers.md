@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.ampetronic.com/wp-content/uploads/UP39808-4-C-Series-Protocol-Guide.pdf
 retrieved_at: 2026-04-30T04:36:26.602Z
-last_checked_at: 2026-06-01T23:12:06.095Z
-generated_at: 2026-06-01T23:12:06.095Z
+last_checked_at: 2026-06-02T17:21:11.919Z
+generated_at: 2026-06-02T17:21:11.919Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "firmware version compatibility not stated in source; firmware v1.6.0+ mentioned only as threshold for multi-version SNMP. Exact C-Series model variants and their feature support (e.g. which support inp3/Dante, which are dual channel) not enumerated in the protocol document."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:06.095Z
+  checked_at: 2026-06-02T17:21:11.919Z
   matched_actions: 78
   action_count: 78
   confidence: medium
@@ -936,14 +936,14 @@ source_domains:
 source_urls:
   - https://www.ampetronic.com/wp-content/uploads/UP39808-4-C-Series-Protocol-Guide.pdf
 retrieved_at: 2026-04-30T04:36:26.602Z
-last_checked_at: 2026-06-01T23:12:06.095Z
+last_checked_at: 2026-06-02T17:21:11.919Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:06.095Z
+checked_at: 2026-06-02T17:21:11.919Z
 matched_actions: 78
 action_count: 78
 confidence: medium

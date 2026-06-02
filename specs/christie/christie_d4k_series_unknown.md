@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101258-05-christie-lit-tech-ref-d4k-serial-api.pdf
 retrieved_at: 2026-05-14T14:29:32.789Z
-last_checked_at: 2026-06-02T00:53:53.947Z
-generated_at: 2026-06-02T00:53:53.947Z
+last_checked_at: 2026-06-02T17:21:52.839Z
+generated_at: 2026-06-02T17:21:52.839Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "data bits, parity, stop bits, flow control not stated; default TCP port not stated; firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:53:53.947Z
+  checked_at: 2026-06-02T17:21:52.839Z
   matched_actions: 160
   action_count: 160
   confidence: medium
@@ -1330,14 +1330,14 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101258-05-christie-lit-tech-ref-d4k-serial-api.pdf
 retrieved_at: 2026-05-14T14:29:32.789Z
-last_checked_at: 2026-06-02T00:53:53.947Z
+last_checked_at: 2026-06-02T17:21:52.839Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:53:53.947Z
+checked_at: 2026-06-02T17:21:52.839Z
 matched_actions: 160
 action_count: 160
 confidence: medium

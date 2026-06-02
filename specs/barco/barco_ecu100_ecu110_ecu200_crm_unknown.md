@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:34:25.101Z
-last_checked_at: 2026-06-01T23:12:21.213Z
-generated_at: 2026-06-01T23:12:21.213Z
+last_checked_at: 2026-06-02T17:21:36.804Z
+generated_at: 2026-06-02T17:21:36.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "serial message framing / line terminator not stated for general JSON-RPC over RS-232. The only documented serial string is the ECO wake :POWR1\\r."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T23:12:21.213Z
+  checked_at: 2026-06-02T17:21:36.804Z
   matched_actions: 67
   action_count: 67
   confidence: medium
@@ -960,14 +960,14 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:34:25.101Z
-last_checked_at: 2026-06-01T23:12:21.213Z
+last_checked_at: 2026-06-02T17:21:36.804Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T23:12:21.213Z
+checked_at: 2026-06-02T17:21:36.804Z
 matched_actions: 67
 action_count: 67
 confidence: medium

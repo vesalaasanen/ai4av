@@ -19,9 +19,9 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T05:46:06.357Z
-last_checked_at: 2026-06-02T05:46:06.357Z
-generated_at: 2026-06-02T05:46:06.357Z
+retrieved_at: 2026-06-02T17:22:31.506Z
+last_checked_at: 2026-06-02T17:22:31.506Z
+generated_at: 2026-06-02T17:22:31.506Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,7 +44,7 @@ known_gaps:
   - "source does not document any commands for the 75U78K or U78K/U7K family. The closest analogue (M-Series signage) is documented above, but the spec is flagged `declared_confidence: low` and should not be used to drive hardware without lab verification."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T05:46:06.357Z
+  checked_at: 2026-06-02T17:22:31.506Z
   matched_actions: 10
   action_count: 10
   confidence: medium
@@ -251,15 +251,15 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T05:46:06.357Z
-last_checked_at: 2026-06-02T05:46:06.357Z
+retrieved_at: 2026-06-02T17:22:31.506Z
+last_checked_at: 2026-06-02T17:22:31.506Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T05:46:06.357Z
+checked_at: 2026-06-02T17:22:31.506Z
 matched_actions: 10
 action_count: 10
 confidence: medium

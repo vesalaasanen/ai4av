@@ -22,8 +22,8 @@ source_urls:
   - https://media.extron.com/public/download/files/userman/68-2349-01_D.pdf
   - https://www.extron.com
 retrieved_at: 2026-05-18T07:44:52.721Z
-last_checked_at: 2026-06-02T00:54:04.624Z
-generated_at: 2026-06-02T00:54:04.624Z
+last_checked_at: 2026-06-02T17:22:16.034Z
+generated_at: 2026-06-02T17:22:16.034Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "web browser SIS-over-HTTP is mentioned for file directory responses but not detailed as a control surface; no full HTTP path/method catalogue given."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:54:04.624Z
+  checked_at: 2026-06-02T17:22:16.034Z
   matched_actions: 179
   action_count: 179
   confidence: medium
@@ -1813,14 +1813,14 @@ source_urls:
   - https://media.extron.com/public/download/files/userman/68-2349-01_D.pdf
   - https://www.extron.com
 retrieved_at: 2026-05-18T07:44:52.721Z
-last_checked_at: 2026-06-02T00:54:04.624Z
+last_checked_at: 2026-06-02T17:22:16.034Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:54:04.624Z
+checked_at: 2026-06-02T17:22:16.034Z
 matched_actions: 179
 action_count: 179
 confidence: medium

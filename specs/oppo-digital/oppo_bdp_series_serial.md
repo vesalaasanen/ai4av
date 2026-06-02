@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
 retrieved_at: 2026-05-04T15:18:13.223Z
-last_checked_at: 2026-06-02T04:20:06.013Z
-generated_at: 2026-06-02T04:20:06.013Z
+last_checked_at: 2026-06-02T17:23:37.432Z
+generated_at: 2026-06-02T17:23:37.432Z
 firmware_coverage: "MCU103-05-0914 (BDP-103) / MCU105-04-0914 (BDP-105) / Main BDP10X-29-0915 or newer; backwards compatible to BDP-83 and BDP-93/95"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "response format for #SRC (INPUT button) not stated beyond \"OK\"."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:06.013Z
+  checked_at: 2026-06-02T17:23:37.432Z
   matched_actions: 99
   action_count: 99
   confidence: medium
@@ -1159,14 +1159,14 @@ source_domains:
 source_urls:
   - http://download.oppodigital.com/BDP103/BDP-103_RS232_Protocol_v1.1.pdf
 retrieved_at: 2026-05-04T15:18:13.223Z
-last_checked_at: 2026-06-02T04:20:06.013Z
+last_checked_at: 2026-06-02T17:23:37.432Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:06.013Z
+checked_at: 2026-06-02T17:23:37.432Z
 matched_actions: 99
 action_count: 99
 confidence: medium

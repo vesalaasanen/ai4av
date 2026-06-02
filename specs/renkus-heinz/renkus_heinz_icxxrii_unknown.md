@@ -31,8 +31,8 @@ source_urls:
   - https://www.renkus-heinz.com/downloads/
   - https://www.renkus-heinz.com/products/plugins/
 retrieved_at: 2026-05-18T11:03:05.228Z
-last_checked_at: 2026-06-02T06:13:07.826Z
-generated_at: 2026-06-02T06:13:07.826Z
+last_checked_at: 2026-06-02T17:23:54.176Z
+generated_at: 2026-06-02T17:23:54.176Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,7 +45,7 @@ known_gaps:
   - "serial flow control not explicitly stated; source says \"57,600/8-N-1\" only."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T06:13:07.826Z
+  checked_at: 2026-06-02T17:23:54.176Z
   matched_actions: 44
   action_count: 44
   confidence: medium
@@ -559,14 +559,14 @@ source_urls:
   - https://www.renkus-heinz.com/downloads/
   - https://www.renkus-heinz.com/products/plugins/
 retrieved_at: 2026-05-18T11:03:05.228Z
-last_checked_at: 2026-06-02T06:13:07.826Z
+last_checked_at: 2026-06-02T17:23:54.176Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T06:13:07.826Z
+checked_at: 2026-06-02T17:23:54.176Z
 matched_actions: 44
 action_count: 44
 confidence: medium

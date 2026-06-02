@@ -23,8 +23,8 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-04T21:41:00.893Z
-last_checked_at: 2026-06-02T03:24:38.343Z
-generated_at: 2026-06-02T03:24:38.343Z
+last_checked_at: 2026-06-02T17:22:30.749Z
+generated_at: 2026-06-02T17:22:30.749Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "firmware version compatibility — source revision is V3.6 (2017); the 75U75QGB is a 2025-era product. No statement in the source or in the operator-supplied metadata confirms whether the 75U75QGB firmware implements this exact command set, a superset, or a subset. The 75U75QGB may use a different (Roku TV / Google TV / VIDAA) control path entirely."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:38.343Z
+  checked_at: 2026-06-02T17:22:30.749Z
   matched_actions: 68
   action_count: 68
   confidence: medium
@@ -1386,14 +1386,14 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=784"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-04T21:41:00.893Z
-last_checked_at: 2026-06-02T03:24:38.343Z
+last_checked_at: 2026-06-02T17:22:30.749Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:38.343Z
+checked_at: 2026-06-02T17:22:30.749Z
 matched_actions: 68
 action_count: 68
 confidence: medium

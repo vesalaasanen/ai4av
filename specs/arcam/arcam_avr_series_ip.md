@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:49.892Z
-last_checked_at: 2026-06-01T22:29:02.533Z
-generated_at: 2026-06-01T22:29:02.533Z
+last_checked_at: 2026-06-02T17:21:17.308Z
+generated_at: 2026-06-02T17:21:17.308Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "firmware version compatibility ranges not stated; AMX Duet supports all five listed models, but per-subsystem feature differences (e.g. DAB on AVR450/750 only) are partially model-dependent and the source does not enumerate the full per-model feature matrix."
 verification:
   verdict: verified
-  checked_at: 2026-06-01T22:29:02.533Z
+  checked_at: 2026-06-02T17:21:17.308Z
   matched_actions: 51
   action_count: 51
   confidence: medium
@@ -1031,14 +1031,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:49.892Z
-last_checked_at: 2026-06-01T22:29:02.533Z
+last_checked_at: 2026-06-02T17:21:17.308Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-01T22:29:02.533Z
+checked_at: 2026-06-02T17:21:17.308Z
 matched_actions: 51
 action_count: 51
 confidence: medium

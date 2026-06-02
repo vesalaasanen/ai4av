@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:20.460Z
-last_checked_at: 2026-06-02T00:05:15.898Z
-generated_at: 2026-06-02T00:05:15.898Z
+last_checked_at: 2026-06-02T17:22:09.653Z
+generated_at: 2026-06-02T17:22:09.653Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "No explicit timeouts for HTTP keep-alive, monitor.cgi stream maximum duration, or session retry behavior."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:15.898Z
+  checked_at: 2026-06-02T17:22:09.653Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -552,14 +552,14 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:20.460Z
-last_checked_at: 2026-06-02T00:05:15.898Z
+last_checked_at: 2026-06-02T17:22:09.653Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:15.898Z
+checked_at: 2026-06-02T17:22:09.653Z
 matched_actions: 27
 action_count: 27
 confidence: medium

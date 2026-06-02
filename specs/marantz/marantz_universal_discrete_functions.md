@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:45.631Z
-last_checked_at: 2026-06-02T08:46:07.387Z
-generated_at: 2026-06-02T08:46:07.387Z
+last_checked_at: 2026-06-02T17:23:28.139Z
+generated_at: 2026-06-02T17:23:28.139Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "TCP port 23 stated for Ethernet/Telnet; no alternative ports documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T08:46:07.387Z
+  checked_at: 2026-06-02T17:23:28.139Z
   matched_actions: 767
   action_count: 767
   confidence: medium
@@ -5223,14 +5223,14 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:45.631Z
-last_checked_at: 2026-06-02T08:46:07.387Z
+last_checked_at: 2026-06-02T17:23:28.139Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T08:46:07.387Z
+checked_at: 2026-06-02T17:23:28.139Z
 matched_actions: 767
 action_count: 767
 confidence: medium

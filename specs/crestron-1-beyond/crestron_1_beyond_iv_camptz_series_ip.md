@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-04-30T04:31:09.936Z
-last_checked_at: 2026-06-02T00:05:11.392Z
-generated_at: 2026-06-02T00:05:11.392Z
+last_checked_at: 2026-06-02T17:21:57.461Z
+generated_at: 2026-06-02T17:21:57.461Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "pan-tilt status bit field (p,q,r,s) meanings not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T00:05:11.392Z
+  checked_at: 2026-06-02T17:21:57.461Z
   matched_actions: 126
   action_count: 126
   confidence: medium
@@ -1066,14 +1066,14 @@ source_domains:
 source_urls:
   - https://www.crestron.com/getmedia/677f2d1d-8f17-44eb-b5e9-9db167b4eaa6/mg_pm_1-beyond-ptz
 retrieved_at: 2026-04-30T04:31:09.936Z
-last_checked_at: 2026-06-02T00:05:11.392Z
+last_checked_at: 2026-06-02T17:21:57.461Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T00:05:11.392Z
+checked_at: 2026-06-02T17:21:57.461Z
 matched_actions: 126
 action_count: 126
 confidence: medium

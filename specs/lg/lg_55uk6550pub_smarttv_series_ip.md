@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:48.217Z
-last_checked_at: 2026-06-02T03:24:48.217Z
-generated_at: 2026-06-02T03:24:48.217Z
+retrieved_at: 2026-06-02T17:23:07.239Z
+last_checked_at: 2026-06-02T17:23:07.239Z
+generated_at: 2026-06-02T17:23:07.239Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "response framing for IP query-style operations — source documents only OK/NG outcomes for sent commands and does not describe a query verb for reading current state over IP."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:48.217Z
+  checked_at: 2026-06-02T17:23:07.239Z
   matched_actions: 57
   action_count: 57
   confidence: medium
@@ -957,15 +957,15 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T03:24:48.217Z
-last_checked_at: 2026-06-02T03:24:48.217Z
+retrieved_at: 2026-06-02T17:23:07.239Z
+last_checked_at: 2026-06-02T17:23:07.239Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:48.217Z
+checked_at: 2026-06-02T17:23:07.239Z
 matched_actions: 57
 action_count: 57
 confidence: medium

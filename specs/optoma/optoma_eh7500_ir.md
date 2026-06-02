@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
 retrieved_at: 2026-04-30T04:25:03.995Z
-last_checked_at: 2026-06-02T10:14:08.590Z
-generated_at: 2026-06-02T10:14:08.590Z
+last_checked_at: 2026-06-02T17:23:39.007Z
+generated_at: 2026-06-02T17:23:39.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,7 @@ known_gaps:
   - "TCP port for network/web control not stated; HTTP base URL not stated; firmware version compatibility not stated; UART16550 FIFO disable and any RS-232 handshake/recovery sequences not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T10:14:08.590Z
+  checked_at: 2026-06-02T17:23:39.007Z
   matched_actions: 165
   action_count: 165
   confidence: medium
@@ -1078,14 +1078,14 @@ source_domains:
 source_urls:
   - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
 retrieved_at: 2026-04-30T04:25:03.995Z
-last_checked_at: 2026-06-02T10:14:08.590Z
+last_checked_at: 2026-06-02T17:23:39.007Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T10:14:08.590Z
+checked_at: 2026-06-02T17:23:39.007Z
 matched_actions: 165
 action_count: 165
 confidence: medium

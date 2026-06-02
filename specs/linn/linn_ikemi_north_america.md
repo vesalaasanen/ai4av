@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.linn.co.uk/wiki/images/b/b6/Ikemi_rs232_commands.PDF
 retrieved_at: 2026-04-30T04:32:36.626Z
-last_checked_at: 2026-06-02T03:24:55.272Z
-generated_at: 2026-06-02T03:24:55.272Z
+last_checked_at: 2026-06-02T17:23:14.319Z
+generated_at: 2026-06-02T17:23:14.319Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "data_bits / parity / stop_bits / flow_control not stated; firmware version not stated; no documented safety interlocks."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:55.272Z
+  checked_at: 2026-06-02T17:23:14.319Z
   matched_actions: 56
   action_count: 56
   confidence: medium
@@ -571,14 +571,14 @@ source_domains:
 source_urls:
   - https://docs.linn.co.uk/wiki/images/b/b6/Ikemi_rs232_commands.PDF
 retrieved_at: 2026-04-30T04:32:36.626Z
-last_checked_at: 2026-06-02T03:24:55.272Z
+last_checked_at: 2026-06-02T17:23:14.319Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:55.272Z
+checked_at: 2026-06-02T17:23:14.319Z
 matched_actions: 56
 action_count: 56
 confidence: medium

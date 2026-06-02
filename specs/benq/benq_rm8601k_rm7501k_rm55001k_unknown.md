@@ -29,23 +29,11 @@ source_urls:
   - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
   - https://mans.io/item/Benq/rm8601k
 retrieved_at: 2026-05-14T20:26:53.834Z
-last_checked_at: 2026-05-14T21:41:39.641Z
-generated_at: 2026-05-14T21:41:39.641Z
+last_checked_at: 2026-06-02T17:26:35.738Z
+generated_at: 2026-06-02T17:26:35.738Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - ypbr3
-  - dvida
-  - dvid
-  - network
-  - usbdisplay
-  - usbreader
-  - wireless
-  - hdbaset
-  - dp
-  - micvol
-  - appmod_dynamic
-  - appmod_livingroom
   - "HDBaseT serial COM port details not stated beyond COM port naming in Device Manager"
   - "device accepts 9600/14400/19200/38400/57600/115200; defaults not stated"
   - "no standalone settable parameters outside of action/feedback pairs identified"
@@ -59,11 +47,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:41:39.641Z
-  matched_actions: 89
+  checked_at: 2026-06-02T17:26:35.738Z
+  matched_actions: 113
   action_count: 113
   confidence: medium
-  summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 113 spec actions match source commands (Yes-supported); transport port 8000 and serial params confirmed verbatim; coverage ratio ~0.98 against ~115 distinct supported commands. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -739,35 +727,23 @@ source_urls:
   - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
   - https://mans.io/item/Benq/rm8601k
 retrieved_at: 2026-05-14T20:26:53.834Z
-last_checked_at: 2026-05-14T21:41:39.641Z
+last_checked_at: 2026-06-02T17:26:35.738Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:41:39.641Z
-matched_actions: 89
+checked_at: 2026-06-02T17:26:35.738Z
+matched_actions: 113
 action_count: 113
 confidence: medium
-summary: "All 89 spec actions match source commands; transport parameters verified; bidirectional coverage essentially complete. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 113 spec actions match source commands (Yes-supported); transport port 8000 and serial params confirmed verbatim; coverage ratio ~0.98 against ~115 distinct supported commands. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- ypbr3
-- dvida
-- dvid
-- network
-- usbdisplay
-- usbreader
-- wireless
-- hdbaset
-- dp
-- micvol
-- appmod_dynamic
-- appmod_livingroom
 - "HDBaseT serial COM port details not stated beyond COM port naming in Device Manager"
 - "device accepts 9600/14400/19200/38400/57600/115200; defaults not stated"
 - "no standalone settable parameters outside of action/feedback pairs identified"

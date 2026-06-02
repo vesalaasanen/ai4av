@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-06-02T03:24:56.031Z
-generated_at: 2026-06-02T03:24:56.031Z
+last_checked_at: 2026-06-02T17:23:15.043Z
+generated_at: 2026-06-02T17:23:15.043Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "serial data_bits/parity/stop_bits/flow_control not stated; firmware version compatibility ranges not stated; status codes 25 (0x1A) and 26–47 reserved but not enumerated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T03:24:56.031Z
+  checked_at: 2026-06-02T17:23:15.043Z
   matched_actions: 64
   action_count: 64
   confidence: medium
@@ -688,14 +688,14 @@ source_domains:
 source_urls:
   - http://docs.linn.co.uk/wiki/images/7/79/Pekin_rs232_commands.pdf
 retrieved_at: 2026-05-04T15:18:41.189Z
-last_checked_at: 2026-06-02T03:24:56.031Z
+last_checked_at: 2026-06-02T17:23:15.043Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T03:24:56.031Z
+checked_at: 2026-06-02T17:23:15.043Z
 matched_actions: 64
 action_count: 64
 confidence: medium

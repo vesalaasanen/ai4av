@@ -26,8 +26,8 @@ source_urls:
   - https://www.electricbargainstores.com/v/vspfiles/PDF_spec/Lutron/grafik-eye/GRX-PRG-install.pdf
   - https://assets.lutron.com/a/documents/040156a.pdf
 retrieved_at: 2026-05-17T22:52:38.283Z
-last_checked_at: 2026-06-02T04:56:25.964Z
-generated_at: 2026-06-02T04:56:25.964Z
+last_checked_at: 2026-06-02T17:23:20.345Z
+generated_at: 2026-06-02T17:23:20.345Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "maximum ethernet connection count not stated beyond \"2 connections\" implicit."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:25.964Z
+  checked_at: 2026-06-02T17:23:20.345Z
   matched_actions: 54
   action_count: 54
   confidence: medium
@@ -839,14 +839,14 @@ source_urls:
   - https://www.electricbargainstores.com/v/vspfiles/PDF_spec/Lutron/grafik-eye/GRX-PRG-install.pdf
   - https://assets.lutron.com/a/documents/040156a.pdf
 retrieved_at: 2026-05-17T22:52:38.283Z
-last_checked_at: 2026-06-02T04:56:25.964Z
+last_checked_at: 2026-06-02T17:23:20.345Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:25.964Z
+checked_at: 2026-06-02T17:23:20.345Z
 matched_actions: 54
 action_count: 54
 confidence: medium

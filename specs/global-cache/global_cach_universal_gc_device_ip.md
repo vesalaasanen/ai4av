@@ -40,8 +40,8 @@ source_urls:
   - https://gcapi.docs.apiary.io/
   - https://www.globalcache.com/downloads/
 retrieved_at: 2026-05-27T13:27:53.895Z
-last_checked_at: 2026-06-02T01:48:09.249Z
-generated_at: 2026-06-02T01:48:09.249Z
+last_checked_at: 2026-06-02T17:22:18.228Z
+generated_at: 2026-06-02T17:22:18.228Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -53,7 +53,7 @@ known_gaps:
   - "error code prefix varies by product (GC-100 uses `unknowncommand ` and `ERR_<module>:<port>,`; iTach/Flex/Global Connect use `ERR `). Error responses documented in source Section 5."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:09.249Z
+  checked_at: 2026-06-02T17:22:18.228Z
   matched_actions: 25
   action_count: 25
   confidence: medium
@@ -664,14 +664,14 @@ source_urls:
   - https://gcapi.docs.apiary.io/
   - https://www.globalcache.com/downloads/
 retrieved_at: 2026-05-27T13:27:53.895Z
-last_checked_at: 2026-06-02T01:48:09.249Z
+last_checked_at: 2026-06-02T17:22:18.228Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:09.249Z
+checked_at: 2026-06-02T17:22:18.228Z
 matched_actions: 25
 action_count: 25
 confidence: medium

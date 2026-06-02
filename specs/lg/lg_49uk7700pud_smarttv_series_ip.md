@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
-retrieved_at: 2026-06-02T01:48:25.352Z
-last_checked_at: 2026-06-02T01:48:25.352Z
-generated_at: 2026-06-02T01:48:25.352Z
+retrieved_at: 2026-06-02T17:22:56.861Z
+last_checked_at: 2026-06-02T17:22:56.861Z
+generated_at: 2026-06-02T17:22:56.861Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "source contains no explicit safety warnings, interlock procedures,"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:25.352Z
+  checked_at: 2026-06-02T17:22:56.861Z
   matched_actions: 62
   action_count: 62
   confidence: medium
@@ -550,15 +550,15 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
-retrieved_at: 2026-06-02T01:48:25.352Z
-last_checked_at: 2026-06-02T01:48:25.352Z
+retrieved_at: 2026-06-02T17:22:56.861Z
+last_checked_at: 2026-06-02T17:22:56.861Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:25.352Z
+checked_at: 2026-06-02T17:22:56.861Z
 matched_actions: 62
 action_count: 62
 confidence: medium

@@ -41,8 +41,8 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:49.866Z
-last_checked_at: 2026-05-14T18:17:17.289Z
-generated_at: 2026-05-14T18:17:17.289Z
+last_checked_at: 2026-06-02T17:26:31.894Z
+generated_at: 2026-06-02T17:26:31.894Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -54,11 +54,11 @@ known_gaps:
   - "LAN default IP address (192.168.0.2), subnet mask, gateway — network settings stated but not as command parameters. UNRESOLVED: DHCP On/Off default not stated explicitly. UNRESOLVED: command timeout beyond 5 seconds not characterized."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.289Z
-  matched_actions: 171
+  checked_at: 2026-06-02T17:26:31.894Z
+  matched_actions: 313
   action_count: 313
   confidence: medium
-  summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 313 spec operating commands have exact hex matches in source; source contains exactly 313 unique operating commands and 6 enquiry commands all covered by Feedbacks; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2284,18 +2284,18 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:49.866Z
-last_checked_at: 2026-05-14T18:17:17.289Z
+last_checked_at: 2026-06-02T17:26:31.894Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.289Z
-matched_actions: 171
+checked_at: 2026-06-02T17:26:31.894Z
+matched_actions: 313
 action_count: 313
 confidence: medium
-summary: "All 165 direct/remote actions and 6 query commands matched verbatim; transport parameters verified in source. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 313 spec operating commands have exact hex matches in source; source contains exactly 313 unique operating commands and 6 enquiry commands all covered by Feedbacks; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

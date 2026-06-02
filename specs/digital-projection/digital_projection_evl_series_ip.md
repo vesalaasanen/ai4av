@@ -1843,7 +1843,7 @@ auth:
   kind: action
   params: []
 
-- id: dl p_pattern
+- id: dlp_pattern
   label: DLP Pattern
   kind: action
   params:

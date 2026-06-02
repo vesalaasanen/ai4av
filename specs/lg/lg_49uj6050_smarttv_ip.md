@@ -23,9 +23,9 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.manualslib.com/products/Lg-49uj6050-Uc-12883580.html
   - https://www.scribd.com/document/649294226/RS232-forLGTV
-retrieved_at: 2026-06-02T01:48:23.040Z
-last_checked_at: 2026-06-02T01:48:23.040Z
-generated_at: 2026-06-02T01:48:23.040Z
+retrieved_at: 2026-06-02T17:22:54.379Z
+last_checked_at: 2026-06-02T17:22:54.379Z
+generated_at: 2026-06-02T17:22:54.379Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "Specific 49UJ6050 model identification not stated in source; spec covers the protocol class."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:23.040Z
+  checked_at: 2026-06-02T17:22:54.379Z
   matched_actions: 26
   action_count: 26
   confidence: medium
@@ -580,15 +580,15 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.manualslib.com/products/Lg-49uj6050-Uc-12883580.html
   - https://www.scribd.com/document/649294226/RS232-forLGTV
-retrieved_at: 2026-06-02T01:48:23.040Z
-last_checked_at: 2026-06-02T01:48:23.040Z
+retrieved_at: 2026-06-02T17:22:54.379Z
+last_checked_at: 2026-06-02T17:22:54.379Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:23.040Z
+checked_at: 2026-06-02T17:22:54.379Z
 matched_actions: 26
 action_count: 26
 confidence: medium

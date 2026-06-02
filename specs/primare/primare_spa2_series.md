@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-04-30T10:34:35.871Z
-last_checked_at: 2026-06-02T04:20:14.132Z
-generated_at: 2026-06-02T04:20:14.132Z
+last_checked_at: 2026-06-02T17:23:52.719Z
+generated_at: 2026-06-02T17:23:52.719Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "source PDF may contain an RS-232 section not present in this refined excerpt; only TCP/IP commands documented here"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:20:14.132Z
+  checked_at: 2026-06-02T17:23:52.719Z
   matched_actions: 44
   action_count: 44
   confidence: medium
@@ -395,14 +395,14 @@ source_domains:
 source_urls:
   - https://primare.net/wp-content/uploads/2022/01/Primare-Prisma-API-TCPIP-and-RS232-2025-06-13.pdf
 retrieved_at: 2026-04-30T10:34:35.871Z
-last_checked_at: 2026-06-02T04:20:14.132Z
+last_checked_at: 2026-06-02T17:23:52.719Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:20:14.132Z
+checked_at: 2026-06-02T17:23:52.719Z
 matched_actions: 44
 action_count: 44
 confidence: medium

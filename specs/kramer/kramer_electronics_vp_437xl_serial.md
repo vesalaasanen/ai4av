@@ -25,8 +25,8 @@ source_urls:
   - https://cdn.kramerav.com/web/downloads/manuals/rs232nul.pdf
   - https://www1.kramerav.com/page/knowledgebase-control
 retrieved_at: 2026-05-21T03:34:15.568Z
-last_checked_at: 2026-06-02T01:48:19.183Z
-generated_at: 2026-06-02T01:48:19.183Z
+last_checked_at: 2026-06-02T17:22:46.567Z
+generated_at: 2026-06-02T17:22:46.567Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "whether the device supports ASCII / SVS / Protocol-3000 fallback (instruction 56) is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T01:48:19.183Z
+  checked_at: 2026-06-02T17:22:46.567Z
   matched_actions: 42
   action_count: 42
   confidence: medium
@@ -920,14 +920,14 @@ source_urls:
   - https://cdn.kramerav.com/web/downloads/manuals/rs232nul.pdf
   - https://www1.kramerav.com/page/knowledgebase-control
 retrieved_at: 2026-05-21T03:34:15.568Z
-last_checked_at: 2026-06-02T01:48:19.183Z
+last_checked_at: 2026-06-02T17:22:46.567Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T01:48:19.183Z
+checked_at: 2026-06-02T17:22:46.567Z
 matched_actions: 42
 action_count: 42
 confidence: medium

@@ -538,7 +538,7 @@ auth:
   params:
     - name: value
       type: integer
-      description: "0=VGA1, 1=VGA2, 2=DVI, 3=Component, 4=YC1, 5=AV1, 6=YV2, 7=AV2, 8=Scart, 9=TV"
+      description: "0=VGA1, 1=VGA2, 2=DVI, 3=Component, 4=YC1, 5=AC1, 6=YC2, 7=AC2, 8=Scart, 9=TV"
   protocol: old
   command: "L BB44 {value}"
 
@@ -567,22 +567,18 @@ auth:
 - id: new_freeze
   label: Freeze (new protocol)
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0=Off, 1=On
+  params: []
   protocol: new
-  command: "Y 0 1 {value}"
+  command: "Y 0 1"
+  notes: "Control Type 0 function (keypad-style toggle); source documents the parameter column as N/A."
 
 - id: new_power
   label: Power (new protocol)
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0=Down, 1=On
+  params: []
   protocol: new
-  command: "Y 0 2 {value}"
+  command: "Y 0 2"
+  notes: "Control Type 0 function (keypad-style toggle); source documents the parameter column as N/A. Settable power state is the Type 6/7 new_power_state command."
 
 - id: new_av1
   label: Select AV1 (new protocol)
@@ -783,22 +779,18 @@ auth:
 - id: new_contrast
   label: Contrast (new protocol)
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0–127
+  params: []
   protocol: new
-  command: "Y 0 31 {value}"
+  command: "Y 0 31"
+  notes: "Control Type 0 function (keypad-style step); source documents the parameter column as N/A. Settable contrast is the Type 1/2 new_graphics_contrast command (Y 1 17 / Y 2 17)."
 
 - id: new_brightness
   label: Brightness (new protocol)
   kind: action
-  params:
-    - name: value
-      type: integer
-      description: 0–127
+  params: []
   protocol: new
-  command: "Y 0 32 {value}"
+  command: "Y 0 32"
+  notes: "Control Type 0 function (keypad-style step); source documents the parameter column as N/A. Settable brightness is the Type 1/2 new_graphics_brightness command (Y 1 16 / Y 2 16)."
 
 - id: new_zoom_in
   label: Zoom In (new protocol)
@@ -1541,6 +1533,7 @@ auth:
       type: integer
       description: "0=Disable, 1=Enable"
   protocol: new
+  command_set: "Y 3 28 {value}"
   command_get: "Y 4 28"
   note: Firmware 2.42+
 

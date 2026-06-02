@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/Lumens/PS750/ps750_doc_6.pdf"
 retrieved_at: 2026-04-30T04:36:37.918Z
-last_checked_at: 2026-06-02T04:56:24.310Z
-generated_at: 2026-06-02T04:56:24.310Z
+last_checked_at: 2026-06-02T17:23:18.064Z
+generated_at: 2026-06-02T17:23:18.064Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,7 +33,7 @@ known_gaps:
   - "firmware version compatibility, electrical specs (voltage/current), and any safety interlocks are not documented in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T04:56:24.310Z
+  checked_at: 2026-06-02T17:23:18.064Z
   matched_actions: 79
   action_count: 79
   confidence: medium
@@ -910,14 +910,14 @@ source_domains:
 source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Documents/Lumens/PS750/ps750_doc_6.pdf"
 retrieved_at: 2026-04-30T04:36:37.918Z
-last_checked_at: 2026-06-02T04:56:24.310Z
+last_checked_at: 2026-06-02T17:23:18.064Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T04:56:24.310Z
+checked_at: 2026-06-02T17:23:18.064Z
 matched_actions: 79
 action_count: 79
 confidence: medium
