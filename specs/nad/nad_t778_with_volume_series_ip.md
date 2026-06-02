@@ -17,14 +17,12 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T23:31:27.763Z
-last_checked_at: 2026-05-16T23:31:27.763Z
-generated_at: 2026-05-16T23:31:27.763Z
+retrieved_at: 2026-06-02T22:09:56.008Z
+last_checked_at: 2026-06-02T22:09:56.008Z
+generated_at: 2026-06-02T22:09:56.008Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - /Playlist
-  - /RadioBrowse
   - "The source document covers all BluOS-capable NAD products; NAD T778-specific input types (HDMI ARC, analog, optical, etc.) available on this model are not individually enumerated in the source."
   - "no WebSocket or other push-notification mechanism described in source"
   - "no multi-step macros described in source"
@@ -34,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T23:31:27.763Z
+  checked_at: 2026-06-02T22:09:56.008Z
   matched_actions: 37
   action_count: 37
   confidence: medium
-  summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 37 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -522,26 +520,24 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T23:31:27.763Z
-last_checked_at: 2026-05-16T23:31:27.763Z
+retrieved_at: 2026-06-02T22:09:56.008Z
+last_checked_at: 2026-06-02T22:09:56.008Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T23:31:27.763Z
+checked_at: 2026-06-02T22:09:56.008Z
 matched_actions: 37
 action_count: 37
 confidence: medium
-summary: "All 37 spec actions map to literal source commands verbatim; transport port 11000 confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 37 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- /Playlist
-- /RadioBrowse
 - "The source document covers all BluOS-capable NAD products; NAD T778-specific input types (HDMI ARC, analog, optical, etc.) available on this model are not individually enumerated in the source."
 - "no WebSocket or other push-notification mechanism described in source"
 - "no multi-step macros described in source"

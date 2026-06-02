@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HDVS-200-RX_API.pdf
 retrieved_at: 2026-05-14T11:03:31.159Z
-last_checked_at: 2026-06-02T17:21:22.969Z
-generated_at: 2026-06-02T17:21:22.969Z
+last_checked_at: 2026-06-02T21:39:59.527Z
+generated_at: 2026-06-02T21:39:59.527Z
 firmware_coverage: "\"2.0.36\""
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "behaviour when Telnet session limit exceeded not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:22.969Z
+  checked_at: 2026-06-02T21:39:59.527Z
   matched_actions: 46
   action_count: 46
   confidence: medium
@@ -752,14 +752,14 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HDVS-200-RX_API.pdf
 retrieved_at: 2026-05-14T11:03:31.159Z
-last_checked_at: 2026-06-02T17:21:22.969Z
+last_checked_at: 2026-06-02T21:39:59.527Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:22.969Z
+checked_at: 2026-06-02T21:39:59.527Z
 matched_actions: 46
 action_count: 46
 confidence: medium

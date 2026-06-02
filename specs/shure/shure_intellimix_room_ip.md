@@ -22,8 +22,8 @@ source_urls:
   - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
   - https://techportal.shure.com/
 retrieved_at: 2026-05-14T10:38:08.504Z
-last_checked_at: 2026-05-18T17:04:25.606Z
-generated_at: 2026-05-18T17:04:25.606Z
+last_checked_at: 2026-06-02T22:14:24.758Z
+generated_at: 2026-06-02T22:14:24.758Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:04:25.606Z
+  checked_at: 2026-06-02T22:14:24.758Z
   matched_actions: 17
   action_count: 17
   confidence: medium
-  summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 17 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -422,18 +422,18 @@ source_urls:
   - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
   - https://techportal.shure.com/
 retrieved_at: 2026-05-14T10:38:08.504Z
-last_checked_at: 2026-05-18T17:04:25.606Z
+last_checked_at: 2026-06-02T22:14:24.758Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:04:25.606Z
+checked_at: 2026-06-02T22:14:24.758Z
 matched_actions: 17
 action_count: 17
 confidence: medium
-summary: "All 17 spec actions matched to source command parameters; transport parameters verified; no extra source commands; feedbacks cover query/report variants. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 17 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

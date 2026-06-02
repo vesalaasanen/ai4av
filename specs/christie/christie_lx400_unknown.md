@@ -25,8 +25,8 @@ source_urls:
   - https://www.manualslib.com/manual/766245/Christie-Lx400.html
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-05-14T22:31:21.318Z
-last_checked_at: 2026-05-15T21:21:52.923Z
-generated_at: 2026-05-15T21:21:52.923Z
+last_checked_at: 2026-06-02T22:05:13.022Z
+generated_at: 2026-06-02T22:05:13.022Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "baud rate changeable in \"service mode\" — no details on accessing service mode"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:21:52.923Z
+  checked_at: 2026-06-02T22:05:13.022Z
   matched_actions: 64
   action_count: 64
   confidence: medium
-  summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 64 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -565,18 +565,18 @@ source_urls:
   - https://www.manualslib.com/manual/766245/Christie-Lx400.html
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-05-14T22:31:21.318Z
-last_checked_at: 2026-05-15T21:21:52.923Z
+last_checked_at: 2026-06-02T22:05:13.022Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:21:52.923Z
+checked_at: 2026-06-02T22:05:13.022Z
 matched_actions: 64
 action_count: 64
 confidence: medium
-summary: "All 64 spec actions and feedbacks match source command table literally; transport parameters verified; no extraneous commands in source. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 64 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.425Z
-last_checked_at: 2026-05-14T18:17:14.248Z
-generated_at: 2026-05-14T18:17:14.248Z
+last_checked_at: 2026-06-02T21:47:54.840Z
+generated_at: 2026-06-02T21:47:54.840Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "firmware version compatibility not stated; model-specific behavior (presence of DMX, illumination type laser vs LED vs UHP) varies per projector model and must be introspected at runtime via `introspect`; authentication code values are not published in source; HDR boost / CLO availability varies by license (system.license.option.flexbrightness); specific voltage/current specs not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.248Z
-  matched_actions: 31
-  action_count: 31
+  checked_at: 2026-06-02T21:47:54.840Z
+  matched_actions: 182
+  action_count: 182
   confidence: medium
-  summary: "All 33 spec actions matched verbatim in source; transport parameters confirmed; complete coverage of documented JSON-RPC 2.0 and RS-232 protocol. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 182 spec actions traced to source. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1550,18 +1550,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.425Z
-last_checked_at: 2026-05-14T18:17:14.248Z
+last_checked_at: 2026-06-02T21:47:54.840Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.248Z
-matched_actions: 31
-action_count: 31
+checked_at: 2026-06-02T21:47:54.840Z
+matched_actions: 182
+action_count: 182
 confidence: medium
-summary: "All 33 spec actions matched verbatim in source; transport parameters confirmed; complete coverage of documented JSON-RPC 2.0 and RS-232 protocol. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 182 spec actions traced to source. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

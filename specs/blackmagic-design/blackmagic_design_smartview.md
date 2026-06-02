@@ -29,8 +29,8 @@ source_urls:
   - https://www.blackmagicdesign.com/developer
   - https://github.com/jscissr/smartview-client
 retrieved_at: 2026-05-05T01:53:54.252Z
-last_checked_at: 2026-05-05T06:10:41.042Z
-generated_at: 2026-05-05T06:10:41.042Z
+last_checked_at: 2026-06-02T21:54:37.762Z
+generated_at: 2026-06-02T21:54:37.762Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-05T06:10:41.042Z
+  checked_at: 2026-06-02T21:54:37.762Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec actions traced to SmartView protocol v1.4. Transport on port 9992 confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -266,18 +266,18 @@ source_urls:
   - https://www.blackmagicdesign.com/developer
   - https://github.com/jscissr/smartview-client
 retrieved_at: 2026-05-05T01:53:54.252Z
-last_checked_at: 2026-05-05T06:10:41.042Z
+last_checked_at: 2026-06-02T21:54:37.762Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T06:10:41.042Z
+checked_at: 2026-06-02T21:54:37.762Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions matched cleanly against documented commands; transport parameters verified; SmartView protocol fully represented. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec actions traced to SmartView protocol v1.4. Transport on port 9992 confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.092Z
-last_checked_at: 2026-05-14T18:17:14.693Z
-generated_at: 2026-05-14T18:17:14.693Z
+last_checked_at: 2026-06-02T21:56:27.892Z
+generated_at: 2026-06-02T21:56:27.892Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "whether commands work identically over TCP and RS-232 or have protocol-specific variations"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.693Z
+  checked_at: 2026-06-02T21:56:27.892Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -314,18 +314,18 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:57.092Z
-last_checked_at: 2026-05-14T18:17:14.693Z
+last_checked_at: 2026-06-02T21:56:27.892Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.693Z
+checked_at: 2026-06-02T21:56:27.892Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 20 spec actions match source command reference verbatim; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

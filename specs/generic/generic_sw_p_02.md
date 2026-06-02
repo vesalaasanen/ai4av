@@ -26,8 +26,8 @@ source_urls:
   - https://www.yumpu.com/en/document/view/45593368/pro-bel-sw-p-02-interface-specifications-dhd-audiode
   - https://github.com/bitfocus/companion-module-generic-swp02
 retrieved_at: 2026-04-29T23:57:03.635Z
-last_checked_at: 2026-04-27T14:52:18.031Z
-generated_at: 2026-04-27T14:52:18.031Z
+last_checked_at: 2026-06-02T22:07:17.707Z
+generated_at: 2026-06-02T22:07:17.707Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "unsolicited event conditions not fully enumerated"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T14:52:18.031Z
+  checked_at: 2026-06-02T22:07:17.707Z
   matched_actions: 38
   action_count: 38
   confidence: medium
-  summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 38 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -520,18 +520,18 @@ source_urls:
   - https://www.yumpu.com/en/document/view/45593368/pro-bel-sw-p-02-interface-specifications-dhd-audiode
   - https://github.com/bitfocus/companion-module-generic-swp02
 retrieved_at: 2026-04-29T23:57:03.635Z
-last_checked_at: 2026-04-27T14:52:18.031Z
+last_checked_at: 2026-06-02T22:07:17.707Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T14:52:18.031Z
+checked_at: 2026-06-02T22:07:17.707Z
 matched_actions: 38
 action_count: 38
 confidence: medium
-summary: "All 38 spec actions have literal source counterparts; transport parameters verified against Pro-Bel SW-P-02 reference. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 38 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

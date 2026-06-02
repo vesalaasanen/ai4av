@@ -23,8 +23,8 @@ source_urls:
   - https://pubs.shure.com/command-strings/MXA920
   - https://pubs.shure.com
 retrieved_at: 2026-05-05T02:33:44.507Z
-last_checked_at: 2026-05-05T05:41:54.471Z
-generated_at: 2026-05-05T05:41:54.471Z
+last_checked_at: 2026-06-02T22:14:29.383Z
+generated_at: 2026-06-02T22:14:29.383Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "command rate limits or throttling not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-05T05:41:54.471Z
+  checked_at: 2026-06-02T22:14:29.383Z
   matched_actions: 96
   action_count: 96
   confidence: medium
-  summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 96 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1142,18 +1142,18 @@ source_urls:
   - https://pubs.shure.com/command-strings/MXA920
   - https://pubs.shure.com
 retrieved_at: 2026-05-05T02:33:44.507Z
-last_checked_at: 2026-05-05T05:41:54.471Z
+last_checked_at: 2026-06-02T22:14:29.383Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T05:41:54.471Z
+checked_at: 2026-06-02T22:14:29.383Z
 matched_actions: 96
 action_count: 96
 confidence: medium
-summary: "All 96 spec actions have literal command matches in source; transport parameters confirmed; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 96 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

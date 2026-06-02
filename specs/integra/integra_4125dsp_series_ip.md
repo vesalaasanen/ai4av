@@ -20,18 +20,11 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:20.402Z
-last_checked_at: 2026-05-14T18:17:16.814Z
-generated_at: 2026-05-14T18:17:16.814Z
+last_checked_at: 2026-06-02T22:08:15.584Z
+generated_at: 2026-06-02T22:08:15.584Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - ISF
-  - LTN
-  - RAS
-  - DVL
-  - RDS
-  - PTS
-  - TPS
   - "firmware version compatibility not stated in source"
   - "exact DSP configuration commands for the 4125DSP variant not distinguished from general Integra AV receiver commands"
   - "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS)"
@@ -49,11 +42,11 @@ known_gaps:
   - "tone commands for all individual speaker channels (TFW, TFH, TCT, TSR, TSB, TSW) omitted from Actions for brevity — follow TFR pattern"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.814Z
+  checked_at: 2026-06-02T22:08:15.584Z
   matched_actions: 68
   action_count: 68
   confidence: medium
-  summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented. (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 68 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -989,30 +982,23 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:20.402Z
-last_checked_at: 2026-05-14T18:17:16.814Z
+last_checked_at: 2026-06-02T22:08:15.584Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.814Z
+checked_at: 2026-06-02T22:08:15.584Z
 matched_actions: 68
 action_count: 68
 confidence: medium
-summary: "All 85 spec actions matched verbatim to source commands; transport parameters verified; core command set comprehensively represented. (15 unresolved item(s) noted in Known Gaps.)"
+summary: "All 68 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- ISF
-- LTN
-- RAS
-- DVL
-- RDS
-- PTS
-- TPS
 - "firmware version compatibility not stated in source"
 - "exact DSP configuration commands for the 4125DSP variant not distinguished from general Integra AV receiver commands"
 - "RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR, CDS)"

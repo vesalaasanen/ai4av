@@ -23,8 +23,8 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:47:09.557Z
-last_checked_at: 2026-05-18T16:38:01.471Z
-generated_at: 2026-05-18T16:38:01.471Z
+last_checked_at: 2026-06-02T22:11:47.945Z
+generated_at: 2026-06-02T22:11:47.945Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "no explicit safety interlock sequences documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:38:01.471Z
+  checked_at: 2026-06-02T22:11:47.945Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -585,18 +585,18 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:47:09.557Z
-last_checked_at: 2026-05-18T16:38:01.471Z
+last_checked_at: 2026-06-02T22:11:47.945Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:38:01.471Z
+checked_at: 2026-06-02T22:11:47.945Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions matched verbatim against command reference, transport parameters verified, bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

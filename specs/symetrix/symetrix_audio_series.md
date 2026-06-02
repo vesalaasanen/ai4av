@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
-last_checked_at: 2026-04-27T10:13:14.101Z
-generated_at: 2026-04-27T10:13:14.101Z
+last_checked_at: 2026-06-02T22:15:24.068Z
+generated_at: 2026-06-02T22:15:24.068Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "specific controller number mappings are model-dependent; full tables span appendices A-D"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:14.101Z
+  checked_at: 2026-06-02T22:15:24.068Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -348,18 +348,18 @@ source_domains:
 source_urls:
   - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
-last_checked_at: 2026-04-27T10:13:14.101Z
+last_checked_at: 2026-06-02T22:15:24.068Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:14.101Z
+checked_at: 2026-06-02T22:15:24.068Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions matched literally to command definitions in source; UDP port 48630 and RS-232 parameters (57600 baud, 8 data bits, 1 stop bit, no parity) verified. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

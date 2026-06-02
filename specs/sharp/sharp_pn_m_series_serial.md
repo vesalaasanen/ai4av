@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
 retrieved_at: 2026-05-02T23:19:32.799Z
-last_checked_at: 2026-05-14T18:17:20.470Z
-generated_at: 2026-05-14T18:17:20.470Z
+last_checked_at: 2026-06-02T22:14:18.779Z
+generated_at: 2026-06-02T22:14:18.779Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "LAN protocol beyond basic Telnet login not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.470Z
-  matched_actions: 92
+  checked_at: 2026-06-02T22:14:18.779Z
+  matched_actions: 96
   action_count: 96
   confidence: medium
-  summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 96 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1338,18 +1338,18 @@ source_domains:
 source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
 retrieved_at: 2026-05-02T23:19:32.799Z
-last_checked_at: 2026-05-14T18:17:20.470Z
+last_checked_at: 2026-06-02T22:14:18.779Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.470Z
-matched_actions: 92
+checked_at: 2026-06-02T22:14:18.779Z
+matched_actions: 96
 action_count: 96
 confidence: medium
-summary: "All 92 spec actions (66 from Actions, 26 query Feedbacks) matched literals in source; transport parameters verified verbatim; source command catalogue fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 96 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

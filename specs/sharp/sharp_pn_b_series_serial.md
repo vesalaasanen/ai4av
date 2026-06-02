@@ -23,8 +23,8 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
   - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-05-14T18:17:20.447Z
-generated_at: 2026-05-14T18:17:20.447Z
+last_checked_at: 2026-06-02T22:14:17.098Z
+generated_at: 2026-06-02T22:14:17.098Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "AUTO ASSIGN ID command code not in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.447Z
+  checked_at: 2026-06-02T22:14:17.098Z
   matched_actions: 69
   action_count: 69
   confidence: medium
-  summary: "All 97 spec actions matched literally; full coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 69 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1085,18 +1085,18 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
   - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-05-14T18:17:20.447Z
+last_checked_at: 2026-06-02T22:14:17.098Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.447Z
+checked_at: 2026-06-02T22:14:17.098Z
 matched_actions: 69
 action_count: 69
 confidence: medium
-summary: "All 97 spec actions matched literally; full coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 69 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

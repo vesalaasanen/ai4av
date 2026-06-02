@@ -29,8 +29,8 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-04-29T10:28:13.871Z
-last_checked_at: 2026-04-29T11:21:29.322Z
-generated_at: 2026-04-29T11:21:29.322Z
+last_checked_at: 2026-06-02T22:13:00.308Z
+generated_at: 2026-06-02T22:13:00.308Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "- WX-SR202P specifically is not named in this document; the WX-SR200"
 verification:
   verdict: verified
-  checked_at: 2026-04-29T11:21:29.322Z
+  checked_at: 2026-06-02T22:13:00.308Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -441,18 +441,18 @@ source_urls:
   - "https://applicationmarket.crestron.com/content/Help/Panasonic/Panasonic%20WX-SR202P%20v2.0%20Help.pdf"
   - https://connect.na.panasonic.com/av/audio/2-channel-wireless-mic-receiver
 retrieved_at: 2026-04-29T10:28:13.871Z
-last_checked_at: 2026-04-29T11:21:29.322Z
+last_checked_at: 2026-06-02T22:13:00.308Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-29T11:21:29.322Z
+checked_at: 2026-06-02T22:13:00.308Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions match source opcodes; transport (TCP/UDP, port 50003, MD5/SHA-256 auth) confirmed verbatim. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

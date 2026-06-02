@@ -27,8 +27,8 @@ source_urls:
   - https://www.sony.com/electronics/support/res/manuals/E776/ba2eb983d7ce445ab18afc783c068418/E7761001M.pdf
   - https://github.com/bitfocus/companion-module-sony-visca
 retrieved_at: 2026-04-30T03:14:34.194Z
-last_checked_at: 2026-05-14T18:17:20.805Z
-generated_at: 2026-05-14T18:17:20.805Z
+last_checked_at: 2026-06-02T22:14:58.497Z
+generated_at: 2026-06-02T22:14:58.497Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "Address Set command not supported over IP"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.805Z
-  matched_actions: 84
+  checked_at: 2026-06-02T22:14:58.497Z
+  matched_actions: 89
   action_count: 89
   confidence: medium
-  summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 89 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -853,18 +853,18 @@ source_urls:
   - https://www.sony.com/electronics/support/res/manuals/E776/ba2eb983d7ce445ab18afc783c068418/E7761001M.pdf
   - https://github.com/bitfocus/companion-module-sony-visca
 retrieved_at: 2026-04-30T03:14:34.194Z
-last_checked_at: 2026-05-14T18:17:20.805Z
+last_checked_at: 2026-06-02T22:14:58.497Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.805Z
-matched_actions: 84
+checked_at: 2026-06-02T22:14:58.497Z
+matched_actions: 89
 action_count: 89
 confidence: medium
-summary: "All 84 spec actions match documented VISCA command set with correct opcodes, parameters, and ranges; transport verified; bidirectional coverage. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 89 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

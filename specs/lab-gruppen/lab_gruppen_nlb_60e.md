@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://prodgsystems.com/public/pdf/119_Third%20party%20integration%20protocol.pdf"
 retrieved_at: 2026-04-30T04:36:28.729Z
-last_checked_at: 2026-04-25T20:54:49.416Z
-generated_at: 2026-04-25T20:54:49.416Z
+last_checked_at: 2026-06-02T22:08:39.377Z
+generated_at: 2026-06-02T22:08:39.377Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "physical connection type (ethernet port) not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:54:49.416Z
+  checked_at: 2026-06-02T22:08:39.377Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -302,18 +302,18 @@ source_domains:
 source_urls:
   - "https://prodgsystems.com/public/pdf/119_Third%20party%20integration%20protocol.pdf"
 retrieved_at: 2026-04-30T04:36:28.729Z
-last_checked_at: 2026-04-25T20:54:49.416Z
+last_checked_at: 2026-06-02T22:08:39.377Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:54:49.416Z
+checked_at: 2026-06-02T22:08:39.377Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions matched source commands with correct semantics; transport (TCP port 65010, no auth) verified; source catalogue fully covered. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

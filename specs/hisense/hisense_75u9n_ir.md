@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-04-26T13:12:43.803Z
-last_checked_at: 2026-04-26T13:12:43.803Z
-generated_at: 2026-04-26T13:12:43.803Z
+retrieved_at: 2026-06-02T22:08:03.546Z
+last_checked_at: 2026-06-02T22:08:03.546Z
+generated_at: 2026-06-02T22:08:03.546Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "source contains no explicit safety warnings, electrical ratings, or interlock procedures."
 verification:
   verdict: verified
-  checked_at: 2026-04-26T13:12:43.803Z
-  matched_actions: 44
-  action_count: 44
+  checked_at: 2026-06-02T22:08:03.546Z
+  matched_actions: 38
+  action_count: 38
   confidence: medium
-  summary: "All 44 spec actions matched source commands; all 8 extra_in_source tokens from prior verdict now covered. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 38 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1216,19 +1216,19 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-04-26T13:12:43.803Z
-last_checked_at: 2026-04-26T13:12:43.803Z
+retrieved_at: 2026-06-02T22:08:03.546Z
+last_checked_at: 2026-06-02T22:08:03.546Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T13:12:43.803Z
-matched_actions: 44
-action_count: 44
+checked_at: 2026-06-02T22:08:03.546Z
+matched_actions: 38
+action_count: 38
 confidence: medium
-summary: "All 44 spec actions matched source commands; all 8 extra_in_source tokens from prior verdict now covered. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 38 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

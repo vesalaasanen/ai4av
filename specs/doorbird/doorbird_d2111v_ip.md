@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-05-13T00:49:07.900Z
-last_checked_at: 2026-05-14T05:46:50.519Z
-generated_at: 2026-05-14T05:46:50.519Z
+last_checked_at: 2026-06-02T22:06:22.843Z
+generated_at: 2026-06-02T22:06:22.843Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "firmware version compatibility not stated (only specific examples: 000096, 000099, 000108, 000109, 000110, 000129)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T05:46:50.519Z
+  checked_at: 2026-06-02T22:06:22.843Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -439,18 +439,18 @@ source_domains:
 source_urls:
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-05-13T00:49:07.900Z
-last_checked_at: 2026-05-14T05:46:50.519Z
+last_checked_at: 2026-06-02T22:06:22.843Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T05:46:50.519Z
+checked_at: 2026-06-02T22:06:22.843Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 23 spec actions found in source with matching endpoints; transport parameters and auth fully verified in source; no fabrications detected. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

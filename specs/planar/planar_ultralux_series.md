@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-05-14T18:17:19.854Z
-generated_at: 2026-05-14T18:17:19.854Z
+last_checked_at: 2026-06-02T22:13:13.668Z
+generated_at: 2026-06-02T22:13:13.668Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "RS232 cable pinout not specified beyond \"standard straight-through\""
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.854Z
+  checked_at: 2026-06-02T22:13:13.668Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -482,18 +482,18 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-05-14T18:17:19.854Z
+last_checked_at: 2026-06-02T22:13:13.668Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.854Z
+checked_at: 2026-06-02T22:13:13.668Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 44 spec actions (29 set commands + 15 get commands) matched with verbatim hex codes from the source. Transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

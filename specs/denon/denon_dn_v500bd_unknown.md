@@ -22,8 +22,8 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:19:49.200Z
-last_checked_at: 2026-05-20T11:31:52.282Z
-generated_at: 2026-05-20T11:31:52.282Z
+last_checked_at: 2026-06-02T22:05:56.783Z
+generated_at: 2026-06-02T22:05:56.783Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "whether DN-V500BD supports Zone 2/3, HD Radio, network streaming commands"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T11:31:52.282Z
+  checked_at: 2026-06-02T22:05:56.783Z
   matched_actions: 164
   action_count: 164
   confidence: medium
-  summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 164 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1658,18 +1658,18 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:19:49.200Z
-last_checked_at: 2026-05-20T11:31:52.282Z
+last_checked_at: 2026-06-02T22:05:56.783Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T11:31:52.282Z
+checked_at: 2026-06-02T22:05:56.783Z
 matched_actions: 164
 action_count: 164
 confidence: medium
-summary: "All 164 spec actions matched; transport (9600 baud, TCP port 23) verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 164 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

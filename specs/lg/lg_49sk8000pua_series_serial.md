@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-04-26T14:25:43.948Z
-last_checked_at: 2026-04-26T14:25:43.948Z
-generated_at: 2026-04-26T14:25:43.948Z
+retrieved_at: 2026-06-02T22:09:04.031Z
+last_checked_at: 2026-06-02T22:09:04.031Z
+generated_at: 2026-06-02T22:09:04.031Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "3D commands (xt, xv) applicability to this specific model not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T14:25:43.948Z
+  checked_at: 2026-06-02T22:09:04.031Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -543,19 +543,19 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-04-26T14:25:43.948Z
-last_checked_at: 2026-04-26T14:25:43.948Z
+retrieved_at: 2026-06-02T22:09:04.031Z
+last_checked_at: 2026-06-02T22:09:04.031Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T14:25:43.948Z
+checked_at: 2026-06-02T22:09:04.031Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions matched literal commands in source with correct opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

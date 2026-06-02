@@ -17,14 +17,12 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T23:22:08.426Z
-last_checked_at: 2026-05-16T23:22:08.426Z
-generated_at: 2026-05-16T23:22:08.426Z
+retrieved_at: 2026-06-02T22:09:54.484Z
+last_checked_at: 2026-06-02T22:09:54.484Z
+generated_at: 2026-06-02T22:09:54.484Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - /Presets
-  - /Playlist
   - "The source document is the BluOS Custom Integration API shared across NAD, Bluesound, and DALI products; no NAD-T777-specific command set or feature exclusions are documented. Input types available depend on physical hardware."
   - "No persistent settable parameters beyond what is covered in Actions and Feedbacks are described in the source."
   - "No multi-step macros are explicitly documented in the source."
@@ -34,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T23:22:08.426Z
+  checked_at: 2026-06-02T22:09:54.484Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -471,26 +469,24 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T23:22:08.426Z
-last_checked_at: 2026-05-16T23:22:08.426Z
+retrieved_at: 2026-06-02T22:09:54.484Z
+last_checked_at: 2026-06-02T22:09:54.484Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T23:22:08.426Z
+checked_at: 2026-06-02T22:09:54.484Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions matched verbatim source endpoints; transport port 11000 confirmed; only 2 query-only endpoints absent, below short threshold. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- /Presets
-- /Playlist
 - "The source document is the BluOS Custom Integration API shared across NAD, Bluesound, and DALI products; no NAD-T777-specific command set or feature exclusions are documented. Input types available depend on physical hardware."
 - "No persistent settable parameters beyond what is covered in Actions and Feedbacks are described in the source."
 - "No multi-step macros are explicitly documented in the source."

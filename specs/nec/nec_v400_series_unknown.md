@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:16:24.617Z
-last_checked_at: 2026-05-18T16:39:33.254Z
-generated_at: 2026-05-18T16:39:33.254Z
+last_checked_at: 2026-06-02T22:11:57.615Z
+generated_at: 2026-06-02T22:11:57.615Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,11 +47,11 @@ known_gaps:
   - "no persistent settable variables beyond those covered by actions"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:39:33.254Z
+  checked_at: 2026-06-02T22:11:57.615Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands. (20 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (20 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -816,18 +816,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:16:24.617Z
-last_checked_at: 2026-05-18T16:39:33.254Z
+last_checked_at: 2026-06-02T22:11:57.615Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:39:33.254Z
+checked_at: 2026-06-02T22:11:57.615Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions match literal command tokens in source; transport parameters verified; feedbacks represent all source query commands. (20 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (20 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

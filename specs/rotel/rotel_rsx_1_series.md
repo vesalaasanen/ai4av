@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-05-14T18:17:20.137Z
-generated_at: 2026-05-14T18:17:20.137Z
+last_checked_at: 2026-06-02T22:13:37.925Z
+generated_at: 2026-06-02T22:13:37.925Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "checksum algorithm not stated in source -->` and a controller must either (a) capture and replay a real device's response to a known command to learn the algorithm, or (b) try both sum and XOR candidates. **Do not** publish controllers that hard-code a guessed algorithm."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.137Z
-  matched_actions: 151
+  checked_at: 2026-06-02T22:13:37.925Z
+  matched_actions: 159
   action_count: 159
   confidence: medium
-  summary: "All 151 spec actions matched to hex commands in source; transport parameters (19200 baud, 8 bits, no parity, 1 stop) verified. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 159 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1169,18 +1169,18 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-05-14T18:17:20.137Z
+last_checked_at: 2026-06-02T22:13:37.925Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.137Z
-matched_actions: 151
+checked_at: 2026-06-02T22:13:37.925Z
+matched_actions: 159
 action_count: 159
 confidence: medium
-summary: "All 151 spec actions matched to hex commands in source; transport parameters (19200 baud, 8 bits, no parity, 1 stop) verified. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 159 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -29,8 +29,8 @@ source_urls:
   - https://www.digis.ru/upload/iblock/bb4/SICP_application_note_v1.6.pdf
   - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-19T06:48:42.634Z
-last_checked_at: 2026-05-19T17:11:19.531Z
-generated_at: 2026-05-19T17:11:19.531Z
+last_checked_at: 2026-06-02T22:13:03.564Z
+generated_at: 2026-06-02T22:13:03.564Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -46,11 +46,11 @@ known_gaps:
   - "query commands for current power/input/volume state not found in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:11:19.531Z
+  checked_at: 2026-06-02T22:13:03.564Z
   matched_actions: 12
   action_count: 12
   confidence: medium
-  summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 12 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -250,18 +250,18 @@ source_urls:
   - https://www.digis.ru/upload/iblock/bb4/SICP_application_note_v1.6.pdf
   - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-19T06:48:42.634Z
-last_checked_at: 2026-05-19T17:11:19.531Z
+last_checked_at: 2026-06-02T22:13:03.564Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:11:19.531Z
+checked_at: 2026-06-02T22:13:03.564Z
 matched_actions: 12
 action_count: 12
 confidence: medium
-summary: "All 12 spec actions matched exactly with source hex values; transport parameters verified; complete coverage of source command set. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 12 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

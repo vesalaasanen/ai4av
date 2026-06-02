@@ -24,8 +24,8 @@ source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
   - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-05-14T18:17:21.268Z
-generated_at: 2026-05-14T18:17:21.268Z
+last_checked_at: 2026-06-02T22:15:54.188Z
+generated_at: 2026-06-02T22:15:54.188Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "command timing constraints not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.268Z
+  checked_at: 2026-06-02T22:15:54.188Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 25 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -698,18 +698,18 @@ source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
   - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-05-14T18:17:21.268Z
+last_checked_at: 2026-06-02T22:15:54.188Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.268Z
+checked_at: 2026-06-02T22:15:54.188Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 41 spec actions matched literally in source commands; all transport parameters verified; bidirectional coverage confirmed. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 25 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

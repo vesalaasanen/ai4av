@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://static.roland.com/assets/media/pdf/VR-400UHD_Control_eng01_W.pdf
 retrieved_at: 2026-05-04T17:23:56.946Z
-last_checked_at: 2026-05-05T05:41:50.750Z
-generated_at: 2026-05-05T05:41:50.750Z
+last_checked_at: 2026-06-02T22:13:34.191Z
+generated_at: 2026-06-02T22:13:34.191Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "firmware version not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-05T05:41:50.750Z
+  checked_at: 2026-06-02T22:13:34.191Z
   matched_actions: 46
   action_count: 46
   confidence: medium
-  summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 46 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -578,18 +578,18 @@ source_domains:
 source_urls:
   - https://static.roland.com/assets/media/pdf/VR-400UHD_Control_eng01_W.pdf
 retrieved_at: 2026-05-04T17:23:56.946Z
-last_checked_at: 2026-05-05T05:41:50.750Z
+last_checked_at: 2026-06-02T22:13:34.191Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T05:41:50.750Z
+checked_at: 2026-06-02T22:13:34.191Z
 matched_actions: 46
 action_count: 46
 confidence: medium
-summary: "All 46 spec actions match source commands with correct parameters; transport and command coverage verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 46 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

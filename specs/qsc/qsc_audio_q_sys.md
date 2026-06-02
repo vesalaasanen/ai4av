@@ -27,8 +27,8 @@ source_urls:
   - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
   - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
-last_checked_at: 2026-04-27T09:45:16.689Z
-generated_at: 2026-04-27T09:45:16.689Z
+last_checked_at: 2026-06-02T22:13:21.514Z
+generated_at: 2026-06-02T22:13:21.514Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "GPI pinout details not in source, referenced to DPM User's Manual"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:16.689Z
+  checked_at: 2026-06-02T22:13:21.514Z
   matched_actions: 11
   action_count: 11
   confidence: medium
-  summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -233,18 +233,18 @@ source_urls:
   - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
   - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
-last_checked_at: 2026-04-27T09:45:16.689Z
+last_checked_at: 2026-06-02T22:13:21.514Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:16.689Z
+checked_at: 2026-06-02T22:13:21.514Z
 matched_actions: 11
 action_count: 11
 confidence: medium
-summary: "All 11 spec actions match source commands one-to-one; transport parameters verified; dpm100 command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

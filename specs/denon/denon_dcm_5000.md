@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:22.437Z
-last_checked_at: 2026-06-02T17:22:02.967Z
-generated_at: 2026-06-02T17:22:02.967Z
+last_checked_at: 2026-06-02T21:41:25.188Z
+generated_at: 2026-06-02T21:41:25.188Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,7 +44,7 @@ known_gaps:
   - "DCM-5000 model not listed in source compatibility matrix"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:02.967Z
+  checked_at: 2026-06-02T21:41:25.188Z
   matched_actions: 856
   action_count: 856
   confidence: medium
@@ -5632,14 +5632,14 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:22.437Z
-last_checked_at: 2026-06-02T17:22:02.967Z
+last_checked_at: 2026-06-02T21:41:25.188Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:02.967Z
+checked_at: 2026-06-02T21:41:25.188Z
 matched_actions: 856
 action_count: 856
 confidence: medium

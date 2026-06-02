@@ -27,8 +27,8 @@ source_urls:
   - https://belle-nuit.com/archives/9pin.html
   - https://www.drastic.tv/support-59/legacysoftwarehardware/37-miscellaneous-legacy/180-vvcr-422-serial-protocol
 retrieved_at: 2026-04-30T04:24:12.329Z
-last_checked_at: 2026-05-14T18:17:20.786Z
-generated_at: 2026-05-14T18:17:20.786Z
+last_checked_at: 2026-06-02T22:14:56.702Z
+generated_at: 2026-06-02T22:14:56.702Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "authentication credentials or token format not applicable (no auth)."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.786Z
-  matched_actions: 111
+  checked_at: 2026-06-02T22:14:56.702Z
+  matched_actions: 122
   action_count: 122
   confidence: medium
-  summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 122 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1385,18 +1385,18 @@ source_urls:
   - https://belle-nuit.com/archives/9pin.html
   - https://www.drastic.tv/support-59/legacysoftwarehardware/37-miscellaneous-legacy/180-vvcr-422-serial-protocol
 retrieved_at: 2026-04-30T04:24:12.329Z
-last_checked_at: 2026-05-14T18:17:20.786Z
+last_checked_at: 2026-06-02T22:14:56.702Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.786Z
-matched_actions: 111
+checked_at: 2026-06-02T22:14:56.702Z
+matched_actions: 122
 action_count: 122
 confidence: medium
-summary: "All 111 spec actions matched to VISCA over IP source commands; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 122 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

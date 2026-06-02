@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:56.757Z
-last_checked_at: 2026-04-25T21:29:37.346Z
-generated_at: 2026-04-25T21:29:37.346Z
+last_checked_at: 2026-06-02T22:11:29.924Z
+generated_at: 2026-06-02T22:11:29.924Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "Lens control commands (053-x series) — applicability depends on lens option; source does not specify which models have lens"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:29:37.346Z
+  checked_at: 2026-06-02T22:11:29.924Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -516,18 +516,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:56.757Z
-last_checked_at: 2026-04-25T21:29:37.346Z
+last_checked_at: 2026-06-02T22:11:29.924Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:29:37.346Z
+checked_at: 2026-06-02T22:11:29.924Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions have direct semantic matches in the source command reference; serial baud rates 115200/38400/19200/9600/4800 bps and TCP port 7142 verified; feedbacks without query_command correspond to source query commands. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

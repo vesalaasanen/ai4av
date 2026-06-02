@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:34:35.932Z
-last_checked_at: 2026-06-02T20:40:37.876Z
-generated_at: 2026-06-02T20:40:37.876Z
+last_checked_at: 2026-06-02T21:41:50.657Z
+generated_at: 2026-06-02T21:41:50.657Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "no IP / network control protocol (TCP port, HTTP base URL, REST endpoints, OSC, UDP) is described anywhere in the source — the only machine control surface is RS-232 plus discrete IR. The presence of a MAC address implies Ethernet, but the protocol on top of Ethernet is not documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T20:40:37.876Z
+  checked_at: 2026-06-02T21:41:50.657Z
   matched_actions: 141
   action_count: 141
   confidence: medium
@@ -1588,14 +1588,14 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:34:35.932Z
-last_checked_at: 2026-06-02T20:40:37.876Z
+last_checked_at: 2026-06-02T21:41:50.657Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T20:40:37.876Z
+checked_at: 2026-06-02T21:41:50.657Z
 matched_actions: 141
 action_count: 141
 confidence: medium

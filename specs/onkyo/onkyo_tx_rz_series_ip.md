@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T11:13:56.778Z
-last_checked_at: 2026-05-14T18:17:19.455Z
-generated_at: 2026-05-14T18:17:19.455Z
+last_checked_at: 2026-06-02T22:12:48.289Z
+generated_at: 2026-06-02T22:12:48.289Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - DVL
-  - SLC
-  - SWL
-  - CTL
-  - DIF
-  - ISF
-  - RAS
-  - TFW
-  - TFH
-  - TCT
-  - TSR
-  - TSB
   - "exact TX-RZ sub-models covered by this protocol version not stated"
   - "firmware version compatibility not stated"
   - "Tone commands for all speaker zones (TFR, TFW, TFH, TCT, TSR, TSB, TSW, ZTN, TN3)"
@@ -55,11 +43,11 @@ known_gaps:
   - "whether TX-RZ series supports Zone 4 commands or if that is limited to specific models"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.455Z
-  matched_actions: 72
+  checked_at: 2026-06-02T22:12:48.289Z
+  matched_actions: 74
   action_count: 74
-  confidence: low
-  summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol (16 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 74 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -980,35 +968,23 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T11:13:56.778Z
-last_checked_at: 2026-05-14T18:17:19.455Z
+last_checked_at: 2026-06-02T22:12:48.289Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.455Z
-matched_actions: 72
+checked_at: 2026-06-02T22:12:48.289Z
+matched_actions: 74
 action_count: 74
-confidence: low
-summary: "All 72 spec actions match literals in source; transport values confirmed; spec is verified core subset of comprehensive ISCP protocol (16 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 74 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- DVL
-- SLC
-- SWL
-- CTL
-- DIF
-- ISF
-- RAS
-- TFW
-- TFH
-- TCT
-- TSR
-- TSB
 - "exact TX-RZ sub-models covered by this protocol version not stated"
 - "firmware version compatibility not stated"
 - "Tone commands for all speaker zones (TFR, TFW, TFH, TCT, TSR, TSB, TSW, ZTN, TN3)"

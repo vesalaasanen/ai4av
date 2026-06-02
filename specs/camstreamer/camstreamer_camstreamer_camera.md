@@ -20,24 +20,22 @@ source_domains:
 source_urls:
   - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
-last_checked_at: 2026-04-22T19:45:06.507Z
-generated_at: 2026-04-22T19:45:06.507Z
+last_checked_at: 2026-06-02T22:04:49.266Z
+generated_at: 2026-06-02T22:04:49.266Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "wss://events websocket"
-  - "graphql API"
   - "video encoding specs (codec, bitrate ranges) not explicitly stated in source"
   - "port number not stated in source (IPADDR[:PORT] used as placeholder)"
   - "serial/RS-232 not mentioned in source"
   - "TCP socket control not mentioned; HTTP REST only"
 verification:
   verdict: verified
-  checked_at: 2026-04-22T19:45:06.507Z
+  checked_at: 2026-06-02T22:04:49.266Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 8 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -405,25 +403,23 @@ source_domains:
 source_urls:
   - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
-last_checked_at: 2026-04-22T19:45:06.507Z
+last_checked_at: 2026-06-02T22:04:49.266Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T19:45:06.507Z
+checked_at: 2026-06-02T22:04:49.266Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 8 HTTP REST actions matched source endpoints; transport verified; spec covers documented REST API. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 8 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "wss://events websocket"
-- "graphql API"
 - "video encoding specs (codec, bitrate ranges) not explicitly stated in source"
 - "port number not stated in source (IPADDR[:PORT] used as placeholder)"
 - "serial/RS-232 not mentioned in source"

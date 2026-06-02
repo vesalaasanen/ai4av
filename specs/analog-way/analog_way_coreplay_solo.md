@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/CorePlay/Common/API/CoreAPI+1.1.3+HTML/coreapi.html
 retrieved_at: 2026-05-08T15:20:40.281Z
-last_checked_at: 2026-05-14T18:17:13.952Z
-generated_at: 2026-05-14T18:17:13.952Z
+last_checked_at: 2026-06-02T21:39:40.425Z
+generated_at: 2026-06-02T21:39:40.425Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:13.952Z
+  checked_at: 2026-06-02T21:39:40.425Z
   matched_actions: 33
   action_count: 33
   confidence: medium
-  summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 33 REST API endpoints documented in source with correct HTTP methods (GET/POST/DELETE), paths, and parameters for v1 API. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -576,18 +576,18 @@ source_domains:
 source_urls:
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/CorePlay/Common/API/CoreAPI+1.1.3+HTML/coreapi.html
 retrieved_at: 2026-05-08T15:20:40.281Z
-last_checked_at: 2026-05-14T18:17:13.952Z
+last_checked_at: 2026-06-02T21:39:40.425Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:13.952Z
+checked_at: 2026-06-02T21:39:40.425Z
 matched_actions: 33
 action_count: 33
 confidence: medium
-summary: "All 34 spec actions mapped cleanly to documented REST endpoints with correct methods, paths, and parameters. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 33 REST API endpoints documented in source with correct HTTP methods (GET/POST/DELETE), paths, and parameters for v1 API. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

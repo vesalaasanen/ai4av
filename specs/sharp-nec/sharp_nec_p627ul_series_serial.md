@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
-last_checked_at: 2026-04-26T22:51:42.920Z
-generated_at: 2026-04-26T22:51:42.920Z
+last_checked_at: 2026-06-02T22:14:12.305Z
+generated_at: 2026-06-02T22:14:12.305Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "TCP port 7142 from LAN section not used in serial-only spec but included for completeness since source covers both interfaces"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:51:42.920Z
+  checked_at: 2026-06-02T22:14:12.305Z
   matched_actions: 52
   action_count: 52
   confidence: medium
-  summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 52 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -630,18 +630,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:32.506Z
-last_checked_at: 2026-04-26T22:51:42.920Z
+last_checked_at: 2026-06-02T22:14:12.305Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:51:42.920Z
+checked_at: 2026-06-02T22:14:12.305Z
 matched_actions: 52
 action_count: 52
 confidence: medium
-summary: "All 52 spec actions match distinct source commands; baud/data/parity/stop settings verified in source serial communication table. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 52 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

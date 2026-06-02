@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://developer.arylic.com/tcpapi/
 retrieved_at: 2026-05-15T00:32:24.701Z
-last_checked_at: 2026-05-15T21:12:42.635Z
-generated_at: 2026-05-15T21:12:42.635Z
+last_checked_at: 2026-06-02T21:39:53.246Z
+generated_at: 2026-06-02T21:39:53.246Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "precise checksum calculation for binary packet — source says \"sum of all payload bytes\" but no worked example beyond MCU+VOL+050"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:12:42.635Z
+  checked_at: 2026-06-02T21:39:53.246Z
   matched_actions: 45
   action_count: 45
   confidence: medium
-  summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete TCP API coverage with volume, playback, preset, EQ, and system commands (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -621,18 +621,18 @@ source_domains:
 source_urls:
   - https://developer.arylic.com/tcpapi/
 retrieved_at: 2026-05-15T00:32:24.701Z
-last_checked_at: 2026-05-15T21:12:42.635Z
+last_checked_at: 2026-06-02T21:39:53.246Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:12:42.635Z
+checked_at: 2026-06-02T21:39:53.246Z
 matched_actions: 45
 action_count: 45
 confidence: medium
-summary: "All 45 spec actions matched literal commands in source; transport parameters verified; AP8064 platform correctly distinguished from BP10XX. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete TCP API coverage with volume, playback, preset, EQ, and system commands (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

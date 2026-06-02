@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://oss.novastar.tech/uploads/2025/09/Central-Control-Protocol-Instructions-V1.5.0.pdf
 retrieved_at: 2026-05-14T10:50:21.926Z
-last_checked_at: 2026-05-18T16:39:34.697Z
-generated_at: 2026-05-18T16:39:34.697Z
+last_checked_at: 2026-06-02T22:12:44.825Z
+generated_at: 2026-06-02T22:12:44.825Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "query commands to read current brightness, preset, or mode not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:39:34.697Z
+  checked_at: 2026-06-02T22:12:44.825Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -276,18 +276,18 @@ source_domains:
 source_urls:
   - https://oss.novastar.tech/uploads/2025/09/Central-Control-Protocol-Instructions-V1.5.0.pdf
 retrieved_at: 2026-05-14T10:50:21.926Z
-last_checked_at: 2026-05-18T16:39:34.697Z
+last_checked_at: 2026-06-02T22:12:44.825Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:39:34.697Z
+checked_at: 2026-06-02T22:12:44.825Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 19 spec actions match distinct source commands with complete register/parameter documentation; all transport parameters verified verbatim in source. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

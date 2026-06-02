@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://audioresearch.com/new_website/wp-content/uploads/2024/11/DSPre-Manual.pdf
 retrieved_at: 2026-04-30T04:32:54.782Z
-last_checked_at: 2026-04-23T15:12:39.639Z
-generated_at: 2026-04-23T15:12:39.639Z
+last_checked_at: 2026-06-02T21:47:54.015Z
+generated_at: 2026-06-02T21:47:54.015Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "whether BNC input can be directly selected or only via Input Up/Down cycling"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:12:39.639Z
+  checked_at: 2026-06-02T21:47:54.015Z
   matched_actions: 40
   action_count: 40
   confidence: medium
-  summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 40 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -431,18 +431,18 @@ source_domains:
 source_urls:
   - https://audioresearch.com/new_website/wp-content/uploads/2024/11/DSPre-Manual.pdf
 retrieved_at: 2026-04-30T04:32:54.782Z
-last_checked_at: 2026-04-23T15:12:39.639Z
+last_checked_at: 2026-06-02T21:47:54.015Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:12:39.639Z
+checked_at: 2026-06-02T21:47:54.015Z
 matched_actions: 40
 action_count: 40
 confidence: medium
-summary: "All 40 spec actions matched literally in source; transport parameters verified; shapes correct. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 40 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

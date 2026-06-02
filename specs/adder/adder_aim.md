@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
 retrieved_at: 2026-04-30T04:40:32.650Z
-last_checked_at: 2026-05-14T18:17:13.857Z
-generated_at: 2026-05-14T18:17:13.857Z
+last_checked_at: 2026-06-02T21:39:33.410Z
+generated_at: 2026-06-02T21:39:33.410Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "error code字典 not provided in source beyond example codes 2, 3, 9, 17, 210, 231"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:13.857Z
+  checked_at: 2026-06-02T21:39:33.410Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 26 action commands in spec are directly traceable to source documentation with matching parameters and transport (HTTP REST). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -587,18 +587,18 @@ source_domains:
 source_urls:
   - "https://support.adder.com/tiki/tiki-index.php?page=ALIF%3A%20AIM%20API"
 retrieved_at: 2026-04-30T04:40:32.650Z
-last_checked_at: 2026-05-14T18:17:13.857Z
+last_checked_at: 2026-06-02T21:39:33.410Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:13.857Z
+checked_at: 2026-06-02T21:39:33.410Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 30 spec actions matched their documented API method counterparts; transport base URL and auth type verified against source. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 26 action commands in spec are directly traceable to source documentation with matching parameters and transport (HTTP REST). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

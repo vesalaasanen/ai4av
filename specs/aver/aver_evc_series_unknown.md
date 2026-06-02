@@ -28,8 +28,8 @@ source_domains:
 source_urls:
   - "https://www.averusa.com/pro-av/downloads/control-codes/AVer%20Pro-AV%20PTZ%20Visca%20over%20IP-UDP%20and%20RS-232%20Guide.pdf"
 retrieved_at: 2026-05-14T11:06:23.093Z
-last_checked_at: 2026-05-14T21:34:32.330Z
-generated_at: 2026-05-14T21:34:32.330Z
+last_checked_at: 2026-06-02T21:40:21.233Z
+generated_at: 2026-06-02T21:40:21.233Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "no unsolicited notifications documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:34:32.330Z
+  checked_at: 2026-06-02T21:40:21.233Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "spec action count: 9 (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -189,18 +189,18 @@ source_domains:
 source_urls:
   - "https://www.averusa.com/pro-av/downloads/control-codes/AVer%20Pro-AV%20PTZ%20Visca%20over%20IP-UDP%20and%20RS-232%20Guide.pdf"
 retrieved_at: 2026-05-14T11:06:23.093Z
-last_checked_at: 2026-05-14T21:34:32.330Z
+last_checked_at: 2026-06-02T21:40:21.233Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:34:32.330Z
+checked_at: 2026-06-02T21:40:21.233Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All nine spec actions matched verbatim hex codes in source; transport parameters (UDP port 52381, RS-232 9600 baud) confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "spec action count: 9 (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T22:51:54.816Z
-last_checked_at: 2026-05-16T22:51:54.816Z
-generated_at: 2026-05-16T22:51:54.816Z
+retrieved_at: 2026-06-02T22:09:48.379Z
+last_checked_at: 2026-06-02T22:09:48.379Z
+generated_at: 2026-06-02T22:09:48.379Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T22:51:54.816Z
+  checked_at: 2026-06-02T22:09:48.379Z
   matched_actions: 33
   action_count: 33
   confidence: medium
-  summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 33 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -465,19 +465,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T22:51:54.816Z
-last_checked_at: 2026-05-16T22:51:54.816Z
+retrieved_at: 2026-06-02T22:09:48.379Z
+last_checked_at: 2026-06-02T22:09:48.379Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T22:51:54.816Z
+checked_at: 2026-06-02T22:09:48.379Z
 matched_actions: 33
 action_count: 33
 confidence: medium
-summary: "All 33 spec actions map one-to-one to documented endpoints in the BluOS CI API source; transport confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 33 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

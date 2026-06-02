@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:44:27.857Z
-last_checked_at: 2026-05-20T05:31:54.925Z
-generated_at: 2026-05-20T05:31:54.925Z
+last_checked_at: 2026-06-02T22:04:08.726Z
+generated_at: 2026-06-02T22:04:08.726Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "any peripheral-specific properties (DMX, lens motorization, additional illumination sources) not enumerated in the static API list must be discovered via introspection per-unit."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T05:31:54.925Z
-  matched_actions: 25
-  action_count: 25
+  checked_at: 2026-06-02T22:04:08.726Z
+  matched_actions: 86
+  action_count: 86
   confidence: medium
-  summary: "All 25 spec actions matched source JSON-RPC methods; transport (TCP 9090, serial 19200/8/N/1) verified verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 86 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1085,18 +1085,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:44:27.857Z
-last_checked_at: 2026-05-20T05:31:54.925Z
+last_checked_at: 2026-06-02T22:04:08.726Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T05:31:54.925Z
-matched_actions: 25
-action_count: 25
+checked_at: 2026-06-02T22:04:08.726Z
+matched_actions: 86
+action_count: 86
 confidence: medium
-summary: "All 25 spec actions matched source JSON-RPC methods; transport (TCP 9090, serial 19200/8/N/1) verified verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 86 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

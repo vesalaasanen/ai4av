@@ -22,8 +22,8 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:38:54.077Z
-last_checked_at: 2026-05-18T16:36:42.443Z
-generated_at: 2026-05-18T16:36:42.443Z
+last_checked_at: 2026-06-02T22:10:58.135Z
+generated_at: 2026-06-02T22:10:58.135Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "no firmware version compatibility stated -->Spec generated. Key gaps: Appendix tables missing (input terminal enums, aspect values, eco mode values, model codes). Baud rate default and flow control unstated. Serial + TCP on port 7142. 40+ commands with full hex frames documented."
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:36:42.443Z
+  checked_at: 2026-06-02T22:10:58.135Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -664,18 +664,18 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:38:54.077Z
-last_checked_at: 2026-05-18T16:36:42.443Z
+last_checked_at: 2026-06-02T22:10:58.135Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:36:42.443Z
+checked_at: 2026-06-02T22:10:58.135Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions matched literal hex commands in source; all query commands covered by feedbacks; transport parameters verified; bidirectional coverage confirmed. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

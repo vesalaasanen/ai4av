@@ -41,8 +41,8 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:39.184Z
-last_checked_at: 2026-05-14T18:17:17.138Z
-generated_at: 2026-05-14T18:17:17.138Z
+last_checked_at: 2026-06-02T22:08:28.977Z
+generated_at: 2026-06-02T22:08:28.977Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -58,11 +58,11 @@ known_gaps:
   - "Picture Mode enquiry code not documented (no feedback for current picture mode)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.138Z
+  checked_at: 2026-06-02T22:08:28.977Z
   matched_actions: 124
   action_count: 124
   confidence: medium
-  summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 124 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1117,18 +1117,18 @@ source_domains:
 source_urls:
   - https://support.jvc.com/consumer/support/documents/DILAremoteControlGuide.pdf
 retrieved_at: 2026-04-30T04:26:39.184Z
-last_checked_at: 2026-05-14T18:17:17.138Z
+last_checked_at: 2026-06-02T22:08:28.977Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.138Z
+checked_at: 2026-06-02T22:08:28.977Z
 matched_actions: 124
 action_count: 124
 confidence: medium
-summary: "Every spec action matched literally in source; all transport parameters confirmed; bidirectional coverage verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 124 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

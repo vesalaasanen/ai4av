@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T17:22:17.499Z
-generated_at: 2026-06-02T17:22:17.499Z
+last_checked_at: 2026-06-02T21:41:43.518Z
+generated_at: 2026-06-02T21:41:43.518Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "source contains no safety warnings, interlocks, or power-on sequencing requirements for RS-232."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:17.499Z
+  checked_at: 2026-06-02T21:41:43.518Z
   matched_actions: 36
   action_count: 36
   confidence: medium
@@ -406,14 +406,14 @@ source_domains:
 source_urls:
   - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T17:22:17.499Z
+last_checked_at: 2026-06-02T21:41:43.518Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:17.499Z
+checked_at: 2026-06-02T21:41:43.518Z
 matched_actions: 36
 action_count: 36
 confidence: medium

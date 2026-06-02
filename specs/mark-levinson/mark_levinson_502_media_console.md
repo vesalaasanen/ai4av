@@ -20,24 +20,22 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-05-14T18:17:18.075Z
-generated_at: 2026-05-14T18:17:18.075Z
+last_checked_at: 2026-06-02T22:09:34.497Z
+generated_at: 2026-06-02T22:09:34.497Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - FAULT
-  - WAIT_TEST
   - "no multi-step sequences described in source"
   - "no explicit safety interlock procedures for power sequencing documented in source"
   - "firmware version compatibility range not stated"
   - "DHCP configuration details beyond \"default behavior\" not fully specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.075Z
+  checked_at: 2026-06-02T22:09:34.497Z
   matched_actions: 63
   action_count: 63
   confidence: medium
-  summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -971,25 +969,23 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-05-14T18:17:18.075Z
+last_checked_at: 2026-06-02T22:09:34.497Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.075Z
+checked_at: 2026-06-02T22:09:34.497Z
 matched_actions: 63
 action_count: 63
 confidence: medium
-summary: "All 105 spec actions matched source commands; FAULT and WAIT_TEST correctly omitted as non-controllable; all transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- FAULT
-- WAIT_TEST
 - "no multi-step sequences described in source"
 - "no explicit safety interlock procedures for power sequencing documented in source"
 - "firmware version compatibility range not stated"

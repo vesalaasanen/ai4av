@@ -20,26 +20,22 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T17:00:01.769Z
-last_checked_at: 2026-05-14T18:17:16.150Z
-generated_at: 2026-05-14T18:17:16.150Z
+last_checked_at: 2026-06-02T22:07:43.813Z
+generated_at: 2026-06-02T22:07:43.813Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - SPKM
-  - B2BM
-  - USBM
-  - PSHF
   - "firmware version compatibility not stated in source"
   - "exact 55U75QG model-specific command subset not stated; source covers \"Hisense Prosumer TV\" generically"
   - "POWER ON COMMAND SETTING (PWRE query) not available in STANDBY mode per source note"
   - "POIS (Power On Input Selection) additional HDMI/USB values may exist; source picture text was truncated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.150Z
+  checked_at: 2026-06-02T22:07:43.813Z
   matched_actions: 43
   action_count: 43
   confidence: medium
-  summary: "All 74 spec actions match source commands verbatim; transport matches; source has 4 extra command families (SPKM, B2BM, USBM, PSHF) within the 5-command threshold. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 43 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -962,27 +958,23 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T17:00:01.769Z
-last_checked_at: 2026-05-14T18:17:16.150Z
+last_checked_at: 2026-06-02T22:07:43.813Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.150Z
+checked_at: 2026-06-02T22:07:43.813Z
 matched_actions: 43
 action_count: 43
 confidence: medium
-summary: "All 74 spec actions match source commands verbatim; transport matches; source has 4 extra command families (SPKM, B2BM, USBM, PSHF) within the 5-command threshold. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 43 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- SPKM
-- B2BM
-- USBM
-- PSHF
 - "firmware version compatibility not stated in source"
 - "exact 55U75QG model-specific command subset not stated; source covers \"Hisense Prosumer TV\" generically"
 - "POWER ON COMMAND SETTING (PWRE query) not available in STANDBY mode per source note"

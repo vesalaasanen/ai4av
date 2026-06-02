@@ -20,14 +20,11 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-05-14T18:17:15.197Z
-generated_at: 2026-05-14T18:17:15.197Z
+last_checked_at: 2026-06-02T22:05:46.100Z
+generated_at: 2026-06-02T22:05:46.100Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - /info
-  - switch-multiple-variants-by-id
-  - switch-multiple-variants-by-name
   - "physical RS-232 serial control not documented in source"
   - "no safety warnings or interlock procedures in source"
   - "physical RS-232 serial protocol not documented"
@@ -36,11 +33,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.197Z
+  checked_at: 2026-06-02T22:05:46.100Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 26 spec actions verified against source literals; transport parameters confirmed verbatim; core API coverage is comprehensive. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -360,26 +357,23 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-05-14T18:17:15.197Z
+last_checked_at: 2026-06-02T22:05:46.100Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.197Z
+checked_at: 2026-06-02T22:05:46.100Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 26 spec actions verified against source literals; transport parameters confirmed verbatim; core API coverage is comprehensive. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- /info
-- switch-multiple-variants-by-id
-- switch-multiple-variants-by-name
 - "physical RS-232 serial control not documented in source"
 - "no safety warnings or interlock procedures in source"
 - "physical RS-232 serial protocol not documented"

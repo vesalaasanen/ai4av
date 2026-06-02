@@ -20,24 +20,21 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-05-14T18:17:20.534Z
-generated_at: 2026-05-14T18:17:20.534Z
+last_checked_at: 2026-06-02T22:14:35.512Z
+generated_at: 2026-06-02T22:14:35.512Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "Sysex frame structure F0h F7h"
-  - "DTR voltage 5-12 volts requirement"
-  - "DIP switch preset configuration"
   - "no firmware version or protocol revision stated in source"
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.534Z
-  matched_actions: 49
-  action_count: 49
+  checked_at: 2026-06-02T22:14:35.512Z
+  matched_actions: 61
+  action_count: 61
   confidence: medium
-  summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 61 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1005,26 +1002,23 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-05-14T18:17:20.534Z
+last_checked_at: 2026-06-02T22:14:35.512Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.534Z
-matched_actions: 49
-action_count: 49
+checked_at: 2026-06-02T22:14:35.512Z
+matched_actions: 61
+action_count: 61
 confidence: medium
-summary: "All 50 spec actions and feedbacks match source commands; all transport parameters verified; known bugs documented. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 61 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "Sysex frame structure F0h F7h"
-- "DTR voltage 5-12 volts requirement"
-- "DIP switch preset configuration"
 - "no firmware version or protocol revision stated in source"
 - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
 - "firmware version compatibility not stated in source"

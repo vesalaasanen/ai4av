@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.datasatdigital.com/download/55/ap25/2762/tn-h413_rev-d_ap20-ap25-remote-command-api.pdf
 retrieved_at: 2026-04-30T04:35:03.888Z
-last_checked_at: 2026-06-02T17:21:59.790Z
-generated_at: 2026-06-02T17:21:59.790Z
+last_checked_at: 2026-06-02T21:41:20.509Z
+generated_at: 2026-06-02T21:41:20.509Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "baud rate, data bits, parity, stop bits, flow control not stated in source. Firmware version compatibility not stated. Power on/off commands not present in source. Input routing commands not present in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:59.790Z
+  checked_at: 2026-06-02T21:41:20.509Z
   matched_actions: 18
   action_count: 18
   confidence: medium
@@ -341,14 +341,14 @@ source_domains:
 source_urls:
   - https://www.datasatdigital.com/download/55/ap25/2762/tn-h413_rev-d_ap20-ap25-remote-command-api.pdf
 retrieved_at: 2026-04-30T04:35:03.888Z
-last_checked_at: 2026-06-02T17:21:59.790Z
+last_checked_at: 2026-06-02T21:41:20.509Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:59.790Z
+checked_at: 2026-06-02T21:41:20.509Z
 matched_actions: 18
 action_count: 18
 confidence: medium

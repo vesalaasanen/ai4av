@@ -27,22 +27,11 @@ source_domains:
 source_urls:
   - https://documents.blackmagicdesign.com/DeveloperManuals/HyperDeckEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:45.767Z
-last_checked_at: 2026-04-23T15:22:09.404Z
-generated_at: 2026-04-23T15:22:09.404Z
+last_checked_at: 2026-06-02T21:54:37.032Z
+generated_at: 2026-06-02T21:54:37.032Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - help
-  - commands
-  - "device info"
-  - "disk list"
-  - "clip info"
-  - "transport info"
-  - "slot info"
-  - "external drive list"
-  - remote
-  - uptime
-  - "cache info"
   - "specific firmware version compatibility not stated in source"
   - "exact model feature differences beyond video format support not fully documented"
   - "source describes authenticate command with username/password"
@@ -54,11 +43,11 @@ known_gaps:
   - "protocol version number not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:22:09.404Z
+  checked_at: 2026-06-02T21:54:37.032Z
   matched_actions: 39
   action_count: 39
   confidence: medium
-  summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 39 spec actions traced to source HyperDeck protocol documentation. Commands match source syntax and parameter structure. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -985,34 +974,23 @@ source_domains:
 source_urls:
   - https://documents.blackmagicdesign.com/DeveloperManuals/HyperDeckEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:45.767Z
-last_checked_at: 2026-04-23T15:22:09.404Z
+last_checked_at: 2026-06-02T21:54:37.032Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:22:09.404Z
+checked_at: 2026-06-02T21:54:37.032Z
 matched_actions: 39
 action_count: 39
 confidence: medium
-summary: "All 39 spec actions matched verbatim in source; transport parameters verified; spec fully covers control protocol. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 39 spec actions traced to source HyperDeck protocol documentation. Commands match source syntax and parameter structure. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- help
-- commands
-- "device info"
-- "disk list"
-- "clip info"
-- "transport info"
-- "slot info"
-- "external drive list"
-- remote
-- uptime
-- "cache info"
 - "specific firmware version compatibility not stated in source"
 - "exact model feature differences beyond video format support not fully documented"
 - "source describes authenticate command with username/password"

@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:31:02.107Z
-last_checked_at: 2026-05-16T18:31:02.107Z
-generated_at: 2026-05-16T18:31:02.107Z
+retrieved_at: 2026-06-02T21:54:10.101Z
+last_checked_at: 2026-06-02T21:54:10.101Z
+generated_at: 2026-06-02T21:54:10.101Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T18:31:02.107Z
+  checked_at: 2026-06-02T21:54:10.101Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 32 spec actions traced to BluOS Custom Integration API v1.7. Standard playback, volume, grouping, preset, and queue operations documented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -638,19 +638,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:31:02.107Z
-last_checked_at: 2026-05-16T18:31:02.107Z
+retrieved_at: 2026-06-02T21:54:10.101Z
+last_checked_at: 2026-06-02T21:54:10.101Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T18:31:02.107Z
+checked_at: 2026-06-02T21:54:10.101Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 32 spec actions map 1:1 to documented endpoints in the source; transport port 11000 confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 32 spec actions traced to BluOS Custom Integration API v1.7. Standard playback, volume, grouping, preset, and queue operations documented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -28,8 +28,8 @@ source_urls:
   - https://www.manualslib.com/manual/2867393/Extron-Electronics-Smp-300-Series.html
   - https://www.extron.com/download/
 retrieved_at: 2026-05-13T02:01:02.032Z
-last_checked_at: 2026-05-20T12:13:14.227Z
-generated_at: 2026-05-20T12:13:14.227Z
+last_checked_at: 2026-06-02T22:07:10.083Z
+generated_at: 2026-06-02T22:07:10.083Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "precise command syntax for audio output routing command incomplete in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T12:13:14.227Z
-  matched_actions: 171
-  action_count: 171
+  checked_at: 2026-06-02T22:07:10.083Z
+  matched_actions: 110
+  action_count: 110
   confidence: medium
-  summary: "All 171 actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 110 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1668,18 +1668,18 @@ source_urls:
   - https://www.manualslib.com/manual/2867393/Extron-Electronics-Smp-300-Series.html
   - https://www.extron.com/download/
 retrieved_at: 2026-05-13T02:01:02.032Z
-last_checked_at: 2026-05-20T12:13:14.227Z
+last_checked_at: 2026-06-02T22:07:10.083Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T12:13:14.227Z
-matched_actions: 171
-action_count: 171
+checked_at: 2026-06-02T22:07:10.083Z
+matched_actions: 110
+action_count: 110
 confidence: medium
-summary: "All 171 actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 110 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

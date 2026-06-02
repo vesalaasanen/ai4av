@@ -20,21 +20,11 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-04T06:15:26.319Z
-last_checked_at: 2026-05-14T18:17:14.232Z
-generated_at: 2026-05-14T18:17:14.232Z
+last_checked_at: 2026-06-02T21:47:49.953Z
+generated_at: 2026-06-02T21:47:49.953Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - image.source.list
-  - property.subscribe
-  - property.unsubscribe
-  - property.get
-  - signal.subscribe
-  - signal.unsubscribe
-  - introspect
-  - system.activity
-  - system.reset
-  - authenticate
   - "exact Balder sub-models not enumerated in source (doc covers generic Pulse API for UDX/Balder families)"
   - "no explicit multi-step macro sequences documented in source"
   - "full interlock procedures and safety warnings not detailed in source"
@@ -45,11 +35,11 @@ known_gaps:
   - "RS-232 pinout detailed for 9-pin but no mention of RJ-45 serial if applicable"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.232Z
+  checked_at: 2026-06-02T21:47:49.953Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 31 spec actions match source JSON-RPC methods; transport fully verified; comprehensive coverage of power, image control, optics, and system management commands. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -701,33 +691,23 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-04T06:15:26.319Z
-last_checked_at: 2026-05-14T18:17:14.232Z
+last_checked_at: 2026-06-02T21:47:49.953Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.232Z
+checked_at: 2026-06-02T21:47:49.953Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 31 spec actions match source JSON-RPC methods; transport fully verified; comprehensive coverage of power, image control, optics, and system management commands. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- image.source.list
-- property.subscribe
-- property.unsubscribe
-- property.get
-- signal.subscribe
-- signal.unsubscribe
-- introspect
-- system.activity
-- system.reset
-- authenticate
 - "exact Balder sub-models not enumerated in source (doc covers generic Pulse API for UDX/Balder families)"
 - "no explicit multi-step macro sequences documented in source"
 - "full interlock procedures and safety warnings not detailed in source"

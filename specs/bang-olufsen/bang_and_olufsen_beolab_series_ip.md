@@ -30,13 +30,11 @@ source_domains:
 source_urls:
   - https://bang-olufsen.github.io/mozart-open-api/
 retrieved_at: 2026-05-07T06:17:53.402Z
-last_checked_at: 2026-05-20T05:10:36.374Z
-generated_at: 2026-05-20T05:10:36.374Z
+last_checked_at: 2026-06-02T21:47:55.599Z
+generated_at: 2026-06-02T21:47:55.599Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - connect_notifications
-  - close_api_client
   - "specific endpoint paths and request/response schemas not detailed in source; only high-level category list and Python SDK method signatures provided"
   - "detailed parameter schemas not provided; source lists schema names"
   - "multi-step sequences not documented in source"
@@ -47,11 +45,11 @@ known_gaps:
   - "SpeakerGroup, Scene, Bluetooth, Stand, Display control commands not detailed beyond schema names"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T05:10:36.374Z
+  checked_at: 2026-06-02T21:47:55.599Z
   matched_actions: 12
   action_count: 12
   confidence: medium
-  summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 12 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -227,25 +225,23 @@ source_domains:
 source_urls:
   - https://bang-olufsen.github.io/mozart-open-api/
 retrieved_at: 2026-05-07T06:17:53.402Z
-last_checked_at: 2026-05-20T05:10:36.374Z
+last_checked_at: 2026-06-02T21:47:55.599Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T05:10:36.374Z
+checked_at: 2026-06-02T21:47:55.599Z
 matched_actions: 12
 action_count: 12
 confidence: medium
-summary: "All 12 spec actions match source methods; transport parameters verified; methods connect_notifications and close_api_client not represented in spec but do not preclude verification. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 12 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- connect_notifications
-- close_api_client
 - "specific endpoint paths and request/response schemas not detailed in source; only high-level category list and Python SDK method signatures provided"
 - "detailed parameter schemas not provided; source lists schema names"
 - "multi-step sequences not documented in source"

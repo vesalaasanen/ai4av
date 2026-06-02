@@ -25,12 +25,11 @@ source_urls:
   - https://www.extron.com
   - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
 retrieved_at: 2026-05-13T00:44:59.443Z
-last_checked_at: 2026-05-15T21:38:58.162Z
-generated_at: 2026-05-15T21:38:58.162Z
+last_checked_at: 2026-06-02T22:07:08.572Z
+generated_at: 2026-06-02T22:07:08.572Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "Zpx firmware upload"
   - "no settable parameters beyond discrete actions identified"
   - "no multi-step sequences described in source"
   - "no safety warnings or interlock procedures in source"
@@ -38,11 +37,11 @@ known_gaps:
   - "no TCP/IP or network control mentioned — RS-232 only"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:38:58.162Z
+  checked_at: 2026-06-02T22:07:08.572Z
   matched_actions: 22
   action_count: 22
   confidence: medium
-  summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -318,24 +317,23 @@ source_urls:
   - https://www.extron.com
   - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
 retrieved_at: 2026-05-13T00:44:59.443Z
-last_checked_at: 2026-05-15T21:38:58.162Z
+last_checked_at: 2026-06-02T22:07:08.572Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:38:58.162Z
+checked_at: 2026-06-02T22:07:08.572Z
 matched_actions: 22
 action_count: 22
 confidence: medium
-summary: "All 22 spec actions matched verbatim in source; transport verified; only firmware upload excluded from spec. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "Zpx firmware upload"
 - "no settable parameters beyond discrete actions identified"
 - "no multi-step sequences described in source"
 - "no safety warnings or interlock procedures in source"

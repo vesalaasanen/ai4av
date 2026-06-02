@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-05-14T18:17:17.346Z
-generated_at: 2026-05-14T18:17:17.346Z
+last_checked_at: 2026-06-02T22:08:42.302Z
+generated_at: 2026-06-02T22:08:42.302Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "no error code dictionary beyond general protocol framing"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.346Z
+  checked_at: 2026-06-02T22:08:42.302Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 18 spec actions matched source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 8 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -265,18 +265,18 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-05-14T18:17:17.346Z
+last_checked_at: 2026-06-02T22:08:42.302Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.346Z
+checked_at: 2026-06-02T22:08:42.302Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 18 spec actions matched source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 8 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

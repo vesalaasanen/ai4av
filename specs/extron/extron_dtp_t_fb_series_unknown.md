@@ -26,8 +26,8 @@ source_urls:
   - https://www.manualslib.com/manual/1337376/Extron-Electronics-Dtp-T-Fb-332.html
   - "https://www.extron.com/download/get/?path=/download/files/userman/68-2682-50_B.pdf"
 retrieved_at: 2026-05-17T19:54:48.844Z
-last_checked_at: 2026-06-02T17:22:15.241Z
-generated_at: 2026-06-02T17:22:15.241Z
+last_checked_at: 2026-06-02T21:41:42.010Z
+generated_at: 2026-06-02T21:41:42.010Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "differences between 332 and 232 model variants not stated in source; firmware version compatibility not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:15.241Z
+  checked_at: 2026-06-02T21:41:42.010Z
   matched_actions: 62
   action_count: 62
   confidence: medium
@@ -637,14 +637,14 @@ source_urls:
   - https://www.manualslib.com/manual/1337376/Extron-Electronics-Dtp-T-Fb-332.html
   - "https://www.extron.com/download/get/?path=/download/files/userman/68-2682-50_B.pdf"
 retrieved_at: 2026-05-17T19:54:48.844Z
-last_checked_at: 2026-06-02T17:22:15.241Z
+last_checked_at: 2026-06-02T21:41:42.010Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:15.241Z
+checked_at: 2026-06-02T21:41:42.010Z
 matched_actions: 62
 action_count: 62
 confidence: medium

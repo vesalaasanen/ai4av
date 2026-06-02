@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:48:18.070Z
-last_checked_at: 2026-05-20T05:33:28.702Z
-generated_at: 2026-05-20T05:33:28.702Z
+last_checked_at: 2026-06-02T21:49:58.472Z
+generated_at: 2026-06-02T21:49:58.472Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "illumination source types beyond laser (LED, xenon, UHP) not enumerated for this model"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T05:33:28.702Z
+  checked_at: 2026-06-02T21:49:58.472Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -812,18 +812,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:48:18.070Z
-last_checked_at: 2026-05-20T05:33:28.702Z
+last_checked_at: 2026-06-02T21:49:58.472Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T05:33:28.702Z
+checked_at: 2026-06-02T21:49:58.472Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec actions verified against source with complete wire-level method and property matches; transport parameters confirmed verbatim. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

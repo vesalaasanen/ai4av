@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:33.420Z
-last_checked_at: 2026-05-14T18:17:17.051Z
-generated_at: 2026-05-14T18:17:17.051Z
+last_checked_at: 2026-06-02T22:08:21.480Z
+generated_at: 2026-06-02T22:08:21.480Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "XM/SIRIUS/HD Radio command availability for HT-D03 not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.051Z
+  checked_at: 2026-06-02T22:08:21.480Z
   matched_actions: 56
   action_count: 56
   confidence: medium
-  summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -809,18 +809,18 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:33.420Z
-last_checked_at: 2026-05-14T18:17:17.051Z
+last_checked_at: 2026-06-02T22:08:21.480Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.051Z
+checked_at: 2026-06-02T22:08:21.480Z
 matched_actions: 56
 action_count: 56
 confidence: medium
-summary: "All 65 spec actions matched literally against source; transport parameters verified; spec is model-appropriate subset of generic ISCP protocol. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

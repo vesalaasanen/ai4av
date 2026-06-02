@@ -48,8 +48,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:22.476Z
-last_checked_at: 2026-05-14T18:17:18.574Z
-generated_at: 2026-05-14T18:17:18.574Z
+last_checked_at: 2026-06-02T22:10:55.029Z
+generated_at: 2026-06-02T22:10:55.029Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -65,11 +65,11 @@ known_gaps:
   - "Some models support wireless LAN control (NP-PA621U through NP-PA500U) but details not in this doc"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.574Z
+  checked_at: 2026-06-02T22:10:55.029Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -665,18 +665,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:22.476Z
-last_checked_at: 2026-05-14T18:17:18.574Z
+last_checked_at: 2026-06-02T22:10:55.029Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.574Z
+checked_at: 2026-06-02T22:10:55.029Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "Every spec action maps to a NEC PA IP source command; transport parameters verified; full bidirectional coverage confirmed. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-04-26T19:40:52.030Z
-last_checked_at: 2026-04-26T19:40:52.030Z
-generated_at: 2026-04-26T19:40:52.030Z
+retrieved_at: 2026-06-02T22:09:15.961Z
+last_checked_at: 2026-06-02T22:09:15.961Z
+generated_at: 2026-06-02T22:09:15.961Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "firmware version compatibility not stated; behavior of IP control on non-USA firmware not stated; full key-code list is exhaustive but some codes are model-dependent (e.g. 3D, Soccer, REC, AutoConfig)."
 verification:
   verdict: verified
-  checked_at: 2026-04-26T19:40:52.030Z
+  checked_at: 2026-06-02T22:09:15.961Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -624,19 +624,19 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-04-26T19:40:52.030Z
-last_checked_at: 2026-04-26T19:40:52.030Z
+retrieved_at: 2026-06-02T22:09:15.961Z
+last_checked_at: 2026-06-02T22:09:15.961Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T19:40:52.030Z
+checked_at: 2026-06-02T22:09:15.961Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions matched source commands; transport verified; three_d and extended_3d added and confirmed in source. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

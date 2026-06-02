@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:14.307Z
-last_checked_at: 2026-05-14T18:17:20.667Z
-generated_at: 2026-05-14T18:17:20.667Z
+last_checked_at: 2026-06-02T22:14:50.715Z
+generated_at: 2026-06-02T22:14:50.715Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "this spec is sourced from the generic SDN protocol reference; per-device firmware compatibility, per-device motor speed/pulse ranges, the IP_MAX and UI_MAX values, and any \"Somfy Connect UAI+\"-specific extension commands are not stated in the source and must be filled in from device-specific datasheets or a verified integration."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.667Z
+  checked_at: 2026-06-02T22:14:50.715Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 29 spec actions matched with verbatim msg_code values in source; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -540,18 +540,18 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-04-29T08:47:14.307Z
-last_checked_at: 2026-05-14T18:17:20.667Z
+last_checked_at: 2026-06-02T22:14:50.715Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.667Z
+checked_at: 2026-06-02T22:14:50.715Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 29 spec actions matched with verbatim msg_code values in source; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

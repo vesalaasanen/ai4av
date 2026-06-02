@@ -25,8 +25,8 @@ source_urls:
   - https://usermanual.wiki/Document/ZONE4RS232Manual.1088182550
   - https://downloads.biamp.com/assets/docs/default-source/apart-data-sheets/biamp_data_sheet_apart_zone4_aug20.pdf
 retrieved_at: 2026-05-12T19:44:01.856Z
-last_checked_at: 2026-06-02T17:21:13.415Z
-generated_at: 2026-06-02T17:21:13.415Z
+last_checked_at: 2026-06-02T21:39:44.146Z
+generated_at: 2026-06-02T21:39:44.146Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,7 +42,7 @@ known_gaps:
   - "source does not document device firmware version, baud-rate auto-negotiation, or behavior on malformed input."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:13.415Z
+  checked_at: 2026-06-02T21:39:44.146Z
   matched_actions: 85
   action_count: 85
   confidence: medium
@@ -748,14 +748,14 @@ source_urls:
   - https://usermanual.wiki/Document/ZONE4RS232Manual.1088182550
   - https://downloads.biamp.com/assets/docs/default-source/apart-data-sheets/biamp_data_sheet_apart_zone4_aug20.pdf
 retrieved_at: 2026-05-12T19:44:01.856Z
-last_checked_at: 2026-06-02T17:21:13.415Z
+last_checked_at: 2026-06-02T21:39:44.146Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:13.415Z
+checked_at: 2026-06-02T21:39:44.146Z
 matched_actions: 85
 action_count: 85
 confidence: medium

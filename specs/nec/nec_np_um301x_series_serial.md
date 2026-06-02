@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:43.328Z
-last_checked_at: 2026-05-14T18:17:18.753Z
-generated_at: 2026-05-14T18:17:18.753Z
+last_checked_at: 2026-06-02T22:11:12.058Z
+generated_at: 2026-06-02T22:11:12.058Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "pin 7 (RTS) and pin 8 (CTS) are cross-wired but no hardware flow control behavior described"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.753Z
+  checked_at: 2026-06-02T22:11:12.058Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -818,18 +818,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:43.328Z
-last_checked_at: 2026-05-14T18:17:18.753Z
+last_checked_at: 2026-06-02T22:11:12.058Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.753Z
+checked_at: 2026-06-02T22:11:12.058Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 53 spec actions match literal wire tokens in NEC UM301X serial source; transport parameters verified; no fabricated or drifted commands. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

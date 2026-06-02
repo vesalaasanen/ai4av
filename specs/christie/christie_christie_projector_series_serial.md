@@ -20,15 +20,15 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:26:22.212Z
-last_checked_at: 2026-06-02T17:21:51.258Z
-generated_at: 2026-06-02T17:21:51.258Z
+last_checked_at: 2026-06-02T21:41:08.679Z
+generated_at: 2026-06-02T21:41:08.679Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:51.258Z
+  checked_at: 2026-06-02T21:41:08.679Z
   matched_actions: 153
   action_count: 153
   confidence: medium
@@ -1345,14 +1345,14 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:26:22.212Z
-last_checked_at: 2026-06-02T17:21:51.258Z
+last_checked_at: 2026-06-02T21:41:08.679Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:51.258Z
+checked_at: 2026-06-02T21:41:08.679Z
 matched_actions: 153
 action_count: 153
 confidence: medium

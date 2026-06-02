@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-05-04T16:21:51.403Z
-last_checked_at: 2026-05-14T18:17:15.280Z
-generated_at: 2026-05-14T18:17:15.280Z
+last_checked_at: 2026-06-02T22:05:52.122Z
+generated_at: 2026-06-02T22:05:52.122Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "Complete unsolicited event list not enumerated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.280Z
+  checked_at: 2026-06-02T22:05:52.122Z
   matched_actions: 463
   action_count: 463
   confidence: medium
-  summary: "All 632 semantic-id actions matched to source commands; transport parameters verified verbatim in protocol specification. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 463 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -3144,18 +3144,18 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-05-04T16:21:51.403Z
-last_checked_at: 2026-05-14T18:17:15.280Z
+last_checked_at: 2026-06-02T22:05:52.122Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.280Z
+checked_at: 2026-06-02T22:05:52.122Z
 matched_actions: 463
 action_count: 463
 confidence: medium
-summary: "All 632 semantic-id actions matched to source commands; transport parameters verified verbatim in protocol specification. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 463 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

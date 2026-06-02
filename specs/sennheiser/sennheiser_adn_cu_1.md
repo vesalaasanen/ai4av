@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/QG_ADNMediaCtrlProtocol_A02_EN.pdf/1f94ac1ce7b811f0bce7beb43c66122a?attachment=true"
 retrieved_at: 2026-04-30T04:31:23.636Z
-last_checked_at: 2026-04-26T22:46:41.052Z
-generated_at: 2026-04-26T22:46:41.052Z
+last_checked_at: 2026-06-02T22:13:49.014Z
+generated_at: 2026-06-02T22:13:49.014Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "physical RS-232 support not documented, firmware version not stated, authentication token format not applicable (no auth in source)"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:46:41.052Z
+  checked_at: 2026-06-02T22:13:49.014Z
   matched_actions: 47
   action_count: 47
   confidence: medium
-  summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 47 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -756,18 +756,18 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/QG_ADNMediaCtrlProtocol_A02_EN.pdf/1f94ac1ce7b811f0bce7beb43c66122a?attachment=true"
 retrieved_at: 2026-04-30T04:31:23.636Z
-last_checked_at: 2026-04-26T22:46:41.052Z
+last_checked_at: 2026-06-02T22:13:49.014Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:46:41.052Z
+checked_at: 2026-06-02T22:13:49.014Z
 matched_actions: 47
 action_count: 47
 confidence: medium
-summary: "Every spec action matched literal command names in source; transport verified; bidirectional coverage complete. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 47 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

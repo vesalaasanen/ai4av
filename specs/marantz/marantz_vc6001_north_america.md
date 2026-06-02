@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:48.374Z
-last_checked_at: 2026-05-14T18:17:18.018Z
-generated_at: 2026-05-14T18:17:18.018Z
+last_checked_at: 2026-06-02T22:09:33.020Z
+generated_at: 2026-06-02T22:09:33.020Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - SR
-  - Z2CS
-  - Z2CV
-  - Z2HPF
-  - Z2PS
-  - Z2HDA
-  - Z2SLP
-  - Z2STBY
-  - Z3CS
-  - Z3CV
-  - Z3HPF
-  - Z3PS
   - "IR control, front panel button behavior, device discovery protocols"
   - "many PS (parameter) commands act as settable variables but are documented"
   - "complete event catalog not explicitly enumerated in source."
@@ -49,11 +37,11 @@ known_gaps:
   - "firmware update mechanism not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.018Z
+  checked_at: 2026-06-02T22:09:33.020Z
   matched_actions: 55
   action_count: 55
   confidence: medium
-  summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 55 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -653,35 +641,23 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T11:13:48.374Z
-last_checked_at: 2026-05-14T18:17:18.018Z
+last_checked_at: 2026-06-02T22:09:33.020Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.018Z
+checked_at: 2026-06-02T22:09:33.020Z
 matched_actions: 55
 action_count: 55
 confidence: medium
-summary: "All 77 spec actions matched literally to source; transport parameters fully verified; source contains additional device-specific commands not represented in spec. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 55 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- SR
-- Z2CS
-- Z2CV
-- Z2HPF
-- Z2PS
-- Z2HDA
-- Z2SLP
-- Z2STBY
-- Z3CS
-- Z3CV
-- Z3HPF
-- Z3PS
 - "IR control, front panel button behavior, device discovery protocols"
 - "many PS (parameter) commands act as settable variables but are documented"
 - "complete event catalog not explicitly enumerated in source."

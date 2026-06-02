@@ -22,8 +22,8 @@ source_urls:
   - https://storage.googleapis.com/wp-stateless/2019/10/storm-outdoor-tv-manual.pdf
   - https://storage.googleapis.com/wp-stateless/2019/10/pinout-diagram.pdf
 retrieved_at: 2026-05-03T07:18:16.443Z
-last_checked_at: 2026-05-14T18:17:20.266Z
-generated_at: 2026-05-14T18:17:20.266Z
+last_checked_at: 2026-06-02T22:13:56.202Z
+generated_at: 2026-06-02T22:13:56.202Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "exact STRM-42.3-S model variants covered by this protocol not explicitly listed — source covers Storm family broadly"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.266Z
+  checked_at: 2026-06-02T22:13:56.202Z
   matched_actions: 58
   action_count: 58
   confidence: medium
-  summary: "All 68 spec actions matched literally in source; transport parameters verified; full command set represented. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 58 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -724,18 +724,18 @@ source_urls:
   - https://storage.googleapis.com/wp-stateless/2019/10/storm-outdoor-tv-manual.pdf
   - https://storage.googleapis.com/wp-stateless/2019/10/pinout-diagram.pdf
 retrieved_at: 2026-05-03T07:18:16.443Z
-last_checked_at: 2026-05-14T18:17:20.266Z
+last_checked_at: 2026-06-02T22:13:56.202Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.266Z
+checked_at: 2026-06-02T22:13:56.202Z
 matched_actions: 58
 action_count: 58
 confidence: medium
-summary: "All 68 spec actions matched literally in source; transport parameters verified; full command set represented. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 58 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

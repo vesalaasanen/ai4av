@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://web.archive.org/web/20190312114524/https://behringerwiki.musictribe.com/index.php?title=OSC_Remote_Protocol"
 retrieved_at: 2026-04-30T04:40:39.256Z
-last_checked_at: 2026-05-14T18:17:14.428Z
-generated_at: 2026-05-14T18:17:14.428Z
+last_checked_at: 2026-06-02T21:40:53.786Z
+generated_at: 2026-06-02T21:40:53.786Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "specific command syntax for power on/off not detailed"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.428Z
+  checked_at: 2026-06-02T21:40:53.786Z
   matched_actions: 22
   action_count: 22
   confidence: medium
-  summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -396,18 +396,18 @@ source_domains:
 source_urls:
   - "https://web.archive.org/web/20190312114524/https://behringerwiki.musictribe.com/index.php?title=OSC_Remote_Protocol"
 retrieved_at: 2026-04-30T04:40:39.256Z
-last_checked_at: 2026-05-14T18:17:14.428Z
+last_checked_at: 2026-06-02T21:40:53.786Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.428Z
+checked_at: 2026-06-02T21:40:53.786Z
 matched_actions: 22
 action_count: 22
 confidence: medium
-summary: "All 30 spec actions matched literally to OSC paths and response types in source; transport confirmed; bidirectional coverage achieved. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

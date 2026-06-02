@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:53:45.394Z
-last_checked_at: 2026-05-14T21:38:41.419Z
-generated_at: 2026-05-14T21:38:41.419Z
+last_checked_at: 2026-06-02T22:04:18.974Z
+generated_at: 2026-06-02T22:04:18.974Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "Pass code value, default DMX mode, default DMX start channel, exact list of available connectors per chassis variant, firmware version compatibility ranges, and any safety interlocks are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:38:41.419Z
-  matched_actions: 35
-  action_count: 35
+  checked_at: 2026-06-02T22:04:18.974Z
+  matched_actions: 82
+  action_count: 82
   confidence: medium
-  summary: "All 35 spec actions found in source with exact method names; transport parameters (port 9090, baud 19200, serial params) verbatim; spec covers the complete Pulse API. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 82 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1169,18 +1169,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:53:45.394Z
-last_checked_at: 2026-05-14T21:38:41.419Z
+last_checked_at: 2026-06-02T22:04:18.974Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:38:41.419Z
-matched_actions: 35
-action_count: 35
+checked_at: 2026-06-02T22:04:18.974Z
+matched_actions: 82
+action_count: 82
 confidence: medium
-summary: "All 35 spec actions found in source with exact method names; transport parameters (port 9090, baud 19200, serial params) verbatim; spec covers the complete Pulse API. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 82 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -37,8 +37,8 @@ source_domains:
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-04-30T04:31:13.439Z
-last_checked_at: 2026-05-14T18:17:15.933Z
-generated_at: 2026-05-14T18:17:15.933Z
+last_checked_at: 2026-06-02T22:07:33.266Z
+generated_at: 2026-06-02T22:07:33.266Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -48,11 +48,11 @@ known_gaps:
   - "No safety warnings or interlock procedures found in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.933Z
+  checked_at: 2026-06-02T22:07:33.266Z
   matched_actions: 33
   action_count: 33
   confidence: medium
-  summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 33 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -657,18 +657,18 @@ source_domains:
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-04-30T04:31:13.439Z
-last_checked_at: 2026-05-14T18:17:15.933Z
+last_checked_at: 2026-06-02T22:07:33.266Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.933Z
+checked_at: 2026-06-02T22:07:33.266Z
 matched_actions: 33
 action_count: 33
 confidence: medium
-summary: "All 58 spec actions matched to source; transport parameters verified; API fully represented. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 33 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

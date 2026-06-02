@@ -48,8 +48,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:25.396Z
-last_checked_at: 2026-05-14T18:17:18.593Z
-generated_at: 2026-05-14T18:17:18.593Z
+last_checked_at: 2026-06-02T22:10:56.607Z
+generated_at: 2026-06-02T22:10:56.607Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -69,11 +69,11 @@ known_gaps:
   - "document revision is BDT140013 Rev 7.1 / BDT140014 Rev 29.0; firmware compatibility ranges not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.593Z
+  checked_at: 2026-06-02T22:10:56.607Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -739,18 +739,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:25.396Z
-last_checked_at: 2026-05-14T18:17:18.593Z
+last_checked_at: 2026-06-02T22:10:56.607Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.593Z
+checked_at: 2026-06-02T22:10:56.607Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 48 spec actions have literal command matches in NEC PA serial source; transport parameters verified; comprehensive coverage. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

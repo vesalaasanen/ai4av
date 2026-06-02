@@ -24,8 +24,8 @@ source_urls:
   - https://ckm-content.se.com/ckmContent/sfc/servlet.shepherd/document/download/0691H00000GejKSQAZ
   - https://www.se.com/us/en/product-range/61799-apc-netshelter-switched-rack-pdus/
 retrieved_at: 2026-04-29T22:37:54.944Z
-last_checked_at: 2026-04-30T14:19:54.487Z
-generated_at: 2026-04-30T14:19:54.487Z
+last_checked_at: 2026-06-02T21:39:46.372Z
+generated_at: 2026-06-02T21:39:46.372Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "TCP port number not stated in source. UNRESOLVED: SSH version 1 security concerns (source mentions v1 and v2). UNRESOLVED: firmware version compatibility not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-04-30T14:19:54.487Z
+  checked_at: 2026-06-02T21:39:46.372Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Full CLI protocol coverage with outlet control, user management, and monitoring commands (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -623,18 +623,18 @@ source_urls:
   - https://ckm-content.se.com/ckmContent/sfc/servlet.shepherd/document/download/0691H00000GejKSQAZ
   - https://www.se.com/us/en/product-range/61799-apc-netshelter-switched-rack-pdus/
 retrieved_at: 2026-04-29T22:37:54.944Z
-last_checked_at: 2026-04-30T14:19:54.487Z
+last_checked_at: 2026-06-02T21:39:46.372Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T14:19:54.487Z
+checked_at: 2026-06-02T21:39:46.372Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions found verbatim in source with matching syntax; transport values verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Full CLI protocol coverage with outlet control, user management, and monitoring commands (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

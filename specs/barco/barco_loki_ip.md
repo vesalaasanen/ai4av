@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-06-01T22:38:26.750Z
-last_checked_at: 2026-05-20T05:53:51.437Z
-generated_at: 2026-05-20T05:53:51.437Z
+last_checked_at: 2026-06-02T22:04:15.073Z
+generated_at: 2026-06-02T22:04:15.073Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "full property catalog (~hundreds of RW properties) not exhaustively reproduced in this spec — the source lists them all under \"Alphabetical list of all properties\" and the implementer should introspect the live device or read that section when filling in additional Variables."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T05:53:51.437Z
-  matched_actions: 82
-  action_count: 82
+  checked_at: 2026-06-02T22:04:15.073Z
+  matched_actions: 35
+  action_count: 35
   confidence: medium
-  summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -554,18 +554,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-06-01T22:38:26.750Z
-last_checked_at: 2026-05-20T05:53:51.437Z
+last_checked_at: 2026-06-02T22:04:15.073Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T05:53:51.437Z
-matched_actions: 82
-action_count: 82
+checked_at: 2026-06-02T22:04:15.073Z
+matched_actions: 35
+action_count: 35
 confidence: medium
-summary: "All 82 spec actions map to documented Pulse API methods; transport parameters confirmed. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

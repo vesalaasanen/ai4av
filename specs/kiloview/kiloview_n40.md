@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://enstatic.kiloview.com/wp-content/uploads/2026/03/N60N50-API-EN.pdf
 retrieved_at: 2026-04-30T04:41:23.663Z
-last_checked_at: 2026-04-25T20:53:42.415Z
-generated_at: 2026-04-25T20:53:42.415Z
+last_checked_at: 2026-06-02T22:08:36.467Z
+generated_at: 2026-06-02T22:08:36.467Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "whether unsolicited event/WebSocket push exists is not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:53:42.415Z
+  checked_at: 2026-06-02T22:08:36.467Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 32 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -716,18 +716,18 @@ source_domains:
 source_urls:
   - https://enstatic.kiloview.com/wp-content/uploads/2026/03/N60N50-API-EN.pdf
 retrieved_at: 2026-04-30T04:41:23.663Z
-last_checked_at: 2026-04-25T20:53:42.415Z
+last_checked_at: 2026-06-02T22:08:36.467Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:53:42.415Z
+checked_at: 2026-06-02T22:08:36.467Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 32 spec actions matched to source endpoints; transport parameters verified; N40 inherits N60 API per source documentation. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 32 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

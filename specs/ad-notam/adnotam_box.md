@@ -21,8 +21,8 @@ source_urls:
   - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
   - https://www.ad-notam.com/attachment/741/download/td_dfu_rs232-protocol_v4-1_ascii-format_20150901.pdf
 retrieved_at: 2026-05-04T15:17:36.583Z
-last_checked_at: 2026-06-02T17:21:11.187Z
-generated_at: 2026-06-02T17:21:11.187Z
+last_checked_at: 2026-06-02T21:39:34.282Z
+generated_at: 2026-06-02T21:39:34.282Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "physical / electrical specs (voltage, current, port pinout beyond Rx/Tx/GND) not in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:11.187Z
+  checked_at: 2026-06-02T21:39:34.282Z
   matched_actions: 112
   action_count: 112
   confidence: medium
@@ -894,14 +894,14 @@ source_urls:
   - https://www.ad-notam.com/download/RS232/ad_notam_RS232_protocol_DFU.pdf
   - https://www.ad-notam.com/attachment/741/download/td_dfu_rs232-protocol_v4-1_ascii-format_20150901.pdf
 retrieved_at: 2026-05-04T15:17:36.583Z
-last_checked_at: 2026-06-02T17:21:11.187Z
+last_checked_at: 2026-06-02T21:39:34.282Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:11.187Z
+checked_at: 2026-06-02T21:39:34.282Z
 matched_actions: 112
 action_count: 112
 confidence: medium

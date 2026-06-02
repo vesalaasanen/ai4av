@@ -20,12 +20,11 @@ source_domains:
 source_urls:
   - https://support.modulo-pi.com/modulo-player-manual/1/en/topic/tcp-ip-external-control-protocol
 retrieved_at: 2026-05-04T17:33:34.629Z
-last_checked_at: 2026-05-14T18:17:18.179Z
-generated_at: 2026-05-14T18:17:18.179Z
+last_checked_at: 2026-06-02T22:09:43.824Z
+generated_at: 2026-06-02T22:09:43.824Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "setPlayListProperty (not implemented)"
   - "authentication mechanism not documented; UNRESOLVED: command timing/flow control requirements not stated"
   - "port 28686 documented for Modulo Player controls; second port handling not specified in schema"
   - "no standalone settable variables documented; all parameters are action-embedded"
@@ -35,11 +34,11 @@ known_gaps:
   - "second port (28686) mapping to Transport.addressing not expressible in current schema; UNRESOLVED: full error code/behavior documentation absent"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.179Z
+  checked_at: 2026-06-02T22:09:43.824Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -530,24 +529,23 @@ source_domains:
 source_urls:
   - https://support.modulo-pi.com/modulo-player-manual/1/en/topic/tcp-ip-external-control-protocol
 retrieved_at: 2026-05-04T17:33:34.629Z
-last_checked_at: 2026-05-14T18:17:18.179Z
+last_checked_at: 2026-06-02T22:09:43.824Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.179Z
+checked_at: 2026-06-02T22:09:43.824Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 49 spec actions matched exactly with source; transport parameters verified; full coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "setPlayListProperty (not implemented)"
 - "authentication mechanism not documented; UNRESOLVED: command timing/flow control requirements not stated"
 - "port 28686 documented for Modulo Player controls; second port handling not specified in schema"
 - "no standalone settable variables documented; all parameters are action-embedded"

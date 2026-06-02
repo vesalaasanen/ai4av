@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:27.392Z
-last_checked_at: 2026-05-14T18:17:19.160Z
-generated_at: 2026-05-14T18:17:19.160Z
+last_checked_at: 2026-06-02T22:12:22.120Z
+generated_at: 2026-06-02T22:12:22.120Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "Aspect mode hex codes vary (e.g. FULL may be 09h or 10h). Verify model-specific values."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.160Z
+  checked_at: 2026-06-02T22:12:22.120Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -538,18 +538,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:27.392Z
-last_checked_at: 2026-05-14T18:17:19.160Z
+last_checked_at: 2026-06-02T22:12:22.120Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.160Z
+checked_at: 2026-06-02T22:12:22.120Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 53 spec actions and feedbacks match source command reference; transport parameters verified verbatim; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

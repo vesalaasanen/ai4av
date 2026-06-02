@@ -24,8 +24,8 @@ source_urls:
   - https://customersupport.ai-media.tv/hc/en-us/articles/29782084872084-AV610-CaptionPort-Manual
   - https://customersupport.ai-media.tv/hc/en-us
 retrieved_at: 2026-04-30T14:26:19.357Z
-last_checked_at: 2026-04-30T15:19:04.652Z
-generated_at: 2026-04-30T15:19:04.652Z
+last_checked_at: 2026-06-02T21:39:37.352Z
+generated_at: 2026-06-02T21:39:37.352Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "GPI/GPO command syntax not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:19:04.652Z
+  checked_at: 2026-06-02T21:39:37.352Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions matched source command reference. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 action commands in spec match the source command reference with CTRL+A prefix, proper parameter syntax, and RS-232 transport. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -237,18 +237,18 @@ source_urls:
   - https://customersupport.ai-media.tv/hc/en-us/articles/29782084872084-AV610-CaptionPort-Manual
   - https://customersupport.ai-media.tv/hc/en-us
 retrieved_at: 2026-04-30T14:26:19.357Z
-last_checked_at: 2026-04-30T15:19:04.652Z
+last_checked_at: 2026-06-02T21:39:37.352Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:19:04.652Z
+checked_at: 2026-06-02T21:39:37.352Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions matched source command reference. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 action commands in spec match the source command reference with CTRL+A prefix, proper parameter syntax, and RS-232 transport. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

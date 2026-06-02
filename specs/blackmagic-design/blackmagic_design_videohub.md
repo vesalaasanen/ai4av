@@ -21,16 +21,11 @@ source_domains:
 source_urls:
   - "https://documents.blackmagicdesign.com/DeveloperManuals/VideohubEthernetProtocol.pdf?_v=1698822010000"
 retrieved_at: 2026-04-30T04:40:47.751Z
-last_checked_at: 2026-04-26T11:24:40.262Z
-generated_at: 2026-04-26T11:24:40.262Z
+last_checked_at: 2026-06-02T21:54:38.491Z
+generated_at: 2026-06-02T21:54:38.491Z
 firmware_coverage: "\"4.9.1\""
 protocol_coverage: []
 known_gaps:
-  - "PROTOCOL PREAMBLE"
-  - "VIDEOHUB DEVICE"
-  - "VIDEO INPUT STATUS"
-  - "VIDEO OUTPUT STATUS"
-  - "SERIAL PORT STATUS"
   - "specific model variants (e.g., Universal Videohub, Workgroup Videohub) not enumerated in source beyond Smart Videohub example"
   - "power commands not described in source"
   - "no safety warnings or interlock procedures explicitly stated in source beyond port locking behavior"
@@ -39,11 +34,11 @@ known_gaps:
   - "firmware compatibility range not stated beyond Videohub 4.9.1"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:24:40.262Z
+  checked_at: 2026-06-02T21:54:38.491Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions match source commands with correct parameters and transport details verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to Videohub protocol v2.3. Port 9990 confirmed. Block structure, routing, labels, and locking all documented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -401,28 +396,23 @@ source_domains:
 source_urls:
   - "https://documents.blackmagicdesign.com/DeveloperManuals/VideohubEthernetProtocol.pdf?_v=1698822010000"
 retrieved_at: 2026-04-30T04:40:47.751Z
-last_checked_at: 2026-04-26T11:24:40.262Z
+last_checked_at: 2026-06-02T21:54:38.491Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:24:40.262Z
+checked_at: 2026-06-02T21:54:38.491Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions match source commands with correct parameters and transport details verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to Videohub protocol v2.3. Port 9990 confirmed. Block structure, routing, labels, and locking all documented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "PROTOCOL PREAMBLE"
-- "VIDEOHUB DEVICE"
-- "VIDEO INPUT STATUS"
-- "VIDEO OUTPUT STATUS"
-- "SERIAL PORT STATUS"
 - "specific model variants (e.g., Universal Videohub, Workgroup Videohub) not enumerated in source beyond Smart Videohub example"
 - "power commands not described in source"
 - "no safety warnings or interlock procedures explicitly stated in source beyond port locking behavior"

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
 retrieved_at: 2026-04-30T04:25:02.292Z
-last_checked_at: 2026-05-14T18:17:18.146Z
-generated_at: 2026-05-14T18:17:18.146Z
+last_checked_at: 2026-06-02T22:09:40.573Z
+generated_at: 2026-06-02T22:09:40.573Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "response format details beyond \"20 characters\" not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.146Z
+  checked_at: 2026-06-02T22:09:40.573Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -594,18 +594,18 @@ source_domains:
 source_urls:
   - "https://www.meridian-audio.info/public/technote_tn62_-_g65_rs232[4894].pdf"
 retrieved_at: 2026-04-30T04:25:02.292Z
-last_checked_at: 2026-05-14T18:17:18.146Z
+last_checked_at: 2026-06-02T22:09:40.573Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.146Z
+checked_at: 2026-06-02T22:09:40.573Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 55 spec actions (46 commands + 9 status queries) matched literal tokens in source; all transport parameters verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

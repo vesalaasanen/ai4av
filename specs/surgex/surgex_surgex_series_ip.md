@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
 retrieved_at: 2026-04-30T04:31:25.323Z
-last_checked_at: 2026-05-14T18:17:21.112Z
-generated_at: 2026-05-14T18:17:21.112Z
+last_checked_at: 2026-06-02T22:15:20.892Z
+generated_at: 2026-06-02T22:15:20.892Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "DHCP and static IP configuration change may require device restart"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.112Z
+  checked_at: 2026-06-02T22:15:20.892Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -711,18 +711,18 @@ source_domains:
 source_urls:
   - https://www.ametekesp.com/surgex/vertical-series-plus/vertical-series-120v
 retrieved_at: 2026-04-30T04:31:25.323Z
-last_checked_at: 2026-05-14T18:17:21.112Z
+last_checked_at: 2026-06-02T22:15:20.892Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.112Z
+checked_at: 2026-06-02T22:15:20.892Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 38 spec actions match verbatim tokens in source; transport parameters (port 80, /api/v1 base URL, Basic Auth, x-auth-token) confirmed; bidirectional coverage complete. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,8 +23,8 @@ source_urls:
   - https://www.globalcache.com/files/docs/QS_iTachIP_distrib.pdf
   - https://www.globalcache.com/downloads.html
 retrieved_at: 2026-04-29T21:45:14.451Z
-last_checked_at: 2026-04-27T09:04:45.495Z
-generated_at: 2026-04-27T09:04:45.495Z
+last_checked_at: 2026-06-02T22:07:20.866Z
+generated_at: 2026-06-02T22:07:20.866Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "confirmation-required safety actions (e.g. whether the API requires explicit unlock for high-risk outputs) are not documented."
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:04:45.495Z
-  matched_actions: 24
-  action_count: 24
+  checked_at: 2026-06-02T22:07:20.866Z
+  matched_actions: 10
+  action_count: 10
   confidence: medium
-  summary: "All 24 spec actions match source command tokens exactly; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -311,18 +311,18 @@ source_urls:
   - https://www.globalcache.com/files/docs/QS_iTachIP_distrib.pdf
   - https://www.globalcache.com/downloads.html
 retrieved_at: 2026-04-29T21:45:14.451Z
-last_checked_at: 2026-04-27T09:04:45.495Z
+last_checked_at: 2026-06-02T22:07:20.866Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:04:45.495Z
-matched_actions: 24
-action_count: 24
+checked_at: 2026-06-02T22:07:20.866Z
+matched_actions: 10
+action_count: 10
 confidence: medium
-summary: "All 24 spec actions match source command tokens exactly; transport parameters verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

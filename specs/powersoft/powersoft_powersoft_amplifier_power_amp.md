@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
 retrieved_at: 2026-04-30T04:33:26.934Z
-last_checked_at: 2026-04-25T21:50:01.791Z
-generated_at: 2026-04-25T21:50:01.791Z
+last_checked_at: 2026-06-02T22:13:17.348Z
+generated_at: 2026-06-02T22:13:17.348Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:50:01.791Z
+  checked_at: 2026-06-02T22:13:17.348Z
   matched_actions: 23
   action_count: 23
-  confidence: low
-  summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified (9 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -435,18 +435,18 @@ source_domains:
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_K_Duecanali_AMX_Netlinx_Module_Ref_Sheet.pdf
 retrieved_at: 2026-04-30T04:33:26.934Z
-last_checked_at: 2026-04-25T21:50:01.791Z
+last_checked_at: 2026-06-02T22:13:17.348Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:50:01.791Z
+checked_at: 2026-06-02T22:13:17.348Z
 matched_actions: 23
 action_count: 23
-confidence: low
-summary: "All 23 spec actions matched verbatim to source command channels; transport parameters verified (9 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

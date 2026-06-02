@@ -22,8 +22,8 @@ source_urls:
   - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
   - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-05-14T18:17:19.721Z
-generated_at: 2026-05-14T18:17:19.721Z
+last_checked_at: 2026-06-02T22:13:08.310Z
+generated_at: 2026-06-02T22:13:08.310Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "manufacturer discrepancy — source says \"Roku\", input says \"Pinacle\""
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.721Z
+  checked_at: 2026-06-02T22:13:08.310Z
   matched_actions: 141
   action_count: 141
   confidence: medium
-  summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 141 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1172,18 +1172,18 @@ source_urls:
   - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
   - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-05-14T18:17:19.721Z
+last_checked_at: 2026-06-02T22:13:08.310Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.721Z
+checked_at: 2026-06-02T22:13:08.310Z
 matched_actions: 141
 action_count: 141
 confidence: medium
-summary: "All 167 spec actions matched literal command names in source; transport parameters verified; full command catalogue coverage. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 141 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

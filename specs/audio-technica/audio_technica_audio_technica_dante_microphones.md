@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ATND1061_IP_Control_Specifications_V4_EN_web_240114.pdf
 retrieved_at: 2026-06-01T22:46:22.948Z
-last_checked_at: 2026-06-02T17:21:29.833Z
-generated_at: 2026-06-02T17:21:29.833Z
+last_checked_at: 2026-06-02T21:40:13.418Z
+generated_at: 2026-06-02T21:40:13.418Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "source does not contain explicit safety warnings, interlock procedures,"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:29.833Z
+  checked_at: 2026-06-02T21:40:13.418Z
   matched_actions: 93
   action_count: 93
   confidence: medium
@@ -1482,14 +1482,14 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ATND1061_IP_Control_Specifications_V4_EN_web_240114.pdf
 retrieved_at: 2026-06-01T22:46:22.948Z
-last_checked_at: 2026-06-02T17:21:29.833Z
+last_checked_at: 2026-06-02T21:40:13.418Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:29.833Z
+checked_at: 2026-06-02T21:40:13.418Z
 matched_actions: 93
 action_count: 93
 confidence: medium

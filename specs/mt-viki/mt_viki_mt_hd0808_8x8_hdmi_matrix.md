@@ -21,8 +21,8 @@ source_urls:
   - https://www.mt-viki.net/wp-content/uploads/2022/10/MT-HD4X4-MT-HD0808-MT-HD1616-User-Manual.pdf
   - https://www.mt-viki.net/download/
 retrieved_at: 2026-04-30T14:17:03.133Z
-last_checked_at: 2026-04-30T15:22:12.346Z
-generated_at: 2026-04-30T15:22:12.346Z
+last_checked_at: 2026-06-02T22:09:45.340Z
+generated_at: 2026-06-02T22:09:45.340Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:22:12.346Z
+  checked_at: 2026-06-02T22:09:45.340Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions matched source; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -211,18 +211,18 @@ source_urls:
   - https://www.mt-viki.net/wp-content/uploads/2022/10/MT-HD4X4-MT-HD0808-MT-HD1616-User-Manual.pdf
   - https://www.mt-viki.net/download/
 retrieved_at: 2026-04-30T14:17:03.133Z
-last_checked_at: 2026-04-30T15:22:12.346Z
+last_checked_at: 2026-06-02T22:09:45.340Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:22:12.346Z
+checked_at: 2026-06-02T22:09:45.340Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions matched source; transport verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
 retrieved_at: 2026-04-30T04:28:59.697Z
-last_checked_at: 2026-04-23T08:25:59.202Z
-generated_at: 2026-04-23T08:25:59.202Z
+last_checked_at: 2026-06-02T22:14:23.281Z
+generated_at: 2026-06-02T22:14:23.281Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "error codes/negative acknowledgements not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:25:59.202Z
+  checked_at: 2026-06-02T22:14:23.281Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -490,18 +490,18 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
 retrieved_at: 2026-04-30T04:28:59.697Z
-last_checked_at: 2026-04-23T08:25:59.202Z
+last_checked_at: 2026-06-02T22:14:23.281Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:25:59.202Z
+checked_at: 2026-06-02T22:14:23.281Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 26 spec actions matched verbatim in source with correct transport parameters and command shapes. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

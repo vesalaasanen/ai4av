@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T22:00:59.334Z
-last_checked_at: 2026-05-16T19:52:00.136Z
-generated_at: 2026-05-16T19:52:00.136Z
+last_checked_at: 2026-06-02T21:56:23.784Z
+generated_at: 2026-06-02T21:56:23.784Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Error response format not fully documented; source notes errors are enclosed in <error> root element with <message> and optional <detail> text nodes (mentioned only for /Browse)."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T19:52:00.136Z
+  checked_at: 2026-06-02T21:56:23.784Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -674,18 +674,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T22:00:59.334Z
-last_checked_at: 2026-05-16T19:52:00.136Z
+last_checked_at: 2026-06-02T21:56:23.784Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T19:52:00.136Z
+checked_at: 2026-06-02T21:56:23.784Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec action units map 1-to-1 to documented endpoints in the BluOS CI API source; transport confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

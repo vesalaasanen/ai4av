@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T17:21:24.593Z
-last_checked_at: 2026-06-02T17:21:24.593Z
-generated_at: 2026-06-02T17:21:24.593Z
+retrieved_at: 2026-06-02T21:40:04.158Z
+last_checked_at: 2026-06-02T21:40:04.158Z
+generated_at: 2026-06-02T21:40:04.158Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:24.593Z
+  checked_at: 2026-06-02T21:40:04.158Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -488,15 +488,15 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T17:21:24.593Z
-last_checked_at: 2026-06-02T17:21:24.593Z
+retrieved_at: 2026-06-02T21:40:04.158Z
+last_checked_at: 2026-06-02T21:40:04.158Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:24.593Z
+checked_at: 2026-06-02T21:40:04.158Z
 matched_actions: 27
 action_count: 27
 confidence: medium

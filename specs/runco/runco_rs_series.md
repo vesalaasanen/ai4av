@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.purelandsupply.com/Images/OwnersManuals/Runco/RUNCO%20RS-1100.pdf"
 retrieved_at: 2026-04-29T22:04:46.886Z
-last_checked_at: 2026-04-30T09:48:25.048Z
-generated_at: 2026-04-30T09:48:25.048Z
+last_checked_at: 2026-06-02T22:13:43.350Z
+generated_at: 2026-06-02T22:13:43.350Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "fault behavior and error recovery not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:48:25.048Z
+  checked_at: 2026-06-02T22:13:43.350Z
   matched_actions: 69
   action_count: 69
   confidence: medium
-  summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 69 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -481,18 +481,18 @@ source_domains:
 source_urls:
   - "https://www.purelandsupply.com/Images/OwnersManuals/Runco/RUNCO%20RS-1100.pdf"
 retrieved_at: 2026-04-29T22:04:46.886Z
-last_checked_at: 2026-04-30T09:48:25.048Z
+last_checked_at: 2026-06-02T22:13:43.350Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:48:25.048Z
+checked_at: 2026-06-02T22:13:43.350Z
 matched_actions: 69
 action_count: 69
 confidence: medium
-summary: "All 69 spec actions map 1:1 to source commands; transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 69 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

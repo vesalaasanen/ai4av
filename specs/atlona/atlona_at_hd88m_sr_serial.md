@@ -22,8 +22,8 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-HD88M-SR.pdf
   - https://www.manualslib.com/manual/450626/Atlona-At-Hd88m-Sr.html
 retrieved_at: 2026-05-19T19:17:09.663Z
-last_checked_at: 2026-05-20T04:51:27.573Z
-generated_at: 2026-05-20T04:51:27.573Z
+last_checked_at: 2026-06-02T21:39:58.019Z
+generated_at: 2026-06-02T21:39:58.019Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "whether routing commands produce acknowledgement response not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T04:51:27.573Z
+  checked_at: 2026-06-02T21:39:58.019Z
   matched_actions: 67
   action_count: 67
   confidence: medium
-  summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete 8x8 HDMI matrix routing protocol with dual transport (RS-232 + USB serial) (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -553,18 +553,18 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-HD88M-SR.pdf
   - https://www.manualslib.com/manual/450626/Atlona-At-Hd88m-Sr.html
 retrieved_at: 2026-05-19T19:17:09.663Z
-last_checked_at: 2026-05-20T04:51:27.573Z
+last_checked_at: 2026-06-02T21:39:58.019Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T04:51:27.573Z
+checked_at: 2026-06-02T21:39:58.019Z
 matched_actions: 67
 action_count: 67
 confidence: medium
-summary: "All 67 spec actions (64 routing commands, 2 query commands, 3 IR custom codes) found verbatim in source command table; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete 8x8 HDMI matrix routing protocol with dual transport (RS-232 + USB serial) (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

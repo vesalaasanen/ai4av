@@ -23,8 +23,8 @@ source_urls:
   - https://www.shure.com/en-US/docs/guide/P300
   - https://shure.stoplight.io/
 retrieved_at: 2026-04-30T13:38:16.296Z
-last_checked_at: 2026-05-14T18:17:20.513Z
-generated_at: 2026-05-14T18:17:20.513Z
+last_checked_at: 2026-06-02T22:14:34.039Z
+generated_at: 2026-06-02T22:14:34.039Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "error response format only mentioned as <REP ERR> for metering — full error catalog not in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.513Z
+  checked_at: 2026-06-02T22:14:34.039Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 68 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 32 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1171,18 +1171,18 @@ source_urls:
   - https://www.shure.com/en-US/docs/guide/P300
   - https://shure.stoplight.io/
 retrieved_at: 2026-04-30T13:38:16.296Z
-last_checked_at: 2026-05-14T18:17:20.513Z
+last_checked_at: 2026-06-02T22:14:34.039Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.513Z
+checked_at: 2026-06-02T22:14:34.039Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 68 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 32 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

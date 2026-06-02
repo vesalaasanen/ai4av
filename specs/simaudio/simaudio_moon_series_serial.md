@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
 retrieved_at: 2026-04-30T04:29:04.648Z
-last_checked_at: 2026-04-27T09:45:19.554Z
-generated_at: 2026-04-27T09:45:19.554Z
+last_checked_at: 2026-06-02T22:14:36.990Z
+generated_at: 2026-06-02T22:14:36.990Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "variables, events, macros sections not applicable or not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:19.554Z
+  checked_at: 2026-06-02T22:14:36.990Z
   matched_actions: 42
   action_count: 42
   confidence: medium
-  summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 42 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -347,18 +347,18 @@ source_domains:
 source_urls:
   - https://simaudio.com/wp-content/uploads/2019/11/Moon-Stellar-Orion-RS232codesrev101.pdf
 retrieved_at: 2026-04-30T04:29:04.648Z
-last_checked_at: 2026-04-27T09:45:19.554Z
+last_checked_at: 2026-06-02T22:14:36.990Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:19.554Z
+checked_at: 2026-06-02T22:14:36.990Z
 matched_actions: 42
 action_count: 42
 confidence: medium
-summary: "All 42 spec actions have literal counterparts in source command table; transport parameters fully verified against manual. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 42 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

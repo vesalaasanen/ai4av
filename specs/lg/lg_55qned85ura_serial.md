@@ -22,13 +22,12 @@ source_urls:
   - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
   - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-04-25T21:04:54.769Z
-last_checked_at: 2026-04-25T21:04:54.769Z
-generated_at: 2026-04-25T21:04:54.769Z
+retrieved_at: 2026-06-02T22:09:14.444Z
+last_checked_at: 2026-06-02T22:09:14.444Z
+generated_at: 2026-06-02T22:09:14.444Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "m c"
   - "IR remote section present but not part of serial control protocol"
   - "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
   - "no unsolicited event notifications described in source; device only responds to commands"
@@ -38,11 +37,11 @@ known_gaps:
   - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:04:54.769Z
+  checked_at: 2026-06-02T22:09:14.444Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -397,25 +396,24 @@ source_urls:
   - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
   - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-04-25T21:04:54.769Z
-last_checked_at: 2026-04-25T21:04:54.769Z
+retrieved_at: 2026-06-02T22:09:14.444Z
+last_checked_at: 2026-06-02T22:09:14.444Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:04:54.769Z
+checked_at: 2026-06-02T22:09:14.444Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions match literals in source; transport parameters verified; one extra IR key command not in spec. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "m c"
 - "IR remote section present but not part of serial control protocol"
 - "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
 - "no unsolicited event notifications described in source; device only responds to commands"

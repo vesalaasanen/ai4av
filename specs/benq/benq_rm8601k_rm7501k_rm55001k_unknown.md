@@ -29,8 +29,8 @@ source_urls:
   - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
   - https://mans.io/item/Benq/rm8601k
 retrieved_at: 2026-05-14T20:26:53.834Z
-last_checked_at: 2026-06-02T17:26:35.738Z
-generated_at: 2026-06-02T17:26:35.738Z
+last_checked_at: 2026-06-02T21:40:58.560Z
+generated_at: 2026-06-02T21:40:58.560Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,7 +47,7 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:26:35.738Z
+  checked_at: 2026-06-02T21:40:58.560Z
   matched_actions: 113
   action_count: 113
   confidence: medium
@@ -727,14 +727,14 @@ source_urls:
   - https://www.manualowl.com/m/BenQ/RM8601K/Manual/621918
   - https://mans.io/item/Benq/rm8601k
 retrieved_at: 2026-05-14T20:26:53.834Z
-last_checked_at: 2026-06-02T17:26:35.738Z
+last_checked_at: 2026-06-02T21:40:58.560Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:26:35.738Z
+checked_at: 2026-06-02T21:40:58.560Z
 matched_actions: 113
 action_count: 113
 confidence: medium

@@ -20,12 +20,11 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:25.869Z
-last_checked_at: 2026-04-22T19:45:07.514Z
-generated_at: 2026-04-22T19:45:07.514Z
+last_checked_at: 2026-06-02T22:05:34.368Z
+generated_at: 2026-06-02T22:05:34.368Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "Q=QY"
   - "eNode adapter required for Ethernet control — standalone IP control not available"
   - "no explicit query commands for current brightness/hue/sat values found in source"
   - "no unsolicited event notifications described in source"
@@ -34,11 +33,11 @@ known_gaps:
   - "UDP port 5000/4000 stated for eNode but no mention of default eNode IP or DHCP behavior"
 verification:
   verdict: verified
-  checked_at: 2026-04-22T19:45:07.514Z
+  checked_at: 2026-06-02T22:05:34.368Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 19 spec actions matched literally against source command table with correct parameter ranges. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -272,24 +271,23 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:25.869Z
-last_checked_at: 2026-04-22T19:45:07.514Z
+last_checked_at: 2026-06-02T22:05:34.368Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T19:45:07.514Z
+checked_at: 2026-06-02T22:05:34.368Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 19 spec actions matched literally against source command table with correct parameter ranges. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "Q=QY"
 - "eNode adapter required for Ethernet control — standalone IP control not available"
 - "no explicit query commands for current brightness/hue/sat values found in source"
 - "no unsolicited event notifications described in source"

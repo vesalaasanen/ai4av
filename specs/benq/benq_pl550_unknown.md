@@ -24,15 +24,11 @@ source_urls:
   - https://esupportdownload.benq.com/esupport/PDP/UserManual/PDP_um_User_Manual_20150624_081512_BenQ_PL550_EN.pdf
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:25:52.600Z
-last_checked_at: 2026-05-20T07:45:26.160Z
-generated_at: 2026-05-20T07:45:26.160Z
+last_checked_at: 2026-06-02T22:04:25.471Z
+generated_at: 2026-06-02T22:04:25.471Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - micvol
-  - standbynet
-  - standbymic
-  - ltim2
   - "HDBaseT transport details not fully specified in source"
   - "baud rate selectable at runtime; not fixed"
   - "no unsolicited notification messages described in source"
@@ -45,11 +41,11 @@ known_gaps:
   - "voltage/current/power specifications not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T07:45:26.160Z
-  matched_actions: 86
-  action_count: 86
+  checked_at: 2026-06-02T22:04:25.471Z
+  matched_actions: 93
+  action_count: 93
   confidence: medium
-  summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 93 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -682,27 +678,23 @@ source_urls:
   - https://esupportdownload.benq.com/esupport/PDP/UserManual/PDP_um_User_Manual_20150624_081512_BenQ_PL550_EN.pdf
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:25:52.600Z
-last_checked_at: 2026-05-20T07:45:26.160Z
+last_checked_at: 2026-06-02T22:04:25.471Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T07:45:26.160Z
-matched_actions: 86
-action_count: 86
+checked_at: 2026-06-02T22:04:25.471Z
+matched_actions: 93
+action_count: 93
 confidence: medium
-summary: "All 86 spec actions match source commands verbatim; transport verified; unsupported features explicitly marked as No in source. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 93 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- micvol
-- standbynet
-- standbymic
-- ltim2
 - "HDBaseT transport details not fully specified in source"
 - "baud rate selectable at runtime; not fixed"
 - "no unsolicited notification messages described in source"

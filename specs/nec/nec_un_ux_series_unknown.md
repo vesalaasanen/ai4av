@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:09:38.592Z
-last_checked_at: 2026-05-18T16:38:02.195Z
-generated_at: 2026-05-18T16:38:02.195Z
+last_checked_at: 2026-06-02T22:11:55.873Z
+generated_at: 2026-06-02T22:11:55.873Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "default baud rate not stated; source lists 5 supported rates (4800–115200)"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:38:02.195Z
+  checked_at: 2026-06-02T22:11:55.873Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -624,18 +624,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:09:38.592Z
-last_checked_at: 2026-05-18T16:38:02.195Z
+last_checked_at: 2026-06-02T22:11:55.873Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:38:02.195Z
+checked_at: 2026-06-02T22:11:55.873Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 action commands match source hex sequences exactly; all transport parameters confirmed; feedback queries represented in spec Feedbacks section. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

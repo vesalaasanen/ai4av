@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
 retrieved_at: 2026-05-08T15:21:30.302Z
-last_checked_at: 2026-05-14T18:17:14.514Z
-generated_at: 2026-05-14T18:17:14.514Z
+last_checked_at: 2026-06-02T21:51:23.331Z
+generated_at: 2026-06-02T21:51:23.331Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "lamp hour response format (integer? with unit?) not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.514Z
+  checked_at: 2026-06-02T21:51:23.331Z
   matched_actions: 54
   action_count: 54
   confidence: medium
-  summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 54 spec actions traced to TH963 command table with parametric sources. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -780,18 +780,18 @@ source_domains:
 source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
 retrieved_at: 2026-05-08T15:21:30.302Z
-last_checked_at: 2026-05-14T18:17:14.514Z
+last_checked_at: 2026-06-02T21:51:23.331Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.514Z
+checked_at: 2026-06-02T21:51:23.331Z
 matched_actions: 54
 action_count: 54
 confidence: medium
-summary: "All 89 spec actions (52 write + 37 read) matched literally in the source command table; transport parameters (115200 baud, 8 data bits, no parity, 1 stop bit, no flow control) verified verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 54 spec actions traced to TH963 command table with parametric sources. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

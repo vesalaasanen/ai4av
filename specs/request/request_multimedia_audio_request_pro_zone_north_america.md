@@ -23,8 +23,8 @@ source_urls:
   - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v220.pdf"
   - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v190.pdf"
 retrieved_at: 2026-04-26T19:49:18.840Z
-last_checked_at: 2026-05-14T18:17:20.062Z
-generated_at: 2026-05-14T18:17:20.062Z
+last_checked_at: 2026-06-02T22:13:32.528Z
+generated_at: 2026-06-02T22:13:32.528Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "voltage/current/power specifications not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.062Z
+  checked_at: 2026-06-02T22:13:32.528Z
   matched_actions: 120
   action_count: 120
   confidence: medium
-  summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 120 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -863,18 +863,18 @@ source_urls:
   - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v220.pdf"
   - "http://www.request.com/downloads/Integration%20-%20ReQuest%20Communication%20Protocol%20Guide%20v190.pdf"
 retrieved_at: 2026-04-26T19:49:18.840Z
-last_checked_at: 2026-05-14T18:17:20.062Z
+last_checked_at: 2026-06-02T22:13:32.528Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.062Z
+checked_at: 2026-06-02T22:13:32.528Z
 matched_actions: 120
 action_count: 120
 confidence: medium
-summary: "All 149 semantic-id actions matched to source commands; serial transport parameters verified verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 120 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

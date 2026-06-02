@@ -21,8 +21,8 @@ source_urls:
   - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
   - https://atlona.com/pdf/manuals/AT-DVI-MATRIX.pdf
 retrieved_at: 2026-05-19T18:48:56.762Z
-last_checked_at: 2026-05-20T04:51:22.522Z
-generated_at: 2026-05-20T04:51:22.522Z
+last_checked_at: 2026-06-02T21:39:57.259Z
+generated_at: 2026-06-02T21:39:57.259Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "TCP/IP or HTTP control paths not mentioned in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T04:51:22.522Z
+  checked_at: 2026-06-02T21:39:57.259Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete RS-232 DVI matrix protocol with video/audio routing, group management, and memory recall (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -309,18 +309,18 @@ source_urls:
   - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
   - https://atlona.com/pdf/manuals/AT-DVI-MATRIX.pdf
 retrieved_at: 2026-05-19T18:48:56.762Z
-last_checked_at: 2026-05-20T04:51:22.522Z
+last_checked_at: 2026-06-02T21:39:57.259Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T04:51:22.522Z
+checked_at: 2026-06-02T21:39:57.259Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 23 spec actions matched literally to source commands; transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete RS-232 DVI matrix protocol with video/audio routing, group management, and memory recall (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

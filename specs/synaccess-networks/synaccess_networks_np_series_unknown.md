@@ -26,8 +26,8 @@ source_urls:
   - https://synaccess.readme.io/reference/introduction-1
   - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
 retrieved_at: 2026-05-15T06:27:52.847Z
-last_checked_at: 2026-05-18T17:08:12.700Z
-generated_at: 2026-05-18T17:08:12.700Z
+last_checked_at: 2026-06-02T22:15:30.172Z
+generated_at: 2026-06-02T22:15:30.172Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "email configuration method not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:08:12.700Z
+  checked_at: 2026-06-02T22:15:30.172Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 25 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -362,18 +362,18 @@ source_urls:
   - https://synaccess.readme.io/reference/introduction-1
   - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
 retrieved_at: 2026-05-15T06:27:52.847Z
-last_checked_at: 2026-05-18T17:08:12.700Z
+last_checked_at: 2026-06-02T22:15:30.172Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:08:12.700Z
+checked_at: 2026-06-02T22:15:30.172Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions matched verbatim in source with correct parameters and shapes; transport values verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 25 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

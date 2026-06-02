@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
-last_checked_at: 2026-05-08T15:46:54.824Z
-generated_at: 2026-05-08T15:46:54.824Z
+last_checked_at: 2026-06-02T22:13:51.166Z
+generated_at: 2026-06-02T22:13:51.166Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "UDP message size limits not explicitly stated (error 450 exists for response too long)"
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:46:54.824Z
+  checked_at: 2026-06-02T22:13:51.166Z
   matched_actions: 125
   action_count: 125
   confidence: medium
-  summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 125 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1413,18 +1413,18 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
-last_checked_at: 2026-05-08T15:46:54.824Z
+last_checked_at: 2026-06-02T22:13:51.166Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:46:54.824Z
+checked_at: 2026-06-02T22:13:51.166Z
 matched_actions: 125
 action_count: 125
 confidence: medium
-summary: "All 125 spec actions matched to source SSC methods; transport port, protocol, and discovery mechanism verified verbatim from source. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 125 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

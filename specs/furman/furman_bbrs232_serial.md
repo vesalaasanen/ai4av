@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-05-14T16:38:53.229Z
-last_checked_at: 2026-05-20T12:14:52.596Z
-generated_at: 2026-05-20T12:14:52.596Z
+last_checked_at: 2026-06-02T22:07:14.678Z
+generated_at: 2026-06-02T22:07:14.678Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "binary command encoding (HDLC framing) not fully documented — only XML text layer shown"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T12:14:52.596Z
+  checked_at: 2026-06-02T22:07:14.678Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 actions matched; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -537,18 +537,18 @@ source_domains:
 source_urls:
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-05-14T16:38:53.229Z
-last_checked_at: 2026-05-20T12:14:52.596Z
+last_checked_at: 2026-06-02T22:07:14.678Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T12:14:52.596Z
+checked_at: 2026-06-02T22:07:14.678Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 actions matched; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

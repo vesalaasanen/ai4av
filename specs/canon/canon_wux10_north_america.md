@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:04.493Z
-last_checked_at: 2026-04-23T15:28:50.519Z
-generated_at: 2026-04-23T15:28:50.519Z
+last_checked_at: 2026-06-02T22:04:53.731Z
+generated_at: 2026-06-02T22:04:53.731Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "error response format not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:28:50.519Z
+  checked_at: 2026-06-02T22:04:53.731Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands. (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -291,18 +291,18 @@ source_domains:
 source_urls:
   - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:04.493Z
-last_checked_at: 2026-04-23T15:28:50.519Z
+last_checked_at: 2026-06-02T22:04:53.731Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:28:50.519Z
+checked_at: 2026-06-02T22:04:53.731Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions matched literally in source; transport parameters verified; complete command coverage with no fabricated or drifted commands. (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

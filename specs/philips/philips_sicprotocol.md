@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-12T09:53:48.647Z
-last_checked_at: 2026-05-14T18:17:19.703Z
-generated_at: 2026-05-14T18:17:19.703Z
+last_checked_at: 2026-06-02T22:13:06.674Z
+generated_at: 2026-06-02T22:13:06.674Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "MIC color calibration (0xFE) marked TBD in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.703Z
-  matched_actions: 108
+  checked_at: 2026-06-02T22:13:06.674Z
+  matched_actions: 117
   action_count: 117
   confidence: medium
-  summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 117 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1469,18 +1469,18 @@ source_domains:
 source_urls:
   - https://community.xibo.org.uk/uploads/short-url/vwVq2nPyhJKL4kTCYpa6VYhQUa8.pdf
 retrieved_at: 2026-05-12T09:53:48.647Z
-last_checked_at: 2026-05-14T18:17:19.703Z
+last_checked_at: 2026-06-02T22:13:06.674Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.703Z
-matched_actions: 108
+checked_at: 2026-06-02T22:13:06.674Z
+matched_actions: 117
 action_count: 117
 confidence: medium
-summary: "All 108 spec actions match their source commands verbatim; transport parameters verified in source; comprehensive coverage of SICP V2.03 protocol. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 117 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

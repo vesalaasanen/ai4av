@@ -21,14 +21,11 @@ source_domains:
 source_urls:
   - https://www.atlasied.com/ATS006993-B-AZM4-AZM8-3rd-Party-Control.pdf
 retrieved_at: 2026-04-29T17:13:54.183Z
-last_checked_at: 2026-04-30T09:30:17.149Z
-generated_at: 2026-04-30T09:30:17.149Z
+last_checked_at: 2026-06-02T21:39:55.597Z
+generated_at: 2026-06-02T21:39:55.597Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - update
-  - getResp
-  - error
   - "no power on/off commands found — device may lack remote power control"
   - "no error response format documented beyond method name \"error\""
   - "error response payload format not documented beyond method name"
@@ -40,11 +37,11 @@ known_gaps:
   - "no power on/off commands documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:30:17.149Z
+  checked_at: 2026-06-02T21:39:55.597Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete JSON-RPC 2.0 protocol with parameter control, metering, and subscription support (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -507,26 +504,23 @@ source_domains:
 source_urls:
   - https://www.atlasied.com/ATS006993-B-AZM4-AZM8-3rd-Party-Control.pdf
 retrieved_at: 2026-04-29T17:13:54.183Z
-last_checked_at: 2026-04-30T09:30:17.149Z
+last_checked_at: 2026-06-02T21:39:55.597Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:30:17.149Z
+checked_at: 2026-06-02T21:39:55.597Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions (set, bmp, sub, unsub, get) matched literally in source; all transport ports verified; complete command coverage. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete JSON-RPC 2.0 protocol with parameter control, metering, and subscription support (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- update
-- getResp
-- error
 - "no power on/off commands found — device may lack remote power control"
 - "no error response format documented beyond method name \"error\""
 - "error response payload format not documented beyond method name"

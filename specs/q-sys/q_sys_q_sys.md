@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-05-14T18:17:20.023Z
-generated_at: 2026-05-14T18:17:20.023Z
+last_checked_at: 2026-06-02T22:13:23.235Z
+generated_at: 2026-06-02T22:13:23.235Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "specific model numbers not enumerated beyond \"Core\" family reference"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.023Z
+  checked_at: 2026-06-02T22:13:23.235Z
   matched_actions: 35
   action_count: 35
   confidence: medium
-  summary: "All 37 spec actions map to documented QRC methods with matching wire tokens; transport parameters verified verbatim in source. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -629,18 +629,18 @@ source_domains:
 source_urls:
   - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-05-14T18:17:20.023Z
+last_checked_at: 2026-06-02T22:13:23.235Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.023Z
+checked_at: 2026-06-02T22:13:23.235Z
 matched_actions: 35
 action_count: 35
 confidence: medium
-summary: "All 37 spec actions map to documented QRC methods with matching wire tokens; transport parameters verified verbatim in source. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

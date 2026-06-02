@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-04-30T15:48:45.823Z
-last_checked_at: 2026-05-01T00:09:23.792Z
-generated_at: 2026-05-01T00:09:23.792Z
+last_checked_at: 2026-06-02T22:07:02.650Z
+generated_at: 2026-06-02T22:07:02.650Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "plane map PlnMap1 not used at this time (reserved)"
 verification:
   verdict: verified
-  checked_at: 2026-05-01T00:09:23.792Z
+  checked_at: 2026-06-02T22:07:02.650Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 15 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -320,18 +320,18 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/matrix100all-man.pdf
 retrieved_at: 2026-04-30T15:48:45.823Z
-last_checked_at: 2026-05-01T00:09:23.792Z
+last_checked_at: 2026-06-02T22:07:02.650Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T00:09:23.792Z
+checked_at: 2026-06-02T22:07:02.650Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 15 spec actions matched verbatim to source commands with correct hex codes and transport parameters verified. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 15 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

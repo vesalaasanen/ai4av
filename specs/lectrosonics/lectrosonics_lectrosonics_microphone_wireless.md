@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7409/am1612man.pdf
 retrieved_at: 2026-04-30T04:33:13.083Z
-last_checked_at: 2026-05-14T18:17:17.364Z
-generated_at: 2026-05-14T18:17:17.364Z
+last_checked_at: 2026-06-02T22:08:43.899Z
+generated_at: 2026-06-02T22:08:43.899Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "expansion port control details beyond crosspoint routing"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.364Z
+  checked_at: 2026-06-02T22:08:43.899Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 8 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -387,18 +387,18 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7409/am1612man.pdf
 retrieved_at: 2026-04-30T04:33:13.083Z
-last_checked_at: 2026-05-14T18:17:17.364Z
+last_checked_at: 2026-06-02T22:08:43.899Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.364Z
+checked_at: 2026-06-02T22:08:43.899Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 17 spec actions matched to documented source commands; transport parameters verbatim in source. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 8 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

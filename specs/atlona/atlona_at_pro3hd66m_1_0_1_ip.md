@@ -22,8 +22,8 @@ source_urls:
   - https://atlona.com/downloads/AMX_AT-PRO3HD66M.zip
   - https://atlona.com/downloads/Neets_AT-PRO3HD66M.zip
 retrieved_at: 2026-05-19T19:45:48.289Z
-last_checked_at: 2026-05-20T04:51:36.750Z
-generated_at: 2026-05-20T04:51:36.750Z
+last_checked_at: 2026-06-02T21:47:50.894Z
+generated_at: 2026-06-02T21:47:50.894Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "firmware version compatibility range not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T04:51:36.750Z
+  checked_at: 2026-06-02T21:47:50.894Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -483,18 +483,18 @@ source_urls:
   - https://atlona.com/downloads/AMX_AT-PRO3HD66M.zip
   - https://atlona.com/downloads/Neets_AT-PRO3HD66M.zip
 retrieved_at: 2026-05-19T19:45:48.289Z
-last_checked_at: 2026-05-20T04:51:36.750Z
+last_checked_at: 2026-06-02T21:47:50.894Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T04:51:36.750Z
+checked_at: 2026-06-02T21:47:50.894Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec actions matched cleanly to source commands; transport verified; source fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

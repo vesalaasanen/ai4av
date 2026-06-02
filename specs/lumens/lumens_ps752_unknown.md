@@ -21,8 +21,8 @@ source_urls:
   - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:55:39.719Z
-last_checked_at: 2026-05-16T11:30:42.826Z
-generated_at: 2026-05-16T11:30:42.826Z
+last_checked_at: 2026-06-02T22:09:29.889Z
+generated_at: 2026-06-02T22:09:29.889Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "response timing / latency not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T11:30:42.826Z
+  checked_at: 2026-06-02T22:09:29.889Z
   matched_actions: 77
   action_count: 77
   confidence: medium
-  summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 77 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -803,18 +803,18 @@ source_urls:
   - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:55:39.719Z
-last_checked_at: 2026-05-16T11:30:42.826Z
+last_checked_at: 2026-06-02T22:09:29.889Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T11:30:42.826Z
+checked_at: 2026-06-02T22:09:29.889Z
 matched_actions: 77
 action_count: 77
 confidence: medium
-summary: "All 77 spec actions matched verbatim to source; 64 unique source commands fully represented; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 77 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

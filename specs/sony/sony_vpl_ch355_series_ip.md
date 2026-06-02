@@ -32,8 +32,8 @@ source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
   - https://www.sony.com/electronics/support/res/manuals/9932/7009303bfef1bcfe3616e9036d29c71a/99325955M.pdf
 retrieved_at: 2026-05-03T04:49:49.836Z
-last_checked_at: 2026-05-14T18:17:20.866Z
-generated_at: 2026-05-14T18:17:20.866Z
+last_checked_at: 2026-06-02T22:14:59.980Z
+generated_at: 2026-06-02T22:14:59.980Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -55,11 +55,11 @@ known_gaps:
   - "SDAP advertisement broadcast format partially documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.866Z
+  checked_at: 2026-06-02T22:14:59.980Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented. (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 15 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -402,18 +402,18 @@ source_urls:
   - https://www.sony.com/electronics/support/res/manuals/9932/56e8960c34dfa2b9a3c29caae4b87340/99327515M.pdf
   - https://www.sony.com/electronics/support/res/manuals/9932/7009303bfef1bcfe3616e9036d29c71a/99325955M.pdf
 retrieved_at: 2026-05-03T04:49:49.836Z
-last_checked_at: 2026-05-14T18:17:20.866Z
+last_checked_at: 2026-06-02T22:14:59.980Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.866Z
+checked_at: 2026-06-02T22:14:59.980Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 30 spec actions matched literally to source commands; port 53484 and community auth verified; complete PJLink and SDCP command set represented. (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 15 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,8 +22,8 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-14T21:11:44.404Z
-last_checked_at: 2026-06-02T17:21:47.454Z
-generated_at: 2026-06-02T17:21:47.454Z
+last_checked_at: 2026-06-02T21:41:04.773Z
+generated_at: 2026-06-02T21:41:04.773Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware version compatibility, default authentication procedure, complete per-model channel counts not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:47.454Z
+  checked_at: 2026-06-02T21:41:04.773Z
   matched_actions: 82
   action_count: 82
   confidence: medium
@@ -1408,14 +1408,14 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-14T21:11:44.404Z
-last_checked_at: 2026-06-02T17:21:47.454Z
+last_checked_at: 2026-06-02T21:41:04.773Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:47.454Z
+checked_at: 2026-06-02T21:41:04.773Z
 matched_actions: 82
 action_count: 82
 confidence: medium

@@ -20,12 +20,11 @@ source_domains:
 source_urls:
   - "https://storage.googleapis.com/sandbox1-anthemav/an/MRX%20SLM%20-%20IP%20Control%20Specification-20251208145419790.pdf"
 retrieved_at: 2026-04-30T04:21:05.503Z
-last_checked_at: 2026-05-14T18:17:13.975Z
-generated_at: 2026-05-14T18:17:13.975Z
+last_checked_at: 2026-06-02T21:39:41.930Z
+generated_at: 2026-06-02T21:39:41.930Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - GCBUx
   - "maximum number of simultaneous connections not stated"
   - "firmware version compatibility not stated"
   - "WebSocket sub-protocol / framing details not stated beyond \"operates the same way as TCP\""
@@ -38,11 +37,11 @@ known_gaps:
   - "error recovery / reconnection behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:13.975Z
+  checked_at: 2026-06-02T21:39:41.930Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "Every spec action matched verbatim in source with correct opcodes and parameters; transport fully verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Full protocol coverage with all state/configuration/control actions present and transport specified (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1125,24 +1124,23 @@ source_domains:
 source_urls:
   - "https://storage.googleapis.com/sandbox1-anthemav/an/MRX%20SLM%20-%20IP%20Control%20Specification-20251208145419790.pdf"
 retrieved_at: 2026-04-30T04:21:05.503Z
-last_checked_at: 2026-05-14T18:17:13.975Z
+last_checked_at: 2026-06-02T21:39:41.930Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:13.975Z
+checked_at: 2026-06-02T21:39:41.930Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "Every spec action matched verbatim in source with correct opcodes and parameters; transport fully verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Full protocol coverage with all state/configuration/control actions present and transport specified (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- GCBUx
 - "maximum number of simultaneous connections not stated"
 - "firmware version compatibility not stated"
 - "WebSocket sub-protocol / framing details not stated beyond \"operates the same way as TCP\""

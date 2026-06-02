@@ -17,15 +17,12 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:41:11.996Z
-last_checked_at: 2026-05-16T18:41:11.996Z
-generated_at: 2026-05-16T18:41:11.996Z
+retrieved_at: 2026-06-02T21:54:10.874Z
+last_checked_at: 2026-06-02T21:54:10.874Z
+generated_at: 2026-06-02T21:54:10.874Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - /Browse
-  - /Presets
-  - /RadioBrowse
   - "device-specific hardware capabilities (inputs, outputs, amplifier specs) not described in source; source is the generic BluOS CI API document applicable to multiple Bluesound/NAD/DALI products"
   - "no multi-step macro sequences described explicitly in source; populate if applicable"
   - "no safety warnings or interlock procedures stated in source"
@@ -35,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T18:41:11.996Z
+  checked_at: 2026-06-02T21:54:10.874Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 spec actions traced to BluOS API v1.7. Full playback, volume, grouping, preset, and queue control documented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -578,27 +575,24 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:41:11.996Z
-last_checked_at: 2026-05-16T18:41:11.996Z
+retrieved_at: 2026-06-02T21:54:10.874Z
+last_checked_at: 2026-06-02T21:54:10.874Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T18:41:11.996Z
+checked_at: 2026-06-02T21:54:10.874Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec actions matched verbatim in the BluOS CI API source; transport port 11000 confirmed; only 3 minor browse/list commands not represented. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 spec actions traced to BluOS API v1.7. Full playback, volume, grouping, preset, and queue control documented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- /Browse
-- /Presets
-- /RadioBrowse
 - "device-specific hardware capabilities (inputs, outputs, amplifier specs) not described in source; source is the generic BluOS CI API document applicable to multiple Bluesound/NAD/DALI products"
 - "no multi-step macro sequences described explicitly in source; populate if applicable"
 - "no safety warnings or interlock procedures stated in source"

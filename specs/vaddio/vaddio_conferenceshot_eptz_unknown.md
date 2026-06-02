@@ -27,8 +27,8 @@ source_urls:
   - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T17:48:06.540Z
-last_checked_at: 2026-05-19T17:11:22.436Z
-generated_at: 2026-05-19T17:11:22.436Z
+last_checked_at: 2026-06-02T22:15:56.550Z
+generated_at: 2026-06-02T22:15:56.550Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "HTTP/REST API not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:11:22.436Z
+  checked_at: 2026-06-02T22:15:56.550Z
   matched_actions: 40
   action_count: 40
   confidence: medium
-  summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 40 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -700,18 +700,18 @@ source_urls:
   - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T17:48:06.540Z
-last_checked_at: 2026-05-19T17:11:22.436Z
+last_checked_at: 2026-06-02T22:15:56.550Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:11:22.436Z
+checked_at: 2026-06-02T22:15:56.550Z
 matched_actions: 40
 action_count: 40
 confidence: medium
-summary: "All 40 spec actions matched cleanly in source with correct transport parameters; spec fully represents source command catalogue. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 40 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

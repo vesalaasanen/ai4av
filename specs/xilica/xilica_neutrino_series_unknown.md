@@ -29,8 +29,8 @@ source_urls:
   - https://www.starfelt.se/manualer/1100890092_3rdpart.pdf
   - https://manualmachine.com/xilica/neutrino/1808966-user-manual/
 retrieved_at: 2026-05-19T04:24:08.275Z
-last_checked_at: 2026-05-19T17:13:34.336Z
-generated_at: 2026-05-19T17:13:34.336Z
+last_checked_at: 2026-06-02T22:16:24.487Z
+generated_at: 2026-06-02T22:16:24.487Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "voltage, current, power specifications — not applicable to control protocol"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:13:34.336Z
+  checked_at: 2026-06-02T22:16:24.487Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -349,18 +349,18 @@ source_urls:
   - https://www.starfelt.se/manualer/1100890092_3rdpart.pdf
   - https://manualmachine.com/xilica/neutrino/1808966-user-manual/
 retrieved_at: 2026-05-19T04:24:08.275Z
-last_checked_at: 2026-05-19T17:13:34.336Z
+last_checked_at: 2026-06-02T22:16:24.487Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:13:34.336Z
+checked_at: 2026-06-02T22:16:24.487Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions verified against source commands with matching wire-level tokens and transport parameters confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

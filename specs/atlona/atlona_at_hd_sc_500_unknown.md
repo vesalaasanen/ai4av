@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HD-SC-500_API.pdf
 retrieved_at: 2026-05-14T11:07:09.275Z
-last_checked_at: 2026-05-14T21:31:26.673Z
-generated_at: 2026-05-14T21:31:26.673Z
+last_checked_at: 2026-06-02T21:39:58.801Z
+generated_at: 2026-06-02T21:39:58.801Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "CEC command details beyond TrigCEC trigger not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:31:26.673Z
+  checked_at: 2026-06-02T21:39:58.801Z
   matched_actions: 82
   action_count: 82
   confidence: medium
-  summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete HDMI/VGA scaler protocol with dual transport (serial + Telnet), audio/video routing, display, and network configuration (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -910,18 +910,18 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HD-SC-500_API.pdf
 retrieved_at: 2026-05-14T11:07:09.275Z
-last_checked_at: 2026-05-14T21:31:26.673Z
+last_checked_at: 2026-06-02T21:39:58.801Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:31:26.673Z
+checked_at: 2026-06-02T21:39:58.801Z
 matched_actions: 82
 action_count: 82
 confidence: medium
-summary: "All 82 spec actions matched literally in source with correct wire tokens and parameters; transport parameters verified or correctly marked unresolved. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete HDMI/VGA scaler protocol with dual transport (serial + Telnet), audio/video routing, display, and network configuration (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

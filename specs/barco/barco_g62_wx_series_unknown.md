@@ -21,13 +21,11 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:50:42.964Z
-last_checked_at: 2026-05-14T21:37:19.283Z
-generated_at: 2026-05-14T21:37:19.283Z
+last_checked_at: 2026-06-02T21:49:59.388Z
+generated_at: 2026-06-02T21:49:59.388Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - system.standby.enable
-  - system.eco.enable
   - "specific G62 model variants not enumerated in source"
   - "firmware version compatibility not stated"
   - "HTTP file transfer endpoints have no auth requirement documented"
@@ -40,11 +38,11 @@ known_gaps:
   - "laser serial number method (illumination.laser.getserialnumber) response format partially documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:37:19.283Z
+  checked_at: 2026-06-02T21:49:59.388Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -834,25 +832,23 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:50:42.964Z
-last_checked_at: 2026-05-14T21:37:19.283Z
+last_checked_at: 2026-06-02T21:49:59.388Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:37:19.283Z
+checked_at: 2026-06-02T21:49:59.388Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec actions matched literal method names and properties in source; transport parameters verified exact; spec covers documented Pulse API comprehensively. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- system.standby.enable
-- system.eco.enable
 - "specific G62 model variants not enumerated in source"
 - "firmware version compatibility not stated"
 - "HTTP file transfer endpoints have no auth requirement documented"

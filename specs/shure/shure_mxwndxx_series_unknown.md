@@ -27,8 +27,8 @@ source_urls:
   - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-05-13T21:29:23.231Z
-last_checked_at: 2026-05-18T17:06:28.853Z
-generated_at: 2026-05-18T17:06:28.853Z
+last_checked_at: 2026-06-02T22:14:32.517Z
+generated_at: 2026-06-02T22:14:32.517Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:06:28.853Z
+  checked_at: 2026-06-02T22:14:32.517Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -375,18 +375,18 @@ source_urls:
   - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-05-13T21:29:23.231Z
-last_checked_at: 2026-05-18T17:06:28.853Z
+last_checked_at: 2026-06-02T22:14:32.517Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:06:28.853Z
+checked_at: 2026-06-02T22:14:32.517Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions matched their source commands with correct shapes; transport parameters verified; feedbacks account for all GET/query variants. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

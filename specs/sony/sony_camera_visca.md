@@ -23,8 +23,8 @@ source_urls:
   - https://pro.sony/s3/2022/09/03065933/VISCA_Command_List_v4.pdf
   - https://pro.sony/ue_US/product-resources/knowledge-panel/command-list
 retrieved_at: 2026-05-05T02:55:26.796Z
-last_checked_at: 2026-05-14T18:17:20.764Z
-generated_at: 2026-05-14T18:17:20.764Z
+last_checked_at: 2026-06-02T22:14:55.147Z
+generated_at: 2026-06-02T22:14:55.147Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Press/Release commands for offset color temp and offset tint (ATW mode) use same command format as Memory A counterparts but with p=0"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.764Z
+  checked_at: 2026-06-02T22:14:55.147Z
   matched_actions: 109
   action_count: 109
   confidence: medium
-  summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 109 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1716,18 +1716,18 @@ source_urls:
   - https://pro.sony/s3/2022/09/03065933/VISCA_Command_List_v4.pdf
   - https://pro.sony/ue_US/product-resources/knowledge-panel/command-list
 retrieved_at: 2026-05-05T02:55:26.796Z
-last_checked_at: 2026-05-14T18:17:20.764Z
+last_checked_at: 2026-06-02T22:14:55.147Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.764Z
+checked_at: 2026-06-02T22:14:55.147Z
 matched_actions: 109
 action_count: 109
 confidence: medium
-summary: "All 147 spec actions matched literal wire tokens in source command tables; transport parameters verified against protocol documentation. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 109 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

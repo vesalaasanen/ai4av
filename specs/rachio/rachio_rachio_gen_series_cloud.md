@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://rachio.readme.io/reference
 retrieved_at: 2026-04-30T04:32:52.163Z
-last_checked_at: 2026-04-27T15:11:48.990Z
-generated_at: 2026-04-27T15:11:48.990Z
+last_checked_at: 2026-06-02T22:13:25.486Z
+generated_at: 2026-06-02T22:13:25.486Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "request/response body schemas not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:11:48.990Z
+  checked_at: 2026-06-02T22:13:25.486Z
   matched_actions: 88
   action_count: 88
   confidence: medium
-  summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 88 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -484,18 +484,18 @@ source_domains:
 source_urls:
   - https://rachio.readme.io/reference
 retrieved_at: 2026-04-30T04:32:52.163Z
-last_checked_at: 2026-04-27T15:11:48.990Z
+last_checked_at: 2026-06-02T22:13:25.486Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:11:48.990Z
+checked_at: 2026-06-02T22:13:25.486Z
 matched_actions: 88
 action_count: 88
 confidence: medium
-summary: "All 88 spec actions map to documented REST API endpoints with matching semantic coverage; transport parameters verified verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 88 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

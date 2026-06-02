@@ -26,8 +26,8 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
-last_checked_at: 2026-06-02T17:21:31.567Z
-generated_at: 2026-06-02T17:21:31.567Z
+last_checked_at: 2026-06-02T21:40:14.922Z
+generated_at: 2026-06-02T21:40:14.922Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "firmware version compatibility ranges per model not stated in source; voltage, current, power, and weight specifications not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:31.567Z
+  checked_at: 2026-06-02T21:40:14.922Z
   matched_actions: 197
   action_count: 197
   confidence: medium
@@ -1930,14 +1930,14 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-05-03T16:24:43.318Z
-last_checked_at: 2026-06-02T17:21:31.567Z
+last_checked_at: 2026-06-02T21:40:14.922Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:31.567Z
+checked_at: 2026-06-02T21:40:14.922Z
 matched_actions: 197
 action_count: 197
 confidence: medium

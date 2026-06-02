@@ -23,8 +23,8 @@ source_urls:
   - https://www.manualslib.com/manual/3844181/Amc-X86.html
   - https://amchome.com/smart/amc-x86i/
 retrieved_at: 2026-05-20T18:25:47.403Z
-last_checked_at: 2026-05-22T13:30:14.145Z
-generated_at: 2026-05-22T13:30:14.145Z
+last_checked_at: 2026-06-02T21:39:38.927Z
+generated_at: 2026-06-02T21:39:38.927Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "maximum concurrent connection or command queuing behavior not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-22T13:30:14.145Z
+  checked_at: 2026-06-02T21:39:38.927Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 zone/system control commands found in source with correct ASCII format (prefix *), command syntax (ZNnn), parameters (zone 01-06, source 01-08), and responses. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -441,18 +441,18 @@ source_urls:
   - https://www.manualslib.com/manual/3844181/Amc-X86.html
   - https://amchome.com/smart/amc-x86i/
 retrieved_at: 2026-05-20T18:25:47.403Z
-last_checked_at: 2026-05-22T13:30:14.145Z
+last_checked_at: 2026-06-02T21:39:38.927Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-22T13:30:14.145Z
+checked_at: 2026-06-02T21:39:38.927Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions matched literal command strings in source; transport parameters (38400 baud, 8N1, no flow control) verified; X86 model coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 zone/system control commands found in source with correct ASCII format (prefix *), command syntax (ZNnn), parameters (zone 01-06, source 01-08), and responses. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

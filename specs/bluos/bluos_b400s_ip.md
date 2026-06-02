@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T17:33:54.652Z
-last_checked_at: 2026-05-16T17:33:54.652Z
-generated_at: 2026-05-16T17:33:54.652Z
+retrieved_at: 2026-06-02T21:54:06.537Z
+last_checked_at: 2026-06-02T21:54:06.537Z
+generated_at: 2026-06-02T21:54:06.537Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T17:33:54.652Z
+  checked_at: 2026-06-02T21:54:06.537Z
   matched_actions: 39
   action_count: 39
   confidence: medium
-  summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 39 spec actions traced to BluOS API v1.7. Comprehensive playback, volume, input, preset, grouping, and queue management documented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -668,19 +668,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T17:33:54.652Z
-last_checked_at: 2026-05-16T17:33:54.652Z
+retrieved_at: 2026-06-02T21:54:06.537Z
+last_checked_at: 2026-06-02T21:54:06.537Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T17:33:54.652Z
+checked_at: 2026-06-02T21:54:06.537Z
 matched_actions: 39
 action_count: 39
 confidence: medium
-summary: "All 39 spec actions have verbatim wire-path matches in the source with correct shapes; transport confirmed; all source command sections represented. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 39 spec actions traced to BluOS API v1.7. Comprehensive playback, volume, input, preset, grouping, and queue management documented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

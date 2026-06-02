@@ -26,8 +26,8 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-04-30T04:40:34.498Z
-last_checked_at: 2026-05-14T18:17:14.169Z
-generated_at: 2026-05-14T18:17:14.169Z
+last_checked_at: 2026-06-02T21:48:00.367Z
+generated_at: 2026-06-02T21:48:00.367Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "Master table and preset operations (sections 4.5-4.8) have abbreviated documentation in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.169Z
+  checked_at: 2026-06-02T21:48:00.367Z
   matched_actions: 63
   action_count: 63
   confidence: medium
-  summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1215,18 +1215,18 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/ESW_IP_Control_Specification_V1_EN_web_230131.pdf
 retrieved_at: 2026-04-30T04:40:34.498Z
-last_checked_at: 2026-05-14T18:17:14.169Z
+last_checked_at: 2026-06-02T21:48:00.367Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.169Z
+checked_at: 2026-06-02T21:48:00.367Z
 matched_actions: 63
 action_count: 63
 confidence: medium
-summary: "All 94 spec actions matched literally in source with correct shapes; all transport parameters verified verbatim; bidirectional coverage confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

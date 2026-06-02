@@ -29,8 +29,8 @@ source_urls:
   - https://www.manua.ls/extron/dtp2-crosspoint-82/manual
   - https://www.manuals.ca/extron/dtp2-crosspoint-82/manual
 retrieved_at: 2026-05-17T16:50:14.802Z
-last_checked_at: 2026-05-20T11:56:12.371Z
-generated_at: 2026-05-20T11:56:12.371Z
+last_checked_at: 2026-06-02T22:06:59.722Z
+generated_at: 2026-06-02T22:06:59.722Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,11 +47,11 @@ known_gaps:
   - "per-block soft limit ranges for individual OIDs not enumerated in this excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T11:56:12.371Z
-  matched_actions: 250
-  action_count: 250
+  checked_at: 2026-06-02T22:06:59.722Z
+  matched_actions: 246
+  action_count: 246
   confidence: medium
-  summary: "All 250 spec actions matched; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 246 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2029,18 +2029,18 @@ source_urls:
   - https://www.manua.ls/extron/dtp2-crosspoint-82/manual
   - https://www.manuals.ca/extron/dtp2-crosspoint-82/manual
 retrieved_at: 2026-05-17T16:50:14.802Z
-last_checked_at: 2026-05-20T11:56:12.371Z
+last_checked_at: 2026-06-02T22:06:59.722Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T11:56:12.371Z
-matched_actions: 250
-action_count: 250
+checked_at: 2026-06-02T22:06:59.722Z
+matched_actions: 246
+action_count: 246
 confidence: medium
-summary: "All 250 spec actions matched; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 246 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

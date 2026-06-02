@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
 retrieved_at: 2026-04-30T13:01:42.709Z
-last_checked_at: 2026-04-30T15:20:36.891Z
-generated_at: 2026-04-30T15:20:36.891Z
+last_checked_at: 2026-06-02T22:08:33.509Z
+generated_at: 2026-06-02T22:08:33.509Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "no power on/off command documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:20:36.891Z
+  checked_at: 2026-06-02T22:08:33.509Z
   matched_actions: 13
   action_count: 13
   confidence: medium
-  summary: "All 13 spec actions matched literally; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 13 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -232,18 +232,18 @@ source_domains:
 source_urls:
   - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
 retrieved_at: 2026-04-30T13:01:42.709Z
-last_checked_at: 2026-04-30T15:20:36.891Z
+last_checked_at: 2026-06-02T22:08:33.509Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:20:36.891Z
+checked_at: 2026-06-02T22:08:33.509Z
 matched_actions: 13
 action_count: 13
 confidence: medium
-summary: "All 13 spec actions matched literally; transport verified. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 13 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

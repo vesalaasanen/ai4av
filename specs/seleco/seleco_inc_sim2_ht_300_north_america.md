@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-05-14T18:17:20.212Z
-generated_at: 2026-05-14T18:17:20.212Z
+last_checked_at: 2026-06-02T22:13:47.018Z
+generated_at: 2026-06-02T22:13:47.018Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "operation code parameter value ranges not documented; CRC algorithm not specified; Event packet payload structure not fully described"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.212Z
-  matched_actions: 87
+  checked_at: 2026-06-02T22:13:47.018Z
+  matched_actions: 93
   action_count: 93
   confidence: medium
-  summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 93 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -695,18 +695,18 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-05-14T18:17:20.212Z
+last_checked_at: 2026-06-02T22:13:47.018Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.212Z
-matched_actions: 87
+checked_at: 2026-06-02T22:13:47.018Z
+matched_actions: 93
 action_count: 93
 confidence: medium
-summary: "Every spec action matched literally to source hex codes; transport parameters verified; comprehensive coverage across RC keycodes, direct access, and operation codes. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 93 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

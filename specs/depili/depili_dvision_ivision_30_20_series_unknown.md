@@ -27,8 +27,8 @@ source_urls:
   - "https://assets.lutron.com/a/documents/hwi%20rs232%20protocol.pdf"
   - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-05-14T15:34:54.892Z
-last_checked_at: 2026-06-02T17:22:06.688Z
-generated_at: 2026-06-02T17:22:06.688Z
+last_checked_at: 2026-06-02T21:41:29.209Z
+generated_at: 2026-06-02T21:41:29.209Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,7 +44,7 @@ known_gaps:
   - "firmware version compatibility not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:06.688Z
+  checked_at: 2026-06-02T21:41:29.209Z
   matched_actions: 98
   action_count: 98
   confidence: medium
@@ -792,14 +792,14 @@ source_urls:
   - "https://assets.lutron.com/a/documents/hwi%20rs232%20protocol.pdf"
   - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-05-14T15:34:54.892Z
-last_checked_at: 2026-06-02T17:22:06.688Z
+last_checked_at: 2026-06-02T21:41:29.209Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:06.688Z
+checked_at: 2026-06-02T21:41:29.209Z
 matched_actions: 98
 action_count: 98
 confidence: medium

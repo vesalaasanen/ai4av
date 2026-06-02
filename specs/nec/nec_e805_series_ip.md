@@ -20,14 +20,11 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:47.061Z
-last_checked_at: 2026-05-14T18:17:18.430Z
-generated_at: 2026-05-14T18:17:18.430Z
+last_checked_at: 2026-06-02T22:10:21.620Z
+generated_at: 2026-06-02T22:10:21.620Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "INFORMATION STRING REQUEST"
-  - "SETTING REQUEST"
-  - "BASE MODEL TYPE REQUEST"
   - "input terminal code values vary across models; Appendix lists model-specific variants"
   - "variables are primarily settable via Actions (eco_mode_set, lan_projector_name_set, etc.)"
   - "no unsolicited event notifications described in source; device only responds to commands"
@@ -38,11 +35,11 @@ known_gaps:
   - "eco mode values vary significantly across NEC model range"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.430Z
+  checked_at: 2026-06-02T22:10:21.620Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 43 spec actions match documented NEC display IP commands; transport parameters verified; comprehensive coverage. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -535,26 +532,23 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:47.061Z
-last_checked_at: 2026-05-14T18:17:18.430Z
+last_checked_at: 2026-06-02T22:10:21.620Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.430Z
+checked_at: 2026-06-02T22:10:21.620Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 43 spec actions match documented NEC display IP commands; transport parameters verified; comprehensive coverage. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "INFORMATION STRING REQUEST"
-- "SETTING REQUEST"
-- "BASE MODEL TYPE REQUEST"
 - "input terminal code values vary across models; Appendix lists model-specific variants"
 - "variables are primarily settable via Actions (eco_mode_set, lan_projector_name_set, etc.)"
 - "no unsolicited event notifications described in source; device only responds to commands"

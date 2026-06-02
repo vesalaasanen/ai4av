@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T17:30:45.603Z
-last_checked_at: 2026-05-14T18:17:21.049Z
-generated_at: 2026-05-14T18:17:21.049Z
+last_checked_at: 2026-06-02T22:15:16.122Z
+generated_at: 2026-06-02T22:15:16.122Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "Input 7 (VGA) and Input 8 (HDMI1) letter sequence swap reason not explained beyond legacy compat."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.049Z
+  checked_at: 2026-06-02T22:15:16.122Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 50 spec actions matched literally against source hex codes and transport parameters verified; complete bidirectional coverage. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -466,18 +466,18 @@ source_domains:
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-05-04T17:30:45.603Z
-last_checked_at: 2026-05-14T18:17:21.049Z
+last_checked_at: 2026-06-02T22:15:16.122Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.049Z
+checked_at: 2026-06-02T22:15:16.122Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 50 spec actions matched literally against source hex codes and transport parameters verified; complete bidirectional coverage. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

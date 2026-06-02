@@ -25,8 +25,8 @@ source_urls:
   - https://clevertouch.zendesk.com/hc/en-gb/articles/23384984694674-Clevertouch-Quick-Tips-RS232-and-IP-commands
   - https://aveosystems.com/wp-content/uploads/product_pdfs/Clevertouch_Mira_Connect.pdf
 retrieved_at: 2026-05-04T15:23:22.675Z
-last_checked_at: 2026-05-04T16:13:59.277Z
-generated_at: 2026-05-04T16:13:59.277Z
+last_checked_at: 2026-06-02T22:05:26.866Z
+generated_at: 2026-06-02T22:05:26.866Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "WHDI input listed in status reply but no select command provided"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:13:59.277Z
+  checked_at: 2026-06-02T22:05:26.866Z
   matched_actions: 72
   action_count: 72
   confidence: medium
-  summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 72 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -657,18 +657,18 @@ source_urls:
   - https://clevertouch.zendesk.com/hc/en-gb/articles/23384984694674-Clevertouch-Quick-Tips-RS232-and-IP-commands
   - https://aveosystems.com/wp-content/uploads/product_pdfs/Clevertouch_Mira_Connect.pdf
 retrieved_at: 2026-05-04T15:23:22.675Z
-last_checked_at: 2026-05-04T16:13:59.277Z
+last_checked_at: 2026-06-02T22:05:26.866Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:13:59.277Z
+checked_at: 2026-06-02T22:05:26.866Z
 matched_actions: 72
 action_count: 72
 confidence: medium
-summary: "Every spec action matched verbatim in source code list and status checking section; all transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 72 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

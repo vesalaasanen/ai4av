@@ -23,8 +23,8 @@ source_urls:
   - https://atlona.com/downloads/CRM_AT-PRO2HD1616M.zip
   - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
 retrieved_at: 2026-05-20T18:32:28.305Z
-last_checked_at: 2026-06-02T17:21:25.472Z
-generated_at: 2026-06-02T17:21:25.472Z
+last_checked_at: 2026-06-02T21:40:05.741Z
+generated_at: 2026-06-02T21:40:05.741Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "error-recovery / fault behavior not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:25.472Z
+  checked_at: 2026-06-02T21:40:05.741Z
   matched_actions: 27
   action_count: 27
   confidence: medium
@@ -471,14 +471,14 @@ source_urls:
   - https://atlona.com/downloads/CRM_AT-PRO2HD1616M.zip
   - https://atlona.com/pdf/AT-UHD-PRO3-1616M_API.pdf
 retrieved_at: 2026-05-20T18:32:28.305Z
-last_checked_at: 2026-06-02T17:21:25.472Z
+last_checked_at: 2026-06-02T21:40:05.741Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:25.472Z
+checked_at: 2026-06-02T21:40:05.741Z
 matched_actions: 27
 action_count: 27
 confidence: medium

@@ -23,9 +23,9 @@ source_urls:
   - "https://gscs-b2c.lge.com/downloadFile?fileId=OTCe0KNJErB1WmzD05OQ"
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
-retrieved_at: 2026-04-25T21:03:52.558Z
-last_checked_at: 2026-04-25T21:03:52.558Z
-generated_at: 2026-04-25T21:03:52.558Z
+retrieved_at: 2026-06-02T22:09:09.957Z
+last_checked_at: 2026-06-02T22:09:09.957Z
+generated_at: 2026-06-02T22:09:09.957Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "detailed electrical specs (voltage, current, power) not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:03:52.558Z
-  matched_actions: 27
-  action_count: 27
+  checked_at: 2026-06-02T22:09:09.957Z
+  matched_actions: 56
+  action_count: 56
   confidence: medium
-  summary: "All 27 spec actions matched source commands verbatim; transport parameters verified; complete bidirectional coverage. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 56 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -722,19 +722,19 @@ source_urls:
   - "https://gscs-b2c.lge.com/downloadFile?fileId=OTCe0KNJErB1WmzD05OQ"
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
-retrieved_at: 2026-04-25T21:03:52.558Z
-last_checked_at: 2026-04-25T21:03:52.558Z
+retrieved_at: 2026-06-02T22:09:09.957Z
+last_checked_at: 2026-06-02T22:09:09.957Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:03:52.558Z
-matched_actions: 27
-action_count: 27
+checked_at: 2026-06-02T22:09:09.957Z
+matched_actions: 56
+action_count: 56
 confidence: medium
-summary: "All 27 spec actions matched source commands verbatim; transport parameters verified; complete bidirectional coverage. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 56 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

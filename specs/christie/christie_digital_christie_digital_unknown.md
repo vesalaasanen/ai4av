@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:34:57.871Z
-last_checked_at: 2026-06-02T17:21:53.572Z
-generated_at: 2026-06-02T17:21:53.572Z
+last_checked_at: 2026-06-02T21:41:10.942Z
+generated_at: 2026-06-02T21:41:10.942Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "TCP port number for Ethernet control not stated in source. Specific projector model number (DWU670-E) is one of possibly several E Series models. Service account credentials are not enumerated (only \"service,service\" given as example). IR Remote keycode list ends at keycode 72; completeness of IR keycode table is not guaranteed by the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:53.572Z
+  checked_at: 2026-06-02T21:41:10.942Z
   matched_actions: 225
   action_count: 225
   confidence: medium
@@ -1838,14 +1838,14 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000372-05-christie-e-series-serial-communications.pdf
 retrieved_at: 2026-04-30T04:34:57.871Z
-last_checked_at: 2026-06-02T17:21:53.572Z
+last_checked_at: 2026-06-02T21:41:10.942Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:53.572Z
+checked_at: 2026-06-02T21:41:10.942Z
 matched_actions: 225
 action_count: 225
 confidence: medium

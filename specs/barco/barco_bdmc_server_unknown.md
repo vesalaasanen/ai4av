@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:33:26.102Z
-last_checked_at: 2026-05-14T21:35:56.006Z
-generated_at: 2026-05-14T21:35:56.006Z
+last_checked_at: 2026-06-02T21:47:56.385Z
+generated_at: 2026-06-02T21:47:56.385Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "ECO wake serial command (:POWR1\\r) uses raw ASCII, not JSON-RPC — protocol switching required"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:35:56.006Z
+  checked_at: 2026-06-02T21:47:56.385Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 44 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -825,18 +825,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:33:26.102Z
-last_checked_at: 2026-05-14T21:35:56.006Z
+last_checked_at: 2026-06-02T21:47:56.385Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:35:56.006Z
+checked_at: 2026-06-02T21:47:56.385Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions matched literally in source; transport parameters verified against RS-232 and network documentation; comprehensive method coverage confirmed. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 44 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

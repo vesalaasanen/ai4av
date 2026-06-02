@@ -27,8 +27,8 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-30T04:40:36.128Z
-last_checked_at: 2026-05-14T18:17:14.185Z
-generated_at: 2026-05-14T18:17:14.185Z
+last_checked_at: 2026-06-02T21:47:57.270Z
+generated_at: 2026-06-02T21:47:57.270Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "firmware update procedure not covered in IP control spec"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.185Z
-  matched_actions: 152
+  checked_at: 2026-06-02T21:47:57.270Z
+  matched_actions: 165
   action_count: 165
   confidence: medium
-  summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 165 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1941,18 +1941,18 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-30T04:40:36.128Z
-last_checked_at: 2026-05-14T18:17:14.185Z
+last_checked_at: 2026-06-02T21:47:57.270Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.185Z
-matched_actions: 152
+checked_at: 2026-06-02T21:47:57.270Z
+matched_actions: 165
 action_count: 165
 confidence: medium
-summary: "All 152 spec actions match command mnemonics in source; transport ports verified verbatim; complete coverage of documented command set. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 165 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

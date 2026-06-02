@@ -24,8 +24,8 @@ source_urls:
   - https://support.coolautomation.com/hc/en-us/articles/29441867901853-Modbus-Server-Integration-Registers-Sample
   - https://support.coolautomation.com/hc/en-us/articles/4987429359005-BACnet-Integration-Guidelines
 retrieved_at: 2026-05-27T13:24:45.663Z
-last_checked_at: 2026-06-02T17:21:55.767Z
-generated_at: 2026-06-02T17:21:55.767Z
+last_checked_at: 2026-06-02T21:41:18.229Z
+generated_at: 2026-06-02T21:41:18.229Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "Cool Linknet-specific hardware revisions, SKU variants, and any firmware version compatibility notes are not stated in the source. The PRM covers the broader CoolMaster Product Line."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:55.767Z
+  checked_at: 2026-06-02T21:41:18.229Z
   matched_actions: 87
   action_count: 87
   confidence: medium
@@ -970,14 +970,14 @@ source_urls:
   - https://support.coolautomation.com/hc/en-us/articles/29441867901853-Modbus-Server-Integration-Registers-Sample
   - https://support.coolautomation.com/hc/en-us/articles/4987429359005-BACnet-Integration-Guidelines
 retrieved_at: 2026-05-27T13:24:45.663Z
-last_checked_at: 2026-06-02T17:21:55.767Z
+last_checked_at: 2026-06-02T21:41:18.229Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:55.767Z
+checked_at: 2026-06-02T21:41:18.229Z
 matched_actions: 87
 action_count: 87
 confidence: medium

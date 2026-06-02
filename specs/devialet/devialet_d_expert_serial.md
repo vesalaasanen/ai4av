@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-04-30T04:26:31.247Z
-last_checked_at: 2026-05-14T18:17:15.467Z
-generated_at: 2026-05-14T18:17:15.467Z
+last_checked_at: 2026-06-02T22:06:03.434Z
+generated_at: 2026-06-02T22:06:03.434Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "ACK response format details — source shows example but not full specification"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.467Z
+  checked_at: 2026-06-02T22:06:03.434Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 25 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -368,18 +368,18 @@ source_domains:
 source_urls:
   - https://www.devialet.com/en-us/docs/D-Premier-RS232.pdf
 retrieved_at: 2026-04-30T04:26:31.247Z
-last_checked_at: 2026-05-14T18:17:15.467Z
+last_checked_at: 2026-06-02T22:06:03.434Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.467Z
+checked_at: 2026-06-02T22:06:03.434Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 36 spec actions matched literally in source; transport parameters verified; no missing commands. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 25 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

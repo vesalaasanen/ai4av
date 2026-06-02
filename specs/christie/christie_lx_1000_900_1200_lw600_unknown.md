@@ -24,8 +24,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000046-02-lw600-rs232-expnd-codes.pdf
   - https://www.christiedigital.com/globalassets/resources/public/020-000053-02-christie-lx900-lw600-user-manual.pdf
 retrieved_at: 2026-05-14T15:02:49.722Z
-last_checked_at: 2026-06-02T17:21:54.285Z
-generated_at: 2026-06-02T17:21:54.285Z
+last_checked_at: 2026-06-02T21:41:12.642Z
+generated_at: 2026-06-02T21:41:12.642Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "the 19200 baud \"initial setting\" is taken as the default; 9600 fallback is supported only via service-mode change. The on-wire default at first power-on is 19200 per the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:54.285Z
+  checked_at: 2026-06-02T21:41:12.642Z
   matched_actions: 66
   action_count: 66
   confidence: medium
@@ -592,14 +592,14 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-000046-02-lw600-rs232-expnd-codes.pdf
   - https://www.christiedigital.com/globalassets/resources/public/020-000053-02-christie-lx900-lw600-user-manual.pdf
 retrieved_at: 2026-05-14T15:02:49.722Z
-last_checked_at: 2026-06-02T17:21:54.285Z
+last_checked_at: 2026-06-02T21:41:12.642Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:54.285Z
+checked_at: 2026-06-02T21:41:12.642Z
 matched_actions: 66
 action_count: 66
 confidence: medium

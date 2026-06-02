@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.usa.canon.com/support/p/bu-45h
 retrieved_at: 2026-04-30T04:33:00.884Z
-last_checked_at: 2026-04-23T15:28:39.241Z
-generated_at: 2026-04-23T15:28:39.241Z
+last_checked_at: 2026-06-02T22:04:50.773Z
+generated_at: 2026-06-02T22:04:50.773Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "protocol version not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:28:39.241Z
+  checked_at: 2026-06-02T22:04:50.773Z
   matched_actions: 71
   action_count: 71
   confidence: medium
-  summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 71 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -627,18 +627,18 @@ source_domains:
 source_urls:
   - https://www.usa.canon.com/support/p/bu-45h
 retrieved_at: 2026-04-30T04:33:00.884Z
-last_checked_at: 2026-04-23T15:28:39.241Z
+last_checked_at: 2026-06-02T22:04:50.773Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:28:39.241Z
+checked_at: 2026-06-02T22:04:50.773Z
 matched_actions: 71
 action_count: 71
 confidence: medium
-summary: "All 71 spec actions matched literally in source; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 71 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

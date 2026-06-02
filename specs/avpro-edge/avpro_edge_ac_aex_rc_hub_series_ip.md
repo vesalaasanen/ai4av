@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://files.avprosupply.com/files/attachments/508449/avpro-edge-ac-aex-rc-hub-manual.pdf
 retrieved_at: 2026-04-30T04:24:48.551Z
-last_checked_at: 2026-05-14T18:17:14.218Z
-generated_at: 2026-05-14T18:17:14.218Z
+last_checked_at: 2026-06-02T21:47:59.598Z
+generated_at: 2026-06-02T21:47:59.598Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "firmware version compatibility, fault behavior, error recovery sequences not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.218Z
+  checked_at: 2026-06-02T21:47:59.598Z
   matched_actions: 24
   action_count: 24
   confidence: medium
-  summary: "All 44 spec actions match literal command tokens in the source. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 24 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -451,18 +451,18 @@ source_domains:
 source_urls:
   - https://files.avprosupply.com/files/attachments/508449/avpro-edge-ac-aex-rc-hub-manual.pdf
 retrieved_at: 2026-04-30T04:24:48.551Z
-last_checked_at: 2026-05-14T18:17:14.218Z
+last_checked_at: 2026-06-02T21:47:59.598Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.218Z
+checked_at: 2026-06-02T21:47:59.598Z
 matched_actions: 24
 action_count: 24
 confidence: medium
-summary: "All 44 spec actions match literal command tokens in the source. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 24 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

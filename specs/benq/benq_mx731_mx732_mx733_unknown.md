@@ -24,8 +24,8 @@ source_urls:
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:28:27.942Z
-last_checked_at: 2026-05-14T21:40:25.007Z
-generated_at: 2026-05-14T21:40:25.007Z
+last_checked_at: 2026-06-02T21:51:19.350Z
+generated_at: 2026-06-02T21:51:19.350Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "some models (MX731 vs MX732 vs MX733) may have hardware differences affecting supported commands"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:40:25.007Z
-  matched_actions: 94
+  checked_at: 2026-06-02T21:51:19.350Z
+  matched_actions: 101
   action_count: 101
   confidence: medium
-  summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 101 spec actions matched to command table. Model-specific support annotations preserved. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -625,18 +625,18 @@ source_urls:
   - "https://esupportdownload.benq.com/esupport/Projector/Control%20Protocols/BS5050/RS232%20Control%20Guide_0_Windows10_Windows7_Windows8.pdf"
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:28:27.942Z
-last_checked_at: 2026-05-14T21:40:25.007Z
+last_checked_at: 2026-06-02T21:51:19.350Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:40:25.007Z
-matched_actions: 94
+checked_at: 2026-06-02T21:51:19.350Z
+matched_actions: 101
 action_count: 101
 confidence: medium
-summary: "All 94 spec actions matched semantic ids to source command table entries; all transport parameters verified verbatim in source documentation. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 101 spec actions matched to command table. Model-specific support annotations preserved. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

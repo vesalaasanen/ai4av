@@ -23,8 +23,8 @@ source_urls:
   - https://api.tvone.com/products/c7-series/c7-pro-2200/WebsocketAPI_CALICO_C7-PRO_current.pdf
   - https://api.tvone.com/
 retrieved_at: 2026-04-30T19:35:53.603Z
-last_checked_at: 2026-05-01T00:09:24.904Z
-generated_at: 2026-05-01T00:09:24.904Z
+last_checked_at: 2026-06-02T22:15:50.575Z
+generated_at: 2026-06-02T22:15:50.575Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "exact set of module card types that ship with each chassis variant not fully enumerated"
 verification:
   verdict: verified
-  checked_at: 2026-05-01T00:09:24.904Z
+  checked_at: 2026-06-02T22:15:50.575Z
   matched_actions: 72
   action_count: 72
   confidence: medium
-  summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 72 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1145,18 +1145,18 @@ source_urls:
   - https://api.tvone.com/products/c7-series/c7-pro-2200/WebsocketAPI_CALICO_C7-PRO_current.pdf
   - https://api.tvone.com/
 retrieved_at: 2026-04-30T19:35:53.603Z
-last_checked_at: 2026-05-01T00:09:24.904Z
+last_checked_at: 2026-06-02T22:15:50.575Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-01T00:09:24.904Z
+checked_at: 2026-06-02T22:15:50.575Z
 matched_actions: 72
 action_count: 72
 confidence: medium
-summary: "All 72 spec actions matched literally to source; transport parameters (port 10001, baud 115200) verified; full bidirectional coverage achieved. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 72 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T21:09:54.783Z
-last_checked_at: 2026-05-16T19:32:27.434Z
-generated_at: 2026-05-16T19:32:27.434Z
+last_checked_at: 2026-06-02T21:56:22.298Z
+generated_at: 2026-06-02T21:56:22.298Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "No power on/off commands found in source (only /reboot POST). Physical specifications, firmware compatibility ranges beyond the noted v3.8.0/v4.2.0 boundaries, and error response handling details are not documented in this source."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T19:32:27.434Z
+  checked_at: 2026-06-02T21:56:22.298Z
   matched_actions: 36
   action_count: 36
   confidence: medium
-  summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 36 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -660,18 +660,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T21:09:54.783Z
-last_checked_at: 2026-05-16T19:32:27.434Z
+last_checked_at: 2026-06-02T21:56:22.298Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T19:32:27.434Z
+checked_at: 2026-06-02T21:56:22.298Z
 matched_actions: 36
 action_count: 36
 confidence: medium
-summary: "All 36 spec actions match verbatim HTTP endpoints in the BluOS CI API source; transport port 11000 confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 36 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

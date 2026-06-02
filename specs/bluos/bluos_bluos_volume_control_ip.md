@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T18:38:12.112Z
-last_checked_at: 2026-05-16T17:53:53.322Z
-generated_at: 2026-05-16T17:53:53.322Z
+last_checked_at: 2026-06-02T21:54:09.041Z
+generated_at: 2026-06-02T21:54:09.041Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "firmware version compatibility for volume/playback endpoints not stated (only input selection endpoints reference firmware versions)"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T17:53:53.322Z
+  checked_at: 2026-06-02T21:54:09.041Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to BluOS volume control API. Comprehensive volume management with individual and group control confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -724,18 +724,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T18:38:12.112Z
-last_checked_at: 2026-05-16T17:53:53.322Z
+last_checked_at: 2026-06-02T21:54:09.041Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T17:53:53.322Z
+checked_at: 2026-06-02T21:54:09.041Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 29 spec action units map to explicit source endpoints with matching parameters; transport port 11000 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to BluOS volume control API. Comprehensive volume management with individual and group control confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

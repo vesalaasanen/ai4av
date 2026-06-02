@@ -28,8 +28,8 @@ source_urls:
   - "https://image.makewebeasy.net/makeweb/0/9HUjBpYEg/Document/Vaddio_AVBridgeNano_Manual.pdf?v=202305101549"
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T23:54:40.219Z
-last_checked_at: 2026-05-19T17:11:21.700Z
-generated_at: 2026-05-19T17:11:21.700Z
+last_checked_at: 2026-06-02T22:15:52.348Z
+generated_at: 2026-06-02T22:15:52.348Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "telnet session encryption (SSH vs plain Telnet) not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:11:21.700Z
+  checked_at: 2026-06-02T22:15:52.348Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -664,18 +664,18 @@ source_urls:
   - "https://image.makewebeasy.net/makeweb/0/9HUjBpYEg/Document/Vaddio_AVBridgeNano_Manual.pdf?v=202305101549"
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T23:54:40.219Z
-last_checked_at: 2026-05-19T17:11:21.700Z
+last_checked_at: 2026-06-02T22:15:52.348Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:11:21.700Z
+checked_at: 2026-06-02T22:15:52.348Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec actions found in source with matching documentation; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

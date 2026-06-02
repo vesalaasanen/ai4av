@@ -25,8 +25,8 @@ source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1696792577/Crestron
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1696137217/Control4
 retrieved_at: 2026-05-19T21:41:08.007Z
-last_checked_at: 2026-06-02T17:21:32.302Z
-generated_at: 2026-06-02T17:21:32.302Z
+last_checked_at: 2026-06-02T21:40:18.250Z
+generated_at: 2026-06-02T21:40:18.250Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "total trigger count not specified in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:32.302Z
+  checked_at: 2026-06-02T21:40:18.250Z
   matched_actions: 71
   action_count: 71
   confidence: medium
@@ -961,14 +961,14 @@ source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1696792577/Crestron
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1696137217/Control4
 retrieved_at: 2026-05-19T21:41:08.007Z
-last_checked_at: 2026-06-02T17:21:32.302Z
+last_checked_at: 2026-06-02T21:40:18.250Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:32.302Z
+checked_at: 2026-06-02T21:40:18.250Z
 matched_actions: 71
 action_count: 71
 confidence: medium

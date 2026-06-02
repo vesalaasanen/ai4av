@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T18:12:34.045Z
-last_checked_at: 2026-05-16T17:23:03.849Z
-generated_at: 2026-05-16T17:23:03.849Z
+last_checked_at: 2026-06-02T21:54:05.347Z
+generated_at: 2026-06-02T21:54:05.347Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "B160S-specific hardware capabilities (number of analog/optical/HDMI inputs, amplifier specs) not documented in this API reference. The source is a generic BluOS CI API guide; B160S model-specific constraints are not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T17:23:03.849Z
+  checked_at: 2026-06-02T21:54:05.347Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 spec actions traced to BluOS volume control API. Full volume management including level, dB, mute, and group slave control confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -569,18 +569,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T18:12:34.045Z
-last_checked_at: 2026-05-16T17:23:03.849Z
+last_checked_at: 2026-06-02T21:54:05.347Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T17:23:03.849Z
+checked_at: 2026-06-02T21:54:05.347Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec actions have verbatim HTTP endpoint matches in the source; transport port 11000 and POST /reboot confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 spec actions traced to BluOS volume control API. Full volume management including level, dB, mute, and group slave control confirmed. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:14:48.520Z
-last_checked_at: 2026-05-18T16:39:32.501Z
-generated_at: 2026-05-18T16:39:32.501Z
+last_checked_at: 2026-06-02T22:12:04.320Z
+generated_at: 2026-06-02T22:12:04.320Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "exact command byte layouts for lens_control axis codes beyond 06h (Periphery Focus) — other axes may exist per model"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:39:32.501Z
+  checked_at: 2026-06-02T22:12:04.320Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -625,18 +625,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:14:48.520Z
-last_checked_at: 2026-05-18T16:39:32.501Z
+last_checked_at: 2026-06-02T22:12:04.320Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:39:32.501Z
+checked_at: 2026-06-02T22:12:04.320Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions matched literally with source command bytes; transport parameters verified verbatim in source documentation. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://en-pixelhue001.oss-us-east-1.aliyuncs.com/Specifications/Pilot%20MS3%20Pro%20Multimedia%20Playback%20Software%20Control%20Protocol-V2.5.0.pdf"
 retrieved_at: 2026-04-30T04:45:41.485Z
-last_checked_at: 2026-04-25T21:43:52.466Z
-generated_at: 2026-04-25T21:43:52.466Z
+last_checked_at: 2026-06-02T22:13:09.805Z
+generated_at: 2026-06-02T22:13:09.805Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:43:52.466Z
+  checked_at: 2026-06-02T22:13:09.805Z
   matched_actions: 29
   action_count: 29
-  confidence: low
-  summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage (8 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -376,18 +376,18 @@ source_domains:
 source_urls:
   - "https://en-pixelhue001.oss-us-east-1.aliyuncs.com/Specifications/Pilot%20MS3%20Pro%20Multimedia%20Playback%20Software%20Control%20Protocol-V2.5.0.pdf"
 retrieved_at: 2026-04-30T04:45:41.485Z
-last_checked_at: 2026-04-25T21:43:52.466Z
+last_checked_at: 2026-06-02T22:13:09.805Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:43:52.466Z
+checked_at: 2026-06-02T22:13:09.805Z
 matched_actions: 29
 action_count: 29
-confidence: low
-summary: "All 29 spec actions matched source commands; all transport parameters verified; complete bidirectional coverage (8 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

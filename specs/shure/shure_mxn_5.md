@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
 retrieved_at: 2026-04-30T01:18:53.215Z
-last_checked_at: 2026-04-30T14:54:06.582Z
-generated_at: 2026-04-30T14:54:06.582Z
+last_checked_at: 2026-06-02T22:14:30.995Z
+generated_at: 2026-06-02T22:14:30.995Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "factory preset contents not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T14:54:06.582Z
+  checked_at: 2026-06-02T22:14:30.995Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 32 spec actions found in source; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 32 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -485,18 +485,18 @@ source_domains:
 source_urls:
   - https://www.shure.com/en-US/docs/commandstrings/MXN5-C
 retrieved_at: 2026-04-30T01:18:53.215Z
-last_checked_at: 2026-04-30T14:54:06.582Z
+last_checked_at: 2026-06-02T22:14:30.995Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T14:54:06.582Z
+checked_at: 2026-06-02T22:14:30.995Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 32 spec actions found in source; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 32 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

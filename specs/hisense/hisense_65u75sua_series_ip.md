@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:45.840Z
-last_checked_at: 2026-05-14T18:17:16.455Z
-generated_at: 2026-05-14T18:17:16.455Z
+last_checked_at: 2026-06-02T22:07:53.931Z
+generated_at: 2026-06-02T22:07:53.931Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - COLR
-  - AMOD
-  - ASPT
-  - BRIT
-  - BKLV
-  - PMOD
-  - OVSN
-  - CTEM
-  - VOLM
-  - MUTE
-  - SPKM
-  - TUNR
   - "model list for Prosumer series not enumerated in source; spec covers protocol exposed in this manual only."
   - "settable scalar parameters with discrete ranges (BRIT, CONT, COLR, TINT, SHRP, BKLV, VOLM, MAVL, VLFL) are exposed as parameterized actions above rather than as separate Variables entries. No additional settable parameters found in source beyond action data fields."
   - "source defines fixed request/response protocol only - no unsolicited notification / asynchronous events documented."
@@ -44,11 +32,11 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or hazardous-state documentation."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.455Z
-  matched_actions: 28
-  action_count: 29
+  checked_at: 2026-06-02T22:07:53.931Z
+  matched_actions: 165
+  action_count: 165
   confidence: medium
-  summary: "All 28 spec actions matched in source with proper command codes; transport parameters verified; bidirectional coverage confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 165 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1318,35 +1306,23 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:45.840Z
-last_checked_at: 2026-05-14T18:17:16.455Z
+last_checked_at: 2026-06-02T22:07:53.931Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.455Z
-matched_actions: 28
-action_count: 29
+checked_at: 2026-06-02T22:07:53.931Z
+matched_actions: 165
+action_count: 165
 confidence: medium
-summary: "All 28 spec actions matched in source with proper command codes; transport parameters verified; bidirectional coverage confirmed. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 165 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- COLR
-- AMOD
-- ASPT
-- BRIT
-- BKLV
-- PMOD
-- OVSN
-- CTEM
-- VOLM
-- MUTE
-- SPKM
-- TUNR
 - "model list for Prosumer series not enumerated in source; spec covers protocol exposed in this manual only."
 - "settable scalar parameters with discrete ranges (BRIT, CONT, COLR, TINT, SHRP, BKLV, VOLM, MAVL, VLFL) are exposed as parameterized actions above rather than as separate Variables entries. No additional settable parameters found in source beyond action data fields."
 - "source defines fixed request/response protocol only - no unsolicited notification / asynchronous events documented."

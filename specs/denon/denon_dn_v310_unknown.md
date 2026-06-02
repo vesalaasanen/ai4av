@@ -22,8 +22,8 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:23:54.227Z
-last_checked_at: 2026-05-20T11:28:33.817Z
-generated_at: 2026-05-20T11:28:33.817Z
+last_checked_at: 2026-06-02T22:05:55.038Z
+generated_at: 2026-06-02T22:05:55.038Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "Zone 2/3 bass/treble ranges may differ by model (X4100 noted with extended range)"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T11:28:33.817Z
-  matched_actions: 106
-  action_count: 106
+  checked_at: 2026-06-02T22:05:55.038Z
+  matched_actions: 99
+  action_count: 99
   confidence: medium
-  summary: "All 106 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 99 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1086,18 +1086,18 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T15:23:54.227Z
-last_checked_at: 2026-05-20T11:28:33.817Z
+last_checked_at: 2026-06-02T22:05:55.038Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T11:28:33.817Z
-matched_actions: 106
-action_count: 106
+checked_at: 2026-06-02T22:05:55.038Z
+matched_actions: 99
+action_count: 99
 confidence: medium
-summary: "All 106 spec actions matched verbatim; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 99 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

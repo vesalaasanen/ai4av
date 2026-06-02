@@ -29,8 +29,8 @@ source_urls:
   - https://www.manua.ls/lg/uh5f/manual
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-codes
 retrieved_at: 2026-05-12T20:27:29.643Z
-last_checked_at: 2026-05-14T05:46:51.840Z
-generated_at: 2026-05-14T05:46:51.840Z
+last_checked_at: 2026-06-02T22:09:17.534Z
+generated_at: 2026-06-02T22:09:17.534Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,11 +47,11 @@ known_gaps:
   - "HTTP/REST control not mentioned in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T05:46:51.840Z
+  checked_at: 2026-06-02T22:09:17.534Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -477,18 +477,18 @@ source_urls:
   - https://www.manua.ls/lg/uh5f/manual
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-codes
 retrieved_at: 2026-05-12T20:27:29.643Z
-last_checked_at: 2026-05-14T05:46:51.840Z
+last_checked_at: 2026-06-02T22:09:17.534Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T05:46:51.840Z
+checked_at: 2026-06-02T22:09:17.534Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions matched verbatim to source commands with correct wire-level opcodes and parameter ranges; transport parameters verified. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

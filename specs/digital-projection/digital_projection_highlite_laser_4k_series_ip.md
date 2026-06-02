@@ -22,8 +22,8 @@ source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
   - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-01T01:55:45.642Z
-last_checked_at: 2026-06-02T20:51:31.249Z
-generated_at: 2026-06-02T20:51:31.249Z
+last_checked_at: 2026-06-02T21:41:31.567Z
+generated_at: 2026-06-02T21:41:31.567Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "exact parity and stop bits for RS-232 not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T20:51:31.249Z
+  checked_at: 2026-06-02T21:41:31.567Z
   matched_actions: 247
   action_count: 247
   confidence: medium
@@ -2062,14 +2062,14 @@ source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
   - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-01T01:55:45.642Z
-last_checked_at: 2026-06-02T20:51:31.249Z
+last_checked_at: 2026-06-02T21:41:31.567Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T20:51:31.249Z
+checked_at: 2026-06-02T21:41:31.567Z
 matched_actions: 247
 action_count: 247
 confidence: medium

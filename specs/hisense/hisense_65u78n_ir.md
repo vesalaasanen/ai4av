@@ -22,9 +22,9 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
-retrieved_at: 2026-05-04T05:54:39.218Z
-last_checked_at: 2026-05-04T05:54:39.218Z
-generated_at: 2026-05-04T05:54:39.218Z
+retrieved_at: 2026-06-02T22:07:57.098Z
+last_checked_at: 2026-06-02T22:07:57.098Z
+generated_at: 2026-06-02T22:07:57.098Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "Event/unsolicited notification structure if any"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T05:54:39.218Z
+  checked_at: 2026-06-02T22:07:57.098Z
   matched_actions: 43
   action_count: 43
   confidence: medium
-  summary: "All 43 spec actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -507,19 +507,19 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
-retrieved_at: 2026-05-04T05:54:39.218Z
-last_checked_at: 2026-05-04T05:54:39.218Z
+retrieved_at: 2026-06-02T22:07:57.098Z
+last_checked_at: 2026-06-02T22:07:57.098Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T05:54:39.218Z
+checked_at: 2026-06-02T22:07:57.098Z
 matched_actions: 43
 action_count: 43
 confidence: medium
-summary: "All 43 spec actions matched; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

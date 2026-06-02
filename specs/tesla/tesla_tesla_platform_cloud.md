@@ -22,9 +22,9 @@ source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
   - https://github.com/teslamotors/vehicle-command
   - https://github.com/teslamotors/fleet-telemetry
-retrieved_at: 2026-05-10T12:18:55.972Z
-last_checked_at: 2026-05-10T12:18:55.972Z
-generated_at: 2026-05-10T12:18:55.972Z
+retrieved_at: 2026-06-02T22:15:44.446Z
+last_checked_at: 2026-06-02T22:15:44.446Z
+generated_at: 2026-06-02T22:15:44.446Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "websocket/streaming events not covered in this endpoint doc"
 verification:
   verdict: verified
-  checked_at: 2026-05-10T12:18:55.972Z
+  checked_at: 2026-06-02T22:15:44.446Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 66 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -591,19 +591,19 @@ source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
   - https://github.com/teslamotors/vehicle-command
   - https://github.com/teslamotors/fleet-telemetry
-retrieved_at: 2026-05-10T12:18:55.972Z
-last_checked_at: 2026-05-10T12:18:55.972Z
+retrieved_at: 2026-06-02T22:15:44.446Z
+last_checked_at: 2026-06-02T22:15:44.446Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-10T12:18:55.972Z
+checked_at: 2026-06-02T22:15:44.446Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 66 spec actions matched source endpoints with correct parameters and enum values; transport authenticated via oauth2 virtual key over HTTPS. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 66 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

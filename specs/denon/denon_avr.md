@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-05-14T18:17:15.264Z
-generated_at: 2026-05-14T18:17:15.264Z
+last_checked_at: 2026-06-02T22:05:48.959Z
+generated_at: 2026-06-02T22:05:48.959Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - VSASPNRM
-  - VSASPFUL
-  - VSVPMAUTO
-  - VSVPMGAME
-  - VSVPMMOVI
-  - VSVST
-  - PSDIL
-  - PSSWL
-  - PSCINEMA
-  - PSMODE
-  - PSLOM
-  - PSFH
   - "specific AVR model numbers not stated in source; document covers a family of Denon AVRs"
   - "firmware version compatibility not stated"
   - "Variables section — all settable parameters are represented as Actions with params above"
@@ -47,11 +35,11 @@ known_gaps:
   - "complete list of surround mode parameters is extensive — see source for full list beyond representative values"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.264Z
-  matched_actions: 106
+  checked_at: 2026-06-02T22:05:48.959Z
+  matched_actions: 109
   action_count: 109
   confidence: medium
-  summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 109 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1066,35 +1054,23 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T23:27:42.130Z
-last_checked_at: 2026-05-14T18:17:15.264Z
+last_checked_at: 2026-06-02T22:05:48.959Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.264Z
-matched_actions: 106
+checked_at: 2026-06-02T22:05:48.959Z
+matched_actions: 109
 action_count: 109
 confidence: medium
-summary: "All 106 spec actions matched with verbatim evidence in source; transport parameters confirmed; source contains extended audio processing commands beyond spec scope. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 109 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- VSASPNRM
-- VSASPFUL
-- VSVPMAUTO
-- VSVPMGAME
-- VSVPMMOVI
-- VSVST
-- PSDIL
-- PSSWL
-- PSCINEMA
-- PSMODE
-- PSLOM
-- PSFH
 - "specific AVR model numbers not stated in source; document covers a family of Denon AVRs"
 - "firmware version compatibility not stated"
 - "Variables section — all settable parameters are represented as Actions with params above"

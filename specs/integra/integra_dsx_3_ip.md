@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-05-14T18:17:16.986Z
-generated_at: 2026-05-14T18:17:16.986Z
+last_checked_at: 2026-06-02T22:08:20.034Z
+generated_at: 2026-06-02T22:08:20.034Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - TUZ
-  - PRZ
-  - TU3
-  - PR3
-  - TU4
-  - PR4
-  - PTS
-  - PRM
-  - XCN
-  - XAT
-  - XTI
-  - XCH
   - "continuous/settable parameters not fully distinct from actions above"
   - "no explicit multi-step macro sequences described in source"
   - "no explicit safety interlock or power sequencing warnings in source"
@@ -46,11 +34,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.986Z
+  checked_at: 2026-06-02T22:08:20.034Z
   matched_actions: 104
   action_count: 104
   confidence: medium
-  summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 104 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1196,35 +1184,23 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:31.200Z
-last_checked_at: 2026-05-14T18:17:16.986Z
+last_checked_at: 2026-06-02T22:08:20.034Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.986Z
+checked_at: 2026-06-02T22:08:20.034Z
 matched_actions: 104
 action_count: 104
 confidence: medium
-summary: "All 124 spec commands have literal matches in source; transport verified; spec correctly omits model-specific RI, tuning variant, and satellite radio commands. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 104 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- TUZ
-- PRZ
-- TU3
-- PR3
-- TU4
-- PR4
-- PTS
-- PRM
-- XCN
-- XAT
-- XTI
-- XCH
 - "continuous/settable parameters not fully distinct from actions above"
 - "no explicit multi-step macro sequences described in source"
 - "no explicit safety interlock or power sequencing warnings in source"

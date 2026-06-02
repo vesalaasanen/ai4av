@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - https://developer.arylic.com/uartapi/
 retrieved_at: 2026-05-15T00:36:07.249Z
-last_checked_at: 2026-05-15T21:12:43.521Z
-generated_at: 2026-05-15T21:12:43.521Z
+last_checked_at: 2026-06-02T21:39:54.007Z
+generated_at: 2026-06-02T21:39:54.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "response timing / latency characteristics not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:12:43.521Z
+  checked_at: 2026-06-02T21:39:54.007Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete UART API with device control, playback, DSP, and multi-zone support (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -832,18 +832,18 @@ source_domains:
 source_urls:
   - https://developer.arylic.com/uartapi/
 retrieved_at: 2026-05-15T00:36:07.249Z
-last_checked_at: 2026-05-15T21:12:43.521Z
+last_checked_at: 2026-06-02T21:39:54.007Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:12:43.521Z
+checked_at: 2026-06-02T21:39:54.007Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions matched literal command tokens in source with verified transport parameters and zero extra source commands. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete UART API with device control, playback, DSP, and multi-zone support (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

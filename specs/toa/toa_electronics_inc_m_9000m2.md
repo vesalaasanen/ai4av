@@ -25,8 +25,8 @@ source_urls:
   - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
   - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
-last_checked_at: 2026-04-30T15:23:26.169Z
-generated_at: 2026-04-30T15:23:26.169Z
+last_checked_at: 2026-06-02T22:15:48.968Z
+generated_at: 2026-06-02T22:15:48.968Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "connector pinout details beyond TX/RX/GND not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:23:26.169Z
+  checked_at: 2026-06-02T22:15:48.968Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions matched with correct opcodes; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 16 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -380,18 +380,18 @@ source_urls:
   - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
   - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
-last_checked_at: 2026-04-30T15:23:26.169Z
+last_checked_at: 2026-06-02T22:15:48.968Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:23:26.169Z
+checked_at: 2026-06-02T22:15:48.968Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions matched with correct opcodes; transport verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 16 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

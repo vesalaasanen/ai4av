@@ -20,23 +20,11 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:53.622Z
-last_checked_at: 2026-04-23T15:17:15.384Z
-generated_at: 2026-04-23T15:17:15.384Z
+last_checked_at: 2026-06-02T21:49:54.223Z
+generated_at: 2026-06-02T21:49:54.223Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - dmx.listchannels
-  - dmx.listmodes
-  - image.color.p7.custom.copypresettocustom
-  - image.color.p7.custom.resetpreset
-  - image.color.rgbmode.nextrgbmode
-  - image.display.listdisplaymodes
-  - image.processing.blacklevel.basicblacklevel.getblacklevelarea
-  - image.processing.warp.fourcorners.getscaledcorners
-  - optics.focus.calibrate
-  - optics.lensshift.horizontal.calibrate
-  - peripheral.frame.horizontal.calibrate
-  - statistics.listcounters
   - "specific F50 input connectors and supported resolutions not fully enumerated — connector list varies by projector model"
   - "firmware version compatibility range not stated"
   - "default pass code value not stated in source"
@@ -50,11 +38,11 @@ known_gaps:
   - "error code catalog or comprehensive error handling not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:17:15.384Z
+  checked_at: 2026-06-02T21:49:54.223Z
   matched_actions: 30
   action_count: 30
   confidence: medium
-  summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 30 spec actions traced to source. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -827,35 +815,23 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:53.622Z
-last_checked_at: 2026-04-23T15:17:15.384Z
+last_checked_at: 2026-06-02T21:49:54.223Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:17:15.384Z
+checked_at: 2026-06-02T21:49:54.223Z
 matched_actions: 30
 action_count: 30
 confidence: medium
-summary: "All 30 spec actions verified as literal command-level matches in source; all transport parameters confirmed in RS232 and Network sections; spec covers essential control surface comprehensively. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 30 spec actions traced to source. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- dmx.listchannels
-- dmx.listmodes
-- image.color.p7.custom.copypresettocustom
-- image.color.p7.custom.resetpreset
-- image.color.rgbmode.nextrgbmode
-- image.display.listdisplaymodes
-- image.processing.blacklevel.basicblacklevel.getblacklevelarea
-- image.processing.warp.fourcorners.getscaledcorners
-- optics.focus.calibrate
-- optics.lensshift.horizontal.calibrate
-- peripheral.frame.horizontal.calibrate
-- statistics.listcounters
 - "specific F50 input connectors and supported resolutions not fully enumerated — connector list varies by projector model"
 - "firmware version compatibility range not stated"
 - "default pass code value not stated in source"

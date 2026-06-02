@@ -25,8 +25,8 @@ source_urls:
   - "https://www.manualslib.com/manual/3900742/Viewsonic-Cdx5562.html#manual"
   - https://www.viewsonic.com/us/cdx5562.html
 retrieved_at: 2026-04-29T10:24:07.729Z
-last_checked_at: 2026-05-14T18:17:21.380Z
-generated_at: 2026-05-14T18:17:21.380Z
+last_checked_at: 2026-06-02T22:16:08.457Z
+generated_at: 2026-06-02T22:16:08.457Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "firmware version compatibility not stated in source; per-model availability of get_thermal / get_power_on_off_log / get_date / get_time is flagged in source as \"For specific models only\" but the model list is not enumerated; flow control (RTS/CTS, XON/XOFF) is not stated; maximum packet rate / inter-frame timing is not stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.380Z
-  matched_actions: 36
-  action_count: 36
+  checked_at: 2026-06-02T22:16:08.457Z
+  matched_actions: 57
+  action_count: 57
   confidence: medium
-  summary: "All 61 verifiable spec commands matched literally in source tables; transport parameters verified verbatim; complete coverage of source command catalogue. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 57 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1073,18 +1073,18 @@ source_urls:
   - "https://www.manualslib.com/manual/3900742/Viewsonic-Cdx5562.html#manual"
   - https://www.viewsonic.com/us/cdx5562.html
 retrieved_at: 2026-04-29T10:24:07.729Z
-last_checked_at: 2026-05-14T18:17:21.380Z
+last_checked_at: 2026-06-02T22:16:08.457Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.380Z
-matched_actions: 36
-action_count: 36
+checked_at: 2026-06-02T22:16:08.457Z
+matched_actions: 57
+action_count: 57
 confidence: medium
-summary: "All 61 verifiable spec commands matched literally in source tables; transport parameters verified verbatim; complete coverage of source command catalogue. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 57 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:33.331Z
-last_checked_at: 2026-05-14T18:17:19.253Z
-generated_at: 2026-05-14T18:17:19.253Z
+last_checked_at: 2026-06-02T22:12:29.948Z
+generated_at: 2026-06-02T22:12:29.948Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "HDBaseT standby mode mentioned but not detailed."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.253Z
+  checked_at: 2026-06-02T22:12:29.948Z
   matched_actions: 28
   action_count: 28
-  confidence: low
-  summary: "All 48 spec actions matched source commands; transport verified (8 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -555,18 +555,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:33.331Z
-last_checked_at: 2026-05-14T18:17:19.253Z
+last_checked_at: 2026-06-02T22:12:29.948Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.253Z
+checked_at: 2026-06-02T22:12:29.948Z
 matched_actions: 28
 action_count: 28
-confidence: low
-summary: "All 48 spec actions matched source commands; transport verified (8 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

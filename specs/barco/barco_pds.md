@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T22:42:16.621Z
-last_checked_at: 2026-04-23T15:19:32.508Z
-generated_at: 2026-04-23T15:19:32.508Z
+last_checked_at: 2026-06-02T21:40:47.411Z
+generated_at: 2026-06-02T21:40:47.411Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "DMX/RDM protocol details not covered in this companion document"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:19:32.508Z
+  checked_at: 2026-06-02T21:40:47.411Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -553,18 +553,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T22:42:16.621Z
-last_checked_at: 2026-04-23T15:19:32.508Z
+last_checked_at: 2026-06-02T21:40:47.411Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:19:32.508Z
+checked_at: 2026-06-02T21:40:47.411Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions matched literal JSON-RPC method names in source; all transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -28,12 +28,11 @@ source_urls:
   - https://www.philips.com.my/c-w/support-home/support-software-and-drivers.html
   - https://www.philips.ca/c-w/support-home/support-software-and-drivers.html
 retrieved_at: 2026-05-13T15:46:52.453Z
-last_checked_at: 2026-05-18T16:46:51.128Z
-generated_at: 2026-05-18T16:46:51.128Z
+last_checked_at: 2026-06-02T22:13:05.120Z
+generated_at: 2026-06-02T22:13:05.120Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "0xFE (MIC color calibration, Reserved for Future Use)"
   - "specific firmware version compatibility not stated; applies to multiple platforms (Eagle, Himalaya, Dragon, Phoenix, QL, Challenger)"
   - "variables that are persisted settings but not discrete actions."
   - "no unsolicited event descriptions found in source."
@@ -43,11 +42,11 @@ known_gaps:
   - "portrait orientation support varies by platform."
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:46:51.128Z
+  checked_at: 2026-06-02T22:13:05.120Z
   matched_actions: 117
   action_count: 117
   confidence: medium
-  summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 117 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1344,24 +1343,23 @@ source_urls:
   - https://www.philips.com.my/c-w/support-home/support-software-and-drivers.html
   - https://www.philips.ca/c-w/support-home/support-software-and-drivers.html
 retrieved_at: 2026-05-13T15:46:52.453Z
-last_checked_at: 2026-05-18T16:46:51.128Z
+last_checked_at: 2026-06-02T22:13:05.120Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:46:51.128Z
+checked_at: 2026-06-02T22:13:05.120Z
 matched_actions: 117
 action_count: 117
 confidence: medium
-summary: "All 117 spec actions have literal opcode matches in the SICP v2.03 source with correct shapes; transport parameters fully supported; only 0xFE (future-use MIC calibration) is in source but not the spec. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 117 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "0xFE (MIC color calibration, Reserved for Future Use)"
 - "specific firmware version compatibility not stated; applies to multiple platforms (Eagle, Himalaya, Dragon, Phoenix, QL, Challenger)"
 - "variables that are persisted settings but not discrete actions."
 - "no unsolicited event descriptions found in source."

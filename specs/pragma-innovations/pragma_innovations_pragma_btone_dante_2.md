@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
-last_checked_at: 2026-04-23T08:19:05.055Z
-generated_at: 2026-04-23T08:19:05.055Z
+last_checked_at: 2026-06-02T22:13:19.502Z
+generated_at: 2026-06-02T22:13:19.502Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "binary command encoding not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:19:05.055Z
+  checked_at: 2026-06-02T22:13:19.502Z
   matched_actions: 38
   action_count: 38
   confidence: medium
-  summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -424,18 +424,18 @@ source_domains:
 source_urls:
   - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
-last_checked_at: 2026-04-23T08:19:05.055Z
+last_checked_at: 2026-06-02T22:13:19.502Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:19:05.055Z
+checked_at: 2026-06-02T22:13:19.502Z
 matched_actions: 38
 action_count: 38
 confidence: medium
-summary: "All 38 spec actions matched literally in source with correct transport parameters and complete protocol coverage. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

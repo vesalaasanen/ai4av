@@ -28,8 +28,8 @@ source_urls:
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/Midra+4k/Common/AW+VideoCompositor+for+Midra+4k/Software+Packages+And+Drivers/Introduction+Documents/aw_videocompositor_for_midra_4k_introduction_v1.3.0.pdf
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/Midra+4k/Common/AW+VideoCompositor+for+Midra+4k/Technical+Datasheet/aw-videocompositor-mdr4k-datasheet-en.pdf
 retrieved_at: 2026-05-15T00:42:44.342Z
-last_checked_at: 2026-05-15T21:12:41.796Z
-generated_at: 2026-05-15T21:12:41.796Z
+last_checked_at: 2026-06-02T21:39:41.192Z
+generated_at: 2026-06-02T21:39:41.192Z
 firmware_coverage: ">= v2.00.20"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "thumbnail endpoints not fully enumerated as actions (read-only image resources)"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:12:41.796Z
+  checked_at: 2026-06-02T21:39:41.192Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 REST API actions documented in source with correct POST/GET methods, URL parameters (screenId 1-2, layerId 1-4, auxId=1), and request bodies. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -934,18 +934,18 @@ source_urls:
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/Midra+4k/Common/AW+VideoCompositor+for+Midra+4k/Software+Packages+And+Drivers/Introduction+Documents/aw_videocompositor_for_midra_4k_introduction_v1.3.0.pdf
   - https://s3.eu-west-3.amazonaws.com/aw.store01/Site+Internet/Series/Midra+4k/Common/AW+VideoCompositor+for+Midra+4k/Technical+Datasheet/aw-videocompositor-mdr4k-datasheet-en.pdf
 retrieved_at: 2026-05-15T00:42:44.342Z
-last_checked_at: 2026-05-15T21:12:41.796Z
+last_checked_at: 2026-06-02T21:39:41.192Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:12:41.796Z
+checked_at: 2026-06-02T21:39:41.192Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 23 spec actions matched POST endpoints in source with identical paths and parameters; transport base URL and JWT auth verified. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 REST API actions documented in source with correct POST/GET methods, URL parameters (screenId 1-2, layerId 1-4, auxId=1), and request bodies. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

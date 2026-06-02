@@ -20,15 +20,11 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T16:27:43.952Z
-last_checked_at: 2026-05-14T18:17:15.986Z
-generated_at: 2026-05-14T18:17:15.986Z
+last_checked_at: 2026-06-02T22:07:37.864Z
+generated_at: 2026-06-02T22:07:37.864Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - SPKM
-  - B2BM
-  - USBM
-  - PSHF
   - "User-specified \"Known protocol: TCP/IP\" but source document only covers RS-232 serial and IR. No TCP port, IP addressing, or network protocol details in source."
   - "Source document models (55F1600, 55U1600, 65U1600, 75U1600, 86U1600) do not include 100U88KM; protocol compatibility assumed."
   - "No firmware version compatibility ranges stated."
@@ -41,11 +37,11 @@ known_gaps:
   - "POIS query may have additional input values (HDMI1-4, VGA) not shown in truncated source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.986Z
+  checked_at: 2026-06-02T22:07:37.864Z
   matched_actions: 42
   action_count: 42
   confidence: medium
-  summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 42 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1276,27 +1272,23 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T16:27:43.952Z
-last_checked_at: 2026-05-14T18:17:15.986Z
+last_checked_at: 2026-06-02T22:07:37.864Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.986Z
+checked_at: 2026-06-02T22:07:37.864Z
 matched_actions: 42
 action_count: 42
 confidence: medium
-summary: "All 73 spec actions match source mnemonics verbatim with correct shapes; only 4 minor commands absent from spec. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 42 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- SPKM
-- B2BM
-- USBM
-- PSHF
 - "User-specified \"Known protocol: TCP/IP\" but source document only covers RS-232 serial and IR. No TCP port, IP addressing, or network protocol details in source."
 - "Source document models (55F1600, 55U1600, 65U1600, 75U1600, 86U1600) do not include 100U88KM; protocol compatibility assumed."
 - "No firmware version compatibility ranges stated."

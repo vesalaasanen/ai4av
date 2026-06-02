@@ -25,8 +25,8 @@ source_urls:
   - https://applicationmarket.crestron.com/runco-cx-46hd-north-america/
   - https://applicationmarket.crestron.com/content/Help/Runco/runco_cx-46hd_v1_0_help.pdf
 retrieved_at: 2026-04-29T21:59:40.595Z
-last_checked_at: 2026-04-30T09:48:23.226Z
-generated_at: 2026-04-30T09:48:23.226Z
+last_checked_at: 2026-06-02T22:13:41.592Z
+generated_at: 2026-06-02T22:13:41.592Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "no query commands for current device state documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:48:23.226Z
+  checked_at: 2026-06-02T22:13:41.592Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -288,18 +288,18 @@ source_urls:
   - https://applicationmarket.crestron.com/runco-cx-46hd-north-america/
   - https://applicationmarket.crestron.com/content/Help/Runco/runco_cx-46hd_v1_0_help.pdf
 retrieved_at: 2026-04-29T21:59:40.595Z
-last_checked_at: 2026-04-30T09:48:23.226Z
+last_checked_at: 2026-06-02T22:13:41.592Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:48:23.226Z
+checked_at: 2026-06-02T22:13:41.592Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions match source commands with correct parameter ranges; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,8 +22,8 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-04-29T15:20:31.007Z
-last_checked_at: 2026-06-02T17:21:40.695Z
-generated_at: 2026-06-02T17:21:40.695Z
+last_checked_at: 2026-06-02T21:40:54.515Z
+generated_at: 2026-06-02T21:40:54.515Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "voltage, current, power consumption not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:40.695Z
+  checked_at: 2026-06-02T21:40:54.515Z
   matched_actions: 173
   action_count: 173
   confidence: medium
@@ -1075,14 +1075,14 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-04-29T15:20:31.007Z
-last_checked_at: 2026-06-02T17:21:40.695Z
+last_checked_at: 2026-06-02T21:40:54.515Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:40.695Z
+checked_at: 2026-06-02T21:40:54.515Z
 matched_actions: 173
 action_count: 173
 confidence: medium

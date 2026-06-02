@@ -33,8 +33,8 @@ source_urls:
   - https://support.etcconnect.com/ETC/Consoles/Eos_Family/Software_and_Programming/Eos_Family_Serial_Command_Syntax
   - https://www.christielites.com/file_uploads/EosFamily_ShowControl_UserGuide_RevC.pdf
 retrieved_at: 2026-04-30T13:59:45.626Z
-last_checked_at: 2026-05-14T18:17:15.819Z
-generated_at: 2026-05-14T18:17:15.819Z
+last_checked_at: 2026-06-02T22:06:54.998Z
+generated_at: 2026-06-02T22:06:54.998Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -56,11 +56,11 @@ known_gaps:
   - "command rate limits or throttling not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.819Z
+  checked_at: 2026-06-02T22:06:54.998Z
   matched_actions: 82
   action_count: 82
   confidence: medium
-  summary: "All 93 spec actions verified against source; port 3032 confirmed. (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 82 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1088,18 +1088,18 @@ source_urls:
   - https://support.etcconnect.com/ETC/Consoles/Eos_Family/Software_and_Programming/Eos_Family_Serial_Command_Syntax
   - https://www.christielites.com/file_uploads/EosFamily_ShowControl_UserGuide_RevC.pdf
 retrieved_at: 2026-04-30T13:59:45.626Z
-last_checked_at: 2026-05-14T18:17:15.819Z
+last_checked_at: 2026-06-02T22:06:54.998Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.819Z
+checked_at: 2026-06-02T22:06:54.998Z
 matched_actions: 82
 action_count: 82
 confidence: medium
-summary: "All 93 spec actions verified against source; port 3032 confirmed. (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 82 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

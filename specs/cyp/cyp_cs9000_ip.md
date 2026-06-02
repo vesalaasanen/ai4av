@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
 retrieved_at: 2026-04-30T04:31:10.266Z
-last_checked_at: 2026-06-02T17:21:58.203Z
-generated_at: 2026-06-02T17:21:58.203Z
+last_checked_at: 2026-06-02T21:41:19.770Z
+generated_at: 2026-06-02T21:41:19.770Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "exact response payload schema per query command not in source; firmware version compatibility not stated; specific video wall preset / macro configuration authoring commands not in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:58.203Z
+  checked_at: 2026-06-02T21:41:19.770Z
   matched_actions: 70
   action_count: 70
   confidence: medium
@@ -793,14 +793,14 @@ source_domains:
 source_urls:
   - https://cypeurope.com/wp-content/uploads/2024/11/IP-CS9000_PDF-Manual_v1.01.pdf
 retrieved_at: 2026-04-30T04:31:10.266Z
-last_checked_at: 2026-06-02T17:21:58.203Z
+last_checked_at: 2026-06-02T21:41:19.770Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:58.203Z
+checked_at: 2026-06-02T21:41:19.770Z
 matched_actions: 70
 action_count: 70
 confidence: medium

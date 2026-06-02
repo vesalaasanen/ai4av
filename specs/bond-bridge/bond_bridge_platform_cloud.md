@@ -24,8 +24,8 @@ source_urls:
   - https://github.com/bondhome/api-v2
   - "https://bondhome-product-docs.s3.amazonaws.com/BD-1000/%5BBond+Bridge%5D+Spec+Sheet.pdf"
 retrieved_at: 2026-04-29T13:01:15.036Z
-last_checked_at: 2026-05-14T18:17:14.785Z
-generated_at: 2026-05-14T18:17:14.785Z
+last_checked_at: 2026-06-02T22:04:38.816Z
+generated_at: 2026-06-02T22:04:38.816Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "max concurrent connections or rate limits not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.785Z
-  matched_actions: 167
+  checked_at: 2026-06-02T22:04:38.816Z
+  matched_actions: 182
   action_count: 182
   confidence: medium
-  summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 182 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1720,18 +1720,18 @@ source_urls:
   - https://github.com/bondhome/api-v2
   - "https://bondhome-product-docs.s3.amazonaws.com/BD-1000/%5BBond+Bridge%5D+Spec+Sheet.pdf"
 retrieved_at: 2026-04-29T13:01:15.036Z
-last_checked_at: 2026-05-14T18:17:14.785Z
+last_checked_at: 2026-06-02T22:04:38.816Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.785Z
-matched_actions: 167
+checked_at: 2026-06-02T22:04:38.816Z
+matched_actions: 182
 action_count: 182
 confidence: medium
-summary: "All 167 semantic-id actions map to documented REST API endpoints; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 182 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

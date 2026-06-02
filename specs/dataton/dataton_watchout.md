@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:41:03.688Z
-last_checked_at: 2026-05-14T18:17:15.180Z
-generated_at: 2026-05-14T18:17:15.180Z
+last_checked_at: 2026-06-02T22:05:43.194Z
+generated_at: 2026-06-02T22:05:43.194Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "default port 3019 not explicitly confirmed as production default, only localhost example shown"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.180Z
+  checked_at: 2026-06-02T22:05:43.194Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -357,18 +357,18 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:41:03.688Z
-last_checked_at: 2026-05-14T18:17:15.180Z
+last_checked_at: 2026-06-02T22:05:43.194Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.180Z
+checked_at: 2026-06-02T22:05:43.194Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 26 spec actions matched literally in source; transport (http, port 3019, 3017 for nodes) verified; no fabrications or drift. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

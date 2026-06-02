@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.341Z
-last_checked_at: 2026-05-14T18:17:15.055Z
-generated_at: 2026-05-14T18:17:15.055Z
+last_checked_at: 2026-06-02T22:05:38.730Z
+generated_at: 2026-06-02T22:05:38.730Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "applicability of CAM_MountMode to IV-CAM-I Series not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.055Z
+  checked_at: 2026-06-02T22:05:38.730Z
   matched_actions: 91
   action_count: 91
   confidence: medium
-  summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved. (18 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 91 spec actions traced to source (dip-safe re-verify). (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1222,18 +1222,18 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.341Z
-last_checked_at: 2026-05-14T18:17:15.055Z
+last_checked_at: 2026-06-02T22:05:38.730Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.055Z
+checked_at: 2026-06-02T22:05:38.730Z
 matched_actions: 91
 action_count: 91
 confidence: medium
-summary: "All 106 spec actions match source commands verbatim; transport parameters confirmed; bidirectional coverage achieved. (18 unresolved item(s) noted in Known Gaps.)"
+summary: "All 91 spec actions traced to source (dip-safe re-verify). (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

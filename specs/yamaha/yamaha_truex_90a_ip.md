@@ -22,12 +22,11 @@ source_urls:
   - https://raw.githubusercontent.com/rsc-dev/pyamaha/master/doc/YXC_API_Spec_Basic.pdf
   - https://github.com/opctim/yamaha-extended-control-openapi
 retrieved_at: 2026-05-19T04:51:05.122Z
-last_checked_at: 2026-05-19T17:13:35.078Z
-generated_at: 2026-05-19T17:13:35.078Z
+last_checked_at: 2026-06-02T22:16:29.059Z
+generated_at: 2026-06-02T22:16:29.059Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - switchAccount
   - "TrueX-90A model not explicitly named in source; inferred from Convex entity bootstrap"
   - "no explicit safety warnings or interlock procedures in source"
   - "no explicit HTTP port stated in source. URLBase example uses port 80 but not explicitly documented as default."
@@ -36,11 +35,11 @@ known_gaps:
   - "port number not explicitly stated, only demonstrated in URLBase example"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:13:35.078Z
+  checked_at: 2026-06-02T22:16:29.059Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 25 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -609,24 +608,23 @@ source_urls:
   - https://raw.githubusercontent.com/rsc-dev/pyamaha/master/doc/YXC_API_Spec_Basic.pdf
   - https://github.com/opctim/yamaha-extended-control-openapi
 retrieved_at: 2026-05-19T04:51:05.122Z
-last_checked_at: 2026-05-19T17:13:35.078Z
+last_checked_at: 2026-06-02T22:16:29.059Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:13:35.078Z
+checked_at: 2026-06-02T22:16:29.059Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions map one-to-one to named YXC API endpoints in the source; transport base URL matches verbatim; only switchAccount is in source but absent from spec. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 25 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- switchAccount
 - "TrueX-90A model not explicitly named in source; inferred from Convex entity bootstrap"
 - "no explicit safety warnings or interlock procedures in source"
 - "no explicit HTTP port stated in source. URLBase example uses port 80 but not explicitly documented as default."

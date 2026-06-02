@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://socialstream.ninja/api
 retrieved_at: 2026-04-30T04:45:54.854Z
-last_checked_at: 2026-04-23T08:27:21.223Z
-generated_at: 2026-04-23T08:27:21.223Z
+last_checked_at: 2026-06-02T22:14:39.974Z
+generated_at: 2026-06-02T22:14:39.974Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "authentication token format not applicable (none required)"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:27:21.223Z
+  checked_at: 2026-06-02T22:14:39.974Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -495,18 +495,18 @@ source_domains:
 source_urls:
   - https://socialstream.ninja/api
 retrieved_at: 2026-04-30T04:45:54.854Z
-last_checked_at: 2026-04-23T08:27:21.223Z
+last_checked_at: 2026-06-02T22:14:39.974Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:27:21.223Z
+checked_at: 2026-06-02T22:14:39.974Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 49 spec actions matched verbatim in source; transport parameters verified; complete coverage of documented API. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

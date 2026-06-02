@@ -23,8 +23,8 @@ source_urls:
   - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OI_Operation_Manual_enUS_12284426251.pdf
   - https://resources.keenfinity.tech/public/documents/LBB_4187_00_QRC_Quick_Installation_Guide_enUS_13259287819.pdf
 retrieved_at: 2026-04-26T16:48:40.552Z
-last_checked_at: 2026-06-02T17:21:45.991Z
-generated_at: 2026-06-02T17:21:45.991Z
+last_checked_at: 2026-06-02T21:41:03.234Z
+generated_at: 2026-06-02T21:41:03.234Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,7 +45,7 @@ known_gaps:
   - "Firmware version compatibility ranges — the OMF (executable downloaded into CCU ROM) version is reported via `szSWRelNum` and `byMajorVersionOfDownloadedSw/MinorVersionOfDownloadedSw`, but no compatibility matrix is stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:45.991Z
+  checked_at: 2026-06-02T21:41:03.234Z
   matched_actions: 138
   action_count: 138
   confidence: medium
@@ -1496,14 +1496,14 @@ source_urls:
   - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OI_Operation_Manual_enUS_12284426251.pdf
   - https://resources.keenfinity.tech/public/documents/LBB_4187_00_QRC_Quick_Installation_Guide_enUS_13259287819.pdf
 retrieved_at: 2026-04-26T16:48:40.552Z
-last_checked_at: 2026-06-02T17:21:45.991Z
+last_checked_at: 2026-06-02T21:41:03.234Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:45.991Z
+checked_at: 2026-06-02T21:41:03.234Z
 matched_actions: 138
 action_count: 138
 confidence: medium

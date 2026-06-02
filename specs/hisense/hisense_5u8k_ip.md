@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:44.773Z
-last_checked_at: 2026-05-14T18:17:16.378Z
-generated_at: 2026-05-14T18:17:16.378Z
+last_checked_at: 2026-06-02T22:07:51.720Z
+generated_at: 2026-06-02T22:07:51.720Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "source does not document other safety warnings, electrical interlocks,"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.378Z
-  matched_actions: 44
-  action_count: 44
+  checked_at: 2026-06-02T22:07:51.720Z
+  matched_actions: 68
+  action_count: 68
   confidence: medium
-  summary: "All 72 spec actions and 28 feedbacks have exact wire-literal matches in source; RS-232 9600 baud 8-N-1 confirmed; bidirectional coverage complete. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 68 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1216,18 +1216,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-04-30T04:31:44.773Z
-last_checked_at: 2026-05-14T18:17:16.378Z
+last_checked_at: 2026-06-02T22:07:51.720Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.378Z
-matched_actions: 44
-action_count: 44
+checked_at: 2026-06-02T22:07:51.720Z
+matched_actions: 68
+action_count: 68
 confidence: medium
-summary: "All 72 spec actions and 28 feedbacks have exact wire-literal matches in source; RS-232 9600 baud 8-N-1 confirmed; bidirectional coverage complete. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 68 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

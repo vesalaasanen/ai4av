@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:25.086Z
-last_checked_at: 2026-04-26T21:32:03.587Z
-generated_at: 2026-04-26T21:32:03.587Z
+last_checked_at: 2026-06-02T22:12:16.040Z
+generated_at: 2026-06-02T22:12:16.040Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "audio select mapping incomplete for some terminal types"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T21:32:03.587Z
+  checked_at: 2026-06-02T22:12:16.040Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec actions matched source; transport verified (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -663,18 +663,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:25.086Z
-last_checked_at: 2026-04-26T21:32:03.587Z
+last_checked_at: 2026-06-02T22:12:16.040Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T21:32:03.587Z
+checked_at: 2026-06-02T22:12:16.040Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec actions matched source; transport verified (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

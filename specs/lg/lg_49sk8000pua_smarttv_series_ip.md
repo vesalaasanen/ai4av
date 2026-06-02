@@ -23,9 +23,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-04-25T20:59:46.803Z
-last_checked_at: 2026-04-25T20:59:46.803Z
-generated_at: 2026-04-25T20:59:46.803Z
+retrieved_at: 2026-06-02T22:09:05.496Z
+last_checked_at: 2026-06-02T22:09:05.496Z
+generated_at: 2026-06-02T22:09:05.496Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "protocol version number not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:59:46.803Z
+  checked_at: 2026-06-02T22:09:05.496Z
   matched_actions: 33
   action_count: 33
   confidence: medium
-  summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 33 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -702,19 +702,19 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-04-25T20:59:46.803Z
-last_checked_at: 2026-04-25T20:59:46.803Z
+retrieved_at: 2026-06-02T22:09:05.496Z
+last_checked_at: 2026-06-02T22:09:05.496Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:59:46.803Z
+checked_at: 2026-06-02T22:09:05.496Z
 matched_actions: 33
 action_count: 33
 confidence: medium
-summary: "All 33 actions matched verbatim in source; transport parameters (port 9761, baud 9600) confirmed; TCP/IP command catalogue complete. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 33 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

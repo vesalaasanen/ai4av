@@ -25,8 +25,8 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-15T03:21:05.516Z
-last_checked_at: 2026-05-20T07:59:18.642Z
-generated_at: 2026-05-20T07:59:18.642Z
+last_checked_at: 2026-06-02T22:04:41.775Z
+generated_at: 2026-06-02T22:04:41.775Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "MSA12X and Endpoint commands omitted from this spec — they use UDP port 49494, not TCP port 10055"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T07:59:18.642Z
-  matched_actions: 64
-  action_count: 64
+  checked_at: 2026-06-02T22:04:41.775Z
+  matched_actions: 47
+  action_count: 47
   confidence: medium
-  summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 47 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -642,18 +642,18 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-15T03:21:05.516Z
-last_checked_at: 2026-05-20T07:59:18.642Z
+last_checked_at: 2026-06-02T22:04:41.775Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T07:59:18.642Z
-matched_actions: 64
-action_count: 64
+checked_at: 2026-06-02T22:04:41.775Z
+matched_actions: 47
+action_count: 47
 confidence: medium
-summary: "All 64 spec actions verified against source with literal command match; transport port 10055 confirmed for TCP/IP. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 47 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

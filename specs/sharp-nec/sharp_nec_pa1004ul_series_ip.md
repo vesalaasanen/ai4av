@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:34.666Z
-last_checked_at: 2026-05-14T18:17:20.411Z
-generated_at: 2026-05-14T18:17:20.411Z
+last_checked_at: 2026-06-02T22:14:13.819Z
+generated_at: 2026-06-02T22:14:13.819Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "PA1004UL-specific input terminal codes, aspect values, and eco mode values not in source appendix; LED status codes not documented; command timing/cooling time not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.411Z
+  checked_at: 2026-06-02T22:14:13.819Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -603,18 +603,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:34.666Z
-last_checked_at: 2026-05-14T18:17:20.411Z
+last_checked_at: 2026-06-02T22:14:13.819Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.411Z
+checked_at: 2026-06-02T22:14:13.819Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 54 spec actions match source commands with correct transport parameters; semantic-id convention aligns with protocol documentation. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

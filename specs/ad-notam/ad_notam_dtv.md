@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf?v=1741266010"
 retrieved_at: 2026-04-29T21:04:16.985Z
-last_checked_at: 2026-06-02T17:21:10.340Z
-generated_at: 2026-06-02T17:21:10.340Z
+last_checked_at: 2026-06-02T21:39:36.608Z
+generated_at: 2026-06-02T21:39:36.608Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,7 +32,7 @@ known_gaps:
   - "Zoom 3 commands and Z3P position commands apply only to 24VDC DFU models; source marks these as model-dependent."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:10.340Z
+  checked_at: 2026-06-02T21:39:36.608Z
   matched_actions: 161
   action_count: 161
   confidence: medium
@@ -1218,14 +1218,14 @@ source_domains:
 source_urls:
   - "https://cdn.shopify.com/s/files/1/0793/9768/3467/files/TD_DFU_RS232-Protocol_v5.2_ASCII_Format_20200504.pdf?v=1741266010"
 retrieved_at: 2026-04-29T21:04:16.985Z
-last_checked_at: 2026-06-02T17:21:10.340Z
+last_checked_at: 2026-06-02T21:39:36.608Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:10.340Z
+checked_at: 2026-06-02T21:39:36.608Z
 matched_actions: 161
 action_count: 161
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-05-14T18:17:19.607Z
-generated_at: 2026-05-14T18:17:19.607Z
+last_checked_at: 2026-06-02T22:12:57.255Z
+generated_at: 2026-06-02T22:12:57.255Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "no still store management commands documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.607Z
+  checked_at: 2026-06-02T22:12:57.255Z
   matched_actions: 10
   action_count: 10
-  confidence: low
-  summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage (9 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 10 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -574,18 +574,18 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-05-14T18:17:19.607Z
+last_checked_at: 2026-06-02T22:12:57.255Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.607Z
+checked_at: 2026-06-02T22:12:57.255Z
 matched_actions: 10
 action_count: 10
-confidence: low
-summary: "All 21 spec actions matched verbatim in source; transport parameters verified; full command coverage (9 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 10 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

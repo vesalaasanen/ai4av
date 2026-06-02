@@ -22,8 +22,8 @@ source_urls:
   - https://www.audioauthority.com/downloads/manuals/1173_ci_commands_2011-6.doc
   - https://www.audioauthority.com/techdocs/1173bkmanual752-587.pdf
 retrieved_at: 2026-05-20T19:02:48.401Z
-last_checked_at: 2026-06-02T17:21:27.893Z
-generated_at: 2026-06-02T17:21:27.893Z
+last_checked_at: 2026-06-02T21:40:08.113Z
+generated_at: 2026-06-02T21:40:08.113Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,7 +34,7 @@ known_gaps:
   - "firmware version compatibility not stated in source; valid router-letter range upper bound for any given physical configuration (source documents A–L as the protocol range but does not state max expanders)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:27.893Z
+  checked_at: 2026-06-02T21:40:08.113Z
   matched_actions: 38
   action_count: 38
   confidence: medium
@@ -505,14 +505,14 @@ source_urls:
   - https://www.audioauthority.com/downloads/manuals/1173_ci_commands_2011-6.doc
   - https://www.audioauthority.com/techdocs/1173bkmanual752-587.pdf
 retrieved_at: 2026-05-20T19:02:48.401Z
-last_checked_at: 2026-06-02T17:21:27.893Z
+last_checked_at: 2026-06-02T21:40:08.113Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:27.893Z
+checked_at: 2026-06-02T21:40:08.113Z
 matched_actions: 38
 action_count: 38
 confidence: medium

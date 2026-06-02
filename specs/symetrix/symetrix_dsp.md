@@ -27,8 +27,8 @@ source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
   - https://www.symetrix.co/composer/
 retrieved_at: 2026-05-17T18:27:04.721Z
-last_checked_at: 2026-05-18T17:06:31.536Z
-generated_at: 2026-05-18T17:06:31.536Z
+last_checked_at: 2026-06-02T22:15:27.235Z
+generated_at: 2026-06-02T22:15:27.235Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "Specific device model (Deuce vs Zone Mix) determination via controller number not explicitly mapped"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:06:31.536Z
+  checked_at: 2026-06-02T22:15:27.235Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -431,18 +431,18 @@ source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
   - https://www.symetrix.co/composer/
 retrieved_at: 2026-05-17T18:27:04.721Z
-last_checked_at: 2026-05-18T17:06:31.536Z
+last_checked_at: 2026-06-02T22:15:27.235Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:06:31.536Z
+checked_at: 2026-06-02T22:15:27.235Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec action commands match verbatim in the source protocol reference; transport parameters (baud 57600, UDP port 48630) confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

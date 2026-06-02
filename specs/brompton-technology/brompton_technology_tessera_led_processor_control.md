@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - https://dl.bromptontech.com/tessera/docs/TesseraIPControlAPI3_5_2_r2.pdf
 retrieved_at: 2026-04-30T04:40:56.854Z
-last_checked_at: 2026-05-14T18:17:14.840Z
-generated_at: 2026-05-14T18:17:14.840Z
+last_checked_at: 2026-06-02T22:04:43.236Z
+generated_at: 2026-06-02T22:04:43.236Z
 firmware_coverage: ">=3.1.0"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "StarTracker, RedSpy, ShutterSync hidden marker sub-endpoints are extensive but follow a consistent pattern"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.840Z
+  checked_at: 2026-06-02T22:04:43.236Z
   matched_actions: 24
   action_count: 24
   confidence: medium
-  summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 24 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -998,18 +998,18 @@ source_domains:
 source_urls:
   - https://dl.bromptontech.com/tessera/docs/TesseraIPControlAPI3_5_2_r2.pdf
 retrieved_at: 2026-04-30T04:40:56.854Z
-last_checked_at: 2026-05-14T18:17:14.840Z
+last_checked_at: 2026-06-02T22:04:43.236Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.840Z
+checked_at: 2026-06-02T22:04:43.236Z
 matched_actions: 24
 action_count: 24
 confidence: medium
-summary: "All 30 spec actions and 48 feedbacks matched literally in source with correct parameter shapes; transport parameters verified; bidirectional API coverage confirmed. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 24 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

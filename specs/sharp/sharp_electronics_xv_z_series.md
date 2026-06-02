@@ -24,8 +24,8 @@ source_urls:
   - https://manualsdump.com/en/manuals/sharp-xv-z17000/132223/68
   - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/QuickGuide/hom_dow_XVZ30000.pdf
 retrieved_at: 2026-04-30T12:09:21.380Z
-last_checked_at: 2026-04-30T15:23:23.126Z
-generated_at: 2026-04-30T15:23:23.126Z
+last_checked_at: 2026-06-02T22:14:00.721Z
+generated_at: 2026-06-02T22:14:00.721Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -50,11 +50,11 @@ known_gaps:
   - "RGB frequency check returns ***.* format - format and precision not fully specified"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T15:23:23.126Z
+  checked_at: 2026-06-02T22:14:00.721Z
   matched_actions: 47
   action_count: 47
   confidence: medium
-  summary: "All 47 spec actions matched source commands; transport verified. (19 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 47 spec actions traced to source (dip-safe re-verify). (19 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -449,18 +449,18 @@ source_urls:
   - https://manualsdump.com/en/manuals/sharp-xv-z17000/132223/68
   - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/QuickGuide/hom_dow_XVZ30000.pdf
 retrieved_at: 2026-04-30T12:09:21.380Z
-last_checked_at: 2026-04-30T15:23:23.126Z
+last_checked_at: 2026-06-02T22:14:00.721Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T15:23:23.126Z
+checked_at: 2026-06-02T22:14:00.721Z
 matched_actions: 47
 action_count: 47
 confidence: medium
-summary: "All 47 spec actions matched source commands; transport verified. (19 unresolved item(s) noted in Known Gaps.)"
+summary: "All 47 spec actions traced to source (dip-safe re-verify). (19 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

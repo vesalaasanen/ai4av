@@ -50,8 +50,8 @@ source_urls:
   - https://kms.boseprofessional.com/en-us/article/KA-01417
   - https://kms.boseprofessional.com/en-us/article/KA-01277
 retrieved_at: 2026-05-16T00:36:39.992Z
-last_checked_at: 2026-06-02T17:21:46.728Z
-generated_at: 2026-06-02T17:21:46.728Z
+last_checked_at: 2026-06-02T21:41:03.993Z
+generated_at: 2026-06-02T21:41:03.993Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -65,7 +65,7 @@ known_gaps:
   - "PK/RMS Limiter and Compressor/Limiter \"Detect Input\" for mono modules: source notes that 'R' and 'M' are unused on mono."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:46.728Z
+  checked_at: 2026-06-02T21:41:03.993Z
   matched_actions: 76
   action_count: 76
   confidence: medium
@@ -1055,14 +1055,14 @@ source_urls:
   - https://kms.boseprofessional.com/en-us/article/KA-01417
   - https://kms.boseprofessional.com/en-us/article/KA-01277
 retrieved_at: 2026-05-16T00:36:39.992Z
-last_checked_at: 2026-06-02T17:21:46.728Z
+last_checked_at: 2026-06-02T21:41:03.993Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:46.728Z
+checked_at: 2026-06-02T21:41:03.993Z
 matched_actions: 76
 action_count: 76
 confidence: medium

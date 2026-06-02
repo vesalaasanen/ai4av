@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:35.236Z
-last_checked_at: 2026-05-14T18:17:19.273Z
-generated_at: 2026-05-14T18:17:19.273Z
+last_checked_at: 2026-06-02T22:12:32.952Z
+generated_at: 2026-06-02T22:12:32.952Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "appendix tables (input terminal codes, aspect values, eco mode values, signal type values, audio select values) are referenced but not included in the source document excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.273Z
-  matched_actions: 52
+  checked_at: 2026-06-02T22:12:32.952Z
+  matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -789,18 +789,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:35.236Z
-last_checked_at: 2026-05-14T18:17:19.273Z
+last_checked_at: 2026-06-02T22:12:32.952Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.273Z
-matched_actions: 52
+checked_at: 2026-06-02T22:12:32.952Z
+matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 52 spec actions matched distinct source commands; transport parameters verbatim; bidirectional coverage complete. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

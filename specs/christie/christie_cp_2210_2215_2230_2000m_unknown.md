@@ -26,8 +26,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-100410-08-christie-lit-man-usr-cp2210.pdf
   - https://www.manualslib.com/manual/816593/Christie-Cp-2210.html
 retrieved_at: 2026-05-14T21:23:46.567Z
-last_checked_at: 2026-06-02T17:21:52.041Z
-generated_at: 2026-06-02T17:21:52.041Z
+last_checked_at: 2026-06-02T21:41:09.429Z
+generated_at: 2026-06-02T21:41:09.429Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,7 +43,7 @@ known_gaps:
   - "edge enhancement (EDG) and white peaking (WPK) numeric ranges not explicitly stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:52.041Z
+  checked_at: 2026-06-02T21:41:09.429Z
   matched_actions: 153
   action_count: 153
   confidence: medium
@@ -1396,14 +1396,14 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-100410-08-christie-lit-man-usr-cp2210.pdf
   - https://www.manualslib.com/manual/816593/Christie-Cp-2210.html
 retrieved_at: 2026-05-14T21:23:46.567Z
-last_checked_at: 2026-06-02T17:21:52.041Z
+last_checked_at: 2026-06-02T21:41:09.429Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:52.041Z
+checked_at: 2026-06-02T21:41:09.429Z
 matched_actions: 153
 action_count: 153
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://open.cinegy.com/products/capture/25.10/capture-rest-api/
 retrieved_at: 2026-04-30T04:41:00.285Z
-last_checked_at: 2026-05-14T18:17:15.005Z
-generated_at: 2026-05-14T18:17:15.005Z
+last_checked_at: 2026-06-02T22:05:20.539Z
+generated_at: 2026-06-02T22:05:20.539Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "maximum number of engine instances (n=1..9) — upper bound stated but practical limits unknown"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.005Z
+  checked_at: 2026-06-02T22:05:20.539Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 8 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -318,18 +318,18 @@ source_domains:
 source_urls:
   - https://open.cinegy.com/products/capture/25.10/capture-rest-api/
 retrieved_at: 2026-04-30T04:41:00.285Z
-last_checked_at: 2026-05-14T18:17:15.005Z
+last_checked_at: 2026-06-02T22:05:20.539Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.005Z
+checked_at: 2026-06-02T22:05:20.539Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 15 spec actions matched verbatim in source; transport parameters verified; complete command coverage achieved. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 8 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

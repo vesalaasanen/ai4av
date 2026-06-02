@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
 retrieved_at: 2026-04-30T04:31:27.393Z
-last_checked_at: 2026-05-14T18:17:21.130Z
-generated_at: 2026-05-14T18:17:21.130Z
+last_checked_at: 2026-06-02T22:15:22.459Z
+generated_at: 2026-06-02T22:15:22.459Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "firmware update procedure details beyond file upload not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.130Z
+  checked_at: 2026-06-02T22:15:22.459Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -599,18 +599,18 @@ source_domains:
 source_urls:
   - https://www.ametekesp.com/-/media/ametekesp/downloads/manuals/vertical-series-plus/api-definition-vertical-series.pdf
 retrieved_at: 2026-04-30T04:31:27.393Z
-last_checked_at: 2026-05-14T18:17:21.130Z
+last_checked_at: 2026-06-02T22:15:22.459Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.130Z
+checked_at: 2026-06-02T22:15:22.459Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 29 spec actions matched to source endpoints; transport parameters verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

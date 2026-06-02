@@ -22,8 +22,8 @@ source_urls:
   - https://leaderphabrix.com/products/qx/
   - https://leaderphabrix.com/contact-support/phabrix-product-software/
 retrieved_at: 2026-04-30T00:45:34.864Z
-last_checked_at: 2026-05-14T18:17:19.660Z
-generated_at: 2026-05-14T18:17:19.660Z
+last_checked_at: 2026-06-02T22:13:01.925Z
+generated_at: 2026-06-02T22:13:01.925Z
 firmware_coverage: "\"5.4\""
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "firmware update procedure not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.660Z
-  matched_actions: 47
+  checked_at: 2026-06-02T22:13:01.925Z
+  matched_actions: 51
   action_count: 51
   confidence: medium
-  summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 51 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1119,18 +1119,18 @@ source_urls:
   - https://leaderphabrix.com/products/qx/
   - https://leaderphabrix.com/contact-support/phabrix-product-software/
 retrieved_at: 2026-04-30T00:45:34.864Z
-last_checked_at: 2026-05-14T18:17:19.660Z
+last_checked_at: 2026-06-02T22:13:01.925Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.660Z
-matched_actions: 47
+checked_at: 2026-06-02T22:13:01.925Z
+matched_actions: 51
 action_count: 51
 confidence: medium
-summary: "All 47 spec actions map 1-to-1 to documented REST endpoints; base URL and port 8080 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 51 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

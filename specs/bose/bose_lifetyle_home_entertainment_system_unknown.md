@@ -24,8 +24,8 @@ source_urls:
   - "https://www.eserviceinfo.com/preview_html.php?fileid=60281&previewid=31157"
   - "https://files.remotecentral.com/view/7121-18700-1/bose_t_&_v-class_home_theater_systems.html"
 retrieved_at: 2026-05-22T15:53:45.910Z
-last_checked_at: 2026-06-02T17:21:48.901Z
-generated_at: 2026-06-02T17:21:48.901Z
+last_checked_at: 2026-06-02T21:41:06.414Z
+generated_at: 2026-06-02T21:41:06.414Z
 firmware_coverage: "\"6.1 or later\""
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "behavior when ACK not received within timeout (retry? abort?) not in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:48.901Z
+  checked_at: 2026-06-02T21:41:06.414Z
   matched_actions: 44
   action_count: 44
   confidence: medium
@@ -441,14 +441,14 @@ source_urls:
   - "https://www.eserviceinfo.com/preview_html.php?fileid=60281&previewid=31157"
   - "https://files.remotecentral.com/view/7121-18700-1/bose_t_&_v-class_home_theater_systems.html"
 retrieved_at: 2026-05-22T15:53:45.910Z
-last_checked_at: 2026-06-02T17:21:48.901Z
+last_checked_at: 2026-06-02T21:41:06.414Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:48.901Z
+checked_at: 2026-06-02T21:41:06.414Z
 matched_actions: 44
 action_count: 44
 confidence: medium

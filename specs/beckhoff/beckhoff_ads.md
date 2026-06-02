@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://download.beckhoff.com/download/document/automation/twincat3/TwinCAT_3_ADS_INTRO_EN.pdf
 retrieved_at: 2026-04-30T03:46:29.152Z
-last_checked_at: 2026-05-14T18:17:14.413Z
-generated_at: 2026-05-14T18:17:14.413Z
+last_checked_at: 2026-06-02T21:40:53.020Z
+generated_at: 2026-06-02T21:40:53.020Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "ADS fragmentation protocol for large payloads not documented."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.413Z
-  matched_actions: 69
+  checked_at: 2026-06-02T21:40:53.020Z
+  matched_actions: 72
   action_count: 72
   confidence: medium
-  summary: "All 69 spec actions matched source verbatim; transport ports confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 72 spec actions traced to source. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1045,18 +1045,18 @@ source_domains:
 source_urls:
   - https://download.beckhoff.com/download/document/automation/twincat3/TwinCAT_3_ADS_INTRO_EN.pdf
 retrieved_at: 2026-04-30T03:46:29.152Z
-last_checked_at: 2026-05-14T18:17:14.413Z
+last_checked_at: 2026-06-02T21:40:53.020Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.413Z
-matched_actions: 69
+checked_at: 2026-06-02T21:40:53.020Z
+matched_actions: 72
 action_count: 72
 confidence: medium
-summary: "All 69 spec actions matched source verbatim; transport ports confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 72 spec actions traced to source. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,19 +22,11 @@ source_urls:
   - https://docs.audio-technica.com/us/atuc_50_atuc_ir_ip_control_protocol_en_web_190531.pdf
   - https://docs.audio-technica.com/eu/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-29T22:52:59.393Z
-last_checked_at: 2026-05-03T15:35:30.550Z
-generated_at: 2026-05-03T15:35:30.550Z
+last_checked_at: 2026-06-02T21:47:58.829Z
+generated_at: 2026-06-02T21:47:58.829Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - gcust
-  - gconn
-  - gcgpi
-  - gcvui
-  - gvnfc
-  - lvmon
-  - confm
-  - error
   - "firmware version compatibility not fully stated beyond minimum versions"
   - "no multi-step sequences explicitly described in source"
   - "no safety warnings or interlock procedures found in source"
@@ -42,11 +34,11 @@ known_gaps:
   - "no power-on/off IP control command found (power is physical)"
 verification:
   verdict: verified
-  checked_at: 2026-05-03T15:35:30.550Z
+  checked_at: 2026-06-02T21:47:58.829Z
   matched_actions: 93
   action_count: 93
   confidence: medium
-  summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 93 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1211,31 +1203,23 @@ source_urls:
   - https://docs.audio-technica.com/us/atuc_50_atuc_ir_ip_control_protocol_en_web_190531.pdf
   - https://docs.audio-technica.com/eu/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-29T22:52:59.393Z
-last_checked_at: 2026-05-03T15:35:30.550Z
+last_checked_at: 2026-06-02T21:47:58.829Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T15:35:30.550Z
+checked_at: 2026-06-02T21:47:58.829Z
 matched_actions: 93
 action_count: 93
 confidence: medium
-summary: "All 93 spec actions matched their 5-byte wire tokens in the source command table; transport port 17300 and multicast 225.000.000.100:17000 confirmed; notification-only commands appear in Events section. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 93 spec actions traced to source. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- gcust
-- gconn
-- gcgpi
-- gcvui
-- gvnfc
-- lvmon
-- confm
-- error
 - "firmware version compatibility not fully stated beyond minimum versions"
 - "no multi-step sequences explicitly described in source"
 - "no safety warnings or interlock procedures found in source"

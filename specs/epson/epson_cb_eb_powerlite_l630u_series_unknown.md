@@ -21,14 +21,11 @@ source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
   - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
 retrieved_at: 2026-05-14T15:57:21.734Z
-last_checked_at: 2026-05-19T17:04:13.476Z
-generated_at: 2026-05-19T17:04:13.476Z
+last_checked_at: 2026-06-02T22:06:42.095Z
+generated_at: 2026-06-02T22:06:42.095Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - MSEL00
-  - MSEL01
-  - MSEL02
   - "CB EB PowerLite L630U not listed in the applicable models table — command set may differ from the documented home-projector models"
   - "TCP/IP port number not stated in source"
   - "no response format tables documented beyond colon/ERR"
@@ -42,11 +39,11 @@ known_gaps:
   - "response format details beyond colon/ERR not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:04:13.476Z
+  checked_at: 2026-06-02T22:06:42.095Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -231,26 +228,23 @@ source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
   - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
 retrieved_at: 2026-05-14T15:57:21.734Z
-last_checked_at: 2026-05-19T17:04:13.476Z
+last_checked_at: 2026-06-02T22:06:42.095Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:04:13.476Z
+checked_at: 2026-06-02T22:06:42.095Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions matched literally in source with correct shapes; transport serial parameters verified; 3 menu-select commands present in source but not represented in spec. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- MSEL00
-- MSEL01
-- MSEL02
 - "CB EB PowerLite L630U not listed in the applicable models table — command set may differ from the documented home-projector models"
 - "TCP/IP port number not stated in source"
 - "no response format tables documented beyond colon/ERR"

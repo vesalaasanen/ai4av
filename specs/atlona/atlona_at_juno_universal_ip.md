@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
 retrieved_at: 2026-05-14T10:37:36.393Z
-last_checked_at: 2026-06-02T17:21:23.794Z
-generated_at: 2026-06-02T17:21:23.794Z
+last_checked_at: 2026-06-02T21:40:01.066Z
+generated_at: 2026-06-02T21:40:01.066Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements beyond the destructive nature of Mreset and the PWOFF/PWON power cycle."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:23.794Z
+  checked_at: 2026-06-02T21:40:01.066Z
   matched_actions: 50
   action_count: 50
   confidence: medium
@@ -586,14 +586,14 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-JUNO-451_HDBT_API.pdf
 retrieved_at: 2026-05-14T10:37:36.393Z
-last_checked_at: 2026-06-02T17:21:23.794Z
+last_checked_at: 2026-06-02T21:40:01.066Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:23.794Z
+checked_at: 2026-06-02T21:40:01.066Z
 matched_actions: 50
 action_count: 50
 confidence: medium

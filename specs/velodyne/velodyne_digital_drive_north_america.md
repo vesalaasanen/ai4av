@@ -22,8 +22,8 @@ source_urls:
   - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
   - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
-last_checked_at: 2026-04-27T10:13:18.285Z
-generated_at: 2026-04-27T10:13:18.285Z
+last_checked_at: 2026-06-02T22:16:02.163Z
+generated_at: 2026-06-02T22:16:02.163Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "response format for query commands not explicitly documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:18.285Z
+  checked_at: 2026-06-02T22:16:02.163Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -258,18 +258,18 @@ source_urls:
   - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
   - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
-last_checked_at: 2026-04-27T10:13:18.285Z
+last_checked_at: 2026-06-02T22:16:02.163Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:18.285Z
+checked_at: 2026-06-02T22:16:02.163Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions match source commands; transport parameters verified; command reference is complete. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

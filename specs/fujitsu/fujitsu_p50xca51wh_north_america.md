@@ -25,8 +25,8 @@ source_urls:
   - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
   - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-06-02T20:48:07.936Z
-generated_at: 2026-06-02T20:48:07.936Z
+last_checked_at: 2026-06-02T21:41:44.255Z
+generated_at: 2026-06-02T21:41:44.255Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,7 +40,7 @@ known_gaps:
   - "port number not stated — RS-232 only, no IP port applicable"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T20:48:07.936Z
+  checked_at: 2026-06-02T21:41:44.255Z
   matched_actions: 207
   action_count: 207
   confidence: medium
@@ -1383,14 +1383,14 @@ source_urls:
   - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
   - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-06-02T20:48:07.936Z
+last_checked_at: 2026-06-02T21:41:44.255Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T20:48:07.936Z
+checked_at: 2026-06-02T21:41:44.255Z
 matched_actions: 207
 action_count: 207
 confidence: medium

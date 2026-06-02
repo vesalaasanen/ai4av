@@ -29,8 +29,8 @@ source_urls:
   - https://canon.a.bigcontent.io/v1/static/636349338420159846SJ_xeed_wux6500_02/
   - https://gdlp01.c-wss.com/gds/8/0300023908/03/wux500-450st-um4-eng.pdf
 retrieved_at: 2026-05-15T01:04:12.983Z
-last_checked_at: 2026-05-15T21:15:23.626Z
-generated_at: 2026-05-15T21:15:23.626Z
+last_checked_at: 2026-06-02T22:04:55.354Z
+generated_at: 2026-06-02T22:04:55.354Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "fine gamma adjustment point count is variable; exact range not constrained beyond 0-1024 per point"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:15:23.626Z
+  checked_at: 2026-06-02T22:04:55.354Z
   matched_actions: 51
   action_count: 51
   confidence: medium
-  summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 51 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -809,18 +809,18 @@ source_urls:
   - https://canon.a.bigcontent.io/v1/static/636349338420159846SJ_xeed_wux6500_02/
   - https://gdlp01.c-wss.com/gds/8/0300023908/03/wux500-450st-um4-eng.pdf
 retrieved_at: 2026-05-15T01:04:12.983Z
-last_checked_at: 2026-05-15T21:15:23.626Z
+last_checked_at: 2026-06-02T22:04:55.354Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:15:23.626Z
+checked_at: 2026-06-02T22:04:55.354Z
 matched_actions: 51
 action_count: 51
 confidence: medium
-summary: "All 51 spec actions map 1-to-1 to source commands, all parameter shapes and transport values confirmed verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 51 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

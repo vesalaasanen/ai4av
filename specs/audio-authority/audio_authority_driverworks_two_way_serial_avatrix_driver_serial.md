@@ -23,8 +23,8 @@ source_urls:
   - https://www.audioauthority.com/downloads/manuals/1173_ci_commands_2011-6.doc
   - https://www.audioauthority.com/techdocs/1173bkmanual752-587.pdf
 retrieved_at: 2026-05-19T21:14:33.940Z
-last_checked_at: 2026-06-02T17:21:28.769Z
-generated_at: 2026-06-02T17:21:28.769Z
+last_checked_at: 2026-06-02T21:40:09.137Z
+generated_at: 2026-06-02T21:40:09.137Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware version compatibility, port number on a network variant (none in source — RS-232 only), and any fault-recovery sequences are not stated in the source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:28.769Z
+  checked_at: 2026-06-02T21:40:09.137Z
   matched_actions: 39
   action_count: 39
   confidence: medium
@@ -495,14 +495,14 @@ source_urls:
   - https://www.audioauthority.com/downloads/manuals/1173_ci_commands_2011-6.doc
   - https://www.audioauthority.com/techdocs/1173bkmanual752-587.pdf
 retrieved_at: 2026-05-19T21:14:33.940Z
-last_checked_at: 2026-06-02T17:21:28.769Z
+last_checked_at: 2026-06-02T21:40:09.137Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:28.769Z
+checked_at: 2026-06-02T21:40:09.137Z
 matched_actions: 39
 action_count: 39
 confidence: medium

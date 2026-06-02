@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:38:51.766Z
-last_checked_at: 2026-05-14T21:40:20.532Z
-generated_at: 2026-05-14T21:40:20.532Z
+last_checked_at: 2026-06-02T21:40:50.616Z
+generated_at: 2026-06-02T21:40:50.616Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "illumination source types (laser vs LED vs lamp) vary by projector model"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:40:20.532Z
-  matched_actions: 56
+  checked_at: 2026-06-02T21:40:50.616Z
+  matched_actions: 57
   action_count: 57
   confidence: medium
-  summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 57 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -917,18 +917,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:38:51.766Z
-last_checked_at: 2026-05-14T21:40:20.532Z
+last_checked_at: 2026-06-02T21:40:50.616Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:40:20.532Z
-matched_actions: 56
+checked_at: 2026-06-02T21:40:50.616Z
+matched_actions: 57
 action_count: 57
 confidence: medium
-summary: "All 56 spec actions matched literally to Pulse API methods in source; all transport parameters verified; bidirectional coverage complete. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 57 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

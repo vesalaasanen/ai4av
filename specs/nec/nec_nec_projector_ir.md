@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:05.060Z
-last_checked_at: 2026-04-23T08:14:10.937Z
-generated_at: 2026-04-23T08:14:10.937Z
+last_checked_at: 2026-06-02T22:10:41.004Z
+generated_at: 2026-06-02T22:10:41.004Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "port number for serial CONTROL on projector side not explicitly stated (D-SUB 9P described)"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:14:10.937Z
+  checked_at: 2026-06-02T22:10:41.004Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions matched with exact hex sequences and parameters in source; transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -638,18 +638,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:05.060Z
-last_checked_at: 2026-04-23T08:14:10.937Z
+last_checked_at: 2026-06-02T22:10:41.004Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:14:10.937Z
+checked_at: 2026-06-02T22:10:41.004Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions matched with exact hex sequences and parameters in source; transport parameters verified; bidirectional coverage complete. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

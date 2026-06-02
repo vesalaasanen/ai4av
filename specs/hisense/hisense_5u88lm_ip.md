@@ -25,8 +25,8 @@ source_urls:
   - https://ltb.no/media/multicase/documents/hisense/dm66d/hcd_rs232_control_guide_v2.0.pdf
   - https://www.avw.co.nz/images/hisense/HISENSE_RS232_DOC.pdf
 retrieved_at: 2026-05-04T09:18:03.090Z
-last_checked_at: 2026-06-02T17:22:25.508Z
-generated_at: 2026-06-02T17:22:25.508Z
+last_checked_at: 2026-06-02T21:41:57.259Z
+generated_at: 2026-06-02T21:41:57.259Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "power-on sequencing via RS-232 requires RS-232 Remote Power On setting to be enabled in Custom Install menu; source does not specify voltage/current/power specs"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:25.508Z
+  checked_at: 2026-06-02T21:41:57.259Z
   matched_actions: 118
   action_count: 118
   confidence: medium
@@ -1016,14 +1016,14 @@ source_urls:
   - https://ltb.no/media/multicase/documents/hisense/dm66d/hcd_rs232_control_guide_v2.0.pdf
   - https://www.avw.co.nz/images/hisense/HISENSE_RS232_DOC.pdf
 retrieved_at: 2026-05-04T09:18:03.090Z
-last_checked_at: 2026-06-02T17:22:25.508Z
+last_checked_at: 2026-06-02T21:41:57.259Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:25.508Z
+checked_at: 2026-06-02T21:41:57.259Z
 matched_actions: 118
 action_count: 118
 confidence: medium

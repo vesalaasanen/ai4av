@@ -23,8 +23,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
   - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-05-14T18:17:14.955Z
-generated_at: 2026-05-14T18:17:14.955Z
+last_checked_at: 2026-06-02T22:05:09.951Z
+generated_at: 2026-06-02T22:05:09.951Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "source doc title references LX37/40/45/50/55 but filename suggested LX500 — family applicability confirmed by Table 3 command list"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.955Z
+  checked_at: 2026-06-02T22:05:09.951Z
   matched_actions: 122
   action_count: 122
   confidence: medium
-  summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 122 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1565,18 +1565,18 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
   - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-05-14T18:17:14.955Z
+last_checked_at: 2026-06-02T22:05:09.951Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.955Z
+checked_at: 2026-06-02T22:05:09.951Z
 matched_actions: 122
 action_count: 122
 confidence: medium
-summary: "All 190 spec actions (basic, extended control, basic status, extended status) are literally present in Tables 3/3a/4/4a; transport parameters match verbatim. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 122 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/12664790/Lg-Rs-232c.html
   - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
-retrieved_at: 2026-04-25T20:54:53.378Z
-last_checked_at: 2026-04-25T20:54:53.378Z
-generated_at: 2026-04-25T20:54:53.378Z
+retrieved_at: 2026-06-02T22:08:51.512Z
+last_checked_at: 2026-06-02T22:08:51.512Z
+generated_at: 2026-06-02T22:08:51.512Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "no multi-step macros documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:54:53.378Z
+  checked_at: 2026-06-02T22:08:51.512Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -640,19 +640,19 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/12664790/Lg-Rs-232c.html
   - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
-retrieved_at: 2026-04-25T20:54:53.378Z
-last_checked_at: 2026-04-25T20:54:53.378Z
+retrieved_at: 2026-06-02T22:08:51.512Z
+last_checked_at: 2026-06-02T22:08:51.512Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:54:53.378Z
+checked_at: 2026-06-02T22:08:51.512Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 49 spec actions found verbatim in source; all transport parameters (9600 baud 8N1 port 9761) verified. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

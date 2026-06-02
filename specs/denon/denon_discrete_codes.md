@@ -19,8 +19,8 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:25.322Z
-last_checked_at: 2026-06-02T17:22:03.712Z
-generated_at: 2026-06-02T17:22:03.712Z
+last_checked_at: 2026-06-02T21:41:25.934Z
+generated_at: 2026-06-02T21:41:25.934Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,7 @@ known_gaps:
   - "maximum concurrent Telnet sessions not specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:03.712Z
+  checked_at: 2026-06-02T21:41:25.934Z
   matched_actions: 841
   action_count: 841
   confidence: medium
@@ -5627,14 +5627,14 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-04-29T09:03:25.322Z
-last_checked_at: 2026-06-02T17:22:03.712Z
+last_checked_at: 2026-06-02T21:41:25.934Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:03.712Z
+checked_at: 2026-06-02T21:41:25.934Z
 matched_actions: 841
 action_count: 841
 confidence: medium

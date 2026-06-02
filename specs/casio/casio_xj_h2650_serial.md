@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
 retrieved_at: 2026-05-20T00:27:05.504Z
-last_checked_at: 2026-05-22T13:30:17.445Z
-generated_at: 2026-05-22T13:30:17.445Z
+last_checked_at: 2026-06-02T22:04:57.032Z
+generated_at: 2026-06-02T22:04:57.032Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "maximum command queue depth not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-22T13:30:17.445Z
+  checked_at: 2026-06-02T22:04:57.032Z
   matched_actions: 11
   action_count: 11
   confidence: medium
-  summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -287,18 +287,18 @@ source_domains:
 source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
 retrieved_at: 2026-05-20T00:27:05.504Z
-last_checked_at: 2026-05-22T13:30:17.445Z
+last_checked_at: 2026-06-02T22:04:57.032Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-22T13:30:17.445Z
+checked_at: 2026-06-02T22:04:57.032Z
 matched_actions: 11
 action_count: 11
 confidence: medium
-summary: "All 11 spec actions matched with correct opcodes and parameters; all transport values verified in source; all source commands represented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

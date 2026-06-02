@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
 retrieved_at: 2026-04-30T04:34:49.227Z
-last_checked_at: 2026-06-02T17:21:33.099Z
-generated_at: 2026-06-02T17:21:33.099Z
+last_checked_at: 2026-06-02T21:40:18.993Z
+generated_at: 2026-06-02T21:40:18.993Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -29,7 +29,7 @@ known_gaps:
   - "specific sub-models within MCS-EX Series not enumerated. Firmware version compatibility not stated. Mute command not documented (only the Mute event). Device-level power on/off not documented (only per-instance and trigger control)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:33.099Z
+  checked_at: 2026-06-02T21:40:18.993Z
   matched_actions: 75
   action_count: 75
   confidence: medium
@@ -906,14 +906,14 @@ source_domains:
 source_urls:
   - https://autonomic.atlassian.net/wiki/spaces/ASKB/pages/1509556225/Autonomic+Media+Server+Control+Protocol
 retrieved_at: 2026-04-30T04:34:49.227Z
-last_checked_at: 2026-06-02T17:21:33.099Z
+last_checked_at: 2026-06-02T21:40:18.993Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:33.099Z
+checked_at: 2026-06-02T21:40:18.993Z
 matched_actions: 75
 action_count: 75
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.610Z
-last_checked_at: 2026-05-14T18:17:15.070Z
-generated_at: 2026-05-14T18:17:15.070Z
+last_checked_at: 2026-06-02T22:05:37.277Z
+generated_at: 2026-06-02T22:05:37.277Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.070Z
-  matched_actions: 80
+  checked_at: 2026-06-02T22:05:37.277Z
+  matched_actions: 83
   action_count: 83
   confidence: medium
-  summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified. (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 83 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1002,18 +1002,18 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.610Z
-last_checked_at: 2026-05-14T18:17:15.070Z
+last_checked_at: 2026-06-02T22:05:37.277Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.070Z
-matched_actions: 80
+checked_at: 2026-06-02T22:05:37.277Z
+matched_actions: 83
 action_count: 83
 confidence: medium
-summary: "All 80 spec actions matched verbatim in source; transport parameters confirmed; bidirectional coverage verified. (15 unresolved item(s) noted in Known Gaps.)"
+summary: "All 83 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

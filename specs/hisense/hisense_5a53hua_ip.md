@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T22:10:09.323Z
-last_checked_at: 2026-06-02T17:22:22.893Z
-generated_at: 2026-06-02T17:22:22.893Z
+last_checked_at: 2026-06-02T21:41:53.938Z
+generated_at: 2026-06-02T21:41:53.938Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "POIS query command not listed in source (only set values 0000-0003 explicit, plus references to INPT-set inputs)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:22.893Z
+  checked_at: 2026-06-02T21:41:53.938Z
   matched_actions: 120
   action_count: 120
   confidence: medium
@@ -1567,14 +1567,14 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T22:10:09.323Z
-last_checked_at: 2026-06-02T17:22:22.893Z
+last_checked_at: 2026-06-02T21:41:53.938Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:22.893Z
+checked_at: 2026-06-02T21:41:53.938Z
 matched_actions: 120
 action_count: 120
 confidence: medium

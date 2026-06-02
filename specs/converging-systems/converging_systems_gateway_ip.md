@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:24.294Z
-last_checked_at: 2026-04-23T15:31:22.907Z
-generated_at: 2026-04-23T15:31:22.907Z
+last_checked_at: 2026-06-02T22:05:31.411Z
+generated_at: 2026-06-02T22:05:31.411Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "error recovery behavior beyond '*' response for invalid commands"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:31:22.907Z
+  checked_at: 2026-06-02T22:05:31.411Z
   matched_actions: 22
   action_count: 22
   confidence: medium
-  summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -330,18 +330,18 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
 retrieved_at: 2026-04-30T04:26:24.294Z
-last_checked_at: 2026-04-23T15:31:22.907Z
+last_checked_at: 2026-06-02T22:05:31.411Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:31:22.907Z
+checked_at: 2026-06-02T22:05:31.411Z
 matched_actions: 22
 action_count: 22
 confidence: medium
-summary: "All 22 spec actions matched verbatim in source; transport parameters verified; source command set fully represented by spec. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T12:48:14.170Z
-last_checked_at: 2026-04-26T11:29:13.284Z
-generated_at: 2026-04-26T11:29:13.284Z
+last_checked_at: 2026-06-02T21:56:24.524Z
+generated_at: 2026-06-02T21:56:24.524Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "LSDP binary packet structure not fully documented (binary format reference only)"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:29:13.284Z
+  checked_at: 2026-06-02T21:56:24.524Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -446,18 +446,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T12:48:14.170Z
-last_checked_at: 2026-04-26T11:29:13.284Z
+last_checked_at: 2026-06-02T21:56:24.524Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:29:13.284Z
+checked_at: 2026-06-02T21:56:24.524Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions matched to documented BluOS API endpoints with correct transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

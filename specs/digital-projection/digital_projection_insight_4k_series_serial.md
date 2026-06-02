@@ -23,8 +23,8 @@ source_urls:
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
   - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
 retrieved_at: 2026-04-30T20:23:55.028Z
-last_checked_at: 2026-06-02T17:26:34.181Z
-generated_at: 2026-06-02T17:26:34.181Z
+last_checked_at: 2026-06-02T21:41:32.363Z
+generated_at: 2026-06-02T21:41:32.363Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "mcgg/tcgg data format x,y coordinates need leading zero prefix (e.g. 0.663,0.332)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:26:34.181Z
+  checked_at: 2026-06-02T21:41:32.363Z
   matched_actions: 108
   action_count: 108
   confidence: medium
@@ -984,14 +984,14 @@ source_urls:
   - "https://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20INSIGHT%204K.pdf"
   - https://www.manualslib.com/manual/1276574/Digital-Projection-Insight-4k-Quad-Series.html
 retrieved_at: 2026-04-30T20:23:55.028Z
-last_checked_at: 2026-06-02T17:26:34.181Z
+last_checked_at: 2026-06-02T21:41:32.363Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:26:34.181Z
+checked_at: 2026-06-02T21:41:32.363Z
 matched_actions: 108
 action_count: 108
 confidence: medium

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HDVS-CAM_API.pdf
 retrieved_at: 2026-05-14T20:20:09.597Z
-last_checked_at: 2026-05-20T05:00:17.446Z
-generated_at: 2026-05-20T05:00:17.446Z
+last_checked_at: 2026-06-02T21:47:58.038Z
+generated_at: 2026-06-02T21:47:58.038Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "whether VISCA and Pelco-D/P can be used simultaneously on same connection"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T05:00:17.446Z
-  matched_actions: 103
-  action_count: 103
+  checked_at: 2026-06-02T21:47:58.038Z
+  matched_actions: 151
+  action_count: 151
   confidence: medium
-  summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 151 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1734,18 +1734,18 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-HDVS-CAM_API.pdf
 retrieved_at: 2026-05-14T20:20:09.597Z
-last_checked_at: 2026-05-20T05:00:17.446Z
+last_checked_at: 2026-06-02T21:47:58.038Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T05:00:17.446Z
-matched_actions: 103
-action_count: 103
+checked_at: 2026-06-02T21:47:58.038Z
+matched_actions: 151
+action_count: 151
 confidence: medium
-summary: "All 103 spec actions have exact literal matches in source; transport parameters verified; feedback entries document all inquiry commands. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 151 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

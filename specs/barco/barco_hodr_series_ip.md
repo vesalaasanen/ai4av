@@ -22,23 +22,11 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-14T18:17:14.378Z
-generated_at: 2026-05-14T18:17:14.378Z
+last_checked_at: 2026-06-02T21:40:41.702Z
+generated_at: 2026-06-02T21:40:41.702Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - image.source.list
-  - image.connector.list
-  - image.processing.blend
-  - image.processing.blacklevel
-  - environment.getcontrolblocks
-  - led.activity
-  - led.list
-  - lightmeasurement.getlightoutput
-  - network.list
-  - notification.dismiss
-  - notification.list
-  - signal.subscribe
   - "exact Hodr series model names not listed in this document; source primarily references UDX-4K22, UDX-4K32, UDX-W32"
   - "firmware version compatibility not stated"
   - "no explicit multi-step macro sequences described in source."
@@ -51,11 +39,11 @@ known_gaps:
   - "serial cable pinout beyond pin 2-2, 3-3, 5-5 not fully specified (crossover vs straight)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.378Z
+  checked_at: 2026-06-02T21:40:41.702Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -542,35 +530,23 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:54.418Z
-last_checked_at: 2026-05-14T18:17:14.378Z
+last_checked_at: 2026-06-02T21:40:41.702Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.378Z
+checked_at: 2026-06-02T21:40:41.702Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 40 spec actions matched literally; transport parameters verified; spec properly represents the Pulse JSON-RPC API core command set. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- image.source.list
-- image.connector.list
-- image.processing.blend
-- image.processing.blacklevel
-- environment.getcontrolblocks
-- led.activity
-- led.list
-- lightmeasurement.getlightoutput
-- network.list
-- notification.dismiss
-- notification.list
-- signal.subscribe
 - "exact Hodr series model names not listed in this document; source primarily references UDX-4K22, UDX-4K32, UDX-W32"
 - "firmware version compatibility not stated"
 - "no explicit multi-step macro sequences described in source."

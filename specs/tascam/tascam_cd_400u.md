@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
 retrieved_at: 2026-04-30T01:50:57.652Z
-last_checked_at: 2026-05-14T18:17:21.207Z
-generated_at: 2026-05-14T18:17:21.207Z
+last_checked_at: 2026-06-02T22:15:33.243Z
+generated_at: 2026-06-02T22:15:33.243Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "serial connector pinout beyond basic Tx/Rx/GND not exploitable via RS-232C control"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.207Z
+  checked_at: 2026-06-02T22:15:33.243Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 26 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -394,18 +394,18 @@ source_domains:
 source_urls:
   - https://cf.tascam.com/wp-content/uploads/downloads/products/tascam/cd-400u/rs-232c_protocol_cd400u_v1.21_e.pdf
 retrieved_at: 2026-04-30T01:50:57.652Z
-last_checked_at: 2026-05-14T18:17:21.207Z
+last_checked_at: 2026-06-02T22:15:33.243Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.207Z
+checked_at: 2026-06-02T22:15:33.243Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 38 spec actions matched to source commands with correct wire tokens, parameters, and transport specs verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 26 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-04-27T14:43:53.278Z
-last_checked_at: 2026-04-27T14:43:53.278Z
-generated_at: 2026-04-27T14:43:53.278Z
+retrieved_at: 2026-06-02T22:05:47.531Z
+last_checked_at: 2026-06-02T22:05:47.531Z
+generated_at: 2026-06-02T22:05:47.531Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T14:43:53.278Z
+  checked_at: 2026-06-02T22:05:47.531Z
   matched_actions: 56
   action_count: 56
   confidence: medium
-  summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -683,19 +683,19 @@ Command format: `heos://command_group/command?attr1=val1&attr2=val2\r\n`. delimi
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-04-27T14:43:53.278Z
-last_checked_at: 2026-04-27T14:43:53.278Z
+retrieved_at: 2026-06-02T22:05:47.531Z
+last_checked_at: 2026-06-02T22:05:47.531Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T14:43:53.278Z
+checked_at: 2026-06-02T22:05:47.531Z
 matched_actions: 56
 action_count: 56
 confidence: medium
-summary: "All 56 spec actions have literal source matches in the HEOS CLI protocol reference; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -48,8 +48,8 @@ source_urls:
   - https://www.sbprojects.net/knowledge/ir/jvc.php
   - https://www.remotecentral.com/cgi-bin/codes/jvc/
 retrieved_at: 2026-05-17T21:22:34.987Z
-last_checked_at: 2026-05-20T15:40:15.243Z
-generated_at: 2026-05-20T15:40:15.243Z
+last_checked_at: 2026-06-02T22:08:32.058Z
+generated_at: 2026-06-02T22:08:32.058Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -64,11 +64,11 @@ known_gaps:
   - "full Remote Control Emulation command table (pages 7-13 of source) not fully enumerated here — subset included covering most common operations. Full table available at source pages 7-13."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T15:40:15.243Z
-  matched_actions: 171
-  action_count: 171
+  checked_at: 2026-06-02T22:08:32.058Z
+  matched_actions: 223
+  action_count: 223
   confidence: medium
-  summary: "All 171 hex commands verified literal match in source; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 223 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1607,18 +1607,18 @@ source_urls:
   - https://www.sbprojects.net/knowledge/ir/jvc.php
   - https://www.remotecentral.com/cgi-bin/codes/jvc/
 retrieved_at: 2026-05-17T21:22:34.987Z
-last_checked_at: 2026-05-20T15:40:15.243Z
+last_checked_at: 2026-06-02T22:08:32.058Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T15:40:15.243Z
-matched_actions: 171
-action_count: 171
+checked_at: 2026-06-02T22:08:32.058Z
+matched_actions: 223
+action_count: 223
 confidence: medium
-summary: "All 171 hex commands verified literal match in source; transport verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 223 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

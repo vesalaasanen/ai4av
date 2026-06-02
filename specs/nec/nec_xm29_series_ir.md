@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:38.708Z
-last_checked_at: 2026-05-14T18:17:19.290Z
-generated_at: 2026-05-14T18:17:19.290Z
+last_checked_at: 2026-06-02T22:12:37.626Z
+generated_at: 2026-06-02T22:12:37.626Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "key code table partial — only SOURCE, COMPUTER1/2, VIDEO1, S-VIDEO1, VOLUME UP/DOWN, ASPECT, FREEZE, LAMP MODE/ECO, etc. shown; other codes in appendix not available"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.290Z
-  matched_actions: 49
+  checked_at: 2026-06-02T22:12:37.626Z
+  matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 49 spec actions matched source; transport verified (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -647,18 +647,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:38.708Z
-last_checked_at: 2026-05-14T18:17:19.290Z
+last_checked_at: 2026-06-02T22:12:37.626Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.290Z
-matched_actions: 49
+checked_at: 2026-06-02T22:12:37.626Z
+matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 49 spec actions matched source; transport verified (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

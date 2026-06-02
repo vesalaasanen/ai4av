@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-04-30T04:45:56.854Z
-last_checked_at: 2026-04-23T08:27:21.235Z
-generated_at: 2026-04-23T08:27:21.235Z
+last_checked_at: 2026-06-02T22:14:38.487Z
+generated_at: 2026-06-02T22:14:38.487Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "actual voltage/current ranges not specified"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:27:21.235Z
+  checked_at: 2026-06-02T22:14:38.487Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -387,18 +387,18 @@ source_domains:
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/PowerManagement/ProtocolsAndDrivers/SnapAV_Wattbox_API_V2.4.pdf
 retrieved_at: 2026-04-30T04:45:56.854Z
-last_checked_at: 2026-04-23T08:27:21.235Z
+last_checked_at: 2026-06-02T22:14:38.487Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:27:21.235Z
+checked_at: 2026-06-02T22:14:38.487Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions match literal commands in source; transport (port 23, Telnet/SSH, username/password auth) verified; feedbacks capture all query commands. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

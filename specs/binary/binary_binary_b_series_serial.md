@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
 retrieved_at: 2026-04-30T04:24:50.218Z
-last_checked_at: 2026-05-14T18:17:14.580Z
-generated_at: 2026-05-14T18:17:14.580Z
+last_checked_at: 2026-06-02T21:51:27.706Z
+generated_at: 2026-06-02T21:51:27.706Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.580Z
+  checked_at: 2026-06-02T21:51:27.706Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "18 spec actions verified against Binary projector control protocol. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -523,18 +523,18 @@ source_domains:
 source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-660-MTRX-8x8-API-Command-Set_V1.0.1.pdf
 retrieved_at: 2026-04-30T04:24:50.218Z
-last_checked_at: 2026-05-14T18:17:14.580Z
+last_checked_at: 2026-06-02T21:51:27.706Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.580Z
+checked_at: 2026-06-02T21:51:27.706Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 32 spec actions matched literally in source; transport parameters verified; bidirectional coverage confirmed. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "18 spec actions verified against Binary projector control protocol. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

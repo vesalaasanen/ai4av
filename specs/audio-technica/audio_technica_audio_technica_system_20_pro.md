@@ -26,8 +26,8 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-29T13:02:30.787Z
-last_checked_at: 2026-05-03T16:17:34.638Z
-generated_at: 2026-05-03T16:17:34.638Z
+last_checked_at: 2026-06-02T21:47:52.483Z
+generated_at: 2026-06-02T21:47:52.483Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "EQ band gain numeric range not explicitly stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-03T16:17:34.638Z
+  checked_at: 2026-06-02T21:47:52.483Z
   matched_actions: 163
   action_count: 163
   confidence: medium
-  summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 163 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2212,18 +2212,18 @@ source_domains:
 source_urls:
   - https://docs.audio-technica.com/all/System20PRO_IP_Control_Protocol_Specifications_V0.0.5_EN_web_240703.pdf
 retrieved_at: 2026-04-29T13:02:30.787Z
-last_checked_at: 2026-05-03T16:17:34.638Z
+last_checked_at: 2026-06-02T21:47:52.483Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T16:17:34.638Z
+checked_at: 2026-06-02T21:47:52.483Z
 matched_actions: 163
 action_count: 163
 confidence: medium
-summary: "All 163 spec actions verified against literal command strings in source; all transport parameters confirmed; full source command set is represented in spec actions and feedbacks. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 163 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

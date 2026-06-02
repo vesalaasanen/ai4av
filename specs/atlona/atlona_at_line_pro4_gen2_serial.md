@@ -21,8 +21,8 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2_V3.pdf
   - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2.pdf
 retrieved_at: 2026-05-27T13:13:49.365Z
-last_checked_at: 2026-05-30T20:17:00.301Z
-generated_at: 2026-05-30T20:17:00.301Z
+last_checked_at: 2026-06-02T21:47:51.706Z
+generated_at: 2026-06-02T21:47:51.706Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "no IP/TCP control documented — source covers RS-232 only"
 verification:
   verdict: verified
-  checked_at: 2026-05-30T20:17:00.301Z
+  checked_at: 2026-06-02T21:47:51.706Z
   matched_actions: 78
   action_count: 78
   confidence: medium
-  summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 78 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -909,18 +909,18 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2_V3.pdf
   - https://atlona.com/pdf/manuals/AT-LINE-PRO4-GEN2.pdf
 retrieved_at: 2026-05-27T13:13:49.365Z
-last_checked_at: 2026-05-30T20:17:00.301Z
+last_checked_at: 2026-06-02T21:47:51.706Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-30T20:17:00.301Z
+checked_at: 2026-06-02T21:47:51.706Z
 matched_actions: 78
 action_count: 78
 confidence: medium
-summary: "Every action command in the hypothetical spec is supported by command-level source evidence, parameter values match documented ranges/enums, and the source command catalogue is fully represented as command templates rather than a proper subset. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 78 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

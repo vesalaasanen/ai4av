@@ -26,8 +26,8 @@ source_urls:
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
   - https://www.manualslib.com/manual/3857357/Vaddio-Roboshot-30-Series.html
 retrieved_at: 2026-05-05T03:11:30.078Z
-last_checked_at: 2026-05-14T18:17:21.291Z
-generated_at: 2026-05-14T18:17:21.291Z
+last_checked_at: 2026-06-02T22:15:58.182Z
+generated_at: 2026-06-02T22:15:58.182Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "CAM_PTZ_PresetSpeed RS-232 command documented but no corresponding Telnet API command found"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.291Z
-  matched_actions: 31
+  checked_at: 2026-06-02T22:15:58.182Z
+  matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 32 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -644,18 +644,18 @@ source_urls:
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
   - https://www.manualslib.com/manual/3857357/Vaddio-Roboshot-30-Series.html
 retrieved_at: 2026-05-05T03:11:30.078Z
-last_checked_at: 2026-05-14T18:17:21.291Z
+last_checked_at: 2026-06-02T22:15:58.182Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.291Z
-matched_actions: 31
+checked_at: 2026-06-02T22:15:58.182Z
+matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 31 spec actions matched source commands; transport parameters (port 23, baud 9600/38400, 8N1) verified verbatim in source. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 32 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

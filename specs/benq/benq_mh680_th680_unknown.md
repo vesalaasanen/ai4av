@@ -28,8 +28,8 @@ source_urls:
   - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:27:43.223Z
-last_checked_at: 2026-06-02T21:06:28.381Z
-generated_at: 2026-06-02T21:06:28.381Z
+last_checked_at: 2026-06-02T21:40:55.250Z
+generated_at: 2026-06-02T21:40:55.250Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,7 +47,7 @@ known_gaps:
   - "firmware version not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T21:06:28.381Z
+  checked_at: 2026-06-02T21:40:55.250Z
   matched_actions: 111
   action_count: 111
   confidence: medium
@@ -1083,14 +1083,14 @@ source_urls:
   - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:27:43.223Z
-last_checked_at: 2026-06-02T21:06:28.381Z
+last_checked_at: 2026-06-02T21:40:55.250Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T21:06:28.381Z
+checked_at: 2026-06-02T21:40:55.250Z
 matched_actions: 111
 action_count: 111
 confidence: medium

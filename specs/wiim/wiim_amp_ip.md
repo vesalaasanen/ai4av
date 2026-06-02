@@ -25,12 +25,11 @@ source_urls:
   - https://developer.arylic.com/httpapi/
   - https://github.com/cvdlinden/wiim-httpapi
 retrieved_at: 2026-04-29T15:03:42.082Z
-last_checked_at: 2026-05-14T18:17:21.496Z
-generated_at: 2026-05-14T18:17:21.496Z
+last_checked_at: 2026-06-02T22:16:12.408Z
+generated_at: 2026-06-02T22:16:12.408Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - setPlayerCmd:hex_playlist
   - "port number not stated in source; standard HTTPS implied but not confirmed"
   - "source does not describe unsolicited notifications or event subscription mechanism"
   - "source does not describe multi-step macro sequences"
@@ -42,11 +41,11 @@ known_gaps:
   - "error response codes beyond OK/Failed not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.496Z
+  checked_at: 2026-06-02T22:16:12.408Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 33 spec actions matched literally with source; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -468,24 +467,23 @@ source_urls:
   - https://developer.arylic.com/httpapi/
   - https://github.com/cvdlinden/wiim-httpapi
 retrieved_at: 2026-04-29T15:03:42.082Z
-last_checked_at: 2026-05-14T18:17:21.496Z
+last_checked_at: 2026-06-02T22:16:12.408Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.496Z
+checked_at: 2026-06-02T22:16:12.408Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 33 spec actions matched literally with source; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- setPlayerCmd:hex_playlist
 - "port number not stated in source; standard HTTPS implied but not confirmed"
 - "source does not describe unsolicited notifications or event subscription mechanism"
 - "source does not describe multi-step macro sequences"

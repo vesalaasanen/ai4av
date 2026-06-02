@@ -21,8 +21,8 @@ source_urls:
   - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
   - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
-last_checked_at: 2026-04-30T09:48:21.302Z
-generated_at: 2026-04-30T09:48:21.302Z
+last_checked_at: 2026-06-02T22:13:39.881Z
+generated_at: 2026-06-02T22:13:39.881Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:48:21.302Z
+  checked_at: 2026-06-02T22:13:39.881Z
   matched_actions: 63
   action_count: 63
   confidence: medium
-  summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -551,18 +551,18 @@ source_urls:
   - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
   - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
-last_checked_at: 2026-04-30T09:48:21.302Z
+last_checked_at: 2026-06-02T22:13:39.881Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:48:21.302Z
+checked_at: 2026-06-02T22:13:39.881Z
 matched_actions: 63
 action_count: 63
 confidence: medium
-summary: "All 63 spec actions found as literal substrings in source with matching wire codes; transport parameters verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

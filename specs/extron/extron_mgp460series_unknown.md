@@ -27,8 +27,8 @@ source_urls:
   - https://media.extron.com/public/download/files/userman/MGP_Series_UserManual_68-1235-01_D.pdf
   - https://www.extron.com/download/files/userman/68-2469-01_C_MGP_Pro_UG.pdf
 retrieved_at: 2026-05-14T16:30:35.586Z
-last_checked_at: 2026-06-02T17:22:16.760Z
-generated_at: 2026-06-02T17:22:16.760Z
+last_checked_at: 2026-06-02T21:41:42.745Z
+generated_at: 2026-06-02T21:41:42.745Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,7 +41,7 @@ known_gaps:
   - "complete X1@/X1$/X1*/X1(/X1#/X#/X4!/X4(/X5#/X5@/X6^/X6*/X6( variable formats partially defined; some referenced placeholders (X3%, X3^, X3&, X3*, X3(, X4$, X4%, X4^, X4&, X7), X5$, X\\) lacked full value tables in the refined excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:16.760Z
+  checked_at: 2026-06-02T21:41:42.745Z
   matched_actions: 245
   action_count: 245
   confidence: medium
@@ -2137,14 +2137,14 @@ source_urls:
   - https://media.extron.com/public/download/files/userman/MGP_Series_UserManual_68-1235-01_D.pdf
   - https://www.extron.com/download/files/userman/68-2469-01_C_MGP_Pro_UG.pdf
 retrieved_at: 2026-05-14T16:30:35.586Z
-last_checked_at: 2026-06-02T17:22:16.760Z
+last_checked_at: 2026-06-02T21:41:42.745Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:16.760Z
+checked_at: 2026-06-02T21:41:42.745Z
 matched_actions: 245
 action_count: 245
 confidence: medium

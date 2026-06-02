@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:30.761Z
-last_checked_at: 2026-05-14T18:17:18.632Z
-generated_at: 2026-05-14T18:17:18.632Z
+last_checked_at: 2026-06-02T22:11:02.732Z
+generated_at: 2026-06-02T22:11:02.732Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "display signal type mapping may differ for NP-PH1202HL"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.632Z
+  checked_at: 2026-06-02T22:11:02.732Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -641,18 +641,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:30.761Z
-last_checked_at: 2026-05-14T18:17:18.632Z
+last_checked_at: 2026-06-02T22:11:02.732Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.632Z
+checked_at: 2026-06-02T22:11:02.732Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 52 spec actions matched verbatim in NEC PH1202HL IP source; transport parameters confirmed; spec represents complete command set. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

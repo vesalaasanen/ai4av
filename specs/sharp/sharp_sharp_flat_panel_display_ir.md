@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
 retrieved_at: 2026-04-29T12:34:58.370Z
-last_checked_at: 2026-04-23T08:25:58.852Z
-generated_at: 2026-04-23T08:25:58.852Z
+last_checked_at: 2026-06-02T22:14:21.769Z
+generated_at: 2026-06-02T22:14:21.769Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "some VCP codes listed as N/A in OSD table — not fully documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T08:25:58.852Z
+  checked_at: 2026-06-02T22:14:21.769Z
   matched_actions: 17
   action_count: 17
   confidence: medium
-  summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 17 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -455,18 +455,18 @@ source_domains:
 source_urls:
   - https://sharp-displays.jp.sharp/support/webdl/dl_service/data/display/manual/e658/eu/External_Control_Exx8_Series_EN_Rev1.0.pdf
 retrieved_at: 2026-04-29T12:34:58.370Z
-last_checked_at: 2026-04-23T08:25:58.852Z
+last_checked_at: 2026-06-02T22:14:21.769Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T08:25:58.852Z
+checked_at: 2026-06-02T22:14:21.769Z
 matched_actions: 17
 action_count: 17
 confidence: medium
-summary: "All 17 spec actions matched with literal command mnemonics in source; all transport parameters (port 7142, baud 9600, serial config) verified. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 17 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

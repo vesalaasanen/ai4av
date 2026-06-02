@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T12:48:10.270Z
-last_checked_at: 2026-04-26T11:26:52.230Z
-generated_at: 2026-04-26T11:26:52.230Z
+last_checked_at: 2026-06-02T21:54:02.609Z
+generated_at: 2026-06-02T21:54:02.609Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "maximum concurrent connection limit not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T11:26:52.230Z
+  checked_at: 2026-06-02T21:54:02.609Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions traced to BluOS Custom Integration API v1.7. HTTP transport on port 11000 confirmed. Playback control, volume, grouping, presets, and queue operations documented. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -407,18 +407,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T12:48:10.270Z
-last_checked_at: 2026-04-26T11:26:52.230Z
+last_checked_at: 2026-06-02T21:54:02.609Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T11:26:52.230Z
+checked_at: 2026-06-02T21:54:02.609Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions matched literal source commands; transport parameters verified; specification covers essential BluOS control methods. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions traced to BluOS Custom Integration API v1.7. HTTP transport on port 11000 confirmed. Playback control, volume, grouping, presets, and queue operations documented. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

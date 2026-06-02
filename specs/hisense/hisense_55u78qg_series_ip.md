@@ -24,8 +24,8 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://ltb.no/media/multicase/documents/hisense/dm66d/hcd_rs232_control_guide_v2.0.pdf
 retrieved_at: 2026-05-14T10:38:46.017Z
-last_checked_at: 2026-06-02T17:22:22.133Z
-generated_at: 2026-06-02T17:22:22.133Z
+last_checked_at: 2026-06-02T21:41:53.182Z
+generated_at: 2026-06-02T21:41:53.182Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,7 +39,7 @@ known_gaps:
   - "target model 55U78QG not present in source; TCP port not stated; E-Series vs M/WR/MR baud mismatch unresolvable without additional source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:22.133Z
+  checked_at: 2026-06-02T21:41:53.182Z
   matched_actions: 121
   action_count: 121
   confidence: medium
@@ -1334,14 +1334,14 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - https://ltb.no/media/multicase/documents/hisense/dm66d/hcd_rs232_control_guide_v2.0.pdf
 retrieved_at: 2026-05-14T10:38:46.017Z
-last_checked_at: 2026-06-02T17:22:22.133Z
+last_checked_at: 2026-06-02T21:41:53.182Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:22.133Z
+checked_at: 2026-06-02T21:41:53.182Z
 matched_actions: 121
 action_count: 121
 confidence: medium

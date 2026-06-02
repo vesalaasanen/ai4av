@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:30.052Z
-last_checked_at: 2026-04-23T06:41:19.010Z
-generated_at: 2026-04-23T06:41:19.010Z
+last_checked_at: 2026-06-02T22:06:30.375Z
+generated_at: 2026-06-02T22:06:30.375Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "specific error codes beyond HTTP status codes not enumerated for all endpoints"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T06:41:19.010Z
+  checked_at: 2026-06-02T22:06:30.375Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -587,18 +587,18 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:30.052Z
-last_checked_at: 2026-04-23T06:41:19.010Z
+last_checked_at: 2026-06-02T22:06:30.375Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T06:41:19.010Z
+checked_at: 2026-06-02T22:06:30.375Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 23 spec actions match source endpoints literally; transport parameters verified in RFC 2617 and documented protocol ports. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

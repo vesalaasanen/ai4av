@@ -20,15 +20,11 @@ source_domains:
 source_urls:
   - https://developer.honeywellhome.com/api-methods
 retrieved_at: 2026-04-30T04:32:30.743Z
-last_checked_at: 2026-04-23T07:01:27.626Z
-generated_at: 2026-04-23T07:01:27.626Z
+last_checked_at: 2026-06-02T22:08:08.188Z
+generated_at: 2026-06-02T22:08:08.188Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - /devices/cameras
-  - "/devices/waterLeakDetectors/{deviceId}/history"
-  - "/devices/dhw/{deviceId}/schedule"
-  - "/devices/shutoffvalve/{deviceId}"
   - "complete payload schemas for POST/PUT requests not included in source"
   - "base URL not stated in source excerpt"
   - "token format, expiry, scope details not in source excerpt"
@@ -47,11 +43,11 @@ known_gaps:
   - "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T07:01:27.626Z
+  checked_at: 2026-06-02T22:08:08.188Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations. (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -270,27 +266,23 @@ source_domains:
 source_urls:
   - https://developer.honeywellhome.com/api-methods
 retrieved_at: 2026-04-30T04:32:30.743Z
-last_checked_at: 2026-04-23T07:01:27.626Z
+last_checked_at: 2026-06-02T22:08:08.188Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T07:01:27.626Z
+checked_at: 2026-06-02T22:08:08.188Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions matched literal endpoints; OAuth2 transport verified; spec fully covers RTH9585WF thermostat operations. (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- /devices/cameras
-- "/devices/waterLeakDetectors/{deviceId}/history"
-- "/devices/dhw/{deviceId}/schedule"
-- "/devices/shutoffvalve/{deviceId}"
 - "complete payload schemas for POST/PUT requests not included in source"
 - "base URL not stated in source excerpt"
 - "token format, expiry, scope details not in source excerpt"

@@ -24,8 +24,8 @@ source_urls:
   - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
   - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
-last_checked_at: 2026-04-30T09:49:39.963Z
-generated_at: 2026-04-30T09:49:39.963Z
+last_checked_at: 2026-06-02T22:15:12.994Z
+generated_at: 2026-06-02T22:15:12.994Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "Specific voltage/current/power specifications for eNode hardware not stated"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:49:39.963Z
+  checked_at: 2026-06-02T22:15:12.994Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 44 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -559,18 +559,18 @@ source_urls:
   - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
   - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
-last_checked_at: 2026-04-30T09:49:39.963Z
+last_checked_at: 2026-06-02T22:15:12.994Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:49:39.963Z
+checked_at: 2026-06-02T22:15:12.994Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions matched verbatim to source commands; transport parameters verified. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 44 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

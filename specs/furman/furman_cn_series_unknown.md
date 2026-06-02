@@ -28,23 +28,22 @@ source_urls:
   - https://www.manua.ls/furman/smartsequencer-cn-1800s/manual
   - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S_manual.pdf?v=1723587519"
 retrieved_at: 2026-05-19T04:33:34.064Z
-last_checked_at: 2026-05-19T17:05:50.691Z
-generated_at: 2026-05-19T17:05:50.691Z
+last_checked_at: 2026-06-02T22:07:16.263Z
+generated_at: 2026-06-02T22:07:16.263Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - HELP
   - "explicit event list not fully enumerated in source."
   - "no safety warnings or interlock procedures in source."
   - "TCP/IP or HTTP interface not documented — only RS-232 described"
   - "firmware version range not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-19T17:05:50.691Z
+  checked_at: 2026-06-02T22:07:16.263Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 specified actions verified against source command definitions; transport parameters match verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -309,24 +308,23 @@ source_urls:
   - https://www.manua.ls/furman/smartsequencer-cn-1800s/manual
   - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S_manual.pdf?v=1723587519"
 retrieved_at: 2026-05-19T04:33:34.064Z
-last_checked_at: 2026-05-19T17:05:50.691Z
+last_checked_at: 2026-06-02T22:07:16.263Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-19T17:05:50.691Z
+checked_at: 2026-06-02T22:07:16.263Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 specified actions verified against source command definitions; transport parameters match verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- HELP
 - "explicit event list not fully enumerated in source."
 - "no safety warnings or interlock procedures in source."
 - "TCP/IP or HTTP interface not documented — only RS-232 described"

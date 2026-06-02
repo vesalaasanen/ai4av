@@ -27,9 +27,9 @@ source_urls:
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
   - https://github.com/WesSouza/lgtv-ip-control
   - https://www.rticontrol.com/pub/media/wysiwyg/dealer/technote/LG_Direct-App_Integration_.pdf
-retrieved_at: 2026-05-14T18:17:17.433Z
-last_checked_at: 2026-05-14T18:17:17.433Z
-generated_at: 2026-05-14T18:17:17.433Z
+retrieved_at: 2026-06-02T22:08:49.971Z
+last_checked_at: 2026-06-02T22:08:49.971Z
+generated_at: 2026-06-02T22:08:49.971Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "maximum cable length or daisy-chain topology limits not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.433Z
+  checked_at: 2026-06-02T22:08:49.971Z
   matched_actions: 22
   action_count: 22
   confidence: medium
-  summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -636,19 +636,19 @@ source_urls:
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
   - https://github.com/WesSouza/lgtv-ip-control
   - https://www.rticontrol.com/pub/media/wysiwyg/dealer/technote/LG_Direct-App_Integration_.pdf
-retrieved_at: 2026-05-14T18:17:17.433Z
-last_checked_at: 2026-05-14T18:17:17.433Z
+retrieved_at: 2026-06-02T22:08:49.971Z
+last_checked_at: 2026-06-02T22:08:49.971Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.433Z
+checked_at: 2026-06-02T22:08:49.971Z
 matched_actions: 22
 action_count: 22
 confidence: medium
-summary: "All 42 spec actions matched literally against source commands; transport parameters verified; source command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

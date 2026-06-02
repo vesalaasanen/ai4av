@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:51:30.797Z
-last_checked_at: 2026-05-16T18:51:30.797Z
-generated_at: 2026-05-16T18:51:30.797Z
+retrieved_at: 2026-06-02T21:54:11.781Z
+last_checked_at: 2026-06-02T21:54:11.781Z
+generated_at: 2026-06-02T21:54:11.781Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T18:51:30.797Z
+  checked_at: 2026-06-02T21:54:11.781Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to BluOS volume control API. Complete volume management including individual and grouped player control confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -590,19 +590,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-05-16T18:51:30.797Z
-last_checked_at: 2026-05-16T18:51:30.797Z
+retrieved_at: 2026-06-02T21:54:11.781Z
+last_checked_at: 2026-06-02T21:54:11.781Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T18:51:30.797Z
+checked_at: 2026-06-02T21:54:11.781Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 29 spec actions match verbatim HTTP endpoints in the BluOS CI API source; shapes and transport verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to BluOS volume control API. Complete volume management including individual and grouped player control confirmed. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

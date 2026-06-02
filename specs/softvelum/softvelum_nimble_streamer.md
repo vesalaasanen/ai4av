@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://softvelum.com/nimble/api/
 retrieved_at: 2026-04-30T04:45:59.191Z
-last_checked_at: 2026-05-14T18:17:20.556Z
-generated_at: 2026-05-14T18:17:20.556Z
+last_checked_at: 2026-06-02T22:14:41.579Z
+generated_at: 2026-06-02T22:14:41.579Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "full config file parameters list not in source — only management_* params shown"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.556Z
+  checked_at: 2026-06-02T22:14:41.579Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -361,18 +361,18 @@ source_domains:
 source_urls:
   - https://softvelum.com/nimble/api/
 retrieved_at: 2026-04-30T04:45:59.191Z
-last_checked_at: 2026-05-14T18:17:20.556Z
+last_checked_at: 2026-06-02T22:14:41.579Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.556Z
+checked_at: 2026-06-02T22:14:41.579Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "Every spec action matched a literal endpoint in the source, all transport parameters verified, complete bidirectional coverage of API reference. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

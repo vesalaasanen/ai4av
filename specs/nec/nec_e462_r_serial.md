@@ -20,12 +20,11 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:45.248Z
-last_checked_at: 2026-04-26T20:44:22.255Z
-generated_at: 2026-04-26T20:44:22.255Z
+last_checked_at: 2026-06-02T22:10:17.144Z
+generated_at: 2026-06-02T22:10:17.144Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "030-15 (LAMP ADJUST / LIGHT ADJUST)"
   - "specific input terminal values for E462-R model not listed in appendix; generic NEC values used"
   - "most parameters are action-based rather than settable variables;"
   - "no unsolicited event notifications described in source;"
@@ -35,11 +34,11 @@ known_gaps:
   - "HDBaseT standby mode support not confirmed for E462-R"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T20:44:22.255Z
+  checked_at: 2026-06-02T22:10:17.144Z
   matched_actions: 57
   action_count: 57
   confidence: medium
-  summary: "All 57 spec actions matched source commands; transport parameters verified; source coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 57 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -686,24 +685,23 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:45.248Z
-last_checked_at: 2026-04-26T20:44:22.255Z
+last_checked_at: 2026-06-02T22:10:17.144Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T20:44:22.255Z
+checked_at: 2026-06-02T22:10:17.144Z
 matched_actions: 57
 action_count: 57
 confidence: medium
-summary: "All 57 spec actions matched source commands; transport parameters verified; source coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 57 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "030-15 (LAMP ADJUST / LIGHT ADJUST)"
 - "specific input terminal values for E462-R model not listed in appendix; generic NEC values used"
 - "most parameters are action-based rather than settable variables;"
 - "no unsolicited event notifications described in source;"

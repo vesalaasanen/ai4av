@@ -19,9 +19,9 @@ source_domains:
   - developer.tesla.com
 source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
-retrieved_at: 2026-05-10T12:18:55.027Z
-last_checked_at: 2026-05-10T12:18:55.027Z
-generated_at: 2026-05-10T12:18:55.027Z
+retrieved_at: 2026-06-02T22:15:42.897Z
+last_checked_at: 2026-06-02T22:15:42.897Z
+generated_at: 2026-06-02T22:15:42.897Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "response schema, error codes, rate limits not in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-10T12:18:55.027Z
+  checked_at: 2026-06-02T22:15:42.897Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 66 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -484,19 +484,19 @@ source_domains:
   - developer.tesla.com
 source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
-retrieved_at: 2026-05-10T12:18:55.027Z
-last_checked_at: 2026-05-10T12:18:55.027Z
+retrieved_at: 2026-06-02T22:15:42.897Z
+last_checked_at: 2026-06-02T22:15:42.897Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-10T12:18:55.027Z
+checked_at: 2026-06-02T22:15:42.897Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 66 spec actions found verbatim in source endpoints; full bidirectional coverage with no hallucinations or shape drift. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 66 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

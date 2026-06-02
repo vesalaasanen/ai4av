@@ -23,13 +23,11 @@ source_urls:
   - https://aca.im/driver_docs/Haivision/furnace_api.pdf
   - https://doc.haivision.com/
 retrieved_at: 2026-05-05T06:00:56.364Z
-last_checked_at: 2026-05-08T15:40:56.725Z
-generated_at: 2026-05-08T15:40:56.725Z
+last_checked_at: 2026-06-02T22:07:30.283Z
+generated_at: 2026-06-02T22:07:30.283Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "demo API (testing utility, not control)"
-  - "recorder sub-resource mirrors (duplicate of recording endpoints)"
   - "specific Mantaray hardware model identifiers not stated; source covers Furnace API generically"
   - "HTTPS port not stated (assumed standard 443 but not confirmed)"
   - "specific HTTPS port not stated in source"
@@ -42,11 +40,11 @@ known_gaps:
   - "firmware version compatibility range not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-08T15:40:56.725Z
+  checked_at: 2026-06-02T22:07:30.283Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 44 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -768,25 +766,23 @@ source_urls:
   - https://aca.im/driver_docs/Haivision/furnace_api.pdf
   - https://doc.haivision.com/
 retrieved_at: 2026-05-05T06:00:56.364Z
-last_checked_at: 2026-05-08T15:40:56.725Z
+last_checked_at: 2026-06-02T22:07:30.283Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-08T15:40:56.725Z
+checked_at: 2026-06-02T22:07:30.283Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions matched verbatim to source commands/endpoints with correct parameter shapes; core Furnace API control surface fully represented; transport parameters verified against source documentation. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 44 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "demo API (testing utility, not control)"
-- "recorder sub-resource mirrors (duplicate of recording endpoints)"
 - "specific Mantaray hardware model identifiers not stated; source covers Furnace API generically"
 - "HTTPS port not stated (assumed standard 443 but not confirmed)"
 - "specific HTTPS port not stated in source"

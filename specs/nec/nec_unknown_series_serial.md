@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:12.897Z
-last_checked_at: 2026-05-14T18:17:19.016Z
-generated_at: 2026-05-14T18:17:19.016Z
+last_checked_at: 2026-06-02T22:11:54.391Z
+generated_at: 2026-06-02T22:11:54.391Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "specific model name not confirmed — \"UNKNOWN Series\" used as placeholder; UNRESOLVED: HDBaseT control mentioned in signal types but no dedicated HDBaseT command section; UNRESOLVED: how to change baud rate not documented; UNRESOLVED: power consumption, voltage specs not provided (correctly — not safety critical)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.016Z
+  checked_at: 2026-06-02T22:11:54.391Z
   matched_actions: 39
   action_count: 39
   confidence: medium
-  summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 39 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -567,18 +567,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:12.897Z
-last_checked_at: 2026-05-14T18:17:19.016Z
+last_checked_at: 2026-06-02T22:11:54.391Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.016Z
+checked_at: 2026-06-02T22:11:54.391Z
 matched_actions: 39
 action_count: 39
 confidence: medium
-summary: "All 55 spec actions matched literally in source with correct hex sequences and parameters; transport fully verified. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 39 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

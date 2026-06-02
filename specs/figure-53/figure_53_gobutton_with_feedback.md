@@ -22,8 +22,8 @@ source_urls:
   - https://gobutton.app/docs/v3/working-with-your-show/osc-dictionary/
   - https://gobutton.app/docs/v3/
 retrieved_at: 2026-04-29T23:42:56.952Z
-last_checked_at: 2026-05-14T18:17:15.884Z
-generated_at: 2026-05-14T18:17:15.884Z
+last_checked_at: 2026-06-02T22:07:13.018Z
+generated_at: 2026-06-02T22:07:13.018Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "Maximum UDP datagram size not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.884Z
+  checked_at: 2026-06-02T22:07:13.018Z
   matched_actions: 70
   action_count: 70
   confidence: medium
-  summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 70 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -770,18 +770,18 @@ source_urls:
   - https://gobutton.app/docs/v3/working-with-your-show/osc-dictionary/
   - https://gobutton.app/docs/v3/
 retrieved_at: 2026-04-29T23:42:56.952Z
-last_checked_at: 2026-05-14T18:17:15.884Z
+last_checked_at: 2026-06-02T22:07:13.018Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.884Z
+checked_at: 2026-06-02T22:07:13.018Z
 matched_actions: 70
 action_count: 70
 confidence: medium
-summary: "All 73 spec actions have literal OSC matches in source; transport parameters verified verbatim; spec fully represents the documented OSC API. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 70 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

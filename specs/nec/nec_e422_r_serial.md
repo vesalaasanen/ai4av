@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:43.345Z
-last_checked_at: 2026-04-25T21:17:26.590Z
-generated_at: 2026-04-25T21:17:26.590Z
+last_checked_at: 2026-06-02T22:10:15.520Z
+generated_at: 2026-06-02T22:10:15.520Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "some DATA01/DATA02 byte values in command examples include extra trailing bytes that appear to be part of the DATA payload rather than separate fields (e.g., \"02h 00h 00h 00h 00h 02h\" — the 02h after LEN may be part of the data length encoding)"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:17:26.590Z
+  checked_at: 2026-06-02T22:10:15.520Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -796,18 +796,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:43.345Z
-last_checked_at: 2026-04-25T21:17:26.590Z
+last_checked_at: 2026-06-02T22:10:15.520Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:17:26.590Z
+checked_at: 2026-06-02T22:10:15.520Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions verified against source with exact hex opcodes; transport parameters all confirmed. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

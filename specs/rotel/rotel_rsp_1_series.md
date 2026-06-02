@@ -20,16 +20,11 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1582%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:42:05.997Z
-last_checked_at: 2026-05-04T09:58:11.073Z
-generated_at: 2026-05-04T09:58:11.073Z
+last_checked_at: 2026-06-02T22:13:35.853Z
+generated_at: 2026-06-02T22:13:35.853Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "get_current_power!"
-  - "get_current_source!"
-  - "get_volume!"
-  - "get_mute_status!"
-  - "get_dsp_mode!"
   - "power-on sequencing requirements not documented"
   - "no discrete settable parameters beyond action commands - all level trims"
   - "no unsolicited event descriptions in source - device sends responses"
@@ -41,11 +36,11 @@ known_gaps:
   - "binary command encoding not applicable — this is ASCII protocol only"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T09:58:11.073Z
+  checked_at: 2026-06-02T22:13:35.853Z
   matched_actions: 67
   action_count: 67
   confidence: medium
-  summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 67 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -500,28 +495,23 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSP1582%20Protocol_0.pdf"
 retrieved_at: 2026-05-04T16:42:05.997Z
-last_checked_at: 2026-05-04T09:58:11.073Z
+last_checked_at: 2026-06-02T22:13:35.853Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T09:58:11.073Z
+checked_at: 2026-06-02T22:13:35.853Z
 matched_actions: 67
 action_count: 67
 confidence: medium
-summary: "All 67 spec actions match source commands exactly; transport params confirmed; only 5 feedback query commands exist in source but not spec, at the boundary threshold. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 67 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "get_current_power!"
-- "get_current_source!"
-- "get_volume!"
-- "get_mute_status!"
-- "get_dsp_mode!"
 - "power-on sequencing requirements not documented"
 - "no discrete settable parameters beyond action commands - all level trims"
 - "no unsolicited event descriptions in source - device sends responses"

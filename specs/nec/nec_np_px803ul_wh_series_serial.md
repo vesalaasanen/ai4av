@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:38.787Z
-last_checked_at: 2026-05-14T18:17:18.686Z
-generated_at: 2026-05-14T18:17:18.686Z
+last_checked_at: 2026-06-02T22:11:07.562Z
+generated_at: 2026-06-02T22:11:07.562Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:18.686Z
-  matched_actions: 48
+  checked_at: 2026-06-02T22:11:07.562Z
+  matched_actions: 52
   action_count: 52
   confidence: medium
-  summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 52 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -513,18 +513,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:38.787Z
-last_checked_at: 2026-05-14T18:17:18.686Z
+last_checked_at: 2026-06-02T22:11:07.562Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:18.686Z
-matched_actions: 48
+checked_at: 2026-06-02T22:11:07.562Z
+matched_actions: 52
 action_count: 52
 confidence: medium
-summary: "All 48 spec actions matched verbatim to NEC PX803UL-WH serial source commands; transport parameters verified; no drift or fabrication. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 52 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

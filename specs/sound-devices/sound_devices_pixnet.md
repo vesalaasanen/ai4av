@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
-last_checked_at: 2026-04-27T15:30:54.587Z
-generated_at: 2026-04-27T15:30:54.587Z
+last_checked_at: 2026-06-02T22:15:08.144Z
+generated_at: 2026-06-02T22:15:08.144Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "serial/RS-232 config not documented; RS-422 shown only as OSD status flag"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:30:54.587Z
+  checked_at: 2026-06-02T22:15:08.144Z
   matched_actions: 35
   action_count: 35
   confidence: medium
-  summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -476,18 +476,18 @@ source_domains:
 source_urls:
   - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
-last_checked_at: 2026-04-27T15:30:54.587Z
+last_checked_at: 2026-06-02T22:15:08.144Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:30:54.587Z
+checked_at: 2026-06-02T22:15:08.144Z
 matched_actions: 35
 action_count: 35
 confidence: medium
-summary: "All 35 spec actions matched source commands; transport and auth verified; full command catalogue represented. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -24,8 +24,8 @@ source_urls:
   - https://www.manualslib.com/manual/1950022/Visual-Productions-Timecore.html
   - https://www.visualproductions.nl/products/timecore
 retrieved_at: 2026-04-30T02:41:51.990Z
-last_checked_at: 2026-05-04T10:21:28.186Z
-generated_at: 2026-05-04T10:21:28.186Z
+last_checked_at: 2026-06-02T22:16:10.684Z
+generated_at: 2026-06-02T22:16:10.684Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "\"hello\" command format inferred from naming pattern, not explicitly in a command table"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T10:21:28.186Z
+  checked_at: 2026-06-02T22:16:10.684Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -309,18 +309,18 @@ source_urls:
   - https://www.manualslib.com/manual/1950022/Visual-Productions-Timecore.html
   - https://www.visualproductions.nl/products/timecore
 retrieved_at: 2026-04-30T02:41:51.990Z
-last_checked_at: 2026-05-04T10:21:28.186Z
+last_checked_at: 2026-06-02T22:16:10.684Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T10:21:28.186Z
+checked_at: 2026-06-02T22:16:10.684Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions have literal counterparts in source D.1-D.2 API tables; transport params verified at 7000/TCP/UDP/OSC; command catalogue fully represented. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

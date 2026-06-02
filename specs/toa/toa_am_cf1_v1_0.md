@@ -22,8 +22,8 @@ source_urls:
   - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
   - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
-last_checked_at: 2026-04-27T15:47:24.452Z
-generated_at: 2026-04-27T15:47:24.452Z
+last_checked_at: 2026-06-02T22:15:47.517Z
+generated_at: 2026-06-02T22:15:47.517Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "factory reset procedure not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:47:24.452Z
+  checked_at: 2026-06-02T22:15:47.517Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -412,18 +412,18 @@ source_urls:
   - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
   - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
-last_checked_at: 2026-04-27T15:47:24.452Z
+last_checked_at: 2026-06-02T22:15:47.517Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:47:24.452Z
+checked_at: 2026-06-02T22:15:47.517Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions matched literal commands in source; transport parameters verified; bidirectional coverage confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

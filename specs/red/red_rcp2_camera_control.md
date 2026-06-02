@@ -24,8 +24,8 @@ source_urls:
   - https://www.red.com/download/rcp2-documentation
   - https://www.red.com/developers
 retrieved_at: 2026-05-07T08:19:18.203Z
-last_checked_at: 2026-05-14T18:17:20.040Z
-generated_at: 2026-05-14T18:17:20.040Z
+last_checked_at: 2026-06-02T22:13:30.656Z
+generated_at: 2026-06-02T22:13:30.656Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "power input/output port parameters use indexed addressing (MSG_INDEXED_INT) — requires PWILIST/PWOLIST query first"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.040Z
+  checked_at: 2026-06-02T22:13:30.656Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -638,18 +638,18 @@ source_urls:
   - https://www.red.com/download/rcp2-documentation
   - https://www.red.com/developers
 retrieved_at: 2026-05-07T08:19:18.203Z
-last_checked_at: 2026-05-14T18:17:20.040Z
+last_checked_at: 2026-06-02T22:13:30.656Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.040Z
+checked_at: 2026-06-02T22:13:30.656Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 47 spec actions matched cleanly to RCP2 protocol definition with correct transport parameters (TCP 1111, serial 115200, UDP 1112). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

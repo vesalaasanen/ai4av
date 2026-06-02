@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/rs232/AT-LINE-PRO2_RS232.xls
 retrieved_at: 2026-05-19T19:21:35.183Z
-last_checked_at: 2026-05-20T04:51:32.153Z
-generated_at: 2026-05-20T04:51:32.153Z
+last_checked_at: 2026-06-02T21:40:01.849Z
+generated_at: 2026-06-02T21:40:01.849Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "unsolicited event notifications not described in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T04:51:32.153Z
+  checked_at: 2026-06-02T21:40:01.849Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete RS-232 video scaler protocol with input/output routing, resolution, scaling, picture adjustment, and audio control (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -394,18 +394,18 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/rs232/AT-LINE-PRO2_RS232.xls
 retrieved_at: 2026-05-19T19:21:35.183Z
-last_checked_at: 2026-05-20T04:51:32.153Z
+last_checked_at: 2026-06-02T21:40:01.849Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T04:51:32.153Z
+checked_at: 2026-06-02T21:40:01.849Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions matched source command table; transport parameters verified; bidirectional coverage complete. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete RS-232 video scaler protocol with input/output routing, resolution, scaling, picture adjustment, and audio control (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

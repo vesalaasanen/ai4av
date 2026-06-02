@@ -20,12 +20,11 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T17:29:58.830Z
-last_checked_at: 2026-05-14T18:17:21.515Z
-generated_at: 2026-05-14T18:17:21.515Z
+last_checked_at: 2026-06-02T22:16:15.436Z
+generated_at: 2026-06-02T22:16:15.436Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - setPlayerCmd:hex_playlist
   - "exact product models covered (doc is titled \"HTTP API for WiiM PRODUCTS\" suggesting it may apply to multiple WiiM devices)"
   - "no explicit port number stated; HTTPS implies 443 but not confirmed"
   - "firmware version compatibility not stated"
@@ -42,11 +41,11 @@ known_gaps:
   - "command rate limits or throttling"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.515Z
+  checked_at: 2026-06-02T22:16:15.436Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -384,24 +383,23 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T17:29:58.830Z
-last_checked_at: 2026-05-14T18:17:21.515Z
+last_checked_at: 2026-06-02T22:16:15.436Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.515Z
+checked_at: 2026-06-02T22:16:15.436Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 33 spec actions matched literally to source commands with correct syntax; hex_playlist variant is a minor extra form not critical to core coverage. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- setPlayerCmd:hex_playlist
 - "exact product models covered (doc is titled \"HTTP API for WiiM PRODUCTS\" suggesting it may apply to multiple WiiM devices)"
 - "no explicit port number stated; HTTPS implies 443 but not confirmed"
 - "firmware version compatibility not stated"

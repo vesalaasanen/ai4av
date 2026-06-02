@@ -23,8 +23,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-102271-04-christie-lit-tech-ref-gs-700-850-api.pdf
   - https://www.manualslib.com/manual/2301065/Christie-Rs232.html
 retrieved_at: 2026-05-14T14:49:43.541Z
-last_checked_at: 2026-05-20T10:00:33.965Z
-generated_at: 2026-05-20T10:00:33.965Z
+last_checked_at: 2026-06-02T22:05:11.529Z
+generated_at: 2026-06-02T22:05:11.529Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "Ethernet/Web control not documented. Only RS232C documented.OPS module is optional. No firmware version stated."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T10:00:33.965Z
-  matched_actions: 86
-  action_count: 86
+  checked_at: 2026-06-02T22:05:11.529Z
+  matched_actions: 56
+  action_count: 56
   confidence: medium
-  summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 56 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -615,18 +615,18 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-102271-04-christie-lit-tech-ref-gs-700-850-api.pdf
   - https://www.manualslib.com/manual/2301065/Christie-Rs232.html
 retrieved_at: 2026-05-14T14:49:43.541Z
-last_checked_at: 2026-05-20T10:00:33.965Z
+last_checked_at: 2026-06-02T22:05:11.529Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T10:00:33.965Z
-matched_actions: 86
-action_count: 86
+checked_at: 2026-06-02T22:05:11.529Z
+matched_actions: 56
+action_count: 56
 confidence: medium
-summary: "All 86 spec action IDs matched wire tokens in source command table; transport parameters verified. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 56 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

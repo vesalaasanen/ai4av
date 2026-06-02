@@ -26,8 +26,8 @@ source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/07/PD-42_RS232_CommandList.pdf
   - https://www.agneovo.com/wp-content/uploads/2021/07/QD-98_RS232_CommandList1.pdf
 retrieved_at: 2026-05-14T15:38:20.889Z
-last_checked_at: 2026-06-02T17:22:12.924Z
-generated_at: 2026-06-02T17:22:12.924Z
+last_checked_at: 2026-06-02T21:41:38.000Z
+generated_at: 2026-06-02T21:41:38.000Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "no safety warnings, interlocks, or power-on sequencing described"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:12.924Z
+  checked_at: 2026-06-02T21:41:38.000Z
   matched_actions: 52
   action_count: 52
   confidence: medium
@@ -666,14 +666,14 @@ source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/07/PD-42_RS232_CommandList.pdf
   - https://www.agneovo.com/wp-content/uploads/2021/07/QD-98_RS232_CommandList1.pdf
 retrieved_at: 2026-05-14T15:38:20.889Z
-last_checked_at: 2026-06-02T17:22:12.924Z
+last_checked_at: 2026-06-02T21:41:38.000Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:12.924Z
+checked_at: 2026-06-02T21:41:38.000Z
 matched_actions: 52
 action_count: 52
 confidence: medium

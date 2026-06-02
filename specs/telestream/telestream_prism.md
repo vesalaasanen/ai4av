@@ -26,8 +26,8 @@ source_urls:
   - https://www.telestream.net/pdfs/user-guides/PRISM-MPI-MPX_User_Manual-D00010020E.pdf
   - https://www.telestream.net/pdfs/user-guides/PRISM-MPS-MPD-MPP-User-Manual-D00013488P.pdf
 retrieved_at: 2026-05-14T10:50:29.756Z
-last_checked_at: 2026-05-18T17:08:14.907Z
-generated_at: 2026-05-18T17:08:14.907Z
+last_checked_at: 2026-06-02T22:15:36.196Z
+generated_at: 2026-06-02T22:15:36.196Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -46,11 +46,11 @@ known_gaps:
   - "RTSP port usage (UDP 5004-5005) not documented as control interface"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:08:14.907Z
+  checked_at: 2026-06-02T22:15:36.196Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -222,18 +222,18 @@ source_urls:
   - https://www.telestream.net/pdfs/user-guides/PRISM-MPI-MPX_User_Manual-D00010020E.pdf
   - https://www.telestream.net/pdfs/user-guides/PRISM-MPS-MPD-MPP-User-Manual-D00013488P.pdf
 retrieved_at: 2026-05-14T10:50:29.756Z
-last_checked_at: 2026-05-18T17:08:14.907Z
+last_checked_at: 2026-06-02T22:15:36.196Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:08:14.907Z
+checked_at: 2026-06-02T22:15:36.196Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions matched in source with consistent semantic-id convention; transport base URL confirmed; no shape mismatches or transport issues. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

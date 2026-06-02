@@ -25,8 +25,8 @@ source_urls:
   - https://tcs-static.azurewebsites.net/dcerno-customer-api/D-Cerno1.6/index.html
   - https://documents.televic.digital/conference/index.php/s/2xDZzyeteSfpYz9/download/TCS_CrestronInstallationGuide_v1.0.pdf
 retrieved_at: 2026-04-30T02:00:56.363Z
-last_checked_at: 2026-04-27T10:13:16.685Z
-generated_at: 2026-04-27T10:13:16.685Z
+last_checked_at: 2026-06-02T22:15:39.123Z
+generated_at: 2026-06-02T22:15:39.123Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "device power, input/output routing, level control not in this source"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T10:13:16.685Z
+  checked_at: 2026-06-02T22:15:39.123Z
   matched_actions: 11
   action_count: 11
   confidence: medium
-  summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 11 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -237,18 +237,18 @@ source_urls:
   - https://tcs-static.azurewebsites.net/dcerno-customer-api/D-Cerno1.6/index.html
   - https://documents.televic.digital/conference/index.php/s/2xDZzyeteSfpYz9/download/TCS_CrestronInstallationGuide_v1.0.pdf
 retrieved_at: 2026-04-30T02:00:56.363Z
-last_checked_at: 2026-04-27T10:13:16.685Z
+last_checked_at: 2026-06-02T22:15:39.123Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T10:13:16.685Z
+checked_at: 2026-06-02T22:15:39.123Z
 matched_actions: 11
 action_count: 11
 confidence: medium
-summary: "All 11 spec actions matched their source commands verbatim; transport parameters verified; camera protocol catalogue fully represented. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 11 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

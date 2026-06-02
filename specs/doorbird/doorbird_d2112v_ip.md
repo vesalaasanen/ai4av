@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:25.612Z
-last_checked_at: 2026-04-23T06:39:48.980Z
-generated_at: 2026-04-23T06:39:48.980Z
+last_checked_at: 2026-06-02T22:06:25.007Z
+generated_at: 2026-06-02T22:06:25.007Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "SIP port 5060 is default, may differ per proxy configuration"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T06:39:48.980Z
+  checked_at: 2026-06-02T22:06:25.007Z
   matched_actions: 23
   action_count: 23
   confidence: medium
-  summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 23 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -365,18 +365,18 @@ source_domains:
 source_urls:
   - "https://www.doorbird.com/downloads/api_lan.pdf?rev=0.36"
 retrieved_at: 2026-04-30T04:32:25.612Z
-last_checked_at: 2026-04-23T06:39:48.980Z
+last_checked_at: 2026-06-02T22:06:25.007Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T06:39:48.980Z
+checked_at: 2026-06-02T22:06:25.007Z
 matched_actions: 23
 action_count: 23
 confidence: medium
-summary: "All 23 spec actions matched literal endpoints in source; transport parameters verified; comprehensive coverage of HTTP/UDP/SIP command set. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 23 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

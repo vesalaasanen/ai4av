@@ -26,8 +26,8 @@ source_urls:
   - https://manualslib.com/manual/286677/Beyerdynamic-MIX-10-NG2.html
   - https://fccid.io/OSDMIX10NG2/User-Manual-1016784/ViewExhibitReport.cfm
 retrieved_at: 2026-05-12T21:12:24.361Z
-last_checked_at: 2026-05-14T05:46:52.872Z
-generated_at: 2026-05-14T05:46:52.872Z
+last_checked_at: 2026-06-02T21:51:26.885Z
+generated_at: 2026-06-02T21:51:26.885Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "max cable length, behavior on malformed frames, command timeouts, link-layer retry behavior"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T05:46:52.872Z
+  checked_at: 2026-06-02T21:51:26.885Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 MIX 10 NG2 RS232 commands from binary-encoded specification table. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -482,18 +482,18 @@ source_urls:
   - https://manualslib.com/manual/286677/Beyerdynamic-MIX-10-NG2.html
   - https://fccid.io/OSDMIX10NG2/User-Manual-1016784/ViewExhibitReport.cfm
 retrieved_at: 2026-05-12T21:12:24.361Z
-last_checked_at: 2026-05-14T05:46:52.872Z
+last_checked_at: 2026-06-02T21:51:26.885Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T05:46:52.872Z
+checked_at: 2026-06-02T21:51:26.885Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions match source received commands; transport verified; no fabrications or gaps detected. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 MIX 10 NG2 RS232 commands from binary-encoded specification table. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

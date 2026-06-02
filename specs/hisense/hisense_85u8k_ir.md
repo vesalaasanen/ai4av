@@ -24,9 +24,9 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=904"
-retrieved_at: 2026-05-14T18:17:16.708Z
-last_checked_at: 2026-05-14T18:17:16.708Z
-generated_at: 2026-05-14T18:17:16.708Z
+retrieved_at: 2026-06-02T22:08:06.583Z
+last_checked_at: 2026-06-02T22:08:06.583Z
+generated_at: 2026-06-02T22:08:06.583Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "firmware version compatibility, protocol revision applicability to the specific 85U8K model (source title is generic \"Hisense Prosumer TV\"; operator asserted 85U8K)."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.708Z
-  matched_actions: 42
-  action_count: 46
+  checked_at: 2026-06-02T22:08:06.583Z
+  matched_actions: 222
+  action_count: 222
   confidence: medium
-  summary: "All 42 spec actions have literal matches in the RS-232 command table; transport parameters verified in source documentation. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 222 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1566,19 +1566,19 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=904"
-retrieved_at: 2026-05-14T18:17:16.708Z
-last_checked_at: 2026-05-14T18:17:16.708Z
+retrieved_at: 2026-06-02T22:08:06.583Z
+last_checked_at: 2026-06-02T22:08:06.583Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.708Z
-matched_actions: 42
-action_count: 46
+checked_at: 2026-06-02T22:08:06.583Z
+matched_actions: 222
+action_count: 222
 confidence: medium
-summary: "All 42 spec actions have literal matches in the RS-232 command table; transport parameters verified in source documentation. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 222 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

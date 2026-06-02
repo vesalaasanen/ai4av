@@ -23,8 +23,8 @@ source_urls:
   - https://knowledge.dataton.com/migration/knowledge/watchout-display-control-protocol
   - https://docs.dataton.com/watchout-7/
 retrieved_at: 2026-04-29T23:27:46.172Z
-last_checked_at: 2026-04-27T14:41:59.431Z
-generated_at: 2026-04-27T14:41:59.431Z
+last_checked_at: 2026-06-02T22:05:44.665Z
+generated_at: 2026-06-02T22:05:44.665Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "specific input variable keys defined per show, not in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T14:41:59.431Z
+  checked_at: 2026-06-02T22:05:44.665Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -367,18 +367,18 @@ source_urls:
   - https://knowledge.dataton.com/migration/knowledge/watchout-display-control-protocol
   - https://docs.dataton.com/watchout-7/
 retrieved_at: 2026-04-29T23:27:46.172Z
-last_checked_at: 2026-04-27T14:41:59.431Z
+last_checked_at: 2026-06-02T22:05:44.665Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T14:41:59.431Z
+checked_at: 2026-06-02T22:05:44.665Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 19 spec actions match literally to documented HTTP endpoints; transport parameters verified; operative API fully represented. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

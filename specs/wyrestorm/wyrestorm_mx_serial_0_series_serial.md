@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-29T12:48:05.737Z
-last_checked_at: 2026-05-14T18:17:21.626Z
-generated_at: 2026-05-14T18:17:21.626Z
+last_checked_at: 2026-06-02T22:16:16.936Z
+generated_at: 2026-06-02T22:16:16.936Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "default IP address may vary by unit; only one default stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.626Z
+  checked_at: 2026-06-02T22:16:16.936Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -711,18 +711,18 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-29T12:48:05.737Z
-last_checked_at: 2026-05-14T18:17:21.626Z
+last_checked_at: 2026-06-02T22:16:16.936Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.626Z
+checked_at: 2026-06-02T22:16:16.936Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 64 spec actions (33 SET/SAVE/RESTORE + 31 GET queries) matched literally against source with correct transport parameters. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

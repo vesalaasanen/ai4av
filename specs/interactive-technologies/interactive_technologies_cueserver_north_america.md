@@ -23,8 +23,8 @@ source_urls:
   - https://docs.interactive-online.com/cs2/1.0/en/topic/command-syntax
   - https://docs.interactive-online.com/cs2/1.0/en/topic/serial-ports
 retrieved_at: 2026-05-04T10:35:50.950Z
-last_checked_at: 2026-05-04T16:58:20.009Z
-generated_at: 2026-05-04T16:58:20.009Z
+last_checked_at: 2026-06-02T22:08:24.396Z
+generated_at: 2026-06-02T22:08:24.396Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -48,11 +48,11 @@ known_gaps:
   - "Ethernet port numbers table referenced but not included in excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:58:20.009Z
+  checked_at: 2026-06-02T22:08:24.396Z
   matched_actions: 60
   action_count: 60
   confidence: medium
-  summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified. (18 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 60 spec actions traced to source (dip-safe re-verify). (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -809,18 +809,18 @@ source_urls:
   - https://docs.interactive-online.com/cs2/1.0/en/topic/command-syntax
   - https://docs.interactive-online.com/cs2/1.0/en/topic/serial-ports
 retrieved_at: 2026-05-04T10:35:50.950Z
-last_checked_at: 2026-05-04T16:58:20.009Z
+last_checked_at: 2026-06-02T22:08:24.396Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:58:20.009Z
+checked_at: 2026-06-02T22:08:24.396Z
 matched_actions: 60
 action_count: 60
 confidence: medium
-summary: "All 60 spec actions match source CueScript commands, action lists, and CGI endpoints; transport parameters verified. (18 unresolved item(s) noted in Known Gaps.)"
+summary: "All 60 spec actions traced to source (dip-safe re-verify). (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

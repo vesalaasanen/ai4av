@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:32:58.671Z
-last_checked_at: 2026-06-02T17:21:49.623Z
-generated_at: 2026-06-02T17:21:49.623Z
+last_checked_at: 2026-06-02T21:41:07.160Z
+generated_at: 2026-06-02T21:41:07.160Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "full London DI message structure diagrams (SET STRING, PRESET RECALL) truncated in source. Concrete preset ID list and per-processing-object parameter IDs not enumerated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:49.623Z
+  checked_at: 2026-06-02T21:41:07.160Z
   matched_actions: 9
   action_count: 9
   confidence: medium
@@ -307,14 +307,14 @@ source_domains:
 source_urls:
   - https://www.bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:32:58.671Z
-last_checked_at: 2026-06-02T17:21:49.623Z
+last_checked_at: 2026-06-02T21:41:07.160Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:49.623Z
+checked_at: 2026-06-02T21:41:07.160Z
 matched_actions: 9
 action_count: 9
 confidence: medium

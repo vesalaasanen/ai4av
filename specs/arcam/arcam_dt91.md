@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
-last_checked_at: 2026-06-02T17:21:19.757Z
-generated_at: 2026-06-02T17:21:19.757Z
+last_checked_at: 2026-06-02T21:39:51.022Z
+generated_at: 2026-06-02T21:39:51.022Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "device name DT91 in input does not match source's AVR/SR product family."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:19.757Z
+  checked_at: 2026-06-02T21:39:51.022Z
   matched_actions: 51
   action_count: 51
   confidence: medium
@@ -860,14 +860,14 @@ source_domains:
 source_urls:
   - https://www.arcam.co.uk/ugc/tor/avr390/RS232/RS232_860_850_550_390_250_SH274E_D_181018.pdf
 retrieved_at: 2026-04-29T08:49:54.633Z
-last_checked_at: 2026-06-02T17:21:19.757Z
+last_checked_at: 2026-06-02T21:39:51.022Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:19.757Z
+checked_at: 2026-06-02T21:39:51.022Z
 matched_actions: 51
 action_count: 51
 confidence: medium

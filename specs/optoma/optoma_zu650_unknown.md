@@ -21,8 +21,8 @@ source_urls:
   - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
   - https://region-resource.optoma.com/products/import/Documents/cf45148a-8c4b-4489-8689-b9b1c8d09d14.pdf
 retrieved_at: 2026-05-15T02:07:53.142Z
-last_checked_at: 2026-05-18T16:41:56.484Z
-generated_at: 2026-05-18T16:41:56.484Z
+last_checked_at: 2026-06-02T22:12:50.034Z
+generated_at: 2026-06-02T22:12:50.034Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "Change Password procedure not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:41:56.484Z
+  checked_at: 2026-06-02T22:12:50.034Z
   matched_actions: 152
   action_count: 152
   confidence: medium
-  summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 152 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1898,18 +1898,18 @@ source_urls:
   - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
   - https://region-resource.optoma.com/products/import/Documents/cf45148a-8c4b-4489-8689-b9b1c8d09d14.pdf
 retrieved_at: 2026-05-15T02:07:53.142Z
-last_checked_at: 2026-05-18T16:41:56.484Z
+last_checked_at: 2026-06-02T22:12:50.034Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:41:56.484Z
+checked_at: 2026-06-02T22:12:50.034Z
 matched_actions: 152
 action_count: 152
 confidence: medium
-summary: "All 152 spec action units matched literally in source with correct parameters; transport verified against protocol specification. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 152 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

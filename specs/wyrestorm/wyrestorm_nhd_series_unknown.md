@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-14T20:00:45.354Z
-last_checked_at: 2026-05-18T17:09:46.757Z
-generated_at: 2026-05-18T17:09:46.757Z
+last_checked_at: 2026-06-02T22:16:19.955Z
+generated_at: 2026-06-02T22:16:19.955Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "HTTP/REST API not documented — only RS-232 and Telnet TCP"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:09:46.757Z
+  checked_at: 2026-06-02T22:16:19.955Z
   matched_actions: 54
   action_count: 54
   confidence: medium
-  summary: "All 54 spec actions matched literally to source command tokens; transport parameters (57600 baud, port 23, no auth) verified; complete API coverage. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 54 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -577,18 +577,18 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-14T20:00:45.354Z
-last_checked_at: 2026-05-18T17:09:46.757Z
+last_checked_at: 2026-06-02T22:16:19.955Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:09:46.757Z
+checked_at: 2026-06-02T22:16:19.955Z
 matched_actions: 54
 action_count: 54
 confidence: medium
-summary: "All 54 spec actions matched literally to source command tokens; transport parameters (57600 baud, port 23, no auth) verified; complete API coverage. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 54 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

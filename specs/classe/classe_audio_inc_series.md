@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_SSP-300-600_RS232_Protocol.pdf
 retrieved_at: 2026-04-30T04:34:59.774Z
-last_checked_at: 2026-04-24T14:43:52.833Z
-generated_at: 2026-04-24T14:43:52.833Z
+last_checked_at: 2026-06-02T22:05:23.696Z
+generated_at: 2026-06-02T22:05:23.696Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "video output debug commands (DBGVIDOUT) parameters not fully specified in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-24T14:43:52.833Z
+  checked_at: 2026-06-02T22:05:23.696Z
   matched_actions: 56
   action_count: 56
   confidence: medium
-  summary: "Complete correspondence between spec and refined source; all claims substantiated. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -503,18 +503,18 @@ source_domains:
 source_urls:
   - https://support.classeaudio.com/files/documents/automation_and_control/rs232/CLASSE_SSP-300-600_RS232_Protocol.pdf
 retrieved_at: 2026-04-30T04:34:59.774Z
-last_checked_at: 2026-04-24T14:43:52.833Z
+last_checked_at: 2026-06-02T22:05:23.696Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-24T14:43:52.833Z
+checked_at: 2026-06-02T22:05:23.696Z
 matched_actions: 56
 action_count: 56
 confidence: medium
-summary: "Complete correspondence between spec and refined source; all claims substantiated. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

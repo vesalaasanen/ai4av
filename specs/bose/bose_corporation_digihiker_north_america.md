@@ -47,8 +47,8 @@ source_urls:
   - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
   - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-06-02T17:21:48.189Z
-generated_at: 2026-06-02T17:21:48.189Z
+last_checked_at: 2026-06-02T21:41:05.649Z
+generated_at: 2026-06-02T21:41:05.649Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -59,7 +59,7 @@ known_gaps:
   - "timing parameters (e.g. maximum time between characters, command echo behavior) are described qualitatively in source but not as numeric timeouts."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:48.189Z
+  checked_at: 2026-06-02T21:41:05.649Z
   matched_actions: 77
   action_count: 77
   confidence: medium
@@ -958,14 +958,14 @@ source_urls:
   - https://assets.boseprofessional.com/m/3f75dade2573b467/original/ControlSpace-Serial-Protocol-v5-14-1.pdf
   - https://applicationmarket.crestron.com/content/Help/Bose/digihiker.pdf
 retrieved_at: 2026-04-30T13:19:25.957Z
-last_checked_at: 2026-06-02T17:21:48.189Z
+last_checked_at: 2026-06-02T21:41:05.649Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:48.189Z
+checked_at: 2026-06-02T21:41:05.649Z
 matched_actions: 77
 action_count: 77
 confidence: medium

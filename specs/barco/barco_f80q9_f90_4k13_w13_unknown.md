@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:45:24.811Z
-last_checked_at: 2026-05-14T21:37:15.616Z
-generated_at: 2026-05-14T21:37:15.616Z
+last_checked_at: 2026-06-02T21:49:55.511Z
+generated_at: 2026-06-02T21:49:55.511Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "lens position integer ranges not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:37:15.616Z
+  checked_at: 2026-06-02T21:49:55.511Z
   matched_actions: 54
   action_count: 54
   confidence: medium
-  summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 54 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -875,18 +875,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T11:45:24.811Z
-last_checked_at: 2026-05-14T21:37:15.616Z
+last_checked_at: 2026-06-02T21:49:55.511Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:37:15.616Z
+checked_at: 2026-06-02T21:49:55.511Z
 matched_actions: 54
 action_count: 54
 confidence: medium
-summary: "All 54 spec methods found verbatim in source document; transport parameters match RS232 table and network configuration; comprehensive API coverage. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 54 spec actions traced to source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

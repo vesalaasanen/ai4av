@@ -21,8 +21,8 @@ source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
   - https://www.bensoftware.com/securityspy/
 retrieved_at: 2026-05-19T23:06:20.878Z
-last_checked_at: 2026-05-20T06:13:43.198Z
-generated_at: 2026-05-20T06:13:43.198Z
+last_checked_at: 2026-06-02T22:04:27.685Z
+generated_at: 2026-06-02T22:04:27.685Z
 firmware_coverage: "\""
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "rate limits or throttling behavior not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-20T06:13:43.198Z
-  matched_actions: 30
-  action_count: 30
+  checked_at: 2026-06-02T22:04:27.685Z
+  matched_actions: 26
+  action_count: 26
   confidence: medium
-  summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 26 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -927,18 +927,18 @@ source_urls:
   - https://www.bensoftware.com/securityspy/web-server-spec.html
   - https://www.bensoftware.com/securityspy/
 retrieved_at: 2026-05-19T23:06:20.878Z
-last_checked_at: 2026-05-20T06:13:43.198Z
+last_checked_at: 2026-06-02T22:04:27.685Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T06:13:43.198Z
-matched_actions: 30
-action_count: 30
+checked_at: 2026-06-02T22:04:27.685Z
+matched_actions: 26
+action_count: 26
 confidence: medium
-summary: "All 30 spec actions matched to source paths; every transport parameter verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 26 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://documents.blackmagicdesign.com/DeveloperManuals/WebPresenterEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:49.512Z
-last_checked_at: 2026-04-23T15:23:10.482Z
-generated_at: 2026-04-23T15:23:10.482Z
+last_checked_at: 2026-06-02T21:54:39.222Z
+generated_at: 2026-06-02T21:54:39.222Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "recommended reconnect behavior after disconnect — not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:23:10.482Z
+  checked_at: 2026-06-02T21:54:39.222Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 15 spec actions traced to Streaming Encoder protocol v1.2. Port 9977 confirmed. Block structure matches spec design. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -504,18 +504,18 @@ source_domains:
 source_urls:
   - https://documents.blackmagicdesign.com/DeveloperManuals/WebPresenterEthernetProtocol.pdf
 retrieved_at: 2026-04-30T04:40:49.512Z
-last_checked_at: 2026-04-23T15:23:10.482Z
+last_checked_at: 2026-06-02T21:54:39.222Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:23:10.482Z
+checked_at: 2026-06-02T21:54:39.222Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 15 spec actions matched literally in source with correct command structure and transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 15 spec actions traced to Streaming Encoder protocol v1.2. Port 9977 confirmed. Block structure matches spec design. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

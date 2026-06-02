@@ -21,8 +21,8 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-900-MoIP-Serial_IR_Control%20Info_190124.pdf"
 retrieved_at: 2026-04-29T09:06:48.329Z
-last_checked_at: 2026-05-14T18:17:14.597Z
-generated_at: 2026-05-14T18:17:14.597Z
+last_checked_at: 2026-06-02T21:51:28.491Z
+generated_at: 2026-06-02T21:51:28.491Z
 firmware_coverage: 3.0.4.8
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "no mention of connection encryption or TLS support"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.597Z
+  checked_at: 2026-06-02T21:51:28.491Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 21 spec actions match source wire tokens literally. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "14 spec actions from Binary MOIP IP protocol specification. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -414,18 +414,18 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/ProtocolsAndDrivers/SnapAV_Binary_MoIP_API_V1.9.pdf
   - "https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/MediaDistribution/SupportDocuments/B-900-MoIP-Serial_IR_Control%20Info_190124.pdf"
 retrieved_at: 2026-04-29T09:06:48.329Z
-last_checked_at: 2026-05-14T18:17:14.597Z
+last_checked_at: 2026-06-02T21:51:28.491Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.597Z
+checked_at: 2026-06-02T21:51:28.491Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 21 spec actions match source wire tokens literally. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "14 spec actions from Binary MOIP IP protocol specification. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

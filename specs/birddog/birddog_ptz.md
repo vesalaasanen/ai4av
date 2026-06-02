@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:44.070Z
-last_checked_at: 2026-05-14T18:17:14.644Z
-generated_at: 2026-05-14T18:17:14.644Z
+last_checked_at: 2026-06-02T22:04:32.740Z
+generated_at: 2026-06-02T22:04:32.740Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "product-specific endpoint availability matrix not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.644Z
+  checked_at: 2026-06-02T22:04:32.740Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1272,18 +1272,18 @@ source_domains:
 source_urls:
   - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:44.070Z
-last_checked_at: 2026-05-14T18:17:14.644Z
+last_checked_at: 2026-06-02T22:04:32.740Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.644Z
+checked_at: 2026-06-02T22:04:32.740Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 54 spec actions verified against source endpoints with complete path coverage and correct transport parameters. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

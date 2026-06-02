@@ -24,8 +24,8 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-14T10:38:42.272Z
-last_checked_at: 2026-06-02T19:39:07.664Z
-generated_at: 2026-06-02T19:39:07.664Z
+last_checked_at: 2026-06-02T21:41:49.082Z
+generated_at: 2026-06-02T21:41:49.082Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,7 +38,7 @@ known_gaps:
   - "TCP/IP port number not stated in source (TCP not supported by this doc)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T19:39:07.664Z
+  checked_at: 2026-06-02T21:41:49.082Z
   matched_actions: 68
   action_count: 68
   confidence: medium
@@ -762,14 +762,14 @@ source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=698"
   - https://www.hisense-b2b.com
 retrieved_at: 2026-05-14T10:38:42.272Z
-last_checked_at: 2026-06-02T19:39:07.664Z
+last_checked_at: 2026-06-02T21:41:49.082Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T19:39:07.664Z
+checked_at: 2026-06-02T21:41:49.082Z
 matched_actions: 68
 action_count: 68
 confidence: medium

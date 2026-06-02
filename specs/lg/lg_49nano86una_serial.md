@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-04-25T20:58:37.209Z
-last_checked_at: 2026-04-25T20:58:37.209Z
-generated_at: 2026-04-25T20:58:37.209Z
+retrieved_at: 2026-06-02T22:09:02.524Z
+last_checked_at: 2026-06-02T22:09:02.524Z
+generated_at: 2026-06-02T22:09:02.524Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "WOL (Wake On LAN) power-on mentioned but no protocol details provided"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:58:37.209Z
+  checked_at: 2026-06-02T22:09:02.524Z
   matched_actions: 45
   action_count: 45
   confidence: medium
-  summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 45 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -750,19 +750,19 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-04-25T20:58:37.209Z
-last_checked_at: 2026-04-25T20:58:37.209Z
+retrieved_at: 2026-06-02T22:09:02.524Z
+last_checked_at: 2026-06-02T22:09:02.524Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:58:37.209Z
+checked_at: 2026-06-02T22:09:02.524Z
 matched_actions: 45
 action_count: 45
 confidence: medium
-summary: "All 45 spec actions matched verbatim in source; all transport parameters verified; full bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 45 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

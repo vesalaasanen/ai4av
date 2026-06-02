@@ -23,9 +23,9 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
-retrieved_at: 2026-05-14T18:17:20.289Z
-last_checked_at: 2026-05-14T18:17:20.289Z
-generated_at: 2026-05-14T18:17:20.289Z
+retrieved_at: 2026-06-02T22:13:59.215Z
+last_checked_at: 2026-06-02T22:13:59.215Z
+generated_at: 2026-06-02T22:13:59.215Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal values, aspect ratio values, light mode values, signal type values, base model type values not populated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.289Z
-  matched_actions: 49
+  checked_at: 2026-06-02T22:13:59.215Z
+  matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -525,19 +525,19 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
-retrieved_at: 2026-05-14T18:17:20.289Z
-last_checked_at: 2026-05-14T18:17:20.289Z
+retrieved_at: 2026-06-02T22:13:59.215Z
+last_checked_at: 2026-06-02T22:13:59.215Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.289Z
-matched_actions: 49
+checked_at: 2026-06-02T22:13:59.215Z
+matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 49 spec actions match documented source commands; transport parameters verbatim in source; full command catalogue represented. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

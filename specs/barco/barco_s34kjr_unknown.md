@@ -21,23 +21,21 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T20:24:52.276Z
-last_checked_at: 2026-05-20T06:04:25.021Z
-generated_at: 2026-05-20T06:04:25.021Z
+last_checked_at: 2026-06-02T22:04:16.933Z
+generated_at: 2026-06-02T22:04:16.933Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - illumination.clo.engage
-  - image.color.p7.custom.resettonative
   - "firmware version compatibility not stated in source; the source notes that some API parts are dynamic and depend on installed peripherals."
   - "source contains no explicit safety warnings, interlocks, or power-on sequencing"
   - "firmware version compatibility not stated in source; voltage/current/power specs not stated; fault behavior / error recovery sequences not stated; DMX channel payload semantics and the full set of available channels in extended mode not enumerated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-20T06:04:25.021Z
-  matched_actions: 37
-  action_count: 37
+  checked_at: 2026-06-02T22:04:16.933Z
+  matched_actions: 40
+  action_count: 40
   confidence: medium
-  summary: "All 37 spec actions match source commands with correct transport parameters. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 40 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -776,25 +774,23 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T20:24:52.276Z
-last_checked_at: 2026-05-20T06:04:25.021Z
+last_checked_at: 2026-06-02T22:04:16.933Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-20T06:04:25.021Z
-matched_actions: 37
-action_count: 37
+checked_at: 2026-06-02T22:04:16.933Z
+matched_actions: 40
+action_count: 40
 confidence: medium
-summary: "All 37 spec actions match source commands with correct transport parameters. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 40 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- illumination.clo.engage
-- image.color.p7.custom.resettonative
 - "firmware version compatibility not stated in source; the source notes that some API parts are dynamic and depend on installed peripherals."
 - "source contains no explicit safety warnings, interlocks, or power-on sequencing"
 - "firmware version compatibility not stated in source; voltage/current/power specs not stated; fault behavior / error recovery sequences not stated; DMX channel payload semantics and the full set of available channels in extended mode not enumerated in source."

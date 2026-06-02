@@ -25,8 +25,8 @@ source_domains:
 source_urls:
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-04-30T04:41:42.766Z
-last_checked_at: 2026-05-14T18:17:19.326Z
-generated_at: 2026-05-14T18:17:19.326Z
+last_checked_at: 2026-06-02T22:12:43.297Z
+generated_at: 2026-06-02T22:12:43.297Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "scheduled action day encoding is a 7-bit bitmap in decimal; bit 0 = Thursday; this quirk may require client-side handling"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.326Z
+  checked_at: 2026-06-02T22:12:43.297Z
   matched_actions: 13
   action_count: 13
-  confidence: low
-  summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage (7 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 13 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -465,18 +465,18 @@ source_domains:
 source_urls:
   - https://classic.mybluebolt.com/downloads/BB-RS232-COM-PROT-10006527-A.pdf
 retrieved_at: 2026-04-30T04:41:42.766Z
-last_checked_at: 2026-05-14T18:17:19.326Z
+last_checked_at: 2026-06-02T22:12:43.297Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.326Z
+checked_at: 2026-06-02T22:12:43.297Z
 matched_actions: 13
 action_count: 13
-confidence: low
-summary: "All 36 spec actions matched source commands; transport verified; complete protocol coverage (7 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 13 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

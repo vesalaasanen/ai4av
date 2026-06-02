@@ -29,8 +29,8 @@ source_urls:
   - https://www.qed-productions.com/downloads/christie/serial-communications.pdf
   - "https://www.purelandsupply.com/Images/OwnersManuals/Christie/CHRISTIE%20LW25.pdf"
 retrieved_at: 2026-05-14T15:07:04.005Z
-last_checked_at: 2026-05-15T21:25:37.363Z
-generated_at: 2026-05-15T21:25:37.363Z
+last_checked_at: 2026-06-02T22:05:19.009Z
+generated_at: 2026-06-02T22:05:19.009Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "whether unsolicited event notifications exist"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:25:37.363Z
+  checked_at: 2026-06-02T22:05:19.009Z
   matched_actions: 120
   action_count: 120
   confidence: medium
-  summary: "Every spec action matches a literal source command; transport parameters verified against documentation. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 120 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1372,18 +1372,18 @@ source_urls:
   - https://www.qed-productions.com/downloads/christie/serial-communications.pdf
   - "https://www.purelandsupply.com/Images/OwnersManuals/Christie/CHRISTIE%20LW25.pdf"
 retrieved_at: 2026-05-14T15:07:04.005Z
-last_checked_at: 2026-05-15T21:25:37.363Z
+last_checked_at: 2026-06-02T22:05:19.009Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:25:37.363Z
+checked_at: 2026-06-02T22:05:19.009Z
 matched_actions: 120
 action_count: 120
 confidence: medium
-summary: "Every spec action matches a literal source command; transport parameters verified against documentation. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 120 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

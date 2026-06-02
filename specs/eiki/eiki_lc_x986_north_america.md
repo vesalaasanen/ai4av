@@ -21,8 +21,8 @@ source_urls:
   - "https://www.eiki.com/download/lc-x986-rs-232-basic-serial-commands/?wpdmdl=4661&ind=68b9e2f94fce3&refresh=1995b0e4&filename=LC-X986-RS-232-basic-serial-commands.pdf"
   - "https://www.eiki.com/download/lc-x986-owners-manual/?wpdmdl=5446&ind=68cd9c4b1ade8&refresh=322b39de&filename=LC-X986-owners-manual.pdf"
 retrieved_at: 2026-05-04T11:22:36.315Z
-last_checked_at: 2026-05-14T18:17:15.630Z
-generated_at: 2026-05-14T18:17:15.630Z
+last_checked_at: 2026-06-02T22:06:35.974Z
+generated_at: 2026-06-02T22:06:35.974Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "volume command direction (up/down) inferred from position in table — not explicitly labeled"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.630Z
+  checked_at: 2026-06-02T22:06:35.974Z
   matched_actions: 46
   action_count: 46
   confidence: medium
-  summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 46 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -498,18 +498,18 @@ source_urls:
   - "https://www.eiki.com/download/lc-x986-rs-232-basic-serial-commands/?wpdmdl=4661&ind=68b9e2f94fce3&refresh=1995b0e4&filename=LC-X986-RS-232-basic-serial-commands.pdf"
   - "https://www.eiki.com/download/lc-x986-owners-manual/?wpdmdl=5446&ind=68cd9c4b1ade8&refresh=322b39de&filename=LC-X986-owners-manual.pdf"
 retrieved_at: 2026-05-04T11:22:36.315Z
-last_checked_at: 2026-05-14T18:17:15.630Z
+last_checked_at: 2026-06-02T22:06:35.974Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.630Z
+checked_at: 2026-06-02T22:06:35.974Z
 matched_actions: 46
 action_count: 46
 confidence: medium
-summary: "All 51 spec actions matched exactly to source commands; transport parameters verified; complete coverage of source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 46 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

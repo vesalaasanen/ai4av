@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
 retrieved_at: 2026-04-30T04:33:24.415Z
-last_checked_at: 2026-04-25T21:50:00.781Z
-generated_at: 2026-04-25T21:50:00.781Z
+last_checked_at: 2026-06-02T22:13:15.571Z
+generated_at: 2026-06-02T22:13:15.571Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "connection/disconnection timeout behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:50:00.781Z
+  checked_at: 2026-06-02T22:13:15.571Z
   matched_actions: 21
   action_count: 21
-  confidence: low
-  summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified (15 unresolved item(s) noted in Known Gaps.)"
+  confidence: medium
+  summary: "All 21 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -386,18 +386,18 @@ source_domains:
 source_urls:
   - https://www.powersoft.com/wp-content/uploads/2019/01/Powersoft_M_Series_HDSPETH_AMX_ref_sheet.pdf
 retrieved_at: 2026-04-30T04:33:24.415Z
-last_checked_at: 2026-04-25T21:50:00.781Z
+last_checked_at: 2026-06-02T22:13:15.571Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:50:00.781Z
+checked_at: 2026-06-02T22:13:15.571Z
 matched_actions: 21
 action_count: 21
-confidence: low
-summary: "All 21 spec actions matched verbatim to source command table; transport parameters verified (15 unresolved item(s) noted in Known Gaps.)"
+confidence: medium
+summary: "All 21 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

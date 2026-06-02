@@ -23,9 +23,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-04-25T20:59:48.823Z
-last_checked_at: 2026-04-25T20:59:48.823Z
-generated_at: 2026-04-25T20:59:48.823Z
+retrieved_at: 2026-06-02T22:09:06.977Z
+last_checked_at: 2026-06-02T22:09:06.977Z
+generated_at: 2026-06-02T22:09:06.977Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Set ID range confirmed 1-99. Wi-Fi/WOL procedure mentioned only as \"install iOS/Android app\" — no protocol-level WOL details. 3D applicability to SK8100PLA not stated. ISM and panel-light commands are plasma-specific and will not work on this LCD SKU. -->Spec emitted. Both transports captured (RS-232 + telnet:9761). IP control section flagged \"For USA only\" — applicability to EU SKU unverified, marked UNRESOLVED. Plasma-only (ISM, panel light) and 3D commands included per coverage rule with notes."
 verification:
   verdict: verified
-  checked_at: 2026-04-25T20:59:48.823Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-06-02T22:09:06.977Z
+  matched_actions: 30
+  action_count: 30
   confidence: medium
-  summary: "All 29 spec actions matched verbatim to source commands; all transport parameters verified; complete coverage. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 30 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -479,19 +479,19 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-04-25T20:59:48.823Z
-last_checked_at: 2026-04-25T20:59:48.823Z
+retrieved_at: 2026-06-02T22:09:06.977Z
+last_checked_at: 2026-06-02T22:09:06.977Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T20:59:48.823Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-06-02T22:09:06.977Z
+matched_actions: 30
+action_count: 30
 confidence: medium
-summary: "All 29 spec actions matched verbatim to source commands; all transport parameters verified; complete coverage. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 30 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

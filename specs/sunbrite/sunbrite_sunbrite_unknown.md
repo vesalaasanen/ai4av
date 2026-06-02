@@ -24,12 +24,11 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
   - https://www.manualslib.com/manual/734396/Sunbritetv-3220hd.html
 retrieved_at: 2026-04-29T19:17:26.248Z
-last_checked_at: 2026-05-14T18:17:21.023Z
-generated_at: 2026-05-14T18:17:21.023Z
+last_checked_at: 2026-06-02T22:15:14.555Z
+generated_at: 2026-06-02T22:15:14.555Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "Input 2 - NA"
   - "no TCP/IP or HTTP support documented"
   - "flow control not stated in source"
   - "no continuous variables documented - discrete command/response pairs only"
@@ -40,11 +39,11 @@ known_gaps:
   - "full variable state readback not documented — only discrete command acknowledgements"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.023Z
+  checked_at: 2026-06-02T22:15:14.555Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -415,24 +414,23 @@ source_urls:
   - https://www.snapav.com/wcsstore/ExtendedSitesCatalogAssetStore/attachments/documents/SunBrite/ManualsAndGuides/SunBriteTV_Codes_RS232.pdf
   - https://www.manualslib.com/manual/734396/Sunbritetv-3220hd.html
 retrieved_at: 2026-04-29T19:17:26.248Z
-last_checked_at: 2026-05-14T18:17:21.023Z
+last_checked_at: 2026-06-02T22:15:14.555Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.023Z
+checked_at: 2026-06-02T22:15:14.555Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 50 spec actions matched source with correct transport parameters; only 1 unused source input (Input 2 - NA) excluded. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "Input 2 - NA"
 - "no TCP/IP or HTTP support documented"
 - "flow control not stated in source"
 - "no continuous variables documented - discrete command/response pairs only"

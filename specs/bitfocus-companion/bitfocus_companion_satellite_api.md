@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://companion.free/for-developers/Satellite-API
 retrieved_at: 2026-04-30T04:41:01.901Z
-last_checked_at: 2026-05-14T18:17:14.658Z
-generated_at: 2026-05-14T18:17:14.658Z
+last_checked_at: 2026-06-02T22:04:34.290Z
+generated_at: 2026-06-02T22:04:34.290Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "reconnection behavior and session persistence not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.658Z
+  checked_at: 2026-06-02T22:04:34.290Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -377,18 +377,18 @@ source_domains:
 source_urls:
   - https://companion.free/for-developers/Satellite-API
 retrieved_at: 2026-04-30T04:41:01.901Z
-last_checked_at: 2026-05-14T18:17:14.658Z
+last_checked_at: 2026-06-02T22:04:34.290Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.658Z
+checked_at: 2026-06-02T22:04:34.290Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 25 spec actions matched literals in the source; transport parameters are verified; bidirectional coverage is complete. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

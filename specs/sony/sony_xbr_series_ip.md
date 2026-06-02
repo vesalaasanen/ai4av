@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
 retrieved_at: 2026-04-30T04:30:58.917Z
-last_checked_at: 2026-05-14T18:17:20.963Z
-generated_at: 2026-05-14T18:17:20.963Z
+last_checked_at: 2026-06-02T22:15:04.621Z
+generated_at: 2026-06-02T22:15:04.621Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:20.963Z
+  checked_at: 2026-06-02T22:15:04.621Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -379,18 +379,18 @@ source_domains:
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
 retrieved_at: 2026-04-30T04:30:58.917Z
-last_checked_at: 2026-05-14T18:17:20.963Z
+last_checked_at: 2026-06-02T22:15:04.621Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:20.963Z
+checked_at: 2026-06-02T22:15:04.621Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 17 spec actions matched literally in source; transport verified; bidirectional command coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

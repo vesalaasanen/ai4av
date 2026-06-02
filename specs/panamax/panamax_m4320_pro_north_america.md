@@ -26,16 +26,11 @@ source_urls:
   - https://applicationmarket.crestron.com/panamax-m4320-pro-north-america/
   - https://www.mybluebolt.com/developers
 retrieved_at: 2026-04-26T19:14:16.343Z
-last_checked_at: 2026-04-27T09:45:14.928Z
-generated_at: 2026-04-27T09:45:14.928Z
+last_checked_at: 2026-06-02T22:12:51.661Z
+generated_at: 2026-06-02T22:12:51.661Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - sendinfo
-  - sendstatus
-  - sendchild
-  - sendfamily
-  - sendsettings
   - "M4320-PRO is not explicitly listed in the source device class table (Table 1 covers BB-RS232 and CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP). The device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
   - "Source describes the BB-RS232 gateway protocol; the M4320-PRO is a newer Panamax BlueBOLT-enabled device and may share the same UDP port 57010 transport but this is not explicitly confirmed in the source for the M4320-PRO specifically."
   - "these settings apply to the CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP"
@@ -48,11 +43,11 @@ known_gaps:
   - "HDLC link and SmartLink-chain concepts (ntwkdevcnt, hdlcstate, ntwkpollstate, tfilestate) are specific to BB-RS232 gateway operation and may not be exposed by the M4320-PRO."
 verification:
   verdict: verified
-  checked_at: 2026-04-27T09:45:14.928Z
-  matched_actions: 13
-  action_count: 13
+  checked_at: 2026-06-02T22:12:51.661Z
+  matched_actions: 21
+  action_count: 21
   confidence: medium
-  summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -600,28 +595,23 @@ source_urls:
   - https://applicationmarket.crestron.com/panamax-m4320-pro-north-america/
   - https://www.mybluebolt.com/developers
 retrieved_at: 2026-04-26T19:14:16.343Z
-last_checked_at: 2026-04-27T09:45:14.928Z
+last_checked_at: 2026-06-02T22:12:51.661Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T09:45:14.928Z
-matched_actions: 13
-action_count: 13
+checked_at: 2026-06-02T22:12:51.661Z
+matched_actions: 21
+action_count: 21
 confidence: medium
-summary: "All 13 spec actions matched literally to source commands; transport (port 80, UDP 57010, no auth) verified verbatim. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- sendinfo
-- sendstatus
-- sendchild
-- sendfamily
-- sendsettings
 - "M4320-PRO is not explicitly listed in the source device class table (Table 1 covers BB-RS232 and CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP). The device class string and identifier format for the M4320-PRO on the BlueBOLT XML protocol are not stated in the source."
 - "Source describes the BB-RS232 gateway protocol; the M4320-PRO is a newer Panamax BlueBOLT-enabled device and may share the same UDP port 57010 transport but this is not explicitly confirmed in the source for the M4320-PRO specifically."
 - "these settings apply to the CN-1800S / CN-2400S / CN-3600SE / CN-15MP / CN-20MP"

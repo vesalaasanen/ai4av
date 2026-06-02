@@ -25,12 +25,11 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Stewart_Filmscreen/stewart_filmscreen_bric_v1_0_help.pdf
   - https://applicationmarket.crestron.com/stewart-filmscreen-corporation-bric-north-america/
 retrieved_at: 2026-05-04T12:21:35.188Z
-last_checked_at: 2026-05-04T16:17:49.759Z
-generated_at: 2026-05-04T16:17:49.759Z
+last_checked_at: 2026-06-02T22:15:11.444Z
+generated_at: 2026-06-02T22:15:11.444Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - P0
   - "no HTTP/TCP/IP/REST protocol documented — serial only"
   - "power commands not documented"
   - "no response/acknowledgement strings documented"
@@ -42,11 +41,11 @@ known_gaps:
   - "no query commands, no response format, no status reporting documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-04T16:17:49.759Z
+  checked_at: 2026-06-02T22:15:11.444Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -243,24 +242,23 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Stewart_Filmscreen/stewart_filmscreen_bric_v1_0_help.pdf
   - https://applicationmarket.crestron.com/stewart-filmscreen-corporation-bric-north-america/
 retrieved_at: 2026-05-04T12:21:35.188Z
-last_checked_at: 2026-05-04T16:17:49.759Z
+last_checked_at: 2026-06-02T22:15:11.444Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-04T16:17:49.759Z
+checked_at: 2026-06-02T22:15:11.444Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions match source commands; P0 is explicitly marked Not Implemented; transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- P0
 - "no HTTP/TCP/IP/REST protocol documented — serial only"
 - "power commands not documented"
 - "no response/acknowledgement strings documented"

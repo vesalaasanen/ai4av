@@ -27,8 +27,8 @@ source_urls:
   - https://www.scribd.com/document/830853576/accessing-the-rako-hub
   - https://wiki.london.hackspace.org.uk/view/Project:Java-Rako/Published_API
 retrieved_at: 2026-05-18T10:41:50.992Z
-last_checked_at: 2026-05-18T16:46:52.555Z
-generated_at: 2026-05-18T16:46:52.555Z
+last_checked_at: 2026-06-02T22:13:29.018Z
+generated_at: 2026-06-02T22:13:29.018Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Full RS232 command protocol details not included - refer to separate Rako RS232 Command Summary document. UNRESOLVED: XML download interface (rakobridge/rako.xml) documented for RA/RTC/WA/WTC-Bridge only, not confirmed for WRA-232."
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:46:52.555Z
+  checked_at: 2026-06-02T22:13:29.018Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 16 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -402,18 +402,18 @@ source_urls:
   - https://www.scribd.com/document/830853576/accessing-the-rako-hub
   - https://wiki.london.hackspace.org.uk/view/Project:Java-Rako/Published_API
 retrieved_at: 2026-05-18T10:41:50.992Z
-last_checked_at: 2026-05-18T16:46:52.555Z
+last_checked_at: 2026-06-02T22:13:29.018Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:46:52.555Z
+checked_at: 2026-06-02T22:13:29.018Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions matched source commands with correct hex opcodes and parameter shapes; transport parameters verified. (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 16 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

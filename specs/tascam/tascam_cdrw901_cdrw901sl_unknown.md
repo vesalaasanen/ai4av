@@ -26,8 +26,8 @@ source_urls:
   - https://www.tascam.eu/en/docs/CD-RW901SL_Manual.pdf
   - https://www.manua.ls/tascam/cd-rw901/manual
 retrieved_at: 2026-05-14T02:48:57.845Z
-last_checked_at: 2026-05-18T17:08:14.187Z
-generated_at: 2026-05-18T17:08:14.187Z
+last_checked_at: 2026-06-02T22:15:34.737Z
+generated_at: 2026-06-02T22:15:34.737Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "binary encoding for error/caution codes not detailed — only ASCII return format shown"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:08:14.187Z
+  checked_at: 2026-06-02T22:15:34.737Z
   matched_actions: 30
   action_count: 30
   confidence: medium
-  summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 30 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -660,18 +660,18 @@ source_urls:
   - https://www.tascam.eu/en/docs/CD-RW901SL_Manual.pdf
   - https://www.manua.ls/tascam/cd-rw901/manual
 retrieved_at: 2026-05-14T02:48:57.845Z
-last_checked_at: 2026-05-18T17:08:14.187Z
+last_checked_at: 2026-06-02T22:15:34.737Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:08:14.187Z
+checked_at: 2026-06-02T22:15:34.737Z
 matched_actions: 30
 action_count: 30
 confidence: medium
-summary: "All 30 spec actions matched to named source commands with correct opcodes and parameter shapes; transport parameters are fully supported; Feedbacks cover all source return/event commands bidirectionally. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 30 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

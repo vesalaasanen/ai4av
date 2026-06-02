@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:48.163Z
-last_checked_at: 2026-04-25T21:23:58.703Z
-generated_at: 2026-04-25T21:23:58.703Z
+last_checked_at: 2026-06-02T22:11:16.540Z
+generated_at: 2026-06-02T22:11:16.540Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "standby mode settings table does not include V302X series explicitly"
 verification:
   verdict: verified
-  checked_at: 2026-04-25T21:23:58.703Z
+  checked_at: 2026-06-02T22:11:16.540Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -928,18 +928,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:48.163Z
-last_checked_at: 2026-04-25T21:23:58.703Z
+last_checked_at: 2026-06-02T22:11:16.540Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-25T21:23:58.703Z
+checked_at: 2026-06-02T22:11:16.540Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec commands matched with hex-level fidelity in NEC V302X source; transport parameters verified; comprehensive coverage. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-UHS500_InterfaceGuide(DVQP2369XA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:51.350Z
-last_checked_at: 2026-05-14T18:17:19.586Z
-generated_at: 2026-05-14T18:17:19.586Z
+last_checked_at: 2026-06-02T22:12:55.128Z
+generated_at: 2026-06-02T22:12:55.128Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "error recovery procedures not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.586Z
+  checked_at: 2026-06-02T22:12:55.128Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -483,18 +483,18 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-UHS500_InterfaceGuide(DVQP2369XA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:51.350Z
-last_checked_at: 2026-05-14T18:17:19.586Z
+last_checked_at: 2026-06-02T22:12:55.128Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.586Z
+checked_at: 2026-06-02T22:12:55.128Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "Every spec action matched literally in source; all transport parameters verified; full command catalogue covered. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

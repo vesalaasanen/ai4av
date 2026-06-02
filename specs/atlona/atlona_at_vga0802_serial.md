@@ -22,8 +22,8 @@ source_urls:
   - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
   - https://www.manualslib.com/manual/734471/Atlona-At-Vga0801-To-At-Vga9601.html
 retrieved_at: 2026-05-21T18:11:38.097Z
-last_checked_at: 2026-05-22T13:30:15.816Z
-generated_at: 2026-05-22T13:30:15.816Z
+last_checked_at: 2026-06-02T21:40:06.468Z
+generated_at: 2026-06-02T21:40:06.468Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "group output membership ranges not stated (e.g., group 2 = outputs 4,5,6)"
 verification:
   verdict: verified
-  checked_at: 2026-05-22T13:30:15.816Z
+  checked_at: 2026-06-02T21:40:06.468Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "spec action count: 25 (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -349,18 +349,18 @@ source_urls:
   - https://atlona.com/pdf/rs232/AVswitcher_rs232.pdf
   - https://www.manualslib.com/manual/734471/Atlona-At-Vga0801-To-At-Vga9601.html
 retrieved_at: 2026-05-21T18:11:38.097Z
-last_checked_at: 2026-05-22T13:30:15.816Z
+last_checked_at: 2026-06-02T21:40:06.468Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-22T13:30:15.816Z
+checked_at: 2026-06-02T21:40:06.468Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions matched distinct source commands; transport parameters verified; complete one-to-one coverage. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "spec action count: 25 (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

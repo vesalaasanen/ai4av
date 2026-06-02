@@ -24,8 +24,8 @@ source_urls:
   - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_commands.html
   - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_serial.html
 retrieved_at: 2026-04-29T23:09:54.537Z
-last_checked_at: 2026-04-30T09:38:05.971Z
-generated_at: 2026-04-30T09:38:05.971Z
+last_checked_at: 2026-06-02T22:05:06.194Z
+generated_at: 2026-06-02T22:05:06.194Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "safety warnings or interlock procedures not found in source"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:38:05.971Z
+  checked_at: 2026-06-02T22:05:06.194Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -228,18 +228,18 @@ source_urls:
   - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_commands.html
   - https://secure.chamsys.co.uk/docs/magicq/manual/remote_control_serial.html
 retrieved_at: 2026-04-29T23:09:54.537Z
-last_checked_at: 2026-04-30T09:38:05.971Z
+last_checked_at: 2026-06-02T22:05:06.194Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:38:05.971Z
+checked_at: 2026-06-02T22:05:06.194Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All nine spec actions match Q-Sys plugin control features documented in source; port 6553 and UDP protocol confirmed. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

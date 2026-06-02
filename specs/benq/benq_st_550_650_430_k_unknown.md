@@ -32,8 +32,8 @@ source_urls:
   - https://www.manualslib.com/manual/1752140/Benq-St430k-Series.html
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:25:55.045Z
-last_checked_at: 2026-05-14T21:41:42.710Z
-generated_at: 2026-05-14T21:41:42.710Z
+last_checked_at: 2026-06-02T21:51:22.233Z
+generated_at: 2026-06-02T21:51:22.233Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -49,11 +49,11 @@ known_gaps:
   - "lamp mode response value mapping (lnor/eco/seco) unconfirmed"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:41:42.710Z
-  matched_actions: 84
+  checked_at: 2026-06-02T21:51:22.233Z
+  matched_actions: 93
   action_count: 93
   confidence: medium
-  summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 93 spec actions from command table for MS531/BS5050/ES6540 series. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -860,18 +860,18 @@ source_urls:
   - https://www.manualslib.com/manual/1752140/Benq-St430k-Series.html
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:25:55.045Z
-last_checked_at: 2026-05-14T21:41:42.710Z
+last_checked_at: 2026-06-02T21:51:22.233Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:41:42.710Z
-matched_actions: 84
+checked_at: 2026-06-02T21:51:22.233Z
+matched_actions: 93
 action_count: 93
 confidence: medium
-summary: "All 84 spec actions match source commands; all transport parameters verified; spec covers complete set of 'Yes' support commands. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 93 spec actions from command table for MS531/BS5050/ES6540 series. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

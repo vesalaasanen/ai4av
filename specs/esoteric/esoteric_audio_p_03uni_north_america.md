@@ -23,8 +23,8 @@ source_urls:
   - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
   - https://applicationmarket.crestron.com/content/Help/Esoteric_Audio/i__ux-1__ux-1limited__ux-1pi__ux-3pi_v1_0_help.pdf
 retrieved_at: 2026-05-04T23:34:40.994Z
-last_checked_at: 2026-05-14T18:17:15.804Z
-generated_at: 2026-05-14T18:17:15.804Z
+last_checked_at: 2026-06-02T22:06:53.377Z
+generated_at: 2026-06-02T22:06:53.377Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "maximum cable length not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.804Z
+  checked_at: 2026-06-02T22:06:53.377Z
   matched_actions: 35
   action_count: 35
   confidence: medium
-  summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -481,18 +481,18 @@ source_urls:
   - https://www.esoteric.jp/downloads/products/esoteric/k-01xd/esoteric_rs232c_command_table_rev1.5.pdf
   - https://applicationmarket.crestron.com/content/Help/Esoteric_Audio/i__ux-1__ux-1limited__ux-1pi__ux-3pi_v1_0_help.pdf
 retrieved_at: 2026-05-04T23:34:40.994Z
-last_checked_at: 2026-05-14T18:17:15.804Z
+last_checked_at: 2026-06-02T22:06:53.377Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.804Z
+checked_at: 2026-06-02T22:06:53.377Z
 matched_actions: 35
 action_count: 35
 confidence: medium
-summary: "All 47 spec actions (35 + 12 feedbacks) matched literal wire tokens in source; transport parameters verified verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

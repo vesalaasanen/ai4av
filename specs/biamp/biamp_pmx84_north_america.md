@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://downloads.biamp.com/assets/docs/default-source/discontinued/pmx84-rs-232-control-manual.pdf?sfvrsn=9af2bc3e_6"
 retrieved_at: 2026-04-30T04:32:56.764Z
-last_checked_at: 2026-06-02T17:21:43.680Z
-generated_at: 2026-06-02T17:21:43.680Z
+last_checked_at: 2026-06-02T21:41:00.978Z
+generated_at: 2026-06-02T21:41:00.978Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,7 @@ known_gaps:
   - "firmware version compatibility range; PMX-Link electrical/pinout details; DB-9 or DB-25 connector pinout for the RS-232 port; power consumption / voltage specs; physical button labels that correspond to ASCII codes 'B'..'j' (source only gives numeric button IDs)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:43.680Z
+  checked_at: 2026-06-02T21:41:00.978Z
   matched_actions: 74
   action_count: 74
   confidence: medium
@@ -755,14 +755,14 @@ source_domains:
 source_urls:
   - "https://downloads.biamp.com/assets/docs/default-source/discontinued/pmx84-rs-232-control-manual.pdf?sfvrsn=9af2bc3e_6"
 retrieved_at: 2026-04-30T04:32:56.764Z
-last_checked_at: 2026-06-02T17:21:43.680Z
+last_checked_at: 2026-06-02T21:41:00.978Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:43.680Z
+checked_at: 2026-06-02T21:41:00.978Z
 matched_actions: 74
 action_count: 74
 confidence: medium

@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-04-30T04:28:54.023Z
-last_checked_at: 2026-04-26T22:32:30.100Z
-generated_at: 2026-04-26T22:32:30.100Z
+last_checked_at: 2026-06-02T22:13:27.467Z
+generated_at: 2026-06-02T22:13:27.467Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "RAV232 9600bps default vs command-switchable — confirm if 9600 is persistent"
 verification:
   verdict: verified
-  checked_at: 2026-04-26T22:32:30.100Z
+  checked_at: 2026-06-02T22:13:27.467Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 16 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -276,18 +276,18 @@ source_domains:
 source_urls:
   - https://rakocontrols.com/media/1286/rs232-command-summary.pdf
 retrieved_at: 2026-04-30T04:28:54.023Z
-last_checked_at: 2026-04-26T22:32:30.100Z
+last_checked_at: 2026-06-02T22:13:27.467Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-26T22:32:30.100Z
+checked_at: 2026-06-02T22:13:27.467Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions matched literal source commands with correct parameters and transport configuration verified against datasheet. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 16 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

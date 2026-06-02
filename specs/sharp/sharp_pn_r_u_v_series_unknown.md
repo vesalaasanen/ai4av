@@ -27,8 +27,8 @@ source_urls:
   - https://sharp-displays.jp.sharp/dl/en/pj_soft/lineup.html
   - https://www.manua.ls/sharp
 retrieved_at: 2026-05-13T20:42:25.950Z
-last_checked_at: 2026-05-18T17:02:35.807Z
-generated_at: 2026-05-18T17:02:35.807Z
+last_checked_at: 2026-06-02T22:14:20.293Z
+generated_at: 2026-06-02T22:14:20.293Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "IP address configuration details beyond DHCP default"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T17:02:35.807Z
+  checked_at: 2026-06-02T22:14:20.293Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 16 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -473,18 +473,18 @@ source_urls:
   - https://sharp-displays.jp.sharp/dl/en/pj_soft/lineup.html
   - https://www.manua.ls/sharp
 retrieved_at: 2026-05-13T20:42:25.950Z
-last_checked_at: 2026-05-18T17:02:35.807Z
+last_checked_at: 2026-06-02T22:14:20.293Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T17:02:35.807Z
+checked_at: 2026-06-02T22:14:20.293Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions map one-to-one to documented CTL/VCP commands in the source; all transport values confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 16 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

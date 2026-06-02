@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-04T15:09:49.913Z
-last_checked_at: 2026-06-02T20:59:02.408Z
-generated_at: 2026-06-02T20:59:02.408Z
+last_checked_at: 2026-06-02T21:41:30.796Z
+generated_at: 2026-06-02T21:41:30.796Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "macro/multistep command sequences not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T20:59:02.408Z
+  checked_at: 2026-06-02T21:41:30.796Z
   matched_actions: 256
   action_count: 256
   confidence: medium
@@ -2131,14 +2131,14 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-04T15:09:49.913Z
-last_checked_at: 2026-06-02T20:59:02.408Z
+last_checked_at: 2026-06-02T21:41:30.796Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T20:59:02.408Z
+checked_at: 2026-06-02T21:41:30.796Z
 matched_actions: 256
 action_count: 256
 confidence: medium

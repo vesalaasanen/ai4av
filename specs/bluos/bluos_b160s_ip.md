@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T17:46:59.255Z
-last_checked_at: 2026-05-16T17:13:38.665Z
-generated_at: 2026-05-16T17:13:38.665Z
+last_checked_at: 2026-06-02T21:54:04.057Z
+generated_at: 2026-06-02T21:54:04.057Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "Specific input types physically available on the B160S are not enumerated in this API document."
 verification:
   verdict: verified
-  checked_at: 2026-05-16T17:13:38.665Z
+  checked_at: 2026-06-02T21:54:04.057Z
   matched_actions: 33
   action_count: 33
   confidence: medium
-  summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 33 spec actions traced to BluOS API v1.7. Standard playback, volume, input selection, grouping, and queue operations confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -618,18 +618,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-05-16T17:46:59.255Z
-last_checked_at: 2026-05-16T17:13:38.665Z
+last_checked_at: 2026-06-02T21:54:04.057Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T17:13:38.665Z
+checked_at: 2026-06-02T21:54:04.057Z
 matched_actions: 33
 action_count: 33
 confidence: medium
-summary: "All 33 spec actions have verbatim path-level matches in the source; transport port 11000 confirmed; no extra source commands unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 33 spec actions traced to BluOS API v1.7. Standard playback, volume, input selection, grouping, and queue operations confirmed. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

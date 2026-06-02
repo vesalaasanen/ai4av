@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.inogeni.com/camtrack-api-documentation
 retrieved_at: 2026-04-30T04:35:13.400Z
-last_checked_at: 2026-04-24T14:43:53.922Z
-generated_at: 2026-04-24T14:43:53.922Z
+last_checked_at: 2026-06-02T22:08:14.112Z
+generated_at: 2026-06-02T22:08:14.112Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "WebSocket path is /websocket but auth type unstated"
 verification:
   verdict: verified
-  checked_at: 2026-04-24T14:43:53.922Z
+  checked_at: 2026-06-02T22:08:14.112Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -250,18 +250,18 @@ source_domains:
 source_urls:
   - https://www.inogeni.com/camtrack-api-documentation
 retrieved_at: 2026-04-30T04:35:13.400Z
-last_checked_at: 2026-04-24T14:43:53.922Z
+last_checked_at: 2026-06-02T22:08:14.112Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-24T14:43:53.922Z
+checked_at: 2026-06-02T22:08:14.112Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "Spec comprehensively documents all CAMTRACK API commands found in source with accurate transport configuration. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

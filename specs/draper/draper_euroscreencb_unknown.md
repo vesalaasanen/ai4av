@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-15T01:42:53.684Z
-last_checked_at: 2026-05-15T21:30:20.049Z
-generated_at: 2026-05-15T21:30:20.049Z
+last_checked_at: 2026-06-02T22:06:32.057Z
+generated_at: 2026-06-02T22:06:32.057Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "radio (RFTM/DCPM) configuration details not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-15T21:30:20.049Z
+  checked_at: 2026-06-02T22:06:32.057Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 15 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -359,18 +359,18 @@ source_domains:
 source_urls:
   - "https://www.draperinc.com/documentdownload.aspx?path=ProjectionScreens/Instructions&file=SerialComm-RS232_Inst.pdf"
 retrieved_at: 2026-05-15T01:42:53.684Z
-last_checked_at: 2026-05-15T21:30:20.049Z
+last_checked_at: 2026-06-02T22:06:32.057Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-15T21:30:20.049Z
+checked_at: 2026-06-02T22:06:32.057Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 15 spec actions matched literally in source; transport parameters verified; bidirectional coverage complete. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 15 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

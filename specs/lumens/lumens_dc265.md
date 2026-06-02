@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
 retrieved_at: 2026-04-30T04:33:14.844Z
-last_checked_at: 2026-05-14T18:17:17.747Z
-generated_at: 2026-05-14T18:17:17.747Z
+last_checked_at: 2026-06-02T22:09:28.254Z
+generated_at: 2026-06-02T22:09:28.254Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "Focus Direct return packet uses P3 for speed but standard return format has status at byte 5 -- behavior unclear"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.747Z
+  checked_at: 2026-06-02T22:09:28.254Z
   matched_actions: 46
   action_count: 46
   confidence: medium
-  summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 46 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -728,18 +728,18 @@ source_domains:
 source_urls:
   - "https://www.mylumens.com/Download/RS-232%20DC265%202008-1030.pdf"
 retrieved_at: 2026-04-30T04:33:14.844Z
-last_checked_at: 2026-05-14T18:17:17.747Z
+last_checked_at: 2026-06-02T22:09:28.254Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.747Z
+checked_at: 2026-06-02T22:09:28.254Z
 matched_actions: 46
 action_count: 46
 confidence: medium
-summary: "Every action and feedback command in the spec has a literal byte-for-byte match in the source protocol tables; transport parameters verified; spec comprehensively covers entire DC265 protocol. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 46 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

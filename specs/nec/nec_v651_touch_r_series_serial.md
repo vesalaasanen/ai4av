@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:16.828Z
-last_checked_at: 2026-05-14T18:17:19.034Z
-generated_at: 2026-05-14T18:17:19.034Z
+last_checked_at: 2026-06-02T22:12:00.744Z
+generated_at: 2026-06-02T22:12:00.744Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "HDBaseT control support — mentioned in selection signal types but no dedicated HDBaseT commands documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.034Z
+  checked_at: 2026-06-02T22:12:00.744Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -579,18 +579,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:16.828Z
-last_checked_at: 2026-05-14T18:17:19.034Z
+last_checked_at: 2026-06-02T22:12:00.744Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.034Z
+checked_at: 2026-06-02T22:12:00.744Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "Every spec action matched literally against source command bytes; all transport parameters confirmed verbatim. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

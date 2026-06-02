@@ -26,8 +26,8 @@ source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/07/QD-98_RS232_CommandList1.pdf
   - https://www.agneovo.com/wp-content/uploads/2021/07/QX-28_RS232_CommandList.pdf
 retrieved_at: 2026-05-14T15:32:43.432Z
-last_checked_at: 2026-06-02T17:22:07.401Z
-generated_at: 2026-06-02T17:22:07.401Z
+last_checked_at: 2026-06-02T21:41:29.992Z
+generated_at: 2026-06-02T21:41:29.992Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:07.401Z
+  checked_at: 2026-06-02T21:41:29.992Z
   matched_actions: 52
   action_count: 52
   confidence: medium
@@ -1012,14 +1012,14 @@ source_urls:
   - https://www.agneovo.com/wp-content/uploads/2021/07/QD-98_RS232_CommandList1.pdf
   - https://www.agneovo.com/wp-content/uploads/2021/07/QX-28_RS232_CommandList.pdf
 retrieved_at: 2026-05-14T15:32:43.432Z
-last_checked_at: 2026-06-02T17:22:07.401Z
+last_checked_at: 2026-06-02T21:41:29.992Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:07.401Z
+checked_at: 2026-06-02T21:41:29.992Z
 matched_actions: 52
 action_count: 52
 confidence: medium

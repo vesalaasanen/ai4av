@@ -32,21 +32,20 @@ source_urls:
   - https://www.extron.com/download/files/brochure/fox_box_dvi_plus_bro_revA3.pdf
   - https://www.manua.ls/extron/foxbox-tx-dvi-plus-mm/manual
 retrieved_at: 2026-05-17T19:33:39.224Z
-last_checked_at: 2026-05-18T16:33:19.337Z
-generated_at: 2026-05-18T16:33:19.337Z
+last_checked_at: 2026-06-02T22:07:01.183Z
+generated_at: 2026-06-02T22:07:01.183Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - 1N
   - "firmware version compatibility not stated"
   - "plus mode transmission (firmware 3.00+) specific commands not detailed in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:33:19.337Z
+  checked_at: 2026-06-02T22:07:01.183Z
   matched_actions: 42
   action_count: 42
   confidence: medium
-  summary: "All 42 spec actions matched verbatim in source; transport parameters verified; feedbacks cover all query commands except one part-number variant. (2 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 42 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -454,24 +453,23 @@ source_urls:
   - https://www.extron.com/download/files/brochure/fox_box_dvi_plus_bro_revA3.pdf
   - https://www.manua.ls/extron/foxbox-tx-dvi-plus-mm/manual
 retrieved_at: 2026-05-17T19:33:39.224Z
-last_checked_at: 2026-05-18T16:33:19.337Z
+last_checked_at: 2026-06-02T22:07:01.183Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:33:19.337Z
+checked_at: 2026-06-02T22:07:01.183Z
 matched_actions: 42
 action_count: 42
 confidence: medium
-summary: "All 42 spec actions matched verbatim in source; transport parameters verified; feedbacks cover all query commands except one part-number variant. (2 unresolved item(s) noted in Known Gaps.)"
+summary: "All 42 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- 1N
 - "firmware version compatibility not stated"
 - "plus mode transmission (firmware 3.00+) specific commands not detailed in source"
 ```

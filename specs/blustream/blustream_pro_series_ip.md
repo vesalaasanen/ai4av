@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-05-07T06:41:15.747Z
-last_checked_at: 2026-05-16T19:56:01.261Z
-generated_at: 2026-05-16T19:56:01.261Z
+last_checked_at: 2026-06-02T21:56:31.861Z
+generated_at: 2026-06-02T21:56:31.861Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "Firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-16T19:56:01.261Z
+  checked_at: 2026-06-02T21:56:31.861Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -313,18 +313,18 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-05-07T06:41:15.747Z
-last_checked_at: 2026-05-16T19:56:01.261Z
+last_checked_at: 2026-06-02T21:56:31.861Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-16T19:56:01.261Z
+checked_at: 2026-06-02T21:56:31.861Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions matched source commands; transport parameters verified; IR codes correctly excluded. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

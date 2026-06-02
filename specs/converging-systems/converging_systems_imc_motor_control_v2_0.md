@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-04-30T04:26:27.627Z
-last_checked_at: 2026-04-22T22:08:38.883Z
-generated_at: 2026-04-22T22:08:38.883Z
+last_checked_at: 2026-06-02T22:05:35.812Z
+generated_at: 2026-06-02T22:05:35.812Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "STATUS=? motor query not available per source"
 verification:
   verdict: verified
-  checked_at: 2026-04-22T22:08:38.883Z
+  checked_at: 2026-06-02T22:05:35.812Z
   matched_actions: 47
   action_count: 47
   confidence: medium
-  summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 47 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -601,18 +601,18 @@ source_domains:
 source_urls:
   - https://www.convergingsystems.com/bin/doc/integration/amx_type_documentation_mst_v1_2.pdf
 retrieved_at: 2026-04-30T04:26:27.627Z
-last_checked_at: 2026-04-22T22:08:38.883Z
+last_checked_at: 2026-06-02T22:05:35.812Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-22T22:08:38.883Z
+checked_at: 2026-06-02T22:05:35.812Z
 matched_actions: 47
 action_count: 47
 confidence: medium
-summary: "All 47 spec actions matched literally against source tables. Transport parameters verified verbatim. Spec fully represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 47 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

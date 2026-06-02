@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.269Z
-last_checked_at: 2026-05-14T18:17:14.278Z
-generated_at: 2026-05-14T18:17:14.278Z
+last_checked_at: 2026-06-02T21:49:52.074Z
+generated_at: 2026-06-02T21:49:52.074Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "HTTP file endpoint authentication requirements not fully specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.278Z
+  checked_at: 2026-06-02T21:49:52.074Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -558,18 +558,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-04-29T08:34:51.269Z
-last_checked_at: 2026-05-14T18:17:14.278Z
+last_checked_at: 2026-06-02T21:49:52.074Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.278Z
+checked_at: 2026-06-02T21:49:52.074Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 36 spec actions matched literally in source with correct method names and parameters; all transport parameters verified. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 spec actions traced to source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

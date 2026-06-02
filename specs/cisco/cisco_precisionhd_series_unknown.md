@@ -30,8 +30,8 @@ source_urls:
   - https://www.cisco.com/c/en/us/support/collaboration-endpoints/telepresence-precisionhd-cameras/products-user-guide-list.html
   - https://www.dekom.com/fileadmin/Vidowawi/precisionhd-1080p-720p_camera_user_guide_tc40_04_L01.pdf
 retrieved_at: 2026-05-14T15:10:26.520Z
-last_checked_at: 2026-06-02T17:21:55.012Z
-generated_at: 2026-06-02T17:21:55.012Z
+last_checked_at: 2026-06-02T21:41:14.974Z
+generated_at: 2026-06-02T21:41:14.974Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,7 +44,7 @@ known_gaps:
   - "firmware version compatibility ranges not stated in source. Per-model applicability of asterisk-marked commands is not encoded per action (one source flag, many models)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:55.012Z
+  checked_at: 2026-06-02T21:41:14.974Z
   matched_actions: 94
   action_count: 94
   confidence: medium
@@ -871,14 +871,14 @@ source_urls:
   - https://www.cisco.com/c/en/us/support/collaboration-endpoints/telepresence-precisionhd-cameras/products-user-guide-list.html
   - https://www.dekom.com/fileadmin/Vidowawi/precisionhd-1080p-720p_camera_user_guide_tc40_04_L01.pdf
 retrieved_at: 2026-05-14T15:10:26.520Z
-last_checked_at: 2026-06-02T17:21:55.012Z
+last_checked_at: 2026-06-02T21:41:14.974Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:55.012Z
+checked_at: 2026-06-02T21:41:14.974Z
 matched_actions: 94
 action_count: 94
 confidence: medium

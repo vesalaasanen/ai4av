@@ -24,8 +24,8 @@ source_urls:
   - https://support.xilica.com/en/articles/3942338
   - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
-last_checked_at: 2026-04-30T09:52:01.935Z
-generated_at: 2026-04-30T09:52:01.935Z
+last_checked_at: 2026-06-02T22:16:25.915Z
+generated_at: 2026-06-02T22:16:25.915Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "string data values (filter types, slopes, AFS settings, ramp types) — enumerated in section 11 but mapping to control objects not specified"
 verification:
   verdict: verified
-  checked_at: 2026-04-30T09:52:01.935Z
+  checked_at: 2026-06-02T22:16:25.915Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions matched literally; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -435,18 +435,18 @@ source_urls:
   - https://support.xilica.com/en/articles/3942338
   - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
-last_checked_at: 2026-04-30T09:52:01.935Z
+last_checked_at: 2026-06-02T22:16:25.915Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-30T09:52:01.935Z
+checked_at: 2026-06-02T22:16:25.915Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions matched literally; transport parameters verified. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

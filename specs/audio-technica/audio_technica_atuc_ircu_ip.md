@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-30T04:31:06.431Z
-last_checked_at: 2026-05-14T18:17:14.121Z
-generated_at: 2026-05-14T18:17:14.121Z
+last_checked_at: 2026-06-02T21:48:01.096Z
+generated_at: 2026-06-02T21:48:01.096Z
 firmware_coverage: "1.0.5 or later"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "precise list of commands that differ between IRCU firmware 1.0.5 and later versions not fully enumerated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.121Z
+  checked_at: 2026-06-02T21:48:01.096Z
   matched_actions: 57
   action_count: 57
   confidence: medium
-  summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 57 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1316,18 +1316,18 @@ source_domains:
 source_urls:
   - https://www.audio-technica.com/media/catalog/tmp/category/ATUC-50_ATUC-IR_IP_control_protocol_EN_web_220302.pdf
 retrieved_at: 2026-04-30T04:31:06.431Z
-last_checked_at: 2026-05-14T18:17:14.121Z
+last_checked_at: 2026-06-02T21:48:01.096Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.121Z
+checked_at: 2026-06-02T21:48:01.096Z
 matched_actions: 57
 action_count: 57
 confidence: medium
-summary: "Every spec action and feedback command matched literally in source; all transport parameters (port 17300, UDP multicast 225.0.0.100, TCP protocol) verified verbatim; command set fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 57 spec actions traced to source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

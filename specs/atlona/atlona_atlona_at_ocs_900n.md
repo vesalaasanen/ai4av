@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-06-02T17:26:31.138Z
-generated_at: 2026-06-02T17:26:31.138Z
+last_checked_at: 2026-06-02T21:40:03.401Z
+generated_at: 2026-06-02T21:40:03.401Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,7 +36,7 @@ known_gaps:
   - "export_config / import_config / upgrade methods listed in method:help reply but not individually documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:26:31.138Z
+  checked_at: 2026-06-02T21:40:03.401Z
   matched_actions: 30
   action_count: 30
   confidence: medium
@@ -675,14 +675,14 @@ source_domains:
 source_urls:
   - https://atlona.com/pdf/AT-OCS-900N_API.pdf
 retrieved_at: 2026-04-30T04:26:20.426Z
-last_checked_at: 2026-06-02T17:26:31.138Z
+last_checked_at: 2026-06-02T21:40:03.401Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:26:31.138Z
+checked_at: 2026-06-02T21:40:03.401Z
 matched_actions: 30
 action_count: 30
 confidence: medium

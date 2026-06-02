@@ -22,8 +22,8 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.manualslib.com/manual/2887673/Benq-Rs232.html
 retrieved_at: 2026-05-01T01:21:07.107Z
-last_checked_at: 2026-05-14T18:17:14.532Z
-generated_at: 2026-05-14T18:17:14.532Z
+last_checked_at: 2026-06-02T21:51:24.992Z
+generated_at: 2026-06-02T21:51:24.992Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "which commands are available on which models not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.532Z
+  checked_at: 2026-06-02T21:51:24.992Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "Generic BenQ RS232 spec with all 66 actions sourced from manual. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -981,18 +981,18 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.manualslib.com/manual/2887673/Benq-Rs232.html
 retrieved_at: 2026-05-01T01:21:07.107Z
-last_checked_at: 2026-05-14T18:17:14.532Z
+last_checked_at: 2026-06-02T21:51:24.992Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.532Z
+checked_at: 2026-06-02T21:51:24.992Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 90 spec actions (53 write + 37 query) matched verbatim in source command table with correct parameters; transport values verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "Generic BenQ RS232 spec with all 66 actions sourced from manual. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

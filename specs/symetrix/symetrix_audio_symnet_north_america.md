@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
 retrieved_at: 2026-04-30T04:33:37.519Z
-last_checked_at: 2026-04-27T15:36:58.534Z
-generated_at: 2026-04-27T15:36:58.534Z
+last_checked_at: 2026-06-02T22:15:25.589Z
+generated_at: 2026-06-02T22:15:25.589Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "specific Symnet model controller number maps not in source; generic Jupiter mapping only"
 verification:
   verdict: verified
-  checked_at: 2026-04-27T15:36:58.534Z
+  checked_at: 2026-06-02T22:15:25.589Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 19 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -344,18 +344,18 @@ source_domains:
 source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
 retrieved_at: 2026-04-30T04:33:37.519Z
-last_checked_at: 2026-04-27T15:36:58.534Z
+last_checked_at: 2026-06-02T22:15:25.589Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-27T15:36:58.534Z
+checked_at: 2026-06-02T22:15:25.589Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 19 spec actions match source commands one-to-one with correct wire tokens, parameters, and transport (UDP port 48630). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 19 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

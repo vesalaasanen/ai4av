@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:35:01.383Z
-last_checked_at: 2026-05-14T18:17:14.765Z
-generated_at: 2026-05-14T18:17:14.765Z
+last_checked_at: 2026-06-02T21:56:31.126Z
+generated_at: 2026-06-02T21:56:31.126Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "input/output count for MV41 not confirmed — source implies up to 8 outputs and 8 inputs (CMX88AB is 8x8)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:14.765Z
+  checked_at: 2026-06-02T21:56:31.126Z
   matched_actions: 13
   action_count: 13
   confidence: medium
-  summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented. (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 13 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -305,18 +305,18 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:35:01.383Z
-last_checked_at: 2026-05-14T18:17:14.765Z
+last_checked_at: 2026-06-02T21:56:31.126Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:14.765Z
+checked_at: 2026-06-02T21:56:31.126Z
 matched_actions: 13
 action_count: 13
 confidence: medium
-summary: "All 15 spec actions matched literally in source command table; serial transport parameters verified; credentials documented. (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All 13 spec actions traced to source. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

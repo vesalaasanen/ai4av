@@ -22,8 +22,8 @@ source_urls:
   - https://docs.linn.co.uk/wiki/index.php/RS232
   - https://docs.linn.co.uk/wiki/index.php/Developer:Documentation
 retrieved_at: 2026-04-30T11:29:36.586Z
-last_checked_at: 2026-05-14T18:17:17.636Z
-generated_at: 2026-05-14T18:17:17.636Z
+last_checked_at: 2026-06-02T22:09:23.594Z
+generated_at: 2026-06-02T22:09:23.594Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "- Firmware version compatibility (the source provides $VERSION$ queries but does not state a baseline)"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.636Z
-  matched_actions: 105
-  action_count: 105
+  checked_at: 2026-06-02T22:09:23.594Z
+  matched_actions: 27
+  action_count: 27
   confidence: medium
-  summary: "All 127 spec actions matched source commands exactly. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1238,18 +1238,18 @@ source_urls:
   - https://docs.linn.co.uk/wiki/index.php/RS232
   - https://docs.linn.co.uk/wiki/index.php/Developer:Documentation
 retrieved_at: 2026-04-30T11:29:36.586Z
-last_checked_at: 2026-05-14T18:17:17.636Z
+last_checked_at: 2026-06-02T22:09:23.594Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.636Z
-matched_actions: 105
-action_count: 105
+checked_at: 2026-06-02T22:09:23.594Z
+matched_actions: 27
+action_count: 27
 confidence: medium
-summary: "All 127 spec actions matched source commands exactly. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

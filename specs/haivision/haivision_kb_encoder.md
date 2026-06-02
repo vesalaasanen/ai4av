@@ -21,8 +21,8 @@ source_urls:
   - "https://doc.haivision.com/__attachments/14418392/KB5.9.2%20API%20Integrator's%20Reference.pdf"
   - https://doc.haivision.com/KB/5.9.2/
 retrieved_at: 2026-04-29T23:56:12.709Z
-last_checked_at: 2026-05-03T15:37:15.786Z
-generated_at: 2026-05-03T15:37:15.786Z
+last_checked_at: 2026-06-02T22:07:28.743Z
+generated_at: 2026-06-02T22:07:28.743Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "rate limiting behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-03T15:37:15.786Z
+  checked_at: 2026-06-02T22:07:28.743Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -635,18 +635,18 @@ source_urls:
   - "https://doc.haivision.com/__attachments/14418392/KB5.9.2%20API%20Integrator's%20Reference.pdf"
   - https://doc.haivision.com/KB/5.9.2/
 retrieved_at: 2026-04-29T23:56:12.709Z
-last_checked_at: 2026-05-03T15:37:15.786Z
+last_checked_at: 2026-06-02T22:07:28.743Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-03T15:37:15.786Z
+checked_at: 2026-06-02T22:07:28.743Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions matched verbatim to source REST paths and commands; transport port 1080 and session auth confirmed. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,8 +23,8 @@ source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
   - https://applicationmarket.crestron.com/d-box-technologies-inc-odyssee-north-america/
 retrieved_at: 2026-04-29T17:31:52.762Z
-last_checked_at: 2026-06-02T17:21:58.968Z
-generated_at: 2026-06-02T17:21:58.968Z
+last_checked_at: 2026-06-02T21:41:22.778Z
+generated_at: 2026-06-02T21:41:22.778Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,7 +35,7 @@ known_gaps:
   - "firmware version compatibility not stated. Protocol version not stated. Maximum platform count N (target range) not stated. Exact NAK byte stream count not documented for malformed framing (source says \"ignore the command and not respond at all\" for bad framing vs single NAK for unknown mnemonic)."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:58.968Z
+  checked_at: 2026-06-02T21:41:22.778Z
   matched_actions: 21
   action_count: 21
   confidence: medium
@@ -496,14 +496,14 @@ source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
   - https://applicationmarket.crestron.com/d-box-technologies-inc-odyssee-north-america/
 retrieved_at: 2026-04-29T17:31:52.762Z
-last_checked_at: 2026-06-02T17:21:58.968Z
+last_checked_at: 2026-06-02T21:41:22.778Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:58.968Z
+checked_at: 2026-06-02T21:41:22.778Z
 matched_actions: 21
 action_count: 21
 confidence: medium

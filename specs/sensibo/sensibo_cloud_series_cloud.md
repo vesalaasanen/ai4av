@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://support.sensibo.com/api/
 retrieved_at: 2026-05-14T10:39:18.298Z
-last_checked_at: 2026-05-18T16:51:18.196Z
-generated_at: 2026-05-18T16:51:18.196Z
+last_checked_at: 2026-06-02T22:13:52.881Z
+generated_at: 2026-06-02T22:13:52.881Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "auth credential format, firmware version, physical port specs, power consumption, event push model, binary encoding details"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:51:18.196Z
+  checked_at: 2026-06-02T22:13:52.881Z
   matched_actions: 13
   action_count: 13
   confidence: medium
-  summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 13 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -344,18 +344,18 @@ source_domains:
 source_urls:
   - https://support.sensibo.com/api/
 retrieved_at: 2026-05-14T10:39:18.298Z
-last_checked_at: 2026-05-18T16:51:18.196Z
+last_checked_at: 2026-06-02T22:13:52.881Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:51:18.196Z
+checked_at: 2026-06-02T22:13:52.881Z
 matched_actions: 13
 action_count: 13
 confidence: medium
-summary: "All 13 spec actions matched semantically to source operations; transport parameters verified; full coverage of source operations. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 13 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

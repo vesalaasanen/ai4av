@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-04-30T04:32:15.108Z
-last_checked_at: 2026-05-14T18:17:21.070Z
-generated_at: 2026-05-14T18:17:21.070Z
+last_checked_at: 2026-06-02T22:15:17.708Z
+generated_at: 2026-06-02T22:15:17.708Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "firmware version compatibility ranges not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:21.070Z
-  matched_actions: 45
+  checked_at: 2026-06-02T22:15:17.708Z
+  matched_actions: 46
   action_count: 46
   confidence: medium
-  summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented. (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 46 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -366,18 +366,18 @@ source_domains:
 source_urls:
   - https://www.sunbritetv.com/content/RS232-control-codes.pdf
 retrieved_at: 2026-04-30T04:32:15.108Z
-last_checked_at: 2026-05-14T18:17:21.070Z
+last_checked_at: 2026-06-02T22:15:17.708Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:21.070Z
-matched_actions: 45
+checked_at: 2026-06-02T22:15:17.708Z
+matched_actions: 46
 action_count: 46
 confidence: medium
-summary: "All 45 spec actions match their literal source counterparts; transport parameters verified; command table fully represented. (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 46 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

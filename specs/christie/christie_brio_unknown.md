@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101757-05-christie-lit-tech-ref-brio-ext-protocol.pdf
 retrieved_at: 2026-05-14T21:21:24.759Z
-last_checked_at: 2026-05-14T21:45:07.155Z
-generated_at: 2026-05-14T21:45:07.155Z
+last_checked_at: 2026-06-02T22:05:08.102Z
+generated_at: 2026-06-02T22:05:08.102Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "TCP keepalive/heartbeat timing not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:45:07.155Z
+  checked_at: 2026-06-02T22:05:08.102Z
   matched_actions: 41
   action_count: 41
   confidence: medium
-  summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 41 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -446,18 +446,18 @@ source_domains:
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101757-05-christie-lit-tech-ref-brio-ext-protocol.pdf
 retrieved_at: 2026-05-14T21:21:24.759Z
-last_checked_at: 2026-05-14T21:45:07.155Z
+last_checked_at: 2026-06-02T22:05:08.102Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:45:07.155Z
+checked_at: 2026-06-02T22:05:08.102Z
 matched_actions: 41
 action_count: 41
 confidence: medium
-summary: "All 41 spec actions matched commands in source document with correct parameters and transport (TCP port 11135); full bidirectional coverage. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 41 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

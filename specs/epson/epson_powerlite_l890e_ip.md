@@ -21,13 +21,11 @@ source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
   - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
 retrieved_at: 2026-05-12T11:36:23.135Z
-last_checked_at: 2026-05-14T18:17:15.789Z
-generated_at: 2026-05-14T18:17:15.789Z
+last_checked_at: 2026-06-02T22:06:49.616Z
+generated_at: 2026-06-02T22:06:49.616Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "SOURCE 25"
-  - "SOURCE C3"
   - "L890E not listed in applicable models — confirmation that it uses identical ESC/VP21 commands is assumed from the general protocol description"
   - "TCP/IP port number not stated in source"
   - "no authentication procedure described anywhere in source"
@@ -45,11 +43,11 @@ known_gaps:
   - "maximum concurrent connection count not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.789Z
+  checked_at: 2026-06-02T22:06:49.616Z
   matched_actions: 43
   action_count: 43
   confidence: medium
-  summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict. (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 43 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -440,25 +438,23 @@ source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
   - https://files.support.epson.com/pdf/pl600p/pl600pcm.pdf
 retrieved_at: 2026-05-12T11:36:23.135Z
-last_checked_at: 2026-05-14T18:17:15.789Z
+last_checked_at: 2026-06-02T22:06:49.616Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.789Z
+checked_at: 2026-06-02T22:06:49.616Z
 matched_actions: 43
 action_count: 43
 confidence: medium
-summary: "All 49 spec actions matched literally in source command table; transport parameters fully verified; minimal extra commands (SOURCE 25/C3) not material to verdict. (15 unresolved item(s) noted in Known Gaps.)"
+summary: "All 43 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "SOURCE 25"
-- "SOURCE C3"
 - "L890E not listed in applicable models — confirmation that it uses identical ESC/VP21 commands is assumed from the general protocol description"
 - "TCP/IP port number not stated in source"
 - "no authentication procedure described anywhere in source"

@@ -22,8 +22,8 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
 retrieved_at: 2026-06-01T20:30:44.659Z
-last_checked_at: 2026-05-10T11:33:39.690Z
-generated_at: 2026-05-10T11:33:39.690Z
+last_checked_at: 2026-06-02T22:07:39.323Z
+generated_at: 2026-06-02T22:07:39.323Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "power-on input source selection for HDMI inputs (POIS values for HDMI1-4) not documented in extracted portion"
 verification:
   verdict: verified
-  checked_at: 2026-05-10T11:33:39.690Z
-  matched_actions: 45
-  action_count: 45
+  checked_at: 2026-06-02T22:07:39.323Z
+  matched_actions: 138
+  action_count: 138
   confidence: medium
-  summary: "All 45 spec actions found in source; baud rate, frame format, and command mnemonics verified as accurate. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 138 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1499,18 +1499,18 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
 retrieved_at: 2026-06-01T20:30:44.659Z
-last_checked_at: 2026-05-10T11:33:39.690Z
+last_checked_at: 2026-06-02T22:07:39.323Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-10T11:33:39.690Z
-matched_actions: 45
-action_count: 45
+checked_at: 2026-06-02T22:07:39.323Z
+matched_actions: 138
+action_count: 138
 confidence: medium
-summary: "All 45 spec actions found in source; baud rate, frame format, and command mnemonics verified as accurate. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 138 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

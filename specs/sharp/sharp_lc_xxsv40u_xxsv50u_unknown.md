@@ -29,8 +29,8 @@ source_urls:
   - https://github.com/jdwhite/aquosctl
   - https://www.manualslib.com/brand/sharp/
 retrieved_at: 2026-05-15T02:35:06.944Z
-last_checked_at: 2026-05-18T16:51:19.817Z
-generated_at: 2026-05-18T16:51:19.817Z
+last_checked_at: 2026-06-02T22:14:03.789Z
+generated_at: 2026-06-02T22:14:03.789Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -46,11 +46,11 @@ known_gaps:
   - "maximum serial command rate not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-18T16:51:19.817Z
+  checked_at: 2026-06-02T22:14:03.789Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -399,18 +399,18 @@ source_urls:
   - https://github.com/jdwhite/aquosctl
   - https://www.manualslib.com/brand/sharp/
 retrieved_at: 2026-05-15T02:35:06.944Z
-last_checked_at: 2026-05-18T16:51:19.817Z
+last_checked_at: 2026-06-02T22:14:03.789Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-18T16:51:19.817Z
+checked_at: 2026-06-02T22:14:03.789Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 26 spec actions matched verbatim in source command table; transport parameters fully verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

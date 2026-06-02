@@ -22,8 +22,8 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.manualslib.com/manual/481564/Benq-RS232-Commands.html
 retrieved_at: 2026-05-04T16:50:27.550Z
-last_checked_at: 2026-05-05T05:39:58.748Z
-generated_at: 2026-05-05T05:39:58.748Z
+last_checked_at: 2026-06-02T22:04:23.253Z
+generated_at: 2026-06-02T22:04:23.253Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "firmware version coverage, exact numeric ranges for level controls, per-sub-model command applicability matrix not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-05-05T05:39:58.748Z
-  matched_actions: 74
-  action_count: 74
+  checked_at: 2026-06-02T22:04:23.253Z
+  matched_actions: 173
+  action_count: 173
   confidence: medium
-  summary: "All 74 spec actions matched to source RS-232 command table; transport parameters explicitly verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 173 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1217,18 +1217,18 @@ source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
   - https://www.manualslib.com/manual/481564/Benq-RS232-Commands.html
 retrieved_at: 2026-05-04T16:50:27.550Z
-last_checked_at: 2026-05-05T05:39:58.748Z
+last_checked_at: 2026-06-02T22:04:23.253Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-05T05:39:58.748Z
-matched_actions: 74
-action_count: 74
+checked_at: 2026-06-02T22:04:23.253Z
+matched_actions: 173
+action_count: 173
 confidence: medium
-summary: "All 74 spec actions matched to source RS-232 command table; transport parameters explicitly verified in source documentation. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 173 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

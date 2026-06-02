@@ -22,8 +22,8 @@ source_urls:
   - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
-last_checked_at: 2026-05-12T14:58:23.763Z
-generated_at: 2026-05-12T14:58:23.763Z
+last_checked_at: 2026-06-02T22:16:27.351Z
+generated_at: 2026-06-02T22:16:27.351Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "maximum cable length not specified"
 verification:
   verdict: verified
-  checked_at: 2026-05-12T14:58:23.763Z
+  checked_at: 2026-06-02T22:16:27.351Z
   matched_actions: 42
   action_count: 42
   confidence: medium
-  summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 42 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -454,18 +454,18 @@ source_urls:
   - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
-last_checked_at: 2026-05-12T14:58:23.763Z
+last_checked_at: 2026-06-02T22:16:27.351Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-12T14:58:23.763Z
+checked_at: 2026-06-02T22:16:27.351Z
 matched_actions: 42
 action_count: 42
 confidence: medium
-summary: "All 42 spec actions match literal wire tokens in source. All transport parameters verified in sections 1.2-1.3. Complete bidirectional coverage. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 42 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

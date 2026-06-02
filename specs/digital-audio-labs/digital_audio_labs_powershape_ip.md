@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
 retrieved_at: 2026-04-30T04:31:37.803Z
-last_checked_at: 2026-04-24T14:41:25.165Z
-generated_at: 2026-04-24T14:41:25.165Z
+last_checked_at: 2026-06-02T22:06:08.544Z
+generated_at: 2026-06-02T22:06:08.544Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "default VU meter state (rate=0, reports off) on power-on not explicitly confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-04-24T14:41:25.165Z
+  checked_at: 2026-06-02T22:06:08.544Z
   matched_actions: 38
   action_count: 38
   confidence: medium
-  summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -745,18 +745,18 @@ source_domains:
 source_urls:
   - https://www.digitalaudio.com/wp-content/uploads/2017/08/PowerShape-Manual-PS-2.1-V1.2.pdf
 retrieved_at: 2026-04-30T04:31:37.803Z
-last_checked_at: 2026-04-24T14:41:25.165Z
+last_checked_at: 2026-06-02T22:06:08.544Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-24T14:41:25.165Z
+checked_at: 2026-06-02T22:06:08.544Z
 matched_actions: 38
 action_count: 38
 confidence: medium
-summary: "Spec fully cross-checks against source. All actions, transport settings, and parameter definitions are consistent with vendor manual. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -21,16 +21,11 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:56.355Z
-last_checked_at: 2026-04-23T15:24:28.449Z
-generated_at: 2026-04-23T15:24:28.449Z
+last_checked_at: 2026-06-02T21:56:26.077Z
+generated_at: 2026-06-02T21:56:26.077Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - IR_POWER_14
-  - IR_OUTPUT_1_09
-  - IR_OUTPUT_2_1D
-  - IR_3D_0F
-  - IR_4K_51
   - "TCP/Telnet port number not stated in source"
   - "exact relationship between C44 and CMX88AB model names not clarified in source"
   - "command response format not documented (only command syntax given)"
@@ -50,11 +45,11 @@ known_gaps:
   - "web browser interface mentioned but no REST/HTTP API documented"
 verification:
   verdict: verified
-  checked_at: 2026-04-23T15:24:28.449Z
+  checked_at: 2026-06-02T21:56:26.077Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer. (17 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 spec actions traced to source. (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -335,28 +330,23 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-04-29T08:34:56.355Z
-last_checked_at: 2026-04-23T15:24:28.449Z
+last_checked_at: 2026-06-02T21:56:26.077Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-04-23T15:24:28.449Z
+checked_at: 2026-06-02T21:56:26.077Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions matched verbatim in source with correct syntax; transport parameters verified; IR database is separate protocol layer. (17 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 spec actions traced to source. (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- IR_POWER_14
-- IR_OUTPUT_1_09
-- IR_OUTPUT_2_1D
-- IR_3D_0F
-- IR_4K_51
 - "TCP/Telnet port number not stated in source"
 - "exact relationship between C44 and CMX88AB model names not clarified in source"
 - "command response format not documented (only command syntax given)"

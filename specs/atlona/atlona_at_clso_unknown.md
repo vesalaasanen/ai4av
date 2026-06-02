@@ -22,8 +22,8 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-UHD-CLSO-612ED_V2.pdf
   - https://atlona.com/pdf/manuals/AT-UHD-CLSO-601_V3.pdf
 retrieved_at: 2026-05-22T15:17:53.224Z
-last_checked_at: 2026-06-02T17:21:22.145Z
-generated_at: 2026-06-02T17:21:22.145Z
+last_checked_at: 2026-06-02T21:39:56.445Z
+generated_at: 2026-06-02T21:39:56.445Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,7 +37,7 @@ known_gaps:
   - "default TCP/IP port number (only that IPPort X is configurable); IPLogin default state (on or off); firmware version compatibility range"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:21:22.145Z
+  checked_at: 2026-06-02T21:39:56.445Z
   matched_actions: 75
   action_count: 75
   confidence: medium
@@ -835,14 +835,14 @@ source_urls:
   - https://atlona.com/pdf/manuals/AT-UHD-CLSO-612ED_V2.pdf
   - https://atlona.com/pdf/manuals/AT-UHD-CLSO-601_V3.pdf
 retrieved_at: 2026-05-22T15:17:53.224Z
-last_checked_at: 2026-06-02T17:21:22.145Z
+last_checked_at: 2026-06-02T21:39:56.445Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:21:22.145Z
+checked_at: 2026-06-02T21:39:56.445Z
 matched_actions: 75
 action_count: 75
 confidence: medium
