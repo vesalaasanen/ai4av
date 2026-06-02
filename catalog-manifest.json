@@ -1,6 +1,6 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-02T20:16:23.983Z",
+  "generated_at": "2026-06-02T21:22:30.789Z",
   "spec_count": 901,
   "specs": [
     {
@@ -1933,10 +1933,10 @@
       ],
       "revision": 1,
       "path": "specs/benq/benq_mh680_th680_unknown.md",
-      "actionCount": 86,
+      "actionCount": 111,
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "40abf6667577c3ba416e5bffa9104c2a65b6a2cfc53a6b844445eb0d23386871"
+      "contentHash": "43dcf6b5ae8f92de4574d4cdba112858a73b1019d32868f2389af6dbd7eff5d5"
     },
     {
       "specId": "admin/benq-mx520",
@@ -4660,10 +4660,10 @@
       ],
       "revision": 1,
       "path": "specs/digital-projection/digital_projection_evl_series_ip.md",
-      "actionCount": 239,
+      "actionCount": 256,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "0c198d49ede71235eec9ee7a88e9e2ac89324ce27e387cf11154cba3d6ff84b5"
+      "contentHash": "5c6ec657201703c0721eaeb09ce9b1b44f410c6719bc79585342805fc5add6de"
     },
     {
       "specId": "admin/digital-projection-highlite-660-series",
@@ -4708,10 +4708,10 @@
       ],
       "revision": 1,
       "path": "specs/digital-projection/digital_projection_highlite_laser_4k_series_ip.md",
-      "actionCount": 227,
+      "actionCount": 247,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "5e3eeedb2524e09fe2b3c291192896c7408d560949b1b0d4c3bfb65670e9b763"
+      "contentHash": "4c84c413bbb9bbf3bf87b4600baf47893f8e656b690801f4e85f05e2d1f573a7"
     },
     {
       "specId": "admin/digital-projection-insight-4k-series",
@@ -4743,10 +4743,10 @@
       ],
       "revision": 1,
       "path": "specs/digital-projection/digital_projection_mercury_quad_series_serial.md",
-      "actionCount": 204,
+      "actionCount": 227,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "0d122f933d14d891921b26a583f98ccb5bb9a701ad9ea891b1451239908ee6a6"
+      "contentHash": "cb2c0b448d5bd8dab692cfcc625b3713afd7ab32eb6fb3ce74ea12d79845923c"
     },
     {
       "specId": "admin/digital-projection-titan-700-series",
@@ -5699,10 +5699,10 @@
       ],
       "revision": 1,
       "path": "specs/fujitsu/fujitsu_p50xca51wh_north_america.md",
-      "actionCount": 199,
+      "actionCount": 207,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "15b82dbb07a4608eecce61a45f5041ff8c9b90460aa8d8b7217e305a6cbfe2f3"
+      "contentHash": "a2c5e61c626763dceceed8275252e6cdb09ff700dd5ec5f08ded23cc325dd41a"
     },
     {
       "specId": "admin/furman-bbrs232-bluebolt",
@@ -6190,10 +6190,10 @@
       ],
       "revision": 1,
       "path": "specs/hisense/hisense_100u88qg_series_ir.md",
-      "actionCount": 125,
+      "actionCount": 141,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "70049bcd0899db4b9892390f1c45ceb60cdcd0477a9e215aeb349469d10466b3"
+      "contentHash": "0a0b7cfde31960b3b307eb7c992c181315c10989fdc46977982f815b6566531f"
     },
     {
       "specId": "admin/hisense-100u8k-series",
@@ -6666,10 +6666,10 @@
       ],
       "revision": 1,
       "path": "specs/hisense/hisense_85u75n_series_ir.md",
-      "actionCount": 222,
+      "actionCount": 242,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f1d1e31e4616d783b2677d6763b66384dc6d4a91a70807d39cf50be5ff975224"
+      "contentHash": "785a475e882b353cddcce7388d86e58c846805e8f0f89a2f95283b1a5bdd9595"
     },
     {
       "specId": "admin/hisense-85u75sua-series",
@@ -7304,10 +7304,10 @@
       ],
       "revision": 1,
       "path": "specs/jvc/jvc_dla_x30_ir.md",
-      "actionCount": 174,
+      "actionCount": 194,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "26eed0cdb2c560a816061deb24daf2f1b8f60316b3a6a15d17d2cb354dea041b"
+      "contentHash": "02ddaed47c53db0ee79f06218886ede2329fdfa412ea6d3e0969e4a2c67685d4"
     },
     {
       "specId": "admin/jvc-dla-x500r",
@@ -7607,10 +7607,10 @@
       ],
       "revision": 1,
       "path": "specs/kramer/kramer_electronics_ltd_vp_723xl_north_america.md",
-      "actionCount": 192,
+      "actionCount": 203,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8f7157e6cda10193ea6cbe70de450e4afef25e48689519a7888cf64b0a9c79ca"
+      "contentHash": "5cf25f61bf365d87d24d14825962258a92a7b90ec6b81e986764fdf7791a5cec"
     },
     {
       "specId": "admin/kramer-vs-808xl",
@@ -9030,10 +9030,10 @@
       ],
       "revision": 1,
       "path": "specs/marantz/marantz_av_10_series_serial.md",
-      "actionCount": 114,
+      "actionCount": 134,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "84233b98aec575274b0fb3cd485c1f6889482d28aadfe0b4cbb3b57dc2a641eb"
+      "contentHash": "43b4deb1302552d4763df63a7a1def45f040dce4478b75277e892a2364e35be8"
     },
     {
       "specId": "admin/marantz-av8003-north-america",
@@ -9064,10 +9064,10 @@
       ],
       "revision": 1,
       "path": "specs/marantz/marantz_cinema_series_ip.md",
-      "actionCount": 121,
+      "actionCount": 143,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4d6f36640dba8bf61fee6a96d8ab3419aac678d59673c34c154db0b0efaea928"
+      "contentHash": "de67ab9090242503e25a89a6341a3d10c43f16560574b7da255a5ec82079fe33"
     },
     {
       "specId": "admin/marantz-av-receiver",
@@ -9252,10 +9252,10 @@
       ],
       "revision": 1,
       "path": "specs/marshall/marshall_cv355.md",
-      "actionCount": 166,
+      "actionCount": 186,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "3a66cddf0f2f3b0c10ec786158972b6dce007535d29e83ce7117a929d5ece043"
+      "contentHash": "43fc86e1b700044022692ba853eb3552345e45bd27f8af6de9a3ad4be3c97801"
     },
     {
       "specId": "admin/maxhub-cfxxfa",
@@ -12387,10 +12387,10 @@
       ],
       "revision": 1,
       "path": "specs/philips/philips_ltc_8300_video_matrix.md",
-      "actionCount": 135,
+      "actionCount": 147,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "8a645f195bbea97fca1dbd16a2f30932ce6b47eb41230e7e4643f8a4123e518f"
+      "contentHash": "84fbad406d66d5eba715379bd317bc06c0bd617fb308502e8747b856a1e20a62"
     },
     {
       "specId": "admin/philips-sicprotocol",
@@ -15476,10 +15476,10 @@
       ],
       "revision": 1,
       "path": "specs/tandberg/tandberg_tandberg_video_conferencing.md",
-      "actionCount": 39,
+      "actionCount": 59,
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "6a67ef1147e36176e2f265665b629eb65b7ca1a6b9df5c1251603418d333ffa3"
+      "contentHash": "6800fe2ef37155d10b6dd01b6d01375f7c7650a061149474ce68b3e92e302ad0"
     },
     {
       "specId": "admin/tascam-bd-01u",

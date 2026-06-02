@@ -1123,6 +1123,129 @@ auth:
   kind: action
   params: []
   hex: "21 89 01 52 43 37 33 41 43 0A"
+
+# === RC73 codes documented in source but not previously enumerated ===
+# Each hex literal appears verbatim in the refined source IR-code table.
+
+- id: rc73_d5_3d_setting
+  label: "RC73 0xD5 — 3D Setting (direct access to 3D Setting menu)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 44 35 0A"
+
+- id: rc73_c5_anamorphic_cycle
+  label: "RC73 0xC5 — Anamorphic / Vertical Stretch cycle (Off/A/B)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 43 35 0A"
+
+- id: rc73_8a_cmd_cycle
+  label: "RC73 0x8A — Clear Motion Drive cycle (Off/Mode1-4/Inverse Telecine)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 38 41 0A"
+
+- id: rc73_47_cmd_off
+  label: "RC73 0x47 — Clear Motion Drive Off"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 34 37 0A"
+
+- id: rc73_ce_cmd_mode1
+  label: "RC73 0xCE — Clear Motion Drive Mode 1"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 43 45 0A"
+
+- id: rc73_5c
+  label: "RC73 0x5C — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 35 43 0A"
+
+- id: rc73_13_auto_align
+  label: "RC73 0x13 — Auto Align (PC input)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 31 33 0A"
+
+- id: rc73_c9_auto_lens_centre
+  label: "RC73 0xC9 — Auto Lens Centre"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 43 39 0A"
+
+- id: rc73_a3_bright_level
+  label: "RC73 0xA3 — Bright Level"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 41 33 0A"
+
+- id: rc73_ae_aspect_pc_auto
+  label: "RC73 0xAE — Aspect (PC) Auto"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 41 45 0A"
+
+- id: rc73_41
+  label: "RC73 0x41 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 34 31 0A"
+
+- id: rc73_1c
+  label: "RC73 0x1C — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 31 43 0A"
+
+- id: rc73_64
+  label: "RC73 0x64 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 36 34 0A"
+
+- id: rc73_80
+  label: "RC73 0x80 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 38 30 0A"
+
+- id: rc73_c7
+  label: "RC73 0xC7 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 43 37 0A"
+
+- id: rc73_d4
+  label: "RC73 0xD4 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 44 34 0A"
+
+- id: rc73_60
+  label: "RC73 0x60 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 36 30 0A"
+
+- id: rc73_91
+  label: "RC73 0x91 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 39 31 0A"
+
+- id: rc73_9b
+  label: "RC73 0x9B — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 39 42 0A"
+
+- id: rc73_11
+  label: "RC73 0x11 — (function per source RC73 code table)"
+  kind: action
+  params: []
+  hex: "21 89 01 52 43 37 33 31 31 0A"
 ```
 
 ## Feedbacks

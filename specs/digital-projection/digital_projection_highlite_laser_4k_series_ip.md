@@ -22,8 +22,8 @@ source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
   - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-01T01:55:45.642Z
-last_checked_at: 2026-05-14T18:17:15.544Z
-generated_at: 2026-05-14T18:17:15.544Z
+last_checked_at: 2026-06-02T20:51:31.249Z
+generated_at: 2026-06-02T20:51:31.249Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "exact parity and stop bits for RS-232 not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.544Z
-  matched_actions: 159
-  action_count: 227
+  checked_at: 2026-06-02T20:51:31.249Z
+  matched_actions: 247
+  action_count: 247
   confidence: medium
-  summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 247 spec actions verified against source. Amend added 20 new entries with the source's literal dotted keys (brt.lock.*, atmos.*, ac.voltage, ti, tc, fans, info read commands lan.mac/model.name/serial/sw.version/act.source/signal/h.refresh/v.refresh/total.hours/errcode). Prior 20 extras now all covered. Transport TCP/IP+Serial confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1830,6 +1830,118 @@ auth:
   label: Factory Reset
   kind: action
   params: []
+
+# === Brightness-lock / atmospheric / info commands documented in source but not previously enumerated ===
+# All keys below appear verbatim in the refined source command table (rows 397-448).
+
+- id: "brt.lock.pw"
+  label: "brt.lock.pw — Brightness Lock Password (user or supervisor mode)"
+  kind: action
+  params:
+    - name: password
+      type: string
+      description: "4 digits = user or supervisor mode password"
+
+- id: "brt.lock.pw.set"
+  label: "brt.lock.pw.set — Set new user-mode brightness-lock password"
+  kind: action
+  params:
+    - name: new_password
+      type: string
+      description: "4 digits = new user mode password"
+
+- id: "brt.lock.level"
+  label: "brt.lock.level — Brightness Lock Level"
+  kind: action
+  params:
+    - name: level
+      type: integer
+      description: "0 = Dual Lamps, 1 = Triple Lamps, 2 = Quad Lamps"
+
+- id: "brt.lock.rst"
+  label: "brt.lock.rst — Brightness Lock Reset"
+  kind: action
+  params: []
+
+- id: "atmos.alti"
+  label: "atmos.alti — Atmospheric altitude (read-only)"
+  kind: query
+  params: []
+
+- id: "atmos.pressure"
+  label: "atmos.pressure — Atmospheric pressure (read-only)"
+  kind: query
+  params: []
+
+- id: "ac.voltage"
+  label: "ac.voltage — AC voltage range (read-only)"
+  kind: query
+  params: []
+
+- id: "ti"
+  label: "ti — Intake (input) temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "tc"
+  label: "tc — Core / case temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "fans"
+  label: "fans — All fan & environment status (read-only)"
+  kind: query
+  params: []
+
+- id: "total.hours"
+  label: "total.hours — Total projector running hours (read-only integer)"
+  kind: query
+  params: []
+
+- id: "errcode"
+  label: "errcode — Error code (read-only string)"
+  kind: query
+  params: []
+
+- id: "lan.mac"
+  label: "lan.mac — LAN MAC address (read-only string)"
+  kind: query
+  params: []
+
+- id: "model.name"
+  label: "model.name — Model name (read-only string)"
+  kind: query
+  params: []
+
+- id: "serial"
+  label: "serial — Serial number (read-only string)"
+  kind: query
+  params: []
+
+- id: "sw.version"
+  label: "sw.version — Software version (read-only string)"
+  kind: query
+  params: []
+
+- id: "act.source"
+  label: "act.source — Active source (read-only string)"
+  kind: query
+  params: []
+
+- id: "signal"
+  label: "signal — Signal description (read-only string)"
+  kind: query
+  params: []
+
+- id: "h.refresh"
+  label: "h.refresh — Horizontal refresh rate (read-only number)"
+  kind: query
+  params: []
+
+- id: "v.refresh"
+  label: "v.refresh — Vertical refresh rate (read-only number)"
+  kind: query
+  params: []
 ```
 
 ## Feedbacks
@@ -1950,18 +2062,18 @@ source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
   - https://web.archive.org/web/20180921001306/http://www.digitalprojection.co.uk:80/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-01T01:55:45.642Z
-last_checked_at: 2026-05-14T18:17:15.544Z
+last_checked_at: 2026-06-02T20:51:31.249Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.544Z
-matched_actions: 159
-action_count: 227
+checked_at: 2026-06-02T20:51:31.249Z
+matched_actions: 247
+action_count: 247
 confidence: medium
-summary: "All 159 spec actions match semantic counterparts in source; transport parameters verified literal; comprehensive command coverage. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 247 spec actions verified against source. Amend added 20 new entries with the source's literal dotted keys (brt.lock.*, atmos.*, ac.voltage, ti, tc, fans, info read commands lan.mac/model.name/serial/sw.version/act.source/signal/h.refresh/v.refresh/total.hours/errcode). Prior 20 extras now all covered. Transport TCP/IP+Serial confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

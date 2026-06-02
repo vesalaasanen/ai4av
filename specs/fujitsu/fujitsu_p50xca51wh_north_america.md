@@ -25,8 +25,8 @@ source_urls:
   - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
   - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-05-14T18:17:15.900Z
-generated_at: 2026-05-14T18:17:15.900Z
+last_checked_at: 2026-06-02T20:48:07.936Z
+generated_at: 2026-06-02T20:48:07.936Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "port number not stated — RS-232 only, no IP port applicable"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.900Z
-  matched_actions: 143
-  action_count: 199
+  checked_at: 2026-06-02T20:48:07.936Z
+  matched_actions: 207
+  action_count: 207
   confidence: medium
-  summary: "All 143 spec commands match literal source tokens; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 207 actions verified against source. Amend added 8 new entries covering the prior verifier's exact extras list: video horizontal/vertical position+size set (%A1400-1403) and query (%A1480-1483), traced to source functions 28-31. Transport 4800 8N1 RTS/CTS ASCII confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1096,6 +1096,60 @@ actions:
     label: Remote Control - Enter
     kind: action
     command: "%A328A26Cr"
+
+  # --- Video Position / Size (functions 28-31) ---
+  # Each set opcode appears verbatim in source (refined doc rows 28-31).
+  # Operand format and adjustable range depend on the selected input
+  # (RGB_PC vs Component vs Video/S-video) and the current screen size;
+  # see source for exact per-input ranges (e.g. RGB_PC H-Pos
+  # %A1400076A-%A14000896 ref %A14000800; etc.).
+  - id: video_horizontal_position_set
+    label: Video Horizontal Position Set
+    kind: action
+    description: "Sets video horizontal position (function 28). 4-digit hex operand, range depends on input format; reference value 0x0800. Source: %A1400076A-%A14000896 (RGB_PC), %A140007F0-%A14000810 (Comp SDTV/525P/625P), %A140007E0-%A14000820 (Comp 720P/HDTV), %A140007E2-%A1400081E (Video/S-video)."
+    command: "%A1400{value}Cr"
+
+  - id: video_horizontal_position_query
+    label: Video Horizontal Position Condition Reading
+    kind: query
+    description: "Queries current horizontal position. Returns @S{value} in the same 4-digit hex range as the set command (e.g. @S076A..@S0896)."
+    command: "%A1480Cr"
+
+  - id: video_vertical_position_set
+    label: Video Vertical Position Set
+    kind: action
+    description: "Sets video vertical position (function 29). 4-digit hex operand, range depends on input format; reference value 0x0800. Source: %A1401076A-%A14010896 (RGB_PC), %A140107F0-%A14010810 (Comp SDTV/525P/625P), %A140107E0-%A14010820 (Comp 720P/HDTV), %A140107F9-%A14010807 (Video/S-video Normal/Wide), %A140107F1-%A1401080F (Video/S-video Zoom)."
+    command: "%A1401{value}Cr"
+
+  - id: video_vertical_position_query
+    label: Video Vertical Position Condition Reading
+    kind: query
+    description: "Queries current vertical position. Returns @S{value} in 4-digit hex range matching the set command."
+    command: "%A1481Cr"
+
+  - id: video_horizontal_width_set
+    label: Video Horizontal Width Set
+    kind: action
+    description: "Sets horizontal size / width (function 30). 2-digit hex operand, range depends on input format; reference value 0x80. Source: %A140267-%A1402B2 (RGB_PC except DVI), %A14027C-%A140290 (Comp Video), %A140279-%A14028C (Video/S-video)."
+    command: "%A1402{value}Cr"
+
+  - id: video_horizontal_width_query
+    label: Video Horizontal Width Condition Reading
+    kind: query
+    description: "Queries current horizontal size. Returns @S{value} in 2-digit hex range (e.g. @S67..@SB2)."
+    command: "%A1482Cr"
+
+  - id: video_vertical_height_set
+    label: Video Vertical Height Set
+    kind: action
+    description: "Sets vertical size / height (function 31). 2-digit hex operand, range depends on input format; reference value 0x80. Source: %A140367-%A1403B2 (RGB_PC except DVI), %A14037C-%A140390 (C-Video), %A140379-%A14038C (Video/S-video)."
+    command: "%A1403{value}Cr"
+
+  - id: video_vertical_height_query
+    label: Video Vertical Height Condition Reading
+    kind: query
+    description: "Queries current vertical size. Returns @S{value} in 2-digit hex range matching the set command."
+    command: "%A1483Cr"
 ```
 
 ## Feedbacks
@@ -1329,18 +1383,18 @@ source_urls:
   - https://www.2150.com/files/rs232_commands_P50XHA10.pdf
   - http://www.customremotecontrol.com/infrared-receiver-rs232-device-tables/Fujitsu-P50XCA-Plasma-RS232-Codes.html
 retrieved_at: 2026-04-30T13:42:36.975Z
-last_checked_at: 2026-05-14T18:17:15.900Z
+last_checked_at: 2026-06-02T20:48:07.936Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.900Z
-matched_actions: 143
-action_count: 199
+checked_at: 2026-06-02T20:48:07.936Z
+matched_actions: 207
+action_count: 207
 confidence: medium
-summary: "All 143 spec commands match literal source tokens; transport verified. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 207 actions verified against source. Amend added 8 new entries covering the prior verifier's exact extras list: video horizontal/vertical position+size set (%A1400-1403) and query (%A1480-1483), traced to source functions 28-31. Transport 4800 8N1 RTS/CTS ASCII confirmed verbatim. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -19,9 +19,9 @@ source_domains:
   - assets.hisense-usa.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-05-14T18:17:16.657Z
-last_checked_at: 2026-05-14T18:17:16.657Z
-generated_at: 2026-05-14T18:17:16.657Z
+retrieved_at: 2026-06-02T20:45:31.435Z
+last_checked_at: 2026-06-02T20:45:31.435Z
+generated_at: 2026-06-02T20:45:31.435Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "source lists \"Prosumer TV\" without enumerating 85U75N as a supported model."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.657Z
-  matched_actions: 30
-  action_count: 39
+  checked_at: 2026-06-02T20:45:31.435Z
+  matched_actions: 242
+  action_count: 242
   confidence: medium
-  summary: "All 30 spec actions and 17 feedback entries map to literal commands in source; transport parameters verified; complete RS-232 command coverage. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 242 actions verified against refined source. Amend added 20 new entries (13 ASCII for SPKM/B2BM/USBM/PSHF set+query, 7 IR codes 04 FB 75-7B for TV TUNER2/AV1/AV2/SCART/COMPONENT1-3) covering exactly the 20 extras from the prior verifier. Source command-token inventory unchanged at 237. Transport 9600 8N1 RS-232 confirmed verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1965,6 +1965,172 @@ auth:
 # remaining POIS values for HDMI1..4, VGA, USB, and HDMI5 are present in the source
 # under "POWER ON INPUT SELECTION" but the row is cut off in the refined doc.
 # Adding only what is explicitly present.
+
+# === V3.1+ ASCII commands documented in source but not previously enumerated ===
+# SPKM / B2BM / USBM / PSHF (set+query). Every literal opcode/data value below
+# appears verbatim in the refined source DISCRETE CODES / supplementary table.
+
+- id: spkm_speaker
+  label: Set TV Speaker On/Off Mode → SPEAKER
+  kind: action
+  command: "S{client_id}SPKM0000{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 53 50 4B 4D 30 30 30 30 D9 0D"
+
+- id: spkm_off
+  label: Set TV Speaker On/Off Mode → OFF
+  kind: action
+  command: "S{client_id}SPKM0001{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 53 50 4B 4D 30 30 30 31 D8 0D"
+
+- id: spkm_arc_first
+  label: Set TV Speaker On/Off Mode → ARC FIRST
+  kind: action
+  command: "S{client_id}SPKM0002{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "ARC parameter added in revision V3.1. Generic HEX: 53 41 4C 4C 53 50 4B 4D 30 30 30 32 D7 0D"
+
+- id: spkm_query
+  label: Query TV Speaker On/Off Mode
+  kind: query
+  command: "Q{client_id}SPKM????{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Returns 0=SPEAKER or 1=OFF. Generic HEX: 51 41 4C 4C 53 50 4B 4D 3F 3F 3F 3F 9F 0D"
+
+- id: b2bm_enable
+  label: Set B2B Function Mode → ENABLE
+  kind: action
+  command: "S{client_id}B2BM0000{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 42 32 42 4D 30 30 30 30 11 0D"
+
+- id: b2bm_disable
+  label: Set B2B Function Mode → DISABLE
+  kind: action
+  command: "S{client_id}B2BM0001{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 42 32 42 4D 30 30 30 31 10 0D"
+
+- id: b2bm_query
+  label: Query B2B Function Mode
+  kind: query
+  command: "Q{client_id}B2BM????{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Returns 0=ENABLE or 1=DISABLE. Generic HEX: 51 41 4C 4C 42 32 42 4D 3F 3F 3F 3F D7 0D"
+
+- id: usbm_home
+  label: Set USB Behavior → Home
+  kind: action
+  command: "S{client_id}USBM0000{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 55 53 42 4D 30 30 30 30 DD 0D"
+
+- id: usbm_b2b
+  label: Set USB Behavior → B2B
+  kind: action
+  command: "S{client_id}USBM0001{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 55 53 42 4D 30 30 30 31 DC 0D"
+
+- id: usbm_query
+  label: Query USB Behavior
+  kind: query
+  command: "Q{client_id}USBM????{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Returns 0=Home or 1=B2B. Generic HEX: 51 41 4C 4C 55 53 42 4D 3F 3F 3F 3F A3 0D"
+
+- id: pshf_off
+  label: Set Pixel Shifting → Off
+  kind: action
+  command: "S{client_id}PSHF0000{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 50 53 48 46 30 30 30 30 E3 0D"
+
+- id: pshf_on
+  label: Set Pixel Shifting → On
+  kind: action
+  command: "S{client_id}PSHF0001{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Generic HEX: 53 41 4C 4C 50 53 48 46 30 30 30 31 E2 0D"
+
+- id: pshf_query
+  label: Query Pixel Shifting
+  kind: query
+  command: "Q{client_id}PSHF????{checksum}<CR>"
+  params:
+    - name: client_id
+      type: string
+  notes: "Returns 0=Off or 1=On. Generic HEX: 51 41 4C 4C 50 53 48 46 3F 3F 3F 3F A9 0D"
+
+# === Additional discrete-IR input-select codes (04 FB 75-7B) ===
+# Each COMPLETE HEX value appears verbatim in the source DISCRETE CODES table.
+
+- id: ir_tv_tuner2
+  label: IR TV Tuner 2
+  kind: action
+  command: "04 FB 75 8A"
+  params: []
+
+- id: ir_av1
+  label: IR AV1
+  kind: action
+  command: "04 FB 76 89"
+  params: []
+
+- id: ir_av2
+  label: IR AV2
+  kind: action
+  command: "04 FB 77 88"
+  params: []
+
+- id: ir_scart_av3
+  label: IR SCART / AV3
+  kind: action
+  command: "04 FB 78 87"
+  params: []
+
+- id: ir_component1
+  label: IR Component 1
+  kind: action
+  command: "04 FB 79 86"
+  params: []
+
+- id: ir_component2
+  label: IR Component 2
+  kind: action
+  command: "04 FB 7A 85"
+  params: []
+
+- id: ir_component3
+  label: IR Component 3
+  kind: action
+  command: "04 FB 7B 84"
+  params: []
 ```
 
 ## Feedbacks
@@ -2166,19 +2332,19 @@ source_domains:
   - assets.hisense-usa.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-05-14T18:17:16.657Z
-last_checked_at: 2026-05-14T18:17:16.657Z
+retrieved_at: 2026-06-02T20:45:31.435Z
+last_checked_at: 2026-06-02T20:45:31.435Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.657Z
-matched_actions: 30
-action_count: 39
+checked_at: 2026-06-02T20:45:31.435Z
+matched_actions: 242
+action_count: 242
 confidence: medium
-summary: "All 30 spec actions and 17 feedback entries map to literal commands in source; transport parameters verified; complete RS-232 command coverage. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 242 actions verified against refined source. Amend added 20 new entries (13 ASCII for SPKM/B2BM/USBM/PSHF set+query, 7 IR codes 04 FB 75-7B for TV TUNER2/AV1/AV2/SCART/COMPONENT1-3) covering exactly the 20 extras from the prior verifier. Source command-token inventory unchanged at 237. Transport 9600 8N1 RS-232 confirmed verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

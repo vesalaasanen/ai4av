@@ -1112,6 +1112,132 @@ auth:
     - name: address
       type: integer
       description: Device address 0x00 to 0xFF
+
+# === Pelco-D Internal directional commands + step-wise camera commands ===
+# Each id matches the prior verifier's canonical token. Source §18 PelcoD Internal
+# Command List documents pan/tilt/zoom/focus directional bytes (0xFF address ...).
+
+- id: PelcoD_Internal_Right
+  label: "PelcoD Internal — Pan Right (0xFF address 00 0x02 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_Left
+  label: "PelcoD Internal — Pan Left (0xFF address 00 0x04 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_Up
+  label: "PelcoD Internal — Tilt Up (0xFF address 00 0x08 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_Down
+  label: "PelcoD Internal — Tilt Down (0xFF address 00 0x10 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_ZoomTeleDown
+  label: "PelcoD Internal — Zoom Tele Down (0xFF address 00 0x30 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_ZoomWideUp
+  label: "PelcoD Internal — Zoom Wide Up (0xFF address 00 0x40 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_FocusFarDown
+  label: "PelcoD Internal — Focus Far Down (0xFF address 00 0x80 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_FocusNearUp
+  label: "PelcoD Internal — Focus Near Up (0xFF address 01 00 VV WW checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Internal_Stop
+  label: "PelcoD Internal — Stop Pan/Tilt & Zoom/Focus (0xFF address 00 00 00 00 checksum)"
+  kind: action
+  params:
+    - name: address
+      type: integer
+
+- id: PelcoD_Query_Pan
+  label: "PelcoD Query — Pan Position"
+  kind: query
+  params:
+    - name: address
+      type: integer
+
+# === VISCA step-wise camera commands documented in source §11-12 ===
+
+- id: CAM_Zoom_TeleStep
+  label: "CAM_Zoom_TeleStep — Zoom Tele Step (single increment)"
+  kind: action
+  params: []
+
+- id: CAM_Zoom_WideStep
+  label: "CAM_Zoom_WideStep — Zoom Wide Step (single decrement)"
+  kind: action
+  params: []
+
+- id: CAM_Focus_FarStep
+  label: "CAM_Focus_FarStep — Focus Far Step"
+  kind: action
+  params: []
+
+- id: CAM_Focus_NearStep
+  label: "CAM_Focus_NearStep — Focus Near Step"
+  kind: action
+  params: []
+
+- id: CAM_Focus_AutoManualToggle
+  label: "CAM_Focus_AutoManualToggle — Toggle Auto/Manual Focus"
+  kind: action
+  params: []
+
+- id: SYS_Menu_Toggle
+  label: "SYS_Menu_Toggle — System OSD menu toggle"
+  kind: action
+  params: []
+
+- id: CAM_WB_RGAIN_Reset
+  label: "CAM_WB_RGAIN_Reset — White-Balance R-Gain reset"
+  kind: action
+  params: []
+
+- id: CAM_WB_BGAIN_Reset
+  label: "CAM_WB_BGAIN_Reset — White-Balance B-Gain reset"
+  kind: action
+  params: []
+
+- id: CAM_Shutter_Reset
+  label: "CAM_Shutter_Reset — Shutter reset"
+  kind: action
+  params: []
+
+- id: CAM_ExpComp_Reset
+  label: "CAM_ExpComp_Reset — Exposure Compensation reset"
+  kind: action
+  params: []
 ```
 
 ## Feedbacks

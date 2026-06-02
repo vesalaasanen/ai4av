@@ -1015,6 +1015,141 @@ actions:
     kind: action
     command: RM END
     params: []
+
+  # === Commands documented in source but not previously enumerated ===
+  # Each command literal appears verbatim in the refined source command table.
+
+  - id: psdil_on
+    label: Dialog Level Adjust ON
+    kind: action
+    command: PSDIL ON
+    params: []
+
+  - id: psdil_off
+    label: Dialog Level Adjust OFF
+    kind: action
+    command: PSDIL OFF
+    params: []
+
+  - id: psdil_up
+    label: Dialog Level Adjust UP
+    kind: action
+    command: PSDIL UP
+    params: []
+
+  - id: psdil_down
+    label: Dialog Level Adjust DOWN
+    kind: action
+    command: PSDIL DOWN
+    params: []
+
+  - id: psreflev_0
+    label: Audyssey Reference Level 0 dB
+    kind: action
+    command: PSREFLEV 0
+    params: []
+
+  - id: psreflev_5
+    label: Audyssey Reference Level 5 dB
+    kind: action
+    command: PSREFLEV 5
+    params: []
+
+  - id: psreflev_10
+    label: Audyssey Reference Level 10 dB
+    kind: action
+    command: PSREFLEV 10
+    params: []
+
+  - id: psreflev_15
+    label: Audyssey Reference Level 15 dB
+    kind: action
+    command: PSREFLEV 15
+    params: []
+
+  - id: pslom_on
+    label: Loudness Management ON
+    kind: action
+    command: PSLOM ON
+    params: []
+
+  - id: pslom_off
+    label: Loudness Management OFF
+    kind: action
+    command: PSLOM OFF
+    params: []
+
+  - id: psfh_on
+    label: Front Height ON
+    kind: action
+    command: PSFH:ON
+    params: []
+
+  - id: psfh_off
+    label: Front Height OFF
+    kind: action
+    command: PSFH:OFF
+    params: []
+
+  - id: pssp_fw
+    label: Speaker layout Front-Wide
+    kind: action
+    command: PSSP:FW
+    params: []
+
+  - id: pssp_fh
+    label: Speaker layout Front-Height
+    kind: action
+    command: PSSP:FH
+    params: []
+
+  - id: pssp_sb
+    label: Speaker layout Surround-Back
+    kind: action
+    command: PSSP:SB
+    params: []
+
+  - id: psbsc_up
+    label: Bass Sync Control UP
+    kind: action
+    command: PSBSC UP
+    params: []
+
+  - id: psgeq_on
+    label: Graphic EQ ON
+    kind: action
+    command: PSGEQ ON
+    params: []
+
+  - id: psgeq_off
+    label: Graphic EQ OFF
+    kind: action
+    command: PSGEQ OFF
+    params: []
+
+  - id: pslfe_up
+    label: LFE level UP
+    kind: action
+    command: PSLFE UP
+    params: []
+
+  - id: pslfe_down
+    label: LFE level DOWN
+    kind: action
+    command: PSLFE DOWN
+    params: []
+
+  - id: pseff_on
+    label: Effect Level ON
+    kind: action
+    command: PSEFF ON
+    params: []
+
+  - id: pseff_off
+    label: Effect Level OFF
+    kind: action
+    command: PSEFF OFF
+    params: []
 ```
 
 ## Feedbacks

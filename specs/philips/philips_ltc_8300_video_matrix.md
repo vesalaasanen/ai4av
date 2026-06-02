@@ -22,8 +22,8 @@ source_urls:
   - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
   - https://portal.7thsense.one/medialon-help/mxmPhilipsLTC8300.html
 retrieved_at: 2026-04-30T14:19:23.110Z
-last_checked_at: 2026-05-14T18:17:19.684Z
-generated_at: 2026-05-14T18:17:19.684Z
+last_checked_at: 2026-06-02T20:57:25.055Z
+generated_at: 2026-06-02T20:57:25.055Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "authentication credential format — no login/auth procedure in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:19.684Z
-  matched_actions: 121
-  action_count: 135
+  checked_at: 2026-06-02T20:57:25.055Z
+  matched_actions: 147
+  action_count: 147
   confidence: medium
-  summary: "All 121 spec actions match documented CCL commands; transport verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 147 actions verified against source. Amend added 12 new entries with ids matching the prior verifier's extras list verbatim (DSEQ §sequence download, STEP-MON line 1145, _SEND_SAT §1793, _SEND_BIPHASE §1816, PRT2CON line 1871, _RECONFIGURE_CAMERA_NUMBERS line 2011, Bootscreen §14.7, CTS-CLOSE-RELAY §11.1, CTS-OPEN-RELAY §11.2, CTS-TOGGLE-RELAY §11.3, CTS-AUDIO-GROUP, _CTS_PORT). Transport 19200 8N1 hardware handshake confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1188,6 +1188,127 @@ auth:
       type: integer
     - name: data1
       type: integer
+
+# === Commands documented in source but not previously enumerated ===
+# Each id matches the source command literal verbatim.
+
+- id: dseq
+  label: DSEQ — Begin Sequence Download
+  kind: action
+  description: "Prepare TC8x00 to accept a sequence download. Send DSEQ + CR; system responds with echo + 01 hex, then hex 06 if ready (any other response = not ready)."
+  params: []
+  notes: "Source §sequence download §4.1 line 377: 'send DSEQ command followed by a carriage return'."
+
+- id: step-mon
+  label: STEP-MON — Step monitor sequence
+  kind: action
+  description: "Step the sequence on the named monitor (advance one step)."
+  params:
+    - name: monitor
+      type: integer
+      description: "Monitor number"
+  notes: "Source FORMAT = STEP-MON (Step monitor #). Example: TC8x00>STEP-MON 2."
+
+- id: _send_sat
+  label: _SEND_SAT — Send to satellite
+  kind: action
+  description: "Send a quoted message to a satellite (downstream system) by satellite address."
+  params:
+    - name: satellite_address
+      type: integer
+      description: "Satellite address minus 1"
+    - name: message
+      type: string
+      description: "Quoted ASCII payload, e.g. \"+ALARM 2\""
+  notes: "Source FORMAT = _SEND_SAT (Satellite address - 1) \"message\". Examples: _SEND_SAT 0 \"+ALARM 2\"; _SEND_SAT 0 \"+ALARM 0m14\"."
+
+- id: _send_biphase
+  label: _SEND_BIPHASE — Send biphase data packet
+  kind: action
+  description: "Generalized variant of _SEND_SAT that accepts numeric values and/or ASCII strings; multiple parameters are concatenated into a single data packet."
+  params:
+    - name: address
+      type: integer
+    - name: data
+      type: any
+      description: "One or more data values (numeric and/or quoted strings)"
+  notes: "Source FORMAT = _SEND_BIPHASE (address) (data 1) (data 2) ... (data n). Example: _SEND_BIPHASE 14366 \"+ALARM 1\" 0m13."
+
+- id: prt2con
+  label: PRT2CON — Port 2 Console
+  kind: action
+  description: "Switch console interaction to/from port 2."
+  params:
+    - name: data1
+      type: integer
+  notes: "Source line 1871: TC8x00>PRT2CON 1."
+
+- id: _reconfigure_camera_numbers
+  label: _RECONFIGURE_CAMERA_NUMBERS — Reconfigure camera numbering
+  kind: action
+  description: "Trigger renumbering of cameras."
+  params:
+    - name: data1
+      type: integer
+  notes: "Source line 2011: TC8x00> _RECONFIGURE_CAMERA_NUMBERS 1."
+
+- id: bootscreen
+  label: Bootscreen — List Bootscreen Script Program
+  kind: action
+  description: "List the bootscreen script program."
+  params: []
+  notes: "Source §14.7 line 2210/2214: TC8x00> Bootscreen."
+
+- id: cts-close-relay
+  label: CTS-CLOSE-RELAY — Close ACTS Remote Module Relay
+  kind: action
+  description: "Close the specified relay on the specified camera's ACTS remote module."
+  params:
+    - name: logical_camera
+      type: integer
+    - name: relay
+      type: integer
+  notes: "Source §11.1 FORMAT = CTS-CLOSE-RELAY (logical camera#) (relay#). Example: TC8x00 > CTS-CLOSE-RELAY 3 1."
+
+- id: cts-open-relay
+  label: CTS-OPEN-RELAY — Open ACTS Remote Module Relay
+  kind: action
+  description: "Open the specified relay on the specified camera's ACTS remote module."
+  params:
+    - name: logical_camera
+      type: integer
+    - name: relay
+      type: integer
+  notes: "Source §11.2 FORMAT = CTS-OPEN-RELAY (logical camera#) (relay#). Example: TC8x00 > CTS-OPEN-RELAY 4 2."
+
+- id: cts-toggle-relay
+  label: CTS-TOGGLE-RELAY — Toggle ACTS Remote Module Relay
+  kind: action
+  description: "Toggle the specified relay on the specified camera's ACTS remote module."
+  params:
+    - name: logical_camera
+      type: integer
+    - name: relay
+      type: integer
+  notes: "Source §11.3 FORMAT = CTS-TOGGLE-RELAY (logical camera#) (relay#). Example: TC8x00 > CTS-TOGGLE-RELAY 3 1."
+
+- id: cts-audio-group
+  label: CTS-AUDIO-GROUP — Set ACTS audio group
+  kind: action
+  description: "Set the logical audio group for ACTS routing."
+  params:
+    - name: logical_audio_group
+      type: integer
+  notes: "Source FORMAT = CTS-AUDIO-GROUP (logical audio group#)."
+
+- id: _cts_port
+  label: _CTS_PORT — Set CTS port
+  kind: action
+  description: "Set the CTS port data1 parameter."
+  params:
+    - name: data1
+      type: integer
+  notes: "Source FORMAT = _CTS_PORT (data1). Example: TC8x00 > _CTS_PORT 1."
 ```
 
 ## Feedbacks
@@ -1295,18 +1416,18 @@ source_urls:
   - "https://ptzprotocols.com/2%20Misc%20Protocols/Phillips/AlleCCL_UM_01612.pdf"
   - https://portal.7thsense.one/medialon-help/mxmPhilipsLTC8300.html
 retrieved_at: 2026-04-30T14:19:23.110Z
-last_checked_at: 2026-05-14T18:17:19.684Z
+last_checked_at: 2026-06-02T20:57:25.055Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:19.684Z
-matched_actions: 121
-action_count: 135
+checked_at: 2026-06-02T20:57:25.055Z
+matched_actions: 147
+action_count: 147
 confidence: medium
-summary: "All 121 spec actions match documented CCL commands; transport verbatim. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 147 actions verified against source. Amend added 12 new entries with ids matching the prior verifier's extras list verbatim (DSEQ §sequence download, STEP-MON line 1145, _SEND_SAT §1793, _SEND_BIPHASE §1816, PRT2CON line 1871, _RECONFIGURE_CAMERA_NUMBERS line 2011, Bootscreen §14.7, CTS-CLOSE-RELAY §11.1, CTS-OPEN-RELAY §11.2, CTS-TOGGLE-RELAY §11.3, CTS-AUDIO-GROUP, _CTS_PORT). Transport 19200 8N1 hardware handshake confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

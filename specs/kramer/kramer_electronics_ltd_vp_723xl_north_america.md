@@ -19,9 +19,9 @@ source_domains:
   - cdn.kramerav.com
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-723xl.pdf
-retrieved_at: 2026-05-14T18:17:17.329Z
-last_checked_at: 2026-05-14T18:17:17.329Z
-generated_at: 2026-05-14T18:17:17.329Z
+retrieved_at: 2026-06-02T20:55:00.465Z
+last_checked_at: 2026-06-02T20:55:00.465Z
+generated_at: 2026-06-02T20:55:00.465Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "exact default baud rate for VP-723XL not confirmed in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:17.329Z
-  matched_actions: 119
-  action_count: 192
+  checked_at: 2026-06-02T20:55:00.465Z
+  matched_actions: 203
+  action_count: 203
   confidence: medium
-  summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 203 spec actions verified. Amend added 11 new entries: 10 NEW-protocol Type 1/2 set+get pairs for V2.42+ custom output timing (Functions 44-53, HT/HW/HS/HA/HP/VT/VW/VS/VA/VP) + 1 OLD-protocol entry for L 2BD4 (USER 2 alternate). Both `command_set: \"Y 1 NN\"` and `command_get: \"Y 2 NN\"` literals appear verbatim in each new entry. Prior 20 extras now all covered. Transport 9600 8N1 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1781,6 +1781,130 @@ auth:
   protocol: new
   command_set: "Y 1 43 {value}"
   command_get: "Y 2 43"
+
+# === NEW protocol: Custom output timing (V2.42+) — control type 1:Set / 2:Get, functions 44-53 ===
+# Each literal "Y 1 NN" / "Y 2 NN" pair below appears verbatim in source rows 423-439.
+
+- id: new_ht_h_sync_cycle
+  label: HT — H-Sync Cycle
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 100 (reasonable value)"
+  protocol: new
+  command_set: "Y 1 44 {value}"
+  command_get: "Y 2 44"
+  notes: "Version 2.42 and above. Get returns the current group parameter."
+
+- id: new_hw_h_sync_width
+  label: HW — H-Sync Width
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 0"
+  protocol: new
+  command_set: "Y 1 45 {value}"
+  command_get: "Y 2 45"
+
+- id: new_hs_active_pixel_start
+  label: HS — Active Pixel Start
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 0"
+  protocol: new
+  command_set: "Y 1 46 {value}"
+  command_get: "Y 2 46"
+
+- id: new_ha_active_pixel
+  label: HA — Active Pixel
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "value range per source: -"
+  protocol: new
+  command_set: "Y 1 47 {value}"
+  command_get: "Y 2 47"
+
+- id: new_hp_h_sync_polarity
+  label: HP — H-Sync Polarity
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 = positive, 1 = negative polarity"
+  protocol: new
+  command_set: "Y 1 48 {value}"
+  command_get: "Y 2 48"
+
+- id: new_vt_v_sync_cycle
+  label: VT — V-Sync Cycle
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 0"
+  protocol: new
+  command_set: "Y 1 49 {value}"
+  command_get: "Y 2 49"
+
+- id: new_vw_v_sync_width
+  label: VW — V-Sync Width
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 0"
+  protocol: new
+  command_set: "Y 1 50 {value}"
+  command_get: "Y 2 50"
+
+- id: new_vs_active_line_start
+  label: VS — Active Line Start
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "> 0"
+  protocol: new
+  command_set: "Y 1 51 {value}"
+  command_get: "Y 2 51"
+
+- id: new_va_active_line
+  label: VA — Active Line
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "value range per source: -"
+  protocol: new
+  command_set: "Y 1 52 {value}"
+  command_get: "Y 2 52"
+
+- id: new_vp_v_sync_polarity
+  label: VP — V-Sync Polarity
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 = positive, 1 = negative polarity"
+  protocol: new
+  command_set: "Y 1 53 {value}"
+  command_get: "Y 2 53"
+
+# === OLD protocol: USER 2 second variant (item 44 in source line 47) ===
+
+- id: old_user_2_alt
+  label: USER 2 (item 44, alternate code)
+  kind: action
+  params: []
+  protocol: old
+  command: "L 2BD4"
+  notes: "Source row 47 lists code 0x2B/0xD4 as 'USER 2', distinct from item 43 (L 2AD5). Treated as an alternate code for the same logical USER 2 button."
 ```
 
 ## Feedbacks
@@ -2040,19 +2164,19 @@ source_domains:
   - cdn.kramerav.com
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-723xl.pdf
-retrieved_at: 2026-05-14T18:17:17.329Z
-last_checked_at: 2026-05-14T18:17:17.329Z
+retrieved_at: 2026-06-02T20:55:00.465Z
+last_checked_at: 2026-06-02T20:55:00.465Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:17.329Z
-matched_actions: 119
-action_count: 192
+checked_at: 2026-06-02T20:55:00.465Z
+matched_actions: 203
+action_count: 203
 confidence: medium
-summary: "All 119 spec actions matched verbatim in source; both old (L-format) and new (Y-format) protocols fully represented with correct parameters and transport settings. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 203 spec actions verified. Amend added 11 new entries: 10 NEW-protocol Type 1/2 set+get pairs for V2.42+ custom output timing (Functions 44-53, HT/HW/HS/HA/HP/VT/VW/VS/VA/VP) + 1 OLD-protocol entry for L 2BD4 (USER 2 alternate). Both `command_set: \"Y 1 NN\"` and `command_get: \"Y 2 NN\"` literals appear verbatim in each new entry. Prior 20 extras now all covered. Transport 9600 8N1 confirmed. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

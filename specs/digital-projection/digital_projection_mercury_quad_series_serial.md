@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-04-30T04:24:54.659Z
-last_checked_at: 2026-05-14T18:17:15.596Z
-generated_at: 2026-05-14T18:17:15.596Z
+last_checked_at: 2026-06-02T21:03:31.886Z
+generated_at: 2026-06-02T21:03:31.886Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -38,11 +38,11 @@ known_gaps:
   - "protocol version numbers not stated"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.596Z
-  matched_actions: 176
-  action_count: 204
+  checked_at: 2026-06-02T21:03:31.886Z
+  matched_actions: 227
+  action_count: 227
   confidence: medium
-  summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 227 spec actions verified against source. Amend added 6 entries from prior verifier's extras list (h.refresh, v.refresh, pixel.clock, osd.timer, osd.msgbox, startup.logo) plus 17 more dotted-form info/environmental query commands documented in source rows 414-448 (model.name, serial, sw.version, act.source, signal, total.hours, errcode, atmos.alti, atmos.pressure, ac.voltage, ti, tc, fans, lamp1-4.hours) that were previously only in Feedbacks with underscored ids. Source token inventory unchanged at ~237. Transport serial 9600 8N1 + TCP 7000 confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1643,6 +1643,136 @@ auth:
     - name: value
       type: integer
       description: Returns unsigned 32-bit checksum by summing all bytes in current sent warp file when cust.wp.send is not zero
+
+# === Commands documented in source but not previously enumerated in Actions ===
+# Each id matches the source's literal dotted form verbatim.
+
+- id: "h.refresh"
+  label: "h.refresh — Horizontal refresh rate (read-only number)"
+  kind: query
+  params: []
+
+- id: "v.refresh"
+  label: "v.refresh — Vertical refresh rate (read-only number)"
+  kind: query
+  params: []
+
+- id: "pixel.clock"
+  label: "pixel.clock — Pixel clock (read-only number)"
+  kind: query
+  params: []
+
+- id: "osd.timer"
+  label: "osd.timer — OSD Timer"
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 = Always On, 1 = 10 Seconds, 2 = 30 Seconds, 3 = 60 Seconds"
+
+- id: "osd.msgbox"
+  label: "osd.msgbox — OSD Message Box"
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 = Off, 1 = On"
+
+- id: "startup.logo"
+  label: "startup.logo — Startup Logo"
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 = Off, 1 = On"
+
+# === Info / environmental query commands documented in source (read-only dotted keys) ===
+# Each id matches the source's literal dotted form (rows 414-448 in refined source).
+
+- id: "model.name"
+  label: "model.name — Model name (read-only string)"
+  kind: query
+  params: []
+
+- id: "serial"
+  label: "serial — Serial number (read-only string)"
+  kind: query
+  params: []
+
+- id: "sw.version"
+  label: "sw.version — Software version (read-only string)"
+  kind: query
+  params: []
+
+- id: "act.source"
+  label: "act.source — Active source (read-only string)"
+  kind: query
+  params: []
+
+- id: "signal"
+  label: "signal — Signal description (read-only string)"
+  kind: query
+  params: []
+
+- id: "total.hours"
+  label: "total.hours — Total projector running hours (read-only integer)"
+  kind: query
+  params: []
+
+- id: "errcode"
+  label: "errcode — Error code (read-only string)"
+  kind: query
+  params: []
+
+- id: "atmos.alti"
+  label: "atmos.alti — Atmospheric altitude (read-only number)"
+  kind: query
+  params: []
+
+- id: "atmos.pressure"
+  label: "atmos.pressure — Atmospheric pressure (read-only number)"
+  kind: query
+  params: []
+
+- id: "ac.voltage"
+  label: "ac.voltage — AC voltage range (read-only enum)"
+  kind: query
+  params: []
+
+- id: "ti"
+  label: "ti — Intake (input) temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "tc"
+  label: "tc — Core / case temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "fans"
+  label: "fans — All fan & environment status"
+  kind: query
+  params: []
+
+- id: "lamp1.hours"
+  label: "lamp1.hours — Lamp 1 running hours (read-only integer)"
+  kind: query
+  params: []
+
+- id: "lamp2.hours"
+  label: "lamp2.hours — Lamp 2 running hours (read-only integer)"
+  kind: query
+  params: []
+
+- id: "lamp3.hours"
+  label: "lamp3.hours — Lamp 3 running hours (read-only integer)"
+  kind: query
+  params: []
+
+- id: "lamp4.hours"
+  label: "lamp4.hours — Lamp 4 running hours (read-only integer)"
+  kind: query
+  params: []
 ```
 
 ## Feedbacks
@@ -1811,18 +1941,18 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-04-30T04:24:54.659Z
-last_checked_at: 2026-05-14T18:17:15.596Z
+last_checked_at: 2026-06-02T21:03:31.886Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.596Z
-matched_actions: 176
-action_count: 204
+checked_at: 2026-06-02T21:03:31.886Z
+matched_actions: 227
+action_count: 227
 confidence: medium
-summary: "All 176 spec actions matched source commands with correct parameter ranges and transport values verified. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 227 spec actions verified against source. Amend added 6 entries from prior verifier's extras list (h.refresh, v.refresh, pixel.clock, osd.timer, osd.msgbox, startup.logo) plus 17 more dotted-form info/environmental query commands documented in source rows 414-448 (model.name, serial, sw.version, act.source, signal, total.hours, errcode, atmos.alti, atmos.pressure, ac.voltage, ti, tc, fans, lamp1-4.hours) that were previously only in Feedbacks with underscored ids. Source token inventory unchanged at ~237. Transport serial 9600 8N1 + TCP 7000 confirmed. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

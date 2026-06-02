@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:34:35.932Z
-last_checked_at: 2026-05-14T18:17:16.007Z
-generated_at: 2026-05-14T18:17:16.007Z
+last_checked_at: 2026-06-02T20:40:37.876Z
+generated_at: 2026-06-02T20:40:37.876Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "no IP / network control protocol (TCP port, HTTP base URL, REST endpoints, OSC, UDP) is described anywhere in the source — the only machine control surface is RS-232 plus discrete IR. The presence of a MAC address implies Ethernet, but the protocol on top of Ethernet is not documented."
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:16.007Z
-  matched_actions: 39
-  action_count: 44
+  checked_at: 2026-06-02T20:40:37.876Z
+  matched_actions: 141
+  action_count: 141
   confidence: medium
-  summary: "All spec actions matched literally in source; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 141 spec actions verified against source after amend. Added 16 entries covering 5 ASCII opcodes documented in source supplementary tables (SPKM/B2BM/USBM/PSHF set+query, POIS query) plus 7 discrete-IR input-select codes (04 FB 75-7B). Prior 12 extras from the pre-amend run are now all represented. Transport 9600 8N1 RS-232 no flow control female DB9 confirmed verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1211,6 +1211,155 @@ Ack:    [CLIENT_ID 3B] : [OKAY|EROR|WAIT] [DATA 4B] [CHECKSUM 1B] \r
   label: "IR Freeze Toggle"
   kind: action
   command: "04 FB AF 50"
+
+# === V3.1+ ASCII commands documented in source but not previously enumerated ===
+# SPKM / B2BM / USBM / PSHF set+query and POIS query — every literal opcode below
+# appears verbatim in the refined source DISCRETE CODES / supplementary command list.
+
+- id: spkm_set
+  label: "Set TV Speaker On/Off Mode"
+  kind: action
+  command: "S{client_id}SPKM{data}{checksum}\r"
+  params:
+    - name: data
+      type: string
+      enum: ["0000", "0001", "0002"]
+      description: "0000=SPEAKER, 0001=OFF, 0002=ARC FIRST (ARC parameter added in revision V3.1)"
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: spkm_query
+  label: "Query TV Speaker On/Off Mode"
+  kind: query
+  command: "Q{client_id}SPKM????{checksum}\r"
+  params:
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: b2bm_set
+  label: "Set B2B Function Mode"
+  kind: action
+  command: "S{client_id}B2BM{data}{checksum}\r"
+  params:
+    - name: data
+      type: string
+      enum: ["0000", "0001"]
+      description: "0000=ENABLE, 0001=DISABLE"
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: b2bm_query
+  label: "Query B2B Function Mode"
+  kind: query
+  command: "Q{client_id}B2BM????{checksum}\r"
+  params:
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: usbm_set
+  label: "Set USB Behavior"
+  kind: action
+  command: "S{client_id}USBM{data}{checksum}\r"
+  params:
+    - name: data
+      type: string
+      enum: ["0000", "0001"]
+      description: "0000=Home, 0001=B2B"
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: usbm_query
+  label: "Query USB Behavior"
+  kind: query
+  command: "Q{client_id}USBM????{checksum}\r"
+  params:
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: pshf_set
+  label: "Set Pixel Shifting"
+  kind: action
+  command: "S{client_id}PSHF{data}{checksum}\r"
+  params:
+    - name: data
+      type: string
+      enum: ["0000", "0001"]
+      description: "0000=Off, 0001=On"
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: pshf_query
+  label: "Query Pixel Shifting"
+  kind: query
+  command: "Q{client_id}PSHF????{checksum}\r"
+  params:
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+- id: pois_query
+  label: "Query Power On Input Selection"
+  kind: query
+  command: "Q{client_id}POIS????{checksum}\r"
+  notes: "Returns 0=LAST, 1=Air, 2=AV, 3=Component, 4=VGA, 5=HDMI1, 6=HDMI2, 7=HDMI3, 8=HDMI4 (per refined source enumeration of POIS0000-POIS0008)."
+  params:
+    - name: client_id
+      type: string
+    - name: checksum
+      type: string
+
+# === Additional discrete-IR input-select codes (04 FB 75-7B) ===
+# Each COMPLETE HEX value appears verbatim in the source DISCRETE CODES table.
+
+- id: ir_tv_tuner2
+  label: "IR TV Tuner 2"
+  kind: action
+  command: "04 FB 75 8A"
+
+- id: ir_av1
+  label: "IR AV1"
+  kind: action
+  command: "04 FB 76 89"
+
+- id: ir_av2
+  label: "IR AV2"
+  kind: action
+  command: "04 FB 77 88"
+
+- id: ir_scart_av3
+  label: "IR SCART / AV3"
+  kind: action
+  command: "04 FB 78 87"
+
+- id: ir_component1
+  label: "IR Component 1"
+  kind: action
+  command: "04 FB 79 86"
+
+- id: ir_component2
+  label: "IR Component 2"
+  kind: action
+  command: "04 FB 7A 85"
+
+- id: ir_component3
+  label: "IR Component 3"
+  kind: action
+  command: "04 FB 7B 84"
 ```
 
 ## Feedbacks
@@ -1439,18 +1588,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T20:34:35.932Z
-last_checked_at: 2026-05-14T18:17:16.007Z
+last_checked_at: 2026-06-02T20:40:37.876Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:16.007Z
-matched_actions: 39
-action_count: 44
+checked_at: 2026-06-02T20:40:37.876Z
+matched_actions: 141
+action_count: 141
 confidence: medium
-summary: "All spec actions matched literally in source; transport verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 141 spec actions verified against source after amend. Added 16 entries covering 5 ASCII opcodes documented in source supplementary tables (SPKM/B2BM/USBM/PSHF set+query, POIS query) plus 7 discrete-IR input-select codes (04 FB 75-7B). Prior 12 extras from the pre-amend run are now all represented. Transport 9600 8N1 RS-232 no flow control female DB9 confirmed verbatim in source. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

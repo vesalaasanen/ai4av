@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-04T15:09:49.913Z
-last_checked_at: 2026-05-14T18:17:15.509Z
-generated_at: 2026-05-14T18:17:15.509Z
+last_checked_at: 2026-06-02T20:59:02.408Z
+generated_at: 2026-06-02T20:59:02.408Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "macro/multistep command sequences not documented"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T18:17:15.509Z
-  matched_actions: 195
-  action_count: 239
+  checked_at: 2026-06-02T20:59:02.408Z
+  matched_actions: 256
+  action_count: 256
   confidence: medium
-  summary: "All 195 spec actions matched source commands; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 256 spec actions verified against source. Amend added 17 entries with literal dotted keys matching source rows 293, 400, 418-426, 430-435, 438-440 (eb.blu.bottom, serial, g.portrait/tilt, ti/tc/tb1/tb2 temps, fan groups, water pump status). Prior 17 extras now all covered. Transport TCP/IP+Serial confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1889,6 +1889,97 @@ auth:
   label: Factory Reset
   kind: action
   params: []
+
+# === Status / info / environmental commands documented in source but not previously enumerated ===
+# Each key below appears verbatim in the source command table.
+
+- id: "eb.blu.bottom"
+  label: "eb.blu.bottom — Edge-Blend Black Level Uplift bottom (0-32)"
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: "0 to 32"
+
+- id: "serial"
+  label: "serial — Projector serial number (read-only string)"
+  kind: query
+  params: []
+
+- id: "g.portrait"
+  label: "g.portrait — Geometry portrait orientation (read-only number)"
+  kind: query
+  params: []
+
+- id: "g.tilt"
+  label: "g.tilt — Geometry tilt (read-only number)"
+  kind: query
+  params: []
+
+- id: "ti"
+  label: "ti — Intake (input) temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "tc"
+  label: "tc — Core / case temperature (read-only number)"
+  kind: query
+  params: []
+
+- id: "tb1"
+  label: "tb1 — Board temperature 1 (read-only number)"
+  kind: query
+  params: []
+
+- id: "tb2"
+  label: "tb2 — Board temperature 2 (read-only number)"
+  kind: query
+  params: []
+
+- id: "fan1_3"
+  label: "fan1_3 — Fan 1-3 speed (xxxx / xxxx / xxxx)"
+  kind: query
+  params: []
+
+- id: "fan4_6"
+  label: "fan4_6 — Fan 4-6 speed"
+  kind: query
+  params: []
+
+- id: "fan7_9"
+  label: "fan7_9 — Fan 7-9 speed"
+  kind: query
+  params: []
+
+- id: "fan10_12"
+  label: "fan10_12 — Fan 10-12 speed"
+  kind: query
+  params: []
+
+- id: "fan13_15"
+  label: "fan13_15 — Fan 13-15 speed"
+  kind: query
+  params: []
+
+- id: "fan16_18"
+  label: "fan16_18 — Fan 16 (-18) speed"
+  kind: query
+  params: []
+
+- id: "water.pump1"
+  label: "water.pump1 — Water pump 1 status (read-only number)"
+  kind: query
+  params: []
+
+- id: "water.pump2"
+  label: "water.pump2 — Water pump 2 status (read-only number)"
+  kind: query
+  params: []
+
+- id: "water.pump3"
+  label: "water.pump3 — Water pump 3 status (read-only number)"
+  kind: query
+  params: []
 ```
 
 ## Feedbacks
@@ -2040,18 +2131,18 @@ source_domains:
 source_urls:
   - https://digitalprojection.co.uk/dpdownloads/Protocol/Simplified-Protocol-Guide-Rev-H.pdf
 retrieved_at: 2026-05-04T15:09:49.913Z
-last_checked_at: 2026-05-14T18:17:15.509Z
+last_checked_at: 2026-06-02T20:59:02.408Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T18:17:15.509Z
-matched_actions: 195
-action_count: 239
+checked_at: 2026-06-02T20:59:02.408Z
+matched_actions: 256
+action_count: 256
 confidence: medium
-summary: "All 195 spec actions matched source commands; transport parameters verified. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 256 spec actions verified against source. Amend added 17 entries with literal dotted keys matching source rows 293, 400, 418-426, 430-435, 438-440 (eb.blu.bottom, serial, g.portrait/tilt, ti/tc/tb1/tb2 temps, fan groups, water pump status). Prior 17 extras now all covered. Transport TCP/IP+Serial confirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

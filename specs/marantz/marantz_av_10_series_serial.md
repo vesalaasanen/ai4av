@@ -990,6 +990,130 @@ actions:
   # UNRESOLVED: full list of PS (parameter setting) commands for Audyssey, room size,
   # graphic EQ, DRC, dialogue enhancer, LFE, effect level, delay, panorama,
   # dimension, center width, etc. - partially documented above.
+
+  # === Commands documented in source but not previously enumerated ===
+  # Each command literal appears verbatim in the refined source command table.
+
+  - id: source_reference_select
+    label: Source Reference Select (SR family root opcode)
+    kind: action
+    command: SR
+    description: "Source Reference select root opcode (per source SR command family)."
+    params: []
+
+  - id: vsvpm_auto
+    label: Video Processing Mode AUTO
+    kind: action
+    command: VSVPMAUTO
+    params: []
+
+  - id: vsvpm_game
+    label: Video Processing Mode GAME
+    kind: action
+    command: VSVPMGAME
+    params: []
+
+  - id: vsvst_on
+    label: Vertical Stretch ON
+    kind: action
+    command: VSVST ON
+    params: []
+
+  - id: psdil_on
+    label: Dialog Level Adjust ON
+    kind: action
+    command: PSDIL ON
+    params: []
+
+  - id: psswl_on
+    label: Subwoofer Level Adjust ON
+    kind: action
+    command: PSSWL ON
+    params: []
+
+  - id: pscinemaeq_on
+    label: Cinema EQ ON
+    kind: action
+    command: PSCINEMA EQ.ON
+    params: []
+
+  - id: pslfc_on
+    label: Low Frequency Containment ON
+    kind: action
+    command: PSLFC ON
+    params: []
+
+  - id: pscntamt_up
+    label: Containment Amount UP
+    kind: action
+    command: PSCNTAMT UP
+    params: []
+
+  - id: psdsx_on_hw
+    label: DSX ON Height/Width
+    kind: action
+    command: PSDSX ONHW
+    params: []
+
+  - id: psgeq_on
+    label: Graphic EQ ON
+    kind: action
+    command: PSGEQ ON
+    params: []
+
+  - id: psdrc_auto
+    label: Dynamic Range Control AUTO
+    kind: action
+    command: PSDRC AUTO
+    params: []
+
+  - id: psdeh_off
+    label: Dialogue Enhancer OFF
+    kind: action
+    command: PSDEH OFF
+    params: []
+
+  - id: pslfe_up
+    label: LFE level UP
+    kind: action
+    command: PSLFE UP
+    params: []
+
+  - id: pspan_on
+    label: Panorama ON
+    kind: action
+    command: PSPAN ON
+    params: []
+
+  - id: psdim_up
+    label: Dimension UP
+    kind: action
+    command: PSDIM UP
+    params: []
+
+  - id: pv_off
+    label: Picture / Video OFF
+    kind: action
+    command: PV OFF
+    params: []
+
+  - id: z2cs_st
+    label: Zone 2 Channel Setting STereo
+    kind: action
+    command: Z2CS ST
+    params: []
+
+  - id: z2cv_fl_up
+    label: Zone 2 Channel Volume Front Left UP
+    kind: action
+    command: Z2CV FL UP
+    params: []
+
+  - id: mnzst_on
+    label: Main Zone Stereo (MNZST) ON
+    kind: action
+    command: MNZST ON
+    params: []
 ```
 
 ## Feedbacks

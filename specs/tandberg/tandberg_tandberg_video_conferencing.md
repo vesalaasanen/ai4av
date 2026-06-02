@@ -464,6 +464,129 @@ actions:
     description: Read current SIP profile configuration
     params: []
     command: "xConfiguration SIP"
+
+  # === xCommands documented in source but not previously enumerated ===
+  # Each command literal appears verbatim in the refined source.
+
+  - id: audio_microphones_mute
+    label: Mute all microphones
+    kind: action
+    params: []
+    command: "xCommand Audio Microphones Mute"
+
+  - id: audio_microphones_unmute
+    label: Unmute all microphones
+    kind: action
+    params: []
+    command: "xCommand Audio Microphones Unmute"
+
+  - id: boot
+    label: Reboot the system
+    kind: action
+    params: []
+    command: "xCommand Boot"
+
+  - id: call_hold
+    label: Place active call on hold
+    kind: action
+    params: []
+    command: "xCommand Call Hold"
+
+  - id: call_resume
+    label: Resume held call
+    kind: action
+    params: []
+    command: "xCommand Call Resume"
+
+  - id: call_disconnect_all
+    label: Disconnect all active calls
+    kind: action
+    params: []
+    command: "xCommand Call DisconnectAll"
+
+  - id: callhistory_get
+    label: Get call history
+    kind: query
+    params: []
+    command: "xCommand CallHistory Get"
+
+  - id: callhistory_delete_all
+    label: Delete all call history entries
+    kind: action
+    params: []
+    command: "xCommand CallHistory DeleteAll"
+
+  - id: farend_camera_move
+    label: Move far-end camera
+    kind: action
+    params: []
+    command: "xCommand FarEndControl Camera Move"
+
+  - id: farend_preset_activate
+    label: Activate a far-end camera preset
+    kind: action
+    params: []
+    command: "xCommand FarEndControl Preset Activate"
+
+  - id: preset_store
+    label: Store a local camera preset
+    kind: action
+    params: []
+    command: "xCommand Preset Store"
+
+  - id: preset_activate
+    label: Activate a local camera preset
+    kind: action
+    params: []
+    command: "xCommand Preset Activate"
+
+  - id: conference_dnd_activate
+    label: Activate Do Not Disturb
+    kind: action
+    params: []
+    command: "xCommand Conference DoNotDisturb Activate"
+
+  - id: camera_ramp
+    label: Continuous camera move ("ramp")
+    kind: action
+    params: []
+    command: "xCommand Camera Ramp"
+
+  - id: camera_trigger_autofocus
+    label: Trigger one-shot autofocus on local camera
+    kind: action
+    params: []
+    command: "xCommand Camera TriggerAutofocus"
+
+  - id: gpio_set
+    label: Set GPIO pin manual state
+    kind: action
+    params: []
+    command: "xCommand GPIO ManualState Set"
+
+  - id: message_alert_display
+    label: Display an on-screen alert message
+    kind: action
+    params: []
+    command: "xCommand Message Alert Display"
+
+  - id: peripherals_connect
+    label: Register a connected peripheral with the system
+    kind: action
+    params: []
+    command: "xCommand Peripherals Connect"
+
+  - id: security_fips_activate
+    label: Activate FIPS-140 cryptographic mode
+    kind: action
+    params: []
+    command: "xCommand Security FIPSMode Activate"
+
+  - id: systemunit_factory_reset
+    label: Reset the system to factory defaults
+    kind: action
+    params: []
+    command: "xCommand SystemUnit FactoryReset"
 ```
 
 ## Feedbacks

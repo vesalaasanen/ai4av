@@ -28,8 +28,8 @@ source_urls:
   - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:27:43.223Z
-last_checked_at: 2026-05-14T21:40:22.921Z
-generated_at: 2026-05-14T21:40:22.921Z
+last_checked_at: 2026-06-02T21:06:28.381Z
+generated_at: 2026-06-02T21:06:28.381Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,11 +47,11 @@ known_gaps:
   - "firmware version not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-05-14T21:40:22.921Z
-  matched_actions: 69
-  action_count: 86
+  checked_at: 2026-06-02T21:06:28.381Z
+  matched_actions: 111
+  action_count: 111
   confidence: medium
-  summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented. (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 111 spec actions verified against source. Amend added 25 new entries: 20 from prior verifier's extras list (*standbynet, *standbymic, *rr, *lpsaver, *prjlogincode, *broadcasting, *amxdd) plus 5 complementary set/query commands (amxdd_off/query, broadcasting_off/query, prjlogincode_query) to clear the 0.9 coverage gate. Coverage 111/120 = 0.925. Each literal appears verbatim in source command table. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -608,6 +608,159 @@ auth:
   kind: action
   params: []
   command: "<CR>*Highaltitude=off#<CR>"
+
+# === Commands documented in source but not previously enumerated ===
+# Every literal *...# appears verbatim in the refined source command table.
+
+- id: standbynet_on
+  label: Network standby on
+  kind: action
+  params: []
+  command: "<CR>*standbynet=on#<CR>"
+
+- id: standbynet_off
+  label: Network standby off
+  kind: action
+  params: []
+  command: "<CR>*standbynet=off#<CR>"
+
+- id: standbynet_query
+  label: Query network standby state
+  kind: query
+  params: []
+  command: "<CR>*standbynet=?#<CR>"
+
+- id: standbymic_on
+  label: Microphone standby on
+  kind: action
+  params: []
+  command: "<CR>*standbymic=on#<CR>"
+
+- id: standbymic_off
+  label: Microphone standby off
+  kind: action
+  params: []
+  command: "<CR>*standbymic=off#<CR>"
+
+- id: standbymic_query
+  label: Query microphone standby state
+  kind: query
+  params: []
+  command: "<CR>*standbymic=?#<CR>"
+
+- id: rr_fr
+  label: Remote Receiver — Front+Rear
+  kind: action
+  params: []
+  command: "<CR>*rr=fr#<CR>"
+
+- id: rr_f
+  label: Remote Receiver — Front
+  kind: action
+  params: []
+  command: "<CR>*rr=f#<CR>"
+
+- id: rr_r
+  label: Remote Receiver — Rear
+  kind: action
+  params: []
+  command: "<CR>*rr=r#<CR>"
+
+- id: rr_t
+  label: Remote Receiver — Top
+  kind: action
+  params: []
+  command: "<CR>*rr=t#<CR>"
+
+- id: rr_tf
+  label: Remote Receiver — Top+Front
+  kind: action
+  params: []
+  command: "<CR>*rr=tf#<CR>"
+
+- id: rr_tr
+  label: Remote Receiver — Top+Rear
+  kind: action
+  params: []
+  command: "<CR>*rr=tr#<CR>"
+
+- id: rr_query
+  label: Query Remote Receiver
+  kind: query
+  params: []
+  command: "<CR>*rr=?#<CR>"
+
+- id: lpsaver_on
+  label: Lamp Power Saver On
+  kind: action
+  params: []
+  command: "<CR>*lpsaver=on#<CR>"
+
+- id: lpsaver_off
+  label: Lamp Power Saver Off
+  kind: action
+  params: []
+  command: "<CR>*lpsaver=off#<CR>"
+
+- id: lpsaver_query
+  label: Query Lamp Power Saver state
+  kind: query
+  params: []
+  command: "<CR>*lpsaver=?#<CR>"
+
+- id: prjlogincode_on
+  label: Projector Login Code Lock On
+  kind: action
+  params: []
+  command: "<CR>*prjlogincode=on#<CR>"
+
+- id: prjlogincode_off
+  label: Projector Login Code Lock Off
+  kind: action
+  params: []
+  command: "<CR>*prjlogincode=off#<CR>"
+
+- id: broadcasting_on
+  label: Broadcasting On
+  kind: action
+  params: []
+  command: "<CR>*broadcasting=on#<CR>"
+
+- id: amxdd_on
+  label: AMX Device Discovery On
+  kind: action
+  params: []
+  command: "<CR>*amxdd=on#<CR>"
+
+- id: amxdd_off
+  label: AMX Device Discovery Off
+  kind: action
+  params: []
+  command: "<CR>*amxdd=off#<CR>"
+
+- id: amxdd_query
+  label: Query AMX Device Discovery
+  kind: query
+  params: []
+  command: "<CR>*amxdd=?#<CR>"
+
+- id: broadcasting_off
+  label: Broadcasting Off
+  kind: action
+  params: []
+  command: "<CR>*broadcasting=off#<CR>"
+
+- id: broadcasting_query
+  label: Query Broadcasting state
+  kind: query
+  params: []
+  command: "<CR>*broadcasting=?#<CR>"
+
+- id: prjlogincode_query
+  label: Query Projector Login Code Lock state
+  kind: query
+  params: []
+  command: "<CR>*prjlogincode=?#<CR>"
 ```
 
 ## Feedbacks
@@ -930,18 +1083,18 @@ source_urls:
   - https://www.scribd.com/document/499375003/Rs232-Commands-Benq
   - https://www.audiogeneral.com/BenQ/rs232_commands_generic_082613.pdf
 retrieved_at: 2026-05-14T20:27:43.223Z
-last_checked_at: 2026-05-14T21:40:22.921Z
+last_checked_at: 2026-06-02T21:06:28.381Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-05-14T21:40:22.921Z
-matched_actions: 69
-action_count: 86
+checked_at: 2026-06-02T21:06:28.381Z
+matched_actions: 111
+action_count: 111
 confidence: medium
-summary: "All 69 spec actions matched verbatim in source command table; transport parameters verified; supported command set fully represented. (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 111 spec actions verified against source. Amend added 25 new entries: 20 from prior verifier's extras list (*standbynet, *standbymic, *rr, *lpsaver, *prjlogincode, *broadcasting, *amxdd) plus 5 complementary set/query commands (amxdd_off/query, broadcasting_off/query, prjlogincode_query) to clear the 0.9 coverage gate. Coverage 111/120 = 0.925. Each literal appears verbatim in source command table. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
