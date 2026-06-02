@@ -3,11 +3,12 @@ spec_id: admin/stewart-filmscreen-corporation-enode
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Stewart Filmscreen Corporation eNode Control Spec"
-manufacturer: "Stewart Filmscreen Corporation"
+manufacturer: "Stewart Filmscreen"
 model_family: "eNode (North America)"
 aliases: []
 compatible_with:
   manufacturers:
+    - "Stewart Filmscreen"
     - "Stewart Filmscreen Corporation"
   models:
     - "eNode (North America)"

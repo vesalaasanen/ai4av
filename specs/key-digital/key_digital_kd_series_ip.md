@@ -20,8 +20,7 @@ source_domains:
   - keydigital.com
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-  - http://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-retrieved_at: 2026-06-02T00:50:06.157Z
+retrieved_at: 2026-05-08T15:21:29.666Z
 last_checked_at: 2026-06-02T01:48:17.348Z
 generated_at: 2026-06-02T01:48:17.348Z
 firmware_coverage: "\"1.02\""
@@ -408,8 +407,7 @@ source_domains:
   - keydigital.com
 source_urls:
   - https://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-  - http://keydigital.com/Downloads/KD-4x4_8x8CSA/KD-4x4_8x8CSA_Manual.pdf
-retrieved_at: 2026-06-02T00:50:06.157Z
+retrieved_at: 2026-05-08T15:21:29.666Z
 last_checked_at: 2026-06-02T01:48:17.348Z
 ```
 

@@ -16,10 +16,15 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - webostv.developer.lge.com
   - justaddpower.com
+  - justaddpower.happyfox.com
 source_urls:
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:29:31.211Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
+retrieved_at: 2026-06-02T03:24:42.118Z
 last_checked_at: 2026-06-02T03:24:42.118Z
 generated_at: 2026-06-02T03:24:42.118Z
 firmware_coverage: "Not stated in source"
@@ -561,10 +566,15 @@ interlocks: []
 
 ```yaml
 source_domains:
+  - webostv.developer.lge.com
   - justaddpower.com
+  - justaddpower.happyfox.com
 source_urls:
+  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:29:31.211Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://webostv.developer.lge.com/assets/netcast/NetCast-UDAP.pdf
+retrieved_at: 2026-06-02T03:24:42.118Z
 last_checked_at: 2026-06-02T03:24:42.118Z
 ```
 

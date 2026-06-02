@@ -17,11 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - optomaeurope.com
-  - region-resource.optoma.com
 source_urls:
   - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
-  - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
-retrieved_at: 2026-06-02T03:46:41.702Z
+retrieved_at: 2026-04-30T04:25:03.995Z
 last_checked_at: 2026-06-02T10:14:08.590Z
 generated_at: 2026-06-02T10:14:08.590Z
 firmware_coverage: "Not stated in source"
@@ -1077,11 +1075,9 @@ All commands use ASCII prefix `~XX` (XX = projector ID, 00-99, 00 broadcasts to 
 ```yaml
 source_domains:
   - optomaeurope.com
-  - region-resource.optoma.com
 source_urls:
   - https://www.optomaeurope.com/ContentStorage/Documents/731aa26e-4842-4414-999a-422879b17cee.pdf
-  - https://region-resource.optoma.com/products/import/Documents/fcc27c8d-3ab3-462f-a7f3-ee35633fdb8c.pdf
-retrieved_at: 2026-06-02T03:46:41.702Z
+retrieved_at: 2026-04-30T04:25:03.995Z
 last_checked_at: 2026-06-02T10:14:08.590Z
 ```
 

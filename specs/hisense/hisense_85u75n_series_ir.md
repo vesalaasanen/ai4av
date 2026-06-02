@@ -19,7 +19,7 @@ source_domains:
   - assets.hisense-usa.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:56:39.285Z
+retrieved_at: 2026-05-14T18:17:16.657Z
 last_checked_at: 2026-05-14T18:17:16.657Z
 generated_at: 2026-05-14T18:17:16.657Z
 firmware_coverage: "Not stated in source"
@@ -2166,7 +2166,7 @@ source_domains:
   - assets.hisense-usa.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:56:39.285Z
+retrieved_at: 2026-05-14T18:17:16.657Z
 last_checked_at: 2026-05-14T18:17:16.657Z
 ```
 

@@ -17,9 +17,14 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:53:02.818Z
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/c995389f20/Hisense-Discrete-IR-Commands-for-copy-paste_0.pdf
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=904"
+retrieved_at: 2026-05-14T18:17:16.708Z
 last_checked_at: 2026-05-14T18:17:16.708Z
 generated_at: 2026-05-14T18:17:16.708Z
 firmware_coverage: "Not stated in source"
@@ -1554,9 +1559,14 @@ Q{CLIENT_ID 3B}{COMMAND 4B}????{CHECKSUM 1B}{0x0D}           (Query)
 ```yaml
 source_domains:
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:53:02.818Z
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/c995389f20/Hisense-Discrete-IR-Commands-for-copy-paste_0.pdf
+  - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=904"
+retrieved_at: 2026-05-14T18:17:16.708Z
 last_checked_at: 2026-05-14T18:17:16.708Z
 ```
 

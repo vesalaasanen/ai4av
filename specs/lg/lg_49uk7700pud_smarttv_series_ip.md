@@ -17,9 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
+  - justaddpower.com
+  - gscs-b2c.lge.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:36:19.264Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
+retrieved_at: 2026-06-02T01:48:25.352Z
 last_checked_at: 2026-06-02T01:48:25.352Z
 generated_at: 2026-06-02T01:48:25.352Z
 firmware_coverage: "Not stated in source"
@@ -540,9 +544,13 @@ interlocks: []
 ```yaml
 source_domains:
   - proaudioinc.com
+  - justaddpower.com
+  - gscs-b2c.lge.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:36:19.264Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
+retrieved_at: 2026-06-02T01:48:25.352Z
 last_checked_at: 2026-06-02T01:48:25.352Z
 ```
 

@@ -3,11 +3,12 @@ spec_id: admin/wattbox-wb-series
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "SnapAV WattBox (WB Series) Control Spec"
-manufacturer: "SnapAV / WattBox"
+manufacturer: SnapAV
 model_family: WB-800-IPVM-6
 aliases: []
 compatible_with:
   manufacturers:
+    - SnapAV
     - "SnapAV / WattBox"
   models:
     - WB-800-IPVM-6

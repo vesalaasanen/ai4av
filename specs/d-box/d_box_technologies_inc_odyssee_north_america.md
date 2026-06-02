@@ -3,11 +3,12 @@ spec_id: admin/d-box-odyssee
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "D-BOX Odyssee Control Spec"
-manufacturer: "D-BOX Technologies Inc."
+manufacturer: D-BOX
 model_family: "Odyssee (North America)"
 aliases: []
 compatible_with:
   manufacturers:
+    - D-BOX
     - "D-BOX Technologies Inc."
   models:
     - "Odyssee (North America)"

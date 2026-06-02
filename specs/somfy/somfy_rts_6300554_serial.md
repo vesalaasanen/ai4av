@@ -15,11 +15,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - service.somfy.com
-source_urls:
-  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
-retrieved_at: 2026-06-02T06:13:57.229Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:08:18.462Z
 last_checked_at: 2026-05-17T00:08:18.462Z
 generated_at: 2026-05-17T00:08:18.462Z
 firmware_coverage: "Not stated in source"
@@ -32,6 +30,7 @@ known_gaps:
   - "source describes no multi-step sequences"
   - "thermal protection, obstacle detection, run-time limit behavior described in Cause codes"
   - "model 6300554 specific feature set, firmware compat range, max bus length, max node count per bus."
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-17T00:08:18.462Z
@@ -369,11 +368,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - service.somfy.com
-source_urls:
-  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
-retrieved_at: 2026-06-02T06:13:57.229Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:08:18.462Z
 last_checked_at: 2026-05-17T00:08:18.462Z
 ```
 
@@ -398,6 +395,7 @@ summary: "All 21 actions matched exactly to source message codes; transport para
 - "source describes no multi-step sequences"
 - "thermal protection, obstacle detection, run-time limit behavior described in Cause codes"
 - "model 6300554 specific feature set, firmware compat range, max bus length, max node count per bus."
+- "model-specific source not located"
 ```
 
 ---

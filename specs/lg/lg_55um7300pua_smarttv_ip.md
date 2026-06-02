@@ -16,10 +16,14 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - openhab.org
   - proaudioinc.com
+  - gscs-b2c.lge.com
 source_urls:
+  - https://www.openhab.org/addons/bindings/lgtvserial/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T04:13:07.316Z
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
+retrieved_at: 2026-06-02T04:20:02.894Z
 last_checked_at: 2026-06-02T04:20:02.894Z
 generated_at: 2026-06-02T04:20:02.894Z
 firmware_coverage: "Not stated in source"
@@ -762,10 +766,14 @@ interlocks:
 
 ```yaml
 source_domains:
+  - openhab.org
   - proaudioinc.com
+  - gscs-b2c.lge.com
 source_urls:
+  - https://www.openhab.org/addons/bindings/lgtvserial/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T04:13:07.316Z
+  - "https://gscs-b2c.lge.com/downloadFile?fileId=KROWM000526118.pdf"
+retrieved_at: 2026-06-02T04:20:02.894Z
 last_checked_at: 2026-06-02T04:20:02.894Z
 ```
 

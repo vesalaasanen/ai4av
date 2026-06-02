@@ -17,9 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
+  - justaddpower.happyfox.com
+  - files.remotecentral.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T02:51:47.177Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-04-26T19:40:52.030Z
 last_checked_at: 2026-04-26T19:40:52.030Z
 generated_at: 2026-04-26T19:40:52.030Z
 firmware_coverage: "Not stated in source"
@@ -614,9 +618,13 @@ interlocks:
 ```yaml
 source_domains:
   - proaudioinc.com
+  - justaddpower.happyfox.com
+  - files.remotecentral.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T02:51:47.177Z
+  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-04-26T19:40:52.030Z
 last_checked_at: 2026-04-26T19:40:52.030Z
 ```
 

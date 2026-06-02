@@ -19,7 +19,7 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T01:39:56.617Z
+retrieved_at: 2026-06-02T05:46:06.357Z
 last_checked_at: 2026-06-02T05:46:06.357Z
 generated_at: 2026-06-02T05:46:06.357Z
 firmware_coverage: "Not stated in source"
@@ -251,7 +251,7 @@ source_domains:
   - hisense-b2b.com
 source_urls:
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
-retrieved_at: 2026-06-02T01:39:56.617Z
+retrieved_at: 2026-06-02T05:46:06.357Z
 last_checked_at: 2026-06-02T05:46:06.357Z
 ```
 

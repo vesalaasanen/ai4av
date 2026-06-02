@@ -3,11 +3,12 @@ spec_id: admin/seura-stm3-55-s
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Séura STM3 Outdoor Display Control Spec"
-manufacturer: "Séura"
+manufacturer: Seura
 model_family: STM3-49-S
 aliases: []
 compatible_with:
   manufacturers:
+    - Seura
     - "Séura"
   models:
     - STM3-49-S

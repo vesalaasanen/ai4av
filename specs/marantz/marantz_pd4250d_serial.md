@@ -23,7 +23,7 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://www.marantz.com/on/demandware.static/-/Library-Sites-marantz_northamerica_shared/default/dw8fd12025/./archive-downloads/dfu_pd4250d_final_eng.pdf
   - "https://www.manualslib.com/manual/98953/Marantz-Pd4250d.html?page=32"
-retrieved_at: 2026-06-02T04:40:04.090Z
+retrieved_at: 2026-05-27T19:07:10.611Z
 last_checked_at: 2026-06-02T04:56:28.540Z
 generated_at: 2026-06-02T04:56:28.540Z
 firmware_coverage: "Not stated in source"
@@ -1563,7 +1563,7 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://www.marantz.com/on/demandware.static/-/Library-Sites-marantz_northamerica_shared/default/dw8fd12025/./archive-downloads/dfu_pd4250d_final_eng.pdf
   - "https://www.manualslib.com/manual/98953/Marantz-Pd4250d.html?page=32"
-retrieved_at: 2026-06-02T04:40:04.090Z
+retrieved_at: 2026-05-27T19:07:10.611Z
 last_checked_at: 2026-06-02T04:56:28.540Z
 ```
 

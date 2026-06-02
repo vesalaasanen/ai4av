@@ -17,11 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - biggerhammer.net
-  - manualslib.com
 source_urls:
   - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
-  - "https://www.manualslib.com/manual/689190/Faroudja-Dvp5000.html?page=13"
-retrieved_at: 2026-06-02T00:51:24.269Z
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-06-02T01:48:08.219Z
 generated_at: 2026-06-02T01:48:08.219Z
 firmware_coverage: "Not stated in source"
@@ -405,11 +403,9 @@ interlocks: []
 ```yaml
 source_domains:
   - biggerhammer.net
-  - manualslib.com
 source_urls:
   - https://www.biggerhammer.net/mediaroom/faroudja/5000manfinal.pdf
-  - "https://www.manualslib.com/manual/689190/Faroudja-Dvp5000.html?page=13"
-retrieved_at: 2026-06-02T00:51:24.269Z
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-06-02T01:48:08.219Z
 ```
 

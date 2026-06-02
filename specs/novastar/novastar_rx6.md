@@ -15,13 +15,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - oss.novastar.tech
-  - github.com
-source_urls:
-  - https://oss.novastar.tech/uploads/2025/06/Control-Protocol-for-Multimedia-Playback-Software-Kompass-FX3-Pro-V2.1.3.pdf
-  - https://github.com/bitfocus/companion-module-novastar-mediaserver/blob/master/src/actions.js
-retrieved_at: 2026-06-02T02:38:06.246Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-06-02T08:27:40.706Z
 last_checked_at: 2026-06-02T08:27:40.706Z
 generated_at: 2026-06-02T08:27:40.706Z
 firmware_coverage: "Not stated in source"
@@ -45,6 +41,7 @@ known_gaps:
   - "no error codes or failure response format documented"
   - "maximum number of programs/layers not stated"
   - "whether UDP data reporting port 18961 carries event notifications or a different data format"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T08:27:40.706Z
@@ -602,13 +599,9 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains:
-  - oss.novastar.tech
-  - github.com
-source_urls:
-  - https://oss.novastar.tech/uploads/2025/06/Control-Protocol-for-Multimedia-Playback-Software-Kompass-FX3-Pro-V2.1.3.pdf
-  - https://github.com/bitfocus/companion-module-novastar-mediaserver/blob/master/src/actions.js
-retrieved_at: 2026-06-02T02:38:06.246Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-06-02T08:27:40.706Z
 last_checked_at: 2026-06-02T08:27:40.706Z
 ```
 
@@ -644,6 +637,7 @@ summary: "All 26 spec action tags verified verbatim in source with matching para
 - "no error codes or failure response format documented"
 - "maximum number of programs/layers not stated"
 - "whether UDP data reporting port 18961 carries event notifications or a different data format"
+- "model-specific source not located"
 ```
 
 ---

@@ -22,7 +22,7 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
-retrieved_at: 2026-06-02T00:12:57.372Z
+retrieved_at: 2026-05-14T15:21:12.776Z
 last_checked_at: 2026-06-02T12:02:40.883Z
 generated_at: 2026-06-02T12:02:40.883Z
 firmware_coverage: "Not stated in source"
@@ -3473,7 +3473,7 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
-retrieved_at: 2026-06-02T00:12:57.372Z
+retrieved_at: 2026-05-14T15:21:12.776Z
 last_checked_at: 2026-06-02T12:02:40.883Z
 ```
 

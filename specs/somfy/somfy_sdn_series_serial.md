@@ -20,11 +20,9 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains:
-  - service.somfy.com
-source_urls:
-  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
-retrieved_at: 2026-06-02T06:13:23.596Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:14:06.133Z
 last_checked_at: 2026-05-17T00:14:06.133Z
 generated_at: 2026-05-17T00:14:06.133Z
 firmware_coverage: "Not stated in source"
@@ -42,6 +40,7 @@ known_gaps:
   - "CTRL_MOVE message referenced in motor status Cause 32h (Timeout exceeded \"when using CTRL_MOVE\") is not documented in the refined source — opcode not given"
   - "CTRL_NETWORK_LOCK referenced in lock section as an additional control message but not documented in the refined source"
   - "WINK behaviour (Cause 02h in POST_MOTOR_STATUS) suggests a Wink control command exists but it is not documented in the refined source"
+  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-05-17T00:14:06.133Z
@@ -480,11 +479,9 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains:
-  - service.somfy.com
-source_urls:
-  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
-retrieved_at: 2026-06-02T06:13:23.596Z
+source_domains: []
+source_urls: []
+retrieved_at: 2026-05-17T00:14:06.133Z
 last_checked_at: 2026-05-17T00:14:06.133Z
 ```
 
@@ -514,6 +511,7 @@ summary: "All 21 spec actions verified against source; transport parameters conf
 - "CTRL_MOVE message referenced in motor status Cause 32h (Timeout exceeded \"when using CTRL_MOVE\") is not documented in the refined source — opcode not given"
 - "CTRL_NETWORK_LOCK referenced in lock section as an additional control message but not documented in the refined source"
 - "WINK behaviour (Cause 02h in POST_MOTOR_STATUS) suggests a Wink control command exists but it is not documented in the refined source"
+- "model-specific source not located"
 ```
 
 ---

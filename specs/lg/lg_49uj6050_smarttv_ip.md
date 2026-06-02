@@ -17,9 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - justaddpower.com
+  - manualslib.com
+  - scribd.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T01:18:31.928Z
+  - https://www.manualslib.com/products/Lg-49uj6050-Uc-12883580.html
+  - https://www.scribd.com/document/649294226/RS232-forLGTV
+retrieved_at: 2026-06-02T01:48:23.040Z
 last_checked_at: 2026-06-02T01:48:23.040Z
 generated_at: 2026-06-02T01:48:23.040Z
 firmware_coverage: "Not stated in source"
@@ -570,9 +574,13 @@ interlocks: []
 ```yaml
 source_domains:
   - justaddpower.com
+  - manualslib.com
+  - scribd.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T01:18:31.928Z
+  - https://www.manualslib.com/products/Lg-49uj6050-Uc-12883580.html
+  - https://www.scribd.com/document/649294226/RS232-forLGTV
+retrieved_at: 2026-06-02T01:48:23.040Z
 last_checked_at: 2026-06-02T01:48:23.040Z
 ```
 

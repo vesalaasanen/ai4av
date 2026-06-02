@@ -17,9 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:11:18.020Z
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-06-02T01:48:20.704Z
 last_checked_at: 2026-06-02T01:48:20.704Z
 generated_at: 2026-06-02T01:48:20.704Z
 firmware_coverage: "Not stated in source"
@@ -538,9 +542,13 @@ interlocks: []
 ```yaml
 source_domains:
   - proaudioinc.com
+  - knowledge.tiffinmotorhomes.com
+  - files.remotecentral.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:11:18.020Z
+  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
+  - https://files.remotecentral.com/library/22-1/lg/television/index.html
+retrieved_at: 2026-06-02T01:48:20.704Z
 last_checked_at: 2026-06-02T01:48:20.704Z
 ```
 

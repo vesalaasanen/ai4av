@@ -20,7 +20,7 @@ source_domains:
 source_urls:
   - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
   - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-retrieved_at: 2026-06-02T05:25:57.445Z
+retrieved_at: 2026-05-27T13:39:34.813Z
 last_checked_at: 2026-06-02T05:46:13.951Z
 generated_at: 2026-06-02T05:46:13.951Z
 firmware_coverage: "Not stated in source"
@@ -520,7 +520,7 @@ source_domains:
 source_urls:
   - https://www.shinybowusa.com/PDF/RS232_V2.0.pdf
   - https://www.shinybowusa.com/PDF/RS232_V1.0.pdf
-retrieved_at: 2026-06-02T05:25:57.445Z
+retrieved_at: 2026-05-27T13:39:34.813Z
 last_checked_at: 2026-06-02T05:46:13.951Z
 ```
 

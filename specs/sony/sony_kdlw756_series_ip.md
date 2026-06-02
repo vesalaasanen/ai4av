@@ -21,7 +21,7 @@ source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
   - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
   - https://pro-bravia.sony.net
-retrieved_at: 2026-06-02T05:42:04.409Z
+retrieved_at: 2026-05-26T04:12:15.587Z
 last_checked_at: 2026-05-31T22:30:32.178Z
 generated_at: 2026-05-31T22:30:32.178Z
 firmware_coverage: "Not stated in source"
@@ -378,7 +378,7 @@ source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
   - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
   - https://pro-bravia.sony.net
-retrieved_at: 2026-06-02T05:42:04.409Z
+retrieved_at: 2026-05-26T04:12:15.587Z
 last_checked_at: 2026-05-31T22:30:32.178Z
 ```
 

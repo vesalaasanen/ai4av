@@ -19,11 +19,7 @@ source_domains:
   - support.d-box.com
 source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
-  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20%28RS-232_TCP_UDP%29.pdf"
-  - "https://support.d-box.com/hubfs/129-975-0001-EN7_D-BOX%20TCP_IP%20Monitoring%20Service%20Communication%20API.pdf"
-  - https://support.d-box.com/en/knowledge/d-box-haptisync-api
-  - https://support.d-box.com/en/knowledge/welcome-to-our-knowledge-base
-retrieved_at: 2026-06-01T23:19:44.867Z
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-06-02T00:05:13.669Z
 generated_at: 2026-06-02T00:05:13.669Z
 firmware_coverage: "Not stated in source"
@@ -536,11 +532,7 @@ source_domains:
   - support.d-box.com
 source_urls:
   - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20(RS-232_TCP_UDP).pdf"
-  - "https://support.d-box.com/hubfs/198-914-0016-EN6%20Motion%20Engine_Remote%20Protocol%20%28RS-232_TCP_UDP%29.pdf"
-  - "https://support.d-box.com/hubfs/129-975-0001-EN7_D-BOX%20TCP_IP%20Monitoring%20Service%20Communication%20API.pdf"
-  - https://support.d-box.com/en/knowledge/d-box-haptisync-api
-  - https://support.d-box.com/en/knowledge/welcome-to-our-knowledge-base
-retrieved_at: 2026-06-01T23:19:44.867Z
+retrieved_at: 2026-05-13T16:00:00.000Z
 last_checked_at: 2026-06-02T00:05:13.669Z
 ```
 

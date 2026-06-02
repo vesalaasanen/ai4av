@@ -17,11 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - heimkinoraum.de
-  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-  - https://assets.denon.com/documentmaster/us/dcm50005001_serialprotocol.pdf
-retrieved_at: 2026-06-01T23:15:21.131Z
+retrieved_at: 2026-04-29T09:03:22.437Z
 last_checked_at: 2026-06-02T09:05:36.452Z
 generated_at: 2026-06-02T09:05:36.452Z
 firmware_coverage: "Not stated in source"
@@ -5631,11 +5629,9 @@ interlocks:
 ```yaml
 source_domains:
   - heimkinoraum.de
-  - assets.denon.com
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
-  - https://assets.denon.com/documentmaster/us/dcm50005001_serialprotocol.pdf
-retrieved_at: 2026-06-01T23:15:21.131Z
+retrieved_at: 2026-04-29T09:03:22.437Z
 last_checked_at: 2026-06-02T09:05:36.452Z
 ```
 

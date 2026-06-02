@@ -16,10 +16,12 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
+  - manualslib.com
   - justaddpower.com
 source_urls:
+  - https://www.manualslib.com/manual/2692857/Lg-Uk6500.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:35:27.943Z
+retrieved_at: 2026-06-02T03:24:42.892Z
 last_checked_at: 2026-06-02T03:24:42.892Z
 generated_at: 2026-06-02T03:24:42.892Z
 firmware_coverage: "Not stated in source"
@@ -462,10 +464,12 @@ Self-check: no invented voltage/current/port/baud; `status: draft`; `declared_co
 
 ```yaml
 source_domains:
+  - manualslib.com
   - justaddpower.com
 source_urls:
+  - https://www.manualslib.com/manual/2692857/Lg-Uk6500.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:35:27.943Z
+retrieved_at: 2026-06-02T03:24:42.892Z
 last_checked_at: 2026-06-02T03:24:42.892Z
 ```
 

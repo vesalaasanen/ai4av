@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
+  - justaddpower.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:17:53.320Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T01:48:24.519Z
 last_checked_at: 2026-06-02T01:48:24.519Z
 generated_at: 2026-06-02T01:48:24.519Z
 firmware_coverage: "Not stated in source"
@@ -775,9 +777,11 @@ interlocks: []
 ```yaml
 source_domains:
   - proaudioinc.com
+  - justaddpower.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T01:17:53.320Z
+  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
+retrieved_at: 2026-06-02T01:48:24.519Z
 last_checked_at: 2026-06-02T01:48:24.519Z
 ```
 

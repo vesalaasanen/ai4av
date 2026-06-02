@@ -3,11 +3,12 @@ spec_id: admin/stewart-filmscreen-corporation-bric
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Stewart Filmscreen BRIC Control Spec"
-manufacturer: "Stewart Filmscreen Corporation"
+manufacturer: "Stewart Filmscreen"
 model_family: "BRIC Masking Controller"
 aliases: []
 compatible_with:
   manufacturers:
+    - "Stewart Filmscreen"
     - "Stewart Filmscreen Corporation"
   models:
     - "BRIC Masking Controller"

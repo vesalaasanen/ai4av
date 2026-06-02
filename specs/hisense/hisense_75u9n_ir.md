@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:44:15.938Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-04-26T13:12:43.803Z
 last_checked_at: 2026-04-26T13:12:43.803Z
 generated_at: 2026-04-26T13:12:43.803Z
 firmware_coverage: "Not stated in source"
@@ -1210,9 +1212,11 @@ interlocks: []
 ```yaml
 source_domains:
   - assets.hisense-usa.com
+  - hisense-b2b.com
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
-retrieved_at: 2026-06-02T01:44:15.938Z
+  - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
+retrieved_at: 2026-04-26T13:12:43.803Z
 last_checked_at: 2026-04-26T13:12:43.803Z
 ```
 
