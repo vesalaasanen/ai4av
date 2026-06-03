@@ -33,8 +33,8 @@ source_domains:
 source_urls:
   - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:40.994Z
-last_checked_at: 2026-06-02T22:04:31.188Z
-generated_at: 2026-06-02T22:04:31.188Z
+last_checked_at: 2026-06-03T06:22:59.741Z
+generated_at: 2026-06-03T06:22:59.741Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -49,11 +49,11 @@ known_gaps:
   - "RTSP/SRT/RTMP streaming auth parameters (user/pass, passphrase) documented but not the control API auth"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:31.188Z
+  checked_at: 2026-06-03T06:22:59.741Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 actions verified against source. Transport (http, 8080, no auth) confirmed (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1231,18 +1231,18 @@ source_domains:
 source_urls:
   - https://birddog.tv/AV/API/index.html
 retrieved_at: 2026-04-30T04:40:40.994Z
-last_checked_at: 2026-06-02T22:04:31.188Z
+last_checked_at: 2026-06-03T06:22:59.741Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:31.188Z
+checked_at: 2026-06-03T06:22:59.741Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 actions verified against source. Transport (http, 8080, no auth) confirmed (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

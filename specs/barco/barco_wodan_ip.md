@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-06-01T22:43:05.087Z
-last_checked_at: 2026-06-02T22:04:21.072Z
-generated_at: 2026-06-02T22:04:21.072Z
+last_checked_at: 2026-06-03T06:22:53.933Z
+generated_at: 2026-06-03T06:22:53.933Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "DMX channel function/offset/value is read for channels 01..14 but the \"function\" strings and DMX channel mapping table are not reproduced in the source excerpt we have. They are R-only and must be introspected or read at runtime."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:21.072Z
+  checked_at: 2026-06-03T06:22:53.933Z
   matched_actions: 68
   action_count: 68
   confidence: medium
-  summary: "All 68 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 68 spec actions traced to source document; Transport parameters match exactly (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1201,18 +1201,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-06-01T22:43:05.087Z
-last_checked_at: 2026-06-02T22:04:21.072Z
+last_checked_at: 2026-06-03T06:22:53.933Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:21.072Z
+checked_at: 2026-06-03T06:22:53.933Z
 matched_actions: 68
 action_count: 68
 confidence: medium
-summary: "All 68 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 68 spec actions traced to source document; Transport parameters match exactly (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -62,8 +62,8 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-04-29T13:19:27.152Z
-last_checked_at: 2026-06-02T22:06:43.845Z
-generated_at: 2026-06-02T22:06:43.845Z
+last_checked_at: 2026-06-03T06:52:13.920Z
+generated_at: 2026-06-03T06:52:13.920Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -81,11 +81,11 @@ known_gaps:
   - "power state warmup/standby values inferred from typical projector behavior, not explicitly listed in this source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:43.845Z
+  checked_at: 2026-06-03T06:52:13.920Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 8 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport verified (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -270,18 +270,18 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-04-29T13:19:27.152Z
-last_checked_at: 2026-06-02T22:06:43.845Z
+last_checked_at: 2026-06-03T06:52:13.920Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:43.845Z
+checked_at: 2026-06-03T06:52:13.920Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 8 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport verified (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

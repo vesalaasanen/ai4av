@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-05-04T06:15:26.245Z
-last_checked_at: 2026-06-02T22:04:35.788Z
-generated_at: 2026-06-02T22:04:35.788Z
+last_checked_at: 2026-06-03T06:25:31.099Z
+generated_at: 2026-06-03T06:25:31.099Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "TCP port number not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:35.788Z
+  checked_at: 2026-06-03T06:25:31.099Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 15 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete 1:1 match between spec actions and source (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -274,18 +274,18 @@ source_domains:
 source_urls:
   - "https://www.blustream.com.au/Attachment/DownloadFile?downloadId=192"
 retrieved_at: 2026-05-04T06:15:26.245Z
-last_checked_at: 2026-06-02T22:04:35.788Z
+last_checked_at: 2026-06-03T06:25:31.099Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:35.788Z
+checked_at: 2026-06-03T06:25:31.099Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 15 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete 1:1 match between spec actions and source (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

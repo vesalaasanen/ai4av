@@ -23,8 +23,8 @@ source_urls:
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/dx70-dx80-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce92/mx200g2-mx300g2-api-reference-guide-ce92.pdf
 retrieved_at: 2026-06-01T23:29:55.954Z
-last_checked_at: 2026-06-02T22:05:22.098Z
-generated_at: 2026-06-02T22:05:22.098Z
+last_checked_at: 2026-06-03T06:31:54.087Z
+generated_at: 2026-06-03T06:31:54.087Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "full systemtools admin commands exist (network ping/traceroute, pki, securitysettings, etc.) but are stated to be \"for advanced troubleshooting\" and \"should not be used to program the codec\" — not included above."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:22.098Z
+  checked_at: 2026-06-03T06:31:54.087Z
   matched_actions: 252
   action_count: 252
   confidence: medium
-  summary: "All 252 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Spec documents Cisco xAPI with 252 actions from vendor manual (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2859,18 +2859,18 @@ source_urls:
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/dx70-dx80-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce92/mx200g2-mx300g2-api-reference-guide-ce92.pdf
 retrieved_at: 2026-06-01T23:29:55.954Z
-last_checked_at: 2026-06-02T22:05:22.098Z
+last_checked_at: 2026-06-03T06:31:54.087Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:22.098Z
+checked_at: 2026-06-03T06:31:54.087Z
 matched_actions: 252
 action_count: 252
 confidence: medium
-summary: "All 252 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Spec documents Cisco xAPI with 252 actions from vendor manual (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

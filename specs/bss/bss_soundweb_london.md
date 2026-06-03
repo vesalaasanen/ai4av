@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:40:52.018Z
-last_checked_at: 2026-06-02T22:04:46.236Z
-generated_at: 2026-06-02T22:04:46.236Z
+last_checked_at: 2026-06-03T06:25:36.605Z
+generated_at: 2026-06-03T06:25:36.605Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "specific Object ID values for each processing object type not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:46.236Z
+  checked_at: 2026-06-03T06:25:36.605Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 actions directly attested in source protocol spec (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -320,18 +320,18 @@ source_domains:
 source_urls:
   - https://bssaudio.com/en/site_elements/soundweb-london-third-party-control-application-guide
 retrieved_at: 2026-04-30T04:40:52.018Z
-last_checked_at: 2026-06-02T22:04:46.236Z
+last_checked_at: 2026-06-03T06:25:36.605Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:46.236Z
+checked_at: 2026-06-03T06:25:36.605Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 actions directly attested in source protocol spec (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,8 +23,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
   - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-06-02T22:05:09.951Z
-generated_at: 2026-06-02T22:05:09.951Z
+last_checked_at: 2026-06-03T06:31:46.362Z
+generated_at: 2026-06-03T06:31:46.362Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "source doc title references LX37/40/45/50/55 but filename suggested LX500 — family applicability confirmed by Table 3 command list"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:09.951Z
+  checked_at: 2026-06-03T06:31:46.362Z
   matched_actions: 122
   action_count: 122
   confidence: medium
-  summary: "All 122 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 122 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1565,18 +1565,18 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/christie-lx37-lx55-lw25-rs232-communication-protocols.pdf
   - https://applicationmarket.crestron.com/content/Help/Christie/christie_digital_lx-55_v1_0_help.pdf
 retrieved_at: 2026-04-29T17:31:28.689Z
-last_checked_at: 2026-06-02T22:05:09.951Z
+last_checked_at: 2026-06-03T06:31:46.362Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:09.951Z
+checked_at: 2026-06-03T06:31:46.362Z
 matched_actions: 122
 action_count: 122
 confidence: medium
-summary: "All 122 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 122 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

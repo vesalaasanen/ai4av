@@ -22,8 +22,8 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T23:00:23.780Z
-last_checked_at: 2026-06-02T22:05:53.570Z
-generated_at: 2026-06-02T22:05:53.570Z
+last_checked_at: 2026-06-03T06:35:53.789Z
+generated_at: 2026-06-03T06:35:53.789Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "specific DN-A7100 feature differences vs other models in the protocol document not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:53.570Z
+  checked_at: 2026-06-03T06:35:53.789Z
   matched_actions: 182
   action_count: 182
   confidence: medium
-  summary: "All 182 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 182 actions and transport verified (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -2023,18 +2023,18 @@ source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - https://assets.denon.com/documentmaster/us/heos_cli_protocol_specification_290616.pdf
 retrieved_at: 2026-05-14T23:00:23.780Z
-last_checked_at: 2026-06-02T22:05:53.570Z
+last_checked_at: 2026-06-03T06:35:53.789Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:53.570Z
+checked_at: 2026-06-03T06:35:53.789Z
 matched_actions: 182
 action_count: 182
 confidence: medium
-summary: "All 182 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 182 actions and transport verified (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

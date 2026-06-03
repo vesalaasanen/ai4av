@@ -22,8 +22,8 @@ source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
   - https://manualmachine.com/casio/rs232c/1402409-user-manual/
 retrieved_at: 2026-04-30T11:49:52.748Z
-last_checked_at: 2026-06-02T22:05:01.521Z
-generated_at: 2026-06-02T22:05:01.521Z
+last_checked_at: 2026-06-03T06:28:19.807Z
+generated_at: 2026-06-03T06:28:19.807Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "detailed pinout of YK-5 cable not in this excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:01.521Z
+  checked_at: 2026-06-03T06:28:19.807Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec actions verified against source command list (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -197,18 +197,18 @@ source_urls:
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
   - https://manualmachine.com/casio/rs232c/1402409-user-manual/
 retrieved_at: 2026-04-30T11:49:52.748Z
-last_checked_at: 2026-06-02T22:05:01.521Z
+last_checked_at: 2026-06-03T06:28:19.807Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:01.521Z
+checked_at: 2026-06-03T06:28:19.807Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec actions verified against source command list (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

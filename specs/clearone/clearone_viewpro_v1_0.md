@@ -23,9 +23,9 @@ source_urls:
   - "https://web.archive.org/web/20240626092836/https://www.clearone.com/sites/default/files/2019-07/Using%201-Way%20RS232%20to%20Control%20Sources.pdf"
   - "https://web.archive.org/web/20240626060739/https://www.clearone.com/sites/default/files/2019-07/VIEW%20Pro%20Decoder%20Install%20%26%20User%20Manual.pdf"
   - https://web.archive.org/web/20240627011557/https://www.clearone.com/sites/default/files/2020-01/VIEW_Pro_Encoder_Installation_Manual.pdf
-retrieved_at: 2026-06-02T22:05:25.224Z
-last_checked_at: 2026-06-02T22:05:25.224Z
-generated_at: 2026-06-02T22:05:25.224Z
+retrieved_at: 2026-06-03T06:31:55.862Z
+last_checked_at: 2026-06-03T06:31:55.862Z
+generated_at: 2026-06-03T06:31:55.862Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "UDP subscription configuration requires StreamNet Dealer Setup Program"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:25.224Z
+  checked_at: 2026-06-03T06:31:55.862Z
   matched_actions: 45
   action_count: 45
   confidence: medium
-  summary: "All 45 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: 45 actions verified, transport correct (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -629,19 +629,19 @@ source_urls:
   - "https://web.archive.org/web/20240626092836/https://www.clearone.com/sites/default/files/2019-07/Using%201-Way%20RS232%20to%20Control%20Sources.pdf"
   - "https://web.archive.org/web/20240626060739/https://www.clearone.com/sites/default/files/2019-07/VIEW%20Pro%20Decoder%20Install%20%26%20User%20Manual.pdf"
   - https://web.archive.org/web/20240627011557/https://www.clearone.com/sites/default/files/2020-01/VIEW_Pro_Encoder_Installation_Manual.pdf
-retrieved_at: 2026-06-02T22:05:25.224Z
-last_checked_at: 2026-06-02T22:05:25.224Z
+retrieved_at: 2026-06-03T06:31:55.862Z
+last_checked_at: 2026-06-03T06:31:55.862Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:25.224Z
+checked_at: 2026-06-03T06:31:55.862Z
 matched_actions: 45
 action_count: 45
 confidence: medium
-summary: "All 45 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: 45 actions verified, transport correct (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

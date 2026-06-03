@@ -27,8 +27,8 @@ source_domains:
 source_urls:
   - https://developer.dhd.audio/docs/API/ECP/
 retrieved_at: 2026-04-30T04:41:08.337Z
-last_checked_at: 2026-06-02T22:06:07.102Z
-generated_at: 2026-06-02T22:06:07.102Z
+last_checked_at: 2026-06-03T06:39:10.190Z
+generated_at: 2026-06-03T06:39:10.190Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "LogicID format not documented in this excerpt"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:07.102Z
+  checked_at: 2026-06-03T06:39:10.190Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec actions verified (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -528,18 +528,18 @@ source_domains:
 source_urls:
   - https://developer.dhd.audio/docs/API/ECP/
 retrieved_at: 2026-04-30T04:41:08.337Z
-last_checked_at: 2026-06-02T22:06:07.102Z
+last_checked_at: 2026-06-03T06:39:10.190Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:07.102Z
+checked_at: 2026-06-03T06:39:10.190Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec actions verified (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

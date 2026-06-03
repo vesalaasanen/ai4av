@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.codaaudio.cn/uploads/soft/LINUS_Control_v2.9.1_Third_Party_Control.pdf
 retrieved_at: 2026-04-29T23:14:25.650Z
-last_checked_at: 2026-06-02T22:05:29.946Z
-generated_at: 2026-06-02T22:05:29.946Z
+last_checked_at: 2026-06-03T06:31:58.951Z
+generated_at: 2026-06-03T06:31:58.951Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "firmware version not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:29.946Z
+  checked_at: 2026-06-03T06:31:58.951Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action match (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -290,18 +290,18 @@ source_domains:
 source_urls:
   - https://www.codaaudio.cn/uploads/soft/LINUS_Control_v2.9.1_Third_Party_Control.pdf
 retrieved_at: 2026-04-29T23:14:25.650Z
-last_checked_at: 2026-06-02T22:05:29.946Z
+last_checked_at: 2026-06-03T06:31:58.951Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:29.946Z
+checked_at: 2026-06-03T06:31:58.951Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action match (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

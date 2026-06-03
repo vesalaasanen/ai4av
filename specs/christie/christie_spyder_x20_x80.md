@@ -23,8 +23,8 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-102024-02-christie-lit-man-instal-x80.pdf
   - https://www.christiedigital.com/globalassets/resources/public/christie-spyder-x80-brochure.pdf
 retrieved_at: 2026-04-29T23:11:34.856Z
-last_checked_at: 2026-06-02T22:05:16.040Z
-generated_at: 2026-06-02T22:05:16.040Z
+last_checked_at: 2026-06-03T06:31:50.256Z
+generated_at: 2026-06-03T06:31:50.256Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:16.040Z
+  checked_at: 2026-06-03T06:31:50.256Z
   matched_actions: 97
   action_count: 97
   confidence: medium
-  summary: "All 97 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action inventory verified against source (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1623,18 +1623,18 @@ source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-102024-02-christie-lit-man-instal-x80.pdf
   - https://www.christiedigital.com/globalassets/resources/public/christie-spyder-x80-brochure.pdf
 retrieved_at: 2026-04-29T23:11:34.856Z
-last_checked_at: 2026-06-02T22:05:16.040Z
+last_checked_at: 2026-06-03T06:31:50.256Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:16.040Z
+checked_at: 2026-06-03T06:31:50.256Z
 matched_actions: 97
 action_count: 97
 confidence: medium
-summary: "All 97 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action inventory verified against source (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

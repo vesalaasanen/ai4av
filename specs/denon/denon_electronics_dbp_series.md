@@ -23,8 +23,8 @@ source_urls:
   - https://assets.denon.com/documentmaster/ap/418_dbp2010ci_2010_protocol_v310.pdf
   - https://applicationmarket.crestron.com/content/Help/Denon/denon_dbp-4010ud_v1_0_help.pdf
 retrieved_at: 2026-05-04T22:58:43.331Z
-last_checked_at: 2026-06-02T22:05:59.753Z
-generated_at: 2026-06-02T22:05:59.753Z
+last_checked_at: 2026-06-03T06:39:06.627Z
+generated_at: 2026-06-03T06:39:06.627Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -47,11 +47,11 @@ known_gaps:
   - "CALL command (67h) listed in command table but no detailed spec in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:59.753Z
+  checked_at: 2026-06-03T06:39:06.627Z
   matched_actions: 37
   action_count: 37
   confidence: medium
-  summary: "All 37 spec actions traced to source (dip-safe re-verify). (17 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 37 actions and transport parameters (17 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -487,18 +487,18 @@ source_urls:
   - https://assets.denon.com/documentmaster/ap/418_dbp2010ci_2010_protocol_v310.pdf
   - https://applicationmarket.crestron.com/content/Help/Denon/denon_dbp-4010ud_v1_0_help.pdf
 retrieved_at: 2026-05-04T22:58:43.331Z
-last_checked_at: 2026-06-02T22:05:59.753Z
+last_checked_at: 2026-06-03T06:39:06.627Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:59.753Z
+checked_at: 2026-06-03T06:39:06.627Z
 matched_actions: 37
 action_count: 37
 confidence: medium
-summary: "All 37 spec actions traced to source (dip-safe re-verify). (17 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 37 actions and transport parameters (17 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

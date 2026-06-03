@@ -20,19 +20,19 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-05-22T21:58:50.831Z
-last_checked_at: 2026-06-02T22:05:50.662Z
-generated_at: 2026-06-02T22:05:50.662Z
+last_checked_at: 2026-06-03T06:35:51.946Z
+generated_at: 2026-06-03T06:35:51.946Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "exact model compatibility matrix across AVR generations not fully specified in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:50.662Z
+  checked_at: 2026-06-03T06:35:51.946Z
   matched_actions: 907
   action_count: 907
   confidence: medium
-  summary: "All 907 spec actions traced to source (dip-safe re-verify). (1 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions documented in source; transport values complete (1 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -5685,18 +5685,18 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
 retrieved_at: 2026-05-22T21:58:50.831Z
-last_checked_at: 2026-06-02T22:05:50.662Z
+last_checked_at: 2026-06-03T06:35:51.946Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:50.662Z
+checked_at: 2026-06-03T06:35:51.946Z
 matched_actions: 907
 action_count: 907
 confidence: medium
-summary: "All 907 spec actions traced to source (dip-safe re-verify). (1 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions documented in source; transport values complete (1 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

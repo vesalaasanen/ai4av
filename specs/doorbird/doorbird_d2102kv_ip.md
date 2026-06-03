@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:22.286Z
-last_checked_at: 2026-06-02T22:06:15.230Z
-generated_at: 2026-06-02T22:06:15.230Z
+last_checked_at: 2026-06-03T06:39:14.838Z
+generated_at: 2026-06-03T06:39:14.838Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "fault behavior and error recovery procedures not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:15.230Z
+  checked_at: 2026-06-03T06:39:14.838Z
   matched_actions: 24
   action_count: 24
   confidence: medium
-  summary: "All 24 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 24 spec actions verified (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -412,18 +412,18 @@ source_domains:
 source_urls:
   - https://www.doorbird.com/downloads/api_lan.pdf
 retrieved_at: 2026-04-30T04:32:22.286Z
-last_checked_at: 2026-06-02T22:06:15.230Z
+last_checked_at: 2026-06-03T06:39:14.838Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:15.230Z
+checked_at: 2026-06-03T06:39:14.838Z
 matched_actions: 24
 action_count: 24
 confidence: medium
-summary: "All 24 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 24 spec actions verified (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

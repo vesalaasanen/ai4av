@@ -26,8 +26,8 @@ source_urls:
   - https://www.eiki.com/lc-xg100-rs-232-extended-serial-commands/
   - https://applicationmarket.crestron.com/eiki-lc-xg100-north-america/
 retrieved_at: 2026-04-26T17:44:41.466Z
-last_checked_at: 2026-06-02T22:06:38.714Z
-generated_at: 2026-06-02T22:06:38.714Z
+last_checked_at: 2026-06-03T06:41:38.251Z
+generated_at: 2026-06-03T06:41:38.251Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -44,11 +44,11 @@ known_gaps:
   - "error recovery sequences not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:38.714Z
+  checked_at: 2026-06-03T06:41:38.251Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 49 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "100% match: 49/49 actions found in source (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -439,18 +439,18 @@ source_urls:
   - https://www.eiki.com/lc-xg100-rs-232-extended-serial-commands/
   - https://applicationmarket.crestron.com/eiki-lc-xg100-north-america/
 retrieved_at: 2026-04-26T17:44:41.466Z
-last_checked_at: 2026-06-02T22:06:38.714Z
+last_checked_at: 2026-06-03T06:41:38.251Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:38.714Z
+checked_at: 2026-06-03T06:41:38.251Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 49 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "100% match: 49/49 actions found in source (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

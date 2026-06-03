@@ -41,8 +41,8 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-04-29T13:19:31.882Z
-last_checked_at: 2026-06-02T22:06:47.658Z
-generated_at: 2026-06-02T22:06:47.658Z
+last_checked_at: 2026-06-03T06:52:16.736Z
+generated_at: 2026-06-03T06:52:16.736Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -60,11 +60,11 @@ known_gaps:
   - "firmware version compatibility not stated in source -->The spec is generated above. Key points:"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:47.658Z
+  checked_at: 2026-06-03T06:52:16.736Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 9 actions present in source (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -257,18 +257,18 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-04-29T13:19:31.882Z
-last_checked_at: 2026-06-02T22:06:47.658Z
+last_checked_at: 2026-06-03T06:52:16.736Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:47.658Z
+checked_at: 2026-06-03T06:52:16.736Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 9 actions present in source (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

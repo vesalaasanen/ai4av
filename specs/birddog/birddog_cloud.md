@@ -25,8 +25,8 @@ source_urls:
   - https://manuals.plus/m/e8f518c03db0bca2ddfb3f1deae0e3dd8202ba271f516c06c8a765a57f210d6d
   - https://documenter.getpostman.com/view/29602224/2sAYHxn45i
 retrieved_at: 2026-04-29T22:54:38.555Z
-last_checked_at: 2026-06-02T22:04:29.654Z
-generated_at: 2026-06-02T22:04:29.654Z
+last_checked_at: 2026-06-03T06:22:58.586Z
+generated_at: 2026-06-03T06:22:58.586Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "UDP transport for NDI stated in Txpm/rxpm param docs but base_url shows only HTTP; UDP mode not independently confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:29.654Z
+  checked_at: 2026-06-03T06:22:58.586Z
   matched_actions: 43
   action_count: 43
   confidence: medium
-  summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 43 actions cross-verified against source API documentation (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1036,18 +1036,18 @@ source_urls:
   - https://manuals.plus/m/e8f518c03db0bca2ddfb3f1deae0e3dd8202ba271f516c06c8a765a57f210d6d
   - https://documenter.getpostman.com/view/29602224/2sAYHxn45i
 retrieved_at: 2026-04-29T22:54:38.555Z
-last_checked_at: 2026-06-02T22:04:29.654Z
+last_checked_at: 2026-06-03T06:22:58.586Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:29.654Z
+checked_at: 2026-06-03T06:22:58.586Z
 matched_actions: 43
 action_count: 43
 confidence: medium
-summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 43 actions cross-verified against source API documentation (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

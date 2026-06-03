@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T20:24:52.276Z
-last_checked_at: 2026-06-02T22:04:16.933Z
-generated_at: 2026-06-02T22:04:16.933Z
+last_checked_at: 2026-06-03T06:19:10.111Z
+generated_at: 2026-06-03T06:19:10.111Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "firmware version compatibility not stated in source; voltage/current/power specs not stated; fault behavior / error recovery sequences not stated; DMX channel payload semantics and the full set of available channels in extended mode not enumerated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:16.933Z
+  checked_at: 2026-06-03T06:19:10.111Z
   matched_actions: 40
   action_count: 40
   confidence: medium
-  summary: "All 40 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: 40/40 actions present in source; transport values consistent with documented API specification (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -774,18 +774,18 @@ source_domains:
 source_urls:
   - "https://www.audiogeneral.com/barco/UDX%20Series/JSON_ReferenceGuide.pdf"
 retrieved_at: 2026-05-14T20:24:52.276Z
-last_checked_at: 2026-06-02T22:04:16.933Z
+last_checked_at: 2026-06-03T06:19:10.111Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:16.933Z
+checked_at: 2026-06-03T06:19:10.111Z
 matched_actions: 40
 action_count: 40
 confidence: medium
-summary: "All 40 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: 40/40 actions present in source; transport values consistent with documented API specification (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

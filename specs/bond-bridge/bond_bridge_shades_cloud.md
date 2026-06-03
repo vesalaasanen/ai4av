@@ -23,8 +23,8 @@ source_urls:
   - https://tech.bndh.io/technical/hex-codes
   - https://tech.bndh.io/technical/ethernet
 retrieved_at: 2026-04-29T13:04:25.772Z
-last_checked_at: 2026-06-02T22:04:40.298Z
-generated_at: 2026-06-02T22:04:40.298Z
+last_checked_at: 2026-06-03T06:25:32.799Z
+generated_at: 2026-06-03T06:25:32.799Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "exact error recovery sequences not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:40.298Z
+  checked_at: 2026-06-03T06:25:32.799Z
   matched_actions: 81
   action_count: 81
   confidence: medium
-  summary: "All 81 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: all 81 actions cross-checked against source feature sections (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -617,18 +617,18 @@ source_urls:
   - https://tech.bndh.io/technical/hex-codes
   - https://tech.bndh.io/technical/ethernet
 retrieved_at: 2026-04-29T13:04:25.772Z
-last_checked_at: 2026-06-02T22:04:40.298Z
+last_checked_at: 2026-06-03T06:25:32.799Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:40.298Z
+checked_at: 2026-06-03T06:25:32.799Z
 matched_actions: 81
 action_count: 81
 confidence: medium
-summary: "All 81 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: all 81 actions cross-checked against source feature sections (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -24,8 +24,8 @@ source_urls:
   - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20&%20DCM1e_Datasheet_EN.pdf"
   - "https://www.cloud.co.uk/uploads/2022/01/DCM1_DCM1e%20FAQ_V1.pdf"
 retrieved_at: 2026-04-29T17:33:38.526Z
-last_checked_at: 2026-06-02T22:05:28.372Z
-generated_at: 2026-06-02T22:05:28.372Z
+last_checked_at: 2026-06-03T06:31:58.050Z
+generated_at: 2026-06-03T06:31:58.050Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "Maximum message length not stated. Flow control (RTS/CTS) not stated. DTR/DSR support not stated."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:28.372Z
+  checked_at: 2026-06-03T06:31:58.050Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action-unit coverage with exact parameter alignment (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -710,18 +710,18 @@ source_urls:
   - "https://www.cloud.co.uk/uploads/2022/01/DCM1%20&%20DCM1e_Datasheet_EN.pdf"
   - "https://www.cloud.co.uk/uploads/2022/01/DCM1_DCM1e%20FAQ_V1.pdf"
 retrieved_at: 2026-04-29T17:33:38.526Z
-last_checked_at: 2026-06-02T22:05:28.372Z
+last_checked_at: 2026-06-03T06:31:58.050Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:28.372Z
+checked_at: 2026-06-03T06:31:58.050Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action-unit coverage with exact parameter alignment (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

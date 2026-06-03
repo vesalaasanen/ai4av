@@ -22,8 +22,8 @@ source_urls:
   - http://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
   - http://www.convergingsystems.com/bin/doc/ibt/ibt_manual_0105.pdf
 retrieved_at: 2026-05-21T09:15:44.261Z
-last_checked_at: 2026-06-02T22:05:32.875Z
-generated_at: 2026-06-02T22:05:32.875Z
+last_checked_at: 2026-06-03T06:32:00.804Z
+generated_at: 2026-06-03T06:32:00.804Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "UDP port for IBT-100 native Ethernet interface not stated — eNode ports (5000/4000) are for the adapter, not IBT-100 itself"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:32.875Z
+  checked_at: 2026-06-03T06:32:00.804Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 actions found and matched in source (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -321,18 +321,18 @@ source_urls:
   - http://www.convergingsystems.com/bin/doc/ibt/serial_udp_v1_4.pdf
   - http://www.convergingsystems.com/bin/doc/ibt/ibt_manual_0105.pdf
 retrieved_at: 2026-05-21T09:15:44.261Z
-last_checked_at: 2026-06-02T22:05:32.875Z
+last_checked_at: 2026-06-03T06:32:00.804Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:32.875Z
+checked_at: 2026-06-03T06:32:00.804Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 actions found and matched in source (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

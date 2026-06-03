@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-06-02T22:05:46.100Z
-generated_at: 2026-06-02T22:05:46.100Z
+last_checked_at: 2026-06-03T06:35:49.212Z
+generated_at: 2026-06-03T06:35:49.212Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:46.100Z
+  checked_at: 2026-06-03T06:35:49.212Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: 18/18 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -357,18 +357,18 @@ source_domains:
 source_urls:
   - https://docs.dataton.com/watchout-7/external_protocol/external_protocol.html
 retrieved_at: 2026-04-30T04:46:13.343Z
-last_checked_at: 2026-06-02T22:05:46.100Z
+last_checked_at: 2026-06-03T06:35:49.212Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:46.100Z
+checked_at: 2026-06-03T06:35:49.212Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: 18/18 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

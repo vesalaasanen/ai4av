@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:02.664Z
-last_checked_at: 2026-06-02T22:04:52.252Z
-generated_at: 2026-06-02T22:04:52.252Z
+last_checked_at: 2026-06-03T06:28:10.304Z
+generated_at: 2026-06-03T06:28:10.304Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "KEYSTONE command parameters referenced in RC emulation but no standalone command documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:52.252Z
+  checked_at: 2026-06-03T06:28:10.304Z
   matched_actions: 48
   action_count: 48
   confidence: medium
-  summary: "All 48 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 48 spec actions found in source (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -987,18 +987,18 @@ source_domains:
 source_urls:
   - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
 retrieved_at: 2026-04-30T04:33:02.664Z
-last_checked_at: 2026-06-02T22:04:52.252Z
+last_checked_at: 2026-06-03T06:28:10.304Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:52.252Z
+checked_at: 2026-06-03T06:28:10.304Z
 matched_actions: 48
 action_count: 48
 confidence: medium
-summary: "All 48 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 48 spec actions found in source (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
-last_checked_at: 2026-06-02T22:04:49.266Z
-generated_at: 2026-06-02T22:04:49.266Z
+last_checked_at: 2026-06-03T06:28:07.179Z
+generated_at: 2026-06-03T06:28:07.179Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "TCP socket control not mentioned; HTTP REST only"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:49.266Z
+  checked_at: 2026-06-03T06:28:07.179Z
   matched_actions: 8
   action_count: 8
   confidence: medium
-  summary: "All 8 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 8 spec actions verified (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -403,18 +403,18 @@ source_domains:
 source_urls:
   - https://support.camstreamer.com/hc/en-us/articles/15735021586076-CamStreamer-App-4-x-API-documentation
 retrieved_at: 2026-04-30T04:40:58.722Z
-last_checked_at: 2026-06-02T22:04:49.266Z
+last_checked_at: 2026-06-03T06:28:07.179Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:49.266Z
+checked_at: 2026-06-03T06:28:07.179Z
 matched_actions: 8
 action_count: 8
 confidence: medium
-summary: "All 8 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 8 spec actions verified (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

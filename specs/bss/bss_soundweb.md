@@ -23,8 +23,8 @@ source_urls:
   - https://help.harmanpro.com/soundweb-london-third-party-control
   - https://help.harmanpro.com/bss
 retrieved_at: 2026-04-30T15:15:19.077Z
-last_checked_at: 2026-06-02T22:04:44.730Z
-generated_at: 2026-06-02T22:04:44.730Z
+last_checked_at: 2026-06-03T06:25:35.706Z
+generated_at: 2026-06-03T06:25:35.706Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "configurable parameters (baud rate, port) default values not stated in source — configured via Audio Architect"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:44.730Z
+  checked_at: 2026-06-03T06:25:35.706Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "All spec actions verified against source (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -338,18 +338,18 @@ source_urls:
   - https://help.harmanpro.com/soundweb-london-third-party-control
   - https://help.harmanpro.com/bss
 retrieved_at: 2026-04-30T15:15:19.077Z
-last_checked_at: 2026-06-02T22:04:44.730Z
+last_checked_at: 2026-06-03T06:25:35.706Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:44.730Z
+checked_at: 2026-06-03T06:25:35.706Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+summary: "All spec actions verified against source (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
 retrieved_at: 2026-04-30T04:41:05.451Z
-last_checked_at: 2026-06-02T22:05:40.188Z
-generated_at: 2026-06-02T22:05:40.188Z
+last_checked_at: 2026-06-03T06:35:45.736Z
+generated_at: 2026-06-03T06:35:45.736Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "AES70/OCA protocol details not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:40.188Z
+  checked_at: 2026-06-03T06:35:45.736Z
   matched_actions: 55
   action_count: 55
   confidence: medium
-  summary: "All 55 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 55 actions and queries verified (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -763,18 +763,18 @@ source_domains:
 source_urls:
   - https://www.dbaudio.com/assets/products/downloads/manuals-documentation/electronics/dbaudio-osc-protocol-ds100-1.3.12-en.pdf
 retrieved_at: 2026-04-30T04:41:05.451Z
-last_checked_at: 2026-06-02T22:05:40.188Z
+last_checked_at: 2026-06-03T06:35:45.736Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:40.188Z
+checked_at: 2026-06-03T06:35:45.736Z
 matched_actions: 55
 action_count: 55
 confidence: medium
-summary: "All 55 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 55 actions and queries verified (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

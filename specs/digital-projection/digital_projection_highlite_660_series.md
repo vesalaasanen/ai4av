@@ -38,8 +38,8 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Digital_Projection/digital_projection_hl660_v1_0_help_file.pdf
   - "http://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-06-02T22:06:10.045Z
-generated_at: 2026-06-02T22:06:10.045Z
+last_checked_at: 2026-06-03T06:39:12.054Z
+generated_at: 2026-06-03T06:39:12.054Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -55,11 +55,11 @@ known_gaps:
   - "lamp2/lamp3/lamp4 status values (0-19) not fully represented in Feedbacks"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:10.045Z
+  checked_at: 2026-06-03T06:39:12.054Z
   matched_actions: 150
   action_count: 150
   confidence: medium
-  summary: "All 150 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 150 actions present; transport fully resolved (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1235,18 +1235,18 @@ source_urls:
   - https://applicationmarket.crestron.com/content/Help/Digital_Projection/digital_projection_hl660_v1_0_help_file.pdf
   - "http://digitalprojection.co.uk/dpdownloads/Protocol/Protocol%20Guide%20Rev%20A.pdf"
 retrieved_at: 2026-05-01T00:18:24.749Z
-last_checked_at: 2026-06-02T22:06:10.045Z
+last_checked_at: 2026-06-03T06:39:12.054Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:10.045Z
+checked_at: 2026-06-03T06:39:12.054Z
 matched_actions: 150
 action_count: 150
 confidence: medium
-summary: "All 150 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 150 actions present; transport fully resolved (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

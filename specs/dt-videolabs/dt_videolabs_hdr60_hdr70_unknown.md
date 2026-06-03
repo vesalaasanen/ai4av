@@ -22,8 +22,8 @@ source_urls:
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
   - http://resource.datavideo.com/manualsTW/Datavideo_HDR-70.pdf
 retrieved_at: 2026-05-14T23:07:15.160Z
-last_checked_at: 2026-06-02T22:06:33.801Z
-generated_at: 2026-06-02T22:06:33.801Z
+last_checked_at: 2026-06-03T06:41:36.653Z
+generated_at: 2026-06-03T06:41:36.653Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "flow control setting not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:33.801Z
+  checked_at: 2026-06-03T06:41:36.653Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 44 actions verified (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -593,18 +593,18 @@ source_urls:
   - http://resource.datavideo.com/manuals/Datavideo_HDR-60.pdf
   - http://resource.datavideo.com/manualsTW/Datavideo_HDR-70.pdf
 retrieved_at: 2026-05-14T23:07:15.160Z
-last_checked_at: 2026-06-02T22:06:33.801Z
+last_checked_at: 2026-06-03T06:41:36.653Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:33.801Z
+checked_at: 2026-06-03T06:41:36.653Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 44 actions verified (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

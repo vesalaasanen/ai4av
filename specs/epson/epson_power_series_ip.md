@@ -52,8 +52,8 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-04T07:41:10.112Z
-last_checked_at: 2026-06-02T22:06:51.524Z
-generated_at: 2026-06-02T22:06:51.524Z
+last_checked_at: 2026-06-03T06:52:20.320Z
+generated_at: 2026-06-03T06:52:20.320Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -72,11 +72,11 @@ known_gaps:
   - "SPWRLVL command details only partially documented (TW200/TW200H use case)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:51.524Z
+  checked_at: 2026-06-03T06:52:20.320Z
   matched_actions: 9
   action_count: 9
   confidence: medium
-  summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action coverage (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -268,18 +268,18 @@ source_domains:
 source_urls:
   - https://files.support.epson.com/pdf/pltw1_/pltw1_cm.pdf
 retrieved_at: 2026-05-04T07:41:10.112Z
-last_checked_at: 2026-06-02T22:06:51.524Z
+last_checked_at: 2026-06-03T06:52:20.320Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:51.524Z
+checked_at: 2026-06-03T06:52:20.320Z
 matched_actions: 9
 action_count: 9
 confidence: medium
-summary: "All 9 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action coverage (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
