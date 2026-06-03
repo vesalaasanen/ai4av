@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:22:36.797Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T03:47:23.569Z
 last_checked_at: 2026-06-02T17:22:36.797Z
 generated_at: 2026-06-02T17:22:36.797Z
 firmware_coverage: "Not stated in source"
@@ -34,7 +36,6 @@ known_gaps:
   - "full receiver model list covered by this protocol not enumerated in source; protocol applies to Integra DTR series generically with model-specific feature availability."
   - "complete set of unsolicited status response mnemonics and trigger conditions not stated in source."
   - "eISCP keepalive / connection management behavior not documented beyond \"must hold connection continuously\"."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:36.797Z
@@ -1444,9 +1445,11 @@ RI system commands (CCD, CT1, CT2, CEQ, CDT, CDV, CMD, CCR) forward to Onkyo RI-
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:22:36.797Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T03:47:23.569Z
 last_checked_at: 2026-06-02T17:22:36.797Z
 ```
 
@@ -1475,7 +1478,6 @@ summary: "All 176 spec actions matched against source; transport parameters veri
 - "full receiver model list covered by this protocol not enumerated in source; protocol applies to Integra DTR series generically with model-specific feature availability."
 - "complete set of unsolicited status response mnemonics and trigger conditions not stated in source."
 - "eISCP keepalive / connection management behavior not documented beyond \"must hold connection continuously\"."
-- "model-specific source not located"
 ```
 
 ---

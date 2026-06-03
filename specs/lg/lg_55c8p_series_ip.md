@@ -16,13 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - webostv.developer.lge.com
   - justaddpower.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:04.046Z
+retrieved_at: 2026-06-02T02:38:36.427Z
 last_checked_at: 2026-06-02T17:23:04.046Z
 generated_at: 2026-06-02T17:23:04.046Z
 firmware_coverage: "Not stated in source"
@@ -552,13 +549,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - webostv.developer.lge.com
   - justaddpower.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:04.046Z
+retrieved_at: 2026-06-02T02:38:36.427Z
 last_checked_at: 2026-06-02T17:23:04.046Z
 ```
 

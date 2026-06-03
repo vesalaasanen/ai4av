@@ -31,9 +31,17 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:25:11.879Z
+source_domains:
+  - globalcache.com
+  - gcapi.docs.apiary.io
+  - redocly.github.io
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
+  - https://gcapi.docs.apiary.io/
+  - "https://redocly.github.io/redoc/?url=https://dl.dropbox.com/s/bnkx6ov4g5z4bxe/GCapi_generated3.yaml?dl=1&nocors"
+  - https://www.globalcache.com/files/docs/API-GC-IRL.pdf
+  - https://www.globalcache.com/files/docs/API_GC-IRE.pdf
+retrieved_at: 2026-06-02T02:55:57.411Z
 last_checked_at: 2026-06-02T08:25:11.879Z
 generated_at: 2026-06-02T08:25:11.879Z
 firmware_coverage: "Not stated in source"
@@ -44,7 +52,6 @@ known_gaps:
   - "serial baud rate, flow control, parity, stop bits, cable type are set via set_SERIAL; network config via set_NET; sensor notify via set_SENSORNOTIFY. These are command payloads rather than continuous variables; not enumerated here."
   - "source does not document multi-step control sequences; remove or populate from operator-supplied procedures."
   - "per-model firmware version compatibility ranges; protocol version of the Unified TCP API; maximum TCP socket idle timeout; exact mapping of Flex Link cable model numbers to cable_id."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T08:25:11.879Z
@@ -598,9 +605,17 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:25:11.879Z
+source_domains:
+  - globalcache.com
+  - gcapi.docs.apiary.io
+  - redocly.github.io
+source_urls:
+  - https://www.globalcache.com/files/docs/api-gc-unifiedtcp.pdf
+  - https://gcapi.docs.apiary.io/
+  - "https://redocly.github.io/redoc/?url=https://dl.dropbox.com/s/bnkx6ov4g5z4bxe/GCapi_generated3.yaml?dl=1&nocors"
+  - https://www.globalcache.com/files/docs/API-GC-IRL.pdf
+  - https://www.globalcache.com/files/docs/API_GC-IRE.pdf
+retrieved_at: 2026-06-02T02:55:57.411Z
 last_checked_at: 2026-06-02T08:25:11.879Z
 ```
 
@@ -623,7 +638,6 @@ summary: "All 26 spec actions have literal wire-level matches in the source and 
 - "serial baud rate, flow control, parity, stop bits, cable type are set via set_SERIAL; network config via set_NET; sensor notify via set_SENSORNOTIFY. These are command payloads rather than continuous variables; not enumerated here."
 - "source does not document multi-step control sequences; remove or populate from operator-supplied procedures."
 - "per-model firmware version compatibility ranges; protocol version of the Unified TCP API; maximum TCP socket idle timeout; exact mapping of Flex Link cable model numbers to cable_id."
-- "model-specific source not located"
 ```
 
 ---

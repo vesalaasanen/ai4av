@@ -16,12 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - justaddpower.com
   - proaudioinc.com
 source_urls:
-  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T17:22:55.190Z
+retrieved_at: 2026-06-02T01:17:34.385Z
 last_checked_at: 2026-06-02T17:22:55.190Z
 generated_at: 2026-06-02T17:22:55.190Z
 firmware_coverage: "Not stated in source"
@@ -621,12 +619,10 @@ The d-family command format uses `[Data][x]` rather than `[Data][Cr]`. This is t
 
 ```yaml
 source_domains:
-  - justaddpower.com
   - proaudioinc.com
 source_urls:
-  - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T17:22:55.190Z
+retrieved_at: 2026-06-02T01:17:34.385Z
 last_checked_at: 2026-06-02T17:22:55.190Z
 ```
 

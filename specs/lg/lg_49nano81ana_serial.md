@@ -17,13 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
-  - knowledge.tiffinmotorhomes.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T17:22:52.925Z
-last_checked_at: 2026-06-02T17:22:52.925Z
-generated_at: 2026-06-02T17:22:52.925Z
+retrieved_at: 2026-06-02T01:04:39.990Z
+last_checked_at: 2026-06-03T05:33:41.497Z
+generated_at: 2026-06-03T05:33:41.497Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +31,11 @@ known_gaps:
   - "the source does not define device-side multi-step sequences"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:52.925Z
-  matched_actions: 27
-  action_count: 27
+  checked_at: 2026-06-03T05:33:41.497Z
+  matched_actions: 59
+  action_count: 59
   confidence: medium
-  summary: "All 27 RS-232C opcodes matched literally; transport parameters (9600/8N1) verified; ack errata preserved. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 59 spec actions traced to source (multi-fence parser fix re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -919,23 +917,21 @@ interlocks:
 ```yaml
 source_domains:
   - proaudioinc.com
-  - knowledge.tiffinmotorhomes.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T17:22:52.925Z
-last_checked_at: 2026-06-02T17:22:52.925Z
+retrieved_at: 2026-06-02T01:04:39.990Z
+last_checked_at: 2026-06-03T05:33:41.497Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:52.925Z
-matched_actions: 27
-action_count: 27
+checked_at: 2026-06-03T05:33:41.497Z
+matched_actions: 59
+action_count: 59
 confidence: medium
-summary: "All 27 RS-232C opcodes matched literally; transport parameters (9600/8N1) verified; ack errata preserved. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 59 spec actions traced to source (multi-fence parser fix re-verify). (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

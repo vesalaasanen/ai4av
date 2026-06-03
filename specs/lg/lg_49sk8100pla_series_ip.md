@@ -16,14 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - webostv.developer.lge.com
-  - knowledge.tiffinmotorhomes.com
   - proaudioinc.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T22:09:06.977Z
+retrieved_at: 2026-06-02T01:15:10.842Z
 last_checked_at: 2026-06-02T22:09:06.977Z
 generated_at: 2026-06-02T22:09:06.977Z
 firmware_coverage: "Not stated in source"
@@ -472,14 +468,10 @@ Admin next steps:
 
 ```yaml
 source_domains:
-  - webostv.developer.lge.com
-  - knowledge.tiffinmotorhomes.com
   - proaudioinc.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T22:09:06.977Z
+retrieved_at: 2026-06-02T01:15:10.842Z
 last_checked_at: 2026-06-02T22:09:06.977Z
 ```
 

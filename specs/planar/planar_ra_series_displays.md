@@ -21,8 +21,8 @@ source_urls:
   - https://www.planar.com/media/olwcpmt4/ra4980-ra5580-rs232-manual-20150609-watermarked.pdf
   - https://www.planar.com/media/uuoptbfm/ra4980-ra5580-user-manual-20150609-watermarked-rev.pdf
 retrieved_at: 2026-05-07T14:30:52.298Z
-last_checked_at: 2026-06-02T22:13:11.798Z
-generated_at: 2026-06-02T22:13:11.798Z
+last_checked_at: 2026-06-03T05:33:26.257Z
+generated_at: 2026-06-03T05:33:26.257Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "LAN protocol/commands not documented; firmware version not stated; source typos in §6.18 (Logo Get example reuses Switch On Delay bytes 0x8B instead of 0x8D) and §7.10 (Model Name Get example reuses 0xC6 instead of 0xC8) preserved per source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:11.798Z
-  matched_actions: 39
-  action_count: 39
+  checked_at: 2026-06-03T05:33:26.257Z
+  matched_actions: 126
+  action_count: 126
   confidence: medium
-  summary: "All 39 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 126 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1304,18 +1304,18 @@ source_urls:
   - https://www.planar.com/media/olwcpmt4/ra4980-ra5580-rs232-manual-20150609-watermarked.pdf
   - https://www.planar.com/media/uuoptbfm/ra4980-ra5580-user-manual-20150609-watermarked-rev.pdf
 retrieved_at: 2026-05-07T14:30:52.298Z
-last_checked_at: 2026-06-02T22:13:11.798Z
+last_checked_at: 2026-06-03T05:33:26.257Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:11.798Z
-matched_actions: 39
-action_count: 39
+checked_at: 2026-06-03T05:33:26.257Z
+matched_actions: 126
+action_count: 126
 confidence: medium
-summary: "All 39 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 126 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

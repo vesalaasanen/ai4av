@@ -15,9 +15,14 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:24:56.824Z
+source_domains:
+  - downloads.biamp.com
+  - applicationmarket.crestron.com
+source_urls:
+  - "https://downloads.biamp.com/assets/docs/default-source/manuals/biamp_manual_concept1_rs232_communication.pdf?sfvrsn=3e38e2e6_4"
+  - "https://downloads.biamp.com/assets/docs/default-source/manuals/biamp_manual_apart_concept1(t).pdf?sfvrsn=81804eb3_4"
+  - https://applicationmarket.crestron.com/content/Help/APart/apartconcept1v1.0help.pdf
+retrieved_at: 2026-06-02T03:29:04.492Z
 last_checked_at: 2026-06-02T08:24:56.824Z
 generated_at: 2026-06-02T08:24:56.824Z
 firmware_coverage: "Not stated in source"
@@ -29,7 +34,6 @@ known_gaps:
   - "ZONELINK attribute-table Commands column is blank; SET confirmed by prose, GET inferred."
   - "MICLVL, MAXMSCLVL, MAXMICLVL, EQTREB, PAGACT, LF, BS, HEADER attribute-table Commands columns are blank; verbs above inferred from prose."
   - "firmware version compatibility ranges not stated in source."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T08:24:56.824Z
@@ -682,9 +686,14 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:24:56.824Z
+source_domains:
+  - downloads.biamp.com
+  - applicationmarket.crestron.com
+source_urls:
+  - "https://downloads.biamp.com/assets/docs/default-source/manuals/biamp_manual_concept1_rs232_communication.pdf?sfvrsn=3e38e2e6_4"
+  - "https://downloads.biamp.com/assets/docs/default-source/manuals/biamp_manual_apart_concept1(t).pdf?sfvrsn=81804eb3_4"
+  - https://applicationmarket.crestron.com/content/Help/APart/apartconcept1v1.0help.pdf
+retrieved_at: 2026-06-02T03:29:04.492Z
 last_checked_at: 2026-06-02T08:24:56.824Z
 ```
 
@@ -708,7 +717,6 @@ summary: "All 47 spec actions have literal attribute-and-verb support in the sou
 - "ZONELINK attribute-table Commands column is blank; SET confirmed by prose, GET inferred."
 - "MICLVL, MAXMSCLVL, MAXMICLVL, EQTREB, PAGACT, LF, BS, HEADER attribute-table Commands columns are blank; verbs above inferred from prose."
 - "firmware version compatibility ranges not stated in source."
-- "model-specific source not located"
 ```
 
 ---

@@ -16,14 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - webostv.developer.lge.com
   - proaudioinc.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
-  - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T17:23:04.920Z
+retrieved_at: 2026-06-02T02:47:10.220Z
 last_checked_at: 2026-06-02T17:23:04.920Z
 generated_at: 2026-06-02T17:23:04.920Z
 firmware_coverage: "Not stated in source"
@@ -698,14 +694,10 @@ Self-check: no voltage/current/power invented; no ports assumed (9761 + 9600 bau
 
 ```yaml
 source_domains:
-  - webostv.developer.lge.com
   - proaudioinc.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
-  - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T17:23:04.920Z
+retrieved_at: 2026-06-02T02:47:10.220Z
 last_checked_at: 2026-06-02T17:23:04.920Z
 ```
 

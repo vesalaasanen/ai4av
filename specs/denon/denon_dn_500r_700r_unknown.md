@@ -24,7 +24,7 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - "https://cdn.inmusicbrands.com/DenonPro/cdn/1109/documents/DN-700R%20-%20Serial%20Command%20Protocol%20Guide%20-%20v1.1.pdf"
-retrieved_at: 2026-05-27T18:33:00.286Z
+retrieved_at: 2026-06-02T06:10:35.659Z
 last_checked_at: 2026-06-02T21:41:26.859Z
 generated_at: 2026-06-02T21:41:26.859Z
 firmware_coverage: "Not stated in source"
@@ -6368,7 +6368,7 @@ source_domains:
 source_urls:
   - https://www.heimkinoraum.de/upload/files/product/IP_Protocol_AVR-Xx100.pdf
   - "https://cdn.inmusicbrands.com/DenonPro/cdn/1109/documents/DN-700R%20-%20Serial%20Command%20Protocol%20Guide%20-%20v1.1.pdf"
-retrieved_at: 2026-05-27T18:33:00.286Z
+retrieved_at: 2026-06-02T06:10:35.659Z
 last_checked_at: 2026-06-02T21:41:26.859Z
 ```
 

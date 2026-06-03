@@ -17,11 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
-  - justaddpower.happyfox.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T17:22:57.649Z
+retrieved_at: 2026-06-02T01:21:14.184Z
 last_checked_at: 2026-06-02T17:22:57.649Z
 generated_at: 2026-06-02T17:22:57.649Z
 firmware_coverage: "Not stated in source"
@@ -963,11 +961,9 @@ Spec written. Both serial + IP transport blocks. Full action enum per source. Ke
 ```yaml
 source_domains:
   - proaudioinc.com
-  - justaddpower.happyfox.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T17:22:57.649Z
+retrieved_at: 2026-06-02T01:21:14.184Z
 last_checked_at: 2026-06-02T17:22:57.649Z
 ```
 

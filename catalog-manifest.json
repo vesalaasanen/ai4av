@@ -1,6 +1,6 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-02T22:18:35.517Z",
+  "generated_at": "2026-06-03T05:38:08.241Z",
   "spec_count": 916,
   "specs": [
     {
@@ -298,9 +298,9 @@
       "revision": 1,
       "path": "specs/apart/apart_concept1.md",
       "actionCount": 47,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "79e96b32dbb2cd23c5c5f192bee686f27af2fe5c62c751f08834185c7d5ed5b5"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "b6cdcdede189e529061e8ff42be05b4f0e1045a02e6b8fc0ccfe22678a517b4f"
     },
     {
       "specId": "admin/apart-zone4",
@@ -3636,7 +3636,7 @@
       "actionCount": 252,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "c454b842a2c7414937cb051ad85d8eb6122e1d4073cc4b09b0122463260ec091"
+      "contentHash": "d682e7ae5272461500111321c434b3d254e795e6fa248a10813da06deba331ca"
     },
     {
       "specId": "admin/cisco-precisionhd-series",
@@ -4107,8 +4107,8 @@
       "path": "specs/d-box/dbox_digital_satellite.md",
       "actionCount": 21,
       "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "3cf75abc141e30f30910f7827f71b85a9f5f37e7beca293be0e1445a7c34fb35"
+      "sourceUrlCount": 5,
+      "contentHash": "fe11e1da78333c4abbcf2f566c84f58c83fbda513f152b6cdd182d25d4c7b2bd"
     },
     {
       "specId": "admin/dataprobe-iboot-pdu8",
@@ -4327,9 +4327,9 @@
       "revision": 1,
       "path": "specs/denon/denon_dcm_5000.md",
       "actionCount": 856,
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "ebc793df8c579741d7d04e20dd0bd8e27685c015682f448d17e12d4b66aca394"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "57c206697783df07a6b05f708e5774cb35909c47b846f03fdaaadd80c8bee456"
     },
     {
       "specId": "admin/denon-avr-discrete-codes",
@@ -4364,7 +4364,7 @@
       "actionCount": 924,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "b1a93fc86773f04be0c774949fc1201402ec519870d926cb5b5a136c93bb7247"
+      "contentHash": "782fa994b914247f3a8481d38a30bcc8a0a3daa307c40fe45cf6b60b345bd59a"
     },
     {
       "specId": "admin/denon-dn-a7100",
@@ -4433,7 +4433,7 @@
       "actionCount": 565,
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "8a9a5ffd7480b819f731bab20da2c4690a628abd933d390b31162347bc49e08f"
+      "contentHash": "4cbf56b61378076c76ccd47f2f875e261bb485fee363ef7f54794ba3102b4103"
     },
     {
       "specId": "admin/denon-electronics-avr-series",
@@ -5756,9 +5756,9 @@
       "revision": 1,
       "path": "specs/faroudja/faroudja_dvp5000.md",
       "actionCount": 36,
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "01bf79330faf0dcf8b25aa056fbbc9eb7339dca4e25a1fbe8026c9a21061faa3"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "b814b3562b0a6af0ae79b66704f929f33641859bac870d2ab438402622701275"
     },
     {
       "specId": "admin/figure_53-gobutton_3",
@@ -5951,9 +5951,9 @@
       "revision": 1,
       "path": "specs/global-cache/global_cache_model_unknown.md",
       "actionCount": 26,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "247252ab55d4784251994ba760b348cecebba44bdb7421cb732a0aacbae025dd"
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "e5b8d6f0df897cba3b0790f3bee2b27009a0fc4c687986885cf945dce3fc7063"
     },
     {
       "specId": "admin/globalcache-ip2cc",
@@ -6624,9 +6624,9 @@
       "revision": 1,
       "path": "specs/hisense/hisense_65u78nm_ir.md",
       "actionCount": 223,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "641817cc2446ecaf9497c30f4cc46a6c3f15ddd5ed998d2a8d333445205c9272"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "62d8e62b704564f31f3d25f641e4b628fc29acc7f575bf3e7fb09f9c0a3d6746"
     },
     {
       "specId": "admin/hisense-65u85k-series",
@@ -6692,9 +6692,9 @@
       "revision": 1,
       "path": "specs/hisense/hisense_75u67kua_ir.md",
       "actionCount": 165,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "5698dc95d8dead964465cfeaa64d65380f056f0d9d4405effe3d7b7867bfe5df"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d716841bb5ba6b09316fea7eb71e690393d490a6d43a57a989bd01c2731357d8"
     },
     {
       "specId": "admin/hisense-75u75n",
@@ -6711,7 +6711,7 @@
       "actionCount": 68,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "41bf78f805f32c1b10fd9bb7fa0de443098df5921c5da4345056598eb1ff474c"
+      "contentHash": "fb16f8bb9941100a5b3c4a31c26d872ffaf10990100b896c0377e82d97c5c33e"
     },
     {
       "specId": "admin/hisense-75u75qgb-series",
@@ -6745,7 +6745,7 @@
       "actionCount": 10,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5734292f7efc5e7076abe3af9c0e9daec932ff4a26aa65ee0bba808d1dddd358"
+      "contentHash": "bc559ee7cbf7e4a154256ee38a8696b508212726c5ed07b34b03918d75ca9037"
     },
     {
       "specId": "admin/hisense-75u9n",
@@ -6759,10 +6759,10 @@
       ],
       "revision": 1,
       "path": "specs/hisense/hisense_75u9n_ir.md",
-      "actionCount": 38,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "2b785a097cf99a1ae88e244942c65db16ded5282b60806c978495faac2bbe066"
+      "actionCount": 126,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "72f40598f9cd0da05b5898727ddafeee4afd54a45469a7098252fa1d04362ef2"
     },
     {
       "specId": "admin/hisense-85u75n-series",
@@ -6779,7 +6779,7 @@
       "actionCount": 242,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "785a475e882b353cddcce7388d86e58c846805e8f0f89a2f95283b1a5bdd9595"
+      "contentHash": "9808504716081b977036e246b6b76164b106b04c0795c8780ffa6139c860cde5"
     },
     {
       "specId": "admin/hisense-85u75sua-series",
@@ -6811,9 +6811,9 @@
       "revision": 1,
       "path": "specs/hisense/hisense_85u8k_ir.md",
       "actionCount": 222,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 5,
-      "contentHash": "d13c247377eb8132ea1a28acef9a8d732bd2c5daf9a04c078a6bfcf1beeffa63"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "091963713fe17a452e91c32173b8544bac1e4d0752ec031abb0c0df961ac606d"
     },
     {
       "specId": "admin/hitachi-ed-a100",
@@ -7088,9 +7088,9 @@
       "revision": 1,
       "path": "specs/integra/integra_dtr_series_serial.md",
       "actionCount": 176,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "8113637a3c4b54ffa5d85d93176ba286845136fd3bc126f40488817275b41846"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "cfb547ee92b9888d9ea28e4893fb632f7c0239668b8113bf5331a136c7c1bdbe"
     },
     {
       "specId": "admin/integra-dtx-8-9-series",
@@ -7106,9 +7106,9 @@
       "revision": 1,
       "path": "specs/integra/integra_dtx_8_9_series_ip.md",
       "actionCount": 322,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "26225205fced52f174e286b10d69c6c298fd62a2a5607d2b82c334f83b99ee86"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ffa9f31f2a48d797e0e7f3915a44c79c1d3b4920d8b2887d3e0a5d8869fbcfdb"
     },
     {
       "specId": "admin/integra-ht-d03",
@@ -7193,9 +7193,9 @@
       "revision": 1,
       "path": "specs/jandy/jandy_aqualink_rs.md",
       "actionCount": 45,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "f63b291782ba840bbc93aad166b30a7887fe806a32e60dedc5a091c94bbdf09e"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "722001b6f0f1dc1f77744af5c7e753b61e617572209b349a0147441bca01aa9a"
     },
     {
       "specId": "admin/jbl-sdp-75",
@@ -7566,8 +7566,8 @@
       "path": "specs/key-digital/key_digital_kd_series_ip.md",
       "actionCount": 22,
       "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "e22a19052b8abb2bd48a8c9fa8de0ab6e4926a944d0b157c0470093c45a869c0"
+      "sourceUrlCount": 2,
+      "contentHash": "88edaf306e73855f9f24575ab3c6247a346607439b71f4b0e2aadc2075324bcd"
     },
     {
       "specId": "admin/key-digital-systems-kd-msw8x4",
@@ -7791,10 +7791,10 @@
       ],
       "revision": 1,
       "path": "specs/kramer/kramer_via_go_go2_unknown.md",
-      "actionCount": 40,
+      "actionCount": 229,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6162edc23593ba87aed631e58c56b7f83cb15de9c0d41312634eab8b4c1eee45"
+      "contentHash": "be86128ff1c8fef3b50cf474d9e01789fc8960795ee6fbdeade6e91f8f1a3980"
     },
     {
       "specId": "admin/lab_gruppen-nlb_60e",
@@ -8157,9 +8157,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49nano80una_serial.md",
       "actionCount": 28,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "75825bc31a9922efa203d644c905c2753f547a3d54bea3a7be69f02a710f01ec"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7bf59aa3bb9f0035809aa25cd9fb7acf230ebdb153068fe74f628f15695d735c"
     },
     {
       "specId": "admin/lg-49nano81ana",
@@ -8173,10 +8173,10 @@
       ],
       "revision": 1,
       "path": "specs/lg/lg_49nano81ana_serial.md",
-      "actionCount": 27,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "aac3e582422f94a4bcd62e7df2ef342c172107ba5eea42a28b2afa09c0cdced1"
+      "actionCount": 59,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "4d0b81c8f3d3d5d03c5fa9f5c300dedfaaea264dd1782653b02b59973b5b720c"
     },
     {
       "specId": "admin/lg-49nano81una",
@@ -8191,9 +8191,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49nano81una_serial.md",
       "actionCount": 31,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "d10f3514fd8b7c567936f11ea9ddf7be874a676f7d423610233acd76415c181a"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "694f14de27f20367739893ee03bfd7a91cc2c94af4a9fc108b4317ee7f2ba72b"
     },
     {
       "specId": "admin/lg-49nano86una",
@@ -8259,9 +8259,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49sk8100pla_series_ip.md",
       "actionCount": 30,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "fb47d9e8e3c5ebbc19b48d7367db23d9df75e5e6feccaa9b498efcdd0bc50ce8"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a95ee35990c71b83b9c60fc5d782da8e09a4862893cbd4a4f67a3d9e3387712c"
     },
     {
       "specId": "admin/lg-49uj-series",
@@ -8276,9 +8276,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49uj_series_serial.md",
       "actionCount": 41,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "ea83b679edbabd0940eba8c03e94fa00d1fa9d3dbcb00ec688b920d8a99e6a8a"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0f10a430ab9aca9e9155020ec00cf95daf16634b817904d76d3c157194203435"
     },
     {
       "specId": "admin/lg-49uj6050-smarttv",
@@ -8293,9 +8293,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49uj6050_smarttv_ip.md",
       "actionCount": 26,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "59810ab0812e58b50c1cf2d0766d939b6a195f1f0c7d2c742acc7f7c4b0fe2ce"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8a19eee5f0d6c2ba8c9eb1d5a1e08c56791a37884061a0cf60f1f66d09bebe04"
     },
     {
       "specId": "admin/lg-49uk7550pla-series",
@@ -8310,9 +8310,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49uk7550pla_series_serial.md",
       "actionCount": 51,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "99fb2c7738861d42ea6811340490d6337496b0c6af1582d4f3bd446f98ae8ca1"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3faf818de8d66e81fb376aa47d1069a3dbea814a7b180b9e287354679119ea88"
     },
     {
       "specId": "admin/lg-49uk7700pud-smarttv-series",
@@ -8327,9 +8327,9 @@
       "revision": 1,
       "path": "specs/lg/lg_49uk7700pud_smarttv_series_ip.md",
       "actionCount": 62,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "4871e9869e887b845d7ea7d28d81a114662b0aa67502993951c6cc2d85e9d688"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "5211193e6f6f5cb7badb4395c22217d1113f13d7c5e71c8701fd4dffbb4820e4"
     },
     {
       "specId": "admin/lg-50nu830bzua-series",
@@ -8344,9 +8344,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50nu830bzua_series_ip.md",
       "actionCount": 82,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "11667b2d4a458211ae84ae0d7549d6af7d4422689e00bc7d75afb4b41af24291"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "45cefafb3707fcfb33a8e9af1869733aa5be16a358378778b45e5554259779ec"
     },
     {
       "specId": "admin/lg-50qned74baa-series",
@@ -8361,9 +8361,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50qned74baa_series_ip.md",
       "actionCount": 27,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 5,
-      "contentHash": "d3e43227f0ab0c3014b5e56c07cb3caadd772fd640550badb1808c96ade631bd"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "630d14a671e959de2fff078c2239809bd752e38d2424fb525c370431b8bea900"
     },
     {
       "specId": "admin/lg-50qned75ura",
@@ -8395,9 +8395,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50qned75ura_smarttv_ip.md",
       "actionCount": 28,
-      "sourceDomainCount": 4,
-      "sourceUrlCount": 5,
-      "contentHash": "36cbc4e3f2a73f49ed585a52eddce5b90b9eb4ec3c0f6c736eb65a5eb5f4b74c"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "5404f86046c9b213fcd1868a9bdaa59b7f9d1d2519a22ef523a93cb3a62e2926"
     },
     {
       "specId": "admin/lg-50qned85tua-smarttv-series",
@@ -8412,9 +8412,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50qned85tua_smarttv_series_serial.md",
       "actionCount": 63,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "f7a997b59286ab1c38d6199491471c35cac28cf1aaf0fec1ad31d71211a6b71e"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7698ef976f1e2098724d672dd46bee2cdf6f05088abbf4cbabad8aa29a6ab9e8"
     },
     {
       "specId": "admin/lg-50qned86bta-series",
@@ -8429,9 +8429,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50qned86bta_series_ip.md",
       "actionCount": 27,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 4,
-      "contentHash": "0137a19820f7e5cbaf3be49825445d1c2dc7960dba149cd1f8f95456b69c29a2"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "529b189f8a36cce2c75df6190dd7f3963914a768ddf5adc085719a6a63e485fd"
     },
     {
       "specId": "admin/lg-50uk6500a-series",
@@ -8446,9 +8446,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50uk6500a_series_ip.md",
       "actionCount": 26,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "a120dcb9feb07ed1b4550f16c9b35d79548105ac8c75bbb7bf95b3d0ba7ea2c5"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ea65d71190efcabcbb2b0eac951adfd61adafee502e96dbbb2db25545699fabe"
     },
     {
       "specId": "admin/lg-50un6955zuf",
@@ -8463,9 +8463,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50un6955zuf_serial.md",
       "actionCount": 56,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "d32c4e2ce6c9b0a53d16b772f6045fd99f81a56c0d5aa8e2d85cf0bc7c556591"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "52d02552a88aaca2eba2b7fac9d31be6f59667d13b3b9ecf27dd0f6422f9a85a"
     },
     {
       "specId": "admin/lg-50up7700pub-smarttv",
@@ -8480,9 +8480,9 @@
       "revision": 1,
       "path": "specs/lg/lg_50up7700pub_smarttv_ip.md",
       "actionCount": 60,
-      "sourceDomainCount": 4,
-      "sourceUrlCount": 5,
-      "contentHash": "9401bbef252b1f789c93be92a201bdb0949b743757970bae7a5fda4715f94f28"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "49630ed807dfa9da7bf886cf0f6687ca47df3379dd2545a1c402694068d8cc77"
     },
     {
       "specId": "admin/lg-55c8p-series",
@@ -8497,9 +8497,9 @@
       "revision": 1,
       "path": "specs/lg/lg_55c8p_series_ip.md",
       "actionCount": 27,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "0acb94c3344572e2f1124edf9f3a086127f2c8523b7e3e8ece0bc3c9f117abff"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "85fdd4403e94c5a0d1c02d2718bd574789ae6a2f257b483d49689656917b0dca"
     },
     {
       "specId": "admin/lg-55nano79una",
@@ -8548,9 +8548,9 @@
       "revision": 1,
       "path": "specs/lg/lg_55nu850baua_series_ip.md",
       "actionCount": 29,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 4,
-      "contentHash": "478a050ac979d01cc956cdc884563aa6762e9f1e347c15778c2fa3b1f3e597a8"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "19a80258522348a6344b62e7ae0e947f2d4a6094f73e577226468b8463169093"
     },
     {
       "specId": "admin/lg-55nu850bpsa",
@@ -8564,10 +8564,10 @@
       ],
       "revision": 1,
       "path": "specs/lg/lg_55nu850bpsa_series_ip.md",
-      "actionCount": 30,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "bd0a64c98ab78a1f03aa742c426420d24f5176850044c196942f2f4ed71d98a9"
+      "actionCount": 63,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e5f7b95fb42998bbde0596f27775097c429e3492d031ca5e2dab74d6d40fcfd4"
     },
     {
       "specId": "admin/lg-55qned85ura-serial",
@@ -8598,10 +8598,10 @@
       ],
       "revision": 1,
       "path": "specs/lg/lg_55uk6550pub_series_ip.md",
-      "actionCount": 29,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "24b5da7a9a2d0fd5e8cb08a67949c6493b7ab244ac6e773d870cf64b0f16970f"
+      "actionCount": 62,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3042e75c76917f45bd5077f0697c21622ed2c0dc9517063b53461f1a71991c33"
     },
     {
       "specId": "admin/lg-55uk6550pub-smarttv-series",
@@ -8616,9 +8616,9 @@
       "revision": 1,
       "path": "specs/lg/lg_55uk6550pub_smarttv_series_ip.md",
       "actionCount": 57,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "b0fb6d2eb6e139dbeaaefe541b87b18dedf7dbc82edec61d4fe3967adfb7dad9"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8a925103f2a4c9e7744dc986e5329398ba8609ae099dfd925d3ddd6a1c3e9401"
     },
     {
       "specId": "admin/lg-55um7300pua-smarttv",
@@ -8633,9 +8633,9 @@
       "revision": 1,
       "path": "specs/lg/lg_55um7300pua_smarttv_ip.md",
       "actionCount": 54,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "635c76bb61e72125f296d55dc071b1f9bd1bf23544e2d4970f338e4874c25874"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0d159b4da994654cf87452e2dab424aefd8d6ccbe92ee70f99aeba3f7a0e78dc"
     },
     {
       "specId": "admin/lg-65b8p-series",
@@ -8650,9 +8650,9 @@
       "revision": 1,
       "path": "specs/lg/lg_65b8p_series_ip.md",
       "actionCount": 27,
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "ca619ef09d88fae5124cbb2b0f753b8f95a5c01f66e98b3b90e8f9838740a0a5"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "eb30b2bb4f126731d990255d25ea1166656250afb0beeadd8a3a2b0cb41620c0"
     },
     {
       "specId": "admin/lg-86qned90uqa",
@@ -8666,10 +8666,10 @@
       ],
       "revision": 1,
       "path": "specs/lg/lg_86qned90uqa_serial.md",
-      "actionCount": 27,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 3,
-      "contentHash": "80f8898e50b9a717eb6b3d0f65b1b7cc0599df46ece2f00f7c6b144e1d584776"
+      "actionCount": 50,
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e38f894d162d54a86760a615d8258d79c2e7cf42d5b5689326f5541c8f647bbc"
     },
     {
       "specId": "admin/lg-electronics-50px2dc-north-america",
@@ -8871,7 +8871,7 @@
       ],
       "revision": 1,
       "path": "specs/linn/linn_cms.md",
-      "actionCount": 27,
+      "actionCount": 138,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
       "contentHash": "05c301c10f3582c7137708e25b464860753008e5c116f3f2e8f321240906e9b2"
@@ -9347,7 +9347,7 @@
       "actionCount": 136,
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "d7f78adec24a6a2d08225136ef7c84daf3ea1215dfbcea0301fbd0b85f78daa5"
+      "contentHash": "73f6f02f01eaa95cb1b1d2360eadb4559268ec6cd4ccd712094fe98ebfc99a58"
     },
     {
       "specId": "admin/marantz-universal-discrete-functions",
@@ -12170,9 +12170,9 @@
       "revision": 1,
       "path": "specs/novastar/novastar_rx6.md",
       "actionCount": 26,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "0ddb3e8077af8f6caa94cb57ca01ebc662c3f3cf20dc69c356323e4bb81733ca"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "6574d1fc02446c71ac1a1f20354fa8be0610c7bc10d0cf68829f821feef93a86"
     },
     {
       "specId": "admin/nuheat-signature",
@@ -12238,9 +12238,9 @@
       "revision": 1,
       "path": "specs/onkyo/onkyo_tx_rz_series_serial.md",
       "actionCount": 175,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "da02abae252657e559d53c344aca89a40ce366a20652a0d6e0e7855080389390"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "922652aa51e110478f866041ef0c8a85764e4bb49cca4f7d0df8a5bcc0916a92"
     },
     {
       "specId": "admin/oppo-bdp-series",
@@ -12293,9 +12293,9 @@
       "revision": 1,
       "path": "specs/optoma/optoma_eh7500_ir.md",
       "actionCount": 165,
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "1aeaac3d80034136ce8884067c5c49dfd49ea810b53b02749d384f390c883b36"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "2d32accde70cd716cb3ac48adcd914c4ad5e8174a12fd01221f47a9a7fbdaf13"
     },
     {
       "specId": "admin/optoma-zu650",
@@ -12788,10 +12788,10 @@
       ],
       "revision": 1,
       "path": "specs/planar/planar_ra_series_displays.md",
-      "actionCount": 39,
+      "actionCount": 126,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "590001197aa6c6531f99496151093f7adda884360975c753583bf5db5efbca04"
+      "contentHash": "0653425d035e94d7b3fdfab452afc4a37b3d1f7ee52043c58711a3c2a356b562"
     },
     {
       "specId": "admin/planar-slm-series",
@@ -13335,7 +13335,7 @@
       "actionCount": 64,
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c3af78c0c15b8b94642b595d485f1c73950667cff4040e486210f32103abade7"
+      "contentHash": "89e88d071ca3737a5d5698c0ac57baa9fff7dd99bc41b890139c5278d1fd4f7e"
     },
     {
       "specId": "admin/rotel-rkb-850-8100",
@@ -14369,7 +14369,7 @@
       "actionCount": 34,
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "448414a73bd78396ef13e96f5894336072469f1fb8709a043b8ec2e8a2f4701a"
+      "contentHash": "b58a69e8cae5ac71187a6c2fc2f3bb0d1907462378bcb076f189913f288302cb"
     },
     {
       "specId": "admin/shure-dfr22",
@@ -14697,9 +14697,9 @@
       "revision": 1,
       "path": "specs/somfy/somfy_ci_somfy_rts_iptoserial_serial.md",
       "actionCount": 18,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "2dd50b66dff9985501881c6a273818c283272ff9445574e2c0127969533dddf7"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "c543592f6af37ffd705a0afbd0015dc9e07075441aa6904491cf9979820bada2"
     },
     {
       "specId": "admin/somfy-rs485-rts-transmitter",
@@ -14748,9 +14748,9 @@
       "revision": 1,
       "path": "specs/somfy/somfy_ilt2_serial.md",
       "actionCount": 18,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "f1ac9d595bee147a8fea48011714d78eb844b946cb3cfe55b0f4b6d92ba85ec2"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "dbb6503884b3b574d1324c2064cebcaf93c505bce21450d6a9e4dade4e092118"
     },
     {
       "specId": "admin/somfy-mylink-v1-2",
@@ -14782,9 +14782,9 @@
       "revision": 1,
       "path": "specs/somfy/somfy_rts_6300554_serial.md",
       "actionCount": 20,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "318587f1efbce66a77fae568e913a5fa4cdeeefca218787a3125de5ade075a24"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "747e8ff033097fab58a10d9a52d6335ea45cc8f54bd9d8624e16f5b3f84d5a4a"
     },
     {
       "specId": "admin/somfy-sdn-series",
@@ -14804,9 +14804,9 @@
       "revision": 1,
       "path": "specs/somfy/somfy_sdn_series_serial.md",
       "actionCount": 18,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "9acfdb7b36e95a92352ca9a3e8432edd6e718cf24d166dd201a6849d8977aeab"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "dce501482fbe8730e1765011751dcad4f2a523ebebade10c652d174b463ba034"
     },
     {
       "specId": "admin/somfy-somesse-30-50-rs485",
@@ -14958,9 +14958,9 @@
       "revision": 1,
       "path": "specs/sony/sony_kdl_series_ip.md",
       "actionCount": 17,
-      "sourceDomainCount": 3,
-      "sourceUrlCount": 4,
-      "contentHash": "326fd0ce797122f37f2be605cf94ae1d9b0b3393ccebf9828952d91e4debd84d"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "db50be7287aaadd333543540134eb11260ef3768e1c7ac0df48a113a20cef369"
     },
     {
       "specId": "admin/sony-kdlw605-series",
@@ -14994,7 +14994,7 @@
       "actionCount": 17,
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
-      "contentHash": "4ca6184fd588fdc7c080aec23defd4cb15c3d1d345daac61403ea4783bcaa8c8"
+      "contentHash": "e99608ebcec5769478f7b601adff5a0f31c7cdacca33e45a2d480384cba128d3"
     },
     {
       "specId": "admin/sony-kdlw790-series",
@@ -15169,7 +15169,7 @@
       "actionCount": 17,
       "sourceDomainCount": 1,
       "sourceUrlCount": 5,
-      "contentHash": "5690002382051d8711ea4b6cb6f2d1f1af6202db18b972a3b03195fd017678eb"
+      "contentHash": "09af25d643ef901797c0bb58faf775a486d1d67beb81eb1904d5e7f899571ee1"
     },
     {
       "specId": "admin/sony-kjx9300-series",
@@ -16803,9 +16803,9 @@
       "revision": 1,
       "path": "specs/wyrestorm/wyrestorm_wyrestorm_av_switcher_ip.md",
       "actionCount": 61,
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "bf1947f980430985b953f2111a43fc6c4b801282873fa7ebed171d248998caef"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f75061b5109b1664808536344e041607b42b4d1393f5f8aa861a1bd968d6c8c8"
     },
     {
       "specId": "admin/xilica-neutrino-series",

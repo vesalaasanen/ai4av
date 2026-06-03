@@ -19,10 +19,10 @@ compatible_with:
 source_domains:
   - cisco.com
 source_urls:
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/mx200g2-mx300g2-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/dx70-dx80-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce92/mx200g2-mx300g2-api-reference-guide-ce92.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/mx200g2-mx300g2-api-reference-guide-ce91.pdf
-retrieved_at: 2026-05-01T00:09:42.111Z
+retrieved_at: 2026-06-01T23:29:55.954Z
 last_checked_at: 2026-06-02T22:05:22.098Z
 generated_at: 2026-06-02T22:05:22.098Z
 firmware_coverage: "Not stated in source"
@@ -2855,10 +2855,10 @@ auth:
 source_domains:
   - cisco.com
 source_urls:
+  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/mx200g2-mx300g2-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/dx70-dx80-api-reference-guide-ce91.pdf
   - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce92/mx200g2-mx300g2-api-reference-guide-ce92.pdf
-  - https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce91/mx200g2-mx300g2-api-reference-guide-ce91.pdf
-retrieved_at: 2026-05-01T00:09:42.111Z
+retrieved_at: 2026-06-01T23:29:55.954Z
 last_checked_at: 2026-06-02T22:05:22.098Z
 ```
 

@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T22:14:46.075Z
+source_domains:
+  - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
+retrieved_at: 2026-06-02T05:04:19.396Z
 last_checked_at: 2026-06-02T22:14:46.075Z
 generated_at: 2026-06-02T22:14:46.075Z
 firmware_coverage: "Not stated in source"
@@ -32,7 +34,6 @@ known_gaps:
   - "speed min/max ranges for SET_MOTOR_ROLLING_SPEED are device-specific; refer to the device technical datasheet."
   - "bus topology, cable lengths, and wiring constraints are in DOC114316 \"SDN Bus Wiring Guide\", not in this source."
   - "any safety / installation warnings in DOC114316 are not captured here."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:14:46.075Z
@@ -502,9 +503,11 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T22:14:46.075Z
+source_domains:
+  - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
+retrieved_at: 2026-06-02T05:04:19.396Z
 last_checked_at: 2026-06-02T22:14:46.075Z
 ```
 
@@ -531,7 +534,6 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (9 unresolv
 - "speed min/max ranges for SET_MOTOR_ROLLING_SPEED are device-specific; refer to the device technical datasheet."
 - "bus topology, cable lengths, and wiring constraints are in DOC114316 \"SDN Bus Wiring Guide\", not in this source."
 - "any safety / installation warnings in DOC114316 are not captured here."
-- "model-specific source not located"
 ```
 
 ---

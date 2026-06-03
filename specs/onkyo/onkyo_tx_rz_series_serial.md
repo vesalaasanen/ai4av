@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:23:36.702Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T03:58:12.590Z
 last_checked_at: 2026-06-02T17:23:36.702Z
 generated_at: 2026-06-02T17:23:36.702Z
 firmware_coverage: "Not stated in source"
@@ -30,7 +32,6 @@ known_gaps:
   - "TX-RZ-specific features (Dolby Atmos, DTS:X, AirPlay 2, Chromecast, voice assistants, newer network streaming) and any post-v1.15 ISCP extensions are not stated in source."
   - "RI dock (CDS) command set is described as having \"DOCK\" sub-keys; full enumeration in source is truncated at \"DOWN CURSOR DOWN Key\" and may continue beyond."
   - "eISCP packet size limits and maximum ISCP message length are not stated in source."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:23:36.702Z
@@ -1616,9 +1617,11 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:23:36.702Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T03:58:12.590Z
 last_checked_at: 2026-06-02T17:23:36.702Z
 ```
 
@@ -1643,7 +1646,6 @@ summary: "All 175 spec actions matched literally to ISCP v1.15 source; transport
 - "TX-RZ-specific features (Dolby Atmos, DTS:X, AirPlay 2, Chromecast, voice assistants, newer network streaming) and any post-v1.15 ISCP extensions are not stated in source."
 - "RI dock (CDS) command set is described as having \"DOCK\" sub-keys; full enumeration in source is truncated at \"DOWN CURSOR DOWN Key\" and may continue beyond."
 - "eISCP packet size limits and maximum ISCP message length are not stated in source."
-- "model-specific source not located"
 ```
 
 ---

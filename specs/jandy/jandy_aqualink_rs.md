@@ -17,9 +17,12 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:25:20.670Z
+source_domains:
+  - github.com
+source_urls:
+  - https://github.com/aqualinkd/AqualinkD/blob/master/JANDY_RS485_PROTOCOL.md
+  - https://github.com/aqualinkd/AqualinkD/raw/refs/heads/master/JANDY_RS485_PROTOCOL.md
+retrieved_at: 2026-06-02T02:18:33.684Z
 last_checked_at: 2026-06-02T08:25:20.670Z
 generated_at: 2026-06-02T08:25:20.670Z
 firmware_coverage: "Not stated in source"
@@ -29,7 +32,6 @@ known_gaps:
   - "source describes packet-level patterns but no explicit multi-step macro sequences named as such."
   - "source contains no explicit safety warnings, interlock procedures, or power-on sequencing requirements."
   - "firmware version compatibility not stated. Source originates from reverse-engineering AqualinkD project, not an official Jandy protocol document."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T08:25:20.670Z
@@ -769,9 +771,12 @@ RS485 bus, multi-drop, 8N1 @ 9600 baud, no hardware/software flow control. Frame
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T08:25:20.670Z
+source_domains:
+  - github.com
+source_urls:
+  - https://github.com/aqualinkd/AqualinkD/blob/master/JANDY_RS485_PROTOCOL.md
+  - https://github.com/aqualinkd/AqualinkD/raw/refs/heads/master/JANDY_RS485_PROTOCOL.md
+retrieved_at: 2026-06-02T02:18:33.684Z
 last_checked_at: 2026-06-02T08:25:20.670Z
 ```
 
@@ -793,7 +798,6 @@ summary: "All 45 spec actions map one-to-one to command tokens present verbatim 
 - "source describes packet-level patterns but no explicit multi-step macro sequences named as such."
 - "source contains no explicit safety warnings, interlock procedures, or power-on sequencing requirements."
 - "firmware version compatibility not stated. Source originates from reverse-engineering AqualinkD project, not an official Jandy protocol document."
-- "model-specific source not located"
 ```
 
 ---

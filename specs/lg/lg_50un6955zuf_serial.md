@@ -16,14 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - gscs-b2c.lge.com
   - proaudioinc.com
-  - manualslib.com
 source_urls:
-  - "https://gscs-b2c.lge.com/downloadFile?fileId=OTCe0KNJErB1WmzD05OQ"
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
-retrieved_at: 2026-06-02T22:09:09.957Z
+retrieved_at: 2026-06-02T02:38:34.463Z
 last_checked_at: 2026-06-02T22:09:09.957Z
 generated_at: 2026-06-02T22:09:09.957Z
 firmware_coverage: "Not stated in source"
@@ -715,14 +711,10 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - gscs-b2c.lge.com
   - proaudioinc.com
-  - manualslib.com
 source_urls:
-  - "https://gscs-b2c.lge.com/downloadFile?fileId=OTCe0KNJErB1WmzD05OQ"
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://www.manualslib.com/manual/2267581/Lg-43lj550m.html
-retrieved_at: 2026-06-02T22:09:09.957Z
+retrieved_at: 2026-06-02T02:38:34.463Z
 last_checked_at: 2026-06-02T22:09:09.957Z
 ```
 

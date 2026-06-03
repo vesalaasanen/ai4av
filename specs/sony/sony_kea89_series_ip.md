@@ -19,11 +19,11 @@ source_domains:
   - pro-bravia.sony.net
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://pro-bravia.sony.net/remote-display-control/serial-control/
   - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
   - https://pro-bravia.sony.net/remote-display-control/rest-api/
   - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
-retrieved_at: 2026-05-27T09:15:13.977Z
+retrieved_at: 2026-06-02T06:52:25.672Z
 last_checked_at: 2026-05-31T22:41:23.905Z
 generated_at: 2026-05-31T22:41:23.905Z
 firmware_coverage: "Not stated in source"
@@ -320,11 +320,11 @@ source_domains:
   - pro-bravia.sony.net
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://pro-bravia.sony.net/remote-display-control/serial-control/
   - https://pro-bravia.sony.net/remote-display-control/serial-control/command/
+  - https://pro-bravia.sony.net/remote-display-control/serial-control/
   - https://pro-bravia.sony.net/remote-display-control/rest-api/
   - https://pro-bravia.sony.net/remote-display-control/rest-api/reference/
-retrieved_at: 2026-05-27T09:15:13.977Z
+retrieved_at: 2026-06-02T06:52:25.672Z
 last_checked_at: 2026-05-31T22:41:23.905Z
 ```
 

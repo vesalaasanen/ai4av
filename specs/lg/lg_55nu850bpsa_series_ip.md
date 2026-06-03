@@ -17,15 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
-  - scribd.com
-  - justaddpower.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://www.scribd.com/document/649294226/RS232-forLGTV
-  - https://www.justaddpower.com/docs/manuals/rs232/lg.pdf
-retrieved_at: 2026-06-02T17:23:05.749Z
-last_checked_at: 2026-06-02T17:23:05.749Z
-generated_at: 2026-06-02T17:23:05.749Z
+retrieved_at: 2026-06-02T02:42:36.404Z
+last_checked_at: 2026-06-03T05:33:44.108Z
+generated_at: 2026-06-03T05:33:44.108Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +37,11 @@ known_gaps:
   - "maximum polling rate, minimum inter-command delay, and timeout/retry behaviour for both RS-232 and IP surfaces are not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:23:05.749Z
-  matched_actions: 30
-  action_count: 30
+  checked_at: 2026-06-03T05:33:44.108Z
+  matched_actions: 63
+  action_count: 63
   confidence: medium
-  summary: "All 30 RS-232 action commands matched verbatim in source with correct shapes; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 spec actions traced to source (multi-fence parser fix re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -907,25 +903,21 @@ interlocks:
 ```yaml
 source_domains:
   - proaudioinc.com
-  - scribd.com
-  - justaddpower.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://www.scribd.com/document/649294226/RS232-forLGTV
-  - https://www.justaddpower.com/docs/manuals/rs232/lg.pdf
-retrieved_at: 2026-06-02T17:23:05.749Z
-last_checked_at: 2026-06-02T17:23:05.749Z
+retrieved_at: 2026-06-02T02:42:36.404Z
+last_checked_at: 2026-06-03T05:33:44.108Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:23:05.749Z
-matched_actions: 30
-action_count: 30
+checked_at: 2026-06-03T05:33:44.108Z
+matched_actions: 63
+action_count: 63
 confidence: medium
-summary: "All 30 RS-232 action commands matched verbatim in source with correct shapes; transport parameters verified. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 spec actions traced to source (multi-fence parser fix re-verify). (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

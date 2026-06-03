@@ -17,14 +17,9 @@ compatible_with:
   required_options: []
 source_domains:
   - pro-bravia.sony.net
-  - helpguide.sony.net
-  - github.com
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://helpguide.sony.net/tv/gusltnr1/v1/en-us/07-02_17.html
-  - https://github.com/xiaolaba/bravia_console_sony/blob/master/Sony_Simple_IP_Control_Protocol_for_BRAVIA.pdf
-  - https://pro-bravia.sony.net/remote-display-control/rest-api/
-retrieved_at: 2026-06-02T05:46:23.710Z
+retrieved_at: 2026-06-02T05:23:39.835Z
 last_checked_at: 2026-06-02T05:46:23.710Z
 generated_at: 2026-06-02T05:46:23.710Z
 firmware_coverage: "Not stated in source"
@@ -399,14 +394,9 @@ interlocks: []
 ```yaml
 source_domains:
   - pro-bravia.sony.net
-  - helpguide.sony.net
-  - github.com
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://helpguide.sony.net/tv/gusltnr1/v1/en-us/07-02_17.html
-  - https://github.com/xiaolaba/bravia_console_sony/blob/master/Sony_Simple_IP_Control_Protocol_for_BRAVIA.pdf
-  - https://pro-bravia.sony.net/remote-display-control/rest-api/
-retrieved_at: 2026-06-02T05:46:23.710Z
+retrieved_at: 2026-06-02T05:23:39.835Z
 last_checked_at: 2026-06-02T05:46:23.710Z
 ```
 

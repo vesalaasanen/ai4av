@@ -16,14 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - justaddpower.happyfox.com
-  - proaudioinc.com
   - justaddpower.com
 source_urls:
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:00.107Z
+retrieved_at: 2026-06-02T02:42:33.169Z
 last_checked_at: 2026-06-02T17:23:00.107Z
 generated_at: 2026-06-02T17:23:00.107Z
 firmware_coverage: "Not stated in source"
@@ -1045,14 +1041,10 @@ interlocks:
 
 ```yaml
 source_domains:
-  - justaddpower.happyfox.com
-  - proaudioinc.com
   - justaddpower.com
 source_urls:
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:00.107Z
+retrieved_at: 2026-06-02T02:42:33.169Z
 last_checked_at: 2026-06-02T17:23:00.107Z
 ```
 

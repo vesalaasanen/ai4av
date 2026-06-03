@@ -16,14 +16,12 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - proaudioinc.com
   - justaddpower.com
 source_urls:
-  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:06.492Z
-last_checked_at: 2026-06-02T17:23:06.492Z
-generated_at: 2026-06-02T17:23:06.492Z
+retrieved_at: 2026-06-02T02:44:24.212Z
+last_checked_at: 2026-06-03T05:33:45.765Z
+generated_at: 2026-06-03T05:33:45.765Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +29,11 @@ known_gaps:
   - "firmware version compatibility not stated. UNRESOLVED: WOL magic packet format not in source. UNRESOLVED: 3D / Extended 3D / ISM applicability to 55UK6550PUB not confirmed."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:23:06.492Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-06-03T05:33:45.765Z
+  matched_actions: 62
+  action_count: 62
   confidence: medium
-  summary: "All 29 RS-232 spec actions matched verbatim in source; transport parameters verified; 27 distinct wire-token commands fully represented. (2 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 62 spec actions traced to source (multi-fence parser fix re-verify). (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -685,24 +683,22 @@ interlocks: []
 
 ```yaml
 source_domains:
-  - proaudioinc.com
   - justaddpower.com
 source_urls:
-  - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T17:23:06.492Z
-last_checked_at: 2026-06-02T17:23:06.492Z
+retrieved_at: 2026-06-02T02:44:24.212Z
+last_checked_at: 2026-06-03T05:33:45.765Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:23:06.492Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-06-03T05:33:45.765Z
+matched_actions: 62
+action_count: 62
 confidence: medium
-summary: "All 29 RS-232 spec actions matched verbatim in source; transport parameters verified; 27 distinct wire-token commands fully represented. (2 unresolved item(s) noted in Known Gaps.)"
+summary: "All 62 spec actions traced to source (multi-fence parser fix re-verify). (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

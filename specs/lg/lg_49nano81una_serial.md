@@ -17,13 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - proaudioinc.com
-  - knowledge.tiffinmotorhomes.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T17:22:53.649Z
-last_checked_at: 2026-06-02T17:22:53.649Z
-generated_at: 2026-06-02T17:22:53.649Z
+retrieved_at: 2026-06-02T01:09:06.402Z
+last_checked_at: 2026-06-03T05:36:09.952Z
+generated_at: 2026-06-03T05:36:09.952Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +35,11 @@ known_gaps:
   - "which specific xb input codes (e.g. HDMI3/HDMI4, ISDB-BS) the 49NANO81UNA accepts — only stated as \"depends on model and signal\"."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:22:53.649Z
+  checked_at: 2026-06-03T05:36:09.952Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions matched literally in source; transport parameters (9600 8N1, port 9761) verified; comprehensive protocol coverage with one-to-one action mapping. (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 spec actions traced to source (multi-fence parser fix re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -564,23 +562,21 @@ interlocks:
 ```yaml
 source_domains:
   - proaudioinc.com
-  - knowledge.tiffinmotorhomes.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-  - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T17:22:53.649Z
-last_checked_at: 2026-06-02T17:22:53.649Z
+retrieved_at: 2026-06-02T01:09:06.402Z
+last_checked_at: 2026-06-03T05:36:09.952Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:22:53.649Z
+checked_at: 2026-06-03T05:36:09.952Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions matched literally in source; transport parameters (9600 8N1, port 9761) verified; comprehensive protocol coverage with one-to-one action mapping. (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 spec actions traced to source (multi-fence parser fix re-verify). (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

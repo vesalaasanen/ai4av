@@ -20,7 +20,7 @@ source_domains:
   - rotel.com
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
-retrieved_at: 2026-05-04T16:41:32.014Z
+retrieved_at: 2026-06-02T05:28:09.211Z
 last_checked_at: 2026-06-02T17:23:56.604Z
 generated_at: 2026-06-02T17:23:56.604Z
 firmware_coverage: "\"V1.1.5\""
@@ -596,7 +596,7 @@ source_domains:
   - rotel.com
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RDG1520%20Protocol_0.pdf"
-retrieved_at: 2026-05-04T16:41:32.014Z
+retrieved_at: 2026-06-02T05:28:09.211Z
 last_checked_at: 2026-06-02T17:23:56.604Z
 ```
 

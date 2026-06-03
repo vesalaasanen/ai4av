@@ -16,16 +16,10 @@ compatible_with:
   protocol_versions: []
   required_options: []
 source_domains:
-  - webostv.developer.lge.com
   - justaddpower.com
-  - justaddpower.happyfox.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
-  - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T17:22:58.572Z
+retrieved_at: 2026-06-02T01:30:16.492Z
 last_checked_at: 2026-06-02T17:22:58.572Z
 generated_at: 2026-06-02T17:22:58.572Z
 firmware_coverage: "Not stated in source"
@@ -567,16 +561,10 @@ The input hint specified "TCP/IP", but the source document exclusively describes
 
 ```yaml
 source_domains:
-  - webostv.developer.lge.com
   - justaddpower.com
-  - justaddpower.happyfox.com
 source_urls:
-  - https://webostv.developer.lge.com/develop/references/luna-service-introduction
-  - https://webostv.developer.lge.com/develop/references/audio
-  - https://webostv.developer.lge.com/develop/references/tv-device-information
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-  - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T17:22:58.572Z
+retrieved_at: 2026-06-02T01:30:16.492Z
 last_checked_at: 2026-06-02T17:22:58.572Z
 ```
 

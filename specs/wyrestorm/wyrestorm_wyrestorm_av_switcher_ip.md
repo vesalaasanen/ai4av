@@ -18,9 +18,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T07:07:00.165Z
+source_domains:
+  - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
+retrieved_at: 2026-06-02T06:32:34.982Z
 last_checked_at: 2026-06-02T07:07:00.165Z
 generated_at: 2026-06-02T07:07:00.165Z
 firmware_coverage: "Not stated in source"
@@ -31,7 +33,6 @@ known_gaps:
   - "source describes no multi-step command sequences or scene macros"
   - "source contains no safety warnings, interlock procedures, or"
   - "firmware compatibility ranges; auth/session model; unsolicited event stream; safety interlocks; full EDID code semantics for code 31 (EDID Write payload format)."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T07:07:00.165Z
@@ -859,9 +860,11 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T07:07:00.165Z
+source_domains:
+  - digis.ru
+source_urls:
+  - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
+retrieved_at: 2026-06-02T06:32:34.982Z
 last_checked_at: 2026-06-02T07:07:00.165Z
 ```
 
@@ -884,7 +887,6 @@ summary: "All 61 spec actions matched literal command tokens in source; transpor
 - "source describes no multi-step command sequences or scene macros"
 - "source contains no safety warnings, interlock procedures, or"
 - "firmware compatibility ranges; auth/session model; unsolicited event stream; safety interlocks; full EDID code semantics for code 31 (EDID Write payload format)."
-- "model-specific source not located"
 ```
 
 ---

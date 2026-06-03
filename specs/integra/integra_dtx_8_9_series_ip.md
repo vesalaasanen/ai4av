@@ -16,9 +16,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:22:37.542Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T00:57:21.924Z
 last_checked_at: 2026-06-02T17:22:37.542Z
 generated_at: 2026-06-02T17:22:37.542Z
 firmware_coverage: "Not stated in source"
@@ -41,7 +43,6 @@ known_gaps:
   - "no safety warnings, interlock procedures, or power sequencing"
   - "full main-table DTX-8.9 column not extracted in the refined source — actions are populated from the explicit Model Support Note plus all commands the receiver-class ISCP protocol documents. Hardware verification against a DTX-8.9 unit recommended before promoting status above draft."
   - "TGA/TGB/TGC 12V trigger commands only function when each trigger's setup-menu parameter is OFF — runtime precondition stated in source."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:37.542Z
@@ -2324,9 +2325,11 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T17:22:37.542Z
+source_domains:
+  - community.symcon.de
+source_urls:
+  - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
+retrieved_at: 2026-06-02T00:57:21.924Z
 last_checked_at: 2026-06-02T17:22:37.542Z
 ```
 
@@ -2361,7 +2364,6 @@ summary: "All 322 spec actions verified against source ISCP protocol for DTX-8.9
 - "no safety warnings, interlock procedures, or power sequencing"
 - "full main-table DTX-8.9 column not extracted in the refined source — actions are populated from the explicit Model Support Note plus all commands the receiver-class ISCP protocol documents. Hardware verification against a DTX-8.9 unit recommended before promoting status above draft."
 - "TGA/TGB/TGC 12V trigger commands only function when each trigger's setup-menu parameter is OFF — runtime precondition stated in source."
-- "model-specific source not located"
 ```
 
 ---

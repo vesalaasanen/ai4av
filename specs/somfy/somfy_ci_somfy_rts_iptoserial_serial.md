@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T05:46:16.255Z
+source_domains:
+  - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
+retrieved_at: 2026-06-02T05:05:57.336Z
 last_checked_at: 2026-06-02T05:46:16.255Z
 generated_at: 2026-06-02T05:46:16.255Z
 firmware_coverage: "Not stated in source"
@@ -25,7 +27,6 @@ protocol_coverage: []
 known_gaps:
   - "IP-side control interface of the bridge is not described in the source document"
   - "IP-side control interface of the bridge is not described in the source. Source was a refined excerpt of the SDN bus protocol guide, not a full bridge manual."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-06-02T05:46:16.255Z
@@ -412,9 +413,11 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-06-02T05:46:16.255Z
+source_domains:
+  - service.somfy.com
+source_urls:
+  - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
+retrieved_at: 2026-06-02T05:05:57.336Z
 last_checked_at: 2026-06-02T05:46:16.255Z
 ```
 
@@ -434,7 +437,6 @@ summary: "All 18 spec actions matched literally to source opcodes; transport par
 ```yaml
 - "IP-side control interface of the bridge is not described in the source document"
 - "IP-side control interface of the bridge is not described in the source. Source was a refined excerpt of the SDN bus protocol guide, not a full bridge manual."
-- "model-specific source not located"
 ```
 
 ---
