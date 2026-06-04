@@ -26,8 +26,8 @@ source_urls:
   - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
   - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-06-02T22:08:11.099Z
-generated_at: 2026-06-02T22:08:11.099Z
+last_checked_at: 2026-06-03T07:12:58.453Z
+generated_at: 2026-06-03T07:12:58.453Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "UDP notification port default (1147) stated but source does not confirm if configurable"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:11.099Z
+  checked_at: 2026-06-03T07:12:58.453Z
   matched_actions: 101
   action_count: 101
   confidence: medium
-  summary: "All 101 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action inventory matched (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1529,18 +1529,18 @@ source_urls:
   - https://www.idkav.com/content/documents/manuals/fdx-s_cm_ver.4.10.0_en.pdf
   - https://www.manualslib.com/manual/1871261/Idk-Fdx-S-Series.html
 retrieved_at: 2026-04-29T23:58:51.825Z
-last_checked_at: 2026-06-02T22:08:11.099Z
+last_checked_at: 2026-06-03T07:12:58.453Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:11.099Z
+checked_at: 2026-06-03T07:12:58.453Z
 matched_actions: 101
 action_count: 101
 confidence: medium
-summary: "All 101 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action inventory matched (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

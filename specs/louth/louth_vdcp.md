@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://imaginecommunications.com/content/uploads/2024/11/VDCP_Protocol_Guide_Revision_20_20230531.pdf
 retrieved_at: 2026-04-30T04:46:15.174Z
-last_checked_at: 2026-06-02T22:09:26.739Z
-generated_at: 2026-06-02T22:09:26.739Z
+last_checked_at: 2026-06-03T07:22:53.938Z
+generated_at: 2026-06-03T07:22:53.938Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "physical connection details beyond RS-422 pinout not specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:26.739Z
+  checked_at: 2026-06-03T07:22:53.938Z
   matched_actions: 76
   action_count: 76
   confidence: medium
-  summary: "All 76 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match between spec and VDCP source (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -866,18 +866,18 @@ source_domains:
 source_urls:
   - https://imaginecommunications.com/content/uploads/2024/11/VDCP_Protocol_Guide_Revision_20_20230531.pdf
 retrieved_at: 2026-04-30T04:46:15.174Z
-last_checked_at: 2026-06-02T22:09:26.739Z
+last_checked_at: 2026-06-03T07:22:53.938Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:26.739Z
+checked_at: 2026-06-03T07:22:53.938Z
 matched_actions: 76
 action_count: 76
 confidence: medium
-summary: "All 76 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match between spec and VDCP source (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

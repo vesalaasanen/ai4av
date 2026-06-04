@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:20.402Z
-last_checked_at: 2026-06-02T22:08:15.584Z
-generated_at: 2026-06-02T22:08:15.584Z
+last_checked_at: 2026-06-03T07:13:01.053Z
+generated_at: 2026-06-03T07:13:01.053Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "tone commands for all individual speaker channels (TFW, TFH, TCT, TSR, TSB, TSW) omitted from Actions for brevity — follow TFR pattern"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:15.584Z
+  checked_at: 2026-06-03T07:13:01.053Z
   matched_actions: 68
   action_count: 68
   confidence: medium
-  summary: "All 68 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match between spec and source (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -982,18 +982,18 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:20.402Z
-last_checked_at: 2026-06-02T22:08:15.584Z
+last_checked_at: 2026-06-03T07:13:01.053Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:15.584Z
+checked_at: 2026-06-03T07:13:01.053Z
 matched_actions: 68
 action_count: 68
 confidence: medium
-summary: "All 68 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match between spec and source (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

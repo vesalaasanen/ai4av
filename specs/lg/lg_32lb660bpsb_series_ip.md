@@ -23,9 +23,9 @@ source_urls:
   - https://www.lg.com/us/business/download/resources/BT00001837/UV340C-U_Install_Manual_170825.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
-retrieved_at: 2026-06-02T22:08:48.429Z
-last_checked_at: 2026-06-02T22:08:48.429Z
-generated_at: 2026-06-02T22:08:48.429Z
+retrieved_at: 2026-06-03T07:16:20.986Z
+last_checked_at: 2026-06-03T07:16:20.986Z
+generated_at: 2026-06-03T07:16:20.986Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "tune command behavior differs significantly by geographic region; full parameter sets for Japan models not completely documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:48.429Z
+  checked_at: 2026-06-03T07:16:20.986Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: all 25 actions present (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -803,19 +803,19 @@ source_urls:
   - https://www.lg.com/us/business/download/resources/BT00001837/UV340C-U_Install_Manual_170825.pdf
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.scribd.com/document/649294226/LG-TV-RS-232C-Control-Manual
-retrieved_at: 2026-06-02T22:08:48.429Z
-last_checked_at: 2026-06-02T22:08:48.429Z
+retrieved_at: 2026-06-03T07:16:20.986Z
+last_checked_at: 2026-06-03T07:16:20.986Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:48.429Z
+checked_at: 2026-06-03T07:16:20.986Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: all 25 actions present (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

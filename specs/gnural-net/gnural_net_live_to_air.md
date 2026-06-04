@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://gnuralnetdatastorage.s3.amazonaws.com/Gnural-Documentation/LiveToAir%20Macro%20Documentation.pdf"
 retrieved_at: 2026-04-30T04:41:19.155Z
-last_checked_at: 2026-06-02T22:07:22.414Z
-generated_at: 2026-06-02T22:07:22.414Z
+last_checked_at: 2026-06-03T07:06:24.212Z
+generated_at: 2026-06-03T07:06:24.212Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "/State response format — not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:22.414Z
+  checked_at: 2026-06-03T07:06:24.212Z
   matched_actions: 32
   action_count: 32
   confidence: medium
-  summary: "All 32 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete inventory cross-check (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -332,18 +332,18 @@ source_domains:
 source_urls:
   - "https://gnuralnetdatastorage.s3.amazonaws.com/Gnural-Documentation/LiveToAir%20Macro%20Documentation.pdf"
 retrieved_at: 2026-04-30T04:41:19.155Z
-last_checked_at: 2026-06-02T22:07:22.414Z
+last_checked_at: 2026-06-03T07:06:24.212Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:22.414Z
+checked_at: 2026-06-03T07:06:24.212Z
 matched_actions: 32
 action_count: 32
 confidence: medium
-summary: "All 32 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete inventory cross-check (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

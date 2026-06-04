@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T22:09:12.953Z
-last_checked_at: 2026-06-02T22:09:12.953Z
-generated_at: 2026-06-02T22:09:12.953Z
+retrieved_at: 2026-06-03T07:19:39.788Z
+last_checked_at: 2026-06-03T07:19:39.788Z
+generated_at: 2026-06-03T07:19:39.788Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "TCP/IP connection timeout or keepalive behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:12.953Z
+  checked_at: 2026-06-03T07:19:39.788Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 26 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "Every action in spec matches source (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -544,19 +544,19 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T22:09:12.953Z
-last_checked_at: 2026-06-02T22:09:12.953Z
+retrieved_at: 2026-06-03T07:19:39.788Z
+last_checked_at: 2026-06-03T07:19:39.788Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:12.953Z
+checked_at: 2026-06-03T07:19:39.788Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 26 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "Every action in spec matches source (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

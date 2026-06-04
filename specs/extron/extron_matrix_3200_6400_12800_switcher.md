@@ -32,8 +32,8 @@ source_urls:
   - https://www.extron.com/article/tech92
   - https://portal.7thsense.one/medialon-help/mxmExtron6400.html
 retrieved_at: 2026-04-30T03:38:46.180Z
-last_checked_at: 2026-06-02T22:07:04.146Z
-generated_at: 2026-06-02T22:07:04.146Z
+last_checked_at: 2026-06-03T07:03:12.719Z
+generated_at: 2026-06-03T07:03:12.719Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -46,11 +46,11 @@ known_gaps:
   - "maximum virtual input/output counts vary by model (3200/6400/12800) — source shows up to 64x64 virtual"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:04.146Z
+  checked_at: 2026-06-03T07:03:12.719Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 49 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 actions precisely cross-referenced (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -747,18 +747,18 @@ source_urls:
   - https://www.extron.com/article/tech92
   - https://portal.7thsense.one/medialon-help/mxmExtron6400.html
 retrieved_at: 2026-04-30T03:38:46.180Z
-last_checked_at: 2026-06-02T22:07:04.146Z
+last_checked_at: 2026-06-03T07:03:12.719Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:04.146Z
+checked_at: 2026-06-03T07:03:12.719Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 49 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 actions precisely cross-referenced (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

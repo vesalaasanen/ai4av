@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-02T01:47:27.115Z
-last_checked_at: 2026-06-02T22:08:01.933Z
-generated_at: 2026-06-02T22:08:01.933Z
+last_checked_at: 2026-06-03T07:09:50.595Z
+generated_at: 2026-06-03T07:09:50.595Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -29,11 +29,11 @@ known_gaps:
   - "firmware version compatibility, network control (TCP/IP) interface, error recovery / fault behavior not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:01.933Z
+  checked_at: 2026-06-03T07:09:50.595Z
   matched_actions: 165
   action_count: 165
   confidence: medium
-  summary: "All 165 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
+  summary: "Spec actions and transport verified (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1481,18 +1481,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-02T01:47:27.115Z
-last_checked_at: 2026-06-02T22:08:01.933Z
+last_checked_at: 2026-06-03T07:09:50.595Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:01.933Z
+checked_at: 2026-06-03T07:09:50.595Z
 matched_actions: 165
 action_count: 165
 confidence: medium
-summary: "All 165 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
+summary: "Spec actions and transport verified (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

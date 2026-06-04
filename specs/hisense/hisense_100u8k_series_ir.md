@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T15:59:26.659Z
-last_checked_at: 2026-06-02T22:07:40.794Z
-generated_at: 2026-06-02T22:07:40.794Z
+last_checked_at: 2026-06-03T07:06:34.045Z
+generated_at: 2026-06-03T07:06:34.045Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "no explicit safety warnings or interlock procedures beyond setup notes"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:40.794Z
+  checked_at: 2026-06-03T07:06:34.045Z
   matched_actions: 161
   action_count: 161
   confidence: medium
-  summary: "All 161 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1489,18 +1489,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-05-03T15:59:26.659Z
-last_checked_at: 2026-06-02T22:07:40.794Z
+last_checked_at: 2026-06-03T07:06:34.045Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:40.794Z
+checked_at: 2026-06-03T07:06:34.045Z
 matched_actions: 161
 action_count: 161
 confidence: medium
-summary: "All 161 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

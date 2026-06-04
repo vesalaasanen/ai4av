@@ -26,8 +26,8 @@ source_urls:
   - https://academy.lightware.com/courses/device-control-methods-protocols-level-3
   - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-04-30T00:07:53.976Z
-last_checked_at: 2026-06-02T22:09:20.588Z
-generated_at: 2026-06-02T22:09:20.588Z
+last_checked_at: 2026-06-03T07:22:51.117Z
+generated_at: 2026-06-03T07:22:51.117Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "DHCH state query (GET /MANAGEMENT/NETWORK.DhcpEnabled) shown but DHCP setting via SET not documented with example"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:20.588Z
+  checked_at: 2026-06-03T07:22:51.117Z
   matched_actions: 13
   action_count: 13
   confidence: medium
-  summary: "All 13 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 13 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -351,18 +351,18 @@ source_urls:
   - https://academy.lightware.com/courses/device-control-methods-protocols-level-3
   - https://go.lightware.com/open-api-environment
 retrieved_at: 2026-04-30T00:07:53.976Z
-last_checked_at: 2026-06-02T22:09:20.588Z
+last_checked_at: 2026-06-03T07:22:51.117Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:20.588Z
+checked_at: 2026-06-03T07:22:51.117Z
 matched_actions: 13
 action_count: 13
 confidence: medium
-summary: "All 13 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 13 actions verified (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

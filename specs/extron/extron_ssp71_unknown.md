@@ -26,8 +26,8 @@ source_urls:
   - http://rental.imersis.ch/wp-content/uploads/2024/05/EXTRON-SSP-7.1_Manual.pdf
   - https://www.manualslib.com/manual/725401/Extron-Electronics-Ssp-7-1.html
 retrieved_at: 2026-05-14T16:19:13.075Z
-last_checked_at: 2026-06-02T22:07:11.547Z
-generated_at: 2026-06-02T22:07:11.547Z
+last_checked_at: 2026-06-03T07:03:19.402Z
+generated_at: 2026-06-03T07:03:19.402Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "maximum command rate / throttle limits not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:11.547Z
+  checked_at: 2026-06-03T07:03:19.402Z
   matched_actions: 43
   action_count: 43
   confidence: medium
-  summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 43 actions verified against source (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -925,18 +925,18 @@ source_urls:
   - http://rental.imersis.ch/wp-content/uploads/2024/05/EXTRON-SSP-7.1_Manual.pdf
   - https://www.manualslib.com/manual/725401/Extron-Electronics-Ssp-7-1.html
 retrieved_at: 2026-05-14T16:19:13.075Z
-last_checked_at: 2026-06-02T22:07:11.547Z
+last_checked_at: 2026-06-03T07:03:19.402Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:11.547Z
+checked_at: 2026-06-03T07:03:19.402Z
 matched_actions: 43
 action_count: 43
 confidence: medium
-summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 43 actions verified against source (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -24,9 +24,9 @@ source_urls:
   - https://www.manualslib.com/products/Lg-49lj5550-10832443.html
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T22:09:00.953Z
-last_checked_at: 2026-06-02T22:09:00.953Z
-generated_at: 2026-06-02T22:09:00.953Z
+retrieved_at: 2026-06-03T07:19:31.706Z
+last_checked_at: 2026-06-03T07:19:31.706Z
+generated_at: 2026-06-03T07:19:31.706Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "whether IP control is available outside USA"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:00.953Z
+  checked_at: 2026-06-03T07:19:31.706Z
   matched_actions: 48
   action_count: 48
   confidence: medium
-  summary: "All 48 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete inventory match (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -903,19 +903,19 @@ source_urls:
   - https://www.manualslib.com/products/Lg-49lj5550-10832443.html
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T22:09:00.953Z
-last_checked_at: 2026-06-02T22:09:00.953Z
+retrieved_at: 2026-06-03T07:19:31.706Z
+last_checked_at: 2026-06-03T07:19:31.706Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:00.953Z
+checked_at: 2026-06-03T07:19:31.706Z
 matched_actions: 48
 action_count: 48
 confidence: medium
-summary: "All 48 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete inventory match (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

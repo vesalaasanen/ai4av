@@ -22,9 +22,9 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T22:09:19.143Z
-last_checked_at: 2026-06-02T22:09:19.143Z
-generated_at: 2026-06-02T22:09:19.143Z
+retrieved_at: 2026-06-03T07:22:50.321Z
+last_checked_at: 2026-06-03T07:22:50.321Z
+generated_at: 2026-06-03T07:22:50.321Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "maximum command rate / timing constraints not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:19.143Z
+  checked_at: 2026-06-03T07:22:50.321Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "Spec actions comprehensively cross-checked (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -719,19 +719,19 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/luna-service-introduction
   - https://webostv.developer.lge.com/develop/references/audio
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T22:09:19.143Z
-last_checked_at: 2026-06-02T22:09:19.143Z
+retrieved_at: 2026-06-03T07:22:50.321Z
+last_checked_at: 2026-06-03T07:22:50.321Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:19.143Z
+checked_at: 2026-06-03T07:22:50.321Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "Spec actions comprehensively cross-checked (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

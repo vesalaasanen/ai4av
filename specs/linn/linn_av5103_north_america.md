@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:32.379Z
-last_checked_at: 2026-06-02T22:09:22.074Z
-generated_at: 2026-06-02T22:09:22.074Z
+last_checked_at: 2026-06-03T07:22:52.029Z
+generated_at: 2026-06-03T07:22:52.029Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "no explicit safety warnings in source beyond interlock behavior"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:22.074Z
+  checked_at: 2026-06-03T07:22:52.029Z
   matched_actions: 26
   action_count: 26
   confidence: medium
-  summary: "All 26 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport values verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -363,18 +363,18 @@ source_domains:
 source_urls:
   - https://docs.linn.co.uk/wiki/images/d/dc/AV5103_rs232.pdf
 retrieved_at: 2026-04-30T04:32:32.379Z
-last_checked_at: 2026-06-02T22:09:22.074Z
+last_checked_at: 2026-06-03T07:22:52.029Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:22.074Z
+checked_at: 2026-06-03T07:22:52.029Z
 matched_actions: 26
 action_count: 26
 confidence: medium
-summary: "All 26 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport values verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

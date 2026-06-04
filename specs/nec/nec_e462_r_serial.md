@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:45.248Z
-last_checked_at: 2026-06-02T22:10:17.144Z
-generated_at: 2026-06-02T22:10:17.144Z
+last_checked_at: 2026-06-03T07:29:09.517Z
+generated_at: 2026-06-03T07:29:09.517Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "HDBaseT standby mode support not confirmed for E462-R"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:10:17.144Z
+  checked_at: 2026-06-03T07:29:09.517Z
   matched_actions: 57
   action_count: 57
   confidence: medium
-  summary: "All 57 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action mapping verified (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -685,18 +685,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:51:45.248Z
-last_checked_at: 2026-06-02T22:10:17.144Z
+last_checked_at: 2026-06-03T07:29:09.517Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:10:17.144Z
+checked_at: 2026-06-03T07:29:09.517Z
 matched_actions: 57
 action_count: 57
 confidence: medium
-summary: "All 57 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action mapping verified (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

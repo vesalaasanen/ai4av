@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T01:15:10.842Z
-last_checked_at: 2026-06-02T22:09:06.977Z
-generated_at: 2026-06-02T22:09:06.977Z
+last_checked_at: 2026-06-03T07:19:36.623Z
+generated_at: 2026-06-03T07:19:36.623Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "Set ID range confirmed 1-99. Wi-Fi/WOL procedure mentioned only as \"install iOS/Android app\" — no protocol-level WOL details. 3D applicability to SK8100PLA not stated. ISM and panel-light commands are plasma-specific and will not work on this LCD SKU. -->Spec emitted. Both transports captured (RS-232 + telnet:9761). IP control section flagged \"For USA only\" — applicability to EU SKU unverified, marked UNRESOLVED. Plasma-only (ISM, panel light) and 3D commands included per coverage rule with notes."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:06.977Z
+  checked_at: 2026-06-03T07:19:36.623Z
   matched_actions: 30
   action_count: 30
   confidence: medium
-  summary: "All 30 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport parameters verified (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -472,18 +472,18 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T01:15:10.842Z
-last_checked_at: 2026-06-02T22:09:06.977Z
+last_checked_at: 2026-06-03T07:19:36.623Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:06.977Z
+checked_at: 2026-06-03T07:19:36.623Z
 matched_actions: 30
 action_count: 30
 confidence: medium
-summary: "All 30 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport parameters verified (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
 retrieved_at: 2026-04-30T04:31:40.082Z
-last_checked_at: 2026-06-02T22:07:34.853Z
-generated_at: 2026-06-02T22:07:34.853Z
+last_checked_at: 2026-06-03T07:06:30.831Z
+generated_at: 2026-06-03T07:06:30.831Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "input names per model not fully mapped; consult Hegel Input Table for model-specific assignments"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:34.853Z
+  checked_at: 2026-06-03T07:06:30.831Z
   matched_actions: 12
   action_count: 12
   confidence: medium
-  summary: "All 12 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -227,18 +227,18 @@ source_domains:
 source_urls:
   - https://support.hegel.com/component/jdownloads/download/102-h95-h120-h190-h390-h590-ip-control-codes
 retrieved_at: 2026-04-30T04:31:40.082Z
-last_checked_at: 2026-06-02T22:07:34.853Z
+last_checked_at: 2026-06-03T07:06:30.831Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:34.853Z
+checked_at: 2026-06-03T07:06:30.831Z
 matched_actions: 12
 action_count: 12
 confidence: medium
-summary: "All 12 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

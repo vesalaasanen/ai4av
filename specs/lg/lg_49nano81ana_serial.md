@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T01:04:39.990Z
-last_checked_at: 2026-06-03T05:33:41.497Z
-generated_at: 2026-06-03T05:33:41.497Z
+last_checked_at: 2026-06-03T07:19:32.540Z
+generated_at: 2026-06-03T07:19:32.540Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "the source does not define device-side multi-step sequences"
 verification:
   verdict: verified
-  checked_at: 2026-06-03T05:33:41.497Z
+  checked_at: 2026-06-03T07:19:32.540Z
   matched_actions: 59
   action_count: 59
   confidence: medium
-  summary: "All 59 spec actions traced to source (multi-fence parser fix re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 59 actions cross-referenced (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -920,18 +920,18 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T01:04:39.990Z
-last_checked_at: 2026-06-03T05:33:41.497Z
+last_checked_at: 2026-06-03T07:19:32.540Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-03T05:33:41.497Z
+checked_at: 2026-06-03T07:19:32.540Z
 matched_actions: 59
 action_count: 59
 confidence: medium
-summary: "All 59 spec actions traced to source (multi-fence parser fix re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 59 actions cross-referenced (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://www.idkav.com/content/documents/manuals/msd-v4_cm_ver.1.5.0_en.pdf
 retrieved_at: 2026-05-19T15:25:46.131Z
-last_checked_at: 2026-06-02T22:08:12.594Z
-generated_at: 2026-06-02T22:08:12.594Z
+last_checked_at: 2026-06-03T07:12:59.367Z
+generated_at: 2026-06-03T07:12:59.367Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "control command registration (@GEC/@SEC) has variable-length, variant-dependent parameters and is not represented as a structured action entry."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:12.594Z
+  checked_at: 2026-06-03T07:12:59.367Z
   matched_actions: 61
   action_count: 61
   confidence: medium
-  summary: "All 61 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match (2 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1236,18 +1236,18 @@ source_domains:
 source_urls:
   - https://www.idkav.com/content/documents/manuals/msd-v4_cm_ver.1.5.0_en.pdf
 retrieved_at: 2026-05-19T15:25:46.131Z
-last_checked_at: 2026-06-02T22:08:12.594Z
+last_checked_at: 2026-06-03T07:12:59.367Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:12.594Z
+checked_at: 2026-06-03T07:12:59.367Z
 matched_actions: 61
 action_count: 61
 confidence: medium
-summary: "All 61 spec actions traced to source (dip-safe re-verify). (2 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match (2 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

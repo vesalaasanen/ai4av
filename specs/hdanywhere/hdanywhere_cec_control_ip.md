@@ -39,8 +39,8 @@ source_domains:
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-04-30T04:31:12.610Z
-last_checked_at: 2026-06-02T22:07:31.744Z
-generated_at: 2026-06-02T22:07:31.744Z
+last_checked_at: 2026-06-03T07:06:29.248Z
+generated_at: 2026-06-03T07:06:29.248Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -55,11 +55,11 @@ known_gaps:
   - "uControl command IDs 0-102 listed in appendix but source does not specify which are CEC vs IR vs IP specific"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:31.744Z
+  checked_at: 2026-06-03T07:06:29.248Z
   matched_actions: 36
   action_count: 36
   confidence: medium
-  summary: "All 36 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -654,18 +654,18 @@ source_domains:
 source_urls:
   - https://docs.google.com/document/d/e/2PACX-1vRCNYIheN9g9cZNAQkGNLM9xP5CNlED0dZ-rrY2DB-wwqI_1gxEstEqE8z_fHvXZ_k92SHlRUxihupd/pub
 retrieved_at: 2026-04-30T04:31:12.610Z
-last_checked_at: 2026-06-02T22:07:31.744Z
+last_checked_at: 2026-06-03T07:06:29.248Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:31.744Z
+checked_at: 2026-06-03T07:06:29.248Z
 matched_actions: 36
 action_count: 36
 confidence: medium
-summary: "All 36 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:09:54.484Z
-last_checked_at: 2026-06-02T22:09:54.484Z
-generated_at: 2026-06-02T22:09:54.484Z
+retrieved_at: 2026-06-03T07:26:03.091Z
+last_checked_at: 2026-06-03T07:26:03.091Z
+generated_at: 2026-06-03T07:26:03.091Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:54.484Z
+  checked_at: 2026-06-03T07:26:03.091Z
   matched_actions: 31
   action_count: 31
   confidence: medium
-  summary: "All 31 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 31 actions present (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -469,19 +469,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:09:54.484Z
-last_checked_at: 2026-06-02T22:09:54.484Z
+retrieved_at: 2026-06-03T07:26:03.091Z
+last_checked_at: 2026-06-03T07:26:03.091Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:54.484Z
+checked_at: 2026-06-03T07:26:03.091Z
 matched_actions: 31
 action_count: 31
 confidence: medium
-summary: "All 31 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 31 actions present (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

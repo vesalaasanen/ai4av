@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf
 retrieved_at: 2026-05-15T09:25:58.835Z
-last_checked_at: 2026-06-03T05:33:20.445Z
-generated_at: 2026-06-03T05:33:20.445Z
+last_checked_at: 2026-06-03T07:16:15.022Z
+generated_at: 2026-06-03T07:16:15.022Z
 firmware_coverage: "\"KI2.33 or later\""
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "no event/notification scheme described in source (request/response only)"
 verification:
   verdict: verified
-  checked_at: 2026-06-03T05:33:20.445Z
+  checked_at: 2026-06-03T07:16:15.022Z
   matched_actions: 229
   action_count: 229
   confidence: medium
-  summary: "All 229 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Source has 229 paired set/get commands matching spec (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1606,18 +1606,18 @@ source_domains:
 source_urls:
   - https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf
 retrieved_at: 2026-05-15T09:25:58.835Z
-last_checked_at: 2026-06-03T05:33:20.445Z
+last_checked_at: 2026-06-03T07:16:15.022Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-03T05:33:20.445Z
+checked_at: 2026-06-03T07:16:15.022Z
 matched_actions: 229
 action_count: 229
 confidence: medium
-summary: "All 229 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Source has 229 paired set/get commands matching spec (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

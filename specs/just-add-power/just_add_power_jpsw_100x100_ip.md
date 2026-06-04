@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
 retrieved_at: 2026-05-12T09:53:32.970Z
-last_checked_at: 2026-06-02T22:08:27.504Z
-generated_at: 2026-06-02T22:08:27.504Z
+last_checked_at: 2026-06-03T07:13:07.698Z
+generated_at: 2026-06-03T07:13:07.698Z
 firmware_coverage: "B1.0.0 or later"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "CLI Settings (boot-up behavior) are in a separate article not included here"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:27.504Z
+  checked_at: 2026-06-03T07:13:07.698Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions present in spec verified (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -211,18 +211,18 @@ source_domains:
 source_urls:
   - https://support.justaddpower.com/kb/article/379-cli-commands-for-omega-ultra-series-devices/
 retrieved_at: 2026-05-12T09:53:32.970Z
-last_checked_at: 2026-06-02T22:08:27.504Z
+last_checked_at: 2026-06-03T07:13:07.698Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:27.504Z
+checked_at: 2026-06-03T07:13:07.698Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions present in spec verified (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

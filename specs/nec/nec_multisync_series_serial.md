@@ -17,9 +17,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:10:38.010Z
-last_checked_at: 2026-06-02T22:10:38.010Z
-generated_at: 2026-06-02T22:10:38.010Z
+retrieved_at: 2026-06-03T11:54:57.888Z
+last_checked_at: 2026-06-03T11:54:57.888Z
+generated_at: 2026-06-03T11:54:57.888Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:10:38.010Z
+  checked_at: 2026-06-03T11:54:57.888Z
   matched_actions: 51
   action_count: 51
   confidence: medium
-  summary: "All 51 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 51 actions present (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -650,19 +650,19 @@ Key code 02h = POWER ON, 03h = POWER OFF via remote control emulation.
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:10:38.010Z
-last_checked_at: 2026-06-02T22:10:38.010Z
+retrieved_at: 2026-06-03T11:54:57.888Z
+last_checked_at: 2026-06-03T11:54:57.888Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:10:38.010Z
+checked_at: 2026-06-03T11:54:57.888Z
 matched_actions: 51
 action_count: 51
 confidence: medium
-summary: "All 51 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 51 actions present (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

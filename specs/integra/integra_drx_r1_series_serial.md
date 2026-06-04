@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:26.686Z
-last_checked_at: 2026-06-02T22:08:18.559Z
-generated_at: 2026-06-02T22:08:18.559Z
+last_checked_at: 2026-06-03T07:13:02.712Z
+generated_at: 2026-06-03T07:13:02.712Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "video output selector (VOS) is Japanese model only"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:18.559Z
+  checked_at: 2026-06-03T07:13:02.712Z
   matched_actions: 96
   action_count: 96
   confidence: medium
-  summary: "All 96 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action inventory matches source (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1897,18 +1897,18 @@ source_domains:
 source_urls:
   - https://community.symcon.de/uploads/short-url/7mxbIQ7qRIghfbEQrvcrEkU57ad.pdf
 retrieved_at: 2026-04-29T09:20:26.686Z
-last_checked_at: 2026-06-02T22:08:18.559Z
+last_checked_at: 2026-06-03T07:13:02.712Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:18.559Z
+checked_at: 2026-06-03T07:13:02.712Z
 matched_actions: 96
 action_count: 96
 confidence: medium
-summary: "All 96 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action inventory matches source (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

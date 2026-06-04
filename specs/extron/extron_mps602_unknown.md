@@ -22,8 +22,8 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/68-2358-01_D_MPS_602.pdf
 retrieved_at: 2026-05-14T23:37:53.361Z
-last_checked_at: 2026-06-02T22:07:07.038Z
-generated_at: 2026-06-02T22:07:07.038Z
+last_checked_at: 2026-06-03T07:03:14.662Z
+generated_at: 2026-06-03T07:03:14.662Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:07.038Z
+  checked_at: 2026-06-03T07:03:14.662Z
   matched_actions: 82
   action_count: 82
   confidence: medium
-  summary: "All 82 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 82 spec actions found in source (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1018,18 +1018,18 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/68-2358-01_D_MPS_602.pdf
 retrieved_at: 2026-05-14T23:37:53.361Z
-last_checked_at: 2026-06-02T22:07:07.038Z
+last_checked_at: 2026-06-03T07:03:14.662Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:07.038Z
+checked_at: 2026-06-03T07:03:14.662Z
 matched_actions: 82
 action_count: 82
 confidence: medium
-summary: "All 82 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 82 spec actions found in source (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

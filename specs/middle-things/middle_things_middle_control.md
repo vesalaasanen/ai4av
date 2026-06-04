@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://middlethings.co/api
 retrieved_at: 2026-04-30T04:41:37.784Z
-last_checked_at: 2026-06-02T22:09:42.343Z
-generated_at: 2026-06-02T22:09:42.343Z
+last_checked_at: 2026-06-03T07:23:04.419Z
+generated_at: 2026-06-03T07:23:04.419Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,11 +30,11 @@ known_gaps:
   - "no power-on sequencing or hardware interlock requirements stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:42.343Z
+  checked_at: 2026-06-03T07:23:04.419Z
   matched_actions: 72
   action_count: 72
   confidence: medium
-  summary: "All 72 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "Spec completely consistent with source (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -751,18 +751,18 @@ source_domains:
 source_urls:
   - https://middlethings.co/api
 retrieved_at: 2026-04-30T04:41:37.784Z
-last_checked_at: 2026-06-02T22:09:42.343Z
+last_checked_at: 2026-06-03T07:23:04.419Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:42.343Z
+checked_at: 2026-06-03T07:23:04.419Z
 matched_actions: 72
 action_count: 72
 confidence: medium
-summary: "All 72 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "Spec completely consistent with source (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -25,12 +25,13 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/system-service
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T22:08:54.563Z
-last_checked_at: 2026-06-02T22:08:54.563Z
-generated_at: 2026-06-02T22:08:54.563Z
+retrieved_at: 2026-06-03T07:16:24.183Z
+last_checked_at: 2026-06-03T07:16:24.183Z
+generated_at: 2026-06-03T07:16:24.183Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - "Key (m c)"
   - "TCP/IP protocol not confirmed in source; document describes RS-232C only"
   - "no unsolicited event notifications described in source"
   - "no multi-step macro sequences described in source"
@@ -38,11 +39,11 @@ known_gaps:
   - "TCP/IP control protocol not found in source; RS-232C confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:54.563Z
+  checked_at: 2026-06-03T07:16:24.183Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 25 actions verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -376,24 +377,25 @@ source_urls:
   - https://webostv.developer.lge.com/develop/references/system-service
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
-retrieved_at: 2026-06-02T22:08:54.563Z
-last_checked_at: 2026-06-02T22:08:54.563Z
+retrieved_at: 2026-06-03T07:16:24.183Z
+last_checked_at: 2026-06-03T07:16:24.183Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:54.563Z
+checked_at: 2026-06-03T07:16:24.183Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 25 actions verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- "Key (m c)"
 - "TCP/IP protocol not confirmed in source; document describes RS-232C only"
 - "no unsolicited event notifications described in source"
 - "no multi-step macro sequences described in source"

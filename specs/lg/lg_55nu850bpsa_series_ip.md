@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T02:42:36.404Z
-last_checked_at: 2026-06-03T05:33:44.108Z
-generated_at: 2026-06-03T05:33:44.108Z
+last_checked_at: 2026-06-03T07:19:40.791Z
+generated_at: 2026-06-03T07:19:40.791Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "maximum polling rate, minimum inter-command delay, and timeout/retry behaviour for both RS-232 and IP surfaces are not stated in source."
 verification:
   verdict: verified
-  checked_at: 2026-06-03T05:33:44.108Z
+  checked_at: 2026-06-03T07:19:40.791Z
   matched_actions: 63
   action_count: 63
   confidence: medium
-  summary: "All 63 spec actions traced to source (multi-fence parser fix re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 actions verified (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -906,18 +906,18 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T02:42:36.404Z
-last_checked_at: 2026-06-03T05:33:44.108Z
+last_checked_at: 2026-06-03T07:19:40.791Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-03T05:33:44.108Z
+checked_at: 2026-06-03T07:19:40.791Z
 matched_actions: 63
 action_count: 63
 confidence: medium
-summary: "All 63 spec actions traced to source (multi-fence parser fix re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 actions verified (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

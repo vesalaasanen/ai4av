@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T09:17:01.326Z
-last_checked_at: 2026-06-02T22:10:03.691Z
-generated_at: 2026-06-02T22:10:03.691Z
+last_checked_at: 2026-06-03T07:26:08.129Z
+generated_at: 2026-06-03T07:26:08.129Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "flow control (RTS/CTS used in physical pinout but software control not documented)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:10:03.691Z
+  checked_at: 2026-06-03T07:26:08.129Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: 53/53 actions present (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -720,18 +720,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T09:17:01.326Z
-last_checked_at: 2026-06-02T22:10:03.691Z
+last_checked_at: 2026-06-03T07:26:08.129Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:10:03.691Z
+checked_at: 2026-06-03T07:26:08.129Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: 53/53 actions present (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

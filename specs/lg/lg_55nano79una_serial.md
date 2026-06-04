@@ -23,9 +23,9 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T22:09:11.478Z
-last_checked_at: 2026-06-02T22:09:11.478Z
-generated_at: 2026-06-02T22:09:11.478Z
+retrieved_at: 2026-06-03T07:19:38.978Z
+last_checked_at: 2026-06-03T07:19:38.978Z
+generated_at: 2026-06-03T07:19:38.978Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "IP control authentication for network-connected scenarios not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:11.478Z
+  checked_at: 2026-06-03T07:19:38.978Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -468,19 +468,19 @@ source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
   - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T22:09:11.478Z
-last_checked_at: 2026-06-02T22:09:11.478Z
+retrieved_at: 2026-06-03T07:19:38.978Z
+last_checked_at: 2026-06-03T07:19:38.978Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:11.478Z
+checked_at: 2026-06-03T07:19:38.978Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

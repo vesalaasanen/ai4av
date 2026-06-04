@@ -22,8 +22,8 @@ source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/CR106-External-Control.pdf
   - https://www.scribd.com/document/942837415/McIntosh-RS232ControlApplicationNote
 retrieved_at: 2026-05-15T15:03:27.174Z
-last_checked_at: 2026-06-02T22:09:39.092Z
-generated_at: 2026-06-02T22:09:39.092Z
+last_checked_at: 2026-06-03T07:23:02.344Z
+generated_at: 2026-06-03T07:23:02.344Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "max concurrent connection count over TCP/IP not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:39.092Z
+  checked_at: 2026-06-03T07:23:02.344Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 action IDs present in source (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -538,18 +538,18 @@ source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/CR106-External-Control.pdf
   - https://www.scribd.com/document/942837415/McIntosh-RS232ControlApplicationNote
 retrieved_at: 2026-05-15T15:03:27.174Z
-last_checked_at: 2026-06-02T22:09:39.092Z
+last_checked_at: 2026-06-03T07:23:02.344Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:39.092Z
+checked_at: 2026-06-03T07:23:02.344Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 action IDs present in source (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
 retrieved_at: 2026-04-30T04:34:18.109Z
-last_checked_at: 2026-06-02T22:08:40.855Z
-generated_at: 2026-06-02T22:08:40.855Z
+last_checked_at: 2026-06-03T07:16:16.692Z
+generated_at: 2026-06-03T07:16:16.692Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "Actual IR transmission commands to physical hardware not documented in this API spec"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:40.855Z
+  checked_at: 2026-06-03T07:16:16.692Z
   matched_actions: 15
   action_count: 15
   confidence: medium
-  summary: "All 15 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport verified (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -287,18 +287,18 @@ source_domains:
 source_urls:
   - https://www.globalcache.com/files/docs/API-GlobalIRDB_ver1.pdf
 retrieved_at: 2026-04-30T04:34:18.109Z
-last_checked_at: 2026-06-02T22:08:40.855Z
+last_checked_at: 2026-06-03T07:16:16.692Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:40.855Z
+checked_at: 2026-06-03T07:16:16.692Z
 matched_actions: 15
 action_count: 15
 confidence: medium
-summary: "All 15 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport verified (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

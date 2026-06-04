@@ -28,8 +28,8 @@ source_domains:
 source_urls:
   - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
 retrieved_at: 2026-04-30T04:36:41.443Z
-last_checked_at: 2026-06-02T22:09:31.445Z
-generated_at: 2026-06-02T22:09:31.445Z
+last_checked_at: 2026-06-03T07:22:56.995Z
+generated_at: 2026-06-03T07:22:56.995Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "API rate limits not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:31.445Z
+  checked_at: 2026-06-03T07:22:56.995Z
   matched_actions: 54
   action_count: 54
   confidence: medium
-  summary: "All 54 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete action inventory matches source (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1095,18 +1095,18 @@ source_domains:
 source_urls:
   - https://www.magewell.com/api-docs/pro-convert-encoder-api/pro-convert-encoder-api-en_US.pdf
 retrieved_at: 2026-04-30T04:36:41.443Z
-last_checked_at: 2026-06-02T22:09:31.445Z
+last_checked_at: 2026-06-03T07:22:56.995Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:31.445Z
+checked_at: 2026-06-03T07:22:56.995Z
 matched_actions: 54
 action_count: 54
 confidence: medium
-summary: "All 54 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete action inventory matches source (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

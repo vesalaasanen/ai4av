@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T02:51:47.177Z
-last_checked_at: 2026-06-03T05:33:22.220Z
-generated_at: 2026-06-03T05:33:22.220Z
+last_checked_at: 2026-06-03T07:19:43.814Z
+generated_at: 2026-06-03T07:19:43.814Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -32,11 +32,11 @@ known_gaps:
   - "firmware version compatibility not stated; behavior of IP control on non-USA firmware not stated; full key-code list is exhaustive but some codes are model-dependent (e.g. 3D, Soccer, REC, AutoConfig)."
 verification:
   verdict: verified
-  checked_at: 2026-06-03T05:33:22.220Z
+  checked_at: 2026-06-03T07:19:43.814Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: all 50 spec actions verified (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -617,18 +617,18 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
 retrieved_at: 2026-06-02T02:51:47.177Z
-last_checked_at: 2026-06-03T05:33:22.220Z
+last_checked_at: 2026-06-03T07:19:43.814Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-03T05:33:22.220Z
+checked_at: 2026-06-03T07:19:43.814Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: all 50 spec actions verified (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

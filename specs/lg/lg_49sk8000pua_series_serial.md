@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T22:09:04.031Z
-last_checked_at: 2026-06-02T22:09:04.031Z
-generated_at: 2026-06-02T22:09:04.031Z
+retrieved_at: 2026-06-03T07:19:34.969Z
+last_checked_at: 2026-06-03T07:19:34.969Z
+generated_at: 2026-06-03T07:19:34.969Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "3D commands (xt, xv) applicability to this specific model not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:04.031Z
+  checked_at: 2026-06-03T07:19:34.969Z
   matched_actions: 28
   action_count: 28
   confidence: medium
-  summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 actions verified (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -543,19 +543,19 @@ source_domains:
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://knowledge.tiffinmotorhomes.com/Owner_Hub/Allegro_Bus/Allegro_Bus_Component_Manuals/2027_Allegro_Bus_Component_Manuals/LG_External_Control_Device_Setup
-retrieved_at: 2026-06-02T22:09:04.031Z
-last_checked_at: 2026-06-02T22:09:04.031Z
+retrieved_at: 2026-06-03T07:19:34.969Z
+last_checked_at: 2026-06-03T07:19:34.969Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:04.031Z
+checked_at: 2026-06-03T07:19:34.969Z
 matched_actions: 28
 action_count: 28
 confidence: medium
-summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 actions verified (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

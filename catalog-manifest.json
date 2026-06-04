@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-04T08:12:38.247Z",
-  "spec_count": 916,
+  "generated_at": "2026-06-04T11:40:18.368Z",
+  "spec_count": 947,
   "specs": [
     {
       "specId": "admin/ad-notam-cs-101",
@@ -648,6 +648,42 @@
       "contentHash": "03167cc1d06fd06350d4378b2b439d8fbbad2b91e1703aee51be605766344c03"
     },
     {
+      "specId": "admin/atlona-at-av2416",
+      "deviceId": "atlona/at-av2416",
+      "title": "Atlona AT-AV2416 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-AV2416",
+      "models": [
+        "AT-AV2416"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_av2416_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:22:38.031Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 4,
+      "contentHash": "c5a194296cab283f7704930495de5bf459078436d52a447b081b0acbb3374dc3"
+    },
+    {
+      "specId": "admin/atlona-at-av2424",
+      "deviceId": "atlona/at-av2424",
+      "title": "Atlona AT-AV2424 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-AV2424",
+      "models": [
+        "AT-AV2424"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_av2424_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:22:38.745Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "1af16333dac3d76732b9805619697f7018f392929afcf81ba8bdc765cf9a1fc5"
+    },
+    {
       "specId": "admin/atlona-at-av3224",
       "deviceId": "atlona/at-av3224",
       "title": "Atlona AT-AV3224 Control Spec",
@@ -955,6 +991,42 @@
       "contentHash": "9728f58c64daeae26bcf102b90f9ccdd5b4c0b973b6ae68f3d23d6cf40d50cb9"
     },
     {
+      "specId": "admin/atlona-at-rgb0804",
+      "deviceId": "atlona/at-rgb0804",
+      "title": "Atlona AT-RGB0804 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-RGB0804",
+      "models": [
+        "AT-RGB0804"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_rgb0804_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:22:39.458Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "c507b94e6e4d858f8591c894a272cec4baadc45d7276d295d83580dafad30caf"
+    },
+    {
+      "specId": "admin/atlona-at-rgb0824",
+      "deviceId": "atlona/at-rgb0824",
+      "title": "Atlona AT-RGB0824 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-RGB0824",
+      "models": [
+        "AT-RGB0824"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_rgb0824_serial.md",
+      "actionCount": 24,
+      "lastCheckedAt": "2026-06-04T06:22:40.178Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "9a0752fefc3e7878bcd5a790e85e539aef592f68d7bcbb3df285f6163ab4ecee"
+    },
+    {
       "specId": "admin/atlona-at-vga0802",
       "deviceId": "atlona/at-vga0802",
       "title": "Atlona AT-VGA0802 Control Spec",
@@ -971,6 +1043,78 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "dd93690588fd06429c05435c4ecfd2847e5aac17884359cf8cf7a2b123a42e99"
+    },
+    {
+      "specId": "admin/atlona-at-vga0804",
+      "deviceId": "atlona/at-vga0804",
+      "title": "Atlona AT-VGA0804 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VGA0804",
+      "models": [
+        "AT-VGA0804"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_vga0804_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:22:40.910Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 4,
+      "contentHash": "6f154609c7e123addf57803406d19d6d6dc0242b3574770c57938ef5d8fce32f"
+    },
+    {
+      "specId": "admin/atlona-at-vga1608",
+      "deviceId": "atlona/at-vga1608",
+      "title": "Atlona AT-VGA1608 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VGA1608",
+      "models": [
+        "AT-VGA1608"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_vga1608_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:24:25.588Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "252328222ae5ad50db24e7d12335a4adc59cff415ca086a8321ceb0014c780fc"
+    },
+    {
+      "specId": "admin/atlona-at-video2408",
+      "deviceId": "atlona/at-video2408",
+      "title": "Atlona AT-VIDEO2408 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VIDEO2408",
+      "models": [
+        "AT-VIDEO2408"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_video2408_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:24:27.234Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "9b162b0e717b09df0d11aca5a9084199c8613ffec239aaa67afffc556f6fe8a0"
+    },
+    {
+      "specId": "admin/atlona-at-video2416",
+      "deviceId": "atlona/at-video2416",
+      "title": "Atlona AT-VIDEO2416 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VIDEO2416",
+      "models": [
+        "AT-VIDEO2416"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_video2416_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-04T06:24:28.127Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "f152d170f4827bc1448b4ded2da06b321ea1a6b3abe89ae2620fe0036f9901fb"
     },
     {
       "specId": "admin/atlona-at-ocs-900n",
@@ -1045,6 +1189,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
       "contentHash": "d0ee31c06e8622c75d480246f551d5e79233cc97acc78c197475321e23e657bd"
+    },
+    {
+      "specId": "admin/audio-authority-sf-16m",
+      "deviceId": "audio-authority/sf-16m",
+      "title": "Audio Authority SF-16M Control Spec",
+      "manufacturer": "Audio Authority",
+      "manufacturerKey": "audio-authority",
+      "displayName": "SF-16M",
+      "models": [
+        "SF-16M"
+      ],
+      "revision": 1,
+      "path": "specs/audio-authority/audio_authority_sf_16m_ip.md",
+      "actionCount": 67,
+      "lastCheckedAt": "2026-06-04T06:24:28.980Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 4,
+      "contentHash": "a27023d96f5fe9b779588240e09b6f5fa08c3d9b90c8f63666a02ffa912ce885"
     },
     {
       "specId": "admin/audio-research-corporation-dspre",
@@ -3838,6 +4000,43 @@
       "contentHash": "155f2d6a5dd563912f6841569014fc72857b4a5c17ff978f7a446dfdc5d4682f"
     },
     {
+      "specId": "admin/cisco-phone-menu",
+      "deviceId": "cisco/cisco-unified-ip-phone-6800-series-6821-6841",
+      "title": "Cisco Phone Menu Control Spec",
+      "manufacturer": "Cisco",
+      "manufacturerKey": "cisco",
+      "displayName": "Cisco Unified IP Phone 6800 Series (6821, 6841)",
+      "models": [
+        "Cisco Unified IP Phone 6800 Series (6821, 6841)",
+        "Cisco Unified IP Phone 7800 Series (7811, 7821, 7841, 7861, 7832)",
+        "Cisco Unified IP Phone 8800 Series (8811, 8841, 8845, 8851, 8851NR, 8861, 8865, 8865NR)",
+        "Cisco Unified IP Phone 8800 Series Video (8875, 8875NR)",
+        "Cisco Unified IP Conference Phone 8831",
+        "Cisco Unified IP Conference Phone 8832",
+        "Cisco Wireless IP Phone 8821",
+        "Cisco Wireless IP Phone 840",
+        "Cisco Wireless IP Phone 860",
+        "Cisco Desk Phone 9811",
+        "Cisco Desk Phone 9841",
+        "Cisco Desk Phone 9851",
+        "Cisco Desk Phone 9861",
+        "Cisco Desk Phone 9861NR",
+        "Cisco Desk Phone 9871",
+        "Cisco Desk Phone 9871NR",
+        "Cisco Multiplatform Phone 6800 Series",
+        "Cisco Multiplatform Phone 7800 Series",
+        "Cisco Multiplatform Phone 7832",
+        "Cisco Multiplatform Phone 8800 Series"
+      ],
+      "revision": 1,
+      "path": "specs/cisco/cisco_phone_menu_unknown.md",
+      "actionCount": 114,
+      "lastCheckedAt": "2026-06-04T06:27:07.442Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "230e3cc90819ec8878422845c85d8c6701ea59aca3407648aefb4f9a74d1c22d"
+    },
+    {
       "specId": "admin/cisco-precisionhd-series",
       "deviceId": "cisco/precisionhd-camera-1080p12x",
       "title": "Cisco PrecisionHD Series Camera Control Spec",
@@ -5768,10 +5967,10 @@
       "revision": 1,
       "path": "specs/etc/etc_paradigm.md",
       "actionCount": 39,
-      "lastCheckedAt": "2026-06-02T22:06:56.619Z",
+      "lastCheckedAt": "2026-06-03T07:03:08.184Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "94778a45cceda94245999d69d612385935ba4c26622dd8fbc3b7cbc735fb7e25"
+      "contentHash": "cf9e105d7f2dc2d44599971718c167070cec4bf970ec39137f6c0ad65de644ba"
     },
     {
       "specId": "admin/extron-axp64-cat",
@@ -5786,10 +5985,10 @@
       "revision": 1,
       "path": "specs/extron/extron_axp64_unknown.md",
       "actionCount": 19,
-      "lastCheckedAt": "2026-06-02T22:06:58.215Z",
+      "lastCheckedAt": "2026-06-03T07:03:09.155Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "3f614ba330d23ff4661e1d81af7794d2cd2c1c5d6fe1d10ef40971a96512a533"
+      "contentHash": "9ca8210c936f02a373015c973a1288eaca4ba2245c133502700df0ef85bfae38"
     },
     {
       "specId": "admin/extron-dtp-t-fb-series",
@@ -5825,10 +6024,10 @@
       "revision": 1,
       "path": "specs/extron/extron_dtp2crosspoint_82_unknown.md",
       "actionCount": 246,
-      "lastCheckedAt": "2026-06-02T22:06:59.722Z",
+      "lastCheckedAt": "2026-06-03T07:03:10.067Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "c6267653d2efdef5fb24dab8fafbcdeaa1ae922c6a0118d6b1c5227def47a503"
+      "contentHash": "34c5584434fad44edc73be267412269a08ef9b42d42bc2199d8eaf0d2852ee53"
     },
     {
       "specId": "admin/extron-dtpcrosspoint84",
@@ -5867,10 +6066,10 @@
       "revision": 1,
       "path": "specs/extron/extron_foxbox_tx_dvi_plus_series_unknown.md",
       "actionCount": 42,
-      "lastCheckedAt": "2026-06-02T22:07:01.183Z",
+      "lastCheckedAt": "2026-06-03T07:03:10.926Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "eebf29d4b96a3638f43288734a225623b04c8f273689cb4cbe01c46dbc5a2433"
+      "contentHash": "c749e870f543e7a6a5344ab93dcaf6f13819c7a2ffe6ecbdf9237ce9ddf84a81"
     },
     {
       "specId": "admin/extron-matrix-100",
@@ -5885,10 +6084,10 @@
       "revision": 1,
       "path": "specs/extron/extron_matrix_100_switcher.md",
       "actionCount": 15,
-      "lastCheckedAt": "2026-06-02T22:07:02.650Z",
+      "lastCheckedAt": "2026-06-03T07:03:11.796Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8b1f660d08e26e77b8f6fe96a3385838d9b3833b13c5fa3dfe7ce0075039b3c0"
+      "contentHash": "620151dbf99014ca1fd4016da1d48e78d0138f42619c87e22c1c5b33a898f7f6"
     },
     {
       "specId": "admin/extron-matrix-3200-6400-12800-switcher",
@@ -5909,10 +6108,10 @@
       "revision": 1,
       "path": "specs/extron/extron_matrix_3200_6400_12800_switcher.md",
       "actionCount": 49,
-      "lastCheckedAt": "2026-06-02T22:07:04.146Z",
+      "lastCheckedAt": "2026-06-03T07:03:12.719Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "758ee90e0ef3512e4096416c64eed24af5302834878e93609c5ec95e1d955c90"
+      "contentHash": "17100c84165732c3acd12db9b453e7d6b5ea55e6bf3a420026ea270ead617f5c"
     },
     {
       "specId": "admin/extron-mav-plus-series",
@@ -5927,10 +6126,10 @@
       "revision": 1,
       "path": "specs/extron/extron_mav_plus_series_ip.md",
       "actionCount": 74,
-      "lastCheckedAt": "2026-06-02T22:07:05.575Z",
+      "lastCheckedAt": "2026-06-03T07:03:13.564Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6462213fcc2eb6afc8d2270a463419f5cf7f0995cec9616224533689f26bf003"
+      "contentHash": "4fe64c4c68f35106efe8cf9b01b495faf10a4978751b120dbd4e6043546f63f0"
     },
     {
       "specId": "admin/extron-mgp460-series",
@@ -5970,10 +6169,10 @@
       "revision": 1,
       "path": "specs/extron/extron_mps602_unknown.md",
       "actionCount": 82,
-      "lastCheckedAt": "2026-06-02T22:07:07.038Z",
+      "lastCheckedAt": "2026-06-03T07:03:14.662Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d5f026df2fa7c043ac023cb51e92926a143ec7ab8d3163eb0168b790c45a47b9"
+      "contentHash": "fa7b1bfb677bebf7b0c04dec3ca7d20f25b879772ba3603c1e8ad6be7d390ea3"
     },
     {
       "specId": "admin/extron-mvc121",
@@ -6027,10 +6226,10 @@
       "revision": 1,
       "path": "specs/extron/extron_ssp71_unknown.md",
       "actionCount": 43,
-      "lastCheckedAt": "2026-06-02T22:07:11.547Z",
+      "lastCheckedAt": "2026-06-03T07:03:19.402Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 4,
-      "contentHash": "1dbbaad15a8cb9cd996d5e6a7fd59d2eca4be547de5eecf2d4946411074ec5b8"
+      "contentHash": "9b46611414dc9df3a7544f959d4650c74ad0f1accd10ad122f6b8700ae87d04f"
     },
     {
       "specId": "admin/extron-xtpiicrosspointseries",
@@ -6122,10 +6321,10 @@
       "revision": 1,
       "path": "specs/furman/furman_bbrs232_serial.md",
       "actionCount": 18,
-      "lastCheckedAt": "2026-06-02T22:07:14.678Z",
+      "lastCheckedAt": "2026-06-03T07:03:21.790Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "86f6349ebd5285aa373bc4ea0b4654734b1085b7ae6839bf8e7be3263265e6ac"
+      "contentHash": "46d16720b8b22dab6f6c0ae913bc02535c57e92fc5d7e0056a2562d5481f3c90"
     },
     {
       "specId": "admin/furman-cn-series",
@@ -6141,10 +6340,10 @@
       "revision": 1,
       "path": "specs/furman/furman_cn_series_unknown.md",
       "actionCount": 10,
-      "lastCheckedAt": "2026-06-02T22:07:16.263Z",
+      "lastCheckedAt": "2026-06-03T07:03:22.566Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "536fc09ad27659c1317147337a7cc9cbef440c371e53c6502e8c2dcf6b02466d"
+      "contentHash": "0edab1507b153bf9b3288a0e54136603c1796e2cdaf7d702f919467fa729c9bd"
     },
     {
       "specId": "admin/generic-sw-p-02",
@@ -6177,10 +6376,10 @@
       "revision": 1,
       "path": "specs/generic/generic_sw_p_08.md",
       "actionCount": 12,
-      "lastCheckedAt": "2026-06-02T22:07:19.223Z",
+      "lastCheckedAt": "2026-06-03T07:03:24.249Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 4,
-      "contentHash": "ae0b7be7f13cdc1ba3caad4cad105b9dff735ff8fd78ab938971364b11365da3"
+      "contentHash": "7d74d9919b9d9e10b332b7fc0b39bb234eb9a2d3954593b10b16ae2d2cc45806"
     },
     {
       "specId": "admin/global-cach-universal-gc-device",
@@ -6305,10 +6504,10 @@
       "revision": 1,
       "path": "specs/global-cache/lcd_ir_app_global_cache_cable_box_cloud.md",
       "actionCount": 15,
-      "lastCheckedAt": "2026-06-02T22:08:40.855Z",
+      "lastCheckedAt": "2026-06-03T07:16:16.692Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b11cd4a84568a3bc28e7a01437b32b292517410f3e5f5cde93d7b7ad4cea7856"
+      "contentHash": "a2cdc3caf2de8ce437e62f5f1580525cfada43067c88761b73d7aa3242bd034c"
     },
     {
       "specId": "admin/gnural_net-live_to_air",
@@ -6323,10 +6522,10 @@
       "revision": 1,
       "path": "specs/gnural-net/gnural_net_live_to_air.md",
       "actionCount": 32,
-      "lastCheckedAt": "2026-06-02T22:07:22.414Z",
+      "lastCheckedAt": "2026-06-03T07:06:24.212Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "da9cfe9ff3c01f04f9fd5c94b9db2c23b1bb7627b8d02f3df4b50851e92c2db2"
+      "contentHash": "128c0b6b182c0608e7e4457565f3e3b504764b0457ad149748555b53db6fbab9"
     },
     {
       "specId": "admin/goelst-gohd400",
@@ -6397,10 +6596,10 @@
       "revision": 1,
       "path": "specs/govee/govee_lights.md",
       "actionCount": 11,
-      "lastCheckedAt": "2026-06-02T22:07:27.087Z",
+      "lastCheckedAt": "2026-06-03T07:06:26.792Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4141933de1a87c16e4d88c1125a7724cb44b71ff4b5e892dbd8b86aec5d31647"
+      "contentHash": "1111955d282d54f5a174eadf950a2d49910d5c610bb5feda73af575653c53d61"
     },
     {
       "specId": "admin/haivision-kb-encoder",
@@ -6433,10 +6632,10 @@
       "revision": 1,
       "path": "specs/haivision/haivision_mantaray_series.md",
       "actionCount": 44,
-      "lastCheckedAt": "2026-06-02T22:07:30.283Z",
+      "lastCheckedAt": "2026-06-03T07:06:28.471Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "92755eaadf3c1b3da5c5e6b0bc470ec4d4cb7d86581e396cd3e2e8a3870478e8"
+      "contentHash": "1e7c37db54bf8a47d2d5c7a7688ca12dca2928320904bb35ada4038a80490e5d"
     },
     {
       "specId": "admin/hdanywhere-mhub-api",
@@ -6470,10 +6669,10 @@
       "revision": 1,
       "path": "specs/hdanywhere/hdanywhere_cec_control_ip.md",
       "actionCount": 36,
-      "lastCheckedAt": "2026-06-02T22:07:31.744Z",
+      "lastCheckedAt": "2026-06-03T07:06:29.248Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "82a4a447986505f520117d63a6edf77e8a0ed857549dfbbaad7157fa742b9553"
+      "contentHash": "5542a486629e88502d1ad5278f19ab3591e825780fd88d751271ad154ae80b39"
     },
     {
       "specId": "admin/hdanywhere-mhublegacy",
@@ -6505,10 +6704,10 @@
       "revision": 1,
       "path": "specs/hdanywhere/hdanywhere_mhublegacy_ip.md",
       "actionCount": 33,
-      "lastCheckedAt": "2026-06-02T22:07:33.266Z",
+      "lastCheckedAt": "2026-06-03T07:06:30.043Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "732a937cec3154c0ff7274f144d80acee81d27b7336b13436540ddf9669f181b"
+      "contentHash": "ffe52b714bbae73a91b17ad4c4736437e9a8ddb2a7ac2edfd0ba35f3e1de3705"
     },
     {
       "specId": "admin/hegel-av-receiver",
@@ -6527,10 +6726,10 @@
       "revision": 1,
       "path": "specs/hegel/hegel_hegel_av_receiver_ip.md",
       "actionCount": 12,
-      "lastCheckedAt": "2026-06-02T22:07:34.853Z",
+      "lastCheckedAt": "2026-06-03T07:06:30.831Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5b82f539de0d430dd5d22618e68e7a6e42226dcb6ab97b440385b703d5bc04f4"
+      "contentHash": "1e072890a9b27daea7c4638e98961593e5e698c5cf6a41143240cd2098a749c4"
     },
     {
       "specId": "admin/hisense-e-m-wr-series-control-spec",
@@ -6583,10 +6782,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_100u88km_series_ip.md",
       "actionCount": 42,
-      "lastCheckedAt": "2026-06-02T22:07:37.864Z",
+      "lastCheckedAt": "2026-06-03T07:06:32.473Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "fd666b384b9200388ffd2aad5d4eb23ab5f722a344eb6992b384116ed12dfc5f"
+      "contentHash": "e2c855c832a210fe115003513cb2209e2937bfe2588f832eabca2b0d26e043ba"
     },
     {
       "specId": "admin/hisense-100u88lm-series",
@@ -6637,10 +6836,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_100u8k_series_ir.md",
       "actionCount": 161,
-      "lastCheckedAt": "2026-06-02T22:07:40.794Z",
+      "lastCheckedAt": "2026-06-03T07:06:34.045Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "9a034fe78f4db4b7a07b9f3e23fd8c5097d1c765711b3770b24c99217c51b855"
+      "contentHash": "fbef75c2d5f9c5c28344005b6c7f46241246e51d773527ffbda3645ca28ba062"
     },
     {
       "specId": "admin/hisense-116u7qg-pro-series",
@@ -6691,10 +6890,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_55u75qg_series_ir.md",
       "actionCount": 43,
-      "lastCheckedAt": "2026-06-02T22:07:43.813Z",
+      "lastCheckedAt": "2026-06-03T07:06:35.682Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4247edaa9b63fc8bc6084143b27a3d69aa9a713e24309ec6d35411ba48dab83e"
+      "contentHash": "392f73a895a70db51785e730856c86aba7dfb500057176fcfd12ed1807e5b779"
     },
     {
       "specId": "admin/hisense-55u78qg-series",
@@ -6727,10 +6926,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_55z670nk_series_ir.md",
       "actionCount": 37,
-      "lastCheckedAt": "2026-06-02T22:07:45.277Z",
+      "lastCheckedAt": "2026-06-03T07:09:41.176Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "8d4267023663ae5c49f3217cef59d01af91cd70214a0625666da265f6e065659"
+      "contentHash": "204031f0ca9fb83bbb561bf5680ae8533120e3d636b7728f4ce0c22dbb167ed1"
     },
     {
       "specId": "admin/hisense-5a53hua",
@@ -6799,10 +6998,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_5u67kua_ip.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:07:48.345Z",
+      "lastCheckedAt": "2026-06-03T07:09:42.855Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "386b1c31c755443fb95bcb4ae6746134d2d21c743fb2f8c6f1f28eb6e39c0cba"
+      "contentHash": "a36368dbb1becbfff5b3f65e0e0c19a3b977ec6004488ca748e8af452b6fca3c"
     },
     {
       "specId": "admin/hisense-5u75n",
@@ -6871,10 +7070,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_5u8k_ip.md",
       "actionCount": 68,
-      "lastCheckedAt": "2026-06-02T22:07:51.720Z",
+      "lastCheckedAt": "2026-06-03T07:09:45.104Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "1ae6157118cf3be5d328e58f43e171c094e3f18ec10888bac33b8a9817d3e88f"
+      "contentHash": "d08dfe4d07e9acdada54adcd9773561baeceb398ad2fee969df315dce0b3344d"
     },
     {
       "specId": "admin/hisense-5u9lua",
@@ -6925,10 +7124,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_65u75sua_series_ip.md",
       "actionCount": 165,
-      "lastCheckedAt": "2026-06-02T22:07:53.931Z",
+      "lastCheckedAt": "2026-06-03T07:09:45.935Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "eafacf9ef765136ab1ab92f17b905679197fbaf8b01f919b57cbfb996fc65ea4"
+      "contentHash": "c91dee5e7bbaa5393bfc947caf783dde915bcc2e906bf47f236f96728a5ac11d"
     },
     {
       "specId": "admin/hisense-65u78k-series",
@@ -6979,10 +7178,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_65u78nm_ir.md",
       "actionCount": 223,
-      "lastCheckedAt": "2026-06-02T22:07:58.822Z",
+      "lastCheckedAt": "2026-06-03T07:09:48.870Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "62d8e62b704564f31f3d25f641e4b628fc29acc7f575bf3e7fb09f9c0a3d6746"
+      "contentHash": "2dc281b4ba0b71c66e45224d37db7946695c225a90c6d933aedb11f518fbba89"
     },
     {
       "specId": "admin/hisense-65u85k-series",
@@ -7051,10 +7250,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_75u67kua_ir.md",
       "actionCount": 165,
-      "lastCheckedAt": "2026-06-02T22:08:01.933Z",
+      "lastCheckedAt": "2026-06-03T07:09:50.595Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d716841bb5ba6b09316fea7eb71e690393d490a6d43a57a989bd01c2731357d8"
+      "contentHash": "7c8611ef2f5f90b3a84ca1d9b96e1ee51f9bc5451b27bc5a033b99e3792b7192"
     },
     {
       "specId": "admin/hisense-75u75n",
@@ -7177,10 +7376,10 @@
       "revision": 1,
       "path": "specs/hisense/hisense_85u8k_ir.md",
       "actionCount": 222,
-      "lastCheckedAt": "2026-06-02T22:08:06.583Z",
+      "lastCheckedAt": "2026-06-03T07:09:53.090Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "091963713fe17a452e91c32173b8544bac1e4d0752ec031abb0c0df961ac606d"
+      "contentHash": "79e98905fdbd50161dc97e00ec9d07ad35a35fb0d32ddd503e1c3e549e5c4d35"
     },
     {
       "specId": "admin/hitachi-ed-a100",
@@ -7270,10 +7469,10 @@
       "revision": 2,
       "path": "specs/idk/idk_fdx_s.md",
       "actionCount": 101,
-      "lastCheckedAt": "2026-06-02T22:08:11.099Z",
+      "lastCheckedAt": "2026-06-03T07:12:58.453Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "e6f1b6950aefc01a19323f7fcbe72363ea4020228682d4e145cc38d0609bd634"
+      "contentHash": "a3ce097ddc60de00f9f8cb8a2da198259c0cfad740026d7311e5fde4e458d4d8"
     },
     {
       "specId": "admin/idk-msd-v4",
@@ -7290,10 +7489,10 @@
       "revision": 1,
       "path": "specs/idk/idk_msd_v4.md",
       "actionCount": 61,
-      "lastCheckedAt": "2026-06-02T22:08:12.594Z",
+      "lastCheckedAt": "2026-06-03T07:12:59.367Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b37ad0e6d32571f9bc2c49de8916e58a23e1724201807b81ff1ad386ad8035e7"
+      "contentHash": "1554f3a6629a12790d955a714a6338413cc5f547e12759e1df7d54c5d2cbc447"
     },
     {
       "specId": "admin/iiyama-te7568mis",
@@ -7344,10 +7543,10 @@
       "revision": 1,
       "path": "specs/inogeni/inogeni_inogeni_series.md",
       "actionCount": 14,
-      "lastCheckedAt": "2026-06-02T22:08:14.112Z",
+      "lastCheckedAt": "2026-06-03T07:13:00.248Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "55071311fc76c1607697c88bc7546ce547fe008d973cdeae0e792126cd7d323c"
+      "contentHash": "afeda08836b07a0f9a050509e8d6a76e9b48e906d57f0768f73daa2e3d3a89e3"
     },
     {
       "specId": "admin/integra-4125dsp-series",
@@ -7362,10 +7561,10 @@
       "revision": 1,
       "path": "specs/integra/integra_4125dsp_series_ip.md",
       "actionCount": 68,
-      "lastCheckedAt": "2026-06-02T22:08:15.584Z",
+      "lastCheckedAt": "2026-06-03T07:13:01.053Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "860f7ffc37158f6a02772dcd50b3114c9233077e0821d6baefec5b5f58815f5e"
+      "contentHash": "2fa9959d1b71d4fc5c7de10e0080607ad1d0e9707c778225abdb1994b1f907c3"
     },
     {
       "specId": "admin/integra-cdc-34",
@@ -7434,10 +7633,10 @@
       "revision": 1,
       "path": "specs/integra/integra_drx_r1_series_serial.md",
       "actionCount": 96,
-      "lastCheckedAt": "2026-06-02T22:08:18.559Z",
+      "lastCheckedAt": "2026-06-03T07:13:02.712Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c25cf3e9dc606c29169b664600e08425ff7a1f8666f8d0fd31f2f6f5fdcab625"
+      "contentHash": "0703ca74a654594edad1f22591e79f45b0d701d06ebe51dbbe901bf879a4f9e5"
     },
     {
       "specId": "admin/integra-dsx-3",
@@ -7452,10 +7651,10 @@
       "revision": 1,
       "path": "specs/integra/integra_dsx_3_ip.md",
       "actionCount": 104,
-      "lastCheckedAt": "2026-06-02T22:08:20.034Z",
+      "lastCheckedAt": "2026-06-03T07:13:03.519Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c5ad64ca71705e188eaf86a54d9bb77c01c86c787017c4b726370eccd7fb17a6"
+      "contentHash": "88b68f1ac3e7ff7392aebf0bf2420d841aa1aaafb1704db5042a1ff57120b908"
     },
     {
       "specId": "admin/integra-dtr-series",
@@ -7561,10 +7760,10 @@
       "revision": 1,
       "path": "specs/interactive-technologies/interactive_technologies_cueserver_north_america.md",
       "actionCount": 60,
-      "lastCheckedAt": "2026-06-02T22:08:24.396Z",
+      "lastCheckedAt": "2026-06-03T07:13:06.088Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 4,
-      "contentHash": "d6c31c1a737a20be631afc6c02db77131c8bf3e09955209b5755e7b3010acc0d"
+      "contentHash": "c8b00e5a554601647412e3efe94128963757a62edf0be4ab10e10a6d05fb4c2f"
     },
     {
       "specId": "admin/jandy-aqualink-rs",
@@ -7659,10 +7858,10 @@
       "revision": 1,
       "path": "specs/juice-goose/juice_goose_juice_goose_ip_series.md",
       "actionCount": 20,
-      "lastCheckedAt": "2026-06-02T22:08:25.848Z",
+      "lastCheckedAt": "2026-06-03T07:13:06.889Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "cc7db0a314c95623e63c2f94e583e2a33a77048b18a3eaccce4e2fbd680ba406"
+      "contentHash": "97514ecb3682926271a35a66c09292b8eca7e2965620975a0639ccacfc7263c0"
     },
     {
       "specId": "admin/just-add-power-jpsw-100x100",
@@ -7677,10 +7876,10 @@
       "revision": 2,
       "path": "specs/just-add-power/just_add_power_jpsw_100x100_ip.md",
       "actionCount": 10,
-      "lastCheckedAt": "2026-06-02T22:08:27.504Z",
+      "lastCheckedAt": "2026-06-03T07:13:07.698Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f0b1e89418d0f2c59806eaa18c67b131e6c2fdb7312dce123877072f9a271792"
+      "contentHash": "ed089a16774b08ed2f5c529e92afe191be5a26839cff84812bfba5acae6f8a71"
     },
     {
       "specId": "admin/jvc_kenwood-dla-x9500-x7500-rs620-rs520",
@@ -7871,10 +8070,10 @@
       "revision": 1,
       "path": "specs/jvc/jvc_lx_uh1_ip.md",
       "actionCount": 62,
-      "lastCheckedAt": "2026-06-02T22:08:30.551Z",
+      "lastCheckedAt": "2026-06-03T07:13:09.396Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c0c7babb7179bed886c480831e5e0039885cee08563bfa6ea9f80618890ac737"
+      "contentHash": "d2d5842a6b47b8fc33a68d2f29f570e07f85144ec8036c2f723e52af2af9376c"
     },
     {
       "specId": "admin/jvc-dila-rs232-lan",
@@ -7949,10 +8148,10 @@
       "revision": 1,
       "path": "specs/jvc/jvc_x_be_we_unknown.md",
       "actionCount": 223,
-      "lastCheckedAt": "2026-06-02T22:08:32.058Z",
+      "lastCheckedAt": "2026-06-03T07:13:10.201Z",
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
-      "contentHash": "48288c29b6d5303597089e9a9a9b913e4093f005ab75b09e76efaef24ce2b459"
+      "contentHash": "ccc2a4e60255b6a8781011c06fc94a5d1b5928c1f6d316fb0660768ce763769d"
     },
     {
       "specId": "admin/key-digital-kd-series",
@@ -7986,10 +8185,10 @@
       "revision": 1,
       "path": "specs/key-digital/key_digital_systems_flash_matrix_north_america.md",
       "actionCount": 13,
-      "lastCheckedAt": "2026-06-02T22:08:33.509Z",
+      "lastCheckedAt": "2026-06-03T07:13:11.001Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4a07a507ae2bfecbc7d92b067369f7114c5868afea5d7f55194d170b2e88a26b"
+      "contentHash": "2085bc124299549a5a332d2385e140ee9a2e159da8cd0bed212f9750e4fe4b5f"
     },
     {
       "specId": "admin/key-digital-systems-kd-hd1080p",
@@ -8004,10 +8203,10 @@
       "revision": 1,
       "path": "specs/key-digital/key_digital_systems_kd_hd1080p_north_america.md",
       "actionCount": 37,
-      "lastCheckedAt": "2026-06-02T22:08:34.973Z",
+      "lastCheckedAt": "2026-06-03T07:16:13.344Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "de4e54c59dbfda12cc71805aaaa6277059cb9cbdab4b4f136b622d0dbc11bfa3"
+      "contentHash": "860d6e09df71cb7985229c8e28ea2b9d0fa1891e47df66d8f2cca98942166fc1"
     },
     {
       "specId": "admin/key-digital-systems-kd-msv8x8",
@@ -8076,10 +8275,10 @@
       "revision": 1,
       "path": "specs/kiloview/kiloview_n40.md",
       "actionCount": 32,
-      "lastCheckedAt": "2026-06-02T22:08:36.467Z",
+      "lastCheckedAt": "2026-06-03T07:16:14.200Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8bb5cc2c17a7038acb64f9cb5a8f6a857db2c9e344f117803d3ef873bc0b7902"
+      "contentHash": "e3dd3f2074f2a291997618b1e75ecdb3e544b3807b0466fdcfd12ea5ceec4215"
     },
     {
       "specId": "admin/knoll-hd290",
@@ -8208,10 +8407,10 @@
       "revision": 1,
       "path": "specs/kramer/kramer_via_go_go2_unknown.md",
       "actionCount": 229,
-      "lastCheckedAt": "2026-06-03T05:33:20.445Z",
+      "lastCheckedAt": "2026-06-03T07:16:15.022Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "be86128ff1c8fef3b50cf474d9e01789fc8960795ee6fbdeade6e91f8f1a3980"
+      "contentHash": "dd88794e3189f39a030ddd29cc9b485eb581786a6b3dff72700c92954b124f04"
     },
     {
       "specId": "admin/lab_gruppen-nlb_60e",
@@ -8226,10 +8425,10 @@
       "revision": 1,
       "path": "specs/lab-gruppen/lab_gruppen_nlb_60e.md",
       "actionCount": 14,
-      "lastCheckedAt": "2026-06-02T22:08:39.377Z",
+      "lastCheckedAt": "2026-06-03T07:16:15.840Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b92cc560cc1487418396dde49ea381ca67a8ce625e3dcb75dff0f6e18381fbd4"
+      "contentHash": "acb1510be59c7de0df5227d02b5e13d3bb5eaa8ac82dd9c484e34e8204e82bc6"
     },
     {
       "specId": "admin/lectrosonics-av62",
@@ -8302,10 +8501,10 @@
       "revision": 1,
       "path": "specs/leviton/leviton_d42av_d4200_d4100_series_unknown.md",
       "actionCount": 21,
-      "lastCheckedAt": "2026-06-02T22:08:45.379Z",
+      "lastCheckedAt": "2026-06-03T07:16:19.286Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "a8ced037ee5a541696828494224103d2fe7c4e2000ec8f0a2aaa0ed7939aa26f"
+      "contentHash": "b5dabbc1382198401f0918c4a3b7622a2aa5192c05e195b7c640010f3e243d40"
     },
     {
       "specId": "admin/leviton-if501",
@@ -8320,10 +8519,10 @@
       "revision": 1,
       "path": "specs/leviton/leviton_if501_unknown.md",
       "actionCount": 21,
-      "lastCheckedAt": "2026-06-02T22:08:46.986Z",
+      "lastCheckedAt": "2026-06-03T07:16:20.169Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "95cfe45ea299d752e6a40a50b140a76b2e4ad5502bc5f7df0b7aa226e157f005"
+      "contentHash": "30dece07a252b9b2ee5439186096bf192a189d18326652b1a505386f86313f74"
     },
     {
       "specId": "admin/lexicon-dd8plus",
@@ -8343,6 +8542,26 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "24e09af83820e4226dfb7c6c77b12273b32b88f3429c18c97fec07c60937b457"
+    },
+    {
+      "specId": "admin/lexicon-dc2-north-america",
+      "deviceId": "lexicon/lexicon-dc-2",
+      "title": "Lexicon DC-2 Control Spec",
+      "manufacturer": "Lexicon",
+      "manufacturerKey": "lexicon",
+      "displayName": "Lexicon DC-2",
+      "models": [
+        "Lexicon DC-2",
+        "Lexicon MC-1",
+        "JBL Synthesis SDP-3"
+      ],
+      "revision": 1,
+      "path": "specs/lexicon/lexicon_inc_dc2_north_america.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-06-04T06:27:08.876Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 4,
+      "contentHash": "1bb57677f770c01bbef8f0f11eefc03d88ae88f082457488573e5a208db168d1"
     },
     {
       "specId": "admin/lexicon-mc-10",
@@ -8432,10 +8651,10 @@
       "revision": 1,
       "path": "specs/lg/lg_32lb660bpsb_series_ip.md",
       "actionCount": 25,
-      "lastCheckedAt": "2026-06-02T22:08:48.429Z",
+      "lastCheckedAt": "2026-06-03T07:16:20.986Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "1c4401c20ecde8db47352a412d0cedb0ab9a8d65009200730c21c66a99925ed6"
+      "contentHash": "3d5f2de54dca6a5bb3c729de83390c2a56cca219fb171228a1a95c7e7aa2edf6"
     },
     {
       "specId": "admin/lg-32sr83u-w",
@@ -8450,10 +8669,10 @@
       "revision": 1,
       "path": "specs/lg/lg_32sr83u_w_ip.md",
       "actionCount": 22,
-      "lastCheckedAt": "2026-06-02T22:08:49.971Z",
+      "lastCheckedAt": "2026-06-03T07:16:21.796Z",
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
-      "contentHash": "48a74afa2256b1ef007c3ea2f9c24a8587ef3271aa07d57400756bb28e9829ca"
+      "contentHash": "3953030a7898da1ddb44b21deadf92dcf942f6f229dc978e75dc683d1e89df12"
     },
     {
       "specId": "admin/lg-37lb4d",
@@ -8468,10 +8687,10 @@
       "revision": 1,
       "path": "specs/lg/lg_37lb4d_serial.md",
       "actionCount": 49,
-      "lastCheckedAt": "2026-06-02T22:08:51.512Z",
+      "lastCheckedAt": "2026-06-03T07:16:22.570Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "b781342fb2444d364deaf8fb9943ca8b57c182ff28e94595152f80b09e95e073"
+      "contentHash": "aaa1a4611604832be4347de875d1cfcfbc9693b607aa6dfe08e332250383ec2e"
     },
     {
       "specId": "admin/lg-43qned70b6c-series",
@@ -8504,10 +8723,10 @@
       "revision": 1,
       "path": "specs/lg/lg_43qned76baa_series_ip.md",
       "actionCount": 25,
-      "lastCheckedAt": "2026-06-02T22:08:54.563Z",
+      "lastCheckedAt": "2026-06-03T07:16:24.183Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "4446af485a421f201e4e85599eda43d59ef264e5524a2604c043951b37c585ce"
+      "contentHash": "b52eb514e601cb68d7bb74715172842fba2a456a669a515f68de51e78726c0c1"
     },
     {
       "specId": "admin/lg-43qned82aua-series",
@@ -8522,10 +8741,10 @@
       "revision": 1,
       "path": "specs/lg/lg_43qned82aua_series_ip.md",
       "actionCount": 24,
-      "lastCheckedAt": "2026-06-02T22:08:56.029Z",
+      "lastCheckedAt": "2026-06-03T07:16:25.105Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "c3ba1ce6a4f53b564f451b34318644b21e23fedd4841a1351845ee95799313ec"
+      "contentHash": "2a691fdf8b4f35a8c976b5c43e2718af7d81c7c9c85738ec5aad5d937fcb19b7"
     },
     {
       "specId": "admin/lg-43uk6300bub-smarttv-series",
@@ -8540,10 +8759,10 @@
       "revision": 1,
       "path": "specs/lg/lg_43uk6300bub_smarttv_series_ip.md",
       "actionCount": 25,
-      "lastCheckedAt": "2026-06-02T22:08:57.753Z",
+      "lastCheckedAt": "2026-06-03T07:16:25.910Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "2f5290e152b3b3dd2c285bbbf10842543132e467d2748867586b224b366927f7"
+      "contentHash": "33a8d1363af4f9064a95fb6fb3e4dc8d0fb6750ddf9b38d0c191516034358973"
     },
     {
       "specId": "admin/lg-43uk6500a-series",
@@ -8576,10 +8795,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49lj5550_smarttv_ip.md",
       "actionCount": 48,
-      "lastCheckedAt": "2026-06-02T22:09:00.953Z",
+      "lastCheckedAt": "2026-06-03T07:19:31.706Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
-      "contentHash": "1e695b10f5271724712883cef6d25a93bd8bfc98340f496128d791275c86bf97"
+      "contentHash": "d379d13d8685e559e844c9e6658fc7824b82924d2ccb94cb4264840968e1730b"
     },
     {
       "specId": "admin/lg-49nano80una",
@@ -8612,10 +8831,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49nano81ana_serial.md",
       "actionCount": 59,
-      "lastCheckedAt": "2026-06-03T05:33:41.497Z",
+      "lastCheckedAt": "2026-06-03T07:19:32.540Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4d0b81c8f3d3d5d03c5fa9f5c300dedfaaea264dd1782653b02b59973b5b720c"
+      "contentHash": "c16dbb06119f730c292d2dd6c65cfb5c44772c3e4991f18d11dd2272dbcc5920"
     },
     {
       "specId": "admin/lg-49nano81una",
@@ -8630,10 +8849,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49nano81una_serial.md",
       "actionCount": 31,
-      "lastCheckedAt": "2026-06-03T05:36:09.952Z",
+      "lastCheckedAt": "2026-06-03T07:19:33.365Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "694f14de27f20367739893ee03bfd7a91cc2c94af4a9fc108b4317ee7f2ba72b"
+      "contentHash": "a841b67ca2b38b6f1e67729b14ce22c6e7dd1136e5a86745f7bb2836887c0b7f"
     },
     {
       "specId": "admin/lg-49nano86una",
@@ -8648,10 +8867,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49nano86una_serial.md",
       "actionCount": 45,
-      "lastCheckedAt": "2026-06-02T22:09:02.524Z",
+      "lastCheckedAt": "2026-06-03T07:19:34.142Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "0ca6a47bde7b8f86876a9873d9489f16094eea1cc2b2f6d0b50b0b8cd7bbd007"
+      "contentHash": "2fbc3cfe9d9de5a6e372951428477dd2b8de3f57e47b98b8ab0238d24efed86d"
     },
     {
       "specId": "admin/lg-49sk8000pua-series",
@@ -8666,10 +8885,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49sk8000pua_series_serial.md",
       "actionCount": 28,
-      "lastCheckedAt": "2026-06-02T22:09:04.031Z",
+      "lastCheckedAt": "2026-06-03T07:19:34.969Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "5b6069f0bbeed3fe520f9fd60c39ba6770e93bab92ec6ddb8e15036ef3216721"
+      "contentHash": "3baac3a294bc363d8ed4b244c70a6ccaf13a73b5a63034daffc73d43e1e297b5"
     },
     {
       "specId": "admin/lg-49sk8000pua-smarttv-series",
@@ -8684,10 +8903,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49sk8000pua_smarttv_series_ip.md",
       "actionCount": 33,
-      "lastCheckedAt": "2026-06-02T22:09:05.496Z",
+      "lastCheckedAt": "2026-06-03T07:19:35.816Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "e182c85f569733892911eceeb374f4844e4c1e9d952d14d8d61fe1a762be9a76"
+      "contentHash": "676bbfa3530e3a222d81a4147a72f5920584ffc3b37388b3aad49f11ce4ffd29"
     },
     {
       "specId": "admin/lg-49sk8100pla-series",
@@ -8702,10 +8921,10 @@
       "revision": 1,
       "path": "specs/lg/lg_49sk8100pla_series_ip.md",
       "actionCount": 30,
-      "lastCheckedAt": "2026-06-02T22:09:06.977Z",
+      "lastCheckedAt": "2026-06-03T07:19:36.623Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "a95ee35990c71b83b9c60fc5d782da8e09a4862893cbd4a4f67a3d9e3387712c"
+      "contentHash": "1e52147d2a4bd8e2d0d86ddf7e2cddd3d049560c75fc21215ac4e8df4e918fa0"
     },
     {
       "specId": "admin/lg-49uj-series",
@@ -8828,10 +9047,10 @@
       "revision": 1,
       "path": "specs/lg/lg_50qned75ura_serial.md",
       "actionCount": 22,
-      "lastCheckedAt": "2026-06-02T22:09:08.457Z",
+      "lastCheckedAt": "2026-06-03T07:19:37.423Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "de24b9f7b1998d030e1764d5dc513e39d2715c14ecc4f73ee89e2b09abb7df79"
+      "contentHash": "58b107f969a94dc9d25aa82a336f9f8a5c0fe948e431acdcf83702ad50f9b9b4"
     },
     {
       "specId": "admin/lg-50qned75ura-smarttv",
@@ -8918,10 +9137,10 @@
       "revision": 1,
       "path": "specs/lg/lg_50un6955zuf_serial.md",
       "actionCount": 56,
-      "lastCheckedAt": "2026-06-02T22:09:09.957Z",
+      "lastCheckedAt": "2026-06-03T07:19:38.218Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "52d02552a88aaca2eba2b7fac9d31be6f59667d13b3b9ecf27dd0f6422f9a85a"
+      "contentHash": "4caac77da68912141140bbc0edc01a5fa25f8c15a84af50f785868faeb243b08"
     },
     {
       "specId": "admin/lg-50up7700pub-smarttv",
@@ -8972,10 +9191,10 @@
       "revision": 1,
       "path": "specs/lg/lg_55nano79una_serial.md",
       "actionCount": 27,
-      "lastCheckedAt": "2026-06-02T22:09:11.478Z",
+      "lastCheckedAt": "2026-06-03T07:19:38.978Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "a99c1d91e295b8124ced83e147248315fb5127f36c5a8739a31ffb877753b371"
+      "contentHash": "af13bfb7211e340e7d6d8ee2c7d4d05c9567dbc4a3548554e07be534d5fb126d"
     },
     {
       "specId": "admin/lg-55nano90upa",
@@ -8990,10 +9209,10 @@
       "revision": 1,
       "path": "specs/lg/lg_55nano90upa_serial.md",
       "actionCount": 26,
-      "lastCheckedAt": "2026-06-02T22:09:12.953Z",
+      "lastCheckedAt": "2026-06-03T07:19:39.788Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "82dd448601004215e244c01760e321f129609f774c110b693ee309525d528e00"
+      "contentHash": "3200872ca981c79c63b4e7419712411076c6c942f0c3b59f29bdf016ccefa446"
     },
     {
       "specId": "admin/lg-55nu850baua-series",
@@ -9026,10 +9245,10 @@
       "revision": 1,
       "path": "specs/lg/lg_55nu850bpsa_series_ip.md",
       "actionCount": 63,
-      "lastCheckedAt": "2026-06-03T05:33:44.108Z",
+      "lastCheckedAt": "2026-06-03T07:19:40.791Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e5f7b95fb42998bbde0596f27775097c429e3492d031ca5e2dab74d6d40fcfd4"
+      "contentHash": "7092d917ac4f7c45443046af1f9f747110b0acd05e4297266102d5e118b14e99"
     },
     {
       "specId": "admin/lg-55qned85ura-serial",
@@ -9062,10 +9281,10 @@
       "revision": 1,
       "path": "specs/lg/lg_55uk6550pub_series_ip.md",
       "actionCount": 62,
-      "lastCheckedAt": "2026-06-03T05:33:45.765Z",
+      "lastCheckedAt": "2026-06-03T07:19:43.001Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "3042e75c76917f45bd5077f0697c21622ed2c0dc9517063b53461f1a71991c33"
+      "contentHash": "46586322e1d3aeceb1f6b0fd8d960fe8af475f847558baf57daa45a51e21041e"
     },
     {
       "specId": "admin/lg-55uk6550pub-smarttv-series",
@@ -9134,10 +9353,10 @@
       "revision": 1,
       "path": "specs/lg/lg_86qned90uqa_serial.md",
       "actionCount": 50,
-      "lastCheckedAt": "2026-06-03T05:33:22.220Z",
+      "lastCheckedAt": "2026-06-03T07:19:43.814Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e38f894d162d54a86760a615d8258d79c2e7cf42d5b5689326f5541c8f647bbc"
+      "contentHash": "d6f0afe16ad4bb2a5bd1975f114aa267e7b937fa2ad14ce1afabddf264adaec4"
     },
     {
       "specId": "admin/lg-electronics-50px2dc-north-america",
@@ -9207,10 +9426,10 @@
       "revision": 1,
       "path": "specs/lg/lg_electronics_lg_display.md",
       "actionCount": 27,
-      "lastCheckedAt": "2026-06-02T22:09:17.534Z",
+      "lastCheckedAt": "2026-06-03T07:22:49.502Z",
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
-      "contentHash": "6e412d6a0e60bb89ea8e0e56175409e262424c87d1640372e189c6ca5e020136"
+      "contentHash": "4e9d495cd47f7f73cc460e19594414fb482729f43e6cc9328f24c2d964e04dd4"
     },
     {
       "specId": "admin/lg-oled-series",
@@ -9225,10 +9444,10 @@
       "revision": 1,
       "path": "specs/lg/lg_oled_series_ip.md",
       "actionCount": 27,
-      "lastCheckedAt": "2026-06-02T22:09:19.143Z",
+      "lastCheckedAt": "2026-06-03T07:22:50.321Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
-      "contentHash": "11b99a0540c9f31a07e72112468e53eab6db3f32ede002a442bf0c07f1f023c2"
+      "contentHash": "372f813faa2c8a5de96cddcbef27a310b041ac6e101f76612db33d73f0818b2a"
     },
     {
       "specId": "admin/lightware-lw3",
@@ -9243,10 +9462,10 @@
       "revision": 1,
       "path": "specs/lightware/lightware_lw3.md",
       "actionCount": 13,
-      "lastCheckedAt": "2026-06-02T22:09:20.588Z",
+      "lastCheckedAt": "2026-06-03T07:22:51.117Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "dd72c30a03c76f05336fb278612e00b60b44cde9734f7c293781c010acb037fd"
+      "contentHash": "4783a67f9461987a1b037ef7e06585af4b9b3f175e0dc4f9a6e22fe2148ab990"
     },
     {
       "specId": "admin/lightware-taurus-ucx-series",
@@ -9333,10 +9552,10 @@
       "revision": 1,
       "path": "specs/linn/linn_av5103_north_america.md",
       "actionCount": 26,
-      "lastCheckedAt": "2026-06-02T22:09:22.074Z",
+      "lastCheckedAt": "2026-06-03T07:22:52.029Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "22c261fb9c1ceb594706a5eb03a129133d8319af406800520d34de7096668139"
+      "contentHash": "0d7ed4c26afc5ce448ba1e71771d87317cef707e0f3c9b383752d4ed4978947c"
     },
     {
       "specId": "admin/linn-classik-movie",
@@ -9355,6 +9574,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
       "contentHash": "fddb4ff4c50552c5455fd1613c8b7537286fa9754b70db6959cfc5003be6e593"
+    },
+    {
+      "specId": "admin/linn-generic-ds-series",
+      "deviceId": "linn/linn-generic-ds-series",
+      "title": "Linn Generic DS Series Control Spec",
+      "manufacturer": "Linn",
+      "manufacturerKey": "linn",
+      "displayName": "Linn Generic DS Series",
+      "models": [
+        "Linn Generic DS Series"
+      ],
+      "revision": 1,
+      "path": "specs/linn/linn_generic_ds_series_cloud.md",
+      "actionCount": 17,
+      "lastCheckedAt": "2026-06-04T06:27:09.603Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "77bd738137576cf0481af4f25212413276b7c3039aaef7cb6c6bcad28f18be50"
     },
     {
       "specId": "admin/linn-genki-north-america",
@@ -9390,10 +9627,10 @@
       "revision": 1,
       "path": "specs/linn/linn_helper_cloud.md",
       "actionCount": 14,
-      "lastCheckedAt": "2026-06-02T22:09:25.067Z",
+      "lastCheckedAt": "2026-06-03T07:22:53.038Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "e2adad535d906ac90b2e555192238d8e32e054426904840066c20d07102bd87c"
+      "contentHash": "46c83baea6b1f77f555cada48a4abbeacb496dbb980195d079cc40acef3ef94a"
     },
     {
       "specId": "admin/linn-ikemi-north-america",
@@ -9444,10 +9681,10 @@
       "revision": 1,
       "path": "specs/louth/louth_vdcp.md",
       "actionCount": 76,
-      "lastCheckedAt": "2026-06-02T22:09:26.739Z",
+      "lastCheckedAt": "2026-06-03T07:22:53.938Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "2655c0cb52c3400ba789349bebb1051eb355690b28bd31d204a8c55613be5539"
+      "contentHash": "fd340c15d100813167306efc0ca90524cb5cf09f22b428781686c3a8ae7f4a66"
     },
     {
       "specId": "admin/lumagen-radiance-2143-series",
@@ -9689,10 +9926,10 @@
       "revision": 1,
       "path": "specs/magewell/magewell_magewell_pro_convert_series.md",
       "actionCount": 54,
-      "lastCheckedAt": "2026-06-02T22:09:31.445Z",
+      "lastCheckedAt": "2026-06-03T07:22:56.995Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "40b35cc3de05ab02bfa39f8270f13c23476584887bb43c12a3bc6fe3d28776f3"
+      "contentHash": "fd68fb7c6bd1d965f39baa0a92b3b481fa0f9f7af7353124137378976bdb421c"
     },
     {
       "specId": "admin/magewell-pro-convert-ip-to-usb",
@@ -9997,10 +10234,10 @@
       "revision": 1,
       "path": "specs/mcintosh/mcintosh_c2800_series_ir.md",
       "actionCount": 49,
-      "lastCheckedAt": "2026-06-02T22:09:36.055Z",
+      "lastCheckedAt": "2026-06-03T07:23:00.066Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "5a2313aafcb7e0c3716e9271b351a95e19b480717933cd42c3eca9ceb2693d5e"
+      "contentHash": "737bb35c19e95796ad837a7d5136c9d2a1835836b8523a006667259a83fe61ca"
     },
     {
       "specId": "admin/mcintosh-msa5500-series",
@@ -10033,10 +10270,10 @@
       "revision": 1,
       "path": "specs/mcintosh/mcintosh_universal_discrete_functions.md",
       "actionCount": 27,
-      "lastCheckedAt": "2026-06-02T22:09:39.092Z",
+      "lastCheckedAt": "2026-06-03T07:23:02.344Z",
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
-      "contentHash": "0f2b73b3377ef730e064a706202bf3f67a568c2c7c45c988fa8b1463e3d3f427"
+      "contentHash": "ea628b0ee0f09fe96a253ffaa241e01b6c61980e143ed53280c541009f276524"
     },
     {
       "specId": "admin/meridian-810-reference-video-system",
@@ -10069,10 +10306,10 @@
       "revision": 1,
       "path": "specs/meridian/meridian_g65_serial.md",
       "actionCount": 50,
-      "lastCheckedAt": "2026-06-02T22:09:40.573Z",
+      "lastCheckedAt": "2026-06-03T07:23:03.453Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ab51ac756842dcfdfd5f6b1c072648fd213e446545b5419d1db7a64b1d159ddb"
+      "contentHash": "f9b97afcb6da3479f1d0eb644d193b70000e0229cd081b18ff7d503915bbe9ae"
     },
     {
       "specId": "admin/meyer-sound-galileo-galaxy",
@@ -10146,10 +10383,10 @@
       "revision": 1,
       "path": "specs/middle-things/middle_things_middle_control.md",
       "actionCount": 72,
-      "lastCheckedAt": "2026-06-02T22:09:42.343Z",
+      "lastCheckedAt": "2026-06-03T07:23:04.419Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "2278fb7eb8c2590d89fbdf2aec25f6d3e0cc154df475813cbc25603d06c7ca90"
+      "contentHash": "0c09d9cbcc1ce4cdbaaa1731085fd2c5c14493a97c742e43cb94202deed6eaea"
     },
     {
       "specId": "admin/modulo-pi-modulo-player",
@@ -10182,10 +10419,10 @@
       "revision": 1,
       "path": "specs/mt-viki/mt_viki_mt_hd0808_8x8_hdmi_matrix.md",
       "actionCount": 10,
-      "lastCheckedAt": "2026-06-02T22:09:45.340Z",
+      "lastCheckedAt": "2026-06-03T07:25:58.090Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "71d03f960e8d0f1ad5d5b1eea5d0c210ffef5dc778535038531292cab7aa7ca3"
+      "contentHash": "bf1d1526d6f7eebbd8568cc9c6ca507ac528b5c5738ad200c0eaefad8848212d"
     },
     {
       "specId": "admin/nad-m17-v2-series-ip",
@@ -10200,10 +10437,10 @@
       "revision": 1,
       "path": "specs/nad/nad_m17_v2_series_ip.md",
       "actionCount": 33,
-      "lastCheckedAt": "2026-06-02T22:09:48.379Z",
+      "lastCheckedAt": "2026-06-03T07:25:59.702Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "fea1f7c399c29b11234d639874aacd4872196a577c266231c7277c48d27ebd25"
+      "contentHash": "16f993ee24ae0c6d0fb0b3133a48154ade92b661325c31fd01fc223d2b6e3585"
     },
     {
       "specId": "admin/nad-m17-v2i-multizone-series-ip",
@@ -10218,10 +10455,10 @@
       "revision": 1,
       "path": "specs/nad/nad_m17_v2i_multizone_series_ip.md",
       "actionCount": 35,
-      "lastCheckedAt": "2026-06-02T22:09:46.883Z",
+      "lastCheckedAt": "2026-06-03T07:25:58.887Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "b8985ed37c73356cd6cd5271d2653390a9c4cc846110a724cedd3768e27db0ce"
+      "contentHash": "12eaabedb08b540318bd10b6e84a86d5b33a28b37ec9ec5a04c2358e21c064ca"
     },
     {
       "specId": "admin/nad-nad-av-receiver",
@@ -10236,10 +10473,10 @@
       "revision": 1,
       "path": "specs/nad/nad_nad_av_receiver_serial.md",
       "actionCount": 30,
-      "lastCheckedAt": "2026-06-02T22:09:49.886Z",
+      "lastCheckedAt": "2026-06-03T07:26:00.548Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "f88cb4d3ca0b289cc6fcfcc5b422a73f780a2918c129d5b727606f6021b0764b"
+      "contentHash": "51c919d95442b4607edb111d622165ac472205848f01dec1394491710b141bd9"
     },
     {
       "specId": "admin/nad-t758-v3i-multizone-series",
@@ -10254,10 +10491,10 @@
       "revision": 1,
       "path": "specs/nad/nad_t758_v3i_multizone_series_ip.md",
       "actionCount": 28,
-      "lastCheckedAt": "2026-06-02T22:09:51.420Z",
+      "lastCheckedAt": "2026-06-03T07:26:01.372Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "24faa5d5cd979a00ba7c6125b8d3fa455ad3e232494b60a429230f082f3398c3"
+      "contentHash": "25c9a18c7d8299a04e9028fa91d3767f029a4d8b7bc884a531c85572dfcb9d3a"
     },
     {
       "specId": "admin/nad-t758-with-volume-series",
@@ -10290,10 +10527,10 @@
       "revision": 1,
       "path": "specs/nad/nad_t777_with_volume_series_serial.md",
       "actionCount": 31,
-      "lastCheckedAt": "2026-06-02T22:09:54.484Z",
+      "lastCheckedAt": "2026-06-03T07:26:03.091Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "af3a57b8919914ba7fd03d77dbf22a87416e8d4e096cb57932d335f15479f4ad"
+      "contentHash": "bc05c3ea1765f60f5862e3701ce51a332005bb59dcac9ae06f163d41a02873cd"
     },
     {
       "specId": "admin/nad-t778-with-volume-series",
@@ -10308,10 +10545,10 @@
       "revision": 1,
       "path": "specs/nad/nad_t778_with_volume_series_ip.md",
       "actionCount": 37,
-      "lastCheckedAt": "2026-06-02T22:09:56.008Z",
+      "lastCheckedAt": "2026-06-03T07:26:03.958Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "472c4a189428d6394d7751401b2c0543b7073b9215ba7ad1347cae89b1440a7e"
+      "contentHash": "62fd5e1c7de732f504884e39919915f60806d7ce9e4ca941c4561a894a0a86a7"
     },
     {
       "specId": "admin/nec-1020",
@@ -10326,10 +10563,10 @@
       "revision": 1,
       "path": "specs/nec/nec_1020_ir.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:09:57.662Z",
+      "lastCheckedAt": "2026-06-03T07:26:04.782Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "bf1b7ac822f409f9ee756bad0221f1d87ffbf00d74feaca64acbabd25a51b48d"
+      "contentHash": "f8557a44b5bb3d7b188568146f099acdd0181d3d0b40a055f97f3c855a40875d"
     },
     {
       "specId": "admin/nec-2-r-series",
@@ -10362,10 +10599,10 @@
       "revision": 1,
       "path": "specs/nec/nec_42xp10.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:09:59.146Z",
+      "lastCheckedAt": "2026-06-03T07:26:05.612Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "acb440673b3045d6ebd32b9284a3ceb13fc60b5eac70fe395b514aded8fea864"
+      "contentHash": "ed296e585d0e89df099459d21a239d3bcecc35cb05a09d28f4764570c418ac73"
     },
     {
       "specId": "admin/nec-avt-series",
@@ -10456,10 +10693,10 @@
       "revision": 1,
       "path": "specs/nec/nec_c651q_series_serial.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:03.691Z",
+      "lastCheckedAt": "2026-06-03T07:26:08.129Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "ddc4582bc7b18bc9f59ad144fab5607bb3991d5d88e95335daf2d70db3180c80"
+      "contentHash": "fc4bee62ba81051907962e6babf42a57b2f24d7aeb2cea718a95dd1aa1eff8e1"
     },
     {
       "specId": "admin/nec-c750q-c860q",
@@ -10475,10 +10712,10 @@
       "revision": 1,
       "path": "specs/nec/nec_c750q_c860q_unknown.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:05.178Z",
+      "lastCheckedAt": "2026-06-03T07:26:08.926Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "911e6c507570dedd03ca6098ca0dde60d9488473f0419a136b83390817cbb9ec"
+      "contentHash": "47db4a3ab583ea71336dc386daae3f5d92b42a67134b2d21580aecf118585c27"
     },
     {
       "specId": "admin/nec-c751q-avt2-series",
@@ -10511,10 +10748,10 @@
       "revision": 1,
       "path": "specs/nec/nec_c751q_series_serial.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:06.622Z",
+      "lastCheckedAt": "2026-06-03T07:26:09.708Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "c4da99c4f9a1b59db9c46da69020ea95574e7f136d50b2d5cb06a8ceb19e5882"
+      "contentHash": "84fb87c257ea0b30845f8f512b502fed0b35d2a9798d0712f2554e81015c095d"
     },
     {
       "specId": "admin/nec-c754-c861-c981-c651",
@@ -10532,10 +10769,10 @@
       "revision": 1,
       "path": "specs/nec/nec_c754_c861_c981_c651_unknown.md",
       "actionCount": 28,
-      "lastCheckedAt": "2026-06-02T22:10:08.126Z",
+      "lastCheckedAt": "2026-06-03T07:29:04.539Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6cd70a00bcec89a28561097ad6713f15bd60da1e37a51f672ea4332fa498cba5"
+      "contentHash": "ef872f0309c4d134b30890a7eba11385a1c4de8674b4a9a43d4ce5bac49ccc67"
     },
     {
       "specId": "admin/nec-c861q-avt2-series",
@@ -10586,10 +10823,10 @@
       "revision": 1,
       "path": "specs/nec/nec_e322_r_serial.md",
       "actionCount": 28,
-      "lastCheckedAt": "2026-06-02T22:10:12.519Z",
+      "lastCheckedAt": "2026-06-03T07:29:07.098Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "48bdc22eed0bb1d6a980d3c191b8fa2bfdbb3f08a4436274ee1636089123d099"
+      "contentHash": "371879319a52e1cd9584fda1163040154ad682a04e292c7c86c0e231962a3d92"
     },
     {
       "specId": "admin/nec-e323-e423-e463-e553",
@@ -10625,10 +10862,10 @@
       "revision": 1,
       "path": "specs/nec/nec_e422_r_serial.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:15.520Z",
+      "lastCheckedAt": "2026-06-03T07:29:08.733Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "a33eb92b873c17390967d1626d2c8cca4db904c7176e5a2a204304ffc70489e2"
+      "contentHash": "e0aaa0d07eeb9b5f4fc4e5510235364a346d8b7fcc7d502d9430c0d516e3ba69"
     },
     {
       "specId": "admin/nec-e462-r",
@@ -10643,10 +10880,10 @@
       "revision": 1,
       "path": "specs/nec/nec_e462_r_serial.md",
       "actionCount": 57,
-      "lastCheckedAt": "2026-06-02T22:10:17.144Z",
+      "lastCheckedAt": "2026-06-03T07:29:09.517Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "6aac7364d5b6bac0b94cf4cacc4142a5faf518388664980041e94996fac586c9"
+      "contentHash": "3b31e7047793a0ea933c5a65ed2d40641c5967086db83acdb4269f81540303ac"
     },
     {
       "specId": "admin/nec-e705-e805-e905",
@@ -10663,10 +10900,10 @@
       "revision": 1,
       "path": "specs/nec/nec_e705_e805_e905_unknown.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:18.656Z",
+      "lastCheckedAt": "2026-06-03T07:29:10.286Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "5919bc86a2c9191c180f7ccc3650a572883cd5e636c9e276753421a9e4071679"
+      "contentHash": "b14566984061f0c2091bb19b528fcdb00327dad81961fc92be294109bdf7020d"
     },
     {
       "specId": "admin/nec-e758-e868-e988",
@@ -10721,10 +10958,10 @@
       "revision": 1,
       "path": "specs/nec/nec_ex38_e498_ex58_series_unknown.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:23.100Z",
+      "lastCheckedAt": "2026-06-03T07:29:12.925Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "4b4c89919482d8934c5e88fe4bbbc76fb2fcf52bed986ee68d0060fd230490c7"
+      "contentHash": "825bd92672e7315c871f55b250a1e2e4225151680c280a4a433e6494a3115689"
     },
     {
       "specId": "admin/nec-exx7q-unknown-family",
@@ -10739,10 +10976,10 @@
       "revision": 1,
       "path": "specs/nec/nec_exx7q_unknown.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:24.771Z",
+      "lastCheckedAt": "2026-06-03T07:29:13.697Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b6e3d0763055a58781c7b31365bdc3b6880a9deafc94d77278c046b441a55771"
+      "contentHash": "5b58de2457e97a92fe4716d8ac42ba955fbbedda55a1a86fff1ba3bbb7113aa7"
     },
     {
       "specId": "admin/nec-gt2000",
@@ -10757,10 +10994,10 @@
       "revision": 1,
       "path": "specs/nec/nec_gt2000_ir.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:26.697Z",
+      "lastCheckedAt": "2026-06-03T07:29:14.530Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "aee3659f1faba7477084b7d19e881d72060da7fcba7daa5457a56c61df60ec8a"
+      "contentHash": "ca4dc66bb7d2b1b1b3ad321b8fee87cd47fa700a49640c286833c918ecbbec9c"
     },
     {
       "specId": "admin/nec-ht_1000",
@@ -10775,10 +11012,10 @@
       "revision": 1,
       "path": "specs/nec/nec_ht_1000_ir.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:28.583Z",
+      "lastCheckedAt": "2026-06-03T07:29:15.302Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "8eccc3210e58d3da3464a639a4ac23d9605ec89d35b5aad245ca4fd20ae23771"
+      "contentHash": "452e649d67dedcf8837307438a03060a27e0aca33eee163f473694575d609456"
     },
     {
       "specId": "admin/nec-lcd8205-series-control",
@@ -10793,10 +11030,10 @@
       "revision": 1,
       "path": "specs/nec/nec_lcd8205_series_serial.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:30.613Z",
+      "lastCheckedAt": "2026-06-03T07:29:16.078Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "59671c42ee089f817e558f2cf29ca8a6e76c1ab55771f77978a753f213227958"
+      "contentHash": "8192077179149c4bff1d8207ad9e8968d9a57c08faf3a1dbabd0d6f2f9a5d5f3"
     },
     {
       "specId": "admin/nec-m-p-s-x-series",
@@ -10849,10 +11086,10 @@
       "revision": 1,
       "path": "specs/nec/nec_multisync_series_ip.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:36.482Z",
+      "lastCheckedAt": "2026-06-03T11:54:57.105Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "d00344c14bc333eed37e00fbb85a95bf38958aa688241afb2d6f27f96760debd"
+      "contentHash": "48878d3e6f94f9e3bde9c4c13ef5a1580f97aac2ff248280eb1d4387f1a97d0d"
     },
     {
       "specId": "admin/nec-multisync-series",
@@ -10867,10 +11104,10 @@
       "revision": 1,
       "path": "specs/nec/nec_multisync_series_serial.md",
       "actionCount": 51,
-      "lastCheckedAt": "2026-06-02T22:10:38.010Z",
+      "lastCheckedAt": "2026-06-03T11:54:57.888Z",
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
-      "contentHash": "cc304b77df154dd850da7e76135b6e90490e490716eff8bca74c9f7a768dd80b"
+      "contentHash": "96d564c73f504a98e17b9d0e98f8b28db1c648779310f000bed45b1b837fc08b"
     },
     {
       "specId": "admin/nec-nec-flat-panel-display",
@@ -10903,10 +11140,10 @@
       "revision": 1,
       "path": "specs/nec/nec_nec_projector_ir.md",
       "actionCount": 53,
-      "lastCheckedAt": "2026-06-02T22:10:41.004Z",
+      "lastCheckedAt": "2026-06-03T11:54:59.581Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "df032c1ce7ca78d268ccf6f29583b020f0413a766123b16c04792c576aa778ca"
+      "contentHash": "50428e3de4bc92663ddc5a79e5b41c6113ada0360ede0ca556c07a00974861c4"
     },
     {
       "specId": "admin/nec-np_302_332_series",
@@ -10922,10 +11159,10 @@
       "revision": 1,
       "path": "specs/nec/nec_np_302_332_series_unknown.md",
       "actionCount": 52,
-      "lastCheckedAt": "2026-06-02T22:10:42.533Z",
+      "lastCheckedAt": "2026-06-03T11:55:00.332Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b1325569f2999b64ac941d96ef1f8465be466834357010fe32e7c8d9016dc890"
+      "contentHash": "27efc241229f562748dd34e6654d4c8580dbdc053d85c6702911cb75197377c0"
     },
     {
       "specId": "admin/nec-np-m-series",
@@ -11313,10 +11550,10 @@
       "revision": 1,
       "path": "specs/nec/nec_np_p420x.md",
       "actionCount": 48,
-      "lastCheckedAt": "2026-06-02T22:10:53.505Z",
+      "lastCheckedAt": "2026-06-03T11:58:07.648Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
-      "contentHash": "b1c7091e37b7301e5826ac7c70f94f93edc8f77f35e854ae922dff64778dd2ae"
+      "contentHash": "007cfe1ca09ce54acadb2aa59acfb4488693a029df871f62bed4fda7b8fb773a"
     },
     {
       "specId": "admin/nec-np-pa-series",
@@ -12863,6 +13100,25 @@
       "contentHash": "14790d26fea7c0960034d6a050f12804c30bb4fd3207d7bcc5fd451446e7073d"
     },
     {
+      "specId": "admin/nuvo-essentia-e6g",
+      "deviceId": "nuvo/essentia-e6g",
+      "title": "Nuvo Essentia E6G Control Spec",
+      "manufacturer": "Nuvo",
+      "manufacturerKey": "nuvo",
+      "displayName": "Essentia E6G",
+      "models": [
+        "Essentia E6G",
+        "NV-E6G"
+      ],
+      "revision": 1,
+      "path": "specs/nuvo/nuvo_essentia_serial.md",
+      "actionCount": 88,
+      "lastCheckedAt": "2026-06-04T06:28:49.480Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "44fca24c0fa51a186b0e00077fdd952862ffd09cf9f7928562506bfec041e276"
+    },
+    {
       "specId": "admin/onkyo-tx-rz-series",
       "deviceId": "onkyo/tx-rz-series",
       "title": "Onkyo TX-RZ Series Control Spec",
@@ -12991,6 +13247,26 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 4,
       "contentHash": "7646a3f0db89cf49741f14f4722b4bf32a1133b108a64e781c800c5d5e14f6b6"
+    },
+    {
+      "specId": "admin/panamax-m7500-pro",
+      "deviceId": "panamax/m7500-pro",
+      "title": "Panamax M7500-PRO Control Spec",
+      "manufacturer": "Panamax",
+      "manufacturerKey": "panamax",
+      "displayName": "M7500-PRO",
+      "models": [
+        "M7500-PRO",
+        "MAX 7500-PRO",
+        "MAX 74/7500-PRO"
+      ],
+      "revision": 1,
+      "path": "specs/panamax/panamax_m7500_pro_ip.md",
+      "actionCount": 19,
+      "lastCheckedAt": "2026-06-04T06:28:51.084Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "743a34e01b3ac9fcbe8d42a69385b7f9bf79411e61d98e4fca975ae3a91ee589"
     },
     {
       "specId": "admin/panasonic-th_cq1-control-spec",
@@ -15359,6 +15635,44 @@
       "contentHash": "b66fbbf7cc1be4819a1c1fea31c2e62ef273d0dc0639a75bffc207d505c08290"
     },
     {
+      "specId": "admin/snap-one-b-660-mtrx-8x8",
+      "deviceId": "snap-one/b-660-mtrx-8x8",
+      "title": "Snap One B-660-MTRX-8x8 Control Spec",
+      "manufacturer": "Snap One",
+      "manufacturerKey": "snap-one",
+      "displayName": "B-660-MTRX-8x8",
+      "models": [
+        "B-660-MTRX-8x8"
+      ],
+      "revision": 1,
+      "path": "specs/snap-one/snap_one_b_660_ip.md",
+      "actionCount": 33,
+      "lastCheckedAt": "2026-06-04T06:30:20.294Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 4,
+      "contentHash": "48d9d5f5a5cf3e7a5b09642bea29ec8fe183024669aae9722336a2c73ce72866"
+    },
+    {
+      "specId": "admin/snap-one-wattbox-ip",
+      "deviceId": "snap-one/wb-800-ipvm-6",
+      "title": "Snap One WattBox Control Spec",
+      "manufacturer": "Snap One",
+      "manufacturerKey": "snap-one",
+      "displayName": "WB-800-IPVM-6",
+      "models": [
+        "WB-800-IPVM-6",
+        "WB150",
+        "WB250"
+      ],
+      "revision": 1,
+      "path": "specs/snap-one/snap_one_wattbox_ip.md",
+      "actionCount": 30,
+      "lastCheckedAt": "2026-06-04T06:30:21.013Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "4f3ae1eb363e4e9e64349aaecb8541635e75be3120e14310dba624e0f7683f45"
+    },
+    {
       "specId": "admin/snapav-wattbox",
       "deviceId": "snapav/wb-800-ipvm-6",
       "title": "Snapav Wattbox Control Spec",
@@ -15641,6 +15955,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "4d44638ffb6c2a8840f89b1939819619c5eb65af246b506a632a46abad08e6ef"
+    },
+    {
+      "specId": "admin/somfy-systems-inc-ilt-group-default",
+      "deviceId": "somfy/ilt-group-default",
+      "title": "Somfy Systems ILT Group Default SDN Control Spec",
+      "manufacturer": "Somfy",
+      "manufacturerKey": "somfy",
+      "displayName": "ILT Group Default",
+      "models": [
+        "ILT Group Default"
+      ],
+      "revision": 1,
+      "path": "specs/somfy/somfy_systems_ilt_group_default_serial.md",
+      "actionCount": 30,
+      "lastCheckedAt": "2026-06-04T06:30:21.792Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 4,
+      "contentHash": "35ea809ff877af6605369262aa5fa7c8c765ba141972f4def920ee86b1f51469"
     },
     {
       "specId": "admin/somfy-tahoma-v1-2",
@@ -16028,6 +16360,24 @@
       "contentHash": "9d4afc3ccd29c3723521c855dda05e3536e2a0c1ab90bb74189c9b1611e75961"
     },
     {
+      "specId": "admin/sony-str-dn1050",
+      "deviceId": "sony/str-dn1050",
+      "title": "Sony STR-DN1050 Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "STR-DN1050",
+      "models": [
+        "STR-DN1050"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_str_dn1050.md",
+      "actionCount": 12,
+      "lastCheckedAt": "2026-06-04T06:30:22.505Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "99b47af35c1c144d181dff977f955c04c20fe897fcac925667b185b63b555cd6"
+    },
+    {
       "specId": "admin/sony-visca-command-list",
       "deviceId": "sony/sony-visca",
       "title": "Sony VISCA Command List Control Spec",
@@ -16264,6 +16614,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "9b067c94922e61053cf88aa55ab058ebbf7ff6a05ab20422c772688019d4c02c"
+    },
+    {
+      "specId": "admin/stewart-bric",
+      "deviceId": "stewart-filmscreen/bric-masking-controller",
+      "title": "Stewart Filmscreen BRIC Masking Controller Control Spec",
+      "manufacturer": "Stewart Filmscreen",
+      "manufacturerKey": "stewart-filmscreen",
+      "displayName": "BRIC Masking Controller",
+      "models": [
+        "BRIC Masking Controller"
+      ],
+      "revision": 1,
+      "path": "specs/stewart-filmscreen/stewart_bric_serial.md",
+      "actionCount": 29,
+      "lastCheckedAt": "2026-06-04T06:32:24.202Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "5c062b17fa4009d2ad49242b564244202670d12b0a262461e16d6615aa74e9d4"
     },
     {
       "specId": "admin/stewart-filmscreen-corporation-bric",
@@ -16843,6 +17211,24 @@
       "contentHash": "35377ff42e2fd5f14392ac3d5fc7a64370436ece786c34086b466bc1e22ccfa0"
     },
     {
+      "specId": "admin/tivo-virgin-media-roamio-series-3",
+      "deviceId": "tivo/tivo-virgin-media-roamio-series-3",
+      "title": "TiVo Virgin Media Roamio Series 3 Control Spec",
+      "manufacturer": "TiVo",
+      "manufacturerKey": "tivo",
+      "displayName": "TiVo Virgin Media Roamio Series 3",
+      "models": [
+        "TiVo Virgin Media Roamio Series 3"
+      ],
+      "revision": 1,
+      "path": "specs/tivo/tivo_virgin_media_roamio_series_3_ip.md",
+      "actionCount": 120,
+      "lastCheckedAt": "2026-06-04T06:32:24.958Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "7691da7ab41f11929b6fb7dffdf5b8bc6fab0cd50a5c8c171044bf7c53b48acb"
+    },
+    {
       "specId": "admin/toa-am-cf1",
       "deviceId": "toa/am-cf1",
       "title": "TOA AM-CF1 Control Spec",
@@ -17170,6 +17556,28 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
       "contentHash": "c7cf6acb535742ef332411c95d2bed423bc67f788146afc1ab88d36b6d4027d2"
+    },
+    {
+      "specId": "admin/video-storm-netplay-video",
+      "deviceId": "video-storm/netplay-video-nbx100",
+      "title": "Video Storm NetPlay Video Control Spec",
+      "manufacturer": "Video Storm",
+      "manufacturerKey": "video-storm",
+      "displayName": "NetPlay Video (NBX100)",
+      "models": [
+        "NetPlay Video (NBX100)",
+        "NetPlay Video (VRX010)",
+        "NetPlay Video (NBX010)",
+        "NetPlay Video (NAB / CMX1616A2 / CMX3838A1)",
+        "NetPlay Video (VTX)"
+      ],
+      "revision": 1,
+      "path": "specs/video-storm/video_storm_netplay_video_ip.md",
+      "actionCount": 134,
+      "lastCheckedAt": "2026-06-04T06:32:25.671Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a030e907fbc9c1bf8887646d9a908298d9399dec04f64785bbd8bd42566c790f"
     },
     {
       "specId": "admin/viewsonic-cde5010-series",
@@ -17808,6 +18216,116 @@
       "contentHash": "56363a6099d6e51c88591408509b45eb681c0a66f5c5aed70e2b61b14210a427"
     },
     {
+      "specId": "admin/yamaha-exi8",
+      "deviceId": "yamaha/exi8",
+      "title": "Yamaha EXi8 Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "EXi8",
+      "models": [
+        "EXi8"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_exi8_serial.md",
+      "actionCount": 24,
+      "lastCheckedAt": "2026-06-04T06:32:26.447Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9382e5972aedf071fb9ee80cf09ef759faad7c18b6349464f59e21690bbc9f11"
+    },
+    {
+      "specId": "admin/yamaha-isx18-series",
+      "deviceId": "yamaha/isx18-series",
+      "title": "Yamaha ISX18 Series Control Spec (YXC Advanced API)",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "ISX18 Series",
+      "models": [
+        "ISX18 Series"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_isx18_series_ip.md",
+      "actionCount": 9,
+      "lastCheckedAt": "2026-06-04T06:32:27.313Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "39c318c5fcaad8d69df1e9a1a0704d2c331b51991db8e0fbae54c03d935b947b"
+    },
+    {
+      "specId": "admin/yamaha-r-n1000a",
+      "deviceId": "yamaha/r-n1000a",
+      "title": "Yamaha R-N1000A Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "R-N1000A",
+      "models": [
+        "R-N1000A"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_r_n1000a_ip.md",
+      "actionCount": 61,
+      "lastCheckedAt": "2026-06-04T06:34:59.797Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "93fb412a1ee9de7d61500d06bd891173f0e97772d3c54788c0986d8106ad64e6"
+    },
+    {
+      "specId": "admin/yamaha-r-n2000a",
+      "deviceId": "yamaha/r-n2000a",
+      "title": "Yamaha R-N2000A Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "R-N2000A",
+      "models": [
+        "R-N2000A"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_r_n2000a_ip.md",
+      "actionCount": 8,
+      "lastCheckedAt": "2026-06-04T06:35:00.650Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "85be2dcc1b7d8a176d4c680873fb5f8ea0d16b1dd6f83eca967447e50d1cecd0"
+    },
+    {
+      "specId": "admin/yamaha-rn303-series",
+      "deviceId": "yamaha/r-n303",
+      "title": "Yamaha R-N303 Series Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "R-N303",
+      "models": [
+        "R-N303",
+        "R-N303D"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_rn303_series_ip.md",
+      "actionCount": 9,
+      "lastCheckedAt": "2026-06-04T06:35:02.156Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "cca5ffaefa11997eebd30ef3ef41f9086760dda8a472e48e976c2a0d9fbf6eea"
+    },
+    {
+      "specId": "admin/yamaha-rn402-series",
+      "deviceId": "yamaha/r-n402",
+      "title": "Yamaha R-N402 Series Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "R-N402",
+      "models": [
+        "R-N402",
+        "R-N402D"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_rn402_series_ip.md",
+      "actionCount": 12,
+      "lastCheckedAt": "2026-06-04T06:37:45.240Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "658a8867d35d86e122b637b57d352b0541496e03054682ad5ae629c15a0b05dc"
+    },
+    {
       "specId": "admin/yamaha-truex_90a",
       "deviceId": "yamaha/truex-90a",
       "title": "Yamaha TrueX-90A Control Spec",
@@ -17824,6 +18342,79 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "9e0b681bafaa44a90f08cd40e9f476522b6e882c48d779c7175671e6585d8954"
+    },
+    {
+      "specId": "admin/yamaha-tsxn237-series",
+      "deviceId": "yamaha/tsxn237-series",
+      "title": "Yamaha TSXN237 Series Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "TSXN237 Series",
+      "models": [
+        "TSXN237 Series"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_tsxn237_series_ip.md",
+      "actionCount": 10,
+      "lastCheckedAt": "2026-06-04T06:37:46.185Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "abe2a35417739978f5e3a1512d7d1f14442a674939b4878012ea100a089f2a96"
+    },
+    {
+      "specId": "admin/yamaha-tt-n503",
+      "deviceId": "yamaha/tt-n503",
+      "title": "Yamaha TT-N503 (MusicCast) Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "TT-N503",
+      "models": [
+        "TT-N503"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_tt_n503_ip.md",
+      "actionCount": 124,
+      "lastCheckedAt": "2026-06-04T06:37:46.997Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "cabfc98912f70cf4b1d504ea63de707897300af463ad398bce235284e832322a"
+    },
+    {
+      "specId": "admin/yamaha-wx-010",
+      "deviceId": "yamaha/wx-010",
+      "title": "Yamaha WX-010 Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "WX-010",
+      "models": [
+        "WX-010"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_wx_010_ip.md",
+      "actionCount": 12,
+      "lastCheckedAt": "2026-06-04T06:37:48.064Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "2f497521795d6f418cd2931ac819d64e5e9c75bd2f1103dd0ce8122c06dc2418"
+    },
+    {
+      "specId": "admin/yamaha-yas-408",
+      "deviceId": "yamaha/yas-408",
+      "title": "Yamaha YAS-408 (MusicCast BAR 400) Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "YAS-408",
+      "models": [
+        "YAS-408",
+        "MusicCast BAR 400"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_yas_408_ip.md",
+      "actionCount": 124,
+      "lastCheckedAt": "2026-06-04T06:37:49.008Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 4,
+      "contentHash": "95a5d1206bf40ac074a6e1c15b6718a8039b5bb696cedd2d77d0e105a8b6a81f"
     },
     {
       "specId": "admin/zen-ndirouter",

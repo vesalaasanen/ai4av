@@ -27,8 +27,8 @@ source_urls:
   - https://placeos.github.io/drivers/Extron/SIS.html
   - https://www.extron.com/download/
 retrieved_at: 2026-05-13T00:31:32.824Z
-last_checked_at: 2026-06-02T22:06:58.215Z
-generated_at: 2026-06-02T22:06:58.215Z
+last_checked_at: 2026-06-03T07:03:09.155Z
+generated_at: 2026-06-03T07:03:09.155Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "DSP software-only controls (Configure Digital I/O dialog) not documented as SIS commands"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:06:58.215Z
+  checked_at: 2026-06-03T07:03:09.155Z
   matched_actions: 19
   action_count: 19
   confidence: medium
-  summary: "All 19 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete spec verification (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -377,18 +377,18 @@ source_urls:
   - https://placeos.github.io/drivers/Extron/SIS.html
   - https://www.extron.com/download/
 retrieved_at: 2026-05-13T00:31:32.824Z
-last_checked_at: 2026-06-02T22:06:58.215Z
+last_checked_at: 2026-06-03T07:03:09.155Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:06:58.215Z
+checked_at: 2026-06-03T07:03:09.155Z
 matched_actions: 19
 action_count: 19
 confidence: medium
-summary: "All 19 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete spec verification (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

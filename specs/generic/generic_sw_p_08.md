@@ -26,8 +26,8 @@ source_urls:
   - https://github.com/bitfocus/companion-module-generic-swp08/blob/main/companion/HELP.md
   - https://support.rascular.com/pro-bel-sw-p-08-implementation-notes/
 retrieved_at: 2026-04-29T23:48:35.677Z
-last_checked_at: 2026-06-02T22:07:19.223Z
-generated_at: 2026-06-02T22:07:19.223Z
+last_checked_at: 2026-06-03T07:03:24.249Z
+generated_at: 2026-06-03T07:03:24.249Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "salvo group byte encoding, salvo execution command number not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:19.223Z
+  checked_at: 2026-06-03T07:03:24.249Z
   matched_actions: 12
   action_count: 12
   confidence: medium
-  summary: "All 12 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "12/12 actions matched (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -356,18 +356,18 @@ source_urls:
   - https://github.com/bitfocus/companion-module-generic-swp08/blob/main/companion/HELP.md
   - https://support.rascular.com/pro-bel-sw-p-08-implementation-notes/
 retrieved_at: 2026-04-29T23:48:35.677Z
-last_checked_at: 2026-06-02T22:07:19.223Z
+last_checked_at: 2026-06-03T07:03:24.249Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:19.223Z
+checked_at: 2026-06-03T07:03:24.249Z
 matched_actions: 12
 action_count: 12
 confidence: medium
-summary: "All 12 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "12/12 actions matched (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

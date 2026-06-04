@@ -26,8 +26,8 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - https://builders.intel.com/docs/networkbuilders/hisense-ops-brings-more-compute-power-to-interactive-displays-1770982710.pdf
 retrieved_at: 2026-05-12T19:17:07.221Z
-last_checked_at: 2026-06-02T22:07:48.345Z
-generated_at: 2026-06-02T22:07:48.345Z
+last_checked_at: 2026-06-03T07:09:42.855Z
+generated_at: 2026-06-03T07:09:42.855Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:48.345Z
+  checked_at: 2026-06-03T07:09:42.855Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Spec actions and transport match source (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -768,18 +768,18 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - https://builders.intel.com/docs/networkbuilders/hisense-ops-brings-more-compute-power-to-interactive-displays-1770982710.pdf
 retrieved_at: 2026-05-12T19:17:07.221Z
-last_checked_at: 2026-06-02T22:07:48.345Z
+last_checked_at: 2026-06-03T07:09:42.855Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:48.345Z
+checked_at: 2026-06-03T07:09:42.855Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Spec actions and transport match source (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

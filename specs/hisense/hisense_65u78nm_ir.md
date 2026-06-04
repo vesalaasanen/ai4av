@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-02T01:31:19.951Z
-last_checked_at: 2026-06-02T22:07:58.822Z
-generated_at: 2026-06-02T22:07:58.822Z
+last_checked_at: 2026-06-03T07:09:48.870Z
+generated_at: 2026-06-03T07:09:48.870Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "error recovery sequence after an :EROR ACK is not documented."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:58.822Z
+  checked_at: 2026-06-03T07:09:48.870Z
   matched_actions: 223
   action_count: 223
   confidence: medium
-  summary: "All 223 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 223 actions verified; transport resolved (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1396,18 +1396,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-02T01:31:19.951Z
-last_checked_at: 2026-06-02T22:07:58.822Z
+last_checked_at: 2026-06-03T07:09:48.870Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:58.822Z
+checked_at: 2026-06-03T07:09:48.870Z
 matched_actions: 223
 action_count: 223
 confidence: medium
-summary: "All 223 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 223 actions verified; transport resolved (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://www.manualslib.com/manual/2662477/Lg-43uk63-Series.html
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T22:08:57.753Z
-last_checked_at: 2026-06-02T22:08:57.753Z
-generated_at: 2026-06-02T22:08:57.753Z
+retrieved_at: 2026-06-03T07:16:25.910Z
+last_checked_at: 2026-06-03T07:16:25.910Z
+generated_at: 2026-06-03T07:16:25.910Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Japan model satellite source codes (02=ATSC, 07=BS, 08=CS1, 09=CS2) may differ from other regions"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:57.753Z
+  checked_at: 2026-06-03T07:16:25.910Z
   matched_actions: 25
   action_count: 25
   confidence: medium
-  summary: "All 25 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Perfect match: all 25 actions found (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -664,19 +664,19 @@ source_domains:
 source_urls:
   - https://www.manualslib.com/manual/2662477/Lg-43uk63-Series.html
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
-retrieved_at: 2026-06-02T22:08:57.753Z
-last_checked_at: 2026-06-02T22:08:57.753Z
+retrieved_at: 2026-06-03T07:16:25.910Z
+last_checked_at: 2026-06-03T07:16:25.910Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:57.753Z
+checked_at: 2026-06-03T07:16:25.910Z
 matched_actions: 25
 action_count: 25
 confidence: medium
-summary: "All 25 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Perfect match: all 25 actions found (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

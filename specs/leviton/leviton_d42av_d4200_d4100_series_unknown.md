@@ -25,8 +25,8 @@ source_urls:
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
   - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
 retrieved_at: 2026-05-14T17:11:49.440Z
-last_checked_at: 2026-06-02T22:08:45.379Z
-generated_at: 2026-06-02T22:08:45.379Z
+last_checked_at: 2026-06-03T07:16:19.286Z
+generated_at: 2026-06-03T07:16:19.286Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -40,11 +40,11 @@ known_gaps:
   - "whether TCP/IP control is available in addition to serial"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:45.379Z
+  checked_at: 2026-06-03T07:16:19.286Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All spec actions found in source (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -505,18 +505,18 @@ source_urls:
   - https://leviton.com/content/dam/leviton/residential/product_documents/application_note/VRC0P_ASCII_Programming_Application_Note.pdf
   - https://applicationmarket.crestron.com/content/Help/Leviton/dimensions_3000.pdf
 retrieved_at: 2026-05-14T17:11:49.440Z
-last_checked_at: 2026-06-02T22:08:45.379Z
+last_checked_at: 2026-06-03T07:16:19.286Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:45.379Z
+checked_at: 2026-06-03T07:16:19.286Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All spec actions found in source (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -23,9 +23,9 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - "https://gscs-b2c.lge.com/downloadFile?fileId=9zWKGeMAX3TQzc4LFccwg"
-retrieved_at: 2026-06-02T22:09:08.457Z
-last_checked_at: 2026-06-02T22:09:08.457Z
-generated_at: 2026-06-02T22:09:08.457Z
+retrieved_at: 2026-06-03T07:19:37.423Z
+last_checked_at: 2026-06-03T07:19:37.423Z
+generated_at: 2026-06-03T07:19:37.423Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "command timing requirements not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:08.457Z
+  checked_at: 2026-06-03T07:19:37.423Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete match: all 27 actions present (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -409,19 +409,19 @@ source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://justaddpower.happyfox.com/kb/article/36-lg-rs232-control/
   - "https://gscs-b2c.lge.com/downloadFile?fileId=9zWKGeMAX3TQzc4LFccwg"
-retrieved_at: 2026-06-02T22:09:08.457Z
-last_checked_at: 2026-06-02T22:09:08.457Z
+retrieved_at: 2026-06-03T07:19:37.423Z
+last_checked_at: 2026-06-03T07:19:37.423Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:08.457Z
+checked_at: 2026-06-03T07:19:37.423Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete match: all 27 actions present (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

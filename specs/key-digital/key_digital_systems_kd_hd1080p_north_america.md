@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - "https://keydigital.com/Control%20Mods%20Codes/HD%20Leeza/RS-232/HDLEEZA_RS232%20Command%20Protocol.pdf"
 retrieved_at: 2026-05-04T15:19:04.150Z
-last_checked_at: 2026-06-02T22:08:34.973Z
-generated_at: 2026-06-02T22:08:34.973Z
+last_checked_at: 2026-06-03T07:16:13.344Z
+generated_at: 2026-06-03T07:16:13.344Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:34.973Z
+  checked_at: 2026-06-03T07:16:13.344Z
   matched_actions: 37
   action_count: 37
   confidence: medium
-  summary: "All 37 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete cross-check (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -433,18 +433,18 @@ source_domains:
 source_urls:
   - "https://keydigital.com/Control%20Mods%20Codes/HD%20Leeza/RS-232/HDLEEZA_RS232%20Command%20Protocol.pdf"
 retrieved_at: 2026-05-04T15:19:04.150Z
-last_checked_at: 2026-06-02T22:08:34.973Z
+last_checked_at: 2026-06-03T07:16:13.344Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:34.973Z
+checked_at: 2026-06-03T07:16:13.344Z
 matched_actions: 37
 action_count: 37
 confidence: medium
-summary: "All 37 spec actions traced to source (dip-safe re-verify). (13 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete cross-check (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

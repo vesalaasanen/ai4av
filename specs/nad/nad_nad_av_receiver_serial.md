@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T09:36:11.630Z
-last_checked_at: 2026-06-02T22:09:49.886Z
-generated_at: 2026-06-02T22:09:49.886Z
+last_checked_at: 2026-06-03T07:26:00.548Z
+generated_at: 2026-06-03T07:26:00.548Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "maximum concurrent connection limit not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:49.886Z
+  checked_at: 2026-06-03T07:26:00.548Z
   matched_actions: 30
   action_count: 30
   confidence: medium
-  summary: "All 30 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 30 actions verified (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -445,18 +445,18 @@ source_domains:
 source_urls:
   - https://bluos.io/wp-content/uploads/2025/06/BluOS-Custom-Integration-API_v1.7.pdf
 retrieved_at: 2026-04-29T09:36:11.630Z
-last_checked_at: 2026-06-02T22:09:49.886Z
+last_checked_at: 2026-06-03T07:26:00.548Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:49.886Z
+checked_at: 2026-06-03T07:26:00.548Z
 matched_actions: 30
 action_count: 30
 confidence: medium
-summary: "All 30 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 30 actions verified (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

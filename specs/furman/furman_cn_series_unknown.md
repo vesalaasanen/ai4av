@@ -28,8 +28,8 @@ source_urls:
   - https://www.manua.ls/furman/smartsequencer-cn-1800s/manual
   - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S_manual.pdf?v=1723587519"
 retrieved_at: 2026-05-19T04:33:34.064Z
-last_checked_at: 2026-06-02T22:07:16.263Z
-generated_at: 2026-06-02T22:07:16.263Z
+last_checked_at: 2026-06-03T07:03:22.566Z
+generated_at: 2026-06-03T07:03:22.566Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "firmware version range not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:16.263Z
+  checked_at: 2026-06-03T07:03:22.566Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All actions and transport parameters verified (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -308,18 +308,18 @@ source_urls:
   - https://www.manua.ls/furman/smartsequencer-cn-1800s/manual
   - "https://cdn.shopify.com/s/files/1/0884/1006/3168/files/pdf_CN-1800S_manual.pdf?v=1723587519"
 retrieved_at: 2026-05-19T04:33:34.064Z
-last_checked_at: 2026-06-02T22:07:16.263Z
+last_checked_at: 2026-06-03T07:03:22.566Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:16.263Z
+checked_at: 2026-06-03T07:03:22.566Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All actions and transport parameters verified (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

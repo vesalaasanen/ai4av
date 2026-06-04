@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
 retrieved_at: 2026-04-30T04:26:37.366Z
-last_checked_at: 2026-06-02T22:07:05.575Z
-generated_at: 2026-06-02T22:07:05.575Z
+last_checked_at: 2026-06-03T07:03:13.564Z
+generated_at: 2026-06-03T07:03:13.564Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "Telnet escape character conflict with SIS Esc key — source notes Ctrl+] is Telnet escape, Esc key is SIS Escape"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:05.575Z
+  checked_at: 2026-06-03T07:03:13.564Z
   matched_actions: 74
   action_count: 74
   confidence: medium
-  summary: "All 74 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete coverage; all 74 actions verified (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1280,18 +1280,18 @@ source_domains:
 source_urls:
   - https://media.extron.com/public/download/files/userman/XP_Plus_MAV_D.pdf
 retrieved_at: 2026-04-30T04:26:37.366Z
-last_checked_at: 2026-06-02T22:07:05.575Z
+last_checked_at: 2026-06-03T07:03:13.564Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:05.575Z
+checked_at: 2026-06-03T07:03:13.564Z
 matched_actions: 74
 action_count: 74
 confidence: medium
-summary: "All 74 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete coverage; all 74 actions verified (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
