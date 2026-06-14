@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-14T08:08:22.246Z",
-  "spec_count": 1140,
+  "generated_at": "2026-06-14T20:10:26.687Z",
+  "spec_count": 1145,
   "specs": [
     {
       "specId": "admin/ad-notam-cs-101",
@@ -4506,6 +4506,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "0332a5a6ef93b81424d6543e359519641e887f9c96b56e3d5daf0d6ad7276099"
+    },
+    {
+      "specId": "admin/classe-audio-ca-ct-2300",
+      "deviceId": "classe/ca-2300",
+      "title": "Classe Audio CA/CT-XXXX RS-232 Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "CA-2300",
+      "models": [
+        "CA-2300",
+        "CT-2300"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_ca_ct_2300_serial.md",
+      "actionCount": 12,
+      "lastCheckedAt": "2026-06-14T16:13:38.878Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "e99f6fa0b825094367fc454d0316417bec7da430cd598deb2739aefcfc8e437e"
     },
     {
       "specId": "admin/classe-audio-ca-ct-5300",
@@ -18239,6 +18258,24 @@
       "contentHash": "89498071dce10dc175b81198a12d82b464d04ebde4f08cd503ec87715e70f035"
     },
     {
+      "specId": "admin/sony-fwx8501-series",
+      "deviceId": "sony/fwx8501-series",
+      "title": "Sony FWX8501 Series BRAVIA Simple IP Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "FWX8501 Series",
+      "models": [
+        "FWX8501 Series"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_fwx8501_series_ip.md",
+      "actionCount": 122,
+      "lastCheckedAt": "2026-06-14T16:14:28.382Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "04187419915e190d6de42c494612441068073e365c83ab1b410296020e60c3ac"
+    },
+    {
       "specId": "admin/sony-fwxd8001-series",
       "deviceId": "sony/sony-bravia-2014-models-simple-ip-control",
       "title": "Sony FWXD8001 Series Simple IP Control Spec",
@@ -20911,6 +20948,26 @@
       "contentHash": "40b8a5ec3beab7a8df825389914b59f56c15fc73752e9f5d38be25807fff728c"
     },
     {
+      "specId": "admin/vaddio-roboshot-12-usb",
+      "deviceId": "vaddio/roboshot-12-usb",
+      "title": "Vaddio RoboSHOT 12 USB Control Spec",
+      "manufacturer": "Vaddio",
+      "manufacturerKey": "vaddio",
+      "displayName": "RoboSHOT 12 USB",
+      "models": [
+        "RoboSHOT 12 USB",
+        "999-9920-000",
+        "999-9920-001"
+      ],
+      "revision": 1,
+      "path": "specs/vaddio/vaddio_roboshot_12_usb_unknown.md",
+      "actionCount": 222,
+      "lastCheckedAt": "2026-06-14T16:16:13.117Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "061e440773fd2aea60a4231ea60640c45e21b35b3ed145cbb404b9ee9c60090b"
+    },
+    {
       "specId": "admin/vaddio-roboshot-qusb-series",
       "deviceId": "vaddio/roboshot-qusb-series",
       "title": "Vaddio RoboSHOT QUSB Series Control Spec",
@@ -21696,6 +21753,27 @@
       "contentHash": "30a6427e3f0718f23f22d591cadad884280d2e9e534efdc6b1e6577b21f26779"
     },
     {
+      "specId": "admin/xilica-xp2040-xp3060-xp4080-xp8080",
+      "deviceId": "xilica/xp2040",
+      "title": "Xilica XP Series Control Spec",
+      "manufacturer": "Xilica",
+      "manufacturerKey": "xilica",
+      "displayName": "XP2040",
+      "models": [
+        "XP2040",
+        "XP3060",
+        "XP4080",
+        "XP8080"
+      ],
+      "revision": 1,
+      "path": "specs/xilica/xilica_xp2040_xp3060_xp4080_xp8080_unknown.md",
+      "actionCount": 78,
+      "lastCheckedAt": "2026-06-14T16:16:25.648Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "85fe44d7283823472e60168b2852fb2be6c7dee32d97e3e389a7f8c2fa38062e"
+    },
+    {
       "specId": "admin/yamaha-bd-s-series",
       "deviceId": "yamaha/bd-s2900",
       "title": "Yamaha BD-S Series Control Spec",
@@ -22022,6 +22100,24 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
       "contentHash": "95a5d1206bf40ac074a6e1c15b6718a8039b5bb696cedd2d77d0e105a8b6a81f"
+    },
+    {
+      "specId": "admin/yealink-uvc-v1-0",
+      "deviceId": "yealink/yealink-uvc-v1-0",
+      "title": "Yealink UVC v1.0 Control Spec",
+      "manufacturer": "Yealink",
+      "manufacturerKey": "yealink",
+      "displayName": "Yealink UVC v1.0",
+      "models": [
+        "Yealink UVC v1.0"
+      ],
+      "revision": 1,
+      "path": "specs/yealink/yealink_uvc_v1_0.md",
+      "actionCount": 66,
+      "lastCheckedAt": "2026-06-14T16:16:37.750Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "44d551657a536fac767165c4226f745678f3b86e324852cb41dbbc2b09cb826f"
     },
     {
       "specId": "admin/yealink-vc-series",
