@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-17T08:54:00.240Z",
-  "spec_count": 1145,
+  "generated_at": "2026-06-18T06:31:26.326Z",
+  "spec_count": 1298,
   "specs": [
     {
       "specId": "admin/ad-notam-cs-101",
@@ -129,6 +129,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
       "contentHash": "dc55678405af6e57227ebb39b7174e970769811a9563cfe8dd9412e31948377e"
+    },
+    {
+      "specId": "admin/allen-heath-dlive",
+      "deviceId": "allen-heath/dlive",
+      "title": "Allen & Heath dLive Control Spec",
+      "manufacturer": "Allen & Heath",
+      "manufacturerKey": "allen-heath",
+      "displayName": "dLive",
+      "models": [
+        "dLive"
+      ],
+      "revision": 1,
+      "path": "specs/allen-heath/allen_and_heath_dlive_v1_0.md",
+      "actionCount": 43,
+      "lastCheckedAt": "2026-06-16T07:00:45.335Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "b5800600195643621c28b097206f0e48ee50bebd058ce3d481982bf5ad9544e6"
     },
     {
       "specId": "admin/allen-heath-qu",
@@ -390,6 +408,24 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
       "contentHash": "d558796c4e100a4aaec22a1a6923656c95b100d2f1d90be6c391dcfd0ce83215"
+    },
+    {
+      "specId": "admin/apc-smart-ups-north-america",
+      "deviceId": "apc/smart-ups-north-america",
+      "title": "APC Smart UPS (North America) Control Spec",
+      "manufacturer": "APC",
+      "manufacturerKey": "apc",
+      "displayName": "Smart UPS (North America)",
+      "models": [
+        "Smart UPS (North America)"
+      ],
+      "revision": 1,
+      "path": "specs/apc/apc_smart_ups_north_america.md",
+      "actionCount": 72,
+      "lastCheckedAt": "2026-06-16T07:00:46.449Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "f567d98d6436d3dc3ae479e7161b3024162c373eb1e10ef3258b4ee25b015b5c"
     },
     {
       "specId": "admin/arcam-av4-series",
@@ -666,6 +702,24 @@
       "contentHash": "03f047123886116facbfdf6420b0073fdacaeacd8e0a85a1dd5434d2c5db015c"
     },
     {
+      "specId": "admin/atlona-at-av2408",
+      "deviceId": "atlona/at-av2408",
+      "title": "Atlona AT-AV2408 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-AV2408",
+      "models": [
+        "AT-AV2408"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_av2408_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-16T07:00:47.438Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "cc442e957d608488df07eeb8cc31feca3b2607d0ea00ec38a2900b2c6d48c363"
+    },
+    {
       "specId": "admin/atlona-at-av2416",
       "deviceId": "atlona/at-av2416",
       "title": "Atlona AT-AV2416 Control Spec",
@@ -790,6 +844,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "840588b1c909c6b655d515c6b6e9c388db86eb1a3956d4eff37610f4f8250db7"
+    },
+    {
+      "specId": "admin/atlona-at-h2h-88m",
+      "deviceId": "atlona/at-h2h-88m",
+      "title": "Atlona AT-H2H-88M Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-H2H-88M",
+      "models": [
+        "AT-H2H-88M"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_h2h_88m_1_0_1_ip.md",
+      "actionCount": 40,
+      "lastCheckedAt": "2026-06-14T19:37:53.578Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 5,
+      "contentHash": "11da2dcbf457c73665a057f6d1e2ad89ce9c4b6343d46734a9ff7b972df38917"
     },
     {
       "specId": "admin/atlona-at-hd-sc-500",
@@ -1081,6 +1153,26 @@
       "contentHash": "2e7ecd93c414bf38b1cd745764d36bb568560c95927798863196e0ea51c1e1da"
     },
     {
+      "specId": "admin/atlona-at-prohd44m-sr",
+      "deviceId": "atlona/at-prohd44m-sr",
+      "title": "Atlona AT-PROHD44M-SR Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-PROHD44M-SR",
+      "models": [
+        "AT-PROHD44M-SR",
+        "AT-PROHD44M-S",
+        "AT-PROHD44M-R"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_prohd44m_sr_serial.md",
+      "actionCount": 24,
+      "lastCheckedAt": "2026-06-16T07:00:48.302Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "02337e3798f3a049d9406128e44eccbf4b1cba2c262c0ba35c5692ae1eec1a8a"
+    },
+    {
       "specId": "admin/atlona-at-prohd82m",
       "deviceId": "atlona/at-prohd82m",
       "title": "Atlona AT-PROHD82M Control Spec",
@@ -1349,6 +1441,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "f152d170f4827bc1448b4ded2da06b321ea1a6b3abe89ae2620fe0036f9901fb"
+    },
+    {
+      "specId": "admin/atlona-at-video2424",
+      "deviceId": "atlona/at-video2424",
+      "title": "Atlona AT-VIDEO2424 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VIDEO2424",
+      "models": [
+        "AT-VIDEO2424"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_video2424_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-14T19:37:56.061Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "97883af8d179ac3717cf0e13ac2eb24b3619af0db0ea7844d4285d2ecb110eed"
     },
     {
       "specId": "admin/atlona-at-ocs-900n",
@@ -1765,6 +1875,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "d60a3a99f9b893619789d5666246bbc2710ef1c39c0793cb736256dd0aae2f59"
+    },
+    {
+      "specId": "admin/avocation_systems-mx_0808nad_r",
+      "deviceId": "avocation-systems/mx-0808nadr",
+      "title": "Avocation Systems MX-0808NAD/R Control Spec",
+      "manufacturer": "Avocation Systems",
+      "manufacturerKey": "avocation-systems",
+      "displayName": "MX-0808NAD/R",
+      "models": [
+        "MX-0808NAD/R"
+      ],
+      "revision": 1,
+      "path": "specs/avocation-systems/avocation_systems_mx_0808nad_r_serial.md",
+      "actionCount": 70,
+      "lastCheckedAt": "2026-06-15T14:08:05.949Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2ba4e76db0a9055fdbd6fa4d46e7c0247f340adfb9860d21b581af51fb60c5af"
     },
     {
       "specId": "admin/avpro-edge-ac-aex-rc-hub-series",
@@ -3825,6 +3953,27 @@
       "contentHash": "ab8452ed742ee9e9bc2d29a5310e781935d38e0bfce4993e9a442305bfee062b"
     },
     {
+      "specId": "admin/canon-vb-m-series",
+      "deviceId": "canon/vb-m40",
+      "title": "Canon VB-M Series Control Spec",
+      "manufacturer": "Canon",
+      "manufacturerKey": "canon",
+      "displayName": "VB-M40",
+      "models": [
+        "VB-M40",
+        "VB-M600VE",
+        "VB-M600D",
+        "VB-M700F"
+      ],
+      "revision": 1,
+      "path": "specs/canon/canon_vb_m_series.md",
+      "actionCount": 10,
+      "lastCheckedAt": "2026-06-16T07:02:08.747Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "3bcb6fd6c1c6ceaf567de73b585c334a16d02df0f4d683449210168f2c7551ae"
+    },
+    {
       "specId": "admin/canon-wux5000-wux4000",
       "deviceId": "canon/wux5000",
       "title": "Canon WUX5000 / WUX4000 Control Spec",
@@ -4633,6 +4782,43 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "b6b173fe7c770741776e9207ccf481c3b362d0e0fd5376397520e8280b8e5b1a"
+    },
+    {
+      "specId": "admin/classe-audio-ssp-300",
+      "deviceId": "classe/ssp-300",
+      "title": "Classe Audio SSP-300 Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "SSP-300",
+      "models": [
+        "SSP-300"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_ssp_300_serial.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-06-16T07:02:09.943Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d9dbaf8617f2c8b0dad29eaf6d1da59226f43df9488169bcc283671d1281a914"
+    },
+    {
+      "specId": "admin/classe-audio-ssp-300-ssp-600",
+      "deviceId": "classe/ssp-300",
+      "title": "Classe Audio SSP-300/SSP-600 Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "SSP-300",
+      "models": [
+        "SSP-300",
+        "SSP-600"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_ssp300600_series_serial.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-06-14T16:13:48.526Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "1c34318295df7fdd90ffacd5160cd6d47fcf99b5951d90a46f2d14f79dbae9b1"
     },
     {
       "specId": "admin/clearone-psr1212",
@@ -6137,6 +6323,24 @@
       "contentHash": "953ea4a80c1f2152041d35c7c793825184f1122dc73e0423518ebca6fabdd182"
     },
     {
+      "specId": "admin/epixsky-epic-rgb-mini-controller",
+      "deviceId": "epixsky/rgb-mini",
+      "title": "EpixSky Epic RGB Mini Controller Control Spec",
+      "manufacturer": "EpixSky",
+      "manufacturerKey": "epixsky",
+      "displayName": "RGB Mini",
+      "models": [
+        "RGB Mini"
+      ],
+      "revision": 1,
+      "path": "specs/epixsky/epixsky_epic_rgb_mini_controller_serial.md",
+      "actionCount": 35,
+      "lastCheckedAt": "2026-06-16T07:02:12.071Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "b6e0f0b53c8fbafca459038f3a22390063c975c4a4b9f4bb74d3cc2b8263501f"
+    },
+    {
       "specId": "admin/epixsky-epixsky-led-stars-controller",
       "deviceId": "epixsky/epix-advancedpro-rs232-serial-led-controller",
       "title": "EpixSky EpixSky LED Stars Controller Control Spec",
@@ -6459,6 +6663,24 @@
       "contentHash": "9ca8210c936f02a373015c973a1288eaca4ba2245c133502700df0ef85bfae38"
     },
     {
+      "specId": "admin/extron-ctr8",
+      "deviceId": "extron/ctr-8",
+      "title": "Extron CTR 8 Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "CTR 8",
+      "models": [
+        "CTR 8"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_ctr8_unknown.md",
+      "actionCount": 20,
+      "lastCheckedAt": "2026-06-16T07:02:13.148Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "da05f6bc9be84102ce7d445eba6fe33cd87c9f10e8ea5350b121f5565cd19612"
+    },
+    {
       "specId": "admin/extron-da-hd-4k-series",
       "deviceId": "extron/da2-hd-4k",
       "title": "Extron DA HD 4K Series Control Spec",
@@ -6477,6 +6699,44 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
       "contentHash": "70ab8a4adff8b86303f6999648806d4195b1b6ed1062bf58a361db051b40d77e"
+    },
+    {
+      "specId": "admin/extron-dmp64",
+      "deviceId": "extron/dmp-64",
+      "title": "Extron DMP 64 Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "DMP 64",
+      "models": [
+        "DMP 64"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_dmp64_unknown.md",
+      "actionCount": 95,
+      "lastCheckedAt": "2026-06-16T07:05:17.314Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "df3c0329915e6f09bc60b4450fc8513c1666092e1049f7347075a0eb17f779a4"
+    },
+    {
+      "specId": "admin/extron-dsc-hd-hd-4k-series",
+      "deviceId": "extron/dsc-hd-hd-4k-a",
+      "title": "Extron DSC HD-HD 4K A Series Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "DSC HD-HD 4K A",
+      "models": [
+        "DSC HD-HD 4K A",
+        "DSC HD-HD 4K PLUS A",
+        "DSC HD-HD 4K PLUS A xi"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_dsc_hd_hd_4k_series_unknown.md",
+      "actionCount": 213,
+      "lastCheckedAt": "2026-06-16T07:05:18.285Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "2742ff4b1d147a735ebaa64be77b92ef66e2d80afb8df5fb9735ddaf7d4b81f0"
     },
     {
       "specId": "admin/extron-dtp-t-fb-series",
@@ -6635,6 +6895,25 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 5,
       "contentHash": "c749e870f543e7a6a5344ab93dcaf6f13819c7a2ffe6ecbdf9237ce9ddf84a81"
+    },
+    {
+      "specId": "admin/extron-ipl-t-pcs4",
+      "deviceId": "extron/ipl-t-pcs4",
+      "title": "Extron IPL T PCS4 / IPL T PCS4i Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "IPL T PCS4",
+      "models": [
+        "IPL T PCS4",
+        "IPL T PCS4i"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_ipl_t_pcs4_ipl_t_pcs4i_ip.md",
+      "actionCount": 99,
+      "lastCheckedAt": "2026-06-16T07:05:19.221Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "d967ce48d9dbfacb637f9eb878298e25c40ad40031104bcc9c4c50c43a03e71a"
     },
     {
       "specId": "admin/extron-matrix-100",
@@ -6855,6 +7134,24 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 4,
       "contentHash": "9b46611414dc9df3a7544f959d4650c74ad0f1accd10ad122f6b8700ae87d04f"
+    },
+    {
+      "specId": "admin/extron-ucs-303",
+      "deviceId": "extron/ucs-303",
+      "title": "Extron UCS 303 Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "UCS 303",
+      "models": [
+        "UCS 303"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_ucs_303_unknown.md",
+      "actionCount": 109,
+      "lastCheckedAt": "2026-06-14T16:14:03.927Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "a08d72c6dcdce9039af6b0bd4ad112d67fb511854778d6158ed48dc0a795697a"
     },
     {
       "specId": "admin/extron-xtpiicrosspointseries",
@@ -8472,6 +8769,25 @@
       "contentHash": "da91a1a7be17a2967cf222189148bd0d6875da3a785a4494939a2efc0674bc17"
     },
     {
+      "specId": "admin/jvc-kenwood-dla-v90r",
+      "deviceId": "jvc-kenwood/dla-v90r",
+      "title": "JVC KENWOOD DLA-V90R Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-V90R",
+      "models": [
+        "DLA-V90R",
+        "DLA-V90RLTD"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_v90r_ip.md",
+      "actionCount": 318,
+      "lastCheckedAt": "2026-06-16T07:05:20.093Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "9713b0131208d08b579a2685d65ce6e3d993b27ab1416978924830ad83594597"
+    },
+    {
       "specId": "admin/jvc_kenwood-dla_v9r",
       "deviceId": "jvc-kenwood/dla-v9r",
       "title": "JVC KENWOOD DLA-V9R Control Spec",
@@ -8542,6 +8858,26 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
       "contentHash": "d85176fc1f34d045be5f90e0a07d2aba6aa95ce3205e4f3fccc850b73a1be3bc"
+    },
+    {
+      "specId": "admin/jvc-kenwood-dla-x750r-px1",
+      "deviceId": "jvc-kenwood/dla-x750r",
+      "title": "JVC KENWOOD DLA-X750R / DLA-X950R / DLA-X550R Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-X750R",
+      "models": [
+        "DLA-X750R",
+        "DLA-X950R",
+        "DLA-X550R"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_x750r_px1_serial.md",
+      "actionCount": 327,
+      "lastCheckedAt": "2026-06-16T07:08:31.713Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "f80a2ad57984e4cfddb3ad2ca69f3e934a2d3b4bfea80e71229be00fb1ef1acc"
     },
     {
       "specId": "admin/jvc-kenwood-dla-x770r",
@@ -8794,6 +9130,46 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 4,
       "contentHash": "def814327fe2934b284361d966e4d26831d1921b589e60e5d351158e13830ced"
+    },
+    {
+      "specId": "admin/jvc-dla-x55r",
+      "deviceId": "jvc/dla-x55r",
+      "title": "JVC DLA-X55R Control Spec",
+      "manufacturer": "JVC",
+      "manufacturerKey": "jvc",
+      "displayName": "DLA-X55R",
+      "models": [
+        "DLA-X55R"
+      ],
+      "revision": 1,
+      "path": "specs/jvc/jvc_dla_x55r_serial.md",
+      "actionCount": 280,
+      "lastCheckedAt": "2026-06-14T19:37:57.167Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6db078149666ca48eec86470da071db862d425649ee2acf270e357e6fd58e5d8"
+    },
+    {
+      "specId": "admin/jvc-dla-x95rkt",
+      "deviceId": "jvc/dla-x95rkt",
+      "title": "JVC DLA-X95RKT Control Spec",
+      "manufacturer": "JVC",
+      "manufacturerKey": "jvc",
+      "displayName": "DLA-X95RKT",
+      "models": [
+        "DLA-X95RKT",
+        "DLA-X950R",
+        "DLA-X9000",
+        "DLA-RS600",
+        "DLA-PX1"
+      ],
+      "revision": 1,
+      "path": "specs/jvc/jvc_dla_x95rkt_serial.md",
+      "actionCount": 290,
+      "lastCheckedAt": "2026-06-16T07:08:32.835Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "1cfadeec9d760dccb2a81817d3fa3db3b7fc69aac7dfbfad25ec0256e4cc60c3"
     },
     {
       "specId": "admin/jvc-lx-uh1",
@@ -9221,6 +9597,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "826128757b5e18db784c8363b1363ef22e816a048ed30fe04cf82cf7e93a7ef2"
+    },
+    {
+      "specId": "admin/kramer-vs162-series-serial",
+      "deviceId": "kramer/vs-162v",
+      "title": "Kramer VS-162 Series Control Spec",
+      "manufacturer": "Kramer",
+      "manufacturerKey": "kramer",
+      "displayName": "VS-162V",
+      "models": [
+        "VS-162V",
+        "VS-162AV"
+      ],
+      "revision": 1,
+      "path": "specs/kramer/kramer_vs162_series_serial.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-06-14T19:39:42.746Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "a0f4ef9ae1a95d18ae2f993b76de72143530a528415c3a66820f68a60398b719"
     },
     {
       "specId": "admin/kramer-vs44hc",
@@ -10569,6 +10964,24 @@
       "contentHash": "d94e6a32d9fb9b7d337f5503d1e40c5c985d5d4b6a5a20344e2df861b3e8ca49"
     },
     {
+      "specId": "admin/linn-spotify",
+      "deviceId": "linn/linn-spotify",
+      "title": "Linn Spotify Control Spec",
+      "manufacturer": "Linn",
+      "manufacturerKey": "linn",
+      "displayName": "Linn Spotify",
+      "models": [
+        "Linn Spotify"
+      ],
+      "revision": 1,
+      "path": "specs/linn/linn_spotify_ip.md",
+      "actionCount": 19,
+      "lastCheckedAt": "2026-06-16T07:08:33.975Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "ca5b4af2fc918f2c65ae9a83fe2a944b71bfb11b99ce034efe9d94e1258b3b57"
+    },
+    {
       "specId": "admin/louth-vdcp",
       "deviceId": "louth/louth-vdcp",
       "title": "Louth VDCP Control Spec",
@@ -10621,6 +11034,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "daa4eeb710d66166984dcf4bc60cdb91c7911a205a0daee48987bdbbe01bc3e2"
+    },
+    {
+      "specId": "admin/lumens-dc192-pc192",
+      "deviceId": "lumens/dc192",
+      "title": "Lumens DC192/PC192 Control Spec",
+      "manufacturer": "Lumens",
+      "manufacturerKey": "lumens",
+      "displayName": "DC192",
+      "models": [
+        "DC192",
+        "PC192"
+      ],
+      "revision": 1,
+      "path": "specs/lumens/lumens_dc192_pc192_unknown.md",
+      "actionCount": 69,
+      "lastCheckedAt": "2026-06-16T07:08:35.093Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 5,
+      "contentHash": "8e13191647595c83ac8491fdbb3cdd2a87c9f4b35398364533c311f2d37c7c63"
     },
     {
       "specId": "admin/lumens-dc265",
@@ -11483,6 +11915,25 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
       "contentHash": "e9aac748792af78cb757e3a3a64b4b376f83cbaffdc529c70423238739a82ed4"
+    },
+    {
+      "specId": "admin/middle-atlantic-rlnk-1615v-1015v",
+      "deviceId": "middle-atlantic/rlnk-1615v",
+      "title": "Middle Atlantic RLNK 1615V / 1015V Control Spec",
+      "manufacturer": "Middle Atlantic",
+      "manufacturerKey": "middle-atlantic",
+      "displayName": "RLNK-1615V",
+      "models": [
+        "RLNK-1615V",
+        "RLNK-1015V"
+      ],
+      "revision": 1,
+      "path": "specs/middle-atlantic/middle_atlantic_rlnk_1615v_1015v_unknown.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-06-16T07:08:36.090Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "727f4c773f9bcbc1e7f5231d9e0ab5974d7c8c40495fe18c9623d403e02335e9"
     },
     {
       "specId": "admin/middle-atlantic-rlnk-series",
@@ -14179,6 +14630,24 @@
       "contentHash": "fcc9cfd54b2fe65fe2d1e4d3bf6a6d2d7ba95ff034402ef092919b0ca06b3d73"
     },
     {
+      "specId": "admin/neothings-2nd-generation-universal",
+      "deviceId": "neothings/neothings-neopro-2ru-matrix-switch-2nd-generation-universal",
+      "title": "Neothings NeoPro 2nd Generation Universal Matrix Switch Control Spec",
+      "manufacturer": "Neothings",
+      "manufacturerKey": "neothings",
+      "displayName": "Neothings NeoPro 2RU Matrix Switch (2nd Generation Universal)",
+      "models": [
+        "Neothings NeoPro 2RU Matrix Switch (2nd Generation Universal)"
+      ],
+      "revision": 1,
+      "path": "specs/neothings/neothings_2nd_generation_universal_serial.md",
+      "actionCount": 37,
+      "lastCheckedAt": "2026-06-14T19:39:43.782Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "a63a5eeafd2e4414fe58715b467b9d7bb1613c8ccb0ababde947fe30dbe943cb"
+    },
+    {
       "specId": "admin/neothings-tahoe",
       "deviceId": "neothings/tahoe",
       "title": "Neothings Tahoe Control Spec",
@@ -14442,6 +14911,24 @@
       "contentHash": "bb5f1b7d84f59e6c265b1af2a0f5f852d96345b553f69e223393991ddc4d548d"
     },
     {
+      "specId": "admin/optoma-4k550-dahkuuz-series",
+      "deviceId": "optoma/optoma-4k550-dahkuuz-series",
+      "title": "Optoma 4K550 DAHKUUZ Series Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "Optoma 4K550 DAHKUUZ Series",
+      "models": [
+        "Optoma 4K550 DAHKUUZ Series"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_4k550_dahkuuz_series_unknown.md",
+      "actionCount": 286,
+      "lastCheckedAt": "2026-06-17T20:38:40.679Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "1929eb07981ea7d8353a448d4ac76dde851fab1a135f6f229d03edae3c7944f6"
+    },
+    {
       "specId": "admin/optoma-eh7500",
       "deviceId": "optoma/eh7500",
       "title": "Optoma EH7500 Control Spec",
@@ -14479,6 +14966,60 @@
       "contentHash": "38ea8dd20cba29d766ce10048fd19d8ef7a783827d3404e7b2f0bf8ee1d1be95"
     },
     {
+      "specId": "admin/optoma-uhd-suhd-series-x-a",
+      "deviceId": "optoma/optoma-uhd-suhd-series-x-a",
+      "title": "Optoma UHD SUHD Series X A Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "Optoma UHD SUHD Series X A",
+      "models": [
+        "Optoma UHD SUHD Series X A"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_uhd_suhd_series_x_a_unknown.md",
+      "actionCount": 173,
+      "lastCheckedAt": "2026-06-16T07:10:00.657Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "58cd4cef921b094599b1ec7f28b0a4062c550b9ed57be460e78c795cff7321b8"
+    },
+    {
+      "specId": "admin/optoma-zh-series",
+      "deviceId": "optoma/optoma-zh-series",
+      "title": "Optoma ZH Series Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "Optoma ZH Series",
+      "models": [
+        "Optoma ZH Series"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_zh_series_unknown.md",
+      "actionCount": 109,
+      "lastCheckedAt": "2026-06-16T07:10:02.052Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "9c915d20a2b65e0c319487f54b38ad66d2d1e2474088f5e41fbae7b064566d6f"
+    },
+    {
+      "specId": "admin/optoma-zh400ust",
+      "deviceId": "optoma/zh400ust",
+      "title": "Optoma ZH400UST Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "ZH400UST",
+      "models": [
+        "ZH400UST"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_zh400ust_unknown.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-06-16T07:10:03.512Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "8e74f5899e86c810337cf4ae93232904046adeb4251a9b0554ebaf8fe03ed840"
+    },
+    {
       "specId": "admin/optoma-zu650",
       "deviceId": "optoma/zu650",
       "title": "Optoma ZU650 Control Spec",
@@ -14495,6 +15036,27 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "b42cd1d8b16ee6ce6665b1e1045c090062313e85fd420e2c0672c04e0fda2941"
+    },
+    {
+      "specId": "admin/optoma-zu655-zu660-dazullz-dazuluu",
+      "deviceId": "optoma/zu655",
+      "title": "Optoma ZU655 / ZU660 / DAZULLZ / DAZULUU Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "ZU655",
+      "models": [
+        "ZU655",
+        "ZU660",
+        "DAZULLZ",
+        "DAZULUU"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_zu655_zu660_dazullz_dazuluu_shdz680_tpz760_unknown.md",
+      "actionCount": 122,
+      "lastCheckedAt": "2026-06-16T07:10:04.939Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "dae28e67349756d934322ab638569da141d5a1971af7ab96336163d8b0af489d"
     },
     {
       "specId": "admin/panamax-m4315-pro",
@@ -14612,6 +15174,25 @@
       "contentHash": "d05c9af943d89696e3caf37cf543c961e7b331192cc1d67943b3aa9a61d57ccc"
     },
     {
+      "specId": "admin/panasonic-aw-xe20-series",
+      "deviceId": "panasonic/aw-he20",
+      "title": "Panasonic AW-xE20 Series Control Spec",
+      "manufacturer": "Panasonic",
+      "manufacturerKey": "panasonic",
+      "displayName": "AW-HE20",
+      "models": [
+        "AW-HE20",
+        "AW-UE20"
+      ],
+      "revision": 1,
+      "path": "specs/panasonic/panasonic_aw_xe20_series_unknown.md",
+      "actionCount": 22,
+      "lastCheckedAt": "2026-06-16T07:10:06.081Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 5,
+      "contentHash": "8e5f7ed7db840bccd9e443f013beb577a98d9d4ba65e14093ce78ac6a3b9f9b0"
+    },
+    {
       "specId": "admin/panasonic-awrp60-awr120-awrp150",
       "deviceId": "panasonic/aw-rp60",
       "title": "Panasonic AW-RP60 / AW-RP120 / AW-RP150 Remote Camera Controller Control Spec",
@@ -14696,6 +15277,29 @@
       "contentHash": "49111a4b215abad4746b87b0a8d293215f14e5666cffafd34fdb360779e2594e"
     },
     {
+      "specId": "admin/panasonic-th-xxaf1u-xxaf1w",
+      "deviceId": "panasonic/th-42af1u",
+      "title": "Panasonic TH-42/49/55AF1 (AF1U/AF1W) Control Spec",
+      "manufacturer": "Panasonic",
+      "manufacturerKey": "panasonic",
+      "displayName": "TH-42AF1U",
+      "models": [
+        "TH-42AF1U",
+        "TH-42AF1W",
+        "TH-49AF1U",
+        "TH-49AF1W",
+        "TH-55AF1U",
+        "TH-55AF1W"
+      ],
+      "revision": 1,
+      "path": "specs/panasonic/panasonic_th_xxaf1u_xxaf1w_unknown.md",
+      "actionCount": 277,
+      "lastCheckedAt": "2026-06-16T07:14:01.725Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "3cab770e43e0a1173d9bd3763331cc3412d19029d953072708e10b9820fbaa06"
+    },
+    {
       "specId": "admin/panasonic-th-xxlf50j-xxlf50u",
       "deviceId": "panasonic/th-70lf50j",
       "title": "Panasonic TH-70/80LF50J (TH-70/80LF50) Control Spec",
@@ -14715,6 +15319,27 @@
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
       "contentHash": "f74f6e7622d4ac2550d73d3eace9ba9b0ec701f7d3ed337552d55a1ce7c9d60b"
+    },
+    {
+      "specId": "admin/panasonic-th-xxpf11uk-xxpf12uk-xxxpf12u-xxpf12w",
+      "deviceId": "panasonic/th-xxpf11uk",
+      "title": "Panasonic TH-xxPF11UK / TH-xxPF12UK / TH-xxxPF12U / TH-xxPF12W Control Spec",
+      "manufacturer": "Panasonic",
+      "manufacturerKey": "panasonic",
+      "displayName": "TH-xxPF11UK",
+      "models": [
+        "TH-xxPF11UK",
+        "TH-xxPF12UK",
+        "TH-xxxPF12U",
+        "TH-xxPF12W"
+      ],
+      "revision": 1,
+      "path": "specs/panasonic/panasonic_th_xxpf11uk_xxpf12uk_xxxpf12u_xxpf12w_unknown.md",
+      "actionCount": 38,
+      "lastCheckedAt": "2026-06-16T07:14:03.043Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "dac0773f4ca09745c4b23e1f238359517aae04204bf6a2717803bcdd51653322"
     },
     {
       "specId": "admin/panasonic-th-65sf2-55sf2-49sf2-43sf2",
@@ -14837,6 +15462,24 @@
       "contentHash": "6ae0561766255419dcacfb412f216b840edd0499ca32932629d285a4d4a679d3"
     },
     {
+      "specId": "admin/parasound-jc-2-bp",
+      "deviceId": "parasound/halo-jc-2-bp",
+      "title": "Parasound Halo JC 2 BP Control Spec",
+      "manufacturer": "Parasound",
+      "manufacturerKey": "parasound",
+      "displayName": "Halo JC 2 BP",
+      "models": [
+        "Halo JC 2 BP"
+      ],
+      "revision": 1,
+      "path": "specs/parasound/parasound_jc_2_bp_serial.md",
+      "actionCount": 27,
+      "lastCheckedAt": "2026-06-14T19:39:44.600Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d51ade30b01b083f21cbd9154f93a87845089aa62d0dd7642507d6c1e18f3c31"
+    },
+    {
       "specId": "admin/parasound-zpre3",
       "deviceId": "parasound/zpre3",
       "title": "Parasound Zpre3 Control Spec",
@@ -14919,6 +15562,24 @@
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
       "contentHash": "38ef48f255a70ec8cca35a17667de3a563691b90054019ba171ff9dec7f6a0cd"
+    },
+    {
+      "specId": "admin/philips-bdl-series1",
+      "deviceId": "philips/bdl-series1",
+      "title": "Philips BDL Series1 Control Spec",
+      "manufacturer": "Philips",
+      "manufacturerKey": "philips",
+      "displayName": "BDL Series1",
+      "models": [
+        "BDL Series1"
+      ],
+      "revision": 1,
+      "path": "specs/philips/philips_bdl_series1_unknown.md",
+      "actionCount": 19,
+      "lastCheckedAt": "2026-06-16T07:14:04.511Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "45c06d550d0176a1ce46aa75894033996f6d5be15394590d012fbbc91f3e52cc"
     },
     {
       "specId": "admin/philips-bdl-tv",
@@ -15064,6 +15725,42 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "88fc1870127bf779a37c90411f8500354b303ee86ccbb6a953be6a9766640286"
+    },
+    {
+      "specId": "admin/philips-xxbdl4051t",
+      "deviceId": "philips/xxbdl4051t",
+      "title": "Philips xxBDL4051T Control Spec",
+      "manufacturer": "Philips",
+      "manufacturerKey": "philips",
+      "displayName": "xxBDL4051T",
+      "models": [
+        "xxBDL4051T"
+      ],
+      "revision": 1,
+      "path": "specs/philips/philips_xxbdl4051t_unknown.md",
+      "actionCount": 29,
+      "lastCheckedAt": "2026-06-16T07:14:06.016Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "739f083fed51e5e37856ef163f3591d2d77cdbaf5f47f9b881e32c987726818f"
+    },
+    {
+      "specId": "admin/philips-xxbdl4150d-series",
+      "deviceId": "philips/xxbdl4150d-series-49bdl4150d-55bdl4150d-65bdl4150d-75bdl4150d-86bdl4150d-98bdl4150d-himalaya-2-0-platform",
+      "title": "Philips xxBDL4150D Series Control Spec",
+      "manufacturer": "Philips",
+      "manufacturerKey": "philips",
+      "displayName": "xxBDL4150D Series (49BDL4150D / 55BDL4150D / 65BDL4150D / 75BDL4150D / 86BDL4150D / 98BDL4150D — Himalaya 2.0 platform)",
+      "models": [
+        "xxBDL4150D Series (49BDL4150D / 55BDL4150D / 65BDL4150D / 75BDL4150D / 86BDL4150D / 98BDL4150D — Himalaya 2.0 platform)"
+      ],
+      "revision": 1,
+      "path": "specs/philips/philips_xxbdl4150d_series_unknown.md",
+      "actionCount": 119,
+      "lastCheckedAt": "2026-06-16T07:14:07.236Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "f4e96c925d122d4130ba1281026e8e18f7f7f560ea384f5f497e5abedd7a5012"
     },
     {
       "specId": "admin/pinacle-soundbridge",
@@ -15715,6 +16412,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "bd01f5ae338ea3f42147406d2b25ce5b5383a31a12c413ecbdd5f4f829c8723e"
+    },
+    {
+      "specId": "admin/roland-v-60hd",
+      "deviceId": "roland/v-60hd",
+      "title": "Roland V-60HD Control Spec",
+      "manufacturer": "Roland",
+      "manufacturerKey": "roland",
+      "displayName": "V-60HD",
+      "models": [
+        "V-60HD"
+      ],
+      "revision": 1,
+      "path": "specs/roland/roland_v_60hd.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-06-16T07:15:38.718Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "c1d1cb09d908626a4e619717a67791b48fc6c0413010ed727cd822c5f88e6b6d"
     },
     {
       "specId": "admin/roland-vr-400uhd",
@@ -16870,6 +17585,27 @@
       "contentHash": "a274a9022c263dbcfe21053c47793a0be6028c91727655961f14eeb3241ef536"
     },
     {
+      "specId": "admin/sharp-lc-m3700-m3710",
+      "deviceId": "sharp/lc-m3700",
+      "title": "Sharp LC-M3700 / LC-M3700P / LC-M3710 / LC-M3710P Control Spec",
+      "manufacturer": "Sharp",
+      "manufacturerKey": "sharp",
+      "displayName": "LC-M3700",
+      "models": [
+        "LC-M3700",
+        "LC-M3700P",
+        "LC-M3710",
+        "LC-M3710P"
+      ],
+      "revision": 1,
+      "path": "specs/sharp/sharp_lc_m3700_m3710_unknown.md",
+      "actionCount": 153,
+      "lastCheckedAt": "2026-06-16T07:15:41.064Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "2b031659e6b56a6b273bd4ac1652678c6ea3bdd7f6c4b9706a5a43cdb6238259"
+    },
+    {
       "specId": "admin/sharp-lc-series",
       "deviceId": "sharp/lc-series",
       "title": "Sharp LC Series Control Spec",
@@ -17183,6 +17919,24 @@
       "contentHash": "2af0a8190b9c4b3c0dd203a1a1db298746b137773eadf7b9602acb2cd02f5b3a"
     },
     {
+      "specId": "admin/sharp-pn-g655u-ru",
+      "deviceId": "sharp/pn-g655u-ru",
+      "title": "Sharp PN-G655U-RU Control Spec",
+      "manufacturer": "Sharp",
+      "manufacturerKey": "sharp",
+      "displayName": "PN-G655U-RU",
+      "models": [
+        "PN-G655U-RU"
+      ],
+      "revision": 1,
+      "path": "specs/sharp/sharp_pn_g655u_ru_unknown.md",
+      "actionCount": 100,
+      "lastCheckedAt": "2026-06-16T07:15:41.933Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "a9f7c5ce4116be5b0a7461c4ddd4ce80345b88b49ee1eaf7a2cb53cc5ef2d556"
+    },
+    {
       "specId": "admin/sharp-pn-hwxx1-series",
       "deviceId": "sharp/pn-hwxx1-series",
       "title": "Sharp PN-HWxx1 Series Control Spec",
@@ -17351,6 +18105,24 @@
       "contentHash": "824908935dbd03b0be56c1ea8380dddf26e859538918760a5fc7e34b9212d6c2"
     },
     {
+      "specId": "admin/sharp-prox5-series",
+      "deviceId": "sharp/prox5-series",
+      "title": "Sharp PROX5 Series Control Spec",
+      "manufacturer": "Sharp",
+      "manufacturerKey": "sharp",
+      "displayName": "PROX5 Series",
+      "models": [
+        "PROX5 Series"
+      ],
+      "revision": 1,
+      "path": "specs/sharp/sharp_prox5_series_ip.md",
+      "actionCount": 86,
+      "lastCheckedAt": "2026-06-16T07:17:44.300Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "eb80e67dd6a256d579817c9f902b1fe96a76fa6d029673d762f999a106c4e5db"
+    },
+    {
       "specId": "admin/sharp-sharp-flat-panel-display",
       "deviceId": "sharp/sharp-flat-panel-display",
       "title": "Sharp Flat Panel Display Control Spec",
@@ -17367,6 +18139,1842 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "0041f7fe222d0a67c21fd212f6e13410fa6eab10b9c1be522d66db3fee72976c"
+    },
+    {
+      "specId": "admin/sharp-nec-3720-inf2-55",
+      "deviceId": "sharpnec/3720-inf2-55",
+      "title": "Sharp/NEC 3720 Inf2 55 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "3720 Inf2 55",
+      "models": [
+        "3720 Inf2 55"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_3720_inf2_55_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:31:28.724Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "dbcfe26dd20b364decfcc2a1919e870407b9fe57aa54f0dd6365a1b7fcc8edb4"
+    },
+    {
+      "specId": "admin/sharp-nec-3720-inf2-75",
+      "deviceId": "sharpnec/3720-inf2-75",
+      "title": "Sharp/NEC 3720 Inf2 75 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "3720 Inf2 75",
+      "models": [
+        "3720 Inf2 75"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_3720_inf2_75_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:31:29.476Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "684cfc4861641010b714312492f8334be2fd58afafa21da6db2d8eb9a9f66add"
+    },
+    {
+      "specId": "admin/sharp-nec-4t-b80ct1u",
+      "deviceId": "sharpnec/4t-b80ct1u",
+      "title": "Sharp/NEC 4T B80Ct1U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "4T B80Ct1U",
+      "models": [
+        "4T B80Ct1U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_4t_b80ct1u_ip.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:31:30.213Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "aedc968c9d00f0e77948633baa0654aabfaee2086916b8cebee80c278a0d2c88"
+    },
+    {
+      "specId": "admin/sharp-nec-4w-b65ft5u",
+      "deviceId": "sharpnec/4w-b65ft5u",
+      "title": "Sharp/NEC 4W B65Ft5U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "4W B65Ft5U",
+      "models": [
+        "4W B65Ft5U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_4w_b65ft5u_ip.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:31:30.950Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "5d8cf22864dea1930eb94930de72cead158ac88a1e7b76f5ff747281a885a3ab"
+    },
+    {
+      "specId": "admin/sharp-nec-8m-b120c",
+      "deviceId": "sharpnec/8m-b120c",
+      "title": "Sharp/NEC 8M B120C Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "8M B120C",
+      "models": [
+        "8M B120C"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_8m_b120c_ip.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:31:31.692Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a40c6ac65509a079dc14de2daf01cae54bfb89af1d654271f9cfd9a248713238"
+    },
+    {
+      "specId": "admin/sharp-nec-8m-b70au",
+      "deviceId": "sharpnec/8m-b70au",
+      "title": "Sharp/NEC 8M B70AU Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "8M B70AU",
+      "models": [
+        "8M B70AU"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_8m_b70au_ip.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:32:54.313Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "07bbedafb74135f36c5b18ca7dfe8256d203569e065c37315b70bfa0f0f2986f"
+    },
+    {
+      "specId": "admin/sharpnec-8m-b80ax1u",
+      "deviceId": "sharpnec/8m-b80ax1u",
+      "title": "Sharp/NEC 8M B80Ax1U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "8M B80Ax1U",
+      "models": [
+        "8M B80Ax1U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_8m_b80ax1u_ip.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:32:55.079Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8cf3f154f7c3b35a62025fdac3941c3304d11daa175739d18b4185f722023b22"
+    },
+    {
+      "specId": "admin/sharp-nec-as173m-bk",
+      "deviceId": "sharpnec/as173m-bk",
+      "title": "Sharp/NEC AS173M BK Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "AS173M BK",
+      "models": [
+        "AS173M BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as173m_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:32:55.817Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "85e6da0d6ee91c642f38ad6befc8a4fb4865b380865cb9174db792c8a27a3a4c"
+    },
+    {
+      "specId": "admin/sharp-nec-as271f-bk",
+      "deviceId": "sharpnec/as271f-bk",
+      "title": "Sharp/NEC AS271F BK Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "AS271F BK",
+      "models": [
+        "AS271F BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as271f_bk_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:32:56.686Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8fab779eac2f45cf7757c0fcbcb9ecdfe851655ab6f4bf86bfcd4343a9d29a59"
+    },
+    {
+      "specId": "admin/sharp-nec-as60s-pa41zl",
+      "deviceId": "sharpnec/as60s-pa41zl",
+      "title": "Sharp/NEC As60S Pa41Zl Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "As60S Pa41Zl",
+      "models": [
+        "As60S Pa41Zl"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as60s_pa41zl_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:32:57.698Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "b9407fd75b7f86c1a0146deb0f4260a60f84cc2d798ccb1875d7aa842061c292"
+    },
+    {
+      "specId": "admin/sharp-nec-as60u-pa44ml",
+      "deviceId": "sharpnec/as60u-pa44ml",
+      "title": "Sharp/NEC As60U Pa44Ml Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "As60U Pa44Ml",
+      "models": [
+        "As60U Pa44Ml"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as60u_pa44ml_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:34:35.776Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2e935b6f3a3b5bb5b256b71a70ab1f2eb5807136d3f41a0927566e2b7c666e25"
+    },
+    {
+      "specId": "admin/sharp-nec-as60u-px39ml",
+      "deviceId": "sharpnec/as60u-px39ml",
+      "title": "Sharp/NEC AS60U PX39ML Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "AS60U PX39ML",
+      "models": [
+        "AS60U PX39ML"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as60u_px39ml_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:34:36.534Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "86a99665e21d7c5fd333832610e31e9f12a4f8a350c57bf705dfe30a67adf2b9"
+    },
+    {
+      "specId": "admin/sharpnec-c651q-avt2",
+      "deviceId": "sharpnec/c651q-avt2",
+      "title": "Sharp/NEC C651Q Avt2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C651Q Avt2",
+      "models": [
+        "C651Q Avt2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c651q_avt2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:34:38.014Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "eef80f66a029fe0d27830a2e3d1601575ef8443d973eed4e8bd79ebdf84b70df"
+    },
+    {
+      "specId": "admin/sharp-nec-c651q-avt3",
+      "deviceId": "sharpnec/c651q-avt3",
+      "title": "Sharp/NEC C651Q Avt3 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C651Q Avt3",
+      "models": [
+        "C651Q Avt3"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c651q_avt3_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:34:38.759Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "801e068819a40aff3834104ff95b3516c40ebf70914ec14205a1bea8c6e292f3"
+    },
+    {
+      "specId": "admin/sharp-nec-c651q-mpi",
+      "deviceId": "sharpnec/c651q-mpi",
+      "title": "Sharp/NEC C651Q Mpi Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C651Q Mpi",
+      "models": [
+        "C651Q Mpi"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c651q_mpi_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:36:22.317Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "cf08db390d89101f4c47c1bff31ebc90676e9f71e650b85fde20cfc1f647f8de"
+    },
+    {
+      "specId": "admin/sharp-nec-c651q-pc4",
+      "deviceId": "sharpnec/c651q-pc4",
+      "title": "Sharp/NEC C651Q Pc4 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C651Q Pc4",
+      "models": [
+        "C651Q Pc4"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c651q_pc4_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:36:23.161Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7e0d78c1996c04a1201769a7e4b30536b92313b1db2c165ae7437ecf6404fc4a"
+    },
+    {
+      "specId": "admin/sharp-nec-c750q-avt3",
+      "deviceId": "sharpnec/c750q-avt3",
+      "title": "Sharp/NEC C750Q Avt3 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C750Q Avt3",
+      "models": [
+        "C750Q Avt3"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c750q_avt3_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:36:23.944Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6a9eece1593b4da4c22ae0705c4189b33cff887e7dd5b5a68b16fac48fb9eb2b"
+    },
+    {
+      "specId": "admin/sharp-nec-c751q-mpi",
+      "deviceId": "sharpnec/c751q-mpi",
+      "title": "Sharp/NEC C751Q Mpi Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C751Q Mpi",
+      "models": [
+        "C751Q Mpi"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c751q_mpi_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:37:23.612Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a5346559afc1e8d22d9b7abea9475ccfe7c33d6512832ed29f89dee3f77f0f07"
+    },
+    {
+      "specId": "admin/sharp-nec-c861q-avt2",
+      "deviceId": "sharpnec/c861q-avt2",
+      "title": "Sharp/NEC C861Q Avt2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C861Q Avt2",
+      "models": [
+        "C861Q Avt2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c861q_avt2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:36:25.188Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0c0109e75983e0b8f6d99debc1e0228857e4155a608d4a4a3e8e28e4534ee66f"
+    },
+    {
+      "specId": "admin/sharpnec-c861q-mpi",
+      "deviceId": "sharpnec/c861q-mpi",
+      "title": "Sharp/NEC C861Q Mpi Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C861Q Mpi",
+      "models": [
+        "C861Q Mpi"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c861q_mpi_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:38:57.937Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ae579973623ae22045c3a02480aee7543b624b41c00e093bf934711c7743a010"
+    },
+    {
+      "specId": "admin/sharp-nec-c981q-avt2",
+      "deviceId": "sharpnec/c981q-avt2",
+      "title": "Sharp/NEC C981Q Avt2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C981Q Avt2",
+      "models": [
+        "C981Q Avt2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c981q_avt2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:38:58.710Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fa2ceb871028a7250d7874a7c43033280667829a4731f8f5038a868fc67a6d2c"
+    },
+    {
+      "specId": "admin/sharpnec-c981q-avt3",
+      "deviceId": "sharpnec/c981q-avt3",
+      "title": "Sharp/NEC C981Q Avt3 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C981Q Avt3",
+      "models": [
+        "C981Q Avt3"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c981q_avt3_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:38:59.438Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "02a74b50ee93d188081f958aa7f00b8321b588b0373a53c0d784a552ce303bf8"
+    },
+    {
+      "specId": "admin/sharp-nec-c981q-pc4",
+      "deviceId": "sharpnec/c981q-pc4",
+      "title": "Sharp/NEC C981Q Pc4 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "C981Q Pc4",
+      "models": [
+        "C981Q Pc4"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_c981q_pc4_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:39:00.221Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3ac7611cf7146d6c9b882586ed3ee4dafb9b1aa8d71fabbecbd39e63edc32ca6"
+    },
+    {
+      "specId": "admin/sharp-nec-cb651q-2",
+      "deviceId": "sharpnec/cb651q-2",
+      "title": "Sharp/NEC Cb651Q 2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Cb651Q 2",
+      "models": [
+        "Cb651Q 2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_cb651q_2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:39:01.013Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "95468645a36bb302e5ed6ac4674cb7c5b01f2d46e6d981cd58d8da922dc35fe8"
+    },
+    {
+      "specId": "admin/sharp-nec-cb651q",
+      "deviceId": "sharpnec/cb651q",
+      "title": "Sharp/NEC Cb651Q Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Cb651Q",
+      "models": [
+        "Cb651Q"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_cb651q_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:40:31.247Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "69f21a4cbad77016ee0f18a8339deabe772a8ce2c0e753eda1eb416585cf7ac6"
+    },
+    {
+      "specId": "admin/sharp-nec-cb751q-c1",
+      "deviceId": "sharpnec/cb751q-c1",
+      "title": "Sharp/NEC Cb751Q C1 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Cb751Q C1",
+      "models": [
+        "Cb751Q C1"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_cb751q_c1_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:40:31.993Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7cde7595611b8f31e79234465933b004889ff1fdfc3b9a835c44a4c7a1ed840c"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-e244f",
+      "deviceId": "sharpnec/sharpnec-dd-e244f",
+      "title": "Sharp/NEC Dd E244F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC Dd E244F",
+      "models": [
+        "Sharp/NEC Dd E244F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_e244f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:40:32.742Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "58e4e754b102df9ff68220d4c3b88c7313fca83b5a0e203e6aa1c2f386a426ad"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-e244fl",
+      "deviceId": "sharpnec/dd-e244fl",
+      "title": "Sharp/NEC Dd E244Fl Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Dd E244Fl",
+      "models": [
+        "Dd E244Fl"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_e244fl_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:40:33.502Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "35337d93ef710ed1afd15cd60e7a87bfde777bd34deaf2d0d33d8071f795985d"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-ea241f",
+      "deviceId": "sharpnec/sharpnec-dd-ea241f",
+      "title": "Sharp/NEC Dd Ea241F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC Dd Ea241F",
+      "models": [
+        "Sharp/NEC Dd Ea241F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_ea241f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:40:34.248Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "53a01727516c814d44ad111f6c7fe9bb448b7f93b25ba67c0fa209bf703f09e6"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-ea242f",
+      "deviceId": "sharpnec/sharpnec-dd-ea242f",
+      "title": "Sharp/NEC Dd Ea242F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC Dd Ea242F",
+      "models": [
+        "Sharp/NEC Dd Ea242F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_ea242f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:42:01.618Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "bb0fd96c138c11c20da49d171afe3ac5783ca37304c637454274c557ee001904"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-ea272f",
+      "deviceId": "sharpnec/dd-ea272f",
+      "title": "Sharp/NEC Dd Ea272F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Dd Ea272F",
+      "models": [
+        "Dd Ea272F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_ea272f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:42:02.386Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "b688e31dfbaf61af9e2e38e30cceee7967fdec3bdfe35467d127907d6b20a517"
+    },
+    {
+      "specId": "admin/sharp-nec-dd-ea272q",
+      "deviceId": "sharpnec/sharpnec-dd-ea272q",
+      "title": "Sharp/NEC Dd Ea272Q Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC Dd Ea272Q",
+      "models": [
+        "Sharp/NEC Dd Ea272Q"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_dd_ea272q_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:42:03.164Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "477a3426ebfacf7a4a4f08723850eee3aa2a3d714b0a797d7f11de9887e91f84"
+    },
+    {
+      "specId": "admin/sharp-nec-e224fl-bk",
+      "deviceId": "sharpnec/e224fl-bk",
+      "title": "Sharp/NEC E224Fl Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E224Fl Bk",
+      "models": [
+        "E224Fl Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e224fl_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:42:03.927Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fa224bf536da517246971891af66bac7699ebe241d1d659cf86ddc061b4df304"
+    },
+    {
+      "specId": "admin/sharp-nec-e244fl-bk",
+      "deviceId": "sharpnec/e244fl-bk",
+      "title": "Sharp/NEC E244Fl Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E244Fl Bk",
+      "models": [
+        "E244Fl Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e244fl_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:42:04.682Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f172fdb507d2061627b63a595e2422f0c9aeba1b38ac93955c14244c1f133c95"
+    },
+    {
+      "specId": "admin/sharpnec-e271n-bk",
+      "deviceId": "sharpnec/e271n-bk",
+      "title": "Sharp/NEC E271N Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E271N Bk",
+      "models": [
+        "E271N Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e271n_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:43:22.970Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "553bb393ad31f8d860a43344573ddaa2405edb554b57efd39d910ec9bc8611ce"
+    },
+    {
+      "specId": "admin/sharpnec-e273f-bk",
+      "deviceId": "sharpnec/sharpnec-e273f-bk",
+      "title": "Sharp/NEC E273F Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC E273F Bk",
+      "models": [
+        "Sharp/NEC E273F Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e273f_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:43:23.729Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "db7aa9602d283a24105df27edd7ab09a72e9c9eb5d3c6bdae902efa48a7b5df5"
+    },
+    {
+      "specId": "admin/sharp-nec-e436",
+      "deviceId": "sharpnec/e436",
+      "title": "Sharp/NEC E436 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E436",
+      "models": [
+        "E436"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e436_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:43:24.486Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "468392d33c7029cb3f48b4191846d85d327c82dfc57f48f40f8a353a42bf540a"
+    },
+    {
+      "specId": "admin/sharp-nec-e438",
+      "deviceId": "sharpnec/e438",
+      "title": "Sharp/NEC E438 Projector Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E438",
+      "models": [
+        "E438"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e438_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:43:25.270Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "accfdac8297f2723d69f6162a9110bbf72c0e7400b028d3e2c83882809670c4a"
+    },
+    {
+      "specId": "admin/sharp-nec-e498",
+      "deviceId": "sharpnec/e498",
+      "title": "Sharp/NEC E498 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E498",
+      "models": [
+        "E498"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e498_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:43:26.001Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "79f2dc3e45b1a05bdce48629d6b71ee98cc142d22253525413406cd2c4190f25"
+    },
+    {
+      "specId": "admin/sharp-nec-e558",
+      "deviceId": "sharpnec/e558",
+      "title": "Sharp/NEC E558 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E558",
+      "models": [
+        "E558"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e558_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:44:57.934Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2bd1dfe5b1bdea6a374435db162e37635a9f7af5c3461a7783506afca68734b1"
+    },
+    {
+      "specId": "admin/sharp-nec-e585",
+      "deviceId": "sharpnec/e585",
+      "title": "Sharp/NEC E585 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E585",
+      "models": [
+        "E585"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e585_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:44:58.672Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7339b276b960c3747481815b095b4b2e461051ada1d86f8216d042ea4f617dbd"
+    },
+    {
+      "specId": "admin/sharp-nec-e657q",
+      "deviceId": "sharpnec/e657q",
+      "title": "Sharp/NEC E657Q Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E657Q",
+      "models": [
+        "E657Q"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e657q_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:44:59.399Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ce7880ee9a94fac6ac9f34f450b4f167c527d9282f834c3e7d82eed453118267"
+    },
+    {
+      "specId": "admin/sharp-nec-e758",
+      "deviceId": "sharpnec/e758",
+      "title": "Sharp/NEC E758 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E758",
+      "models": [
+        "E758"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e758_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:45:00.177Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "4ae6d8ff1f5dfc1ca89c8ffff7241b2b6a92e9cbb242c4ed77590ddac0a16ff2"
+    },
+    {
+      "specId": "admin/sharp-nec-e868",
+      "deviceId": "sharpnec/e868",
+      "title": "Sharp/NEC E868 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "E868",
+      "models": [
+        "E868"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_e868_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:45:01.097Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "257b1ff23e6f784b550100459a52b6b51a0b25f9bfde5201a45ff8a562440299"
+    },
+    {
+      "specId": "admin/sharp-nec-ea193mi-bk",
+      "deviceId": "sharpnec/ea193mi-bk",
+      "title": "Sharp/NEC Ea193Mi Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ea193Mi Bk",
+      "models": [
+        "Ea193Mi Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea193mi_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:46:40.786Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9dbc9eea14e095cc63d67bea34cc9a4e9a778c0b557f0215dfc7f849f8579611"
+    },
+    {
+      "specId": "admin/sharp-nec-ea231wu-bk",
+      "deviceId": "sharpnec/ea231wu-bk",
+      "title": "Sharp/NEC Ea231Wu Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ea231Wu Bk",
+      "models": [
+        "Ea231Wu Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea231wu_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:46:41.534Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "dfd67b74a2a372bc6613119b729e24caa58839955f8d104c861370c7bbe7b2e7"
+    },
+    {
+      "specId": "admin/sharp-nec-ea234wmi-bk",
+      "deviceId": "sharpnec/ea234wmi-bk",
+      "title": "Sharp/NEC Ea234Wmi Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ea234Wmi Bk",
+      "models": [
+        "Ea234Wmi Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea234wmi_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:46:42.276Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "5fc907096662e9ea33b4a7d40aeedbf846f28bbb8f25bb925c1b99ad1304b0c6"
+    },
+    {
+      "specId": "admin/sharp-nec-ea241f-bk",
+      "deviceId": "sharpnec/ea241f-bk",
+      "title": "Sharp/NEC Projector Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA241F BK",
+      "models": [
+        "EA241F BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea241f_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:46:43.128Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "b3fd85f908ee54f9e30c0e6796afbc025babe959fb9f2ac69731a47751178222"
+    },
+    {
+      "specId": "admin/sharp-nec-ea242f-bk-sv",
+      "deviceId": "sharpnec/ea242f-bk-sv",
+      "title": "Sharp/NEC EA242F BK SV Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA242F BK SV",
+      "models": [
+        "EA242F BK SV"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea242f_bk_sv_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:46:43.850Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fd5408d3e2bd4d495e1e7ab7549036e54dd93f81489aad7c17bfd4427227b85e"
+    },
+    {
+      "specId": "admin/sharp-nec-ea271f-bk",
+      "deviceId": "sharpnec/ea271f-bk",
+      "title": "Sharp/NEC EA271F BK Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA271F BK",
+      "models": [
+        "EA271F BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea271f_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:56:54.128Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "792e31d0778f6c9d1f736a3f23bb12e96fa3926786a8a134d7872d282a3d7763"
+    },
+    {
+      "specId": "admin/sharp-nec-ea271f-bk-sv",
+      "deviceId": "sharpnec/ea271f-bk-sv",
+      "title": "Sharp/NEC EA271F BK SV Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA271F BK SV",
+      "models": [
+        "EA271F BK SV"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea271f_bk_sv_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:56:54.916Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8d31e1347d01c6cd172213e45d2e7bbe97c5e9a9c5bfa552bc7168864430f003"
+    },
+    {
+      "specId": "admin/sharpnec-ea271q-bksv",
+      "deviceId": "sharpnec/ea271q-bk-sv",
+      "title": "Sharp/NEC EA271Q BK SV Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA271Q BK SV",
+      "models": [
+        "EA271Q BK SV"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea271q_bk_sv_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:56:55.659Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "15c45e6e24965f84a559965ae8343d3a15a6e5472d642f6c92c99431b6990860"
+    },
+    {
+      "specId": "admin/sharp-nec-ea271u-bk-sv",
+      "deviceId": "sharpnec/ea271u-bk-sv",
+      "title": "Sharp/NEC EA271U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EA271U Bk Sv",
+      "models": [
+        "EA271U Bk Sv"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ea271u_bk_sv_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:56:56.520Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3089b7ed9373941036246fd3259f156fb9979f6d996e4e23f90a5d3aca86b05d"
+    },
+    {
+      "specId": "admin/sharpnec-ex241un-bk",
+      "deviceId": "sharpnec/ex241un-bk",
+      "title": "Sharp/NEC Ex241Un Bk Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ex241Un Bk",
+      "models": [
+        "Ex241Un Bk"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ex241un_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:56:57.551Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9d9e532b61d91b48fab5e5d46de7bc04cd2e8e1b3ab9a4960396f6e3bc987a1a"
+    },
+    {
+      "specId": "admin/sharpnec-ex241un-pt-h",
+      "deviceId": "sharpnec/ex241un-pt-h",
+      "title": "Sharp/NEC EX241Un PT-H Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "EX241Un PT-H",
+      "models": [
+        "EX241Un PT-H"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ex241un_pt_h_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:58:25.589Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "52acfdcbb0f72980cc5eb27dbd291f536f4ec0ecbbaed39d34e0bbc705d95f3d"
+    },
+    {
+      "specId": "admin/sharp-nec-lcd1760vm-bk",
+      "deviceId": "sharpnec/lcd1760vm-bk",
+      "title": "Sharp/NEC LCD1760VM BK Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LCD1760VM BK",
+      "models": [
+        "LCD1760VM BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_lcd1760vm_bk_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:58:26.527Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "207eda9912b14086fce91ab805b4d4309ca73bebb98a6a71bc9507927b5110ec"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-a1381f",
+      "deviceId": "sharpnec/ld-a1381f",
+      "title": "Sharp/NEC Ld A1381F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld A1381F",
+      "models": [
+        "Ld A1381F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_a1381f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:58:27.343Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6962e098d4df7a002344ac93b65dc9ea38a319f179304a0ef72c7054748ebf79"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-d091-u",
+      "deviceId": "sharpnec/ld-d091-u",
+      "title": "Sharp/NEC Ld D091 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld D091 U",
+      "models": [
+        "Ld D091 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_d091_u_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:58:28.107Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "03be0f2332f1f48b2c049dad83156bcb4a4043642dd4d5079e1d2d87c52f27b0"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-d091",
+      "deviceId": "sharpnec/ld-d091",
+      "title": "Sharp/NEC Ld D091 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld D091",
+      "models": [
+        "Ld D091"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_d091_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:58:28.864Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "081522ea8b8799d0a4545f40d7c4610a82b6a088a8f62c5b2471d403d5841bd0"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-d121",
+      "deviceId": "sharpnec/sharpnec-ld-d121",
+      "title": "Sharp/NEC Ld D121 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC Ld D121",
+      "models": [
+        "Sharp/NEC Ld D121"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_d121_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:59:51.951Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "744dd8c23ca3506213334235fcc0e40cc0cfaadaee5b07b915697c2fb1d3dc11"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-d151-f",
+      "deviceId": "sharpnec/ld-d151-f",
+      "title": "Sharp/NEC Ld D151 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld D151 F",
+      "models": [
+        "Ld D151 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_d151_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:59:52.711Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "bf46155da324e1e642c5734b59c1efafda001cc85171433fbe069b238a16afa0"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-d151",
+      "deviceId": "sharpnec/ld-d151",
+      "title": "Sharp/NEC Ld D151 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld D151",
+      "models": [
+        "Ld D151"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_d151_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:59:53.461Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "13cb4737f3358e32acf17752e00e4378d55151245b88f237323759afa36284b0"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e121-f",
+      "deviceId": "sharpnec/ld-e121-f",
+      "title": "Sharp/NEC Ld E121 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E121 F",
+      "models": [
+        "Ld E121 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e121_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:59:54.233Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "519fa175f4461abc5ac9e8d2742061ea6d768d805321bae722307e4589a8a7d4"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e121",
+      "deviceId": "sharpnec/ld-e121",
+      "title": "Sharp/NEC Ld E121 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E121",
+      "models": [
+        "Ld E121"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e121_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T19:59:54.986Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a43106144ef673d695c1bf8893797a5f3412db31babfc91caffcdbac2ce8050e"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e121-u",
+      "deviceId": "sharpnec/ld-e121-u",
+      "title": "Sharp/NEC Ld E121 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E121 U",
+      "models": [
+        "Ld E121 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e121_u_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:01:17.341Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0558047f38834887035d5ea4d3196f3266a6c98f617fea6a3daf37858aa06163"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e151-f",
+      "deviceId": "sharpnec/ld-e151-f",
+      "title": "Sharp/NEC Ld E151 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E151 F",
+      "models": [
+        "Ld E151 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e151_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:01:18.107Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ae37879beed03cd6f23b7ef41a50a6cdba11e433bd7233467a02f798c12161cc"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e181",
+      "deviceId": "sharpnec/ld-e181",
+      "title": "Sharp/NEC Ld E181 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E181",
+      "models": [
+        "Ld E181"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e181_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:01:18.859Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "09a77addc3a034169cd175f937483a39d2a12f5793a411f7b30a7d61d7bad1c6"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-e251",
+      "deviceId": "sharpnec/ld-e251",
+      "title": "Sharp/NEC Ld E251 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld E251",
+      "models": [
+        "Ld E251"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_e251_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:01:19.661Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6497ec69c5939d434b36010c61d1918dc45cc448e689e24a15bd28b12adf0593"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fa122",
+      "deviceId": "sharpnec/ld-fa122",
+      "title": "Sharp/NEC Ld Fa122 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa122",
+      "models": [
+        "Ld Fa122"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa122_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:01:20.474Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "c6ffef21d81d7b8de6a746a75fbcda6e86ac9762634fdbeb57b0969ecff22357"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fa122-u",
+      "deviceId": "sharpnec/ld-fa122-u",
+      "title": "Sharp/NEC Ld Fa122 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa122 U",
+      "models": [
+        "Ld Fa122 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa122_u_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:04:02.596Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "b51ec9afe467404f8e776f85ea7c6d7a985c0fcdd3f948dd60bde5e1712d1059"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fa152-f",
+      "deviceId": "sharpnec/ld-fa152-f",
+      "title": "Sharp/NEC LD Fa152 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LD Fa152 F",
+      "models": [
+        "LD Fa152 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa152_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:02:58.842Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8cfe292316cc8704bf7f8d593a55ba1deb824d4ab772e35372c47ba0c6df962d"
+    },
+    {
+      "specId": "admin/sharpnec-ld-fa192-f",
+      "deviceId": "sharpnec/ld-fa192-f",
+      "title": "Sharp/NEC Ld Fa192 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa192 F",
+      "models": [
+        "Ld Fa192 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa192_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:02:59.579Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "320cd51cd79d6404a3f853adf93457adc2597fc89be69c5dcce02e1cb0f52c5a"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fa312",
+      "deviceId": "sharpnec/ld-fa312",
+      "title": "Sharp/NEC Ld Fa312 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa312",
+      "models": [
+        "Ld Fa312"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa312_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:03:01.085Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2bd471678a5c6df2d5579a47110a7b2e6b62e1def8e6c4165fe00927a6e02d8e"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fa382",
+      "deviceId": "sharpnec/ld-fa382",
+      "title": "Sharp/NEC Ld Fa382 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa382",
+      "models": [
+        "Ld Fa382"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa382_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:05:33.535Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a50ff7b5cb4f55346d0e33be885576c857f7c696ecddd2ecb1fe36a2f376ce12"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe092",
+      "deviceId": "sharpnec/ld-fe092",
+      "title": "Sharp/NEC LD Fe092 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LD Fe092",
+      "models": [
+        "LD Fe092"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe092_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:05:34.283Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "923bdbb55fa4206a521b58d7f760f4d0881a6e34a3ddb73da2d40c980088b28e"
+    },
+    {
+      "specId": "admin/sharpnec-ld-fe092-u",
+      "deviceId": "sharpnec/ld-fe092-u",
+      "title": "Sharp/NEC LD Fe092 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LD Fe092 U",
+      "models": [
+        "LD Fe092 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe092_u_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:05:35.021Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "640ee72ddd0084b0fb03f88c876efbecf4449d4dd7bfe05ddffd947c575c2770"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe122",
+      "deviceId": "sharpnec/ld-fe122",
+      "title": "Sharp/NEC Ld Fe122 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe122",
+      "models": [
+        "Ld Fe122"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe122_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:05:35.755Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "40a944580c7ea78a86a526e07db553aa9a002a1b238e46540e34a15e6c6d19a4"
+    },
+    {
+      "specId": "admin/sharpnec-ld-fe122-u",
+      "deviceId": "sharpnec/ld-fe122-u",
+      "title": "Sharp/NEC Ld Fe122 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe122 U",
+      "models": [
+        "Ld Fe122 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe122_u_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:05:36.500Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ca5f73031b9a98e5f392421d19c2d0ce34e93d667235d0d89523845937d5d74e"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe123-u",
+      "deviceId": "sharpnec/ld-fe123-u",
+      "title": "Sharp/NEC Ld Fe123 U Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe123 U",
+      "models": [
+        "Ld Fe123 U"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe123_u_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:07:09.892Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ec670ff743114b254b4806adaa293101cd290900fa8a1860854a1b14f435f274"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe152",
+      "deviceId": "sharpnec/ld-fe152",
+      "title": "Sharp/NEC Ld Fe152 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe152",
+      "models": [
+        "Ld Fe152"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe152_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:07:10.664Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "430fad2ede9ba7010325d1f66c4b8e1183b705dc39385b573cbf6afc7b0cc70d"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe153",
+      "deviceId": "sharpnec/ld-fe153",
+      "title": "Sharp/NEC Ld Fe153 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe153",
+      "models": [
+        "Ld Fe153"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe153_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:07:11.405Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ad017c7a565892a786c88aa20fc1899b1af300003b1e204099764b670f375fff"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe192-f",
+      "deviceId": "sharpnec/ld-fe192-f",
+      "title": "Sharp/NEC Ld Fe192 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe192 F",
+      "models": [
+        "Ld Fe192 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe192_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:07:12.225Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0ad2bd205dc1d8f3d633204376f96b7e49b3f33261fb4036f97a4a5c689dac6e"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe192",
+      "deviceId": "sharpnec/ld-fe192",
+      "title": "Sharp/NEC Ld Fe192 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe192",
+      "models": [
+        "Ld Fe192"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe192_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:07:12.981Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d95ad132af046e20c71f1d0fe951db9f61c6a057b531aca0998dd2d10980944d"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe193",
+      "deviceId": "sharpnec/ld-fe193",
+      "title": "Sharp/NEC LD FE193 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LD FE193",
+      "models": [
+        "LD FE193"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe193_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:08:42.490Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "aaf918d66f83a2b889180215d126852f6c9a1fe1cc85cb09cb04dbdb677eddbf"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe252-f",
+      "deviceId": "sharpnec/ld-fe252-f",
+      "title": "Sharp/NEC Ld Fe252 F Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe252 F",
+      "models": [
+        "Ld Fe252 F"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe252_f_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:08:43.438Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0686514ec817426f6a2a9f838f04d114e409a1623a1e836003595ba1a82a60da"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe252",
+      "deviceId": "sharpnec/ld-fe252",
+      "title": "Sharp/NEC LD Fe252 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LD Fe252",
+      "models": [
+        "LD Fe252"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe252_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:08:44.193Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "33c252630f2ba4f0442555f3064623e56cce890d35889a5ccd859ca914ede88e"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe312",
+      "deviceId": "sharpnec/ld-fe312",
+      "title": "Sharp/NEC Ld Fe312 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe312",
+      "models": [
+        "Ld Fe312"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe312_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:08:44.948Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f8128aab4bf808ebdb3477cc89e5b1cc776fcfbbd7bf1d196c4fd37e6697f830"
+    },
+    {
+      "specId": "admin/sharp-nec-ld-fe382",
+      "deviceId": "sharpnec/ld-fe382",
+      "title": "Sharp/NEC Ld Fe382 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fe382",
+      "models": [
+        "Ld Fe382"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fe382_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:08:45.688Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "aa80b0e462b0d3d89354e9c58831317751bbfadf67af55734b80b69549361a5e"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e012i-108in",
+      "deviceId": "sharpnec/sharpnec-led-e012i-108in",
+      "title": "Sharp/NEC LED E012I 108in Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC LED E012I 108In",
+      "models": [
+        "Sharp/NEC LED E012I 108In"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e012i_108in_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:10:06.148Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f956161c87a18a40a7d37b95b7d2b88d95ca226f120030f79be2a4e240febc48"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e012i-217in",
+      "deviceId": "sharpnec/sharpnec-led-e012i-217in",
+      "title": "Sharp/NEC LED E012I 217In Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC LED E012I 217In",
+      "models": [
+        "Sharp/NEC LED E012I 217In"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e012i_217in_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:10:06.882Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6a5d87a8957b4fcaa361ad7bc8cf7eacbe7545f41a5e71d17a87e6899e6b0d2f"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e012i",
+      "deviceId": "sharpnec/led-e012i",
+      "title": "Sharp/NEC LED E012I Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED E012I",
+      "models": [
+        "LED E012I"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e012i_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:10:07.621Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d742caad1245dfb157bcc4e95f7e15662d42abdae0f95f639fc000ebeb57eebe"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e015i-135",
+      "deviceId": "sharpnec/led-e015i-135",
+      "title": "Sharp/NEC LED E015I 135 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED E015I 135",
+      "models": [
+        "LED E015I 135"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e015i_135_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:10:08.393Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "41ac4baa52eacb47442fc79cfece07b61cc80eef86e2db88d3690f3ec9384200"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e018i",
+      "deviceId": "sharpnec/led-e018i",
+      "title": "Sharp/NEC LED E018I Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED E018I",
+      "models": [
+        "LED E018I"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e018i_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:10:09.124Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "331c3019830f78942153fb5fbfbd0b4e7dbea05afa0311aaab0202e8607ff6e9"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e025i-217",
+      "deviceId": "sharpnec/led-e025i-217",
+      "title": "Sharp/NEC Led E025I 217 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Led E025I 217",
+      "models": [
+        "Led E025I 217"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e025i_217_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:11:43.448Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e5f5199134adf168d6b5d27f8d50174c036d19e124fbac1521d6a5cf57fee826"
+    },
+    {
+      "specId": "admin/sharp-nec-led-e025i-217in",
+      "deviceId": "sharpnec/sharpnec-led-e025i-217in",
+      "title": "Sharp/NEC LED E025I 217In Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Sharp/NEC LED E025I 217In",
+      "models": [
+        "Sharp/NEC LED E025I 217In"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_e025i_217in_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:11:44.215Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8319534d1d32f1a40abf10751d2f06939ccd5694a720d7c54daefac887c1c29f"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa009i2-165in",
+      "deviceId": "sharpnec/led-fa009i2-165in",
+      "title": "Sharp/NEC LED FA009I2 165in Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA009I2 165in",
+      "models": [
+        "LED FA009I2 165in"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa009i2_165in_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:12:55.070Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "4b0cf0210005e91da8a305b98a57d746e962faf0884efcfe5cb5e646c5929636"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa012i2-220",
+      "deviceId": "sharpnec/led-fa012i2-220",
+      "title": "Sharp/NEC LED FA012I2 220 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA012I2 220",
+      "models": [
+        "LED FA012I2 220"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa012i2_220_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:11:44.938Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e09f647a0545b7b23e503f6a4cdb3980f2f39009a96d0d3c34c6a0fd064e8e9a"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa012i2-220in",
+      "deviceId": "sharpnec/led-fa012i2-220in",
+      "title": "Sharp/NEC LED FA012I2 220IN Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA012I2 220IN",
+      "models": [
+        "LED FA012I2 220IN"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa012i2_220in_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:12:56.201Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ae0fd2a36686bca4e90611551bc3b489e76b45e0b3cddc90fa298c36b7c5a6d2"
+    },
+    {
+      "specId": "admin/sharpnec-led-fa015i2",
+      "deviceId": "sharpnec/led-fa015i2",
+      "title": "Sharp/NEC LED FA015I2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA015I2",
+      "models": [
+        "LED FA015I2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa015i2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:38:41.428Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "860f19396384f09c6e5236040852f1838de3aa13d48fa6a1f6c3e4ae1d02e5c9"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa019i2-110",
+      "deviceId": "sharpnec/led-fa019i2-110",
+      "title": "Sharp/NEC LED FA019I2 110 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA019I2 110",
+      "models": [
+        "LED FA019I2 110"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa019i2_110_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:38:42.204Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "aafe4e46e4061eaf83dd64f68f5ea3d7f4dcb832aaebc84e33434e1e983edfc9"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa019i2-110in",
+      "deviceId": "sharpnec/led-fa019i2-110in",
+      "title": "Sharp/NEC LED FA019I2 110in Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA019I2 110in",
+      "models": [
+        "LED FA019I2 110in"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa019i2_110in_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:39:38.638Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f38a8e37a4b0d1c89bd5d4713bfeb2ce3161a02e8c01d17b65505b29d98c8fc2"
+    },
+    {
+      "specId": "admin/sharp-nec-led-fa019i2-165",
+      "deviceId": "sharpnec/led-fa019i2-165",
+      "title": "Sharp/NEC LED FA019I2-165 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED FA019I2-165",
+      "models": [
+        "LED FA019I2-165"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_fa019i2_165_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-17T20:38:43.117Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "1ba7d23d49824cd5b26502b5f1fffa95fa4eb21eabfe1ed2734b92833d0cb43d"
     },
     {
       "specId": "admin/shinybow-sb_3866",
@@ -17515,6 +20123,25 @@
       "contentHash": "b58a69e8cae5ac71187a6c2fc2f3bb0d1907462378bcb076f189913f288302cb"
     },
     {
+      "specId": "admin/shure-ani4in",
+      "deviceId": "shure/ani4in",
+      "title": "Shure ANI4IN Control Spec",
+      "manufacturer": "Shure",
+      "manufacturerKey": "shure",
+      "displayName": "ANI4IN",
+      "models": [
+        "ANI4IN",
+        "ANI4IN-BLOCK"
+      ],
+      "revision": 1,
+      "path": "specs/shure/shure_ani4_series_unknown.md",
+      "actionCount": 61,
+      "lastCheckedAt": "2026-06-16T07:17:45.335Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "c49d3b6fea6821c3c5af3ae2afc9b5a0706ffe5a3f2408ce0e90f3b3a370772e"
+    },
+    {
       "specId": "admin/shure-dfr22",
       "deviceId": "shure/dfr22",
       "title": "Shure DFR22 Control Spec",
@@ -17578,6 +20205,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "aade1b940b73a8dd3db768af60b6040eb7b8f538ab7ca6b8ee3240bd0e2800e8"
+    },
+    {
+      "specId": "admin/shure-mxa920",
+      "deviceId": "shure/mxa920",
+      "title": "Shure MXA920 Control Spec",
+      "manufacturer": "Shure",
+      "manufacturerKey": "shure",
+      "displayName": "MXA920",
+      "models": [
+        "MXA920"
+      ],
+      "revision": 1,
+      "path": "specs/shure/shure_mxa_series_unknown.md",
+      "actionCount": 74,
+      "lastCheckedAt": "2026-06-16T07:17:46.344Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 5,
+      "contentHash": "18ed2217beb8d80caa9be1ebee19fffaeaf471b56673768c054d992fffe8a67a"
     },
     {
       "specId": "admin/shure-mxa710",
@@ -17658,6 +20303,25 @@
       "contentHash": "3cb02c06cda3f0e8a82fa0e66fadcdad9e02c68ca16a6e15acfcc0ad9f8a77ea"
     },
     {
+      "specId": "admin/shure-mxwapt-4-8",
+      "deviceId": "shure/mxwapt4",
+      "title": "Shure MXWAPT 4 / MXWAPT 8 Control Spec",
+      "manufacturer": "Shure",
+      "manufacturerKey": "shure",
+      "displayName": "MXWAPT4",
+      "models": [
+        "MXWAPT4",
+        "MXWAPT8"
+      ],
+      "revision": 1,
+      "path": "specs/shure/shure_mxwapt_4_8_unknown.md",
+      "actionCount": 71,
+      "lastCheckedAt": "2026-06-16T07:17:47.455Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "1bd5816fceb4bf1ea586d075fefcefdc02f233064fd53e467999b6715f9f6770"
+    },
+    {
       "specId": "admin/shure-mxwndxx-series",
       "deviceId": "shure/mxwndxx-series",
       "title": "Shure MXWNDXx Series Control Spec",
@@ -17710,6 +20374,26 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "f34fed4766a7651a178db5845884b44b3c2a0a1e05d6ef386647de1b8996220a"
+    },
+    {
+      "specId": "admin/sim2-ht280-rs232",
+      "deviceId": "sim2/ht280",
+      "title": "Sim2 HT280 / HT280E / HT300E RS-232C Control Spec",
+      "manufacturer": "Sim2",
+      "manufacturerKey": "sim2",
+      "displayName": "HT280",
+      "models": [
+        "HT280",
+        "HT280E",
+        "HT300E"
+      ],
+      "revision": 1,
+      "path": "specs/sim2/sim2_ht280_serial.md",
+      "actionCount": 149,
+      "lastCheckedAt": "2026-06-14T19:39:45.380Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6493d1d12dc56c4dd33f1f5ec2ce07256e1f2a6dd9bd7045522dd84f38e887d3"
     },
     {
       "specId": "admin/sim2-ht300-series",
@@ -18310,6 +20994,27 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
       "contentHash": "5a54cf82ead740ef195738e94b61f5211767c5948f88948e6b4e701fa7861522"
+    },
+    {
+      "specId": "admin/sony-fwxe9001-series",
+      "deviceId": "sony/fw-49xe9001",
+      "title": "Sony FW-XE9001 Series Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "FW-49XE9001",
+      "models": [
+        "FW-49XE9001",
+        "FW-55XE9001",
+        "FW-65XE9001",
+        "FW-75XE9001"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_fwxe9001_series_ip.md",
+      "actionCount": 80,
+      "lastCheckedAt": "2026-06-16T07:17:48.548Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 5,
+      "contentHash": "881151b40723c7dc409733e8d5a8fe7c54e73de9f32ff0f873621e1b3181ce0c"
     },
     {
       "specId": "admin/sony-kda87-series",
@@ -19032,6 +21737,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "3504a72e990fe69525d258b7e8e4eb0c573a769074544686e03fda011a4c3a14"
+    },
+    {
+      "specId": "admin/sony-kdxe8577-series",
+      "deviceId": "sony/kdxe8577-series",
+      "title": "Sony KDXE8577 Series Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "KDXE8577 Series",
+      "models": [
+        "KDXE8577 Series"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_kdxe8577_series_ip.md",
+      "actionCount": 23,
+      "lastCheckedAt": "2026-06-16T07:19:51.227Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "15105f0c831a42249f1b16ae921d928b4300b11bb596de91e5cf6fb2959dadb6"
     },
     {
       "specId": "admin/sony-kdxe8588-series",
@@ -19940,6 +22663,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 5,
       "contentHash": "0af32161d2706eea60b63a6ad3ed235bc5bf915e4c7177f21d98f000dc5af61c"
+    },
+    {
+      "specId": "admin/sony-xrmx95-series-ip",
+      "deviceId": "sony/xrm-x95-series",
+      "title": "Sony XRM-X95 Series Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "XRM-X95 Series",
+      "models": [
+        "XRM-X95 Series"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_xrmx95_series_ip.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-06-16T07:19:52.137Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 4,
+      "contentHash": "f7a31315604172a888f133675f32f39e321df8bda373c685eaa16c6ddb971f04"
     },
     {
       "specId": "admin/sony-xrx93-series",
@@ -21469,6 +24210,26 @@
       "contentHash": "0a6813c7784dc8fbadb94f2ab339e676efca864fc4aed089e78efcfef24e16f4"
     },
     {
+      "specId": "admin/wolfvision-vz-8",
+      "deviceId": "wolfvision/vz-8",
+      "title": "WolfVision VZ-8 Control Spec",
+      "manufacturer": "WolfVision",
+      "manufacturerKey": "wolfvision",
+      "displayName": "VZ-8",
+      "models": [
+        "VZ-8",
+        "VZ-8light",
+        "VZ-8plus"
+      ],
+      "revision": 1,
+      "path": "specs/wolfvision/wolfvision_vz_8_9_unknown.md",
+      "actionCount": 122,
+      "lastCheckedAt": "2026-06-16T07:19:53.060Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "1c0807f4471e93a9860986cb6c5381f0fd2178e76d49666013bee2f7cfcb7ea3"
+    },
+    {
       "specId": "admin/wolfvision-vz-series",
       "deviceId": "wolfvision/vz-c12",
       "title": "WolfVision VZ Series Control Spec",
@@ -21846,6 +24607,24 @@
       "contentHash": "39c318c5fcaad8d69df1e9a1a0704d2c331b51991db8e0fbae54c03d935b947b"
     },
     {
+      "specId": "admin/yamaha-np-s303",
+      "deviceId": "yamaha/np-s303",
+      "title": "Yamaha NP-S303 Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "NP-S303",
+      "models": [
+        "NP-S303"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_np_s303_ip.md",
+      "actionCount": 41,
+      "lastCheckedAt": "2026-06-14T19:39:46.147Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 4,
+      "contentHash": "3e5b4ee66afe0aa65a8958618f9ca8c208f2d2f9ad047c40910f1aa124f02535"
+    },
+    {
       "specId": "admin/yamaha-nx-n500",
       "deviceId": "yamaha/nx-n500",
       "title": "Yamaha NX-N500 Control Spec",
@@ -22062,6 +24841,24 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
       "contentHash": "3055f9c1c3667ad2a7fba5dbc3897e331759fe2e03ac4e507db2725b273f7cb5"
+    },
+    {
+      "specId": "admin/yamaha-wx-051",
+      "deviceId": "yamaha/wx-051",
+      "title": "Yamaha WX-051 Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "WX-051",
+      "models": [
+        "WX-051"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_wx_051_ip.md",
+      "actionCount": 41,
+      "lastCheckedAt": "2026-06-16T07:19:53.970Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "c8771c49d1915aa0a52e2645535f1651d572d8c45a8dc2346e7725b590cafe3f"
     },
     {
       "specId": "admin/yamaha-wxa-wxc-50",
