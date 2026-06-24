@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-06-24T07:32:02.757Z",
-  "spec_count": 1537,
+  "generated_at": "2026-06-24T12:46:12.202Z",
+  "spec_count": 1582,
   "specs": [
     {
       "specId": "admin/ad-notam-cs-101",
@@ -205,6 +205,52 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "156fbf9e6f6d84bc5da8897f67640529d8f6b2c9e7d4b0fc5092fbaf87ebb401"
+    },
+    {
+      "specId": "admin/amx-ce-irs4",
+      "deviceId": "amx/ce-irs4",
+      "title": "AMX CE IRS4 Control Spec",
+      "manufacturer": "AMX",
+      "manufacturerKey": "amx",
+      "displayName": "CE IRS4",
+      "models": [
+        "CE IRS4",
+        "CE Series Universal Control Extenders"
+      ],
+      "revision": 1,
+      "path": "specs/amx/amx_ce_irs4_unknown.md",
+      "actionCount": 23,
+      "lastCheckedAt": "2026-06-23T09:10:18.595Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "3688b383a35f8bd2bed16862e20531d8f1e280f5e2d8ccf2ce64a64966ac124e"
+    },
+    {
+      "specId": "admin/analog-way-aquilon",
+      "deviceId": "analog-way/aql-rs-alpha",
+      "title": "Analog Way Aquilon Control Spec",
+      "manufacturer": "Analog Way",
+      "manufacturerKey": "analog-way",
+      "displayName": "AQL RS alpha",
+      "models": [
+        "AQL RS alpha",
+        "AQL RS1",
+        "AQL RS2",
+        "AQL RS3",
+        "AQL RS4",
+        "AQL RS5",
+        "AQL RS6",
+        "AQL C",
+        "AQL C+",
+        "AQL CMAX"
+      ],
+      "revision": 1,
+      "path": "specs/analog-way/analog_way_aquilon.md",
+      "actionCount": 69,
+      "lastCheckedAt": "2026-06-23T09:24:06.532Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "7b3b7a2f741a2d881edcf080376b4a8ee6894f0c7f5417859812b7616bdaa6aa"
     },
     {
       "specId": "admin/analog-way-coreplay-solo",
@@ -900,6 +946,24 @@
       "contentHash": "fd3408befce97fd9cd25ad30a5a348dfd8aec9fbc27996906ebbc119989c200d"
     },
     {
+      "specId": "admin/atlona-at-hd-v42m-version2",
+      "deviceId": "atlona/at-hd-v42m-version2",
+      "title": "Atlona AT-HD-V42M Version2 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-HD-V42M Version2",
+      "models": [
+        "AT-HD-V42M Version2"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_hd_v42m_version2_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-22T12:17:39.412Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "617348c5be594600c41c77dc105693252cba53476944795a690fe8127bbe22b8"
+    },
+    {
       "specId": "admin/atlona-at-hd88m-sr",
       "deviceId": "atlona/at-hd88m-sr",
       "title": "Atlona AT-HD88M-SR Control Spec",
@@ -1371,6 +1435,24 @@
       "contentHash": "252328222ae5ad50db24e7d12335a4adc59cff415ca086a8321ceb0014c780fc"
     },
     {
+      "specId": "admin/atlona-at-video1604-serial",
+      "deviceId": "atlona/at-video1604",
+      "title": "Atlona AT-VIDEO1604 Control Spec",
+      "manufacturer": "Atlona",
+      "manufacturerKey": "atlona",
+      "displayName": "AT-VIDEO1604",
+      "models": [
+        "AT-VIDEO1604"
+      ],
+      "revision": 1,
+      "path": "specs/atlona/atlona_at_video1604_serial.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-06-23T09:27:14.342Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "413d491efa7a3cf1c83fe8896e938e620e55c95793c0cca8691029882178f42d"
+    },
+    {
       "specId": "admin/atlona-at-video1608",
       "deviceId": "atlona/at-video1608",
       "title": "Atlona AT-VIDEO1608 Control Spec",
@@ -1743,6 +1825,27 @@
       "contentHash": "8388477c1c68c5bd0e541ba4d5b24c70b7c25f6858bcb1ae8bbf2cca8a18767c"
     },
     {
+      "specId": "admin/autonomic-controls-m3-ip",
+      "deviceId": "autonomic-controls/autonomic-mirage-media-server",
+      "title": "Autonomic Controls M3 Control Spec",
+      "manufacturer": "Autonomic Controls",
+      "manufacturerKey": "autonomic-controls",
+      "displayName": "Autonomic Mirage Media Server",
+      "models": [
+        "Autonomic Mirage Media Server",
+        "Autonomic Media Control System (MCS 3.0)",
+        "NuVo MPS4 Music Server",
+        "NuVo MPS4 Elite Music Server"
+      ],
+      "revision": 1,
+      "path": "specs/autonomic-controls/autonomic_controls_m3_ip.md",
+      "actionCount": 82,
+      "lastCheckedAt": "2026-06-23T09:39:08.135Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "51b889355a036ed5a7fa95595d4adf026bc4159f38f6c08730df710bfe271a23"
+    },
+    {
       "specId": "admin/autonomic-controls-inc-m5-pro",
       "deviceId": "autonomic-controls/m5-pro",
       "title": "Autonomic Controls, Inc M5 Pro Control Spec",
@@ -1833,6 +1936,78 @@
       "contentHash": "be9d8145be8a1e060976515746f98cecee1b39cf9bd81831ac395b93390a42c9"
     },
     {
+      "specId": "admin/autonomic-favorites",
+      "deviceId": "autonomic-controls/mirage-media-server-mms",
+      "title": "Autonomic Favorites Control Spec",
+      "manufacturer": "Autonomic Controls",
+      "manufacturerKey": "autonomic-controls",
+      "displayName": "Mirage Media Server (MMS)",
+      "models": [
+        "Mirage Media Server (MMS)"
+      ],
+      "revision": 1,
+      "path": "specs/autonomic-controls/autonomic_favorites_cloud.md",
+      "actionCount": 38,
+      "lastCheckedAt": "2026-06-23T09:50:15.723Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "008c0476c890e59695d65744d4107e472476361b98ea7038efef74ee0e18a815"
+    },
+    {
+      "specId": "admin/aver-cam520-pro",
+      "deviceId": "aver/cam520-pro",
+      "title": "AVer CAM520 PRO Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "CAM520 PRO",
+      "models": [
+        "CAM520 PRO"
+      ],
+      "revision": 1,
+      "path": "specs/aver/aver_cam520_pro_unknown.md",
+      "actionCount": 8,
+      "lastCheckedAt": "2026-06-23T09:54:27.811Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f4625b7074d94e611da3729b5490ca70f347dda2339b9a3cef3fb56a7f823cc5"
+    },
+    {
+      "specId": "admin/aver-cam550",
+      "deviceId": "aver/cam550",
+      "title": "AVer CAM550 Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "CAM550",
+      "models": [
+        "CAM550"
+      ],
+      "revision": 1,
+      "path": "specs/aver/aver_cam550_unknown.md",
+      "actionCount": 5,
+      "lastCheckedAt": "2026-06-23T09:58:06.447Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "1a6c6e5358371f6bc1cf4652e0f35b88b53ce53455f9ef28ec90a92822419484"
+    },
+    {
+      "specId": "admin/aver-cl01",
+      "deviceId": "aver/cl01",
+      "title": "AVer CL01 Camera Controller Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "CL01",
+      "models": [
+        "CL01"
+      ],
+      "revision": 1,
+      "path": "specs/aver/aver_cl01_unknown.md",
+      "actionCount": 5,
+      "lastCheckedAt": "2026-06-23T09:58:08.378Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2f2679559a041cc0a3ce565e5a8047e291e2d102bb65f0a738396e7eb67ca2f9"
+    },
+    {
       "specId": "admin/aver-evc-series",
       "deviceId": "aver/ptz310",
       "title": "AVer EVC Series Control Spec",
@@ -1857,6 +2032,55 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "2e73ab0dcdfbe4a21aa62f1aac1263ca43b8cd6e2bc7a66bb68898cfa0c51ffa"
+    },
+    {
+      "specId": "admin/aver-svc-series",
+      "deviceId": "aver/svc-series",
+      "title": "AVer SVC Series Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "SVC Series",
+      "models": [
+        "SVC Series",
+        "PTZ310",
+        "PTZ330",
+        "TR311",
+        "TR311HN",
+        "TR313",
+        "TR331",
+        "TR333",
+        "TR530",
+        "TR320"
+      ],
+      "revision": 1,
+      "path": "specs/aver/aver_svc_series_unknown.md",
+      "actionCount": 5,
+      "lastCheckedAt": "2026-06-23T09:58:10.323Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7920105718bbaf541c44a8e14461b038ace82146f4b496f497bd7560f86220af"
+    },
+    {
+      "specId": "admin/aver-tr31x-tr333-series",
+      "deviceId": "aver/tr311",
+      "title": "AVer TR31x / TR333 Series Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "TR311",
+      "models": [
+        "TR311",
+        "TR311HN",
+        "TR313",
+        "TR331",
+        "TR333"
+      ],
+      "revision": 1,
+      "path": "specs/aver/aver_tr31x_tr333_series_unknown.md",
+      "actionCount": 5,
+      "lastCheckedAt": "2026-06-23T09:58:12.310Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7586a070e98ad2bba87df016018f59f5545309b2bf86ddb05155450d6595fe5b"
     },
     {
       "specId": "admin/avocation-systems-hx-1616had-r",
@@ -2107,6 +2331,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "9f8cc94cc5f561671e95c264fe6add025f2529b31259720e41ab9f852e0d84b0"
+    },
+    {
+      "specId": "admin/barco-pulse-udx",
+      "deviceId": "barco/pulse",
+      "title": "Barco Pulse/UDX Projector Control Spec",
+      "manufacturer": "Barco",
+      "manufacturerKey": "barco",
+      "displayName": "Pulse",
+      "models": [
+        "Pulse",
+        "UDX"
+      ],
+      "revision": 1,
+      "path": "specs/barco/barco_event_master.md",
+      "actionCount": 345,
+      "lastCheckedAt": "2026-06-23T10:43:30.227Z",
+      "sourceDomainCount": 0,
+      "sourceUrlCount": 0,
+      "contentHash": "d6cdbf56a526a0b93ab1c1f5e3cf614c48f9cd077b4aece0de3b69f59f1b50e8"
     },
     {
       "specId": "admin/barco-f50",
@@ -2662,6 +2905,24 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
       "contentHash": "1caa83724e08524f4abab0c14c3fd99203f408a3f6da294857c456c5bf160565"
+    },
+    {
+      "specId": "admin/benq-rp986h",
+      "deviceId": "benq/rp986h",
+      "title": "BenQ RP986h Control Spec",
+      "manufacturer": "BenQ",
+      "manufacturerKey": "benq",
+      "displayName": "RP986h",
+      "models": [
+        "RP986h"
+      ],
+      "revision": 1,
+      "path": "specs/benq/benq_rp986h_unknown.md",
+      "actionCount": 187,
+      "lastCheckedAt": "2026-06-23T10:12:11.529Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "73d712c89f0b04f21183be0c5aa0a4e1afac467f4a0369087f630ea4260a2c58"
     },
     {
       "specId": "admin/benq-st550-650-430k",
@@ -3953,6 +4214,25 @@
       "contentHash": "ab8452ed742ee9e9bc2d29a5310e781935d38e0bfce4993e9a442305bfee062b"
     },
     {
+      "specId": "admin/canon-sx80-sx800",
+      "deviceId": "canon/sx80-markii",
+      "title": "Canon SX80 / SX800 Control Spec",
+      "manufacturer": "Canon",
+      "manufacturerKey": "canon",
+      "displayName": "SX80 MarkII",
+      "models": [
+        "SX80 MarkII",
+        "SX80 MarkIIM"
+      ],
+      "revision": 1,
+      "path": "specs/canon/canon_sx80_sx800_unknown.md",
+      "actionCount": 185,
+      "lastCheckedAt": "2026-06-23T10:13:52.295Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "5e99949edfcdd49632d0e27730dfcea305f5916daac426531f43aaf2aed24e4f"
+    },
+    {
       "specId": "admin/canon-vb-m-series",
       "deviceId": "canon/vb-m40",
       "title": "Canon VB-M Series Control Spec",
@@ -4268,6 +4548,26 @@
       "contentHash": "3ffc742c1b7ac27ad2d00bdadccd19b82f3f93392cc77f8d28b1835eb07104ca"
     },
     {
+      "specId": "admin/christie-lhd-lwu-ds",
+      "deviceId": "christie/lwu755-ds",
+      "title": "Christie LHD / LWU / DS Series Control Spec",
+      "manufacturer": "Christie",
+      "manufacturerKey": "christie",
+      "displayName": "LWU755-DS",
+      "models": [
+        "LWU755-DS",
+        "LWU900-DS",
+        "LHD878-DS"
+      ],
+      "revision": 1,
+      "path": "specs/christie/christie_lhd_lwu_ds_unknown.md",
+      "actionCount": 963,
+      "lastCheckedAt": "2026-06-23T11:55:50.749Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "a49b777585104149b9ed5695fd56bcc7473d38143aab294005654760598fe9a5"
+    },
+    {
       "specId": "admin/christie-lx1000-900-1200-lw600",
       "deviceId": "christie/lx700",
       "title": "Christie LX 1000 / 900 / 1200 / LW600 Control Spec",
@@ -4304,6 +4604,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
       "contentHash": "bf2e2e5c4e503c5e5697ddfb8f414a7a7e87f6aac63ed3bc8b83bb9207afbf16"
+    },
+    {
+      "specId": "admin/christie-lx750-serial",
+      "deviceId": "christie/lx750",
+      "title": "Christie LX750 Control Spec",
+      "manufacturer": "Christie",
+      "manufacturerKey": "christie",
+      "displayName": "LX750",
+      "models": [
+        "LX750"
+      ],
+      "revision": 1,
+      "path": "specs/christie/christie_lx750_serial.md",
+      "actionCount": 614,
+      "lastCheckedAt": "2026-06-23T11:53:01.834Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "01b4a15e2a4160f8bc4364e61136c403c396a6619f3c1a2793636c2036f90058"
     },
     {
       "specId": "admin/christie-phoenix",
@@ -4731,6 +5049,28 @@
       "contentHash": "9a893f28e8252fa3f90a8a4435f815cebcbd1f650dbb366d00f618b378b35b90"
     },
     {
+      "specId": "admin/classe-audio-cdp-102-202-serial",
+      "deviceId": "classe/cdp-102",
+      "title": "Classe Audio CDP-102/202 Serial Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "CDP-102",
+      "models": [
+        "CDP-102",
+        "CDP-202",
+        "CDP-300",
+        "CDP-502",
+        "CDT-300"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_cdp_102_202_serial.md",
+      "actionCount": 88,
+      "lastCheckedAt": "2026-06-23T10:38:23.936Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9ceeb94b96bd2a74ecdc0d5c3cc0709f1fcf540b7fb0fc39dcccf4df5b240c13"
+    },
+    {
       "specId": "admin/classe-audio-cdp-102",
       "deviceId": "classe/cdp-102",
       "title": "Classe Audio CDP-102 Control Spec",
@@ -4747,6 +5087,28 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "7afb99fe67f78072accae83fbe925c6f531a3534596f8a7cd4f1e0f204135e08"
+    },
+    {
+      "specId": "admin/classe-audio-cdp102202300502-series-serial",
+      "deviceId": "classe/cdp-102",
+      "title": "Classe Audio CDP-102/202/300/502 Series Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "CDP-102",
+      "models": [
+        "CDP-102",
+        "CDP-202",
+        "CDP-300",
+        "CDP-502",
+        "CDT-300"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_cdp102202300502_series_serial.md",
+      "actionCount": 88,
+      "lastCheckedAt": "2026-06-23T10:38:22.138Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f8625a3ecdd0ac9d46aab99ddc2c32490663748d491465b669687f46067976ba"
     },
     {
       "specId": "admin/classe-audio-cp-500",
@@ -4965,6 +5327,26 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
       "contentHash": "9b271b7a415b91233f8272c36ade9857f87207b02b66e3af456223084826602b"
+    },
+    {
+      "specId": "admin/converging-systems-e-node-2000-4000-ip",
+      "deviceId": "converging-systems/e-node-2000",
+      "title": "Converging Systems e-Node 2000/4000 Control Spec",
+      "manufacturer": "Converging Systems",
+      "manufacturerKey": "converging-systems",
+      "displayName": "e-Node 2000",
+      "models": [
+        "e-Node 2000",
+        "e-Node 4000",
+        "e-Node/dmx (MkIII)"
+      ],
+      "revision": 1,
+      "path": "specs/converging-systems/converging_systems_e_node_2000_4000_ip.md",
+      "actionCount": 62,
+      "lastCheckedAt": "2026-06-23T10:12:13.688Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "fed0228a889ae1c69e9bea4e9ab20edbc871dc1deb2eabf6d12c5343c6b7ffec"
     },
     {
       "specId": "admin/converging-systems-gateway-cs-bus-zgn",
@@ -5391,6 +5773,24 @@
       "contentHash": "326ca7ae422fe1bb47ce37a5882c009c69814903bce54f8ad70ddd305fd44e3f"
     },
     {
+      "specId": "admin/denon-avc-a110-eu",
+      "deviceId": "denon/avc-a110",
+      "title": "Denon AVC-A110 Control Spec",
+      "manufacturer": "Denon",
+      "manufacturerKey": "denon",
+      "displayName": "AVC-A110",
+      "models": [
+        "AVC-A110"
+      ],
+      "revision": 1,
+      "path": "specs/denon/denon_avc_a110_eu_ip.md",
+      "actionCount": 726,
+      "lastCheckedAt": "2026-06-23T11:10:45.348Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a6c77a8199caeee42586e408b98e104932d177c6836062111a2458abeee02130"
+    },
+    {
       "specId": "admin/denon-avc-s670h",
       "deviceId": "denon/avc-s670h",
       "title": "Denon AVC-S670H Control Spec",
@@ -5479,6 +5879,26 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "7ba9c4b5a9f8b353b09dd4d0146268b8c81500cd319c694ff7f879f8d3ba9d37"
+    },
+    {
+      "specId": "admin/denon-avr-xxx00h-series-avr-sx30h-series-avc-8500h",
+      "deviceId": "denon/avr-x__00h",
+      "title": "Denon AVR-X__00H / AVR-S30H / AVC-8500H Series Control Spec",
+      "manufacturer": "Denon",
+      "manufacturerKey": "denon",
+      "displayName": "AVR-X__00H",
+      "models": [
+        "AVR-X__00H",
+        "AVR-S30H",
+        "AVC-8500H"
+      ],
+      "revision": 1,
+      "path": "specs/denon/denon_avr_xxx00h_series_avr_sx30h_series_avc_8500h_unknown.md",
+      "actionCount": 726,
+      "lastCheckedAt": "2026-06-23T11:10:47.150Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "76b1bf28ea83b81ec0d5e7286f0ab841a4f9579a6beec0edcf7489bd1bd20a83"
     },
     {
       "specId": "admin/denon-avr",
@@ -6581,6 +7001,24 @@
       "contentHash": "ea31c9b3473ea58c6827d6702b1437e8e158e6a49378c4f4cec8e64a49cc78d5"
     },
     {
+      "specId": "admin/escea-ds-series",
+      "deviceId": "escea/escea-ds-series",
+      "title": "Escea DS Series Control Spec",
+      "manufacturer": "Escea",
+      "manufacturerKey": "escea",
+      "displayName": "Escea DS Series",
+      "models": [
+        "Escea DS Series"
+      ],
+      "revision": 1,
+      "path": "specs/escea/escea_ds_series_ip.md",
+      "actionCount": 9,
+      "lastCheckedAt": "2026-06-22T11:50:24.170Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "3c2230fe895948f3749de0a5c87ec92f2d1be83a7d07e7461b636d0e1cb0a88d"
+    },
+    {
       "specId": "admin/esoteric-audio-dv-60",
       "deviceId": "esoteric/dv-60",
       "title": "Esoteric Audio DV-60 Control Spec",
@@ -6682,6 +7120,36 @@
       "contentHash": "9ca8210c936f02a373015c973a1288eaca4ba2245c133502700df0ef85bfae38"
     },
     {
+      "specId": "admin/extron-crosspoint-300-88hva-serial",
+      "deviceId": "extron/crosspoint-300-84",
+      "title": "Extron CrossPoint 300 / 88 HVA Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "CrossPoint 300 84",
+      "models": [
+        "CrossPoint 300 84",
+        "CrossPoint 300 88",
+        "CrossPoint 300 124",
+        "CrossPoint 300 128",
+        "CrossPoint 300 168",
+        "CrossPoint 300 816",
+        "CrossPoint 300 1212",
+        "CrossPoint 300 1616",
+        "CrossPoint 300 88 HVA",
+        "CrossPoint 300 816 HVA",
+        "CrossPoint 300 128 HVA",
+        "CrossPoint 300 168 HVA",
+        "CrossPoint 300 1616 HVA"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_crosspoint_300_88hva_serial.md",
+      "actionCount": 62,
+      "lastCheckedAt": "2026-06-23T11:45:14.739Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "6d50d0546667f2d652d1b88dfcc9c6ae769359efb90fbd8ac7c8272efdbcad84"
+    },
+    {
       "specId": "admin/extron-ctr8",
       "deviceId": "extron/ctr-8",
       "title": "Extron CTR 8 Control Spec",
@@ -6718,6 +7186,29 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
       "contentHash": "70ab8a4adff8b86303f6999648806d4195b1b6ed1062bf58a361db051b40d77e"
+    },
+    {
+      "specId": "admin/extron-dmp-128",
+      "deviceId": "extron/dmp-128",
+      "title": "Extron DMP 128 Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "DMP 128",
+      "models": [
+        "DMP 128",
+        "DMP 128 AT",
+        "DMP 128 C",
+        "DMP 128 C AT",
+        "DMP 128 C P",
+        "DMP 128 C P AT"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_dmp128_series_unknown.md",
+      "actionCount": 111,
+      "lastCheckedAt": "2026-06-22T13:58:50.184Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "330c45ed3f1acd3281a285201a846aa023352a8349bd2948ee07510303559d78"
     },
     {
       "specId": "admin/extron-dmp64",
@@ -6775,6 +7266,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 5,
       "contentHash": "a8047a5d5c245ba50ca7a05f3555b3101643fdedf5781da306aa739a8ea0a9ce"
+    },
+    {
+      "specId": "admin/extron-dtp2-t-204",
+      "deviceId": "extron/dtp2-t-212",
+      "title": "Extron DTP2 T 204 Control Spec",
+      "manufacturer": "Extron",
+      "manufacturerKey": "extron",
+      "displayName": "DTP2 T 212",
+      "models": [
+        "DTP2 T 212"
+      ],
+      "revision": 1,
+      "path": "specs/extron/extron_dtp2_t_204_unknown.md",
+      "actionCount": 81,
+      "lastCheckedAt": "2026-06-23T11:45:16.583Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "86f4f85d6ac067ff8d4d7ee63148af61112b7060094ccc2afb3c9f6f15ab96e6"
     },
     {
       "specId": "admin/extron-dtp2-crosspoint-82",
@@ -8806,6 +9315,46 @@
       "contentHash": "da91a1a7be17a2967cf222189148bd0d6875da3a785a4494939a2efc0674bc17"
     },
     {
+      "specId": "admin/jvc-kenwood-dla-v50",
+      "deviceId": "jvc-kenwood/dla-v50",
+      "title": "JVC KENWOOD DLA-V50 External Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-V50",
+      "models": [
+        "DLA-V50",
+        "DLA-V90RLTD",
+        "DLA-V90R",
+        "DLA-V80R",
+        "DLA-V70R"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_v50_ip.md",
+      "actionCount": 27,
+      "lastCheckedAt": "2026-06-24T12:07:05.609Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "5ccbce06f0fb0b64b7386fbea5733c8cd1105ea65df0febc403522e6d3a00cc3"
+    },
+    {
+      "specId": "admin/jvc-kenwood-dla-v70r",
+      "deviceId": "jvc-kenwood/dla-v70r",
+      "title": "JVC KENWOOD DLA-V70R Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-V70R",
+      "models": [
+        "DLA-V70R"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_v70r_ip.md",
+      "actionCount": 26,
+      "lastCheckedAt": "2026-06-24T12:07:06.349Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "285e562f3d1a26c549a3f2a30634b1ec15587e072d7d8276922eca09bf0e55fa"
+    },
+    {
       "specId": "admin/jvc-kenwood-dla-v90r",
       "deviceId": "jvc-kenwood/dla-v90r",
       "title": "JVC KENWOOD DLA-V90R Control Spec",
@@ -8877,6 +9426,25 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
       "contentHash": "f1a1df3952a5a7f1d554656502745945f619f4d165b17f41cc6ff90114f016c2"
+    },
+    {
+      "specId": "admin/jvc-kenwood-dla-x5900-rs440",
+      "deviceId": "jvc-kenwood/dla-x5900",
+      "title": "JVC KENWOOD DLA-X5900_RS440 Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-X5900",
+      "models": [
+        "DLA-X5900",
+        "DLA-RS440"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_x5900_rs440_ip.md",
+      "actionCount": 309,
+      "lastCheckedAt": "2026-06-22T14:03:05.730Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "e1a9dbe805fc32ec8b1045c72e4d708fac8349069fb690a4922bbb0107520df3"
     },
     {
       "specId": "admin/jvc_kenwood-dla_x6900",
@@ -9394,6 +9962,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "860d6e09df71cb7985229c8e28ea2b9d0fa1891e47df66d8f2cca98942166fc1"
+    },
+    {
+      "specId": "admin/key-digital-systems-kd-msv16x16",
+      "deviceId": "key-digital/kd-msv16x16",
+      "title": "Key Digital Systems KD-MSV16x16 Control Spec",
+      "manufacturer": "Key Digital",
+      "manufacturerKey": "key-digital",
+      "displayName": "KD-MSV16x16",
+      "models": [
+        "KD-MSV16x16"
+      ],
+      "revision": 1,
+      "path": "specs/key-digital/key_digital_systems_kd_msv16x16_serial.md",
+      "actionCount": 18,
+      "lastCheckedAt": "2026-06-22T11:50:24.959Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "34fc4485ef0508e9dc46d3cc05b8217d323c9ed0b907f197e2700eec8257df8e"
     },
     {
       "specId": "admin/key-digital-systems-kd-msv8x8",
@@ -11427,6 +12013,24 @@
       "contentHash": "de67ab9090242503e25a89a6341a3d10c43f16560574b7da255a5ec82079fe33"
     },
     {
+      "specId": "admin/marantz-is201",
+      "deviceId": "marantz/is201",
+      "title": "Marantz IS201 Control Spec",
+      "manufacturer": "Marantz",
+      "manufacturerKey": "marantz",
+      "displayName": "IS201",
+      "models": [
+        "IS201"
+      ],
+      "revision": 1,
+      "path": "specs/marantz/marantz_ipod_dock_unknown.md",
+      "actionCount": 33,
+      "lastCheckedAt": "2026-06-23T07:02:26.048Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "a501c9874eae6a2520c4ffe7362208b74f3180a91befcf2bbf2fb1cd708ac148"
+    },
+    {
       "specId": "admin/marantz-av-receiver",
       "deviceId": "marantz/marantz-av-receiver",
       "title": "Marantz AV Receiver Control Spec",
@@ -11461,6 +12065,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "981bb36b06d37cb80b5f7cce9704287f365c4f2dd4f8432f5c8547db18bf847f"
+    },
+    {
+      "specId": "admin/marantz-na-7004",
+      "deviceId": "marantz/na-7004",
+      "title": "Marantz NA-7004 Control Spec",
+      "manufacturer": "Marantz",
+      "manufacturerKey": "marantz",
+      "displayName": "NA-7004",
+      "models": [
+        "NA-7004"
+      ],
+      "revision": 1,
+      "path": "specs/marantz/marantz_network_audio_player_ip.md",
+      "actionCount": 68,
+      "lastCheckedAt": "2026-06-23T08:13:17.822Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "09be0762583d6e6f485f9e60516e20d49314a9592d0a0f6a8e36dd0e5e441ecc"
     },
     {
       "specId": "admin/marantz-nr-series",
@@ -11551,6 +12173,42 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "506c05c013a69771f42f5d25ddfd21de762e7ff470f6be399006fe91c89c6256"
+    },
+    {
+      "specId": "admin/marantz-pd5050d",
+      "deviceId": "marantz/pd5050d",
+      "title": "Marantz PD5050D Control Spec",
+      "manufacturer": "Marantz",
+      "manufacturerKey": "marantz",
+      "displayName": "PD5050D",
+      "models": [
+        "PD5050D"
+      ],
+      "revision": 1,
+      "path": "specs/marantz/marantz_pd5050d_serial.md",
+      "actionCount": 28,
+      "lastCheckedAt": "2026-06-23T07:52:20.276Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 4,
+      "contentHash": "4a47286ae504e6ae7771bbdf1633aea1057450f4a24013686394e5a51da357c2"
+    },
+    {
+      "specId": "admin/marantz-pd6140d",
+      "deviceId": "marantz/pd6140d",
+      "title": "Marantz PD6140D Control Spec",
+      "manufacturer": "Marantz",
+      "manufacturerKey": "marantz",
+      "displayName": "PD6140D",
+      "models": [
+        "PD6140D"
+      ],
+      "revision": 1,
+      "path": "specs/marantz/marantz_pd6140d_serial.md",
+      "actionCount": 26,
+      "lastCheckedAt": "2026-06-23T07:02:24.562Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "ac5be8e323a29dee665a7fe986e88240a15844787160b5354b2ffde49117d4eb"
     },
     {
       "specId": "admin/marantz-receiver-sr",
@@ -11731,6 +12389,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "0447b52b809579cda48f87e0545656945592d1f8e7f03b9891c962d23bd521ac"
+    },
+    {
+      "specId": "admin/marantz-vp-12s4",
+      "deviceId": "marantz/vp-12s4",
+      "title": "Marantz VP-12S4 Control Spec",
+      "manufacturer": "Marantz",
+      "manufacturerKey": "marantz",
+      "displayName": "VP-12S4",
+      "models": [
+        "VP-12S4"
+      ],
+      "revision": 1,
+      "path": "specs/marantz/marantz_vp_12s4_serial.md",
+      "actionCount": 98,
+      "lastCheckedAt": "2026-06-23T08:31:09.044Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "b7741bd79a82e92dc0af38d2a9e40acb93981e39f3f88f4ec6f22b3759c395d6"
     },
     {
       "specId": "admin/mark-levinson-no502-media-console",
@@ -15021,6 +15697,24 @@
       "contentHash": "58cd4cef921b094599b1ec7f28b0a4062c550b9ed57be460e78c795cff7321b8"
     },
     {
+      "specId": "admin/optoma-uhz68lv",
+      "deviceId": "optoma/uhz68lv",
+      "title": "Optoma UHZ68LV Control Spec",
+      "manufacturer": "Optoma",
+      "manufacturerKey": "optoma",
+      "displayName": "UHZ68LV",
+      "models": [
+        "UHZ68LV"
+      ],
+      "revision": 1,
+      "path": "specs/optoma/optoma_uhz68lv_ip.md",
+      "actionCount": 110,
+      "lastCheckedAt": "2026-06-22T11:50:25.827Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "3ba76f19ad1babf5a431249c67ef1c1c802d540f92bde8450faded7b98089746"
+    },
+    {
       "specId": "admin/optoma-zh-series",
       "deviceId": "optoma/optoma-zh-series",
       "title": "Optoma ZH Series Control Spec",
@@ -15437,6 +16131,29 @@
       "contentHash": "7c331ed5c41c7313b552a00440dd6a443dbe14883a0779e69cf49f2e381888c7"
     },
     {
+      "specId": "admin/panasonic-thxx-lf-8-80-series",
+      "deviceId": "panasonic/th-42lf8",
+      "title": "Panasonic TH-42/49/55LF8 / TH-42/49/55LF80 Control Spec",
+      "manufacturer": "Panasonic",
+      "manufacturerKey": "panasonic",
+      "displayName": "TH-42LF8",
+      "models": [
+        "TH-42LF8",
+        "TH-49LF8",
+        "TH-55LF8",
+        "TH-42LF80",
+        "TH-49LF80",
+        "TH-55LF80"
+      ],
+      "revision": 1,
+      "path": "specs/panasonic/panasonic_thxx_lf_8_80_series_unknown.md",
+      "actionCount": 301,
+      "lastCheckedAt": "2026-06-22T14:12:25.202Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "47e9c5246eec7baa338ec24fd8efdbb70ed96ea6118b52954a1213ceebe91517"
+    },
+    {
       "specId": "admin/panasonic-thxxlfb70-series",
       "deviceId": "panasonic/th-50lfb70",
       "title": "Panasonic TH-50/65/80LFB70 Control Spec",
@@ -15455,6 +16172,25 @@
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
       "contentHash": "e62c0aeac79e9abf8067f54f3832c13e834ed6d5fe7c759522fda7a81a385709"
+    },
+    {
+      "specId": "admin/panasonic-universal-discrete-functions",
+      "deviceId": "panasonic/th-86sq1h",
+      "title": "Panasonic TH-86/75SQ1H 4K UHD LCD Display Control Spec",
+      "manufacturer": "Panasonic",
+      "manufacturerKey": "panasonic",
+      "displayName": "TH-86SQ1H",
+      "models": [
+        "TH-86SQ1H",
+        "TH-75SQ1H"
+      ],
+      "revision": 1,
+      "path": "specs/panasonic/panasonic_universal_discrete_functions.md",
+      "actionCount": 470,
+      "lastCheckedAt": "2026-06-24T12:07:07.071Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 4,
+      "contentHash": "a3bbd374a88d81a0f7d6fba277db74bf9f7102dbc93ade050b7fb078f316b85e"
     },
     {
       "specId": "admin/panasonic-wx-sr200-series-wireless-microphone",
@@ -17084,6 +17820,24 @@
       "contentHash": "93729d1607fdc2c1d59cbda07490dd897e4ceea598e4c2edfab4787716c0307a"
     },
     {
+      "specId": "admin/samsung-snow1810u",
+      "deviceId": "samsung/snow1810u",
+      "title": "Samsung SNOW1810U Control Spec",
+      "manufacturer": "Samsung",
+      "manufacturerKey": "samsung",
+      "displayName": "SNOW1810U",
+      "models": [
+        "SNOW1810U"
+      ],
+      "revision": 1,
+      "path": "specs/samsung/samsung_snow1810u_unknown.md",
+      "actionCount": 133,
+      "lastCheckedAt": "2026-06-23T07:49:50.283Z",
+      "sourceDomainCount": 5,
+      "sourceUrlCount": 5,
+      "contentHash": "4afd2283296ee9416d6773a4a3d1cc340c6e8ebf287bff40804e9f959f2e873f"
+    },
+    {
       "specId": "admin/samsung-syncmaster-xxxdx-series",
       "deviceId": "samsung/syncmaster-320dx",
       "title": "Samsung SyncMaster Multiple Display Control Protocol",
@@ -18470,6 +19224,24 @@
       "contentHash": "86a99665e21d7c5fd333832610e31e9f12a4f8a350c57bf705dfe30a67adf2b9"
     },
     {
+      "specId": "admin/sharp-nec-as96u-px39ml",
+      "deviceId": "sharpnec/as96u-px39ml",
+      "title": "Sharp/NEC As96U Px39Ml Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "As96U Px39Ml",
+      "models": [
+        "As96U Px39Ml"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_as96u_px39ml_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-23T07:49:51.818Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a505bd646472b9c64a6e7d5fe9bea819c909129174e7475d20ade81eb1af772d"
+    },
+    {
       "specId": "admin/sharpnec-c651q-avt2",
       "deviceId": "sharpnec/c651q-avt2",
       "title": "Sharp/NEC C651Q Avt2 Control Spec",
@@ -19586,6 +20358,24 @@
       "contentHash": "320cd51cd79d6404a3f853adf93457adc2597fc89be69c5dcce02e1cb0f52c5a"
     },
     {
+      "specId": "admin/sharp-nec-ld-fa192",
+      "deviceId": "sharpnec/ld-fa192",
+      "title": "Sharp/NEC Ld Fa192 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "Ld Fa192",
+      "models": [
+        "Ld Fa192"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_ld_fa192_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-23T07:49:53.359Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "be975dbc3a82d3e1d87885b44d32bf086f9478ad96c50d700076b4edb662f8c6"
+    },
+    {
       "specId": "admin/sharp-nec-ld-fa312",
       "deviceId": "sharpnec/ld-fa312",
       "title": "Sharp/NEC Ld Fa312 Control Spec",
@@ -20556,6 +21346,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "35cd163d04c1a9e8fd117d6ca7c9a0c2a2d9be2e313f1df00bf90c73d2cd1d84"
+    },
+    {
+      "specId": "admin/sharp-nec-led-q028e2",
+      "deviceId": "sharpnec/led-q028e2",
+      "title": "Sharp/NEC LED Q028E2 Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "LED Q028E2",
+      "models": [
+        "LED Q028E2"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_led_q028e2_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-23T07:49:54.931Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3010535713c97cbd60d3860fac4157a19fff7db816241caf25c10ee294f0b05c"
     },
     {
       "specId": "admin/sharp-nec-led-q028i2",
@@ -21944,6 +22752,24 @@
       "contentHash": "ab4c876116409067320852641f5a12dbb31d505bcfbdfbbf54bd52f937ae94c4"
     },
     {
+      "specId": "admin/sharp-nec-np-p502h",
+      "deviceId": "sharpnec/np-p502h",
+      "title": "Sharp/NEC NP P502H Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "NP P502H",
+      "models": [
+        "NP P502H"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_np_p502h_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-23T07:49:56.535Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6417045e8e399bb3eb26c3a5428e1fdca9a4a4ce2f7471d4673c5e4ad43e34b6"
+    },
+    {
       "specId": "admin/sharpnec-np-p502hl-2",
       "deviceId": "sharpnec/np-p502hl-2",
       "title": "Sharp/NEC NP P502HL 2 Control Spec",
@@ -22896,6 +23722,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "d2224ecf2edc5228f294b3b149c512ea48b31eb286834cf85c7ab711af7d5b5d"
+    },
+    {
+      "specId": "admin/sharp-nec-pa311d-bk",
+      "deviceId": "sharpnec/pa311d-bk",
+      "title": "Sharp/NEC PA311D-BK Control Spec",
+      "manufacturer": "Sharp/NEC",
+      "manufacturerKey": "sharpnec",
+      "displayName": "PA311D-BK",
+      "models": [
+        "PA311D-BK"
+      ],
+      "revision": 1,
+      "path": "specs/sharpnec/sharp_pa311d_bk_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-06-23T08:40:12.586Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "269de85627165552995ee178927772db7c767bd02f327d18e526d97c0b37ad4c"
     },
     {
       "specId": "admin/sharp-nec-pa311d-bk-sv",
@@ -25657,6 +26501,24 @@
       "contentHash": "0566af5a3b2c365c5767d590f17bda18c3f525643d20969edc6d9e425696365d"
     },
     {
+      "specId": "admin/sony-kdx8200-series",
+      "deviceId": "sony/bravia-2014-models-simple-ip-control",
+      "title": "Sony KDX8200 Series Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "BRAVIA 2014 models (Simple IP Control)",
+      "models": [
+        "BRAVIA 2014 models (Simple IP Control)"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_kdx8200_series_ip.md",
+      "actionCount": 131,
+      "lastCheckedAt": "2026-06-23T08:49:12.752Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "9a1f7061e9c20dd0ded90bfc1a93c0a74c9f8db4fe19934185546a9790df376f"
+    },
+    {
       "specId": "admin/sony-kdx8301-series",
       "deviceId": "sony/kdx8301-series",
       "title": "Sony KDX8301 Series Control Spec",
@@ -25709,6 +26571,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
       "contentHash": "99ceb846c350323492816770457ccdc110c950e136c44b82fef1f3eb2adb8132"
+    },
+    {
+      "specId": "admin/sony-kdx8500-series",
+      "deviceId": "sony/kd-x8500-series-bravia-professional-displays",
+      "title": "Sony KDX8500 Series Control Spec",
+      "manufacturer": "Sony",
+      "manufacturerKey": "sony",
+      "displayName": "KD-X8500 Series (BRAVIA Professional Displays)",
+      "models": [
+        "KD-X8500 Series (BRAVIA Professional Displays)"
+      ],
+      "revision": 1,
+      "path": "specs/sony/sony_kdx8500_series_ip.md",
+      "actionCount": 79,
+      "lastCheckedAt": "2026-06-22T11:50:26.798Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "7ec9cb71c742541d2e149babc42d1c88bb2400cf1d90483634b76c2dfb0d06d7"
     },
     {
       "specId": "admin/sony-kdx8507-series",
