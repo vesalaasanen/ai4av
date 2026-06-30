@@ -283,8 +283,6 @@ interlocks: []
 <!-- UNRESOLVED: response/acknowledgement behaviour for routing commands not documented -->
 ````
 
-Spec done. 24 routing actions enumerated verbatim from source table (4 outputs × {prev,next,in1,in2,in3,in4}). Serial config fully populated (9600/8/N/1/none). TCP included as protocol but port marked UNRESOLVED — never assumed. No power/query/response cmds in source → Feedbacks/Variables/Events/Macros marked UNRESOLVED. Confidence `low`, status `draft`.
-
 ## Provenance
 
 ```yaml

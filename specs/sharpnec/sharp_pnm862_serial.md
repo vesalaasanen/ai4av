@@ -871,7 +871,7 @@ interlocks:
 <!-- UNRESOLVED: LAN auth/password procedure not described anywhere in source (assumed none). -->
 ````
 
-Spec done. 53 commands all captured verbatim with payload bytes. Serial + TCP both documented (port 7142 stated). Checksum rule noted. Error table verbatim. Appendix value tables marked UNRESOLVED (external doc, not in source).
+
 
 Caveman reminders:
 - Baud = UNRESOLVED (5 rates, default not stated) — no assume 9600.

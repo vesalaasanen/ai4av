@@ -44,14 +44,13 @@ known_gaps:
   - "source Appendix enum tables (input terminal, aspect, eco mode, base model type, sub-input, selection signal type) not in extracted text."
   - "serial flow_control not explicitly stated (only \"Full duplex\"; RTS/CTS cross-wired)."
   - "adjustment value bounds are device-specific; only obtainable at runtime via gain_parameter_request_3."
-  - "device/source mismatch (monitor name vs projector manual), missing Appendix enums, flow_control, ID1/ID2."
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:42:04.682Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions matched verbatim hex command sequences in source sections 3.1-3.53. Transport parameters verified against section 1.2. (20 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions matched verbatim hex command sequences in source sections 3.1-3.53. Transport parameters verified against section 1.2. (19 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -733,7 +732,7 @@ interlocks: []
 <!-- UNRESOLVED: adjustment value bounds are device-specific; only obtainable at runtime via gain_parameter_request_3. -->
 ````
 
-Spec done. 53 actions = all source command rows. Key gaps flagged UNRESOLVED: device/source mismatch (monitor name vs projector manual), missing Appendix enums, flow_control, ID1/ID2.
+
 
 Want next: ingest via admin path (drafts.jsonl + scraper ingest) or fix device/source mismatch first?
 
@@ -756,7 +755,7 @@ checked_at: 2026-06-17T19:42:04.682Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions matched verbatim hex command sequences in source sections 3.1-3.53. Transport parameters verified against section 1.2. (20 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions matched verbatim hex command sequences in source sections 3.1-3.53. Transport parameters verified against section 1.2. (19 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -781,7 +780,6 @@ summary: "All 53 spec actions matched verbatim hex command sequences in source s
 - "source Appendix enum tables (input terminal, aspect, eco mode, base model type, sub-input, selection signal type) not in extracted text."
 - "serial flow_control not explicitly stated (only \"Full duplex\"; RTS/CTS cross-wired)."
 - "adjustment value bounds are device-specific; only obtainable at runtime via gain_parameter_request_3."
-- "device/source mismatch (monitor name vs projector manual), missing Appendix enums, flow_control, ID1/ID2."
 ```
 
 ---

@@ -370,7 +370,7 @@ interlocks: []
 <!-- UNRESOLVED: error-code taxonomy beyond generic FFFFFFFFFFFFFFFF not stated -->
 ````
 
-Spec done. 17 actions (9 control + 8 enquiry incl. 2 network), 8 feedbacks, 5 events. `setIrccCode` collapsed to single parameterized action (one FourCC, 53 enum values listed inline) per opcode granularity rule. All payloads verbatim 24-byte format. UNRESOLVED markers on firmware, vol max, RED-DA variants, keepalive, error taxonomy.
+
 
 Next: `entity_id` filled (`sony_kdxg9505_series`). Want ingest via `drafts.jsonl` + `scraper.ts ingest`, or authenticated path?
 

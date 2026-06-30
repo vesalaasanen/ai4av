@@ -301,8 +301,6 @@ interlocks: []
 <!-- UNRESOLVED: no AUTO ID, volume, brightness, or other controls documented with payloads. -->
 ```
 
-Spec done. 26 actions, one per source row. Serial transport per stated params. Marked UNRESOLVED on flow control, feedback, dealer-only full list, OCR note.
-
 ## Provenance
 
 ```yaml

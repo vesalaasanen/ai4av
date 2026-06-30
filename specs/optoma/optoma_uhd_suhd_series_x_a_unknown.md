@@ -1429,8 +1429,6 @@ interlocks: []
 <!-- UNRESOLVED: opcode reuse (~XX36, ~XX61) — disambiguation method not documented -->
 ````
 
-Spec done. All commands from source enumerated. Suspect rows (opcode reuse, hex typos) flagged verbatim with UNRESOLVED notes — no fabrication.
-
 ## Provenance
 
 ```yaml

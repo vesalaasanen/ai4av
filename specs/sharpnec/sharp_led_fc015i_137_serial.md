@@ -670,8 +670,6 @@ interlocks: []
 <!-- UNRESOLVED: LAN response framing identical to serial not explicitly confirmed in source -->
 ````
 
-Spec done. 53 actions (all command rows enumerated). Both serial + TCP protocols. Port 7142, baud rate unresolved (multiple listed). No auth (inferred). Appendix values left unresolved per command.
-
 ## Provenance
 
 ```yaml

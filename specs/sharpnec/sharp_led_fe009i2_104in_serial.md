@@ -771,8 +771,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN protocol details (deferred to separate unit manual) -->
 ````
 
-Spec done. 53 actions match source 53 commands. Both RS-232C + TCP/7142 populated (source explicit). Appendix enums marked UNRESOLVED (not in refined source). CKS + ID1/ID2 framing explained in Notes.
-
 ## Provenance
 
 ```yaml

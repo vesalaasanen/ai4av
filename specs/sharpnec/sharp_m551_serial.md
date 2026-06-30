@@ -794,8 +794,6 @@ interlocks:
 <!-- UNRESOLVED: appendix value maps for input terminal / aspect / eco mode / sub input / base model type not present in refined source. -->
 ````
 
-Spec done. 53 actions — every source command row, verbatim payloads. All `#` comments stripped from YAML fences (safety + all others); inference notes moved to HTML comments outside fences.
-
 ## Provenance
 
 ```yaml

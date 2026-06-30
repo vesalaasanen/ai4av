@@ -668,8 +668,6 @@ interlocks: []
 <!-- UNRESOLVED: firmware version compatibility -->
 ````
 
-Spec done. 53 actions, all verbatim hex payloads. Serial+TCP both transport. Appendix value tables + ID2 model code + flow_control left UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

@@ -634,8 +634,6 @@ interlocks:
 <!-- UNRESOLVED: protocol version number not stated; manual revision is BDT140013 Rev 7.1. -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Gaps marked `UNRESOLVED` (appendix value tables absent, flow control, firmware).
-
 ## Provenance
 
 ```yaml

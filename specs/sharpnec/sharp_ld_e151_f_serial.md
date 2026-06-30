@@ -707,8 +707,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated. Default baud rate not stated (5 supported). Flow control type not stated. ID1 (control ID) and ID2 (model code) values are per-device and not given. Many DATA value sets (input terminal codes, aspect codes, eco-mode values, base-model types, PIP sub-input codes) are deferred to an "Appendix / Supplementary Information by Command" that is not present in the provided source text. -->
 ````
 
-Spec done. 53 actions enumerated, all hex payloads verbatim. UNRESOLVED markers kept for appendix-deferred value sets, default baud, flow control, ID1/ID2, firmware.
-
 ## Provenance
 
 ```yaml

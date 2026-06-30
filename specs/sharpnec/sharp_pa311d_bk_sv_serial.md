@@ -706,8 +706,6 @@ interlocks: []
 <!-- UNRESOLVED: adjustment value min/max bounds not fixed — returned dynamically per-gain -->
 ```
 
-Spec done. 52 actions, all hex payloads verbatim. Serial + TCP both supported (port 7142). CKS algorithm documented. Appendix enums marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

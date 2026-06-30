@@ -678,8 +678,6 @@ interlocks:
 <!-- UNRESOLVED: ID2 model code value not stated; varies by model. -->
 ```
 
-Spec done. 53 actions, all command payloads verbatim. Serial+TCP both. Appendix values marked UNRESOLVED. Ready for ingest.
-
 ## Provenance
 
 ```yaml

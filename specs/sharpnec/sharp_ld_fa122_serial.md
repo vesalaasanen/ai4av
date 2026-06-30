@@ -661,8 +661,6 @@ interlocks:
 <!-- UNRESOLVED: input terminal value table, aspect value table, eco mode value table, base model type table, and sub-input value table are referenced to a source Appendix ("Supplementary Information by Command") not present in the refined source text. Firmware version compatibility not stated. Wireless LAN unit details deferred to separate operation manual. -->
 ````
 
-Spec done. 53 actions, all command bytes verbatim from source. Serial + TCP both populated (both explicitly stated). Gaps flagged `UNRESOLVED` — appendix tables + firmware + flow control + gain ranges.
-
 ## Provenance
 
 ```yaml

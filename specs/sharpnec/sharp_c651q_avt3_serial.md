@@ -730,8 +730,6 @@ interlocks: []
 
 <!-- UNRESOLVED: (1) Source Appendix "Supplementary Information by Command" referenced for input terminal values, aspect values, eco mode values, sub-input values, and base model types is NOT present in the provided refined text — those enum tables cannot be populated. (2) Source is a generic projector manual; C651Q Avt3 model not explicitly named. (3) Firmware version compatibility not stated. (4) Wireless LAN unit specifications not in source. (5) Whether RTS/CTS hardware flow control is required is not stated (pins wired but mode listed as full duplex only). -->
 
-Spec done. 53 commands enumerated (29 actions + 24 queries). All hex payloads verbatim from source. Gaps marked UNRESOLVED — appendix tables + firmware + model confirmation need operator follow-up.
-
 ## Provenance
 
 ```yaml

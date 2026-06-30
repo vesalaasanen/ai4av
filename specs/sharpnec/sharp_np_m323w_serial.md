@@ -38,14 +38,13 @@ known_gaps:
   - "lens target byte values for 053/053-2 only partially enumerated (06h=Periphery Focus; FFh=Stop on 053-2)."
   - "firmware version compatibility not stated."
   - "model name \"NP M323W\" supplied by operator; generic manual covers multiple Sharp/NEC projector models."
-  - "model code (ID2), default baud, appendix value lists not in refined source."
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:34:44.791Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions matched verbatim against source command reference; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions matched verbatim against source command reference; transport parameters verified; complete bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -765,8 +764,6 @@ interlocks:
 <!-- UNRESOLVED: model name "NP M323W" supplied by operator; generic manual covers multiple Sharp/NEC projector models. -->
 ````
 
-Spec done. 56 actions enumerated (all source command rows), transport serial+tcp, traits powerable/queryable/levelable/routable. Big gaps flagged UNRESOLVED: model code (ID2), default baud, appendix value lists not in refined source.
-
 ## Provenance
 
 ```yaml
@@ -786,7 +783,7 @@ checked_at: 2026-06-18T08:34:44.791Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions matched verbatim against source command reference; transport parameters verified; complete bidirectional coverage. (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions matched verbatim against source command reference; transport parameters verified; complete bidirectional coverage. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -805,7 +802,6 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "lens target byte values for 053/053-2 only partially enumerated (06h=Periphery Focus; FFh=Stop on 053-2)."
 - "firmware version compatibility not stated."
 - "model name \"NP M323W\" supplied by operator; generic manual covers multiple Sharp/NEC projector models."
-- "model code (ID2), default baud, appendix value lists not in refined source."
 ```
 
 ---

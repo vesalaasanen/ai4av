@@ -753,8 +753,6 @@ interlocks:
 <!-- UNRESOLVED: protocol version number — not stated (document revision 7.1 is the manual revision, not a wire-protocol version). -->
 ````
 
-Spec done. 53 actions, one per source row, all payloads verbatim. Dual transport (serial + tcp:7142), binary w/ checksum. Traits powerable/routable/queryable/levelable inferred. Several UNRESOLVED markers — biggest gap: source is generic projector manual, Pn E329 model applicability + ID2 model code not stated.
-
 ## Provenance
 
 ```yaml

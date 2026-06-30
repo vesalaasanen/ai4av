@@ -1427,8 +1427,6 @@ interlocks: []
 <!-- UNRESOLVED: the View I/O mode / View I/O state commands share an identical ASCII opcode `X!}` in the source — the response field is the only differentiator. Real-world behavior of these two rows needs device verification. -->
 ````
 
-Spec done. 90+ actions, all opcodes verbatim. Mix-point addr tables + dB→SIS table = param spaces (not separate commands). UNRESOLVED markers on gaps (firmware range, truncated telephone rows, dual `X!}` opcode).
-
 ## Provenance
 
 ```yaml

@@ -617,8 +617,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 ```
 
-Spec done. 55 actions enumerated, all payloads verbatim. Serial + TCP both supported (port 7142 stated, baud rates stated). Appendix values + flow control left UNRESOLVED — not in refined source.
-
 ## Provenance
 
 ```yaml

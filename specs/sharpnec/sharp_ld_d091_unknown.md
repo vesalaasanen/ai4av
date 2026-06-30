@@ -670,8 +670,6 @@ interlocks: []
 - <!-- UNRESOLVED: serial flow_control mode not stated (RTS/CTS pins wired but mode unspecified). -->
 ```
 
-Spec done. 52 actions enumerated (all cmd-bearing entries from §3), dual transport w/ stated port 7142 + full serial set, no fabricated volts/amps/baud-defaults. Appendix value tables + ID2 model code left UNRESOLVED (not in excerpt).
-
 ## Provenance
 
 ```yaml

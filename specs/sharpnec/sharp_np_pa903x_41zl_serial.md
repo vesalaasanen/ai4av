@@ -836,8 +836,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN unit model list / supported wireless standards not in this extract. -->
 ````
 
-Spec done. 53 commands all covered verbatim hex. Both serial + TCP (port 7142) transport. No fabrication. UNRESOLVED markers where source appendix missing.
-
 ## Provenance
 
 ```yaml

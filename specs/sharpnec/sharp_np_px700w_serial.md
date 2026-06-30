@@ -657,8 +657,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility range not stated. -->
 ```
 
-Spec done. 53 actions enumerated — all command rows from source §2 covered. Serial+TCP both populated (port 7142 stated). Appendix value tables marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

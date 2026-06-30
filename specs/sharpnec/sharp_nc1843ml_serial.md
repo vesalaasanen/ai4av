@@ -634,8 +634,6 @@ interlocks:
 <!-- UNRESOLVED: serial flow_control not explicitly specified (only "full duplex" comm mode stated). -->
 ```
 
-Spec done. 53 commands, all verbatim hex payloads. Serial+TCP transport, port 7142, baud set selectable. Appendix tables + firmware = UNRESOLVED.
-
 ## Provenance
 
 ```yaml

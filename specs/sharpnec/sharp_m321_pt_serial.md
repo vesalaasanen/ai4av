@@ -743,8 +743,6 @@ interlocks:
 <!-- UNRESOLVED: 053 LENS CONTROL DATA01 full target list (source table truncated, only 06h=Periphery Focus shown) -->
 ````
 
-Spec done. 53 actions enumerated (all source rows). Both serial+TCP transports. Hex payloads verbatim. Appendix-listed value sets marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

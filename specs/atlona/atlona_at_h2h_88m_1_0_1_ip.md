@@ -591,8 +591,6 @@ interlocks: []
 <!-- UNRESOLVED: broadcast-mode notification payload not specified -->
 ````
 
-Spec done. 39 actions, all from source verbatim. Dual transport (tcp+serial). Gaps marked UNRESOLVED. No invented values.
-
 ## Provenance
 
 ```yaml

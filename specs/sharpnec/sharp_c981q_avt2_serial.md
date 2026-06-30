@@ -825,8 +825,6 @@ interlocks:
 <!-- - Power-on/off sequencing recommendations beyond the lockout interlocks not stated. -->
 ```
 
-Spec done. 53 actions enumerated verbatim from source command list. Both serial + TCP captured (port 7142). All enum appendix tables flagged UNRESOLVED since refined excerpt omitted them.
-
 ## Provenance
 
 ```yaml

@@ -574,8 +574,6 @@ interlocks: []
 <!-- UNRESOLVED: ID2 model code value for ME501 PT not stated in source. -->
 ````
 
-Spec done. 53 source commands → 24 actions + 24 feedbacks (queries). All hex payloads verbatim. UNRESOLVED markers on appendix-referenced value tables, flow control, default baud, ID2 model code, firmware.
-
 ## Provenance
 
 ```yaml

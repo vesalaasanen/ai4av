@@ -625,8 +625,6 @@ interlocks: []
 <!-- UNRESOLVED: exact Pn P506 model confirmation and ID2 model code not stated in this manual. -->
 ```
 
-Spec done. 53 commands, all verbatim. TCP port 7142 + serial 8N1 multi-baud. No fabricated values — gaps marked UNRESOLVED (appendix enums, ID2 model code, firmware, flow control).
-
 ## Provenance
 
 ```yaml

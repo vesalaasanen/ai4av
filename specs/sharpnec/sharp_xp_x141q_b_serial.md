@@ -659,8 +659,6 @@ interlocks:
 <!-- UNRESOLVED: factory-default baud rate not stated -->
 ````
 
-Spec done. 53 commands enumerated verbatim from source. Serial + TCP both in transport (port 7142 + RS-232C config). UNRESOLVED markers where appendix value maps / ID2 / default baud missing.
-
 ## Provenance
 
 ```yaml

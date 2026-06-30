@@ -654,8 +654,6 @@ warnings:
 
 ---
 
-Spec done. 53 commands enumerated — 28 actions + 25 queries. Dual transport (TCP 7142 + RS-232). Enums in source Appendix not in refined doc → marked UNRESOLVED. No values fabricated.
-
 ## Provenance
 
 ```yaml

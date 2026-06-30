@@ -849,8 +849,6 @@ interlocks:
 <!-- UNRESOLVED: audio route set <inputs> token format not fully specified -->
 ````
 
-Spec done. Mixer-scope. 60 actions enumerated, all Mixer-valid commands. VISCA hex + camera-only/Decoder-only/EasyIP-10-only excluded with UNRESOLVED notes. Transport TCP 23 + RS-232 38400 8N1, auth=password (admin login required but credential format UNRESOLVED).
-
 ## Provenance
 
 ```yaml

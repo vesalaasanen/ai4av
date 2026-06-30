@@ -584,8 +584,6 @@ interlocks: []
 <!-- UNRESOLVED: unsolicited events / macros / interlocks not documented in source. -->
 ```
 
-Spec done. 23 write actions + 18 queries = 41 total. All cmd rows enumerated, payloads verbatim with `<CR>` suffix. Serial 9600 8N1 direct from source; flow_control UNRESOLVED. Transport TCP/HTTP/UDP absent → omitted per template rule.
-
 ## Provenance
 
 ```yaml

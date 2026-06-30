@@ -751,8 +751,6 @@ interlocks:
 <!-- UNRESOLVED: exact numeric min/max adjustment limits not fixed in source (runtime-discoverable via gain_parameter_request) -->
 ```
 
-Spec done. 53 actions enumerated — all command-bearing source rows. Appendix tables (input/aspect/eco-mode/sub-input/base-model) referenced but absent from refined source → marked UNRESOLVED, not fabricated.
-
 ## Provenance
 
 ```yaml

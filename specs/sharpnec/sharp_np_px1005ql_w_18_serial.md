@@ -731,8 +731,6 @@ interlocks: []
 <!-- UNRESOLVED: ID2 model code value for this specific model not stated in source -->
 ````
 
-Spec done. 53 commands enumerated, hex payloads verbatim, checksum noted, gaps marked.
-
 ## Provenance
 
 ```yaml

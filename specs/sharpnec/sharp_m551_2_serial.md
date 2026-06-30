@@ -759,8 +759,6 @@ interlocks:
 <!-- UNRESOLVED: input terminal value list for 018 INPUT SW CHANGE and 319-10 AUDIO SELECT SET not in source excerpt. -->
 ```
 
-Spec done. 53 commands — all documented in source, enumerated verbatim. Both protocols (serial + TCP port 7142) captured. Gaps marked `UNRESOLVED`: firmware version, appendix enum lists, flow control, two-lamp model confirmation, adjustment ranges (runtime-queryable only).
-
 ## Provenance
 
 ```yaml

@@ -652,8 +652,6 @@ interlocks:
 <!-- UNRESOLVED: whether UN552VS TMX9P supports lamp 2 (two-lamp) fields; source fields conditional on model. -->
 ```
 
-Spec done. 51 actions enumerated — matches command list rows 84-137 (009 through 319-10). All carry verbatim hex payloads. Caveman stay on.
-
 ## Provenance
 
 ```yaml

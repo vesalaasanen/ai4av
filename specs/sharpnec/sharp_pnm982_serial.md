@@ -622,8 +622,6 @@ interlocks:
 <!-- UNRESOLVED: (1) Source is the generic BDT140013 manual — model name "PNM982" not stated in the document body; confirm against the specific device. (2) Appendix "Supplementary Information by Command" referenced for input-terminal, aspect, eco-mode, base-model-type, and sub-input enumerations is NOT present in this refined source, so those enum value lists are unresolved. (3) flow_control serial setting not explicitly stated. (4) Firmware version compatibility range not stated. (5) Protocol version not stated. -->
 ````
 
-Spec done. 53 actions enumerated = all source rows. Hex verbatim. CKS + appendix enums marked UNRESOLVED per policy. No voltage/port/baud invented.
-
 ## Provenance
 
 ```yaml

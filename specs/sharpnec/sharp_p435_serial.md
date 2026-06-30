@@ -729,8 +729,6 @@ interlocks:
 <!-- UNRESOLVED: no voltage/current/power specifications in source. -->
 ````
 
-Spec done. 52 actions enumerated = matches all 52 command rows in Section 2. Serial+TCP both populated (source explicit). Port 7142 stated verbatim. Baud list verbatim. All hex payloads verbatim from source, params inline. Unresolved markers on missing appendix enums, model code, firmware, flow control.
-
 ## Provenance
 
 ```yaml

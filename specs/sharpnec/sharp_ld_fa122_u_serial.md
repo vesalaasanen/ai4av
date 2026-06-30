@@ -694,8 +694,6 @@ interlocks:
 <!-- UNRESOLVED: Default baud rate not stated (only supported list 4800–115200). Flow control not explicitly named. Firmware version compatibility not stated. Full enum value lists for input terminal, aspect, eco mode, and PIP sub-input deferred to source Appendix "Supplementary Information by Command" (not included in this excerpt). Model name "Ld Fa122 U" supplied by operator, not printed verbatim in source body. -->
 ````
 
-Spec done. 53 actions, all literal hex payloads verbatim incl checksum. Transport = serial + tcp:7142. Baud default left unresolved (only supported list in source). Enum appendix values noted as gap.
-
 ## Provenance
 
 ```yaml

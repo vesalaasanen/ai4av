@@ -626,8 +626,6 @@ interlocks:
 <!-- UNRESOLVED: Appendix value enumerations (input terminal, aspect, eco mode, base model type, sub input) not available in refined source. -->
 ````
 
-Spec done. 53 actions, all rows covered. UNRESOLVED markers on gaps (flow control, firmware, appendix enums, model-name confirm).
-
 ## Provenance
 
 ```yaml

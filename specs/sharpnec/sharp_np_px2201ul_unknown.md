@@ -693,8 +693,6 @@ interlocks:
 <!-- UNRESOLVED: protocol version not stated -->
 ```
 
-Spec done. 53 actions enumerated — every command row from §2 covered, verbatim hex payloads preserved, parameterized commands show variable parts. Appendix values marked UNRESOLVED (referenced but not in refined source).
-
 ## Provenance
 
 ```yaml

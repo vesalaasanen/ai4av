@@ -696,8 +696,6 @@ interlocks:
 <!-- UNRESOLVED: whether TCP port 7142 also applies to the optional wireless LAN unit — source defers to wireless unit manual. -->
 ````
 
-Spec done. 53 actions, all command hex verbatim. Serial+TCP, port 7142. Traits: powerable/queryable/routable/levelable. Appendix value-lists + model code (ID2) marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

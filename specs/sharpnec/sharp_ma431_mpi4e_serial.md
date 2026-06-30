@@ -789,8 +789,6 @@ Several value enumerations are referenced as an external Appendix ("Supplementar
 <!-- UNRESOLVED: external Appendix value tables (input terminal, aspect, eco mode, sub-input, base model type) not present in refined source -->
 ```
 
-Spec done. 53 actions = full command list (009→319-10), each with verbatim hex payload. Serial+TCP both in source so both emitted. Baud = `null` UNRESOLVED (5 rates, no default stated). Appendix value tables absent → marked UNRESOLVED per action. Want ingest next?
-
 ## Provenance
 
 ```yaml

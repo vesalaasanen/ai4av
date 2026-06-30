@@ -759,8 +759,6 @@ interlocks:
 <!-- UNRESOLVED: Appendix "Supplementary Information by Command" referenced multiple times (input terminal values, aspect values, eco mode values, base model type values, sub input setting values) is not present in this refined source document. Firmware version compatibility not stated. Protocol version not stated. Whether TCP connection stays persistent or per-command not stated. -->
 ````
 
-Spec done. 53 commands, all hex payloads verbatim. Serial+TCP both documented, port 7142 explicit, no auth inferred. Appendix value tables referenced but absent → marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

@@ -612,8 +612,6 @@ interlocks:
 <!-- UNRESOLVED: ID2 model code value not stated for Ld Fe192 specifically -->
 ```
 
-Spec done. 53 actions enumerated (all source command rows). Serial+TCP both populated from explicit source. Baud rate, port 7142, checksum rule all verbatim. Appendix enum values marked UNRESOLVED — not in refined source.
-
 ## Provenance
 
 ```yaml

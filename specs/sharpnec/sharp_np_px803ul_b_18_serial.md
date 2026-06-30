@@ -656,8 +656,6 @@ interlocks:
 <!-- UNRESOLVED: eco mode / aspect / base-model-type enum value tables referenced to Appendix, not in excerpt. -->
 ````
 
-Spec done. 53 commands, all verbatim. Serial + TCP. Payloads literal.
-
 ## Provenance
 
 ```yaml

@@ -638,8 +638,6 @@ notes: >
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 ````
 
-Spec done. 53 actions = every source row. Serial+TCP both populated. CKS frame + checksum rule in Transport/Notes. Enums missing (Appendix not in source) marked UNRESOLVED, no fabrication.
-
 ## Provenance
 
 ```yaml

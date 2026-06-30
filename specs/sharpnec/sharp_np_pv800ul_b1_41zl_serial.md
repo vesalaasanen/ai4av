@@ -704,8 +704,6 @@ notes:
 <!-- UNRESOLVED: voltage/current/power specs not in this control-protocol document. -->
 ````
 
-Spec done. 53 commands enumerated verbatim, both transports (RS-232C + TCP 7142) captured, full error-code table in Feedbacks. Unresolved markers cover appendix refs, defaults, ranges, flow control.
-
 ## Provenance
 
 ```yaml

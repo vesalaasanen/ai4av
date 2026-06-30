@@ -765,8 +765,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated -->
 ````
 
-Spec done. 53 commands, all verbatim hex payloads. Serial + TCP both documented → both in transport. Serial baud listed as 5-value array (source lists all). Port 7142 stated verbatim. Auth `none` inferred (no login procedure anywhere). Appendix-dependent value lists marked UNRESOLVED (refined source lacks them).
-
 ## Provenance
 
 ```yaml

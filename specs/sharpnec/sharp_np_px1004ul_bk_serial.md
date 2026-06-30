@@ -800,8 +800,6 @@ notes: "Source notes that POWER ON accepts no other command while turning on, an
 <!-- UNRESOLVED: default baud rate not stated -->
 ```
 
-Spec done. 53 commands, all verbatim payloads. Serial + TCP port 7142. Appendix value tables missing from refined source → marked UNRESOLVED. No fabricated values.
-
 ## Provenance
 
 ```yaml

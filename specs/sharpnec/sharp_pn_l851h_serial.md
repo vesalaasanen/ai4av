@@ -658,8 +658,6 @@ interlocks: []
 <!-- UNRESOLVED: whether all projector-centric commands (lamp, shutter, lens, edge-blending) apply to PN-L851H is unconfirmed. -->
 ```
 
-Spec done. 53 actions enumerated (all source rows), dual transport (serial + TCP 7142), no fabricated values, UNRESOLVED markers on gaps.
-
 ## Provenance
 
 ```yaml

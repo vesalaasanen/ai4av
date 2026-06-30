@@ -555,8 +555,6 @@ interlocks: []
 <!-- UNRESOLVED: firmware version compatibility ranges not stated beyond Ver.1.27 (HE20/UE20) and Ver.2.05 (UE4) -->
 ````
 
-Spec done. Source = web/CGI supplement only — no PTZ/serial commands (those live in companion volume not provided). 22 CGIs + 2 RTSP URLs enumerated verbatim.
-
 ## Provenance
 
 ```yaml

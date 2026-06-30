@@ -762,8 +762,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN unit details not specified -->
 ````
 
-Spec done. 53 actions, all command payloads verbatim from source. Both serial+TCP transport captured (port 7142 explicit, serial config explicit, flow_control UNRESOLVED). Auth none inferred. Traits powerable/routable/queryable/levelable. Safety interlocks from explicit text. Appendix value tables marked UNRESOLVED since not in refined excerpt.
-
 ## Provenance
 
 ```yaml

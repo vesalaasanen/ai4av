@@ -537,8 +537,6 @@ Binary hex protocol. Each command/request frame ends with checksum byte. Respons
 <!-- UNRESOLVED: wireless LAN unit model compatibility not in this manual. -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim from source. Gaps marked UNRESOLVED (firmware, ID1/ID2 defaults, appendix value lists, voltage specs).
-
 ## Provenance
 
 ```yaml

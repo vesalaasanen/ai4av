@@ -383,8 +383,6 @@ interlocks: []
 - Source titles this as RX-1050 only; broader "RX-105 Series" applicability is not confirmed by this document.
 ```
 
-Spec done. 46 actions (44 action + 1 query + DisplayRefresh as query), 1 feedback, 1 event. Checksum algo unresolved — source never states it. Meta-encoding rule noted.
-
 ## Provenance
 
 ```yaml

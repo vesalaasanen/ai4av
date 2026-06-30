@@ -677,8 +677,6 @@ notes: >
 <!-- UNRESOLVED: protocol version not stated in source. -->
 ````
 
-Spec done. 53 commands enumerated (24 actions + 29 queries), all literal hex payloads verbatim from source. Serial 8N1 + TCP 7142 both documented. UNRESOLVED markers on missing appendix, model name, firmware, flow_control.
-
 ## Provenance
 
 ```yaml

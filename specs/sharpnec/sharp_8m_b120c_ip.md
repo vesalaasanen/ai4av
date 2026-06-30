@@ -688,8 +688,6 @@ interlocks:
 <!-- UNRESOLVED: firmware/protocol version not stated. Default baud rate not stated. Full input-terminal / eco-mode / aspect / base-model / sub-input enum tables live in an appendix absent from this excerpt. Wireless-LAN unit specifics deferred to the operation manual. -->
 ````
 
-Spec done. 53 source commands enumerated — 25 actions + 28 queries. All hex payloads verbatim incl. checksum bytes. Both transports populated (TCP port 7142 + RS-232 config from §1.2). UNRESOLVED markers on: firmware ver, default baud, flow_control, appendix enum tables (input-terminal/eco/aspect/base-model/sub-input), warmup timing.
-
 ## Provenance
 
 ```yaml

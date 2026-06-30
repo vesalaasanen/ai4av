@@ -749,8 +749,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Transport covers RS-232C (5 baud rates) + TCP port 7142. Appendix value maps marked UNRESOLVED (excluded from refined source).
-
 ## Provenance
 
 ```yaml

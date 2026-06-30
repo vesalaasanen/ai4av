@@ -759,8 +759,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility range not stated. -->
 ````
 
-Spec done. 53 actions enumerated verbatim from source. Both serial + TCP (port 7142) emitted. All gaps marked `UNRESOLVED`. Status `draft`, confidence `low`.
-
 ## Provenance
 
 ```yaml

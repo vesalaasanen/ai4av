@@ -597,8 +597,6 @@ interlocks:
 <!-- UNRESOLVED: exact ID2 model code for Me551 Pt not stated. Appendix "Supplementary Information by Command" (input terminal values, base model types, eco mode values, sub-input values) referenced but not included in this refined excerpt. Flow control method not specified. Firmware version compatibility not stated. -->
 ````
 
-Spec done. 53 actions, all command payloads verbatim. Serial+TCP(7142) transport. Interlocks + auto-clear behaviors captured from explicit source. Appendix values + ID2 model code marked UNRESOLVED (referenced but not in refined excerpt).
-
 ## Provenance
 
 ```yaml

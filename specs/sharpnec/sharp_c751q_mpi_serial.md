@@ -773,8 +773,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN unit details deferred to separate operation manual. -->
 ```
 
-Spec done. 53 actions, all verbatim payloads. Both serial+TCP populated (port 7142 stated). Baud as 5-value list (no default stated). Appendix-driven enums flagged UNRESOLVED.
-
 ## Provenance
 
 ```yaml

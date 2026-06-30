@@ -729,8 +729,6 @@ interlocks:
 <!-- UNRESOLVED: flow_control — RTS/CTS pins wired on D-SUB 9P but flow control semantics (none/hardware) not stated explicitly. -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Serial + TCP both (source covers both). Baud selectable list kept. Auth `none` (inferred, no login proc in source). Interlocks from power/lens lockouts only — no voltage invented. Appendix-referenced enums marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

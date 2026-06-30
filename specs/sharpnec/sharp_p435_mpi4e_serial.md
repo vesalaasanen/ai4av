@@ -803,8 +803,6 @@ interlocks:
 <!-- UNRESOLVED: LENS CONTROL REQUEST (053-1) target code list not provided -->
 ```
 
-Spec done. 53 actions — one per source command row. All hex payloads verbatim. Checksum + frame format documented. Gaps marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

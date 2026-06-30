@@ -786,8 +786,6 @@ interlocks: []
 <!-- UNRESOLVED: command timeout / inter-command delay not specified in source. -->
 ````
 
-Spec done. 53 actions (one per source command row, none collapsed). Both serial + TCP populated (both stated). No port/baud/voltage invented. Checksum bytes kept verbatim. Unresolved markers on Appendix-dependent code tables + ID2 model code + ID1 default.
-
 ## Provenance
 
 ```yaml

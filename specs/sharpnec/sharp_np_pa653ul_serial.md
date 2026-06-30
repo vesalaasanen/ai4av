@@ -737,8 +737,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN unit specifications referenced out to a separate operation manual. -->
 ````
 
-Spec done. 53 actions (binary hex payloads verbatim + checksum rule). Both serial + TCP 7142 transport. Gaps marked `UNRESOLVED` (appendix value lists, default baud, firmware).
-
 ## Provenance
 
 ```yaml

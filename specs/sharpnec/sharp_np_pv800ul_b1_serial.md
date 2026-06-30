@@ -707,8 +707,6 @@ interlocks:
 <!-- UNRESOLVED: response timing / inter-command delay requirements not stated. -->
 ```
 
-Spec done. 53 commands enumerated verbatim from source — each carries literal hex payload, parameterized where source shows DATA fields. Gaps marked `UNRESOLVED`: appendix tables (input codes, aspect values, eco-mode enum, sub-input codes), firmware range, ID2 model code, flow-control mode, response timing. Baud rate listed as configurable set per source; port 7142 stated; serial 8N1 stated.
-
 ## Provenance
 
 ```yaml

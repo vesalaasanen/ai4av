@@ -649,8 +649,6 @@ interlocks: []
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 ````
 
-Spec done. 53 actions = full source command list. Binary payloads verbatim. Gaps marked `UNRESOLVED` (appendix tables missing from refined doc, flow control, firmware).
-
 ## Provenance
 
 ```yaml

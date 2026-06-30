@@ -763,8 +763,6 @@ notes: |
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 ```
 
-Spec done. 53 actions enumerated — all distinct command rows from source §2/§3, each carrying literal hex payload verbatim incl. checksum byte. Both `serial` + `tcp` (port 7142) populated since source §1.1-1.2 states both. UNRESOLVED markers on appendix-referenced enum codes, baud default, flow control, firmware version.
-
 ## Provenance
 
 ```yaml

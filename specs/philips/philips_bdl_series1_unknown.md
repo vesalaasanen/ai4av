@@ -254,8 +254,6 @@ interlocks: []
 <!-- UNRESOLVED: no response frame format documented — cannot define feedbacks/events without knowing acknowledgement structure. -->
 ````
 
-Spec done. 19 actions, all hex payloads verbatim. Serial + TCP transport populated from source. Checksum algo undocumented — full payloads used as-is. Full SICP doc behind SharePoint link, not fetched — this is "commonly used" subset only.
-
 ## Provenance
 
 ```yaml

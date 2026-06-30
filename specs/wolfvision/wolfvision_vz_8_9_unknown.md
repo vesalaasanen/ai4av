@@ -1111,8 +1111,6 @@ interlocks: []
 ```
 ```
 
-Spec done. ~120 actions enumerated across both pages, serial transport from source, no fabricated values. Stop `$80` listed once (shared across zoom/focus/iris). Page-1 byte collisions (`A3`/`A4`/`84`/`85` etc.) disambiguated by page-select prefix.
-
 ## Provenance
 
 ```yaml

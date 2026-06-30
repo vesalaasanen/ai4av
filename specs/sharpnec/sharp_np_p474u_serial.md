@@ -680,8 +680,6 @@ power_on_exclusivity: "While POWER ON (015) is executing, no other command is ac
 <!-- UNRESOLVED: firmware version compatibility not stated. -->
 ```
 
-Spec done. 53 actions, all hex payloads verbatim. Inference notes on transport auth + traits. Appendix values + model code + firmware = marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

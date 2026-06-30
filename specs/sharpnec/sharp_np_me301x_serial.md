@@ -771,8 +771,6 @@ interlocks:
 <!-- UNRESOLVED: ID1 control ID and ID2 model code specific values not enumerated -->
 ````
 
-Spec done. All 53 source commands enumerated verbatim hex. Appendix value tables + flow control + default baud = UNRESOLVED (not in refined source). Want me write to file or ingest?
-
 ## Provenance
 
 ```yaml

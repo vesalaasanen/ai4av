@@ -720,8 +720,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility; exact input terminal / aspect / eco / sub-input / base-model-type value enumerations (in source Appendix not present in refined excerpt). -->
 ````
 
-Spec done. 53 actions, full coverage. RS-232C + TCP 7142. Checksum recomputed per-frame. Appendix value maps flagged UNRESOLVED (not in refined excerpt).
-
 ## Provenance
 
 ```yaml

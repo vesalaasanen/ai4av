@@ -779,8 +779,6 @@ interlocks:
 <!-- UNRESOLVED: LED E012I 217In is single-lamp LED — lamp 2 / LAMP INFORMATION REQUEST 3 DATA01=01h applicability not confirmed for this model. -->
 ````
 
-Spec done. 55 commands enumerated, all hex payloads verbatim. Serial + TCP (port 7142). Baud rate list 5 values from source. Auth inferred none. 2 interlocks + power-off rejection documented. Appendix-referenced enums (input terminal, aspect, eco mode, sub input, base model type) marked UNRESOLVED — refined source lack appendix. ID1/ID2 byte values for this model UNRESOLVED (generic manual).
-
 ## Provenance
 
 ```yaml

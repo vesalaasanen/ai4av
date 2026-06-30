@@ -667,8 +667,6 @@ notes:
 <!-- UNRESOLVED: source references an "Appendix: Supplementary Information by Command" containing value tables for input terminals, base model types, sub-input setting values, eco mode values, and aspect values. The appendix is NOT present in the refined source document. Default ID1 (control ID) and ID2 (model code) byte values are not stated. Firmware/protocol version not stated beyond manual revision BDT140013 Rev 7.1. Wireless LAN unit models not specified. -->
 ````
 
-Spec done. 53 actions enumerated verbatim with payloads. RS-232C + TCP/7142 both populated from source. Appendix value tables marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

@@ -620,8 +620,6 @@ interlocks: []
 <!-- UNRESOLVED: serial flow_control not stated in source. -->
 ````
 
-Spec done. 53 commands enumerated (28 actions + 25 queries). Serial + TCP, port 7142. Value-map gaps flagged UNRESOLVED.
-
 ## Provenance
 
 ```yaml

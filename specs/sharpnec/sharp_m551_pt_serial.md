@@ -736,8 +736,6 @@ interlocks:
 <!-- UNRESOLVED: ID2 model code value for M551 Pt not stated in source -->
 ````
 
-Spec done. 53 actions (one per source command row). Tier-1 direct values only; Tier-2 inferences flagged; appendix tables + default baud + ID2 model code marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

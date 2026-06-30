@@ -631,8 +631,6 @@ interlocks:
 <!-- UNRESOLVED: default/selected baud rate for this model not stated; only the selectable set is listed. -->
 ````
 
-Spec done. 55 commands, all hex verbatim. Serial 8N1 + TCP 7142 both documented in source → both emitted. Appendix enum tables referenced but absent from refined source → marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

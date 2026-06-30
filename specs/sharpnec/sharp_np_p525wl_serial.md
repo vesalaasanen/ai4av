@@ -596,8 +596,6 @@ interlocks:
 <!-- UNRESOLVED: serial flow_control value not stated. -->
 ````
 
-Spec done. 53 actions, each with verbatim hex `command:` from source. Inferred traits noted. Appendix value tables + flow_control + firmware marked UNRESOLVED (referenced but absent from refined source).
-
 ## Provenance
 
 ```yaml

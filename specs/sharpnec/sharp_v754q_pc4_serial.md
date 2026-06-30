@@ -683,8 +683,6 @@ interlocks:
 <!-- - Wireless LAN transport (mentioned in §1.1) carries no protocol details — only wired TCP port 7142 is documented. -->
 ````
 
-Spec done. 53 actions (one per source row). Hex payloads verbatim. Serial+TCP both documented. Next: ingest path.
-
 ## Provenance
 
 ```yaml

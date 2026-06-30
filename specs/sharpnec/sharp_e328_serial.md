@@ -763,8 +763,6 @@ interlocks:
 <!-- UNRESOLVED: 053 LENS CONTROL DATA01 full target table (only 06h=Periphery Focus row shown) -->
 ```
 
-Spec done. 53 actions enumerate every command row from §3. All literal hex payloads verbatim with CKS. UNRESOLVED markers on 6 appendix-dependent value tables + model code + firmware.
-
 ## Provenance
 
 ```yaml

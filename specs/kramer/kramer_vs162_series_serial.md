@@ -851,8 +851,6 @@ interlocks: []
 <!-- UNRESOLVED: firmware version compatibility and Protocol 2000 revision implemented on VS-162 units (instruction 61 / NOTE 9 can query this at runtime). -->
 ````
 
-Spec done. 40 instructions enumerated (incl. reserved 17 + 32-35), payloads verbatim from source hex tables, 9600/8N1 direct, unresolved markers on matrix size + subset + ranges.
-
 ## Provenance
 
 ```yaml

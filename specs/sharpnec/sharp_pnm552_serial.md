@@ -671,8 +671,6 @@ interlocks: []
 <!-- UNRESOLVED: 053-2 LENS CONTROL 2 target byte lists only FFh=Stop in source.
 ````
 
-Spec done. 53 actions enumerated, each verbatim payload. UNRESOLVED markers on every gap.
-
 ## Provenance
 
 ```yaml

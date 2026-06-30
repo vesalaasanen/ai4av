@@ -647,8 +647,6 @@ interlocks:
 <!-- UNRESOLVED: protocol version (BDT140013 Rev 7.1) is manual revision, not device protocol version. -->
 ````
 
-Spec done. 53 actions = full command list from §2. Payloads verbatim hex from §3. Multi-enum gaps (input terminal, aspect, eco mode, sub-input, lens axis) marked `UNRESOLVED` — appendix not in refined source.
-
 ## Provenance
 
 ```yaml

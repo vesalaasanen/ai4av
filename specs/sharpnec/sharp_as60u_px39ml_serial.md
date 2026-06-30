@@ -33,14 +33,13 @@ known_gaps:
   - "no multi-step sequences explicitly described in source"
   - "no safety-critical interlock procedures present in source"
   - "ID2 model code for AS60U PX39ML not stated. Appendix value maps (input terminal, aspect, eco mode, sub input, base model type) not present in source. flow_control not stated. firmware version compatibility not stated. protocol/binary spec revision (BDT140013 Rev 7.1) noted but per-model applicability unconfirmed."
-  - "ID2 model code, Appendix value maps, flow_control, firmware."
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:34:36.534Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions verified against source; each hex opcode matches verbatim with command details; transport parameters confirmed in source. (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions verified against source; each hex opcode matches verbatim with command details; transport parameters confirmed in source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -607,8 +606,6 @@ interlocks: []
 <!-- UNRESOLVED: ID2 model code for AS60U PX39ML not stated. Appendix value maps (input terminal, aspect, eco mode, sub input, base model type) not present in source. flow_control not stated. firmware version compatibility not stated. protocol/binary spec revision (BDT140013 Rev 7.1) noted but per-model applicability unconfirmed. -->
 ````
 
-Spec done. 54 actions, all hex payloads verbatim. Serial + TCP both (port 7142 stated). Baud list kept verbatim. Marked UNRESOLVED: ID2 model code, Appendix value maps, flow_control, firmware.
-
 ## Provenance
 
 ```yaml
@@ -628,7 +625,7 @@ checked_at: 2026-06-17T19:34:36.534Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions verified against source; each hex opcode matches verbatim with command details; transport parameters confirmed in source. (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions verified against source; each hex opcode matches verbatim with command details; transport parameters confirmed in source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -642,7 +639,6 @@ summary: "All 53 spec actions verified against source; each hex opcode matches v
 - "no multi-step sequences explicitly described in source"
 - "no safety-critical interlock procedures present in source"
 - "ID2 model code for AS60U PX39ML not stated. Appendix value maps (input terminal, aspect, eco mode, sub input, base model type) not present in source. flow_control not stated. firmware version compatibility not stated. protocol/binary spec revision (BDT140013 Rev 7.1) noted but per-model applicability unconfirmed."
-- "ID2 model code, Appendix value maps, flow_control, firmware."
 ```
 
 ---

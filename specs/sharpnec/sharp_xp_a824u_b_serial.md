@@ -35,14 +35,13 @@ known_gaps:
   - "default baud rate not stated (five rates listed as selectable)."
   - "firmware version compatibility not stated."
   - "power/voltage/current specifications not in source."
-  - "value tables in missing appendix, flow_control, default baud, firmware version, power specs."
 verification:
   verdict: verified
   checked_at: 2026-06-19T07:49:44.881Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions verified against source; command opcodes and transport parameters match exactly. (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 spec actions verified against source; command opcodes and transport parameters match exactly. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -703,8 +702,6 @@ interlocks: []
 <!-- UNRESOLVED: power/voltage/current specifications not in source. -->
 ````
 
-Spec done. 53 commands enumerated verbatim, all hex payloads copied from source. Gaps marked UNRESOLVED: value tables in missing appendix, flow_control, default baud, firmware version, power specs.
-
 ## Provenance
 
 ```yaml
@@ -724,7 +721,7 @@ checked_at: 2026-06-19T07:49:44.881Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions verified against source; command opcodes and transport parameters match exactly. (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 spec actions verified against source; command opcodes and transport parameters match exactly. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -740,7 +737,6 @@ summary: "All 53 spec actions verified against source; command opcodes and trans
 - "default baud rate not stated (five rates listed as selectable)."
 - "firmware version compatibility not stated."
 - "power/voltage/current specifications not in source."
-- "value tables in missing appendix, flow_control, default baud, firmware version, power specs."
 ```
 
 ---

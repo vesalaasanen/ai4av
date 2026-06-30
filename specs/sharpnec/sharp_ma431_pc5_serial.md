@@ -656,8 +656,6 @@ interlocks: []
 <!-- UNRESOLVED: wireless LAN unit specifics deferred to per-model operation manual. -->
 ```
 
-Spec done. 53 commands covered — all rows from source §3. Power/mute/lens/shutter/freeze/eco/PIP/edge-blend/input-switch + all `078-*`/`037-*`/`097-*`/`098-*`/`305-*`/`319-*` queries. Two transports (serial + TCP 7142). All gaps marked `UNRESOLVED`.
-
 ## Provenance
 
 ```yaml

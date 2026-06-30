@@ -793,8 +793,6 @@ notes:
 <!-- UNRESOLVED: wireless LAN unit compatibility / protocol details deferred to separate operation manual -->
 ```
 
-Spec done. 53 actions enumerated, all command payloads verbatim, transport dual (TCP 7142 + RS-232C). Main gap: source Appendix "Supplementary Information by Command" missing — input codes, eco values, aspect values, base model types all UNRESOLVED.
-
 ## Provenance
 
 ```yaml

@@ -41,14 +41,13 @@ known_gaps:
   - "firmware version compatibility not stated in source (banner shows Vn.nn placeholder)."
   - "voltage/current specs for receptacles not stated in refined source (110/220 VAC mentioned in model description only)."
   - "protocol version number not stated."
-  - "scheduling sub-table (truncated in source), firmware compat, voltage specs."
 verification:
   verdict: verified
   checked_at: 2026-06-16T07:05:19.221Z
   matched_actions: 99
   action_count: 99
   confidence: medium
-  summary: "All 99 actions matched exactly against source command tables; transport parameters fully documented; spec comprehensively represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 99 actions matched exactly against source command tables; transport parameters fully documented; spec comprehensively represents source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -1084,8 +1083,6 @@ interlocks:
 <!-- UNRESOLVED: protocol version number not stated. -->
 ````
 
-Spec done. ~90 actions, both Telnet+web TCP paths, password auth (factory default documented), all error codes, boot events, safety interlocks for resets/erases. Gaps marked UNRESOLVED: scheduling sub-table (truncated in source), firmware compat, voltage specs.
-
 ## Provenance
 
 ```yaml
@@ -1111,7 +1108,7 @@ checked_at: 2026-06-16T07:05:19.221Z
 matched_actions: 99
 action_count: 99
 confidence: medium
-summary: "All 99 actions matched exactly against source command tables; transport parameters fully documented; spec comprehensively represents source command catalogue. (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 99 actions matched exactly against source command tables; transport parameters fully documented; spec comprehensively represents source command catalogue. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1126,7 +1123,6 @@ summary: "All 99 actions matched exactly against source command tables; transpor
 - "firmware version compatibility not stated in source (banner shows Vn.nn placeholder)."
 - "voltage/current specs for receptacles not stated in refined source (110/220 VAC mentioned in model description only)."
 - "protocol version number not stated."
-- "scheduling sub-table (truncated in source), firmware compat, voltage specs."
 ```
 
 ---

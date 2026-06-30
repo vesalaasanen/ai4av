@@ -738,8 +738,6 @@ interlocks:
 <!-- UNRESOLVED: model code (ID2) value for NP P502H not stated in source. -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Serial+TCP both populated from source. Appendix enums marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

@@ -726,8 +726,6 @@ interlocks: []
 <!-- UNRESOLVED: ID1 control ID and ID2 model code byte values for this specific model not stated in source. -->
 ````
 
-Spec done. 53 actions, one per source row. Hex verbatim. Both transports, port 7142, serial config from source. Caveman still active next turns.
-
 ## Provenance
 
 ```yaml

@@ -704,8 +704,6 @@ interlocks:
 <!-- UNRESOLVED: flow control setting not specified (RTS/CTS hardware lines are wired per pin table but no flow-control mode is documented). -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Serial+TCP transport (port 7142), 8/N/1. Traits powerable/queryable/levelable inferred. Cool-down interlocks in Safety. Gaps marked `UNRESOLVED` (appendix codes, default baud, eco enum values, flow control, ID2 code).
-
 ## Provenance
 
 ```yaml

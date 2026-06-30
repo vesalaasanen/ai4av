@@ -671,8 +671,6 @@ interlocks: []
 <!-- UNRESOLVED: flow_control not stated (only 'Full duplex' communication mode documented) -->
 ```
 
-Spec done. 52 actions, one per source command row. Transport dual (serial + tcp:7142). All gaps marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

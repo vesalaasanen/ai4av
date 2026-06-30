@@ -800,8 +800,6 @@ Wireless LAN connection requires separate wireless LAN unit (model-dependent).
 <!-- UNRESOLVED: control ID (ID1) default value not stated -->
 ````
 
-Spec done. 50+ actions enumerated — all source command rows covered. External Appendix values marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

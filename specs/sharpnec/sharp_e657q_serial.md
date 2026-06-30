@@ -755,8 +755,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 ```
 
-Spec done. 53 actions, all source-documented commands enumerated, no assumed values. Key gaps: missing appendix enums, flow_control, E657Q-vs-projector mapping unverified.
-
 ## Provenance
 
 ```yaml

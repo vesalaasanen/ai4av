@@ -1843,8 +1843,6 @@ notes:
 <!-- UNRESOLVED: voltage / current / power specs not present in this refined extract. -->
 ````
 
-Spec done. ~210 actions enumerated (every command table row). Serial+TCP transport, password auth (factory = serial number). Traits queryable+levelable+powerable. Events, feedbacks, variables, safety all populated from source. UNRESOLVED markers on firmware range, OSD menu emulation set (page 64 not in extract), voltage/power specs.
-
 ## Provenance
 
 ```yaml

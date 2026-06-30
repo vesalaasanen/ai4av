@@ -627,8 +627,6 @@ interlocks:
 <!-- UNRESOLVED: input terminal / aspect / eco-mode enum values referenced as "see Appendix" but appendix not present in source text -->
 ````
 
-Spec done. 53 actions, all source rows covered. Binary hex payloads verbatim. Transport = TCP (7142) + serial (multi-baud). Auth none inferred.
-
 ## Provenance
 
 ```yaml

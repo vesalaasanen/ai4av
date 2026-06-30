@@ -597,8 +597,6 @@ interlocks: []
 <!-- UNRESOLVED: default baud rate among listed options (115200/38400/19200/9600/4800) not stated. -->
 ```
 
-Spec done. 53 actions enumerated — every command row in source. Serial+TCP both captured. UNRESOLVED markers on appendix refs + firmware + flow_control + default baud.
-
 ## Provenance
 
 ```yaml

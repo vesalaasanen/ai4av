@@ -355,8 +355,6 @@ warnings:
 <!-- UNRESOLVED: voltage/current ratings of MC1 not stated in source. -->
 ```
 
-Spec done. 19 actions enumerated (o, c, s, s-specific, p, q, r?, V, V3, R, B, a, C18, C19, C22, calibrate, factory_reset) plus feedbacks/variables/events/macros/safety per source. Empty sections removed. UNRESOLVED markers on gaps. No fabricated values.
-
 ## Provenance
 
 ```yaml

@@ -683,8 +683,6 @@ interlocks: []
 <!-- UNRESOLVED: input-terminal DATA01 value table, eco-mode value table, base-model-type values, and PIP sub-input values are referenced to an Appendix not present in the refined source. -->
 ````
 
-Spec done. 53 commands enumerated (22 actions + 31 queries), dual transport serial+TCP(7142), baud multi-value, auth none inferred. Checksum + frame format documented. Appendix-referenced value tables (input terminal, eco mode, sub-input) marked UNRESOLVED — not in refined source.
-
 ## Provenance
 
 ```yaml

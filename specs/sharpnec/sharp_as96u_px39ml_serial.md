@@ -675,8 +675,6 @@ interlocks:
 <!-- UNRESOLVED: exact marketing model string for "As96U Px39Ml" not corroborated inside refined text (manual is generic projector command reference). -->
 ```
 
-Spec done. 53 commands enumerated verbatim, both serial+TCP transport. CKS + ID1/ID2 noted unresolved. Appendix enums flagged unresolved (not in refined source).
-
 ## Provenance
 
 ```yaml

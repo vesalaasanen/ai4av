@@ -626,8 +626,6 @@ interlocks:
 <!-- UNRESOLVED: wireless LAN port/specs external to source. -->
 ```
 
-Spec done. 53 actions, all commands from source enumerated verbatim. Transport dual serial+tcp, port 7142 stated, baud options listed default marked UNRESOLVED. Appendix enum tables flagged UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

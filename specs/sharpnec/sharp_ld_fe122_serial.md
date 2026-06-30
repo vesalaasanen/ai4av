@@ -682,8 +682,6 @@ notes:
 <!-- UNRESOLVED: wireless LAN unit part numbers / supported models not stated (deferred to operation manual). -->
 ````
 
-Spec done. 53 actions enumerated — 20 set/action + 33 query. Both serial + TCP transport captured. All hex payloads verbatim. Appendix value tables (input terminal, eco mode, base model type, sub input) flagged UNRESOLVED — refined source truncated them.
-
 ## Provenance
 
 ```yaml

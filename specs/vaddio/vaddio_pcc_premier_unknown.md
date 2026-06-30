@@ -462,8 +462,6 @@ Question mark as a parameter (`camera 1 focus ?`) returns a help list for the cu
 <!-- UNRESOLVED: firmware compatibility range — `version` example shows "PCC Premier 1.0.0" as a return value, not a stated minimum required version. -->
 ```
 
-Spec done. 33 actions enumerated (all source rows). Auth marked UNRESOLVED per policy (source hints but no cred format). Safety/Variables/Events/Macros as `[]` yaml blocks per format constraint.
-
 ## Provenance
 
 ```yaml

@@ -678,8 +678,6 @@ interlocks:
 <!-- UNRESOLVED: flow_control not explicitly stated (source lists only baud/data/parity/stop/mode). -->
 ````
 
-Spec done. 53 actions, all commands verbatim. No payload invented. Marked UNRESOLVED for missing appendix + ID1/ID2 + lens target list + flow_control.
-
 ## Provenance
 
 ```yaml

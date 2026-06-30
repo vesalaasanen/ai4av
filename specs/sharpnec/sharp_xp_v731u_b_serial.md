@@ -757,8 +757,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated. -->
 ````
 
-Spec done. 53 commands, all verbatim payloads. Serial+TCP both populated (port 7142 explicit). Appendix enum tables left UNRESOLVED — not in refined source.
-
 ## Provenance
 
 ```yaml

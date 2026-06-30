@@ -655,8 +655,6 @@ interlocks: []
 <!-- UNRESOLVED: serial flow_control not explicitly stated (pinout exposes RTS/CTS; source states 'Full duplex' communication mode only). -->
 ```
 
-Spec done. 53 commands all enumerated verbatim. Both serial + TCP transports documented. No fabricated values — baud rate from source (5 rates listed), port 7142 from source, ID1/ID2/Appendix codes marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

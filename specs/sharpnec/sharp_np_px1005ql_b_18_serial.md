@@ -741,8 +741,6 @@ interlocks:
 <!-- UNRESOLVED: flow_control field not specified in source; emitted as 'none' by inference from full-duplex statement. -->
 ````
 
-Spec done. 54 actions, one per numbered source row. Serial + TCP both populated (port 7142 stated, baud selectable). Binary hex payloads verbatim. Appendix value tables flagged UNRESOLVED — referenced but absent from refined source.
-
 ## Provenance
 
 ```yaml

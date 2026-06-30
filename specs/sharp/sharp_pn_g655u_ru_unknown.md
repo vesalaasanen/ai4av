@@ -1116,8 +1116,6 @@ temperature_monitoring:
 <!-- UNRESOLVED: mains power switch interlock procedure not stated in excerpt. -->
 ````
 
-Spec done. RS-232C-only, all source commands enumerated verbatim, gaps marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

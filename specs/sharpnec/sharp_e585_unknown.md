@@ -691,8 +691,6 @@ interlocks: []
 <!-- UNRESOLVED: firmware version compatibility, default baud rate, serial flow control, and full lens-control target enumeration not stated in source. -->
 ````
 
-Spec done. 53 actions, all literal hex verbatim. Gaps marked `UNRESOLVED` (value tables in missing appendix, model name from operator not source text).
-
 ## Provenance
 
 ```yaml

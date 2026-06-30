@@ -663,8 +663,6 @@ interlocks:
 <!-- UNRESOLVED: firmware version compatibility not stated. -->
 ````
 
-Spec done. 53 actions cover every command row in source §2. Binary hex payloads copied verbatim; parameterized commands show variable part as `<DATAxx>`. Gaps marked `UNRESOLVED` (baud default, Appendix values, ID1/ID2, flow control, firmware).
-
 ## Provenance
 
 ```yaml

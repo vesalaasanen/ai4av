@@ -687,8 +687,6 @@ interlocks:
 <!-- - Fault recovery sequences / power-on sequencing beyond interlock notes not documented -->
 ```
 
-Spec done. 53 commands enumerated verbatim from source. Serial+TCP dual transport. No fabricated values. UNRESOLVED markers on appendix-dependent enums + ID2 model code + firmware.
-
 ## Provenance
 
 ```yaml

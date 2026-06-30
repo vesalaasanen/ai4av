@@ -666,8 +666,6 @@ notes:
 <!-- UNRESOLVED: ID2 model-code value for NP-PX2000UL not stated -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. UNRESOLVED markers on absent appendix value-maps + flow_control + model code.
-
 ## Provenance
 
 ```yaml

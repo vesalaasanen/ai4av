@@ -668,8 +668,6 @@ interlocks:
 <!-- UNRESOLVED: power / voltage / lamp wattage specs not in this control-protocol document -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Multiple appendix-deferred value maps marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

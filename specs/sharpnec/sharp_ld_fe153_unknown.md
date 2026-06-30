@@ -642,8 +642,6 @@ interlocks:
 
 ---
 
-Spec done. 53 actions, all hex payloads verbatim from source. Ports/serial/transport = direct from source. Auth none = Tier 2 inference. Gaps marked `UNRESOLVED` (model name in-doc, firmware, eco-mode enum, appendix-referenced tables, flow_control).
-
 ## Provenance
 
 ```yaml

@@ -720,8 +720,6 @@ interlocks:
 <!-- UNRESOLVED: LENS CONTROL 2 (053-2) non-stop target codes not enumerated in refined source. -->
 ```
 
-Spec done. 53 commands all covered — 19 fixed-payload actions, parameterized actions carry verbatim hex templates with computed-CKS note. Dual transport (serial+TCP 7142) per source. Appendix enum ranges flagged UNRESOLVED (not in refined doc).
-
 ## Provenance
 
 ```yaml

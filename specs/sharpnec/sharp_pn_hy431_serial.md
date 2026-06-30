@@ -719,8 +719,6 @@ interlocks:
 <!-- UNRESOLVED: Control ID (ID1) and Model code (ID2) default values not stated. -->
 ```
 
-Spec done. 53 actions enumerated (all source rows). Dual transport serial+TCP (port 7142 verbatim). Checksum rule noted. Appendix values marked UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

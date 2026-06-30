@@ -712,8 +712,6 @@ interlocks:
 <!-- UNRESOLVED: per-outlet default state on power-up not stated -->
 ````
 
-Spec done. 486-line source covered: all 0x01..0x95 opcodes enumerated, hex payloads + checksum algorithm verbatim, premium-tier gaps + Register Status Change byte mismatch flagged UNRESOLVED. Caveman stays on for chat.
-
 ## Provenance
 
 ```yaml

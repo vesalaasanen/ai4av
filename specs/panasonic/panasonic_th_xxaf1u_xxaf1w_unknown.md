@@ -2650,8 +2650,6 @@ interlocks:
 <!-- UNRESOLVED: whether LAN transport supports the Serial ID / daisy-chain scheme is not stated -->
 ````
 
-Spec done. ~230 actions + queries covering all source rows verbatim. STX/ETX framing preserved. UNRESOLVED markers on TCP port, LAN framing, firmware, safety.
-
 ## Provenance
 
 ```yaml

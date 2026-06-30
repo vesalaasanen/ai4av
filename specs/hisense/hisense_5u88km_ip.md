@@ -1115,8 +1115,6 @@ interlocks: []
 - User-supplied protocol hint of "TCP/IP" is not supported by the source — the source explicitly describes an RS-232 (DB9) transport. If an IP variant exists, it would come from a separate document (e.g. `downloadId=784` referenced in the prior discovery memo), not this one.
 ```
 
-Spec done. ~110 actions enumerated per granularity rule. Discrepancies flagged: source is RS-232 (not TCP/IP), model 5U88KM not named in source, POIS row truncated, IR section out of scope. Ready for ingest when you give the go.
-
 ## Provenance
 
 ```yaml

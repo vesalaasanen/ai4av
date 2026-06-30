@@ -812,8 +812,6 @@ interlocks:
 <!-- UNRESOLVED: input terminal value table, aspect value table, eco mode value table, sub-input setting value table, and base model type value table are all referenced to the "Supplementary Information by Command" appendix which is not present in this refined source. Firmware version compatibility, power/voltage specs, and protocol version not stated. -->
 ````
 
-Spec done. 53 commands all enumerated, payload verbatim. Gaps (input terminal/aspect/eco/sub-input/base-model value tables, firmware, flow control) marked UNRESOLVED — appendix not in this refined source.
-
 ## Provenance
 
 ```yaml

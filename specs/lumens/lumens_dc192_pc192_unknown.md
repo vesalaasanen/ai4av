@@ -864,8 +864,6 @@ interlocks: []
 <!-- UNRESOLVED: voltage/current/power specs not in source; Auto Erase command byte differs between command-packet (14h) and return-packet (13h) tables — used 14h as sent; brightness_control value byte position ambiguous in source; AC power state and keypad-detection exact return payloads not enumerated; flow_control inferred as none. -->
 ````
 
-Spec done. 69 actions, full payloads verbatim. Serial RS-232 9600/8/N/1. Brightness byte mapping + AC-power/keypad return payloads left UNRESOLVED (source ambiguous).
-
 ## Provenance
 
 ```yaml

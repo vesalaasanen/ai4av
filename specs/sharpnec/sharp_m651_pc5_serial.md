@@ -662,8 +662,6 @@ interlocks: []
 <!-- UNRESOLVED: wireless LAN unit support referenced but details deferred to a separate operation manual. -->
 ````
 
-Spec done. 53 commands, all hex payloads verbatim. Serial+TCP both, port 7142. Appendix enums + default baud + flow control + firmware = UNRESOLVED (not in refined source).
-
 ## Provenance
 
 ```yaml

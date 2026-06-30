@@ -641,8 +641,6 @@ interlocks: []
 <!-- UNRESOLVED: voltage / current / power specifications not stated in source. -->
 ````
 
-Spec done. 53 actions, all hex verbatim + checksums. Serial+TCP(7142). Traits powerable/queryable/routable/levelable. Gaps marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

@@ -666,8 +666,6 @@ interlocks:
 <!-- UNRESOLVED: input terminal / aspect / eco mode / base model type enum maps referenced to absent appendix -->
 ````
 
-Spec done. 53 actions, all verbatim hex. Both serial+TCP populated (port 7142 stated). Flow_control + appendix enum maps marked UNRESOLVED. Drafts.jsonl path next if want ingest.
-
 ## Provenance
 
 ```yaml

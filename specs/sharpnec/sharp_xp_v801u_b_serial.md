@@ -735,8 +735,6 @@ Edge blending, eco mode, aspect, input terminal, base model type, sub input enum
 <!-- UNRESOLVED: response timing / inter-command delay not specified -->
 ````
 
-Spec done. 53 actions, all hex payloads verbatim. Both serial + tcp transport. Flow control, ID1/ID2 values, appendix enums marked UNRESOLVED — not fabricated.
-
 ## Provenance
 
 ```yaml

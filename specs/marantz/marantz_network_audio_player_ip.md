@@ -666,8 +666,6 @@ interlocks:
 <!-- UNRESOLVED: Network Standby mode is a front-panel setting, not a documented remote command. -->
 ````
 
-Spec done. 68 actions enumerated (every distinct row from source tables). Both transports (TCP:23 + RS-232C 9600/8/N/1) populated verbatim. Auth inferred none. MVDOWN + full MV table marked UNRESOLVED — page 7 ref cut from extract.
-
 ## Provenance
 
 ```yaml

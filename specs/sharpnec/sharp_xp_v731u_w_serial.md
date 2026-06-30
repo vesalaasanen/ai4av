@@ -716,8 +716,6 @@ interlocks: []
 <!-- UNRESOLVED: ID2 model code for XP V731U W not stated (defaults to 00h in examples). -->
 ````
 
-Spec done. 53 cmds enum (power/input/mute×6/adjust×4/lens×7/shutter×2/remote/freeze/eco/name/pip/edge/audio + 19 queries). Both serial+TCP transport (port 7142 doc'd). All UNRESOLVED gaps mark'd (appendix value tables miss from refined src).
-
 ## Provenance
 
 ```yaml

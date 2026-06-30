@@ -749,8 +749,6 @@ interlocks:
 <!-- UNRESOLVED: ID2 model code value for FA019I2 not stated; must be read from device. -->
 ````
 
-Spec done. 53 actions enumerated (one per source command row). Transport = serial + tcp port 7142. Serial config verbatim. All enum gaps + ID2/appendix marked UNRESOLVED.
-
 ## Provenance
 
 ```yaml

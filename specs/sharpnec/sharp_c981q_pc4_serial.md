@@ -682,8 +682,6 @@ notes: >
 <!-- UNRESOLVED: Firmware version compatibility not stated. -->
 ````
 
-Spec done. 53 actions, all hex verbatim. Gaps marked `UNRESOLVED` (appendix value tables absent from refined source, ID2 model code, firmware).
-
 ## Provenance
 
 ```yaml

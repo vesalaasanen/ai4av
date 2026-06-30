@@ -699,8 +699,6 @@ interlocks: []
 <!-- UNRESOLVED: serial flow control not stated (only "full duplex" comm mode stated). -->
 ````
 
-Spec done. 53 actions, all command payloads verbatim. Serial + TCP both in source so both emitted. Appendix value maps + default baud + flow control + firmware = marked UNRESOLVED (not in provided text). No voltage/power/credentials fabricated.
-
 ## Provenance
 
 ```yaml

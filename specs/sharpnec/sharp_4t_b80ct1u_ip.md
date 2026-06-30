@@ -873,8 +873,6 @@ interlocks:
 <!-- UNRESOLVED: precise marketing model name → "4T B80Ct1U" supplied by operator; not corroborated inside this protocol excerpt (which is a generic projector command reference, BDT140013 Rev 7.1). -->
 ````
 
-Spec done. 53 actions, one per source command row. Payloads verbatim hex. All UNRESOLVED gaps marked: appendix tables missing, default baud, firmware, model corroboration.
-
 ## Provenance
 
 ```yaml
