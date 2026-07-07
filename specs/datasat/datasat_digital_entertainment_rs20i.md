@@ -3,11 +3,12 @@ spec_id: admin/datasat-digital-entertainment-rs20i
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Datasat Digital Entertainment RS20i Control Spec"
-manufacturer: "Datasat Digital Entertainment"
+manufacturer: Datasat
 model_family: RS20i
 aliases: []
 compatible_with:
   manufacturers:
+    - Datasat
     - "Datasat Digital Entertainment"
   models:
     - RS20i

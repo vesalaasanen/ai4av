@@ -3,11 +3,12 @@ spec_id: admin/datasat-digital-entertainment-ap20
 schema_version: ai4av-public-spec-v1
 revision: 1
 title: "Datasat Digital Entertainment AP20 Control Spec"
-manufacturer: "Datasat Digital Entertainment"
+manufacturer: Datasat
 model_family: AP20
 aliases: []
 compatible_with:
   manufacturers:
+    - Datasat
     - "Datasat Digital Entertainment"
   models:
     - AP20
