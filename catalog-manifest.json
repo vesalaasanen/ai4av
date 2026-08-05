@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-08-05T10:09:29.532Z",
-  "spec_count": 2157,
+  "generated_at": "2026-08-05T12:16:45.097Z",
+  "spec_count": 2119,
   "specs": [
     {
       "specId": "admin/2n-2n-easygate-ip-plus",
@@ -3278,132 +3278,6 @@
       "contentHash": "1910cfb15f540cc68d18652688910a3744291b3600c7acc6360465594b05b65e"
     },
     {
-      "specId": "admin/barco-1520clp-top-pack",
-      "deviceId": "barco/1520clp-top-pack",
-      "title": "Barco 1520Clp Top Pack Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "1520Clp Top Pack",
-      "models": [
-        "1520Clp Top Pack"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_1520clp_top_pack_ip.md",
-      "actionCount": 36,
-      "lastCheckedAt": "2026-07-21T20:34:45.853Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "fa027226ea579494e6ed5d96ee960447fb7847d5644d3c2bdb04628ff8514b30"
-    },
-    {
-      "specId": "admin/barco-2-kw-lamp-xenon-nw-12",
-      "deviceId": "barco/barco-2-kw-lamp-xenon-nw-12",
-      "title": "Barco 2 Kw Lamp Xenon Nw 12 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 2 Kw Lamp Xenon Nw 12",
-      "models": [
-        "Barco 2 Kw Lamp Xenon Nw 12"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_2_kw_lamp_xenon_nw_12_ip.md",
-      "actionCount": 32,
-      "lastCheckedAt": "2026-07-21T20:34:46.577Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "663a2ae0af4e89594d2b08397ce232fbbc42f7708b267aadecf21ac17b37b015"
-    },
-    {
-      "specId": "admin/barco-2kw-xenon-lamp-sim-10",
-      "deviceId": "barco/barco-2-kw-xenon-lamp-sim-10",
-      "title": "Barco 2 Kw Xenon Lamp Sim 10 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 2 Kw Xenon Lamp Sim 10",
-      "models": [
-        "Barco 2 Kw Xenon Lamp Sim 10"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_2_kw_xenon_lamp_sim_10_ip.md",
-      "actionCount": 92,
-      "lastCheckedAt": "2026-07-21T20:34:47.434Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "971eac0769ac2eb6c08dd544447f89f12f35fdc61b95516d98ac93c1d81cb7fe"
-    },
-    {
-      "specId": "admin/barco-220w-uhp-projector-lamp",
-      "deviceId": "barco/barco-220-w-uhp-projector-lamp",
-      "title": "Barco 220 W Uhp Projector Lamp Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 220 W Uhp Projector Lamp",
-      "models": [
-        "Barco 220 W Uhp Projector Lamp"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_220_w_uhp_projector_lamp_ip.md",
-      "actionCount": 31,
-      "lastCheckedAt": "2026-07-21T20:34:48.249Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "e4de138b299937a014ca7109fa6b999d83ca471fe06f62be1bb9bbd9a2331b9a"
-    },
-    {
-      "specId": "admin/barco-300w-uhp-ir-projector-lamp-1",
-      "deviceId": "barco/barco-pulse-projector",
-      "title": "Barco Pulse Projector Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Pulse Projector",
-      "models": [
-        "Barco Pulse Projector"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_300w_uhp_ir_projector_lamp_1_ip.md",
-      "actionCount": 53,
-      "lastCheckedAt": "2026-07-21T20:46:26.697Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "683be085cd2bceef4492e2d0f4d257dd90524a44443ea28b7479cc768ca8b642"
-    },
-    {
-      "specId": "admin/barco-300w-uhp-projector-lamp-1",
-      "deviceId": "barco/barco-300w-uhp-projector-lamp-1",
-      "title": "Barco 300W UHP Projector Lamp 1 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 300W UHP Projector Lamp 1",
-      "models": [
-        "Barco 300W UHP Projector Lamp 1"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_300w_uhp_projector_lamp_1_ip.md",
-      "actionCount": 33,
-      "lastCheckedAt": "2026-07-21T20:40:32.728Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "13ea642f79e38816ace441662f4b97f7d8f7b320650851178fe5ded93541e2e0"
-    },
-    {
-      "specId": "admin/barco-330-w-uhp-projector-lamp",
-      "deviceId": "barco/barco-330-w-uhp-projector-lamp",
-      "title": "Barco 330 W UHP Projector Lamp Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 330 W UHP Projector Lamp",
-      "models": [
-        "Barco 330 W UHP Projector Lamp"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_330_w_uhp_projector_lamp_ip.md",
-      "actionCount": 45,
-      "lastCheckedAt": "2026-07-21T20:40:34.181Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "490e45fb3c00b92d09c44937b064c530a30c21a5edc9a5c3d408554e7f1bfd97"
-    },
-    {
       "specId": "admin/barco-pulse-projector",
       "deviceId": "barco/pulse-projector",
       "title": "Barco Pulse Projector Control Spec",
@@ -3420,24 +3294,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "17f593159ea833e0bac94ce337372b2c3a8a771bff7785ed4c75ac2d43e69d64"
-    },
-    {
-      "specId": "admin/barco-3rd-party-tld-lens-adapter",
-      "deviceId": "barco/3rd-party-tld-lens-adapter",
-      "title": "Barco 3Rd Party Tld Lens Adapter Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "3Rd Party Tld Lens Adapter",
-      "models": [
-        "3Rd Party Tld Lens Adapter"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_3rd_party_tld_lens_adapter_ip.md",
-      "actionCount": 54,
-      "lastCheckedAt": "2026-07-21T20:46:28.909Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "ed826e8625a2e01db80a2569ed2b5ec4a9d8aa2c381b3839e0a453cd541f2093"
     },
     {
       "specId": "admin/barco-86-medical-consultation-center",
@@ -3582,78 +3438,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "50f17b3d2b4ceb5baa8571de9b71b8c9bdb944ce22ff0c1fd55849b59db23cb3"
-    },
-    {
-      "specId": "admin/barco-b-lens-hc-138-dc4k-hc-113-172",
-      "deviceId": "barco/barco-b-lens-hc-138-dc4k-hc-113-172",
-      "title": "Barco B Lens Hc 138 Dc4K Hc 113 172 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco B Lens Hc 138 Dc4K Hc 113 172",
-      "models": [
-        "Barco B Lens Hc 138 Dc4K Hc 113 172"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_b_lens_hc_138_dc4k_hc_113_172_ip.md",
-      "actionCount": 70,
-      "lastCheckedAt": "2026-07-21T21:13:36.452Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "cd28989e6f49d5f461ad2bc924c7faee058d20a68a957b8c8b51475aac2a03c6"
-    },
-    {
-      "specId": "admin/barco-b-lens-hc-138-dc4k-hc-146-210",
-      "deviceId": "barco/barco-b-lens-hc-138-dc4k-hc-146-210",
-      "title": "Barco B Lens Hc 138 Dc4K Hc 146 210 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco B Lens Hc 138 Dc4K Hc 146 210",
-      "models": [
-        "Barco B Lens Hc 138 Dc4K Hc 146 210"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_b_lens_hc_138_dc4k_hc_146_210_ip.md",
-      "actionCount": 31,
-      "lastCheckedAt": "2026-07-21T21:13:37.224Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "e682494ebd389b159a8891907c532c940d30b1748a674c0e5a5de8a057b82723"
-    },
-    {
-      "specId": "admin/barco-b-lens-hc-138-dc4k-hc-165-260",
-      "deviceId": "barco/barco-b-lens-hc-138-dc4k-hc-165-260",
-      "title": "Barco B Lens Hc 138 Dc4K Hc 165 260 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco B Lens Hc 138 Dc4K Hc 165 260",
-      "models": [
-        "Barco B Lens Hc 138 Dc4K Hc 165 260"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_b_lens_hc_138_dc4k_hc_165_260_ip.md",
-      "actionCount": 28,
-      "lastCheckedAt": "2026-07-21T21:13:38.131Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "929f502cd44e35234f91581b8b1863b02314e6bdfe15e677325a965c2d2781fd"
-    },
-    {
-      "specId": "admin/barco-b-lens-hc-dc4k-146-210",
-      "deviceId": "barco/barco-b-lens-hc-dc4k-146-210",
-      "title": "Barco B Lens Hc Dc4K 146 210 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco B Lens Hc Dc4K 146 210",
-      "models": [
-        "Barco B Lens Hc Dc4K 146 210"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_b_lens_hc_dc4k_146_210_ip.md",
-      "actionCount": 27,
-      "lastCheckedAt": "2026-07-21T21:13:39.283Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "cc1c15a330a2b8078d5215879097020987e59e294835e38de420ab8e75b99afe"
     },
     {
       "specId": "admin/barco-balder-series",
@@ -3872,42 +3656,6 @@
       "contentHash": "c36eff6a45389f4e3ecca9421cfe1277ddf67ff35434b5c838dfc38401ca75c7"
     },
     {
-      "specId": "admin/barco-clp-blp-stand-alone-pack",
-      "deviceId": "barco/barco-clp-blp-stand-alone-pack",
-      "title": "Barco Clp Blp Stand Alone Pack Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Clp Blp Stand Alone Pack",
-      "models": [
-        "Barco Clp Blp Stand Alone Pack"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_clp_blp_stand_alone_pack_ip.md",
-      "actionCount": 39,
-      "lastCheckedAt": "2026-08-05T07:21:39.595Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "8a7fa94f8bbd9b7c4c4de7bb5a727900f5bc8cff413f4b72ab9272ce9d038e40"
-    },
-    {
-      "specId": "admin/barco-convergence-extension-kit",
-      "deviceId": "barco/convergence-extension-kit",
-      "title": "Barco Convergence Extension Kit (Pulse API) Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Convergence Extension Kit",
-      "models": [
-        "Convergence Extension Kit"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_convergence_extension_kit_ip.md",
-      "actionCount": 30,
-      "lastCheckedAt": "2026-08-05T07:24:37.287Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "230c7577b52e93885f7d174514f51d88b1c3c96d08d482b740c81052d0b6a144"
-    },
-    {
       "specId": "admin/barco-coronis-onelook-mdmc-32133",
       "deviceId": "barco/coronis-onelook-mdmc-32133",
       "title": "Barco Coronis OneLook MDMC 32133 Control Spec",
@@ -3965,24 +3713,6 @@
       "contentHash": "b469363ba3670bc80c4efca2e414593c2f5246937380c3e09c7b41775623a6e8"
     },
     {
-      "specId": "admin/barco-displayport-12-output-card",
-      "deviceId": "barco/barco-displayport-12-output-card",
-      "title": "Barco Displayport 12 Output Card Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Displayport 12 Output Card",
-      "models": [
-        "Barco Displayport 12 Output Card"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_displayport_12_output_card_ip.md",
-      "actionCount": 45,
-      "lastCheckedAt": "2026-08-05T07:25:47.488Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "25a547943c5f25885b82ee2ccd0252312dfce2342bc0756547874396a9f8679b"
-    },
-    {
       "specId": "admin/barco-dlp-vp",
       "deviceId": "barco/barco-dlp-vp",
       "title": "Barco DLP VP Control Spec",
@@ -4035,42 +3765,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c93b6ba8d433b6eb18848cc9c10841406d3d30163ca175efa00551152236737b"
-    },
-    {
-      "specId": "admin/barco-dual-lamp-package-for-id-pro-series-250w",
-      "deviceId": "barco/dual-lamp-package-for-id-pro-series-250w",
-      "title": "Barco Dual Lamp Package For ID Pro Series 250W Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Dual Lamp Package For ID Pro Series 250W",
-      "models": [
-        "Dual Lamp Package For ID Pro Series 250W"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_dual_lamp_package_for_id_pro_series_250w_ip.md",
-      "actionCount": 28,
-      "lastCheckedAt": "2026-08-05T07:28:05.614Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "52a9ad8e3dc2bef09f988d76d12c5774d659a0c3cff94bb8872ed0313439d86a"
-    },
-    {
-      "specId": "admin/barco-dust-filter-for-fl40",
-      "deviceId": "barco/dust-filter-for-fl40",
-      "title": "Barco Dust Filter For FL40 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Dust Filter For FL40",
-      "models": [
-        "Dust Filter For FL40"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_dust_filter_for_fl40_ip.md",
-      "actionCount": 67,
-      "lastCheckedAt": "2026-08-05T07:28:37.922Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "f1fe14ab88d91db25aefff759e941c6dddbea0b7b9b8f2a556683e0a99fb6f77"
     },
     {
       "specId": "admin/barco-pulse-api",
@@ -4185,78 +3879,6 @@
       "contentHash": "11c9217a6330645d67db67662b3171530bb49e5f25e4374f753a4343f663e081"
     },
     {
-      "specId": "admin/barco-pulse-projector",
-      "deviceId": "barco/pulse",
-      "title": "Barco Pulse Projector Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Pulse",
-      "models": [
-        "Pulse"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_expansion_link_cable_5_meter_ip.md",
-      "actionCount": 28,
-      "lastCheckedAt": "2026-08-05T07:31:17.346Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "c545cd699d059457d3915839d890fc330ae65bcea3f16c7aac11412f5a0a73c9"
-    },
-    {
-      "specId": "admin/barco-external-liquid-to-liquid-cooler",
-      "deviceId": "barco/external-liquid-to-liquid-cooler",
-      "title": "Barco External Liquid To Liquid Cooler Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "External Liquid To Liquid Cooler",
-      "models": [
-        "External Liquid To Liquid Cooler"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_external_liquid_to_liquid_cooler_ip.md",
-      "actionCount": 51,
-      "lastCheckedAt": "2026-08-05T08:00:04.956Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "11ae232be463b627d5bafdabacb5b7a3e8135b53034889397a0ddd9ba8d000d9"
-    },
-    {
-      "specId": "admin/barco-extra-long-throw-zoom-lens-en16",
-      "deviceId": "barco/barco-pulse-projector-extra-long-throw-zoom-lens-en16-reference",
-      "title": "Barco Pulse Projector Control Spec (EN16 Lens Reference)",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Pulse Projector (Extra Long Throw Zoom Lens En16 reference)",
-      "models": [
-        "Barco Pulse Projector (Extra Long Throw Zoom Lens En16 reference)"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_extra_long_throw_zoom_lens_en16_ip.md",
-      "actionCount": 76,
-      "lastCheckedAt": "2026-08-05T07:59:43.765Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "1fef4cb2938982ed066a08a893938bc1eff35f8348ae262304ed9f37d2337719"
-    },
-    {
-      "specId": "admin/barco-f-lamp-330w",
-      "deviceId": "barco/f-lamp-330w",
-      "title": "Barco F Lamp 330W Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "F Lamp 330W",
-      "models": [
-        "F Lamp 330W"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_f_lamp_330w_ip.md",
-      "actionCount": 47,
-      "lastCheckedAt": "2026-08-05T08:00:31.874Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "cbd23233a46c89a83f965937aa21d09cc2f60c090d067ae90350cc34be15c3cf"
-    },
-    {
       "specId": "admin/barco-f50",
       "deviceId": "barco/f50",
       "title": "Barco F50 Control Spec",
@@ -4273,60 +3895,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c57db6901870342de395e64d9934d28b602b58ac3792ab50cdef64f2bb4c5bf4"
-    },
-    {
-      "specId": "admin/barco-f70-smoke-filter",
-      "deviceId": "barco/f70-smoke-filter",
-      "title": "Barco F70 Smoke Filter Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "F70 Smoke Filter",
-      "models": [
-        "F70 Smoke Filter"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_f70_smoke_filter_ip.md",
-      "actionCount": 46,
-      "lastCheckedAt": "2026-08-05T08:01:10.682Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "6cbc494297297525dee6b6bedef0b1eaf3134327cd81c38f18f36a7c44db4967"
-    },
-    {
-      "specId": "admin/barco-f80-frame",
-      "deviceId": "barco/barco-f80-frame",
-      "title": "Barco F80 Frame Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco F80 Frame",
-      "models": [
-        "Barco F80 Frame"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_f80_frame_ip.md",
-      "actionCount": 49,
-      "lastCheckedAt": "2026-08-05T08:00:21.999Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "0f7fd8f11fa42c8f937989efc6a80d8332d60496d153d8b941f536547c64e30b"
-    },
-    {
-      "specId": "admin/barco-f80-lens-adaptor-for-fldx",
-      "deviceId": "barco/barco-f80-lens-adaptor-for-fldx",
-      "title": "Barco F80 Lens Adaptor For Fldx Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco F80 Lens Adaptor For Fldx",
-      "models": [
-        "Barco F80 Lens Adaptor For Fldx"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_f80_lens_adaptor_for_fldx_ip.md",
-      "actionCount": 32,
-      "lastCheckedAt": "2026-08-05T08:00:39.030Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "e92f48513a89d32bed4f387139967ee87f235f01457cfd7a61d50ecb6bbb9830"
     },
     {
       "specId": "admin/barco-f80q9-f90-4k13-w13",
@@ -4368,24 +3936,6 @@
       "contentHash": "773c6f244a8ab50155e84a14758f9c73b16dccdfefad5d5d318face3961d1d35"
     },
     {
-      "specId": "admin/barco-fiber-input-card",
-      "deviceId": "barco/barco-fiber-input-card",
-      "title": "Barco Fiber Input Card Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Fiber Input Card",
-      "models": [
-        "Barco Fiber Input Card"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_fiber_input_card_ip.md",
-      "actionCount": 32,
-      "lastCheckedAt": "2026-08-05T08:00:42.677Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "58f0e6f0ce5b8a17cf25e520309b358b7edaae7a4445a81ca9d09db8e41766ec"
-    },
-    {
       "specId": "admin/barco-pulse",
       "deviceId": "barco/pulse",
       "title": "Barco Pulse Projector Control Spec",
@@ -4420,42 +3970,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c36b0fb6387a83629938f377a41f4b7330636b338513655f67dd416fa23e7e1c"
-    },
-    {
-      "specId": "admin/barco-field-kit-udm",
-      "deviceId": "barco/barco-field-kit-udm",
-      "title": "Barco Field Kit UDM Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Field Kit UDM",
-      "models": [
-        "Barco Field Kit UDM"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_field_kit_udm_ip.md",
-      "actionCount": 86,
-      "lastCheckedAt": "2026-08-05T08:02:15.053Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "4c04e28bc837879851d770c4d37d56828fcb2a25836061f57330993fa2212d5f"
-    },
-    {
-      "specId": "admin/barco-field-service-kit-hdx-hdf-hdq",
-      "deviceId": "barco/barco-field-service-kit-hdx-hdf-hdq",
-      "title": "Barco Field Service Kit Hdx Hdf Hdq Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Field Service Kit Hdx Hdf Hdq",
-      "models": [
-        "Barco Field Service Kit Hdx Hdf Hdq"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_field_service_kit_hdx_hdf_hdq_ip.md",
-      "actionCount": 81,
-      "lastCheckedAt": "2026-08-05T08:01:14.336Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "1400eeac4e2b28e022dae51f929b1d41dca256abb11c12923c06954aa3978716"
     },
     {
       "specId": "admin/barco-fldx-061-1-en67",
@@ -4585,60 +4099,6 @@
       "contentHash": "85bfb53177bc87f4127339d6ac1d774ebe8fa5a059b5149ac376120db28efc29"
     },
     {
-      "specId": "admin/barco-fsn-multiviewer-card-mvr",
-      "deviceId": "barco/fsn-multiviewer-card-mvr",
-      "title": "Barco FSN Multiviewer Card MVR Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "FSN Multiviewer Card MVR",
-      "models": [
-        "FSN Multiviewer Card MVR"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_fsn_multiviewer_card_mvr_ip.md",
-      "actionCount": 67,
-      "lastCheckedAt": "2026-08-05T08:03:37.571Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "9a2cf552a7d7540dc384682da26172ceac0448c47a1bd23fcfa3ac9485718ae3"
-    },
-    {
-      "specId": "admin/barco-fsn-native-aux-card-nac",
-      "deviceId": "barco/fsn-native-aux-card-nac",
-      "title": "Barco Fsn Native Aux Card Nac Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Fsn Native Aux Card Nac",
-      "models": [
-        "Fsn Native Aux Card Nac"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_fsn_native_aux_card_nac_ip.md",
-      "actionCount": 98,
-      "lastCheckedAt": "2026-08-05T08:04:11.630Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "b1d5445daee1412ce617c278be08ea0b43a9460ce722ce46d9833a1f46a419e4"
-    },
-    {
-      "specId": "admin/barco-fsn-universal-input-card-uic",
-      "deviceId": "barco/barco-fsn-universal-input-card-uic",
-      "title": "Barco FSN Universal Input Card UIC Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco FSN Universal Input Card UIC",
-      "models": [
-        "Barco FSN Universal Input Card UIC"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_fsn_universal_input_card_uic_ip.md",
-      "actionCount": 34,
-      "lastCheckedAt": "2026-08-05T08:04:53.538Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "67215fdceee07a6e94e232326c112700115284a9ab65e8df3c24ad0451ec313f"
-    },
-    {
       "specId": "admin/barco-fsn3g-1804",
       "deviceId": "barco/barco-fsn3g-1804",
       "title": "Barco Fsn3G 1804 Control Spec",
@@ -4691,60 +4151,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "11a6895806022860c7ef41aee150698ceaf03231f1a1bc6a23760d8db09dc000"
-    },
-    {
-      "specId": "admin/barco-g-lens-037-04-ust",
-      "deviceId": "barco/barco-g-lens-037-04-ust",
-      "title": "Barco G Lens 037 04 Ust Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco G Lens 037 04 Ust",
-      "models": [
-        "Barco G Lens 037 04 Ust"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_g_lens_037_04_ust_ip.md",
-      "actionCount": 33,
-      "lastCheckedAt": "2026-08-05T08:05:22.562Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "75c5ab44b7cee76def8cf73e3045d4fd49f4516a564e5b15ccbc4360fb1be63a"
-    },
-    {
-      "specId": "admin/barco-g-lens-065-0751-short-throw",
-      "deviceId": "barco/barco-g-lens-065-0751-short-throw",
-      "title": "Barco G Lens 065 0751 Short Throw Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco G Lens 065 0751 Short Throw",
-      "models": [
-        "Barco G Lens 065 0751 Short Throw"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_g_lens_065_0751_short_throw_ip.md",
-      "actionCount": 36,
-      "lastCheckedAt": "2026-08-05T08:06:03.785Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "372f89417ff5dd82e0bc70b98eb0434450b4b82a68ca82deda7549b639917c08"
-    },
-    {
-      "specId": "admin/barco-pulse-json-rpc",
-      "deviceId": "barco/g-lens-126-158",
-      "title": "Barco Pulse API (G Lens 126 158) Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "G Lens 126 158",
-      "models": [
-        "G Lens 126 158"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_g_lens_126_158_ip.md",
-      "actionCount": 63,
-      "lastCheckedAt": "2026-08-05T08:13:17.467Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "a1fa418bd58d99d31b4009be8aa7c5361f50c7a25a07c1fec82faeee1e538b37"
     },
     {
       "specId": "admin/barco-g100-w16-w19-w22",
@@ -4801,96 +4207,6 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 1,
       "contentHash": "85696824e79db8ade09a7e0d2884f958f8e6b49acfc8c685042a824e78dfa0a2"
-    },
-    {
-      "specId": "admin/barco-gc-lens-084-102",
-      "deviceId": "barco/gc-lens-084-102",
-      "title": "Barco Gc Lens 084 102 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Gc Lens 084 102",
-      "models": [
-        "Gc Lens 084 102"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_gc_lens_084_102_ip.md",
-      "actionCount": 44,
-      "lastCheckedAt": "2026-08-05T08:06:08.172Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "d8b4c1509da8217af213f17bdbd1628e1c300e0703c0ad08a9deb40e95c0ddac"
-    },
-    {
-      "specId": "admin/barco-gc-lens-102-136",
-      "deviceId": "barco/gc-lens-102-136",
-      "title": "Barco GC Lens 102 136 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "GC Lens 102 136",
-      "models": [
-        "GC Lens 102 136"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_gc_lens_102_136_ip.md",
-      "actionCount": 81,
-      "lastCheckedAt": "2026-08-05T08:05:40.841Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "d865e9486e6489c702604eb9a2659684330570190a1b5de1950f59097d6fc499"
-    },
-    {
-      "specId": "admin/barco-gcplus-lens-150-200",
-      "deviceId": "barco/barco-gcplus-lens-150-200",
-      "title": "Barco Gcplus Lens 150 200 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Gcplus Lens 150 200",
-      "models": [
-        "Barco Gcplus Lens 150 200"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_gcplus_lens_150_200_ip.md",
-      "actionCount": 32,
-      "lastCheckedAt": "2026-08-05T08:06:12.857Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "0bfe6d9a6de07202df52968b6e596038ee8da7c8f3acf8e0725a57c251110940"
-    },
-    {
-      "specId": "admin/barco-gcplus-lens-200-400",
-      "deviceId": "barco/barco-gcplus-lens-200-400",
-      "title": "Barco Gcplus Lens 200 400 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Gcplus Lens 200 400",
-      "models": [
-        "Barco Gcplus Lens 200 400"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_gcplus_lens_200_400_ip.md",
-      "actionCount": 27,
-      "lastCheckedAt": "2026-08-05T08:06:41.616Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "853c7fc4d3dfb04cdd5b8872cfc44292701e14077223ab9391d609f9237b648d"
-    },
-    {
-      "specId": "admin/barco-gcplus-lens-400-720",
-      "deviceId": "barco/gcplus-lens-400-720",
-      "title": "Barco Gcplus Lens 400 720 Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Gcplus Lens 400 720",
-      "models": [
-        "Gcplus Lens 400 720"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_gcplus_lens_400_720_ip.md",
-      "actionCount": 43,
-      "lastCheckedAt": "2026-08-05T08:07:35.763Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "1a38c419d6ff60dc21c7e59e0db3bd99db095bd2d9f9d760a28a09992cd31ee0"
     },
     {
       "specId": "admin/barco-gld-106",
