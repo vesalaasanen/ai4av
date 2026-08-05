@@ -189,14 +189,14 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADReth0###########\n"
+  command: "*SEBADReth0############\n"
   params: []
   # UNRESOLVED: source states parameter is the interface name (e.g. "eth0"), padded to 16 chars with "#". The set of valid interface names is not enumerated in source. Example payload is hard-coded to `eth0` above; replace with target interface.
 
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADReth0###########\n"
+  command: "*SEMADReth0############\n"
   params: []
   # UNRESOLVED: same as get_broadcast_address - interface name not enumerated in source.
 

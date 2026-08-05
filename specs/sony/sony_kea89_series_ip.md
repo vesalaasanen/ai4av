@@ -195,13 +195,13 @@ routable: true    # setInput / getInput / fireInputChange (HDMI, Composite, Comp
 - id: get_broadcast_address
   label: Get Broadcast Address (eth0)
   kind: query
-  command: "*SEBADREth0############\n"
+  command: "*SEBADReth0############\n"
   notes: 'eth0' literal ASCII then 12 '#' padding bytes. EU-area models only (per source footnote).
 
 - id: get_mac_address
   label: Get MAC Address (eth0)
   kind: query
-  command: "*SEMADREth0############\n"
+  command: "*SEMADReth0############\n"
   notes: 'eth0' literal ASCII then 12 '#' padding bytes. EU-area models only (per source footnote).
 ```
 

@@ -205,14 +205,14 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADRETH00000000000000"
+  command: "*SEBADReth0############"
   # UNRESOLVED: full parameter structure for the interface selector beyond
   # "eth0" prefix not exhaustively stated; this matches the single example given.
 
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADRETH00000000000000"
+  command: "*SEMADReth0############"
   # UNRESOLVED: full parameter structure for the interface selector beyond
   # "eth0" prefix not exhaustively stated; this matches the single example given.
 ```

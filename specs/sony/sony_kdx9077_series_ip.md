@@ -218,13 +218,13 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast IPv4 Address (getBroadcastAddress)
   kind: query
-  command: "*SEBADREth0##########\n"
+  command: "*SEBADReth0############\n"
   params: []
 
 - id: get_mac_address
   label: Get MAC Address (getMacAddress)
   kind: query
-  command: "*SEMADREth0##########\n"
+  command: "*SEMADReth0############\n"
   params: []
 ```
 

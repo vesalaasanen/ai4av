@@ -220,7 +220,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADREth0##########"
+  command: "*SEBADReth0############"
   params:
     - name: interface
       type: string
@@ -232,7 +232,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADREth0##########"
+  command: "*SEMADReth0############"
   params:
     - name: interface
       type: string

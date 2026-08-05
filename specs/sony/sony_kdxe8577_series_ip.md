@@ -198,12 +198,12 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADREth0############\n"
+  command: "*SEBADReth0############\n"
   notes: param starts with "eth0" then 11 pad bytes; answer echoes broadcast IPv4 right-padded '#'
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADREth0############\n"
+  command: "*SEMADReth0############\n"
   notes: param starts with "eth0"; answer echoes MAC right-padded '#'
 ```
 

@@ -208,14 +208,14 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (eth0)
   kind: query
-  command: "*SEBADRETH0000000000000"  # param block: "eth0" + 12 "#" padding
+  command: "*SEBADReth0############"  # param block: "eth0" + 12 "#" padding
   params: []
   notes: Returns broadcast IPv4 of interface (source documents eth0 only)
 
 - id: get_mac_address
   label: Get MAC Address (eth0)
   kind: query
-  command: "*SEMADRETH0000000000000"  # param block: "eth0" + 12 "#" padding
+  command: "*SEMADReth0############"  # param block: "eth0" + 12 "#" padding
   params: []
   notes: Returns MAC address of interface (source documents eth0 only)
 ```

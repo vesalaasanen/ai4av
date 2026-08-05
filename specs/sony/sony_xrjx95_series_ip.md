@@ -241,7 +241,7 @@ i.e. `0x2A 0x53 0x43 0x50 0x4F 0x57 0x52 0x30×16 0x0A`.
 - id: get_broadcast_address
   label: Get Broadcast Address (Interface)
   kind: query
-  command: "*SEBADReth0##########\n"
+  command: "*SEBADReth0############\n"
   params:
     - name: interface
       type: string
@@ -250,7 +250,7 @@ i.e. `0x2A 0x53 0x43 0x50 0x4F 0x57 0x52 0x30×16 0x0A`.
 - id: get_mac_address
   label: Get MAC Address (Interface)
   kind: query
-  command: "*SEMADReth0##########\n"
+  command: "*SEMADReth0############\n"
   params:
     - name: interface
       type: string

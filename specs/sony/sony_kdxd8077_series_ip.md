@@ -206,13 +206,13 @@ auth:
 - id: getBroadcastAddress
   label: Get Broadcast IPv4 Address
   kind: query
-  command: "*SEBADReth0##########"
+  command: "*SEBADReth0############"
   params: []
 
 - id: getMacAddress
   label: Get MAC Address
   kind: query
-  command: "*SEMADReth0##########"
+  command: "*SEMADReth0############"
   params: []
 ```
 

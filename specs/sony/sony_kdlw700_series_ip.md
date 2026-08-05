@@ -196,7 +196,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (eth0)
   kind: query
-  command: "*SEBADReth0#############\n"  # EU models only (per source footnote)
+  command: "*SEBADReth0############\n"  # EU models only (per source footnote)
   params:
     - name: interface
       type: string
@@ -205,7 +205,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address (eth0)
   kind: query
-  command: "*SEMADReth0#############\n"  # EU models only (per source footnote)
+  command: "*SEMADReth0############\n"  # EU models only (per source footnote)
   params:
     - name: interface
       type: string

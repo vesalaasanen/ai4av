@@ -193,13 +193,13 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast IPv4 Address
   kind: query
-  command: "*SEBADReth0##########"  # 16-byte param: 'eth0' (interface name) right-padded with '#'
+  command: "*SEBADReth0############"  # 16-byte param: 'eth0' (interface name) right-padded with '#'
   params: []
 
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADReth0##########"  # 16-byte param: 'eth0' (interface name) right-padded with '#'
+  command: "*SEMADReth0############"  # 16-byte param: 'eth0' (interface name) right-padded with '#'
   params: []
 ```
 

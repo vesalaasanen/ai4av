@@ -250,7 +250,7 @@ levelable: true
 - id: get_broadcast_address
   label: Get Broadcast IPv4 Address
   kind: query
-  command: "*SEBADREth0##########\n"  # 0x2A 0x53 0x45 BADR "Eth0" + 10 '#' 0x0A
+  command: "*SEBADReth0############\n"  # 0x2A 0x53 0x45 BADR "Eth0" + 10 '#' 0x0A
   params:
     - name: interface
       type: enum
@@ -262,7 +262,7 @@ levelable: true
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADREth0##########\n"  # 0x2A 0x53 0x45 MADR "Eth0" + 10 '#' 0x0A
+  command: "*SEMADReth0############\n"  # 0x2A 0x53 0x45 MADR "Eth0" + 10 '#' 0x0A
   params:
     - name: interface
       type: enum

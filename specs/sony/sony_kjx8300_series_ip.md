@@ -200,14 +200,14 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (Eth0)
   kind: query
-  command: "*SEBADREth0###########"  # 16-byte param: "eth0" + 12 '#'
+  command: "*SEBADReth0############"  # 16-byte param: "eth0" + 12 '#'
   params: []
   notes: EU models only (per source)
 
 - id: get_mac_address
   label: Get MAC Address (Eth0)
   kind: query
-  command: "*SEMADREth0###########"  # 16-byte param: "eth0" + 12 '#'
+  command: "*SEMADReth0############"  # 16-byte param: "eth0" + 12 '#'
   params: []
   notes: EU models only (per source)
 ```

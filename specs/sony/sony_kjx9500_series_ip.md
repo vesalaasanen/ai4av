@@ -215,7 +215,7 @@ routable: true    # inferred: setInput, getInput present
     - name: interface
       type: string
       description: Interface name, e.g. "eth0"
-  representation: "*EBADREth0#########"
+  representation: "*SEBADReth0############"
 
 - id: getMacAddress
   label: Get MAC Address
@@ -224,7 +224,7 @@ routable: true    # inferred: setInput, getInput present
     - name: interface
       type: string
       description: Interface name, e.g. "eth0"
-  representation: "*EMADREth0#########"
+  representation: "*SEMADReth0############"
 ```
 
 ## Feedbacks

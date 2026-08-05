@@ -736,12 +736,12 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADReth0###########\n"  # parameter 0-3 = "eth0", padded to 16 with "#"
+  command: "*SEBADReth0############\n"  # parameter 0-3 = "eth0", padded to 16 with "#"
   params: []
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADReth0###########\n"  # parameter 0-3 = "eth0", padded to 16 with "#"
+  command: "*SEMADReth0############\n"  # parameter 0-3 = "eth0", padded to 16 with "#"
   params: []
 ```
 

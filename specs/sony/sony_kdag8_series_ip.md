@@ -212,7 +212,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADREth0###########"
+  command: "*SEBADReth0############"
   params: []
   notes: |
     FourCC 'BADR', interface 'eth0' literal in param bytes 1-4. Response: IPv4 address in dotted notation
@@ -221,7 +221,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADREth0###########"
+  command: "*SEMADReth0############"
   params: []
   notes: |
     FourCC 'MADR', interface 'eth0' literal in param bytes 1-4. Response: MAC address right-padded with '#'.

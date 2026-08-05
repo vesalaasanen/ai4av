@@ -323,7 +323,7 @@ traits:
 - id: get_broadcast_address
   label: Broadcast IPv4 Address Query
   kind: query
-  command: "*SEBADReth0#############"
+  command: "*SEBADReth0############"
   params:
     - name: interface
       type: string
@@ -333,7 +333,7 @@ traits:
 - id: get_mac_address
   label: MAC Address Query
   kind: query
-  command: "*SEMADReth0#############"
+  command: "*SEMADReth0############"
   params:
     - name: interface
       type: string

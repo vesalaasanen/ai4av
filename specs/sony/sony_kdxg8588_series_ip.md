@@ -252,14 +252,14 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (eth0)
   kind: query
-  command: "*SEBADRETH000000000000"
+  command: "*SEBADReth0############"
   params: []
   notes: 'Answer: IPv4 broadcast address as ASCII, padded right with "#" (e.g. 192.168.0.14##).'
 
 - id: get_mac_address
   label: Get MAC Address (eth0)
   kind: query
-  command: "*SEMADRETH000000000000"
+  command: "*SEMADReth0############"
   params: []
   notes: 'Answer: MAC address as ASCII, padded right with "#".'
 

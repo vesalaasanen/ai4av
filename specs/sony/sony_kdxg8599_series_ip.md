@@ -258,7 +258,7 @@ framing:
 - id: get_broadcast_address
   label: Get Broadcast IPv4 Address (eth0)
   kind: query
-  command: "*EBADReth0############\n"   # 'eth0' followed by 12 '#' pads parameter to 16 bytes
+  command: "*SEBADReth0############\n"   # 'eth0' followed by 12 '#' pads parameter to 16 bytes
   params:
     - name: interface
       type: string
@@ -267,7 +267,7 @@ framing:
 - id: get_mac_address
   label: Get MAC Address (eth0)
   kind: query
-  command: "*EMADReth0############\n"
+  command: "*SEMADReth0############\n"
   params:
     - name: interface
       type: string

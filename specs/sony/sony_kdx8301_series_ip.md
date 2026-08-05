@@ -225,13 +225,13 @@ auth:
 - id: get_broadcast_address
   label: getBroadcastAddress
   kind: query
-  command: "*SEBADReth0##########\n"  # EU models only
+  command: "*SEBADReth0############\n"  # EU models only
   params: []
 
 - id: get_mac_address
   label: getMacAddress
   kind: query
-  command: "*SEMADReth0##########\n"  # EU models only
+  command: "*SEMADReth0############\n"  # EU models only
   params: []
 ```
 

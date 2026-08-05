@@ -205,13 +205,13 @@ ASCII rendering: `*S{type}{fourcc}{16-char params}\n`. Numeric parameter areas a
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADRETH00000000000000\n"
+  command: "*SEBADReth0############\n"
   params: []
 
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADRETH00000000000000\n"
+  command: "*SEMADReth0############\n"
   params: []
 ```
 

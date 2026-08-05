@@ -229,7 +229,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast IPv4 Address (getBroadcastAddress)
   kind: query
-  command: "*SEBADREth0##############"  # EU models: only on units that can choose auth method
+  command: "*SEBADReth0############"  # EU models: only on units that can choose auth method
   params:
     - name: interface
       type: string
@@ -239,7 +239,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address (getMacAddress)
   kind: query
-  command: "*SEMADREth0##############"  # EU models: only on units that can choose auth method
+  command: "*SEMADReth0############"  # EU models: only on units that can choose auth method
   params:
     - name: interface
       type: string

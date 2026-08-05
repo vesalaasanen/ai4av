@@ -195,7 +195,7 @@ auth:
 - id: get_broadcast_address
   label: getBroadcastAddress
   kind: query
-  command: "*SEBADREth0############"  # 'eth0' interface; other interface names UNRESOLVED
+  command: "*SEBADReth0############"  # 'eth0' interface; other interface names UNRESOLVED
   params:
     - name: interface
       type: string
@@ -204,7 +204,7 @@ auth:
 - id: get_mac_address
   label: getMacAddress
   kind: query
-  command: "*SEMADREth0############"  # 'eth0' interface; other interface names UNRESOLVED
+  command: "*SEMADReth0############"  # 'eth0' interface; other interface names UNRESOLVED
   params:
     - name: interface
       type: string

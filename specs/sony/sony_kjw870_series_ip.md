@@ -194,7 +194,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (EU models)
   kind: query
-  command: "*SEBADReth0###########"  # interface id "eth0" left-aligned in 4-byte slot
+  command: "*SEBADReth0############"  # interface id "eth0" left-aligned in 4-byte slot
   params:
     - name: interface
       type: string
@@ -203,7 +203,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address (EU models)
   kind: query
-  command: "*SEMADReth0###########"
+  command: "*SEMADReth0############"
   params:
     - name: interface
       type: string

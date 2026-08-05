@@ -201,7 +201,7 @@ auth:
 - id: get_broadcast_address
   label: Get Broadcast Address (getBroadcastAddress)
   kind: query
-  command: "*SEBADREth0##########\n"  # bytes 7-12 = 'eth0', bytes 13-22 = '#'
+  command: "*SEBADReth0############\n"  # bytes 7-12 = 'eth0', bytes 13-22 = '#'
   params:
     - name: interface
       type: string
@@ -211,7 +211,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address (getMacAddress)
   kind: query
-  command: "*SEMADREth0##########\n"
+  command: "*SEMADReth0############\n"
   params:
     - name: interface
       type: string

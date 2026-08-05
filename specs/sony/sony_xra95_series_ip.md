@@ -259,7 +259,7 @@ levelable: true  # inferred from setAudioVolume (numeric 0..100)
 - id: get_broadcast_address
   label: getBroadcastAddress (eth0)
   kind: query
-  command: "*SEBADRe t h 0##########\n"
+  command: "*SEBADReth0############\n"
   command_template:
     header: "0x2A 0x53"
     type: "0x45 [E]"
@@ -270,7 +270,7 @@ levelable: true  # inferred from setAudioVolume (numeric 0..100)
 - id: get_mac_address
   label: getMacAddress (eth0)
   kind: query
-  command: "*SEMADRe t h 0##########\n"
+  command: "*SEMADReth0############\n"
   command_template:
     header: "0x2A 0x53"
     type: "0x45 [E]"
