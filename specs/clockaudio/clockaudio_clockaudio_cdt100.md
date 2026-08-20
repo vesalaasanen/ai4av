@@ -19,7 +19,9 @@ source_domains:
   - clockaudio.com
 source_urls:
   - https://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100_MK3.pdf
-retrieved_at: 2026-08-02T17:41:55.356Z
+  - https://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100.pdf
+  - http://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100_MK3.pdf
+retrieved_at: 2026-08-18T05:56:01.098Z
 last_checked_at: 2026-08-05T08:14:38.610Z
 generated_at: 2026-08-05T08:14:38.610Z
 firmware_coverage: "Not stated in source"
@@ -510,7 +512,9 @@ source_domains:
   - clockaudio.com
 source_urls:
   - https://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100_MK3.pdf
-retrieved_at: 2026-08-02T17:41:55.356Z
+  - https://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100.pdf
+  - http://clockaudio.com/Portals/0/docs/user-manual/MAN_CDT100_MK3.pdf
+retrieved_at: 2026-08-18T05:56:01.098Z
 last_checked_at: 2026-08-05T08:14:38.610Z
 ```
 

@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - pro2.mydomintell.com
+  - pro.domintell.com
 source_urls:
   - https://pro2.mydomintell.com/share/manual/lightprotocol/domintell_ligthprotocol-v16-20250319.pdf
-retrieved_at: 2026-08-01T04:14:56.661Z
+  - https://pro.domintell.com/web/content/112505
+retrieved_at: 2026-08-15T13:44:17.520Z
 last_checked_at: 2026-08-05T08:17:53.593Z
 generated_at: 2026-08-05T08:17:53.593Z
 firmware_coverage: "Not stated in source"
@@ -365,9 +367,11 @@ Added 6 items, preserved all existing. CL2 module commands already complete — 
 ```yaml
 source_domains:
   - pro2.mydomintell.com
+  - pro.domintell.com
 source_urls:
   - https://pro2.mydomintell.com/share/manual/lightprotocol/domintell_ligthprotocol-v16-20250319.pdf
-retrieved_at: 2026-08-01T04:14:56.661Z
+  - https://pro.domintell.com/web/content/112505
+retrieved_at: 2026-08-15T13:44:17.520Z
 last_checked_at: 2026-08-05T08:17:53.593Z
 ```
 

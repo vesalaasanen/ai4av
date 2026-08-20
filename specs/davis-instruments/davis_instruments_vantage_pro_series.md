@@ -19,9 +19,11 @@ compatible_with:
   required_options: []
 source_domains:
   - davis.cz
+  - support.davisinstruments.com
 source_urls:
   - http://www.davis.cz/download/VantageSerialProtocolDocs_v261.pdf
-retrieved_at: 2026-08-02T22:04:05.538Z
+  - https://support.davisinstruments.com/article/rbzgl0rh6k-vantage-pro-pro-2-and-vue-communications-reference-2-6-1-any-os
+retrieved_at: 2026-08-09T22:04:19.825Z
 last_checked_at: 2026-08-05T08:16:19.281Z
 generated_at: 2026-08-05T08:16:19.281Z
 firmware_coverage: "Not stated in source"
@@ -582,9 +584,11 @@ interlocks:
 ```yaml
 source_domains:
   - davis.cz
+  - support.davisinstruments.com
 source_urls:
   - http://www.davis.cz/download/VantageSerialProtocolDocs_v261.pdf
-retrieved_at: 2026-08-02T22:04:05.538Z
+  - https://support.davisinstruments.com/article/rbzgl0rh6k-vantage-pro-pro-2-and-vue-communications-reference-2-6-1-any-os
+retrieved_at: 2026-08-09T22:04:19.825Z
 last_checked_at: 2026-08-05T08:16:19.281Z
 ```
 

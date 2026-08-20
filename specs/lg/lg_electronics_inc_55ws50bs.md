@@ -19,12 +19,14 @@ compatible_with:
 source_domains:
   - proaudioinc.com
   - gscs-b2c.lge.com
+  - lg.com
   - manualslib.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - "https://gscs-b2c.lge.com/open/downloadFile?fileId=RAjvXmy2wiuBn8WmvuC6mw"
+  - https://www.lg.com/us/support/product/lg-55WS50BS-B.AUS
   - https://www.manualslib.com/manual/2696274/Lg-55ws50bs.html
-retrieved_at: 2026-08-02T07:28:59.351Z
+retrieved_at: 2026-08-09T08:25:57.039Z
 last_checked_at: 2026-08-05T08:31:31.678Z
 generated_at: 2026-08-05T08:31:31.678Z
 firmware_coverage: "Not stated in source"
@@ -732,12 +734,14 @@ interlocks:
 source_domains:
   - proaudioinc.com
   - gscs-b2c.lge.com
+  - lg.com
   - manualslib.com
 source_urls:
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - "https://gscs-b2c.lge.com/open/downloadFile?fileId=RAjvXmy2wiuBn8WmvuC6mw"
+  - https://www.lg.com/us/support/product/lg-55WS50BS-B.AUS
   - https://www.manualslib.com/manual/2696274/Lg-55ws50bs.html
-retrieved_at: 2026-08-02T07:28:59.351Z
+retrieved_at: 2026-08-09T08:25:57.039Z
 last_checked_at: 2026-08-05T08:31:31.678Z
 ```
 

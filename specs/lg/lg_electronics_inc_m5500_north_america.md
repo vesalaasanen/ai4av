@@ -18,17 +18,17 @@ compatible_with:
   required_options: []
 source_domains:
   - gscs-b2c.lge.com
+  - lg.com
   - proaudioinc.com
   - manualslib.com
   - files.remotecentral.com
-  - lg.com
 source_urls:
   - "https://gscs-b2c.lge.com/downloadFile?fileId=of0WZ51DxT0g4GfCl7oBRA"
+  - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/2672303/Lg-M5500c.html
   - https://files.remotecentral.com/browser/brand-1/lg/television/index.html
-  - https://www.lg.com/global/business/commercial-display
-retrieved_at: 2026-07-24T19:53:48.354Z
+retrieved_at: 2026-08-16T23:33:52.994Z
 last_checked_at: 2026-08-05T08:31:50.840Z
 generated_at: 2026-08-05T08:31:50.840Z
 firmware_coverage: "Not stated in source"
@@ -1551,17 +1551,17 @@ auth:
 ```yaml
 source_domains:
   - gscs-b2c.lge.com
+  - lg.com
   - proaudioinc.com
   - manualslib.com
   - files.remotecentral.com
-  - lg.com
 source_urls:
   - "https://gscs-b2c.lge.com/downloadFile?fileId=of0WZ51DxT0g4GfCl7oBRA"
+  - https://www.lg.com/ca_en/support/product-support/troubleshoot/help-library/cs-CT20098005-20153058982994/
   - https://www.proaudioinc.com/Dealer_Area/RS232C_EN_160526.pdf
   - https://www.manualslib.com/manual/2672303/Lg-M5500c.html
   - https://files.remotecentral.com/browser/brand-1/lg/television/index.html
-  - https://www.lg.com/global/business/commercial-display
-retrieved_at: 2026-07-24T19:53:48.354Z
+retrieved_at: 2026-08-16T23:33:52.994Z
 last_checked_at: 2026-08-05T08:31:50.840Z
 ```
 

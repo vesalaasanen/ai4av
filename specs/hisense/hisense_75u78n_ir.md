@@ -1089,6 +1089,7 @@ interlocks: []
 - **Checksum:** 8-bit value such that the sum of the whole frame (including the checksum byte) equals zero.
 - **Connector pinout (male D-sub 9-pin):** 1=N/C, 2=RXD, 3=TXD, 4=DTR, 5=GND, 6=DSR, 7=RTS, 8=CTS, 9=Power Input. USB-to-serial adapter required for PC/controller USB ports (sold separately).
 - **MAC identification:** after network connection, Menu > Network > Network Information shows the TV's MAC address.
+- **Discrete IR:** a parallel Pronto CCF code table (POWER toggle/on/off, HDMI.1–5, VGA, USB, picture/sound/aspect toggles, digits 0–9, dash, arrows, ENTER/OK/RETURN/EXIT, VOL±/CH±, PIP, SLEEP, MENU/HOME/TOOLS, transport keys, colored buttons, etc.) is documented but not represented here — IR is one-way with no acknowledgement and the `ir` protocol is not in the spec enum.
 - **Revision history:** serial/query commands introduced V3.0 (13-May-2016); latest noted revision V3.6 (17-Apr-2017). Document originally V1.0 (02-Apr-2014) for discrete IR only.
 
 <!-- UNRESOLVED: exact 75U78N firmware range supported by this protocol not stated. -->

@@ -19,14 +19,15 @@ compatible_with:
   required_options: []
 source_domains:
   - audiogeneral.com
+  - web.archive.org
   - manualslib.com
 source_urls:
   - https://www.audiogeneral.com/Sanyo/plczm5000l_rs232.pdf
+  - "http://web.archive.org/web/20120131192159if_/http://us.sanyo.com/dynamic/product/Downloads/PLC-ZM5000_Basic%20Command-6087627.pdf"
   - https://www.manualslib.com/manual/439273/Sanyo-Plc-Zm5000l-5000-Lumens.html
   - https://www.manualslib.com/manual/439275/Sanyo-Plc-Zm5000l-5000-Lumens.html
   - https://www.manualslib.com/manual/652507/Sanyo-Plc-Zm5000.html
-  - https://www.manualslib.com/manual/485310/Sanyo-Plc-Zm5000l-5000-Lumens.html
-retrieved_at: 2026-08-02T12:37:34.313Z
+retrieved_at: 2026-08-17T13:54:14.717Z
 last_checked_at: 2026-08-05T08:37:52.395Z
 generated_at: 2026-08-05T08:37:52.395Z
 firmware_coverage: "Not stated in source"
@@ -665,14 +666,15 @@ interlocks:
 ```yaml
 source_domains:
   - audiogeneral.com
+  - web.archive.org
   - manualslib.com
 source_urls:
   - https://www.audiogeneral.com/Sanyo/plczm5000l_rs232.pdf
+  - "http://web.archive.org/web/20120131192159if_/http://us.sanyo.com/dynamic/product/Downloads/PLC-ZM5000_Basic%20Command-6087627.pdf"
   - https://www.manualslib.com/manual/439273/Sanyo-Plc-Zm5000l-5000-Lumens.html
   - https://www.manualslib.com/manual/439275/Sanyo-Plc-Zm5000l-5000-Lumens.html
   - https://www.manualslib.com/manual/652507/Sanyo-Plc-Zm5000.html
-  - https://www.manualslib.com/manual/485310/Sanyo-Plc-Zm5000l-5000-Lumens.html
-retrieved_at: 2026-08-02T12:37:34.313Z
+retrieved_at: 2026-08-17T13:54:14.717Z
 last_checked_at: 2026-08-05T08:37:52.395Z
 ```
 
