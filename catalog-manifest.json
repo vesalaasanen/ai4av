@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-08-30T09:33:57.043Z",
-  "spec_count": 2205,
+  "generated_at": "2026-08-30T13:31:02.109Z",
+  "spec_count": 2197,
   "specs": [
     {
       "specId": "admin/2n-2n-easygate-ip-plus",
@@ -3406,24 +3406,6 @@
       "contentHash": "17f593159ea833e0bac94ce337372b2c3a8a771bff7785ed4c75ac2d43e69d64"
     },
     {
-      "specId": "admin/barco-86-medical-consultation-center",
-      "deviceId": "barco/barco-86-medical-consultation-center",
-      "title": "Barco 86 Medical Consultation Center Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco 86 Medical Consultation Center",
-      "models": [
-        "Barco 86 Medical Consultation Center"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_86_medical_consultation_center_ip.md",
-      "actionCount": 71,
-      "lastCheckedAt": "2026-07-21T20:50:27.361Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "16f1e00820f05f1b12ba60b2a34e4ebfed0a895bd806f8431299625589e82ca0"
-    },
-    {
       "specId": "admin/barco-ac-ars5",
       "deviceId": "barco/ac-ars5",
       "title": "Barco Ac Ars5 Control Spec",
@@ -3710,24 +3692,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "1291208a619326b1ca31fc5684f7bc2b4bb27b60c61ac8f4942e39e146faf17b"
-    },
-    {
-      "specId": "admin/barco-bme-k-rcu-silicon-prot-sleeve",
-      "deviceId": "barco/barco-bme-k-rcu-silicon-prot-sleeve",
-      "title": "Barco Bme K Rcu Silicon Prot Sleeve Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Bme K Rcu Silicon Prot Sleeve",
-      "models": [
-        "Barco Bme K Rcu Silicon Prot Sleeve"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_bme_k_rcu_silicon_prot_sleeve_ip.md",
-      "actionCount": 41,
-      "lastCheckedAt": "2026-07-21T21:18:15.176Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "4e07de819394840f85d753eefc892e347b6bfff4659ce913d128953251d4988f"
     },
     {
       "specId": "admin/barco-camera-option-for-g100",
@@ -4391,42 +4355,6 @@
       "contentHash": "0d5e1d1fb5fd4f52d651cfc4e53915ce9eed194ce18f94402f3ebd6013941e57"
     },
     {
-      "specId": "admin/barco-hd-sdi3g-to-hdmidvi-converter",
-      "deviceId": "barco/barco-hd-sdi3g-to-hdmidvi-converter",
-      "title": "Barco HD SDI3G To HDMIDVI Converter Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco HD SDI3G To HDMIDVI Converter",
-      "models": [
-        "Barco HD SDI3G To HDMIDVI Converter"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_hd_sdi3g_to_hdmidvi_converter_ip.md",
-      "actionCount": 85,
-      "lastCheckedAt": "2026-08-19T08:32:01.883Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "b0b1d2e01015784128105a8839d815d10a6fb4fad114342f8b088d62de31efbf"
-    },
-    {
-      "specId": "admin/barco-hdd-set-3-x-2tb-for-icmp-x",
-      "deviceId": "barco/barco-hdd-set-3-x-2tb-for-icmp-x",
-      "title": "Barco Hdd Set 3 X 2Tb For Icmp X Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco Hdd Set 3 X 2Tb For Icmp X",
-      "models": [
-        "Barco Hdd Set 3 X 2Tb For Icmp X"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_hdd_set_3_x_2tb_for_icmp_x_ip.md",
-      "actionCount": 28,
-      "lastCheckedAt": "2026-08-19T08:34:52.860Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "6fad20e308b101fdd15f4d6176ae01362d79c5cfab8670341b15522b7ad56a39"
-    },
-    {
       "specId": "admin/barco-hdx-cell-phone-module",
       "deviceId": "barco/barco-hdx-cell-phone-module",
       "title": "Barco Hdx Cell Phone Module Control Spec",
@@ -4443,24 +4371,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "d39d2ee3d98a59d24b9f9cf68fd968743f94b95170509f563d39aabdbfc24001"
-    },
-    {
-      "specId": "admin/barco-hdx-input-3gdvirgbhv",
-      "deviceId": "barco/barco-hdx-input-3g-dvi-rgbhv",
-      "title": "Barco HDX Input 3G-DVI-RGBHV Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco HDX Input 3G-DVI-RGBHV",
-      "models": [
-        "Barco HDX Input 3G-DVI-RGBHV"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_hdx_input_3gdvirgbhv_ip.md",
-      "actionCount": 71,
-      "lastCheckedAt": "2026-08-19T08:38:27.737Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "650cd6a0579d1d4d00fed7ce8a513fee5d93aceddd6b496a0de7d546434a0d7f"
     },
     {
       "specId": "admin/barco-hdx-w12-w14-w18",
@@ -4627,24 +4537,6 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 1,
       "contentHash": "2d85f1ec243202ce8b837a63a8545b9a1f28c52bebf7db999c97e95397820b6a"
-    },
-    {
-      "specId": "admin/barco-ir-remote-control-xlr",
-      "deviceId": "barco/barco-ir-remote-control-xlr",
-      "title": "Barco IR Remote Control XLR Control Spec",
-      "manufacturer": "Barco",
-      "manufacturerKey": "barco",
-      "displayName": "Barco IR Remote Control XLR",
-      "models": [
-        "Barco IR Remote Control XLR"
-      ],
-      "revision": 1,
-      "path": "specs/barco/barco_ir_remote_control_xlr_ip.md",
-      "actionCount": 30,
-      "lastCheckedAt": "2026-08-19T08:45:08.935Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "d8e8396c8db7c956e6c33ab851e07b5af583c6bcb8a908a23ba23566682104eb"
     },
     {
       "specId": "admin/barco-lcd-vp",
@@ -6755,24 +6647,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "3ed601e01b70b0afdf538ce7748a4d46edc3b4fb75145be2b06100347a8c669b"
-    },
-    {
-      "specId": "admin/bss-audio-analog-input-card",
-      "deviceId": "bss-audio/analog-input-card",
-      "title": "BSS Audio Analog Input Card Control Spec",
-      "manufacturer": "BSS Audio",
-      "manufacturerKey": "bss-audio",
-      "displayName": "Analog Input Card",
-      "models": [
-        "Analog Input Card"
-      ],
-      "revision": 1,
-      "path": "specs/bss-audio/bss_audio_analog_input_card_ip.md",
-      "actionCount": 9,
-      "lastCheckedAt": "2026-07-07T11:05:55.749Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 5,
-      "contentHash": "927897fbfc1b7196b2f5fffa9e6a4476eb5ae7e838d47cf50623d2ad84d3b316"
     },
     {
       "specId": "admin/bss-audio-blu-100",
@@ -10176,24 +10050,6 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "0f4fc20636166b94552d34b84a88a58834112598d9216a51f618924e427f9887"
-    },
-    {
-      "specId": "admin/denon-electronics-137286-refurbished",
-      "deviceId": "denon/denon-electronics-137286-refurbished",
-      "title": "Denon Electronics 137286 Refurbished Control Spec",
-      "manufacturer": "Denon",
-      "manufacturerKey": "denon",
-      "displayName": "Denon Electronics 137286 Refurbished",
-      "models": [
-        "Denon Electronics 137286 Refurbished"
-      ],
-      "revision": 1,
-      "path": "specs/denon/denon_electronics_137286_refurbished_ip.md",
-      "actionCount": 60,
-      "lastCheckedAt": "2026-07-07T11:32:15.710Z",
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "4bf9b7458f9beae913d28d804b45069a915edbd4c9787750c326f15ab818c731"
     },
     {
       "specId": "admin/denon-electronics-300983-heos",
