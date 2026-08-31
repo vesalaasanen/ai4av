@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-08-30T13:31:02.109Z",
-  "spec_count": 2197,
+  "generated_at": "2026-08-31T12:38:52.958Z",
+  "spec_count": 2215,
   "specs": [
     {
       "specId": "admin/2n-2n-easygate-ip-plus",
@@ -219,6 +219,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 3,
       "contentHash": "dc55678405af6e57227ebb39b7174e970769811a9563cfe8dd9412e31948377e"
+    },
+    {
+      "specId": "admin/aja-og-12gda-2x4",
+      "deviceId": "aja/og-12gda-2x4",
+      "title": "AJA OG-12GDA-2x4 Control Spec",
+      "manufacturer": "AJA",
+      "manufacturerKey": "aja",
+      "displayName": "OG-12GDA-2x4",
+      "models": [
+        "OG-12GDA-2x4"
+      ],
+      "revision": 1,
+      "path": "specs/aja/aja_og_12gda_2x4_ip.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-08-30T22:16:18.820Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "6ee3520ed27b1c6972b50c81b3fc0cbcf69802f38cccbf1719d3c891f5835985"
     },
     {
       "specId": "admin/allen-heath-qu-series",
@@ -3069,6 +3087,24 @@
       "contentHash": "008c0476c890e59695d65744d4107e472476361b98ea7038efef74ee0e18a815"
     },
     {
+      "specId": "admin/avstumpfl-pixera",
+      "deviceId": "av-stumpfl/pixera",
+      "title": "AVStumpfl Pixera Control Spec",
+      "manufacturer": "AV Stumpfl",
+      "manufacturerKey": "av-stumpfl",
+      "displayName": "Pixera",
+      "models": [
+        "Pixera"
+      ],
+      "revision": 1,
+      "path": "specs/av-stumpfl/avstumpfl_pixera.md",
+      "actionCount": 721,
+      "lastCheckedAt": "2026-08-31T11:13:06.125Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "fb4470bd6146cb25e6a46f08a1c96badbdbe2866c8b4db08e05e926567ad5bba"
+    },
+    {
       "specId": "admin/aver-cam520-pro",
       "deviceId": "aver/cam520-pro",
       "title": "AVer CAM520 PRO Control Spec",
@@ -3805,6 +3841,24 @@
       "contentHash": "262e2cc115a086b993a48c3acc6e815b485bd7e50855fb61f66cb8bcacb5a05c"
     },
     {
+      "specId": "admin/barco-dp-projector-companion",
+      "deviceId": "barco/dp-projector-pulse-companion",
+      "title": "Barco DP Projector (Pulse Companion) Control Spec",
+      "manufacturer": "Barco",
+      "manufacturerKey": "barco",
+      "displayName": "DP Projector (Pulse Companion)",
+      "models": [
+        "DP Projector (Pulse Companion)"
+      ],
+      "revision": 1,
+      "path": "specs/barco/barco_dp_projector.md",
+      "actionCount": 37,
+      "lastCheckedAt": "2026-08-30T22:16:34.034Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "cb67c2dc4be22d363a854bc68eb1268faf5d0d380d90dfc87c06f88e7519721e"
+    },
+    {
       "specId": "admin/barco-dp2k-10sx",
       "deviceId": "barco/dp2k-10sx",
       "title": "Barco DP2K-10sX Control Spec",
@@ -3969,6 +4023,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c57db6901870342de395e64d9934d28b602b58ac3792ab50cdef64f2bb4c5bf4"
+    },
+    {
+      "specId": "admin/barco-f70-w8",
+      "deviceId": "barco/f70-w8",
+      "title": "Barco F70 W8 Control Spec",
+      "manufacturer": "Barco",
+      "manufacturerKey": "barco",
+      "displayName": "F70 W8",
+      "models": [
+        "F70 W8"
+      ],
+      "revision": 1,
+      "path": "specs/barco/barco_f70_w8_ip.md",
+      "actionCount": 41,
+      "lastCheckedAt": "2026-08-30T22:16:49.006Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "c236c917258ec182a6abe53289091d439b1be5ecf5718b3bb6fa95766570adb1"
     },
     {
       "specId": "admin/barco-f80q9-f90-4k13-w13",
@@ -6098,6 +6170,24 @@
       "contentHash": "9bc27a6a72664641fb2f3fbc99649bb4c22e5d769549c42b1128687ef68fbef9"
     },
     {
+      "specId": "admin/bluos-unified-driver-v1-6-0",
+      "deviceId": "bluos/bluos-unified-driver-v1-6-0",
+      "title": "BluOS Unified Driver v1.6.0 Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS Unified Driver v1.6.0",
+      "models": [
+        "BluOS Unified Driver v1.6.0"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_unified_driver_v1_6_0.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-08-24T22:16:27.042Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "cc7656e86caecc52b2e71bab88fdc350f55d0c06385898779526c9316365a0fe"
+    },
+    {
       "specId": "admin/bluos-vault-series",
       "deviceId": "bluos/vault-series",
       "title": "BluOS Vault Series Control Spec",
@@ -6315,6 +6405,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "37a87e2ca06acf41054198ab8b8cbc40c18eeca18fd70b6e4c6dcf9a5b0468d7"
+    },
+    {
+      "specId": "admin/bo-beoplay-v1-32",
+      "deviceId": "bo/beoplay-v1-32",
+      "title": "B&O BeoPlay V1-32 Control Spec",
+      "manufacturer": "B&O",
+      "manufacturerKey": "bo",
+      "displayName": "BeoPlay V1-32",
+      "models": [
+        "BeoPlay V1-32"
+      ],
+      "revision": 1,
+      "path": "specs/bo/b_and_o_beoplay_v1_32_ip.md",
+      "actionCount": 33,
+      "lastCheckedAt": "2026-08-30T22:16:05.851Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "4b91d291a7168509032cb70e6526dfbae56f290353a6cf529ce8adc512cc2264"
     },
     {
       "specId": "admin/boeckeler-pointmaker-cpn-5000",
@@ -10646,6 +10754,60 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
       "contentHash": "d3a723ca7d2c3266f3728ebbefc853baa2747ad73370533ee24541f10c3d9829"
+    },
+    {
+      "specId": "admin/disguise-designer",
+      "deviceId": "disguise/designer",
+      "title": "disguise Designer Transport API Control Spec",
+      "manufacturer": "disguise",
+      "manufacturerKey": "disguise",
+      "displayName": "Designer",
+      "models": [
+        "Designer"
+      ],
+      "revision": 3,
+      "path": "specs/disguise/disguise_designer_ip.md",
+      "actionCount": 24,
+      "lastCheckedAt": "2026-08-31T11:10:14.229Z",
+      "sourceDomainCount": 0,
+      "sourceUrlCount": 0,
+      "contentHash": "67e54154aeaafdcaf9483b51948f97bcab2631428b55429ca5e6b457fb4ff517"
+    },
+    {
+      "specId": "admin/disguise-omnical",
+      "deviceId": "disguise/omnical",
+      "title": "disguise OmniCal Control Spec",
+      "manufacturer": "disguise",
+      "manufacturerKey": "disguise",
+      "displayName": "OmniCal",
+      "models": [
+        "OmniCal"
+      ],
+      "revision": 2,
+      "path": "specs/disguise/disguise_omnical_ip.md",
+      "actionCount": 13,
+      "lastCheckedAt": "2026-08-31T11:10:41.561Z",
+      "sourceDomainCount": 0,
+      "sourceUrlCount": 0,
+      "contentHash": "0c696f65939c0d94c7d5ce0e3d1f24948bd54d6677773a9ffd66d951a18d75fd"
+    },
+    {
+      "specId": "admin/disguise-renderstream",
+      "deviceId": "disguise/renderstream",
+      "title": "disguise RenderStream Control Spec",
+      "manufacturer": "disguise",
+      "manufacturerKey": "disguise",
+      "displayName": "RenderStream",
+      "models": [
+        "RenderStream"
+      ],
+      "revision": 1,
+      "path": "specs/disguise/disguise_renderstream_serial.md",
+      "actionCount": 11,
+      "lastCheckedAt": "2026-08-31T11:10:43.154Z",
+      "sourceDomainCount": 0,
+      "sourceUrlCount": 0,
+      "contentHash": "6446f5da2afacc59bcbbe1954bc518e3c0442e0af01c1adae025ff151c9422f2"
     },
     {
       "specId": "admin/domintell-dac1w01",
@@ -19084,6 +19246,24 @@
       "contentHash": "e85038b1d364512108f1d12c272222adf85741efb6bf6799561be21a88f28562"
     },
     {
+      "specId": "admin/lilin-static-models",
+      "deviceId": "lilin/lilin-aida-edge-ai-camera",
+      "title": "LILIN Static Models Control Spec",
+      "manufacturer": "LILIN",
+      "manufacturerKey": "lilin",
+      "displayName": "LILIN Aida Edge AI Camera",
+      "models": [
+        "LILIN Aida Edge AI Camera"
+      ],
+      "revision": 1,
+      "path": "specs/lilin/lilin_static_models_ip.md",
+      "actionCount": 32,
+      "lastCheckedAt": "2026-08-30T22:16:56.057Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "2ea71b90bfdb1915316cefd9ec347c2bbcce247fbcf8aa494e87ba1e903541d7"
+    },
+    {
       "specId": "admin/linkplay-wiim-amp",
       "deviceId": "linkplay/wiim-amp",
       "title": "Linkplay WiiM Amp Control Spec",
@@ -20910,6 +21090,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "98ed7728283797f42f973ea4af93d20d9f31a94ecd3477d0233fa995d5f5f5a7"
+    },
+    {
+      "specId": "admin/nad-universal-discrete-functions",
+      "deviceId": "nad/nad-bluos-players",
+      "title": "NAD BluOS Universal Discrete Functions Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD BluOS Players",
+      "models": [
+        "NAD BluOS Players"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_universal_discrete_functions.md",
+      "actionCount": 52,
+      "lastCheckedAt": "2026-08-20T22:16:13.077Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "470350d1a5c17ac710e757dc77062cd3127709ce8a9eb66485a31025bb537115"
     },
     {
       "specId": "admin/naturalpoint-optitrack",
@@ -25932,6 +26130,24 @@
       "contentHash": "f8e6202516667d8207ef936b2b7c5df19bb13f2c74e43bb888204776fb2ced69"
     },
     {
+      "specId": "admin/primare-systems-spa20",
+      "deviceId": "primare/spa20",
+      "title": "Primare Systems SPA20 Control Spec",
+      "manufacturer": "Primare",
+      "manufacturerKey": "primare",
+      "displayName": "SPA20",
+      "models": [
+        "SPA20"
+      ],
+      "revision": 1,
+      "path": "specs/primare/primare_systems_spa20_serial.md",
+      "actionCount": 79,
+      "lastCheckedAt": "2026-08-30T22:17:05.118Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "75cdc3799b0584bf017a482178b1725614f3dde21eea595bb40d588a27bb035b"
+    },
+    {
       "specId": "admin/projectiondesign-f32-sx-plus-north_america",
       "deviceId": "projectiondesign/f32-sx-north-america",
       "title": "Projectiondesign F32 sx+ Control Spec",
@@ -27170,6 +27386,24 @@
       "contentHash": "ea94a568d15d1ea026cc5d76b0b64af1bedc188d7a69784a48e0314f19a84964"
     },
     {
+      "specId": "admin/samsung-460mx-3",
+      "deviceId": "samsung/samsung-460mx-3-syncmaster-460mx-3",
+      "title": "Samsung 460MX-3 Control Spec",
+      "manufacturer": "Samsung",
+      "manufacturerKey": "samsung",
+      "displayName": "Samsung 460MX-3 (SyncMaster 460MX-3)",
+      "models": [
+        "Samsung 460MX-3 (SyncMaster 460MX-3)"
+      ],
+      "revision": 1,
+      "path": "specs/samsung/samsung_460mx_3.md",
+      "actionCount": 224,
+      "lastCheckedAt": "2026-08-26T22:17:32.238Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d23cb0ccc1b722d769d3abc6864829f2458e177dc04ca0375a67e1e5d33799cf"
+    },
+    {
       "specId": "admin/samsung-mnams1-series",
       "deviceId": "samsung/mnams1-series-samsung-multiple-display-control-family-mfm-lfd-signage",
       "title": "Samsung MNAMS1 Series MDC Control Spec",
@@ -27294,6 +27528,24 @@
       "sourceDomainCount": 4,
       "sourceUrlCount": 5,
       "contentHash": "314bcb8d81b3d3b57107b685fb2345f8cd93ffb4bc93c7f7bf536d5e0db5a3d8"
+    },
+    {
+      "specId": "admin/samsung-qeq90tatxxu-series",
+      "deviceId": "samsung/qeq90tatxxu-series",
+      "title": "Samsung QEQ90TATXXU Series Control Spec",
+      "manufacturer": "Samsung",
+      "manufacturerKey": "samsung",
+      "displayName": "QEQ90TATXXU Series",
+      "models": [
+        "QEQ90TATXXU Series"
+      ],
+      "revision": 1,
+      "path": "specs/samsung/samsung_qeq90tatxxu_series_ip.md",
+      "actionCount": 256,
+      "lastCheckedAt": "2026-08-30T22:17:16.916Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "828b740aff74f17e3d972960cb3b79b93aef693348a328bb8ca18c335f6c8edf"
     },
     {
       "specId": "admin/samsung-sdp-900dxr",
@@ -27775,6 +28027,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "8fb90990460889eee451b3d1e8d33e6ad96fa0e723479f24d7a2c4fb4a017469"
+    },
+    {
+      "specId": "admin/sharp-nec-ec091-162",
+      "deviceId": "sharp-nec/ec091-162",
+      "title": "Sharp-NEC Ec091 162 Control Spec",
+      "manufacturer": "Sharp-NEC",
+      "manufacturerKey": "sharp-nec",
+      "displayName": "Ec091 162",
+      "models": [
+        "Ec091 162"
+      ],
+      "revision": 1,
+      "path": "specs/sharp-nec/sharp_nec_ec091_162_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-08-30T22:17:36.807Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fa5b063726de4cec614d64058417a94dc031b274e78fca39b7df92468de6d0ca"
     },
     {
       "specId": "admin/sharp-nec-nec-digital-cinema-projector",
@@ -39463,6 +39733,24 @@
       "contentHash": "35377ff42e2fd5f14392ac3d5fc7a64370436ece786c34086b466bc1e22ccfa0"
     },
     {
+      "specId": "admin/tivo-dvr-demo-v1-0",
+      "deviceId": "tivo/tivo-dvr",
+      "title": "TiVo DVR Control Spec",
+      "manufacturer": "TiVo",
+      "manufacturerKey": "tivo",
+      "displayName": "TiVo DVR",
+      "models": [
+        "TiVo DVR"
+      ],
+      "revision": 1,
+      "path": "specs/tivo/tivo_dvr_demo_v1_0.md",
+      "actionCount": 64,
+      "lastCheckedAt": "2026-08-28T22:16:52.413Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "3b001eef3b9bb6f08df74e43a8674cb2df07fe788c24127b99d043c746021317"
+    },
+    {
       "specId": "admin/tivo-virgin-media-roamio-series-3",
       "deviceId": "tivo/tivo-virgin-media-roamio-series-3",
       "title": "TiVo Virgin Media Roamio Series 3 Control Spec",
@@ -39699,6 +39987,24 @@
       "contentHash": "c8a7e5d6c22c706cafdcd42755fd41c417c7ba2caf332ab787c2c449f4153b0b"
     },
     {
+      "specId": "admin/tyba-turn-2-platform-driver",
+      "deviceId": "tyba/turn-2",
+      "title": "Tyba Turn 2 Platform Driver Control Spec",
+      "manufacturer": "Tyba",
+      "manufacturerKey": "tyba",
+      "displayName": "Turn 2",
+      "models": [
+        "Turn 2"
+      ],
+      "revision": 1,
+      "path": "specs/tyba/tyba_turn_2_platform_driver_cloud.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-08-28T22:17:21.678Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "7f5c5ead8448bb448ba6c844afd2944b0c9ea806c2ac17e4f3ddc5b81ee87a70"
+    },
+    {
       "specId": "admin/tyba-ty-k-turn",
       "deviceId": "tyba/ty-k-turn",
       "title": "Tyba TY-K-TURN Control Spec",
@@ -39715,6 +40021,24 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 4,
       "contentHash": "d335245ce9f26760d3ba2d510d2f449502a2f954bdd0414c1bd44eee2a1fd827"
+    },
+    {
+      "specId": "admin/ubiquiti-nudgis",
+      "deviceId": "ubiquiti/nudgis",
+      "title": "Ubiquiti Nudgis Control Spec",
+      "manufacturer": "Ubiquiti",
+      "manufacturerKey": "ubiquiti",
+      "displayName": "Nudgis",
+      "models": [
+        "Nudgis"
+      ],
+      "revision": 1,
+      "path": "specs/ubiquiti/ubiquiti_nudgis_unknown.md",
+      "actionCount": 183,
+      "lastCheckedAt": "2026-08-30T22:17:55.473Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "c4962fef81856d54629a0bb481ab77e3055e78103b0267551d996f57deefb6eb"
     },
     {
       "specId": "admin/unique-automation-steamomatic",
