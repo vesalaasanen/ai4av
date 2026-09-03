@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:14.229Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/transport
+retrieved_at: 2026-08-31T10:49:18.809Z
 last_checked_at: 2026-08-31T11:10:14.229Z
 generated_at: 2026-08-31T11:10:14.229Z
 firmware_coverage: "\"r23.2+\""
@@ -27,7 +29,6 @@ known_gaps:
   - "source describes individual endpoints, not multi-step sequences"
   - "no safety warnings, interlocks, or power-on sequencing in source"
   - "base URL/port for the Designer HTTP service not stated in source (path prefix `/api/session/transport` documented, host:port left blank); firmware version compatibility not stated; auth (none inferred) not explicitly stated by vendor; playmode string after POST /stop not documented"
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-08-31T11:10:14.229Z
@@ -333,9 +334,11 @@ Upgrade pass done. All 24 source endpoints already in spec — none deleted, IDs
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:14.229Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/transport
+retrieved_at: 2026-08-31T10:49:18.809Z
 last_checked_at: 2026-08-31T11:10:14.229Z
 ```
 
@@ -357,7 +360,6 @@ summary: "All 24 spec action endpoints are present verbatim in the source with m
 - "source describes individual endpoints, not multi-step sequences"
 - "no safety warnings, interlocks, or power-on sequencing in source"
 - "base URL/port for the Designer HTTP service not stated in source (path prefix `/api/session/transport` documented, host:port left blank); firmware version compatibility not stated; auth (none inferred) not explicitly stated by vendor; playmode string after POST /stop not documented"
-- "model-specific source not located"
 ```
 
 ---

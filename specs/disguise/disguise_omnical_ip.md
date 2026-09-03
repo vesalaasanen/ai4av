@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:41.561Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/omnical
+retrieved_at: 2026-08-31T10:49:55.483Z
 last_checked_at: 2026-08-31T11:10:41.561Z
 generated_at: 2026-08-31T11:10:41.561Z
 firmware_coverage: "Not stated in source"
@@ -28,7 +30,6 @@ known_gaps:
   - "no unsolicited push/streaming events documented"
   - "no explicit safety warnings beyond discovery resource note"
   - "port number, auth scheme, firmware version, and RequestPlansFilter enum values not stated in source."
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-08-31T11:10:41.561Z
@@ -294,9 +295,11 @@ interlocks:
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:41.561Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/omnical
+retrieved_at: 2026-08-31T10:49:55.483Z
 last_checked_at: 2026-08-31T11:10:41.561Z
 ```
 
@@ -319,7 +322,6 @@ summary: "All 13 spec endpoints (URLs, methods, and params) match the refined so
 - "no unsolicited push/streaming events documented"
 - "no explicit safety warnings beyond discovery resource note"
 - "port number, auth scheme, firmware version, and RequestPlansFilter enum values not stated in source."
-- "model-specific source not located"
 ```
 
 ---

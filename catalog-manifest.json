@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-08-31T12:38:52.958Z",
-  "spec_count": 2215,
+  "generated_at": "2026-09-03T07:32:20.328Z",
+  "spec_count": 2216,
   "specs": [
     {
       "specId": "admin/2n-2n-easygate-ip-plus",
@@ -579,6 +579,24 @@
       "contentHash": "3688b383a35f8bd2bed16862e20531d8f1e280f5e2d8ccf2ce64a64966ac124e"
     },
     {
+      "specId": "admin/amx-ce-rel8",
+      "deviceId": "amx/ce-rel8",
+      "title": "AMX CE-REL8 Control Spec",
+      "manufacturer": "AMX",
+      "manufacturerKey": "amx",
+      "displayName": "CE-REL8",
+      "models": [
+        "CE-REL8"
+      ],
+      "revision": 1,
+      "path": "specs/amx/amx_ce_rel8_ip.md",
+      "actionCount": 20,
+      "lastCheckedAt": "2026-09-02T22:16:11.584Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "1eccf04d1c00963ab17ca24a5138af4e737a47f691353eb4874911d04dcc7289"
+    },
+    {
       "specId": "admin/analog-way-aquilon",
       "deviceId": "analog-way/aql-rs-alpha",
       "title": "Analog Way Aquilon Control Spec",
@@ -662,6 +680,28 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 3,
       "contentHash": "1d6f88a497b29a4aa724c02d977c05dc16e68e05e0e88d3a80d18229e0b44f25"
+    },
+    {
+      "specId": "admin/anthem-mrx-series",
+      "deviceId": "anthem/mrx-540",
+      "title": "Anthem MRX Series (MRX 540/740/1140, AVM 70/90) Control Spec",
+      "manufacturer": "Anthem",
+      "manufacturerKey": "anthem",
+      "displayName": "MRX 540",
+      "models": [
+        "MRX 540",
+        "MRX 740",
+        "MRX 1140",
+        "AVM 70",
+        "AVM 90"
+      ],
+      "revision": 1,
+      "path": "specs/anthem/anthem_mrx_series_ip.md",
+      "actionCount": 399,
+      "lastCheckedAt": "2026-09-02T22:16:36.639Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "bd7931599dea71db39cf4929aa6896231727126e7b71d7ca4cabee66137ead9b"
     },
     {
       "specId": "admin/anthem-mrx-slm",
@@ -1082,6 +1122,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "81d676f11a77cbeaf544c9b7063e6c1bbe9a08960b22e0b3e2dbe2eb0ba1ec1f"
+    },
+    {
+      "specId": "admin/arcam-t32-control-spec",
+      "deviceId": "arcam/t32",
+      "title": "Arcam T32 Control Spec",
+      "manufacturer": "Arcam",
+      "manufacturerKey": "arcam",
+      "displayName": "T32",
+      "models": [
+        "T32"
+      ],
+      "revision": 1,
+      "path": "specs/arcam/arcam_t32.md",
+      "actionCount": 156,
+      "lastCheckedAt": "2026-09-02T22:16:46.782Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "8880a187f050021504d551e4c329e988a3bf648ad547ca85d6ee9a062416e5cb"
     },
     {
       "specId": "admin/artison-back-pack",
@@ -2624,6 +2682,25 @@
       "contentHash": "8388477c1c68c5bd0e541ba4d5b24c70b7c25f6858bcb1ae8bbf2cca8a18767c"
     },
     {
+      "specId": "admin/auri-tx2n",
+      "deviceId": "auri/auri-tx2n",
+      "title": "Auri TX2N Control Spec",
+      "manufacturer": "Auri",
+      "manufacturerKey": "auri",
+      "displayName": "Auri TX2N",
+      "models": [
+        "Auri TX2N",
+        "Auri TX2N-D"
+      ],
+      "revision": 1,
+      "path": "specs/auri/auri_tx2n.md",
+      "actionCount": 16,
+      "lastCheckedAt": "2026-09-02T22:17:07.995Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "6187b061ffd7b6ba667def6860b5f29270f4ac2c8995fdf8544dcb3ea2d33a09"
+    },
+    {
       "specId": "admin/aurora-asp-44",
       "deviceId": "aurora/asp-44",
       "title": "Aurora ASP-44 Control Spec",
@@ -3102,7 +3179,7 @@
       "lastCheckedAt": "2026-08-31T11:13:06.125Z",
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
-      "contentHash": "fb4470bd6146cb25e6a46f08a1c96badbdbe2866c8b4db08e05e926567ad5bba"
+      "contentHash": "94bc50a3af12c94de376fed4a842afa626ad94dbc3cef6a1c5e6bb2231c88a0d"
     },
     {
       "specId": "admin/aver-cam520-pro",
@@ -3183,6 +3260,32 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "2e73ab0dcdfbe4a21aa62f1aac1263ca43b8cd6e2bc7a66bb68898cfa0c51ffa"
+    },
+    {
+      "specId": "admin/aver-ptc310-ptc330-series",
+      "deviceId": "aver/ptc310",
+      "title": "AVer PTC310/PTC330 Series Control Spec",
+      "manufacturer": "AVer",
+      "manufacturerKey": "aver",
+      "displayName": "PTC310",
+      "models": [
+        "PTC310",
+        "PTC330",
+        "TR311",
+        "TR311HN",
+        "TR313",
+        "TR331",
+        "TR333",
+        "TR530",
+        "TR320"
+      ],
+      "revision": 2,
+      "path": "specs/aver/aver_ptc310_ptc330_series_unknown.md",
+      "actionCount": 11,
+      "lastCheckedAt": "2026-09-02T22:17:06.453Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fa322322bb66b9e1b46c34940e5a1adf3e5be01e7db8d945de232630badeb5dc"
     },
     {
       "specId": "admin/aver-svc-series",
@@ -3893,6 +3996,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c93b6ba8d433b6eb18848cc9c10841406d3d30163ca175efa00551152236737b"
+    },
+    {
+      "specId": "admin/barco-e2-control-spec",
+      "deviceId": "barco/pulse-series-projectors",
+      "title": "Barco Pulse Projector Control Spec",
+      "manufacturer": "Barco",
+      "manufacturerKey": "barco",
+      "displayName": "Pulse-series projectors",
+      "models": [
+        "Pulse-series projectors"
+      ],
+      "revision": 1,
+      "path": "specs/barco/barco_e2_unknown.md",
+      "actionCount": 85,
+      "lastCheckedAt": "2026-09-02T22:18:03.569Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "f0a2d389429c12b690719b7d0a83c4b7311f4c44c04accd99ae26b0abbed9da3"
     },
     {
       "specId": "admin/barco-pulse-api",
@@ -5946,6 +6067,24 @@
       "sourceDomainCount": 0,
       "sourceUrlCount": 0,
       "contentHash": "0267f1e7b7f45f90259ee51d417f1190cd0c2db6f5aa8bcf9f75e3b269923dfa"
+    },
+    {
+      "specId": "admin/bluos-b400s-volume-control",
+      "deviceId": "bluos/b400s",
+      "title": "BluOS B400S Volume Control",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "B400S",
+      "models": [
+        "B400S"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_b400s_volume_control_ip.md",
+      "actionCount": 47,
+      "lastCheckedAt": "2026-09-02T22:17:38.819Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "a27d90e7203c0e304ef60c71a5bbfac62dd836ee3533cab9f134a5c6fdca08f6"
     },
     {
       "specId": "admin/bluos-bluos-bluray-player",
@@ -10769,9 +10908,9 @@
       "path": "specs/disguise/disguise_designer_ip.md",
       "actionCount": 24,
       "lastCheckedAt": "2026-08-31T11:10:14.229Z",
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "67e54154aeaafdcaf9483b51948f97bcab2631428b55429ca5e6b457fb4ff517"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f593ac07801fccd4e50381934308b30e32402b751ba6dadff19d2234e7ebfd40"
     },
     {
       "specId": "admin/disguise-omnical",
@@ -10787,9 +10926,9 @@
       "path": "specs/disguise/disguise_omnical_ip.md",
       "actionCount": 13,
       "lastCheckedAt": "2026-08-31T11:10:41.561Z",
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "0c696f65939c0d94c7d5ce0e3d1f24948bd54d6677773a9ffd66d951a18d75fd"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "773b4d5e8dc1f12dd499cdedf9d0a5d61f79bc8562bd850466e228685e1bb064"
     },
     {
       "specId": "admin/disguise-renderstream",
@@ -10805,9 +10944,9 @@
       "path": "specs/disguise/disguise_renderstream_serial.md",
       "actionCount": 11,
       "lastCheckedAt": "2026-08-31T11:10:43.154Z",
-      "sourceDomainCount": 0,
-      "sourceUrlCount": 0,
-      "contentHash": "6446f5da2afacc59bcbbe1954bc518e3c0442e0af01c1adae025ff151c9422f2"
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9fc15c3877e2c225d1e968502ef8a494c4b6aeb9affbc1b5b48423f7986d84ce"
     },
     {
       "specId": "admin/domintell-dac1w01",
@@ -14519,24 +14658,6 @@
       "contentHash": "01149caaa7b52e5bc046f24facebbe19a68db68a5094f416fd9c01f783ab75b9"
     },
     {
-      "specId": "admin/hisense-55u8k-series",
-      "deviceId": "hisense/55u8k-series",
-      "title": "Hisense 55U8K Series Control Spec",
-      "manufacturer": "Hisense",
-      "manufacturerKey": "hisense",
-      "displayName": "55U8K Series",
-      "models": [
-        "55U8K Series"
-      ],
-      "revision": 1,
-      "path": "specs/hisense/hisense_55u8k_series_ip.md",
-      "actionCount": 50,
-      "lastCheckedAt": "2026-06-25T15:38:27.551Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "fe8252e3315fb7aaaf4e19e92cc257f6b36cd9a1a8476f055fa0827269e00d82"
-    },
-    {
       "specId": "admin/hisense-55u8km-series",
       "deviceId": "hisense/55u8km",
       "title": "HiSense 55U8KM Series Control Spec",
@@ -16954,24 +17075,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "42cdfede87703cf17fb9139ae8ebb2daaa204ad37e836f91a166980e70627731"
-    },
-    {
-      "specId": "admin/jvc-dla-x30",
-      "deviceId": "jvc/dla-x30",
-      "title": "JVC DLA-X30 Control Spec",
-      "manufacturer": "JVC",
-      "manufacturerKey": "jvc",
-      "displayName": "DLA-X30",
-      "models": [
-        "DLA-X30"
-      ],
-      "revision": 1,
-      "path": "specs/jvc/jvc_dla_x30_ir.md",
-      "actionCount": 194,
-      "lastCheckedAt": "2026-05-14T18:17:17.254Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "02ddaed47c53db0ee79f06218886ede2329fdfa412ea6d3e0969e4a2c67685d4"
     },
     {
       "specId": "admin/jvc-dla-x500r",
@@ -19947,24 +20050,6 @@
       "contentHash": "6935afc71cad2883202f4c789a558a5237768fd17924771088f7344902fbfcd8"
     },
     {
-      "specId": "admin/marantz-av-10-series",
-      "deviceId": "marantz/av-10-series",
-      "title": "Marantz AV 10 Series Control Spec",
-      "manufacturer": "Marantz",
-      "manufacturerKey": "marantz",
-      "displayName": "AV 10 Series",
-      "models": [
-        "AV 10 Series"
-      ],
-      "revision": 1,
-      "path": "specs/marantz/marantz_av_10_series_serial.md",
-      "actionCount": 134,
-      "lastCheckedAt": "2026-05-14T18:17:17.804Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "43b4deb1302552d4763df63a7a1def45f040dce4478b75277e892a2364e35be8"
-    },
-    {
       "specId": "admin/marantz-av7005",
       "deviceId": "marantz/av7005",
       "title": "Marantz AV7005 Control Spec",
@@ -19999,24 +20084,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "b7b5f05233cd4676c220e8fbf2132162c8499c1c399fcf3c3fb0559dcdc48822"
-    },
-    {
-      "specId": "admin/marantz-cinema-series",
-      "deviceId": "marantz/marantz-cinema-series",
-      "title": "Marantz Cinema Series Control Spec",
-      "manufacturer": "Marantz",
-      "manufacturerKey": "marantz",
-      "displayName": "Marantz Cinema Series",
-      "models": [
-        "Marantz Cinema Series"
-      ],
-      "revision": 1,
-      "path": "specs/marantz/marantz_cinema_series_ip.md",
-      "actionCount": 143,
-      "lastCheckedAt": "2026-05-14T18:17:17.857Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "de67ab9090242503e25a89a6341a3d10c43f16560574b7da255a5ec82079fe33"
     },
     {
       "specId": "admin/marantz-is201",
@@ -20449,25 +20516,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "395bda6905f5c26532405221ad376a650a070d17f8257071c0a7b51ff4ee69f3"
-    },
-    {
-      "specId": "admin/marshall-cv355-30x-ip",
-      "deviceId": "marshall/cv355-30x-ip",
-      "title": "Marshall CV355-30X-IP Control Spec",
-      "manufacturer": "Marshall",
-      "manufacturerKey": "marshall",
-      "displayName": "CV355-30X-IP",
-      "models": [
-        "CV355-30X-IP",
-        "CV420-30X-IP"
-      ],
-      "revision": 1,
-      "path": "specs/marshall/marshall_cv355.md",
-      "actionCount": 186,
-      "lastCheckedAt": "2026-05-14T18:17:18.110Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 3,
-      "contentHash": "43fc86e1b700044022692ba853eb3552345e45bd27f8af6de9a3ad4be3c97801"
     },
     {
       "specId": "admin/maxhub-cfxxfa",
@@ -24722,27 +24770,6 @@
       "sourceDomainCount": 5,
       "sourceUrlCount": 5,
       "contentHash": "8976f4a0694d7deaef54b69294f456599bdf08f82b37451b82c3f551b80e0349"
-    },
-    {
-      "specId": "admin/panasonic-pt-ds-dw-dz-xk2",
-      "deviceId": "panasonic/pt-ds20kxe",
-      "title": "Panasonic PT DS DW DZ xK2 Control Spec",
-      "manufacturer": "Panasonic",
-      "manufacturerKey": "panasonic",
-      "displayName": "PT-DS20KXE",
-      "models": [
-        "PT-DS20KXE",
-        "PT-DW500KXE",
-        "PT-DZ21K2E",
-        "PT-DZ21K2E (and related xK2 series variants)"
-      ],
-      "revision": 1,
-      "path": "specs/panasonic/panasonic_pt_ds_dw_dz_xk2_unknown.md",
-      "actionCount": 98,
-      "lastCheckedAt": "2026-06-25T16:04:12.524Z",
-      "sourceDomainCount": 4,
-      "sourceUrlCount": 4,
-      "contentHash": "25cfc796c50f5ceb339558557321dc53fb9fc06b6f357e6c1c2d5b11ddb197dc"
     },
     {
       "specId": "admin/panasonic-ptz-auto-tracking",
@@ -39437,25 +39464,6 @@
       "contentHash": "d1515bf0a311a15b2f8b157551fa7ee294fa4540aa7ba6bd7d6b010e5cf352da"
     },
     {
-      "specId": "admin/tandberg-video-conferencing",
-      "deviceId": "tandberg/cisco-telepresence-codec-c40",
-      "title": "Tandberg Video Conferencing Control Spec",
-      "manufacturer": "Tandberg",
-      "manufacturerKey": "tandberg",
-      "displayName": "Cisco TelePresence Codec C40",
-      "models": [
-        "Cisco TelePresence Codec C40",
-        "Cisco TelePresence Codec C60"
-      ],
-      "revision": 1,
-      "path": "specs/tandberg/tandberg_tandberg_video_conferencing.md",
-      "actionCount": 59,
-      "lastCheckedAt": "2026-05-14T18:17:21.166Z",
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "6800fe2ef37155d10b6dd01b6d01375f7c7650a061149474ce68b3e92e302ad0"
-    },
-    {
       "specId": "admin/tascam-bd-01u",
       "deviceId": "tascam/bd-01u",
       "title": "Tascam BD-01U Control Spec",
@@ -41370,6 +41378,24 @@
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
       "contentHash": "f5ccbde0cf231eb3872ad59ffe408d24013a7fa0b95dc52414842e066152f137"
+    },
+    {
+      "specId": "admin/yamaha-cx-a5200bl",
+      "deviceId": "yamaha/cx-a5200bl",
+      "title": "Yamaha CX-A5200BL Control Spec",
+      "manufacturer": "Yamaha",
+      "manufacturerKey": "yamaha",
+      "displayName": "CX-A5200BL",
+      "models": [
+        "CX-A5200BL"
+      ],
+      "revision": 1,
+      "path": "specs/yamaha/yamaha_cx_a5200bl_series_ip.md",
+      "actionCount": 124,
+      "lastCheckedAt": "2026-08-31T22:16:13.770Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "0f0294afde6976661fe5d4d45e31bd79d0a484107637c3e7ec19e2ab7d3884fe"
     },
     {
       "specId": "admin/yamaha-dm3",

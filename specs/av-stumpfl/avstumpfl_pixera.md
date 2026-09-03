@@ -19,9 +19,9 @@ compatible_with:
 source_domains:
   - help.pixera.one
 source_urls:
-  - https://help.pixera.one/api/pixera-api-documentation-5
   - https://help.pixera.one/api-commands
-retrieved_at: 2026-08-30T08:07:58.053Z
+  - https://help.pixera.one/api/pixera-api-documentation-5
+retrieved_at: 2026-08-31T10:48:17.944Z
 last_checked_at: 2026-08-31T11:13:06.125Z
 generated_at: 2026-08-31T11:13:06.125Z
 firmware_coverage: "Not stated in source"
@@ -6566,9 +6566,9 @@ interlocks: []
 source_domains:
   - help.pixera.one
 source_urls:
-  - https://help.pixera.one/api/pixera-api-documentation-5
   - https://help.pixera.one/api-commands
-retrieved_at: 2026-08-30T08:07:58.053Z
+  - https://help.pixera.one/api/pixera-api-documentation-5
+retrieved_at: 2026-08-31T10:48:17.944Z
 last_checked_at: 2026-08-31T11:13:06.125Z
 ```
 

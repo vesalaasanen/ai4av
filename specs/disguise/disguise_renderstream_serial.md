@@ -15,9 +15,11 @@ compatible_with:
   hardware_revisions: []
   protocol_versions: []
   required_options: []
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:43.154Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/renderstream
+retrieved_at: 2026-08-31T10:49:02.476Z
 last_checked_at: 2026-08-31T11:10:43.154Z
 generated_at: 2026-08-31T11:10:43.154Z
 firmware_coverage: "Not stated in source"
@@ -34,7 +36,6 @@ known_gaps:
   - "HTTP scheme, host, and port not stated in source"
   - "authentication requirements not stated in source"
   - "status code enumerations and error semantics not stated in source"
-  - "model-specific source not located"
 verification:
   verdict: verified
   checked_at: 2026-08-31T11:10:43.154Z
@@ -248,9 +249,11 @@ interlocks: []
 ## Provenance
 
 ```yaml
-source_domains: []
-source_urls: []
-retrieved_at: 2026-08-31T11:10:43.154Z
+source_domains:
+  - developer.disguise.one
+source_urls:
+  - https://developer.disguise.one/api/session/renderstream
+retrieved_at: 2026-08-31T10:49:02.476Z
 last_checked_at: 2026-08-31T11:10:43.154Z
 ```
 
@@ -279,7 +282,6 @@ summary: "All 11 spec actions match the 11 source endpoints verbatim; transport 
 - "HTTP scheme, host, and port not stated in source"
 - "authentication requirements not stated in source"
 - "status code enumerations and error semantics not stated in source"
-- "model-specific source not located"
 ```
 
 ---
