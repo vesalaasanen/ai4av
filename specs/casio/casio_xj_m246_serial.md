@@ -23,7 +23,7 @@ source_urls:
   - https://www.audiogeneral.com/casio/xjm246_manual.pdf
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
   - https://www.manualslib.com/manual/2666925/Casio-Xj-A-Series.html
-retrieved_at: 2026-08-10T23:00:48.152Z
+retrieved_at: 2026-09-06T03:07:37.681Z
 last_checked_at: 2026-08-19T09:00:32.050Z
 generated_at: 2026-08-19T09:00:32.050Z
 firmware_coverage: "Not stated in source"
@@ -463,7 +463,7 @@ source_urls:
   - https://www.audiogeneral.com/casio/xjm246_manual.pdf
   - https://support.casio.com/pdf/007/YK-5_RS-232C_Control_E.pdf
   - https://www.manualslib.com/manual/2666925/Casio-Xj-A-Series.html
-retrieved_at: 2026-08-10T23:00:48.152Z
+retrieved_at: 2026-09-06T03:07:37.681Z
 last_checked_at: 2026-08-19T09:00:32.050Z
 ```
 

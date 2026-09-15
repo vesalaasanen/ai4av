@@ -17,11 +17,13 @@ compatible_with:
   required_options: []
 source_domains:
   - nudgis.demo.ubicast.eu
+  - help.ubicast.tv
   - github.com
 source_urls:
   - https://nudgis.demo.ubicast.eu/static/mediaserver/docs/api/index.html
+  - https://help.ubicast.tv/static/mediaserver/docs/api/index.html
   - https://github.com/UbiCastTeam/mediaserver-client
-retrieved_at: 2026-08-30T16:36:13.105Z
+retrieved_at: 2026-09-06T20:05:32.339Z
 last_checked_at: 2026-08-30T22:17:55.473Z
 generated_at: 2026-08-30T22:17:55.473Z
 firmware_coverage: "Not stated in source"
@@ -1102,11 +1104,13 @@ Source is an HTTP/REST API for a media-server platform (videos, live streams, ch
 ```yaml
 source_domains:
   - nudgis.demo.ubicast.eu
+  - help.ubicast.tv
   - github.com
 source_urls:
   - https://nudgis.demo.ubicast.eu/static/mediaserver/docs/api/index.html
+  - https://help.ubicast.tv/static/mediaserver/docs/api/index.html
   - https://github.com/UbiCastTeam/mediaserver-client
-retrieved_at: 2026-08-30T16:36:13.105Z
+retrieved_at: 2026-09-06T20:05:32.339Z
 last_checked_at: 2026-08-30T22:17:55.473Z
 ```
 

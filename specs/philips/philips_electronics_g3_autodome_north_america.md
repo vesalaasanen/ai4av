@@ -20,7 +20,8 @@ source_domains:
   - assets.catalog.boschbuildingtechnologies.com
 source_urls:
   - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OSRD_Protocol_Operation_Manual_enUS_9007201644423051.pdf
-retrieved_at: 2026-07-24T20:00:59.084Z
+  - https://assets.catalog.boschbuildingtechnologies.com/public/documents/__Configuration_Manual_enUS_9246852747.pdf
+retrieved_at: 2026-09-05T16:49:52.967Z
 last_checked_at: 2026-08-05T08:37:36.479Z
 generated_at: 2026-08-05T08:37:36.479Z
 firmware_coverage: "5.00 or higher"
@@ -1028,7 +1029,8 @@ source_domains:
   - assets.catalog.boschbuildingtechnologies.com
 source_urls:
   - https://assets.catalog.boschbuildingtechnologies.com/public/documents/OSRD_Protocol_Operation_Manual_enUS_9007201644423051.pdf
-retrieved_at: 2026-07-24T20:00:59.084Z
+  - https://assets.catalog.boschbuildingtechnologies.com/public/documents/__Configuration_Manual_enUS_9246852747.pdf
+retrieved_at: 2026-09-05T16:49:52.967Z
 last_checked_at: 2026-08-05T08:37:36.479Z
 ```
 

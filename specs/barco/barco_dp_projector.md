@@ -17,9 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - barco.com
+  - smart-story.ru
 source_urls:
   - https://www.barco.com/en/support/docs/R5975236
-retrieved_at: 2026-08-30T10:33:14.558Z
+  - https://smart-story.ru/files/products/multimedia/Projectors/Barco/DCP_Series_2/Docs/TDE4313-01-RS232CommandsforDPseries.pdf
+retrieved_at: 2026-09-04T19:56:23.238Z
 last_checked_at: 2026-08-30T22:16:34.034Z
 generated_at: 2026-08-30T22:16:34.034Z
 firmware_coverage: "Not stated in source"
@@ -600,9 +602,11 @@ The refine input name in the request was `barco_dp_projector.refined.md`; the cl
 ```yaml
 source_domains:
   - barco.com
+  - smart-story.ru
 source_urls:
   - https://www.barco.com/en/support/docs/R5975236
-retrieved_at: 2026-08-30T10:33:14.558Z
+  - https://smart-story.ru/files/products/multimedia/Projectors/Barco/DCP_Series_2/Docs/TDE4313-01-RS232CommandsforDPseries.pdf
+retrieved_at: 2026-09-04T19:56:23.238Z
 last_checked_at: 2026-08-30T22:16:34.034Z
 ```
 

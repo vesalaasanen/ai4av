@@ -19,14 +19,13 @@ source_domains:
   - res.cloudinary.com
   - manualslib.com
   - legrandav.com
-  - fullcompass.com
 source_urls:
   - https://res.cloudinary.com/avd/image/upload/v132197248/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
   - https://res.cloudinary.com/avd/image/upload/v134308980/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
+  - https://res.cloudinary.com/avd/image/upload/v134276148/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
   - https://www.manualslib.com/manual/1374952/Vaddio-DocCAM-20-Hdbt.html
   - https://www.legrandav.com/products/cameras/document_camera/doccam-20-hdbt
-  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
-retrieved_at: 2026-08-16T13:24:47.421Z
+retrieved_at: 2026-09-05T00:11:02.483Z
 last_checked_at: 2026-08-19T10:02:19.166Z
 generated_at: 2026-08-19T10:02:19.166Z
 firmware_coverage: "Not stated in source"
@@ -1736,14 +1735,13 @@ source_domains:
   - res.cloudinary.com
   - manualslib.com
   - legrandav.com
-  - fullcompass.com
 source_urls:
   - https://res.cloudinary.com/avd/image/upload/v132197248/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
   - https://res.cloudinary.com/avd/image/upload/v134308980/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
+  - https://res.cloudinary.com/avd/image/upload/v134276148/Resources/Vaddio/Cameras/Operation/411-0017-30-rev-c-doccam-20-hdbt-integrators-complete-guide.pdf
   - https://www.manualslib.com/manual/1374952/Vaddio-DocCAM-20-Hdbt.html
   - https://www.legrandav.com/products/cameras/document_camera/doccam-20-hdbt
-  - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
-retrieved_at: 2026-08-16T13:24:47.421Z
+retrieved_at: 2026-09-05T00:11:02.483Z
 last_checked_at: 2026-08-19T10:02:19.166Z
 ```
 

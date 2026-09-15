@@ -22,8 +22,9 @@ source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/CR106-External-Control.pdf
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control.pdf
   - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf
   - https://www.scribd.com/document/942837415/McIntosh-RS232ControlApplicationNote
-retrieved_at: 2026-08-16T06:46:41.669Z
+retrieved_at: 2026-09-04T14:18:10.934Z
 last_checked_at: 2026-08-05T08:31:47.600Z
 generated_at: 2026-08-05T08:31:47.600Z
 firmware_coverage: "Not stated in source"
@@ -549,8 +550,9 @@ source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/CR106-External-Control.pdf
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control.pdf
   - "https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf?rev=0ef329348ae54e419fdbbae405ce6c9d&revision=0ef32934-8ae5-4e41-9fdb-bae405ce6c9d"
+  - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/C55-C2800-External-Control-Rev-B.pdf
   - https://www.scribd.com/document/942837415/McIntosh-RS232ControlApplicationNote
-retrieved_at: 2026-08-16T06:46:41.669Z
+retrieved_at: 2026-09-04T14:18:10.934Z
 last_checked_at: 2026-08-05T08:31:47.600Z
 ```
 

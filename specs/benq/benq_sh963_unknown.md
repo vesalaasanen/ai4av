@@ -17,12 +17,14 @@ compatible_with:
   required_options: []
 source_domains:
   - benqimage.blob.core.windows.net
+  - manuals.plus
   - manualslib.com
 source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://manuals.plus/benq/projector-rs232-command-control-manual.pdf
   - https://www.manualslib.com/manual/550936/Benq-Dx819st.html
   - https://www.manualslib.com/manual/3088967/Benq-Sh963.html
-retrieved_at: 2026-08-16T18:18:36.805Z
+retrieved_at: 2026-09-05T10:46:34.248Z
 last_checked_at: 2026-08-19T08:59:26.494Z
 generated_at: 2026-08-19T08:59:26.494Z
 firmware_coverage: "Not stated in source"
@@ -1085,12 +1087,14 @@ interlocks: []
 ```yaml
 source_domains:
   - benqimage.blob.core.windows.net
+  - manuals.plus
   - manualslib.com
 source_urls:
   - "https://benqimage.blob.core.windows.net/driver-us-file/RS232-commands_all%20Product%20Lines.pdf"
+  - https://manuals.plus/benq/projector-rs232-command-control-manual.pdf
   - https://www.manualslib.com/manual/550936/Benq-Dx819st.html
   - https://www.manualslib.com/manual/3088967/Benq-Sh963.html
-retrieved_at: 2026-08-16T18:18:36.805Z
+retrieved_at: 2026-09-05T10:46:34.248Z
 last_checked_at: 2026-08-19T08:59:26.494Z
 ```
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-09-03T07:32:20.328Z",
-  "spec_count": 2216,
+  "generated_at": "2026-09-15T12:56:49.904Z",
+  "spec_count": 2289,
   "specs": [
     {
       "specId": "admin/2n-2n-easygate-ip-plus",
@@ -1059,6 +1059,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "fb1e723f493fe46ed6097daf082d074f3326e334294f227fe19e9af9377b6c39"
+    },
+    {
+      "specId": "admin/arcam-sa30",
+      "deviceId": "arcam/sa30",
+      "title": "Arcam SA30 Control Spec",
+      "manufacturer": "Arcam",
+      "manufacturerKey": "arcam",
+      "displayName": "SA30",
+      "models": [
+        "SA30"
+      ],
+      "revision": 1,
+      "path": "specs/arcam/arcam_product_hda_integrated_amplifiers_sa30_unknown.md",
+      "actionCount": 166,
+      "lastCheckedAt": "2026-09-09T22:16:29.827Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "cdbcc39b638efd4e919424b4b5ecc8858a605b653bfce4b3db611bee13676dc6"
     },
     {
       "specId": "admin/arcam-sa20-series",
@@ -3957,9 +3975,9 @@
       "path": "specs/barco/barco_dp_projector.md",
       "actionCount": 37,
       "lastCheckedAt": "2026-08-30T22:16:34.034Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "cb67c2dc4be22d363a854bc68eb1268faf5d0d380d90dfc87c06f88e7519721e"
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "7c41382a21f5955b1508adedfab898b4604bae8ff04ad6f3f99f153f7f2c80c7"
     },
     {
       "specId": "admin/barco-dp2k-10sx",
@@ -5454,9 +5472,27 @@
       "path": "specs/benq/benq_sh963_unknown.md",
       "actionCount": 173,
       "lastCheckedAt": "2026-08-19T08:59:26.494Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 4,
+      "contentHash": "af8cc440fee4250db74de5d713f2dffbeb1efaa8c06b5c0b2fe030e6f0fcc122"
+    },
+    {
+      "specId": "admin/benq-sp920",
+      "deviceId": "benq/sp920",
+      "title": "BenQ SP920 Control Spec",
+      "manufacturer": "BenQ",
+      "manufacturerKey": "benq",
+      "displayName": "SP920",
+      "models": [
+        "SP920"
+      ],
+      "revision": 1,
+      "path": "specs/benq/benq_sp920_north_america.md",
+      "actionCount": 48,
+      "lastCheckedAt": "2026-09-12T22:16:27.246Z",
       "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "4a45f7415e42f1e72e9681cb4f3aaaff2a4192db51ff28763caec575a959e800"
+      "sourceUrlCount": 5,
+      "contentHash": "35d8059b04d95302228e4a7bb07e0b6f76047774d8c299ec68820b7ee3b8b17c"
     },
     {
       "specId": "admin/benq-st550-650-430k",
@@ -5889,6 +5925,24 @@
       "contentHash": "3f8a02e7547f1c6356b47a447cfc26609a049bf5cf7375d20ac70278f92b26f4"
     },
     {
+      "specId": "admin/bluesound-nad-amazon-music",
+      "deviceId": "bluesound/bluos-enabled-bluesound-and-nad-players-ci580-pulse-powernode-hub",
+      "title": "Bluesound NAD BluOS Custom Integration API Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "BluOS-enabled Bluesound and NAD players (CI580, PULSE, POWERNODE, HUB)",
+      "models": [
+        "BluOS-enabled Bluesound and NAD players (CI580, PULSE, POWERNODE, HUB)"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_amazon_music_ip.md",
+      "actionCount": 55,
+      "lastCheckedAt": "2026-09-13T22:16:53.769Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "b08c4805c3877a5fed9ac9309fd9278b52995cb659cd87239b17cbc626d81691"
+    },
+    {
       "specId": "admin/bluesound-nad-audacy",
       "deviceId": "bluesound/bluesound-nad-audacy",
       "title": "Bluesound NAD Audacy Control Spec",
@@ -5905,6 +5959,61 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 5,
       "contentHash": "9e7debb9c211bb47bcff7c2cb6ac5f96a144706a7a606543f41fd5af2e8889ec"
+    },
+    {
+      "specId": "admin/bluesound-nad-bluesound-zone-network",
+      "deviceId": "bluesound/bluesound-zone-network",
+      "title": "Bluesound NAD Bluesound Zone Network Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "Bluesound Zone Network",
+      "models": [
+        "Bluesound Zone Network"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_bluesound_zone_network_ip.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-09-13T22:16:28.814Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 4,
+      "contentHash": "0321d8102e0b82f73e54a08424d14bfbaec939a71f9dad4e751f8f732cdc2c7a"
+    },
+    {
+      "specId": "admin/bluesound-nad-calm-radio",
+      "deviceId": "bluesound/bluesound-nad-calm-radio",
+      "title": "Bluesound NAD Calm Radio Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "Bluesound NAD Calm Radio",
+      "models": [
+        "Bluesound NAD Calm Radio"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_calm_radio_ip.md",
+      "actionCount": 46,
+      "lastCheckedAt": "2026-09-13T22:17:14.691Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "7a30f6803e521bbd7b49608b3200f22dc96aa6368071568f224e0cea70bb9065"
+    },
+    {
+      "specId": "admin/bluesound-nad-deezer",
+      "deviceId": "bluesound/bluos-player",
+      "title": "Bluesound NAD BluOS Custom Integration Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "BluOS Player",
+      "models": [
+        "BluOS Player",
+        "CI580"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_deezer_ip.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-13T22:17:56.864Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "f4ea45c121247e200e40c126a528cda4f4e6047ea0d5e830f1da1903ea779863"
     },
     {
       "specId": "admin/bluesound-nad-global-linein",
@@ -5961,6 +6070,78 @@
       "contentHash": "bf66e4c1f4e4b5dd7f174dc7ff45aaf184a1b4e176114c088111c2af07a19009"
     },
     {
+      "specId": "admin/bluesound-nad-napster",
+      "deviceId": "bluesound/bluos-player",
+      "title": "Bluesound NAD BluOS Custom Integration API Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "BluOS Player",
+      "models": [
+        "BluOS Player"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_napster_ip.md",
+      "actionCount": 48,
+      "lastCheckedAt": "2026-09-13T22:17:44.396Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "932e5c1fcc49645c7625ae976407df5657214155ba7fe31a4ad7a08dfc9dbb91"
+    },
+    {
+      "specId": "admin/bluesound-nad-pandora",
+      "deviceId": "bluesound/bluesound-nad-pandora",
+      "title": "Bluesound NAD Pandora Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "Bluesound NAD Pandora",
+      "models": [
+        "Bluesound NAD Pandora"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_pandora_ip.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-13T22:18:20.414Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "f432012e0c951202a5540f5bb0105b7726b2c3777a4194824b7455bbc28890ce"
+    },
+    {
+      "specId": "admin/bluesound-nad-prestomusic",
+      "deviceId": "bluesound/prestomusic",
+      "title": "Bluesound NAD PrestoMusic Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "PrestoMusic",
+      "models": [
+        "PrestoMusic"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_prestomusic_ip.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-13T22:18:16.810Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 3,
+      "contentHash": "4e5726c0c3cd5d0c7fcf96c9dfa600076fb0ccfac8163cbd672814fcddcc659c"
+    },
+    {
+      "specId": "admin/bluesound-nad-roon-ready",
+      "deviceId": "bluesound/roon-ready",
+      "title": "Bluesound NAD Roon Ready Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "Roon Ready",
+      "models": [
+        "Roon Ready"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_roon_ready_ip.md",
+      "actionCount": 45,
+      "lastCheckedAt": "2026-09-13T22:18:48.214Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 4,
+      "contentHash": "902f5ba72e7c2f666452f6dc924c01ec6337675cf960497f548a5cc731911dd9"
+    },
+    {
       "specId": "admin/bluesound-nad-siriusxm-ip",
       "deviceId": "bluesound/siriusxm-as-a-bluos-streaming-source-on-bluesound-nad-dali-bluos-players",
       "title": "Bluesound NAD SiriusXM Control Spec",
@@ -5977,6 +6158,42 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "4ef617b02098456d90e34f99d34fcd55d47db538b5eb2bc98243966d601cec9f"
+    },
+    {
+      "specId": "admin/bluesound-nad-soundmachine",
+      "deviceId": "bluesound/soundmachine",
+      "title": "Bluesound NAD SoundMachine (BluOS) Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "SoundMachine",
+      "models": [
+        "SoundMachine"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_soundmachine_ip.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-14T22:17:25.880Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "bb6870fe7510e6f00824f3d018a28e814869584827db6f8f613f1c7a494b7a75"
+    },
+    {
+      "specId": "admin/bluesound-nad-spotify",
+      "deviceId": "bluesound/bluesound-nad-spotify",
+      "title": "Bluesound NAD Spotify Control Spec",
+      "manufacturer": "Bluesound",
+      "manufacturerKey": "bluesound",
+      "displayName": "Bluesound NAD Spotify",
+      "models": [
+        "Bluesound NAD Spotify"
+      ],
+      "revision": 1,
+      "path": "specs/bluesound/nad_spotify_ip.md",
+      "actionCount": 52,
+      "lastCheckedAt": "2026-09-14T22:17:01.544Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "105fbb044cfcd0a0cee538af5f9e0c163f2e46c063a923128db4516d8eeac19c"
     },
     {
       "specId": "admin/bluesound-nad-tunify",
@@ -6085,6 +6302,26 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "a27d90e7203c0e304ef60c71a5bbfac62dd836ee3533cab9f134a5c6fdca08f6"
+    },
+    {
+      "specId": "admin/bluos-bluesound-nad-media-players",
+      "deviceId": "bluos/bluos-players",
+      "title": "BluOS Bluesound / NAD Media Players Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "BluOS Players",
+      "models": [
+        "BluOS Players",
+        "Bluesound Players",
+        "NAD Media Players"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_bluesound_nad_media_players_unknown.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-09T22:16:48.223Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "68a755d1c435f6d85f32aff3a8512fba60d3d05682f4fc4f892469fd64166afa"
     },
     {
       "specId": "admin/bluos-bluos-bluray-player",
@@ -6289,6 +6526,42 @@
       "contentHash": "6b1557f7904bf5d7e4812215388d675afd6f375afe5bff25f9ecbeb5e7d71e03"
     },
     {
+      "specId": "admin/bluos-node-2-series",
+      "deviceId": "bluos/node-2-series",
+      "title": "BluOS Node 2 Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "Node 2 Series",
+      "models": [
+        "Node 2 Series"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_node_2_series_ip.md",
+      "actionCount": 52,
+      "lastCheckedAt": "2026-09-03T22:16:41.619Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "bdcd4a7103f7ca7c4b62caf37b0d9c739721bcfa1144dc129f96abd7c98c7033"
+    },
+    {
+      "specId": "admin/bluos-node-series",
+      "deviceId": "bluos/node-series",
+      "title": "BluOS Node Series Control Spec",
+      "manufacturer": "BluOS",
+      "manufacturerKey": "bluos",
+      "displayName": "Node Series",
+      "models": [
+        "Node Series"
+      ],
+      "revision": 1,
+      "path": "specs/bluos/bluos_node_series_ip.md",
+      "actionCount": 48,
+      "lastCheckedAt": "2026-09-03T22:16:31.392Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ea23c671ba059deed8629a5c3698cbac234891836f7ae628a03d6d13b2383a2e"
+    },
+    {
       "specId": "admin/bluos-pulse-series-ip",
       "deviceId": "bluos/pulse",
       "title": "BluOS Pulse Series Control Spec",
@@ -6343,42 +6616,6 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "97c9a718a6703acaedbad144fe7062c4cbea7cce8b6e502a29c8e31f019f62ff"
-    },
-    {
-      "specId": "admin/blustream-cmx88ab",
-      "deviceId": "blustream/cmx88ab",
-      "title": "Blustream CMX88AB Control Spec",
-      "manufacturer": "Blustream",
-      "manufacturerKey": "blustream",
-      "displayName": "CMX88AB",
-      "models": [
-        "CMX88AB"
-      ],
-      "revision": 1,
-      "path": "specs/blustream/blustream_bluarc.md",
-      "actionCount": 18,
-      "lastCheckedAt": "2026-06-02T21:56:25.279Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "aa1b24b4fd706df4b40865935d0796052a9c1425414e4027d28601d862504d94"
-    },
-    {
-      "specId": "admin/blustream-cmx88ab",
-      "deviceId": "blustream/cmx88ab",
-      "title": "Blustream CMX88AB Control Spec",
-      "manufacturer": "Blustream",
-      "manufacturerKey": "blustream",
-      "displayName": "CMX88AB",
-      "models": [
-        "CMX88AB"
-      ],
-      "revision": 1,
-      "path": "specs/blustream/blustream_blustream_power_products.md",
-      "actionCount": 15,
-      "lastCheckedAt": "2026-06-02T21:41:02.468Z",
-      "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "a775ab510156abba266af9aa3c732e814ea668e50c67286defd5a60d68d71642"
     },
     {
       "specId": "admin/blustream-c44",
@@ -7326,6 +7563,24 @@
       "contentHash": "ed00ad4c2361f5833f8c1f67af04bc8f798716d663f1097225a9950e0c15669e"
     },
     {
+      "specId": "admin/canon-4k501st",
+      "deviceId": "canon/4k501st",
+      "title": "Canon 4K501ST Control Spec",
+      "manufacturer": "Canon",
+      "manufacturerKey": "canon",
+      "displayName": "4K501ST",
+      "models": [
+        "4K501ST"
+      ],
+      "revision": 1,
+      "path": "specs/canon/canon_4k501st_unknown.md",
+      "actionCount": 121,
+      "lastCheckedAt": "2026-09-09T22:17:02.764Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "94e589a54e8e62122f46abc70a86fd4341af2bc23848e4c04e936d88f9c73104"
+    },
+    {
       "specId": "admin/canon-4k600stz",
       "deviceId": "canon/4k600stz",
       "title": "Canon 4K600STZ Control Spec",
@@ -7528,7 +7783,7 @@
       "lastCheckedAt": "2026-08-19T09:00:32.050Z",
       "sourceDomainCount": 3,
       "sourceUrlCount": 3,
-      "contentHash": "5793c43d19380256d308a7574aa927fb77818a9925c29683249ec2e3eaa4dcab"
+      "contentHash": "71fc371886f0be5c8eecea73b2ec63194fa35082bd12fc1e4ce967a4cf726861"
     },
     {
       "specId": "admin/casio-xj_s_series",
@@ -8074,6 +8329,24 @@
       "contentHash": "5d72ddd783bfe0b7ccc9915a64212c2b3b61e144ec527ab0750c8e078a5f53b4"
     },
     {
+      "specId": "admin/christie-uhd-series",
+      "deviceId": "christie/christie-uhd-series",
+      "title": "Christie UHD Series Control Spec",
+      "manufacturer": "Christie",
+      "manufacturerKey": "christie",
+      "displayName": "Christie UHD Series",
+      "models": [
+        "Christie UHD Series"
+      ],
+      "revision": 1,
+      "path": "specs/christie/christie_uhd_series_unknown.md",
+      "actionCount": 154,
+      "lastCheckedAt": "2026-09-03T22:23:58.998Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "1ac177cfa2bd1247520528439c32f4118548d3480d7271401b355afb1601577b"
+    },
+    {
       "specId": "admin/christie-vivid-lw25-lx33-lx41",
       "deviceId": "christie/lx37",
       "title": "Christie Vivid LW25 LX33 LX41 Control Spec",
@@ -8608,6 +8881,24 @@
       "contentHash": "7afb99fe67f78072accae83fbe925c6f531a3534596f8a7cd4f1e0f204135e08"
     },
     {
+      "specId": "admin/classe-cdp-300",
+      "deviceId": "classe/cdp-300",
+      "title": "Classe Audio CDP-300 Control Spec",
+      "manufacturer": "Classé",
+      "manufacturerKey": "classe",
+      "displayName": "CDP-300",
+      "models": [
+        "CDP-300"
+      ],
+      "revision": 1,
+      "path": "specs/classe/classe_cdp_300_serial.md",
+      "actionCount": 88,
+      "lastCheckedAt": "2026-09-03T22:19:13.879Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "672fd7f5eadb902f195e81a883c1ab0fa96ca91eb80f50e095c75100bd7b8775"
+    },
+    {
       "specId": "admin/classe-audio-cdp102202300502-series-serial",
       "deviceId": "classe/cdp-102",
       "title": "Classe Audio CDP-102/202/300/502 Series Control Spec",
@@ -8904,6 +9195,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "f2109236dfbc8e52669c3659820912333fb10a7427991dbaff229959054d0fb0"
+    },
+    {
+      "specId": "admin/contemporary-research-232-mta",
+      "deviceId": "contemporary-research/232-mta",
+      "title": "Contemporary Research 232-MTA Control Spec",
+      "manufacturer": "Contemporary Research",
+      "manufacturerKey": "contemporary-research",
+      "displayName": "232-MTA",
+      "models": [
+        "232-MTA"
+      ],
+      "revision": 1,
+      "path": "specs/contemporary-research/contemporary_research_232_mta_unknown.md",
+      "actionCount": 69,
+      "lastCheckedAt": "2026-09-06T22:16:13.394Z",
+      "sourceDomainCount": 4,
+      "sourceUrlCount": 5,
+      "contentHash": "c3ed122b4ca76ed0439bcff3bac1d95024cc0796a1be828c3ff2984d62eeebbd"
     },
     {
       "specId": "admin/contemporary-research-atsc-mini",
@@ -9949,9 +10258,9 @@
       "path": "specs/davis-instruments/davis_instruments_vantage_pro_series.md",
       "actionCount": 41,
       "lastCheckedAt": "2026-08-05T08:16:19.281Z",
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "195416a1e76367cb3d770423448cbbc516ba9c30a181069d3fabb524a454f3dd"
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "24692054cbe255fcc818e51f5bc59792ba1688619250c817f89af64d8be1b977"
     },
     {
       "specId": "admin/d_and_b_audiotechnik-ds100",
@@ -10299,6 +10608,24 @@
       "contentHash": "0f4fc20636166b94552d34b84a88a58834112598d9216a51f618924e427f9887"
     },
     {
+      "specId": "admin/denon-electronics-300390",
+      "deviceId": "denon/avr-x4000",
+      "title": "Denon Electronics 300390 Control Spec",
+      "manufacturer": "Denon",
+      "manufacturerKey": "denon",
+      "displayName": "AVR-X4000",
+      "models": [
+        "AVR-X4000"
+      ],
+      "revision": 1,
+      "path": "specs/denon/denon_electronics_300390_serial.md",
+      "actionCount": 554,
+      "lastCheckedAt": "2026-09-03T22:20:39.096Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 5,
+      "contentHash": "4b60d3ffb2af55ac352e589bb5e1563937c17d5bf8844c8bb617d662d89bd957"
+    },
+    {
       "specId": "admin/denon-electronics-300983-heos",
       "deviceId": "denon/heos",
       "title": "Denon Electronics HEOS CLI Control Spec",
@@ -10396,6 +10723,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "39753ffa7fafaa1840cdad550a2ad97f54469126206f1d50d5870a9a8803efbd"
+    },
+    {
+      "specId": "admin/denon-electronics-heos",
+      "deviceId": "denon/heos",
+      "title": "Denon Electronics HEOS Control Spec",
+      "manufacturer": "Denon",
+      "manufacturerKey": "denon",
+      "displayName": "HEOS",
+      "models": [
+        "HEOS"
+      ],
+      "revision": 1,
+      "path": "specs/denon/denon_electronics_heos.md",
+      "actionCount": 56,
+      "lastCheckedAt": "2026-09-03T22:20:53.230Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "ecb0a84d0d665c1f2477954bc19df0d51df6d74d1f037f389473faecc4818753"
     },
     {
       "specId": "admin/denon-electronics-n-12dab",
@@ -11573,6 +11918,24 @@
       "contentHash": "3a0ccc71eb59707244a156108c55fe2bffdf38024a79a7415e8f5c6c31fd98a7"
     },
     {
+      "specId": "admin/doorbird-d2102fv",
+      "deviceId": "doorbird/d2102fv",
+      "title": "Doorbird D2102FV Control Spec",
+      "manufacturer": "Doorbird",
+      "manufacturerKey": "doorbird",
+      "displayName": "D2102FV",
+      "models": [
+        "D2102FV"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2102fv_ip.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-09-03T22:21:20.252Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "91c9a701781e5905d9305383ab262b71d52830091340ae0eb34e7e0032592a13"
+    },
+    {
       "specId": "admin/doorbird-d2102kv",
       "deviceId": "doorbird/d2102kv",
       "title": "Doorbird D2102KV Control Spec",
@@ -11589,6 +11952,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "e78f03b057a6c16ead8913741616caee743dd7d5647dc6e9d9645ca37208ffe4"
+    },
+    {
+      "specId": "admin/doorbird-d2102v-series",
+      "deviceId": "doorbird/doorbird-video-door-station-d21x",
+      "title": "Doorbird D2102V Series Control Spec",
+      "manufacturer": "Doorbird",
+      "manufacturerKey": "doorbird",
+      "displayName": "DoorBird Video Door Station D21x",
+      "models": [
+        "DoorBird Video Door Station D21x"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2102v_series_ip.md",
+      "actionCount": 28,
+      "lastCheckedAt": "2026-09-04T22:16:32.775Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d7720103983a89b28a77621fd5b55a982c5b6aa2daf9cffc109534a42a574f12"
     },
     {
       "specId": "admin/doorbird-d2104v",
@@ -11627,6 +12008,24 @@
       "contentHash": "d11b291e54cc3615ae79a08346ad9226e589ac8ca8589cfcfdfd3d32f8a9a56b"
     },
     {
+      "specId": "admin/doorbird-d2106v",
+      "deviceId": "doorbird/d2106v",
+      "title": "DoorBird D2106V Control Spec",
+      "manufacturer": "DoorBird",
+      "manufacturerKey": "doorbird",
+      "displayName": "D2106V",
+      "models": [
+        "D2106V"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2106v_ip.md",
+      "actionCount": 27,
+      "lastCheckedAt": "2026-09-04T22:16:39.429Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "ca16aee0e605cba9d75f7a082fb9b53f92ef12ba64e4bc8ed925fcb4d8f78cd6"
+    },
+    {
       "specId": "admin/doorbird-d2107v",
       "deviceId": "doorbird/doorbird-d2107v",
       "title": "Doorbird D2107V Control Spec",
@@ -11645,6 +12044,25 @@
       "contentHash": "b710e33dc05258bd067db87b02d61f1e0bedcd51063e6e74d3f1f054117e9df3"
     },
     {
+      "specId": "admin/doorbird-d2108v",
+      "deviceId": "doorbird/doorbird-d2108v",
+      "title": "Doorbird D2108V Control Spec",
+      "manufacturer": "Doorbird",
+      "manufacturerKey": "doorbird",
+      "displayName": "Doorbird D2108V",
+      "models": [
+        "Doorbird D2108V",
+        "DoorBird Video Door Station D21x"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2108v_ip.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-09-04T22:16:55.466Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "84602b1e48c32c52a01df40ff27d6c246108b66e36f115a3d3cadd7d1b6b3567"
+    },
+    {
       "specId": "admin/doorbird-d2109v",
       "deviceId": "doorbird/doorbird-d2109v",
       "title": "DoorBird D2109V Control Spec",
@@ -11661,6 +12079,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "d6b10b114c5024364a14825c945ebdb97587234ce35123a6970d2b9bda5c49d0"
+    },
+    {
+      "specId": "admin/doorbird-d2110v",
+      "deviceId": "doorbird/d2110v",
+      "title": "DoorBird D2110V Control Spec",
+      "manufacturer": "DoorBird",
+      "manufacturerKey": "doorbird",
+      "displayName": "D2110V",
+      "models": [
+        "D2110V"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2110v_ip.md",
+      "actionCount": 24,
+      "lastCheckedAt": "2026-09-04T22:17:01.245Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "6fdf6c44ab610ce93711a8c675597f828667d335784ccc33ac11590280ed804e"
     },
     {
       "specId": "admin/doorbird-d2111v",
@@ -11698,6 +12134,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "2a6d9f27dcd378f0793280960b31422e488cef353b299b7ec5c8b5cdadb7ace0"
+    },
+    {
+      "specId": "admin/doorbird-d2113v",
+      "deviceId": "doorbird/d2113v",
+      "title": "Doorbird D2113V Control Spec",
+      "manufacturer": "Doorbird",
+      "manufacturerKey": "doorbird",
+      "displayName": "D2113V",
+      "models": [
+        "D2113V"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2113v_ip.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-09-04T22:17:07.461Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2bbf40f88503040b08621edb09ca71a81a90a4d0003d751ad0c153c2cb86fd29"
     },
     {
       "specId": "admin/doorbird-d2114v",
@@ -11752,6 +12206,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "c2b4e632b50b94578913b975ad2c2a879c047145c4691a0d86fd445540c899ff"
+    },
+    {
+      "specId": "admin/doorbird-d2118v",
+      "deviceId": "doorbird/d2118v",
+      "title": "Doorbird D2118V Control Spec",
+      "manufacturer": "Doorbird",
+      "manufacturerKey": "doorbird",
+      "displayName": "D2118V",
+      "models": [
+        "D2118V"
+      ],
+      "revision": 1,
+      "path": "specs/doorbird/doorbird_d2118v_ip.md",
+      "actionCount": 25,
+      "lastCheckedAt": "2026-09-04T22:17:34.533Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "11c2a0641dcc806133158dad51c17ee698983717c05d68212f5104e07055ebe6"
     },
     {
       "specId": "admin/doorbird-d21dkh-v4a-series",
@@ -12135,6 +12607,24 @@
       "contentHash": "0a8b4edcae6eb725fc58e0b0958191d1fef54ad72dbe70f9d22b2487eeb86afb"
     },
     {
+      "specId": "admin/dynalite-patpa",
+      "deviceId": "dynalite/patpa",
+      "title": "Dynalite Patpa Control Spec",
+      "manufacturer": "Dynalite",
+      "manufacturerKey": "dynalite",
+      "displayName": "Patpa",
+      "models": [
+        "Patpa"
+      ],
+      "revision": 1,
+      "path": "specs/dynalite/dynalite_patpa_unknown.md",
+      "actionCount": 39,
+      "lastCheckedAt": "2026-09-05T22:16:16.356Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "08e7082fc4345f14c989b677d12f8ce0ac012bbeb152a82af27f24adaae3ffaa"
+    },
+    {
       "specId": "admin/eiki-c602s",
       "deviceId": "eiki/eiki-c602s-3lcd-laser-projector",
       "title": "Eiki C602S 3LCD Laser Projector Control Spec",
@@ -12151,6 +12641,27 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "de854a3ada4d568a22132edb434ac630df79f20848d1f6995e09791182d28868"
+    },
+    {
+      "specId": "admin/eiki-lc-xg210-lc-xg110-lc-xg200-lc-xg100",
+      "deviceId": "eiki/lc-xg210",
+      "title": "Eiki LC-XG210 / LC-XG110 / LC-XG200 / LC-XG100 (\"G Series\") Control Spec",
+      "manufacturer": "Eiki",
+      "manufacturerKey": "eiki",
+      "displayName": "LC-XG210",
+      "models": [
+        "LC-XG210",
+        "LC-XG110",
+        "LC-XG200",
+        "LC-XG100"
+      ],
+      "revision": 1,
+      "path": "specs/eiki/eiki_eip_uhs_xhs_100_unknown.md",
+      "actionCount": 54,
+      "lastCheckedAt": "2026-09-04T22:17:59.425Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 4,
+      "contentHash": "a706f35970c8018ea5e93f27381aca39033a1cf053e89c5ee0984d60b53308eb"
     },
     {
       "specId": "admin/eiki-ek-130u-3lcd-projector",
@@ -12172,6 +12683,24 @@
       "contentHash": "df062750de8d134bf6322ce13810204e852f5861652090ce2ef9109fdc2ac156"
     },
     {
+      "specId": "admin/eiki-ek-308uk-3lcd-projector",
+      "deviceId": "eiki/ek-308uk",
+      "title": "Eiki EK-308UK 3LCD Projector Control Spec",
+      "manufacturer": "Eiki",
+      "manufacturerKey": "eiki",
+      "displayName": "EK-308UK",
+      "models": [
+        "EK-308UK"
+      ],
+      "revision": 1,
+      "path": "specs/eiki/eiki_ek_308uk_3lcd_projector_serial.md",
+      "actionCount": 60,
+      "lastCheckedAt": "2026-09-05T22:16:34.521Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "dbdda17cb32129cab21321fbf98aa059118c52de03ee2b49e82f8153c24333f6"
+    },
+    {
       "specId": "admin/eiki-ek-50lu-3lcd-short-throw-laser-projector",
       "deviceId": "eiki/ek-50lu",
       "title": "Eiki EK-50LU 3LCD Short Throw Laser Projector Control Spec",
@@ -12188,6 +12717,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "df5493a7c5f8723f67c299d0967611089b43e0091620f3fabe2ef97f3f0467ca"
+    },
+    {
+      "specId": "admin/eiki-ek-65lu-3lcd-laser-projector",
+      "deviceId": "eiki/ek-65lu",
+      "title": "Eiki EK-65LU 3LCD Laser Projector Control Spec",
+      "manufacturer": "Eiki",
+      "manufacturerKey": "eiki",
+      "displayName": "EK-65LU",
+      "models": [
+        "EK-65LU"
+      ],
+      "revision": 1,
+      "path": "specs/eiki/eiki_ek_65lu_3lcd_laser_projector_serial.md",
+      "actionCount": 60,
+      "lastCheckedAt": "2026-09-06T22:16:17.956Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 4,
+      "contentHash": "842ad7d1fd510d6d1a5a862e4dcb69cded623303578d22ab21344f8e45b68601"
     },
     {
       "specId": "admin/eiki-ek-900lu-3lcd-laser-projector",
@@ -12247,6 +12794,24 @@
       "contentHash": "7cffffa1eb8609c5f0f037f1fa4881a38dc95eebbc664d54df6cd62a722d3459"
     },
     {
+      "specId": "admin/eiki-lcxga980ue",
+      "deviceId": "eiki/lc-xga980ue",
+      "title": "Eiki LC-XGA980UE Control Spec",
+      "manufacturer": "Eiki",
+      "manufacturerKey": "eiki",
+      "displayName": "LC-XGA980U/E",
+      "models": [
+        "LC-XGA980U/E"
+      ],
+      "revision": 1,
+      "path": "specs/eiki/eiki_lcxga980ue.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-09-07T22:16:35.844Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 4,
+      "contentHash": "a4ae84c3ed55d8dab0393553dd80a37a24ef3d13e9e722178d17ad91802eac04"
+    },
+    {
       "specId": "admin/eiki-pro-v1700",
       "deviceId": "eiki/eiki-pro-v1700-3lcd-laser-projector",
       "title": "Eiki Pro V1700 3LCD Laser Projector Control Spec",
@@ -12281,6 +12846,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "aa4b599bcee626e53e6b64d81bf9d7f9ea8e7a5a58f483c9e439c809c40ad536"
+    },
+    {
+      "specId": "admin/eiki-s1002p-3lcd-laser-projector",
+      "deviceId": "eiki/s1002p",
+      "title": "Eiki S1002P 3LCD Laser Projector Control Spec",
+      "manufacturer": "Eiki",
+      "manufacturerKey": "eiki",
+      "displayName": "S1002P",
+      "models": [
+        "S1002P"
+      ],
+      "revision": 1,
+      "path": "specs/eiki/eiki_s1002p_3lcd_laser_projector_unknown.md",
+      "actionCount": 61,
+      "lastCheckedAt": "2026-09-07T22:16:43.799Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "40fe6c1a74feb39fb4b02190edac8263a9610b7fffdbde1cef8aca5f60ab71ce"
     },
     {
       "specId": "admin/elium-ird-2160",
@@ -12373,6 +12956,63 @@
       "contentHash": "b1c3e4860c215f833e9d8cb614d30adbeb24d96ec080a22752d960ea6267b702"
     },
     {
+      "specId": "admin/epson-1470ui-series",
+      "deviceId": "epson/1470ui-series",
+      "title": "Epson 1470Ui Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "1470Ui Series",
+      "models": [
+        "1470Ui Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_1470ui_series_unknown.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-08T22:16:26.857Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "7156dc372ad6b320d1f33d2d7add3a6d9e858d404eedab44d9cf45a7540d289c"
+    },
+    {
+      "specId": "admin/epson-cb-eb-powerlite-800f-805f-series",
+      "deviceId": "epson/cb-powerlite-800f",
+      "title": "Epson CB EB PowerLite 800F 805F Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "CB PowerLite 800F",
+      "models": [
+        "CB PowerLite 800F",
+        "CB PowerLite 805F",
+        "EB-800F",
+        "EB-805F"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_cb_eb_powerlite_800f_805f_series_unknown.md",
+      "actionCount": 45,
+      "lastCheckedAt": "2026-09-07T22:17:26.166Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "9de751c18c8388fd2be4e68d3eaf99ffcc888cece5b1422d53bf15e107634e85"
+    },
+    {
+      "specId": "admin/epson-cb-eb-powerlite-l530u",
+      "deviceId": "epson/powerlite-l530u",
+      "title": "Epson CB EB PowerLite L530U Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "PowerLite L530U",
+      "models": [
+        "PowerLite L530U"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_cb_eb_powerlite_l530u_unknown.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-07T22:17:47.475Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "b67fb4185d55d4fc151a4f8f86c148143814e326e371f398d9be875982a74aca"
+    },
+    {
       "specId": "admin/epson-cb-eb-powerlite-l630u-series",
       "deviceId": "epson/cb-eb-powerlite-l630u",
       "title": "Epson CB EB PowerLite L630U Series Control Spec",
@@ -12389,6 +13029,315 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "9af3e709830cdb714dd964c0695ee3ed5c8819b3a616f70662da5e8b314d0679"
+    },
+    {
+      "specId": "admin/epson-esc-vp21",
+      "deviceId": "epson/elp-tw100",
+      "title": "Epson ESC/VP21 Projector Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "ELP-TW100",
+      "models": [
+        "ELP-TW100",
+        "ELP-TW100H",
+        "ELP-TS10",
+        "EMP-TW10",
+        "EMP-TW200",
+        "EMP-TW500",
+        "EMP-TW10H",
+        "EMP-TW200H",
+        "EMP-TW20",
+        "EMP-TW600",
+        "EMP-TW520",
+        "EMP-TW550",
+        "EMP-TW800",
+        "EMP-TW700",
+        "EMP-TW1000",
+        "EMP-TW2000",
+        "EH-TW2800",
+        "EH-TW2900",
+        "EH-TW3000",
+        "EH-TW3200",
+        "EH-TW3500",
+        "EH-TW3600",
+        "EH-TW3800",
+        "EH-TW4000",
+        "EH-TW4400",
+        "EH-TW4500",
+        "EH-TW5000",
+        "EH-TW5500",
+        "EH-TW5800",
+        "EH-TW420",
+        "EH-TW450",
+        "PL-HomeCinema400",
+        "PL-HomeCinema700",
+        "PL-HomeCinema720",
+        "PL-HomeCinema1080",
+        "PL-HomeCinema1080UB",
+        "PL-HomeCinema705HD",
+        "PL-HomeCinema6100",
+        "PL-HomeCinema6500UB",
+        "PL-HomeCinema8100",
+        "PL-HomeCinema8345",
+        "PL-HomeCinema8350",
+        "PL-HomeCinema8500UB",
+        "PL-ProCinema800",
+        "PL-ProCinema810",
+        "PL-ProCinema1080",
+        "PL-ProCinema1080UB",
+        "PL-ProCinema7100",
+        "PL-ProCinema7500UB",
+        "PL-ProCinema9100",
+        "PL-ProCinema9350",
+        "PL-ProCinema9500UB",
+        "TW8000",
+        "TW9000",
+        "TW8000W",
+        "TW9000W"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_cb_eb_pu_21xxw_22xxb_series_unknown.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-07T22:18:34.340Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "43db0875e2e6872d38c3050d1abddc3da2afb37ab38c06df0813d4dd7b1ce9ec"
+    },
+    {
+      "specId": "admin/epson-cbz-ebz-powerliteproz-series1",
+      "deviceId": "epson/epson-cbz-ebz-powerliteproz-series1",
+      "title": "Epson CBZ EBZ PowerLiteProZ Series1 Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "Epson CBZ EBZ PowerLiteProZ Series1",
+      "models": [
+        "Epson CBZ EBZ PowerLiteProZ Series1"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_cbz_ebz_powerliteproz_series1_unknown.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-08T22:16:42.433Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "8a11f1b49844bb8a97d12012b1b1ace6f89e0317afcb7c1d50095eb5f038923e"
+    },
+    {
+      "specId": "admin/epson-ch-ls-series",
+      "deviceId": "epson/ch-ls-series",
+      "title": "Epson CH-LS Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "CH-LS Series",
+      "models": [
+        "CH-LS Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_ch_ls_series_ir.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-08T22:17:09.398Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "2d45fd395e1aa9cec982a4532a4d4377d79fa54545f1b333da0c08348b1ac520"
+    },
+    {
+      "specId": "admin/epson-ch-ql3000w-series",
+      "deviceId": "epson/ch-ql3000w",
+      "title": "Epson CH-QL3000W Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "CH-QL3000W",
+      "models": [
+        "CH-QL3000W",
+        "CH-QL3000B"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_ch_ql3000w_series_ip.md",
+      "actionCount": 48,
+      "lastCheckedAt": "2026-09-08T22:17:05.305Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "11042d486e0924b6d24655f13602e57e393665436abf276f3fa84d21a257f62b"
+    },
+    {
+      "specId": "admin/epson-ch-tw-series",
+      "deviceId": "epson/ch-tw2800",
+      "title": "Epson CH-TW Series ESC/VP21 Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "CH-TW2800",
+      "models": [
+        "CH-TW2800",
+        "CH-TW2900",
+        "CH-TW3000",
+        "CH-TW3200",
+        "CH-TW3500",
+        "CH-TW3600",
+        "CH-TW3800",
+        "CH-TW4000",
+        "CH-TW4400",
+        "CH-TW4500",
+        "CH-TW5000",
+        "CH-TW5500",
+        "CH-TW5800",
+        "CH-TW420",
+        "CH-TW450"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_ch_tw_series_serial.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-08T22:17:23.266Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9f74327ef18a22577ec9f5a62944f5a2324f7ed177d5668fc669e2a91437de11"
+    },
+    {
+      "specId": "admin/epson-eb-cp-powerlite-1900-series",
+      "deviceId": "epson/eb-cp-powerlite-1900-series",
+      "title": "Epson EB CP PowerLite 1900 Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "EB CP PowerLite 1900 Series",
+      "models": [
+        "EB CP PowerLite 1900 Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_eb_cp_powerlite_1900_series_unknown.md",
+      "actionCount": 50,
+      "lastCheckedAt": "2026-09-08T22:17:38.506Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "0b7dd1b96e06df42b05b432d49836b5af5b0ff541067cd7443824dcd35f24962"
+    },
+    {
+      "specId": "admin/epson-eb-l-series",
+      "deviceId": "epson/eb-l-series",
+      "title": "Epson EB-L Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "EB-L Series",
+      "models": [
+        "EB-L Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_eb_l_series_serial.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-09T22:18:37.499Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "63b939d777658ae2c0bcb6f6890bed5847114f43c154907d6c380e5a09824ec0"
+    },
+    {
+      "specId": "admin/epson-eb-series",
+      "deviceId": "epson/elp-tw100",
+      "title": "Epson EB Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "ELP-TW100",
+      "models": [
+        "ELP-TW100",
+        "ELP-TW100H",
+        "ELP-TS10",
+        "EMP-TW10",
+        "EMP-TW10H",
+        "EMP-TW20",
+        "EMP-TW200",
+        "EMP-TW200H",
+        "EMP-TW500",
+        "EMP-TW520",
+        "EMP-TW550",
+        "EMP-TW600",
+        "EMP-TW700",
+        "EMP-TW800",
+        "EMP-TW1000",
+        "EMP-TW2000",
+        "EH-TW2800",
+        "EH-TW2900",
+        "EH-TW3000",
+        "EH-TW3200",
+        "EH-TW3500",
+        "EH-TW3600",
+        "EH-TW3800",
+        "EH-TW4000",
+        "EH-TW420",
+        "EH-TW4400",
+        "EH-TW4500",
+        "EH-TW450",
+        "EH-TW5000",
+        "EH-TW5500",
+        "EH-TW5800",
+        "EH-TW5900",
+        "EH-TW6000",
+        "EH-TW6000W",
+        "EH-TW8000",
+        "EH-TW8000W",
+        "EH-TW9000",
+        "EH-TW9000W",
+        "PowerLite Home Cinema 400",
+        "PowerLite Home Cinema 700",
+        "PowerLite Home Cinema 720",
+        "PowerLite Home Cinema 1080",
+        "PowerLite Home Cinema 1080UB",
+        "PowerLite Home Cinema 705HD",
+        "PowerLite Home Cinema 6100",
+        "PowerLite Home Cinema 6500UB",
+        "PowerLite Home Cinema 8100",
+        "PowerLite Home Cinema 8345",
+        "PowerLite Home Cinema 8350",
+        "PowerLite Home Cinema 8500UB",
+        "PowerLite Pro Cinema 800",
+        "PowerLite Pro Cinema 810",
+        "PowerLite Pro Cinema 1080",
+        "PowerLite Pro Cinema 1080UB",
+        "PowerLite Pro Cinema 7100",
+        "PowerLite Pro Cinema 7500UB",
+        "PowerLite Pro Cinema 9100",
+        "PowerLite Pro Cinema 9350",
+        "PowerLite Pro Cinema 9500UB",
+        "PowerLite Pro Cinema 9700UB"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_eb_series_ip.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-09T22:18:35.753Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "e99038220b19fdb30ba6d6fe9177645057e681f1441b771703cd9cd379b4631d"
+    },
+    {
+      "specId": "admin/epson-eb-w16-series",
+      "deviceId": "epson/eb-w16-series",
+      "title": "Epson EB-W16 Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "EB-W16 Series",
+      "models": [
+        "EB-W16 Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_eb_w16_series.md",
+      "actionCount": 50,
+      "lastCheckedAt": "2026-09-09T22:18:57.112Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "3517f91a40f4a7e2bef76d155a324e30be18bab809174e76e49e82f41a1174a5"
+    },
+    {
+      "specId": "admin/epson-eh-ls-series",
+      "deviceId": "epson/eh-ls-series",
+      "title": "Epson EH-LS Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "EH-LS Series",
+      "models": [
+        "EH-LS Series"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_eh_ls_series_ip.md",
+      "actionCount": 50,
+      "lastCheckedAt": "2026-09-10T22:16:20.360Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d3bca3b95064bfd0b65f2af35fa7229cc802b92655cd67f8e54466d327e86a2e"
     },
     {
       "specId": "admin/epson-eh-ls-series",
@@ -12508,6 +13457,35 @@
       "contentHash": "b6ddebbafa6888f2661c3876cc3538d41ece8f88aad4020c2d935b786da88f61"
     },
     {
+      "specId": "admin/epson-pl-home-c-series",
+      "deviceId": "epson/pl-homecinema-400",
+      "title": "Epson PL-Home C Series Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "PL-HomeCinema 400",
+      "models": [
+        "PL-HomeCinema 400",
+        "PL-HomeCinema 700",
+        "PL-HomeCinema 720",
+        "PL-HomeCinema 1080",
+        "PL-HomeCinema 1080UB",
+        "PL-HomeCinema 705HD",
+        "PL-HomeCinema 6100",
+        "PL-HomeCinema 6500UB",
+        "PL-HomeCinema 8100",
+        "PL-HomeCinema 8345",
+        "PL-HomeCinema 8350",
+        "PL-HomeCinema 8500UB"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_pl_home_c_series_serial.md",
+      "actionCount": 48,
+      "lastCheckedAt": "2026-09-10T22:17:12.186Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "1ff4c0a1a689b8cf9bf61fa305f256ba73421ad04e830ee186436ce794df57ad"
+    },
+    {
       "specId": "admin/epson-escvp21-home-projectors",
       "deviceId": "epson/tw100",
       "title": "Epson ESC/VP21 Home Projectors Control Spec",
@@ -12556,6 +13534,53 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "8111150bd882a2e8d902119175746c3de4651f33f61d129a8c72eb314c565004"
+    },
+    {
+      "specId": "admin/epson-powerlite-108-107-970-109w-980w-990u",
+      "deviceId": "epson/powerlite-108",
+      "title": "Epson PowerLite 108/107/970/109W/980W/990U Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "PowerLite 108",
+      "models": [
+        "PowerLite 108",
+        "PowerLite 107",
+        "PowerLite 970",
+        "PowerLite 109W",
+        "PowerLite 980W",
+        "PowerLite 990U"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_powerlite_108_107_970_109w_980w_990u_unknown.md",
+      "actionCount": 51,
+      "lastCheckedAt": "2026-09-10T22:17:24.238Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "d324d8f68e959a3bef8f972ee3394eb856bc3fba89de16f235ebd30c721e4aab"
+    },
+    {
+      "specId": "admin/epson-powerlite-108-107-970-109w-980w-990u-w39",
+      "deviceId": "epson/powerlite-108",
+      "title": "Epson PowerLite 108 107 970 109W 980W 990U W39 Control Spec",
+      "manufacturer": "Epson",
+      "manufacturerKey": "epson",
+      "displayName": "PowerLite 108",
+      "models": [
+        "PowerLite 108",
+        "PowerLite 107",
+        "PowerLite 970",
+        "PowerLite 109W",
+        "PowerLite 980W",
+        "PowerLite 990U",
+        "PowerLite W39"
+      ],
+      "revision": 1,
+      "path": "specs/epson/epson_powerlite_108_107_970_109w_980w_990u_w39_unknown.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-10T22:17:46.245Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "26ad943196b1200d3d7e8dd835ae9bda30492d0650cdb989e577382049ff769d"
     },
     {
       "specId": "admin/epson-powerlite-l890e",
@@ -12628,6 +13653,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "8f7e903d1c5988268c79e4bfba6e6851d9d4ddb86f274344f1af7594d69c5984"
+    },
+    {
+      "specId": "admin/esi-rq-bridge-iptoserial",
+      "deviceId": "esi/rq-bridge",
+      "title": "ESI RQ Bridge Control Spec",
+      "manufacturer": "ESI",
+      "manufacturerKey": "esi",
+      "displayName": "RQ Bridge",
+      "models": [
+        "RQ Bridge",
+        "RQ Bridge U"
+      ],
+      "revision": 1,
+      "path": "specs/esi/esi_rq_bridge_iptoserial_serial.md",
+      "actionCount": 14,
+      "lastCheckedAt": "2026-09-11T22:16:14.946Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "6afa45aa23e7c5c5f428c9210dd48271698c2f10d37d3993315f150131994403"
     },
     {
       "specId": "admin/esoteric-audio-dv-60",
@@ -13644,6 +14688,24 @@
       "contentHash": "85408c5d3ff04bae8c6a668b65faf6aafa819a5bfe3a08ad5d50066dc5de730c"
     },
     {
+      "specId": "admin/ezcoo-mx44-has2-4x4-hdmi-matrix",
+      "deviceId": "ezcoo/ezcoo-mx44-has2-4x4-hdmi-matrix",
+      "title": "EZCOO MX44-HAS2 4x4 HDMI Matrix Control Spec",
+      "manufacturer": "EZCOO",
+      "manufacturerKey": "ezcoo",
+      "displayName": "EZCOO MX44-HAS2 4x4 HDMI Matrix",
+      "models": [
+        "EZCOO MX44-HAS2 4x4 HDMI Matrix"
+      ],
+      "revision": 2,
+      "path": "specs/ezcoo/ezcoo_mx44_has2_4x4_hdmi_matrix.md",
+      "actionCount": 13,
+      "lastCheckedAt": "2026-09-14T22:16:19.411Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "1103644e43d444956a6cf839b4bced16f4f71b8c0f25ed7b14c8b2adfe96d884"
+    },
+    {
       "specId": "admin/faroudja-dvp5000",
       "deviceId": "faroudja/dvp5000",
       "title": "Faroudja DVP5000 Control Spec",
@@ -13810,6 +14872,67 @@
       "contentHash": "7d74d9919b9d9e10b332b7fc0b39bb234eb9a2d3954593b10b16ae2d2cc45806"
     },
     {
+      "specId": "admin/givenergy-givenergy-cloud",
+      "deviceId": "givenergy/giv-hy5-0",
+      "title": "GivEnergy Cloud API Control Spec",
+      "manufacturer": "GivEnergy",
+      "manufacturerKey": "givenergy",
+      "displayName": "GIV-HY5.0",
+      "models": [
+        "GIV-HY5.0",
+        "GIV-HY4.6",
+        "GIV-HY3.6",
+        "ALPS HY-5.0-GL",
+        "ALPS HY-4.6-GL",
+        "ALPS HY-3.6-GL",
+        "ALPS HY-6.0-GL",
+        "ALPS HY-7.0-GL",
+        "ALPS HY-8.0-GL",
+        "GIV-HY-5.0-AU",
+        "GIV-HY-4.6-AU",
+        "GIV-HY-3.6-AU",
+        "GIV-HY-6.0-AU",
+        "GIV-HY-7.0-AU",
+        "GIV-HY-8.0-AU",
+        "GIV-PV-5.0-G3",
+        "GIV-PV-4.6-G3",
+        "GIV-PV-3.6-G3",
+        "GIV-PV-6.0-G3",
+        "ALPS-CUBE-5.0-PRO",
+        "ALPS-CUBE-4.6-PRO",
+        "ALPS-CUBE-3.6-PRO",
+        "ALPS-CUBE-6.0-PRO",
+        "ALPS-CUBE-7.0-PRO",
+        "ALPS-CUBE-8.0-PRO",
+        "GIV-AC3.0",
+        "GIV-AC3.6",
+        "GIV-3HY-6",
+        "GIV-3HY-8",
+        "GIV-3HY-10",
+        "GIV-3HY-11",
+        "GIV-3HY-15",
+        "GIV-3HY-20",
+        "Commercial EMS",
+        "Plant EMS",
+        "EMS-R",
+        "EMS-C",
+        "Gateway",
+        "All-In-One",
+        "GIV-AIO-AC-13.5-3.6",
+        "GIV-AIO-AC-13.5-5.0",
+        "GIV-HY-6.0-G3-HV",
+        "GIV-HY-8.0-G3-HV",
+        "GIV-HY-10.0-G3-HV"
+      ],
+      "revision": 1,
+      "path": "specs/givenergy/givenergy_givenergy_cloud.md",
+      "actionCount": 99,
+      "lastCheckedAt": "2026-09-11T22:16:41.273Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9fb069c2caa798f88df4ba005f2115e1c4f9784fd7498e6f7ed17253220cf974"
+    },
+    {
       "specId": "admin/global-cach-universal-gc-device",
       "deviceId": "global-cache/gc-100",
       "title": "Global Caché Universal GC Device Control Spec",
@@ -13954,6 +15077,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "128c0b6b182c0608e7e4457565f3e3b504764b0457ad149748555b53db6fbab9"
+    },
+    {
+      "specId": "admin/goelst-g-rail",
+      "deviceId": "goelst/g-rail",
+      "title": "Goelst G-Rail Control Spec",
+      "manufacturer": "Goelst",
+      "manufacturerKey": "goelst",
+      "displayName": "G-Rail",
+      "models": [
+        "G-Rail"
+      ],
+      "revision": 1,
+      "path": "specs/goelst/goelst_g_rail.md",
+      "actionCount": 12,
+      "lastCheckedAt": "2026-09-11T22:16:32.898Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "074e504cbf32aabc921338d9e62b73d4e52350c4e1c31d2d4aa3e752e54ff794"
     },
     {
       "specId": "admin/goelst-gohd400",
@@ -14137,6 +15278,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "5542a486629e88502d1ad5278f19ab3591e825780fd88d751271ad154ae80b39"
+    },
+    {
+      "specId": "admin/hdanywhere-lm1xxa0x-lm2xxaxx-series",
+      "deviceId": "hdanywhere/lm1xxa0x",
+      "title": "HDANYWHERE LM1xxA0x LM2xxAxx Series Control Spec",
+      "manufacturer": "HDANYWHERE",
+      "manufacturerKey": "hdanywhere",
+      "displayName": "LM1xxA0x",
+      "models": [
+        "LM1xxA0x",
+        "LM2xxAxx"
+      ],
+      "revision": 1,
+      "path": "specs/hdanywhere/hdanywhere_lm1xxa0x_lm2xxaxx_series_unknown.md",
+      "actionCount": 39,
+      "lastCheckedAt": "2026-09-11T22:16:46.713Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 5,
+      "contentHash": "c0c48c5cb4899ab13a7b44eded825ff043eda05a5da52c5fcfae5944ebe388ec"
     },
     {
       "specId": "admin/hdanywhere-mhublegacy",
@@ -15965,6 +17125,25 @@
       "contentHash": "22a94a86835dcf30a6c2ff1d1960e486e48b501510bc139fb91bf4141acc4d09"
     },
     {
+      "specId": "admin/infocus-in5312-in5314",
+      "deviceId": "infocus/in5312",
+      "title": "InFocus IN5312 IN5314 Control Spec",
+      "manufacturer": "InFocus",
+      "manufacturerKey": "infocus",
+      "displayName": "IN5312",
+      "models": [
+        "IN5312",
+        "IN5314"
+      ],
+      "revision": 1,
+      "path": "specs/infocus/infocus_in5312_in5314_unknown.md",
+      "actionCount": 121,
+      "lastCheckedAt": "2026-09-11T22:17:14.039Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "40d0f3d5bb05144de64b275b9e0f0577106b58dd0906f7dae979cd2efa75a6a7"
+    },
+    {
       "specId": "admin/infocus-inl3148hd",
       "deviceId": "infocus/in134st",
       "title": "InFocus INL3148HD Control Spec",
@@ -16221,6 +17400,24 @@
         "DRX Series"
       ],
       "revision": 1,
+      "path": "specs/integra/integra_drx_series_ip.md",
+      "actionCount": 188,
+      "lastCheckedAt": "2026-09-11T22:17:43.418Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "60a4156eaee070508ada4b8d7b4745c5e5429e0ab24e766f205d3d641ee19783"
+    },
+    {
+      "specId": "admin/integra-drx-series",
+      "deviceId": "integra/drx-series",
+      "title": "Integra DRX Series Control Spec",
+      "manufacturer": "Integra",
+      "manufacturerKey": "integra",
+      "displayName": "DRX Series",
+      "models": [
+        "DRX Series"
+      ],
+      "revision": 1,
       "path": "specs/integra/integra_drx_series_ir.md",
       "actionCount": 86,
       "lastCheckedAt": "2026-06-25T11:26:00.000Z",
@@ -16448,6 +17645,24 @@
       "contentHash": "722001b6f0f1dc1f77744af5c7e753b61e617572209b349a0147441bca01aa9a"
     },
     {
+      "specId": "admin/jbl-sdp-5-series",
+      "deviceId": "jbl/sdp-5-series",
+      "title": "JBL SDP-5 Series Control Spec",
+      "manufacturer": "JBL",
+      "manufacturerKey": "jbl",
+      "displayName": "SDP-5 Series",
+      "models": [
+        "SDP-5 Series"
+      ],
+      "revision": 1,
+      "path": "specs/jbl/jbl_sdp_5_series_ip.md",
+      "actionCount": 63,
+      "lastCheckedAt": "2026-09-11T22:18:35.793Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "576864e382a0777d7311bfc8dd5cacd3dc83933e73bb5b8e0982e0fde3c1726f"
+    },
+    {
       "specId": "admin/jbl-sdp-75",
       "deviceId": "jbl/sdp-75",
       "title": "JBL SDP-75 Processor Automation Protocol",
@@ -16614,6 +17829,25 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
       "contentHash": "a6cb746e2137f97e46a1a0ee77f908507798ddeac2a1922601205a48a06c475d"
+    },
+    {
+      "specId": "admin/jvc-kenwood-dla-n6-n5",
+      "deviceId": "jvc-kenwood/dla-n6",
+      "title": "JVC KENWOOD DLA-N6/N5 Control Spec",
+      "manufacturer": "JVC KENWOOD",
+      "manufacturerKey": "jvc-kenwood",
+      "displayName": "DLA-N6",
+      "models": [
+        "DLA-N6",
+        "DLA-N5"
+      ],
+      "revision": 1,
+      "path": "specs/jvc-kenwood/jvc_dla_n6_n5_ip.md",
+      "actionCount": 187,
+      "lastCheckedAt": "2026-09-11T22:19:16.562Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "6d2d2c38a80b8f868aee93ab0d56778e463d2345134dc84658d5c9f1e8c6adca"
     },
     {
       "specId": "admin/jvc-kenwood-dla-np5-rs1100",
@@ -17234,6 +18468,45 @@
       "contentHash": "fa1cd0c5f411531ff2888d6b902f78fc8379c3b2f51cc38c01e58ccd27ccb53b"
     },
     {
+      "specId": "admin/jvc-dila-projector",
+      "deviceId": "jvc/dla-hd350",
+      "title": "JVC D-ILA Projector Control Spec",
+      "manufacturer": "JVC",
+      "manufacturerKey": "jvc",
+      "displayName": "DLA-HD350",
+      "models": [
+        "DLA-HD350",
+        "DLA-HD550",
+        "DLA-HD750",
+        "DLA-HD950",
+        "DLA-HD990",
+        "DLA-X3",
+        "DLA-X7",
+        "DLA-X9",
+        "DLA-X30",
+        "DLA-X70R",
+        "DLA-X90R",
+        "DLA-RS10",
+        "DLA-RS15",
+        "DLA-RS20",
+        "DLA-RS25",
+        "DLA-RS35",
+        "DLA-RS40",
+        "DLA-RS45",
+        "DLA-RS50",
+        "DLA-RS55",
+        "DLA-RS60",
+        "DLA-RS65"
+      ],
+      "revision": 1,
+      "path": "specs/jvc/jvc_v2_v20_ir.md",
+      "actionCount": 327,
+      "lastCheckedAt": "2026-09-12T22:16:43.798Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "a4c5067c22556ad8f51aa8b4bdb3173686e8fc52af60a0c51ac357e2fd7c743d"
+    },
+    {
       "specId": "admin/jvc-d-ila-x_be_we",
       "deviceId": "jvc/dla-hd350",
       "title": "JVC D-ILA Projector Control Spec",
@@ -17645,8 +18918,8 @@
       "actionCount": 13,
       "lastCheckedAt": "2026-08-19T09:26:01.447Z",
       "sourceDomainCount": 2,
-      "sourceUrlCount": 3,
-      "contentHash": "7e30363507530882f687bac7d089ba7c010fd325a2721f6be4a6228cf914d357"
+      "sourceUrlCount": 4,
+      "contentHash": "47e85b14533ff91096c9a2510806a6454927de59e41c10892a469a72c59bf7c4"
     },
     {
       "specId": "admin/key-digital-systems-kd-ps42-1158",
@@ -17775,6 +19048,24 @@
       "contentHash": "b68bd991de4cb16d75a9e6c1ac31ebb84406fa01768daf6cbc03013d820b1019"
     },
     {
+      "specId": "admin/kramer-2000",
+      "deviceId": "kramer/protocol-2000-compatible-machines",
+      "title": "Kramer Protocol 2000 Control Spec",
+      "manufacturer": "Kramer",
+      "manufacturerKey": "kramer",
+      "displayName": "Protocol 2000 compatible machines",
+      "models": [
+        "Protocol 2000 compatible machines"
+      ],
+      "revision": 1,
+      "path": "specs/kramer/kramer_2000_unknown.md",
+      "actionCount": 42,
+      "lastCheckedAt": "2026-09-12T22:16:57.733Z",
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "be479d7a36f884e68811d2d124de955c552693af1b03ef435c317b425fdbbc5f"
+    },
+    {
       "specId": "admin/kramer-vp-723xl",
       "deviceId": "kramer/vp-723xl",
       "title": "Kramer VP-723XL Control Spec",
@@ -17827,6 +19118,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 4,
       "contentHash": "831f71f75eaf3f2dc99b0b6b3872e8f98492edc43f417b8d8268849757cb4c23"
+    },
+    {
+      "specId": "admin/kramer-electronics-vp-728",
+      "deviceId": "kramer/vp-728",
+      "title": "Kramer Electronics VP-728 Control Spec",
+      "manufacturer": "Kramer",
+      "manufacturerKey": "kramer",
+      "displayName": "VP-728",
+      "models": [
+        "VP-728"
+      ],
+      "revision": 1,
+      "path": "specs/kramer/kramer_electronics_vp_728_serial.md",
+      "actionCount": 159,
+      "lastCheckedAt": "2026-09-12T22:16:53.648Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "453c955e00beba08285b41d8b591349f3b5a6e53bc1aef2e95329a7ae1572a97"
     },
     {
       "specId": "admin/kramer-vp720xl-724xl",
@@ -18146,6 +19455,24 @@
       "sourceDomainCount": 2,
       "sourceUrlCount": 2,
       "contentHash": "30dece07a252b9b2ee5439186096bf192a189d18326652b1a505386f86313f74"
+    },
+    {
+      "specId": "admin/leviton-smartjack",
+      "deviceId": "leviton/vrc0p",
+      "title": "Leviton SmartJack (VRC0P Vizia RF + RS-232 Serial Interface) Control Spec",
+      "manufacturer": "Leviton",
+      "manufacturerKey": "leviton",
+      "displayName": "VRC0P",
+      "models": [
+        "VRC0P"
+      ],
+      "revision": 1,
+      "path": "specs/leviton/leviton_smartjack_unknown.md",
+      "actionCount": 29,
+      "lastCheckedAt": "2026-09-12T22:17:07.299Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "c7b4c14a41676d4517d9058ae596291fe599f3091d4a8b59c5ec3ed0529cbdad"
     },
     {
       "specId": "admin/lexicon-dd8plus",
@@ -19219,6 +20546,26 @@
       "contentHash": "4783a67f9461987a1b037ef7e06585af4b9b3f175e0dc4f9a6e22fe2148ab990"
     },
     {
+      "specId": "admin/lightware-mmx6x2ht-200-210-220",
+      "deviceId": "lightware/mmx6x2-ht200",
+      "title": "Lightware MMX6x2-HT200/210/220 Control Spec",
+      "manufacturer": "Lightware",
+      "manufacturerKey": "lightware",
+      "displayName": "MMX6x2-HT200",
+      "models": [
+        "MMX6x2-HT200",
+        "MMX6x2-HT210",
+        "MMX6x2-HT220"
+      ],
+      "revision": 1,
+      "path": "specs/lightware/lightware_mmx6x2ht_200_210_220_unknown.md",
+      "actionCount": 130,
+      "lastCheckedAt": "2026-09-12T22:18:31.455Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 3,
+      "contentHash": "b19af18ba05037d80658cc7131510acdfbec22735568dc851db743f558b7a359"
+    },
+    {
       "specId": "admin/lightware-mx12x12dvi-slim",
       "deviceId": "lightware/mx12x12dvi-slim",
       "title": "Lightware Mx12X12Dvi Slim Control Spec",
@@ -19692,6 +21039,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "daa4eeb710d66166984dcf4bc60cdb91c7911a205a0daee48987bdbbe01bc3e2"
+    },
+    {
+      "specId": "admin/lumens-dc172",
+      "deviceId": "lumens/dc172",
+      "title": "Lumens DC172 Control Spec",
+      "manufacturer": "Lumens",
+      "manufacturerKey": "lumens",
+      "displayName": "DC172",
+      "models": [
+        "DC172"
+      ],
+      "revision": 2,
+      "path": "specs/lumens/lumens_dc172_document_camera_serial.md",
+      "actionCount": 49,
+      "lastCheckedAt": "2026-09-14T22:16:24.882Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "f8e64e5e2b5b2972d989e2174bec1914fa4a7bcd83bc0042dc3ead30489c8b0e"
     },
     {
       "specId": "admin/lumens-dc192-pc192",
@@ -20592,6 +21957,24 @@
       "contentHash": "c313be15fb44b2c02e11af27f6bf77452016e71fc95464cf4f8c3a08d73956ed"
     },
     {
+      "specId": "admin/mcintosh-mx160",
+      "deviceId": "mcintosh/mx160",
+      "title": "McIntosh MX160 Control Spec",
+      "manufacturer": "McIntosh",
+      "manufacturerKey": "mcintosh",
+      "displayName": "MX160",
+      "models": [
+        "MX160"
+      ],
+      "revision": 1,
+      "path": "specs/mcintosh/mcintosh_mx160_ip.md",
+      "actionCount": 116,
+      "lastCheckedAt": "2026-09-12T22:17:36.329Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "f52ae373e79bc86d12115dc34cd35102ad7cfe66069c9e7730c55a78ddd0b528"
+    },
+    {
       "specId": "admin/mcintosh-cr106",
       "deviceId": "mcintosh/cr106",
       "title": "McIntosh CR106 Control Spec",
@@ -20606,8 +21989,8 @@
       "actionCount": 27,
       "lastCheckedAt": "2026-08-05T08:31:47.600Z",
       "sourceDomainCount": 2,
-      "sourceUrlCount": 4,
-      "contentHash": "6086f3c560e6c4c85ad66c570951d8b01ef19d64bf1230331e128cbd42b5cc9c"
+      "sourceUrlCount": 5,
+      "contentHash": "e995e9dccd5844fe72b675887d251355826333941563cf0d3937c8760175f7c8"
     },
     {
       "specId": "admin/mcintosh-cr106",
@@ -20906,6 +22289,24 @@
       "contentHash": "5bcd37ecbd582ccf721972bf4713b507b5a1b7fd64f4b52dff3de5aa536a20f0"
     },
     {
+      "specId": "admin/monitor-audio-ims-4-music-streamer",
+      "deviceId": "monitor-audio/ims-4",
+      "title": "Monitor Audio IMS-4 Control Spec",
+      "manufacturer": "Monitor Audio",
+      "manufacturerKey": "monitor-audio",
+      "displayName": "IMS-4",
+      "models": [
+        "IMS-4"
+      ],
+      "revision": 1,
+      "path": "specs/monitor-audio/monitor_audio_ims_4_music_streamer_unknown.md",
+      "actionCount": 47,
+      "lastCheckedAt": "2026-09-12T22:17:52.700Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 2,
+      "contentHash": "28c7004bcde63790b82a57d2311176452d904fa54a5611bdd7cd0ecbd9888375"
+    },
+    {
       "specId": "admin/mt-viki-mt-hd0808-8x8-hdmi-matrix",
       "deviceId": "mt-viki/mt-hd0808",
       "title": "MT VIKI MT-HD0808 8x8 HDMI Matrix Control Spec",
@@ -20922,6 +22323,60 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 2,
       "contentHash": "bf1d1526d6f7eebbd8568cc9c6ca507ac528b5c5738ad200c0eaefad8848212d"
+    },
+    {
+      "specId": "admin/nad-450",
+      "deviceId": "nad/nad-450",
+      "title": "NAD 450 BluOS Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD 450",
+      "models": [
+        "NAD 450"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_450.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-12T22:18:26.887Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "9b4bfe13b819ce17fdcfff9b7c8cdf65c7d9872c49d8a7f90e94d0b423e933fc"
+    },
+    {
+      "specId": "admin/nad-c446",
+      "deviceId": "nad/c446",
+      "title": "NAD C446 Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "C446",
+      "models": [
+        "C446"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_c446.md",
+      "actionCount": 44,
+      "lastCheckedAt": "2026-09-13T22:16:55.666Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "658ca6f1389a59326b8515e4d639cc45ebaa2ba2b112516d290f9766fa05aeba"
+    },
+    {
+      "specId": "admin/nad-c658",
+      "deviceId": "nad/nad-c658",
+      "title": "NAD C658 Control Spec",
+      "manufacturer": "NAD",
+      "manufacturerKey": "nad",
+      "displayName": "NAD C658",
+      "models": [
+        "NAD C658"
+      ],
+      "revision": 1,
+      "path": "specs/nad/nad_c658_ip.md",
+      "actionCount": 45,
+      "lastCheckedAt": "2026-09-13T22:17:25.142Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "42c59c1bfd67e490d072c73586af1b0f670ba26fb8dcd368b50cc5a11471ce72"
     },
     {
       "specId": "admin/nad-m15",
@@ -21230,6 +22685,24 @@
       "contentHash": "ed296e585d0e89df099459d21a239d3bcecc35cb05a09d28f4764570c418ac73"
     },
     {
+      "specId": "admin/nec-50-mp-series",
+      "deviceId": "nec/nec-50-mp-series",
+      "title": "NEC 50-MP Series Control Spec",
+      "manufacturer": "NEC",
+      "manufacturerKey": "nec",
+      "displayName": "NEC 50-MP Series",
+      "models": [
+        "NEC 50-MP Series"
+      ],
+      "revision": 1,
+      "path": "specs/nec/nec_50_mp_series_ir.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-09-14T22:17:19.864Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "b86ee40ea668582c3d0e11f5171e26c40be30825df2570355712cad29611bb33"
+    },
+    {
       "specId": "admin/nec-avt-series",
       "deviceId": "nec/nec-avt-series",
       "title": "NEC AVT Series Control Spec",
@@ -21511,6 +22984,24 @@
       "contentHash": "3b31e7047793a0ea933c5a65ed2d40641c5967086db83acdb4269f81540303ac"
     },
     {
+      "specId": "admin/nec-e552-r",
+      "deviceId": "nec/e552-r",
+      "title": "NEC E552-R Control Spec",
+      "manufacturer": "NEC",
+      "manufacturerKey": "nec",
+      "displayName": "E552-R",
+      "models": [
+        "E552-R"
+      ],
+      "revision": 1,
+      "path": "specs/nec/nec_e552_r_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-09-14T22:17:39.084Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "0543d650fd05f052e5fcdaf0b65e097079a07eef679b33ba60d7dc7112463ebd"
+    },
+    {
       "specId": "admin/nec-e705-e805-e905",
       "deviceId": "nec/e705",
       "title": "NEC E705 E805 E905 Control Spec",
@@ -21776,6 +23267,24 @@
       "contentHash": "33ffa8a9e7098b1db62a9dddd7867dbdfb1355df3c7d31cd9cfc76ad634f731b"
     },
     {
+      "specId": "admin/nec-mexx1-series",
+      "deviceId": "nec/mexx1-series",
+      "title": "NEC MExx1 Series Control Spec",
+      "manufacturer": "NEC",
+      "manufacturerKey": "nec",
+      "displayName": "MExx1 Series",
+      "models": [
+        "MExx1 Series"
+      ],
+      "revision": 1,
+      "path": "specs/nec/nec_mexx1_series_unknown.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-09-14T22:17:37.628Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "65b1e915572962564fc1382a8094c0157013f062cee27d519398eab50aeea0c1"
+    },
+    {
       "specId": "admin/nec-mt-series1",
       "deviceId": "nec/mt-series1",
       "title": "NEC MT Series1 Control Spec",
@@ -21822,6 +23331,24 @@
         "MultiSync Series"
       ],
       "revision": 1,
+      "path": "specs/nec/nec_multisync_series_ir.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-09-14T22:18:09.999Z",
+      "sourceDomainCount": 2,
+      "sourceUrlCount": 2,
+      "contentHash": "1d0332ce0347ca5ce3a9dff32c09a572c3f548704c79658585c38b23e5e3363d"
+    },
+    {
+      "specId": "admin/nec-multisync-series",
+      "deviceId": "nec/multisync-series",
+      "title": "NEC MultiSync Series Control Spec",
+      "manufacturer": "NEC",
+      "manufacturerKey": "nec",
+      "displayName": "MultiSync Series",
+      "models": [
+        "MultiSync Series"
+      ],
+      "revision": 1,
       "path": "specs/nec/nec_multisync_series_serial.md",
       "actionCount": 51,
       "lastCheckedAt": "2026-06-03T11:54:57.888Z",
@@ -21846,6 +23373,24 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "148365164d2ffdc56ed2ab12b97f72e64939978eac3d700dec65db8d0a30e1eb"
+    },
+    {
+      "specId": "admin/nec-nec-flat-panel-display",
+      "deviceId": "nec/nec-flat-panel-display",
+      "title": "NEC Flat Panel Display Control Spec",
+      "manufacturer": "NEC",
+      "manufacturerKey": "nec",
+      "displayName": "NEC Flat Panel Display",
+      "models": [
+        "NEC Flat Panel Display"
+      ],
+      "revision": 1,
+      "path": "specs/nec/nec_nec_flat_panel_display_serial.md",
+      "actionCount": 53,
+      "lastCheckedAt": "2026-09-14T22:17:50.021Z",
+      "sourceDomainCount": 1,
+      "sourceUrlCount": 1,
+      "contentHash": "fa5204f777e0ba35a259d719e1c159a7943600ab24bdf11050b974223e64b87e"
     },
     {
       "specId": "admin/nec-nec-np-series",
@@ -25416,8 +26961,8 @@
       "actionCount": 52,
       "lastCheckedAt": "2026-08-05T08:37:36.479Z",
       "sourceDomainCount": 1,
-      "sourceUrlCount": 1,
-      "contentHash": "c94628e228ca4c5eccfc17a2430253053d97b73e7c44e0bb688fb5dda608eabb"
+      "sourceUrlCount": 2,
+      "contentHash": "8ce2e60cc284ab6f1afbea85cf5b75a76bc1a615f1e3f080103d201d0df8d1c2"
     },
     {
       "specId": "admin/philips-electronics-smartlink-2-institutional-tv-na",
@@ -40044,9 +41589,9 @@
       "path": "specs/ubiquiti/ubiquiti_nudgis_unknown.md",
       "actionCount": 183,
       "lastCheckedAt": "2026-08-30T22:17:55.473Z",
-      "sourceDomainCount": 2,
-      "sourceUrlCount": 2,
-      "contentHash": "c4962fef81856d54629a0bb481ab77e3055e78103b0267551d996f57deefb6eb"
+      "sourceDomainCount": 3,
+      "sourceUrlCount": 3,
+      "contentHash": "be2ed3d238fa20ed0963c802a87c007ce2026a0bcd5ae150e3787a3c67cde7f3"
     },
     {
       "specId": "admin/unique-automation-steamomatic",
@@ -40170,9 +41715,9 @@
       "path": "specs/vaddio/vaddio_doccam_20_hdbt_unknown.md",
       "actionCount": 162,
       "lastCheckedAt": "2026-08-19T10:02:19.166Z",
-      "sourceDomainCount": 4,
+      "sourceDomainCount": 3,
       "sourceUrlCount": 5,
-      "contentHash": "da9cf1aa96ad07c828d08844d021e4acc0d637a118db105998a00918dec929b9"
+      "contentHash": "6720e518a4d313c87990625257eb6a04b1b51a26d3bc1ee98a837bde46a8ab72"
     },
     {
       "specId": "admin/vaddio-easyip-mixer",

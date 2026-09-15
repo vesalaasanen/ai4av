@@ -22,9 +22,10 @@ source_domains:
   - manualslib.com
 source_urls:
   - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
+  - "https://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
   - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=13"
   - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=14"
-retrieved_at: 2026-08-15T21:42:34.970Z
+retrieved_at: 2026-09-04T02:54:19.920Z
 last_checked_at: 2026-08-19T09:26:01.447Z
 generated_at: 2026-08-19T09:26:01.447Z
 firmware_coverage: "Not stated in source"
@@ -226,9 +227,10 @@ source_domains:
   - manualslib.com
 source_urls:
   - "http://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
+  - "https://keydigital.com/Control%20Mods%20Codes/KDMSW8x4_RS232_Commands.pdf"
   - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=13"
   - "https://www.manualslib.com/manual/359868/Key-Digital-Kd-Msw8x4pro.html?page=14"
-retrieved_at: 2026-08-15T21:42:34.970Z
+retrieved_at: 2026-09-04T02:54:19.920Z
 last_checked_at: 2026-08-19T09:26:01.447Z
 ```
 
