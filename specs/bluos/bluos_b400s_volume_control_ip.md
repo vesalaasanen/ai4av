@@ -31,6 +31,7 @@ known_gaps:
   - "source does not document named device-side macro sequences."
   - "no safety warnings or interlock procedures found in source."
   - "device-specific hardware limits (number of inputs, fixed-vs-variable volume capability, B400S-specific behaviors) are not stated in this generic BluOS CI document. The Lenbrook reference applies the same API surface to all BluOS players listed (Bluesound, NAD, DALI); confirm B400S supports each command against the specific firmware revision shipped on the unit."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-09-02T22:17:38.819Z
@@ -592,6 +593,7 @@ summary: "All 47 spec actions map to documented BluOS CI HTTP endpoints (port 11
 - "source does not document named device-side macro sequences."
 - "no safety warnings or interlock procedures found in source."
 - "device-specific hardware limits (number of inputs, fixed-vs-variable volume capability, B400S-specific behaviors) are not stated in this generic BluOS CI document. The Lenbrook reference applies the same API surface to all BluOS players listed (Bluesound, NAD, DALI); confirm B400S supports each command against the specific firmware revision shipped on the unit."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

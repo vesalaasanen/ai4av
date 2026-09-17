@@ -32,6 +32,7 @@ known_gaps:
   - "value table in source Appendix not in refined source.\""
   - "source contains no explicit safety warnings, interlock procedures, or"
   - "firmware version compatibility not stated. Input-terminal value table, aspect value table, eco-mode value table, and PiP/PbP sub-input value table are referenced to an \"Appendix: Supplementary Information by Command\" that is not present in this refined source. Control ID (ID1) default and model code (ID2) for M981 Avt3 not stated. Flow-control / hardware-handshake setting not stated (only \"Full duplex\" mode)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:13:42.207Z
@@ -671,6 +672,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "value table in source Appendix not in refined source.\""
 - "source contains no explicit safety warnings, interlock procedures, or"
 - "firmware version compatibility not stated. Input-terminal value table, aspect value table, eco-mode value table, and PiP/PbP sub-input value table are referenced to an \"Appendix: Supplementary Information by Command\" that is not present in this refined source. Control ID (ID1) default and model code (ID2) for M981 Avt3 not stated. Flow-control / hardware-handshake setting not stated (only \"Full duplex\" mode)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

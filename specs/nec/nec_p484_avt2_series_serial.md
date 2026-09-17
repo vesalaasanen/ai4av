@@ -37,6 +37,7 @@ known_gaps:
   - "audio select values vary by model - Appendix references model-specific supplements"
   - "selection signal type values vary by model - Appendix references model-specific supplements"
   - "base model type values not enumerated - Appendix references model-specific supplements"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:32.944Z
@@ -579,6 +580,7 @@ summary: "All 53 spec actions traced to source (dip-safe re-verify). (12 unresol
 - "audio select values vary by model - Appendix references model-specific supplements"
 - "selection signal type values vary by model - Appendix references model-specific supplements"
 - "base model type values not enumerated - Appendix references model-specific supplements"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

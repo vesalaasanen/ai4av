@@ -31,6 +31,7 @@ known_gaps:
   - "source does not document multi-step macro sequences."
   - "source contains no explicit safety warnings, interlock procedures,"
   - "TCP/IP control parameters (port, credentials, command mapping) — source contains none. The \"Known protocol\" hint in the request did not match source content."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:23:00.941Z
@@ -588,6 +589,7 @@ summary: "All 27 spec actions matched source commands verbatim; all transport pa
 - "source does not document multi-step macro sequences."
 - "source contains no explicit safety warnings, interlock procedures,"
 - "TCP/IP control parameters (port, credentials, command mapping) — source contains none. The \"Known protocol\" hint in the request did not match source content."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -34,6 +34,7 @@ known_gaps:
   - "firmware version compatibility not stated."
   - "no single default baud rate stated (5 selectable rates documented)."
   - "exact flow-control setting not stated (full-duplex mode + RTS/CTS pinout only)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:05:33.535Z
@@ -801,6 +802,7 @@ summary: "All 53 spec actions matched verbatim in source; transport parameters (
 - "firmware version compatibility not stated."
 - "no single default baud rate stated (5 selectable rates documented)."
 - "exact flow-control setting not stated (full-duplex mode + RTS/CTS pinout only)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

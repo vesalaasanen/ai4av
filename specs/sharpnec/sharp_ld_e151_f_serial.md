@@ -31,6 +31,7 @@ known_gaps:
   - "populate if a separate macro/reference document exists."
   - "no voltage/current/power specs, error-recovery sequences, or"
   - "firmware version compatibility not stated. Default baud rate not stated (5 supported). Flow control type not stated. ID1 (control ID) and ID2 (model code) values are per-device and not given. Many DATA value sets (input terminal codes, aspect codes, eco-mode values, base-model types, PIP sub-input codes) are deferred to an \"Appendix / Supplementary Information by Command\" that is not present in the provided source text."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:01:18.107Z
@@ -738,6 +739,7 @@ summary: "All 53 spec actions matched verbatim hex payloads from source; transpo
 - "populate if a separate macro/reference document exists."
 - "no voltage/current/power specs, error-recovery sequences, or"
 - "firmware version compatibility not stated. Default baud rate not stated (5 supported). Flow control type not stated. ID1 (control ID) and ID2 (model code) values are per-device and not given. Many DATA value sets (input terminal codes, aspect codes, eco-mode values, base-model types, PIP sub-input codes) are deferred to an \"Appendix / Supplementary Information by Command\" that is not present in the provided source text."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

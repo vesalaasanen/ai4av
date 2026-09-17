@@ -30,6 +30,7 @@ known_gaps:
   - "no multi-step macro sequences described in source"
   - "TCP/IP control path not documented — only RS-232 and discrete IR in source"
   - "discrete IR pronto CCF codes not structured as actions — raw hex arrays only"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:42.296Z
@@ -528,6 +529,7 @@ summary: "All 36 spec actions traced to source (dip-safe re-verify). (5 unresolv
 - "no multi-step macro sequences described in source"
 - "TCP/IP control path not documented — only RS-232 and discrete IR in source"
 - "discrete IR pronto CCF codes not structured as actions — raw hex arrays only"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

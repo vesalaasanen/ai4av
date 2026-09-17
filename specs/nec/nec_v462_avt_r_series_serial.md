@@ -32,6 +32,7 @@ known_gaps:
   - "power-on sequencing requirements not explicitly stated"
   - "wired LAN authentication mechanism not stated"
   - "standby mode configuration required for command reception not detailed for all models"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:59.225Z
@@ -755,6 +756,7 @@ summary: "All 53 spec actions traced to source (dip-safe re-verify). (7 unresolv
 - "power-on sequencing requirements not explicitly stated"
 - "wired LAN authentication mechanism not stated"
 - "standby mode configuration required for command reception not detailed for all models"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

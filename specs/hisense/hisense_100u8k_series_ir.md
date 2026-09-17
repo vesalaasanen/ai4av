@@ -30,6 +30,7 @@ known_gaps:
   - "document does not describe unsolicited event notifications from TV"
   - "no explicit multi-step macros documented in source"
   - "no explicit safety warnings or interlock procedures beyond setup notes"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:06:34.045Z
@@ -1511,6 +1512,7 @@ summary: "All actions verified (5 unresolved item(s) noted in Known Gaps.)"
 - "document does not describe unsolicited event notifications from TV"
 - "no explicit multi-step macros documented in source"
 - "no explicit safety warnings or interlock procedures beyond setup notes"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

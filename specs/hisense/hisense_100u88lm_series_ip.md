@@ -37,6 +37,7 @@ known_gaps:
   - "IP control guide (hisense-b2b.com downloadId=784) not available for extraction"
   - "exact model list for 100U88LM compatibility not stated"
   - "power-on input source selection for HDMI inputs (POIS values for HDMI1-4) not documented in extracted portion"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:39.323Z
@@ -1526,6 +1527,7 @@ summary: "All 138 spec actions traced to source (dip-safe re-verify). (10 unreso
 - "IP control guide (hisense-b2b.com downloadId=784) not available for extraction"
 - "exact model list for 100U88LM compatibility not stated"
 - "power-on input source selection for HDMI inputs (POIS values for HDMI1-4) not documented in extracted portion"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

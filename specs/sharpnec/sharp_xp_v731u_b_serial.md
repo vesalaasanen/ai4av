@@ -35,6 +35,7 @@ known_gaps:
   - "flow_control not stated in source (RTS/CTS wired but no explicit handshake mode)."
   - "wireless LAN details deferred to a separate wireless-LAN-unit operation manual."
   - "firmware version compatibility not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-19T07:51:20.043Z
@@ -792,6 +793,7 @@ summary: "All 53 spec action hex payloads match source command definitions exact
 - "flow_control not stated in source (RTS/CTS wired but no explicit handshake mode)."
 - "wireless LAN details deferred to a separate wireless-LAN-unit operation manual."
 - "firmware version compatibility not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

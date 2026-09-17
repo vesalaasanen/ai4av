@@ -37,6 +37,7 @@ known_gaps:
   - "serial flow_control not stated (RTS/CTS pins wired but setting unspecified)."
   - "firmware version compatibility not stated in source."
   - "no auth procedure documented; auth.type:none is inferred, not confirmed."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:36:04.011Z
@@ -799,6 +800,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "serial flow_control not stated (RTS/CTS pins wired but setting unspecified)."
 - "firmware version compatibility not stated in source."
 - "no auth procedure documented; auth.type:none is inferred, not confirmed."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

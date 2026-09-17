@@ -34,6 +34,7 @@ known_gaps:
   - "no explicit multi-step sequences documented in source."
   - "no explicit power-on sequencing voltage/current spec or full interlock procedure beyond command-acceptance notes."
   - "Default baud rate not stated (only supported list 4800–115200). Flow control not explicitly named. Firmware version compatibility not stated. Full enum value lists for input terminal, aspect, eco mode, and PIP sub-input deferred to source Appendix \"Supplementary Information by Command\" (not included in this excerpt). Model name \"Ld Fa122 U\" supplied by operator, not printed verbatim in source body."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:04:02.596Z
@@ -728,6 +729,7 @@ summary: "All 53 spec action-units matched with literal hexadecimal commands fou
 - "no explicit multi-step sequences documented in source."
 - "no explicit power-on sequencing voltage/current spec or full interlock procedure beyond command-acceptance notes."
 - "Default baud rate not stated (only supported list 4800–115200). Flow control not explicitly named. Firmware version compatibility not stated. Full enum value lists for input terminal, aspect, eco mode, and PIP sub-input deferred to source Appendix \"Supplementary Information by Command\" (not included in this excerpt). Model name \"Ld Fa122 U\" supplied by operator, not printed verbatim in source body."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -33,6 +33,7 @@ known_gaps:
   - "firmware compatibility range not stated"
   - "exact voltage/power specs not in source"
   - "port number not explicitly stated, only demonstrated in URLBase example"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:16:29.059Z
@@ -631,6 +632,7 @@ summary: "All 25 spec actions traced to source (dip-safe re-verify). (6 unresolv
 - "firmware compatibility range not stated"
 - "exact voltage/power specs not in source"
 - "port number not explicitly stated, only demonstrated in URLBase example"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

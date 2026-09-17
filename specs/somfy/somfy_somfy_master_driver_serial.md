@@ -31,6 +31,7 @@ known_gaps:
   - "no explicit multi-step sequences documented"
   - "compatible motor model list not enumerated"
   - "speed range values not stated — referenced to technical datasheet"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-22T01:13:58.711Z
@@ -458,6 +459,7 @@ summary: "All 18 spec actions match source opcodes verbatim; transport parameter
 - "no explicit multi-step sequences documented"
 - "compatible motor model list not enumerated"
 - "speed range values not stated — referenced to technical datasheet"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

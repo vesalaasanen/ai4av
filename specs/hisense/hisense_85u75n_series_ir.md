@@ -34,6 +34,7 @@ known_gaps:
   - "no further safety warnings, interlock procedures, or power-on sequencing"
   - "source document revision is V3.6 (17-Apr-2017); applicability to the 85U75N chassis (a 2024 model) is not confirmed."
   - "source lists \"Prosumer TV\" without enumerating 85U75N as a supported model."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T20:45:31.435Z
@@ -2359,6 +2360,7 @@ summary: "All 242 actions verified against refined source. Amend added 20 new en
 - "no further safety warnings, interlock procedures, or power-on sequencing"
 - "source document revision is V3.6 (17-Apr-2017); applicability to the 85U75N chassis (a 2024 model) is not confirmed."
 - "source lists \"Prosumer TV\" without enumerating 85U75N as a supported model."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

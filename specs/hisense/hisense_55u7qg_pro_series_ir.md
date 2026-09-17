@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated."
   - "timing / inter-command spacing not specified."
   - "voltage/current on DB9 pin 9 not specified — do not assume."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T16:56:42.408Z
@@ -1132,6 +1133,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "firmware version compatibility not stated."
 - "timing / inter-command spacing not specified."
 - "voltage/current on DB9 pin 9 not specified — do not assume."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -36,6 +36,7 @@ known_gaps:
   - "source contains no explicit safety warnings, interlock procedures, or"
   - "DUS360CS-specific sensor behaviour (which opcodes it originates, occupancy/light-level report cadence) not in source. Source is the generic DyNet opcode catalogue."
   - "source states RS-485 electrical interface; input context cited RS-232C. Serial framing (9600 8N1) is identical; electrical layer discrepancy unresolved."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-30T07:00:17.537Z
@@ -854,6 +855,7 @@ summary: "All 39 spec action opcodes found in source; transport parameters verif
 - "source contains no explicit safety warnings, interlock procedures, or"
 - "DUS360CS-specific sensor behaviour (which opcodes it originates, occupancy/light-level report cadence) not in source. Source is the generic DyNet opcode catalogue."
 - "source states RS-485 electrical interface; input context cited RS-232C. Serial framing (9600 8N1) is identical; electrical layer discrepancy unresolved."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

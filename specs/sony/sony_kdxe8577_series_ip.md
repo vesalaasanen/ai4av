@@ -34,6 +34,7 @@ known_gaps:
   - "spec generated from pro-bravia.sony.net Simple IP control page; consumer KDXE8577 firmware/feature parity not explicitly confirmed in source."
   - "source contains no safety warnings, interlocks, or power-on sequencing requirements."
   - "no firmware version compatibility range stated; no error-recovery sequence beyond retry on 'F...F' answer."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-16T07:19:51.227Z
@@ -317,6 +318,7 @@ summary: "All 23 spec actions verified against source command table with exact w
 - "spec generated from pro-bravia.sony.net Simple IP control page; consumer KDXE8577 firmware/feature parity not explicitly confirmed in source."
 - "source contains no safety warnings, interlocks, or power-on sequencing requirements."
 - "no firmware version compatibility range stated; no error-recovery sequence beyond retry on 'F...F' answer."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -37,6 +37,7 @@ known_gaps:
   - "exact enum tables for input terminal, base model type, aspect, eco mode, and PIP/PBP sub-input not present in refined extract (live in source appendix)."
   - "explicit flow-control protocol for serial not named (only \"Full duplex\" stated)."
   - "wireless LAN unit model list / supported wireless standards not in this extract."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:49:59.310Z
@@ -873,6 +874,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "exact enum tables for input terminal, base model type, aspect, eco mode, and PIP/PBP sub-input not present in refined extract (live in source appendix)."
 - "explicit flow-control protocol for serial not named (only \"Full duplex\" stated)."
 - "wireless LAN unit model list / supported wireless standards not in this extract."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

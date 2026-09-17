@@ -31,6 +31,7 @@ known_gaps:
   - "feature availability per model"
   - "source provides no explicit safety warnings, interlocks, or power-on sequencing hazards."
   - "firmware version compatibility, model-specific source list contents, default DMX mode, full method/property/signal catalogue (only the subset illustrated in the source is fully captured; the alphabetical appendix lists additional properties/methods/signals as documented), default auth access level name, session/connection lifecycle semantics, whether HTTP API uses the same auth as TCP JSON-RPC."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-19T08:57:37.167Z
@@ -704,6 +705,7 @@ summary: "All 33 spec actions are present verbatim in the source, transport para
 - "feature availability per model"
 - "source provides no explicit safety warnings, interlocks, or power-on sequencing hazards."
 - "firmware version compatibility, model-specific source list contents, default DMX mode, full method/property/signal catalogue (only the subset illustrated in the source is fully captured; the alphabetical appendix lists additional properties/methods/signals as documented), default auth access level name, session/connection lifecycle semantics, whether HTTP API uses the same auth as TCP JSON-RPC."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

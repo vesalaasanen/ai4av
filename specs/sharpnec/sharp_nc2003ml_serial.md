@@ -34,6 +34,7 @@ known_gaps:
   - "firmware version compatibility range not stated."
   - "TCP keepalive / connection timeout behavior not stated."
   - "power on/off cooldown durations (numeric) not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:33:24.785Z
@@ -726,6 +727,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "firmware version compatibility range not stated."
 - "TCP keepalive / connection timeout behavior not stated."
 - "power on/off cooldown durations (numeric) not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

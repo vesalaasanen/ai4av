@@ -34,6 +34,7 @@ known_gaps:
   - "no explicit multi-step macros in source"
   - "no safety warnings or interlock procedures in source"
   - "getBroadcastAddress and getMacAddress interface selection (ethN parameter) not fully documented"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-22T01:23:54.011Z
@@ -386,6 +387,7 @@ summary: "All 17 spec actions matched source with correct command codes, paramet
 - "no explicit multi-step macros in source"
 - "no safety warnings or interlock procedures in source"
 - "getBroadcastAddress and getMacAddress interface selection (ethN parameter) not fully documented"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

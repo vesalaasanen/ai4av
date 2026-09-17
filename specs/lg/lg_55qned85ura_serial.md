@@ -35,6 +35,7 @@ known_gaps:
   - "no safety warnings or interlock procedures stated in source"
   - "IR remote codes section present but not applicable to RS-232C control"
   - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:09:14.444Z
@@ -421,6 +422,7 @@ summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolv
 - "no safety warnings or interlock procedures stated in source"
 - "IR remote codes section present but not applicable to RS-232C control"
 - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

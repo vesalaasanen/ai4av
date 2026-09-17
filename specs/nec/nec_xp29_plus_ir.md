@@ -35,6 +35,7 @@ known_gaps:
   - "appendix values for input terminals, aspect ratios, eco mode settings not in source document"
   - "wireless LAN control details not in source"
   - "firmware version compatibility not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:12:39.512Z
@@ -491,6 +492,7 @@ summary: "All 32 spec actions traced to source (dip-safe re-verify). (10 unresol
 - "appendix values for input terminals, aspect ratios, eco mode settings not in source document"
 - "wireless LAN control details not in source"
 - "firmware version compatibility not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

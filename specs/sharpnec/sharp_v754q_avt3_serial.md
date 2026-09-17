@@ -39,6 +39,7 @@ known_gaps:
   - "full lens axis enum for 053 LENS CONTROL (only 06h Periphery Focus shown) not present."
   - "firmware version compatibility range not stated."
   - "protocol version (BDT140013 Rev 7.1) is manual revision, not device protocol version."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:14:18.836Z
@@ -686,6 +687,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "full lens axis enum for 053 LENS CONTROL (only 06h Periphery Focus shown) not present."
 - "firmware version compatibility range not stated."
 - "protocol version (BDT140013 Rev 7.1) is manual revision, not device protocol version."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

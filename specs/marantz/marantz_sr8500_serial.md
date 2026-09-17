@@ -39,6 +39,7 @@ known_gaps:
   - "REC SELECT (SR) command behavior — source notes ambiguity with ZONE2 mode"
   - "Quick Select / Favorite memory commands for zones and surround modes"
   - "Z2/Z3 bass/treble, channel setting, HPF, HDMI audio, sleep timer, auto standby sub-commands"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-10T04:04:59.811Z
@@ -2188,6 +2189,7 @@ summary: "All 236 spec actions match source write commands verbatim with correct
 - "REC SELECT (SR) command behavior — source notes ambiguity with ZONE2 mode"
 - "Quick Select / Favorite memory commands for zones and surround modes"
 - "Z2/Z3 bass/treble, channel setting, HPF, HDMI audio, sleep timer, auto standby sub-commands"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

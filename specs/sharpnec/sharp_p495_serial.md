@@ -34,6 +34,7 @@ known_gaps:
   - "firmware version compatibility not stated in source."
   - "protocol version not stated in source."
   - "power/voltage/current specifications not stated in this control-protocol source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:02:49.367Z
@@ -789,6 +790,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "firmware version compatibility not stated in source."
 - "protocol version not stated in source."
 - "power/voltage/current specifications not stated in this control-protocol source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

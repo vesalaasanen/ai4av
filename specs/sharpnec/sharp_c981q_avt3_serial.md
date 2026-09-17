@@ -34,6 +34,7 @@ known_gaps:
   - "Appendix tables referenced (input terminal values, aspect values, eco-mode values, sub-input values, base model type values) are not present in this source excerpt."
   - "firmware version compatibility not stated."
   - "control ID (ID1) and model code (ID2) default values not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:38:59.438Z
@@ -628,6 +629,7 @@ summary: "All 53 spec action units matched verbatim against source command detai
 - "Appendix tables referenced (input terminal values, aspect values, eco-mode values, sub-input values, base model type values) are not present in this source excerpt."
 - "firmware version compatibility not stated."
 - "control ID (ID1) and model code (ID2) default values not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

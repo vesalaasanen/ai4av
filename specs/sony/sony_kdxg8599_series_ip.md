@@ -32,6 +32,7 @@ known_gaps:
   - "exact KDXG8599 hardware revision and firmware compatibility ranges are not stated; source describes \"BRAVIA 2014 models\" generically."
   - "behavior when Simple IP Control is disabled in TV menus (assumed: TCP port 20060 closed) is not explicitly stated."
   - "maximum concurrent client count for port 20060 not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T07:06:40.943Z
@@ -460,6 +461,7 @@ summary: "All 28 spec actions matched to source FourCC tokens; all transport par
 - "exact KDXG8599 hardware revision and firmware compatibility ranges are not stated; source describes \"BRAVIA 2014 models\" generically."
 - "behavior when Simple IP Control is disabled in TV menus (assumed: TCP port 20060 closed) is not explicitly stated."
 - "maximum concurrent client count for port 20060 not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -34,6 +34,7 @@ known_gaps:
   - "no explicit power-on sequencing or voltage interlock procedures stated in source."
   - "appendix \"Supplementary Information by Command\" values (input terminals, eco mode values, base model types) not in extracted source"
   - "serial flow_control setting not stated (RTS/CTS wired per pinout)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:43:25.270Z
@@ -697,6 +698,7 @@ summary: "All 53 spec actions matched verbatim in source with correct hex opcode
 - "no explicit power-on sequencing or voltage interlock procedures stated in source."
 - "appendix \"Supplementary Information by Command\" values (input terminals, eco mode values, base model types) not in extracted source"
 - "serial flow_control setting not stated (RTS/CTS wired per pinout)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

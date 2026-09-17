@@ -31,6 +31,7 @@ known_gaps:
   - "Discrete IR Control section (Pronto CCF codes for power on/off, inputs HDMI.1-5/VGA/USB, picture/sound toggle, aspect ratios, channel list, digits 0-9, nav arrows, PIP, guide, freeze, etc.) not authored as actions — IR transport not in protocols enum and out of scope this revision."
   - "Additional OSD MODE (OSD#), INPUT MODE (INPM), POWER ON INPUT SELECT (POIS) and any commands past page 17 in the picture-text block not enumerated by the deterministic extraction — verify completeness against full source."
   - "firmware version compatibility not stated; 2017 manual applied to a newer 55U7N Series model — confirm command set matches actual device firmware."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T17:49:46.238Z
@@ -1146,6 +1147,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "Discrete IR Control section (Pronto CCF codes for power on/off, inputs HDMI.1-5/VGA/USB, picture/sound toggle, aspect ratios, channel list, digits 0-9, nav arrows, PIP, guide, freeze, etc.) not authored as actions — IR transport not in protocols enum and out of scope this revision."
 - "Additional OSD MODE (OSD#), INPUT MODE (INPM), POWER ON INPUT SELECT (POIS) and any commands past page 17 in the picture-text block not enumerated by the deterministic extraction — verify completeness against full source."
 - "firmware version compatibility not stated; 2017 manual applied to a newer 55U7N Series model — confirm command set matches actual device firmware."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

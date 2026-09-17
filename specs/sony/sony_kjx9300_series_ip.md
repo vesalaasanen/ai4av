@@ -39,6 +39,7 @@ known_gaps:
   - "maximum concurrent client connections not specified"
   - "notification/event subscription mechanism not documented in source"
   - "PSK configuration method not described (how to set/change the pre-shared key)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:42:28.687Z
@@ -888,6 +889,7 @@ summary: "All 47 spec actions match verbatim JSON-RPC method names in the source
 - "maximum concurrent client connections not specified"
 - "notification/event subscription mechanism not documented in source"
 - "PSK configuration method not described (how to set/change the pre-shared key)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

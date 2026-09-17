@@ -31,6 +31,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" enum values not in this extract (input terminal, aspect, eco mode, base model type, sub-input)."
   - "firmware version compatibility not stated in source."
   - "control ID (ID1) default value not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:36:25.188Z
@@ -670,6 +671,7 @@ summary: "All 53 spec actions matched verbatim to source command list; transport
 - "Appendix \"Supplementary Information by Command\" enum values not in this extract (input terminal, aspect, eco mode, base model type, sub-input)."
 - "firmware version compatibility not stated in source."
 - "control ID (ID1) default value not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -45,6 +45,7 @@ known_gaps:
   - "no error codes or failure response format documented"
   - "maximum number of programs/layers not stated"
   - "whether UDP data reporting port 18961 carries event notifications or a different data format"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T08:27:40.706Z
@@ -644,6 +645,7 @@ summary: "All 26 spec action tags verified verbatim in source with matching para
 - "no error codes or failure response format documented"
 - "maximum number of programs/layers not stated"
 - "whether UDP data reporting port 18961 carries event notifications or a different data format"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

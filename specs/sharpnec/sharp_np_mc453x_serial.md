@@ -35,6 +35,7 @@ known_gaps:
   - "source does not specify a required power-on sequencing procedure beyond the 015 command"
   - "enums for input terminal, aspect, eco-mode, and base-model-type values live in the document's \"Appendix / Supplementary Information by Command\" which is not part of the refined source text supplied here. These four enums must be filled from the appendix before the spec can be promoted above draft."
   - "default baud rate not stated (5 selectable rates listed); firmware version compatibility not stated; wireless-LAN command path not documented (defers to wireless unit manual)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:37:16.145Z
@@ -866,6 +867,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "source does not specify a required power-on sequencing procedure beyond the 015 command"
 - "enums for input terminal, aspect, eco-mode, and base-model-type values live in the document's \"Appendix / Supplementary Information by Command\" which is not part of the refined source text supplied here. These four enums must be filled from the appendix before the spec can be promoted above draft."
 - "default baud rate not stated (5 selectable rates listed); firmware version compatibility not stated; wireless-LAN command path not documented (defers to wireless unit manual)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

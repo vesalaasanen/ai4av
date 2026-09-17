@@ -40,6 +40,7 @@ known_gaps:
   - "HTTPS variant (`/secure` in URI templates) is referenced but not specified in source."
   - "Basic-spec endpoints (power, input, volume, mute, sound program, tuner) are not in this refined source."
   - "Firmware version that added YXC support to NX-N500 is not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-11T13:48:09.544Z
@@ -468,6 +469,7 @@ summary: "All 13 spec actions matched verbatim in source; transport base URL and
 - "HTTPS variant (`/secure` in URI templates) is referenced but not specified in source."
 - "Basic-spec endpoints (power, input, volume, mute, sound program, tuner) are not in this refined source."
 - "Firmware version that added YXC support to NX-N500 is not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

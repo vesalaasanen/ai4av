@@ -40,6 +40,7 @@ known_gaps:
   - "no safety interlock text in source"
   - "no interlock text in source"
   - "TCP port number, baud rate, serial config — none stated in source. Inferred protocols: [tcp, serial] per the framing language + the input hint; treat as TCP wrapper until verified."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T10:31:03.755Z
@@ -1346,6 +1347,7 @@ summary: "deterministic presence proof: 196/196 payloads verbatim in source; str
 - "no safety interlock text in source"
 - "no interlock text in source"
 - "TCP port number, baud rate, serial config — none stated in source. Inferred protocols: [tcp, serial] per the framing language + the input hint; treat as TCP wrapper until verified."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

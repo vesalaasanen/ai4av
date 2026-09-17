@@ -33,6 +33,7 @@ known_gaps:
   - "input-terminal, aspect, eco-mode, base-model-type, and sub-input value enums live in an Appendix (\"Supplementary Information by Command\") absent from the refined source."
   - "default baud rate among the five supported values not stated."
   - "exact model marketing string not printed in source body."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:02:58.842Z
@@ -749,6 +750,7 @@ summary: "All 53 spec actions matched verbatim hex commands in source; transport
 - "input-terminal, aspect, eco-mode, base-model-type, and sub-input value enums live in an Appendix (\"Supplementary Information by Command\") absent from the refined source."
 - "default baud rate among the five supported values not stated."
 - "exact model marketing string not printed in source body."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

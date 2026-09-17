@@ -40,6 +40,7 @@ known_gaps:
   - "Model name \"Sharp/NEC Dd Ea241F\" not stated in source text; confirm against the actual product."
   - "Wireless LAN specifications deferred to wireless-LAN-unit manual (not provided)."
   - "Protocol/binary-command byte-encoding for fields not enumerated here is taken verbatim from source; no values were inferred."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:40:34.248Z
@@ -752,6 +753,7 @@ summary: "All 53 spec actions matched verbatim against source commands; transpor
 - "Model name \"Sharp/NEC Dd Ea241F\" not stated in source text; confirm against the actual product."
 - "Wireless LAN specifications deferred to wireless-LAN-unit manual (not provided)."
 - "Protocol/binary-command byte-encoding for fields not enumerated here is taken verbatim from source; no values were inferred."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

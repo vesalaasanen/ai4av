@@ -39,6 +39,7 @@ known_gaps:
   - "ID1 (control ID) default value and configuration method not stated"
   - "ID2 (model code) values for PAxx04UL series not stated"
   - "no firmware version compatibility stated -->Spec generated. Key gaps: Appendix tables missing (input terminal enums, aspect values, eco mode values, model codes). Baud rate default and flow control unstated. Serial + TCP on port 7142. 40+ commands with full hex frames documented."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:10:58.135Z
@@ -693,6 +694,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresol
 - "ID1 (control ID) default value and configuration method not stated"
 - "ID2 (model code) values for PAxx04UL series not stated"
 - "no firmware version compatibility stated -->Spec generated. Key gaps: Appendix tables missing (input terminal enums, aspect values, eco mode values, model codes). Baud rate default and flow control unstated. Serial + TCP on port 7142. 40+ commands with full hex frames documented."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

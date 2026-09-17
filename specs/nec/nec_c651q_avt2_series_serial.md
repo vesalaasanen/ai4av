@@ -40,6 +40,7 @@ known_gaps:
   - "HDBaseT control details and standby mode specifics"
   - "flow control (RTS/CTS) configuration not documented"
   - "TCP connection keepalive or timeout behavior not documented"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T19:39:09.281Z
@@ -738,6 +739,7 @@ summary: "All 53 spec actions match source commands 1-to-1 and all corrected rem
 - "HDBaseT control details and standby mode specifics"
 - "flow control (RTS/CTS) configuration not documented"
 - "TCP connection keepalive or timeout behavior not documented"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

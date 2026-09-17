@@ -31,6 +31,7 @@ known_gaps:
   - "no explicit multi-step sequences in source."
   - "no explicit interlock procedures or power-on sequencing warnings beyond command-block notes."
   - "appendix value tables not in refined source — input terminal codes (018), base model types (078-1/305-1), eco mode values (097-8/098-8), aspect values (030-12), sub input values (097-198/098-198). ID2 model code value for LD Fe252 not stated. Firmware version compatibility not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:08:44.193Z
@@ -692,6 +693,7 @@ summary: "All 53 spec actions verified against source with exact hex sequences; 
 - "no explicit multi-step sequences in source."
 - "no explicit interlock procedures or power-on sequencing warnings beyond command-block notes."
 - "appendix value tables not in refined source — input terminal codes (018), base model types (078-1/305-1), eco mode values (097-8/098-8), aspect values (030-12), sub input values (097-198/098-198). ID2 model code value for LD Fe252 not stated. Firmware version compatibility not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -33,6 +33,7 @@ known_gaps:
   - "source does not define any explicit multi-step macro sequences."
   - "source contains no formal warning text or operator-safety interlocks"
   - "firmware compatibility ranges not stated; per-axis lens control codes not in this excerpt; default serial baud rate not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-19T09:35:45.658Z
@@ -953,6 +954,7 @@ summary: "All 53 spec actions map one-to-one onto the source's 53-entry command 
 - "source does not define any explicit multi-step macro sequences."
 - "source contains no formal warning text or operator-safety interlocks"
 - "firmware compatibility ranges not stated; per-axis lens control codes not in this excerpt; default serial baud rate not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

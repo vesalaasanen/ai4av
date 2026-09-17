@@ -34,6 +34,7 @@ known_gaps:
   - "protocol revision (doc lists V1.0–V3.6, 2014–2017) is the document's own revision history, not a device/firmware protocol-version field; device protocol version not stated."
   - "no electrical voltage/current/power ratings are stated in this control-protocol source."
   - "query/response ACK values beyond OKAY/EROR/WAIT (e.g. per-command error returns) are not enumerated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T16:56:37.592Z
@@ -1137,6 +1138,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "protocol revision (doc lists V1.0–V3.6, 2014–2017) is the document's own revision history, not a device/firmware protocol-version field; device protocol version not stated."
 - "no electrical voltage/current/power ratings are stated in this control-protocol source."
 - "query/response ACK values beyond OKAY/EROR/WAIT (e.g. per-command error returns) are not enumerated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

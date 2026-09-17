@@ -26,6 +26,7 @@ firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source is a generic LG commercial display RS-232 protocol reference, not a 49UJ-specific document. The 49UJ is presumed to implement this protocol, but no explicit confirmation appears in the source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:55.190Z
@@ -641,6 +642,7 @@ summary: "All 41 spec actions matched to source commands; transport parameters v
 
 ```yaml
 - "source is a generic LG commercial display RS-232 protocol reference, not a 49UJ-specific document. The 49UJ is presumed to implement this protocol, but no explicit confirmation appears in the source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
   - "firmware version compatibility not stated in source"
   - "no auth/login procedure described in source; marked as none by inference"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T07:19:25.119Z
@@ -386,6 +387,7 @@ summary: "All 23 spec actions matched verbatim against FourCC codes and paramete
 - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
 - "firmware version compatibility not stated in source"
 - "no auth/login procedure described in source; marked as none by inference"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

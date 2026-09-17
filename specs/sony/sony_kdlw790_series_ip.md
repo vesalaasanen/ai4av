@@ -31,6 +31,7 @@ known_gaps:
   - "source is the generic Sony BRAVIA \"Simple IP control\" page; per-family firmware constraints and KDLW790-specific quirks not stated. EU models have RED-DA compliance variants with differing command availability — not enumerated here."
   - "full parameter structure for the interface selector beyond"
   - "KDLW790-specific firmware version range supporting this protocol not stated. EU RED-DA variant command availability not enumerated. KDLW790-specific quirks (e.g. max volume, input count, supported scene list) not stated in this generic source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:30:33.049Z
@@ -417,6 +418,7 @@ summary: "All 17 spec actions matched FourCC codes and message types in the sour
 - "source is the generic Sony BRAVIA \"Simple IP control\" page; per-family firmware constraints and KDLW790-specific quirks not stated. EU models have RED-DA compliance variants with differing command availability — not enumerated here."
 - "full parameter structure for the interface selector beyond"
 - "KDLW790-specific firmware version range supporting this protocol not stated. EU RED-DA variant command availability not enumerated. KDLW790-specific quirks (e.g. max volume, input count, supported scene list) not stated in this generic source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

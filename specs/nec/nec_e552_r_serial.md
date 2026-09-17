@@ -30,6 +30,7 @@ known_gaps:
   - "source does not document multi-step sequences"
   - "source documents no other safety warnings beyond mute/power interlock behavior"
   - "firmware version compatibility, exact standby mode behavior per model, complete per-model input/aspect/eco value tables (referenced as \"Appendix: Supplementary Information by Command\" but partial in source)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-09-14T22:17:39.084Z
@@ -655,6 +656,7 @@ summary: "All 53 spec actions match source command-list opcodes byte-for-byte; t
 - "source does not document multi-step sequences"
 - "source documents no other safety warnings beyond mute/power interlock behavior"
 - "firmware version compatibility, exact standby mode behavior per model, complete per-model input/aspect/eco value tables (referenced as \"Appendix: Supplementary Information by Command\" but partial in source)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

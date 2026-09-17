@@ -36,6 +36,7 @@ known_gaps:
   - "Power-On Input Source command (POIS) parameters were truncated in the refined source; full enumeration not captured."
   - "Firmware version compatibility not stated in source."
   - "Protocol version number not explicitly stated (document revision history goes to V3.6, but that is the doc version, not a protocol version field)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:09:41.176Z
@@ -1100,6 +1101,7 @@ summary: "All 37 spec actions verified (9 unresolved item(s) noted in Known Gaps
 - "Power-On Input Source command (POIS) parameters were truncated in the refined source; full enumeration not captured."
 - "Firmware version compatibility not stated in source."
 - "Protocol version number not explicitly stated (document revision history goes to V3.6, but that is the doc version, not a protocol version field)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

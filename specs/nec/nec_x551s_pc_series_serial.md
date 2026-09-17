@@ -33,6 +33,7 @@ known_gaps:
   - "Firmware version compatibility not stated in source."
   - "The document references a \"control ID\" (ID1) and \"model code\" (ID2) that must be set for communication, but the valid ranges and how to obtain them are not documented in this source excerpt."
   - "HDBaseT standby mode mentioned but not detailed."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:12:29.948Z
@@ -580,6 +581,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolv
 - "Firmware version compatibility not stated in source."
 - "The document references a \"control ID\" (ID1) and \"model code\" (ID2) that must be set for communication, but the valid ranges and how to obtain them are not documented in this source excerpt."
 - "HDBaseT standby mode mentioned but not detailed."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

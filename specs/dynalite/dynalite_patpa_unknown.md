@@ -34,6 +34,7 @@ known_gaps:
   - "physical message format (5C sync) documented but without opcode examples."
   - "no voltage, current, or power specifications in source."
   - "flow control not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-09-05T22:16:16.356Z
@@ -805,6 +806,7 @@ summary: "All 39 spec action units match source opcodes 03/65/64/0F/68/69/6B/71/
 - "physical message format (5C sync) documented but without opcode examples."
 - "no voltage, current, or power specifications in source."
 - "flow control not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -34,6 +34,7 @@ known_gaps:
   - "source documents no TCP/IP transport (no port, no base URL, no IP framing). Entity/file named \"_ip\" but refined text is RS-232/IR only. Verify whether a separate IP-control document exists before publishing."
   - "firmware version compatibility not stated."
   - "exact 55U8KM model-row in source \"Models\" table is blank in the refined extract; model name taken from device header."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T16:56:43.396Z
@@ -1143,6 +1144,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "source documents no TCP/IP transport (no port, no base URL, no IP framing). Entity/file named \"_ip\" but refined text is RS-232/IR only. Verify whether a separate IP-control document exists before publishing."
 - "firmware version compatibility not stated."
 - "exact 55U8KM model-row in source \"Models\" table is blank in the refined extract; model name taken from device header."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

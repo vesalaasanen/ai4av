@@ -36,6 +36,7 @@ known_gaps:
   - "aspect value codes reference external appendix"
   - "ECO mode values vary by model (some models use different hex codes)"
   - "HDBaseT standby mode mentioned but details vary by model"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:22.421Z
@@ -572,6 +573,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (11 unresol
 - "aspect value codes reference external appendix"
 - "ECO mode values vary by model (some models use different hex codes)"
 - "HDBaseT standby mode mentioned but details vary by model"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -32,6 +32,7 @@ known_gaps:
   - "source does not describe multi-step sequences."
   - "source does not document safety warnings, interlocks, or power-on sequencing."
   - "setInput port number range (1-9999) and power/volume/mute param byte values copied verbatim from source prose. Max/min volume value bounds not stated. Connection keepalive / reconnection behavior not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T07:22:55.007Z
@@ -386,6 +387,7 @@ summary: "All 17 spec actions matched verbatim in source command table; transpor
 - "source does not describe multi-step sequences."
 - "source does not document safety warnings, interlocks, or power-on sequencing."
 - "setInput port number range (1-9999) and power/volume/mute param byte values copied verbatim from source prose. Max/min volume value bounds not stated. Connection keepalive / reconnection behavior not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

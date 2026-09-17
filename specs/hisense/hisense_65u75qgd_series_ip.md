@@ -33,6 +33,7 @@ known_gaps:
   - "no TCP/IP transport details despite \"Known protocol: TCP/IP\""
   - "error recovery / fault behavior sequences not documented."
   - "query response latency / command timing constraints not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T18:30:55.356Z
@@ -1313,6 +1314,7 @@ summary: "deterministic presence proof: 185/185 payloads verbatim in source; str
 - "no TCP/IP transport details despite \"Known protocol: TCP/IP\""
 - "error recovery / fault behavior sequences not documented."
 - "query response latency / command timing constraints not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

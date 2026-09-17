@@ -34,6 +34,7 @@ known_gaps:
   - "source does not document any device-side macro or multi-step sequence capabilities."
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
   - "source does not state firmware version compatibility, port numbers (N/A for serial), voltage/current specs, fault behavior, error recovery sequences, or response message formats."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T07:14:36.708Z
@@ -371,6 +372,7 @@ summary: "All 25 spec actions matched literally in source with correct shapes an
 - "source does not document any device-side macro or multi-step sequence capabilities."
 - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
 - "source does not state firmware version compatibility, port numbers (N/A for serial), voltage/current specs, fault behavior, error recovery sequences, or response message formats."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

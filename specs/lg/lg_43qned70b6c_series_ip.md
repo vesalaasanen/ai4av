@@ -31,6 +31,7 @@ known_gaps:
   - "TCP/IP control protocol not covered in source document"
   - "exact port number for IP control not stated (source only covers RS-232C)"
   - "firmware version compatibility not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:52.985Z
@@ -422,6 +423,7 @@ summary: "All 21 spec actions traced to source (dip-safe re-verify). (4 unresolv
 - "TCP/IP control protocol not covered in source document"
 - "exact port number for IP control not stated (source only covers RS-232C)"
 - "firmware version compatibility not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

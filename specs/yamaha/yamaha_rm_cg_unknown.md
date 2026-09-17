@@ -31,6 +31,7 @@ known_gaps:
   - "source describes the MCP1 protocol family; RM-CG-specific firmware binding not explicitly stated, doc says \"applies to MCP1 V5.0.0 and later\""
   - "source does not document specific electrical or mechanical safety warnings"
   - "source does not state a specific RM-CG firmware version, port discovery mechanism, or default IP address assignment method"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-12T20:01:03.245Z
@@ -303,6 +304,7 @@ summary: "All 17 spec actions matched literally in source; transport port verifi
 - "source describes the MCP1 protocol family; RM-CG-specific firmware binding not explicitly stated, doc says \"applies to MCP1 V5.0.0 and later\""
 - "source does not document specific electrical or mechanical safety warnings"
 - "source does not state a specific RM-CG firmware version, port discovery mechanism, or default IP address assignment method"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

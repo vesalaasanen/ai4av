@@ -42,6 +42,7 @@ known_gaps:
   - "base model type value enumeration (referenced appendix missing)"
   - "eco mode value enumeration (referenced appendix missing)"
   - "PIP/PbP sub input setting value enumeration (referenced appendix missing)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:59:52.711Z
@@ -807,6 +808,7 @@ summary: "All 53 spec action commands match verbatim with source protocol docume
 - "base model type value enumeration (referenced appendix missing)"
 - "eco mode value enumeration (referenced appendix missing)"
 - "PIP/PbP sub input setting value enumeration (referenced appendix missing)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

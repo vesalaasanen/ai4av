@@ -33,6 +33,7 @@ known_gaps:
   - "no multi-step sequences explicitly described in source"
   - "no safety-critical interlock procedures present in source"
   - "ID2 model code for AS60U PX39ML not stated. Appendix value maps (input terminal, aspect, eco mode, sub input, base model type) not present in source. flow_control not stated. firmware version compatibility not stated. protocol/binary spec revision (BDT140013 Rev 7.1) noted but per-model applicability unconfirmed."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:34:36.534Z
@@ -639,6 +640,7 @@ summary: "All 53 spec actions verified against source; each hex opcode matches v
 - "no multi-step sequences explicitly described in source"
 - "no safety-critical interlock procedures present in source"
 - "ID2 model code for AS60U PX39ML not stated. Appendix value maps (input terminal, aspect, eco mode, sub input, base model type) not present in source. flow_control not stated. firmware version compatibility not stated. protocol/binary spec revision (BDT140013 Rev 7.1) noted but per-model applicability unconfirmed."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

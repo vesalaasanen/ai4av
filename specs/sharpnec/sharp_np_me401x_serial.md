@@ -32,6 +32,7 @@ known_gaps:
   - "none documented"
   - "source notes power-on/power-off block other commands during transition"
   - "default baud rate not stated (5 options listed). Flow control config not stated. Appendix tables (input terminal values, aspect values, eco mode values, base model types, sub-input setting values) not present in refined source — enum completions blocked. ID2 model code for NP ME401X not stated. Wireless LAN details deferred to separate wireless unit manual."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:38:35.054Z
@@ -705,6 +706,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "none documented"
 - "source notes power-on/power-off block other commands during transition"
 - "default baud rate not stated (5 options listed). Flow control config not stated. Appendix tables (input terminal values, aspect values, eco mode values, base model types, sub-input setting values) not present in refined source — enum completions blocked. ID2 model code for NP ME401X not stated. Wireless LAN details deferred to separate wireless unit manual."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

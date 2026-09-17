@@ -29,6 +29,7 @@ known_gaps:
   - "no multi-step macro sequences described in source"
   - "firmware version compatibility not stated in source"
   - "specific volume range for this model not stated — range varies by model"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T06:28:16.772Z
@@ -259,6 +260,7 @@ summary: "Complete match between spec actions and source document (4 unresolved 
 - "no multi-step macro sequences described in source"
 - "firmware version compatibility not stated in source"
 - "specific volume range for this model not stated — range varies by model"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

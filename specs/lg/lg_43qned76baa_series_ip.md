@@ -37,6 +37,7 @@ known_gaps:
   - "no multi-step macro sequences described in source"
   - "no safety warnings or interlock procedures in source"
   - "TCP/IP control protocol not found in source; RS-232C confirmed"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:16:24.183Z
@@ -401,6 +402,7 @@ summary: "All 25 actions verified (5 unresolved item(s) noted in Known Gaps.)"
 - "no multi-step macro sequences described in source"
 - "no safety warnings or interlock procedures in source"
 - "TCP/IP control protocol not found in source; RS-232C confirmed"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

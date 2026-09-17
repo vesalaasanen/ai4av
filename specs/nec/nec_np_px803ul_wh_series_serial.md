@@ -32,6 +32,7 @@ known_gaps:
   - "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
   - "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
   - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:07.562Z
@@ -537,6 +538,7 @@ summary: "All 52 spec actions traced to source (dip-safe re-verify). (7 unresolv
 - "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
 - "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
 - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

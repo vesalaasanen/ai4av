@@ -33,6 +33,7 @@ known_gaps:
   - "input manifest says TCP/IP but source only documents RS-232 on a DB9 connector. No IP/network control material is present in the refined source."
   - "source describes acknowledgement frames but no unsolicited notifications."
   - "source documents no multi-step sequences."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:28.475Z
@@ -772,6 +773,7 @@ summary: "All 68 spec actions matched verbatim in source with correct shapes inc
 - "input manifest says TCP/IP but source only documents RS-232 on a DB9 connector. No IP/network control material is present in the refined source."
 - "source describes acknowledgement frames but no unsolicited notifications."
 - "source documents no multi-step sequences."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

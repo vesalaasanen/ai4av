@@ -35,6 +35,7 @@ known_gaps:
   - "input terminal / aspect / eco-mode / base-model-type value maps missing from refined source"
   - "ID2 model code for Xp X141Q B not stated"
   - "factory-default baud rate not stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-19T07:53:02.787Z
@@ -694,6 +695,7 @@ summary: "All 53 command entries matched verbatim against source sections 3.1-3.
 - "input terminal / aspect / eco-mode / base-model-type value maps missing from refined source"
 - "ID2 model code for Xp X141Q B not stated"
 - "factory-default baud rate not stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

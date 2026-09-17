@@ -36,6 +36,7 @@ known_gaps:
   - "wire-level message format (JSON payload structure, handshake, encoding) not in source"
   - "authentication token format and PIN entry message exchange not in source"
   - "response strings / acknowledgement payloads for key commands not in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-30T22:17:16.916Z
@@ -1560,6 +1561,7 @@ summary: "Every one of the 256 spec actions maps to a verbatim KEY_* token or sa
 - "wire-level message format (JSON payload structure, handshake, encoding) not in source"
 - "authentication token format and PIN entry message exchange not in source"
 - "response strings / acknowledgement payloads for key commands not in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -33,6 +33,7 @@ known_gaps:
   - "source documents no explicit multi-step sequences."
   - "source contains no explicit operator-safety confirmation procedures beyond the interlock flags above."
   - "ID2 model code for Ld Fa312 not in source. Appendix \"Supplementary Information by Command\" referenced for input terminal values, aspect values, eco mode values, base model type values, and sub-input values — not present in the refined source provided. Firmware version range not stated. Voltage/power/current specs not in this command reference (likely in operator manual). Protocol version not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:03:01.085Z
@@ -697,6 +698,7 @@ summary: "All 53 spec actions match literal hex sequences in source; transport p
 - "source documents no explicit multi-step sequences."
 - "source contains no explicit operator-safety confirmation procedures beyond the interlock flags above."
 - "ID2 model code for Ld Fa312 not in source. Appendix \"Supplementary Information by Command\" referenced for input terminal values, aspect values, eco mode values, base model type values, and sub-input values — not present in the refined source provided. Firmware version range not stated. Voltage/power/current specs not in this command reference (likely in operator manual). Protocol version not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

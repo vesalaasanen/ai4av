@@ -30,6 +30,7 @@ known_gaps:
   - "source does not document multi-step macro sequences"
   - "no explicit safety warnings (electrical, mounting, interlock with mains) found in source"
   - "firmware compatibility range, exact WOL packet format, IP power-on command (if any beyond WOL)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:57.649Z
@@ -986,6 +987,7 @@ summary: "All 82 spec actions matched literally in source; transport parameters 
 - "source does not document multi-step macro sequences"
 - "no explicit safety warnings (electrical, mounting, interlock with mains) found in source"
 - "firmware compatibility range, exact WOL packet format, IP power-on command (if any beyond WOL)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

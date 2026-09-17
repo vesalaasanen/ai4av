@@ -37,6 +37,7 @@ known_gaps:
   - "IR command Pronto CCF hex encoding details beyond hex code table"
   - "error code enumeration for EROR responses"
   - "Event/unsolicited notification structure if any"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:57.098Z
@@ -534,6 +535,7 @@ summary: "All 43 spec actions traced to source (dip-safe re-verify). (9 unresolv
 - "IR command Pronto CCF hex encoding details beyond hex code table"
 - "error code enumeration for EROR responses"
 - "Event/unsolicited notification structure if any"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

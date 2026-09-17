@@ -31,6 +31,7 @@ known_gaps:
   - "source doc titled generic \"Hisense Prosumer TV\" — 110U9LUA not named in Models section (blank). No TCP/IP port stated (user input said TCP/IP but source is serial/IR only). Firmware version range not stated."
   - "source contains no explicit safety warnings or interlock"
   - "firmware compatibility range not stated. IR command set may vary per actual TV model (source note 1: \"Check User Manual for your specific TV\"). No power/voltage/current specs in this doc."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T16:56:39.549Z
@@ -1137,6 +1138,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "source doc titled generic \"Hisense Prosumer TV\" — 110U9LUA not named in Models section (blank). No TCP/IP port stated (user input said TCP/IP but source is serial/IR only). Firmware version range not stated."
 - "source contains no explicit safety warnings or interlock"
 - "firmware compatibility range not stated. IR command set may vary per actual TV model (source note 1: \"Check User Manual for your specific TV\"). No power/voltage/current specs in this doc."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

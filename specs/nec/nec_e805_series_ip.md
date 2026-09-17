@@ -33,6 +33,7 @@ known_gaps:
   - "HDBaseT standby mode mentioned but not detailed"
   - "aspect mode codes vary by model (some use dual codes)"
   - "eco mode values vary significantly across NEC model range"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:10:21.620Z
@@ -557,6 +558,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (8 unresolv
 - "HDBaseT standby mode mentioned but not detailed"
 - "aspect mode codes vary by model (some use dual codes)"
 - "eco mode values vary significantly across NEC model range"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

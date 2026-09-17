@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated."
   - "Appendix value tables (input terminals, eco modes, sub-inputs, base model types) missing from extracted source."
   - "ID2 model code value for Ms95 not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:32:15.696Z
@@ -694,6 +695,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "firmware version compatibility not stated."
 - "Appendix value tables (input terminals, eco modes, sub-inputs, base model types) missing from extracted source."
 - "ID2 model code value for Ms95 not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

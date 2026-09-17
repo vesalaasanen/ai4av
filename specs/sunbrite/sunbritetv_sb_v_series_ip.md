@@ -37,6 +37,7 @@ known_gaps:
   - "source does not document multi-step sequences"
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
   - "dedicated IP/TCP command catalogue for SB-V series not found in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T07:24:28.670Z
@@ -494,6 +495,7 @@ summary: "All 46 spec actions matched verbatim to source hex codes with exact tr
 - "source does not document multi-step sequences"
 - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements"
 - "dedicated IP/TCP command catalogue for SB-V series not found in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -40,6 +40,7 @@ known_gaps:
   - "device-default baud rate not stated; five options listed."
   - "firmware version compatibility not stated in source."
   - "ID2 model code value for ME501 PT not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:39:22.000Z
@@ -614,6 +615,7 @@ summary: "All 53 spec action-units (24 actions + 29 query feedbacks) match verba
 - "device-default baud rate not stated; five options listed."
 - "firmware version compatibility not stated in source."
 - "ID2 model code value for ME501 PT not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

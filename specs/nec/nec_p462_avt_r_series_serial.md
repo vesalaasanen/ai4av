@@ -39,6 +39,7 @@ known_gaps:
   - "standby mode requirements vary by model - specific requirements not enumerated"
   - "DATA01-DATA12 field semantics for ERROR STATUS REQUEST sourced from bit table but mapping to exact model behavior unverified"
   - "information request commands return reserved/undefined bytes; practical usage unclear"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:28.460Z
@@ -712,6 +713,7 @@ summary: "All 46 spec actions traced to source (dip-safe re-verify). (14 unresol
 - "standby mode requirements vary by model - specific requirements not enumerated"
 - "DATA01-DATA12 field semantics for ERROR STATUS REQUEST sourced from bit table but mapping to exact model behavior unverified"
 - "information request commands return reserved/undefined bytes; practical usage unclear"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

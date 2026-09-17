@@ -39,6 +39,7 @@ known_gaps:
   - "populate if source documents command sequences."
   - "no explicit safety interlock procedure or power-on sequencing requirement"
   - "input terminal value table, aspect value table, eco mode value table, sub-input setting value table, and base model type value table are all referenced to the \"Supplementary Information by Command\" appendix which is not present in this refined source. Firmware version compatibility, power/voltage specs, and protocol version not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-19T07:53:04.298Z
@@ -851,6 +852,7 @@ summary: "All 53 spec action commands found verbatim in source; all transport pa
 - "populate if source documents command sequences."
 - "no explicit safety interlock procedure or power-on sequencing requirement"
 - "input terminal value table, aspect value table, eco mode value table, sub-input setting value table, and base model type value table are all referenced to the \"Supplementary Information by Command\" appendix which is not present in this refined source. Firmware version compatibility, power/voltage specs, and protocol version not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

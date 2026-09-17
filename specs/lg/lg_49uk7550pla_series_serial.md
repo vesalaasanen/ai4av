@@ -33,6 +33,7 @@ known_gaps:
   - "source documents no multi-step macros."
   - "not stated in source."
   - "per-command query feedback shapes for every command (source documents the FF mechanism generically rather than per-row), exact serial timing (inter-byte and response timeout), behaviour during firmware update / channel scan, complete list of region-specific tune-command variations beyond the examples given."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:55.915Z
@@ -803,6 +804,7 @@ summary: "All 51 spec actions matched literally in source; transport parameters 
 - "source documents no multi-step macros."
 - "not stated in source."
 - "per-command query feedback shapes for every command (source documents the FF mechanism generically rather than per-row), exact serial timing (inter-byte and response timeout), behaviour during firmware update / channel scan, complete list of region-specific tune-command variations beyond the examples given."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

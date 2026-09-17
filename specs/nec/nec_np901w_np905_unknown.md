@@ -30,6 +30,7 @@ known_gaps:
   - "source does not document any unsolicited device-initiated notifications."
   - "source does not document any multi-step macro sequences."
   - "firmware version compatibility not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-09-15T22:17:05.841Z
@@ -764,6 +765,7 @@ summary: "All 58 spec actions map to 53 source commands (lens memory split into 
 - "source does not document any unsolicited device-initiated notifications."
 - "source does not document any multi-step macro sequences."
 - "firmware version compatibility not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

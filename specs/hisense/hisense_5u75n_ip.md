@@ -38,6 +38,7 @@ known_gaps:
   - "IR discrete codes present in source but excluded from spec (not machine-serializable control)"
   - "no firmware version range stated; source revisions span 2014–2017"
   - "multiple-TV daisy-chain wiring described but pinout diagram not extractable from text"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:49.830Z
@@ -1230,6 +1231,7 @@ summary: "All 45 spec actions traced to source (dip-safe re-verify). (8 unresolv
 - "IR discrete codes present in source but excluded from spec (not machine-serializable control)"
 - "no firmware version range stated; source revisions span 2014–2017"
 - "multiple-TV daisy-chain wiring described but pinout diagram not extractable from text"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

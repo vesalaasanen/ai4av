@@ -35,6 +35,7 @@ known_gaps:
   - "no explicit multi-step macros documented."
   - "no safety warnings or interlock procedures in source."
   - "firmware compatibility, error codes, binary protocol extensions, port configuration method, DHCP/static IP setup, MAC address, reset procedures."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T10:33:59.313Z
@@ -1616,6 +1617,7 @@ summary: "All 260 spec actions verified against source; only 3 trivial QUICK-sta
 - "no explicit multi-step macros documented."
 - "no safety warnings or interlock procedures in source."
 - "firmware compatibility, error codes, binary protocol extensions, port configuration method, DHCP/static IP setup, MAC address, reset procedures."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

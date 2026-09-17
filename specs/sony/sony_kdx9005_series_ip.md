@@ -32,6 +32,7 @@ known_gaps:
   - "no discrete settable parameters outside action commands"
   - "no multi-step macro sequences documented in source"
   - "no safety warnings or interlock procedures in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-10T01:22:28.628Z
@@ -334,6 +335,7 @@ summary: "All 17 action-units match source commands exactly; FourCC codes, messa
 - "no discrete settable parameters outside action commands"
 - "no multi-step macro sequences documented in source"
 - "no safety warnings or interlock procedures in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

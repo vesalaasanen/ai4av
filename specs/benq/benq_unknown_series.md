@@ -34,6 +34,7 @@ known_gaps:
   - "no firmware version ranges stated"
   - "volume/contrast/brightness/color/sharpness range limits not stated"
   - "which commands are available on which models not specified"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T21:51:24.992Z
@@ -1005,6 +1006,7 @@ summary: "Generic BenQ RS232 spec with all 66 actions sourced from manual. (7 un
 - "no firmware version ranges stated"
 - "volume/contrast/brightness/color/sharpness range limits not stated"
 - "which commands are available on which models not specified"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

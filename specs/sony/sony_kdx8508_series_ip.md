@@ -39,6 +39,7 @@ known_gaps:
   - "power-on sequencing or confirmation requirements not stated."
   - "fault behavior and error recovery sequences not documented in source."
   - "source marks getBroadcastAddress and getMacAddress with a trailing \"*\" whose meaning is not explained in the source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-22T01:28:08.127Z
@@ -489,6 +490,7 @@ summary: "All 17 spec actions matched to source FourCC commands; transport param
 - "power-on sequencing or confirmation requirements not stated."
 - "fault behavior and error recovery sequences not documented in source."
 - "source marks getBroadcastAddress and getMacAddress with a trailing \"*\" whose meaning is not explained in the source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -41,6 +41,7 @@ known_gaps:
   - "TCP keepalive or connection persistence settings not stated"
   - "command timing or polling intervals not stated"
   - "firmware version compatibility not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:50.973Z
@@ -559,6 +560,7 @@ summary: "All 53 spec actions traced to source (dip-safe re-verify). (16 unresol
 - "TCP keepalive or connection persistence settings not stated"
 - "command timing or polling intervals not stated"
 - "firmware version compatibility not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

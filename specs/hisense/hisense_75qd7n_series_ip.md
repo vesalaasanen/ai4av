@@ -33,6 +33,7 @@ known_gaps:
   - PSHF
   - "source does not state the 75QD7N Series by name; the \"Supported Series model name change\" revision history suggests the doc covers a series-level protocol. Treat the 75QD7N match as operator-assumed."
   - "75QD7N model not named in source; firmware version not stated; voltage/current not stated; POIS exact row count not fully read."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:29.198Z
@@ -833,6 +834,7 @@ summary: "All 69 spec action units match source; sharpness range corrected to [0
 - PSHF
 - "source does not state the 75QD7N Series by name; the \"Supported Series model name change\" revision history suggests the doc covers a series-level protocol. Treat the 75QD7N match as operator-assumed."
 - "75QD7N model not named in source; firmware version not stated; voltage/current not stated; POIS exact row count not fully read."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

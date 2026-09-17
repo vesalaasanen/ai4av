@@ -36,6 +36,7 @@ known_gaps:
   - "Appendix with input terminal, aspect, eco mode, and sub-input value mappings not included in source"
   - "flow_control setting for serial not stated in source"
   - "default baud rate not explicitly stated; 115200 listed first"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:10:59.625Z
@@ -614,6 +615,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (10 unresol
 - "Appendix with input terminal, aspect, eco mode, and sub-input value mappings not included in source"
 - "flow_control setting for serial not stated in source"
 - "default baud rate not explicitly stated; 115200 listed first"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

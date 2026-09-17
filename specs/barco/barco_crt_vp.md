@@ -32,6 +32,7 @@ known_gaps:
   - "authentication pass code format/entropy not stated"
   - "default IP address or DHCP behavior not stated"
   - "command timing / rate limiting not stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-13T06:40:27.320Z
@@ -2100,6 +2101,7 @@ summary: "All 207 spec actions match literal JSON-RPC methods, the RS-232 wake A
 - "authentication pass code format/entropy not stated"
 - "default IP address or DHCP behavior not stated"
 - "command timing / rate limiting not stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

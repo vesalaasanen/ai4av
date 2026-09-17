@@ -34,6 +34,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" not included — input-terminal, aspect, eco-mode, base-model-type, and sub-input value tables are referenced but not extracted."
   - "model-specific applicability of two-lamp / PIP / edge-blend features to the NC1843ML not stated in this generic reference."
   - "serial flow_control not explicitly specified (only \"full duplex\" comm mode stated)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:33:24.043Z
@@ -668,6 +669,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix \"Supplementary Information by Command\" not included — input-terminal, aspect, eco-mode, base-model-type, and sub-input value tables are referenced but not extracted."
 - "model-specific applicability of two-lamp / PIP / edge-blend features to the NC1843ML not stated in this generic reference."
 - "serial flow_control not explicitly specified (only \"full duplex\" comm mode stated)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

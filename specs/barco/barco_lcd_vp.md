@@ -34,6 +34,7 @@ known_gaps:
   - "voltage, current, power specifications not stated"
   - "fault behavior / error recovery sequences not stated"
   - "HTTP file-transfer TCP port not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-13T06:40:28.190Z
@@ -2162,6 +2163,7 @@ summary: "All 174 spec actions map to literal JSON-RPC methods or HTTP file endp
 - "voltage, current, power specifications not stated"
 - "fault behavior / error recovery sequences not stated"
 - "HTTP file-transfer TCP port not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

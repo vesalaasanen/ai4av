@@ -37,6 +37,7 @@ known_gaps:
   - "checksum algorithm for trailing byte not documented in source."
   - "firmware version compatibility not stated."
   - "no auth / login procedure in source (auth.type inferred none)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T18:30:51.613Z
@@ -1312,6 +1313,7 @@ summary: "deterministic presence proof: 196/196 payloads verbatim in source; str
 - "checksum algorithm for trailing byte not documented in source."
 - "firmware version compatibility not stated."
 - "no auth / login procedure in source (auth.type inferred none)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

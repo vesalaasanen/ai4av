@@ -37,6 +37,7 @@ known_gaps:
   - "HDBaseT control mentioned but not detailed"
   - "firmware version compatibility not stated"
   - "some DATA01/DATA02 byte values in command examples include extra trailing bytes that appear to be part of the DATA payload rather than separate fields (e.g., \"02h 00h 00h 00h 00h 02h\" — the 02h after LEN may be part of the data length encoding)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:08.733Z
@@ -825,6 +826,7 @@ summary: "Complete action coverage (12 unresolved item(s) noted in Known Gaps.)"
 - "HDBaseT control mentioned but not detailed"
 - "firmware version compatibility not stated"
 - "some DATA01/DATA02 byte values in command examples include extra trailing bytes that appear to be part of the DATA payload rather than separate fields (e.g., \"02h 00h 00h 00h 00h 02h\" — the 02h after LEN may be part of the data length encoding)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -29,6 +29,7 @@ known_gaps:
   - "exact baud rate must be configured to match projector settings; document does not specify a single default baud rate"
   - "some input terminal hex codes vary by model (e.g., HDMI=A1h or 1Ah); consult appendix for full per-model values"
   - "standby mode requirements vary by model; some models require specific standby mode for LAN vs serial control"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:07.098Z
@@ -549,6 +550,7 @@ summary: "Complete spec verification (4 unresolved item(s) noted in Known Gaps.)
 - "exact baud rate must be configured to match projector settings; document does not specify a single default baud rate"
 - "some input terminal hex codes vary by model (e.g., HDMI=A1h or 1Ah); consult appendix for full per-model values"
 - "standby mode requirements vary by model; some models require specific standby mode for LAN vs serial control"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

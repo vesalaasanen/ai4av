@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated in source"
   - "RS-232 serial control not documented in source"
   - "EU RED-DA spec command restrictions not detailed in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-10T02:05:46.881Z
@@ -349,6 +350,7 @@ summary: "All 17 spec actions matched verbatim against source; all parameter sha
 - "firmware version compatibility not stated in source"
 - "RS-232 serial control not documented in source"
 - "EU RED-DA spec command restrictions not detailed in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "Appendix enum tables (input terminals, aspect, eco mode, base model type, sub inputs) not in source"
   - "firmware version compatibility not stated"
   - "adjustment value min/max bounds not fixed — returned dynamically per-gain"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:04:26.905Z
@@ -741,6 +742,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix enum tables (input terminals, aspect, eco mode, base model type, sub inputs) not in source"
 - "firmware version compatibility not stated"
 - "adjustment value min/max bounds not fixed — returned dynamically per-gain"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

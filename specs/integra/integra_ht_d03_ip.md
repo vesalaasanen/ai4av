@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated in source"
   - "maximum volume range (0-100 vs 0-80) depends on model, not confirmed for HT-D03"
   - "XM/SIRIUS/HD Radio command availability for HT-D03 not confirmed"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:21.480Z
@@ -834,6 +835,7 @@ summary: "All 56 spec actions traced to source (dip-safe re-verify). (8 unresolv
 - "firmware version compatibility not stated in source"
 - "maximum volume range (0-100 vs 0-80) depends on model, not confirmed for HT-D03"
 - "XM/SIRIUS/HD Radio command availability for HT-D03 not confirmed"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

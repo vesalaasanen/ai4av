@@ -34,6 +34,7 @@ known_gaps:
   - "exact volume/micvol numeric range not stated"
   - "exact contrast/brightness/color/sharpness numeric range not stated"
   - "lamp hour response format (integer? with unit?) not specified"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T21:51:23.331Z
@@ -806,6 +807,7 @@ summary: "All 54 spec actions traced to TH963 command table with parametric sour
 - "exact volume/micvol numeric range not stated"
 - "exact contrast/brightness/color/sharpness numeric range not stated"
 - "lamp hour response format (integer? with unit?) not specified"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

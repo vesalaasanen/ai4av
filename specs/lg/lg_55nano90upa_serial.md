@@ -34,6 +34,7 @@ known_gaps:
   - "flow control (hardware RTS/CTS or XON/XOFF) not specified in source"
   - "RS-232C connector pinout not fully specified beyond TXD/RXD/GND"
   - "TCP/IP connection timeout or keepalive behavior not documented"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:19:39.788Z
@@ -569,6 +570,7 @@ summary: "Every action in spec matches source (7 unresolved item(s) noted in Kno
 - "flow control (hardware RTS/CTS or XON/XOFF) not specified in source"
 - "RS-232C connector pinout not fully specified beyond TXD/RXD/GND"
 - "TCP/IP connection timeout or keepalive behavior not documented"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -34,6 +34,7 @@ known_gaps:
   - "serial flow control mode (none/hardware) not explicitly stated — RTS/CTS pins wired."
   - "Appendix \"Supplementary Information by Command\" not in source — input terminal values, aspect values, eco mode values, base model types, sub-input values, key code sub-values."
   - "firmware version compatibility not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:05:35.021Z
@@ -657,6 +658,7 @@ summary: "All 53 spec actions matched verbatim against source command bytes; tra
 - "serial flow control mode (none/hardware) not explicitly stated — RTS/CTS pins wired."
 - "Appendix \"Supplementary Information by Command\" not in source — input terminal values, aspect values, eco mode values, base model types, sub-input values, key code sub-values."
 - "firmware version compatibility not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

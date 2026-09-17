@@ -41,6 +41,7 @@ known_gaps:
   - "base URL for API calls not stated in source"
   - "event type definitions not documented"
   - "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:08.188Z
@@ -299,6 +300,7 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresol
 - "base URL for API calls not stated in source"
 - "event type definitions not documented"
 - "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -33,6 +33,7 @@ known_gaps:
   - "lamp usage time and filter usage time are updated at 1-minute intervals, not real-time"
   - "specific model code (ID2) values not stated in source"
   - "firmware version compatibility not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:26:37.243Z
@@ -641,6 +642,7 @@ summary: "All 53 spec actions map one-to-one to the 53 commands in the source co
 - "lamp usage time and filter usage time are updated at 1-minute intervals, not real-time"
 - "specific model code (ID2) values not stated in source"
 - "firmware version compatibility not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "ID1 (control ID) and ID2 (model code) default/valid values not stated."
   - "Appendix \"Supplementary Information by Command\" not present in refined source — enum value tables for input terminal, aspect, base model type, eco mode, sub-input not captured."
   - "exact marketing model string for \"As96U Px39Ml\" not corroborated inside refined text (manual is generic projector command reference)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-23T07:49:51.818Z
@@ -710,6 +711,7 @@ summary: "All 53 spec actions matched verbatim to BDT140013 source; transport ve
 - "ID1 (control ID) and ID2 (model code) default/valid values not stated."
 - "Appendix \"Supplementary Information by Command\" not present in refined source — enum value tables for input terminal, aspect, base model type, eco mode, sub-input not captured."
 - "exact marketing model string for \"As96U Px39Ml\" not corroborated inside refined text (manual is generic projector command reference)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -36,6 +36,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" value tables (input terminal, aspect, eco mode, base model type, sub-input) not included in this source excerpt"
   - "precise ID2 model code value for M321 Ir not stated"
   - "wireless LAN unit details not specified"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:08:44.492Z
@@ -798,6 +799,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix \"Supplementary Information by Command\" value tables (input terminal, aspect, eco mode, base model type, sub-input) not included in this source excerpt"
 - "precise ID2 model code value for M321 Ir not stated"
 - "wireless LAN unit details not specified"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

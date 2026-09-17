@@ -39,6 +39,7 @@ known_gaps:
   - "TCP/IP control protocol not documented in this source"
   - "port number for TCP control not stated (source covers RS-232 only)"
   - "firmware version compatibility not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:09:42.855Z
@@ -793,6 +794,7 @@ summary: "Spec actions and transport match source (8 unresolved item(s) noted in
 - "TCP/IP control protocol not documented in this source"
 - "port number for TCP control not stated (source covers RS-232 only)"
 - "firmware version compatibility not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "no safety warnings or interlock procedures in source"
   - "Auto Configure works only in RGB(PC) mode — boundary conditions not fully documented"
   - "Tile Mode data values (12-44 pattern) partially documented"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:59.243Z
@@ -431,6 +432,7 @@ summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolv
 - "no safety warnings or interlock procedures in source"
 - "Auto Configure works only in RGB(PC) mode — boundary conditions not fully documented"
 - "Tile Mode data values (12-44 pattern) partially documented"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

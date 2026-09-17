@@ -31,6 +31,7 @@ known_gaps:
   - "method parameter schema not stated in source\""
   - "source identifies generic Pulse projector API, not explicit model-specific availability for every documented member."
   - "HTTP port, firmware compatibility, computed authentication code source, and undocumented method parameter schemas are not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-19T08:56:37.533Z
@@ -1563,6 +1564,7 @@ summary: "All 99 spec action units map to literal JSON-RPC methods/properties/fi
 - "method parameter schema not stated in source\""
 - "source identifies generic Pulse projector API, not explicit model-specific availability for every documented member."
 - "HTTP port, firmware compatibility, computed authentication code source, and undocumented method parameter schemas are not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -38,6 +38,7 @@ known_gaps:
   - "baud rate variants: source lists 115200/38400/19200/9600/4800 bps; this spec selects 115200 as the documented maximum."
   - "full key code list for remote_key_code command contains keys not enumerated here in detail; see source for complete list."
   - "firmware version compatibility not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-22T07:46:31.743Z
@@ -635,6 +636,7 @@ summary: "All 53 spec actions match hex sequences verbatim in source; transport 
 - "baud rate variants: source lists 115200/38400/19200/9600/4800 bps; this spec selects 115200 as the documented maximum."
 - "full key code list for remote_key_code command contains keys not enumerated here in detail; see source for complete list."
 - "firmware version compatibility not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

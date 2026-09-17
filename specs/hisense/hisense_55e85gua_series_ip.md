@@ -39,6 +39,7 @@ known_gaps:
   - "TCP port value not stated in the refined source document; inferred from companion HiSense IP Control docs."
   - "connection persistence / keepalive behavior not documented."
   - "firmware version compatibility range not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T16:56:41.426Z
@@ -1196,6 +1197,7 @@ summary: "deterministic presence proof: 178/178 payloads verbatim in source; str
 - "TCP port value not stated in the refined source document; inferred from companion HiSense IP Control docs."
 - "connection persistence / keepalive behavior not documented."
 - "firmware version compatibility range not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

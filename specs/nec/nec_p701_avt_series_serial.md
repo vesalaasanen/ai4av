@@ -34,6 +34,7 @@ known_gaps:
   - "firmware version compatibility not stated"
   - "specific model variations for P701-AVT Series not enumerated"
   - "HDBaseT standby mode support not confirmed for P701-AVT Series"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:42.880Z
@@ -594,6 +595,7 @@ summary: "All 53 spec actions traced to source (dip-safe re-verify). (9 unresolv
 - "firmware version compatibility not stated"
 - "specific model variations for P701-AVT Series not enumerated"
 - "HDBaseT standby mode support not confirmed for P701-AVT Series"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

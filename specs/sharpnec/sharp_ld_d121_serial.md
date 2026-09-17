@@ -31,6 +31,7 @@ known_gaps:
   - "no unsolicited notification / push events documented in source."
   - "no multi-step command sequences described explicitly in source."
   - "no explicit safety interlock procedures or power-on sequencing"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:59:51.951Z
@@ -728,6 +729,7 @@ summary: "All 53 spec actions match literal source hex codes; transport paramete
 - "no unsolicited notification / push events documented in source."
 - "no multi-step command sequences described explicitly in source."
 - "no explicit safety interlock procedures or power-on sequencing"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "Power-On Input Selection (POIS) command table was truncated in the source excerpt and could not be fully reconstructed."
   - "Firmware version compatibility not stated in source."
   - "RS-232 multi-drop wiring topology (daisy-chain vs. star) not described in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:00.319Z
@@ -941,6 +942,7 @@ summary: "All 74 spec actions traced to source (dip-safe re-verify). (10 unresol
 - "Power-On Input Selection (POIS) command table was truncated in the source excerpt and could not be fully reconstructed."
 - "Firmware version compatibility not stated in source."
 - "RS-232 multi-drop wiring topology (daisy-chain vs. star) not described in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

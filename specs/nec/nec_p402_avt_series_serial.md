@@ -35,6 +35,7 @@ known_gaps:
   - "full aspect mode code table not reproduced here (see Appendix of source)"
   - "eco mode code variants not fully enumerated (source shows multiple equivalent codes)"
   - "standby mode requirements vary by model — some require specific standby mode for serial/LAN control"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:26:32.679Z
@@ -777,6 +778,7 @@ summary: "All 53 spec actions map 1-to-1 to the 53 source commands with matching
 - "full aspect mode code table not reproduced here (see Appendix of source)"
 - "eco mode code variants not fully enumerated (source shows multiple equivalent codes)"
 - "standby mode requirements vary by model — some require specific standby mode for serial/LAN control"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

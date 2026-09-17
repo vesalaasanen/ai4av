@@ -45,6 +45,7 @@ known_gaps:
   - "UDP port for event unicast not stated"
   - "setClientVolume command referenced in section 9.1.9 but defined in Basic spec (not included here)"
   - "getFeatures, getDeviceInfo, getStatus referenced throughout but defined in Basic spec"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-04T06:37:46.185Z
@@ -401,6 +402,7 @@ summary: "All 10 advanced API commands matched verbatim in source with correct t
 - "UDP port for event unicast not stated"
 - "setClientVolume command referenced in section 9.1.9 but defined in Basic spec (not included here)"
 - "getFeatures, getDeviceInfo, getStatus referenced throughout but defined in Basic spec"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

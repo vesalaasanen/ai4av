@@ -35,6 +35,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" referenced for input-terminal values, eco-mode values, aspect values, sub-input values, base-model-type codes — not present in this refined excerpt."
   - "flow_control mode (RTS/CTS pinout shown in pin table but no explicit hardware/software flow-control policy stated)."
   - "firmware version compatibility range not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:38:57.937Z
@@ -701,6 +702,7 @@ summary: "All 53 spec actions match literal hex commands from the source protoco
 - "Appendix \"Supplementary Information by Command\" referenced for input-terminal values, eco-mode values, aspect values, sub-input values, base-model-type codes — not present in this refined excerpt."
 - "flow_control mode (RTS/CTS pinout shown in pin table but no explicit hardware/software flow-control policy stated)."
 - "firmware version compatibility range not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated."
   - "serial flow_control not stated (only \"Full duplex\" communication mode given)."
   - "appendix \"Supplementary Information by Command\" (input terminal values, aspect values, eco mode values, sub input values, base model types) not included in the provided refined source excerpt."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:13:44.010Z
@@ -664,6 +665,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "firmware version compatibility not stated."
 - "serial flow_control not stated (only \"Full duplex\" communication mode given)."
 - "appendix \"Supplementary Information by Command\" (input terminal values, aspect values, eco mode values, sub input values, base model types) not included in the provided refined source excerpt."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "no firmware version compatibility stated."
   - "IR discrete codes (Pronto CCF + 04FB hex data codes) are present in source but have no `ir` AI4AV transport and are therefore not represented as Actions/Feedbacks."
   - "multi-TV bus topology and cabling diagrams are referenced (\"Connecting to one/multiple TVs\") but the source figures are not machine-readable."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T18:30:53.050Z
@@ -1146,6 +1147,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "no firmware version compatibility stated."
 - "IR discrete codes (Pronto CCF + 04FB hex data codes) are present in source but have no `ir` AI4AV transport and are therefore not represented as Actions/Feedbacks."
 - "multi-TV bus topology and cabling diagrams are referenced (\"Connecting to one/multiple TVs\") but the source figures are not machine-readable."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

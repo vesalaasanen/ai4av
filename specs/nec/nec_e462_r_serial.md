@@ -32,6 +32,7 @@ known_gaps:
   - "exact default baud rate for E462-R not specified in source"
   - "model-specific input terminal values for E462-R not enumerated"
   - "HDBaseT standby mode support not confirmed for E462-R"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:09.517Z
@@ -709,6 +710,7 @@ summary: "Complete action mapping verified (7 unresolved item(s) noted in Known 
 - "exact default baud rate for E462-R not specified in source"
 - "model-specific input terminal values for E462-R not enumerated"
 - "HDBaseT standby mode support not confirmed for E462-R"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

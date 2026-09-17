@@ -31,6 +31,7 @@ known_gaps:
   - "no multi-step sequences described in source"
   - "firmware version compatibility not stated in source"
   - "exact cooldown duration after power off not specified"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T06:28:18.554Z
@@ -300,6 +301,7 @@ summary: "All 11 spec actions cross-verified against source command table (4 unr
 - "no multi-step sequences described in source"
 - "firmware version compatibility not stated in source"
 - "exact cooldown duration after power off not specified"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

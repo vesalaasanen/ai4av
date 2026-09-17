@@ -45,6 +45,7 @@ known_gaps:
   - "eco mode return values in appendix not in source"
   - "base model type values in appendix not in source"
   - "no persistent settable variables beyond those covered by actions"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:57.615Z
@@ -853,6 +854,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (20 unresol
 - "eco mode return values in appendix not in source"
 - "base model type values in appendix not in source"
 - "no persistent settable variables beyond those covered by actions"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

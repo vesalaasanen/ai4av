@@ -41,6 +41,7 @@ known_gaps:
   - "firmware version compatibility range not stated"
   - "wireless LAN comm conditions reference external operation manual"
   - "model code (ID2), flow_control, appendix value tables, firmware range."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:49:00.817Z
@@ -721,6 +722,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "firmware version compatibility range not stated"
 - "wireless LAN comm conditions reference external operation manual"
 - "model code (ID2), flow_control, appendix value tables, firmware range."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

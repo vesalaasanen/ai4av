@@ -34,6 +34,7 @@ known_gaps:
   - "input terminal code table, eco mode value codes, base model type codes, sub input codes — appendix not in source."
   - "firmware version compatibility not stated."
   - "serial flow control mode not specified despite RTS/CTS pinout."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:12:29.247Z
@@ -627,6 +628,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "input terminal code table, eco mode value codes, base model type codes, sub input codes — appendix not in source."
 - "firmware version compatibility not stated."
 - "serial flow control mode not specified despite RTS/CTS pinout."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

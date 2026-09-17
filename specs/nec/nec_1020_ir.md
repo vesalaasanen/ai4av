@@ -36,6 +36,7 @@ known_gaps:
   - "no explicit multi-step macros documented in source"
   - "no explicit safety warnings or interlock procedures beyond command timing notes"
   - "appendix command value tables not included; contact NEC for complete value specifications"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:26:04.782Z
@@ -654,6 +655,7 @@ summary: "Every action in spec cross-checks against source (11 unresolved item(s
 - "no explicit multi-step macros documented in source"
 - "no explicit safety warnings or interlock procedures beyond command timing notes"
 - "appendix command value tables not included; contact NEC for complete value specifications"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

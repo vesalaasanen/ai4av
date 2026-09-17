@@ -34,6 +34,7 @@ known_gaps:
   - "selection signal type values appendix incomplete in source"
   - "audio select terminal values appendix incomplete in source"
   - "standby mode requirements vary by model — specific P402-TMX4P requirements not enumerated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:11:23.891Z
@@ -685,6 +686,7 @@ summary: "All 53 spec actions traced to source (dip-safe re-verify). (9 unresolv
 - "selection signal type values appendix incomplete in source"
 - "audio select terminal values appendix incomplete in source"
 - "standby mode requirements vary by model — specific P402-TMX4P requirements not enumerated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

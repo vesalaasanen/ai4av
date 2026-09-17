@@ -30,6 +30,7 @@ known_gaps:
   - "source does not document any multi-step sequences."
   - "source contains no safety warnings, interlock procedures, or"
   - "source did not document firmware version compatibility for the KDX7066 Series; the WebAPI/HTTP variant of the protocol is mentioned but not detailed; the setInput port-encoding byte positions are partially inferred from a malformed source table."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-11T13:46:47.119Z
@@ -482,6 +483,7 @@ summary: "All 30 spec actions have literal FourCC and parameter matches in sourc
 - "source does not document any multi-step sequences."
 - "source contains no safety warnings, interlock procedures, or"
 - "source did not document firmware version compatibility for the KDX7066 Series; the WebAPI/HTTP variant of the protocol is mentioned but not detailed; the setInput port-encoding byte positions are partially inferred from a malformed source table."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

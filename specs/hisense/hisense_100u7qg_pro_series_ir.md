@@ -35,6 +35,7 @@ known_gaps:
   - "no response timeout specified"
   - "HDMI5 input listed in IR table but not in RS-232 INPT command set"
   - "POIS command has incomplete source list (only Air/AV/Component documented; HDMI not listed for POIS)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:36.331Z
@@ -755,6 +756,7 @@ summary: "All 40 spec actions traced to source (dip-safe re-verify). (10 unresol
 - "no response timeout specified"
 - "HDMI5 input listed in IR table but not in RS-232 INPT command set"
 - "POIS command has incomplete source list (only Air/AV/Component documented; HDMI not listed for POIS)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

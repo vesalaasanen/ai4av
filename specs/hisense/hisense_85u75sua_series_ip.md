@@ -37,6 +37,7 @@ known_gaps:
   - "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
   - "supported model series names not listed in source (Models section blank)"
   - "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:08:05.016Z
@@ -969,6 +970,7 @@ summary: "All 45 spec actions traced to source (dip-safe re-verify). (9 unresolv
 - "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
 - "supported model series names not listed in source (Models section blank)"
 - "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

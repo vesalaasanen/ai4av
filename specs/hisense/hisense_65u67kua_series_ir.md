@@ -33,6 +33,7 @@ known_gaps:
   - "source describes a power-on sequence (enable PWRE then send POWR0001) as commentary, not as a defined macro. See Notes."
   - "source contains no safety warnings, interlocks, or power-on sequencing requirements beyond the Custom Install menu enablement note."
   - "firmware version compatibility not stated in source. UNRESOLVED: per-TV subset of supported IR codes not enumerated — source defers to User Manual. UNRESOLVED: voltage/current specs of DB9 Power Input pin 9 not stated (omitted as Tier-3 field). UNRESOLVED: full enumeration of Custom Install menu items beyond Custom Installation toggle and Power On Command setting not in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T21:41:59.797Z
@@ -930,6 +931,7 @@ summary: "All 68 spec action mnemonics verified verbatim in source; transport co
 - "source describes a power-on sequence (enable PWRE then send POWR0001) as commentary, not as a defined macro. See Notes."
 - "source contains no safety warnings, interlocks, or power-on sequencing requirements beyond the Custom Install menu enablement note."
 - "firmware version compatibility not stated in source. UNRESOLVED: per-TV subset of supported IR codes not enumerated — source defers to User Manual. UNRESOLVED: voltage/current specs of DB9 Power Input pin 9 not stated (omitted as Tier-3 field). UNRESOLVED: full enumeration of Custom Install menu items beyond Custom Installation toggle and Power On Command setting not in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

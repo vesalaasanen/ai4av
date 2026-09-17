@@ -40,6 +40,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" referenced for input-terminal values, aspect values, eco-mode values, sub-input values, base-model-type values — not included in this refined source."
   - "variable value ranges (volume/picture gains) not stated; must query 060-1 per name at runtime."
   - "voltage/current/power specs not in this control-protocol document."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:51:17.833Z
@@ -744,6 +745,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix \"Supplementary Information by Command\" referenced for input-terminal values, aspect values, eco-mode values, sub-input values, base-model-type values — not included in this refined source."
 - "variable value ranges (volume/picture gains) not stated; must query 060-1 per name at runtime."
 - "voltage/current/power specs not in this control-protocol document."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

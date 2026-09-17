@@ -33,6 +33,7 @@ known_gaps:
   - "Appendix values for input terminals, aspect ratios, eco modes, signal types, sub input settings, and base model types not included in extracted source text."
   - "wireless LAN control not documented; manual references wireless LAN unit operation manual."
   - "firmware version compatibility not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:14.530Z
@@ -823,6 +824,7 @@ summary: "Complete match (8 unresolved item(s) noted in Known Gaps.)"
 - "Appendix values for input terminals, aspect ratios, eco modes, signal types, sub input settings, and base model types not included in extracted source text."
 - "wireless LAN control not documented; manual references wireless LAN unit operation manual."
 - "firmware version compatibility not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

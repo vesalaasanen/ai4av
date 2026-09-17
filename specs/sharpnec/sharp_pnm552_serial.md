@@ -36,6 +36,7 @@ known_gaps:
   - "053 LENS CONTROL target byte enumerates only 06h=Periphery Focus in source; other targets not listed."
   - "053-1 LENS CONTROL REQUEST target byte has no enum in source."
   - "053-2 LENS CONTROL 2 target byte lists only FFh=Stop in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:10:33.408Z
@@ -707,6 +708,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "053 LENS CONTROL target byte enumerates only 06h=Periphery Focus in source; other targets not listed."
 - "053-1 LENS CONTROL REQUEST target byte has no enum in source."
 - "053-2 LENS CONTROL 2 target byte lists only FFh=Stop in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

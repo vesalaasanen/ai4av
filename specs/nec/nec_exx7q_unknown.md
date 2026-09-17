@@ -35,6 +35,7 @@ known_gaps:
   - "aspect, eco mode, sub input setting values (Appendix referenced but not in source)"
   - "firmware version compatibility"
   - "wireless LAN control commands"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:13.697Z
@@ -605,6 +606,7 @@ summary: "Spec completely verified (10 unresolved item(s) noted in Known Gaps.)"
 - "aspect, eco mode, sub input setting values (Appendix referenced but not in source)"
 - "firmware version compatibility"
 - "wireless LAN control commands"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

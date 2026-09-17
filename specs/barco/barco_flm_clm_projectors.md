@@ -34,6 +34,7 @@ known_gaps:
   - "DMX/artnet configuration details not fully documented"
   - "full property list exceeds what is captured here; introspection API available"
   - "firmware version compatibility not stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-21T21:24:43.198Z
@@ -2605,6 +2606,7 @@ summary: "All 178 spec actions map 1:1 to documented JSON-RPC methods, RS-232 co
 - "DMX/artnet configuration details not fully documented"
 - "full property list exceeds what is captured here; introspection API available"
 - "firmware version compatibility not stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

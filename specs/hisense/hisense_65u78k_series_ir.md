@@ -29,6 +29,7 @@ known_gaps:
   - "source describes query/response model only, no unsolicited event/notification stream documented."
   - "no explicit safety warnings or interlock procedures in source beyond factory-reset caution."
   - "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\")."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:07:55.458Z
@@ -1383,6 +1384,7 @@ summary: "All 125 spec actions traced to source (dip-safe re-verify). (4 unresol
 - "source describes query/response model only, no unsolicited event/notification stream documented."
 - "no explicit safety warnings or interlock procedures in source beyond factory-reset caution."
 - "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\")."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

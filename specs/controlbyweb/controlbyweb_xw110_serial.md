@@ -38,6 +38,7 @@ known_gaps:
   - "serial / RS-232C transport not present in source (likely N/A for this model)."
   - "voltage/current/power specifications not stated in source."
   - "exact default credentials (if any) beyond example \"none:webrelay\" not stated as default."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-07T12:53:01.130Z
@@ -472,6 +473,7 @@ summary: "All 16 spec actions matched verbatim against source HTTP GET and Modbu
 - "serial / RS-232C transport not present in source (likely N/A for this model)."
 - "voltage/current/power specifications not stated in source."
 - "exact default credentials (if any) beyond example \"none:webrelay\" not stated as default."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -42,6 +42,7 @@ known_gaps:
   - "exact gain adjustment ranges (min/max/default) require runtime query via 060-1 GAIN PARAMETER REQUEST"
   - "protocol version number not stated"
   - "firmware version compatibility not stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-22T00:46:48.478Z
@@ -840,6 +841,7 @@ summary: "All 53 spec actions matched verbatim to source hex sequences; transpor
 - "exact gain adjustment ranges (min/max/default) require runtime query via 060-1 GAIN PARAMETER REQUEST"
 - "protocol version number not stated"
 - "firmware version compatibility not stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

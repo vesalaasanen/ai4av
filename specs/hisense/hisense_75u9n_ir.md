@@ -30,6 +30,7 @@ known_gaps:
   - "response value mapping for POWR query not explicitly shown in source table"
   - "no unsolicited notification format documented in source."
   - "source contains no explicit safety warnings, electrical ratings, or interlock procedures."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T05:33:18.877Z
@@ -1235,6 +1236,7 @@ summary: "All 126 spec actions traced to source (dip-safe re-verify). (5 unresol
 - "response value mapping for POWR query not explicitly shown in source table"
 - "no unsolicited notification format documented in source."
 - "source contains no explicit safety warnings, electrical ratings, or interlock procedures."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -31,6 +31,7 @@ known_gaps:
   - "no multi-step sequences described in source"
   - "source notes POWER ON and POWER OFF cannot accept other commands during execution (including cooling time), but does not document safety interlocks or power-on sequencing requirements."
   - "firmware version range; complete input-terminal value mapping; complete aspect value mapping; complete eco-mode value mapping; complete sub-input value mapping; complete base model type value mapping; complete \"Supplementary Information by Command\" appendix"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-12T19:27:40.092Z
@@ -843,6 +844,7 @@ summary: "All 53 spec command sequences found verbatim in BDT140013 Revision 7.1
 - "no multi-step sequences described in source"
 - "source notes POWER ON and POWER OFF cannot accept other commands during execution (including cooling time), but does not document safety interlocks or power-on sequencing requirements."
 - "firmware version range; complete input-terminal value mapping; complete aspect value mapping; complete eco-mode value mapping; complete sub-input value mapping; complete base model type value mapping; complete \"Supplementary Information by Command\" appendix"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

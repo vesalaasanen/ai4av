@@ -33,6 +33,7 @@ known_gaps:
   - "firmware version compatibility not stated"
   - "port 23 (Telnet) not mentioned — TCP-only with JSON on 11881"
   - "WebSocket path is /websocket but auth type unstated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:13:00.248Z
@@ -275,6 +276,7 @@ summary: "Complete action-to-source alignment (8 unresolved item(s) noted in Kno
 - "firmware version compatibility not stated"
 - "port 23 (Telnet) not mentioned — TCP-only with JSON on 11881"
 - "WebSocket path is /websocket but auth type unstated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -30,6 +30,7 @@ known_gaps:
   - "source describes no multi-step sequences."
   - "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
   - "TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to \"page A18\" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:59.371Z
@@ -554,6 +555,7 @@ summary: "All 28 spec actions match source commands with correct opcodes, data r
 - "source describes no multi-step sequences."
 - "source contains no explicit safety warnings, interlocks, or power-on sequencing requirements."
 - "TCP/IP control (suggested by caller) not documented in this source — only RS-232C. IR code table refers to \"page A18\" not included in the source excerpt. Lamp/panel power and fault-recovery behaviors not described."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

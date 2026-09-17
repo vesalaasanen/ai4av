@@ -34,6 +34,7 @@ known_gaps:
   - "source contains no safety warnings, interlocks, or power-on"
   - "firmware version range that supports this protocol not stated in source."
   - "AES key / authentication required for the WebAPI / JSON-RPC path is not in the scope of this spec and not described."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T07:21:01.384Z
@@ -482,6 +483,7 @@ summary: "All 24 spec actions match distinct FourCC commands in source Table 4; 
 - "source contains no safety warnings, interlocks, or power-on"
 - "firmware version range that supports this protocol not stated in source."
 - "AES key / authentication required for the WebAPI / JSON-RPC path is not in the scope of this spec and not described."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

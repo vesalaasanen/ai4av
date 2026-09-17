@@ -38,6 +38,7 @@ known_gaps:
   - "Appendix 'Supplementary Information by Command' not in refined source — input terminal, aspect, eco mode, base model type, sub input value tables missing"
   - "firmware version compatibility not stated"
   - "flow_control not stated (only 'Full duplex' communication mode documented)"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:47:45.930Z
@@ -709,6 +710,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix 'Supplementary Information by Command' not in refined source — input terminal, aspect, eco mode, base model type, sub input value tables missing"
 - "firmware version compatibility not stated"
 - "flow_control not stated (only 'Full duplex' communication mode documented)"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

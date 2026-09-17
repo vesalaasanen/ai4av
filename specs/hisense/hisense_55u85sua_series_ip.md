@@ -33,6 +33,7 @@ known_gaps:
   - "TCP/IP control not covered by this source (no port / framing / auth)."
   - "firmware version compatibility not stated."
   - "multiple-TV daisy-chain wiring (\"Connecting to multiple TVs\") section is present in source but contains no diagram/text after extraction."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T17:49:44.159Z
@@ -1156,6 +1157,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "TCP/IP control not covered by this source (no port / framing / auth)."
 - "firmware version compatibility not stated."
 - "multiple-TV daisy-chain wiring (\"Connecting to multiple TVs\") section is present in source but contains no diagram/text after extraction."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

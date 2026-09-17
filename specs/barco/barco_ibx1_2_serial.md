@@ -29,6 +29,7 @@ known_gaps:
   - "no explicit multi-step sequences described in source."
   - "source does not contain explicit hazard warnings or electrical safety interlocks."
   - "source refined doc is generic \"Pulse API\" with no explicit Ibx1 2 model identifier; specific connector list / illumination type for Ibx1 2 not confirmed in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-19T08:39:06.454Z
@@ -866,6 +867,7 @@ summary: "All 77 spec action units (JSON-RPC methods, property paths, HTTP file 
 - "no explicit multi-step sequences described in source."
 - "source does not contain explicit hazard warnings or electrical safety interlocks."
 - "source refined doc is generic \"Pulse API\" with no explicit Ibx1 2 model identifier; specific connector list / illumination type for Ibx1 2 not confirmed in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

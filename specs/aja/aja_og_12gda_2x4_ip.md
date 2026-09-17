@@ -37,6 +37,7 @@ known_gaps:
   - "no safety warnings or interlock procedures found in source."
   - "firmware version compatibility, DashBoard version requirements of this specific card, and device-specific OID/menu layout not stated in source."
   - "power consumption, voltage/current specs, and fault behavior of the device are not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-08-30T22:16:18.820Z
@@ -828,6 +829,7 @@ summary: "All 44 spec action wire tokens appear verbatim in the source; transpor
 - "no safety warnings or interlock procedures found in source."
 - "firmware version compatibility, DashBoard version requirements of this specific card, and device-specific OID/menu layout not stated in source."
 - "power consumption, voltage/current specs, and fault behavior of the device are not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

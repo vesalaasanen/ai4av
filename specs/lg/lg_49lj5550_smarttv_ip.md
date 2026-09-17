@@ -40,6 +40,7 @@ known_gaps:
   - "which connector type the 49LJ5550 uses (DE9, phone jack, or USB-to-serial)"
   - "firmware version compatibility ranges not stated"
   - "whether IP control is available outside USA"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:19:31.706Z
@@ -931,6 +932,7 @@ summary: "Complete inventory match (10 unresolved item(s) noted in Known Gaps.)"
 - "which connector type the 49LJ5550 uses (DE9, phone jack, or USB-to-serial)"
 - "firmware version compatibility ranges not stated"
 - "whether IP control is available outside USA"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

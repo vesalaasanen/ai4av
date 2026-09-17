@@ -36,6 +36,7 @@ known_gaps:
   - "source contains no explicit safety warnings or interlock"
   - "TCP/IP port number, addressing scheme, and any IP-specific auth not stated in source — must be obtained from device network settings or a dedicated IP-control document."
   - "HEX-mode example in source contains a likely typo (`HDM1` vs `HDMI1`) in one acknowledgement — verify against device."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-25T19:09:08.885Z
@@ -1156,6 +1157,7 @@ summary: "deterministic presence proof: 165/165 payloads verbatim in source; str
 - "source contains no explicit safety warnings or interlock"
 - "TCP/IP port number, addressing scheme, and any IP-specific auth not stated in source — must be obtained from device network settings or a dedicated IP-control document."
 - "HEX-mode example in source contains a likely typo (`HDM1` vs `HDMI1`) in one acknowledgement — verify against device."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

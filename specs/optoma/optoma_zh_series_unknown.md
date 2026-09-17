@@ -40,6 +40,7 @@ known_gaps:
   - "exact model list covered by this protocol list (ZH506, ZH510T, ZH350ST, ZH420, ZH460ST, ZH507, ZH520, ZH506T) not stated in the source; source is a generic Optoma RS232 function list."
   - "firmware version compatibility ranges not stated."
   - "HDBaseT Control sub-menu values (\"Auto\"/\"HDBaseT\"), PIP-PBP Module (Version/HDMI EQ 0-7/USB Upgrade), Network Subnet Mask/Gateway/DNS/Store, Location/Contact, and 1080p@24 (96Hz/144Hz) fields appear in source menus without command payloads — payloads not documented."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-16T07:10:02.052Z
@@ -1127,6 +1128,7 @@ summary: "All 109 spec actions match source commands exactly; transport paramete
 - "exact model list covered by this protocol list (ZH506, ZH510T, ZH350ST, ZH420, ZH460ST, ZH507, ZH520, ZH506T) not stated in the source; source is a generic Optoma RS232 function list."
 - "firmware version compatibility ranges not stated."
 - "HDBaseT Control sub-menu values (\"Auto\"/\"HDBaseT\"), PIP-PBP Module (Version/HDMI EQ 0-7/USB Upgrade), Network Subnet Mask/Gateway/DNS/Store, Location/Contact, and 1080p@24 (96Hz/144Hz) fields appear in source menus without command payloads — payloads not documented."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

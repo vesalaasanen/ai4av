@@ -32,6 +32,7 @@ known_gaps:
   - "populate if source contains macro sequences - none found."
   - "no explicit safety interlock procedures or power-on sequencing requirements stated"
   - "input terminal value table, aspect value table, eco mode value table, base model type table, and sub-input value table are referenced to a source Appendix (\"Supplementary Information by Command\") not present in the refined source text. Firmware version compatibility not stated. Wireless LAN unit details deferred to separate operation manual."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T20:01:20.474Z
@@ -693,6 +694,7 @@ summary: "All 53 spec commands matched verbatim against source protocol referenc
 - "populate if source contains macro sequences - none found."
 - "no explicit safety interlock procedures or power-on sequencing requirements stated"
 - "input terminal value table, aspect value table, eco mode value table, base model type table, and sub-input value table are referenced to a source Appendix (\"Supplementary Information by Command\") not present in the refined source text. Firmware version compatibility not stated. Wireless LAN unit details deferred to separate operation manual."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

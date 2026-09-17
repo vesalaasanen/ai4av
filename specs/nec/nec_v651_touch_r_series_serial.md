@@ -31,6 +31,7 @@ known_gaps:
   - "no explicit safety warnings or emergency procedures in source"
   - "model-specific appendix values (input codes, aspect, eco modes) — this appears to be a generic NEC projector command reference; V651-TOUCH-R-specific values may differ"
   - "HDBaseT control support — mentioned in selection signal types but no dedicated HDBaseT commands documented"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:12:00.744Z
@@ -602,6 +603,7 @@ summary: "All 29 spec actions traced to source (dip-safe re-verify). (6 unresolv
 - "no explicit safety warnings or emergency procedures in source"
 - "model-specific appendix values (input codes, aspect, eco modes) — this appears to be a generic NEC projector command reference; V651-TOUCH-R-specific values may differ"
 - "HDBaseT control support — mentioned in selection signal types but no dedicated HDBaseT commands documented"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

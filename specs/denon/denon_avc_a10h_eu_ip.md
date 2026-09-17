@@ -30,6 +30,7 @@ known_gaps:
   - "firmware version compatibility not stated"
   - "voltage/power specs not stated"
   - "error recovery sequences not stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T09:36:02.883Z
@@ -627,6 +628,7 @@ summary: "All 56 spec action units matched verbatim in source; transport (port 2
 - "firmware version compatibility not stated"
 - "voltage/power specs not stated"
 - "error recovery sequences not stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

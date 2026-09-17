@@ -40,6 +40,7 @@ known_gaps:
   - "API port not specified in the protocol spec (device-description example shows :80)"
   - "no setTone/setDimmer/setBalance endpoints in the basic spec — status is readable but setters may be in the advanced YXC spec"
   - "NP-S303-specific feature subset not confirmed from this generic document"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-14T19:39:46.147Z
@@ -769,6 +770,7 @@ summary: "All 41 spec actions match verbatim endpoint paths in the YXC source; s
 - "API port not specified in the protocol spec (device-description example shows :80)"
 - "no setTone/setDimmer/setBalance endpoints in the basic spec — status is readable but setters may be in the advanced YXC spec"
 - "NP-S303-specific feature subset not confirmed from this generic document"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

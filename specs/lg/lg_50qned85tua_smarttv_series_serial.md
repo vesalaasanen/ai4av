@@ -30,6 +30,7 @@ known_gaps:
   - "source says \"Use a crossed (reverse) cable\" - capture as note"
   - "source contains no explicit electrical-safety, voltage, or installer warnings beyond the cable/connector notes. The 3-wire config diagram is a wiring note, not a safety interlock."
   - "- Firmware version compatibility ranges not stated in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:23:00.107Z
@@ -1067,6 +1068,7 @@ summary: "All 63 spec actions matched literally in source; all transport paramet
 - "source says \"Use a crossed (reverse) cable\" - capture as note"
 - "source contains no explicit electrical-safety, voltage, or installer warnings beyond the cable/connector notes. The 3-wire config diagram is a wiring note, not a safety interlock."
 - "- Firmware version compatibility ranges not stated in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

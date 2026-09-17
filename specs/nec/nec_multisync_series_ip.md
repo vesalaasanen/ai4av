@@ -34,6 +34,7 @@ known_gaps:
   - "authentication token format not applicable (no auth in source)"
   - "specific model variant identification within MultiSync Series not provided"
   - "binary encoding for non-hex commands not present — all commands are explicitly hex-stated"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T11:54:57.105Z
@@ -796,6 +797,7 @@ summary: "Complete cross-check passed (9 unresolved item(s) noted in Known Gaps.
 - "authentication token format not applicable (no auth in source)"
 - "specific model variant identification within MultiSync Series not provided"
 - "binary encoding for non-hex commands not present — all commands are explicitly hex-stated"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

@@ -35,6 +35,7 @@ known_gaps:
   - "no multi-step macro sequences documented in source"
   - "no safety warnings or interlock procedures in source"
   - "TCP/IP control path not documented in source — spec derived from RS-232 command table only"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-05-31T22:42:30.126Z
@@ -447,6 +448,7 @@ summary: "All 50 spec actions matched verbatim in source command table; transpor
 - "no multi-step macro sequences documented in source"
 - "no safety warnings or interlock procedures in source"
 - "TCP/IP control path not documented in source — spec derived from RS-232 command table only"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

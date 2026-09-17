@@ -30,6 +30,7 @@ known_gaps:
   - "settable parameters mirror the *_SET and *_ADJUST actions above"
   - "source describes no unsolicited / push notifications; all data is returned"
   - "source describes no explicit multi-step command sequences."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:32:57.698Z
@@ -722,6 +723,7 @@ summary: "All 53 spec actions matched verbatim to source command reference. Tran
 - "settable parameters mirror the *_SET and *_ADJUST actions above"
 - "source describes no unsolicited / push notifications; all data is returned"
 - "source describes no explicit multi-step command sequences."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

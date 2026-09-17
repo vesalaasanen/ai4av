@@ -30,6 +30,7 @@ known_gaps:
   - "no event/notification model in source."
   - "no explicit power-on sequencing procedure or voltage interlock"
   - "firmware version compatibility not stated. ID1 control-ID default not stated. ID2 model code value not stated. Input terminal / aspect / eco-mode / sub-input value tables referenced to an Appendix not contained in this source excerpt. flow_control setting not in comm-conditions table. Power/voltage/current specs out of scope (no values invented)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-17T19:31:28.724Z
@@ -686,6 +687,7 @@ summary: "All 53 documented commands found verbatim in source with correct param
 - "no event/notification model in source."
 - "no explicit power-on sequencing procedure or voltage interlock"
 - "firmware version compatibility not stated. ID1 control-ID default not stated. ID2 model code value not stated. Input terminal / aspect / eco-mode / sub-input value tables referenced to an Appendix not contained in this source excerpt. flow_control setting not in comm-conditions table. Power/voltage/current specs out of scope (no values invented)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

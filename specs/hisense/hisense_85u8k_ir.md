@@ -38,6 +38,7 @@ known_gaps:
   - "full POIS (power-on input) enum and any commands documented after the POIS section — the refined source file is truncated mid-table immediately after POIS0003."
   - "complete IR discrete-code list between TV TUNER1 (04FB748B) and HDMI.1 (04FB7C83) — refined source extraction shows a gap in this band of the discrete-IR table."
   - "firmware version compatibility, protocol revision applicability to the specific 85U8K model (source title is generic \"Hisense Prosumer TV\"; operator asserted 85U8K)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:09:53.090Z
@@ -1587,6 +1588,7 @@ summary: "Complete alignment between spec and source (13 unresolved item(s) note
 - "full POIS (power-on input) enum and any commands documented after the POIS section — the refined source file is truncated mid-table immediately after POIS0003."
 - "complete IR discrete-code list between TV TUNER1 (04FB748B) and HDMI.1 (04FB7C83) — refined source extraction shows a gap in this band of the discrete-IR table."
 - "firmware version compatibility, protocol revision applicability to the specific 85U8K model (source title is generic \"Hisense Prosumer TV\"; operator asserted 85U8K)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

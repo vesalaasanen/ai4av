@@ -42,6 +42,7 @@ known_gaps:
   - "base model type values require Appendix"
   - "sub input setting values for PIP/PBP require Appendix"
   - "wireless LAN communication conditions not specified"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-09T23:42:13.145Z
@@ -783,6 +784,7 @@ summary: "All 53 spec commands verified with exact matches in source; command fa
 - "base model type values require Appendix"
 - "sub input setting values for PIP/PBP require Appendix"
 - "wireless LAN communication conditions not specified"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

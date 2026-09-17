@@ -32,6 +32,7 @@ known_gaps:
   - "source does not document any multi-step macro or sequence"
   - "source does not contain explicit safety warnings, interlock"
   - "firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18)."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:23:04.046Z
@@ -577,6 +578,7 @@ summary: "All 27 spec actions match source commands with correct opcodes and par
 - "source does not document any multi-step macro or sequence"
 - "source does not contain explicit safety warnings, interlock"
 - "firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18)."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

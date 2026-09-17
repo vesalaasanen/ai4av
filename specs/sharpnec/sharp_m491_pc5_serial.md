@@ -33,6 +33,7 @@ known_gaps:
   - "Control ID (ID1) default and Model code (ID2) value for M491 Pc5 not stated."
   - "Appendix enum tables (input terminal, aspect, eco mode, base model type, sub-input) not in this source excerpt."
   - "firmware version, voltage/power specs, wireless LAN unit part numbers not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:20:51.678Z
@@ -712,6 +713,7 @@ summary: "All 53 spec actions have exact hex opcode matches in source command re
 - "Control ID (ID1) default and Model code (ID2) value for M491 Pc5 not stated."
 - "Appendix enum tables (input terminal, aspect, eco mode, base model type, sub-input) not in this source excerpt."
 - "firmware version, voltage/power specs, wireless LAN unit part numbers not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

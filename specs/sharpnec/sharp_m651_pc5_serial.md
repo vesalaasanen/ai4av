@@ -39,6 +39,7 @@ known_gaps:
   - "flow control mode not explicitly named (RTS/CTS pins wired, full-duplex stated)."
   - "firmware version compatibility not stated in source."
   - "wireless LAN unit support referenced but details deferred to a separate operation manual."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:12:29.993Z
@@ -701,6 +702,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "flow control mode not explicitly named (RTS/CTS pins wired, full-duplex stated)."
 - "firmware version compatibility not stated in source."
 - "wireless LAN unit support referenced but details deferred to a separate operation manual."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

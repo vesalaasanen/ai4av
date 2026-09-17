@@ -33,6 +33,7 @@ known_gaps:
   - "Appendix data for input terminal codes, aspect values, eco mode values, and sub input values not available in source"
   - "Wireless LAN unit-specific documentation not included; requires separate manual"
   - "Specific model compatibility (HT-1000 vs BDT140013 relationship) not clarified in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-03T07:29:15.302Z
@@ -722,6 +723,7 @@ summary: "Complete action inventory match (8 unresolved item(s) noted in Known G
 - "Appendix data for input terminal codes, aspect values, eco mode values, and sub input values not available in source"
 - "Wireless LAN unit-specific documentation not included; requires separate manual"
 - "Specific model compatibility (HT-1000 vs BDT140013 relationship) not clarified in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

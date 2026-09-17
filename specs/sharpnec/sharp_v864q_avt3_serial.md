@@ -37,6 +37,7 @@ known_gaps:
   - "model code (ID2) for V864Q Avt3 not stated."
   - "default baud rate among the five supported not stated."
   - "wireless LAN unit models and wireless port details not in source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:14:20.353Z
@@ -639,6 +640,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "model code (ID2) for V864Q Avt3 not stated."
 - "default baud rate among the five supported not stated."
 - "wireless LAN unit models and wireless port details not in source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

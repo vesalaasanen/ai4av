@@ -35,6 +35,7 @@ known_gaps:
   - "default baud rate not stated (5 supported rates listed)."
   - "input-terminal / aspect / eco-mode / base-model-type enum tables live in a missing appendix."
   - "flow-control setting not explicitly stated (only \"Full duplex\")."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T09:11:46.526Z
@@ -586,6 +587,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "default baud rate not stated (5 supported rates listed)."
 - "input-terminal / aspect / eco-mode / base-model-type enum tables live in a missing appendix."
 - "flow-control setting not explicitly stated (only \"Full duplex\")."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

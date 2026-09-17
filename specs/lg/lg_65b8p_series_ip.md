@@ -31,6 +31,7 @@ known_gaps:
   - "source does not describe multi-step macro sequences."
   - "source contains no safety warnings, interlock procedures,"
   - "complete IR key code list cross-references page A18 of the vendor manual, not fully present in the refined excerpt; the entries 00 (\"L\") and 01 (\"M\") appear truncated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:23:09.130Z
@@ -585,6 +586,7 @@ summary: "All 27 spec actions matched literally to source commands with correct 
 - "source does not describe multi-step macro sequences."
 - "source contains no safety warnings, interlock procedures,"
 - "complete IR key code list cross-references page A18 of the vendor manual, not fully present in the refined excerpt; the entries 00 (\"L\") and 01 (\"M\") appear truncated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

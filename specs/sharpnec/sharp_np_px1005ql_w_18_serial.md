@@ -36,6 +36,7 @@ known_gaps:
   - "input terminal / eco mode / aspect / sub input / base model type value codes referenced to appendix absent from this excerpt"
   - "serial flow control setting not explicitly stated (RTS/CTS pins wired but mode unspecified)"
   - "ID2 model code value for this specific model not stated in source"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:53:44.066Z
@@ -767,6 +768,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "input terminal / eco mode / aspect / sub input / base model type value codes referenced to appendix absent from this excerpt"
 - "serial flow control setting not explicitly stated (RTS/CTS pins wired but mode unspecified)"
 - "ID2 model code value for this specific model not stated in source"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

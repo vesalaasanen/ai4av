@@ -36,6 +36,7 @@ known_gaps:
   - "flow_control setting not in serial communication-conditions table."
   - "model code (ID2) value not stated in source."
   - "appendix value tables (input terminal / aspect / eco mode / sub-input / base model type) not included in this source."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:55:19.028Z
@@ -672,6 +673,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "flow_control setting not in serial communication-conditions table."
 - "model code (ID2) value not stated in source."
 - "appendix value tables (input terminal / aspect / eco mode / sub-input / base model type) not included in this source."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

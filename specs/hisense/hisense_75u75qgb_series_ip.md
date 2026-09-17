@@ -40,6 +40,7 @@ known_gaps:
   - "75U75QGB-specific model applicability — the source doc is the generic Prosumer TV protocol manual; no statement in the source confirms or denies that the 75U75QGB implements this exact command set. Operator should validate against the device User Manual or a live device."
   - "TCP/IP control — user metadata claims TCP/IP as a known protocol, but the source contains no port number, no HTTP path, no JSON-RPC method, and no other TCP/IP evidence beyond the Ethernet MAC address being used as a client identifier. A separate network control protocol (if it exists for 75U75QGB) would need a different source document."
   - "firmware version compatibility — source revision is V3.6 (2017); the 75U75QGB is a 2025-era product. No statement in the source or in the operator-supplied metadata confirms whether the 75U75QGB firmware implements this exact command set, a superset, or a subset. The 75U75QGB may use a different (Roku TV / Google TV / VIDAA) control path entirely."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T17:22:30.749Z
@@ -1415,6 +1416,7 @@ summary: "All 68 spec actions matched to source commands with correct opcodes an
 - "75U75QGB-specific model applicability — the source doc is the generic Prosumer TV protocol manual; no statement in the source confirms or denies that the 75U75QGB implements this exact command set. Operator should validate against the device User Manual or a live device."
 - "TCP/IP control — user metadata claims TCP/IP as a known protocol, but the source contains no port number, no HTTP path, no JSON-RPC method, and no other TCP/IP evidence beyond the Ethernet MAC address being used as a client identifier. A separate network control protocol (if it exists for 75U75QGB) would need a different source document."
 - "firmware version compatibility — source revision is V3.6 (2017); the 75U75QGB is a 2025-era product. No statement in the source or in the operator-supplied metadata confirms whether the 75U75QGB firmware implements this exact command set, a superset, or a subset. The 75U75QGB may use a different (Roku TV / Google TV / VIDAA) control path entirely."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

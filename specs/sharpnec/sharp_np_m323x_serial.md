@@ -34,6 +34,7 @@ known_gaps:
   - "Appendix \"Supplementary Information by Command\" not present in this refined excerpt — input-terminal codes, eco mode values, aspect values, sub-input values, base model type codes, and selection signal type details are referenced but not enumerated."
   - "flow_control not explicitly stated."
   - "firmware version compatibility not stated."
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-18T08:34:45.538Z
@@ -576,6 +577,7 @@ summary: "All 53 spec actions matched verbatim against source command reference;
 - "Appendix \"Supplementary Information by Command\" not present in this refined excerpt — input-terminal codes, eco mode values, aspect values, sub-input values, base model type codes, and selection signal type details are referenced but not enumerated."
 - "flow_control not explicitly stated."
 - "firmware version compatibility not stated."
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

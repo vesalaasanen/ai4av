@@ -35,6 +35,7 @@ known_gaps:
   - "device-specific parameter IDs, names, and ranges not stated in source."
   - "no multi-step command sequences are prescribed for the BLU-10BLU in this source."
   - "no safety warnings, interlock procedures, or power-on sequencing requirements"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-07-07T11:05:57.413Z
@@ -376,6 +377,7 @@ summary: "All 25 spec action opcodes match verbatim source Message IDs; transpor
 - "device-specific parameter IDs, names, and ranges not stated in source."
 - "no multi-step command sequences are prescribed for the BLU-10BLU in this source."
 - "no safety warnings, interlock procedures, or power-on sequencing requirements"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

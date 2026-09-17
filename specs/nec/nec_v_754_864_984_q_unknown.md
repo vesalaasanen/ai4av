@@ -39,6 +39,7 @@ known_gaps:
   - "flow control setting not stated (RTS/CTS pins wired on D-SUB 9)"
   - "default baud rate not stated"
   - "exact command byte layouts for lens_control axis codes beyond 06h (Periphery Focus) — other axes may exist per model"
+  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
   checked_at: 2026-06-02T22:12:04.320Z
@@ -654,6 +655,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (12 unresol
 - "flow control setting not stated (RTS/CTS pins wired on D-SUB 9)"
 - "default baud rate not stated"
 - "exact command byte layouts for lens_control axis codes beyond 06h (Periphery Focus) — other axes may exist per model"
+- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---
