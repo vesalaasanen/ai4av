@@ -1,7 +1,7 @@
 {
   "schema_version": "ai4av-public-spec-v1",
-  "generated_at": "2026-09-23T18:59:54.811Z",
-  "spec_count": 2011,
+  "generated_at": "2026-09-23T19:43:15.308Z",
+  "spec_count": 2012,
   "specs": [
     {
       "specId": "admin/2n-2n-call-center",
@@ -18453,6 +18453,25 @@
       "sourceDomainCount": 1,
       "sourceUrlCount": 1,
       "contentHash": "75d9ec3ce7aa18e29a4c6539c995141a8ec58a3463da033320c95e92fe910105"
+    },
+    {
+      "specId": "admin/lumens-oip-d40e-d40d",
+      "deviceId": "lumens/oip-d40e",
+      "title": "Lumens OIP-D40E/D40D AV over IP Encoder/Decoder Control Spec",
+      "manufacturer": "Lumens",
+      "manufacturerKey": "lumens",
+      "displayName": "OIP-D40E",
+      "models": [
+        "OIP-D40E",
+        "OIP-D40D"
+      ],
+      "revision": 1,
+      "path": "specs/lumens/lumens_oip_d40e_d40d_av_over_ip_encoder_decoder_ip.md",
+      "actionCount": 22,
+      "lastCheckedAt": "2026-09-23T18:49:13.343Z",
+      "sourceDomainCount": 0,
+      "sourceUrlCount": 0,
+      "contentHash": "5b24fca6b789b5f601e9b1a0a942b60b386ed27cedb91b567e49452445cbc508"
     },
     {
       "specId": "admin/lumens-ps752",
