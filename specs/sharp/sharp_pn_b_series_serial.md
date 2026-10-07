@@ -23,8 +23,8 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
   - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-06-02T22:14:17.098Z
-generated_at: 2026-06-02T22:14:17.098Z
+last_checked_at: 2026-10-07T10:50:17.077Z
+generated_at: 2026-10-07T10:50:17.077Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "AUTO ASSIGN ID command code not in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:17.098Z
+  checked_at: 2026-10-07T10:50:17.077Z
   matched_actions: 69
   action_count: 69
   confidence: medium
-  summary: "All 69 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 69 actions match source commands and shapes; transport values are supported; the five query-only source commands are represented as Feedbacks, so coverage is about 69/72. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -73,7 +73,7 @@ addressing:
   port: 10008  # default data port for LAN control; configurable via TCPP command
 auth:
   serial:
-    type: none  # inferred: no auth procedure for RS-232C in source
+    type: UNRESOLVED
   tcp:
     type: credential  # username + password login sequence over LAN
 ```
@@ -231,7 +231,6 @@ actions:
 
   - id: b_offset_set
     label: Set B-Offset
-    kind: action
     command: "OFSB{value:04d}"
     params:
       - name: value
@@ -294,8 +293,6 @@ actions:
         max: 8
       - name: brightness
         type: integer
-        min: 0
-        max: 99
 
   - id: comm_select_set
     label: Set RS-232C/LAN Select
@@ -1085,18 +1082,18 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN_B501_B401_Operation_Manual.pdf
   - https://productadmin.sharp.ca/uploads/product_downloads/PNB401_501_OperationManual.pdf
 retrieved_at: 2026-04-30T10:43:39.739Z
-last_checked_at: 2026-06-02T22:14:17.098Z
+last_checked_at: 2026-10-07T10:50:17.077Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:17.098Z
+checked_at: 2026-10-07T10:50:17.077Z
 matched_actions: 69
 action_count: 69
 confidence: medium
-summary: "All 69 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 69 actions match source commands and shapes; transport values are supported; the five query-only source commands are represented as Feedbacks, so coverage is about 69/72. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

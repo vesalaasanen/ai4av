@@ -25,7 +25,7 @@ compatible_with:
     - "Desk Mini"
     - Desk
     - "Board Pro"
-  firmware: "\"RoomOS 11.5.2\""
+  firmware: "RoomOS 11.5.2"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -36,7 +36,7 @@ source_urls:
 retrieved_at: 2026-05-27T04:34:59.643Z
 last_checked_at: 2026-06-25T08:52:53.790Z
 generated_at: 2026-06-25T08:52:53.790Z
-firmware_coverage: "\"RoomOS 11.5.2\""
+firmware_coverage: "RoomOS 11.5.2"
 protocol_coverage: []
 known_gaps:
   - "Specific product-variant hardware capabilities (port counts, connector types) vary across the covered models; this spec documents the common API surface."

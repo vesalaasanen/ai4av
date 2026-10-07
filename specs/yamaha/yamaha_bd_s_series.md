@@ -22,8 +22,8 @@ source_urls:
   - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
-last_checked_at: 2026-06-02T22:16:27.351Z
-generated_at: 2026-06-02T22:16:27.351Z
+last_checked_at: 2026-10-07T12:52:47.710Z
+generated_at: 2026-10-07T12:52:47.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "maximum cable length not specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:27.351Z
+  checked_at: 2026-10-07T12:52:47.710Z
   matched_actions: 42
   action_count: 42
   confidence: medium
-  summary: "All 42 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 42 action units match Table 3-1, the common and system command tables and the Ready packet, with correct hex encoding. Transport values are supported. Coverage is complete. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -64,7 +64,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in source.
 ```
 
 ## Traits
@@ -454,18 +454,18 @@ source_urls:
   - https://www.avsforum.com/attachments/bds2900rs232-pdf.15166/
   - https://applicationmarket.crestron.com/content/Help/Yamaha/yamaha_bd-s1900_v1_0_help.pdf
 retrieved_at: 2026-05-12T09:53:19.993Z
-last_checked_at: 2026-06-02T22:16:27.351Z
+last_checked_at: 2026-10-07T12:52:47.710Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:27.351Z
+checked_at: 2026-10-07T12:52:47.710Z
 matched_actions: 42
 action_count: 42
 confidence: medium
-summary: "All 42 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 42 action units match Table 3-1, the common and system command tables and the Ready packet, with correct hex encoding. Transport values are supported. Coverage is complete. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

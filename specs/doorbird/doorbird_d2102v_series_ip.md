@@ -11,7 +11,7 @@ compatible_with:
     - Doorbird
   models:
     - "DoorBird Video Door Station D21x"
-  firmware: "\"000108\""
+  firmware: 000108
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-05-12T19:06:45.697Z
 last_checked_at: 2026-09-04T22:16:32.775Z
 generated_at: 2026-09-04T22:16:32.775Z
-firmware_coverage: "\"000108\""
+firmware_coverage: 000108
 protocol_coverage: []
 known_gaps:
   - "D2102V not named explicitly in source — spec targets D21x family per compatibility table"

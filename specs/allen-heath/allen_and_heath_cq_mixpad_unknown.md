@@ -11,7 +11,7 @@ compatible_with:
     - "Allen & Heath"
   models:
     - CQ
-  firmware: "\"V1.2\""
+  firmware: V1.2
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-07-13T18:53:53.993Z
 last_checked_at: 2026-07-21T20:01:02.435Z
 generated_at: 2026-07-21T20:01:02.435Z
-firmware_coverage: "\"V1.2\""
+firmware_coverage: V1.2
 protocol_coverage: []
 known_gaps:
   - "specific CQ hardware model variants (CQ-18T, CQ-20B, CQ-60T) not distinguished in source; source refers to \"CQ\" generically"

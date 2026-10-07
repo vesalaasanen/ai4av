@@ -12,7 +12,7 @@ compatible_with:
     - "Key Digital Systems"
   models:
     - KD-FIX418A
-  firmware: "\"1.00\""
+  firmware: 1.00
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-07-13T06:26:54.054Z
 last_checked_at: 2026-07-21T23:03:12.148Z
 generated_at: 2026-07-21T23:03:12.148Z
-firmware_coverage: "\"1.00\""
+firmware_coverage: 1.00
 protocol_coverage: []
 known_gaps:
   - "full EDID/link control semantics, error/fault behavior, video input selection, and product family (HDMI matrix / switcher / extender) not detailed in source"

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://developer.honeywellhome.com/api-methods
 retrieved_at: 2026-04-30T04:32:30.743Z
-last_checked_at: 2026-06-02T22:08:08.188Z
-generated_at: 2026-06-02T22:08:08.188Z
+last_checked_at: 2026-09-27T15:05:12.333Z
+generated_at: 2026-09-27T15:05:12.333Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,7 +31,10 @@ known_gaps:
   - "powerable - no explicit power on/off command in source"
   - "routable - no input/output routing for thermostat"
   - "levelable - temperature setpoint commands may exist but payloads not documented"
+  - "OAuth2 client-credentials request fields and encoding are not documented in the source.\""
+  - "refresh-token request fields and encoding are not documented in the source.\""
   - "payload schema not documented in source"
+  - "request fields, encoding and requiredness beyond documented path placeholders are not specified.\""
   - "response payload structures not documented in source excerpt"
   - "configurable parameters not enumerated in source"
   - "event types and payload schemas not documented"
@@ -40,15 +43,14 @@ known_gaps:
   - "payload schemas for POST/PUT endpoints not included in source"
   - "base URL for API calls not stated in source"
   - "event type definitions not documented"
-  - "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:08.188Z
-  matched_actions: 18
-  action_count: 18
+  checked_at: 2026-09-27T15:05:12.333Z
+  matched_actions: 29
+  action_count: 29
   confidence: medium
-  summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 applicable catalogue operations match; camera, leak, DHW and valve classes excluded; exact-model applicability remains unknown. (18 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -58,7 +60,7 @@ created_at: 2026-04-21
 # Honeywell RTH9585WF Control Spec
 
 ## Summary
-Wi-Fi thermostat supporting cloud-based REST API control via Honeywell's developer platform. Authentication uses OAuth2 client credentials and authorization code flows. Allows querying thermostat state, changing settings, managing schedules, and fan control.
+Shared Honeywell/Resideo thermostat REST API catalogue. The source does not name RTH9585WF, so compatibility of that model with these endpoints is UNRESOLVED. Authentication uses documented OAuth2 client credentials and authorization code flows. The catalogue includes thermostat state/settings, schedules, fan control, discovery and event subscription endpoints.
 
 <!-- UNRESOLVED: complete payload schemas for POST/PUT requests not included in source -->
 
@@ -89,23 +91,28 @@ auth:
 - id: obtain_oauth2_token
   label: Obtain OAuth2 Client Credentials Token
   kind: action
-  params:
-    - name: client_id
-      type: string
-    - name: client_secret
-      type: string
+  http:
+    method: POST
+    path: /accesstoken
+  params: []
+  description: "UNRESOLVED: OAuth2 client-credentials request fields and encoding are not documented in the source."
 
 - id: refresh_token
   label: Refresh Token
   kind: action
-  params:
-    - name: refresh_token
-      type: string
+  http:
+    method: POST
+    path: /token
+  params: []
+  description: "UNRESOLVED: refresh-token request fields and encoding are not documented in the source."
 
 # Device operations
 - id: get_thermostat
   label: Get Thermostat
   kind: query
+  http:
+    method: GET
+    path: /devices/thermostats/{deviceId}
   params:
     - name: deviceId
       type: string
@@ -113,6 +120,9 @@ auth:
 - id: change_thermostat_settings
   label: Change Thermostat Settings
   kind: action
+  http:
+    method: POST
+    path: /devices/thermostats/{deviceId}
   params:
     - name: deviceId
       type: string
@@ -121,6 +131,9 @@ auth:
 - id: get_fan_settings
   label: Get Fan Settings
   kind: query
+  http:
+    method: GET
+    path: /devices/thermostats/{deviceId}/fan
   params:
     - name: deviceId
       type: string
@@ -128,6 +141,9 @@ auth:
 - id: change_fan_settings
   label: Change Fan Setting
   kind: action
+  http:
+    method: POST
+    path: /devices/thermostats/{deviceId}/fan
   params:
     - name: deviceId
       type: string
@@ -136,6 +152,9 @@ auth:
 - id: set_schedule
   label: Set Schedule
   kind: action
+  http:
+    method: POST
+    path: /devices/schedule/{deviceId}
   params:
     - name: deviceId
       type: string
@@ -144,6 +163,9 @@ auth:
 - id: get_schedule
   label: Get Schedule
   kind: query
+  http:
+    method: GET
+    path: /devices/schedule/{deviceId}
   params:
     - name: deviceId
       type: string
@@ -151,6 +173,9 @@ auth:
 - id: update_adaptive_recovery
   label: Update Adaptive Recovery
   kind: action
+  http:
+    method: PUT
+    path: /devices/schedule/{deviceId}/settings/temperaturemodes/air
   params:
     - name: deviceId
       type: string
@@ -159,6 +184,9 @@ auth:
 - id: pause_schedule
   label: Pause Schedule
   kind: action
+  http:
+    method: PUT
+    path: /devices/schedule/{deviceId}/status/pause
   params:
     - name: deviceId
       type: string
@@ -166,6 +194,9 @@ auth:
 - id: resume_schedule
   label: Resume Schedule
   kind: action
+  http:
+    method: PUT
+    path: /devices/schedule/{deviceId}/status/resume
   params:
     - name: deviceId
       type: string
@@ -173,6 +204,9 @@ auth:
 - id: get_thermostat_configuration
   label: Get Thermostat Configuration
   kind: query
+  http:
+    method: GET
+    path: /devices/thermostats/{deviceId}/thermostatconfiguration
   params:
     - name: deviceId
       type: string
@@ -180,6 +214,9 @@ auth:
 - id: get_room_priority
   label: Get Room Priority
   kind: query
+  http:
+    method: GET
+    path: /devices/thermostats/{deviceId}/priority
   params:
     - name: deviceId
       type: string
@@ -187,6 +224,9 @@ auth:
 - id: set_room_priority
   label: Set Room Priority
   kind: action
+  http:
+    method: PUT
+    path: /devices/thermostats/{deviceId}/priority
   params:
     - name: deviceId
       type: string
@@ -196,11 +236,17 @@ auth:
 - id: get_devices
   label: Get All Devices for Location
   kind: query
+  http:
+    method: GET
+    path: /devices
   params: []
 
 - id: get_all_devices_by_type
   label: Get All Devices by Type
   kind: query
+  http:
+    method: GET
+    path: /devices/{deviceType}
   params:
     - name: deviceType
       type: string
@@ -208,6 +254,9 @@ auth:
 - id: get_device_by_id
   label: Get Specific Device by ID
   kind: query
+  http:
+    method: GET
+    path: /devices/{deviceType}/{deviceId}
   params:
     - name: deviceType
       type: string
@@ -217,7 +266,133 @@ auth:
 - id: get_locations
   label: Get All Locations and Devices
   kind: query
+  http:
+    method: GET
+    path: /locations
   params: []
+
+# Additional shared catalogue operations
+- id: get_authorization_code
+  label: Get an Authorization Code
+  kind: query
+  http:
+    method: GET
+    path: /authorize
+  params: []
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: create_token_from_authorization_code
+  label: Create a Token from an Authorization Code
+  kind: action
+  http:
+    method: POST
+    path: /token
+  params: []
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: get_schedule_status
+  label: Get Schedule Status
+  kind: query
+  http:
+    method: GET
+    path: /devices/schedule/{deviceId}/status
+  params:
+    - name: deviceId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+
+- id: get_rooms_in_group
+  label: Get Rooms in a Group
+  kind: query
+  http:
+    method: GET
+    path: /devices/thermostats/{deviceId}/group/{groupId}/rooms
+  params:
+    - name: deviceId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+    - name: groupId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+
+- id: create_partner_receiver
+  label: Create Partner Receiver
+  kind: action
+  http:
+    method: POST
+    path: /v2/events/partner
+  params: []
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: get_assigned_events
+  label: Get Assigned Events
+  kind: query
+  http:
+    method: GET
+    path: /v2/events/partner/events
+  params: []
+
+- id: set_events_to_subscribe
+  label: Set Events to Subscribe To
+  kind: action
+  http:
+    method: PUT
+    path: /v2/events/partner/events
+  params: []
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: unsubscribe_device_from_events
+  label: Unsubscribe Device from Real-Time Events
+  kind: action
+  http:
+    method: DELETE
+    path: /v3/events/subscribe/subsystem/{subsystem}/mac/{deviceId}
+  params:
+    - name: subsystem
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+    - name: deviceId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: get_device_subscription_state
+  label: Get Device Subscription State
+  kind: query
+  http:
+    method: GET
+    path: /v3/events/subscribe/subsystem/{subsystem}/mac/{deviceId}
+  params:
+    - name: subsystem
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+    - name: deviceId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+
+- id: subscribe_device
+  label: Subscribe Device
+  kind: action
+  http:
+    method: POST
+    path: /v3/events/subscribe/subsystem/{subsystem}/mac/{deviceId}
+  params:
+    - name: subsystem
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+    - name: deviceId
+      type: string
+      description: "Documented path placeholder; valid values are not specified."
+  description: "UNRESOLVED: request fields, encoding and requiredness beyond documented path placeholders are not specified."
+
+- id: get_acl_entries
+  label: Get ACL Entries
+  kind: query
+  http:
+    method: GET
+    path: /
+  params: []
+  description: "Catalogue lists GET / for ACL entries; exact applicability, parameters and base URL are UNRESOLVED."
 ```
 
 ## Feedbacks
@@ -252,12 +427,12 @@ interlocks: []
 ```
 
 ## Notes
-Cloud-only device — requires internet connectivity and Honeywell account. All commands via REST API — no local (RS-232, TCP) control documented. OAuth2 tokens expire; refresh flow required.
+This source is a shared API method catalogue, not proof of RTH9585WF support or cloud-only operation. Request parameters list documented path placeholders only; empty lists do not establish that requests need no body/query/authentication fields. No base URL, content type, payload schema, token lifetime or mandatory refresh schedule is given. Create-token and refresh-token operations share POST /token, but their distinguishing request fields are UNRESOLVED. Event subsystem identifiers and ACL applicability are also UNRESOLVED.
 
 <!-- UNRESOLVED: payload schemas for POST/PUT endpoints not included in source -->
 <!-- UNRESOLVED: base URL for API calls not stated in source -->
 <!-- UNRESOLVED: event type definitions not documented -->
-<!-- UNRESOLVED: DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API -->
+<!-- Scope: camera, water-leak-detector, domestic-hot-water and shutoff-valve endpoints are explicitly other device classes in the catalogue; they are not thermostat commands. Shared auth/discovery/events remain included with model applicability UNRESOLVED. -->
 
 ## Provenance
 
@@ -267,18 +442,18 @@ source_domains:
 source_urls:
   - https://developer.honeywellhome.com/api-methods
 retrieved_at: 2026-04-30T04:32:30.743Z
-last_checked_at: 2026-06-02T22:08:08.188Z
+last_checked_at: 2026-09-27T15:05:12.333Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:08.188Z
-matched_actions: 18
-action_count: 18
+checked_at: 2026-09-27T15:05:12.333Z
+matched_actions: 29
+action_count: 29
 confidence: medium
-summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 applicable catalogue operations match; camera, leak, DHW and valve classes excluded; exact-model applicability remains unknown. (18 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -290,7 +465,10 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresol
 - "powerable - no explicit power on/off command in source"
 - "routable - no input/output routing for thermostat"
 - "levelable - temperature setpoint commands may exist but payloads not documented"
+- "OAuth2 client-credentials request fields and encoding are not documented in the source.\""
+- "refresh-token request fields and encoding are not documented in the source.\""
 - "payload schema not documented in source"
+- "request fields, encoding and requiredness beyond documented path placeholders are not specified.\""
 - "response payload structures not documented in source excerpt"
 - "configurable parameters not enumerated in source"
 - "event types and payload schemas not documented"
@@ -299,7 +477,6 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (16 unresol
 - "payload schemas for POST/PUT endpoints not included in source"
 - "base URL for API calls not stated in source"
 - "event type definitions not documented"
-- "DHW (domestic hot water) and camera endpoints not relevant to RTH9585WF thermostat but may share same API"
 - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 

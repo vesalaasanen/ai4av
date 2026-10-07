@@ -11,7 +11,7 @@ compatible_with:
     - Shure
   models:
     - MXA920
-  firmware: "\""
+  firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-06-15T23:33:05.415Z
 last_checked_at: 2026-06-16T07:17:46.344Z
 generated_at: 2026-06-16T07:17:46.344Z
-firmware_coverage: "\""
+firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source documents MXA920 only. Other MXA family members (MXA910, MXA902, MXA710, MXA310, MXA320) have their own command-string pages and may differ in channel numbering, available commands, and parameter ranges."

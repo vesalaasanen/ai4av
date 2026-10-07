@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "DoorBird A1103 Polar White Edition"
     - "DoorBird D11x series"
-  firmware: "\">=000110\""
+  firmware: ">=000110"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-07-14T07:09:45.560Z
 last_checked_at: 2026-07-21T21:56:53.730Z
 generated_at: 2026-07-21T21:56:53.730Z
-firmware_coverage: "\">=000110\""
+firmware_coverage: ">=000110"
 protocol_coverage: []
 known_gaps:
   - "per-relay electrical ratings, firmware upper bound, peer-2-peer SIP call addressing details"

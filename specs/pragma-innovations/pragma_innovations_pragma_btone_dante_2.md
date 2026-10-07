@@ -20,12 +20,13 @@ source_domains:
 source_urls:
   - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
-last_checked_at: 2026-06-02T22:13:19.502Z
-generated_at: 2026-06-02T22:13:19.502Z
+last_checked_at: 2026-09-30T00:02:03.671Z
+generated_at: 2026-09-30T00:02:03.671Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Dante-specific control commands not documented in source"
+  - "authentication requirements not stated in source"
   - "no input/output routing commands in source"
   - "no volume/gain controls in source"
   - "no safety warnings or interlock procedures in source"
@@ -34,11 +35,11 @@ known_gaps:
   - "binary command encoding not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:19.502Z
+  checked_at: 2026-09-30T00:02:03.671Z
   matched_actions: 38
   action_count: 38
   confidence: medium
-  summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 38 actions map to documented commands under the semantic-id convention; parameter shapes and transport agree, and the command catalogue is fully covered. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,6 +52,7 @@ created_at: 2026-04-21
 Bluetooth audio receiver with Dante 2 support. Communicates via UDP/IP on port 8006. Supports phone call control, audio playback control, and device configuration. Commands end with `<CR><LF>` (0x0D). Minimum idle time between commands is 1.5s.
 
 <!-- UNRESOLVED: Dante-specific control commands not documented in source -->
+<!-- UNRESOLVED: authentication requirements not stated in source -->
 
 ## Transport
 ```yaml
@@ -59,7 +61,7 @@ protocols:
 addressing:
   port: 8006
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state authentication requirements
 ```
 
 ## Traits
@@ -424,24 +426,25 @@ source_domains:
 source_urls:
   - https://pragma.swiss/assets/files/BTone-dante/PRAGMA-BTone-Dante-2-Control-Protocol-V1.2.2.pdf
 retrieved_at: 2026-04-30T04:40:28.399Z
-last_checked_at: 2026-06-02T22:13:19.502Z
+last_checked_at: 2026-09-30T00:02:03.671Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:19.502Z
+checked_at: 2026-09-30T00:02:03.671Z
 matched_actions: 38
 action_count: 38
 confidence: medium
-summary: "All 38 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 38 actions map to documented commands under the semantic-id convention; parameter shapes and transport agree, and the command catalogue is fully covered. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "Dante-specific control commands not documented in source"
+- "authentication requirements not stated in source"
 - "no input/output routing commands in source"
 - "no volume/gain controls in source"
 - "no safety warnings or interlock procedures in source"

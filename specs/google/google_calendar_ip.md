@@ -21,9 +21,9 @@ source_urls:
   - https://developers.google.com/workspace/calendar/api/v3/reference
   - https://developers.google.com/workspace/calendar/api/guides/overview
   - https://developers.google.com/workspace/calendar/caldav
-retrieved_at: 2026-06-02T22:07:25.400Z
-last_checked_at: 2026-06-02T22:07:25.400Z
-generated_at: 2026-06-02T22:07:25.400Z
+retrieved_at: 2026-09-29T08:32:27.958Z
+last_checked_at: 2026-09-29T08:32:27.958Z
+generated_at: 2026-09-29T08:32:27.958Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -43,11 +43,11 @@ known_gaps:
   - "pagination parameters for list endpoints not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:25.400Z
+  checked_at: 2026-09-29T08:32:27.958Z
   matched_actions: 37
   action_count: 37
   confidence: medium
-  summary: "All 37 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 37 actions match the complete source catalogue, including methods, parameterized paths and required queries; authentication is explicitly unresolved. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -591,19 +591,19 @@ source_urls:
   - https://developers.google.com/workspace/calendar/api/v3/reference
   - https://developers.google.com/workspace/calendar/api/guides/overview
   - https://developers.google.com/workspace/calendar/caldav
-retrieved_at: 2026-06-02T22:07:25.400Z
-last_checked_at: 2026-06-02T22:07:25.400Z
+retrieved_at: 2026-09-29T08:32:27.958Z
+last_checked_at: 2026-09-29T08:32:27.958Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:25.400Z
+checked_at: 2026-09-29T08:32:27.958Z
 matched_actions: 37
 action_count: 37
 confidence: medium
-summary: "All 37 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 37 actions match the complete source catalogue, including methods, parameterized paths and required queries; authentication is explicitly unresolved. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

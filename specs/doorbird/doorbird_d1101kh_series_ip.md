@@ -11,7 +11,7 @@ compatible_with:
     - Doorbird
   models:
     - "DoorBird D1101KH"
-  firmware: "\"000130\""
+  firmware: 000130
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-07-12T20:26:16.672Z
 last_checked_at: 2026-07-21T22:22:17.178Z
 generated_at: 2026-07-21T22:22:17.178Z
-firmware_coverage: "\"000130\""
+firmware_coverage: 000130
 protocol_coverage: []
 known_gaps:
   - "RS-232 serial not mentioned in source — not applicable to D1101KH"

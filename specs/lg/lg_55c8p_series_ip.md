@@ -19,27 +19,27 @@ source_domains:
   - justaddpower.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:38:36.427Z
-last_checked_at: 2026-06-02T17:23:04.046Z
-generated_at: 2026-06-02T17:23:04.046Z
+retrieved_at: 2026-09-26T14:23:15.835Z
+last_checked_at: 2026-09-26T14:23:15.835Z
+generated_at: 2026-09-26T14:23:15.835Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only."
-  - "full key code table referenced as 'page A18' is not included in the refined source.\""
+  - "no authentication procedure or explicit no-auth statement in source"
+  - "A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests."
   - "no continuous-state variables (no analog setpoints) are defined"
   - "source does not document unsolicited notifications. All responses"
   - "source does not document any multi-step macro or sequence"
   - "source does not contain explicit safety warnings, interlock"
-  - "firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18)."
-  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
+  - "A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T17:23:04.046Z
+  checked_at: 2026-09-26T14:23:15.835Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions match source commands with correct opcodes and parameters; transport parameters verified against source; serial protocol fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 units and 36 key codes match the generic serial source; model support, authentication and conflicting terminators remain explicitly qualified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -49,7 +49,7 @@ created_at: 2026-06-02
 # LG 55C8P Series Control Spec
 
 ## Summary
-RS-232/serial control protocol for the LG 55C8P commercial display series. Uses an ASCII command/response format over UART at 9600 bps with a Set-ID addressing scheme (1–99, or 0 for broadcast). All 26 documented commands are catalogued below, covering power, input selection, picture/sound adjustments, tiling, and diagnostic readback.
+Serial command catalog from a generic LG multiple-monitor RS-232C appendix (printed A1–A18). Applicability to the cataloged 55C8P is inferred from manufacturer and display class; the source does not name 55C8P or establish its tiling, lamp, input or ISM capabilities. The catalog contains 26 command families, represented by 27 actions because power set and status are separate, plus the complete A18 key parameter table. Communication uses ASCII at 9600/8/N/1 with Set ID 1–99 or 0 for broadcast. Functions remain conditional on the actual display supporting them.
 
 <!-- UNRESOLVED: source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only. -->
 
@@ -65,7 +65,7 @@ serial:
   flow_control: none
   encoding: ascii
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: unknown  # UNRESOLVED: no authentication procedure or explicit no-auth statement in source
 ```
 
 ## Traits
@@ -78,11 +78,16 @@ auth:
 
 ## Actions
 ```yaml
-# All commands share format: [Cmd1][Cmd2][ ][SetID][ ][Data][Cr]
+# A3 general format: [Cmd1][Cmd2][ ][SetID][ ][Data][Cr]
+# UNRESOLVED: A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests.
+# Those seven templates require an explicit terminator; no default is claimed.
 # - Cr = ASCII 0x0D (carriage return)
 # - Set ID: 1-99; "0" broadcasts to all sets (ack unreliable in broadcast)
 # - "FF" as Data byte = read/status query
 # Read commands are listed with kind: query and use FF as the data payload.
+# Data is ASCII hexadecimal, not decimal text: decimal 100 encodes as 64.
+# Set ID is documented as 1–99; this older source does not explicitly resolve
+# the wire numeral radix/padding. Do not borrow those rules from a newer guide.
 # Variable parts are shown as {set_id} and {data} in command templates.
 
 - id: power
@@ -170,7 +175,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Volume level (00H-64H hex; 0=Step 0, 64=Step 100)
   notes: |
     Real data mapping: 0 = Step 0, A = Step 10, F = Step 15, 10 = Step 16, 64 = Step 100.
@@ -184,7 +189,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Contrast (00H-64H hex; 0=Step 0, 64=Step 100)
 
 - id: brightness
@@ -196,7 +201,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Brightness (00H-64H hex; 0=Step 0, 64=Step 100)
 
 - id: color
@@ -208,7 +213,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Color saturation (00H-64H hex; 0=Step 0, 64=Step 100)
   notes: "Video only."
 
@@ -221,7 +226,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: "Tint (00H=Red -50, 64H=Green +50)"
   notes: "Video only. Real data mapping: 0 = Step -50, 64 = Step 50."
 
@@ -234,7 +239,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Sharpness (00H-64H hex; 0=Step 0, 64=Step 100)
   notes: "Video only."
 
@@ -273,7 +278,7 @@ auth:
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: "Balance (00H=L50, 64H=R50)"
 
 - id: color_temperature
@@ -298,6 +303,7 @@ auth:
       type: integer
       description: Set ID (1-99)
   notes: |
+    Abnormal State : Used to Read the power off status when Stand-by mode.
     Response codes:
     0 = Normal (power on and signal exist)
     1 = No signal (power on)
@@ -341,65 +347,85 @@ auth:
       description: Set ID (1-99)
     - name: key_code
       type: string
-      description: "IR remote key code (hex). Source refers to 'page A18' for full code table; not reproduced here."
-  notes: "UNRESOLVED: full key code table referenced as 'page A18' is not included in the refined source."
+      values: ["00", "01", "02", "03", "08", "C4", "C5", "09", "98", "0B", "0E", "43", "5B", "6E", "44", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "5A", "BF", "D4", "D5", "D7", "C6", "79", "76", "77", "AF", "99"]
+      description: "ASCII hexadecimal key code; complete 36-entry A18 table below."
+  notes: "mc transports the A18 remote-key codes over serial; no IR transmitter is required by this command."
 
 - id: tile_mode
   label: Tile Mode
   kind: action
-  command: "dd {set_id} {data}\r"
+  command: "dd {set_id} {data}{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
-      type: integer
       type: integer
       description: Set ID (1-99)
     - name: data
       type: enum
-      values: ["00", "12", "13", "14", "21", "22", "23", "24", "31", "32", "33", "34", "41", "42", "43", "44"]
+      values: ["00", "12", "13", "14", "44"]
       description: "Tile matrix. 00=Off, then column-row hex (e.g. 12=1x2, 44=4x4). Source: 0X or X0 (except 00) not allowed."
-  notes: "Source lists example values 00, 12, 13, 14, ..., 44. Full range not exhaustively enumerated; treat as TBD."
+  notes: "Source lists example values 00, 12, 13, 14, ..., 44. Only these five values are explicitly listed. Intermediate values remain UNRESOLVED; 0X/X0 are forbidden except 00. The command-specific reply shows Set ID 00, unlike the general echoed-ID format."
 
 - id: tile_h_size
   label: Tile Horizontal Size
   kind: action
-  command: "dg {set_id} {data}\r"
+  command: "dg {set_id} {data}{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Horizontal tile size (00H-64H hex)
 
 - id: tile_v_size
   label: Tile Vertical Size
   kind: action
-  command: "dh {set_id} {data}\r"
+  command: "dh {set_id} {data}{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Vertical tile size (00H-64H hex)
 
 - id: tile_id_set
   label: Tile ID Set
   kind: action
-  command: "di {set_id} {data}\r"
+  command: "di {set_id} {data}{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
     - name: data
-      type: integer
+      type: string
       description: Tile ID (00H-10H hex)
 
 - id: elapsed_time_return
   label: Elapsed Time Return
   kind: query
-  command: "dl {set_id} FF\r"
+  command: "dl {set_id} FF{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
@@ -408,8 +434,12 @@ auth:
 - id: temperature_value
   label: Temperature Value
   kind: query
-  command: "dn {set_id} FF\r"
+  command: "dn {set_id} FF{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
@@ -418,8 +448,12 @@ auth:
 - id: lamp_fault_check
   label: Lamp Fault Check
   kind: query
-  command: "dp {set_id} FF\r"
+  command: "dp {set_id} FF{terminator}"
   params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
     - name: set_id
       type: integer
       description: Set ID (1-99)
@@ -535,16 +569,56 @@ interlocks: []
 ```
 
 ## Notes
-- Source is RS-232C/serial (UART 9600 8N1) only; the file naming hint (`..._ip.refined.md`) and the operator-supplied "Known protocol: TCP/IP" appear to be artifacts. The refined source documents the serial protocol exclusively. IP/Ethernet control of the 55C8P family may exist via a separate LG SuperSign/TV-style LAN interface, but is **not** in scope of this document.
-- Command format is fixed ASCII: `[Cmd1][Cmd2]<SP>[SetID]<SP>[Data]<CR>`, with `<SP>` = 0x20 and `<CR>` = 0x0D.
-- OK acknowledgement: `[Cmd2]<SP>[SetID]<SP>OK[Data][x]` (trailing `x` is literal in source).
-- Error acknowledgement: `[Cmd2]<SP>[SetID]<SP>NG[Data][x]`.
-- Broadcasting with Set ID `0` is permitted, but acknowledgements from all sets will collide — the source explicitly warns not to check acks in that case.
-- The "Key" command (`m c`) forwards arbitrary IR remote key codes; the full code table is referenced as "page A18" of the original vendor document and was not included in the refined source excerpt.
-- The 26-command roster in the source's reference table is reproduced 1:1 above. Tile mode intermediate values (e.g. 21, 22, 31, 32, 33, 41, 42, 43) are not exhaustively enumerated in the source; the `…` row in the source table indicates they exist but are not listed.
-- IR codes section is documented in the source for hardware reference but is not part of the serial control surface and therefore not encoded as actions.
+- Scope is the generic manufacturer's serial appendix, not confirmed 55C8P support. The catalog identity is retained. No firmware applicability or IP control is established by this source.
+- A3 general request format is `[Cmd1][Cmd2]<SP>[SetID]<SP>[Data]<CR>`, with space 0x20 and CR 0x0D. **UNRESOLVED:** A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact.
+- General OK reply is `[Cmd2]<SP>[SetID]<SP>OK[Data]x`; NG uses the same spacing with `NG`. Reply `x` is literal 0x78. Tile-mode reply specifically prints Set ID `00`; its relationship to the general echoed Set ID is unresolved.
+- Data bytes are ASCII hex. For 00H–64H controls, decimal 0–100 is encoded as 00–64. Tint maps those endpoints to red -50 and green +50; balance maps them to L50 and R50. Sharpness in this older guide is 00H–64H; do not substitute the newer guide's 00H–32H limit.
+- Broadcast Set ID 0 addresses all sets; the source warns not to inspect acknowledgements when multiple sets reply together. The source states Set ID 1–99 but does not unambiguously specify its ASCII radix/padding.
+- Authentication is UNRESOLVED; absence of an authentication section does not establish no authentication.
+- ISM, tiling, lamp diagnostics, video-only picture settings and RGB-PC auto configuration are conditional source functions, not claims that 55C8P supports them. Aspect value 08 (Full) is Europe-only and value 09 (1:1) is PC-only.
+- Tile mode lists only 00, 12, 13, 14, an ellipsis, and 44. Intermediate values are not enumerated, and 0X/X0 are invalid except 00. They have not been guessed.
+- The key action uses the full A18 table below as serial `mc` data. A18's C5 Function column says POWER OFF while its Note column incorrectly repeats “Only Power On”; that internal discrepancy is retained here rather than hidden. Direction glyphs for 00–03 were checked visually in the PDF.
 
-<!-- UNRESOLVED: firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18). -->
+### A18 key parameter inventory
+
+| Hex data | Function |
+| --- | --- |
+| 00 | Up |
+| 01 | Down |
+| 02 | VOL right/increase |
+| 03 | VOL left/decrease |
+| 08 | Power on/off toggle |
+| C4 | Power on |
+| C5 | Power off (Function column; conflicting Note described above) |
+| 09 | Mute |
+| 98 | AV remote button |
+| 0B | Input |
+| 0E | Sleep |
+| 43 | Menu |
+| 5B | Exit |
+| 6E | PSM |
+| 44 | Set |
+| 10 | Number 0 |
+| 11 | Number 1 |
+| 12 | Number 2 |
+| 13 | Number 3 |
+| 14 | Number 4 |
+| 15 | Number 5 |
+| 16 | Number 6 |
+| 17 | Number 7 |
+| 18 | Number 8 |
+| 19 | Number 9 |
+| 5A | AV discrete input |
+| BF | Component 1 |
+| D4 | Component 2 |
+| D5 | RGB PC |
+| D7 | RGB DTV |
+| C6 | HDMI/DVI |
+| 79 | ARC |
+| 76 | ARC 4:3 |
+| 77 | ARC 16:9 |
+| AF | ARC Zoom (Zoom1/Zoom2) |
+| 99 | AUTO CONFIC (source spelling; auto configuration) |
 
 ## Provenance
 
@@ -553,32 +627,32 @@ source_domains:
   - justaddpower.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T02:38:36.427Z
-last_checked_at: 2026-06-02T17:23:04.046Z
+retrieved_at: 2026-09-26T14:23:15.835Z
+last_checked_at: 2026-09-26T14:23:15.835Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T17:23:04.046Z
+checked_at: 2026-09-26T14:23:15.835Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions match source commands with correct opcodes and parameters; transport parameters verified against source; serial protocol fully represented. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 units and 36 key codes match the generic serial source; model support, authentication and conflicting terminators remain explicitly qualified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only."
-- "full key code table referenced as 'page A18' is not included in the refined source.\""
+- "no authentication procedure or explicit no-auth statement in source"
+- "A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests."
 - "no continuous-state variables (no analog setpoints) are defined"
 - "source does not document unsolicited notifications. All responses"
 - "source does not document any multi-step macro or sequence"
 - "source does not contain explicit safety warnings, interlock"
-- "firmware version compatibility range across 55C8P SKU revisions; tile-mode intermediate hex values; full IR key code table (page A18)."
-- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
+- "A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact."
 ```
 
 ---

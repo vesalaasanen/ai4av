@@ -20,14 +20,18 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-04-30T04:31:33.737Z
-last_checked_at: 2026-06-02T22:16:13.960Z
-generated_at: 2026-06-02T22:16:13.960Z
+last_checked_at: 2026-10-07T13:04:44.114Z
+generated_at: 2026-10-07T13:04:44.114Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "no specific port number stated in source (standard HTTPS implied but not confirmed)"
   - "no authentication or login procedure described in source"
+  - "firmware version compatibility range not stated in source"
+  - "no unsolicited event/notification mechanism described in source"
+  - "the source references WiiM Mini as an example device; exact model coverage is unclear"
   - "port number not stated in source"
+  - "authentication mechanism not stated in source"
   - "source does not describe unsolicited notifications or event subscription mechanism"
   - "no multi-step macro sequences described in source"
   - "reboot and immediate shutdown commands exist but no safety warnings or"
@@ -35,14 +39,13 @@ known_gaps:
   - "no authentication or login mechanism described"
   - "no firmware version compatibility range stated"
   - "no unsolicited event/notification mechanism described"
-  - "the source references WiiM Mini as an example device; exact model coverage is unclear"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:13.960Z
-  matched_actions: 24
-  action_count: 24
+  checked_at: 2026-10-07T13:04:44.114Z
+  matched_actions: 34
+  action_count: 34
   confidence: medium
-  summary: "All 24 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 action units match source commands with correct shapes; the source has 34 commands, all represented, and the HTTPS httpapi.asp base URL is supported. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -56,6 +59,9 @@ The WiiM Speaker (e.g. WiiM Mini) is a network-connected audio streaming device 
 
 <!-- UNRESOLVED: no specific port number stated in source (standard HTTPS implied but not confirmed) -->
 <!-- UNRESOLVED: no authentication or login procedure described in source -->
+<!-- UNRESOLVED: firmware version compatibility range not stated in source -->
+<!-- UNRESOLVED: no unsolicited event/notification mechanism described in source -->
+<!-- UNRESOLVED: the source references WiiM Mini as an example device; exact model coverage is unclear -->
 
 ## Transport
 ```yaml
@@ -63,9 +69,9 @@ protocols:
   - http
 addressing:
   base_url: "https://{device_ip}/httpapi.asp?command={command}"
-  port: null  # UNRESOLVED: port number not stated in source
+  port: UNRESOLVED  # UNRESOLVED: port number not stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: authentication mechanism not stated in source
 ```
 
 ## Traits
@@ -227,7 +233,7 @@ actions:
         description: "Varies by trigger type (YYYYMMDD, or day bytes, or bitmask)"
       - name: url
         type: string
-        description: "Shell path or playback URL (max 256 bytes, optional)"
+        description: "Shell path or playback URL (less than 256 bytes, optional)"
 
   - id: stop_alarm
     label: Stop Current Alarm
@@ -268,44 +274,54 @@ actions:
 ```yaml
 feedbacks:
   - id: device_status
+    query_command: getStatusEx
     type: json
     description: Full device status including firmware, network, MAC addresses, UUID, internet connectivity
 
   - id: network_connect_state
+    query_command: wlanGetConnectState
     type: enum
     values: [PROCESS, PAIRFAIL, FAIL, OK]
     description: WiFi connection status (plain text response, not JSON)
 
   - id: playback_status
+    query_command: getPlayerStatus
     type: json
     description: "Playback state: type, ch, mode, loop, eq, status (stop/play/loading/pause), curpos, totlen, vol, mute, playlist info"
 
   - id: eq_status
+    query_command: EQGetStat
     type: enum
     values: [On, Off]
     description: Current EQ on/off state
 
   - id: eq_preset_list
+    query_command: EQGetList
     type: list
     description: Available EQ preset names (Flat, Acoustic, Bass Booster, etc.)
 
   - id: track_metadata
+    query_command: getMetaInfo
     type: json
     description: "Current track info: album, title, artist, albumArtURI, sampleRate, bitDepth"
 
   - id: preset_list
+    query_command: getPresetInfo
     type: json
     description: List of configured presets with number, name, url, source, picurl
 
   - id: shutdown_timer
+    query_command: getShutdown
     type: integer
     description: Remaining seconds until shutdown
 
   - id: alarm
+    query_command: getAlarmClock:n
     type: json
     description: Alarm configuration for a given slot (0-2)
 
   - id: audio_output_mode
+    query_command: getNewAudioOutputHardwareMode
     type: json
     description: "Audio output hardware mode (1=SPDIF, 2=AUX, 3=COAX), BT source mode, audiocast mode"
 ```
@@ -357,6 +373,7 @@ interlocks: []
 - EQ presets include: Flat, Acoustic, Bass Booster, Bass Reducer, Classical, Dance, Deep, Electronic, Hip-Hop, Jazz, Latin, Loudness, Lounge, Piano, Pop, R&B, Rock, Small Speakers, Spoken Word, Treble Booster, Treble Reducer, Vocal Booster.
 - Preset keys (MCUKeyShortClick) are numbered 1-12.
 - The slave mute state is also set when muting during group play.
+- The alarm URL must be less than 256 bytes (source: "should less than 256 bytes"), not "max 256 bytes".
 <!-- UNRESOLVED: no port number explicitly stated — standard HTTPS (443) is assumed but unconfirmed -->
 <!-- UNRESOLVED: no authentication or login mechanism described -->
 <!-- UNRESOLVED: no firmware version compatibility range stated -->
@@ -371,18 +388,18 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-04-30T04:31:33.737Z
-last_checked_at: 2026-06-02T22:16:13.960Z
+last_checked_at: 2026-10-07T13:04:44.114Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:13.960Z
-matched_actions: 24
-action_count: 24
+checked_at: 2026-10-07T13:04:44.114Z
+matched_actions: 34
+action_count: 34
 confidence: medium
-summary: "All 24 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 action units match source commands with correct shapes; the source has 34 commands, all represented, and the HTTPS httpapi.asp base URL is supported. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -390,7 +407,11 @@ summary: "All 24 spec actions traced to source (dip-safe re-verify). (11 unresol
 ```yaml
 - "no specific port number stated in source (standard HTTPS implied but not confirmed)"
 - "no authentication or login procedure described in source"
+- "firmware version compatibility range not stated in source"
+- "no unsolicited event/notification mechanism described in source"
+- "the source references WiiM Mini as an example device; exact model coverage is unclear"
 - "port number not stated in source"
+- "authentication mechanism not stated in source"
 - "source does not describe unsolicited notifications or event subscription mechanism"
 - "no multi-step macro sequences described in source"
 - "reboot and immediate shutdown commands exist but no safety warnings or"
@@ -398,7 +419,6 @@ summary: "All 24 spec actions traced to source (dip-safe re-verify). (11 unresol
 - "no authentication or login mechanism described"
 - "no firmware version compatibility range stated"
 - "no unsolicited event/notification mechanism described"
-- "the source references WiiM Mini as an example device; exact model coverage is unclear"
 ```
 
 ---

@@ -11,7 +11,7 @@ compatible_with:
     - Primare
   models:
     - CD15
-  firmware: "\"v1.62 (tested)\""
+  firmware: "v1.62 (tested)"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-07-10T20:17:48.097Z
 last_checked_at: 2026-07-12T08:59:06.341Z
 generated_at: 2026-07-12T08:59:06.341Z
-firmware_coverage: "\"v1.62 (tested)\""
+firmware_coverage: "v1.62 (tested)"
 protocol_coverage: []
 known_gaps:
   - "Prisma/network player features (streaming services, network configuration) not documented in the RS232 command list. Track number encoding for multi-digit tracks is not fully explained. Read-query response formats (manufacturer, model, version, BT name) are not documented."

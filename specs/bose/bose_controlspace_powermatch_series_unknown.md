@@ -25,8 +25,8 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-15T03:21:05.516Z
-last_checked_at: 2026-06-02T22:04:41.775Z
-generated_at: 2026-06-02T22:04:41.775Z
+last_checked_at: 2026-09-27T13:56:59.373Z
+generated_at: 2026-09-27T13:56:59.373Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -39,11 +39,11 @@ known_gaps:
   - "MSA12X and Endpoint commands omitted from this spec — they use UDP port 49494, not TCP port 10055"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:41.775Z
-  matched_actions: 47
-  action_count: 47
+  checked_at: 2026-09-27T13:56:59.373Z
+  matched_actions: 46
+  action_count: 46
   confidence: medium
-  summary: "All 47 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 46 units match PM/shared commands; EX/ESP-only, MSA12X and endpoints excluded. MA lacks documented PM applicability and is transparently omitted. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -53,7 +53,7 @@ created_at: 2026-05-15
 # Bose ControlSpace PowerMatch Series Control Spec
 
 ## Summary
-Bose ControlSpace PowerMatch networked amplifiers (PM8500N, PM8250N, PM4500N, PM4250N) controlled via ASCII serial commands over TCP/IP (Serial-over-Ethernet). Protocol supports volume/mute per channel, standby control, fault/alarm monitoring, output configuration query, and deep signal-processing module control (PEQ, limiter, delay, matrix mixer, band pass, speaker PEQ). Commands use hex notation for system/device commands and ASCII text for module commands. All commands terminated with `<CR>` (0x0D). No authentication required.
+Bose ControlSpace PowerMatch networked amplifiers (PM8500N, PM8250N, PM4500N, PM4250N) controlled via ASCII serial commands over TCP/IP (Serial-over-Ethernet). Protocol supports volume/mute per channel, standby control, fault/alarm monitoring, output configuration query, and deep signal-processing module control (PEQ, limiter, delay, matrix mixer, band pass, speaker PEQ). Commands use hex notation for system/device commands and ASCII text for module commands. All commands terminated with `<CR>` (0x0D). Authentication requirements are not stated in the source.
 
 ## Transport
 ```yaml
@@ -62,7 +62,7 @@ protocols:
 addressing:
   port: 10055
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -437,22 +437,6 @@ actions:
     command: "GA \"Module Name\">Index1>Index2"
     response: "GA \"Module Name\">Index1>Index2=Value"
 
-  - id: invoke_module_action
-    label: Invoke Module Action
-    kind: action
-    description: "Invoke an action for a module (limited modules only). ACK on success."
-    command: "MA \"Module Name\">Index1=Parameter"
-    params:
-      - name: module_name
-        type: string
-        description: "Module name"
-      - name: index_1
-        type: integer
-        description: "Action index"
-      - name: parameter
-        type: string
-        description: "Action parameter"
-
   - id: subscribe
     label: Subscribe to Data Changes
     kind: action
@@ -542,7 +526,7 @@ feedbacks:
 
   - id: alarm_status_channel
     type: composite
-    description: "Alarm/fault for a single channel. Severity: W/F/S/N. Type: N/O/S/A/D/I/L/C/P/Z."
+    description: "Alarm/fault for a single channel. Severity: W/F/S/N. Type: N/O/S/I/Z."
     query_command: "GR c"
     response_format: "GR c,s,t"
 ```
@@ -614,9 +598,10 @@ notes: >
 - Command format: ASCII text terminated with `<CR>` (0x0D). System/Device commands use hex notation for numeric values. Module commands use plain ASCII decimal.
 - Hex values accepted upper or lower case; responses always lower case.
 - Space after command is optional. Comma separates parameters. No hex suffix needed.
-- No acknowledgement sent for System/Device Set commands — follow Set with Get to confirm success.
-- Module commands respond with ACK (0x06) on success or NAK (0x15) + 2-digit error code (01=invalid name, 02=illegal index, 03=out-of-range, 99=unknown).
-- Module labels must be unique per device. Duplicate names cause SA/GA/MA to malfunction.
+- System/Device Set commands generally have no acknowledgement — follow Set with Get to confirm success. Exceptions: CF (Clear Fault/Alarms) and CH (Clear Alarm History) return ACK (0x06) followed by <CR>.
+- Set Module Parameter (SA) responds with ACK (0x06) on success or NAK (0x15) + 2-digit error code (01=invalid name, 02=illegal index, 03=out-of-range, 99=unknown). Get Module Parameter (GA) returns the queried parameter value.
+- Module labels must be unique per device. Duplicate names cause SA/GA to malfunction.
+- MA (Invoke Module Action) is omitted because the source does not establish PowerMatch module-action support: its concrete MA examples are EX-only PSTN/VoIP, and the PowerMatch module-index section (6.2) documents SA/GA parameter operations without a corresponding MA action. This is an applicability gap; SA/GA parameter controls remain included.
 - PowerMatch module labels are fixed (e.g. "PEQ-5band A"-"PEQ-5band H", "SpeakerPEQ 1"-"SpeakerPEQ 8", "Limiter 1"-"Limiter 8", "Delay 1"-"Delay 8", "Band Pass 1"-"Band Pass 8", "Matrix 1"). Only Input and Amp Output modules can be renamed.
 - Module cross-device addressing (SA @"Device Name" ...) is NOT available for PowerMatch — send commands to each device individually.
 - PM8500N/PM8250N: 8 output channels, slots 1-4. PM4500N/PM4250N: 4 output channels, slots 1-2.
@@ -642,18 +627,18 @@ source_urls:
   - https://assets.boseprofessional.com/m/48b4f11e8a4922b9/original/ug_csp_control_serial.pdf
   - https://assets.boseprofessional.com/m/5967be9a1795e9b9/original/tds_fse4_en.pdf
 retrieved_at: 2026-05-15T03:21:05.516Z
-last_checked_at: 2026-06-02T22:04:41.775Z
+last_checked_at: 2026-09-27T13:56:59.373Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:41.775Z
-matched_actions: 47
-action_count: 47
+checked_at: 2026-09-27T13:56:59.373Z
+matched_actions: 46
+action_count: 46
 confidence: medium
-summary: "All 47 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 46 units match PM/shared commands; EX/ESP-only, MSA12X and endpoints excluded. MA lacks documented PM applicability and is transparently omitted. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

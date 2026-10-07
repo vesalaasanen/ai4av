@@ -22,22 +22,22 @@ source_urls:
   - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
   - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-06-02T22:13:08.310Z
-generated_at: 2026-06-02T22:13:08.310Z
+last_checked_at: 2026-10-07T12:42:56.760Z
+generated_at: 2026-10-07T12:42:56.760Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "manufacturer stated as \"Roku\" in source; input specified \"Pinacle\" — using input value"
+  - "source explicitly covers Roku SoundBridge; it does not establish applicability to a Pinacle-branded SoundBridge. Frontmatter identity is preserved."
   - "serial baud rate, data bits, parity, stop bits not stated in source"
-  - "TCP port 4444 not listed in main transport block — alternate RCP shell port"
-  - "manufacturer discrepancy — source says \"Roku\", input says \"Pinacle\""
+  - "source describes Roku SoundBridge and does not establish applicability to a Pinacle-branded SoundBridge."
+  - "the SetPreset section's syntax line names GetPresetInfo, while its examples explicitly use SetPreset A6 working. The definition preserves the example-backed SetPreset command and working argument."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:08.310Z
+  checked_at: 2026-10-07T12:42:56.760Z
   matched_actions: 141
   action_count: 141
   confidence: medium
-  summary: "All 141 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 141 spec actions match RCP commands in the source and port 5555 is supported; applicability to a Pinacle-branded unit is only flagged in the spec. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -47,9 +47,9 @@ created_at: 2026-04-26
 # Pinacle Soundbridge Control Spec
 
 ## Summary
-Roku SoundBridge is a network-connected digital audio receiver. RCP protocol supports TCP (Telnet ports 5555/4445) and serial (RS-232/I2S). Commands are ASCII with CRLF terminators. Three command classes: synchronous (immediate), transacted (background, cancelable), and subscription (state-change events).
+The source describes Roku SoundBridge, a network-connected digital audio receiver. RCP is exposed over basic TCP connections on port 5555 directly, or port 4444 through the SoundBridge shell using the "mmc" command. The Wi-Fi Media Module exposes serial RS-232/I2S connections. Commands are ASCII with CRLF terminators. Three command classes: synchronous (immediate), transacted (background, cancelable), and subscription (state-change events). Authentication requirements are UNRESOLVED because the source does not state them. Applicability to a Pinacle-branded SoundBridge is UNRESOLVED.
 
-<!-- UNRESOLVED: manufacturer stated as "Roku" in source; input specified "Pinacle" — using input value -->
+<!-- UNRESOLVED: source explicitly covers Roku SoundBridge; it does not establish applicability to a Pinacle-branded SoundBridge. Frontmatter identity is preserved. -->
 
 ## Transport
 ```yaml
@@ -65,7 +65,7 @@ serial:
   stop_bits: null
   flow_control: null
 auth:
-  type: none
+  type: UNRESOLVED
 ```
 
 ## Traits
@@ -653,7 +653,12 @@ auth:
   kind: action
   params:
     - name: index
-      type: integer
+      type: union
+      variants:
+        - type: integer
+        - type: enum
+          values:
+            - all
     - name: insert_index
       type: integer
       default: null
@@ -744,19 +749,36 @@ auth:
   kind: action
   params:
     - name: index
-      type: integer
+      type: union
+      variants:
+        - type: integer
+        - type: string
+      description: Numeric index or preset ID, such as A6
 - id: play_preset
   label: PlayPreset
   kind: action
   params:
     - name: index
-      type: integer
+      type: union
+      variants:
+        - type: integer
+        - type: string
+      description: Numeric index or preset ID, such as A6
 - id: set_preset
   label: SetPreset
   kind: action
   params:
     - name: index
-      type: integer
+      type: union
+      variants:
+        - type: integer
+        - type: string
+      description: Numeric index or preset ID, such as A6
+    - name: song
+      type: enum
+      values:
+        - working
+      description: Required literal working argument identifying the working song
 - id: get_working_song_info
   label: GetWorkingSongInfo
   kind: action
@@ -765,8 +787,12 @@ auth:
   label: SetWorkingSongInfo
   kind: action
   params:
-    - name: index
-      type: integer
+    - name: name
+      type: string
+      description: Working song field name
+    - name: value
+      type: string
+      description: Value for the named working song field
 - id: clear_working_song
   label: ClearWorkingSong
   kind: action
@@ -1157,10 +1183,11 @@ interlocks:
 ```
 
 ## Notes
-RCP protocol uses ASCII commands with CRLF (\r\n) terminators. Command classes: synchronous (immediate response), transacted (background, cancelable via CancelTransaction), subscription (state-change events until unsubscribed). Two TCP Telnet ports: 5555 (RCP shell) and 4444 (SoundBridge shell, requires "mmc" command to start RCP). Serial RS-232/I2S also supported via Wi-Fi Media Module. No authentication required. Verbose progress mode available for long-running transacted commands (ListSongs, SearchSongs, etc.).
+RCP protocol uses ASCII commands with CRLF (\r\n) terminators. Command classes: synchronous (immediate response), transacted (background, cancelable via CancelTransaction), subscription (state-change events until unsubscribed). Two basic TCP ports, described as Telnet connections but not implementing the Telnet protocol: 5555 (RCP shell) and 4444 (SoundBridge shell, requires "mmc" command to start RCP). Serial RS-232/I2S also supported via Wi-Fi Media Module. Authentication requirements are UNRESOLVED; the source does not explicitly state whether session authentication is required. Verbose progress mode available for long-running transacted commands (ListSongs, SearchSongs, etc.).
 <!-- UNRESOLVED: serial baud rate, data bits, parity, stop bits not stated in source -->
-<!-- UNRESOLVED: TCP port 4444 not listed in main transport block — alternate RCP shell port -->
-<!-- UNRESOLVED: manufacturer discrepancy — source says "Roku", input says "Pinacle" -->
+<!-- TCP port 4444 is the documented alternate shell entry point; the main transport block identifies the direct RCP port 5555. -->
+<!-- UNRESOLVED: source describes Roku SoundBridge and does not establish applicability to a Pinacle-branded SoundBridge. -->
+<!-- UNRESOLVED: the SetPreset section's syntax line names GetPresetInfo, while its examples explicitly use SetPreset A6 working. The definition preserves the example-backed SetPreset command and working argument. -->
 
 ## Provenance
 
@@ -1172,27 +1199,27 @@ source_urls:
   - https://raw.githubusercontent.com/noyhrynban/Roku-SoundBridge-Controller/master/SoundBridgeRCPSpecification2-4.pdf
   - https://applicationmarket.crestron.com/pinacle-soundbridge/
 retrieved_at: 2026-04-26T19:25:06.790Z
-last_checked_at: 2026-06-02T22:13:08.310Z
+last_checked_at: 2026-10-07T12:42:56.760Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:08.310Z
+checked_at: 2026-10-07T12:42:56.760Z
 matched_actions: 141
 action_count: 141
 confidence: medium
-summary: "All 141 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 141 spec actions match RCP commands in the source and port 5555 is supported; applicability to a Pinacle-branded unit is only flagged in the spec. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "manufacturer stated as \"Roku\" in source; input specified \"Pinacle\" — using input value"
+- "source explicitly covers Roku SoundBridge; it does not establish applicability to a Pinacle-branded SoundBridge. Frontmatter identity is preserved."
 - "serial baud rate, data bits, parity, stop bits not stated in source"
-- "TCP port 4444 not listed in main transport block — alternate RCP shell port"
-- "manufacturer discrepancy — source says \"Roku\", input says \"Pinacle\""
+- "source describes Roku SoundBridge and does not establish applicability to a Pinacle-branded SoundBridge."
+- "the SetPreset section's syntax line names GetPresetInfo, while its examples explicitly use SetPreset A6 working. The definition preserves the example-backed SetPreset command and working argument."
 ```
 
 ---

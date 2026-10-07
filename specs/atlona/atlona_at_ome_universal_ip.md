@@ -11,7 +11,7 @@ compatible_with:
     - Atlona
   models:
     - AT-OME-MS42
-  firmware: "\"1.1.4\""
+  firmware: 1.1.4
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-05-04T18:55:08.142Z
 last_checked_at: 2026-07-12T08:45:04.121Z
 generated_at: 2026-07-12T08:45:04.121Z
-firmware_coverage: "\"1.1.4\""
+firmware_coverage: 1.1.4
 protocol_coverage: []
 known_gaps:
   - "USB 2.0 vs 3.x data rate specifications not in source"

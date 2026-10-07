@@ -11,7 +11,7 @@ compatible_with:
     - "Ben Software"
   models:
     - "SecuritySpy 6"
-  firmware: "\""
+  firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-05-19T23:06:20.878Z
 last_checked_at: 2026-06-03T06:22:57.396Z
 generated_at: 2026-06-03T06:22:57.396Z
-firmware_coverage: "\""
+firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "RTSP protocol details beyond basic endpoint — RTSP is mentioned as co-hosted on the HTTP port but full RTSP protocol mechanics are not documented"

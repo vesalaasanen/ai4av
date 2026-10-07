@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-06-02T22:12:57.255Z
-generated_at: 2026-06-02T22:12:57.255Z
+last_checked_at: 2026-10-01T06:51:34.775Z
+generated_at: 2026-10-01T06:51:34.775Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "no still store management commands documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:12:57.255Z
+  checked_at: 2026-10-01T06:51:34.775Z
   matched_actions: 10
   action_count: 10
   confidence: medium
-  summary: "All 10 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 10 spec Actions (SBUS,SPST,SSNM,SKRS,SAUT,SCUT,STIM,SBTI,SPAT,SPNP) match source Command List literally with correct shapes; transport port 62000/65000 verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -74,7 +74,7 @@ udp:
     UDP used for unsolicited update notifications (ABSC command, sent 3x
     at 16 ms intervals on change) and TSL Protocol 5.0 tally/name data.
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -574,18 +574,18 @@ source_domains:
 source_urls:
   - "https://eww.pass.panasonic.co.jp/pro-av/support/content/download/DEF/soft/lps/AV-HSW10_InterfaceGuide(DVQX2472ZA)_E.pdf"
 retrieved_at: 2026-04-30T04:41:48.960Z
-last_checked_at: 2026-06-02T22:12:57.255Z
+last_checked_at: 2026-10-01T06:51:34.775Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:12:57.255Z
+checked_at: 2026-10-01T06:51:34.775Z
 matched_actions: 10
 action_count: 10
 confidence: medium
-summary: "All 10 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 10 spec Actions (SBUS,SPST,SSNM,SKRS,SAUT,SCUT,STIM,SBTI,SPAT,SPNP) match source Command List literally with correct shapes; transport port 62000/65000 verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

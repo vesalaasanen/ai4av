@@ -20,29 +20,29 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:14.963Z
-last_checked_at: 2026-06-02T22:14:05.312Z
-generated_at: 2026-06-02T22:14:05.312Z
+last_checked_at: 2026-10-07T12:52:35.669Z
+generated_at: 2026-10-07T12:52:35.669Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "specific model number not stated in source — \"BDT140013\" may be the manual number rather than model"
+  - "specific model number not stated in source — \"BDT140013\" identifies the control reference manual, not a supported projector model"
   - "wireless LAN unit manual reference not available"
-  - "flow control not mentioned; RTS/CTS pins present in pinout but no protocol details"
+  - "- powerable"
   - "no standalone settable parameters documented separately from actions;"
   - "no unsolicited notifications described; all communication appears to be command-response"
   - "no multi-step sequences explicitly described as macros in source"
   - "no safety warnings, interlock procedures, or power-on sequencing requirements"
   - "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub input values all reference this appendix"
   - "wireless LAN unit manual not available"
-  - "specific model identification not possible from source; \"BDT140013 Rev 7.1\" appears to be the manual revision number"
-  - "no authentication mechanism described, but LAN connection may have separate network-level security not covered in this control protocol manual"
+  - "specific model identification and applicability to the declared target are not established by the source; \"BDT140013 Revision 7.1\" identifies the control reference manual"
+  - "authentication requirements are not established by this control reference; absence of a described authentication procedure does not establish that authentication is unnecessary"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:05.312Z
-  matched_actions: 43
-  action_count: 43
+  checked_at: 2026-10-07T12:52:35.669Z
+  matched_actions: 68
+  action_count: 68
   confidence: medium
-  summary: "All 43 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 68 action units map one-to-one to the 53-command source list (43 actions plus 25 query feedbacks); transport values are supported and the source command list is fully represented. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -52,9 +52,9 @@ created_at: 2026-04-20
 # Sharp NEC NEC Digital Cinema Projector Control Spec
 
 ## Summary
-Digital cinema projector supporting both RS-232C serial and TCP/IP network control. The projector accepts hexadecimal command packets with control ID, model code, data length, variable data, and checksum. Responses return acknowledgement with error codes or requested data. No authentication procedure is described in the source.
+The supplied projector control reference documents RS-232C serial and TCP/IP network control. Commands contain two command bytes, two ID bytes, data length, command-specific data, and checksum. Responses return successful acknowledgement, requested data, or error codes. Authentication requirements are UNRESOLVED because no authentication procedure is described in the source. Applicability to the declared NEC Digital Cinema Projector target is UNRESOLVED; the source does not identify supported models.
 
-<!-- UNRESOLVED: specific model number not stated in source — "BDT140013" may be the manual number rather than model -->
+<!-- UNRESOLVED: specific model number not stated in source — "BDT140013" identifies the control reference manual, not a supported projector model -->
 <!-- UNRESOLVED: wireless LAN unit manual reference not available -->
 
 ## Transport
@@ -65,18 +65,22 @@ protocols:
 addressing:
   port: 7142  # stated: "Use TCP port number 7142 for sending and receiving commands"
 serial:
-  baud_rate: 115200  # stated: supports 115200/38400/19200/9600/4800 bps
+  baud_rate: UNRESOLVED  # supported: 115200/38400/19200/9600/4800 bps; no default or current setting stated
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not mentioned; RTS/CTS pins present in pinout but no protocol details
+  flow_control: UNRESOLVED  # RTS/CTS pins are documented; flow-control configuration is not stated
+ auth_placeholder: UNRESOLVED
+```
+
+```yaml
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # absence of an authentication procedure does not establish that authentication is unnecessary
 ```
 
 ## Traits
 ```yaml
-# inferred from command examples:
+# inferred from command examples; target-model applicability remains UNRESOLVED:
 - powerable      # POWER ON, POWER OFF commands present
 - routable       # INPUT SW CHANGE command present
 - queryable      # multiple information/status request commands present
@@ -340,20 +344,32 @@ auth:
 - id: lamp_info_request
   label: Lamp Information Request
   kind: action
-  params: []
-  description: "037-4. LAMP INFORMATION REQUEST 3 - Gets lamp information such as usage time and remaining life."
+  params:
+    - name: lamp_number
+      type: integer
+      description: "Required DATA01 selector: 00h=Lamp 1, 01h=Lamp 2; Lamp 2 is effective only for two-lamp models."
+    - name: content
+      type: integer
+      description: "Required DATA02 selector: 01h=lamp usage time (seconds), 04h=lamp remaining life (%)."
+  description: "037-4. LAMP INFORMATION REQUEST 3 - Gets lamp information such as usage time and remaining life. Command: 03h 96h 00h 00h 02h [lamp_number] [content] [CKS]."
 
 - id: carbon_savings_info_request
   label: Carbon Savings Information Request
   kind: action
-  params: []
-  description: "037-6. CARBON SAVINGS INFORMATION REQUEST - Gets the Carbon Saving values on the projector."
+  params:
+    - name: type
+      type: integer
+      description: "Required DATA01 selector: 00h=Total Carbon Savings, 01h=Carbon Savings during operation."
+  description: "037-6. CARBON SAVINGS INFORMATION REQUEST - Gets the Carbon Saving values on the projector. Command: 03h 9Ah 00h 00h 01h [type] [CKS]."
 
 - id: gain_parameter_request_cmd
   label: Gain Parameter Request
   kind: action
-  params: []
-  description: "060-1. GAIN PARAMETER REQUEST 3 - Gets adjusted values of the picture, volume, and backlight."
+  params:
+    - name: target
+      type: integer
+      description: "Required DATA01 selector: 00h=brightness, 01h=contrast, 02h=color, 03h=hue, 04h=sharpness, 05h=volume, 96h=LAMP ADJUST / LIGHT ADJUST."
+  description: "060-1. GAIN PARAMETER REQUEST 3 - Gets adjusted values of the picture, volume, and backlight. Command: 03h 05h 00h 00h 03h [target] 00h 00h [CKS]."
 
 - id: setting_request_cmd
   label: Setting Request
@@ -394,8 +410,11 @@ auth:
 - id: information_string_request_cmd
   label: Information String Request
   kind: action
-  params: []
-  description: "084. INFORMATION STRING REQUEST - Gets information strings (English) displayed on the projector."
+  params:
+    - name: info_type
+      type: integer
+      description: "Required DATA01 selector: 03h=Horizontal sync frequency, 04h=Vertical sync frequency."
+  description: "084. INFORMATION STRING REQUEST - Gets information strings (English) displayed on the projector. Command: 00h D0h 00h 00h 03h 00h [info_type] 01h [CKS]."
 
 - id: eco_mode_request_cmd
   label: Eco Mode Request
@@ -415,6 +434,7 @@ auth:
 - id: error_status
   label: Error Status
   type: object
+  query_command: "009. ERROR STATUS REQUEST"
   properties:
     - name: data01
       type: object
@@ -435,6 +455,7 @@ auth:
 - id: information_request
   label: Information Request
   type: object
+  query_command: "037. INFORMATION REQUEST"
   properties:
     - name: projector_name
       type: string
@@ -449,6 +470,7 @@ auth:
 - id: filter_usage_info
   label: Filter Usage Information
   type: object
+  query_command: "037-3. FILTER USAGE INFORMATION REQUEST"
   properties:
     - name: filter_usage_time
       type: integer
@@ -460,6 +482,7 @@ auth:
 - id: lamp_info
   label: Lamp Information
   type: object
+  query_command: "037-4. LAMP INFORMATION REQUEST 3"
   properties:
     - name: lamp_number
       type: integer
@@ -474,6 +497,7 @@ auth:
 - id: carbon_savings_info
   label: Carbon Savings Information
   type: object
+  query_command: "037-6. CARBON SAVINGS INFORMATION REQUEST"
   properties:
     - name: type
       type: integer
@@ -488,6 +512,7 @@ auth:
 - id: lens_control_request
   label: Lens Control Request
   type: object
+  query_command: "053-1. LENS CONTROL REQUEST"
   properties:
     - name: upper_limit
       type: integer
@@ -502,6 +527,7 @@ auth:
 - id: lens_memory_option_request
   label: Lens Memory Option Request
   type: object
+  query_command: "053-5. LENS MEMORY OPTION REQUEST"
   properties:
     - name: option
       type: integer
@@ -513,6 +539,7 @@ auth:
 - id: lens_information
   label: Lens Information
   type: object
+  query_command: "053-7. LENS INFORMATION REQUEST"
   properties:
     - name: lens_memory_status
       type: integer
@@ -533,6 +560,7 @@ auth:
 - id: lens_profile_request
   label: Lens Profile Request
   type: object
+  query_command: "053-11. LENS PROFILE REQUEST"
   properties:
     - name: profile_number
       type: integer
@@ -541,6 +569,7 @@ auth:
 - id: gain_parameter_request
   label: Gain Parameter Request 3
   type: object
+  query_command: "060-1. GAIN PARAMETER REQUEST 3"
   properties:
     - name: status
       type: integer
@@ -564,6 +593,7 @@ auth:
 - id: setting_request
   label: Setting Request
   type: object
+  query_command: "078-1. SETTING REQUEST"
   properties:
     - name: base_model_type
       type: string
@@ -578,6 +608,7 @@ auth:
 - id: running_status
   label: Running Status Request
   type: object
+  query_command: "078-2. RUNNING STATUS REQUEST"
   properties:
     - name: power_status
       type: integer
@@ -595,6 +626,7 @@ auth:
 - id: input_status
   label: Input Status Request
   type: object
+  query_command: "078-3. INPUT STATUS REQUEST"
   properties:
     - name: signal_switch_process
       type: integer
@@ -621,6 +653,7 @@ auth:
 - id: mute_status
   label: Mute Status Request
   type: object
+  query_command: "078-4. MUTE STATUS REQUEST"
   properties:
     - name: picture_mute
       type: integer
@@ -641,11 +674,13 @@ auth:
 - id: model_name_request
   label: Model Name Request
   type: string
+  query_command: "078-5. MODEL NAME REQUEST"
   description: Up to 32 bytes, NUL-terminated
 
 - id: cover_status
   label: Cover Status Request
   type: object
+  query_command: "078-6. COVER STATUS REQUEST"
   properties:
     - name: status
       type: integer
@@ -654,6 +689,7 @@ auth:
 - id: information_string_request
   label: Information String Request
   type: object
+  query_command: "084. INFORMATION STRING REQUEST"
   properties:
     - name: info_type
       type: integer
@@ -668,21 +704,25 @@ auth:
 - id: eco_mode_request
   label: Eco Mode Request
   type: integer
+  query_command: "097-8. ECO MODE REQUEST"
   description: Eco mode value. See appendix for values.
 
 - id: lan_projector_name_request
   label: LAN Projector Name Request
   type: string
+  query_command: "097-45. LAN PROJECTOR NAME REQUEST"
   description: Up to 17 bytes, NUL-terminated
 
 - id: lan_mac_address_request
   label: LAN MAC Address Request
   type: string
+  query_command: "097-155. LAN MAC ADDRESS STATUS REQUEST2"
   description: 6-byte MAC address
 
 - id: pip_picture_by_picture_request
   label: PIP/Picture by Picture Request
   type: object
+  query_command: "097-198. PIP/PICTURE BY PICTURE REQUEST"
   properties:
     - name: item
       type: integer
@@ -694,11 +734,13 @@ auth:
 - id: edge_blending_mode_request
   label: Edge Blending Mode Request
   type: integer
+  query_command: "097-243-1. EDGE BLENDING MODE REQUEST"
   description: "00h=OFF, 01h=ON"
 
 - id: base_model_type_request
   label: Base Model Type Request
   type: object
+  query_command: "305-1. BASE MODEL TYPE REQUEST"
   properties:
     - name: base_model_type
       type: string
@@ -710,11 +752,13 @@ auth:
 - id: serial_number_request
   label: Serial Number Request
   type: string
+  query_command: "305-2. SERIAL NUMBER REQUEST"
   description: Up to 16 bytes, NUL-terminated
 
 - id: basic_information_request
   label: Basic Information Request
   type: object
+  query_command: "305-3. BASIC INFORMATION REQUEST"
   properties:
     - name: operation_status
       type: integer
@@ -769,23 +813,27 @@ interlocks: []
 ```
 
 ## Notes
-The projector uses a binary hexadecimal protocol with the following packet structure:
+The projector control reference uses a binary hexadecimal protocol with the following packet structure:
 
-**Command packet:** `20h [ID1] [ID2] [LEN] [DATA...] [CKS]`
-**Response packet:** `[A0h/A1h/A2h/A3h] [ID1] [ID2] [LEN] [DATA...] [CKS]`
+**Command packet:** `[CMD1] [CMD2] [ID1] [ID2] [LEN] [DATA...] [CKS]`
+**Successful response packet:** `[RESPONSE1] [CMD2] [ID1] [ID2] [LEN] [DATA...] [CKS]`
+**Error response packet:** `[A0h/A1h/A2h/A3h] [CMD2] [ID1] [ID2] 02h [ERR1] [ERR2] [CKS]`
 
 Where:
-- `ID1` = Control ID (set in projector)
-- `ID2` = Model code (varies by model)
-- `LEN` = Data length of data portion
-- `CKS` = Checksum = low-order byte of sum of all preceding bytes
+- `CMD1` and `CMD2` = the two command bytes specified for each command; the first command byte is not universally `20h`.
+- `ID1` = Control ID (set in projector); the supplied command definitions show `00h` in this position, while response definitions use `[ID1]`.
+- `ID2` = Model code (varies by model); the supplied command definitions show `00h` in this position, while response definitions use `[ID2]`.
+- `LEN` = Data length of the portion following LEN, excluding the checksum; include fixed payload bytes as well as variable data.
+- `CKS` = Checksum = low-order byte of sum of all preceding bytes.
 
-Response prefix indicates type: `A0h`/`A1h`/`A2h`/`A3h` = responses with error codes; `20h`-`23h` = responses with data.
+Successful response prefixes are `20h`-`23h`, as specified by each command. A successful response may have no data or may contain command-specific data. Error response prefixes are `A0h`-`A3h` and carry `ERR1` and `ERR2`. Some successful response formats also contain an execution-result field that can indicate failure; use the individual command definition.
+
+For POWER ON, the complete command is `02h 00h 00h 00h 00h 02h`. Its successful response is `22h 00h [ID1] [ID2] 00h [CKS]`; its error response is `A2h 00h [ID1] [ID2] 02h [ERR1] [ERR2] [CKS]`.
 
 <!-- UNRESOLVED: Appendix "Supplementary Information by Command" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub input values all reference this appendix -->
 <!-- UNRESOLVED: wireless LAN unit manual not available -->
-<!-- UNRESOLVED: specific model identification not possible from source; "BDT140013 Rev 7.1" appears to be the manual revision number -->
-<!-- UNRESOLVED: no authentication mechanism described, but LAN connection may have separate network-level security not covered in this control protocol manual -->
+<!-- UNRESOLVED: specific model identification and applicability to the declared target are not established by the source; "BDT140013 Revision 7.1" identifies the control reference manual -->
+<!-- UNRESOLVED: authentication requirements are not established by this control reference; absence of a described authentication procedure does not establish that authentication is unnecessary -->
 
 ## Provenance
 
@@ -795,34 +843,34 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T10:09:14.963Z
-last_checked_at: 2026-06-02T22:14:05.312Z
+last_checked_at: 2026-10-07T12:52:35.669Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:05.312Z
-matched_actions: 43
-action_count: 43
+checked_at: 2026-10-07T12:52:35.669Z
+matched_actions: 68
+action_count: 68
 confidence: medium
-summary: "All 43 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 68 action units map one-to-one to the 53-command source list (43 actions plus 25 query feedbacks); transport values are supported and the source command list is fully represented. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "specific model number not stated in source — \"BDT140013\" may be the manual number rather than model"
+- "specific model number not stated in source — \"BDT140013\" identifies the control reference manual, not a supported projector model"
 - "wireless LAN unit manual reference not available"
-- "flow control not mentioned; RTS/CTS pins present in pinout but no protocol details"
+- "- powerable"
 - "no standalone settable parameters documented separately from actions;"
 - "no unsolicited notifications described; all communication appears to be command-response"
 - "no multi-step sequences explicitly described as macros in source"
 - "no safety warnings, interlock procedures, or power-on sequencing requirements"
 - "Appendix \"Supplementary Information by Command\" not included in source — input terminal values, aspect values, eco mode values, base model type values, sub input values all reference this appendix"
 - "wireless LAN unit manual not available"
-- "specific model identification not possible from source; \"BDT140013 Rev 7.1\" appears to be the manual revision number"
-- "no authentication mechanism described, but LAN connection may have separate network-level security not covered in this control protocol manual"
+- "specific model identification and applicability to the declared target are not established by the source; \"BDT140013 Revision 7.1\" identifies the control reference manual"
+- "authentication requirements are not established by this control reference; absence of a described authentication procedure does not establish that authentication is unnecessary"
 ```
 
 ---

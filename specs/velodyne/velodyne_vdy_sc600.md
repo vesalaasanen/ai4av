@@ -21,8 +21,8 @@ source_urls:
   - http://velodyneacoustics.com/pdf/sc-600/SC-600AmpManual.pdf
   - https://www.velodyneacoustics.com/pdf/sc-600/SC-602AmpManual.pdf
 retrieved_at: 2026-04-30T19:30:46.975Z
-last_checked_at: 2026-06-02T22:16:03.630Z
-generated_at: 2026-06-02T22:16:03.630Z
+last_checked_at: 2026-09-27T15:00:12.508Z
+generated_at: 2026-09-27T15:00:12.508Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +35,11 @@ known_gaps:
   - "response format/echo behavior not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:03.630Z
+  checked_at: 2026-09-27T15:00:12.508Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 requests match the SC-600 source, including two-digit volume encoding and binary-state polarity. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -66,7 +66,7 @@ serial:
 addressing:
   port: null  # UNRESOLVED: COM port number not stated
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -83,9 +83,9 @@ auth:
   kind: action
   params:
     - name: level
-      type: integer
-      range: [0, 80]
-      description: Volume level 0-80
+      type: string
+      pattern: "^(?:[0-7][0-9]|80)$"
+      description: "Exactly two decimal ASCII digits, zero-padded, 00 through 80 (for example 05)."
   command: "#VO{level}$"
   example: "#VO25$"
 
@@ -257,7 +257,7 @@ interlocks: []
 ```
 
 ## Notes
-Serial port: FEMALE DB-9 connector. IN port: Pin 2=TX, Pin 3=RX, Pin 5=GND. OUT port: Pin 2=RX, Pin 3=TX, Pin 5=GND. Direct PC connection via female-to-male serial cable requires only 3 pins (TX, RX, GND). Commands are ASCII, case-sensitive, CAPS ONLY. Header `#`, terminator `$` (required or command ignored).
+Connector type and device-side gender are not stated in the source. IN port: Pin 2=TX, Pin 3=RX, Pin 5=GND. OUT port: Pin 2=RX, Pin 3=TX, Pin 5=GND. Direct PC connection via female-to-male serial cable requires only 3 pins (TX, RX, GND). Commands are ASCII, case-sensitive, CAPS ONLY. Header `#`, terminator `$` (required or command ignored).
 <!-- UNRESOLVED: response format/echo behavior not documented -->
 
 ## Provenance
@@ -269,18 +269,18 @@ source_urls:
   - http://velodyneacoustics.com/pdf/sc-600/SC-600AmpManual.pdf
   - https://www.velodyneacoustics.com/pdf/sc-600/SC-602AmpManual.pdf
 retrieved_at: 2026-04-30T19:30:46.975Z
-last_checked_at: 2026-06-02T22:16:03.630Z
+last_checked_at: 2026-09-27T15:00:12.508Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:03.630Z
+checked_at: 2026-09-27T15:00:12.508Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 requests match the SC-600 source, including two-digit volume encoding and binary-state polarity. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

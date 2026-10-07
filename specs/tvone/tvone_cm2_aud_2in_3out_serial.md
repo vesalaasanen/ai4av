@@ -11,7 +11,7 @@ compatible_with:
     - tvONE
   models:
     - CM2-AUD-2IN-3OUT
-  firmware: "\"G502 (System API 5.2.16385 or above)\""
+  firmware: "G502 (System API 5.2.16385 or above)"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-07-16T18:22:48.867Z
 last_checked_at: 2026-07-22T01:34:51.592Z
 generated_at: 2026-07-22T01:34:51.592Z
-firmware_coverage: "\"G502 (System API 5.2.16385 or above)\""
+firmware_coverage: "G502 (System API 5.2.16385 or above)"
 protocol_coverage: []
 known_gaps:
   - Slot13.Carddata

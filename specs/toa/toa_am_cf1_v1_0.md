@@ -22,8 +22,8 @@ source_urls:
   - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
   - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
-last_checked_at: 2026-06-02T22:15:47.517Z
-generated_at: 2026-06-02T22:15:47.517Z
+last_checked_at: 2026-10-01T07:24:55.601Z
+generated_at: 2026-10-01T07:24:55.601Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "factory reset procedure not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:47.517Z
+  checked_at: 2026-10-01T07:24:55.601Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 spec actions match the source Command List verbatim; transport (TCP port 3000, password auth,10s/60s keepalive) is fully documented. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -64,9 +64,9 @@ addressing:
   port: 3000  # default; configurable per source: "Set the port number according to the remote controller to be connected"
 auth:
   type: password
-  mechanism: binary challenge (username + 16-byte ASCII password, command 80H, 20H)
+  mechanism: direct submission of 16-byte ASCII username and password (command 80H, 20H); response is ACK/NACK, not a challenge
 connection:
-  keepalive: send at least 1 byte every 10s (0xFF if no status data), or connection drops after 60s silence
+  keepalive: AM-CF1 transmits at least 1 byte every 10s (0xFF if no status data); connection is terminated after 60s with no data from the controller
 ```
 
 ## Traits
@@ -192,10 +192,10 @@ connection:
       description: "Signed 1-byte; -90 to 90 deg (Manual); 0 (Auto)"
     - name: distance
       type: integer
-      description: "Big-endian unsigned 2-byte; Manual: 0-2400 (inch×10) or 0-6000 (cm×10)"
+      description: "Big-endian unsigned 2-byte; Manual: 0-2400 (inch×10) or 0-6000 (cm×10); Auto: 0"
     - name: unit
       type: integer
-      description: "00H = inch; 01H = cm"
+      description: "00H = inch; 01H = cm (Manual only)"
   command: A0H, 05H, <auto_manual>, <direction>, <distance>, <unit>
   response: A0H, 05H, <auto_manual>, <direction>, <distance>, <unit>
 
@@ -335,14 +335,14 @@ connection:
   fields:
     auto_manual: integer (00H=Auto, 01H=Manual)
     direction: integer (-90 to 90 for Manual, 0 for Auto)
-    distance: integer (big-endian 2-byte, unit: inch×10 or cm×10)
-    unit: integer (00H=inch, 01H=cm)
+    distance: integer (big-endian 2-byte; Manual: 0-2400 inch×10 or 0-6000 cm×10; Auto: 0)
+    unit: integer (00H=inch, 01H=cm; Manual only)
 
 - id: mic_beam_steering_position
   type: object
   fields:
-    x: integer (big-endian signed 2-byte; -600.0 to 600.0 cm/inch)
-    y: integer (big-endian unsigned 2-byte; 0.0 to 600.0 cm/inch)
+    x: integer (big-endian signed 2-byte; -240.0 to 240.0 inch or -600.0 to 600.0 cm)
+    y: integer (big-endian unsigned 2-byte; 0.0 to 240.0 inch or 0.0 to 600.0 cm)
     unit: integer (00H=inch, 01H=cm)
   note: Unsolicited notification via D0H, 06H, A0H command when beam steering notification is enabled
 
@@ -384,17 +384,17 @@ interlocks: []
 
 ## Notes
 
-- AM-CF1 acts as TCP server; must maintain connection with keepalive (1 byte every 10s or 60s timeout)
+- AM-CF1 acts as TCP server; AM-CF1 transmits at least 1 byte every 10s (0xFF if no status data) to keep the connection alive
 - Binary command format: command byte (80H–FFH), data length byte, data bytes; max message 1024 bytes
 - All commands require successful login (80H, 20H) first; login/logout are the only commands accepted without authentication
 - If communication drops, controller must re-login
 - Speaker gain step down minimum position is 01H (not 00H which is -∞dB)
 - Preset recall requires processing time — wait before polling status
 - Bluetooth ON puts device in discoverable/pairing mode; OFF disconnects or cancels pairing
-- Beam steering position: X is signed (-90 to +90 deg effectively via coordinate system), Y is unsigned (0 to max distance)
+- Beam steering position: X is signed (-90 to +90 deg effectively via coordinate system), Y is unsigned (0 to max distance); in Auto mode distance is 0 and unit is unused
 - Default speaker gain position is 3DH (0dB)
 - Status notification is OFF by default; beam steering notification is OFF by default
-- Connection dropped if no data received from controller for 60 seconds
+- Connection terminated by AM-CF1 if no data received from controller for 60 seconds
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
 <!-- UNRESOLVED: physical dimensions, weight, power consumption not stated in source -->
 <!-- UNRESOLVED: default username/password (admin/admin) noted in example but source does not state how to change credentials -->
@@ -412,18 +412,18 @@ source_urls:
   - "https://toa.com.sg/document/2496-am-cf1-integrated-audio-collaboration-system-(firmware-updating-procedure)-others.pdf"
   - https://go2.toa-global.com/am-cf1
 retrieved_at: 2026-04-29T19:25:10.564Z
-last_checked_at: 2026-06-02T22:15:47.517Z
+last_checked_at: 2026-10-01T07:24:55.601Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:47.517Z
+checked_at: 2026-10-01T07:24:55.601Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 spec actions match the source Command List verbatim; transport (TCP port 3000, password auth,10s/60s keepalive) is fully documented. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

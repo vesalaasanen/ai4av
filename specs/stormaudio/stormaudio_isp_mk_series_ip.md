@@ -13,7 +13,7 @@ compatible_with:
     - "ISP Elite MK1"
     - "ISP Elite MK2"
     - "ISP Core 16"
-  firmware: "\"4.6r1 and beyond\""
+  firmware: "4.6r1 and beyond"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-07-24T18:50:03.997Z
 last_checked_at: 2026-08-05T08:49:35.992Z
 generated_at: 2026-08-05T08:49:35.992Z
-firmware_coverage: "\"4.6r1 and beyond\""
+firmware_coverage: "4.6r1 and beyond"
 protocol_coverage: []
 known_gaps:
   - "Astral 16 and SP4 listed in ssp.model responses but not in compatible_with models — source lists them as models but spec is for ISP-MK series"

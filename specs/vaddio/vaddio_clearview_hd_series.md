@@ -24,8 +24,8 @@ source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
   - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-06-02T22:15:54.188Z
-generated_at: 2026-06-02T22:15:54.188Z
+last_checked_at: 2026-10-07T13:37:30.328Z
+generated_at: 2026-10-07T13:37:30.328Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "command timing constraints not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:54.188Z
-  matched_actions: 25
-  action_count: 25
+  checked_at: 2026-10-07T13:37:30.328Z
+  matched_actions: 50
+  action_count: 50
   confidence: medium
-  summary: "All 25 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 action units (34 actions, 16 query feedbacks) match the source VISCA tables and Telnet CLI; transport supported; no extra commands. (11 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -489,6 +489,98 @@ traits:
       required: false
       default: 56
       description: "ICMP packet data size in bytes (default: 56)"
+
+- id: telnet_exit
+  label: Exit
+  kind: action
+  transport: tcp
+  command: "exit"
+  params: []
+
+- id: telnet_help
+  label: Help
+  kind: action
+  transport: tcp
+  command: "help"
+  params: []
+
+- id: telnet_history
+  label: History
+  kind: action
+  transport: tcp
+  command: "history"
+  params:
+    - name: limit
+      type: integer
+      min: UNRESOLVED
+      max: UNRESOLVED
+      required: false
+      description: "Optional history limit; range not stated in source"
+
+- id: telnet_camera
+  label: Camera
+  kind: action
+  transport: tcp
+  command: "camera"
+  params:
+    - name: subcommand
+      type: enum
+      values: [home, pan, tilt, zoom, preset]
+
+- id: telnet_network
+  label: Network
+  kind: action
+  transport: tcp
+  command: "network"
+  params:
+    - name: subcommand
+      type: enum
+      values: [settings, ping]
+
+- id: telnet_streaming
+  label: Streaming
+  kind: action
+  transport: tcp
+  command: "streaming"
+  params:
+    - name: subcommand
+      type: enum
+      values: [mode, quality, resolution]
+
+- id: telnet_system
+  label: System
+  kind: action
+  transport: tcp
+  command: "system"
+  params:
+    - name: subcommand
+      type: enum
+      values: [factory-reset, reboot]
+
+- id: telnet_history_expansion
+  label: History Expansion
+  kind: action
+  transport: tcp
+  command:
+    last: "!!"
+    absolute: "!N"
+    relative: "!-N"
+  params:
+    - name: expansion
+      type: enum
+      values: [last, absolute, relative]
+    - name: number
+      type: integer
+      min: UNRESOLVED
+      max: UNRESOLVED
+      required: false
+
+- id: telnet_clear_serial_buffer
+  label: Clear Serial Buffer
+  kind: action
+  transport: tcp
+  command: "CTRL 5"
+  params: []
 ```
 
 ## Feedbacks
@@ -504,6 +596,7 @@ traits:
     off: "y0 50 03 FF"
   type: enum
   values: [on, off, standby]
+  query_command: "8x 09 04 00 FF"
 
 - id: visca_zoom_position_inquiry
   label: Zoom Position Inquiry
@@ -514,6 +607,7 @@ traits:
   min: 0
   max: 1715
   description: "Zoom position (0x000-0x6B3)"
+  query_command: "8x 09 04 47 FF"
 
 - id: visca_focus_position_inquiry
   label: Focus Position Inquiry
@@ -524,6 +618,7 @@ traits:
   min: 0
   max: 49152
   description: "Focus position (0x000-0xC000). Dependent on zoom position."
+  query_command: "8x 09 04 48 FF"
 
 - id: visca_backlight_inquiry
   label: Backlight Mode Inquiry
@@ -534,6 +629,7 @@ traits:
     off: "y0 50 03 FF"
   type: enum
   values: [on, off]
+  query_command: "8x 09 04 33 FF"
 
 - id: visca_memory_inquiry
   label: Current Preset Inquiry
@@ -544,6 +640,7 @@ traits:
   min: 0
   max: 15
   description: "Current preset number (0x0-0xF)"
+  query_command: "8x 09 04 3F FF"
 
 - id: visca_pan_tilt_max_speed_inquiry
   label: Pan-Tilt Max Speed Inquiry
@@ -552,6 +649,7 @@ traits:
   response: "y0 50 pp qq FF"
   type: object
   description: "pp=Pan max speed (0x01-0x18), qq=Tilt max speed (0x01-0x14)"
+  query_command: "8x 09 06 11 FF"
 
 - id: visca_pan_tilt_position_inquiry
   label: Pan-Tilt Position Inquiry
@@ -560,6 +658,7 @@ traits:
   response: "FF y0 50 0p 0p 0p 0p 0q 0q 0q 0q FF"
   type: object
   description: "pppp=Pan position (0x8044-0x7FB2), qqqq=Tilt position (0xE890-0x4C2C)"
+  query_command: "8x 09 06 12 FF"
 
 - id: visca_tally_inquiry
   label: Tally State Inquiry
@@ -570,6 +669,7 @@ traits:
     off: "y0 50 03 FF"
   type: enum
   values: [on, off]
+  query_command: "8x 09 7E 01 0A FF"
 
 - id: visca_preset_speed_inquiry
   label: Preset Speed Inquiry
@@ -578,6 +678,7 @@ traits:
   response: "y0 50 pp qq rr FF"
   type: object
   description: "pp=Pan speed (0x01-0x18), qq=Tilt speed (0x01-0x14), rr=Zoom speed (0x00-0x07)"
+  query_command: "8x 09 7E 01 0B FF"
 
 - id: visca_motor_config_inquiry
   label: Motor Config Inquiry
@@ -588,6 +689,7 @@ traits:
     soft_stops: "y0 50 01 FF"
   type: enum
   values: [hard_motor_stops, soft_motor_stops]
+  query_command: "8x 09 7E 01 70 FF"
 
 # === Telnet Get Commands (TCP) ===
 
@@ -598,6 +700,7 @@ traits:
   response: "MAC Address: xx:xx:xx:xx:xx:xx IP Address: x.x.x.x Netmask: x.x.x.x Gateway: x.x.x.x"
   type: object
   description: "Returns MAC address, IP address, netmask, and gateway"
+  query_command: "network settings get"
 
 - id: telnet_streaming_mode_get
   label: Streaming Mode Query
@@ -606,6 +709,7 @@ traits:
   response: "mode: {usb|ethernet}"
   type: enum
   values: [usb, ethernet]
+  query_command: "streaming mode get"
 
 - id: telnet_streaming_quality_get
   label: Streaming Quality Query
@@ -614,6 +718,7 @@ traits:
   response: "quality: {low|standard|high}"
   type: enum
   values: [low, standard, high]
+  query_command: "streaming quality get"
 
 - id: telnet_streaming_resolution_get
   label: Streaming Resolution Query
@@ -622,6 +727,7 @@ traits:
   response: "resolution: {1080p|720p|4cif|480p|cif}"
   type: enum
   values: ["1080p", "720p", "4cif", "480p", "cif"]
+  query_command: "streaming resolution get"
 
 - id: telnet_factory_reset_status_get
   label: Factory Reset Status Query
@@ -630,6 +736,7 @@ traits:
   response: "factory-reset (software): {on|off}"
   type: object
   description: "Returns software and hardware factory reset status"
+  query_command: "system factory-reset get"
 
 - id: telnet_version_get
   label: Software Version Query
@@ -638,6 +745,7 @@ traits:
   response: "Version string"
   type: string
   description: "Returns current software version"
+  query_command: "version"
 ```
 
 ## Variables
@@ -698,18 +806,18 @@ source_urls:
   - "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/assets/1/26/Vaddio_ClearVIEW_HD-20_Manual.pdf"
   - "https://aca.im/driver_docs/Vaddio/vaddio%20clearveiw%20hd%20camera.pdf"
 retrieved_at: 2026-05-04T12:48:28.924Z
-last_checked_at: 2026-06-02T22:15:54.188Z
+last_checked_at: 2026-10-07T13:37:30.328Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:54.188Z
-matched_actions: 25
-action_count: 25
+checked_at: 2026-10-07T13:37:30.328Z
+matched_actions: 50
+action_count: 50
 confidence: medium
-summary: "All 25 spec actions traced to source (dip-safe re-verify). (11 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 action units (34 actions, 16 query feedbacks) match the source VISCA tables and Telnet CLI; transport supported; no extra commands. (11 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

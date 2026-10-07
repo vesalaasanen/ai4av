@@ -13,7 +13,7 @@ compatible_with:
     - "Lifestyle 20"
     - "Lifestyle 25"
     - "Lifestyle 30"
-  firmware: "\"6.1 or later\""
+  firmware: "6.1 or later"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-05-22T15:53:45.910Z
 last_checked_at: 2026-06-02T21:41:06.414Z
 generated_at: 2026-06-02T21:41:06.414Z
-firmware_coverage: "\"6.1 or later\""
+firmware_coverage: "6.1 or later"
 protocol_coverage: []
 known_gaps:
   - "source does not state pinout beyond ring/tip; full mechanical drawings not provided"

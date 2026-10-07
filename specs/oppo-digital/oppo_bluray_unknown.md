@@ -13,7 +13,7 @@ compatible_with:
   models:
     - UDP-203
     - UDP-205
-  firmware: "\"UDP20X-54-1127\""
+  firmware: UDP20X-54-1127
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -27,7 +27,7 @@ source_urls:
 retrieved_at: 2026-06-12T03:05:37.528Z
 last_checked_at: 2026-06-12T19:27:41.177Z
 generated_at: 2026-06-12T19:27:41.177Z
-firmware_coverage: "\"UDP20X-54-1127\""
+firmware_coverage: UDP20X-54-1127
 protocol_coverage: []
 known_gaps:
   - "UDP discovery broadcast address 239.255.255.251:7624 is documented but is a discovery helper, not a control channel."

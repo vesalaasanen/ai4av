@@ -20,28 +20,32 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:43:21.107Z
-last_checked_at: 2026-06-02T22:11:20.933Z
-generated_at: 2026-06-02T22:11:20.933Z
+last_checked_at: 2026-09-29T23:09:49.374Z
+generated_at: 2026-09-29T23:09:49.374Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "wireless LAN control specifics not documented — see operation manual of wireless LAN unit"
+  - "authentication procedure not documented in source"
   - "multiple rates supported (115200/38400/19200/9600/4800); source lists options, no single default"
+  - "source does not specify flow control"
+  - "source does not state an authentication procedure"
   - "no unsolicited event notifications documented"
   - "no explicit multi-step macros documented"
   - "power on/off interlock - no other commands accepted during power transition"
   - "wireless LAN control protocol — not documented; requires wireless LAN unit operation manual"
+  - "serial flow control not documented in source"
   - "input terminal numeric codes — referenced as Appendix, not included in source"
   - "aspect ratio values — referenced as Appendix, not included in source"
   - "eco mode values — referenced as Appendix, not included in source"
   - "key code full list — partial list in source, see Table \"Key code list\""
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:11:20.933Z
+  checked_at: 2026-09-29T23:09:49.374Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 actions match, mostly through semantic IDs, with full coverage and supported transport; exact NPxxxS W model applicability remains unconfirmed. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,9 +55,10 @@ created_at: 2026-05-14
 # NEC NPxxxS W Series Control Spec
 
 ## Summary
-NEC NPxxxS W Series projector. Supports RS-232C serial and TCP/IP network control. Full duplex communication with checksum-based error detection. No authentication required.
+NEC NPxxxS W Series projector. Supports RS-232C serial and TCP/IP network control. Full duplex communication with checksum-based error detection.
 
 <!-- UNRESOLVED: wireless LAN control specifics not documented — see operation manual of wireless LAN unit -->
+<!-- UNRESOLVED: authentication procedure not documented in source -->
 
 ## Transport
 ```yaml
@@ -67,9 +72,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none
+  flow_control: UNRESOLVED  # UNRESOLVED: source does not specify flow control
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: source does not state an authentication procedure
 ```
 
 ## Traits
@@ -534,6 +539,8 @@ interlocks: []
 ## Notes
 Checksum calculated as low-order byte of sum of all preceding bytes. Serial supports 115200/38400/19200/9600/4800 bps — no single stated default; host must match projector setting. LAN uses TCP port 7142. Wireless LAN unit sold separately; control specifics not in this manual.
 <!-- UNRESOLVED: wireless LAN control protocol — not documented; requires wireless LAN unit operation manual -->
+<!-- UNRESOLVED: authentication procedure not documented in source -->
+<!-- UNRESOLVED: serial flow control not documented in source -->
 <!-- UNRESOLVED: input terminal numeric codes — referenced as Appendix, not included in source -->
 <!-- UNRESOLVED: aspect ratio values — referenced as Appendix, not included in source -->
 <!-- UNRESOLVED: eco mode values — referenced as Appendix, not included in source -->
@@ -547,29 +554,33 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:43:21.107Z
-last_checked_at: 2026-06-02T22:11:20.933Z
+last_checked_at: 2026-09-29T23:09:49.374Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:11:20.933Z
+checked_at: 2026-09-29T23:09:49.374Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 actions match, mostly through semantic IDs, with full coverage and supported transport; exact NPxxxS W model applicability remains unconfirmed. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "wireless LAN control specifics not documented — see operation manual of wireless LAN unit"
+- "authentication procedure not documented in source"
 - "multiple rates supported (115200/38400/19200/9600/4800); source lists options, no single default"
+- "source does not specify flow control"
+- "source does not state an authentication procedure"
 - "no unsolicited event notifications documented"
 - "no explicit multi-step macros documented"
 - "power on/off interlock - no other commands accepted during power transition"
 - "wireless LAN control protocol — not documented; requires wireless LAN unit operation manual"
+- "serial flow control not documented in source"
 - "input terminal numeric codes — referenced as Appendix, not included in source"
 - "aspect ratio values — referenced as Appendix, not included in source"
 - "eco mode values — referenced as Appendix, not included in source"

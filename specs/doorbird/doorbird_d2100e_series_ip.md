@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "D2100E Series"
     - "DoorBird Video Door Station D21x"
-  firmware: "\"000108 and above\""
+  firmware: "000108 and above"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-07-12T20:41:44.746Z
 last_checked_at: 2026-07-21T22:24:49.139Z
 generated_at: 2026-07-21T22:24:49.139Z
-firmware_coverage: "\"000108 and above\""
+firmware_coverage: "000108 and above"
 protocol_coverage: []
 known_gaps:
   - "serial/RS-232 not supported on this model"

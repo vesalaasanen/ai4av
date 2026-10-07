@@ -27,8 +27,8 @@ source_urls:
   - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
   - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
-last_checked_at: 2026-06-02T22:13:21.514Z
-generated_at: 2026-06-02T22:13:21.514Z
+last_checked_at: 2026-09-30T00:04:59.423Z
+generated_at: 2026-09-30T00:04:59.423Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "GPI pinout details not in source, referenced to DPM User's Manual"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:21.514Z
-  matched_actions: 11
-  action_count: 11
+  checked_at: 2026-09-30T00:04:59.423Z
+  matched_actions: 12
+  action_count: 12
   confidence: medium
-  summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 12 actions match the 11 command mnemonics and documented transport; fader actions share a mnemonic, and DCP300 spellings are aliases. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -55,7 +55,7 @@ created_at: 2026-04-27
 # QSC DPM Control Interface Spec
 
 ## Summary
-QSC DPM (Digital Preset Manager) cinema audio processor platform. Supports RS-232, Ethernet (TCP/UDP), SNMP, and contact closure (GPI) control. TCP port 4446, UDP port 4448. Serial default 115200 baud. DCM models support only serial and Ethernet (no GPI).
+QSC DPM (Digital Preset Manager) cinema audio processor platform. Supports RS-232, Ethernet (TCP/UDP), SNMP, and contact closure (GPI) control. TCP port 4446, UDP port 4448. Serial default 115200 baud. DCM models support only serial and Ethernet (no GPI). Preset, volume and mute control are not applicable for DCM models.
 
 <!-- UNRESOLVED: GPI configuration parameters not fully detailed in source — only described functionally, no pin assignments or voltage specs given -->
 
@@ -65,6 +65,7 @@ protocols:
   - serial
   - tcp
   - udp
+  - snmp
 serial:
   baud_rate: 115200  # default; selectable: 57600, 38400, 19200, 9600, 1200, 300
   data_bits: 8
@@ -75,7 +76,7 @@ addressing:
   port: 4446  # TCP
   udp_port: 4448  # UDP
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state authentication requirements
 ```
 
 ## Traits
@@ -156,6 +157,11 @@ auth:
 - id: help
   label: Command Help
   kind: action
+
+- id: tcp_query
+  label: TCP Status Query
+  kind: action
+  description: Sends GET over TCP after a set/query command to retrieve the device response (TCP only)
 ```
 
 ## Feedbacks
@@ -219,7 +225,7 @@ interlocks:
 ```
 
 ## Notes
-DPM 100/100H/300/300H include GPI inputs (6 contact closure inputs). DCM 100/300 do not support GPI or preset/volume/mute control. TCP connections closed by device after each command — must reopen before each command. Minimum 400ms between Ethernet commands for optimal performance. Serial commands terminated by newline (\n or \r\n). DCP300 backward-compatible command set supported (same syntax, query-only responses).
+DPM 100/100H/300/300H include GPI inputs (6 contact closure inputs). DCM 100/300 do not support GPI or preset/volume/mute control. TCP connections closed by device after each command — must reopen before each command. Minimum 400ms between Ethernet commands for optimal performance. Serial commands terminated by newline (\n or \r\n). DCP300 backward-compatible command set supported (same syntax, query-only responses). Authentication requirements are UNRESOLVED — source does not state whether authentication is required for serial, Ethernet, or SNMP access.
 <!-- UNRESOLVED: SNMP MIB not included in source, must be exported from DPM Manager -->
 <!-- UNRESOLVED: GPI pinout details not in source, referenced to DPM User's Manual -->
 
@@ -233,18 +239,18 @@ source_urls:
   - https://help.qsys.com/Content/External_Control_APIs/QRC/QRC_Commands.htm
   - https://help.qsys.com/Content/External_Control_APIs/ECP/ECP_Overview.htm
 retrieved_at: 2026-04-30T03:11:42.670Z
-last_checked_at: 2026-06-02T22:13:21.514Z
+last_checked_at: 2026-09-30T00:04:59.423Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:21.514Z
-matched_actions: 11
-action_count: 11
+checked_at: 2026-09-30T00:04:59.423Z
+matched_actions: 12
+action_count: 12
 confidence: medium
-summary: "All 11 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 12 actions match the 11 command mnemonics and documented transport; fader actions share a mnemonic, and DCP300 spellings are aliases. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

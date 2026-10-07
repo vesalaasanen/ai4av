@@ -26,24 +26,25 @@ source_domains:
   - cdn.iiyama.com
 source_urls:
   - https://cdn.iiyama.com/f/dcee9a0889b9f1e85fd5ac0fa77eaf96_lhxx54-rs232-lan-commands-improved-2023-08.pdf
-retrieved_at: 2026-07-14T03:17:47.544Z
-last_checked_at: 2026-08-19T09:26:12.836Z
-generated_at: 2026-08-19T09:26:12.836Z
+retrieved_at: 2026-09-26T14:23:17.236Z
+last_checked_at: 2026-09-26T14:23:17.236Z
+generated_at: 2026-09-26T14:23:17.236Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "per-model feature variation not enumerated beyond the OSD availability caveat; firmware versions not stated"
+  - "source does not establish authentication requirements"
   - "no unsolicited event packets documented in source"
   - "no multi-step sequences described in source"
   - "source contains no safety warnings or interlock procedures beyond the \"do not send a"
   - "document revision history lists revisions up to V3.2 (2019-10-31); exact document version stamp attached to this scan not stated."
 verification:
   verdict: verified
-  checked_at: 2026-08-19T09:26:12.836Z
+  checked_at: 2026-09-26T14:23:17.236Z
   matched_actions: 34
   action_count: 34
   confidence: medium
-  summary: "All 34 spec actions match source opcodes, parameter shapes, and transport values verbatim; source documents no additional host-sent command codes beyond these 34. (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 commands match the named LHxx54 source; TCP/serial settings are explicit, and authentication remains unresolved. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -71,7 +72,7 @@ serial:
 addressing:
   port: 5000
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: unknown  # UNRESOLVED: source does not establish authentication requirements
 ```
 
 ## Traits
@@ -86,7 +87,7 @@ auth:
 ```yaml
 # Frame structure (from source §2.3):
 # Header(0xA6) | MonitorID(1..255, 0=broadcast) | Category(0x00) | Page(0x00) |
-# Code1 | Length(N+3) | DataControl(0x01) | Data[0..N] | Checksum(XOR of bytes 1..N excluding checksum)
+# Code1 | Length(number of DATA bytes + 2) | DataControl(0x01) | Data[0..N] | Checksum(XOR of every preceding packet byte, including header)
 # Report header is 0x21. TCP port 5000 carries the same bytes.
 # Variable parts shown as {param}; checksum must be computed per packet.
 
@@ -287,7 +288,8 @@ auth:
 
 # --- 6.1.7 / 6.1.8 Color parameters (gain/offset) ---
 - id: get_color_parameters
-  label: Get Color Parameters  kind: query
+  label: Get Color Parameters
+  kind: query
   command: "A6 {monitor_id} 00 00 00 03 01 37 {checksum}"
   params:
     - name: monitor_id
@@ -481,7 +483,7 @@ auth:
       description: End minute 0..59 (60=NULL)
     - name: video_src
       type: hex_byte
-      description: "Input source enum (same as set_input_source)"
+      description: "Scheduling-only codes: 0x00=NULL; 0x01..0x18 have the same meanings as set_input_source. 0x14/0x15 are reserved, 0x04 is not applicable, and 0x19 HDMI4 is not documented for scheduling."
     - name: workday_bits
       type: hex_byte
       description: "bit0=every week, bit1=Mon..bit7=Sun"
@@ -571,9 +573,9 @@ auth:
     r_gain: {type: integer, range: [0, 255]}
     g_gain: {type: integer, range: [0, 255]}
     b_gain: {type: integer, range: [0, 255]}
-    r_offset: {type: integer, range: [0, 255]}
-    g_offset: {type: integer, range: [0, 255]}
-    b_offset: {type: integer, range: [0, 255]}
+    r_offset: {type: integer, range: [0, 0], notes: "Get report returns 0 per corrected section 6.1.7; Set offsets remain 0..255"}
+    g_offset: {type: integer, range: [0, 0], notes: "Get report returns 0 per corrected section 6.1.7; Set offsets remain 0..255"}
+    b_offset: {type: integer, range: [0, 0], notes: "Get report returns 0 per corrected section 6.1.7; Set offsets remain 0..255"}
 - id: picture_format
   type: enum
   values: [normal_4_3, custom, real_1_1, full, c21_9, dynamic, c16_9]
@@ -602,7 +604,7 @@ auth:
     start_m: {type: integer, range: [0, 60], notes: "60 = NULL"}
     end_h: {type: integer, range: [0, 24], notes: "24 = NULL"}
     end_m: {type: integer, range: [0, 60], notes: "60 = NULL"}
-    video_src: {type: enum, values_ref: current_source}
+    video_src: {type: enum, values: [null_source, video, svideo, component, cvi2, vga, hdmi2, dp2, usb2, dvi_d_card, dp1, ops, usb1, hdmi, dvi_d, hdmi3, browser, smartcms, dms, internal_storage, reserved_14, reserved_15, media_player, pdf_player, custom], notes: "0x00=NULL through 0x18=Custom; no scheduling HDMI4 code"}
     workdays: {type: bitmask, bits: [every_week, mon, tue, wed, thu, fri, sat, sun]}
     bookmark_tag: {type: integer, range: [0, 7], notes: "0=none, 1..7=Tag1..7"}
 - id: language
@@ -659,7 +661,7 @@ interlocks: []
 ```
 
 ## Notes
-Frame format (source §2.3): every Set/Get command is a packet starting with header `0xA6`, monitor ID (1..255, 0=broadcast/no ACK), category `0x00`, page `0x00`, a Code1 byte, a Length byte equal to `N+3` where N is the number of Data bytes, data control `0x01`, the Data bytes, and a final XOR checksum over bytes 1..N+6 (everything except the checksum itself). Reports from the display begin with header `0x21` and carry the same data shape. Communication rule (source §2.2): send next command only after receiving ACK; retry if no response within 500 ms. ACK on success, NACK on corrupt packet, NAV on valid-but-unsupported. Wrong monitor ID yields no reply.
+Frame format (source §2.3): every Set/Get command is a packet starting with header `0xA6`, monitor ID (1..255, 0=broadcast/no ACK), category `0x00`, page `0x00`, a Code1 byte, a Length byte equal to the number of DATA bytes plus 2 (data-control plus checksum); equivalently `N+3` when N is the highest index in DATA[0..N], data control `0x01`, the Data bytes, and a final XOR checksum over every preceding packet byte, including the header. Reports from the display begin with header `0x21` and carry the same data shape. Communication rule (source §2.2): send next command only after receiving ACK; retry if no response within 500 ms. ACK on success, NACK on corrupt packet, NAV on valid-but-unsupported. Wrong monitor ID yields no reply.
 
 LAN note (source §2.2): for LAN control the port is **5000** (TCP), carrying the same byte frames as RS-232. Per source, powering the screen on via LAN requires the OSD "Power Save" option to be set to **Mode 2**.
 
@@ -669,6 +671,8 @@ Workdays bitmask (source §9.1.2/9.1.3): bit0=every week, bit1=Monday, ..., bit7
 
 <!-- UNRESOLVED: document revision history lists revisions up to V3.2 (2019-10-31); exact document version stamp attached to this scan not stated. -->
 
+The source guarantees only functions also available in the particular display's OSD menu. A listed protocol function absent from that OSD is not guaranteed. Color-parameter Get offsets follow the explicit correction in section 6.1.7 (Reply 0), although its older example still shows FF; Set offsets in section 6.1.8 remain 0..255. Scheduling has its own source enumeration, including NULL and excluding HDMI4.
+
 ## Provenance
 
 ```yaml
@@ -676,25 +680,26 @@ source_domains:
   - cdn.iiyama.com
 source_urls:
   - https://cdn.iiyama.com/f/dcee9a0889b9f1e85fd5ac0fa77eaf96_lhxx54-rs232-lan-commands-improved-2023-08.pdf
-retrieved_at: 2026-07-14T03:17:47.544Z
-last_checked_at: 2026-08-19T09:26:12.836Z
+retrieved_at: 2026-09-26T14:23:17.236Z
+last_checked_at: 2026-09-26T14:23:17.236Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-08-19T09:26:12.836Z
+checked_at: 2026-09-26T14:23:17.236Z
 matched_actions: 34
 action_count: 34
 confidence: medium
-summary: "All 34 spec actions match source opcodes, parameter shapes, and transport values verbatim; source documents no additional host-sent command codes beyond these 34. (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 commands match the named LHxx54 source; TCP/serial settings are explicit, and authentication remains unresolved. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "per-model feature variation not enumerated beyond the OSD availability caveat; firmware versions not stated"
+- "source does not establish authentication requirements"
 - "no unsolicited event packets documented in source"
 - "no multi-step sequences described in source"
 - "source contains no safety warnings or interlock procedures beyond the \"do not send a"

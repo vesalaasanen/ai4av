@@ -27,12 +27,13 @@ source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
   - https://www.symetrix.co/composer/
 retrieved_at: 2026-05-17T18:27:04.721Z
-last_checked_at: 2026-06-02T22:15:27.235Z
-generated_at: 2026-06-02T22:15:27.235Z
+last_checked_at: 2026-09-30T01:24:25.844Z
+generated_at: 2026-09-30T01:24:25.844Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "RS-485 control described as via ARC devices, not directly documented in this protocol spec"
+  - "Automix Matrix 780 and Room Combine 788 controller mappings are outside the target scope (Deuce 722, Zone Mix 760/761)"
   - "Controller numbers vary by product model - see appendix tables (Deuce 722, Zone Mix 760/761)"
   - "No explicit event names/types defined - push data is raw controller format"
   - "No explicit multi-step macros documented in source"
@@ -43,11 +44,11 @@ known_gaps:
   - "Specific device model (Deuce vs Zone Mix) determination via controller number not explicitly mapped"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:27.235Z
+  checked_at: 2026-09-30T01:24:25.844Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 commands match; prose clarifies PUT's malformed brackets; Automix Matrix 780 and Room Combine 788 controller mappings are excluded. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -60,6 +61,7 @@ created_at: 2026-05-17
 Symetrix Integrator Series DSP audio processors controllable via RS-232 and Ethernet (UDP). Text-based ASCII command protocol with carriage-return termination. Supports fader/button/selector/meter control via numbered controllers (1–10000). Push data architecture for unsolicited notifications.
 
 <!-- UNRESOLVED: RS-485 control described as via ARC devices, not directly documented in this protocol spec -->
+<!-- UNRESOLVED: Automix Matrix 780 and Room Combine 788 controller mappings are outside the target scope (Deuce 722, Zone Mix 760/761) -->
 
 ## Transport
 ```yaml
@@ -75,7 +77,7 @@ serial:
 addressing:
   port: 48630  # UDP port stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not explicitly state authentication is absent
 ```
 
 ## Traits
@@ -413,6 +415,8 @@ interlocks: []
 
 **RS-485 control:** Described as via Symetrix ARC devices, not directly via this protocol.
 
+**Authentication:** UNRESOLVED — source does not explicitly state whether authentication is absent or required.
+
 <!-- UNRESOLVED: Product-specific controller number appendix (full table for Zone Mix 761 beyond line 1008, controller number ranges per model not summarized in source) -->
 <!-- UNRESOLVED: Binary command encodings, fault behavior, error recovery sequences not documented in source -->
 <!-- UNRESOLVED: Firmware version compatibility not stated in source -->
@@ -431,24 +435,25 @@ source_urls:
   - https://d3b79pswu7f4ma.cloudfront.net/pdf-download/Jupiter-Control-Protocol.pdf
   - https://www.symetrix.co/composer/
 retrieved_at: 2026-05-17T18:27:04.721Z
-last_checked_at: 2026-06-02T22:15:27.235Z
+last_checked_at: 2026-09-30T01:24:25.844Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:27.235Z
+checked_at: 2026-09-30T01:24:25.844Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 commands match; prose clarifies PUT's malformed brackets; Automix Matrix 780 and Room Combine 788 controller mappings are excluded. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "RS-485 control described as via ARC devices, not directly documented in this protocol spec"
+- "Automix Matrix 780 and Room Combine 788 controller mappings are outside the target scope (Deuce 722, Zone Mix 760/761)"
 - "Controller numbers vary by product model - see appendix tables (Deuce 722, Zone Mix 760/761)"
 - "No explicit event names/types defined - push data is raw controller format"
 - "No explicit multi-step macros documented in source"

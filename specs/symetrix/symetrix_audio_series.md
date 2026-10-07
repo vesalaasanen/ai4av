@@ -24,8 +24,8 @@ source_domains:
 source_urls:
   - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
-last_checked_at: 2026-06-02T22:15:24.068Z
-generated_at: 2026-06-02T22:15:24.068Z
+last_checked_at: 2026-09-30T01:22:28.837Z
+generated_at: 2026-09-30T01:22:28.837Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,13 +34,14 @@ known_gaps:
   - "no explicit multi-step macros defined in source"
   - "no safety warnings or interlock procedures in source"
   - "specific controller number mappings are model-dependent; full tables span appendices A-D"
+  - "source does not describe an authentication procedure for either transport"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:24.068Z
+  checked_at: 2026-09-30T01:22:28.837Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 wire-mnemonic actions and argument shapes match the complete command catalogue; transport is supported and authentication is unresolved. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,7 +51,7 @@ created_at: 2026-04-19
 # Symetrix Integrator Series Control Spec
 
 ## Summary
-Symetrix Integrator Series audio processors (Deuce 722, Zone Mix 760/761, Automix Matrix 780, Room Combine 788) support external control via RS-232 and UDP/IP Ethernet. The protocol is text-based (ASCII), using human-readable command strings terminated by a carriage return. Controller numbers (1-10000) address individual parameters. No authentication is required.
+Symetrix Integrator Series audio processors (Deuce 722, Zone Mix 760/761, Automix Matrix 780, Room Combine 788) support external control via RS-232 and UDP/IP Ethernet. The protocol is text-based (ASCII), using human-readable command strings terminated by a carriage return. Controller numbers (1-10000) address individual parameters. Authentication procedure is not described in the source.
 
 <!-- UNRESOLVED: RS-232 port not available on all models; Zone Mix 760 units manufactured before December 1, 2007 lack RS-232 -->
 
@@ -68,7 +69,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not describe an authentication procedure
 ```
 
 ## Traits
@@ -146,7 +147,10 @@ auth:
 - id: gpr
   label: Get Preset
   kind: query
-  params: []
+  params:
+    - name: preset_letter
+      type: string
+      description: Literal "D" argument (command form: GPR D<CR>)
 
 - id: fu
   label: Flash Unit
@@ -296,7 +300,7 @@ auth:
 
 - id: push_data
   type: string
-  description: "#NNNNN=VVVVV format, up to 64 values per push interval
+  description: "#NNNNN=VVVVV format, up to 64 values per push interval"
 ```
 
 ## Variables
@@ -338,7 +342,9 @@ interlocks: []
 - Controller values are 16-bit (0-65535); formula for dB conversion varies by parameter type
 - Some buttons use negative logic (0 = on); noted in appendix tables per controller
 - Ethernet uses UDP port 48630; no TCP or Telnet options used despite Telnet-like description
+- GPR requires a literal "D" argument: command form is `GPR D<CR>`
 <!-- UNRESOLVED: specific controller number mappings are model-dependent; full tables span appendices A-D -->
+<!-- UNRESOLVED: source does not describe an authentication procedure for either transport -->
 
 ## Provenance
 
@@ -348,18 +354,18 @@ source_domains:
 source_urls:
   - https://www.symetrixinc.com/wp-content/uploads/2023/11/Symetrix_IS_cp.pdf
 retrieved_at: 2026-04-30T04:33:35.531Z
-last_checked_at: 2026-06-02T22:15:24.068Z
+last_checked_at: 2026-09-30T01:22:28.837Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:24.068Z
+checked_at: 2026-09-30T01:22:28.837Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 wire-mnemonic actions and argument shapes match the complete command catalogue; transport is supported and authentication is unresolved. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -370,6 +376,7 @@ summary: "All 20 spec actions traced to source (dip-safe re-verify). (5 unresolv
 - "no explicit multi-step macros defined in source"
 - "no safety warnings or interlock procedures in source"
 - "specific controller number mappings are model-dependent; full tables span appendices A-D"
+- "source does not describe an authentication procedure for either transport"
 ```
 
 ---

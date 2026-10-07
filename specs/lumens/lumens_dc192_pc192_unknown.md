@@ -12,7 +12,7 @@ compatible_with:
   models:
     - DC192
     - PC192
-  firmware: "\"DGA106\""
+  firmware: DGA106
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -27,7 +27,7 @@ source_urls:
 retrieved_at: 2026-06-15T21:22:33.315Z
 last_checked_at: 2026-06-16T07:08:35.093Z
 generated_at: 2026-06-16T07:08:35.093Z
-firmware_coverage: "\"DGA106\""
+firmware_coverage: DGA106
 protocol_coverage: []
 known_gaps:
   - "no voltage/current/power specs in source; no auth procedure described; command-set/firmware version is the only firmware info stated."

@@ -18,36 +18,32 @@ compatible_with:
 source_domains:
   - downloads.canon.com
 source_urls:
-  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
-retrieved_at: 2026-04-30T04:33:04.493Z
-last_checked_at: 2026-06-02T22:04:53.731Z
-generated_at: 2026-06-02T22:04:53.731Z
+  - https://downloads.canon.com/cpr/software/projectors/REALiS_WUX10_User-Manual.pdf
+retrieved_at: 2026-09-26T14:23:19.942Z
+last_checked_at: 2026-09-26T14:23:19.942Z
+generated_at: 2026-09-26T14:23:19.942Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "no TCP/IP or network control protocol documented in source"
   - "response format for GET commands not documented in source"
   - "valid value ranges for brightness, sharpness, contrast not stated in source"
-  - "command timing, delays, or retry behavior not documented in source"
+  - "inter-command spacing and retry timing not documented in source"
   - "valid range not stated in source"
   - "response format not documented in source"
   - "value range and response format not documented in source"
   - "no settable continuous parameters with documented ranges found in source"
   - "no unsolicited notification events documented in source"
   - "no multi-step sequences documented in source"
-  - "source does not document power-on sequencing requirements, warm-up/cool-down"
   - "response/acknowledgement format for all commands not documented"
   - "minimum delay between commands not documented"
-  - "warm-up time after power on not documented"
-  - "cool-down time after power off not documented"
   - "error response format not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:04:53.731Z
+  checked_at: 2026-09-26T14:23:19.942Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "Exact original WUX10 full-manual scope verified:11 parameterized serial actions plus9 explicit GET units cover all p136 families and selector values;ASCII/hex/CR,19200 8N2,pinout,cooling and restart guidance match;no MarkII commands or undocumented HTTP wire API imported;auth,numeric bounds and literal replies remain unresolved. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -60,10 +56,10 @@ created_at: 2026-04-13
 
 Canon WUX10 is a WUXGA resolution projector with RS-232-C serial control via a D-Sub 9-pin service port. This spec covers power, input selection, image mode, brightness, sharpness, contrast, aspect ratio, lamp mode, and blank commands over asynchronous half-duplex serial communication at 19,200 bps.
 
-<!-- UNRESOLVED: no TCP/IP or network control protocol documented in source -->
+This specification covers the serial command table on p.136 of the original WUX10 User Manual. The full manual also documents browser-based network control on pp.103–114, but does not supply its HTTP wire API. No WUX10 MarkII compatibility or MarkII command expansion is asserted.
 <!-- UNRESOLVED: response format for GET commands not documented in source -->
 <!-- UNRESOLVED: valid value ranges for brightness, sharpness, contrast not stated in source -->
-<!-- UNRESOLVED: command timing, delays, or retry behavior not documented in source -->
+<!-- UNRESOLVED: inter-command spacing and retry timing not documented in source -->
 
 ## Transport
 
@@ -77,7 +73,7 @@ serial:
   stop_bits: 2
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # serial authentication requirements are not stated
 ```
 
 ## Traits
@@ -160,7 +156,7 @@ actions:
     params:
       - name: ratio
         type: enum
-        values: [AUTO, FULL, "16:9", "4:3", ZOOM, TRUE]
+        values: ["AUTO", "FULL", "16:9", "4:3", "ZOOM", "TRUE"]
         description: "Aspect ratio mode"
 
   - id: set_lamp_mode
@@ -227,7 +223,7 @@ feedbacks:
     label: Aspect Ratio
     query_command: "GET ASPECT\r"
     type: enum
-    values: [AUTO, FULL, "16:9", "4:3", ZOOM, TRUE]  # UNRESOLVED: response format not documented in source
+    values: ["AUTO", "FULL", "16:9", "4:3", "ZOOM", "TRUE"]  # UNRESOLVED: response format not documented in source
 
   - id: lamp_mode
     label: Lamp Mode
@@ -266,8 +262,8 @@ feedbacks:
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: source does not document power-on sequencing requirements, warm-up/cool-down
-# delays, or interlock procedures. Projector lamp safety handling not specified.
+# Source pp.42,62: cannot turn on while cooling fan operates; wait at least five minutes after turning off before turning on.
+# Lamp handling is documented in the full manual; these are physical restrictions, not an invented serial handshake.
 ```
 
 ## Notes
@@ -279,9 +275,11 @@ interlocks: []
 
 <!-- UNRESOLVED: response/acknowledgement format for all commands not documented -->
 <!-- UNRESOLVED: minimum delay between commands not documented -->
-<!-- UNRESOLVED: warm-up time after power on not documented -->
-<!-- UNRESOLVED: cool-down time after power off not documented -->
+The full manual p.42 describes an approximately 20-second projection countdown. Serial command acceptance during that period is UNRESOLVED.
+The full manual pp.42 and 62 says to wait at least five minutes before turning on after turning off, and that power-on is unavailable while the cooling fan operates. No exact cooling-fan duration is specified.
 <!-- UNRESOLVED: error response format not documented -->
+
+Primary source: https://downloads.canon.com/cpr/software/projectors/REALiS_WUX10_User-Manual.pdf (original WUX10, 144 pages). Full control-command table reviewed on p.136. The ASCII BLANK=OFF row has a stray printed 42h after <CR>; the separate complete hex row confirms BLANK=OFF followed by one CR. The six input values, four image presets, six aspects and two lamp modes are parameter domains of their respective mnemonic families. Returned values listed in Feedbacks are logical state domains only; actual reply bytes and encodings remain UNRESOLVED. Hardware untested.
 
 ## Provenance
 
@@ -289,40 +287,36 @@ interlocks: []
 source_domains:
   - downloads.canon.com
 source_urls:
-  - https://downloads.canon.com/nw/brochures/pdf/projector/realis-wux10-mark-ii-commands.pdf
-retrieved_at: 2026-04-30T04:33:04.493Z
-last_checked_at: 2026-06-02T22:04:53.731Z
+  - https://downloads.canon.com/cpr/software/projectors/REALiS_WUX10_User-Manual.pdf
+retrieved_at: 2026-09-26T14:23:19.942Z
+last_checked_at: 2026-09-26T14:23:19.942Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:04:53.731Z
+checked_at: 2026-09-26T14:23:19.942Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+summary: "Exact original WUX10 full-manual scope verified:11 parameterized serial actions plus9 explicit GET units cover all p136 families and selector values;ASCII/hex/CR,19200 8N2,pinout,cooling and restart guidance match;no MarkII commands or undocumented HTTP wire API imported;auth,numeric bounds and literal replies remain unresolved. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "no TCP/IP or network control protocol documented in source"
 - "response format for GET commands not documented in source"
 - "valid value ranges for brightness, sharpness, contrast not stated in source"
-- "command timing, delays, or retry behavior not documented in source"
+- "inter-command spacing and retry timing not documented in source"
 - "valid range not stated in source"
 - "response format not documented in source"
 - "value range and response format not documented in source"
 - "no settable continuous parameters with documented ranges found in source"
 - "no unsolicited notification events documented in source"
 - "no multi-step sequences documented in source"
-- "source does not document power-on sequencing requirements, warm-up/cool-down"
 - "response/acknowledgement format for all commands not documented"
 - "minimum delay between commands not documented"
-- "warm-up time after power on not documented"
-- "cool-down time after power off not documented"
 - "error response format not documented"
 ```
 

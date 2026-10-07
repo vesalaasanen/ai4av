@@ -20,21 +20,24 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-06-02T22:14:35.512Z
-generated_at: 2026-06-02T22:14:35.512Z
+last_checked_at: 2026-09-30T00:44:20.485Z
+generated_at: 2026-09-30T00:44:20.485Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "no firmware version or protocol revision stated in source"
+  - "source lists 55h for both Out 7 and Out 8; the query section uses 54h for Out 7."
+  - "source polarity set commands list 55h for both Out 7 and Out 8; the query section uses 54h for Out 7 and 55h for Out 8.\""
   - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+  - "source does not state whether any authentication, pairing, or challenge procedure is required to control the P4800."
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:35.512Z
+  checked_at: 2026-09-30T00:44:20.485Z
   matched_actions: 61
   action_count: 61
   confidence: medium
-  summary: "All 61 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 61 wire-literal actions and transport settings match; the source's documented bugs and polarity ambiguity are preserved. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -59,7 +62,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not explicitly state an authentication procedure or its absence
 ```
 
 **Cable note (from source):** P4800 uses a 7-wire RS-232 port. Crestron/AMX controllers use 5-wire. A custom cable is required. The P4800 requires 5-12 V on the DTR line; a 1 kOhm resistor is needed for a 5 V supply. All other wires pass straight through.
@@ -102,7 +105,7 @@ auth:
   params:
     - name: device_id
       type: integer
-      description: Device ID (0-15) set by DIP switches; sent as the second byte.
+      description: Device ID (0-15) set by DIP switches; encoded as the low nibble of the first byte (high nibble = Ch).
     - name: preset
       type: integer
       description: Preset number minus 1. Range 0 to 127 (i.e. presets 1 to 128).
@@ -280,6 +283,9 @@ auth:
       description: Output channel ID byte: 46h=Out 1 .. 4Dh=Out 8.
 
 # --- Outputs: Polarity ---
+# Source ambiguity: set-command polarity section uses 55h for both Output 7 and Output 8;
+# the query section uses 54h for Output 7 and 55h for Output 8. Set commands are transcribed
+# verbatim from the source per the documented ambiguity.
 - id: output_toggle_polarity
   label: Output Toggle Polarity
   kind: action
@@ -290,7 +296,7 @@ auth:
       description: Device ID 0-15.
     - name: output_id
       type: integer
-      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8. UNRESOLVED: source lists 55h for both Out 7 and Out 8; the query section uses 54h for Out 7.
 - id: output_force_polarity_positive
   label: Output Force Polarity (+)
   kind: action
@@ -301,7 +307,7 @@ auth:
       description: Device ID 0-15.
     - name: output_id
       type: integer
-      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8. UNRESOLVED: source lists 55h for both Out 7 and Out 8; the query section uses 54h for Out 7.
 - id: output_force_polarity_negative
   label: Output Force Polarity (-)
   kind: action
@@ -312,7 +318,7 @@ auth:
       description: Device ID 0-15.
     - name: output_id
       type: integer
-      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8.
+      description: Output polarity ID byte: 4Eh=Out 1, 4Fh=Out 2, 50h=Out 3, 51h=Out 4, 52h=Out 5, 53h=Out 6, 55h=Out 7, 55h=Out 8. UNRESOLVED: source lists 55h for both Out 7 and Out 8; the query section uses 54h for Out 7.
 
 # --- Outputs: +4/-10 scaling ---
 - id: output_toggle_scaling
@@ -905,7 +911,7 @@ auth:
 - id: output_polarity_state
   type: enum
   values: [positive, negative]
-  description: "Return string uses ID 4Eh..53h,54h,55h. <VA>=00h (+), 01h (-)."
+  description: "Return string uses ID 4Eh, 4Fh, 50h, 51h, 52h, 53h, 54h, 55h. <VA>=00h (+), 01h (-). UNRESOLVED: source polarity set commands list 55h for both Out 7 and Out 8; the query section uses 54h for Out 7 and 55h for Out 8."
 - id: output_scaling_state
   type: enum
   values: ["+4 dBu", "-10 dBV"]
@@ -974,7 +980,7 @@ auth:
 - id: device_id
   type: integer
   range: [0, 15]
-  description: "Set via DIP switches on the rear of the P4800. Sent as a single hex nibble."
+  description: "Set via DIP switches on the rear of the P4800. Sent as the low nibble of the first byte of the recall frame; sent as a single hex nibble in SysEx frames."
 ```
 
 ## Safety
@@ -986,11 +992,12 @@ interlocks: []
 
 ## Notes
 - Source flags four commands as BUG — DOES NOT WORK: Mixer Output Toggle Mute, Mixer Output Toggle Polarity, Mixpoint Toggle Activation, Mixer Output Change Volume. These are still emitted above for completeness because the source lists them as documented rows.
-- The source lists Output 7 and Output 8 polarity with the same ID byte 55h in the polarity section (4Eh, 4Fh, 50h, 51h, 52h, 53h, 55h, 55h). The query section uses 54h for Output 7. The set commands are transcribed verbatim from the source; the discrepancy is in the source, not introduced here.
+- The source polarity set-command section lists Output 7 and Output 8 with the same ID byte 55h (4Eh, 4Fh, 50h, 51h, 52h, 53h, 55h, 55h). The query section uses 54h for Output 7 and 55h for Output 8. The set commands are transcribed verbatim from the source; the discrepancy is in the source, not introduced here.
 - NOUTPUTS equals 8 when no crossover/splitter is in the preset; each crossover/splitter channel reduces it. NMIXPOINTS = 4 * NOUTPUTS.
 - The P4800 requires 5-12 V on DTR; a 1 kOhm resistor to a 5 V supply is documented.
 - Preset recall uses a short 2-byte frame (C <n> h <pp> h), not a full SysEx frame; all other commands use the F0h..F7h SysEx frame.
 - After every set or query, the P4800 echoes the command and then sends a return string; the return-string device-ID byte is <Device ID + 10h>.
+- UNRESOLVED: source does not state whether any authentication, pairing, or challenge procedure is required to control the P4800.
 
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
 
@@ -1002,25 +1009,28 @@ source_domains:
 source_urls:
   - https://content-files.shure.com/KnowledgeBaseFiles/p4800_rs232_commands.pdf
 retrieved_at: 2026-04-30T04:29:02.308Z
-last_checked_at: 2026-06-02T22:14:35.512Z
+last_checked_at: 2026-09-30T00:44:20.485Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:35.512Z
+checked_at: 2026-09-30T00:44:20.485Z
 matched_actions: 61
 action_count: 61
 confidence: medium
-summary: "All 61 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 61 wire-literal actions and transport settings match; the source's documented bugs and polarity ambiguity are preserved. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "no firmware version or protocol revision stated in source"
+- "source lists 55h for both Out 7 and Out 8; the query section uses 54h for Out 7."
+- "source polarity set commands list 55h for both Out 7 and Out 8; the query section uses 54h for Out 7 and 55h for Out 8.\""
 - "source contains no safety warnings, interlock procedures, or power-on sequencing requirements."
+- "source does not state whether any authentication, pairing, or challenge procedure is required to control the P4800."
 - "firmware version compatibility not stated in source"
 ```
 

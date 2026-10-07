@@ -20,26 +20,29 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:38.787Z
-last_checked_at: 2026-06-02T22:11:07.562Z
-generated_at: 2026-06-02T22:11:07.562Z
+last_checked_at: 2026-09-29T23:08:27.987Z
+generated_at: 2026-09-29T23:08:27.987Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user"
+  - "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user. Authentication is not documented in source. Serial flow control setting is not documented (RTS/CTS lines are present in the pinout). Specific standby mode required for command acceptance varies by model."
+  - "command table lists 00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER; appendix lists different mapping; encoding cannot be confirmed for NP-PX803UL-WH Series)"
   - "settable parameters that are not discrete actions are covered by"
   - "no unsolicited event notifications described in source"
   - "no explicit multi-step macros described in source"
   - "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
-  - "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
+  - "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary by model"
   - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
+  - "Authentication is not documented in source"
+  - "Audio select command table (00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER) conflicts with appendix (00h=HDMI1, 01h=HDMI2, 02h=DisplayPort); encoding cannot be confirmed for this model"
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:11:07.562Z
-  matched_actions: 52
-  action_count: 52
+  checked_at: 2026-09-29T23:08:27.987Z
+  matched_actions: 53
+  action_count: 53
   confidence: medium
-  summary: "All 52 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 semantic actions and declared transport values match the generic projector guide; exact-model applicability remains unconfirmed. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,7 +54,7 @@ created_at: 2026-04-18
 ## Summary
 Professional laser projector supporting RS-232C serial and wired TCP/IP control. Supports power management, input routing, picture/sound mute, volume, lens control with memory, eco mode, and comprehensive status monitoring via query commands. Protocol uses proprietary hex-based command format with checksum validation.
 
-<!-- UNRESOLVED: LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user -->
+<!-- UNRESOLVED: LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user. Authentication is not documented in source. Serial flow control setting is not documented (RTS/CTS lines are present in the pinout). Specific standby mode required for command acceptance varies by model. -->
 
 ## Transport
 ```yaml
@@ -63,11 +66,11 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none
+  flow_control: UNRESOLVED  # source does not explicitly document flow control setting; RTS/CTS pins are wired in pinout
 addressing:
   port: 7142  # TCP port for LAN control
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not explicitly document authentication
 ```
 
 ## Traits
@@ -96,7 +99,7 @@ auth:
   params:
     - name: input
       type: integer
-      description: Input terminal hex code (e.g., 01h=COMPUTER, 06h=VIDEO, A1h=HDMI)
+      description: Input terminal hex code (see Appendix "Supplementary Information by Command")
 
 - id: picture_mute_on
   label: Picture Mute On
@@ -159,7 +162,7 @@ auth:
   params:
     - name: value
       type: integer
-      description: Aspect mode hex code (00h=AUTO, 01h=WIDE ZOOM, 02h=16:9, etc.)
+      description: Aspect mode hex code (see Appendix "Supplementary Information by Command")
 
 - id: lamp_adjust
   label: Lamp/Light Adjust
@@ -178,7 +181,7 @@ auth:
   params:
     - name: key_code
       type: integer
-      description: Remote control key code (e.g., 02h=POWER ON, 03h=POWER OFF, 0Ah=LEFT, 0Bh=RIGHT)
+      description: Remote control key code (WORD type; see Key code list. Examples: 02h/00h=POWER ON, 03h/00h=POWER OFF, 09h/00h=RIGHT, 0Ah/00h=LEFT, 0Bh/00h=ENTER)
 
 - id: shutter_close
   label: Shutter Close
@@ -223,6 +226,14 @@ auth:
       type: integer
       description: Operation (00h=MOVE, 01h=STORE, 02h=RESET)
 
+- id: reference_lens_memory_control
+  label: Reference Lens Memory Control
+  kind: action
+  params:
+    - name: operation
+      type: integer
+      description: Operation (00h=MOVE, 01h=STORE, 02h=RESET)
+
 - id: lens_memory_option_set
   label: Lens Memory Option Set
   kind: action
@@ -256,7 +267,7 @@ auth:
   params:
     - name: mode
       type: integer
-      description: Eco mode hex code (00h=OFF, 01h=ON/NORMAL, 02h/03h=ECO, etc.)
+      description: Eco mode hex code (see Appendix "Supplementary Information by Command")
 
 - id: lan_projector_name_set
   label: LAN Projector Name Set
@@ -264,7 +275,7 @@ auth:
   params:
     - name: name
       type: string
-      description: Projector name (up to 16 bytes, NUL-terminated)
+      description: Projector name (up to 16 bytes)
 
 - id: pip_picture_by_picture_set
   label: PIP/Picture by Picture Set
@@ -272,7 +283,7 @@ auth:
   params:
     - name: item
       type: integer
-      description: Item (00h=MODE, 01h=START POSITION, 02h=SUB INPUT, 09h=SUB INPUT 2, 0Ah=SUB INPUT 3)
+      description: Item (00h=MODE, 01h=START POSITION, 02h=SUB INPUT / SUB INPUT 1, 09h=SUB INPUT 2, 0Ah=SUB INPUT 3)
     - name: value
       type: integer
       description: Setting value
@@ -294,7 +305,7 @@ auth:
       description: Input terminal hex code
     - name: source
       type: integer
-      description: Audio source (00h=HDMI1, 01h=HDMI2, 02h=DisplayPort, etc.)
+      description: Audio source (UNRESOLVED: command table lists 00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER; appendix lists different mapping; encoding cannot be confirmed for NP-PX803UL-WH Series)
 
 - id: error_status_request
   label: Error Status Request
@@ -317,7 +328,7 @@ auth:
   params:
     - name: lamp
       type: integer
-      description: Lamp number (00h=Lamp 1, 01h=Lamp 2)
+      description: Lamp number (00h=Lamp 1, 01h=Lamp 2; 01h effective only for two-lamp projector models)
     - name: content
       type: integer
       description: Content type (01h=Lamp usage time, 04h=Lamp remaining life)
@@ -362,7 +373,7 @@ auth:
   params:
     - name: target
       type: integer
-      description: Adjusted value name (00h=BRIGHTNESS, 01h=CONTRAST, 02h=COLOR, 03h=HUE, 04h=SHARPNESS, 05h=VOLUME, 96h=LAMP ADJUST)
+      description: Adjusted value name (00h=PICTURE/BRIGHTNESS, 01h=PICTURE/CONTRAST, 02h=PICTURE/COLOR, 03h=PICTURE/HUE, 04h=PICTURE/SHARPNESS, 05h=VOLUME, 96h=LAMP ADJUST/LIGHT ADJUST)
 
 - id: setting_request
   label: Setting Request
@@ -423,7 +434,7 @@ auth:
   params:
     - name: item
       type: integer
-      description: Item (00h=MODE, 01h=START POSITION, 02h=SUB INPUT, 09h=SUB INPUT 2, 0Ah=SUB INPUT 3)
+      description: Item (00h=MODE, 01h=START POSITION, 02h=SUB INPUT / SUB INPUT 1, 09h=SUB INPUT 2, 0Ah=SUB INPUT 3)
 
 - id: edge_blending_mode_request
   label: Edge Blending Mode Request
@@ -457,9 +468,13 @@ auth:
 # 02h/00h: Memory allocation error
 # 02h/02h: Memory in use
 # 02h/03h: Value cannot be set
+# 02h/04h: Forced onscreen mute on
 # 02h/06h: Viewer error
 # 02h/07h: No signal
 # 02h/08h: Test pattern or filter displayed
+# 02h/09h: No PC card is inserted
+# 02h/0Ah: Memory operation error
+# 02h/0Ch: An entry list is displayed
 # 02h/0Dh: Power is off
 # 02h/0Eh: Command execution failed
 # 02h/0Fh: No authority
@@ -498,13 +513,16 @@ interlocks:
 ```
 
 ## Notes
-- Command format: `20h 88h <ID1> <ID2> 0Ch <DATA01>-<DATA12> <CKS>` with checksum calculated as low-order byte of sum of all preceding bytes
-- Response format varies by command type (22h, 23h, A0h, A2h, A3h prefixes)
-- ID1 = Control ID set on projector; ID2 = Model code (varies by model)
-- Serial connection uses D-SUB 9P with RxD/TxD/GND/RTS/CTS pins wired straight-through (not crossed)
-- Lamp and filter usage times update at 1-minute intervals despite 1-second resolution
-- <!-- UNRESOLVED: Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary -->
+- Generic command frame format (per source 2.1): `20h 88h <ID1> <ID2> 0Ch <DATA01>-<DATA12> <CKS>`. Source states "A series of strings enclosed in a frame represents a command or response"; the 20h-prefixed form is the generic control command frame, while individual commands (e.g. ERROR STATUS REQUEST, POWER ON) have their own documented request/response byte sequences in section 3.
+- Response prefixes vary by command type (22h, 23h, A0h, A2h, A3h per source sections 2.3 and 3).
+- ID1 = Control ID set on projector; ID2 = Model code (varies by model).
+- Checksum = low-order byte of sum of all preceding bytes (source 2.2).
+- Serial connection uses D-SUB 9P with RxD/TxD/GND/RTS/CTS pins wired straight-through (not crossed). Serial flow control setting is not documented.
+- Lamp and filter usage times update at 1-minute intervals despite 1-second resolution (source 3.15, 3.17).
+- <!-- UNRESOLVED: Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary by model -->
 - <!-- UNRESOLVED: Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required -->
+- <!-- UNRESOLVED: Authentication is not documented in source -->
+- <!-- UNRESOLVED: Audio select command table (00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER) conflicts with appendix (00h=HDMI1, 01h=HDMI2, 02h=DisplayPort); encoding cannot be confirmed for this model -->
 
 ## Provenance
 
@@ -514,30 +532,33 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:38.787Z
-last_checked_at: 2026-06-02T22:11:07.562Z
+last_checked_at: 2026-09-29T23:08:27.987Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:11:07.562Z
-matched_actions: 52
-action_count: 52
+checked_at: 2026-09-29T23:08:27.987Z
+matched_actions: 53
+action_count: 53
 confidence: medium
-summary: "All 52 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 semantic actions and declared transport values match the generic projector guide; exact-model applicability remains unconfirmed. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user"
+- "LAN port number (7142) stated for TCP/IP; serial baud rate options (115200/38400/19200/9600/4800) stated but specific rate must be configured by user. Authentication is not documented in source. Serial flow control setting is not documented (RTS/CTS lines are present in the pinout). Specific standby mode required for command acceptance varies by model."
+- "command table lists 00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER; appendix lists different mapping; encoding cannot be confirmed for NP-PX803UL-WH Series)"
 - "settable parameters that are not discrete actions are covered by"
 - "no unsolicited event notifications described in source"
 - "no explicit multi-step macros described in source"
 - "specific standby mode requirements vary by model; some require specific standby modes for serial vs LAN control"
-- "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary"
+- "Input terminal hex codes vary by model (documented in appendix as common values); aspect adjustment values vary by model"
 - "Specific standby mode required for command acceptance varies by model; source lists options but does not specify which is required"
+- "Authentication is not documented in source"
+- "Audio select command table (00h=terminal specified in DATA01, 01h=BNC, 02h=COMPUTER) conflicts with appendix (00h=HDMI1, 01h=HDMI2, 02h=DisplayPort); encoding cannot be confirmed for this model"
 - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 

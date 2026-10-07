@@ -27,21 +27,21 @@ source_urls:
   - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-05-13T21:29:23.231Z
-last_checked_at: 2026-06-02T22:14:32.517Z
-generated_at: 2026-06-02T22:14:32.517Z
+last_checked_at: 2026-10-07T13:06:50.844Z
+generated_at: 2026-10-07T13:06:50.844Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "MXWAPT GUI mute preference, external mute detailed configuration not fully documented"
   - "power voltage specifications, fault recovery sequences, firmware compatibility ranges not stated in source"
-  - "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility"
+  - "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:32.517Z
-  matched_actions: 9
-  action_count: 9
+  checked_at: 2026-10-07T13:06:50.844Z
+  matched_actions: 22
+  action_count: 22
   confidence: medium
-  summary: "All 9 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 action units match source command strings with correct shapes, and TCP/2202 is stated in the source; the spec covers the source catalogue. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -62,7 +62,7 @@ protocols:
 addressing:
   port: 2202
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -180,6 +180,14 @@ auth:
         - "ON"
         - "OFF"
       description: Flash auto-off after 60 seconds. Send to MXWNCS charger IP address.
+
+- id: get_batt_time_to_full
+  label: Get Battery Time To Full
+  kind: action
+  params:
+    - name: channel
+      type: integer
+      description: Channel number 1-8
 ```
 
 ## Feedbacks
@@ -187,11 +195,13 @@ auth:
 - id: chan_name_report
   label: Channel Name Report
   type: string
+  query_command: < GETx CHAN_NAME >
   description: 31-character channel name
 
 - id: device_id_report
   label: Device ID Report
   type: string
+  query_command: < GET DEVICE_ID >
   description: 31-character device ID
 
 - id: flash_report
@@ -213,53 +223,63 @@ auth:
   label: Transmitter Available
   type: enum
   values: [YES, NO]
+  query_command: < GETx TX_AVAILABLE >
   description: YES when microphone available, NO when off/unlinked/connecting
 
 - id: tx_status
   label: Transmitter Status
   type: enum
   values: [ACTIVE, MUTE, STANDBY, ON_CHARGER, UNKNOWN]
+  query_command: < GETx TX_STATUS >
   description: ACTIVE=undocked/powered on/unmuted. MUTE=undocked/powered on/muted. STANDBY=undocked/in standby/muted. ON_CHARGER=docked.
 
 - id: audio_gain_report
   label: Audio Gain Report
   type: integer
+  query_command: < GETx AUDIO_GAIN >
   description: ASCII 000-040, subtract 25 for GUI value
 
 - id: button_sts
   label: Microphone Button Status
   type: enum
   values: [ON, OFF]
+  query_command: < GETx BUTTON_STS >
   description: ON=pressed, OFF=released. Sent unsolicited when button state changes.
 
 - id: led_status_report
   label: LED Status Report
   type: string
+  query_command: < GETx LED_STATUS >
   description: 4-character rrgg - red LED state and green LED state. Values: ON/OF/ST/FL/PU/NC
 
 - id: tx_type
   label: Transmitter Type
   type: enum
   values: [MXW1, MXW2, MXW6, MXW8]
+  query_command: < GETx TX_TYPE >
 
 - id: batt_charge
   label: Battery Charge Percent
   type: integer
+  query_command: < GETx BATT_CHARGE >
   description: 0-100 percentage. 255 when microphone is off.
 
 - id: batt_run_time
   label: Battery Run Time
   type: integer
+  query_command: < GETx BATT_RUN_TIME >
   description: Minutes until microphone turns off. Special values: 65532=wall wart charger, 65533=on charger, 65534=calculating, 65535=off.
 
 - id: batt_health
   label: Battery Health
   type: integer
+  query_command: < GETx BATT_HEALTH >
   description: Percentage of factory original capacity. 255 when transmitter is off.
 
 - id: batt_time_to_full
   label: Battery Time To Full
   type: integer
+  query_command: < GETx BATT_TIME_TO_FULL >
   description: Minutes until fully charged. 65535=off, 65533=on and not on charger, 65534=fully charged.
 
 - id: error_report
@@ -358,7 +378,7 @@ interlocks:
 ## Notes
 Channel number `x` in commands is ASCII 1-8. Using 0 reports all channels. All messages are ASCII with angle-bracket delimiters `< >`. `yyyyyyyy` placeholders are 31-character strings for device/channel names. Special battery codes: 65532=wall wart charger power, 65533=on charger/not charging, 65534=calculating run time/fully charged, 65535=transmitter off. LED state values: ON=On, OF=Off, ST=Strobe, FL=Flash, PU=Pulse, NC=No Change. Metering minimum interval is 100ms, off by default. Flash auto-off after 60 seconds. Codes 255, 254, 253, 252 are special codes for 3-digit numbers; 65535, 65534, 65533, 65532 are special codes for 5-digit numbers — indicate device unavailable.
 
-<!-- UNRESOLVED: detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility -->
+<!-- UNRESOLVED: detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences -->
 
 ## Provenance
 
@@ -375,18 +395,18 @@ source_urls:
   - https://shure.stoplight.io/
   - https://pubs.shure.com/command-strings/MXW/en-US
 retrieved_at: 2026-05-13T21:29:23.231Z
-last_checked_at: 2026-06-02T22:14:32.517Z
+last_checked_at: 2026-10-07T13:06:50.844Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:32.517Z
-matched_actions: 9
-action_count: 9
+checked_at: 2026-10-07T13:06:50.844Z
+matched_actions: 22
+action_count: 22
 confidence: medium
-summary: "All 9 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 action units match source command strings with correct shapes, and TCP/2202 is stated in the source; the spec covers the source catalogue. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -394,7 +414,7 @@ summary: "All 9 spec actions traced to source (dip-safe re-verify). (3 unresolve
 ```yaml
 - "MXWAPT GUI mute preference, external mute detailed configuration not fully documented"
 - "power voltage specifications, fault recovery sequences, firmware compatibility ranges not stated in source"
-- "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences, firmware version compatibility"
+- "detailed mute preference GUI configuration steps, echo canceller mixer model compatibility, fault error recovery sequences"
 ```
 
 ---

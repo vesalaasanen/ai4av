@@ -11,7 +11,7 @@ compatible_with:
     - Atlona
   models:
     - AT-HDVS-200-RX
-  firmware: "\"2.0.36\""
+  firmware: 2.0.36
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-05-14T11:03:31.159Z
 last_checked_at: 2026-06-02T21:39:59.527Z
 generated_at: 2026-06-02T21:39:59.527Z
-firmware_coverage: "\"2.0.36\""
+firmware_coverage: 2.0.36
 protocol_coverage: []
 known_gaps:
   - "default baud rate for RS-232 2 (CSpara) control port not stated in source"

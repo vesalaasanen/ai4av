@@ -12,7 +12,7 @@ compatible_with:
     - "APC by Schneider Electric"
   models:
     - "Smart UPS (North America)"
-  firmware: "\""
+  firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -25,7 +25,7 @@ source_urls:
 retrieved_at: 2026-06-14T21:11:17.558Z
 last_checked_at: 2026-06-16T07:00:46.449Z
 generated_at: 2026-06-16T07:00:46.449Z
-firmware_coverage: "\""
+firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "exact Smart-UPS model SKUs covered by the \"Smart UPS (North America)\" family are not enumerated in the source; the source lists reference models (250/400/600/900/1250/2000 and 3G 450/700/1000/1400/2200/3000 plus RM/XL derivatives) as examples only."

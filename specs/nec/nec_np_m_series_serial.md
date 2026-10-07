@@ -96,8 +96,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:10.350Z
-last_checked_at: 2026-06-02T22:10:52.002Z
-generated_at: 2026-06-02T22:10:52.002Z
+last_checked_at: 2026-10-07T14:03:28.471Z
+generated_at: 2026-10-07T14:03:28.471Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -105,6 +105,7 @@ known_gaps:
   - "eco mode values vary by model — see supplementary tables in source"
   - "aspect values vary by model — see supplementary tables in source"
   - "RTS/CTS pins wired but flow control mode not stated"
+  - "source does not state whether authentication is required"
   - "no continuously settable parameters beyond discrete actions"
   - "no unsolicited event/notification mechanism described in source"
   - "no multi-step macro sequences described in source"
@@ -117,11 +118,11 @@ known_gaps:
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:10:52.002Z
-  matched_actions: 28
-  action_count: 28
+  checked_at: 2026-10-07T14:03:28.471Z
+  matched_actions: 53
+  action_count: 53
   confidence: medium
-  summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 action units (28 actions, 25 query feedbacks) match the source's 53-command list with correct bytes; transport supported. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -149,7 +150,7 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: RTS/CTS pins wired but flow control mode not stated
+  flow_control: UNRESOLVED  # UNRESOLVED: RTS/CTS pins wired but flow control mode not stated
   connector: "D-SUB 9P (PC CONTROL port)"
   pinout:
     2: RxD
@@ -158,7 +159,7 @@ serial:
     7: RTS
     8: CTS
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: source does not state whether authentication is required
 ```
 
 ## Traits
@@ -306,7 +307,7 @@ actions:
     params:
       - name: key_code
         type: integer
-        description: "WORD key code - examples: 0200h=POWER ON, 0300h=POWER OFF, 0500h=AUTO, 0600h=MENU, 0700h=UP, 0800h=DOWN, 0900h=RIGHT, 0A00h=LEFT, 0B00h=ENTER, 0C00h=EXIT, 8400h=VOLUME UP, 8500h=VOLUME DOWN, 8A00h=FREEZE"
+        description: "WORD key code (low byte, high byte) - examples: 0002h=POWER ON, 0003h=POWER OFF, 0005h=AUTO, 0006h=MENU, 0007h=UP, 0008h=DOWN, 0009h=RIGHT, 000Ah=LEFT, 000Bh=ENTER, 000Ch=EXIT, 0084h=VOLUME UP, 0085h=VOLUME DOWN, 008Ah=FREEZE"
     notes: "Response DATA01: 00h=success, FFh=error."
 
   - id: shutter_close
@@ -471,13 +472,15 @@ feedbacks:
     label: "Error Status"
     type: binary_bitmap
     command_bytes: "00h 88h 00h 00h 00h 88h"
+    query_command: "009. ERROR STATUS REQUEST"
     response_bytes: "20h 88h <ID1> <ID2> 0Ch <DATA01-12> <CKS>"
-    description: "12-byte error bitmap. Bits include: cover error, fan error, temperature error, power error, lamp off, lamp replacement moratorium, lamp usage exceeded, formatter error, FPGA error, lens not installed, interlock switch open."
+    description: "12-byte error bitmap. Bits include: cover error, fan error, temperature error, power error, lamp off, lamp replacement moratorium, lamp usage exceeds limit, lamp not present, mirror cover error, ballast communication error, iris calibration error, lens not installed, interlock switch open, system error (Slave CPU/Formatter), portrait cover side up."
 
   - id: projector_information
     label: "Projector Information"
     type: object
     command_bytes: "03h 8Ah 00h 00h 00h 8Dh"
+    query_command: "037. INFORMATION REQUEST"
     response_bytes: "23h 8Ah <ID1> <ID2> 62h <DATA01-98> <CKS>"
     fields:
       - name: projector_name
@@ -494,6 +497,7 @@ feedbacks:
     label: "Filter Usage Information"
     type: object
     command_bytes: "03h 95h 00h 00h 00h 98h"
+    query_command: "037-3. FILTER USAGE INFORMATION REQUEST"
     response_bytes: "23h 95h <ID1> <ID2> 08h <DATA01-08> <CKS>"
     fields:
       - name: filter_usage_seconds
@@ -507,6 +511,7 @@ feedbacks:
     label: "Lamp Information"
     type: object
     command_bytes: "03h 96h 00h 00h 02h <DATA01> <DATA02> <CKS>"
+    query_command: "037-4. LAMP INFORMATION REQUEST 3"
     response_bytes: "23h 96h <ID1> <ID2> 06h <DATA01-06> <CKS>"
     params:
       - name: target
@@ -522,6 +527,7 @@ feedbacks:
     label: "Carbon Savings Information"
     type: object
     command_bytes: "03h 9Ah 00h 00h 01h <DATA01> <CKS>"
+    query_command: "037-6. CARBON SAVINGS INFORMATION REQUEST"
     response_bytes: "23h 9Ah <ID1> <ID2> 09h <DATA01-09> <CKS>"
     params:
       - name: target
@@ -538,6 +544,7 @@ feedbacks:
     label: "Running Status"
     type: object
     command_bytes: "00h 85h 00h 00h 01h 01h 87h"
+    query_command: "078-2. RUNNING STATUS REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 10h <DATA01-16> <CKS>"
     fields:
       - name: power_status
@@ -557,6 +564,7 @@ feedbacks:
     label: "Input Status"
     type: object
     command_bytes: "00h 85h 00h 00h 01h 02h 88h"
+    query_command: "078-3. INPUT STATUS REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 10h <DATA01-16> <CKS>"
     fields:
       - name: signal_switch
@@ -570,14 +578,21 @@ feedbacks:
       - name: signal_type_2
         bytes: DATA04
         values: ["01h=COMPUTER", "02h=VIDEO", "03h=S-VIDEO", "04h=COMPONENT", "07h=VIEWER(1-5)", "20h=DVI-D", "21h=HDMI", "22h=DisplayPort", "23h=VIEWER(6-10)", "FFh=Not Source Input"]
+      - name: signal_list_type
+        bytes: DATA05
+        values: ["00h=Default", "01h=User", "FFh=Not supported"]
+      - name: test_pattern_display
+        bytes: DATA06
+        values: ["00h=Not displayed", "01h=Displayed", "FFh=Not supported"]
       - name: content_displayed
         bytes: DATA09
-        values: ["00h=Video signal", "01h=No signal", "02h=Viewer", "03h=Test pattern", "04h=LAN"]
+        values: ["00h=Video signal", "01h=No signal", "02h=Viewer", "03h=Test pattern", "04h=LAN", "FFh=Not supported"]
 
   - id: mute_status
     label: "Mute Status"
     type: object
     command_bytes: "00h 85h 00h 00h 01h 03h 89h"
+    query_command: "078-4. MUTE STATUS REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 10h <DATA01-16> <CKS>"
     fields:
       - name: picture_mute
@@ -600,6 +615,7 @@ feedbacks:
     label: "Model Name"
     type: string
     command_bytes: "00h 85h 00h 00h 01h 04h 8Ah"
+    query_command: "078-5. MODEL NAME REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 20h <DATA01-32> <CKS>"
     description: "Model name (NUL terminated, up to 32 bytes)"
 
@@ -607,6 +623,7 @@ feedbacks:
     label: "Cover Status"
     type: enum
     command_bytes: "00h 85h 00h 00h 01h 05h 8Bh"
+    query_command: "078-6. COVER STATUS REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 01h <DATA01> <CKS>"
     values: ["00h=Normal (cover opened)", "01h=Cover closed"]
 
@@ -614,6 +631,7 @@ feedbacks:
     label: "Lens Position"
     type: object
     command_bytes: "02h 1Ch 00h 00h 02h <DATA01> 00h <CKS>"
+    query_command: "053-1. LENS CONTROL REQUEST"
     response_bytes: "22h 1Ch <ID1> <ID2> 08h <DATA01> 00h <DATA02-07> <CKS>"
     params:
       - name: target
@@ -633,6 +651,7 @@ feedbacks:
     label: "Lens Information"
     type: binary_bitmap
     command_bytes: "02h 22h 00h 00h 01h 00h 25h"
+    query_command: "053-7. LENS INFORMATION REQUEST"
     response_bytes: "22h 22h <ID1> <ID2> 02h 00h <DATA01> <CKS>"
     description: "Operation status per lens function. Bit0=Lens memory, Bit1=Zoom, Bit2=Focus, Bit3=Lens Shift H, Bit4=Lens Shift V. 0=Stop, 1=During operation."
 
@@ -640,6 +659,7 @@ feedbacks:
     label: "Lens Memory Option"
     type: object
     command_bytes: "02h 20h 00h 00h 01h <DATA01> <CKS>"
+    query_command: "053-5. LENS MEMORY OPTION REQUEST"
     response_bytes: "22h 20h <ID1> <ID2> 02h <DATA01> <DATA02> <CKS>"
     params:
       - name: target
@@ -652,6 +672,7 @@ feedbacks:
     label: "Lens Profile"
     type: enum
     command_bytes: "02h 28h 00h 00h 00h 2Ah"
+    query_command: "053-11. LENS PROFILE REQUEST"
     response_bytes: "22h 28h <ID1> <ID2> 02h <DATA01> <DATA02> <CKS>"
     values: ["00h=Profile 1", "01h=Profile 2"]
 
@@ -659,6 +680,7 @@ feedbacks:
     label: "Gain Parameter"
     type: object
     command_bytes: "03h 05h 00h 00h 03h <DATA01> 00h 00h <CKS>"
+    query_command: "060-1. GAIN PARAMETER REQUEST 3"
     response_bytes: "23h 05h <ID1> <ID2> 10h <DATA01-16> <CKS>"
     params:
       - name: name
@@ -675,11 +697,19 @@ feedbacks:
         bytes: "DATA06-07"
       - name: current_value
         bytes: "DATA08-09"
+      - name: wide_adjustment_width
+        bytes: "DATA10-11"
+      - name: narrow_adjustment_width
+        bytes: "DATA12-13"
+      - name: default_validity
+        bytes: DATA14
+        values: ["00h=Default invalid", "01h=Default valid"]
 
   - id: setting_information
     label: "Setting Information"
     type: object
     command_bytes: "00h 85h 00h 00h 01h 00h 86h"
+    query_command: "078-1. SETTING REQUEST"
     response_bytes: "20h 85h <ID1> <ID2> 20h <DATA01-32> <CKS>"
     fields:
       - name: base_model_type
@@ -695,6 +725,7 @@ feedbacks:
     label: "Eco Mode"
     type: integer
     command_bytes: "03h B0h 00h 00h 01h 07h BBh"
+    query_command: "097-8. ECO MODE REQUEST"
     response_bytes: "23h B0h <ID1> <ID2> 02h 07h <DATA01> <CKS>"
     description: "Eco mode value (varies by model - see supplementary tables)"
 
@@ -702,6 +733,7 @@ feedbacks:
     label: "Projector Name"
     type: string
     command_bytes: "03h B0h 00h 00h 01h 2Ch E0h"
+    query_command: "097-45. LAN PROJECTOR NAME REQUEST"
     response_bytes: "23h B0h <ID1> <ID2> 12h 2Ch <DATA01-17> <CKS>"
     description: "Projector name (NUL terminated, up to 17 bytes)"
 
@@ -709,6 +741,7 @@ feedbacks:
     label: "MAC Address"
     type: string
     command_bytes: "03h B0h 00h 00h 02h 9Ah 00h 4Fh"
+    query_command: "097-155. LAN MAC ADDRESS STATUS REQUEST2"
     response_bytes: "23h B0h <ID1> <ID2> 08h 9Ah 00h <DATA01-06> <CKS>"
     description: "6-byte MAC address"
 
@@ -716,6 +749,7 @@ feedbacks:
     label: "PIP/Picture by Picture Status"
     type: object
     command_bytes: "03h B0h 00h 00h 02h C5h <DATA01> <CKS>"
+    query_command: "097-198. PIP/PICTURE BY PICTURE REQUEST"
     response_bytes: "23h B0h <ID1> <ID2> 03h C5h <DATA01> <DATA02> <CKS>"
     params:
       - name: target
@@ -725,14 +759,23 @@ feedbacks:
     label: "Edge Blending Status"
     type: enum
     command_bytes: "03h B0h 00h 00h 02h DFh 00h 94h"
+    query_command: "097-243-1. EDGE BLENDING MODE REQUEST"
     response_bytes: "23h B0h <ID1> <ID2> 03h DFh 00h <DATA01> <CKS>"
     values: ["00h=OFF", "01h=ON"]
 
   - id: information_string
     label: "Information String"
-    type: string
+    type: object
     command_bytes: "00h D0h 00h 00h 03h 00h <DATA01> 01h <CKS>"
+    query_command: "084. INFORMATION STRING REQUEST"
     response_bytes: "20h D0h <ID1> <ID2> LEN <DATA01> 01h <DATA02-??> <CKS>"
+    fields:
+      - name: string_length
+        bytes: DATA02
+        description: "Label/information string length (excluding NUL characters)"
+      - name: label_or_string
+        bytes: "DATA03-??"
+        description: "Label/information strings (NUL terminated)"
     params:
       - name: info_type
         description: "03h=Horizontal sync frequency, 04h=Vertical sync frequency"
@@ -741,6 +784,7 @@ feedbacks:
     label: "Base Model Type"
     type: object
     command_bytes: "00h BFh 00h 00h 01h 00h C0h"
+    query_command: "305-1. BASE MODEL TYPE REQUEST"
     response_bytes: "20h BFh <ID1> <ID2> 10h 00h <DATA01-15> <CKS>"
     fields:
       - name: base_model_type
@@ -748,11 +792,14 @@ feedbacks:
       - name: model_name
         bytes: "DATA03-11"
         description: "NUL terminated"
+      - name: base_model_type_alt
+        bytes: "DATA12-13"
 
   - id: serial_number
     label: "Serial Number"
     type: string
     command_bytes: "00h BFh 00h 00h 02h 01h 06h C8h"
+    query_command: "305-2. SERIAL NUMBER REQUEST"
     response_bytes: "20h BFh <ID1> <ID2> 12h 01h 06h <DATA01-16> <CKS>"
     description: "Serial number (NUL terminated, up to 16 bytes)"
 
@@ -760,6 +807,7 @@ feedbacks:
     label: "Basic Information"
     type: object
     command_bytes: "00h BFh 00h 00h 01h 02h C2h"
+    query_command: "305-3. BASIC INFORMATION REQUEST"
     response_bytes: "20h BFh <ID1> <ID2> 10h 02h <DATA01-15> <CKS>"
     fields:
       - name: operation_status
@@ -768,6 +816,14 @@ feedbacks:
       - name: content_displayed
         bytes: DATA02
         values: ["00h=Video signal", "01h=No signal", "02h=Viewer", "03h=Test pattern", "04h=LAN", "05h=Test pattern (user)", "10h=Signal switching"]
+      - name: signal_type_1
+        bytes: DATA03
+      - name: signal_type_2
+        bytes: DATA04
+        values: ["01h=COMPUTER", "02h=VIDEO", "03h=S-VIDEO", "04h=COMPONENT", "07h=VIEWER(1-5)", "20h=DVI-D", "21h=HDMI", "22h=DisplayPort", "23h=VIEWER(6-10)", "FFh=Not Source Input"]
+      - name: display_signal_type
+        bytes: DATA05
+        description: "Effective only when DATA04 is 02h (VIDEO) or 03h (S-VIDEO)"
       - name: video_mute
         bytes: DATA06
         values: ["00h=Off", "01h=On"]
@@ -817,6 +873,8 @@ notes: >
 - **Lamp usage:** Updated at 1-minute intervals despite 1-second precision.
 - **Lens control:** Continuous drive mode (7Fh/81h) requires explicit stop command (00h).
 - Picture mute and sound mute are automatically cancelled on input switch or signal switch.
+- **Authentication:** UNRESOLVED — source does not state whether authentication is required.
+- **Serial flow control:** UNRESOLVED — RTS/CTS pins are wired but the source does not state the flow control mode.
 
 <!-- UNRESOLVED: default baud rate not stated — multiple rates supported -->
 <!-- UNRESOLVED: exact input terminal codes are model-dependent and listed in supplementary tables -->
@@ -834,18 +892,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:52:10.350Z
-last_checked_at: 2026-06-02T22:10:52.002Z
+last_checked_at: 2026-10-07T14:03:28.471Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:10:52.002Z
-matched_actions: 28
-action_count: 28
+checked_at: 2026-10-07T14:03:28.471Z
+matched_actions: 53
+action_count: 53
 confidence: medium
-summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 action units (28 actions, 25 query feedbacks) match the source's 53-command list with correct bytes; transport supported. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -855,6 +913,7 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (14 unresol
 - "eco mode values vary by model — see supplementary tables in source"
 - "aspect values vary by model — see supplementary tables in source"
 - "RTS/CTS pins wired but flow control mode not stated"
+- "source does not state whether authentication is required"
 - "no continuously settable parameters beyond discrete actions"
 - "no unsolicited event/notification mechanism described in source"
 - "no multi-step macro sequences described in source"

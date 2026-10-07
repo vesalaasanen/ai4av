@@ -25,12 +25,14 @@ source_urls:
   - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
   - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
-last_checked_at: 2026-06-02T22:15:48.968Z
-generated_at: 2026-06-02T22:15:48.968Z
+last_checked_at: 2026-10-01T08:01:37.460Z
+generated_at: 2026-10-01T08:01:37.460Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "matrix mode not available on M-9000M2 series (mixer mode only)."
+  - "authentication procedure not stated in source."
+  - "source does not state authentication procedure"
   - "no discrete settable parameters beyond action commands documented"
   - "no unsolicited event notifications documented in source"
   - "no multi-step macro sequences documented"
@@ -38,11 +40,11 @@ known_gaps:
   - "connector pinout details beyond TX/RX/GND not confirmed"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:48.968Z
+  checked_at: 2026-10-01T08:01:37.460Z
   matched_actions: 16
   action_count: 16
   confidence: medium
-  summary: "All 16 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 16 spec actions map to documented source opcodes (91H/93H/96H/95H/F1H/92H/F4H/AAH/A1H/ABH/A2H/ACH/87H/F2H/ADH/AEH); transport values match §2 verbatim; no fabricated commands. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -55,6 +57,7 @@ created_at: 2026-04-30
 RS-232C protocol spec for the 9000M2 Series Mixer/Amplifier. Controls fader gain, crosspoint routing, tone/EQ, filter, phantom power, paging events, speaker presets, and ANC. Supports 8 input + 8 output channels. Firmware v1.00+.
 
 <!-- UNRESOLVED: matrix mode not available on M-9000M2 series (mixer mode only). -->
+<!-- UNRESOLVED: authentication procedure not stated in source. -->
 
 ## Transport
 ```yaml
@@ -72,7 +75,7 @@ serial:
     rx: 3
     gnd: 5
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: source does not state authentication procedure
 ```
 
 ## Traits
@@ -117,6 +120,9 @@ auth:
   label: Paging Output Fader Gain Set
   kind: action
   params:
+    - name: channel_attribute
+      type: integer
+      description: 01H=Output channel (Paging Output only)
     - name: channel_number
       type: integer
       description: "00H-07H (Paging Output ch 1-8)"
@@ -142,7 +148,7 @@ auth:
       description: "00H-07H"
     - name: value
       type: integer
-      description: "00H-51H = fixed gain (-∞ to +10dB), 60H-6FH = step down, 70H-7FH = step up"
+      description: "00H-51H = fixed gain (-∞ to +10dB), 60H-6FH = step down (1-16dB), 70H-7FH = step up (1-16dB)"
 
 - id: preset_memory_recall
   label: Preset Memory Recall
@@ -215,7 +221,7 @@ auth:
       description: "00H=0.3, 01H=0.5, 02H=0.7, 03H=1, 04H=1.5, 05H=2, 06H=3, 07H=5"
     - name: freq_value
       type: integer
-      description: "00H-1FH = 20Hz-20kHz (see EQ-FREQUENCY TABLE)"
+      description: "00H-1EH = 20Hz-20kHz (see EQ-FREQUENCY TABLE)"
 
 - id: loudness_compensation
   label: Loudness Compensation
@@ -246,7 +252,7 @@ auth:
       description: 00H=High Pass Filter, 01H=Low Pass Filter
     - name: frequency_value
       type: integer
-      description: "00H-1FH = frequency table value (OFF, 20Hz-20kHz)"
+      description: "00H-1FH = frequency table value (HPF: OFF, 20Hz-20kHz; LPF: 20Hz-20kHz, OFF)"
 
 - id: input_sensitivity
   label: Input Sensitivity Setting
@@ -380,24 +386,26 @@ source_urls:
   - https://www.toa-products.com/international/download/manual/m-9000m2_ce_mt1e.pdf
   - "https://www.toa-products.com/international/file.php?sid=4976"
 retrieved_at: 2026-04-30T12:37:28.723Z
-last_checked_at: 2026-06-02T22:15:48.968Z
+last_checked_at: 2026-10-01T08:01:37.460Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:48.968Z
+checked_at: 2026-10-01T08:01:37.460Z
 matched_actions: 16
 action_count: 16
 confidence: medium
-summary: "All 16 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 16 spec actions map to documented source opcodes (91H/93H/96H/95H/F1H/92H/F4H/AAH/A1H/ABH/A2H/ACH/87H/F2H/ADH/AEH); transport values match §2 verbatim; no fabricated commands. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "matrix mode not available on M-9000M2 series (mixer mode only)."
+- "authentication procedure not stated in source."
+- "source does not state authentication procedure"
 - "no discrete settable parameters beyond action commands documented"
 - "no unsolicited event notifications documented in source"
 - "no multi-step macro sequences documented"

@@ -21,14 +21,13 @@ source_urls:
   - https://stagetimer.io/docs/api-v1/
   - https://stagetimer.io/docs/integration-with-streamdeck-companion/
 retrieved_at: 2026-04-30T01:44:44.758Z
-last_checked_at: 2026-06-02T22:15:09.955Z
-generated_at: 2026-06-02T22:15:09.955Z
+last_checked_at: 2026-09-30T01:17:23.750Z
+generated_at: 2026-09-30T01:17:23.750Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "WebSocket socket event not fully documented (playback_status mentioned but not detailed)"
+  - "WebSocket socket event payload details provided for playback_status, room, message, current_timer/next_timer, flash, timers_changed, messages_changed; connection uses Socket.IO path /v1/socket.io with auth {room_id, api_key}"
   - "no standalone device configuration parameters found in source"
-  - "socket event \"playback_status\" mentioned but not fully documented;"
   - "no safety warnings or interlock procedures in source"
   - "WebSocket event documentation incomplete"
   - "create_timer response model not shown in source"
@@ -36,11 +35,11 @@ known_gaps:
   - "show_message/hide_message response model incomplete"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:09.955Z
+  checked_at: 2026-09-30T01:17:23.750Z
   matched_actions: 44
   action_count: 44
   confidence: medium
-  summary: "All 44 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 44 semantic-id actions map to documented endpoints with matching shapes and transport; all documented socket events are also represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,9 +49,9 @@ created_at: 2026-04-27
 # stagetimer.io Stagetimer API Control Spec
 
 ## Summary
-Cloud REST API for controlling Stagetimer stage timer rooms. Controls playback (start/stop/reset/jump), timer management (create/update/delete), room state (blackout/on-air/focus modes), and message overlays. Authentication via room-scoped or team-scoped API keys passed as query parameter or Bearer token.
+Cloud REST API for controlling Stagetimer stage timer rooms. Controls playback (start/stop/reset/jump), timer management (create/update/delete), room state (blackout/on-air/focus modes), and message overlays. Authentication via room-scoped or team-scoped API keys passed as `api_key` query parameter or `Authorization: Bearer` header; keys are JWT format and legacy 32-character room keys remain supported.
 
-<!-- UNRESOLVED: WebSocket socket event not fully documented (playback_status mentioned but not detailed) -->
+<!-- UNRESOLVED: WebSocket socket event payload details provided for playback_status, room, message, current_timer/next_timer, flash, timers_changed, messages_changed; connection uses Socket.IO path /v1/socket.io with auth {room_id, api_key} -->
 
 ## Transport
 ```yaml
@@ -71,7 +70,7 @@ rate_limit:
 ```yaml
 - powerable      # start/stop/reset playback commands present
 - routable       # timer selection (next/previous/select_timer) present
-- queryable      # get_status/get_room/get_logs/get_timer/get_all_timers present
+- queryable      # get_status/get_room/get_logs/get_timer/get_all_timers/get_all_messages/get_message/get_output_links present
 - levelable      # add_time/subtract_time/jump commands present
 ```
 
@@ -431,7 +430,7 @@ rate_limit:
     - name: labels
       type: array
       required: false
-      description: "Array of {name, color}; color must be URL-encoded"
+      description: "Array of {name, color}; color '#' must be URL-encoded as %23"
     - name: appearance
       type: string
       required: false
@@ -565,7 +564,7 @@ rate_limit:
       type: boolean
       required: false
       default: false
-      description: Fullscreen focus mode
+      description: Show the message in fullscreen focus mode, covering all other output elements.
 
 - id: hide_message
   label: Hide Message
@@ -580,6 +579,7 @@ rate_limit:
     - name: index
       type: integer
       required: false
+
 - id: show_or_hide_message
   label: Toggle Message
   kind: action
@@ -740,6 +740,7 @@ rate_limit:
       description: Unix timestamp ms
     - name: server_time
       type: integer
+      description: Unix timestamp ms
 
 - id: room_state
   label: Room State
@@ -793,6 +794,36 @@ rate_limit:
     - name: finish_time
       type: string
 
+- id: message_object
+  label: Message Object
+  type: object
+  fields:
+    - name: _id
+      type: string
+    - name: showing
+      type: boolean
+    - name: text
+      type: string
+    - name: color
+      type: string
+    - name: bold
+      type: boolean
+    - name: uppercase
+      type: boolean
+
+- id: output_link
+  label: Output Link
+  type: object
+  fields:
+    - name: id
+      type: string
+    - name: name
+      type: string
+    - name: index
+      type: integer
+    - name: url
+      type: string
+
 - id: api_response
   label: Standard API Response
   type: object
@@ -803,6 +834,172 @@ rate_limit:
       type: string
     - name: data
       type: object
+
+- id: socket_playback_status
+  label: Socket Event: playback_status
+  type: object
+  source: socket.io
+  fields:
+    - name: timer_id
+      type: string
+    - name: running
+      type: boolean
+    - name: start
+      type: integer
+      description: Unix timestamp ms
+    - name: finish
+      type: integer
+      description: Unix timestamp ms
+    - name: pause
+      type: integer
+      description: Unix timestamp ms
+    - name: server_time
+      type: integer
+      description: Unix timestamp ms
+
+- id: socket_room
+  label: Socket Event: room
+  type: object
+  source: socket.io
+  fields:
+    - name: name
+      type: string
+    - name: blackout
+      type: boolean
+    - name: focus_message
+      type: boolean
+      description: Deprecated; no longer live-updated via WebSocket
+    - name: on_air
+      type: boolean
+    - name: timezone
+      type: string
+
+- id: socket_message
+  label: Socket Event: message
+  type: object
+  source: socket.io
+  fields:
+    - name: _id
+      type: string
+    - name: showing
+      type: boolean
+    - name: text
+      type: string
+    - name: color
+      type: string
+    - name: bold
+      type: boolean
+    - name: uppercase
+      type: boolean
+
+- id: socket_current_timer
+  label: Socket Event: current_timer
+  type: object
+  source: socket.io
+  description: Full timer object or null. See timer_object.
+  fields:
+    - name: _id
+      type: string
+    - name: name
+      type: string
+    - name: speaker
+      type: string
+    - name: notes
+      type: string
+    - name: labels
+      type: array
+    - name: appearance
+      type: string
+    - name: type
+      type: string
+    - name: duration
+      type: string
+    - name: hours
+      type: integer
+    - name: minutes
+      type: integer
+    - name: seconds
+      type: integer
+    - name: wrap_up_yellow
+      type: integer
+    - name: wrap_up_red
+      type: integer
+    - name: trigger
+      type: string
+    - name: start_time
+      type: string
+    - name: finish_time
+      type: string
+
+- id: socket_next_timer
+  label: Socket Event: next_timer
+  type: object
+  source: socket.io
+  description: Full timer object or null. See timer_object.
+  fields:
+    - name: _id
+      type: string
+    - name: name
+      type: string
+    - name: speaker
+      type: string
+    - name: notes
+      type: string
+    - name: labels
+      type: array
+    - name: appearance
+      type: string
+    - name: type
+      type: string
+    - name: duration
+      type: string
+    - name: hours
+      type: integer
+    - name: minutes
+      type: integer
+    - name: seconds
+      type: integer
+    - name: wrap_up_yellow
+      type: integer
+    - name: wrap_up_red
+      type: integer
+    - name: trigger
+      type: string
+    - name: start_time
+      type: string
+    - name: finish_time
+      type: string
+
+- id: socket_flash
+  label: Socket Event: flash
+  type: object
+  source: socket.io
+  description: Emitted for manual flash only (not scheduled flashing on timer 0:00).
+  fields:
+    - name: count
+      type: integer
+
+- id: socket_timers_changed
+  label: Socket Event: timers_changed
+  type: object
+  source: socket.io
+  description: Array of {timer_id, change} entries; refresh via /get_all_timers.
+  fields:
+    - name: timer_id
+      type: string
+    - name: change
+      type: string
+
+- id: socket_messages_changed
+  label: Socket Event: messages_changed
+  type: object
+  source: socket.io
+  description: Array of {message_id, change} entries; refresh via /get_all_messages.
+  fields:
+    - name: message_id
+      type: string
+    - name: change
+      type: string
 ```
 
 ## Variables
@@ -814,8 +1011,25 @@ rate_limit:
 
 ## Events
 ```yaml
-# UNRESOLVED: socket event "playback_status" mentioned but not fully documented;
-# WebSocket connection details not provided in source
+# Socket.IO connection: wss/https://api.stagetimer.io path /v1/socket.io, auth {room_id, api_key}.
+# Socket is receive-only; does not accept currentState messages from clients.
+# On initial connect the server emits current state for: room, playback_status, current_timer, next_timer, message (if any).
+- id: playback_status
+  description: Time-related changes (start, stop, next, previous). Same data shape as Feedback playback_status.
+- id: room
+  description: Room/viewer events (blackout, on-air). focus_message is deprecated and no longer live-updated.
+- id: message
+  description: Message shown/hidden or active message updated.
+- id: current_timer
+  description: Currently selected timer (full timer object or null).
+- id: next_timer
+  description: Next timer after the selected one (full timer object or null).
+- id: flash
+  description: Manual flash triggered; payload {count}. Not sent for scheduled flashing at 0:00.
+- id: timers_changed
+  description: Array of {timer_id, change} on every timer mutation. Refresh via /get_all_timers.
+- id: messages_changed
+  description: Array of {message_id, change} on every message mutation. Refresh via /get_all_messages.
 ```
 
 ## Macros
@@ -831,7 +1045,7 @@ interlocks: []
 ```
 
 ## Notes
-All endpoints use GET requests with query parameters. Timestamps returned as Unix epoch milliseconds. Client must compute remaining time locally: if `running=true`, use `remaining = finish - Date.now()`; if `running=false`, use `remaining = finish - pause`. Room keys are rate-limited per room; team keys share budget across all team rooms. Legacy 32-character room keys (pre-3.4.0) remain functional.
+All endpoints use GET requests with query parameters. Timestamps returned as Unix epoch milliseconds. Client must compute remaining time locally: if `running=true`, use `remaining = finish - Date.now()`; if `running=false`, use `remaining = finish - pause`. Room keys are rate-limited per room; team keys share budget across all team rooms. Legacy 32-character room keys (pre-3.4.0) continue to work. Socket.IO endpoint at path `/v1/socket.io` over `https://api.stagetimer.io`; connect with `auth: {room_id, api_key}`. The socket is receive-only; the server pushes `room`, `playback_status`, `current_timer`, `next_timer`, and active `message` on connect. Standard error envelope: `{ ok: false, message: <human-readable> }` for 400 (invalid/missing parameters), 401 (missing/invalid API key), 404 (timer or room not found), 429 (rate limit exceeded).
 
 <!-- UNRESOLVED: WebSocket event documentation incomplete -->
 <!-- UNRESOLVED: create_timer response model not shown in source -->
@@ -847,26 +1061,25 @@ source_urls:
   - https://stagetimer.io/docs/api-v1/
   - https://stagetimer.io/docs/integration-with-streamdeck-companion/
 retrieved_at: 2026-04-30T01:44:44.758Z
-last_checked_at: 2026-06-02T22:15:09.955Z
+last_checked_at: 2026-09-30T01:17:23.750Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:09.955Z
+checked_at: 2026-09-30T01:17:23.750Z
 matched_actions: 44
 action_count: 44
 confidence: medium
-summary: "All 44 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 44 semantic-id actions map to documented endpoints with matching shapes and transport; all documented socket events are also represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "WebSocket socket event not fully documented (playback_status mentioned but not detailed)"
+- "WebSocket socket event payload details provided for playback_status, room, message, current_timer/next_timer, flash, timers_changed, messages_changed; connection uses Socket.IO path /v1/socket.io with auth {room_id, api_key}"
 - "no standalone device configuration parameters found in source"
-- "socket event \"playback_status\" mentioned but not fully documented;"
 - "no safety warnings or interlock procedures in source"
 - "WebSocket event documentation incomplete"
 - "create_timer response model not shown in source"

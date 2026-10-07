@@ -2,16 +2,16 @@
 spec_id: admin/nec-np502hl-np502wl
 schema_version: ai4av-public-spec-v1
 revision: 1
-title: "NEC NP502HL/NP502WL Control Spec"
+title: "NEC NP-P502HL/NP-P502WL Control Spec"
 manufacturer: NEC
-model_family: NP502HL
+model_family: NP-P502HL
 aliases: []
 compatible_with:
   manufacturers:
     - NEC
   models:
-    - NP502HL
-    - NP502WL
+    - NP-P502HL
+    - NP-P502WL
   firmware: ""
   hardware_revisions: []
   protocol_versions: []
@@ -20,38 +20,36 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-05-13T08:19:37.838Z
-last_checked_at: 2026-09-15T22:16:48.556Z
-generated_at: 2026-09-15T22:16:48.556Z
+retrieved_at: 2026-09-26T14:23:17.847Z
+last_checked_at: 2026-09-26T14:23:17.847Z
+generated_at: 2026-09-26T14:23:17.847Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "source is a generic NEC projector protocol manual (BDT140013 Rev7.1) covering multiple models; specific NP502HL/NP502WL command set not differentiated in this document."
   - "flow control not explicitly stated; D-SUB 9P pinout shows RTS/CTS lines exist but config not stated"
-  - "gain parameter values, aspect values, eco mode values, PIP/PBP sub-input values, edge blending settings all reference \"Appendix Supplementary Information by Command\" which is not included in source"
   - "source does not document unsolicited notifications"
   - "source does not document multi-step sequences"
   - "source mentions portrait cover interlock switch in error status DATA09 bit1 (\"The interlock switch is open\") but does not document procedure or behavior in detail"
-  - "input terminal codes (used in 018 INPUT SW CHANGE, 319-10 AUDIO SELECT SET); aspect ratio codes; eco mode values; PIP/PBP sub-input values; base model type codes"
+  - "Audio Select Set is explicitly supported, but the principal manual defines DATA01=input terminal / DATA02=setting while appendix p.45 labels its input-name table DATA02. That appendix lists 00h HDMI1, 01h HDMI2, 02h DisplayPort, 03h ETHERNET/LAN, 04h USB-A, 05h USB-B, 09h HDBaseT for other models, including this pair, without resolving the field-label conflict or absent-port combinations. No guessed terminal-byte mapping is supplied. Firmware range and serial flow-control requirements are not established by this source."
 verification:
   verdict: verified
-  checked_at: 2026-09-15T22:16:48.556Z
-  matched_actions: 53
-  action_count: 53
+  checked_at: 2026-09-26T14:23:17.847Z
+  matched_actions: 33
+  action_count: 33
   confidence: medium
-  summary: "All 53 spec actions match source commands 1:1 with identical hex payloads and transport values substantiated verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All33 target-supported command families and their request shapes match the primary manual; unknown flow control and the audio-select appendix field-label conflict remain explicitly unresolved. Authentication is explicitly unresolved. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
 created_at: 2026-09-03
 ---
 
-# NEC NP502HL/NP502WL Control Spec
+# NEC NP-P502HL/NP-P502WL Control Spec
 
 ## Summary
-NEC NP502HL and NP502WL projector control via RS-232C serial (D-SUB 9P PC CONTROL port) and wired/wireless LAN (TCP port 7142). Commands use binary framed protocol with checksum.
+NEC NP-P502HL and NP-P502WL projector control via RS-232C serial (D-SUB 9P PC CONTROL port) and wired/wireless LAN (TCP port 7142). Commands use binary framed protocol with checksum.
 
-<!-- UNRESOLVED: source is a generic NEC projector protocol manual (BDT140013 Rev7.1) covering multiple models; specific NP502HL/NP502WL command set not differentiated in this document. -->
+Scope: NP-P502HL and NP-P502WL, filtered using BDT140014 Appendix revision 29.0, supported-command table p.20. The stable catalog identifiers retain their historical spelling. This is not a command set for all NEC projectors.
 
 ## Transport
 ```yaml
@@ -61,26 +59,26 @@ protocols:
 addressing:
   port: 7142
 serial:
-  baud_rate: 115200  # highest of supported list; 38400/19200/9600/4800 also supported
+  baud_rate: 38400  # selected supported rate; configure host and projector alike; not a claimed factory default
   data_bits: 8
   parity: none
   stop_bits: 1
   flow_control: none # UNRESOLVED: flow control not explicitly stated; D-SUB 9P pinout shows RTS/CTS lines exist but config not stated
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not establish authentication requirements
 ```
 
 ## Traits
 ```yaml
 - powerable  # inferred from power on/off commands (015, 016)
-- routable   # inferred from input switch command (018) and PIP/PBP commands
+- routable   # inferred from input switch command (018) and target input codes
 - queryable  # inferred from extensive status query commands
-- levelable  # inferred from picture/volume/lamp adjust commands
+- levelable  # inferred from picture/volume adjust commands
 ```
 
 ## Actions
 ```yaml
-# Frame format: header(2) ID1 ID2 LEN DATA... CKS
+# Request frame: header(2) 00h 00h LEN DATA... CKS; response ID1/ID2 are not request substitutions
 # Response prefix echoes header with 2xh (success) or Axh (error)
 
 - id: error_status_request
@@ -108,7 +106,7 @@ auth:
   params:
     - name: DATA01
       type: integer
-      description: Input terminal code (see Appendix "Supplementary Information by Command")
+      description: "One byte: 01h=COMPUTER, 06h=VIDEO, A1h=HDMI1, A2h=HDMI2, BFh=HDBaseT, 23h=APPS (appendix pp.25–28)"
 
 - id: picture_mute_on
   label: Picture Mute On
@@ -186,28 +184,7 @@ auth:
   params:
     - name: DATA01
       type: integer
-      description: Aspect value (see Appendix "Supplementary Information by Command")
-
-- id: other_adjust
-  label: Other Adjust (Lamp/Light)
-  kind: action
-  command: "03h 10h 00h 00h 05h {DATA01} {DATA02} {DATA03} {DATA04} {DATA05} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Adjustment target high byte (96h)
-    - name: DATA02
-      type: integer
-      description: Adjustment target low byte (FFh for LAMP ADJUST / LIGHT ADJUST)
-    - name: DATA03
-      type: integer
-      description: Adjustment mode (00h=absolute, 01h=relative)
-    - name: DATA04
-      type: integer
-      description: Adjustment value low-order 8 bits
-    - name: DATA05
-      type: integer
-      description: Adjustment value high-order 8 bits
+      description: "One byte: 00h=AUTO, 02h=16:9, 03h=NATIVE, 04h=4:3, 05h=15:9, 06h=16:10, 07h=LETTER BOX (appendix pp.29–30)"
 
 - id: information_request
   label: Information Request
@@ -215,19 +192,14 @@ auth:
   command: "03h 8Ah 00h 00h 00h 8Dh"  # literal from source
   params: []
 
-- id: filter_usage_information_request
-  label: Filter Usage Information Request
-  kind: query
-  command: "03h 95h 00h 00h 00h 98h"  # literal from source
-  params: []
-
 - id: lamp_information_request
-  label: Lamp Information Request  kind: query
+  label: Lamp Information Request
+  kind: query
   command: "03h 96h 00h 00h 02h {DATA01} {DATA02} {CKS}"
   params:
     - name: DATA01
       type: integer
-      description: Lamp number (00h=Lamp 1, 01h=Lamp 2; Lamp 2 only for two-lamp models)
+      description: Light-source index 00h; 01h is reserved for two-lamp models and is not advertised for these models
     - name: DATA02
       type: integer
       description: Content (01h=usage time seconds, 04h=remaining life percent)
@@ -248,130 +220,10 @@ auth:
   params:
     - name: DATA01
       type: integer
-      description: Key code high byte (see Key code list)
+      description: Key code low-order byte; see the complete Remote key codes list in Notes
     - name: DATA02
       type: integer
-      description: Key code low byte (always 00h per source table)
-
-- id: shutter_close
-  label: Shutter Close
-  kind: action
-  command: "02h 16h 00h 00h 00h 18h"  # literal from source
-  params: []
-
-- id: shutter_open
-  label: Shutter Open
-  kind: action
-  command: "02h 17h 00h 00h 00h 19h"  # literal from source
-  params: []
-
-- id: lens_control
-  label: Lens Control
-  kind: action
-  command: "02h 18h 00h 00h 02h {DATA01} {DATA02} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Target (06h=Periphery Focus)
-    - name: DATA02
-      type: integer
-      description: Action (00h=Stop, 01h=+1s, 02h=+0.5s, 03h=+0.25s, 7Fh=plus drive, 81h=minus drive, FDh=-0.25s, FEh=-0.5s, FFh=-1s)
-
-- id: lens_control_request
-  label: Lens Control Request
-  kind: query
-  command: "02h 1Ch 00h 00h 02h {DATA01} 00h {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Target (06h=Periphery Focus)
-
-- id: lens_control_2
-  label: Lens Control 2
-  kind: action
-  command: "02h 1Dh 00h 00h 04h {DATA01} {DATA02} {DATA03} {DATA04} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Action (FFh=Stop; else referenced)
-    - name: DATA02
-      type: integer
-      description: Adjustment mode (00h=absolute, 02h=relative)
-    - name: DATA03
-      type: integer
-      description: Adjustment value low-order 8 bits
-    - name: DATA04
-      type: integer
-      description: Adjustment value high-order 8 bits
-
-- id: lens_memory_control
-  label: Lens Memory Control
-  kind: action
-  command: "02h 1Eh 00h 00h 01h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Operation (00h=MOVE, 01h=STORE, 02h=RESET)
-
-- id: reference_lens_memory_control
-  label: Reference Lens Memory Control
-  kind: action
-  command: "02h 1Fh 00h 00h 01h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Operation (00h=MOVE, 01h=STORE, 02h=RESET)
-
-- id: lens_memory_option_request
-  label: Lens Memory Option Request
-  kind: query
-  command: "02h 20h 00h 00h 01h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Option (00h=LOAD BY SIGNAL, 01h=FORCED MUTE)
-
-- id: lens_memory_option_set
-  label: Lens Memory Option Set
-  kind: action
-  command: "02h 21h 00h 00h 02h {DATA01} {DATA02} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Option (00h=LOAD BY SIGNAL, 01h=FORCED MUTE)
-    - name: DATA02
-      type: integer
-      description: Value (00h=OFF, 01h=ON)
-
-- id: lens_information_request
-  label: Lens Information Request
-  kind: query
-  command: "02h 22h 00h 00h 01h 00h 25h"  # literal from source
-  params: []
-
-- id: lens_profile_set
-  label: Lens Profile Set
-  kind: action
-  command: "02h 27h 00h 00h 01h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Profile number (00h=Profile 1, 01h=Profile 2)
-
-- id: lens_profile_request
-  label: Lens Profile Request
-  kind: query
-  command: "02h 28h 00h 00h 00h 2Ah"  # literal from source
-  params: []
-
-- id: gain_parameter_request
-  label: Gain Parameter Request
-  kind: query
-  command: "03h 05h 00h 00h 03h {DATA01} 00h 00h {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Gain name (00h=Brightness, 01h=Contrast, 02h=Color, 03h=Hue, 04h=Sharpness, 05h=Volume, 96h=Lamp/Light)
+      description: Key code high-order byte; 00h for every key in the documented table
 
 - id: setting_request
   label: Setting Request
@@ -401,12 +253,6 @@ auth:
   label: Model Name Request
   kind: query
   command: "00h 85h 00h 00h 01h 04h 8Ah"  # literal from source
-  params: []
-
-- id: cover_status_request
-  label: Cover Status Request
-  kind: query
-  command: "00h 85h 00h 00h 01h 05h 8Bh"  # literal from source
   params: []
 
 - id: freeze_control
@@ -445,21 +291,6 @@ auth:
   command: "03h B0h 00h 00h 02h 9Ah 00h 4Fh"  # literal from source
   params: []
 
-- id: pip_pbp_request
-  label: PIP/Picture By Picture Request
-  kind: query
-  command: "03h B0h 00h 00h 02h C5h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Property (00h=MODE, 01h=START POSITION, 02h=SUB INPUT/SUB INPUT 1, 09h=SUB INPUT 2, 0Ah=SUB INPUT 3)
-
-- id: edge_blending_mode_request
-  label: Edge Blending Mode Request
-  kind: query
-  command: "03h B0h 00h 00h 02h DFh 00h 94h"  # literal from source
-  params: []
-
 - id: eco_mode_set
   label: Eco Mode Set
   kind: action
@@ -467,7 +298,7 @@ auth:
   params:
     - name: DATA01
       type: integer
-      description: Eco mode value (see Appendix "Supplementary Information by Command")
+      description: "One byte: 00h=OFF, 01h=ECO1, 02h=ECO2 (NP-P502HL/NP-P502WL row, appendix p.31)"
 
 - id: lan_projector_name_set
   label: LAN Projector Name Set
@@ -476,28 +307,7 @@ auth:
   params:
     - name: name
       type: string
-      description: Projector name (up to 16 bytes, NUL-terminated)
-
-- id: pip_pbp_set
-  label: PIP/Picture By Picture Set
-  kind: action
-  command: "03h B1h 00h 00h 03h C5h {DATA01} {DATA02} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Property (00h=MODE, 01h=START POSITION, 02h=SUB INPUT 1, 03h=SUB INPUT 2, 04h=SUB INPUT 3)
-    - name: DATA02
-      type: integer
-      description: Setting value (see source for valid ranges per property)
-
-- id: edge_blending_mode_set
-  label: Edge Blending Mode Set
-  kind: action
-  command: "03h B1h 00h 00h 03h DFh 00h {DATA01} {CKS}"
-  params:
-    - name: DATA01
-      type: integer
-      description: Setting (00h=OFF, 01h=ON)
+      description: Encode name as the 16 bytes DATA01-DATA16, padding unused bytes with 00h; the command adds a final 00h terminator
 
 - id: base_model_type_request
   label: Base Model Type Request
@@ -524,10 +334,11 @@ auth:
   params:
     - name: DATA01
       type: integer
-      description: Input terminal (see Appendix "Supplementary Information by Command")
+      description: "UNRESOLVED mapping: principal manual calls DATA01 the input terminal, but appendix p.45 labels its terminal-code table DATA02. Supply only a separately confirmed terminal byte; do not substitute input_switch_change codes."
     - name: DATA02
       type: integer
-      description: Setting (00h=DATA01 terminal, 01h=BNC, 02h=COMPUTER)
+      description: "Principal request table: 00h=DATA01 terminal, 01h=BNC, 02h=COMPUTER. Target-specific accepted combinations remain unresolved; this does not assert that the target has BNC."
+  notes: "Documented request shape retained for coverage; automatic audio-select mapping is unavailable until the principal/appendix field-label conflict is resolved."
 ```
 
 ## Feedbacks
@@ -544,15 +355,10 @@ auth:
 - id: onscreen_mute_state
   type: enum
   values: [off, on]
-- id: cover_state
-  type: enum
-  values: [open, closed]
 - id: error_status
   type: object
   description: 12-byte error information field from009 Error Status Request
 - id: lamp_usage_time_seconds
-  type: integer
-- id: filter_usage_time_seconds
   type: integer
 - id: lamp_remaining_life_percent
   type: integer
@@ -565,9 +371,6 @@ auth:
 - id: freeze_state
   type: enum
   values: [off, on]
-- id: lens_motion_state
-  type: object
-  description: Bitfield: memory/zoom/focus/H-shift/V-shift motion flags
 - id: mac_address
   type: string
 - id: projector_name
@@ -580,7 +383,8 @@ auth:
 
 ## Variables
 ```yaml
-<!-- UNRESOLVED: gain parameter values, aspect values, eco mode values, PIP/PBP sub-input values, edge blending settings all reference "Appendix Supplementary Information by Command" which is not included in source -->
+# Input, aspect and eco values are enumerated in action parameters.
+# Audio-select parameter mapping remains unresolved; see audio_select_set.
 ```
 
 ## Events
@@ -602,9 +406,19 @@ interlocks: []
 ```
 
 ## Notes
-Serial baud rate list per source: 115200/38400/19200/9600/4800 bps. Spec defaulted to 115200 (highest listed). ID1 (Control ID) and ID2 (Model code) bytes must be substituted per target projector; checksum byte computed as low-order 8 bits of sum of preceding bytes. Source references an Appendix "Supplementary Information by Command" for input terminal codes, aspect values, eco mode values, sub-input values, and base model types — these are not present in this document and marked UNRESOLVED.
+The target models support serial rates 4800, 9600, 19200 and 38400 bps; 115200 is unsupported (appendix p.17). Set the host and projector to the same rate. The configured 38400 value is a supported choice, not a documented factory default. The generic manual specifies 8 data bits, no parity and one stop bit; flow control is not explicitly specified.
 
-<!-- UNRESOLVED: input terminal codes (used in 018 INPUT SW CHANGE, 319-10 AUDIO SELECT SET); aspect ratio codes; eco mode values; PIP/PBP sub-input values; base model type codes -->
+LAN power-on requires NETWORK STANDBY; serial accepts NORMAL or NETWORK STANDBY (appendix p.18). LAN transport is TCP 7142. The manual lists wired and wireless LAN, subject to the model's installed network interface.
+
+Transmit the binary bytes shown, including the fixed 00h 00h request bytes. ID1/ID2 occur in response formats and must not replace these fixed bytes. CKS is computed as the low-order eight bits of the sum of every preceding request byte. DATA placeholders are bytes; low/high adjustment bytes form the documented WORD value. Do not send another command while power-on or power-off is in progress, including the power-off cooling time (principal manual pp.15–16).
+
+The 33 action/query families comprise the 30 supported entries in appendix p.20 plus power on, power off and input switching. Unsupported target functions are excluded: other lamp/light adjustment, filter-usage query, shutter, motorized lens/memory/profile functions, gain-parameter query, cover query, PIP/PBP and edge blending. No unsolicited event protocol is documented.
+
+Remote key codes (decimal; DATA01 is the low byte, DATA02=00h): 2 POWER ON; 3 POWER OFF; 5 AUTO; 6 MENU; 7 UP; 8 DOWN; 9 RIGHT; 10 LEFT; 11 ENTER; 12 EXIT; 13 HELP; 15 MAGNIFY UP; 16 MAGNIFY DOWN; 19 MUTE; 41 PICTURE; 75 COMPUTER1; 76 COMPUTER2; 79 VIDEO1; 81 S-VIDEO1; 132 VOLUME UP; 133 VOLUME DOWN; 138 FREEZE; 163 ASPECT; 215 SOURCE; 238 LAMP MODE/ECO. These are the generic remote-key table values, not evidence of extra physical inputs; use the model-specific input_switch_change values for source routing.
+
+Base-model response bytes from appendix p.34: NP-P502HL = FFh 22h 00h 13h; NP-P502WL = FFh 22h 01h 13h. Use the corresponding principal response layout when decoding model information.
+
+UNRESOLVED: Audio Select Set is explicitly supported, but the principal manual defines DATA01=input terminal / DATA02=setting while appendix p.45 labels its input-name table DATA02. That appendix lists 00h HDMI1, 01h HDMI2, 02h DisplayPort, 03h ETHERNET/LAN, 04h USB-A, 05h USB-B, 09h HDBaseT for other models, including this pair, without resolving the field-label conflict or absent-port combinations. No guessed terminal-byte mapping is supplied. Firmware range and serial flow-control requirements are not established by this source.
 
 ## Provenance
 
@@ -613,31 +427,29 @@ source_domains:
   - sharpdisplays.eu
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
-retrieved_at: 2026-05-13T08:19:37.838Z
-last_checked_at: 2026-09-15T22:16:48.556Z
+retrieved_at: 2026-09-26T14:23:17.847Z
+last_checked_at: 2026-09-26T14:23:17.847Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-09-15T22:16:48.556Z
-matched_actions: 53
-action_count: 53
+checked_at: 2026-09-26T14:23:17.847Z
+matched_actions: 33
+action_count: 33
 confidence: medium
-summary: "All 53 spec actions match source commands 1:1 with identical hex payloads and transport values substantiated verbatim. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All33 target-supported command families and their request shapes match the primary manual; unknown flow control and the audio-select appendix field-label conflict remain explicitly unresolved. Authentication is explicitly unresolved. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "source is a generic NEC projector protocol manual (BDT140013 Rev7.1) covering multiple models; specific NP502HL/NP502WL command set not differentiated in this document."
 - "flow control not explicitly stated; D-SUB 9P pinout shows RTS/CTS lines exist but config not stated"
-- "gain parameter values, aspect values, eco mode values, PIP/PBP sub-input values, edge blending settings all reference \"Appendix Supplementary Information by Command\" which is not included in source"
 - "source does not document unsolicited notifications"
 - "source does not document multi-step sequences"
 - "source mentions portrait cover interlock switch in error status DATA09 bit1 (\"The interlock switch is open\") but does not document procedure or behavior in detail"
-- "input terminal codes (used in 018 INPUT SW CHANGE, 319-10 AUDIO SELECT SET); aspect ratio codes; eco mode values; PIP/PBP sub-input values; base model type codes"
+- "Audio Select Set is explicitly supported, but the principal manual defines DATA01=input terminal / DATA02=setting while appendix p.45 labels its input-name table DATA02. That appendix lists 00h HDMI1, 01h HDMI2, 02h DisplayPort, 03h ETHERNET/LAN, 04h USB-A, 05h USB-B, 09h HDBaseT for other models, including this pair, without resolving the field-label conflict or absent-port combinations. No guessed terminal-byte mapping is supplied. Firmware range and serial flow-control requirements are not established by this source."
 ```
 
 ---

@@ -21,11 +21,12 @@ source_domains:
 source_urls:
   - https://aca.im/driver_docs/Symetrix/SymNet_Composer_control_prot_2.0.pdf
 retrieved_at: 2026-05-07T07:59:05.079Z
-last_checked_at: 2026-06-02T22:15:28.704Z
-generated_at: 2026-06-02T22:15:28.704Z
+last_checked_at: 2026-10-01T13:26:36.081Z
+generated_at: 2026-10-01T13:26:36.081Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - GSB3
   - "RS-485 control requires Symetrix ARC units; not fully documented in this source"
   - "no explicit multi-step macros documented in source"
   - "no safety warnings or interlock procedures stated in source"
@@ -34,11 +35,11 @@ known_gaps:
   - "RS-485 control not detailed (requires ARC units)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:28.704Z
+  checked_at: 2026-10-01T13:26:36.081Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions map to documented source commands; transport matches; coverage ratio 27/28 exceeds 0.9 floor. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -67,7 +68,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -439,23 +440,24 @@ source_domains:
 source_urls:
   - https://aca.im/driver_docs/Symetrix/SymNet_Composer_control_prot_2.0.pdf
 retrieved_at: 2026-05-07T07:59:05.079Z
-last_checked_at: 2026-06-02T22:15:28.704Z
+last_checked_at: 2026-10-01T13:26:36.081Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:28.704Z
+checked_at: 2026-10-01T13:26:36.081Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions map to documented source commands; transport matches; coverage ratio 27/28 exceeds 0.9 floor. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- GSB3
 - "RS-485 control requires Symetrix ARC units; not fully documented in this source"
 - "no explicit multi-step macros documented in source"
 - "no safety warnings or interlock procedures stated in source"

@@ -26,8 +26,8 @@ source_urls:
   - https://synaccess.readme.io/reference/introduction-1
   - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
 retrieved_at: 2026-05-15T06:27:52.847Z
-last_checked_at: 2026-06-02T22:15:30.172Z
-generated_at: 2026-06-02T22:15:30.172Z
+last_checked_at: 2026-09-28T05:21:52.287Z
+generated_at: 2026-09-28T05:21:52.287Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -42,11 +42,11 @@ known_gaps:
   - "email configuration method not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:30.172Z
-  matched_actions: 25
-  action_count: 25
+  checked_at: 2026-09-28T05:21:52.287Z
+  matched_actions: 27
+  action_count: 27
   confidence: medium
-  summary: "All 25 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 CLI/HTTP units and transport values match the generic netBooter guide; exact NP applicability and HTTP method remain explicitly unresolved. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -57,7 +57,7 @@ created_at: 2026-05-15
 
 ## Summary
 
-Synaccess Networks netBooter NP Series is a networked power distribution unit (PDU) with per-outlet switching and group control. Supports serial (RS-232/USB), Telnet (TCP port 23), and HTTP/HTTPS (`cmd.cgi`) control interfaces. This spec covers CLI and HTTP API commands documented in the user manual.
+Synaccess Networks netBooter NP Series is a networked power distribution unit (PDU) with per-outlet switching and group control. Supports serial (RS-232/USB), Telnet (TCP port 23), and HTTP (`cmd.cgi`) control interfaces; HTTPS is documented only for DU models. This spec covers CLI and HTTP API commands documented in the user manual.
 
 ## Transport
 ```yaml
@@ -88,6 +88,8 @@ auth:
 ```yaml
 # CLI commands (serial/Telnet)
 - id: pset
+  command: "pset <n> <v>"
+  wire_template: "pset {outlet} {state}"
   label: Set Outlet State
   kind: action
   params:
@@ -99,6 +101,8 @@ auth:
       description: "0 = OFF, 1 = ON"
 
 - id: ps
+  command: "ps <v>"
+  wire_template: "ps {state}"
   label: Set All Outlets
   kind: action
   params:
@@ -107,6 +111,8 @@ auth:
       description: "0 = OFF, 1 = ON"
 
 - id: rb
+  command: "rb <n>"
+  wire_template: "rb {outlet}"
   label: Reboot Outlet
   kind: action
   params:
@@ -115,6 +121,8 @@ auth:
       description: Outlet number
 
 - id: gpset
+  command: "gpset <n> <v>"
+  wire_template: "gpset {group} {state}"
   label: Set Outlet Group State
   kind: action
   params:
@@ -126,6 +134,8 @@ auth:
       description: "0 = OFF, 1 = ON"
 
 - id: grb
+  command: "grb <n>"
+  wire_template: "grb {group}"
   label: Reboot Outlet Group
   kind: action
   params:
@@ -134,16 +144,20 @@ auth:
       description: Outlet group number
 
 - id: nwshow
+  command: "nwshow"
   label: Show Network Settings
   kind: action
   params: []
 
 - id: nwset
+  command: "nwset"
   label: Reset Network Interface
   kind: action
   params: []
 
 - id: dhcp
+  command: "dhcp <x>"
+  wire_template: "dhcp {mode}"
   label: Set DHCP Mode
   kind: action
   params:
@@ -152,6 +166,8 @@ auth:
       description: "1 = DHCP, 0 = Static"
 
 - id: ip_set
+  command: "ip <ip> <mask>"
+  wire_template: "ip {ip} {mask}"
   label: Set Static IP
   kind: action
   params:
@@ -163,6 +179,8 @@ auth:
       description: Subnet mask
 
 - id: gw_set
+  command: "gw <gw>"
+  wire_template: "gw {gateway}"
   label: Set Gateway
   kind: action
   params:
@@ -171,11 +189,14 @@ auth:
       description: Gateway IP address
 
 - id: mac_show
+  command: "mac"
   label: Show MAC Address
   kind: action
   params: []
 
 - id: web_set
+  command: "web <v>"
+  wire_template: "web {enabled}"
   label: Enable/Disable Web Access
   kind: action
   params:
@@ -184,6 +205,8 @@ auth:
       description: "1 = On, 0 = Off"
 
 - id: mask_set
+  command: "mask <m>"
+  wire_template: "mask {mask}"
   label: Set Subnet Mask
   kind: action
   params:
@@ -192,11 +215,14 @@ auth:
       description: Subnet mask
 
 - id: emailsend
+  command: "emailsend"
   label: Send Test Email
   kind: action
   params: []
 
 - id: hp_set
+  command: "hp <port>"
+  wire_template: "hp {port}"
   label: Set HTTP Port
   kind: action
   params:
@@ -205,6 +231,8 @@ auth:
       description: HTTP port number
 
 - id: tp_set
+  command: "tp <port>"
+  wire_template: "tp {port}"
   label: Set Telnet Port
   kind: action
   params:
@@ -213,6 +241,8 @@ auth:
       description: Telnet port number
 
 - id: ipsrc_set
+  command: "Ipsrc <ip>"
+  wire_template: "Ipsrc {ip}"
   label: Set Allowed Source IP
   kind: action
   params:
@@ -221,32 +251,39 @@ auth:
       description: Only this IP may access the unit
 
 - id: login
+  command: "login"
   label: Login
   kind: action
   params: []
 
 - id: logout
+  command: "logout"
   label: Logout
   kind: action
   params: []
 
 - id: sysshow
+  command: "sysshow"
   label: Show System Info
   kind: action
   params: []
 
 - id: ver
+  command: "ver"
   label: Show Firmware Version
   kind: action
   params: []
 
 - id: help
+  command: "help"
   label: Help Menu
   kind: action
   params: []
 
 # HTTP API commands
 - id: http_set_outlet
+  command: "$A3"
+  wire_template: "$A3 {outlet} {state}"
   label: Set Outlet ON/OFF (HTTP)
   kind: action
   params:
@@ -256,34 +293,41 @@ auth:
     - name: state
       type: integer
       description: "0 = OFF, 1 = ON"
-  transport_hint: "GET /cmd.cgi?$A3 {outlet} {state}"
+  transport_hint: "/cmd.cgi?$A3 {outlet} {state}"
 
 - id: http_reboot
+  command: "$A4"
+  wire_template: "$A4 {outlet}"
   label: Reboot Outlet (HTTP)
   kind: action
   params:
     - name: outlet
       type: integer
       description: Outlet number
-  transport_hint: "GET /cmd.cgi?$A4 {outlet}"
+  transport_hint: "/cmd.cgi?$A4 {outlet}"
 
 - id: http_set_all
+  command: "$A7"
+  wire_template: "$A7 {state}"
   label: Set All Outlets ON/OFF (HTTP)
   kind: action
   params:
     - name: state
       type: integer
       description: "1 = ON, 0 = OFF"
-  transport_hint: "GET /cmd.cgi?$A7 {state}"
+  transport_hint: "/cmd.cgi?$A7 {state}"
 ```
 
 ## Feedbacks
 ```yaml
 - id: outlet_status_cli
+  query_command: "pshow"
   type: string
   description: "CLI pshow command returns outlet status"
 
 - id: outlet_status_http
+  query_command: "$A5"
+  transport_hint: "/cmd.cgi?$A5"
   type: string
   description: >
     HTTP $A5 returns: xxxx,cccc,cccc,tt or xxxx,cccc,tt
@@ -339,14 +383,17 @@ interlocks: []
 
 ## Notes
 - CLI command format: `CmdCode Arg1 Arg2` (space-delimited).
-- HTTP API mirrors CLI via `GET /cmd.cgi?cmdCode Arg1 Arg2` URL pattern.
+- HTTP API mirrors CLI via `/cmd.cgi?cmdCode Arg1 Arg2` URL pattern. The HTTP method is not stated in the source (UNRESOLVED).
 - HTTPS supported on DU models only (per source footnote).
 - Default static IP: 192.168.1.100, mask 255.255.0.0, gateway 192.168.1.1.
-- Outlet group assignments not documented in source — `gpset`/`grb` assume groups pre-configured via web UI.
+- Outlet group configuration method is not documented in the source; `gpset` and `grb` control documented outlet groups.
 <!-- UNRESOLVED: login/logout command credential flow not documented -->
 <!-- UNRESOLVED: outlet group configuration method not documented -->
 <!-- UNRESOLVED: HTTP API auth mechanism not documented -->
 <!-- UNRESOLVED: email configuration method not documented -->
+
+- Static `ip` and `gw` settings are effective when DHCP is disabled.
+- UNRESOLVED applicability: the source describes a generic netBooter PDU and does not enumerate NP model numbers; exact NP model applicability is not established.
 
 ## Provenance
 
@@ -362,18 +409,18 @@ source_urls:
   - https://synaccess.readme.io/reference/introduction-1
   - https://github.com/synaccess-networks/API-Examples/blob/master/examples.sh
 retrieved_at: 2026-05-15T06:27:52.847Z
-last_checked_at: 2026-06-02T22:15:30.172Z
+last_checked_at: 2026-09-28T05:21:52.287Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:30.172Z
-matched_actions: 25
-action_count: 25
+checked_at: 2026-09-28T05:21:52.287Z
+matched_actions: 27
+action_count: 27
 confidence: medium
-summary: "All 25 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 CLI/HTTP units and transport values match the generic netBooter guide; exact NP applicability and HTTP method remain explicitly unresolved. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

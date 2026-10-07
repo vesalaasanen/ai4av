@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-06-02T22:08:42.302Z
-generated_at: 2026-06-02T22:08:42.302Z
+last_checked_at: 2026-10-07T12:38:38.957Z
+generated_at: 2026-10-07T12:38:38.957Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "no error code dictionary beyond general protocol framing"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:42.302Z
-  matched_actions: 8
-  action_count: 8
+  checked_at: 2026-10-07T12:38:38.957Z
+  matched_actions: 24
+  action_count: 24
   confidence: medium
-  summary: "All 8 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 24 action units, including 8 query feedbacks, match the 16 documented source commands. Opcodes and ranges agree, and serial transport values are verbatim in the source. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -63,9 +63,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none
+  flow_control: UNRESOLVED
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED
 ```
 
 ## Traits
@@ -149,7 +149,7 @@ auth:
       description: 4-bit mask for inputs 1-4
     - name: attenuator
       type: integer
-      description: "0=mute, 1-31 = -1dB to -30dB in 1dB steps, 80=+1dB, 81=-1dB"
+      description: "0=mute, 1-31 = 1dB steps from -30dB to 0dB, 80=+1dB, 81=-1dB"
 
 - id: set_rear_panel_output_gain
   label: Set Rear Panel Output Attenuator
@@ -160,7 +160,62 @@ auth:
       description: 4-bit mask for outputs 1-4
     - name: attenuator
       type: integer
-      description: "0=mute, 1-31 = -1dB to -30dB in 1dB steps, 80=+1dB, 81=-1dB"
+      description: "0=mute, 1-31 = 1dB steps from -30dB to 0dB, 80=+1dB, 81=-1dB"
+
+- id: get_name_string
+  label: Get Name String
+  kind: action
+  params: []
+
+- id: get_firmware_version
+  label: Get Firmware Version
+  kind: action
+  params: []
+
+- id: get_dsp_software_version
+  label: Get DSP Software Version
+  kind: action
+  params: []
+
+- id: get_current_memory_preset
+  label: Get Current Memory Preset
+  kind: action
+  params: []
+
+- id: get_input_gain
+  label: Get Input Gain
+  kind: action
+  params:
+    - name: input
+      type: integer
+      description: "Input number to return, 0 - 3 returns the single gain value from inputs 1 - 4, while 4 returns 4 bytes representing the input gain of all inputs, starting with input 1."
+
+- id: get_output_gain
+  label: Get Output Gain
+  kind: action
+  params:
+    - name: output
+      type: integer
+      description: "Input number to return, 0 - 3 returns the single gain value from outputs 1 - 4, while 4 returns 4 bytes representing the output gain of all outputs, starting with output 1."
+
+- id: get_crosspoint_gain
+  label: Get Crosspoint Gain
+  kind: action
+  params:
+    - name: input
+      type: integer
+      description: Input associated with the desired crosspoint. 0 - 3, which corresponds to inputs 1 - 4.
+    - name: output
+      type: integer
+      description: Output associated with the desired crosspoint. 0 - 3, which corresponds to outputs 1 - 4.
+
+- id: get_programmable_io_current_state
+  label: Get Programmable I/O Current State
+  kind: action
+  params:
+    - name: output
+      type: integer
+      description: Programmable output whose state to return, 1 - 13.
 ```
 
 ## Feedbacks
@@ -169,6 +224,7 @@ auth:
   label: Device Name
   type: string
   description: "Returns 5-byte name string: 'DSP44' (68,83,80,52,52)"
+  query_command: "1 (1 hex)"
 
 - id: device_address
   label: Device Address
@@ -179,38 +235,45 @@ auth:
   label: Firmware Version
   type: integer
   description: Returns firmware version as decimal (e.g., 10 = version 1.0)
+  query_command: "25 (19 hex)"
 
 - id: dsp_software_version
   label: DSP Software Version
   type: integer
   description: Returns DSP software version as decimal
+  query_command: "26 (1A hex)"
 
 - id: current_memory_preset
   label: Current Memory Preset
   type: integer
   values: [0-7]
   description: Returns 0-7 representing memory presets 1-8
+  query_command: "21 (15 hex)"
 
 - id: input_gain
   label: Input Gain
   type: integer
   description: "Returns 0-79 per channel: 0-78 = +10dB to -68dB, 79=off; >127 = muted (subtract 128 for actual gain)"
+  query_command: "31 (1F hex)"
 
 - id: output_gain
   label: Output Gain
   type: integer
   description: "Returns 0-79 per channel: 0-78 = +10dB to -68dB, 79=off; >127 = muted (subtract 128 for actual gain)"
+  query_command: "61 (3D hex)"
 
 - id: crosspoint_gain
   label: Crosspoint Gain
   type: integer
   description: "Returns 0-31: 0-30 = +10dB to -20dB, 31=Off"
+  query_command: "103 (67 hex)"
 
 - id: programmable_io_state
   label: Programmable I/O State
   type: integer
   values: [1, 2]
   description: "1=inactive, 2=active"
+  query_command: "123 (7B hex)"
 
 - id: address_ack
   label: Address Acknowledgement
@@ -265,18 +328,18 @@ source_domains:
 source_urls:
   - https://lectrosonics.com/wp-content/uploads/filr/7423/dsp44man.pdf
 retrieved_at: 2026-04-29T16:52:41.558Z
-last_checked_at: 2026-06-02T22:08:42.302Z
+last_checked_at: 2026-10-07T12:38:38.957Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:42.302Z
-matched_actions: 8
-action_count: 8
+checked_at: 2026-10-07T12:38:38.957Z
+matched_actions: 24
+action_count: 24
 confidence: medium
-summary: "All 8 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 24 action units, including 8 query feedbacks, match the 16 documented source commands. Opcodes and ranges agree, and serial transport values are verbatim in the source. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

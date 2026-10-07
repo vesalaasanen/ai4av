@@ -20,26 +20,30 @@ source_domains:
 source_urls:
   - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T22:13:23.235Z
-generated_at: 2026-06-02T22:13:23.235Z
+last_checked_at: 2026-09-30T00:03:34.951Z
+generated_at: 2026-09-30T00:03:34.951Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "specific Core model numbers not enumerated in source"
   - "firmware version compatibility not stated"
+  - "source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability and required use not fully established by source"
+  - "source does not specify units)"
   - "enumerate specific variable names - determined by design"
   - "full event list not documented in source"
   - "no explicit multi-step macros documented in source"
   - "power-on sequencing, fault recovery procedures not documented in source"
   - "voltage/current/power specs not in source"
   - "specific model numbers not enumerated beyond \"Core\" family reference"
+  - "source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability not fully established"
+  - "source does not specify units for Mixer.SetCrossPointDelay Value"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:23.235Z
+  checked_at: 2026-09-30T00:03:34.951Z
   matched_actions: 35
   action_count: 35
   confidence: medium
-  summary: "All 35 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 semantic-id actions match; all 37 source methods, including two notifications, are represented, and declared transport values are supported. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -61,7 +65,7 @@ protocols:
 addressing:
   port: 1710
 auth:
-  type: logon  # Logon method requires User/Password; credentials created in Q-SYS Designer Users admin
+  type: UNRESOLVED  # UNRESOLVED: source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability and required use not fully established by source
 ```
 
 ## Traits
@@ -131,8 +135,8 @@ traits:
       type: string
       description: Named Control name
     - name: Value
-      type: any
-      description: New value
+      type: number | string | boolean
+      description: New value (number, string, or boolean)
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -147,7 +151,7 @@ traits:
       description: Named Component name
     - name: Controls
       type: array
-      description: Array of control names
+      description: Array of control name objects, e.g. [ { Name: "ent.xfade.gain" } ]
 
 - id: component_get_controls
   label: Component.GetControls
@@ -157,14 +161,14 @@ traits:
       type: string
       description: Named Component name
   response:
-    - Name: string
-      Type: Boolean | Float | String
-      Value: any
-      ValueMin: number
-      ValueMax: number
-      String: string
-      Position: number
-      Direction: Read/Write | Read only | Write only
+    Name: string
+    Type: Boolean | Float | String
+    Value: any
+    ValueMin: number
+    ValueMax: number
+    String: string
+    Position: number
+    Direction: Read/Write | Read only | Write only
 
 - id: component_set
   label: Component.Set
@@ -202,7 +206,7 @@ traits:
       description: Change group ID
     - name: Controls
       type: array
-      description: Array of Named Control names
+      description: Array of control names
 
 - id: change_group_add_component_control
   label: ChangeGroup.AddComponentControl
@@ -285,7 +289,7 @@ traits:
       description: Output channel spec
     - name: Value
       type: number
-      description: Gain in dB
+      description: Gain value
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -305,7 +309,7 @@ traits:
       description: Output channel spec
     - name: Value
       type: number
-      description: Delay in ms
+      description: Delay value (UNRESOLVED: source does not specify units)
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -354,7 +358,7 @@ traits:
       description: Input channel spec
     - name: Value
       type: number
-      description: Gain in dB
+      description: Gain value
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -397,7 +401,7 @@ traits:
       description: Output channel spec
     - name: Value
       type: number
-      description: Gain in dB
+      description: Gain value
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -440,7 +444,7 @@ traits:
       description: Cue spec
     - name: Value
       type: number
-      description: Gain in dB
+      description: Gain value
     - name: Ramp
       type: number
       description: Optional ramp time in seconds
@@ -620,6 +624,8 @@ interlocks:
 <!-- UNRESOLVED: voltage/current/power specs not in source -->
 <!-- UNRESOLVED: firmware version compatibility not stated -->
 <!-- UNRESOLVED: specific model numbers not enumerated beyond "Core" family reference -->
+<!-- UNRESOLVED: source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability not fully established -->
+<!-- UNRESOLVED: source does not specify units for Mixer.SetCrossPointDelay Value -->
 
 ## Provenance
 
@@ -629,18 +635,18 @@ source_domains:
 source_urls:
   - https://help.qsys.com/q-sys_10.0/Content/External_Control_APIs/QRC/QRC_Commands.htm
 retrieved_at: 2026-05-13T16:00:00.000Z
-last_checked_at: 2026-06-02T22:13:23.235Z
+last_checked_at: 2026-09-30T00:03:34.951Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:23.235Z
+checked_at: 2026-09-30T00:03:34.951Z
 matched_actions: 35
 action_count: 35
 confidence: medium
-summary: "All 35 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 semantic-id actions match; all 37 source methods, including two notifications, are represented, and declared transport values are supported. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -648,12 +654,16 @@ summary: "All 35 spec actions traced to source (dip-safe re-verify). (8 unresolv
 ```yaml
 - "specific Core model numbers not enumerated in source"
 - "firmware version compatibility not stated"
+- "source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability and required use not fully established by source"
+- "source does not specify units)"
 - "enumerate specific variable names - determined by design"
 - "full event list not documented in source"
 - "no explicit multi-step macros documented in source"
 - "power-on sequencing, fault recovery procedures not documented in source"
 - "voltage/current/power specs not in source"
 - "specific model numbers not enumerated beyond \"Core\" family reference"
+- "source documents Logon method requiring User/Password credentials created in Q-SYS Designer Users (Administrator); authentication applicability not fully established"
+- "source does not specify units for Mixer.SetCrossPointDelay Value"
 ```
 
 ---

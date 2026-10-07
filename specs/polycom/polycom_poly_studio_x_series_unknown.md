@@ -13,7 +13,7 @@ compatible_with:
     - "Poly G7500"
     - "Poly Studio X50"
     - "Poly Studio X30"
-  firmware: "3.1.0\""
+  firmware: 3.1.0
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -30,7 +30,7 @@ source_urls:
 retrieved_at: 2026-06-10T23:39:53.509Z
 last_checked_at: 2026-06-11T13:44:55.390Z
 generated_at: 2026-06-11T13:44:55.390Z
-firmware_coverage: "3.1.0\""
+firmware_coverage: 3.1.0
 protocol_coverage: []
 known_gaps:
   - "HTTPS port not stated in source (commonly 443)"

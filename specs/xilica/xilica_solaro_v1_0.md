@@ -24,17 +24,19 @@ source_urls:
   - https://support.xilica.com/en/articles/3942338
   - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
-last_checked_at: 2026-06-02T22:16:25.915Z
-generated_at: 2026-06-02T22:16:25.915Z
+last_checked_at: 2026-09-30T02:02:33.642Z
+generated_at: 2026-09-30T02:02:33.642Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "exact Solaro model variants (e.g. Solaro QR1, QR5) not stated — source says \"Solaro Series\""
   - "firmware version compatibility not stated in source"
   - "UDP subscription port 10008 - no separate addressing field for secondary protocol"
+  - "source describes password protection as conditional (\"If a device"
   - "variable list is dynamic per device configuration (set up in Xilica Designer)"
   - "no macro sequences described in source"
   - "no safety interlock procedures stated in source"
+  - "whether this Solaro device has password protection enabled; source describes login as conditional (\"If a device is protected with a password\")."
   - "raw value scaling factor for SETRAW/GETRAW/INCRAW/DECRAW not documented"
   - "maximum number of subscriptions (error 107 implies a limit but value not stated)"
   - "maximum number of control groups (error 112 implies a limit but value not stated)"
@@ -43,11 +45,11 @@ known_gaps:
   - "string data values (filter types, slopes, AFS settings, ramp types) — enumerated in section 11 but mapping to control objects not specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:25.915Z
+  checked_at: 2026-09-30T02:02:33.642Z
   matched_actions: 21
   action_count: 21
   confidence: medium
-  summary: "All 21 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 21 wire-literal actions and transport claims match the Solaro source; its complete command catalogue is represented. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -72,13 +74,14 @@ addressing:
   port: 10007
   # UNRESOLVED: UDP subscription port 10008 - no separate addressing field for secondary protocol
 auth:
-  type: password
+  type: UNRESOLVED
   description: >-
-    Optional password protection. If enabled, LOGIN command must be sent before
-    any other command. Auth persists for duration of TCP connection only.
-    Re-login required after reconnection.
+    UNRESOLVED: source describes password protection as conditional ("If a device
+    is protected with a password") but does not state whether this Solaro device
+    has it enabled. Auth would persist for duration of TCP connection only, with
+    re-login required after reconnection.
 connection:
-  keepalive_interval_ms: 60000
+  keepalive_interval_ms: UNRESOLVED
   keepalive_command: KEEPALIVE
   note: >-
     TCP keep-alive mandatory every 60 seconds. On disconnect all subscriptions
@@ -268,7 +271,7 @@ actions:
     kind: query
     description: "Get formatted data values for all control objects"
     command: "REFRESH"
-    response: "{control_object}={data} {control_object}={data} ..."
+    response: "{control_object}={data}{control_object}={data}..."
     params: []
 
   - id: group_create
@@ -285,7 +288,7 @@ actions:
     label: Remove Control Group
     kind: action
     description: "Remove a control group and free resources"
-    command: "REMOVE ${group_name}"
+    command: "REMOVE {group_name}"
     params:
       - name: group_name
         type: string
@@ -295,7 +298,7 @@ actions:
     label: Join Control Group
     kind: action
     description: "Add a control object to a group"
-    command: "JOIN ${group_name} {control_object}"
+    command: "JOIN {group_name} {control_object}"
     params:
       - name: group_name
         type: string
@@ -308,7 +311,7 @@ actions:
     label: Leave Control Group
     kind: action
     description: "Remove a control object from a group"
-    command: "LEAVE ${group_name} {control_object}"
+    command: "LEAVE {group_name} {control_object}"
     params:
       - name: group_name
         type: string
@@ -411,10 +414,11 @@ note: >-
 - Group names always prefixed with `$` (except in CREATE command where `$` is auto-added).
 - String data values must be enclosed in double quotes.
 - Boolean values are `TRUE` or `FALSE` (case-sensitive).
-- INTERAL (sic — source typo for INTERVAL) command is global on Solaro (all connections share one interval), unlike Neutrino where it is per-connection.
+- INTERVAL command is global on Solaro (all connections share one interval), unlike Neutrino where it is per-connection.
 - UDP port 10008 used for subscription broadcast when `"UDP"` specified in SUBSCRIBE command.
 - REFRESH returns all control object values in a single response.
 - SETRAW uses fixed-point raw values (e.g. -3200 for -3.2 dB); raw scaling factor not documented.
+- UNRESOLVED: whether this Solaro device has password protection enabled; source describes login as conditional ("If a device is protected with a password").
 
 <!-- UNRESOLVED: raw value scaling factor for SETRAW/GETRAW/INCRAW/DECRAW not documented -->
 <!-- UNRESOLVED: maximum number of subscriptions (error 107 implies a limit but value not stated) -->
@@ -435,18 +439,18 @@ source_urls:
   - https://support.xilica.com/en/articles/3942338
   - https://support.xilica.com/en/categories/1363842-programming-api
 retrieved_at: 2026-04-29T20:51:03.649Z
-last_checked_at: 2026-06-02T22:16:25.915Z
+last_checked_at: 2026-09-30T02:02:33.642Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:25.915Z
+checked_at: 2026-09-30T02:02:33.642Z
 matched_actions: 21
 action_count: 21
 confidence: medium
-summary: "All 21 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 21 wire-literal actions and transport claims match the Solaro source; its complete command catalogue is represented. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -455,9 +459,11 @@ summary: "All 21 spec actions traced to source (dip-safe re-verify). (12 unresol
 - "exact Solaro model variants (e.g. Solaro QR1, QR5) not stated — source says \"Solaro Series\""
 - "firmware version compatibility not stated in source"
 - "UDP subscription port 10008 - no separate addressing field for secondary protocol"
+- "source describes password protection as conditional (\"If a device"
 - "variable list is dynamic per device configuration (set up in Xilica Designer)"
 - "no macro sequences described in source"
 - "no safety interlock procedures stated in source"
+- "whether this Solaro device has password protection enabled; source describes login as conditional (\"If a device is protected with a password\")."
 - "raw value scaling factor for SETRAW/GETRAW/INCRAW/DECRAW not documented"
 - "maximum number of subscriptions (error 107 implies a limit but value not stated)"
 - "maximum number of control groups (error 112 implies a limit but value not stated)"

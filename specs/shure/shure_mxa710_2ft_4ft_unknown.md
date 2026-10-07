@@ -25,8 +25,8 @@ source_urls:
   - https://pubs.shure.com/command-strings/MXA310/en-US
   - https://techportal.shure.com/en
 retrieved_at: 2026-05-13T21:20:49.541Z
-last_checked_at: 2026-06-02T22:14:27.917Z
-generated_at: 2026-06-02T22:14:27.917Z
+last_checked_at: 2026-10-07T13:44:49.863Z
+generated_at: 2026-10-07T13:44:49.863Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "Dante audio transport protocol details, device password/encryption key management, precise firmware version compatibility"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:27.917Z
-  matched_actions: 49
-  action_count: 49
+  checked_at: 2026-10-07T13:44:49.863Z
+  matched_actions: 100
+  action_count: 100
   confidence: medium
-  summary: "All 49 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 100 action units match source command strings with correct shapes; TCP port 2202 confirmed; spec covers the full catalogue. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -62,7 +62,7 @@ protocols:
 addressing:
   port: 2202
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state that authentication is unnecessary
 ```
 
 ## Traits
@@ -173,7 +173,7 @@ auth:
   params:
     - name: index
       type: integer
-      description: Channel index (0 = all channels)
+      description: Channel index (per Channel Number Assignment; 0 = all channels is not supported for gain)
     - name: gain
       type: integer
       description: Gain value 0-1400 representing -110.0 dB to 30.0 dB
@@ -183,7 +183,7 @@ auth:
   params:
     - name: index
       type: integer
-      description: Channel index
+      description: Channel index (per Channel Number Assignment; 0 = all channels is not supported for gain)
     - name: step
       type: integer
       description: Step in one-tenth dB
@@ -193,7 +193,7 @@ auth:
   params:
     - name: index
       type: integer
-      description: Channel index
+      description: Channel index (per Channel Number Assignment; 0 = all channels is not supported for gain)
     - name: step
       type: integer
       description: Step in one-tenth dB
@@ -423,6 +423,25 @@ auth:
   label: Reboot Device
   kind: action
   params: []
+- id: get_encryption
+  label: Get Encryption Status
+  kind: action
+  params: []
+- id: get_num_active_mics
+  label: Get Active Mic Channels
+  kind: action
+  params: []
+- id: get_automix_gate_out_ext_sig
+  label: Get Automixer Gate Out Status for Lobes
+  kind: action
+  params:
+    - name: index
+      type: integer
+      description: Dante mic input defined in Channel Number Assignment. 0 = all channels.
+- id: get_dev_mute_status_led_state
+  label: Get Mute LED State
+  kind: action
+  params: []
 ```
 
 ## Feedbacks
@@ -430,126 +449,162 @@ auth:
 - id: rep_all
   label: All Properties Response
   type: string
+  query_command: "< GET ALL >"
 - id: rep_model
   label: Model Response
   type: string
+  query_command: "< GET MODEL >"
 - id: rep_serial_num
   label: Serial Number Response
   type: string
+  query_command: "< GET SERIAL_NUM >"
 - id: rep_fw_ver
   label: Firmware Version Response
   type: string
+  query_command: "< GET FW_VER >"
 - id: rep_ip_addr_net_audio_primary
   label: Primary Audio Network IP Response
   type: string
+  query_command: "< GET IP_ADDR_NET_AUDIO_PRIMARY >"
 - id: rep_ip_subnet_net_audio_primary
   label: Primary Audio Network Subnet Mask Response
   type: string
+  query_command: "< GET IP_SUBNET_NET_AUDIO_PRIMARY >"
 - id: rep_ip_gateway_net_audio_primary
   label: Primary Audio Network Gateway Response
   type: string
+  query_command: "< GET IP_GATEWAY_NET_AUDIO_PRIMARY >"
 - id: rep_control_mac_addr
   label: Control MAC Address Response
   type: string
+  query_command: "< GET CONTROL_MAC_ADDR >"
 - id: rep_device_id
   label: Device ID Response
   type: string
+  query_command: "< GET DEVICE_ID >"
 - id: rep_na_device_name
   label: Dante Device Name Response
   type: string
+  query_command: "< GET NA_DEVICE_NAME >"
 - id: rep_chan_name
   label: Channel Name Response
   type: string
+  query_command: "< GET index CHAN_NAME >"
 - id: rep_na_chan_name
   label: Dante Channel Name Response
   type: string
+  query_command: "< GET index NA_CHAN_NAME >"
 - id: rep_flash
   label: Flash LED Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET FLASH >"
 - id: rep_default_settings
   label: Restore Default Settings Response
   type: string
 - id: rep_preset
   label: Preset Response
   type: string
+  query_command: "< GET PRESET >"
 - id: rep_preset_name
   label: Preset Name Response
   type: string
+  query_command: "< GET PRESET_NAME nn >"
 - id: rep_encryption
   label: Encryption Status Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET ENCRYPTION >"
 - id: rep_device_installation
   label: Device Installation Response
   type: enum
   values: [CEILING, WALL_HORIZONTAL, WALL_VERTICAL, TABLE]
+  query_command: "< GET DEVICE_INSTALLATION >"
 - id: rep_audio_out_clip_indicator
   label: Audio Clip Indicator Response
   type: enum
   values: [OFF, ON]
+  query_command: "< GET index AUDIO_OUT_CLIP_INDICATOR >"
 - id: rep_audio_gain_hi_res
   label: Audio Gain (Digital) Response
   type: integer
+  query_command: "< GET index AUDIO_GAIN_HI_RES >"
 - id: rep_audio_gain_postgate
   label: Audio Gain Postgate Response
   type: integer
+  query_command: "< GET index AUDIO_GAIN_POSTGATE >"
 - id: rep_audio_in_rms_lvl
   label: Audio Level RMS Response
   type: integer
+  query_command: "< GET x AUDIO_IN_RMS_LVL >"
 - id: rep_audio_in_peak_lvl
   label: Audio Level Peak Response
   type: integer
+  query_command: "< GET index AUDIO_IN_PEAK_LVL >"
 - id: rep_device_audio_mute
   label: Device Mute Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET DEVICE_AUDIO_MUTE >"
 - id: rep_audio_mute
   label: Channel Mute Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET nn AUDIO_MUTE >"
 - id: rep_num_active_mics
   label: Active Mic Channels Response
   type: integer
+  query_command: "< GET NUM_ACTIVE_MICS >"
 - id: rep_chan_automix_solo_en
   label: Solo Channel to Automix Response
   type: enum
   values: [ENABLE, DISABLE]
+  query_command: "< GET index CHAN_AUTOMIX_SOLO_EN >"
 - id: rep_automix_gate_out_ext_sig
   label: Automixer Gate Out Status for Lobes Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET index AUTOMIX_GATE_OUT_EXT_SIG >"
 - id: rep_beam_angle
   label: Lobe Beam Angle Response
   type: integer
+  query_command: "< GET index BEAM_ANGLE >"
 - id: rep_beam_w
   label: Lobe Beam Width Response
   type: enum
   values: [NARROW, MEDIUM, WIDE]
+  query_command: "< GET index BEAM_W >"
 - id: rep_speech_gating
   label: Speech Gating Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET nn SPEECH_GATING >"
 - id: rep_noise_filter
   label: Enhanced Noise Filtering Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET nn NOISE_FILTER >"
 - id: rep_autofocus
   label: Autofocus Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET AUTOFOCUS >"
 - id: rep_meter_rate
   label: Metering Rate Response
   type: integer
+  query_command: "< GET METER_RATE >"
 - id: rep_meter_rate_postgate
   label: Post-Gate Metering Rate Response
   type: integer
+  query_command: "< GET METER_RATE_POSTGATE >"
 - id: rep_meter_rate_mxr_gain
   label: Automixer Gain Metering Rate Response
   type: integer
+  query_command: "< GET METER_RATE_MXR_GAIN >"
 - id: rep_meter_rate_aecref
   label: AEC Reference Metering Rate Response
   type: integer
+  query_command: "< GET METER_RATE_AECREF >"
 - id: rep_err
   label: Error Response
   type: string
@@ -557,45 +612,56 @@ auth:
   label: Mute LED State Response
   type: enum
   values: [ON, OFF]
+  query_command: "< GET DEV_MUTE_STATUS_LED_STATE >"
 - id: rep_led_brightness
   label: LED Brightness Response
   type: integer
+  query_command: "< GET LED_BRIGHTNESS >"
 - id: rep_led_color_unmuted
   label: LED Color Unmuted Response
   type: enum
   values: [RED, ORANGE, GOLD, YELLOW, YELLOWGREEN, GREEN, TURQUOISE, POWDERBLUE, CYAN, SKYBLUE, BLUE, PURPLE, LIGHTPURPLE, VIOLET, ORCHID, PINK, WHITE]
+  query_command: "< GET LED_COLOR_UNMUTED >"
 - id: rep_led_color_muted
   label: LED Color Muted Response
   type: enum
   values: [RED, ORANGE, GOLD, YELLOW, YELLOWGREEN, GREEN, TURQUOISE, POWDERBLUE, CYAN, SKYBLUE, BLUE, PURPLE, LIGHTPURPLE, VIOLET, ORCHID, PINK, WHITE]
+  query_command: "< GET LED_COLOR_MUTED >"
 - id: rep_led_state_muted
   label: LED State Muted Response
   type: enum
   values: [ON, FLASHING, OFF]
+  query_command: "< GET LED_STATE_MUTED >"
 - id: rep_led_state_unmuted
   label: LED State Unmuted Response
   type: enum
   values: [ON, FLASHING, OFF]
+  query_command: "< GET LED_STATE_UNMUTED >"
 - id: rep_dev_led_in_state
   label: Device LED In State Response
   type: enum
   values: [OFF, ON]
+  query_command: "< GET DEV_LED_IN_STATE >"
 - id: rep_peq
   label: PEQ Filter Enable Response
   type: enum
   values: [ON, OFF, TOGGLE]
+  query_command: "< GET index PEQ filter >"
 - id: rep_bypass_all_eq
   label: Bypass All EQ Response
   type: enum
   values: [ON, OFF, TOGGLE]
+  query_command: "< GET BYPASS_ALL_EQ >"
 - id: rep_bypass_imx
   label: Bypass IntelliMix Response
   type: enum
   values: [ON, OFF, TOGGLE]
+  query_command: "< GET BYPASS_IMX >"
 - id: rep_eq_contour
   label: EQ Contour Response
   type: enum
   values: [OFF, LOWSHELF]
+  query_command: "< GET EQ_CONTOUR >"
 ```
 
 ## Variables
@@ -664,11 +730,13 @@ interlocks: []
 ## Notes
 Connection: TCP/IP on port 2202. Telnet negotiation must be disabled or passive on client. First command via PuTTY may return error — resend to resolve.
 
+Authentication is UNRESOLVED; the source does not state that authentication is unnecessary.
+
 Channel assignments differ by model:
 - MXA710-2FT: Dante outputs 1-4, automixer output 5, post-gate channels 1-4
 - MXA710-4FT: Dante outputs 1-8, automixer output 9, post-gate channels 1-8
 
-Audio gain (AUDIO_GAIN_HI_RES) range: 0-1400 representing -110.0 dB to 30.0 dB, scaled as (value * 10) + 1100.
+Audio gain (AUDIO_GAIN_HI_RES) range: 0-1400 representing -110.0 dB to 30.0 dB, scaled as (value * 10) + 1100. Setting gain on all channels at once (index 0) is not supported.
 
 Audio level metering values 000-060 represent -60 to 0 dBFS.
 
@@ -687,18 +755,18 @@ source_urls:
   - https://pubs.shure.com/command-strings/MXA310/en-US
   - https://techportal.shure.com/en
 retrieved_at: 2026-05-13T21:20:49.541Z
-last_checked_at: 2026-06-02T22:14:27.917Z
+last_checked_at: 2026-10-07T13:44:49.863Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:27.917Z
-matched_actions: 49
-action_count: 49
+checked_at: 2026-10-07T13:44:49.863Z
+matched_actions: 100
+action_count: 100
 confidence: medium
-summary: "All 49 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 100 action units match source command strings with correct shapes; TCP port 2202 confirmed; spec covers the full catalogue. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

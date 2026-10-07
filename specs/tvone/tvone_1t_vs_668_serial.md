@@ -17,31 +17,29 @@ compatible_with:
   required_options: []
 source_domains:
   - tvone.com
-  - manualslib.com
 source_urls:
   - https://tvone.com/filestore/Manuals-Other-Products/Manual-1T-VS-668.pdf
-  - https://www.manualslib.com/manual/893665/Tvone-1t-Vs-668.html
-  - https://tvone.com/support
-retrieved_at: 2026-07-01T14:09:53.118Z
-last_checked_at: 2026-08-05T08:47:40.797Z
-generated_at: 2026-08-05T08:47:40.797Z
+retrieved_at: 2026-09-26T14:23:16.983Z
+last_checked_at: 2026-09-26T14:23:16.983Z
+generated_at: 2026-09-26T14:23:16.983Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Telnet/TCP port number not stated in source. Web GUI base URL/path not stated in source. Firmware version compatibility not stated. HTTP command payloads (if any) not documented beyond the Web GUI UI."
   - "no TCP/Telnet or HTTP port number stated in source"
   - "only \"unit's IP address\" stated; no HTTP path pattern documented"
+  - "source does not establish authentication requirements"
   - "exact response string/byte framing for each query not specified verbatim in source."
   - "device may emit asynchronous state-change messages but none are described."
   - "none documented."
   - "Telnet/TCP port number not stated (do not assume 23). Web GUI HTTP base URL/path not stated (only IP address given). Exact response framing for R queries not specified. Firmware version compatibility not stated. No voltage/power/current specs populated (not in scope of control protocol and not present in this excerpt)."
 verification:
   verdict: verified
-  checked_at: 2026-08-05T08:47:40.797Z
+  checked_at: 2026-09-26T14:23:16.983Z
   matched_actions: 41
   action_count: 41
   confidence: medium
-  summary: "All 41 spec actions match source command set literally; transport 19200/8/N/1 verified; source has no extra RS-232/Telnet commands. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 41 documented commands and serial settings match; authentication, network ports and response framing remain explicitly unresolved. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -73,7 +71,7 @@ addressing:
   port: null  # UNRESOLVED: no TCP/Telnet or HTTP port number stated in source
   base_url: null  # UNRESOLVED: only "unit's IP address" stated; no HTTP path pattern documented
 auth:
-  type: none  # inferred: no auth/login procedure described for RS-232, Telnet, or Web GUI
+  type: unknown  # UNRESOLVED: source does not establish authentication requirements
 ```
 
 ## Traits
@@ -534,24 +532,21 @@ interlocks: []
 ```yaml
 source_domains:
   - tvone.com
-  - manualslib.com
 source_urls:
   - https://tvone.com/filestore/Manuals-Other-Products/Manual-1T-VS-668.pdf
-  - https://www.manualslib.com/manual/893665/Tvone-1t-Vs-668.html
-  - https://tvone.com/support
-retrieved_at: 2026-07-01T14:09:53.118Z
-last_checked_at: 2026-08-05T08:47:40.797Z
+retrieved_at: 2026-09-26T14:23:16.983Z
+last_checked_at: 2026-09-26T14:23:16.983Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-08-05T08:47:40.797Z
+checked_at: 2026-09-26T14:23:16.983Z
 matched_actions: 41
 action_count: 41
 confidence: medium
-summary: "All 41 spec actions match source command set literally; transport 19200/8/N/1 verified; source has no extra RS-232/Telnet commands. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 41 documented commands and serial settings match; authentication, network ports and response framing remain explicitly unresolved. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -560,6 +555,7 @@ summary: "All 41 spec actions match source command set literally; transport 1920
 - "Telnet/TCP port number not stated in source. Web GUI base URL/path not stated in source. Firmware version compatibility not stated. HTTP command payloads (if any) not documented beyond the Web GUI UI."
 - "no TCP/Telnet or HTTP port number stated in source"
 - "only \"unit's IP address\" stated; no HTTP path pattern documented"
+- "source does not establish authentication requirements"
 - "exact response string/byte framing for each query not specified verbatim in source."
 - "device may emit asynchronous state-change messages but none are described."
 - "none documented."

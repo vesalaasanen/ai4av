@@ -22,7 +22,7 @@ compatible_with:
     - "Movie Player 2"
     - "Music Player"
     - "Disc Vault"
-  firmware: "\"\""
+  firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -36,7 +36,7 @@ source_urls:
 retrieved_at: 2026-05-22T16:40:07.713Z
 last_checked_at: 2026-07-21T23:03:06.238Z
 generated_at: 2026-07-21T23:03:06.238Z
-firmware_coverage: "\"\""
+firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "firmware version compatibility ranges not stated"

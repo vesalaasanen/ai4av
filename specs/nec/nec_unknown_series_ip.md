@@ -20,14 +20,19 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:11.848Z
-last_checked_at: 2026-06-02T22:11:52.668Z
-generated_at: 2026-06-02T22:11:52.668Z
+last_checked_at: 2026-09-29T23:26:51.270Z
+generated_at: 2026-09-29T23:26:51.270Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "specific model names within the UNKNOWN Series are not enumerated in the source"
+  - "parity bit stated as \"None\" in source; absence of explicit authentication/flow-control documentation leaves operational behavior UNRESOLVED for this field's applicability"
   - "flow control not stated in source"
-  - "actual range not stated, inferred from 8-bit values"
+  - "authentication procedure not stated in source"
+  - "source demonstrates signed values (e.g., -10) without documenting the full absolute range"
+  - "actual range not stated in source"
+  - "source lists OFF, Normal, ECO, ECO1, ECO2, AUTO ECO, ON, LONG LIFE, SILENT, BOOST with model-dependent hex codes; exact per-model enumeration not specified"
+  - "source documents PIP and PICTURE BY PICTURE modes; an \"off\" state is not documented in the supplied appendix"
   - "source does not document unsolicited event notifications from the device"
   - "safety warnings related to lamp replacement, dust exposure, or portrait cover orientation not explicitly documented"
   - "specific input terminal hex codes vary by model - source references appendix for full list"
@@ -36,11 +41,11 @@ known_gaps:
   - "HDBaseT standby mode availability not fully clarified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:11:52.668Z
+  checked_at: 2026-09-29T23:26:51.270Z
   matched_actions: 53
   action_count: 53
   confidence: medium
-  summary: "All 53 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 semantic-id actions and hex examples match the complete catalogue; transport is supported, with exact-model applicability unresolved. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,7 +55,7 @@ created_at: 2026-04-18
 # NEC UNKNOWN Series Control Spec
 
 ## Summary
-NEC UNKNOWN Series projector supporting both RS-232C serial and wired LAN (TCP/IP) control. Document BDT140013 Rev 7.1. Commands are hex-encoded with checksum validation. Power on/off, input routing, picture/sound mute, lens control, and extensive query commands are documented.
+NEC UNKNOWN Series projector supporting both RS-232C serial and wired LAN (TCP/IP) control. Document BDT140013 Rev 7.1. Commands are hex-encoded with checksum validation. Power on/off, input routing, picture/sound mute, lens control, and extensive query commands are documented. Authentication type and serial flow control are UNRESOLVED in the source.
 
 <!-- UNRESOLVED: specific model names within the UNKNOWN Series are not enumerated in the source -->
 
@@ -64,11 +69,11 @@ addressing:
 serial:
   baud_rate: [115200, 38400, 19200, 9600, 4800]  # stated: "115200/38400/19200/9600/4800 bps"
   data_bits: 8  # stated: "8 bits"
-  parity: none  # stated: "None"
+  parity: UNRESOLVED  # UNRESOLVED: parity bit stated as "None" in source; absence of explicit authentication/flow-control documentation leaves operational behavior UNRESOLVED for this field's applicability
   stop_bits: 1  # stated: "1 bit"
-  flow_control: none  # UNRESOLVED: flow control not stated in source
+  flow_control: UNRESOLVED  # UNRESOLVED: flow control not stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: authentication procedure not stated in source
 ```
 
 ## Traits
@@ -228,15 +233,15 @@ auth:
   label: Lens Control 2
   kind: action
   params:
-    - name: control
+    - name: stop
       type: hex
-      description: "FFh=Stop, else adjustment mode"
+      description: "DATA01: FFh=Stop (only DATA01 value defined in source; non-stop DATA01 values UNRESOLVED)"
     - name: adjustment_mode
       type: hex
-      description: "00h=absolute, 02h=relative"
+      description: "DATA02: 00h=absolute, 02h=relative"
     - name: adjustment_value
       type: integer
-      description: 16-bit value
+      description: 16-bit value (DATA03 low-order 8 bits, DATA04 high-order 8 bits)
   hex_example: "02h 1Dh 00h 00h 04h [DATA01]-[DATA04] [CKS]"
 
 - id: lens_memory_control
@@ -517,7 +522,7 @@ auth:
 ```yaml
 # Response format: [Response Header] [Model] [ID1] [ID2] [LEN] [ERR1] [ERR2] [CKS]
 # Or with data: [Response Header] [Model] [ID1] [ID2] [LEN] [DATA...] [CKS]
-# ERR1=00h/ERR2=00h = success; non-zero indicates error
+# ERR1/ERR2 codes per source error table; no source statement equates a particular code with success
 
 - id: error_status_response
   label: Error Status Response
@@ -579,42 +584,42 @@ auth:
 - id: brightness
   label: Brightness
   type: integer
-  range: [0, 255]  # UNRESOLVED: actual range not stated, inferred from 8-bit values
+  range: UNRESOLVED  # UNRESOLVED: source demonstrates signed values (e.g., -10) without documenting the full absolute range
 
 - id: contrast
   label: Contrast
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: color
   label: Color
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: hue
   label: Hue
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: sharpness
   label: Sharpness
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: volume
   label: Volume
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: lamp_light_adjust
   label: Lamp/Light Adjust
   type: integer
-  range: [0, 255]
+  range: UNRESOLVED  # UNRESOLVED: actual range not stated in source
 
 - id: eco_mode
   label: Eco Mode
   type: enum
-  values: [off, normal, eco, auto_eco, long_life, silent, boost]
+  values: UNRESOLVED  # UNRESOLVED: source lists OFF, Normal, ECO, ECO1, ECO2, AUTO ECO, ON, LONG LIFE, SILENT, BOOST with model-dependent hex codes; exact per-model enumeration not specified
 
 - id: projector_name
   label: Projector Name
@@ -624,7 +629,7 @@ auth:
 - id: pip_mode
   label: PIP Mode
   type: enum
-  values: [off, pip, picture_by_picture]
+  values: UNRESOLVED  # UNRESOLVED: source documents PIP and PICTURE BY PICTURE modes; an "off" state is not documented in the supplied appendix
 
 - id: edge_blending
   label: Edge Blending
@@ -669,6 +674,8 @@ interlocks:
 - Standby mode must be properly set for device to accept commands via serial or LAN
 - Lamp usage time updated at 1-minute intervals despite 1-second resolution
 - Some commands return FFh for error conditions
+- Authentication type and serial flow control are UNRESOLVED in the source
+- Parity bit is stated as "None" in the source but applicability to this spec is UNRESOLVED
 <!-- UNRESOLVED: specific input terminal hex codes vary by model - source references appendix for full list -->
 <!-- UNRESOLVED: base model type values not enumerated in source -->
 <!-- UNRESOLVED: protocol version not stated in source -->
@@ -682,26 +689,31 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-04-29T13:53:11.848Z
-last_checked_at: 2026-06-02T22:11:52.668Z
+last_checked_at: 2026-09-29T23:26:51.270Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:11:52.668Z
+checked_at: 2026-09-29T23:26:51.270Z
 matched_actions: 53
 action_count: 53
 confidence: medium
-summary: "All 53 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 semantic-id actions and hex examples match the complete catalogue; transport is supported, with exact-model applicability unresolved. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "specific model names within the UNKNOWN Series are not enumerated in the source"
+- "parity bit stated as \"None\" in source; absence of explicit authentication/flow-control documentation leaves operational behavior UNRESOLVED for this field's applicability"
 - "flow control not stated in source"
-- "actual range not stated, inferred from 8-bit values"
+- "authentication procedure not stated in source"
+- "source demonstrates signed values (e.g., -10) without documenting the full absolute range"
+- "actual range not stated in source"
+- "source lists OFF, Normal, ECO, ECO1, ECO2, AUTO ECO, ON, LONG LIFE, SILENT, BOOST with model-dependent hex codes; exact per-model enumeration not specified"
+- "source documents PIP and PICTURE BY PICTURE modes; an \"off\" state is not documented in the supplied appendix"
 - "source does not document unsolicited event notifications from the device"
 - "safety warnings related to lamp replacement, dust exposure, or portrait cover orientation not explicitly documented"
 - "specific input terminal hex codes vary by model - source references appendix for full list"

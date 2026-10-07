@@ -11,7 +11,7 @@ compatible_with:
     - Doorbird
   models:
     - "D101S Series"
-  firmware: "\"000099 and above\""
+  firmware: "000099 and above"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-07-12T20:21:19.929Z
 last_checked_at: 2026-07-21T22:22:15.744Z
 generated_at: 2026-07-21T22:22:15.744Z
-firmware_coverage: "\"000099 and above\""
+firmware_coverage: "000099 and above"
 protocol_coverage: []
 known_gaps:
   - "physical relay pinout specifications, electrical ratings, operating temperature ranges"

@@ -11,7 +11,7 @@ compatible_with:
     - Lumens
   models:
     - PS760
-  firmware: "\"PVC127 or later (PVC128 added Key Tone command E5h)\""
+  firmware: "PVC127 or later (PVC128 added Key Tone command E5h)"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-05-13T06:57:56.276Z
 last_checked_at: 2026-06-02T17:23:19.526Z
 generated_at: 2026-06-02T17:23:19.526Z
-firmware_coverage: "\"PVC127 or later (PVC128 added Key Tone command E5h)\""
+firmware_coverage: "PVC127 or later (PVC128 added Key Tone command E5h)"
 protocol_coverage: []
 known_gaps:
   - "full command set coverage assumes firmware v1.2 (PVC128); commands 1-72 valid on PVC127, command 73 (Key Tone) requires PVC128 per source revision history."

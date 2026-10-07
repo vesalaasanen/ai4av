@@ -20,9 +20,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:21.415Z
-last_checked_at: 2026-06-02T22:16:21.415Z
-generated_at: 2026-06-02T22:16:21.415Z
+retrieved_at: 2026-10-07T12:40:07.415Z
+last_checked_at: 2026-10-07T12:40:07.415Z
+generated_at: 2026-10-07T12:40:07.415Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:21.415Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-10-07T12:40:07.415Z
+  matched_actions: 60
+  action_count: 60
   confidence: medium
-  summary: "All 29 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 60 action units (29 actions, 31 query feedbacks) match source commands; serial and port 23 transport values are supported, and the source catalogue is fully covered. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -49,14 +49,14 @@ created_at: 2026-05-17
 
 ## Summary
 
-The Wyrestorm H2X/H2XC Matrix Switcher series (MX-1010-HDBT-H2X, MX-1616-HDBT-H2X, MX-1010-H2XC, MX-1616-H2XC) are HDMI/HDBaseT matrix switchers with 10x10 and 16x16 configurations. This spec covers RS-232 serial and TCP/IP (Telnet) control using ASCII commands with CR+LF termination. The API supports video/audio routing, volume control, EDID management, CEC display power, HDCP configuration, scene save/recall, and diagnostics.
+The Wyrestorm H2X/H2XC Matrix Switcher series (MX-1010-HDBT-H2X, MX-1616-HDBT-H2X, MX-1010-H2XC, MX-1616-H2XC) are HDMI/HDBaseT matrix switchers with 10x10 and 16x16 configurations. This spec covers RS-232 serial control using ASCII commands with CR+LF termination. The source also lists a default IP address and port 23, but does not specify the IP transport protocol. The API supports video/audio routing, volume control, EDID management, CEC display power, HDCP configuration, scene save/recall, and diagnostics.
 
 ## Transport
 
 ```yaml
 protocols:
   - serial
-  - tcp
+  - UNRESOLVED
 serial:
   baud_rate: 57600
   data_bits: 8
@@ -66,7 +66,7 @@ serial:
 addressing:
   port: 23
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not specify authentication
 ```
 
 ## Traits
@@ -356,8 +356,8 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: "SET IRBACK_FN {state}<CR><LF>"
-  response: "IRBACK_FN {state}<CR><LF>"
+  command: "SET IRBACK_FN{state}<CR><LF>"
+  response: "IRBACK_FN{state}<CR><LF>"
 
 - id: set_long_reach_mode
   label: Set Long Reach Cable Mode
@@ -390,8 +390,8 @@ auth:
     - name: mode
       type: enum
       values: [normal, quick]
-  command: "SET SW_M {mode}<CR><LF>"
-  response: "SW_M {mode}<CR><LF>"
+  command: "SET SW_M{mode}<CR><LF>"
+  response: "SW_M{mode}<CR><LF>"
 
 - id: set_avr_priority_mode
   label: Set AVR Priority Mode for Output
@@ -444,6 +444,7 @@ auth:
   label: Query Video Input Mapping
   type: string
   command: "GET MP{output}<CR><LF>"
+  query_command: "GET MP{output}<CR><LF>"
   response: "MP{input#} {output#}<CR><LF>"
   params:
     - name: output
@@ -455,18 +456,21 @@ auth:
   type: enum
   values: [on, off]
   command: "GET AUDIOSW_M<CR><LF>"
+  query_command: "GET AUDIOSW_M {mode}<CR><LF>"
   response: "AUDIOSW_M {mode}<CR><LF>"
 
 - id: audio_input_mapping
   label: Audio Input Mapping
   type: string
   command: "GET AUDIOMP{output}<CR><LF>"
+  query_command: "GET AUDIOMP{output}<CR><LF>"
   response: "AUDIOMP{input} {output}<CR><LF>"
 
 - id: output_gain_level
   label: Current Output Gain Level
   type: integer
   command: "GET VOLGAIN_DATA{output}<CR><LF>"
+  query_command: "GET VOLGAIN_DATA{output}<CR><LF>"
   response: "VOLGAIN_DATA{output} {level}<CR><LF>"
 
 - id: audio_mute_state
@@ -474,6 +478,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET MUTE{output}<CR><LF>"
+  query_command: "GET MUTE{output}<CR><LF>"
   response: "MUTE{output} {state}<CR><LF>"
 
 - id: volume_fixed_state
@@ -481,6 +486,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET VOLGAIN_FIX{output}<CR><LF>"
+  query_command: "GET VOLGAIN_FIX{output} {mode}<CR><LF>"
   response: "VOLGAIN_FIX{output} {mode}<CR><LF>"
 
 - id: mute_method_state
@@ -488,6 +494,7 @@ auth:
   type: enum
   values: [cut, ramp]
   command: "GET MUTE_M{output}<CR><LF>"
+  query_command: "GET MUTE_M{output}<CR><LF>"
   response: "MUTE_M{output} {method}<CR><LF>"
 
 - id: volume_step_length
@@ -495,12 +502,14 @@ auth:
   type: enum
   values: [2, 4, 8]
   command: "GET VOLGAIN_STEP{output}<CR><LF>"
+  query_command: "GET VOLGAIN_STEP{output} {step}<CR><LF>"
   response: "VOLGAIN_STEP{output} {step}<CR><LF>"
 
 - id: audio_delay_time
   label: Audio Output Delay Time
   type: integer
   command: "GET AUDIO_D{output}<CR><LF>"
+  query_command: "GET AUDIO_D{output}<CR><LF>"
   response: "AUDIO_D{output} {delay_ms}<CR><LF>"
 
 - id: eq_function_status
@@ -508,12 +517,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET EQ_FN{output}<CR><LF>"
+  query_command: "GET EQ_FN{output}<CR><LF>"
   response: "EQ_FN{output} {state}<CR><LF>"
 
 - id: audio_eq_level
   label: Audio Output EQ Level
   type: string
   command: "GET AUDIO_EQ{output} {frequency}<CR><LF>"
+  query_command: "GET AUDIO_EQ{output} {frequency}<CR><LF>"
   response: "AUDIO_EQ{output} {frequency} {gain}<CR><LF>"
 
 - id: cec_power_status
@@ -521,12 +532,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET CEC_PWR{output}<CR><LF>"
+  query_command: "GET CEC_PWR{output}<CR><LF>"
   response: "CEC_PWR{output} {state}<CR><LF>"
 
 - id: cec_power_delay
   label: CEC Power Delay Time
   type: integer
   command: "GET AUTOCEC_D{output}<CR><LF>"
+  query_command: "GET AUTOCEC_D{output} {delay_minutes}<CR><LF>"
   response: "AUTOCEC_D{output} {delay_minutes}<CR><LF>"
 
 - id: hdcp_status
@@ -534,18 +547,21 @@ auth:
   type: enum
   values: [on, off]
   command: "GET HDCP_S{input}<CR><LF>"
+  query_command: "GET HDCP_S{input}<CR><LF>"
   response: "HDCP_S{input} {state}<CR><LF>"
 
 - id: edid_dip_switch_status
   label: EDID Dip Switch Status
   type: integer
   command: "GET EDID_DIP<CR><LF>"
+  query_command: "GET EDID_DIP<CR><LF>"
   response: "EDID_DIP {value}<CR><LF>"
 
 - id: all_inputs_edid
   label: Query All Inputs EDID Status
   type: string
   command: "GET EDID all<CR><LF>"
+  query_command: "GET EDID all<CR><LF>"
   response: "EDID{in1} {code}<CR>...<CR><LF>"
 
 - id: ir_callback_status
@@ -553,6 +569,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET IRBACK_FN<CR><LF>"
+  query_command: "GET IRBACK_FN<CR><LF>"
   response: "IRBACK_FN {state}<CR><LF>"
 
 - id: long_reach_mode_status
@@ -560,12 +577,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET LR_FN{target}<CR><LF>"
+  query_command: "GET LR_FN{target}<CR><LF>"
   response: "LR_FN{target} {state}<CR><LF>"
 
 - id: ir_system_codes_status
   label: IR System Codes
   type: string
   command: "GET IR_SYSCODE<CR><LF>"
+  query_command: "GET IR_SYSCODE<CR><LF>"
   response: "IR_SYSCODE {code_set}<CR><LF>"
 
 - id: switching_mode_status
@@ -573,6 +592,7 @@ auth:
   type: enum
   values: [normal, quick]
   command: "GET SW_M<CR><LF>"
+  query_command: "GET SW_M<CR><LF>"
   response: "SW_M {mode}<CR><LF>"
 
 - id: avr_priority_mode_status
@@ -580,12 +600,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET ZONE_LOCK{output}<CR><LF>"
+  query_command: "GET ZONE_LOCK{output}<CR><LF>"
   response: "ZONE_LOCK{output} {state}<CR><LF>"
 
 - id: source_zone_lockout_status
   label: Sources a Zone Can Access
   type: string
   command: "GET ZONE_R{output}<CR><LF>"
+  query_command: "GET ZONE_R{output}<CR><LF>"
   response: "ZONE_R{output} {lockout_mask}<CR><LF>"
 
 - id: input_cable_connection
@@ -593,6 +615,7 @@ auth:
   type: enum
   values: [connected, not connected]
   command: "GET CABLEC_IN{input}<CR><LF>"
+  query_command: "GET CABLEC_IN{input}<CR><LF>"
   response: "CABLEC_IN{input} {status}<CR><LF>"
 
 - id: output_cable_connection
@@ -600,12 +623,14 @@ auth:
   type: enum
   values: [connected, not connected]
   command: "GET CABLEC_IN{output}<CR><LF>"
+  query_command: "GET CABLEC_IN{output}<CR><LF>"
   response: "CABLEC_IN{output} {status}<CR><LF>"
 
 - id: hdbtin_link_quality
   label: HDBaseT Input Link Quality
   type: integer
   command: "GET HDBTL_IN{input}<CR><LF>"
+  query_command: "GET HDBTL_IN{input}<CR><LF>"
   response: "HDBTL_IN{input} {quality}<CR><LF>"
   notes: "quality = 1~10 or 'no link'; value represents 10% increments"
 
@@ -613,6 +638,7 @@ auth:
   label: HDBaseT Output Link Quality
   type: integer
   command: "GET HDBTL_OUT{output}<CR><LF>"
+  query_command: "GET HDBTL_OUT{output}<CR><LF>"
   response: "HDBTL_OUT{output} {quality}<CR><LF>"
 
 - id: card_connection_status
@@ -620,6 +646,7 @@ auth:
   type: enum
   values: [connected, not connected]
   command: "GET CARD_C{slot}<CR><LF>"
+  query_command: "GET CARD_C{slot}<CR><LF>"
   response: "CARD_C{slot} {status}<CR><LF>"
 
 - id: card_type
@@ -627,6 +654,7 @@ auth:
   type: enum
   values: [hdmi, hdbt]
   command: "GET CARD_T{slot}<CR><LF>"
+  query_command: "GET CARD_T{slot}<CR><LF>"
   response: "CARD_T{slot} {type}<CR><LF>"
 
 - id: card_communication_status
@@ -634,6 +662,7 @@ auth:
   type: enum
   values: [good, none]
   command: "GET CARD_COM{slot}<CR><LF>"
+  query_command: "GET CARD_COM{slot}<CR><LF>"
   response: "CARD_COM{slot} {status}<CR><LF>"
 
 - id: card_health_status
@@ -641,6 +670,7 @@ auth:
   type: enum
   values: [good, none]
   command: "GET CARD_S{slot}<CR><LF>"
+  query_command: "GET CARD_S{slot}<CR><LF>"
   response: "CARD_S{slot} {status}<CR><LF>"
 
 - id: fan_status
@@ -648,6 +678,7 @@ auth:
   type: enum
   values: [working, unworking]
   command: "GET FANS{fan}<CR><LF>"
+  query_command: "GET FANS{fan}<CR><LF>"
   response: "FANS{fan} {status}<CR><LF>"
   notes: "fan = fan1~fan4, all"
 ```
@@ -684,7 +715,7 @@ interlocks: []
 ## Notes
 
 - Commands are ASCII, keywords are case-sensitive, and every command must be terminated with CR+LF (`<CR><LF>`).
-- The matrix supports both RS-232 (57600 8N1) and TCP/IP Telnet on port 23 (default IP 192.168.11.143).
+- The matrix supports RS-232 (57600 8N1); the source lists default IP address 192.168.11.143 and IP port 23 but does not specify the IP transport protocol.
 - Several commands behave differently depending on firmware version: 10x10 Main Board FW v1.3 or 16x16 Main Board FW v1.4 introduces the -80~0 dB gain range (in 2 dB increments) and audio scene presets, replacing the earlier -10~10 dB range.
 - Remote device control via HDBaseT uses a binary packet format (header `05 55 55 57` + card slot byte + baud-rate byte + parity byte + command length byte + device command bytes in HEX). This is distinct from the ASCII matrix control commands.
 - The EDID Parameter Table (codes 0~31) covers copy-from-output, fixed resolution presets, and Smart EDID modes. EDID control via API requires rear-panel dipswitches set to `0000`.
@@ -703,19 +734,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:21.415Z
-last_checked_at: 2026-06-02T22:16:21.415Z
+retrieved_at: 2026-10-07T12:40:07.415Z
+last_checked_at: 2026-10-07T12:40:07.415Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:21.415Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-10-07T12:40:07.415Z
+matched_actions: 60
+action_count: 60
 confidence: medium
-summary: "All 29 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 60 action units (29 actions, 31 query feedbacks) match source commands; serial and port 23 transport values are supported, and the source catalogue is fully covered. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

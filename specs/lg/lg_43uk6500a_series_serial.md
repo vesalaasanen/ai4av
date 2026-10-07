@@ -17,32 +17,30 @@ compatible_with:
   required_options: []
 source_domains:
   - justaddpower.com
-  - scribd.com
-  - files.remotecentral.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-  - https://www.scribd.com/document/649294226/RS232-forLGTV
-  - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T22:08:59.243Z
-last_checked_at: 2026-06-02T22:08:59.243Z
-generated_at: 2026-06-02T22:08:59.243Z
+retrieved_at: 2026-09-26T14:23:20.250Z
+last_checked_at: 2026-09-26T14:23:20.250Z
+generated_at: 2026-09-26T14:23:20.250Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "IR remote control codes section present but not machine-protocol control"
-  - "no unsolicited event notifications described in source"
-  - "no multi-step macro sequences described in source"
-  - "no safety warnings or interlock procedures in source"
-  - "Auto Configure works only in RGB(PC) mode — boundary conditions not fully documented"
-  - "Tile Mode data values (12-44 pattern) partially documented"
+  - "source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only."
+  - "no authentication procedure or explicit no-auth statement in source"
+  - "A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests."
+  - "no continuous-state variables (no analog setpoints) are defined"
+  - "source does not document unsolicited notifications. All responses"
+  - "source does not document any multi-step macro or sequence"
+  - "source does not contain explicit safety warnings, interlock"
+  - "A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact."
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:59.243Z
+  checked_at: 2026-09-26T14:23:20.250Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Complete generic LG A1-A18 primary independently reviewed:26 serial families plus explicit power query match27 units,all prior IDs and36 mc key values;source-specific limits,polarity,standby/readback,ACK and7 ambiguous terminators preserved. Exact43UK6500A support remains explicitly conditional under same-class-source policy;no hardware/model guarantee. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -52,9 +50,9 @@ created_at: 2026-04-17
 # LG 43UK6500A Series Control Spec
 
 ## Summary
-LG 43UK6500A Series 4K UHD television with RS-232C serial control interface. Supports power control, input selection, picture adjustment, audio control, and display configuration via ASCII command protocol at 9600 baud.
+Serial command catalog from a generic LG multiple-monitor RS-232C appendix (printed A1–A18). Applicability to the cataloged 43UK6500A Series is inferred from manufacturer and display class; the source does not name 43UK6500A Series or establish its tiling, lamp, input or ISM capabilities. The catalog contains 26 command families, represented by 27 actions because power set and status are separate, plus the complete A18 key parameter table. Communication uses ASCII at 9600/8/N/1 with Set ID 1–99 or 0 for broadcast. Functions remain conditional on the actual display supporting them.
 
-<!-- UNRESOLVED: IR remote control codes section present but not machine-protocol control -->
+<!-- UNRESOLVED: source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only. -->
 
 ## Transport
 ```yaml
@@ -66,372 +64,596 @@ serial:
   parity: none
   stop_bits: 1
   flow_control: none
+  encoding: ascii
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: unknown  # UNRESOLVED: no authentication procedure or explicit no-auth statement in source
 ```
 
 ## Traits
 ```yaml
-- powerable       # Power on/off commands present
-- routable        # Input selection commands present
-- queryable       # Read commands for power state, elapsed time, temperature, lamp fault
-- levelable       # Volume, contrast, brightness, color, tint, sharpness, balance control
+- powerable      # inferred from k a power on/off commands
+- routable       # inferred from k b input select commands
+- queryable      # inferred from status/read commands (ka FF, d l FF, d n FF, d p FF, k z FF)
+- levelable      # inferred from volume, contrast, brightness, color, tint, sharpness, balance commands
 ```
 
 ## Actions
 ```yaml
+# A3 general format: [Cmd1][Cmd2][ ][SetID][ ][Data][Cr]
+# UNRESOLVED: A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests.
+# Those seven templates require an explicit terminator; no default is claimed.
+# - Cr = ASCII 0x0D (carriage return)
+# - Set ID: 1-99; "0" broadcasts to all sets (ack unreliable in broadcast)
+# - "FF" as Data byte = read/status query
+# Read commands are listed with kind: query and use FF as the data payload.
+# Data is ASCII hexadecimal, not decimal text: decimal 100 encodes as 64.
+# Set ID is documented as 1–99; this older source does not explicitly resolve
+# the wire numeral radix/padding. Do not borrow those rules from a newer guide.
+# Variable parts are shown as {set_id} and {data} in command templates.
+
 - id: power
-  label: Power
+  label: Power On/Off
   kind: action
+  command: "ka {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0 = Power Off, 1 = Power On
-  command: k a
-  format: "[k][a][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99; 0 = broadcast)
+    - name: data
+      type: enum
+      values: ["00", "01"]
+      description: "00 = Power Off, 01 = Power On"
+  notes: |
+    Real data: 0 = Power Off, 1 = Power On.
+
+- id: power_state
+  label: Power Status
+  kind: query
+  command: "ka {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
 
 - id: select_input
-  label: Input Select
+  label: Input Select (Main Picture)
   kind: action
+  command: "kb {set_id} {data}\r"
   params:
-    - name: input
+    - name: set_id
       type: integer
-      description: 2=AV, 4=Component1, 5=Component2, 6=RGB(DTV), 7=RGB(PC), 8=HDMI(DTV), 9=HDMI(PC)
-  command: k b
-  format: "[k][b][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["02", "04", "05", "06", "07", "08", "09"]
+      description: "02=AV, 04=Component1, 05=Component2, 06=RGB(DTV), 07=RGB(PC), 08=HDMI(DTV), 09=HDMI(PC)"
 
 - id: aspect_ratio
   label: Aspect Ratio
   kind: action
+  command: "kc {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 1=Normal(4:3), 2=Wide(16:9), 3=Hornizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full, 9=1:1(PC)
-  command: k c
-  format: "[k][c][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["01", "02", "03", "04", "05", "06", "07", "08", "09"]
+      description: "1=4:3, 2=16:9, 3=Horizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full (Europe), 9=1:1 (PC)"
 
 - id: screen_mute
   label: Screen Mute
   kind: action
+  command: "kd {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Off (Picture on), 1=On (Picture off)
-  command: k d
-  format: "[k][d][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "01"]
+      description: "0 = Screen mute off (picture on), 1 = Screen mute on (picture off)"
 
 - id: volume_mute
   label: Volume Mute
   kind: action
+  command: "ke {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Mute On, 1=Mute Off
-  command: k e
-  format: "[k][e][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "01"]
+      description: "0 = Mute On (volume off), 1 = Mute Off (volume on)"
 
 - id: volume_control
   label: Volume Control
   kind: action
+  command: "kf {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100). Real data mapping: 0=Step0, A=Step10, F=Step15, 10=Step16, 64=Step100
-  command: k f
-  format: "[k][f][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Volume level (00H-64H hex; 0=Step 0, 64=Step 100)
+  notes: |
+    Real data mapping: 0 = Step 0, A = Step 10, F = Step 15, 10 = Step 16, 64 = Step 100.
 
 - id: contrast
   label: Contrast
   kind: action
+  command: "kg {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  command: k g
-  format: "[k][g][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Contrast (00H-64H hex; 0=Step 0, 64=Step 100)
 
 - id: brightness
   label: Brightness
   kind: action
+  command: "kh {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100)
-  command: k h
-  format: "[k][h][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Brightness (00H-64H hex; 0=Step 0, 64=Step 100)
 
 - id: color
   label: Color
   kind: action
+  command: "ki {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100, video only)
-  command: k i
-  format: "[k][i][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Color saturation (00H-64H hex; 0=Step 0, 64=Step 100)
+  notes: "Video only."
 
 - id: tint
   label: Tint
   kind: action
+  command: "kj {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H=Red50, 64H=Green50 (video only)
-  command: k j
-  format: "[k][j][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: "Tint (00H=Red -50, 64H=Green +50)"
+  notes: "Video only. Real data mapping: 0 = Step -50, 64 = Step 50."
 
 - id: sharpness
   label: Sharpness
   kind: action
+  command: "kk {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H-64H (0-100, video only)
-  command: k k
-  format: "[k][k][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Sharpness (00H-64H hex; 0=Step 0, 64=Step 100)
+  notes: "Video only."
 
 - id: osd_select
   label: OSD Select
   kind: action
+  command: "kl {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=OSD Off, 1=OSD On
-  command: k l
-  format: "[k][l][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "01"]
+      description: "0 = OSD Off, 1 = OSD On"
 
 - id: remote_lock
-  label: Remote/Key Lock
+  label: Remote Lock / Key Lock
   kind: action
+  command: "km {set_id} {data}\r"
   params:
-    - name: state
+    - name: set_id
       type: integer
-      description: 0=Off, 1=On
-  command: k m
-  format: "[k][m][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "01"]
+      description: "0 = Off, 1 = On (locks remote control and local keys while under RS-232C control)"
 
 - id: balance
   label: Balance
   kind: action
+  command: "kt {set_id} {data}\r"
   params:
-    - name: level
+    - name: set_id
       type: integer
-      description: 00H=L50, 64H=R50
-  command: k t
-  format: "[k][t][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: "Balance (00H=L50, 64H=R50)"
 
 - id: color_temperature
   label: Color Temperature
   kind: action
+  command: "ku {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 0=Normal, 1=Cool, 2=Warm, 3=User
-  command: k u
-  format: "[k][u][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "01", "02", "03"]
+      description: "0=Normal, 1=Cool, 2=Warm, 3=User"
+
+- id: abnormal_state
+  label: Abnormal State (Read)
+  kind: query
+  command: "kz {set_id} FF\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: |
+    Abnormal State : Used to Read the power off status when Stand-by mode.
+    Response codes:
+    0 = Normal (power on and signal exist)
+    1 = No signal (power on)
+    2 = Turned off by remote control
+    3 = Turned off by sleep time
+    4 = Turned off by RS-232C
+    6 = AC down
+    8 = Turned off by off time
+    9 = Turned off by auto off
 
 - id: ism_mode
   label: ISM Mode
   kind: action
+  command: "jp {set_id} {data}\r"
   params:
-    - name: mode
+    - name: set_id
       type: integer
-      description: 1=Inversion, 2=Orbiter, 4=White Wash, 8=Normal
-  command: j p
-  format: "[j][p][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["01", "02", "04", "08"]
+      description: "1=Inversion, 2=Orbiter, 4=White Wash, 8=Normal"
 
 - id: auto_configure
   label: Auto Configure
   kind: action
+  command: "ju {set_id} 01\r"
   params:
-    - name: action
+    - name: set_id
       type: integer
-      description: 1=Execute (RGB PC mode only)
-  command: j u
-  format: "[j][u][ ][Set ID][ ][Data][Cr]"
+      description: Set ID (1-99)
+  notes: "Adjusts picture position and minimizes image shaking. Works only in RGB(PC) mode."
+
+- id: send_key
+  label: IR Remote Key
+  kind: action
+  command: "mc {set_id} {key_code}\r"
+  params:
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+    - name: key_code
+      type: string
+      values: ["00", "01", "02", "03", "08", "C4", "C5", "09", "98", "0B", "0E", "43", "5B", "6E", "44", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "5A", "BF", "D4", "D5", "D7", "C6", "79", "76", "77", "AF", "99"]
+      description: "ASCII hexadecimal key code; complete 36-entry A18 table below."
+  notes: "mc transports the A18 remote-key codes over serial; no IR transmitter is required by this command."
 
 - id: tile_mode
   label: Tile Mode
   kind: action
+  command: "dd {set_id} {data}{terminator}"
   params:
-    - name: mode
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
       type: integer
-      description: 00=Off, 12=1x2, 13=1x3, 14=1x4, ... 44=4x4
-  command: d d
-  format: "[d][d][ ][Set ID][ ][Data][x]"
+      description: Set ID (1-99)
+    - name: data
+      type: enum
+      values: ["00", "12", "13", "14", "44"]
+      description: "Tile matrix. 00=Off, then column-row hex (e.g. 12=1x2, 44=4x4). Source: 0X or X0 (except 00) not allowed."
+  notes: "Source lists example values 00, 12, 13, 14, ..., 44. Only these five values are explicitly listed. Intermediate values remain UNRESOLVED; 0X/X0 are forbidden except 00. The command-specific reply shows Set ID 00, unlike the general echoed-ID format."
 
 - id: tile_h_size
-  label: Tile H Size
+  label: Tile Horizontal Size
   kind: action
+  command: "dg {set_id} {data}{terminator}"
   params:
-    - name: size
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
       type: integer
-      description: 00H-64H
-  command: d g
-  format: "[d][g][ ][Set ID][ ][Data][x]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Horizontal tile size (00H-64H hex)
 
 - id: tile_v_size
-  label: Tile V Size
+  label: Tile Vertical Size
   kind: action
+  command: "dh {set_id} {data}{terminator}"
   params:
-    - name: size
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
       type: integer
-      description: 00H-64H
-  command: d h
-  format: "[d][h][ ][Set ID][ ][Data][x]"
+      description: Set ID (1-99)
+    - name: data
+      type: string
+      description: Vertical tile size (00H-64H hex)
 
 - id: tile_id_set
   label: Tile ID Set
   kind: action
+  command: "di {set_id} {data}{terminator}"
   params:
-    - name: id
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
       type: integer
-      description: 00H-10H
-  command: d i
-  format: "[d][i][ ][Set ID][ ][Data][x]"
-
-- id: send_key
-  label: Send IR Key Code
-  kind: action
-  params:
-    - name: keycode
+      description: Set ID (1-99)
+    - name: data
       type: string
-      description: Hex key code (see IR code table)
-  command: m c
-  format: "[m][c][ ][Set ID][ ][Data][Cr]"
+      description: Tile ID (00H-10H hex)
+
+- id: elapsed_time
+  label: Elapsed Time Return
+  kind: query
+  command: "dl {set_id} FF{terminator}"
+  params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: "Data is always FF. Response data is used hours in hex."
+
+- id: temperature_value
+  label: Temperature Value
+  kind: query
+  command: "dn {set_id} FF{terminator}"
+  params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: "Data is always FF. Response data is 1 byte in hex (inside temperature)."
+
+- id: lamp_fault
+  label: Lamp Fault Check
+  kind: query
+  command: "dp {set_id} FF{terminator}"
+  params:
+    - name: terminator
+      type: enum
+      values: ["\r", "x"]
+      description: "UNRESOLVED source conflict: A3 specifies CR (0x0D); this command's A13–A16 row specifies literal x (0x78). No default."
+    - name: set_id
+      type: integer
+      description: Set ID (1-99)
+  notes: "Data is always FF. Response: 0 = Lamp Fault, 1 = Lamp OK."
 ```
 
 ## Feedbacks
 ```yaml
 - id: power_state
-  label: Power State
   type: enum
-  values:
-    - 0  # Power Off
-    - 1  # Power On
-  query_command: k a FF
-  ack_format: "[Command2][ ][Set ID][ ][OK][Data][x]"
+  values: [on, off]
+  source_command: power_state
+  notes: "Return data: 0 = Off, 1 = On."
+
+- id: volume_mute_state
+  type: enum
+  values: [on, off]
+  source_command: volume_mute
+  notes: "Return data: 0 = Mute On, 1 = Mute Off."
+
+- id: screen_mute_state
+  type: enum
+  values: [on, off]
+  source_command: screen_mute
 
 - id: input_state
-  label: Input Selection
   type: enum
-  values:
-    - 2   # AV
-    - 4   # Component 1
-    - 5   # Component 2
-    - 6   # RGB (DTV)
-    - 7   # RGB (PC)
-    - 8   # HDMI (DTV)
-    - 9   # HDMI (PC)
+  values: [av, component1, component2, rgb_dtv, rgb_pc, hdmi_dtv, hdmi_pc]
+  source_command: select_input
+  notes: "Return data codes: 2=AV, 4=Component1, 5=Component2, 6=RGB(DTV), 7=RGB(PC), 8=HDMI(DTV), 9=HDMI(PC)."
+
+- id: aspect_ratio_state
+  type: enum
+  values: [normal_4_3, wide_16_9, horizon, zoom1, zoom2, original, ratio_14_9, full, pc_1_1]
+  source_command: aspect_ratio
+
+- id: osd_state
+  type: enum
+  values: [off, on]
+  source_command: osd_select
+
+- id: remote_lock_state
+  type: enum
+  values: [off, on]
+  source_command: remote_lock
+
+- id: balance_state
+  type: integer
+  range: [0, 100]
+  source_command: balance
+  notes: "00H = L50, 64H = R50."
+
+- id: color_temperature_state
+  type: enum
+  values: [normal, cool, warm, user]
+  source_command: color_temperature
 
 - id: abnormal_state
-  label: Abnormal State
   type: enum
-  values:
-    - 0   # Normal (Power on and signal exist)
-    - 1   # No signal (Power on)
-    - 2   # Turn the monitor off by remote control
-    - 3   # Turn the monitor off by sleep time function
-    - 4   # Turn the monitor off by RS-232C function
-    - 6   # AC down
-    - 8   # Turn the monitor off by off time function
-    - 9   # Turn the monitor off by auto off function
-  query_command: k z FF
+  values: [normal, no_signal, off_by_remote, off_by_sleep, off_by_rs232, ac_down, off_by_off_time, off_by_auto_off]
+  source_command: abnormal_state
+  notes: "Response codes 0,1,2,3,4,6,8,9. Codes 5 and 7 are unused."
 
-- id: elapsed_time
-  label: Elapsed Time
-  type: integer
-  unit: hours
-  query_command: d l FF
-
-- id: temperature_value
-  label: Temperature Value
-  type: integer
-  unit: unknown
-  query_command: d n FF
-
-- id: lamp_fault
-  label: Lamp Fault Status
+- id: ism_mode_state
   type: enum
-  values:
-    - 0   # Lamp Fault
-    - 1   # Lamp OK
-  query_command: d p FF
+  values: [inversion, orbiter, white_wash, normal]
+  source_command: ism_mode
+
+- id: elapsed_hours
+  type: integer
+  source_command: elapsed_time
+  notes: "Hexadecimal used hours."
+
+- id: temperature_reading
+  type: integer
+  source_command: temperature_value
+  notes: "1-byte hex; units not specified in source."
+
+- id: lamp_fault_state
+  type: enum
+  values: [fault, ok]
+  source_command: lamp_fault
 ```
 
 ## Variables
 ```yaml
-# All adjustable parameters are controlled via Actions with range parameters.
-# No separate Variables section needed.
+# Discrete-action commands cover all documented settable parameters; no
+# continuous variables beyond those encoded as command payloads.
+# UNRESOLVED: no continuous-state variables (no analog setpoints) are defined
+# outside the action commands above.
 ```
 
 ## Events
 ```yaml
-# UNRESOLVED: no unsolicited event notifications described in source
+# UNRESOLVED: source does not document unsolicited notifications. All responses
+# are acknowledgements to issued commands.
 ```
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macro sequences described in source
+# UNRESOLVED: source does not document any multi-step macro or sequence
+# commands. The m c "Key" command is the only mechanism for chaining IR
+# remote key presses serially, but no predefined macro sequences are listed.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# UNRESOLVED: source does not contain explicit safety warnings, interlock
+# procedures, or power-on sequencing requirements. The "abnormal state"
+# readback (kz) covers power-off cause diagnostics but is informational only.
 ```
 
 ## Notes
-- Command format: `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where Cr = 0x0D, Space = 0x20
-- Set ID range: 1-99 (0 = broadcast to all devices, but ACK cannot be checked in broadcast mode)
-- To read status, send `FF` in the data field
-- OK Acknowledgement: `[Command2][ ][Set ID][ ][OK][Data][x]`
-- NG Acknowledgement: `[Command2][ ][Set ID][ ][NG][Data][x]`
-- Data ranges use hexadecimal notation (e.g., 00H-64H = 0-100 decimal)
-- Volume/Contrast/Brightness/Color/Sharpness: 0=Step0, A=Step10, F=Step15, 10=Step16, 64=Step100
-- Tint: 0=Red(-50), 64=Green(+50)
-- Balance: 00H=L50, 64H=R50
-- Tile Mode data format uses `[d][d][ ][Set ID][ ][Data][x]` without Cr
-- IR codes section present but represents wired remote protocol, not serial control
-<!-- UNRESOLVED: Auto Configure works only in RGB(PC) mode — boundary conditions not fully documented -->
-<!-- UNRESOLVED: Tile Mode data values (12-44 pattern) partially documented -->
+- Scope is the generic manufacturer's serial appendix, not confirmed 43UK6500A Series support. The catalog identity is retained. No firmware applicability or IP control is established by this source.
+- A3 general request format is `[Cmd1][Cmd2]<SP>[SetID]<SP>[Data]<CR>`, with space 0x20 and CR 0x0D. **UNRESOLVED:** A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact.
+- General OK reply is `[Cmd2]<SP>[SetID]<SP>OK[Data]x`; NG uses the same spacing with `NG`. Reply `x` is literal 0x78. Tile-mode reply specifically prints Set ID `00`; its relationship to the general echoed Set ID is unresolved.
+- Data bytes are ASCII hex. For 00H–64H controls, decimal 0–100 is encoded as 00–64. Tint maps those endpoints to red -50 and green +50; balance maps them to L50 and R50. Sharpness in this older guide is 00H–64H; do not substitute the newer guide's 00H–32H limit.
+- Broadcast Set ID 0 addresses all sets; the source warns not to inspect acknowledgements when multiple sets reply together. The source states Set ID 1–99 but does not unambiguously specify its ASCII radix/padding.
+- Authentication is UNRESOLVED; absence of an authentication section does not establish no authentication.
+- ISM, tiling, lamp diagnostics, video-only picture settings and RGB-PC auto configuration are conditional source functions, not claims that 43UK6500A Series supports them. Aspect value 08 (Full) is Europe-only and value 09 (1:1) is PC-only.
+- Tile mode lists only 00, 12, 13, 14, an ellipsis, and 44. Intermediate values are not enumerated, and 0X/X0 are invalid except 00. They have not been guessed.
+- The key action uses the full A18 table below as serial `mc` data. A18's C5 Function column says POWER OFF while its Note column incorrectly repeats “Only Power On”; that internal discrepancy is retained here rather than hidden. Direction glyphs for 00–03 were checked visually in the PDF.
+
+### A18 key parameter inventory
+
+| Hex data | Function |
+| --- | --- |
+| 00 | Up |
+| 01 | Down |
+| 02 | VOL right/increase |
+| 03 | VOL left/decrease |
+| 08 | Power on/off toggle |
+| C4 | Power on |
+| C5 | Power off (Function column; conflicting Note described above) |
+| 09 | Mute |
+| 98 | AV remote button |
+| 0B | Input |
+| 0E | Sleep |
+| 43 | Menu |
+| 5B | Exit |
+| 6E | PSM |
+| 44 | Set |
+| 10 | Number 0 |
+| 11 | Number 1 |
+| 12 | Number 2 |
+| 13 | Number 3 |
+| 14 | Number 4 |
+| 15 | Number 5 |
+| 16 | Number 6 |
+| 17 | Number 7 |
+| 18 | Number 8 |
+| 19 | Number 9 |
+| 5A | AV discrete input |
+| BF | Component 1 |
+| D4 | Component 2 |
+| D5 | RGB PC |
+| D7 | RGB DTV |
+| C6 | HDMI/DVI |
+| 79 | ARC |
+| 76 | ARC 4:3 |
+| 77 | ARC 16:9 |
+| AF | ARC Zoom (Zoom1/Zoom2) |
+| 99 | AUTO CONFIC (source spelling; auto configuration) |
 
 ## Provenance
 
 ```yaml
 source_domains:
   - justaddpower.com
-  - scribd.com
-  - files.remotecentral.com
 source_urls:
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-  - https://www.scribd.com/document/649294226/RS232-forLGTV
-  - https://files.remotecentral.com/library/22-1/lg/television/index.html
-retrieved_at: 2026-06-02T22:08:59.243Z
-last_checked_at: 2026-06-02T22:08:59.243Z
+retrieved_at: 2026-09-26T14:23:20.250Z
+last_checked_at: 2026-09-26T14:23:20.250Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:59.243Z
+checked_at: 2026-09-26T14:23:20.250Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Complete generic LG A1-A18 primary independently reviewed:26 serial families plus explicit power query match27 units,all prior IDs and36 mc key values;source-specific limits,polarity,standby/readback,ACK and7 ambiguous terminators preserved. Exact43UK6500A support remains explicitly conditional under same-class-source policy;no hardware/model guarantee. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "IR remote control codes section present but not machine-protocol control"
-- "no unsolicited event notifications described in source"
-- "no multi-step macro sequences described in source"
-- "no safety warnings or interlock procedures in source"
-- "Auto Configure works only in RGB(PC) mode — boundary conditions not fully documented"
-- "Tile Mode data values (12-44 pattern) partially documented"
+- "source does not state Ethernet/IP control port or HTTP/REST surface; this spec covers the serial (RS-232C) protocol only."
+- "no authentication procedure or explicit no-auth statement in source"
+- "A13–A16 use literal x for dd/dg/dh/di/dl/dn/dp requests."
+- "no continuous-state variables (no analog setpoints) are defined"
+- "source does not document unsolicited notifications. All responses"
+- "source does not document any multi-step macro or sequence"
+- "source does not contain explicit safety warnings, interlock"
+- "A13–A16 instead print `[x]` for dd, dg, dh, di, dl, dn and dp requests. Their templates require a terminator selection with no claimed default; the PDF confirms this is not merely an extraction artifact."
 - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 

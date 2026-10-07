@@ -23,25 +23,27 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
-retrieved_at: 2026-06-02T22:13:59.215Z
-last_checked_at: 2026-06-02T22:13:59.215Z
-generated_at: 2026-06-02T22:13:59.215Z
+retrieved_at: 2026-09-30T00:22:52.178Z
+last_checked_at: 2026-09-30T00:22:52.178Z
+generated_at: 2026-09-30T00:22:52.178Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "LAN wireless not documented; Appendix referenced but not included"
   - "source lists 115200/38400/19200/9600/4800 selectable; default not stated"
+  - "not documented in source"
+  - "no authentication procedure documented in source"
   - "Appendix referenced but not included; input terminal values, aspect values,"
   - "no unsolicited event messages documented in source"
   - "no multi-step macro sequences documented in source"
   - "Appendix \"Supplementary Information by Command\" referenced but not included in source; input terminal values, aspect ratio values, light mode values, signal type values, base model type values not populated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:59.215Z
+  checked_at: 2026-09-30T00:22:52.178Z
   matched_actions: 50
   action_count: 50
   confidence: medium
-  summary: "All 50 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 50 semantic actions and resolved transport values match; the generic projector guide does not establish exact XG-PH80 compatibility. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,7 +53,7 @@ created_at: 2026-04-26
 # Sharp Electronics XG-PH80 Series Control Spec
 
 ## Summary
-Sharp Electronics XG-PH80 Series projector. RS-232C serial and wired TCP/IP control. No authentication required. Commands sent as hexadecimal packets with checksum.
+Sharp Electronics XG-PH80 Series projector. RS-232C serial and wired TCP/IP control. Authentication type UNRESOLVED (source does not document an authentication procedure). Commands sent as hexadecimal packets with checksum.
 
 <!-- UNRESOLVED: LAN wireless not documented; Appendix referenced but not included -->
 
@@ -67,9 +69,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none
+  flow_control: UNRESOLVED  # UNRESOLVED: not documented in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: no authentication procedure documented in source
 ```
 
 ## Traits
@@ -207,6 +209,9 @@ auth:
     - name: direction
       type: integer
       description: "00h=Stop, 01h/02h/03h=Drive plus, 7Fh=Drive plus continuous, 81h=Drive minus, FDh/FEh/FFh=Drive minus"
+    - name: target
+      type: integer
+      description: Lens target (DATA01, see source 3.21)
 
 - id: lens_control_request
   label: Lens Control Request
@@ -468,15 +473,16 @@ auth:
       type: integer
       description: Error code low
   values:
-    - 0001h: Invalid specified value
-    - 0101h: Invalid input terminal
-    - 0102h: Invalid language
-    - 0203h: Value cannot be set
-    - 020Dh: Power is off
-    - 020Eh: Command execution failed
-    - 0300h: Incorrect gain number
-    - 0301h: Invalid gain
-    - 0302h: Adjustment failed
+    - 0000h: The command cannot be recognized.
+    - 0100h: The specified value is invalid.
+    - 0101h: The specified input terminal is invalid.
+    - 0102h: The specified language is invalid.
+    - 0203h: The specified value cannot be set.
+    - 020Dh: The command cannot be accepted because the power is off.
+    - 020Eh: The command execution failed.
+    - 0300h: The specified gain number is incorrect.
+    - 0301h: The specified gain is invalid.
+    - 0302h: Adjustment failed.
 
 - id: input_sw_change_response
   label: Input SW Change Response
@@ -512,7 +518,7 @@ interlocks:
 ```
 
 ## Notes
-Serial supports selectable baud rates (115200/38400/19200/9600/4800). Source does not specify which rate is default. TCP port 7142 stated. All commands use 6-byte header + variable data + 1-byte checksum. No login or authentication described.
+Serial supports selectable baud rates (115200/38400/19200/9600/4800). Source does not specify which rate is default. TCP port 7142 stated. Frame format per source: header (variable-length per command, e.g. 5-byte header such as 02h 18h 00h 00h) + LEN + variable data + 1-byte checksum. Authentication type UNRESOLVED; no login or authentication procedure is documented in the source.
 <!-- UNRESOLVED: Appendix "Supplementary Information by Command" referenced but not included in source; input terminal values, aspect ratio values, light mode values, signal type values, base model type values not populated -->
 
 ## Provenance
@@ -525,19 +531,19 @@ source_urls:
   - https://business.sharpusa.com/portals/0/downloads/manuals/sharp-pj-control-command-codes.pdf
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80x-n/
   - https://applicationmarket.crestron.com/sharp-electronics-xg-ph80w-n/
-retrieved_at: 2026-06-02T22:13:59.215Z
-last_checked_at: 2026-06-02T22:13:59.215Z
+retrieved_at: 2026-09-30T00:22:52.178Z
+last_checked_at: 2026-09-30T00:22:52.178Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:59.215Z
+checked_at: 2026-09-30T00:22:52.178Z
 matched_actions: 50
 action_count: 50
 confidence: medium
-summary: "All 50 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 50 semantic actions and resolved transport values match; the generic projector guide does not establish exact XG-PH80 compatibility. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -545,6 +551,8 @@ summary: "All 50 spec actions traced to source (dip-safe re-verify). (6 unresolv
 ```yaml
 - "LAN wireless not documented; Appendix referenced but not included"
 - "source lists 115200/38400/19200/9600/4800 selectable; default not stated"
+- "not documented in source"
+- "no authentication procedure documented in source"
 - "Appendix referenced but not included; input terminal values, aspect values,"
 - "no unsolicited event messages documented in source"
 - "no multi-step macro sequences documented in source"

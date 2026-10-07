@@ -28,7 +28,7 @@ compatible_with:
     - "Webex Desk"
     - "Webex Board"
     - "Webex Board Pro"
-  firmware: "\"RoomOS 11.5.2 (CE 9.14 release line)\""
+  firmware: "RoomOS 11.5.2 (CE 9.14 release line)"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -39,7 +39,7 @@ source_urls:
 retrieved_at: 2026-05-27T04:34:59.632Z
 last_checked_at: 2026-05-27T06:51:44.656Z
 generated_at: 2026-05-27T06:51:44.656Z
-firmware_coverage: "\"RoomOS 11.5.2 (CE 9.14 release line)\""
+firmware_coverage: "RoomOS 11.5.2 (CE 9.14 release line)"
 protocol_coverage: []
 known_gaps:
   - "product-to-command compatibility varies widely across the Room Kit family; this spec lists the full command surface but per-model applicability is determined by the compatibility matrix in Chapter 6 of the source."

@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-06-02T22:13:47.018Z
-generated_at: 2026-06-02T22:13:47.018Z
+last_checked_at: 2026-10-07T10:37:07.336Z
+generated_at: 2026-10-07T10:37:07.336Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "operation code parameter value ranges not documented; CRC algorithm not specified; Event packet payload structure not fully described"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:47.018Z
+  checked_at: 2026-10-07T10:37:07.336Z
   matched_actions: 93
   action_count: 93
   confidence: medium
-  summary: "All 93 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 93 action units match source hex tables and transport values; spec collapses color temp, gamma, language and signal type variants like the source inventory. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -48,7 +48,7 @@ created_at: 2026-04-26
 # Seleco, SIM2 HT-300 (North America) Control Spec
 
 ## Summary
-RS-232C serial projector control. Packet-based protocol: 13-byte Event packets (simulated RC key presses), 32-byte Operation packets (direct parameter access). Acknowledgement codes 0x06 (OK) and 0x15 (error). No authentication defined.
+RS-232C serial projector control. Packet-based protocol: 13-byte Event packets (simulated RC key presses), 32-byte Operation packets (direct parameter access). Acknowledgement codes 0x06 (OK) and 0x15 (error). Authentication is UNRESOLVED; the source does not specify it.
 
 <!-- UNRESOLVED: binary packet structure beyond hex tables not fully decoded; only named operation IDs documented -->
 
@@ -63,7 +63,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED
 ```
 
 ## Traits
@@ -331,13 +331,13 @@ auth:
   label: Color Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 C1 C7 03 02 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 C1 C7 03 02 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_color_decrement
   label: Color Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 AF 6D 04 02 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 AF 6D 04 02 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_tint_increment
   label: Tint Increment
@@ -421,19 +421,19 @@ auth:
   label: Position Horizontal Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 3B 10 04 21 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 3B 10 04 21 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_position_vertical_increment
   label: Position Vertical Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 AA 5E 03 22 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 AA 5E 03 22 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_position_vertical_decrement
   label: Position Vertical Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 C4 F4 04 22 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 C4 F4 04 22 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_color_temperature
   label: Color Temperature (01-36)
@@ -463,91 +463,91 @@ auth:
   label: Frequency Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 7B 3F 04 24 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 7B 3F 04 24 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_phase_increment
   label: Phase Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 80 C8 03 25 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 80 C8 03 25 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_phase_decrement
   label: Phase Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 EE 62 04 25 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 EE 62 04 25 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_yc_delay_increment
   label: Y/C Delay Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 7F 2C 03 26 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 7F 2C 03 26 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_yc_delay_decrement
   label: Y/C Delay Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 11 86 04 26 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 11 86 04 26 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_magnification_increment
   label: Magnification Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 FF 72 03 2C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 FF 72 03 2C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_magnification_decrement
   label: Magnification Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 91 D8 04 2C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 91 D8 04 2C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_pan_horizontal_increment
   label: Pan Horizontal Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 6A 2F 03 2D 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 6A 2F 03 2D 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_pan_horizontal_decrement
   label: Pan Horizontal Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 04 85 04 2D 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 04 85 04 2D 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_pan_vertical_increment
   label: Pan Vertical Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 95 CB 03 2E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 95 CB 03 2E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_pan_vertical_decrement
   label: Pan Vertical Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 FB 61 04 2E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 FB 61 04 2E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_keystone_vertical_increment
   label: Keystone Vertical Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 01 26 03 1C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 01 26 03 1C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_keystone_vertical_decrement
   label: Keystone Vertical Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 6F 8C 04 1C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 6F 8C 04 1C 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_keystone_horizontal_increment
   label: Keystone Horizontal Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 6B 9F 03 1E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 6B 9F 03 1E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_keystone_horizontal_decrement
   label: Keystone Horizontal Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 05 35 04 1E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 05 35 04 1E 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_language
   label: Language
@@ -562,25 +562,25 @@ auth:
   label: OSD Position Horizontal Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 82 88 03 61 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 82 88 03 61 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_osd_position_horizontal_decrement
   label: OSD Position Horizontal Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 EC 22 04 61 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 EC 22 04 61 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_osd_position_vertical_increment
   label: OSD Position Vertical Increment
   kind: action
   params: []
-  hex: "BE EF 03 19 00 7D 6C 03 62 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 7D 6C 03 62 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_osd_position_vertical_decrement
   label: OSD Position Vertical Decrement
   kind: action
   params: []
-  hex: "BE EF 03 19 00 13 C6 04 62 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 13 C6 04 62 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_input3_signaltype
   label: Input 3 (Comp. RGB) / Signal Type
@@ -595,7 +595,7 @@ auth:
   label: Memory 1 Recall
   kind: action
   params: []
-  hex: "BE EF 03 19 00 85 EB 01 27 09 00 00 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 85 EB 01 27 09 00 00 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_memory_1_save_current
   label: Memory 1 Save Current Settings
@@ -613,7 +613,7 @@ auth:
   label: Memory 2 Recall
   kind: action
   params: []
-  hex: "BE EF 03 19 00 74 AB 01 27 09 00 00 01 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 74 AB 01 27 09 00 00 01 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_memory_2_save_current
   label: Memory 2 Save Current Settings
@@ -631,7 +631,7 @@ auth:
   label: Memory 3 Recall
   kind: action
   params: []
-  hex: "BE EF 03 19 00 E4 6A 01 27 09 00 00 01 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00 00"
+  hex: "BE EF 03 19 00 E4 6A 01 27 09 00 00 01 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00 00 00"
 
 - id: op_memory_3_save_current
   label: Memory 3 Save Current Settings
@@ -695,18 +695,18 @@ source_domains:
 source_urls:
   - https://usermanual.wiki/Document/HT300EHT280EControlSpec11.977828440.pdf
 retrieved_at: 2026-04-29T18:29:50.991Z
-last_checked_at: 2026-06-02T22:13:47.018Z
+last_checked_at: 2026-10-07T10:37:07.336Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:47.018Z
+checked_at: 2026-10-07T10:37:07.336Z
 matched_actions: 93
 action_count: 93
 confidence: medium
-summary: "All 93 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 93 action units match source hex tables and transport values; spec collapses color temp, gamma, language and signal type variants like the source inventory. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -11,7 +11,7 @@ compatible_with:
     - "Just Add Power"
   models:
     - "Om 505Poe"
-  firmware: "\"B1.0.0\""
+  firmware: B1.0.0
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-07-01T13:53:05.868Z
 last_checked_at: 2026-07-07T11:46:00.319Z
 generated_at: 2026-07-07T11:46:00.319Z
-firmware_coverage: "\"B1.0.0\""
+firmware_coverage: B1.0.0
 protocol_coverage: []
 known_gaps:
   - "flow control not stated in source"

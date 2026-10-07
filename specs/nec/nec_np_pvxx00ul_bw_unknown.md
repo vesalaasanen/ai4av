@@ -22,8 +22,8 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:44:45.608Z
-last_checked_at: 2026-06-02T22:11:06.089Z
-generated_at: 2026-06-02T22:11:06.089Z
+last_checked_at: 2026-10-07T12:40:50.731Z
+generated_at: 2026-10-07T12:40:50.731Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "error recovery sequences not described"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:11:06.089Z
-  matched_actions: 33
-  action_count: 33
+  checked_at: 2026-10-07T12:40:50.731Z
+  matched_actions: 58
+  action_count: 58
   confidence: medium
-  summary: "All 33 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 58 action units match source frames and transport values; the spec represents all 53 catalogued commands. The source is a generic NEC manual, so exact-model applicability is unconfirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,7 +51,7 @@ created_at: 2026-05-14
 # NEC NP PVxx00UL BW Control Spec
 
 ## Summary
-NEC NP PVxx00UL BW projector. RS-232C serial and wired TCP/IP control via port 7142. No authentication procedure described.
+NEC NP PVxx00UL BW projector. RS-232C serial and wired TCP/IP control via port 7142. The source does not establish authentication behavior or exact-model command applicability.
 
 <!-- UNRESOLVED: wireless LAN unit spec outside scope of this doc -->
 
@@ -67,9 +67,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # RTS/CTS hardware handshake noted in pinout; flow_control field describes software flow control
-auth:
-  type: none  # inferred: no auth procedure in source
+  flow_control: UNRESOLVED  # RTS/CTS wiring is documented; operational flow control is not established
+ auth:
+  type: UNRESOLVED  # authentication behavior is not established by the source
 ```
 
 ## Traits
@@ -160,15 +160,15 @@ auth:
   params:
     - name: target
       type: integer
-      description: "00h=Brightness, 01h=Contrast, 02h=Color, 03h=Hue, 04h=Sharpness"
+      description: "DATA01: 00h=Brightness, 01h=Contrast, 02h=Color, 03h=Hue, 04h=Sharpness"
     - name: mode
       type: integer
-      description: "00h=absolute value, 01h=relative value"
+      description: "DATA03: 00h=absolute value, 01h=relative value; DATA02 is fixed at FFh"
     - name: value
       type: integer
-      description: 16-bit signed adjustment value (low-order 8 bits then high-order 8 bits)
+      description: 16-bit signed adjustment value; DATA04 is low-order byte and DATA05 is high-order byte
   protocol: serial
-  hex: "03h 10h 00h 00h 05h <DATA01> <DATA02> <DATA03> <DATA04> <CKS>"
+  hex: "03h 10h 00h 00h 05h <DATA01> FFh <DATA03> <DATA04> <DATA05> <CKS>"
 
 - id: volume_adjust
   label: Volume Adjust
@@ -199,13 +199,16 @@ auth:
   params:
     - name: target
       type: integer
-      description: "96h=LAMP ADJUST / LIGHT ADJUST"
+      description: "DATA01=96h for LAMP ADJUST / LIGHT ADJUST"
+    - name: target_subcode
+      type: integer
+      description: "DATA02=FFh for LAMP ADJUST / LIGHT ADJUST"
     - name: mode
       type: integer
-      description: "00h=absolute value, 01h=relative value"
+      description: "DATA03: 00h=absolute value, 01h=relative value"
     - name: value
       type: integer
-      description: 16-bit signed adjustment value
+      description: 16-bit signed adjustment value; DATA04 is low-order byte and DATA05 is high-order byte
   protocol: serial
   hex: "03h 10h 00h 00h 05h <DATA01> <DATA02> <DATA03> <DATA04> <DATA05> <CKS>"
 
@@ -430,11 +433,71 @@ auth:
       description: Input terminal code per appendix
     - name: setting_value
       type: integer
-      description: "00h=terminal in DATA01, 02h=COMPUTER"
+      description: "00h=terminal in DATA01, 01h=BNC, 02h=COMPUTER"
   protocol: serial
   hex: "03h C9h 00h 00h 03h 09h <DATA01> <DATA02> <CKS>"
   response: "23h C9h <ID1> <ID2> 03h 09h <DATA01> <DATA02> <CKS>"
   notes: "Response DATA02: 00h=success, 01h=error."
+
+- id: filter_usage_information_request
+  label: Filter Usage Information Request
+  kind: query
+  params: []
+  protocol: serial
+  hex: "03h  95h  00h  00h  00h  98h"
+  response: "23h  95h _<ID1> <ID2>_ 08h _<DATA01>_ - _<DATA08> <CKS>_"
+  notes: "DATA01 - 04: Filter usage time (seconds); DATA05 - 08: Filter alarm start time (seconds). If no time is defined, -1 is returned."
+
+- id: carbon_savings_information_request
+  label: Carbon Savings Information Request
+  kind: query
+  params:
+    - name: content
+      type: integer
+      description: "DATA01: 00h=Total Carbon Savings, 01h=Carbon Savings during operation"
+  protocol: serial
+  hex: "03h  9Ah  00h  00h  01h _<DATA01> <CKS>_"
+  response: "23h  9Ah _<ID1> <ID2>_ 09h _<DATA01>_ - _<DATA09> <CKS>_"
+  notes: "DATA02 - 05: Carbon Savings (Kilogram, Maximum: 99999[kg]); DATA06 - 09: Carbon Savings (Milligram, Maximum:999999[mg])."
+
+- id: setting_request
+  label: Setting Request
+  kind: query
+  params: []
+  protocol: serial
+  hex: "00h  85h  00h  00h  01h  00h  86h"
+  response: "20h  85h _<ID1> <ID2>_ 20h _<DATA01>_ - _<DATA32> <CKS>_"
+  notes: "DATA01 - 03: Base model type (values UNRESOLVED; appendix not included). DATA04: 00h=Not available, 01h=Available (Sound function). DATA05: 00h=Not available, 01h=Clock function, 02h=Sleep timer function, 03h=Clock function and Sleep timer function."
+
+- id: cover_status_request
+  label: Cover Status Request
+  kind: query
+  params: []
+  protocol: serial
+  hex: "00h  85h  00h  00h  01h  05h  8Bh"
+  response: "20h  85h _<ID1> <ID2>_ 01h _<DATA01> <CKS>_"
+  notes: "DATA01: 00h=Normal (cover opened), 01h=Cover closed."
+
+- id: information_string_request
+  label: Information String Request
+  kind: query
+  params:
+    - name: information_type
+      type: integer
+      description: "DATA01: 03h=Horizontal synchronous frequency, 04h=Vertical synchronous frequency"
+  protocol: serial
+  hex: "00h  D0h  00h  00h  03h  00h _<DATA01>_ 01h _<CKS>_"
+  response: "20h  D0h _<ID1> <ID2>_ LEN _<DATA01>_ 01h _<DATA02>_ - _<DATA??> <CKS>_"
+  notes: "DATA02: Label/information string length (excluding NUL characters). DATA03 - ??: Label/information strings (NUL: termination character string)."
+
+- id: base_model_type_request
+  label: Base Model Type Request
+  kind: query
+  params: []
+  protocol: serial
+  hex: "00h  BFh  00h  00h  01h  00h  C0h"
+  response: "20h  BFh _<ID1> <ID2>_ 10h  00h _<DATA01>_ - _<DATA15> <CKS>_"
+  notes: "DATA01/DATA02 and DATA12/DATA13: Base model type (values UNRESOLVED; appendix not included). DATA03 - 11: Model name (NUL: termination character string). DATA14/DATA15: Reserved for the system."
 ```
 
 ## Feedbacks
@@ -449,6 +512,7 @@ auth:
     DATA03: "Bit0=None, Bit1=FPGA error, Bit2=Temp sensor error, Bit3=Lamp not present, Bit4=Lamp data error, Bit5=Mirror cover error, Bit6=Lamp2 moratorium, Bit7=Lamp2 time exceeded"
     DATA04: "Bit0=Lamp2 not present, Bit1=Lamp2 data error, Bit2=Dust temp error, Bit3=Foreign matter sensor, Bit4=None, Bit5=Ballast comm error, Bit6=Iris calibration error, Bit7=Lens not installed"
     DATA09: "Bit0=Portrait cover side up, Bit1=Interlock switch open, Bit2=System error (Slave CPU), Bit3=System error (Formatter)"
+  query_command: "00h  88h  00h  00h  00h  88h"
   notes: "Query: 00h 88h 00h 00h 00h 88h; Response: A0h 88h ..."
 
 - id: power_state
@@ -456,6 +520,7 @@ auth:
   kind: feedback
   type: enum
   values: [standby, power_on, cooling, standby_error, standby_power_saving, network_standby]
+  query_command: "00h  85h  00h  00h  01h  01h  87h"
   notes: "From 078-2 RUNNING STATUS REQUEST and 305-3 BASIC INFORMATION REQUEST."
 
 - id: input_status
@@ -470,6 +535,7 @@ auth:
     signal_list_type: enum [default, user]
     test_pattern_display: enum [not_displayed, displayed]
     content_displayed: enum [video_signal, no_signal, viewer, test_pattern, lan_displayed]
+  query_command: "00h  85h  00h  00h  01h  02h  88h"
   notes: "From 078-3 INPUT STATUS REQUEST."
 
 - id: mute_status
@@ -482,6 +548,7 @@ auth:
     onscreen_mute: enum [off, on]
     forced_onscreen_mute: enum [off, on]
     onscreen_display: enum [not_displayed, displayed]
+  query_command: "00h  85h  00h  00h  01h  03h  89h"
   notes: "From 078-4 MUTE STATUS REQUEST."
 
 - id: projector_info
@@ -492,6 +559,7 @@ auth:
     projector_name: string
     lamp_usage_time_seconds: integer
     filter_usage_time_seconds: integer
+  query_command: "03h  8Ah  00h  00h  00h  8Dh"
   notes: "From 037 INFORMATION REQUEST. Usage times updated at 1-minute intervals."
 
 - id: lamp_info
@@ -502,84 +570,98 @@ auth:
     lamp: enum [lamp_1, lamp_2]
     content: enum [usage_time_seconds, remaining_life_percent]
     value: integer
+  query_command: "03h  96h  00h  00h  02h _<DATA01> <DATA02> <CKS>_"
   notes: "From 037-4 LAMP INFORMATION REQUEST 3. Lamp 2 only for two-lamp models. Negative value if deadline exceeded."
 
 - id: eco_mode
   label: Eco Mode
   kind: feedback
   type: integer
+  query_command: "03h  B0h  00h  00h  01h  07h  BBh"
   notes: "From 097-8 ECO MODE REQUEST."
 
 - id: lan_projector_name
   label: LAN Projector Name
   kind: feedback
   type: string
+  query_command: "03h  B0h  00h  00h  01h  2Ch  E0h"
   notes: "From 097-45 LAN PROJECTOR NAME REQUEST."
 
 - id: mac_address
   label: MAC Address
   kind: feedback
   type: string
+  query_command: "03h  B0h  00h  00h  02h  9Ah  00h  4Fh"
   notes: "From 097-155 LAN MAC ADDRESS STATUS REQUEST2. 6 bytes hex."
 
 - id: pip_pbp_status
   label: PIP/PBP Status
   kind: feedback
   type: object
+  query_command: "03h  B0h  00h  00h  02h  C5h _<DATA01> <CKS>_"
   notes: "From 097-198 PIP/PICTURE BY PICTURE REQUEST."
 
 - id: edge_blending_mode
   label: Edge Blending Mode
   kind: feedback
   type: enum [off, on]
+  query_command: "03h  B0h  00h  00h  02h  DFh  00h  94h"
   notes: "From 097-243-1 EDGE BLENDING MODE REQUEST."
 
 - id: model_name
   label: Model Name
   kind: feedback
   type: string
+  query_command: "00h  85h  00h  00h  01h  04h  8Ah"
   notes: "From 078-5 MODEL NAME REQUEST. NUL-terminated string."
 
 - id: serial_number
   label: Serial Number
   kind: feedback
   type: string
+  query_command: "00h  BFh  00h  00h  02h  01h  06h  C8h"
   notes: "From 305-2 SERIAL NUMBER REQUEST. NUL-terminated string."
 
 - id: basic_info
   label: Basic Info
   kind: feedback
   type: object
+  query_command: "00h  BFh  00h  00h  01h  02h  C2h"
   notes: "From 305-3 BASIC INFORMATION REQUEST. Power status, input signal type, video/sound/onscreen mute, freeze status."
 
 - id: gain_parameters
   label: Gain Parameters
   kind: feedback
   type: object
+  query_command: "03h  05h  00h  00h  03h _<DATA01>_ 00h  00h _<CKS>_"
   notes: "From 060-1 GAIN PARAMETER REQUEST 3. Adjustment range, default, current, wide/narrow width."
 
 - id: lens_position
   label: Lens Position
   kind: feedback
   type: object
+  query_command: "02h  1Ch  00h  00h  02h _<DATA01>_ 00h _<CKS>_"
   notes: "From 053-1 LENS CONTROL REQUEST. Upper/lower limits, current value."
 
 - id: lens_info
   label: Lens Info
   kind: feedback
   type: bitfield
+  query_command: "02h  22h  00h  00h  01h  00h  25h"
   notes: "From 053-7 LENS INFORMATION REQUEST. Lens memory, zoom, focus, shift H/V status."
 
 - id: lens_profile
   label: Lens Profile
   kind: feedback
   type: enum [profile_1, profile_2]
+  query_command: "02h  28h  00h  00h  00h  2Ah"
   notes: "From 053-11 LENS PROFILE REQUEST."
 
 - id: lens_memory_option
   label: Lens Memory Option
   kind: feedback
   type: enum [off, on]
+  query_command: "02h  20h  00h  00h  01h _<DATA01> <CKS>_"
   notes: "From 053-5 LENS MEMORY OPTION REQUEST."
 ```
 
@@ -607,9 +689,9 @@ interlocks: []
 ```
 
 ## Notes
-Command packet format: `20h/02h/03h/01h <ID1> <ID2> <LEN/DATA...> <CKS]` — first byte indicates protocol class. All commands include ID1 (control ID set on projector), ID2 (model code), and CKS (checksum = low-order byte of sum of all preceding bytes).
+Command packet format: `20h/02h/03h/01h <ID1> <ID2> <LEN/DATA...> <CKS>` — first byte indicates protocol class. All commands include ID1 (control ID set on projector), ID2 (model code), and CKS (checksum = low-order byte of sum of all preceding bytes).
 
-Serial: 9-pin D-SUB RS-232C, full duplex. TCP: port 7142. No login/auth described.
+Serial: 9-pin D-SUB RS-232C, full duplex. The pinout documents RTS/CTS wiring; operational flow control is unresolved. TCP: port 7142. Authentication behavior is not established by the source. The source manual does not identify this exact model, so exact-model command applicability is unresolved.
 
 <!-- UNRESOLVED: appendix tables (input terminal codes, aspect values, eco mode values, signal type values, key code full list beyond partial table shown) not included in source -->
 <!-- UNRESOLVED: wireless LAN unit specs delegated to separate operation manual -->
@@ -626,18 +708,18 @@ source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
   - https://assets.sharpnecdisplays.us/documents/miscellaneous/pj-control-command-codes.pdf
 retrieved_at: 2026-05-13T08:44:45.608Z
-last_checked_at: 2026-06-02T22:11:06.089Z
+last_checked_at: 2026-10-07T12:40:50.731Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:11:06.089Z
-matched_actions: 33
-action_count: 33
+checked_at: 2026-10-07T12:40:50.731Z
+matched_actions: 58
+action_count: 58
 confidence: medium
-summary: "All 33 spec actions traced to source (dip-safe re-verify). (8 unresolved item(s) noted in Known Gaps.)"
+summary: "All 58 action units match source frames and transport values; the spec represents all 53 catalogued commands. The source is a generic NEC manual, so exact-model applicability is unconfirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

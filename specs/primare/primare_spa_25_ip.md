@@ -11,7 +11,7 @@ compatible_with:
     - Primare
   models:
     - SPA25
-  firmware: "\"2.08\""
+  firmware: 2.08
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-04-30T04:28:52.339Z
 last_checked_at: 2026-06-02T17:23:53.456Z
 generated_at: 2026-06-02T17:23:53.456Z
-firmware_coverage: "\"2.08\""
+firmware_coverage: 2.08
 protocol_coverage: []
 known_gaps:
   - "TCP/IP transport asserted by operator (file path + Known protocol field) but source document is RS-232 only; TCP port number not documented in source."

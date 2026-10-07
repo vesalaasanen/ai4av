@@ -12,7 +12,7 @@ compatible_with:
   models:
     - KD-4x4CSA
     - KD-8x8CSA
-  firmware: "\"1.02\""
+  firmware: 1.02
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-06-02T00:50:06.157Z
 last_checked_at: 2026-06-02T17:22:44.388Z
 generated_at: 2026-06-02T17:22:44.388Z
-firmware_coverage: "\"1.02\""
+firmware_coverage: 1.02
 protocol_coverage: []
 known_gaps:
   - "source documents no unsolicited / asynchronous notifications."

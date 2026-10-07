@@ -13,7 +13,7 @@ compatible_with:
     - "SX10 Quick Set"
     - "SX20 Quick Set"
     - "SX80 Codec"
-  firmware: "\"CE9.15\""
+  firmware: CE9.15
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-06-25T10:06:05.938Z
 last_checked_at: 2026-06-25T15:31:42.365Z
 generated_at: 2026-06-25T15:31:42.365Z
-firmware_coverage: "\"CE9.15\""
+firmware_coverage: CE9.15
 protocol_coverage: []
 known_gaps:
   - "exact TCP port numbers for SSH/Telnet/HTTP not stated in source (only IP-address placeholders shown)."

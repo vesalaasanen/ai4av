@@ -25,11 +25,12 @@ source_urls:
   - https://www.extron.com
   - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
 retrieved_at: 2026-05-13T00:44:59.443Z
-last_checked_at: 2026-06-02T22:07:08.572Z
-generated_at: 2026-06-02T22:07:08.572Z
+last_checked_at: 2026-10-07T10:30:47.089Z
+generated_at: 2026-10-07T10:30:47.089Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - Zpx
   - "no settable parameters beyond discrete actions identified"
   - "no multi-step sequences described in source"
   - "no safety warnings or interlock procedures in source"
@@ -37,11 +38,11 @@ known_gaps:
   - "no TCP/IP or network control mentioned — RS-232 only"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:08.572Z
+  checked_at: 2026-10-07T10:30:47.089Z
   matched_actions: 22
   action_count: 22
   confidence: medium
-  summary: "All 22 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 22 action units match source SIS commands with correct shapes and transport; only the firmware upload (Zpx) is unrepresented, giving 22/24 coverage. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -64,7 +65,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Source does not specify authentication.
 ```
 
 ## Traits
@@ -112,15 +113,21 @@ auth:
 - id: increment_volume
   label: Increment Volume
   kind: action
-  params: []
-  command: "+V"
+  params:
+    - name: volume
+      type: integer
+      description: "Master output volume value (0-92)"
+  command: "{volume} +V"
   response: "X1" or "E01" or "E13"
 
 - id: decrement_volume
   label: Decrement Volume
   kind: action
-  params: []
-  command: "-V"
+  params:
+    - name: volume
+      type: integer
+      description: "Master output volume value (0-92)"
+  command: "{volume} -V"
   response: "X1" or "E01" or "E13"
 
 - id: increment_input_gain
@@ -317,23 +324,24 @@ source_urls:
   - https://www.extron.com
   - https://www.manualshelf.com/manual/extron-electronics/mvc-121/user-guide-english.html
 retrieved_at: 2026-05-13T00:44:59.443Z
-last_checked_at: 2026-06-02T22:07:08.572Z
+last_checked_at: 2026-10-07T10:30:47.089Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:08.572Z
+checked_at: 2026-10-07T10:30:47.089Z
 matched_actions: 22
 action_count: 22
 confidence: medium
-summary: "All 22 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 22 action units match source SIS commands with correct shapes and transport; only the firmware upload (Zpx) is unrepresented, giving 22/24 coverage. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- Zpx
 - "no settable parameters beyond discrete actions identified"
 - "no multi-step sequences described in source"
 - "no safety warnings or interlock procedures in source"

@@ -19,30 +19,26 @@ source_domains:
   - pro-bravia.sony.net
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://pro-bravia.sony.net/remote-display-control/rest-api/
-  - https://pro-bravia.sony.net/remote-display-control/ircc-ip/
-  - https://pro-bravia.sony.net/remote-display-control/
-  - https://pro-bravia.sony.net/samples-and-documentation/
-retrieved_at: 2026-09-02T17:43:36.454Z
-last_checked_at: 2026-09-22T11:43:05.881Z
-generated_at: 2026-09-22T11:43:05.881Z
+retrieved_at: 2026-09-26T14:23:18.773Z
+last_checked_at: 2026-09-26T14:23:18.773Z
+generated_at: 2026-09-26T14:23:18.773Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "EU RED-DA variants may differ in available commands and settings."
+  - "source does not establish authentication requirements"
   - "source documents fixed parameter slots rather than named variables"
   - "source does not define multi-step sequences."
   - "source contains no safety warnings, interlocks, or power-on sequencing requirements."
   - "firmware version compatibility not stated in source."
   - "exact list of RED-DA spec variants and their command restrictions — referenced as external link."
-  - "IR command codes beyond the table excerpt are not enumerated here in full (42 codes listed in source)."
 verification:
   verdict: verified
-  checked_at: 2026-09-22T11:43:05.881Z
+  checked_at: 2026-09-26T14:23:18.773Z
   matched_actions: 17
   action_count: 17
   confidence: medium
-  summary: "All 17 spec actions map1:1 to source commands (POWR, VOLU, AMUT, INPT, PMUT, SCEN, IRCC, BADR, MADR plus toggle variants); TCP 20060 verified. (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 17 families and 57 IR values match the generic BRAVIA source; auth is unresolved and model/region caveats remain explicit. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -52,7 +48,7 @@ created_at: 2026-09-02
 # Sony KDX8501 Series Control Spec
 
 ## Summary
-Simple IP Control protocol for Sony BRAVIA Professional Displays (KDX8501 Series). Uses fixed24-byte TCP messages on port 20060. Supports power, volume, mute, picture mute, input selection, scene setting, IR-emulation commands, and broadcast/MAC address queries over a local network.
+Simple IP Control protocol for Sony BRAVIA Professional Displays (catalog target KDX8501 Series; model applicability is inferred from the generic BRAVIA guide, not explicitly named in it). Uses fixed 24-byte TCP messages on port 20060. Supports power, volume, mute, picture mute, input selection, scene setting, IR-emulation commands, and broadcast/MAC address queries over a local network.
 
 <!-- UNRESOLVED: EU RED-DA variants may differ in available commands and settings. -->
 
@@ -63,7 +59,7 @@ protocols:
 addressing:
   port: 20060
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: unknown  # UNRESOLVED: source does not establish authentication requirements
 ```
 
 ## Traits
@@ -100,7 +96,7 @@ auth:
 - id: toggle_power_status
   label: Toggle Power Status
   kind: action
-  command: "* SCTPOW################\n"
+  command: "*SCTPOW################\n"
   params: []
 
 - id: set_audio_volume
@@ -137,7 +133,7 @@ auth:
 - id: set_input
   label: Set Input
   kind: action
-  command: "*SCINPT00000000{src_type}000{port}\n"  # src_type 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring; port 1-9999
+  command: "*SCINPT0000000{source_type}0000{port_padded}\n"  # source_type is one digit; port_padded is exactly four zero-padded ASCII decimal digits
   params:
     - name: source_type
       type: integer
@@ -145,7 +141,7 @@ auth:
       description: 1=HDMI, 3=Composite, 4=Component, 5=Screen Mirroring
     - name: port
       type: integer
-      description: Port number 1-9999
+      description: Port number 1-9999, encoded as exactly four ASCII digits with leading zeros (1 becomes 0001)
 
 - id: get_input
   label: Get Input
@@ -192,17 +188,18 @@ auth:
   params: []
 
 - id: set_ircc_code
-  label: Send IR Code  kind: action
+  label: Send IR Code
+  kind: action
   command: "*SCIRCC{ir_code_padded}\n"  # 16-digit parameter; see IR Commands table for codes
   params:
     - name: ir_code
       type: string
-      description: Two-digit IR code from the IR Commands table, left-padded with 0s to 16 digits
+      description: Decimal IR code from the complete table in Notes, including three-digit codes 101–130; left-pad the complete value with zeros to exactly 16 ASCII digits
 
 - id: get_broadcast_address
   label: Get Broadcast Address
   kind: query
-  command: "*SEBADR{interface_padded}\n"  # e.g. "eth0##############" (right-padded with #)
+  command: "*SEBADR{interface_padded}\n"  # e.g. "eth0############" (right-padded with #)
   params:
     - name: interface
       type: string
@@ -211,7 +208,7 @@ auth:
 - id: get_mac_address
   label: Get MAC Address
   kind: query
-  command: "*SEMADR{interface_padded}\n"  # e.g. "eth0##############" (right-padded with #)
+  command: "*SEMADR{interface_padded}\n"  # e.g. "eth0############" (right-padded with #)
   params:
     - name: interface
       type: string
@@ -263,7 +260,9 @@ auth:
 - id: ack_error
   type: enum
   values: [error]
-  description: Answer "A" message with all-"F" parameter field (16 ASCII "F") - invalid parameters / failure- id: not_available
+  description: Answer "A" message with all-"F" parameter field (16 ASCII "F") - invalid parameters / failure
+
+- id: not_available
   type: enum
   values: [not_available]
   description: Answer "A" message with all-"N" parameter field (16 ASCII "N") - e.g. Scene Setting not available for current input
@@ -325,14 +324,20 @@ interlocks: []
 - Protocol frame is exactly 24 bytes: header `*S` (0x2A 0x53) + msg type (C/E/A/N) + FourCC + 16-byte param + LF (0x0A).
 - Parameter fields are 16 ASCII characters. Numeric values are zero-padded; strings are right-padded with "#" (case-sensitive).
 - Source documents 3 EU specification variants under RED-DA compliance with differing settings/commands.
-- TCP listen port 20060; no authentication required.
+- TCP listen port 20060. Authentication requirements are UNRESOLVED in this source.
 - Both wired and wireless LAN supported.
 - Required monitor settings: Settings → Network & Internet → Remote device settings → Control remotely, AND Settings → Network & Internet → Home network → IP control → Simple IP control.
 - getBroadcastAddress / getMacAddress marked "* EU models Note": availability may vary by region/spec.
 
 <!-- UNRESOLVED: firmware version compatibility not stated in source. -->
 <!-- UNRESOLVED: exact list of RED-DA spec variants and their command restrictions — referenced as external link. -->
-<!-- UNRESOLVED: IR command codes beyond the table excerpt are not enumerated here in full (42 codes listed in source). -->
+
+
+IR code values (decimal before 16-digit zero padding): 5 Display; 6 Home; 7 Options; 8 Return; 9 Up; 10 Down; 11 Right; 12 Left; 13 Confirm; 14 Red; 15 Green; 16 Yellow; 17 Blue; 18 Num1; 19 Num2; 20 Num3; 21 Num4; 22 Num5; 23 Num6; 24 Num7; 25 Num8; 26 Num9; 27 Num0; 30 Volume Up; 31 Volume Down; 32 Mute; 33 Channel Up; 34 Channel Down; 35 Subtitle; 38 DOT; 50 Picture Off; 61 Wide; 62 Jump; 76 Sync Menu; 77 Forward; 78 Play; 79 Rewind; 80 Prev; 81 Stop; 82 Next; 84 Pause; 86 Flash Plus; 87 Flash Minus; 98 TV Power; 99 Audio; 101 Input; 104 Sleep; 105 Sleep Timer; 108 Video 2; 110 Picture Mode; 121 Demo Surround; 124 HDMI 1; 125 HDMI 2; 126 HDMI 3; 127 HDMI 4; 129 Action Menu; 130 Help.
+
+Parameter expansion: state replaces the 0|1 choice; volume_padded and ir_code_padded are the decimal volume/ir_code padded to 16 digits; scene_padded and interface_padded right-pad scene/interface with # to 16 characters. In set_input, source_type occupies the eighth parameter character and port_padded the last four. Example HDMI1 request: `*SCINPT0000000100000001\n` (24 bytes including LF). Every expanded request must be 24 bytes.
+
+The source picture-mute Notify table says 0=enabled, 1=disabled, while its control/query table uses 0=disabled, 1=enabled. Preserve the message-type distinction when decoding; this apparent source inconsistency is not hardware-validated. Exact model/firmware support and regional RED-DA differences remain unconfirmed.
 
 ## Provenance
 
@@ -341,35 +346,31 @@ source_domains:
   - pro-bravia.sony.net
 source_urls:
   - https://pro-bravia.sony.net/remote-display-control/simple-ip-control/
-  - https://pro-bravia.sony.net/remote-display-control/rest-api/
-  - https://pro-bravia.sony.net/remote-display-control/ircc-ip/
-  - https://pro-bravia.sony.net/remote-display-control/
-  - https://pro-bravia.sony.net/samples-and-documentation/
-retrieved_at: 2026-09-02T17:43:36.454Z
-last_checked_at: 2026-09-22T11:43:05.881Z
+retrieved_at: 2026-09-26T14:23:18.773Z
+last_checked_at: 2026-09-26T14:23:18.773Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-09-22T11:43:05.881Z
+checked_at: 2026-09-26T14:23:18.773Z
 matched_actions: 17
 action_count: 17
 confidence: medium
-summary: "All 17 spec actions map1:1 to source commands (POWR, VOLU, AMUT, INPT, PMUT, SCEN, IRCC, BADR, MADR plus toggle variants); TCP 20060 verified. (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 17 families and 57 IR values match the generic BRAVIA source; auth is unresolved and model/region caveats remain explicit. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "EU RED-DA variants may differ in available commands and settings."
+- "source does not establish authentication requirements"
 - "source documents fixed parameter slots rather than named variables"
 - "source does not define multi-step sequences."
 - "source contains no safety warnings, interlocks, or power-on sequencing requirements."
 - "firmware version compatibility not stated in source."
 - "exact list of RED-DA spec variants and their command restrictions — referenced as external link."
-- "IR command codes beyond the table excerpt are not enumerated here in full (42 codes listed in source)."
 ```
 
 ---

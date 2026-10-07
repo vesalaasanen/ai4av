@@ -11,7 +11,7 @@ compatible_with:
     - "Allen & Heath"
   models:
     - GLD-80
-  firmware: "\"V1.4\""
+  firmware: V1.4
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-07-13T19:27:41.105Z
 last_checked_at: 2026-07-21T20:06:11.468Z
 generated_at: 2026-07-21T20:06:11.468Z
-firmware_coverage: "\"V1.4\""
+firmware_coverage: V1.4
 protocol_coverage: []
 known_gaps:
   - "voltage, current, power, and physical pinout of MIDI/Network ports not stated in source."

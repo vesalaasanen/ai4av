@@ -23,24 +23,23 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-14T20:00:45.354Z
-last_checked_at: 2026-06-02T22:16:19.955Z
-generated_at: 2026-06-02T22:16:19.955Z
+last_checked_at: 2026-10-07T11:04:22.696Z
+generated_at: 2026-10-07T11:04:22.696Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "auth credentials not documented — no login procedure in source"
   - "no discrete settable parameters outside action commands"
   - "no unsolicited event notifications documented"
   - "no safety warnings or interlock procedures in source"
-  - "default login credentials not stated in source"
-  - "HTTP/REST API not documented — only RS-232 and Telnet TCP"
+  - "authentication method and credentials are not specified in the source"
+  - "the source documents RS-232 and IP settings, but does not identify an IP transport protocol"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:19.955Z
+  checked_at: 2026-10-07T11:04:22.696Z
   matched_actions: 54
   action_count: 54
   confidence: medium
-  summary: "All 54 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 54 action units (26 actions plus 28 query feedbacks) match source commands, transport values are supported, and the source has about 54 commands. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,17 +49,15 @@ created_at: 2026-05-14
 # Wyrestorm NHD Series Control Spec
 
 ## Summary
-H2X/H2XC Matrix Switcher series supporting HDMI/HDBaseT input/output routing. Controls via RS-232 and TCP/IP (Telnet). ASCII command protocol with <CR><LF> termination. Supports video/audio switching, display power via CEC, HDCP/EDID management, preset scenes, volume control, and HDBaseT pass-through for remote device control.
-
-<!-- UNRESOLVED: auth credentials not documented — no login procedure in source -->
+H2X/H2XC Matrix Switcher series supporting HDMI/HDBaseT input/output routing. The source documents RS-232 settings and IP address/port settings. It documents ASCII commands terminated with <CR><LF>. Supports video/audio switching, display power via CEC, HDCP/EDID management, preset scenes, volume control, and HDBaseT pass-through for remote device control. The IP transport protocol and authentication are UNRESOLVED.
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
   - serial
+  - UNRESOLVED
 addressing:
-  port: 23  # inferred from "Default IP Port: 23"
+  port: 23
 serial:
   baud_rate: 57600
   data_bits: 8
@@ -68,7 +65,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED
 ```
 
 ## Traits
@@ -86,12 +83,12 @@ auth:
   kind: action
   params:
     - name: input
-      type: integer
-      description: Input number (1-16)
+      type: string
+      description: Input selector (in1-in16)
     - name: output
-      type: integer
-      description: Output number (1-16 or all)
-  command: SET SW{in}{out}<CR><LF>
+      type: string
+      description: Output selector (out1-out16, all)
+  command: SET SW {input} {output}<CR><LF>
 
 - id: set_audio_switch_mode
   label: Set Audio Switch Mode
@@ -113,7 +110,7 @@ auth:
     - name: output
       type: string
       description: "audioout1-audioout16, all"
-  command: SET AUDIOSW{in}{out}<CR><LF>
+  command: SET AUDIOSW {input} {output}<CR><LF>
 
 - id: set_output_gain
   label: Set Output Gain
@@ -124,8 +121,8 @@ auth:
       description: "audioout1-audioout16, all"
     - name: level
       type: integer
-      description: "-10 to 10 (pre-v1.3) or -80 to 0 in 2dB steps (v1.3+)"
-  command: SET VOLGAIN_DATA{output}{level}<CR><LF>
+      description: "Gain values depend on model and firmware: -10 to 10 below v1.3 on 10x10 or below v1.4 on 16x16; -80 to 0 in 2dB increments on 10x10 v1.3+ or 16x16 v1.4+."
+  command: SET VOLGAIN_DATA {output} {level}<CR><LF>
 
 - id: set_mute
   label: Set Mute
@@ -138,7 +135,7 @@ auth:
       type: enum
       values: [on, off]
       description: "on=mute, off=unmute"
-  command: SET MUTE{output}{state}<CR><LF>
+  command: SET MUTE {output} {state}<CR><LF>
 
 - id: set_audio_out_fixed
   label: Set Audio Out Fixed/Variable
@@ -151,7 +148,7 @@ auth:
       type: enum
       values: [on, off]
       description: "on=fixed, off=variable"
-  command: SET VOLGAIN_FIX{output}{mode}<CR><LF>
+  command: SET VOLGAIN_FIX {output} {mode}<CR><LF>
 
 - id: set_mute_method
   label: Set Mute Method
@@ -164,7 +161,7 @@ auth:
       type: enum
       values: [cut, ramp]
       description: "cut=immediate, ramp=gradual"
-  command: SET MUTE_M{output}{method}<CR><LF>
+  command: SET MUTE_M {output} {method}<CR><LF>
 
 - id: increase_volume
   label: Increase Volume
@@ -173,7 +170,7 @@ auth:
     - name: output
       type: string
       description: "audioout1-audioout16, all"
-  command: SET VOLGAIN_INC{output}<CR><LF>
+  command: SET VOLGAIN_INC {output}<CR><LF>
 
 - id: decrease_volume
   label: Decrease Volume
@@ -182,7 +179,7 @@ auth:
     - name: output
       type: string
       description: "audioout1-audioout16, all"
-  command: SET VOLGAIN_DEC{output}<CR><LF>
+  command: SET VOLGAIN_DEC {output}<CR><LF>
 
 - id: set_volume_step
   label: Set Volume Step
@@ -195,7 +192,7 @@ auth:
       type: integer
       values: [2, 4, 8]
       description: "step size in dB"
-  command: SET VOLGAIN_STEP{output}{step}<CR><LF>
+  command: SET VOLGAIN_STEP {output} {step}<CR><LF>
 
 - id: save_video_preset
   label: Save Video Preset
@@ -243,7 +240,7 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: SET CEC_PWR{output}{state}<CR><LF>
+  command: SET CEC_PWR {output} {state}<CR><LF>
 
 - id: set_cec_power_delay
   label: Set CEC Power Delay
@@ -256,7 +253,7 @@ auth:
       type: integer
       range: [0, 30]
       description: "delay in minutes (default 2)"
-  command: SET AUTOCEC_D{output}{minutes}<CR><LF>
+  command: SET AUTOCEC_D {output} {minutes}<CR><LF>
 
 - id: set_hdcp
   label: Set Input HDCP
@@ -268,7 +265,7 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: SET HDCP_S{input}{state}<CR><LF>
+  command: SET HDCP_S {input} {state}<CR><LF>
 
 - id: set_edid
   label: Set Input EDID
@@ -280,7 +277,7 @@ auth:
     - name: edid_code
       type: integer
       description: "EDID code (see EDID Parameter Table)"
-  command: SET EDID{input}{edid_code}<CR><LF>
+  command: SET EDID {input} {edid_code}<CR><LF>
 
 - id: set_ir_callback
   label: Set IR Call Back
@@ -289,7 +286,7 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: SET IRBACK_FN{state}<CR><LF>
+  command: SET IRBACK_FN {state}<CR><LF>
 
 - id: set_long_reach
   label: Set Long Reach Mode
@@ -298,7 +295,7 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: SET LR_FN{hdbtall}{state}<CR><LF>
+  command: SET LR_FN hdbtall {state}<CR><LF>
 
 - id: set_ir_syscode
   label: Set IR System Codes
@@ -307,7 +304,7 @@ auth:
     - name: code
       type: string
       description: "00, 4E, or all"
-  command: SET IR_SYSCODE{code}<CR><LF>
+  command: SET IR_SYSCODE {code}<CR><LF>
 
 - id: set_switching_mode
   label: Set Matrix Switching Mode
@@ -316,7 +313,7 @@ auth:
     - name: mode
       type: enum
       values: [normal, quick]
-  command: SET SW_M{mode}<CR><LF>
+  command: SET SW_M {mode}<CR><LF>
 
 - id: set_zone_lock
   label: Set AVR Priority Zone Lock
@@ -328,7 +325,7 @@ auth:
     - name: state
       type: enum
       values: [on, off]
-  command: SET ZONE_LOCK{output}{state}<CR><LF>
+  command: SET ZONE_LOCK {output} {state}<CR><LF>
 
 - id: set_zone_r
   label: Set Source Zone Lockout
@@ -340,7 +337,7 @@ auth:
     - name: lock_code
       type: string
       description: "hex code from Source Zone Lockout Parameter Table"
-  command: SET ZONE_R{output}{lock_code}<CR><LF>
+  command: SET ZONE_R {output} {lock_code}<CR><LF>
 
 - id: reboot
   label: Reboot
@@ -348,7 +345,7 @@ auth:
   params:
     - name: target
       type: enum
-      values: [all, mainboard, ledboard, card1-card16]
+      values: [all, mainboard, ledboard, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16]
   command: REBOOT {target}<CR><LF>
 
 - id: factory_reset
@@ -382,7 +379,7 @@ auth:
 - id: output_gain
   label: Output Gain Level
   type: integer
-  range: [-10, 10]  # pre-v1.3; -80 to 0 (2dB steps) v1.3+
+  description: "Gain values depend on model and firmware: -10 to 10 below v1.3 on 10x10 or below v1.4 on 16x16; -80 to 0 in 2dB increments on 10x10 v1.3+ or 16x16 v1.4+."
   query_command: "GET VOLGAIN_DATA{output}<CR><LF>"
 
 - id: mute_state
@@ -561,13 +558,14 @@ interlocks: []
 - Command termination requires `<CR><LF>` (carriage return + line feed)
 - All keywords are case sensitive
 - Multiple models supported: 10x10 and 16x16 configurations
-- Audio gain ranges changed with firmware: pre-v1.3 uses -10 to 10, v1.3+ uses -80 to 0 in 2dB increments
+- Audio gain ranges vary by model and firmware: pre-v1.3 on 10x10 and pre-v1.4 on 16x16 use -10 to 10; 10x10 v1.3+ and 16x16 v1.4+ use -80 to 0 in 2dB increments
 - HDBaseT pass-through allows serial control of remote devices through the matrix (Section 6)
 - EDID configuration requires rear panel dipswitches set to Front Panel, Web UI, or API EDID Control (0000)
 - CEC power delay default is 2 minutes; 0 immediately powers off if no active signal
+- The IP transport protocol and authentication are UNRESOLVED; the source lists an IP address and port but does not specify a protocol or authentication method.
 
-<!-- UNRESOLVED: default login credentials not stated in source -->
-<!-- UNRESOLVED: HTTP/REST API not documented — only RS-232 and Telnet TCP -->
+<!-- UNRESOLVED: authentication method and credentials are not specified in the source -->
+<!-- UNRESOLVED: the source documents RS-232 and IP settings, but does not identify an IP transport protocol -->
 
 ## Provenance
 
@@ -577,29 +575,28 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-05-14T20:00:45.354Z
-last_checked_at: 2026-06-02T22:16:19.955Z
+last_checked_at: 2026-10-07T11:04:22.696Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:19.955Z
+checked_at: 2026-10-07T11:04:22.696Z
 matched_actions: 54
 action_count: 54
 confidence: medium
-summary: "All 54 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 54 action units (26 actions plus 28 query feedbacks) match source commands, transport values are supported, and the source has about 54 commands. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "auth credentials not documented — no login procedure in source"
 - "no discrete settable parameters outside action commands"
 - "no unsolicited event notifications documented"
 - "no safety warnings or interlock procedures in source"
-- "default login credentials not stated in source"
-- "HTTP/REST API not documented — only RS-232 and Telnet TCP"
+- "authentication method and credentials are not specified in the source"
+- "the source documents RS-232 and IP settings, but does not identify an IP transport protocol"
 ```
 
 ---

@@ -21,8 +21,8 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:32:31.256Z
-last_checked_at: 2026-06-02T22:10:48.831Z
-generated_at: 2026-06-02T22:10:48.831Z
+last_checked_at: 2026-10-07T12:38:51.254Z
+generated_at: 2026-10-07T12:38:51.254Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -30,7 +30,6 @@ known_gaps:
   - "input terminal value mapping deferred to vendor appendix \"Supplementary Information by Command\" — not present in this source"
   - "eco mode value mapping deferred to vendor appendix"
   - "aspect value mapping deferred to vendor appendix"
-  - "flow control not stated; RTS/CTS pins present on connector"
   - "no settable continuous parameters beyond actions already listed (volume, picture gains set via action commands)"
   - "source does not document unsolicited notifications from projector"
   - "no multi-step sequences described in source"
@@ -44,11 +43,11 @@ known_gaps:
   - "flow control configuration for serial (RTS/CTS pins wired but no software flow control documented)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:10:48.831Z
-  matched_actions: 28
-  action_count: 28
+  checked_at: 2026-10-07T12:38:51.254Z
+  matched_actions: 53
+  action_count: 53
   confidence: medium
-  summary: "All 28 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 action units (28 actions, 25 query feedbacks) match the source's 53-entry command list; transport values are verified, and auth and flow control are honestly UNRESOLVED. (15 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -59,7 +58,7 @@ created_at: 2026-05-14
 
 ## Summary
 
-NEC NP MExxxW / NP MExxxX series projectors. Binary control protocol over RS-232C serial and TCP/IP (wired/wireless LAN). Commands are hex byte sequences with a single-byte additive checksum. Covers power, input switching, picture/audio adjustment, lens control (zoom/focus/shift/memory), shutter, muting, freeze, eco mode, edge blending, PIP, and extensive status queries.
+NEC NP MExxxW / NP MExxxX series projectors. Binary control protocol over RS-232C serial and TCP/IP (wired LAN; wireless LAN uses a wireless LAN unit). Commands are hex byte sequences with a single-byte additive checksum. Covers power, input switching, picture/audio adjustment, lens control (zoom/focus/shift/memory), shutter, muting, freeze, eco mode, edge blending, PIP, and extensive status queries.
 
 <!-- UNRESOLVED: specific model variants within MExxxW/MExxxX family not enumerated — source uses generic series name -->
 <!-- UNRESOLVED: input terminal value mapping deferred to vendor appendix "Supplementary Information by Command" — not present in this source -->
@@ -78,9 +77,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not stated; RTS/CTS pins present on connector
-auth:
-  type: none  # inferred: no auth procedure in source
+  flow_control: UNRESOLVED  # RTS/CTS pins are present on the connector; flow-control configuration is not stated
+ auth:
+  type: UNRESOLVED  # authentication behavior is not stated in the source
 ```
 
 ## Traits
@@ -218,7 +217,7 @@ actions:
     params:
       - name: key_code
         type: integer
-        description: "16-bit key code (e.g. 0200h=POWER ON, 0300h=POWER OFF, 0500h=AUTO, 8400h=VOL UP, 8500h=VOL DOWN)"
+        description: "Key code from the source table, sent as DATA01 then DATA02 (e.g. 2=POWER ON, 3=POWER OFF, 5=AUTO, 132=VOLUME UP, 133=VOLUME DOWN)."
 
   - id: shutter_close
     label: Shutter Close
@@ -380,36 +379,42 @@ feedbacks:
     label: Error Status
     type: binary_bitmap
     command: "00h 88h 00h 00h 00h 88h"
+    query_command: "00h  88h  00h  00h  00h  88h"
     description: "Returns 12 bytes of error bitmaps (cover, fan, temperature, lamp, power, formatter, FPGA, ballast, interlock, lens, iris errors)."
 
   - id: projector_information
     label: Projector Information
     type: composite
     command: "03h 8Ah 00h 00h 00h 8Dh"
+    query_command: "03h  8Ah  00h  00h  00h  8Dh"
     description: "Returns projector name (49 bytes), lamp usage time (seconds), filter usage time (seconds)."
 
   - id: filter_usage
     label: Filter Usage Information
     type: composite
     command: "03h 95h 00h 00h 00h 98h"
+    query_command: "03h  95h  00h  00h  00h  98h"
     description: "Returns filter usage time and filter alarm start time (seconds)."
 
   - id: lamp_information
     label: Lamp Information
     type: composite
     command: "03h 96h 00h 00h 02h <lamp> <content> <CKS>"
+    query_command: "03h  96h  00h  00h  02h _<DATA01> <DATA02> <CKS>_"
     description: "Returns lamp usage time (seconds) or remaining life (%). Lamp: 00h=Lamp1, 01h=Lamp2. Content: 01h=usage time, 04h=remaining life."
 
   - id: carbon_savings
     label: Carbon Savings Information
     type: composite
     command: "03h 9Ah 00h 00h 01h <DATA01> <CKS>"
+    query_command: "03h  9Ah  00h  00h  01h _<DATA01> <CKS>_"
     description: "Returns carbon savings in kg and mg. DATA01: 00h=total, 01h=during operation."
 
   - id: running_status
     label: Running Status
     type: enum
     command: "00h 85h 00h 00h 01h 01h 87h"
+    query_command: "00h  85h  00h  00h  01h  01h  87h"
     description: "Returns power status, cooling status, power-on/off process status, operation status."
     values: [standby_sleep, power_on, cooling, standby_error, standby_power_saving, network_standby]
 
@@ -417,24 +422,28 @@ feedbacks:
     label: Input Status
     type: composite
     command: "00h 85h 00h 00h 01h 02h 88h"
+    query_command: "00h  85h  00h  00h  01h  02h  88h"
     description: "Returns signal switch status, signal list number, selection signal type, test pattern, content displayed."
 
   - id: mute_status
     label: Mute Status
     type: composite
     command: "00h 85h 00h 00h 01h 03h 89h"
+    query_command: "00h  85h  00h  00h  01h  03h  89h"
     description: "Returns picture mute, sound mute, onscreen mute, forced onscreen mute, OSD status."
 
   - id: model_name
     label: Model Name
     type: string
     command: "00h 85h 00h 00h 01h 04h 8Ah"
+    query_command: "00h  85h  00h  00h  01h  04h  8Ah"
     description: "Returns model name as NUL-terminated string (up to 32 bytes)."
 
   - id: cover_status
     label: Cover Status
     type: enum
     command: "00h 85h 00h 00h 01h 05h 8Bh"
+    query_command: "00h  85h  00h  00h  01h  05h  8Bh"
     description: "Returns mirror cover or lens cover status."
     values: [normal_cover_opened, cover_closed]
 
@@ -442,24 +451,28 @@ feedbacks:
     label: Lens Control Position
     type: composite
     command: "02h 1Ch 00h 00h 02h <axis> 00h <CKS>"
+    query_command: "02h  1Ch  00h  00h  02h _<DATA01>_ 00h _<CKS>_"
     description: "Returns adjustment range (upper/lower limits) and current value for a lens axis."
 
   - id: lens_memory_option
     label: Lens Memory Option
     type: composite
     command: "02h 20h 00h 00h 01h <option> <CKS>"
+    query_command: "02h  20h  00h  00h  01h _<DATA01> <CKS>_"
     description: "Returns lens memory option setting. Option: 00h=LOAD BY SIGNAL, 01h=FORCED MUTE."
 
   - id: lens_information
     label: Lens Information
     type: binary_bitmap
     command: "02h 22h 00h 00h 01h 00h 25h"
+    query_command: "02h  22h  00h  00h  01h  00h  25h"
     description: "Returns bitmap of lens motor activity (memory, zoom, focus, shift H, shift V)."
 
   - id: lens_profile
     label: Lens Profile
     type: enum
     command: "02h 28h 00h 00h 00h 2Ah"
+    query_command: "02h  28h  00h  00h  00h  2Ah"
     description: "Returns selected reference lens memory profile."
     values: [profile_1, profile_2]
 
@@ -467,48 +480,56 @@ feedbacks:
     label: Gain Parameter
     type: composite
     command: "03h 05h 00h 00h 03h <param> 00h 00h <CKS>"
+    query_command: "03h  05h  00h  00h  03h _<DATA01>_ 00h  00h _<CKS>_"
     description: "Returns adjustment range, default, and current value for a gain parameter. Param: 00h=Brightness, 01h=Contrast, 02h=Color, 03h=Hue, 04h=Sharpness, 05h=Volume, 96h=Lamp Adjust."
 
   - id: setting_information
     label: Setting Information
     type: composite
     command: "00h 85h 00h 00h 01h 00h 86h"
+    query_command: "00h  85h  00h  00h  01h  00h  86h"
     description: "Returns base model type, sound function availability, profile number."
 
   - id: information_string
     label: Information String
     type: string
     command: "00h D0h 00h 00h 03h 00h <type> 01h <CKS>"
+    query_command: "00h  D0h  00h  00h  03h  00h _<DATA01>_ 01h _<CKS>_"
     description: "Returns horizontal or vertical sync frequency string. Type: 03h=H-sync, 04h=V-sync."
 
   - id: eco_mode
     label: Eco Mode
     type: enum
     command: "03h B0h 00h 00h 01h 07h BBh"
+    query_command: "03h  B0h  00h  00h  01h  07h  BBh"
     description: "Returns current eco/lamp/light mode. Value mapping in vendor appendix."
 
   - id: projector_name
     label: Projector Name
     type: string
     command: "03h B0h 00h 00h 01h 2Ch E0h"
+    query_command: "03h  B0h  00h  00h  01h  2Ch  E0h"
     description: "Returns projector name as NUL-terminated string (up to 17 bytes)."
 
   - id: mac_address
     label: MAC Address
     type: string
     command: "03h B0h 00h 00h 02h 9Ah 00h 4Fh"
+    query_command: "03h  B0h  00h  00h  02h  9Ah  00h  4Fh"
     description: "Returns 6-byte MAC address."
 
   - id: pip_pbp_status
     label: PIP/Picture-by-Picture Status
     type: composite
     command: "03h B0h 00h 00h 02h C5h <param> <CKS>"
+    query_command: "03h  B0h  00h  00h  02h  C5h _<DATA01> <CKS>_"
     description: "Returns PIP/PbP mode, start position, or sub input setting."
 
   - id: edge_blending_status
     label: Edge Blending Status
     type: enum
     command: "03h B0h 00h 00h 02h DFh 00h 94h"
+    query_command: "03h  B0h  00h  00h  02h  DFh  00h  94h"
     description: "Returns edge blending on/off state."
     values: [off, on]
 
@@ -516,18 +537,21 @@ feedbacks:
     label: Base Model Type
     type: composite
     command: "00h BFh 00h 00h 01h 00h C0h"
+    query_command: "00h  BFh  00h  00h  01h  00h  C0h"
     description: "Returns base model type and model name string."
 
   - id: serial_number
     label: Serial Number
     type: string
     command: "00h BFh 00h 00h 02h 01h 06h C8h"
+    query_command: "00h  BFh  00h  00h  02h  01h  06h  C8h"
     description: "Returns serial number as NUL-terminated string (up to 16 bytes)."
 
   - id: basic_information
     label: Basic Information
     type: composite
     command: "00h BFh 00h 00h 01h 02h C2h"
+    query_command: "00h  BFh  00h  00h  01h  02h  C2h"
     description: "Returns operation status, content displayed, signal type, mute states, freeze status."
 ```
 
@@ -559,12 +583,12 @@ interlocks: []
 
 - Protocol uses raw hex byte sequences with additive single-byte checksum (low byte of sum of all preceding bytes).
 - Command frames include control ID (ID1) and model code (ID2) parameters — these must match the target projector.
-- Multiple baud rates supported (4800–115200); projector likely auto-detects or must be configured via OSD.
+- The source lists supported baud rates as 115200, 38400, 19200, 9600, and 4800 bps; it does not state how the rate is selected or configured.
 - Input terminal, aspect, and eco mode value mappings are deferred to a vendor appendix not included in this source.
 - Two-lamp projector models support Lamp 2 variants on lamp-related commands.
 - Lens control supports both timed (0.25s/0.5s/1s) and continuous drive modes; continuous drive requires explicit stop command.
-- Response format: successful commands echo with `2xh` prefix; errors return `Axh` prefix with ERR1/ERR2 error codes.
-- TCP port 7142 stated for LAN control; same binary protocol over both serial and TCP.
+- Successful-command response formats vary by command; error responses use command-specific response codes and ERR1/ERR2 error codes.
+- TCP port 7142 is stated for LAN control; the manual describes serial and network connections. Wireless LAN requires a wireless LAN unit, whose specifics are documented in that unit's operation manual.
 - Picture mute, sound mute, and onscreen mute are automatically cleared on input/signal switch.
 
 <!-- UNRESOLVED: input terminal byte-value mapping (appendix not in source) -->
@@ -583,18 +607,18 @@ source_domains:
 source_urls:
   - https://www.sharpdisplays.eu/p/download/cp/Products/Projectors/Shared/CommandLists/NEC-ExternalControlManual-english.pdf
 retrieved_at: 2026-05-13T08:32:31.256Z
-last_checked_at: 2026-06-02T22:10:48.831Z
+last_checked_at: 2026-10-07T12:38:51.254Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:10:48.831Z
-matched_actions: 28
-action_count: 28
+checked_at: 2026-10-07T12:38:51.254Z
+matched_actions: 53
+action_count: 53
 confidence: medium
-summary: "All 28 spec actions traced to source (dip-safe re-verify). (16 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 action units (28 actions, 25 query feedbacks) match the source's 53-entry command list; transport values are verified, and auth and flow control are honestly UNRESOLVED. (15 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -604,7 +628,6 @@ summary: "All 28 spec actions traced to source (dip-safe re-verify). (16 unresol
 - "input terminal value mapping deferred to vendor appendix \"Supplementary Information by Command\" — not present in this source"
 - "eco mode value mapping deferred to vendor appendix"
 - "aspect value mapping deferred to vendor appendix"
-- "flow control not stated; RTS/CTS pins present on connector"
 - "no settable continuous parameters beyond actions already listed (volume, picture gains set via action commands)"
 - "source does not document unsolicited notifications from projector"
 - "no multi-step sequences described in source"

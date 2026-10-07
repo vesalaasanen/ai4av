@@ -12,7 +12,7 @@ compatible_with:
     - "Key Digital Systems"
   models:
     - KD-MLV4x4Pro
-  firmware: "\"1.12\""
+  firmware: 1.12
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-07-13T06:29:14.410Z
 last_checked_at: 2026-07-21T23:14:38.235Z
 generated_at: 2026-07-21T23:14:38.235Z
-firmware_coverage: "\"1.12\""
+firmware_coverage: 1.12
 protocol_coverage: []
 known_gaps:
   - "this spec covers only the documented command set; voltage/power specs, fault behavior, and firmware compatibility ranges are not stated in the source."

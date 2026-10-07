@@ -24,8 +24,8 @@ source_urls:
   - https://manualsdump.com/en/manuals/sharp-xv-z17000/132223/68
   - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/QuickGuide/hom_dow_XVZ30000.pdf
 retrieved_at: 2026-04-30T12:09:21.380Z
-last_checked_at: 2026-06-02T22:14:00.721Z
-generated_at: 2026-06-02T22:14:00.721Z
+last_checked_at: 2026-10-07T13:36:21.990Z
+generated_at: 2026-10-07T13:36:21.990Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -50,11 +50,11 @@ known_gaps:
   - "RGB frequency check returns ***.* format - format and precision not fully specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:00.721Z
-  matched_actions: 47
-  action_count: 47
+  checked_at: 2026-10-07T13:36:21.990Z
+  matched_actions: 53
+  action_count: 53
   confidence: medium
-  summary: "All 47 spec actions traced to source (dip-safe re-verify). (19 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 53 actions map one-to-one to source commands and transport confirmed; source catalogue covered with variant families collapsed. (19 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -82,7 +82,7 @@ serial:
 addressing:
   port: 10002  # factory default TCP data port
 auth:
-  type: none  # inferred: no auth procedure in source for RS-232C; LAN uses web interface credentials (unspecified)
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source for RS-232C; LAN uses web interface credentials (unspecified))
 ```
 
 ## Traits
@@ -90,7 +90,7 @@ auth:
 powerable: true  # inferred: POWR command present
 routable: true   # inferred: input change commands (IRGB) present
 queryable: true   # inferred: status query commands (? parameters) present
-levelable: true   # inferred: picture adjustments (Contrast, Bright, etc.) present
+levelable: true  # inferred: picture adjustments (Contrast, Bright, etc.) present
 ```
 
 ## Actions
@@ -346,6 +346,13 @@ levelable: true   # inferred: picture adjustments (Contrast, Bright, etc.) prese
   label: Lamp Timer Reset
   kind: action
   params: []
+- id: lens_vertical_shift_down
+  label: Lens Vertical Shift Down
+  kind: action
+  params:
+    - name: value
+      type: integer
+      description: -800 to +800
 ```
 
 ## Feedbacks
@@ -356,18 +363,23 @@ levelable: true   # inferred: picture adjustments (Contrast, Bright, etc.) prese
 - id: power_status_response
   type: enum
   values: ["1=on", "0=standby"]
+  query_command: POWR????
 - id: projector_condition_response
   type: flags
   values: ["0=normal", "1=temp_high", "2=fan_error", "4=lamp_cover_open", "8=lamp_life_5pct", "16=lamp_burnout", "32=lamp_ignition_failure", "64=temp_abnormally_high"]
+  query_command: TABN _ _ _ 1
 - id: lamp_status_response
   type: enum
   values: ["0=off", "1=on", "2=retry", "3=waiting", "4=lamp_error"]
+  query_command: TLPS _ _ _ 1
 - id: lamp_power_status_response
   type: enum
   values: ["1=on", "2=cooling", "0=standby"]
+  query_command: TPOW _ _ _ 1
 - id: input_rgb_check_response
   type: enum
   values: ["1=COMPUTER", "2=COMPONENT", "3=HDMI1", "4=HDMI2", "ERR"]
+  query_command: I R G B ? ? ? ?
 - id: resize_response
   type: enum
   values: [OK, ERR]
@@ -377,6 +389,7 @@ levelable: true   # inferred: picture adjustments (Contrast, Bright, etc.) prese
 - id: rgb_frequency_response
   type: string
   description: kHz or Hz value (***.*) or ERR
+  query_command: [TFRQ _ _ _ 1, TFRQ _ _ _ 2]
 - id: lamp_timer_reset_response
   type: enum
   values: [OK, ERR]
@@ -449,18 +462,18 @@ source_urls:
   - https://manualsdump.com/en/manuals/sharp-xv-z17000/132223/68
   - https://files.sharpusa.com/Downloads/ForHome/HomeEntertainment/FrontProjectors/QuickGuide/hom_dow_XVZ30000.pdf
 retrieved_at: 2026-04-30T12:09:21.380Z
-last_checked_at: 2026-06-02T22:14:00.721Z
+last_checked_at: 2026-10-07T13:36:21.990Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:00.721Z
-matched_actions: 47
-action_count: 47
+checked_at: 2026-10-07T13:36:21.990Z
+matched_actions: 53
+action_count: 53
 confidence: medium
-summary: "All 47 spec actions traced to source (dip-safe re-verify). (19 unresolved item(s) noted in Known Gaps.)"
+summary: "All 53 actions map one-to-one to source commands and transport confirmed; source catalogue covered with variant families collapsed. (19 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

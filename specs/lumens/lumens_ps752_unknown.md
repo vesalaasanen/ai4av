@@ -21,15 +21,15 @@ source_urls:
   - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:55:39.719Z
-last_checked_at: 2026-06-02T22:09:29.889Z
-generated_at: 2026-06-02T22:09:29.889Z
+last_checked_at: 2026-10-07T10:35:25.046Z
+generated_at: 2026-10-07T10:35:25.046Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "no TCP/IP control documented; serial-only per source"
   - "firmware version compatibility not stated"
-  - "flow control not stated (defaulting to none)"
   - "flow control not stated in source"
+  - "authentication requirements not stated in source"
   - "no unsolicited notification events documented in source"
   - "no multi-step macro sequences documented in source"
   - "no safety warnings or interlock procedures found in source"
@@ -38,11 +38,11 @@ known_gaps:
   - "response timing / latency not specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:29.889Z
+  checked_at: 2026-10-07T10:35:25.046Z
   matched_actions: 77
   action_count: 77
   confidence: medium
-  summary: "All 77 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 77 action units match source command table rows (opcode, params, ranges) and serial settings match; the spec covers all 64 source commands. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -57,7 +57,8 @@ Lumens PS752 visual presenter / document camera controlled via RS-232 serial usi
 
 <!-- UNRESOLVED: no TCP/IP control documented; serial-only per source -->
 <!-- UNRESOLVED: firmware version compatibility not stated -->
-<!-- UNRESOLVED: flow control not stated (defaulting to none) -->
+<!-- UNRESOLVED: flow control not stated in source -->
+<!-- UNRESOLVED: authentication requirements not stated in source -->
 
 ## Transport
 
@@ -69,9 +70,9 @@ serial:
   data_bits: 8
   parity: none
   stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not stated in source
+  flow_control: UNRESOLVED
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED
 ```
 
 ## Traits
@@ -134,9 +135,7 @@ actions:
     params:
       - name: position
         type: integer
-        min: 0
-        max: 255
-        description: "P1=low byte, P2=high byte"
+        description: "P1=low byte, P2=high byte. Source states Value: 0~255 and lists optical+pixel zoom positions XGA:874, SXGA:871, WXGA:871, 1080P:864, NTSC:879, PAL:879; relationship between these values is UNRESOLVED."
 
   - id: zoom_start_af
     label: Zoom Start (With AF)
@@ -155,9 +154,7 @@ actions:
     params:
       - name: position
         type: integer
-        min: 0
-        max: 255
-        description: "P1=low byte, P2=high byte"
+        description: "P1=low byte, P2=high byte. Source states Value: 0~255 and lists optical+pixel zoom positions XGA:874, SXGA:871, WXGA:871, 1080P:864, NTSC:879, PAL:879; relationship between these values is UNRESOLVED."
 
   - id: focus_stop
     label: Focus Stop
@@ -626,7 +623,7 @@ feedbacks:
     label: Zoom Position
     type: integer
     query_command: "A0 60 00 00 00 AF"
-    description: "Return P1(low byte) P2(high byte), 0~255"
+    description: "Return P1(low byte), P2(high byte). Source lists optical+pixel zoom positions XGA:874, SXGA:871, WXGA:871, 1080P:864, NTSC:879, PAL:879; relationship to the returned byte values is UNRESOLVED."
 
   - id: digital_zoom_position
     label: Digital Zoom Position
@@ -726,10 +723,8 @@ variables:
   - id: zoom_position
     label: Zoom Position
     type: integer
-    min: 0
-    max: 255
     set_command: "A0 13 P1 P2 00 AF"
-    description: "P1=low byte, P2=high byte"
+    description: "P1=low byte, P2=high byte. Source states Value: 0~255 and lists optical+pixel zoom positions XGA:874, SXGA:871, WXGA:871, 1080P:864, NTSC:879, PAL:879; relationship between these values is UNRESOLVED."
 
   - id: focus_position
     label: Focus Position
@@ -792,6 +787,7 @@ interlocks: []
 
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
 <!-- UNRESOLVED: no flow control setting stated in source -->
+<!-- UNRESOLVED: authentication requirements not stated in source -->
 <!-- UNRESOLVED: response timing / latency not specified -->
 
 ## Provenance
@@ -803,18 +799,18 @@ source_urls:
   - "https://www.mylumens.com/Download/DC193,V01_PS752,V01%20RS-232%20command%20set_1_0.pdf"
   - "https://www.mylumens.com/Download/RS128%20-%20LC200%20RS-232%20command%20set_1_5.pdf"
 retrieved_at: 2026-05-13T06:55:39.719Z
-last_checked_at: 2026-06-02T22:09:29.889Z
+last_checked_at: 2026-10-07T10:35:25.046Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:29.889Z
+checked_at: 2026-10-07T10:35:25.046Z
 matched_actions: 77
 action_count: 77
 confidence: medium
-summary: "All 77 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 77 action units match source command table rows (opcode, params, ranges) and serial settings match; the spec covers all 64 source commands. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -822,8 +818,8 @@ summary: "All 77 spec actions traced to source (dip-safe re-verify). (10 unresol
 ```yaml
 - "no TCP/IP control documented; serial-only per source"
 - "firmware version compatibility not stated"
-- "flow control not stated (defaulting to none)"
 - "flow control not stated in source"
+- "authentication requirements not stated in source"
 - "no unsolicited notification events documented in source"
 - "no multi-step macro sequences documented in source"
 - "no safety warnings or interlock procedures found in source"

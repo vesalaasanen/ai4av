@@ -19,9 +19,9 @@ source_domains:
   - mcintoshlabs.com
 source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-retrieved_at: 2026-04-30T04:25:00.445Z
-last_checked_at: 2026-06-02T22:09:37.566Z
-generated_at: 2026-06-02T22:09:37.566Z
+retrieved_at: 2026-09-26T14:23:20.502Z
+last_checked_at: 2026-09-26T14:23:20.502Z
+generated_at: 2026-09-26T14:23:20.502Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "passthru mode details not documented beyond error message"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:37.566Z
+  checked_at: 2026-09-26T14:23:20.502Z
   matched_actions: 49
   action_count: 49
   confidence: medium
-  summary: "All 49 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All49 serial/TCP units match16 source mnemonics; scope, domains, headphone/power conditions and acknowledgements agree; unspecified fields stay unresolved. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,7 +50,7 @@ created_at: 2026-04-15
 # McIntosh MSA5500 Series Control Spec
 
 ## Summary
-The McIntosh MSA5500 is an integrated stereo amplifier with RS-232C serial and TCP/IP control. Commands are ASCII-encoded in the format `(XXX parameter)` with parenthesized prefix/suffix. The spec covers power, volume, mute, input selection, tone controls, balance, and various trim functions.
+The McIntosh MSA5500 is an integrated stereo amplifier with RS-232C serial and TCP/IP control. Commands are ASCII-encoded in the format `(XXX parameter)` with parenthesized prefix/suffix. This spec covers the serial/TCP protocol on pages 1–4 of MSA5500 External Control Rev A (4/4/2025), including power, volume, mute, input selection, tone controls, balance, and trim functions. The manual’s separate IR protocol is outside this existing serial/TCP scope; this is not a whole-manual IR inventory.
 
 ## Transport
 ```yaml
@@ -66,7 +66,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source.
 ```
 
 ## Traits
@@ -192,7 +192,7 @@ actions:
         type: integer
         min: -50
         max: 50
-        description: Balance level (-50=full left, +50=full right)
+        description: Balance value from -50 to +50; negative indicates left and positive indicates right. The source does not define these endpoints as full-left or full-right.
 
   - id: input_trim_up
     label: Input Trim Up
@@ -416,7 +416,7 @@ feedbacks:
   - id: full_query
     type: string
     query_command: "(QRY)"
-    description: Returns full device status
+    description: Returns status; the source does not specify the complete returned field set or ordering.
 ```
 
 ## Variables
@@ -435,12 +435,14 @@ events:
       >> (Serial Number: ALX####)
       >> (FW Version: #.#.#)
       >> (DS1 Version: v#.##)
-    trigger: First AC connection / power-up
+    trigger: First connection to AC power
 
   - id: command_ack
     description: >
-      The unit echoes the received command as acknowledgement after processing.
-    trigger: After processing a valid command
+      The unit typically echoes the same command as acknowledgement after processing;
+      an echo is not guaranteed for every valid command. Invalid or corrupt commands
+      instead produce an appropriate error message.
+    trigger: Typically after processing a valid command
 
   - id: status_update
     description: >
@@ -469,9 +471,11 @@ interlocks:
 
 ## Notes
 - Commands use ASCII format: `(XXX parameter)` — prefix `(`, 3-char name, space-separated params, suffix `)`.
-- Carriage return `\x0D\x0A` is optional, used for terminal readability.
+- The optional CR/LF pair `\x0D\x0A` is used for terminal readability; the command payload itself ends with `)`.
 - Error responses: `(ERROR – Unknown Error)`, `(ERROR – Invalid Command)`, `(ERROR – Invalid Parameter)`, `(ERROR – Invalid Input)`, `(ERROR – In Passthru)`.
-- RS-232 uses a 3.5mm TRS connector (Tip=TXD, Ring=RXD, Sleeve=Ground). A DB9 female to 3.5mm adapter cable may be used.
+- RS-232 uses a 3.5mm TRS connector (Tip=TXD transmitted by the MSA5500, Ring=RXD received by the MSA5500, Sleeve=Ground). A DB9 female to 3.5mm adapter cable may be used.
+- TCP port 57012 applies to both wired and wireless network interfaces.
+- The printed error messages use an en dash, while the protocol overview describes ASCII data. The exact on-wire separator byte is not established by this typography; no Unicode response encoding is inferred.
 - Input trim values are in half-dB steps (e.g. -12 = -6.0 dB, -11 = -5.5 dB).
 
 <!-- UNRESOLVED: RS-232 baud rate not stated in source -->
@@ -481,6 +485,8 @@ interlocks:
 <!-- UNRESOLVED: connection keep-alive or timeout behavior not stated in source -->
 <!-- UNRESOLVED: passthru mode details not documented beyond error message -->
 
+Source: https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf (11 pages; Rev A, 4/4/2025). The publication date is not a firmware compatibility requirement. This repair preserves all 33 actions and 16 query-bearing feedback IDs and their command strings. Serial baud rate, authentication requirements, full query reply layout and command timing remain unspecified. No hardware test was performed.
+
 ## Provenance
 
 ```yaml
@@ -488,19 +494,19 @@ source_domains:
   - mcintoshlabs.com
 source_urls:
   - https://www.mcintoshlabs.com/-/media/Files/mcintoshlabs/DocumentMaster/us/MSA5500-External-Control-Rev-A.pdf
-retrieved_at: 2026-04-30T04:25:00.445Z
-last_checked_at: 2026-06-02T22:09:37.566Z
+retrieved_at: 2026-09-26T14:23:20.502Z
+last_checked_at: 2026-09-26T14:23:20.502Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:37.566Z
+checked_at: 2026-09-26T14:23:20.502Z
 matched_actions: 49
 action_count: 49
 confidence: medium
-summary: "All 49 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All49 serial/TCP units match16 source mnemonics; scope, domains, headphone/power conditions and acknowledgements agree; unspecified fields stay unresolved. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

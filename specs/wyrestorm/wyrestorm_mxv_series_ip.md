@@ -20,9 +20,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:18.423Z
-last_checked_at: 2026-06-02T22:16:18.423Z
-generated_at: 2026-06-02T22:16:18.423Z
+retrieved_at: 2026-10-07T14:02:48.178Z
+last_checked_at: 2026-10-07T14:02:48.178Z
+generated_at: 2026-10-07T14:02:48.178Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:18.423Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-10-07T14:02:48.178Z
+  matched_actions: 60
+  action_count: 60
   confidence: medium
-  summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 60 action units (29 actions, 31 query feedbacks) match source mnemonics and shapes; serial and port transport verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -70,7 +70,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -447,6 +447,7 @@ auth:
   label: Query Video Input Mapping
   type: string
   command: "GET MP{output}<CR><LF>"
+  query_command: "GET MP{output}<CR><LF>"
   response: "MP{input#} {output#}<CR><LF>"
 
 - id: audio_switch_mode
@@ -454,18 +455,21 @@ auth:
   type: enum
   values: [on, off]
   command: "GET AUDIOSW_M<CR><LF>"
+  query_command: "GET AUDIOSW_M {mode}<CR><LF>"
   response: "AUDIOSW_M {mode}<CR><LF>"
 
 - id: audio_input_mapping
   label: Query Audio Input Mapping
   type: string
   command: "GET AUDIOMP{output}<CR><LF>"
+  query_command: "GET AUDIOMP{output}<CR><LF>"
   response: "AUDIOMP{input} {output}<CR><LF>"
 
 - id: output_gain_level
   label: Query Current Output Gain
   type: integer
   command: "GET VOLGAIN_DATA{aout}<CR><LF>"
+  query_command: "GET VOLGAIN_DATA{aout}<CR><LF>"
   response: "VOLGAIN_DATA{aout} {level}<CR><LF>"
 
 - id: audio_mute_state
@@ -473,6 +477,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET MUTE{aout}<CR><LF>"
+  query_command: "GET MUTE{aout}<CR><LF>"
   response: "MUTE{aout} {state}<CR><LF>"
 
 - id: volume_gain_fixed_state
@@ -480,6 +485,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET VOLGAIN_FIX{aout}<CR><LF>"
+  query_command: "GET VOLGAIN_FIX{aout} {mode}<CR><LF>"
   response: "VOLGAIN_FIX{aout} {mode}<CR><LF>"
 
 - id: mute_method_state
@@ -487,18 +493,21 @@ auth:
   type: enum
   values: [cut, ramp]
   command: "GET MUTE_M{aout}<CR><LF>"
+  query_command: "GET MUTE_M{aout}<CR><LF>"
   response: "MUTE_M{aout} {method}<CR><LF>"
 
 - id: volume_step_length
   label: Query Volume Step Length
   type: integer
-  command: "GET VOLGAIN_STEP{aout}<CR><LF>"
+  command: "GET VOLGAIN_STEP{aout}"
+  query_command: "GET VOLGAIN_STEP{aout} {step}<CR><LF>"
   response: "VOLGAIN_STEP{aout} {step}<CR><LF>"
 
 - id: audio_delay_time
   label: Query Audio Output Delay Time
   type: integer
   command: "GET AUDIO_D{aout}<CR><LF>"
+  query_command: "GET AUDIO_D{aout}<CR><LF>"
   response: "AUDIO_D{aout} {delay_ms}<CR><LF>"
 
 - id: eq_function_state
@@ -506,12 +515,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET EQ_FN{aout}<CR><LF>"
+  query_command: "GET EQ_FN{aout}<CR><LF>"
   response: "EQ_FN{aout} {state}<CR><LF>"
 
 - id: eq_level
   label: Query Audio EQ Level
   type: string
   command: "GET AUDIO_EQ{aout} {freq}<CR><LF>"
+  query_command: "GET AUDIO_EQ{aout} {freq}<CR><LF>"
   response: "AUDIO_EQ{aout} {freq} {gain}<CR><LF>"
 
 - id: cec_power_status
@@ -519,12 +530,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET CEC_PWR{output}<CR><LF>"
+  query_command: "GET CEC_PWR{output}<CR><LF>"
   response: "CEC_PWR{output} {state}<CR><LF>"
 
 - id: cec_power_delay
   label: Query CEC Power Delay Time
   type: integer
   command: "GET AUTOCEC_D{output}<CR><LF>"
+  query_command: "GET AUTOCEC_D{output}<CR><LF>"
   response: "AUTOCEC_D{output} {delay_min}<CR><LF>"
 
 - id: hdcp_status
@@ -532,12 +545,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET HDCP_S{input}<CR><LF>"
+  query_command: "GET HDCP_S{input}<CR><LF>"
   response: "HDCP_S{input} {state}<CR><LF>"
 
 - id: edid_dip_switch
   label: Query EDID Dip Switch Status
   type: integer
   command: "GET EDID_DIP<CR><LF>"
+  query_command: "GET EDID_DIP<CR><LF>"
   response: "EDID_DIP{value}<CR><LF>"
   notes: "value range 0~15"
 
@@ -545,6 +560,7 @@ auth:
   label: Query All Inputs EDID Status
   type: string
   command: "GET EDID all<CR><LF>"
+  query_command: "GET EDID all<CR><LF>"
   response: "EDID{in} {code}<CR> per input, last line terminated <CR><LF>"
 
 - id: ir_callback_status
@@ -552,6 +568,7 @@ auth:
   type: enum
   values: [on, off]
   command: "GET IRBACK_FN<CR><LF>"
+  query_command: "GET IRBACK_FN<CR><LF>"
   response: "IRBACK_FN{state}<CR><LF>"
 
 - id: long_reach_mode_status
@@ -559,12 +576,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET LR_FN{target}<CR><LF>"
+  query_command: "GET LR_FN{target}<CR><LF>"
   response: "LR_FN{target} {state}<CR><LF>"
 
 - id: ir_syscode_status
   label: Query IR System Codes
   type: string
   command: "GET IR_SYSCODE<CR><LF>"
+  query_command: "GET IR_SYSCODE<CR><LF>"
   response: "IR_SYSCODE{code}<CR><LF>"
 
 - id: switching_mode_status
@@ -572,6 +591,7 @@ auth:
   type: enum
   values: [normal, quick]
   command: "GET SW_M<CR><LF>"
+  query_command: "GET SW_M<CR><LF>"
   response: "SW_M{mode}<CR><LF>"
 
 - id: avr_priority_status
@@ -579,12 +599,14 @@ auth:
   type: enum
   values: [on, off]
   command: "GET ZONE_LOCK{output}<CR><LF>"
+  query_command: "GET ZONE_LOCK{output}<CR><LF>"
   response: "ZONE_LOCK{output} {state}<CR><LF>"
 
 - id: source_zone_lockout
   label: Query Sources a Zone Can Access
   type: string
   command: "GET ZONE_R{output}<CR><LF>"
+  query_command: "GET ZONE_R{output}<CR><LF>"
   response: "ZONE_R{output} {mask}<CR><LF>"
 
 - id: input_cable_connection
@@ -592,6 +614,7 @@ auth:
   type: enum
   values: [connected, "not connected"]
   command: "GET CABLEC_IN{input}<CR><LF>"
+  query_command: "GET CABLEC_IN{input}<CR><LF>"
   response: "CABLEC_IN{input} {status}<CR><LF>"
 
 - id: output_cable_connection
@@ -599,12 +622,14 @@ auth:
   type: enum
   values: [connected, "not connected"]
   command: "GET CABLEC_IN{output}<CR><LF>"
+  query_command: "GET CABLEC_IN{output}<CR><LF>"
   response: "CABLEC_IN{output} {status}<CR><LF>"
 
 - id: hdbt_input_link_quality
   label: Query HDBaseT Input Link Quality
   type: string
   command: "GET HDBTL_IN{hdbtin}<CR><LF>"
+  query_command: "GET HDBTL_IN{hdbtin}<CR><LF>"
   response: "HDBTL_IN{hdbtin} {quality}<CR><LF>"
   notes: "quality: 1~10 or 'no link'; value*10 = approximate %"
 
@@ -612,6 +637,7 @@ auth:
   label: Query HDBaseT Output Link Quality
   type: string
   command: "GET HDBTL_OUT{hdbtout}<CR><LF>"
+  query_command: "GET HDBTL_OUT{hdbtout}<CR><LF>"
   response: "HDBTL_OUT{hdbtout} {quality}<CR><LF>"
   notes: "quality: 1~10 or 'no link'"
 
@@ -620,6 +646,7 @@ auth:
   type: enum
   values: [connected, "not connected"]
   command: "GET CARD_C{slot}<CR><LF>"
+  query_command: "GET CARD_C{slot}<CR><LF>"
   response: "CARD_C{slot} {status}<CR><LF>"
 
 - id: card_type
@@ -627,6 +654,7 @@ auth:
   type: enum
   values: [hdmi, hdbt]
   command: "GET CARD_T{slot}<CR><LF>"
+  query_command: "GET CARD_T{slot}<CR><LF>"
   response: "CARD_T{slot} {type}<CR><LF>"
 
 - id: card_communication_status
@@ -634,6 +662,7 @@ auth:
   type: enum
   values: [good, none]
   command: "GET CARD_COM{slot}<CR><LF>"
+  query_command: "GET CARD_COM{slot}<CR><LF>"
   response: "CARD_COM{slot} {status}<CR><LF>"
 
 - id: card_board_status
@@ -641,6 +670,7 @@ auth:
   type: enum
   values: [good, none]
   command: "GET CARD_S{slot}<CR><LF>"
+  query_command: "GET CARD_S{slot}<CR><LF>"
   response: "CARD_S{slot} {status}<CR><LF>"
 
 - id: fan_status
@@ -648,6 +678,7 @@ auth:
   type: enum
   values: [working, unworking]
   command: "GET FANS{fan}<CR><LF>"
+  query_command: "GET FANS{fan}<CR><LF>"
   response: "FANS{fan} {status}<CR><LF>"
   notes: "fan parameter: fan1~fan4 or all"
 ```
@@ -702,19 +733,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:18.423Z
-last_checked_at: 2026-06-02T22:16:18.423Z
+retrieved_at: 2026-10-07T14:02:48.178Z
+last_checked_at: 2026-10-07T14:02:48.178Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:18.423Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-10-07T14:02:48.178Z
+matched_actions: 60
+action_count: 60
 confidence: medium
-summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 60 action units (29 actions, 31 query feedbacks) match source mnemonics and shapes; serial and port transport verbatim. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T17:29:58.830Z
-last_checked_at: 2026-06-02T22:16:15.436Z
-generated_at: 2026-06-02T22:16:15.436Z
+last_checked_at: 2026-10-07T12:36:58.632Z
+generated_at: 2026-10-07T12:36:58.632Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -41,11 +41,11 @@ known_gaps:
   - "command rate limits or throttling"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:15.436Z
-  matched_actions: 23
-  action_count: 23
+  checked_at: 2026-10-07T12:36:58.632Z
+  matched_actions: 34
+  action_count: 34
   confidence: medium
-  summary: "All 23 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 34 action units match source commands with correct shapes and the base URL is supported; the source is a generic WiiM API doc, so exact-model applicability carries a caveat. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -70,7 +70,7 @@ addressing:
   base_url: "https://{device_ip}/httpapi.asp"
   # UNRESOLVED: port number not explicitly stated in source (HTTPS default 443 assumed by client)
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not specify authentication
 ```
 
 ## Traits
@@ -244,7 +244,7 @@ actions:
   - id: set_alarm
     label: Set Alarm
     kind: action
-    command: "setAlarmClock:{n}:{trig}:{op}:{time}:{day}:{url}"
+    command: "setAlarmClock:{n}:{trig}:{op}:{time}[:{day}][:{url}]"
     params:
       - name: n
         type: integer
@@ -260,10 +260,10 @@ actions:
         description: "HHMMSS in UTC"
       - name: day
         type: string
-        description: "Varies by trigger type (date string or bitmask)"
+        description: "For trigger 1: YYYYMMDD; trigger 3: weekday 00-06; trigger 4: two-byte bitmask; trigger 5: day 01-31. Omit for triggers 0 and 2."
       - name: url
         type: string
-        description: "Playback URL or shell path (max 256 bytes)"
+        description: "Playback URL or shell path (fewer than 256 bytes)"
 
   - id: stop_alarm
     label: Stop Current Alarm
@@ -279,6 +279,18 @@ actions:
       - name: mode
         type: integer
         description: "1=SPDIF, 2=AUX, 3=Coax"
+
+  - id: play_hex_playlist
+    label: Play Hex Playlist
+    kind: action
+    command: "setPlayerCmd:hex_playlist:url:<index>"
+    params:
+      - name: url
+        type: string
+        description: "URL to m3u or ASX playlist; url should be hexed"
+      - name: index
+        type: integer
+        description: Start index in playlist
 ```
 
 ## Feedbacks
@@ -287,52 +299,62 @@ feedbacks:
   - id: device_status
     type: json
     command: "getStatusEx"
+    query_command: "getStatusEx"
     description: "Full device status including firmware, network, UUID, capabilities"
 
   - id: player_status
     type: json
     command: "getPlayerStatus"
+    query_command: "getPlayerStatus"
     description: "Playback status including type, mode, loop, status (play/pause/stop/loading), position, volume, mute"
 
   - id: eq_status
     type: enum
     command: "EQGetStat"
+    query_command: "EQGetStat"
     values: [On, Off]
 
   - id: eq_list
     type: json_array
     command: "EQGetList"
+    query_command: "EQGetList"
     description: "Available EQ preset names"
 
   - id: shutdown_timer
     type: integer
     command: "getShutdown"
+    query_command: "getShutdown"
     description: "Remaining seconds until shutdown"
 
   - id: alarm
     type: json
     command: "getAlarmClock:{n}"
+    query_command: "getAlarmClock:n"
     description: "Alarm configuration for index n (0-2)"
 
   - id: preset_list
     type: json
     command: "getPresetInfo"
+    query_command: "getPresetInfo"
     description: "List of configured presets with name, URL, source, and artwork"
 
   - id: track_metadata
     type: json
     command: "getMetaInfo"
+    query_command: "getMetaInfo"
     description: "Current track metadata (album, title, artist, albumArtURI, sampleRate, bitDepth)"
 
   - id: network_status
     type: string
     command: "wlanGetConnectState"
+    query_command: "wlanGetConnectState"
     values: [PROCESS, PAIRFAIL, FAIL, OK]
     description: "WiFi connection status"
 
   - id: audio_output_mode
     type: json
     command: "getNewAudioOutputHardwareMode"
+    query_command: "getNewAudioOutputHardwareMode"
     description: "Current audio output hardware mode, BT source, and audiocast status"
 ```
 
@@ -366,7 +388,7 @@ interlocks: []
 - Alarms use UTC time, not local time.
 - Up to 3 alarms supported (indices 0-2).
 - Up to 12 presets supported (indices 1-12).
-- The `communication_port` field in `getStatusEx` response (e.g., 8819) may indicate an additional control port, but its purpose is not documented in this source.
+- The `communication_port` field in `getStatusEx` response (e.g. 8819) may indicate an additional control port, but its purpose is not documented in this source.
 
 <!-- UNRESOLVED: exact WiiM product models this API applies to (doc header says "WiiM PRODUCTS" generically) -->
 <!-- UNRESOLVED: meaning and usage of the communication_port (8819) field -->
@@ -383,18 +405,18 @@ source_domains:
 source_urls:
   - "https://www.wiimhome.com/pdf/HTTP%20API%20for%20WiiM%20Products.pdf"
 retrieved_at: 2026-05-04T17:29:58.830Z
-last_checked_at: 2026-06-02T22:16:15.436Z
+last_checked_at: 2026-10-07T12:36:58.632Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:15.436Z
-matched_actions: 23
-action_count: 23
+checked_at: 2026-10-07T12:36:58.632Z
+matched_actions: 34
+action_count: 34
 confidence: medium
-summary: "All 23 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 34 action units match source commands with correct shapes and the base URL is supported; the source is a generic WiiM API doc, so exact-model applicability carries a caveat. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

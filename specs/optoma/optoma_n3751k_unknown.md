@@ -19,23 +19,22 @@ source_domains:
   - optoma.co.uk
 source_urls:
   - https://www.optoma.co.uk/ContentStorage/Documents/60495d69-222c-4eed-9500-b840e92443b3.pdf
-retrieved_at: 2026-09-15T10:18:58.010Z
-last_checked_at: 2026-09-17T22:20:59.735Z
-generated_at: 2026-09-17T22:20:59.735Z
+retrieved_at: 2026-09-26T14:23:18.154Z
+last_checked_at: 2026-09-26T14:23:18.154Z
+generated_at: 2026-09-26T14:23:18.154Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "firmware version not stated in source; no Get Firmware action rows captured beyond the GET command (covered below)."
   - "no discrete settable parameter documents a single named property beyond what Actions already cover."
   - "no multi-step sequences described in source."
   - "firmware compatibility range not stated in source; no documented safety interlock procedures beyond temperature-warning feedback."
 verification:
   verdict: verified
-  checked_at: 2026-09-17T22:20:59.735Z
+  checked_at: 2026-09-26T14:23:18.154Z
   matched_actions: 113
   action_count: 113
   confidence: medium
-  summary: "All 113 spec actions have hex tokens that appear verbatim in the SET/GET command tables; transport values (port 23, baud 9600, 8N1, no flow control) appear verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All113 SET/GET units map to all121 distinct source hex examples with eight continuous ranges represented once; OSD password encoding remains explicitly unresolved and operational prerequisites are preserved. Authentication is explicitly unresolved. (3 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -45,9 +44,9 @@ created_at: 2026-09-15
 # Optoma N3751K Control Spec
 
 ## Summary
-RS-232 / LAN (RJ45 port 23) control for Optoma N3751K interactive flat panel display. ASCII command protocol with0x7E lead, two-byte device ID, command, space, variable, 0x0D terminator. Also exposes OMS JSONRPC on TCP 1688 and OMSL telnet on TCP 23.
+RS-232 / LAN (RJ45 port 23) control for Optoma N3751K flat panel display. ASCII command protocol with0x7E lead, two-byte device ID, command, space, variable, 0x0D terminator. Also exposes OMS JSONRPC on TCP 1688 and OMSL telnet on TCP 23.
 
-<!-- UNRESOLVED: firmware version not stated in source; no Get Firmware action rows captured beyond the GET command (covered below). -->
+Scope: N3751K is named in the shared display manual. Firmware compatibility range is not stated; get_fw_version retrieves the device-reported version.
 
 ## Transport
 ```yaml
@@ -63,7 +62,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not establish authentication requirements
 ```
 
 ## Traits
@@ -76,7 +75,8 @@ auth:
 
 ## Actions
 ```yaml
-- id: power_off label: Power Off
+- id: power_off
+  label: Power Off
   kind: action
   command: "7E 30 30 30 30 20 30 0d"
   params: []
@@ -583,7 +583,8 @@ auth:
   params:
     - name: a
       type: string
-      description: OSD lock password
+      description: "Encoded ASCII password argument a from the source hex column; ASCII column shows ~nnnn (tilde plus four digits). The placeholder a is undefined, so do not assume plain digits are the complete argument."
+  notes: "UNRESOLVED encoding conflict: source pp.111 gives ~xx239 1 ~nnnn / ~xx239 2 ~nnnn, but hex rows use an undefined a. Confirm the argument encoding before executing this action."
 
 - id: osd_lock_off_with_password
   label: OSD Lock Off With Password
@@ -592,7 +593,8 @@ auth:
   params:
     - name: a
       type: string
-      description: OSD lock password
+      description: "Encoded ASCII password argument a from the source hex column; ASCII column shows ~nnnn (tilde plus four digits). The placeholder a is undefined, so do not assume plain digits are the complete argument."
+  notes: "UNRESOLVED encoding conflict: source pp.111 gives ~xx239 1 ~nnnn / ~xx239 2 ~nnnn, but hex rows use an undefined a. Confirm the argument encoding before executing this action."
 
 - id: get_power
   label: Get Power
@@ -666,7 +668,8 @@ auth:
   command: "7E 30 30 34 35 31 20 31 0d"
   params: []
 
-- id: get_wlan_mac  label: Get WLAN Mac Address
+- id: get_wlan_mac
+  label: Get WLAN Mac Address
   kind: query
   command: "7E 30 30 35 35 35 20 32 0d"
   params: []
@@ -897,11 +900,11 @@ auth:
 
 - id: ip_address_lan
   type: string
-  pattern: "^\\d{1,3}(\\.\\d{1,3}){3}$"
+  notes: "Preserve response text after OK/Ok; source prints colon-separated Oknnn:nnn:nnn:nnn. Dotted IPv4 normalization is not established by the manual."
 
 - id: ip_address_wlan
   type: string
-  pattern: "^\\d{1,3}(\\.\\d{1,3}){3}$"
+  notes: "Preserve response text after OK/Ok; source prints colon-separated Oknnn:nnn:nnn:nnn. Dotted IPv4 normalization is not established by the manual."
 
 - id: soc_temperature
   type: integer
@@ -918,7 +921,9 @@ auth:
   type: integer
 
 - id: regulatory_model_name
-  type: string- id: command_success
+  type: string
+
+- id: command_success
   type: enum
   values: [P, F]
   notes: "P = Pass, F = Fail (response to any SET command)"
@@ -961,13 +966,19 @@ notes: "System Temperature Level Red (OK3) indicates about-to-trigger shutdown p
 ```
 
 ## Notes
-Command format (RS-232 / LAN port 23): `~xxNN n` where `~` = 0x7E lead, `xx` = two-byte ASCII device ID (e.g. `3030` =00), `NN` = two-digit ASCII command code, space, `n` = ASCII variable, `0x0D` terminator. Successful SET commands return `P`; failed return `F`. GET commands return `OK<value>0x0D`.
+Command format (RS-232 / LAN port 23): `~xxCOMMAND n` where `~` = 0x7E lead, `xx` = two-byte ASCII device ID (e.g. `3030` =00), `COMMAND` = the two- or three-digit ASCII command code shown in the table, space, `n` = ASCII variable, `0x0D` terminator. Successful SET commands return `P`; failed return `F`. GET command examples use `OK` or `Ok` followed by the value; the reply terminator is UNRESOLVED because the manual explicitly defines CR only for request frames.
 
 LAN control uses identical command framing on TCP port 23.
 
 Additional ports exposed per the Port Information table: OMS Local Advanced Command (JSONRPC) on TCP 1688 inbound; OMSL telnet on TCP 23 inbound; Creative Cast WCP Control Plane TCP 3140; mDNS/Airplay UDP 5353; plus numerous outbound service ports. These interfaces are not enumerated as actions in this spec.
 
 <!-- UNRESOLVED: firmware compatibility range not stated in source; no documented safety interlock procedures beyond temperature-warning feedback. -->
+
+Operational prerequisites from the same manual: OMS/LAN remote power-on only works with Power Mode Standby set to Active (p.60). The Active option must first be enabled in Advanced Settings; Eco does not keep LAN command listening active. Wake on LAN is a separate feature and the manual says it is unavailable in Active mode.
+
+Image adjustments are available for HDMI, OPS and Type-C inputs, not Android. Brightness, contrast and color additionally require User display mode (p.40). Treble and bass require User sound mode (p.42). For 4K input the aspect ratio is locked to PTP; for non-4K input PTP is unavailable and 4:3/16:9 are selectable. Pixel shift is unavailable on Android (p.41). These are documented feature conditions; the command table does not separately specify error responses for each unmet condition.
+
+The 113 documented SET/GET variants are retained, including the two password actions with their source ambiguity explicitly marked. Hexadecimal literals represent bytes. Integer placeholders n expand to the ASCII decimal digits of the value, not a single binary integer byte; text placeholders expand to their ASCII text bytes. The examples use device ID 00. No checksum is documented. Source JSONRPC/OMS service-port listings do not define additional API request payloads.
 
 ## Provenance
 
@@ -976,25 +987,24 @@ source_domains:
   - optoma.co.uk
 source_urls:
   - https://www.optoma.co.uk/ContentStorage/Documents/60495d69-222c-4eed-9500-b840e92443b3.pdf
-retrieved_at: 2026-09-15T10:18:58.010Z
-last_checked_at: 2026-09-17T22:20:59.735Z
+retrieved_at: 2026-09-26T14:23:18.154Z
+last_checked_at: 2026-09-26T14:23:18.154Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-09-17T22:20:59.735Z
+checked_at: 2026-09-26T14:23:18.154Z
 matched_actions: 113
 action_count: 113
 confidence: medium
-summary: "All 113 spec actions have hex tokens that appear verbatim in the SET/GET command tables; transport values (port 23, baud 9600, 8N1, no flow control) appear verbatim. (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All113 SET/GET units map to all121 distinct source hex examples with eight continuous ranges represented once; OSD password encoding remains explicitly unresolved and operational prerequisites are preserved. Authentication is explicitly unresolved. (3 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "firmware version not stated in source; no Get Firmware action rows captured beyond the GET command (covered below)."
 - "no discrete settable parameter documents a single named property beyond what Actions already cover."
 - "no multi-step sequences described in source."
 - "firmware compatibility range not stated in source; no documented safety interlock procedures beyond temperature-warning feedback."

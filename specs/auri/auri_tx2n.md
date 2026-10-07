@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "Auri TX2N"
     - "Auri TX2N-D"
-  firmware: "\">=1.5\""
+  firmware: ">=1.5"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -25,7 +25,7 @@ source_urls:
 retrieved_at: 2026-05-04T13:37:50.465Z
 last_checked_at: 2026-09-02T22:17:07.995Z
 generated_at: 2026-09-02T22:17:07.995Z
-firmware_coverage: "\">=1.5\""
+firmware_coverage: ">=1.5"
 protocol_coverage: []
 known_gaps:
   - "Auri Manager version required (1.4) but not all firmware versions prior to 1.5 are catalogued"

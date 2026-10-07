@@ -22,25 +22,27 @@ source_urls:
   - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
   - https://techportal.shure.com/
 retrieved_at: 2026-05-14T10:38:08.504Z
-last_checked_at: 2026-06-02T22:14:24.758Z
-generated_at: 2026-06-02T22:14:24.758Z
+last_checked_at: 2026-10-01T07:17:49.407Z
+generated_at: 2026-10-01T07:17:49.407Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "serial RS-232 not supported; no auth mechanism described in source"
+  - "serial RS-232 not supported"
+  - "transport protocol not explicitly stated in source"
+  - "authentication mechanism not described in source"
+  - "protocol not explicitly stated in source"
   - "no power on/off commands in source"
   - "no safety warnings or interlock procedures in source"
   - "power on/off commands not present in source"
-  - "authentication mechanism not described in source"
   - "SAMPLE command for metering not fully documented in source"
   - "VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:24.758Z
+  checked_at: 2026-10-01T07:17:49.407Z
   matched_actions: 17
   action_count: 17
   confidence: medium
-  summary: "All 17 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 17 spec action ids map to documented parameter names in the source; transport port2202 and range 1025-65534 are verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,18 +52,20 @@ created_at: 2026-05-11
 # Shure IntelliMix Room Control Spec
 
 ## Summary
-IntelliMix Room is a software-based audio DSP processor for conference rooms, supporting TCP/IP command strings (default port 2202, configurable 1025-65534). Controls Dante mic/line inputs, virtual audio, PC audio, matrix routing, automixing, denoiser, and license management. All messages are ASCII.
+IntelliMix Room is a software-based audio DSP processor for conference rooms, supporting command strings over a configurable TCP port. Controls Dante mic/line inputs, virtual audio, PC audio, matrix routing, automixing, denoiser, and license management. All messages are ASCII.
 
-<!-- UNRESOLVED: serial RS-232 not supported; no auth mechanism described in source -->
+<!-- UNRESOLVED: serial RS-232 not supported -->
+<!-- UNRESOLVED: transport protocol not explicitly stated in source -->
+<!-- UNRESOLVED: authentication mechanism not described in source -->
 
 ## Transport
 ```yaml
 protocols:
-  - tcp
+  - UNRESOLVED  # UNRESOLVED: protocol not explicitly stated in source
 addressing:
   port: 2202  # default; configurable 1025-65534
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: authentication mechanism not described in source
 ```
 
 ## Traits
@@ -128,14 +132,14 @@ auth:
   params:
     - name: channel
       type: string
-      description: Channel index (2 digits, 01-36, 00=all inputs)
+      description: Channel index (2 digits, 01-36); all-channel SET/INC/DEC is not supported per source
     - name: gain
       type: integer
       description: Gain value 0-1400 representing -110.0 dB to +30.0 dB (scaled by 10 and offset by 1100)
     - name: mode
       type: enum
       values: [set, inc, dec]
-  description: Sets gain on Dante mic/line inputs. Supports inc/dec steps.
+  description: Sets gain on Dante mic/line inputs. Supports inc/dec steps. All-channel SET/INC/DEC not supported.
 
 - id: device_audio_mute
   label: Device Mute
@@ -407,7 +411,9 @@ interlocks: []
 - 8-channel and 16-channel versions exist. Commands for unlicensed channels fail silently.
 - Licensing types: DEMO, PAID, TRIAL, UNKNOWN.
 - Level encodings: gain values scaled by 10 and offset by 1100 (range 0-1400 representing -110 to +30 dB). Step values multiplied by 10 before sending.
+- AUDIO_GAIN_HI_RES SET/INC/DEC on all channels (index 00) is not supported per source; all-channel indexing applies to GET/REP only.
 <!-- UNRESOLVED: power on/off commands not present in source -->
+<!-- UNRESOLVED: transport protocol not explicitly stated in source -->
 <!-- UNRESOLVED: authentication mechanism not described in source -->
 <!-- UNRESOLVED: SAMPLE command for metering not fully documented in source -->
 <!-- UNRESOLVED: VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered -->
@@ -422,28 +428,30 @@ source_urls:
   - https://pubs.shure.com/command-strings/IntelliMixRoom/en-US
   - https://techportal.shure.com/
 retrieved_at: 2026-05-14T10:38:08.504Z
-last_checked_at: 2026-06-02T22:14:24.758Z
+last_checked_at: 2026-10-01T07:17:49.407Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:24.758Z
+checked_at: 2026-10-01T07:17:49.407Z
 matched_actions: 17
 action_count: 17
 confidence: medium
-summary: "All 17 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 17 spec action ids map to documented parameter names in the source; transport port2202 and range 1025-65534 are verbatim. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "serial RS-232 not supported; no auth mechanism described in source"
+- "serial RS-232 not supported"
+- "transport protocol not explicitly stated in source"
+- "authentication mechanism not described in source"
+- "protocol not explicitly stated in source"
 - "no power on/off commands in source"
 - "no safety warnings or interlock procedures in source"
 - "power on/off commands not present in source"
-- "authentication mechanism not described in source"
 - "SAMPLE command for metering not fully documented in source"
 - "VAD input right (channel 55) only active when stereo audio is on — stereo configuration not covered"
 ```

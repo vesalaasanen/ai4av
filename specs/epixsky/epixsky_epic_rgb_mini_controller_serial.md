@@ -11,7 +11,7 @@ compatible_with:
     - EpixSky
   models:
     - "RGB Mini"
-  firmware: "2.1.0\""
+  firmware: 2.1.0
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -24,7 +24,7 @@ source_urls:
 retrieved_at: 2026-06-15T12:38:01.688Z
 last_checked_at: 2026-06-16T07:02:12.071Z
 generated_at: 2026-06-16T07:02:12.071Z
-firmware_coverage: "2.1.0\""
+firmware_coverage: 2.1.0
 protocol_coverage: []
 known_gaps:
   - "no response/acknowledgement strings documented; no query commands; no safety/interlock text."

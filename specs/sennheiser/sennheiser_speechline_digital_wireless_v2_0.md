@@ -25,24 +25,25 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
-last_checked_at: 2026-06-02T22:13:51.166Z
-generated_at: 2026-06-02T22:13:51.166Z
+last_checked_at: 2026-10-07T12:47:57.266Z
+generated_at: 2026-10-07T12:47:57.266Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - /device/update/confirmation
   - "no multi-step sequences explicitly described in source"
-  - "no explicit safety interlocks or power sequencing warnings found in source"
-  - "No TCP transport details for devices that might support it (source says UDP-only for SLDW devices)"
+  - "no additional explicit safety interlocks or power sequencing warnings found in source"
+  - "SSC TCP support is not applicable to these SLDW devices; source documents UDP-only implementations"
   - "Firmware version compatibility ranges not stated"
   - "Max concurrent client connections for non-subscription operations not stated"
   - "UDP message size limits not explicitly stated (error 450 exists for response too long)"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:51.166Z
-  matched_actions: 125
-  action_count: 125
+  checked_at: 2026-10-07T12:47:57.266Z
+  matched_actions: 144
+  action_count: 144
   confidence: medium
-  summary: "All 125 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 144 address-based actions have matching SSC methods in the source, and transport (UDP port 45, DNS-SD _ssc._udp) is supported. Only the Rack DW /device/update/confirmation is unmapped. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -53,7 +54,7 @@ created_at: 2026-05-06
 
 ## Summary
 
-Sennheiser SpeechLine Digital Wireless (SLDW) is a wireless microphone system comprising rack receivers, multi-channel receivers, and charging stations. Control uses the Sennheiser Sound Control Protocol (SSC), a JSON-over-UDP protocol with OSC-inspired addressing. All devices communicate on UDP port 45 (default) with DNS-SD discovery. This spec covers the SL Rack Receiver DW, SL MCR 2/4 DW multi-channel receivers, and CHG 2N/4N chargers.
+Sennheiser SpeechLine Digital Wireless (SLDW) is a wireless microphone system comprising rack receivers, multi-channel receivers, and charging stations. Control uses the Sennheiser Sound Control Protocol (SSC), a JSON-over-UDP protocol with OSC-inspired addressing. UDP port 45 is the default; clients should discover the server port using DNS-SD. This spec covers the SL Rack Receiver DW, SL MCR 2/4 DW multi-channel receivers, and CHG 2N/4N chargers.
 
 ## Transport
 ```yaml
@@ -65,7 +66,7 @@ addressing:
     method: dns_sd
     service_type: _ssc._udp
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not establish whether authentication is required
 ```
 
 ## Traits
@@ -116,8 +117,8 @@ traits:
   address: /osc/limits
   params:
     - name: address_tree
-      type: object
-      description: Address tree with null values at leaf positions to query.
+      type: array
+      description: Array of address trees with null values at leaf positions to query.
   description: Query accepted value ranges for method parameters.
   example_tx: '{"osc":{"limits":[{"brightness":null}]}}'
 
@@ -228,7 +229,7 @@ traits:
   params:
     - name: group
       type: string
-      description: "Group name up to 8 chars (letters, digits, -, _). Pass null to query."
+      description: "Group name up to 8 chars; supported charset and naming rules apply. Pass null to query."
   description: Group name for device organization (Rack DW, CHG only).
 
 - id: device_language_get_set
@@ -347,7 +348,7 @@ traits:
     - name: enable
       type: boolean
       description: Must be true.
-  description: Trigger device firmware update (MCR DW).
+  description: Trigger device firmware update (MCR DW). The device must not already be updating, and an update package must already be uploaded.
 
 - id: device_update_progress_query
   label: Query Update Progress
@@ -364,7 +365,7 @@ traits:
     - name: visual
       type: boolean
       description: true to trigger visual identification.
-  description: Trigger visual identification on the MCR DW device.
+  description: Trigger visual identification on the MCR DW device; device should not be in UPDATE state.
 
 - id: device_led_brightness_get_set
   label: Get/Set LED Brightness
@@ -435,7 +436,7 @@ traits:
   kind: action
   address: /device/warnings
   params: []
-  description: "MCR: NONE, HW_FAILURE, MIXERDSP_FAILURE, SETTINGS_SAVE_FAILED, UPDATE_FAILED, SETTINGS_DEFAULTD. CHG: array of warning strings."
+  description: "MCR: NONE, HW_FAILURE, MIXERDSP_FAILURE, SETTINGS_SAVE_FAILED, UPDATE_FAILED, SETTINGS_DEFAULTED. CHG: array of warning strings."
 
 # ── Receiver Channel (Rack DW: /rx1, MCR DW: /rx1../rx4) ──
 
@@ -447,7 +448,7 @@ traits:
     - name: identify
       type: boolean
       description: true to start, false to stop.
-  description: Start/stop identify mode on receiver channel (Rack DW).
+  description: Start/stop identify mode on receiver channel (Rack DW); channel should not be in pairing or walk-test mode.
 
 - id: rx_pair
   label: Pair Transmitter
@@ -457,7 +458,7 @@ traits:
     - name: pair
       type: boolean
       description: true to start pairing, false to stop.
-  description: Start/stop pairing mode (Rack DW).
+  description: Start/stop pairing mode (Rack DW). Channel should not be in walk-test mode.
 
 - id: rx_pair_enable
   label: Enable Pairing
@@ -467,7 +468,7 @@ traits:
     - name: enable
       type: boolean
       description: true to start, false to stop.
-  description: Start/stop pairing mode on channel (MCR DW).
+  description: Start/stop pairing mode on channel (MCR DW); channel should not be in WALKTEST state or identify mode.
 
 - id: rx_pair_progress_query
   label: Query Pairing Progress
@@ -491,7 +492,7 @@ traits:
     - name: walktest
       type: boolean
       description: true to start, false to stop.
-  description: Start/stop walk-test mode.
+  description: Start/stop walk-test mode; MCR channel must be connected and not in pairing or identify mode.
 
 - id: rx_mute_switch_active
   label: Enable/Disable Mute Switch
@@ -509,8 +510,8 @@ traits:
   address: /rx1/mute_mode
   params:
     - name: mode
-      type: integer
-      description: "Rack DW: 0=Deactivated, 1=Active, 2=PushToTalk, 3=PushToMute, 4=LocationBasedMute. MCR DW: OFF, ON, PUSH_TO_TALK, PUSH_TO_MUTE, ROOM_MUTE."
+      type: [integer, string]
+      description: "Rack DW integer: 0=Deactivated, 1=Active, 2=PushToTalk, 3=PushToMute, 4=LocationBasedMute. MCR DW strings: OFF, ON, PUSH_TO_TALK, PUSH_TO_MUTE, ROOM_MUTE."
   description: Configure mute mode on connected transmitter.
 
 - id: rx_mute_state_get_set
@@ -576,7 +577,7 @@ traits:
     - name: confirm
       type: boolean
       description: true=approve, false=reject.
-  description: Approve or reject transmitter firmware update. Rejecting removes TX from pairing list.
+  description: Approve or reject transmitter firmware update. Channel must be in FWU_OTA_CONFIRMATION state. Rejecting removes TX from pairing list.
 
 - id: rx_update_progress_query
   label: Query TX Update Progress
@@ -600,7 +601,7 @@ traits:
     - name: visual
       type: boolean
       description: true to trigger identification.
-  description: Trigger visual identification on MCR DW channel.
+  description: Trigger visual identification on MCR DW channel; channel should not be in pairing or walk-test mode.
 
 - id: rx_name_get_set
   label: Get/Set Channel Name
@@ -655,8 +656,8 @@ traits:
   address: /mates/tx1/agc
   params:
     - name: agc
-      type: integer
-      description: "Rack DW: 0=Auto, 1=0dB, 2=-6dB, 3=-12dB, 4=-18dB, 5=-24dB, 6=-30dB. MCR DW: AUTOMATIC, LEVEL1_0DB..LEVEL6_30DB."
+      type: [integer, string]
+      description: "Rack DW integer: 0=Auto, 1=0dB, 2=-6dB, 3=-12dB, 4=-18dB, 5=-24dB, 6=-30dB. MCR DW strings: AUTOMATIC, LEVEL1_0DB, LEVEL2_6DB, LEVEL3_12DB, LEVEL4_18DB, LEVEL5_24DB, LEVEL6_30DB."
   description: Transmitter audio sensitivity / gain control.
 
 - id: mates_tx1_power_lock_get_set
@@ -676,8 +677,8 @@ traits:
   params:
     - name: power_down
       type: boolean
-      description: Must be true.
-  description: Remotely power down the transmitter.
+      description: Must be true for Rack DW; MCR DW source documents null as a query argument.
+  description: Remotely power down the transmitter. Link must be established.
 
 - id: mates_tx1_pairing_lock_get_set
   label: Get/Set Pairing Lock
@@ -705,8 +706,8 @@ traits:
   address: /mates/tx1/auto_power_off
   params:
     - name: mode
-      type: integer
-      description: "Rack DW: 0=Off, 1=10min, 2=20min, 3=30min. MCR DW: OFF, 10MIN, 20MIN, 30MIN."
+      type: [integer, string]
+      description: "Rack DW integer: 0=Off, 1=10min, 2=20min, 3=30min. MCR DW strings: OFF, 10MIN, 20MIN, 30MIN."
   description: Configure automatic power down timer on transmitter.
 
 - id: mates_tx1_led_active_get_set
@@ -768,7 +769,7 @@ traits:
   kind: action
   address: /mates/tx1/bat_state
   params: []
-  description: Returns bat_gauge or bat_lifetime depending on battery type.
+  description: Returns bat_gauge or bat_lifetime depending on battery type and lifetime availability.
 
 - id: mates_tx1_bat_gauge_query
   label: Query Battery Gauge
@@ -821,7 +822,7 @@ traits:
   params:
     - name: gain_index
       type: integer
-      description: "0=-24dB, 1=-18dB, 2=-12dB, 3=-6dB, 4=0dB, 5=+6dB, 6=+12dB. Pass null to query."
+      description: "Index 0..6 maps to -24, -18, -12, -6, 0, 6, 12 dB. Pass null to query."
   description: Analog output gain level (Rack DW).
 
 - id: audio_out1_level_db_query
@@ -877,7 +878,7 @@ traits:
   params:
     - name: gain
       type: integer
-      description: "Range -24..12, increment 6 dB. Pass null to query."
+      description: "Range -24..12, increment 6 dB. Pass null to query. MCR DW rejects invalid values with error 406."
   description: Channel gain in dB (MCR DW). Subscribe-able.
 
 - id: audio_rx_equalizer_preset_get_set
@@ -1121,8 +1122,8 @@ traits:
   params:
     - name: auto
       type: array
-      description: Array of booleans per interface. Change takes effect after reset.
-  description: Enable/disable automatic IPv4 configuration via DHCP.
+      description: Array of booleans per interface. Rack DW and CHG changes take effect after reset; MCR DW DHCP reactivation takes effect immediately when set to true, and manual settings are used immediately when set to false.
+  description: Enable/disable automatic IPv4 configuration via DHCP and ZeroConf (Auto-IP).
 
 - id: device_network_mdns_get_set
   label: Get/Set mDNS
@@ -1132,7 +1133,98 @@ traits:
     - name: enabled
       type: boolean
       description: Pass null to query.
-  description: Enable/disable mDNS responder. Change takes effect after restart.
+  description: Enable/disable mDNS responder (Rack DW and CHG). Change takes effect after restart.
+
+- id: device_network_mdns_mcr_get_set
+  label: Get/Set MCR mDNS
+  kind: action
+  address: /device/network/mdns
+  params:
+    - name: enabled
+      type: boolean
+      description: Pass null to query.
+  description: Enable/disable mDNS responder (MCR DW). Change takes effect immediately.
+
+- id: device_network_ipv4_interfaces_query
+  label: Query IPv4 Interfaces
+  kind: action
+  address: /device/network/ipv4/interfaces
+  params: []
+  description: Read-only array relating to /device/network/ether/interfaces.
+
+- id: device_network_ipv4_fixed_ipaddr_get_set
+  label: Get/Set Stored IPv4 Addresses
+  kind: action
+  address: /device/network/ipv4/fixed_ipaddr
+  params:
+    - name: addresses
+      type: array
+      description: Array of stored IPv4 addresses in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure stored IPv4 addresses used when automatic IPv4 configuration is disabled (Rack DW and CHG).
+
+- id: device_network_ipv4_fixed_netmask_get_set
+  label: Get/Set Stored IPv4 Netmasks
+  kind: action
+  address: /device/network/ipv4/fixed_netmask
+  params:
+    - name: netmasks
+      type: array
+      description: Array of stored IPv4 netmasks in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure stored IPv4 netmasks (Rack DW and CHG).
+
+- id: device_network_ipv4_fixed_gateway_get_set
+  label: Get/Set Stored IPv4 Gateways
+  kind: action
+  address: /device/network/ipv4/fixed_gateway
+  params:
+    - name: gateways
+      type: array
+      description: Array of stored IPv4 gateways in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure stored IPv4 gateways (Rack DW and CHG).
+
+- id: device_network_ipv4_manual_ipaddr_get_set
+  label: Get/Set Manual IPv4 Addresses
+  kind: action
+  address: /device/network/ipv4/manual_ipaddr
+  params:
+    - name: addresses
+      type: array
+      description: Array of stored IPv4 addresses in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure manual IPv4 addresses (MCR DW).
+
+- id: device_network_ipv4_manual_netmask_get_set
+  label: Get/Set Manual IPv4 Netmasks
+  kind: action
+  address: /device/network/ipv4/manual_netmask
+  params:
+    - name: netmasks
+      type: array
+      description: Array of stored IPv4 netmasks in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure manual IPv4 netmasks (MCR DW).
+
+- id: device_network_ipv4_manual_gateway_get_set
+  label: Get/Set Manual IPv4 Gateways
+  kind: action
+  address: /device/network/ipv4/manual_gateway
+  params:
+    - name: gateways
+      type: array
+      description: Array of stored IPv4 gateways in EEPROM, one per user-relevant Ethernet interface.
+  description: Configure manual IPv4 gateways (MCR DW).
+
+- id: device_network_ipv6_interfaces_query
+  label: Query IPv6 Interfaces
+  kind: action
+  address: /device/network/ipv6/interfaces
+  params: []
+  description: Read-only array relating to /device/network/ether/interfaces.
+
+- id: device_network_ipv6_ipaddr_query
+  label: Query IPv6 Addresses
+  kind: action
+  address: /device/network/ipv6/ipaddr
+  params: []
+  description: Read-only array of IPv6 addresses of user-relevant Ethernet interfaces.
 
 - id: device_network_interface_mapping_get_set
   label: Get/Set Network Config
@@ -1153,12 +1245,87 @@ traits:
   params: []
   description: Dante interface software version (MCR DW).
 
+- id: audio_out2_network_ether_interfaces_query
+  label: Query Dante Ethernet Interfaces
+  kind: action
+  address: /audio/out2/network/ether/interfaces
+  params: []
+  description: Read-only array of Dante interfaces.
+
+- id: audio_out2_network_ipv4_interfaces_query
+  label: Query Dante IPv4 Interfaces
+  kind: action
+  address: /audio/out2/network/ipv4/interfaces
+  params: []
+  description: Read-only array relating to /audio/out2/network/ether/interfaces.
+
+- id: audio_out2_network_ether_macs_query
+  label: Query Dante MAC Addresses
+  kind: action
+  address: /audio/out2/network/ether/macs
+  params: []
+  description: Read-only array of MAC addresses for Dante Ethernet interfaces.
+
+- id: audio_out2_network_ipv4_auto_get_set
+  label: Get/Set Dante DHCP/ZeroConf
+  kind: action
+  address: /audio/out2/network/ipv4/auto
+  params:
+    - name: auto
+      type: array
+      description: Array of booleans per Dante Ethernet interface. A write automatically restarts the device.
+  description: Enable/disable automatic IPv4 configuration for Dante interfaces.
+
 - id: audio_out2_network_ipv4_ipaddr_query
   label: Query Dante IPv4 Addresses
   kind: action
   address: /audio/out2/network/ipv4/ipaddr
   params: []
   description: Current IPv4 addresses of Dante interfaces (MCR DW).
+
+- id: audio_out2_network_ipv4_netmask_query
+  label: Query Dante IPv4 Netmasks
+  kind: action
+  address: /audio/out2/network/ipv4/netmask
+  params: []
+  description: Current IPv4 netmasks of Dante interfaces (MCR DW).
+
+- id: audio_out2_network_ipv4_gateway_query
+  label: Query Dante IPv4 Gateways
+  kind: action
+  address: /audio/out2/network/ipv4/gateway
+  params: []
+  description: Current IPv4 gateways of Dante interfaces (MCR DW).
+
+- id: audio_out2_network_ipv4_manual_ipaddr_get_set
+  label: Get/Set Dante Manual IPv4 Addresses
+  kind: action
+  address: /audio/out2/network/ipv4/manual_ipaddr
+  params:
+    - name: addresses
+      type: array
+      description: Array of stored IPv4 addresses for Dante interfaces; null array entries retain the existing value.
+  description: Configure manual IPv4 addresses for Dante interfaces.
+
+- id: audio_out2_network_ipv4_manual_netmask_get_set
+  label: Get/Set Dante Manual IPv4 Netmasks
+  kind: action
+  address: /audio/out2/network/ipv4/manual_netmask
+  params:
+    - name: netmasks
+      type: array
+      description: Array of stored IPv4 netmasks for Dante interfaces; null array entries retain the existing value.
+  description: Configure manual IPv4 netmasks for Dante interfaces.
+
+- id: audio_out2_network_ipv4_manual_gateway_get_set
+  label: Get/Set Dante Manual IPv4 Gateways
+  kind: action
+  address: /audio/out2/network/ipv4/manual_gateway
+  params:
+    - name: gateways
+      type: array
+      description: Array of stored IPv4 gateways for Dante interfaces; null array entries retain the existing value.
+  description: Configure manual IPv4 gateways for Dante interfaces.
 ```
 
 ## Feedbacks
@@ -1387,20 +1554,20 @@ interlocks:
     precondition: Transmitter type must be TABLE-STAND.
   - action: mates_tx1_bat_lifetime
     precondition: Link must be established with rechargeable battery transmitter.
-# UNRESOLVED: no explicit safety interlocks or power sequencing warnings found in source
+# UNRESOLVED: no additional explicit safety interlocks or power sequencing warnings found in source
 ```
 
 ## Notes
 
-- **SSC protocol model**: JSON messages over UDP. Each message is a single JSON object. Getter methods use `null` as the argument value. The server adapts out-of-range values silently (clamps to nearest valid value).
+- **SSC protocol model**: JSON messages over UDP. Each message is a single JSON object. Getter methods use `null` as the argument value. Servers may adapt out-of-range values; MCR DW documents error 406 for an invalid channel gain value.
 - **Multi-channel addressing**: For MCR DW devices, replace `rx1`/`tx1` with the desired channel (rx1..rx4, tx1..tx4). The Rack DW uses only `rx1`/`tx1`.
 - **Subscription lifecycle**: Default lifetime is 10 seconds. Client must renew or set a longer lifetime. Up to 8 concurrent subscription clients supported. Subscriptions terminate on connection close or lifetime/count expiry (error 310).
 - **DNS-SD discovery**: Devices publish `_ssc._udp` service type. Service instance name matches `/device/name`. Clients should not rely on default port 45.
-- **Error codes**: Follow HTTP-style three-digit codes. Common errors: 400 (bad JSON), 404 (address not found), 406 (wrong type/read-only), 454 (hidden address), 310 (subscription terminated).
-- **Network config changes**: Many network settings require a device reset/restart to take effect (IPv4 auto, mDNS, interface mapping).
+- **Error codes**: Follow HTTP-style three-digit codes. Common errors: 400 (bad JSON), 404 (address not found), 406 (wrong type/read-only or invalid value), 454 (hidden address), 310 (subscription terminated). The source defines 401 for missing or invalid authentication tokens but does not establish authentication requirements for these devices.
+- **Network config changes**: IPv4 auto changes require reset on Rack DW and CHG; MCR DW uses manual settings immediately when automatic configuration is false and reactivates DHCP immediately when true. mDNS changes require restart on Rack DW and CHG, and take effect immediately on MCR DW. MCR interface mapping changes trigger an automatic reboot.
 - **MCR DW channel conventions**: rx1..rx2 for SL MCR 2 DW, rx1..rx4 for SL MCR 4 DW. Corresponding tx1..tx4 for paired transmitters.
 
-<!-- UNRESOLVED: No TCP transport details for devices that might support it (source says UDP-only for SLDW devices) -->
+<!-- UNRESOLVED: SSC TCP support is not applicable to these SLDW devices; source documents UDP-only implementations -->
 <!-- UNRESOLVED: Firmware version compatibility ranges not stated -->
 <!-- UNRESOLVED: Max concurrent client connections for non-subscription operations not stated -->
 <!-- UNRESOLVED: UDP message size limits not explicitly stated (error 450 exists for response too long) -->
@@ -1413,26 +1580,27 @@ source_domains:
 source_urls:
   - "https://assets.sennheiser.com/download/assets/TI_1094_v4.3_Sennheiser_Sound_Control_Protocol_SL_DW_EN.pdf/b2a3c92ce7bb11f088db768ee8e97aea?attachment=true"
 retrieved_at: 2026-05-07T06:17:53.500Z
-last_checked_at: 2026-06-02T22:13:51.166Z
+last_checked_at: 2026-10-07T12:47:57.266Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:51.166Z
-matched_actions: 125
-action_count: 125
+checked_at: 2026-10-07T12:47:57.266Z
+matched_actions: 144
+action_count: 144
 confidence: medium
-summary: "All 125 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 144 address-based actions have matching SSC methods in the source, and transport (UDP port 45, DNS-SD _ssc._udp) is supported. Only the Rack DW /device/update/confirmation is unmapped. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- /device/update/confirmation
 - "no multi-step sequences explicitly described in source"
-- "no explicit safety interlocks or power sequencing warnings found in source"
-- "No TCP transport details for devices that might support it (source says UDP-only for SLDW devices)"
+- "no additional explicit safety interlocks or power sequencing warnings found in source"
+- "SSC TCP support is not applicable to these SLDW devices; source documents UDP-only implementations"
 - "Firmware version compatibility ranges not stated"
 - "Max concurrent client connections for non-subscription operations not stated"
 - "UDP message size limits not explicitly stated (error 450 exists for response too long)"

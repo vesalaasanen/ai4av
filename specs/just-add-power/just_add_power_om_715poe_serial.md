@@ -11,7 +11,7 @@ compatible_with:
     - "Just Add Power"
   models:
     - OM-715POE
-  firmware: "\"B1.0.0 or later\""
+  firmware: "B1.0.0 or later"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -26,7 +26,7 @@ source_urls:
 retrieved_at: 2026-07-21T23:12:49.907Z
 last_checked_at: 2026-07-22T00:02:40.940Z
 generated_at: 2026-07-22T00:02:40.940Z
-firmware_coverage: "\"B1.0.0 or later\""
+firmware_coverage: "B1.0.0 or later"
 protocol_coverage: []
 known_gaps:
   - "source excerpt covers only USB + Video commands; full command set (CLI Settings article 310, JustOS HTTP API article 466, RS-232 endpoint control article 141) not yet integrated"

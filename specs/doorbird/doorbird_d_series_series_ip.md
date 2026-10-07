@@ -16,7 +16,7 @@ compatible_with:
     - D21x
     - D11x
     - "B10x (BirdGuard)"
-  firmware: "\"000099\""
+  firmware: 000099
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -31,7 +31,7 @@ source_urls:
 retrieved_at: 2026-04-26T16:22:44.936Z
 last_checked_at: 2026-07-21T22:02:20.759Z
 generated_at: 2026-07-21T22:02:20.759Z
-firmware_coverage: "\"000099\""
+firmware_coverage: 000099
 protocol_coverage: []
 known_gaps:
   - "full D Series SKU enumeration not given in source — only D10x/D20x/D21x/D11x family buckets"

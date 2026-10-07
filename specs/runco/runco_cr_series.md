@@ -21,11 +21,12 @@ source_urls:
   - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
   - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
-last_checked_at: 2026-06-02T22:13:39.881Z
-generated_at: 2026-06-02T22:13:39.881Z
+last_checked_at: 2026-09-28T14:10:52.603Z
+generated_at: 2026-09-28T14:10:52.603Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - "authentication requirements are not stated in the source"
   - "no settable continuous variables beyond volume (covered in actions)"
   - "no unsolicited notification events described in source"
   - "no multi-step sequences described in source"
@@ -34,11 +35,11 @@ known_gaps:
   - "firmware version compatibility not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:39.881Z
+  checked_at: 2026-09-28T14:10:52.603Z
   matched_actions: 63
   action_count: 63
   confidence: medium
-  summary: "All 63 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 63 actions cover the Crystal Series command catalogue; serial settings match and unsupported authentication claims are now explicitly unknown. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -63,7 +64,7 @@ serial:
   flow_control: none
   # NOTE: baud rate configurable via ISF Calibration menu (115200, 19200, 9600, 2400)
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: unknown  # UNRESOLVED: authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -538,9 +539,8 @@ interlocks: []
 - Two command categories: direct serial commands (`[Sxx`, `[+xx`, `[-xx`) and IR remote emulation (`[key` prefix).
 <!-- UNRESOLVED: no query/readback commands documented — source only describes set/action commands -->
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
-```
 
-Spec generated. 48 actions (20 direct serial + 28 key emulation). RS-232 only, 115200 baud default, no auth. No query/readback commands in source — feedbacks section minimal.
+The spec represents 63 command actions. Authentication requirements are not stated in the source.
 
 ## Provenance
 
@@ -551,23 +551,24 @@ source_urls:
   - https://www.hdtvsolutions.com/pdf/CR-26HD_CR-32HDmanual_v2-5.pdf
   - "https://www.hdtvsolutions.com/pdf/CR-32HD_40HD_LCD%20Manual_7-13-05.pdf"
 retrieved_at: 2026-04-29T22:01:17.094Z
-last_checked_at: 2026-06-02T22:13:39.881Z
+last_checked_at: 2026-09-28T14:10:52.603Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:39.881Z
+checked_at: 2026-09-28T14:10:52.603Z
 matched_actions: 63
 action_count: 63
 confidence: medium
-summary: "All 63 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 63 actions cover the Crystal Series command catalogue; serial settings match and unsupported authentication claims are now explicitly unknown. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- "authentication requirements are not stated in the source"
 - "no settable continuous variables beyond volume (covered in actions)"
 - "no unsolicited notification events described in source"
 - "no multi-step sequences described in source"

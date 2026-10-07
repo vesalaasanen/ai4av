@@ -12,7 +12,7 @@ compatible_with:
   models:
     - RDG-1520
     - RT-09
-  firmware: "\"V1.1.5\""
+  firmware: V1.1.5
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-06-02T05:28:09.211Z
 last_checked_at: 2026-06-02T17:23:56.604Z
 generated_at: 2026-06-02T17:23:56.604Z
-firmware_coverage: "\"V1.1.5\""
+firmware_coverage: V1.1.5
 protocol_coverage: []
 known_gaps:
   - "source does not document volume-level commands even though section header reads \"POWER & VOLUME COMMANDS\"; only power commands listed"

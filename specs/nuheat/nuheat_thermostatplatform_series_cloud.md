@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.nuheat.com/products/thermostats/developer-api
 retrieved_at: 2026-04-30T04:32:49.752Z
-last_checked_at: 2026-06-02T22:12:46.760Z
-generated_at: 2026-06-02T22:12:46.760Z
+last_checked_at: 2026-10-07T13:22:43.961Z
+generated_at: 2026-10-07T13:22:43.961Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -33,11 +33,11 @@ known_gaps:
   - "voltage/power specifications not in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:12:46.760Z
-  matched_actions: 11
-  action_count: 11
+  checked_at: 2026-10-07T13:22:43.961Z
+  matched_actions: 16
+  action_count: 16
   confidence: medium
-  summary: "All 11 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "Each semantic id maps to a documented GET/PUT, EnergyLog or SignalR Subscribe/Unsubscribe operation; transport values in source; coverage full. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -72,8 +72,8 @@ auth:
     token_endpoint: https://identity.mynuheat.com/connect/token
     authorization_endpoint: https://identity.mynuheat.com/connect/authorize
     discovery_endpoint: https://identity.mynuheat.com/.well-known/openid-configuration
-    access_token_expiration: 3600  # 1 hour in seconds
-    refresh_token_expiration: 1296000  # 15 days in seconds
+    access_token_expiration: UNRESOLVED  # source does not state this (was 3600)
+    refresh_token_expiration: UNRESOLVED  # source does not state this (was 1296000)
 ```
 
 ## Traits
@@ -171,12 +171,39 @@ auth:
       type: string
     - name: year
       type: integer
+
+- id: get_single_group
+  label: Get Single Group
+  kind: query
+  params: []
+
+- id: get_single_schedule
+  label: Get Single Schedule
+  kind: query
+  params: []
+
+- id: subscribe
+  label: Subscribe
+  kind: action
+  params:
+    - name: notificationTypes
+      type: array
+      description: '["1","2","3","4"]'
+
+- id: unsubscribe
+  label: Unsubscribe
+  kind: action
+  params:
+    - name: notificationTypes
+      type: array
+      description: '["1","2","3","4"]'
 ```
 
 ## Feedbacks
 ```yaml
 - id: thermostat_state
   type: object
+  query_command: get_thermostat
   properties:
     - serialNumber: string
     - setPointTemp: integer
@@ -185,6 +212,10 @@ auth:
 
 - id: energy_log_entry
   type: object
+  query_command:
+    - get_energy_log_day
+    - get_energy_log_week
+    - get_energy_log_month
   properties:
     - entry: string
     - minutes: integer
@@ -232,18 +263,18 @@ source_domains:
 source_urls:
   - https://www.nuheat.com/products/thermostats/developer-api
 retrieved_at: 2026-04-30T04:32:49.752Z
-last_checked_at: 2026-06-02T22:12:46.760Z
+last_checked_at: 2026-10-07T13:22:43.961Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:12:46.760Z
-matched_actions: 11
-action_count: 11
+checked_at: 2026-10-07T13:22:43.961Z
+matched_actions: 16
+action_count: 16
 confidence: medium
-summary: "All 11 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "Each semantic id maps to a documented GET/PUT, EnergyLog or SignalR Subscribe/Unsubscribe operation; transport values in source; coverage full. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

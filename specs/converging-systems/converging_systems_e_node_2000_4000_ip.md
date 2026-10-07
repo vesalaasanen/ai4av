@@ -14,7 +14,7 @@ compatible_with:
     - "e-Node 2000"
     - "e-Node 4000"
     - "e-Node/dmx (MkIII)"
-  firmware: "\"2.01.14\""
+  firmware: 2.01.14
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -27,7 +27,7 @@ source_urls:
 retrieved_at: 2026-05-27T19:35:58.986Z
 last_checked_at: 2026-06-23T10:12:13.688Z
 generated_at: 2026-06-23T10:12:13.688Z
-firmware_coverage: "\"2.01.14\""
+firmware_coverage: 2.01.14
 protocol_coverage: []
 known_gaps:
   - "firmware version compatibility for all commands other than DMX wizard functionality not fully stated in source"

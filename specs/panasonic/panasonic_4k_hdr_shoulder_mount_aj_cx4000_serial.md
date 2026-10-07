@@ -11,7 +11,7 @@ compatible_with:
     - Panasonic
   models:
     - AJ-CX4000
-  firmware: "\"Ver5.00 ~\""
+  firmware: "Ver5.00 ~"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-07-01T12:52:36.307Z
 last_checked_at: 2026-07-07T11:46:03.356Z
 generated_at: 2026-07-07T11:46:03.356Z
-firmware_coverage: "\"Ver5.00 ~\""
+firmware_coverage: "Ver5.00 ~"
 protocol_coverage: []
 known_gaps:
   - "user-supplied \"Known protocol: RS-232C\" — the provided source document describes only the HTTP/CGI PTZ Control Protocol (port 80); no RS-232C serial command set appears in this source. RS-232C transport is therefore not populated."

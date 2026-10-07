@@ -21,33 +21,34 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.610Z
-last_checked_at: 2026-06-02T22:05:37.277Z
-generated_at: 2026-06-02T22:05:37.277Z
+last_checked_at: 2026-09-27T13:53:22.125Z
+generated_at: 2026-09-27T13:53:22.125Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "mount mode restriction — CAM_MountMode applies only to IV-CAM-P12 and IV-CAM-P20 models, not confirmed for IV-CAMA3-20 Series"
-  - "data bits not stated - VISCA default"
-  - "parity not stated - VISCA default"
-  - "stop bits not stated - VISCA default"
+  - "data bits not stated in source"
+  - "parity not stated in source"
+  - "stop bits not stated in source"
   - "flow control not stated in source"
+  - "numeric range not stated in source"
   - "Variables are settable parameters not covered by discrete actions."
   - "no unsolicited event notifications described in source."
   - "no multi-step macro sequences described in source."
   - "no safety warnings, interlock procedures, or power-on sequencing"
   - "CAM_MountMode commands (Stand/Ceiling) are documented for IV-CAM-P12 and IV-CAM-P20 only — applicability to IV-CAMA3-20 Series not confirmed"
-  - "data_bits, parity, stop_bits for serial — VISCA default 8/N/1 inferred but not stated"
+  - "serial data bits, parity and stop bits are not stated in the source; no default is asserted."
   - "flow_control settings for serial not stated"
   - "TCP connection persistence / keepalive behavior not documented"
   - "command timing and retry behavior not documented"
   - "firmware version compatibility not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:37.277Z
-  matched_actions: 83
-  action_count: 83
+  checked_at: 2026-09-27T13:53:22.125Z
+  matched_actions: 111
+  action_count: 111
   confidence: medium
-  summary: "All 83 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 111 units match 112 represented commands; serial gaps remain unknown. P12/P20 mount controls excluded; exact-model applicability caveated. (16 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -57,7 +58,7 @@ created_at: 2026-04-16
 # Crestron 1 Beyond IV-CAMA3-20 Series Control Spec
 
 ## Summary
-Crestron 1 Beyond IV-CAMA3-20 Series PTZ camera controlled via VISCA protocol over TCP (port 5500) or serial RS-232/RS-485 (9600 bps). Supports power, pan-tilt-zoom, focus, white balance, exposure, and preset management. No authentication required.
+Crestron 1 Beyond IV-CAMA3-20 Series PTZ camera controlled via VISCA protocol over TCP (port 5500) or serial RS-232/RS-485 (9600 bps). Supports power, pan-tilt-zoom, focus, white balance, exposure, and preset management. Authentication requirements are not stated in the source.
 
 <!-- UNRESOLVED: mount mode restriction — CAM_MountMode applies only to IV-CAM-P12 and IV-CAM-P20 models, not confirmed for IV-CAMA3-20 Series -->
 
@@ -70,12 +71,12 @@ addressing:
   port: 5500  # TCP default; verify per model
 serial:
   baud_rate: 9600  # stated for serial control
-  data_bits: 8  # UNRESOLVED: data bits not stated - VISCA default
-  parity: none  # UNRESOLVED: parity not stated - VISCA default
-  stop_bits: 1  # UNRESOLVED: stop bits not stated - VISCA default
+  data_bits: null  # UNRESOLVED: data bits not stated in source
+  parity: null  # UNRESOLVED: parity not stated in source
+  stop_bits: null  # UNRESOLVED: stop bits not stated in source
   flow_control: null  # UNRESOLVED: flow control not stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -206,8 +207,7 @@ auth:
   params:
     - name: position
       type: integer
-      description: Focus position
-      range: [0, 16384]
+      description: Focus position  # UNRESOLVED: numeric range not stated in source
   command: 8x 01 04 48 0p 0q 0r 0s FF  # p,q,r,s: focus position
 
 - id: focus_auto
@@ -711,10 +711,10 @@ auth:
       description: Tilt speed
     - name: pan_position
       type: integer
-      description: Pan position (0-0xFFFF)
+      description: Pan position encoded in four hex nibbles; supported travel range UNRESOLVED
     - name: tilt_position
       type: integer
-      description: Tilt position (0-0xFFFF)
+      description: Tilt position encoded in four hex nibbles; supported travel range UNRESOLVED
   command: 8x 01 06 02 VV WW 0Y 0Y 0Y 0Y 0Z 0Z 0Z 0Z FF
 
 - id: pantilt_relative
@@ -762,6 +762,44 @@ auth:
       type: integer
       description: Tilt limit position
   command: 8x 01 06 07 00 0W 0Y 0Y 0Y 0Y 0Z 0Z 0Z 0Z FF
+
+- id: address_set
+  label: Address Set Broadcast
+  kind: action
+  params: []
+  command: 88 30 01 FF
+
+- id: if_clear
+  label: IF Clear Broadcast
+  kind: action
+  params: []
+  command: 88 01 00 01 FF
+
+- id: command_cancel
+  label: Command Cancel
+  kind: action
+  params:
+    - name: socket
+      type: integer
+      description: Socket number (1 or 2)
+      range: [1, 2]
+  command: 8x 2p FF  # p: Socket No. (=1 or 2)
+
+- id: focus_auto_manual_toggle
+  label: Auto/Manual Focus Toggle
+  kind: action
+  params: []
+  command: 8x 01 04 38 10 FF
+
+- id: preset_reset
+  label: Reset Preset
+  kind: action
+  params:
+    - name: preset
+      type: integer
+      description: Preset number (0-255)
+      range: [0, 255]
+  command: 8x 01 04 3F 00 pp FF  # pp: Memory Number (=0 to 255)
 ```
 
 ## Feedbacks
@@ -809,6 +847,7 @@ auth:
   description: Returned when command cannot be executed due to current conditions.
 
 - id: power_state
+  query_command: 8x 09 04 00 FF
   type: enum
   values:
     - on
@@ -817,10 +856,12 @@ auth:
   description: Power state query response. Inquiry CAM_PowerInq.
 
 - id: zoom_position
+  query_command: 8x 09 04 47 FF
   type: integer
   description: Zoom position (0-16384). Inquiry CAM_ZoomPosInq.
 
 - id: focus_mode
+  query_command: 8x 09 04 38 FF
   type: enum
   values:
     - auto_focus
@@ -828,10 +869,12 @@ auth:
   description: Focus mode query. Inquiry CAM_FocusModeInq.
 
 - id: focus_position
+  query_command: 8x 09 04 48 FF
   type: integer
-  description: Focus position (0-16384). Inquiry CAM_FocusPosInq.
+  description: Focus position. Inquiry CAM_FocusPosInq.  # UNRESOLVED: numeric range not stated in source
 
 - id: wb_mode
+  query_command: 8x 09 04 35 FF
   type: enum
   values:
     - auto
@@ -842,14 +885,17 @@ auth:
   description: White balance mode query. Inquiry CAM_WBModeInq.
 
 - id: rgain_position
+  query_command: 8x 09 04 43 FF
   type: integer
   description: R Gain position. Inquiry CAM_RGainInq.
 
 - id: bgain_position
+  query_command: 8x 09 04 44 FF
   type: integer
   description: B Gain position. Inquiry CAM_BGainInq.
 
 - id: ae_mode
+  query_command: 8x 09 04 39 FF
   type: enum
   values:
     - full_auto
@@ -860,22 +906,27 @@ auth:
   description: Auto exposure mode query. Inquiry CAM_AEModeInq.
 
 - id: shutter_position
+  query_command: 8x 09 04 4A FF
   type: integer
   description: Shutter position. Inquiry CAM_ShutterPosInq.
 
 - id: iris_position
+  query_command: 8x 09 04 4B FF
   type: integer
   description: Iris position. Inquiry CAM_IrisPosInq.
 
 - id: gain_position
+  query_command: 8x 09 04 4C FF
   type: integer
   description: Gain position. Inquiry CAM_GainPosInq.
 
 - id: bright_position
+  query_command: 8x 09 04 4D FF
   type: integer
   description: Bright position. Inquiry CAM_BrightPosInq.
 
 - id: expcomp_mode
+  query_command: 8x 09 04 3E FF
   type: enum
   values:
     - on
@@ -883,10 +934,12 @@ auth:
   description: Exposure compensation mode. Inquiry CAM_ExpCompModeInq.
 
 - id: expcomp_position
+  query_command: 8x 09 04 4E FF
   type: integer
   description: Exposure compensation position. Inquiry CAM_ExpCompPosInq.
 
 - id: backlight_mode
+  query_command: 8x 09 04 33 FF
   type: enum
   values:
     - on
@@ -894,10 +947,12 @@ auth:
   description: Back light compensation mode. Inquiry CAM_BacklightModeInq.
 
 - id: memory_preset
+  query_command: 8x 09 04 3F FF
   type: integer
   description: Last operated memory number (0-255). Inquiry CAM_MemoryInq.
 
 - id: ir_receive
+  query_command: 8x 09 06 08 FF
   type: enum
   values:
     - on
@@ -905,6 +960,7 @@ auth:
   description: IR receiver state. Inquiry IR_Receive.
 
 - id: pantilt_max_speed
+  query_command: 8x 09 06 11 FF
   type: object
   description: Pan and tilt maximum speeds. Inquiry Pan-tiltMaxSpeedI.
   properties:
@@ -912,6 +968,7 @@ auth:
     tilt_max_speed: integer
 
 - id: pantilt_position
+  query_command: 8x 09 06 12 FF
   type: object
   description: Pan and tilt current positions. Inquiry Pan-tiltPosInq.
   properties:
@@ -919,10 +976,12 @@ auth:
     tilt_position: integer
 
 - id: pantilt_mode
+  query_command: 8x 09 06 10 FF
   type: object
   description: Pan/tilt status. Inquiry Pan-tiltModeInq.
 
 - id: video_system
+  query_command: 8x 09 06 23 FF
   type: enum
   values:
     - "1920x1080i/60"
@@ -938,6 +997,7 @@ auth:
   description: Video system. Inquiry VideoSystemInq.
 
 - id: camera_tracking
+  query_command: 8x 09 08 01 FF
   type: enum
   values:
     - active
@@ -945,6 +1005,7 @@ auth:
   description: Camera tracking state. Inquiry CAM_TrackingInq.
 
 - id: camera_version
+  query_command: 8x 09 00 02 FF
   type: object
   description: Model code and ROM version. Inquiry CAM_VersionInq.
   properties:
@@ -962,8 +1023,8 @@ auth:
 ## Events
 ```yaml
 # UNRESOLVED: no unsolicited event notifications described in source.
-# VISCA does not define autonomous device-initiated messages - all
-# responses are replies to commands or inquiry commands.
+# The source documents responses to commands and inquiries only;
+# unsolicited device-initiated messages are not described.
 ```
 
 ## Macros
@@ -980,7 +1041,9 @@ interlocks: []
 ```
 
 ## Notes
-VISCA protocol uses device address byte `x` (socket address) in command packets. Socket number `y` in response packets equals device address + 8. `z` in error/ACK/completion messages equals device address + 8.
+VISCA command packets use `x` for the camera address. In ACK/completion messages, `y` is the socket number. `z` in error/ACK/completion messages equals device address + 8.
+
+The source describes Crestron 1 Beyond cameras generally and does not name IV-CAMA3-20. Exact-model applicability remains UNRESOLVED.
 
 Zoom position table: 12x zoom range 0000–4000 hex (1x–12x optical). 20x zoom range 0000–4000 hex (1x–20x optical). Both maps use the same hex range; actual optical ratio depends on lens model.
 
@@ -989,7 +1052,7 @@ Exposure compensation position range: 0E+7 (0000) to 00-7 (4000), centered at 07
 Pan speed range: 0x01 (low) to 0x18 (high, 24). Tilt speed range: 0x01 (low) to 0x14 (high, 20).
 
 <!-- UNRESOLVED: CAM_MountMode commands (Stand/Ceiling) are documented for IV-CAM-P12 and IV-CAM-P20 only — applicability to IV-CAMA3-20 Series not confirmed -->
-<!-- UNRESOLVED: data_bits, parity, stop_bits for serial — VISCA default 8/N/1 inferred but not stated -->
+<!-- UNRESOLVED: serial data bits, parity and stop bits are not stated in the source; no default is asserted. -->
 <!-- UNRESOLVED: flow_control settings for serial not stated -->
 <!-- UNRESOLVED: TCP connection persistence / keepalive behavior not documented -->
 <!-- UNRESOLVED: command timing and retry behavior not documented -->
@@ -1003,34 +1066,35 @@ source_domains:
 source_urls:
   - https://docs.crestron.com/en-us/9440/Content/Topics/NextGenCameras/Configuration/VISCA-Commands.htm
 retrieved_at: 2026-04-30T04:31:08.610Z
-last_checked_at: 2026-06-02T22:05:37.277Z
+last_checked_at: 2026-09-27T13:53:22.125Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:37.277Z
-matched_actions: 83
-action_count: 83
+checked_at: 2026-09-27T13:53:22.125Z
+matched_actions: 111
+action_count: 111
 confidence: medium
-summary: "All 83 spec actions traced to source (dip-safe re-verify). (15 unresolved item(s) noted in Known Gaps.)"
+summary: "All 111 units match 112 represented commands; serial gaps remain unknown. P12/P20 mount controls excluded; exact-model applicability caveated. (16 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "mount mode restriction — CAM_MountMode applies only to IV-CAM-P12 and IV-CAM-P20 models, not confirmed for IV-CAMA3-20 Series"
-- "data bits not stated - VISCA default"
-- "parity not stated - VISCA default"
-- "stop bits not stated - VISCA default"
+- "data bits not stated in source"
+- "parity not stated in source"
+- "stop bits not stated in source"
 - "flow control not stated in source"
+- "numeric range not stated in source"
 - "Variables are settable parameters not covered by discrete actions."
 - "no unsolicited event notifications described in source."
 - "no multi-step macro sequences described in source."
 - "no safety warnings, interlock procedures, or power-on sequencing"
 - "CAM_MountMode commands (Stand/Ceiling) are documented for IV-CAM-P12 and IV-CAM-P20 only — applicability to IV-CAMA3-20 Series not confirmed"
-- "data_bits, parity, stop_bits for serial — VISCA default 8/N/1 inferred but not stated"
+- "serial data bits, parity and stop bits are not stated in the source; no default is asserted."
 - "flow_control settings for serial not stated"
 - "TCP connection persistence / keepalive behavior not documented"
 - "command timing and retry behavior not documented"

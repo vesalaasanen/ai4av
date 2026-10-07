@@ -20,25 +20,26 @@ source_domains:
 source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
 retrieved_at: 2026-05-02T23:19:32.799Z
-last_checked_at: 2026-06-02T22:14:18.779Z
-generated_at: 2026-06-02T22:14:18.779Z
+last_checked_at: 2026-10-07T12:52:45.395Z
+generated_at: 2026-10-07T12:52:45.395Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "exact PN-M model numbers (PN-M401, PN-M501, PN-M601, etc.) not listed in source; only \"PN-M Series\" referenced"
   - "firmware version compatibility not stated in source"
   - "LAN Telnet protocol details beyond login handshake not fully specified"
+  - "the source does not specify them."
   - "source does not document unsolicited event notifications from the monitor"
   - "specific power-on sequencing requirements beyond POWER ON DELAY not detailed in source"
   - "exact PN-M model variants not specified in source"
   - "LAN protocol beyond basic Telnet login not fully documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:18.779Z
+  checked_at: 2026-10-07T12:52:45.395Z
   matched_actions: 96
   action_count: 96
   confidence: medium
-  summary: "All 96 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 96 action units match source command tokens with correct shapes, transport values are supported, and the spec covers essentially the full command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -48,7 +49,7 @@ created_at: 2026-05-03
 # Sharp PN-M Series Control Spec
 
 ## Summary
-Sharp PN-M Series professional displays support external control via RS-232C serial and LAN (Telnet-style TCP) connections. Commands use a fixed 4-character command field plus 4-character parameter field. Up to 4 monitors can be daisy-chained via RS-232C with individual ID addressing (1–255). This spec covers power, input selection, picture adjustment, PIP/multi-screen, scheduling, LAN setup, and diagnostic queries.
+Sharp PN-M Series professional displays support external control via RS-232C serial and LAN (Telnet-style TCP) connections. Ordinary commands use a fixed 4-character command field plus 4-character parameter field; commands with longer parameters use their specified payload lengths. Up to 4 monitors can be daisy-chained via RS-232C with individual ID addressing (1–255). This spec covers power, input selection, picture adjustment, PIP/multi-screen, scheduling, LAN setup, and diagnostic queries.
 
 <!-- UNRESOLVED: exact PN-M model numbers (PN-M401, PN-M501, PN-M601, etc.) not listed in source; only "PN-M Series" referenced -->
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
@@ -76,7 +77,7 @@ auth:
     receive "Password:" prompt, send password + space.
     If credentials not set, send space for each.
     Successful login returns "OK ". Send "QUIT " to disconnect.
-    RS-232C has no authentication.
+    RS-232C authentication requirements are UNRESOLVED: the source does not specify them.
 ```
 
 ## Traits
@@ -296,8 +297,8 @@ actions:
   - id: set_date_time
     label: Set Date/Time
     kind: action
-    command: "DATE??????"
-    description: Sets date and time (AABBCCDDEE = Year,Month,Day,Hour,Minute)
+    command: DATE
+    description: Sets date and time. Append the ten-character datetime payload AABBCCDDEE directly to the DATE command field, without spaces.
     params:
       - name: datetime
         type: string
@@ -306,17 +307,17 @@ actions:
   - id: set_schedule
     label: Set Schedule
     kind: action
-    command: "SCXX???????"
-    description: Sets schedule (SC01-SC08). Parameter ABCDEFFGGH format. A=effective(0/1), B=power(0=OFF/1=ON/2=Android restart), C=day pattern(0=once/1=weekly/2=daily), D=day1(0=Sun..6=Sat/9=NA), E=day2(0=Sun..6=Sat/9=NA), F=hour(00-23), G=minute(00-59), H=input(0=unspecified/1=APP/2=DP/3=HDMI1/4=HDMI2/5=D-SUB/6=OPTION)
+    command: SC01
+    description: Sets schedule. Select the command field SC01-SC08 using schedule_num, then append the ten-character parameter ABCDEFFGGH without spaces. A=effective(0/1), B=power(0=OFF/1=ON/2=Android restart), C=day pattern(0=once/1=weekly/2=daily), D=day1(0=Sun..6=Sat/9=NA), E=day2(0=Sun..6=Sat/9=NA), FF=hour(00-23), GG=minute(00-59), H=input(0=unspecified/1=APP/2=DP/3=HDMI1/4=HDMI2/5=D-SUB/6=OPTION)
     params:
       - name: schedule_num
         type: integer
         min: 1
         max: 8
-        description: Schedule number (01-08)
+        description: Schedule number (01-08); replace the final two digits of the command field with this zero-padded number.
       - name: param
         type: string
-        description: 9-character schedule parameter string
+        description: 10-character schedule parameter string ABCDEFFGGH
 
   - id: set_schedule_brightness
     label: Set Schedule Brightness
@@ -604,19 +605,19 @@ actions:
   - id: set_pip_position_batch
     label: Set PIP Position Batch
     kind: action
-    command: "MPOS???????"
-    description: Sets PIP position in MPOSxxxyyy format (xxx=longer side, yyy=shorter side)
+    command: MPOS
+    description: Sets PIP position in MPOSxxxyyy format. Append a six-digit payload directly to MPOS without spaces (xxx=longer side, yyy=shorter side).
     params:
       - name: horizontal
         type: integer
         min: 0
         max: 100
-        description: Longer side position (zero-padded to 3 digits)
+        description: Longer side position (zero-padded to 3 digits, forming xxx)
       - name: vertical
         type: integer
         min: 0
         max: 100
-        description: Shorter side position (zero-padded to 3 digits)
+        description: Shorter side position (zero-padded to 3 digits, forming yyy)
 
   - id: set_pip_source
     label: Set PIP Source
@@ -889,8 +890,8 @@ actions:
   - id: set_auto_logout_time
     label: Set Auto Logout Time
     kind: action
-    command: "LOTM?????????"
-    description: Sets auto logout time in minutes
+    command: LOTM
+    description: Sets auto logout time in minutes. Append minutes as exactly five zero-padded digits directly to LOTM without spaces.
     params:
       - name: minutes
         type: integer
@@ -901,8 +902,8 @@ actions:
   - id: set_data_port
     label: Set Data Port
     kind: action
-    command: "TCPP?????????"
-    description: Sets TCP data port number. Apply with NTUP.
+    command: TCPP
+    description: Sets TCP data port number. Append port as exactly five zero-padded digits directly to TCPP without spaces. Apply with NTUP.
     params:
       - name: port
         type: integer
@@ -1314,7 +1315,8 @@ interlocks:
 ```
 
 ## Notes
-- Command format is 4-character command field + 4-character parameter field, terminated with return code (0DH 0AH or 0DH). Parameters must be exactly 4 characters, padded with spaces.
+- Ordinary command format is a 4-character command field + 4-character parameter field, terminated with return code (0DH 0AH or 0DH). Ordinary parameters must be exactly 4 characters, padded with spaces when necessary. Parameters of 5 or more characters use the specified number of characters without spaces.
+- For the corrected DATE, MPOS, LOTM and TCPP Actions, the command field contains the opcode only; append the payload described by the Action before the return code. For set_schedule, select SC01-SC08 using schedule_num and append the ten-character payload before the return code.
 - Repeater control: setting the 4th parameter character to "+" broadcasts to all daisy-chained monitors.
 - Query commands (Direction R) use "?" characters as parameters to read current values (e.g., `VOLM????`).
 - Up to 4 monitors can be daisy-chained via RS-232C with ID numbers 1-255.
@@ -1338,18 +1340,18 @@ source_domains:
 source_urls:
   - https://business.sharpusa.com/portals/0/downloads/Manuals/PN-M401_M501_operation_manual.pdf
 retrieved_at: 2026-05-02T23:19:32.799Z
-last_checked_at: 2026-06-02T22:14:18.779Z
+last_checked_at: 2026-10-07T12:52:45.395Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:18.779Z
+checked_at: 2026-10-07T12:52:45.395Z
 matched_actions: 96
 action_count: 96
 confidence: medium
-summary: "All 96 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 96 action units match source command tokens with correct shapes, transport values are supported, and the spec covers essentially the full command catalogue. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1358,6 +1360,7 @@ summary: "All 96 spec actions traced to source (dip-safe re-verify). (7 unresolv
 - "exact PN-M model numbers (PN-M401, PN-M501, PN-M601, etc.) not listed in source; only \"PN-M Series\" referenced"
 - "firmware version compatibility not stated in source"
 - "LAN Telnet protocol details beyond login handshake not fully specified"
+- "the source does not specify them."
 - "source does not document unsolicited event notifications from the monitor"
 - "specific power-on sequencing requirements beyond POWER ON DELAY not detailed in source"
 - "exact PN-M model variants not specified in source"

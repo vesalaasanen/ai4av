@@ -26,25 +26,27 @@ source_domains:
 source_urls:
   - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
 retrieved_at: 2026-04-30T04:28:57.688Z
-last_checked_at: 2026-06-02T22:13:57.755Z
-generated_at: 2026-06-02T22:13:57.755Z
+last_checked_at: 2026-09-27T14:59:54.710Z
+generated_at: 2026-09-27T14:59:54.710Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "Safety interlock procedures not documented"
+  - "encoding for 100 is not established by the two-digit setter template.\""
   - "no unsolicited notification mechanism documented in source"
   - "no multi-step sequences documented in source"
   - "no safety warnings or interlock procedures in source"
   - "firmware version compatibility not stated in source"
   - "fault behavior and error recovery sequences not documented"
   - "binary command encoding not applicable (text-based JSON over HTTP)"
+  - "source SET VOLUME is VOL:XX with X digits 0-9, while response volume is described as 0-100. Do not infer a wire encoding for setting 100."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:57.755Z
+  checked_at: 2026-09-27T14:59:54.710Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 command units match the IP guide; setter encoding for 100 remains explicitly unknown. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -65,9 +67,9 @@ protocols:
   - http
 addressing:
   port: 3000
-  base_url: /  # inferred from POST / HTTP/1.1 example
+  base_url: /  # explicit POST / HTTP/1.1 request path
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -81,36 +83,44 @@ auth:
 ## Actions
 ```yaml
 - id: power_on
+  command: "PWD:1"
   label: Power On
   kind: action
   params: []
 
 - id: power_off
+  command: "PWD:0"
   label: Power Off
   kind: action
   params: []
 
 - id: power_toggle
+  command: "PWD:3"
   label: Power Toggle
   kind: action
   params: []
 
 - id: power_query
+  command: "PWD:?"
   label: Power Status Query
   kind: query
   params: []
 
 - id: channel_up
+  command: "CHA:+"
   label: Channel Up
   kind: action
   params: []
 
 - id: channel_down
+  command: "CHA:-"
   label: Channel Down
   kind: action
   params: []
 
 - id: channel_set
+  command: "CHA:XX.Y"
+  wire_template: "CHA:{channel}"
   label: Set Channel
   kind: action
   params:
@@ -119,62 +129,76 @@ auth:
       description: Channel in XX.Y format (primary.secondary for digital)
 
 - id: channel_query
+  command: "CHA:?"
   label: Channel Status Query
   kind: query
   params: []
 
 - id: input_query
+  command: "INP:?"
   label: Input Status Query
   kind: query
   params: []
 
 - id: input_select
+  command: "INP:"
+  wire_template: "INP:{input}"
   label: Select Input
   kind: action
   params:
     - name: input
       type: integer
+      values: [0, 1, 2, 3, 4, 5, 7]
       description: Input number (0=TV, 1=HDMI 1, 2=HDMI 2, 3=HDMI 3, 4=Component, 5=AV, 7=USB Media)
 
 - id: volume_up
+  command: "VOL:+"
   label: Volume Up
   kind: action
   params: []
 
 - id: volume_down
+  command: "VOL:-"
   label: Volume Down
   kind: action
   params: []
 
 - id: volume_set
+  command: "VOL:XX"
+  wire_template: "VOL:{level}"
   label: Set Volume
   kind: action
   params:
     - name: level
       type: integer
-      description: Volume level 0-100
+      description: "Volume setting XX; UNRESOLVED: encoding for 100 is not established by the two-digit setter template."
 
 - id: volume_query
+  command: "VOL:?"
   label: Volume Status Query
   kind: query
   params: []
 
 - id: mute_on
+  command: "MUT:1"
   label: Mute On
   kind: action
   params: []
 
 - id: mute_off
+  command: "MUT:0"
   label: Mute Off
   kind: action
   params: []
 
 - id: mute_toggle
+  command: "MUT:3"
   label: Mute Toggle
   kind: action
   params: []
 
 - id: mute_query
+  command: "MUT:?"
   label: Mute Status Query
   kind: query
   params: []
@@ -254,6 +278,8 @@ interlocks: []
 <!-- UNRESOLVED: fault behavior and error recovery sequences not documented -->
 <!-- UNRESOLVED: binary command encoding not applicable (text-based JSON over HTTP) -->
 
+<!-- UNRESOLVED: source SET VOLUME is VOL:XX with X digits 0-9, while response volume is described as 0-100. Do not infer a wire encoding for setting 100. -->
+
 ## Provenance
 
 ```yaml
@@ -262,30 +288,32 @@ source_domains:
 source_urls:
   - https://storage.googleapis.com/wp-stateless/2021/09/IPControl-SHD290.pdf
 retrieved_at: 2026-04-30T04:28:57.688Z
-last_checked_at: 2026-06-02T22:13:57.755Z
+last_checked_at: 2026-09-27T14:59:54.710Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:57.755Z
+checked_at: 2026-09-27T14:59:54.710Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 command units match the IP guide; setter encoding for 100 remains explicitly unknown. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "Safety interlock procedures not documented"
+- "encoding for 100 is not established by the two-digit setter template.\""
 - "no unsolicited notification mechanism documented in source"
 - "no multi-step sequences documented in source"
 - "no safety warnings or interlock procedures in source"
 - "firmware version compatibility not stated in source"
 - "fault behavior and error recovery sequences not documented"
 - "binary command encoding not applicable (text-based JSON over HTTP)"
+- "source SET VOLUME is VOL:XX with X digits 0-9, while response volume is described as 0-100. Do not infer a wire encoding for setting 100."
 ```
 
 ---

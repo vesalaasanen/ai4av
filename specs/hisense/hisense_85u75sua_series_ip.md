@@ -23,28 +23,26 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
 retrieved_at: 2026-05-04T21:56:29.087Z
-last_checked_at: 2026-06-02T22:08:05.016Z
-generated_at: 2026-06-02T22:08:05.016Z
+last_checked_at: 2026-10-07T13:51:06.692Z
+generated_at: 2026-10-07T13:51:06.692Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "TCP/IP transport expected (entity ID suffix _ip, user-stated protocol) but not documented in this source. Port number unknown."
   - "specific model variants / supported series names not listed (Models section empty in source)"
-  - "TCP/IP expected per family metadata but no port stated in source; serial commands likely tunnel over TCP"
-  - "TCP port not stated in source"
+  - "TCP port is not documented; TCP transport is not documented"
+  - "revision notes mention ARC query support, but the supplied query table does not state its return value\""
   - "No settable non-discrete parameters beyond those captured as Actions"
   - "no multi-step sequences documented in source"
-  - "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
   - "supported model series names not listed in source (Models section blank)"
-  - "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
+  - "last page of source truncated; additional commands KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE are partially visible but parameters are incomplete"
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:05.016Z
-  matched_actions: 45
-  action_count: 45
+  checked_at: 2026-10-07T13:51:06.692Z
+  matched_actions: 80
+  action_count: 80
   confidence: medium
-  summary: "All 45 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 80 action units match literal source commands and serial parameters; BTTN codes are values of one parameterized command; coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -56,14 +54,12 @@ created_at: 2026-05-05
 ## Summary
 HiSense Prosumer TV (85U75SUA series) with RS-232 serial control and IR remote. Serial protocol uses fixed-length ASCII frames with 8-bit checksum. Supports power, input routing, picture/audio settings, volume, mute, channel tuning, caption, and various lockout/control modes. Client addressing via last 3 bytes of Ethernet MAC address allows multi-TV setups.
 
-<!-- UNRESOLVED: TCP/IP transport expected (entity ID suffix _ip, user-stated protocol) but not documented in this source. Port number unknown. -->
 <!-- UNRESOLVED: specific model variants / supported series names not listed (Models section empty in source) -->
 
 ## Transport
 ```yaml
 protocols:
   - serial
-  - tcp  # UNRESOLVED: TCP/IP expected per family metadata but no port stated in source; serial commands likely tunnel over TCP
 serial:
   baud_rate: 9600
   data_bits: 8
@@ -71,9 +67,9 @@ serial:
   stop_bits: 1
   flow_control: none
 addressing:
-  port: null  # UNRESOLVED: TCP port not stated in source
-auth:
-  type: none  # inferred: no auth procedure in source
+  port: null  # UNRESOLVED: TCP port is not documented; TCP transport is not documented
+  auth:
+  type: UNRESOLVED  # Authentication is not documented in the source
 ```
 
 ## Traits
@@ -531,42 +527,13 @@ auth:
         - "0001"
         - "0002"
         - "0003"
-      description: "0000=LAST, 0001=Air, 0002=AV, 0003=Component"
+        - "0004"
+        - "0005"
+        - "0006"
+        - "0007"
+        - "0008"
+      description: "0000=LAST, 0001=Air, 0002=AV, 0003=Component, 0004=VGA, 0005=HDMI1, 0006=HDMI2, 0007=HDMI3, 0008=HDMI4"
 
-- id: key_lock_set
-  label: Set Key Lock
-  kind: action
-  command: KYLK
-  params:
-    - name: mode
-      type: enum
-      values:
-        - "0000"
-        - "0001"
-      description: "0000=off, 0001=on"
-
-- id: power_on_volume_set
-  label: Set Power On Volume
-  kind: action
-  command: POWV
-  params:
-    - name: value
-      type: integer
-      min: 0
-      max: 100
-      description: "Power-on volume 0-100"
-
-- id: hotel_mode_set
-  label: Set Hotel Mode
-  kind: action
-  command: HTTL
-  params:
-    - name: mode
-      type: enum
-      values:
-        - "0000"
-        - "0001"
-      description: "0000=off, 0001=on"
 - id: speaker_mode_set
   label: Set TV Speaker Mode
   kind: action
@@ -615,6 +582,90 @@ auth:
         - "0000"
         - "0001"
       description: "0000=Off, 0001=On"
+
+- id: ir_button_simulate
+  label: Simulate IR Remote Button
+  kind: action
+  command: "04FB"
+  params:
+    - name: button_code
+      type: enum
+      values:
+        - "708F"
+        - "718E"
+        - "728D"
+        - "738C"
+        - "748B"
+        - "758A"
+        - "7689"
+        - "7788"
+        - "7887"
+        - "7986"
+        - "7A85"
+        - "7B84"
+        - "7C83"
+        - "7D82"
+        - "7E81"
+        - "7F80"
+        - "807F"
+        - "817E"
+        - "827D"
+        - "837C"
+        - "847B"
+        - "857A"
+        - "8679"
+        - "8778"
+        - "8877"
+        - "8976"
+        - "8A75"
+        - "8B74"
+        - "8C73"
+        - "8D72"
+        - "8E71"
+        - "8F70"
+        - "906F"
+        - "916E"
+        - "926D"
+        - "936C"
+        - "946B"
+        - "956A"
+        - "9669"
+        - "9768"
+        - "9867"
+        - "9966"
+        - "9A65"
+        - "9B64"
+        - "9C63"
+        - "9D62"
+        - "9E61"
+        - "9F60"
+        - "A05F"
+        - "A15E"
+        - "A25D"
+        - "A35C"
+        - "A45B"
+        - "A55A"
+        - "A659"
+        - "A758"
+        - "A857"
+        - "A956"
+        - "AA55"
+        - "AB54"
+        - "AC53"
+        - "AD52"
+        - "AE51"
+        - "AF50"
+      description: "IR complete hex code consists of the fixed low/high custom bytes 04FB followed by the selected data code and complement. 708F=POWER (toggle), 718E=POWER ON, 728D=POWER OFF, 738C=INPUT (toggle), 748B=TV TUNER1, 758A=TV TUNER2, 7689=AV1, 7788=AV2, 7887=SCART/AV3, 7986=COMPONENT1, 7A85=COMPONENT2, 7B84=COMPONENT3, 7C83=HDMI.1, 7D82=HDMI.2, 7E81=HDMI.3, 7F80=HDMI.4, 807F=HDMI.5, 817E=VGA, 827D=USB, 837C=PICTURE MODE (toggle), 847B=SOUND MODE (toggle), 857A=ASPECT RATIO: WIDE 16:9, 8679=ASPECT RATIO: NOMAL 4:3, 8778=ASPECT RATIO: CINEMA, 8877=ASPECT RATIO: PANORAMA, 8976=ASPECT RATIO: ZOOM, 8A75=CHANNEL LIST, 8B74=FAV CHANNEL, 8C73=SLEEP, 8D72=TV MENU (toggle), 8E71=HOME, 8F70=TOOLS (SECOND MENU), 906F=Digit 0, 916E=Digit 1, 926D=Digit 2, 936C=Digit 3, 946B=Digit 4, 956A=Digit 5, 9669=Digit 6, 9768=Digit 7, 9867=Digit 8, 9966=Digit 9, 9A65=Digit dash, 9B64=PREVIOUS CHANNEL, 9C63=UP ARROW, 9D62=DOWN ARROW, 9E61=LEFT ARROW, 9F60=RIGHT ARROW, A05F=ENTER, A15E=SELECT (OK), A25D=RETURN, A35C=EXIT, A45B=INFO/DISPLAY (toggle), A55A=VOLUME -, A659=VOLUME +, A758=CHANNEL -, A857=CHANNEL +, A956=PIP (toggle), AA55=PIP INPUT, AB54=PIP SWAP, AC53=PIP POSITION, AD52=PIP SIZE, AE51=Guide (toggle), AF50=Freeze (toggle). Check the specific TV User Manual for supported IR commands by model. These are IR codes, not serial frames."
+
+- id: power_enable_remote_on_example
+  label: Enable RS-232 Remote Power On Example
+  kind: action
+  command: POWER232
+
+- id: power_on_example
+  label: Power On Example
+  kind: action
+  command: "POWRON##"
 ```
 
 ## Feedbacks
@@ -623,6 +674,7 @@ auth:
   label: Power On Command Setting
   type: enum
   command: "Q[CLIENT_ID]PWRE????"
+  query_command: "PWRE????"
   values:
     - "0"
     - "1"
@@ -632,6 +684,7 @@ auth:
   label: Current Input Source
   type: enum
   command: "Q[CLIENT_ID]INPT????"
+  query_command: "INPT????"
   values:
     - "1"
     - "3"
@@ -647,6 +700,7 @@ auth:
   label: Current Picture Mode
   type: enum
   command: "Q[CLIENT_ID]PMOD????"
+  query_command: "PMOD????"
   values:
     - "0"
     - "2"
@@ -660,36 +714,42 @@ auth:
   label: Brightness Value
   type: integer
   command: "Q[CLIENT_ID]BRIT????"
+  query_command: "BRIT????"
   range: [0, 100]
 
 - id: contrast
   label: Contrast Value
   type: integer
   command: "Q[CLIENT_ID]CONT????"
+  query_command: "CONT????"
   range: [0, 100]
 
 - id: color_saturation
   label: Color Saturation Value
   type: integer
   command: "Q[CLIENT_ID]COLR????"
+  query_command: "COLR????"
   range: [0, 100]
 
 - id: tint
   label: Tint Value
   type: integer
   command: "Q[CLIENT_ID]TINT????"
+  query_command: "TINT????"
   range: [0, 100]
 
 - id: sharpness
   label: Sharpness Value
   type: integer
   command: "Q[CLIENT_ID]SHRP????"
+  query_command: "SHRP????"
   range: [0, 20]
 
 - id: aspect_ratio
   label: Current Aspect Ratio
   type: enum
   command: "Q[CLIENT_ID]ASPT????"
+  query_command: "ASPT????"
   values:
     - "0"
     - "2"
@@ -705,6 +765,7 @@ auth:
   label: Overscan State
   type: enum
   command: "Q[CLIENT_ID]OVSN????"
+  query_command: "OVSN????"
   values:
     - "0"
     - "2"
@@ -714,6 +775,7 @@ auth:
   label: Current Color Temperature
   type: enum
   command: "Q[CLIENT_ID]CTEM????"
+  query_command: "CTEM????"
   values:
     - "0"
     - "2"
@@ -725,12 +787,14 @@ auth:
   label: Backlight Value
   type: integer
   command: "Q[CLIENT_ID]BKLV????"
+  query_command: "BKLV????"
   range: [0, 100]
 
 - id: sound_mode
   label: Current Sound Mode
   type: enum
   command: "Q[CLIENT_ID]AMOD????"
+  query_command: "AMOD????"
   values:
     - "0"
     - "2"
@@ -743,12 +807,14 @@ auth:
   label: Current Volume
   type: integer
   command: "Q[CLIENT_ID]VOLM????"
+  query_command: "VOLM????"
   range: [0, 100]
 
 - id: mute_state
   label: Mute Status
   type: enum
   command: "Q[CLIENT_ID]MUTE????"
+  query_command: "MUTE????"
   values:
     - "0"
     - "1"
@@ -758,6 +824,7 @@ auth:
   label: TV Speaker State
   type: enum
   command: "Q[CLIENT_ID]ASPK????"
+  query_command: "ASPK????"
   values:
     - "0"
     - "2"
@@ -767,6 +834,7 @@ auth:
   label: Tuner Mode
   type: enum
   command: "Q[CLIENT_ID]TUNR????"
+  query_command: "TUNR????"
   values:
     - "0"
     - "2"
@@ -776,6 +844,7 @@ auth:
   label: Caption Control State
   type: enum
   command: "Q[CLIENT_ID]CC##????"
+  query_command: "CC##????"
   values:
     - "0"
     - "2"
@@ -786,6 +855,7 @@ auth:
   label: OSD Language
   type: enum
   command: "Q[CLIENT_ID]LANG????"
+  query_command: "LANG????"
   values:
     - "0"
     - "2"
@@ -796,6 +866,7 @@ auth:
   label: Standby LED State
   type: enum
   command: "Q[CLIENT_ID]PLED????"
+  query_command: "PLED????"
   values:
     - "0"
     - "2"
@@ -805,6 +876,7 @@ auth:
   label: Power Off Control Mode
   type: enum
   command: "Q[CLIENT_ID]PBTN????"
+  query_command: "PBTN????"
   values:
     - "0"
     - "1"
@@ -814,12 +886,14 @@ auth:
   label: Volume Range
   type: integer
   command: "Q[CLIENT_ID]MAVL????"
+  query_command: "MAVL????"
   range: [0, 100]
 
 - id: volume_control_mode
   label: Volume Control Mode
   type: enum
   command: "Q[CLIENT_ID]SVOL????"
+  query_command: "SVOL????"
   values:
     - "0"
     - "1"
@@ -831,12 +905,14 @@ auth:
   label: Volume Locked Level
   type: integer
   command: "Q[CLIENT_ID]VLFL????"
+  query_command: "VLFL????"
   range: [0, 100]
 
 - id: remote_key_state
   label: Remote Key State
   type: enum
   command: "Q[CLIENT_ID]RMOT????"
+  query_command: "RMOT????"
   values:
     - "0"
     - "1"
@@ -847,6 +923,7 @@ auth:
   label: Panel Key State
   type: enum
   command: "Q[CLIENT_ID]PANL????"
+  query_command: "PANL????"
   values:
     - "0"
     - "1"
@@ -856,6 +933,7 @@ auth:
   label: Menu Access State
   type: enum
   command: "Q[CLIENT_ID]MENU????"
+  query_command: "MENU????"
   values:
     - "0"
     - "1"
@@ -865,6 +943,7 @@ auth:
   label: AV Setting Menu State
   type: enum
   command: "Q[CLIENT_ID]AVMN????"
+  query_command: "AVMN????"
   values:
     - "0"
     - "1"
@@ -874,6 +953,7 @@ auth:
   label: OSD Mode State
   type: enum
   command: "Q[CLIENT_ID]OSD#????"
+  query_command: "OSD#????"
   values:
     - "0"
     - "1"
@@ -883,6 +963,7 @@ auth:
   label: Input Mode State
   type: enum
   command: "Q[CLIENT_ID]INPM????"
+  query_command: "INPM????"
   values:
     - "0"
     - "1"
@@ -894,12 +975,58 @@ auth:
   label: Power On Input Select State
   type: enum
   command: "Q[CLIENT_ID]POIS????"
+  query_command: "POIS????"
   values:
     - "0"
     - "1"
     - "2"
     - "3"
-  description: "0=LAST, 1=Air, 2=AV, 3=Component"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+    - "8"
+  description: "0=LAST, 1=Air, 2=AV, 3=Component, 4=VGA, 5=HDMI1, 6=HDMI2, 7=HDMI3, 8=HDMI4"
+
+- id: speaker_mode_state
+  label: TV Speaker Mode State
+  type: enum
+  command: "SPKM????"
+  query_command: "SPKM????"
+  values:
+    - "0"
+    - "1"
+  description: "0=SPEAKER, 1=OFF; UNRESOLVED: revision notes mention ARC query support, but the supplied query table does not state its return value"
+
+- id: b2b_mode_state
+  label: B2B Function Mode State
+  type: enum
+  command: "B2BM????"
+  query_command: "B2BM????"
+  values:
+    - "0"
+    - "1"
+  description: "0=ENABLE, 1=DISABLE"
+
+- id: usb_behavior_state
+  label: USB Behavior State
+  type: enum
+  command: "USBM????"
+  query_command: "USBM????"
+  values:
+    - "0"
+    - "1"
+  description: "0=Home, 1=B2B"
+
+- id: pixel_shifting_state
+  label: Pixel Shifting State
+  type: enum
+  command: "PSHF????"
+  query_command: "PSHF????"
+  values:
+    - "0"
+    - "1"
+  description: "0=Off, 1=On"
 ```
 
 ## Variables
@@ -929,9 +1056,8 @@ interlocks: []
 ## Notes
 Protocol uses fixed-length ASCII frames: `OPERATION(1) CLIENT_ID(3) COMMAND(4) DATA(4) CHECKSUM(1) CR(1)`. Operation is `S` for set, `Q` for query. Client ID is last 3 hex digits of Ethernet MAC address; `ALL` broadcasts to all TVs on chain. Checksum is 8-bit sum of all preceding bytes mod 256 (whole frame including checksum sums to zero). Acknowledgement format: `CLIENT_ID:ACK DATA CHECKSUM CR` where ACK is typically `OKAY`, `EROR`, or `WAIT`. Protocol is case sensitive. DB9 female chassis-mount connector (pin 2=RXD, 3=TXD, 5=GND). Custom Install menu must be enabled on TV (Quick Settings > enter 7310) before RS-232 port is active.
 
-<!-- UNRESOLVED: TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified -->
 <!-- UNRESOLVED: supported model series names not listed in source (Models section blank) -->
-<!-- UNRESOLVED: last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete -->
+<!-- UNRESOLVED: last page of source truncated; additional commands KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE are partially visible but parameters are incomplete -->
 
 ## Provenance
 
@@ -944,32 +1070,30 @@ source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/16/283bdaa7ef/Hisense-Serial-Commands-for-copy-paste_0.pdf
   - "https://www.hisense-b2b.com/Attachment/DownloadFile?downloadId=5"
 retrieved_at: 2026-05-04T21:56:29.087Z
-last_checked_at: 2026-06-02T22:08:05.016Z
+last_checked_at: 2026-10-07T13:51:06.692Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:05.016Z
-matched_actions: 45
-action_count: 45
+checked_at: 2026-10-07T13:51:06.692Z
+matched_actions: 80
+action_count: 80
 confidence: medium
-summary: "All 45 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 80 action units match literal source commands and serial parameters; BTTN codes are values of one parameterized command; coverage complete. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "TCP/IP transport expected (entity ID suffix _ip, user-stated protocol) but not documented in this source. Port number unknown."
 - "specific model variants / supported series names not listed (Models section empty in source)"
-- "TCP/IP expected per family metadata but no port stated in source; serial commands likely tunnel over TCP"
-- "TCP port not stated in source"
+- "TCP port is not documented; TCP transport is not documented"
+- "revision notes mention ARC query support, but the supplied query table does not state its return value\""
 - "No settable non-discrete parameters beyond those captured as Actions"
 - "no multi-step sequences documented in source"
-- "TCP/IP transport not documented in source; serial-only command set likely usable over TCP tunnel but port and framing unspecified"
 - "supported model series names not listed in source (Models section blank)"
-- "last page of source truncated; KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE commands partially visible but parameters incomplete"
+- "last page of source truncated; additional commands KYLK, POWV, HTTL, EPWR, DOXM, POWM, TIMR, ENRG, HCEC, DASE are partially visible but parameters are incomplete"
 - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 

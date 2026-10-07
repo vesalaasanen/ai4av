@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "DoorBird Video Door Station D21x"
     - "DoorBird Video Door Station D21RMA"
-  firmware: "\"000108\""
+  firmware: 000108
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-07-22T00:00:50.582Z
 last_checked_at: 2026-07-22T01:01:59.796Z
 generated_at: 2026-07-22T01:01:59.796Z
-firmware_coverage: "\"000108\""
+firmware_coverage: 000108
 protocol_coverage: []
 known_gaps:
   - "source covers the broader D21x family; D21RMA-specific deltas not separately documented."

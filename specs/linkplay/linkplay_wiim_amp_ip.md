@@ -11,7 +11,7 @@ compatible_with:
     - Linkplay
   models:
     - "WiiM Amp"
-  firmware: "\"Linkplay.4.6.425351\""
+  firmware: Linkplay.4.6.425351
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-05-21T11:05:56.159Z
 last_checked_at: 2026-06-09T12:54:22.745Z
 generated_at: 2026-06-09T12:54:22.745Z
-firmware_coverage: "\"Linkplay.4.6.425351\""
+firmware_coverage: Linkplay.4.6.425351
 protocol_coverage: []
 known_gaps:
   - "serial control not documented"

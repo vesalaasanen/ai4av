@@ -24,8 +24,8 @@ source_urls:
   - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
   - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
-last_checked_at: 2026-06-02T22:15:12.994Z
-generated_at: 2026-06-02T22:15:12.994Z
+last_checked_at: 2026-10-01T06:44:57.647Z
+generated_at: 2026-10-01T06:44:57.647Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -45,11 +45,11 @@ known_gaps:
   - "Specific voltage/current/power specifications for eNode hardware not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:12.994Z
-  matched_actions: 44
-  action_count: 44
+  checked_at: 2026-10-01T06:44:57.647Z
+  matched_actions: 49
+  action_count: 49
   confidence: medium
-  summary: "All 44 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 49 action units map to source commands, transport (port 23, UDP 4000/5000, optional login) is supported, and the source catalogue is essentially fully represented. (14 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -281,7 +281,10 @@ auth:
 - id: set_white
   label: Set White
   kind: action
-  params: []
+  params:
+    - name: white
+      type: integer
+      description: White intensity W
 
 - id: set_rgbw
   label: Set RGBW
@@ -414,26 +417,31 @@ auth:
   label: Color Feedback
   type: string
   description: HSB color data (Hue.Saturation.Brightness)
+  query_command: "COLOR=?"
 
 - id: value_feedback
   label: Value Feedback
   type: string
   description: RGB/RGBW color data
+  query_command: "VALUE=?"
 
 - id: preset_h_feedback
   label: Preset H Feedback
   type: string
   description: Preset HSL values query response
+  query_command: "PRESETH.X=?"
 
 - id: preset_feedback
   label: Preset Feedback
   type: string
   description: Preset RGB/RGBW values query response
+  query_command: "PRESET.X=?"
 
 - id: position_feedback
   label: Position Feedback
   type: integer
   description: Motor position query response (BRIC II only)
+  query_command: "POSITION=?"
 
 # NOTIFY Options (LED):
 - id: notify_color
@@ -559,18 +567,18 @@ source_urls:
   - https://www.convergingsystems.com/bin/doc/enode/enode_cutsheet_v6c.pdf
   - https://www.convergingsystems.com/inres_csiddk.php
 retrieved_at: 2026-04-29T19:09:44.516Z
-last_checked_at: 2026-06-02T22:15:12.994Z
+last_checked_at: 2026-10-01T06:44:57.647Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:12.994Z
-matched_actions: 44
-action_count: 44
+checked_at: 2026-10-01T06:44:57.647Z
+matched_actions: 49
+action_count: 49
 confidence: medium
-summary: "All 44 spec actions traced to source (dip-safe re-verify). (14 unresolved item(s) noted in Known Gaps.)"
+summary: "All 49 action units map to source commands, transport (port 23, UDP 4000/5000, optional login) is supported, and the source catalogue is essentially fully represented. (14 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -22,8 +22,8 @@ source_urls:
   - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
   - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
-last_checked_at: 2026-06-02T22:16:02.163Z
-generated_at: 2026-06-02T22:16:02.163Z
+last_checked_at: 2026-09-27T15:05:17.301Z
+generated_at: 2026-09-27T15:05:17.301Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,16 +31,14 @@ known_gaps:
   - "flow control not mentioned in source"
   - "no additional settable parameters found in source"
   - "no unsolicited notifications described in source"
-  - "no multi-step macros described in source"
-  - "no safety warnings or interlock procedures in source"
   - "response format for query commands not explicitly documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:02.163Z
+  checked_at: 2026-09-27T15:05:17.301Z
   matched_actions: 14
   action_count: 14
   confidence: medium
-  summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 14 RS-232 requests match; physical remote-key procedures are separately scoped and not invented as serial commands. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -65,7 +63,7 @@ serial:
   stop_bits: 1
   flow_control: null  # UNRESOLVED: flow control not mentioned in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -80,44 +78,51 @@ auth:
 - id: volume_set
   label: Set Volume
   kind: action
+  command: "#VO{level}$"
   params:
     - name: level
-      type: integer
-      description: Volume level 00-99
-      range: 0-99
+      type: string
+      description: "Exactly two decimal ASCII digits, zero-padded, 00 through 99 (for example 05)."
+      pattern: "^[0-9]{2}$"
 
 - id: volume_up
   label: Volume Up
   kind: action
+  command: "#VO+$"
   params: []
 
 - id: volume_down
   label: Volume Down
   kind: action
+  command: "#VO-$"
   params: []
 
 - id: volume_query
   label: Query Volume
   kind: action
+  command: "#VO?$"
   params: []
 
 - id: preset_activate
   label: Activate Preset
   kind: action
+  command: "#PS{preset}$"
   params:
     - name: preset
       type: integer
       description: Preset number 1-6
-      range: 1-6
+      range: [1, 6]
 
 - id: preset_query
   label: Query Preset
   kind: action
+  command: "#PS?$"
   params: []
 
 - id: logo_light_set
   label: Set Logo Light
   kind: action
+  command: "#LT{state}$"
   params:
     - name: state
       type: integer
@@ -129,11 +134,13 @@ auth:
 - id: logo_light_query
   label: Query Logo Light
   kind: action
+  command: "#LT?$"
   params: []
 
 - id: night_mode_set
   label: Set Night Mode
   kind: action
+  command: "#NM{state}$"
   params:
     - name: state
       type: integer
@@ -145,11 +152,13 @@ auth:
 - id: night_mode_query
   label: Query Night Mode
   kind: action
+  command: "#NM?$"
   params: []
 
 - id: mute_set
   label: Set Mute
   kind: action
+  command: "#MU{state}$"
   params:
     - name: state
       type: integer
@@ -161,11 +170,13 @@ auth:
 - id: mute_query
   label: Query Mute
   kind: action
+  command: "#MU?$"
   params: []
 
 - id: power_set
   label: Set Power
   kind: action
+  command: "#JU{state}$"
   params:
     - name: state
       type: integer
@@ -177,6 +188,7 @@ auth:
 - id: power_query
   label: Query Power
   kind: action
+  command: "#JU?$"
   params: []
 ```
 
@@ -234,17 +246,18 @@ auth:
 
 ## Macros
 ```yaml
-# UNRESOLVED: no multi-step macros described in source
+# No RS-232 macro sequence is documented. Appendix B describes physical remote-key sequences, not serial wire commands.
 ```
 
 ## Safety
 ```yaml
 confirmation_required_for: []
 interlocks: []
-# UNRESOLVED: no safety warnings or interlock procedures in source
+# No RS-232 command interlocks are documented. Appendix B warns to connect the microphone before remote Self-EQ; that physical remote procedure is outside this serial command set.
 ```
 
 ## Notes
+This spec covers Appendix A RS-232 commands. Appendix B physical remote sequences (Self-EQ, restore defaults, video mode, serial-number display, saved-volume reset and test display) are not documented as serial wire commands and are not translated into invented RS-232 Actions.
 Command format: `#` header, 3-4 ASCII chars command + params, `$` terminator. All commands case-sensitive, CAPS ONLY.
 <!-- UNRESOLVED: response format for query commands not explicitly documented -->
 
@@ -258,18 +271,18 @@ source_urls:
   - https://velodyneacoustics.com/pdf/digitaldrive/DDManual.pdf
   - https://applicationmarket.crestron.com/velodyne-digital-drive-north-america/
 retrieved_at: 2026-04-29T20:06:51.898Z
-last_checked_at: 2026-06-02T22:16:02.163Z
+last_checked_at: 2026-09-27T15:05:17.301Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:02.163Z
+checked_at: 2026-09-27T15:05:17.301Z
 matched_actions: 14
 action_count: 14
 confidence: medium
-summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 14 RS-232 requests match; physical remote-key procedures are separately scoped and not invented as serial commands. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -279,8 +292,6 @@ summary: "All 14 spec actions traced to source (dip-safe re-verify). (7 unresolv
 - "flow control not mentioned in source"
 - "no additional settable parameters found in source"
 - "no unsolicited notifications described in source"
-- "no multi-step macros described in source"
-- "no safety warnings or interlock procedures in source"
 - "response format for query commands not explicitly documented"
 ```
 

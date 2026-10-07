@@ -20,21 +20,23 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-06-02T22:13:37.925Z
-generated_at: 2026-06-02T22:13:37.925Z
+last_checked_at: 2026-09-30T00:10:14.314Z
+generated_at: 2026-09-30T00:10:14.314Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source is specifically the RSX-1057 (member of Rotel's \"RSX-1 Series\" family). Apply to other RSX-1 family members only after verifying the same device ID `0xC7` and same Type/Key opcodes against each variant's own protocol document."
+  - "authentication requirements are not stated in the source."
+  - "authentication not stated in source"
   - "no safety warnings, interlock procedures, or power-on sequencing"
   - "checksum algorithm not stated in source -->` and a controller must either (a) capture and replay a real device's response to a known command to learn the algorithm, or (b) try both sum and XOR candidates. **Do not** publish controllers that hard-code a guessed algorithm."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:37.925Z
+  checked_at: 2026-09-30T00:10:14.314Z
   matched_actions: 159
   action_count: 159
   confidence: medium
-  summary: "All 159 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 159 wire-literal action units match the RSX-1057 catalogue, including two parameterized volume commands; serial settings are supported. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -48,6 +50,8 @@ RS-232 HEX control protocol for the Rotel RSX-1057 surround-sound receiver. The 
 
 <!-- UNRESOLVED: source is specifically the RSX-1057 (member of Rotel's "RSX-1 Series" family). Apply to other RSX-1 family members only after verifying the same device ID `0xC7` and same Type/Key opcodes against each variant's own protocol document. -->
 
+<!-- UNRESOLVED: authentication requirements are not stated in the source. -->
+
 ## Transport
 ```yaml
 protocols:
@@ -59,7 +63,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # UNRESOLVED: authentication not stated in source
 ```
 
 ## Traits
@@ -1161,6 +1165,8 @@ interlocks: []
 
 **Family scope.** The source is the RSX-1057 protocol document (member of Rotel's "RSX-1 Series" family). Treat the `0xC7` Device ID and the opcodes listed here as RSX-1057-specific until a sibling model (e.g. RSX-1056, RSX-1058) is verified against its own document.
 
+**Authentication.** The source does not describe any authentication procedure for the RS-232 link; treat this as an unknown rather than "none" until a vendor document confirms absence of authentication.
+
 ## Provenance
 
 ```yaml
@@ -1169,24 +1175,26 @@ source_domains:
 source_urls:
   - "https://www.rotel.com/sites/default/files/product/rs232/RSX1057%20Protocol.pdf"
 retrieved_at: 2026-04-30T04:32:00.561Z
-last_checked_at: 2026-06-02T22:13:37.925Z
+last_checked_at: 2026-09-30T00:10:14.314Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:37.925Z
+checked_at: 2026-09-30T00:10:14.314Z
 matched_actions: 159
 action_count: 159
 confidence: medium
-summary: "All 159 spec actions traced to source (dip-safe re-verify). (3 unresolved item(s) noted in Known Gaps.)"
+summary: "All 159 wire-literal action units match the RSX-1057 catalogue, including two parameterized volume commands; serial settings are supported. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "source is specifically the RSX-1057 (member of Rotel's \"RSX-1 Series\" family). Apply to other RSX-1 family members only after verifying the same device ID `0xC7` and same Type/Key opcodes against each variant's own protocol document."
+- "authentication requirements are not stated in the source."
+- "authentication not stated in source"
 - "no safety warnings, interlock procedures, or power-on sequencing"
 - "checksum algorithm not stated in source -->` and a controller must either (a) capture and replay a real device's response to a known command to learn the algorithm, or (b) try both sum and XOR candidates. **Do not** publish controllers that hard-code a guessed algorithm."
 ```

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-06-02T06:13:57.229Z
-last_checked_at: 2026-06-02T22:14:47.577Z
-generated_at: 2026-06-02T22:14:47.577Z
+last_checked_at: 2026-10-01T06:57:17.019Z
+generated_at: 2026-10-01T06:57:17.019Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model 6300554 specific feature set, firmware compat range, max bus length, max node count per bus."
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:47.577Z
+  checked_at: 2026-10-01T06:57:17.019Z
   matched_actions: 20
   action_count: 20
   confidence: medium
-  summary: "All 20 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 20 spec action opcodes and parameter shapes match the SDN source verbatim; transport values all source-supported. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -61,11 +61,11 @@ serial:
   data_bits: 8
   parity: odd
   stop_bits: 1
-  flow_control: none
+  flow_control: UNRESOLVED  # source does not state this (was none)
   electrical: rs485  # UNRESOLVED: source says "RS485" but never states the exact electrical spec
   bit_inversion: true  # source: "all data bits need to be inverted before transmission"
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -374,18 +374,18 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-06-02T06:13:57.229Z
-last_checked_at: 2026-06-02T22:14:47.577Z
+last_checked_at: 2026-10-01T06:57:17.019Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:47.577Z
+checked_at: 2026-10-01T06:57:17.019Z
 matched_actions: 20
 action_count: 20
 confidence: medium
-summary: "All 20 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 20 spec action opcodes and parameter shapes match the SDN source verbatim; transport values all source-supported. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

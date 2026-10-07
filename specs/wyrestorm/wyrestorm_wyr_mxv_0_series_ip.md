@@ -20,9 +20,9 @@ compatible_with:
   required_options: []
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:22.860Z
-last_checked_at: 2026-06-02T22:16:22.860Z
-generated_at: 2026-06-02T22:16:22.860Z
+retrieved_at: 2026-10-01T13:34:40.631Z
+last_checked_at: 2026-10-01T13:34:40.631Z
+generated_at: 2026-10-01T13:34:40.631Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "model-specific source not located"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:22.860Z
+  checked_at: 2026-10-01T13:34:40.631Z
   matched_actions: 29
   action_count: 29
   confidence: medium
-  summary: "All 29 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 29 spec actions match source literals verbatim; transport (port 23, 57600 baud, 8N1) verified; no extra source commands beyond spec. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -68,7 +68,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state this (was inferred none: no auth procedure in source)
 ```
 
 ## Traits
@@ -699,19 +699,19 @@ interlocks: []
 ```yaml
 source_domains: []
 source_urls: []
-retrieved_at: 2026-06-02T22:16:22.860Z
-last_checked_at: 2026-06-02T22:16:22.860Z
+retrieved_at: 2026-10-01T13:34:40.631Z
+last_checked_at: 2026-10-01T13:34:40.631Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:22.860Z
+checked_at: 2026-10-01T13:34:40.631Z
 matched_actions: 29
 action_count: 29
 confidence: medium
-summary: "All 29 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 29 spec actions match source literals verbatim; transport (port 23, 57600 baud, 8N1) verified; no extra source commands beyond spec. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

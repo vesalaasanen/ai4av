@@ -22,24 +22,23 @@ source_urls:
   - https://intercom.help/cuez/en/articles/10320001-how-can-i-use-the-automator-api
   - https://documenter.getpostman.com/view/9730337/2s9YeA8tGV
 retrieved_at: 2026-04-30T02:09:11.445Z
-last_checked_at: 2026-06-02T22:15:46.015Z
-generated_at: 2026-06-02T22:15:46.015Z
+last_checked_at: 2026-09-27T15:00:10.060Z
+generated_at: 2026-09-27T15:00:10.060Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "UDP/OSC not supported; only HTTP REST endpoints documented"
+  - "UDP/OSC support not documented; only HTTP REST endpoints listed"
   - "no settable variables documented"
   - "no unsolicited event notifications documented"
-  - "port number 7070 assumed from base_url; no explicit TCP port statement"
   - "CuezDeck button IDs not enumerated in source"
   - "macro ID format not specified in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:46.015Z
+  checked_at: 2026-09-27T15:00:10.060Z
   matched_actions: 13
   action_count: 13
   confidence: medium
-  summary: "All 13 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 13 listed GET forms map exactly; authentication and remote-host availability remain explicitly unknown. (5 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,7 +50,7 @@ created_at: 2026-04-27
 ## Summary
 REST API control interface for TinkerList Cuez Automator show-control software. All endpoints are HTTP GET. Base URL `http://localhost:7070`. No authentication described. Controls rundown triggers, step buttons, CuezDeck buttons, and macros.
 
-<!-- UNRESOLVED: UDP/OSC not supported; only HTTP REST endpoints documented -->
+<!-- UNRESOLVED: UDP/OSC support not documented; only HTTP REST endpoints listed -->
 
 ## Transport
 ```yaml
@@ -61,7 +60,7 @@ addressing:
   base_url: http://localhost:7070
   port: 7070  # stated in source
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # Authentication requirements are not stated in the source
 ```
 
 ## Traits
@@ -75,36 +74,57 @@ auth:
 - id: trigger_next
   label: Trigger Next
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/next
   params: []
 
 - id: trigger_next_trigger
   label: Trigger Next Trigger
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/nextTrigger
   params: []
 
 - id: trigger_previous
   label: Trigger Previous
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/previous
   params: []
 
 - id: trigger_previous_trigger
   label: Trigger Previous Trigger
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/previousTrigger
   params: []
 
 - id: trigger_step_0
   label: Re-trigger Current Element
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/step/0
   params: []
 
 - id: trigger_first_trigger
   label: Trigger First Element
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/firstTrigger
   params: []
 
 - id: trigger_step_index
   label: Trigger Step by Index
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/step/{index}
   params:
     - name: index
       type: integer
@@ -113,11 +133,17 @@ auth:
 - id: list_buttons
   label: List CuezDeck Buttons
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/button/
   params: []
 
 - id: trigger_button
   label: Trigger CuezDeck Button
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/button/{buttonID}
   params:
     - name: buttonID
       type: string
@@ -126,6 +152,9 @@ auth:
 - id: button_on
   label: Switch Button On
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/button/{buttonID}/on
   params:
     - name: buttonID
       type: string
@@ -134,6 +163,9 @@ auth:
 - id: button_off
   label: Switch Button Off
   kind: action
+  http:
+    method: GET
+    path: /api/trigger/button/{buttonID}/off
   params:
     - name: buttonID
       type: string
@@ -142,11 +174,17 @@ auth:
 - id: list_macros
   label: List Macros
   kind: action
+  http:
+    method: GET
+    path: /api/macro/
   params: []
 
 - id: trigger_macro
   label: Trigger Macro
   kind: action
+  http:
+    method: GET
+    path: /api/macro/{macroID}
   params:
     - name: macroID
       type: string
@@ -190,8 +228,8 @@ interlocks: []
 ```
 
 ## Notes
-Automator API operates exclusively on localhost. Minimum stable build: `2024.10.28-0`. All endpoints use HTTP GET with no payload. No authentication or encryption documented.
-<!-- UNRESOLVED: port number 7070 assumed from base_url; no explicit TCP port statement -->
+The source gives the base URL `http://localhost:7070`; whether remote hosts can connect is not documented. Minimum stable build: `2024.10.28-0` or newer. All listed endpoints use HTTP GET. Authentication requirements and request payloads are not documented.
+<!-- Port 7070 is explicit in the documented base URL. -->
 <!-- UNRESOLVED: CuezDeck button IDs not enumerated in source -->
 <!-- UNRESOLVED: macro ID format not specified in source -->
 
@@ -205,27 +243,26 @@ source_urls:
   - https://intercom.help/cuez/en/articles/10320001-how-can-i-use-the-automator-api
   - https://documenter.getpostman.com/view/9730337/2s9YeA8tGV
 retrieved_at: 2026-04-30T02:09:11.445Z
-last_checked_at: 2026-06-02T22:15:46.015Z
+last_checked_at: 2026-09-27T15:00:10.060Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:46.015Z
+checked_at: 2026-09-27T15:00:10.060Z
 matched_actions: 13
 action_count: 13
 confidence: medium
-summary: "All 13 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 13 listed GET forms map exactly; authentication and remote-host availability remain explicitly unknown. (5 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "UDP/OSC not supported; only HTTP REST endpoints documented"
+- "UDP/OSC support not documented; only HTTP REST endpoints listed"
 - "no settable variables documented"
 - "no unsolicited event notifications documented"
-- "port number 7070 assumed from base_url; no explicit TCP port statement"
 - "CuezDeck button IDs not enumerated in source"
 - "macro ID format not specified in source"
 ```

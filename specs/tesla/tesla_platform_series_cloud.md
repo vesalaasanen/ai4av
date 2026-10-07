@@ -19,9 +19,9 @@ source_domains:
   - developer.tesla.com
 source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
-retrieved_at: 2026-06-02T22:15:42.897Z
-last_checked_at: 2026-06-02T22:15:42.897Z
-generated_at: 2026-06-02T22:15:42.897Z
+retrieved_at: 2026-10-07T10:36:07.072Z
+last_checked_at: 2026-10-07T10:36:07.072Z
+generated_at: 2026-10-07T10:36:07.072Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -36,11 +36,11 @@ known_gaps:
   - "response schema, error codes, rate limits not in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:42.897Z
+  checked_at: 2026-10-07T10:36:07.072Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 66 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 66 spec actions match the 66 distinct source command endpoints one-to-one; Transport values are all UNRESOLVED, so there is nothing to contradict. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -50,16 +50,16 @@ created_at: 2026-04-22
 # Tesla Platform Series Control Spec
 
 ## Summary
-REST API for Tesla Fleet API vehicle commands. Vehicle Command Proxy exposes endpoints for direct interaction with a vehicle. Requires virtual key installation for command acceptance. Uses HTTPS, base path `/api/1/vehicles/{vin}/command/`.
+REST API for Tesla Fleet API vehicle commands. Vehicle Command Proxy exposes endpoints for direct interaction with a vehicle. Requires virtual key installation for command acceptance. Uses base path `/api/1/vehicles/{vin}/command/`.
 
 <!-- UNRESOLVED: auth mechanism (virtual key signing) not documented in source -->
 
 ## Transport
 ```yaml
 protocols:
-  - http
+  - UNRESOLVED
 addressing:
-  base_url: https://owner-api.tesla.com/api/1/vehicles/{vin}/command  # inferred from endpoint patterns
+  base_url: UNRESOLVED  # Source documents relative paths but does not specify an API host or scheme.
 auth:
   type: unknown  # UNRESOLVED: virtual key auth described but credential format not stated
 ```
@@ -277,12 +277,18 @@ auth:
 - id: remove_charge_schedule
   label: Remove Charge Schedule
   kind: action
-  params: []
+  params:
+    - name: UNRESOLVED
+      type: unknown
+      description: Schedule ID; source does not specify the payload field name or type
 
 - id: remove_precondition_schedule
   label: Remove Precondition Schedule
   kind: action
-  params: []
+  params:
+    - name: UNRESOLVED
+      type: unknown
+      description: Schedule ID; source does not specify the payload field name or type
 
 - id: reset_pin_to_drive_pin
   label: Reset PIN to Drive
@@ -365,7 +371,13 @@ auth:
 - id: set_scheduled_departure
   label: Set Scheduled Departure
   kind: action
-  params: []
+  params:
+    - name: departure_time
+      type: integer
+      description: Minutes after midnight
+    - name: end_off_peak_time
+      type: integer
+      description: Minutes after midnight
 
 - id: set_sentry_mode
   label: Set Sentry Mode
@@ -380,7 +392,10 @@ auth:
 - id: set_valet_mode
   label: Set Valet Mode
   kind: action
-  params: []
+  params:
+    - name: UNRESOLVED
+      type: unknown
+      description: Four-digit passcode; source does not specify the payload field name or type
 
 - id: set_vehicle_name
   label: Set Vehicle Name
@@ -390,7 +405,10 @@ auth:
 - id: speed_limit_activate
   label: Activate Speed Limit Mode
   kind: action
-  params: []
+  params:
+    - name: UNRESOLVED
+      type: unknown
+      description: Four-digit PIN; source does not specify the payload field name or type
 
 - id: speed_limit_clear_pin
   label: Clear Speed Limit PIN
@@ -440,6 +458,12 @@ auth:
     - name: command
       type: string
       description: "vent or close"
+    - name: lat
+      type: number
+      description: User latitude required when closing unless the vehicle is an M3 platform vehicle
+    - name: lon
+      type: number
+      description: User longitude required when closing unless the vehicle is an M3 platform vehicle
 ```
 
 ## Feedbacks
@@ -484,19 +508,19 @@ source_domains:
   - developer.tesla.com
 source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
-retrieved_at: 2026-06-02T22:15:42.897Z
-last_checked_at: 2026-06-02T22:15:42.897Z
+retrieved_at: 2026-10-07T10:36:07.072Z
+last_checked_at: 2026-10-07T10:36:07.072Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:42.897Z
+checked_at: 2026-10-07T10:36:07.072Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 66 spec actions traced to source (dip-safe re-verify). (9 unresolved item(s) noted in Known Gaps.)"
+summary: "All 66 spec actions match the 66 distinct source command endpoints one-to-one; Transport values are all UNRESOLVED, so there is nothing to contradict. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

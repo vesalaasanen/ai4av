@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://rachio.readme.io/reference
 retrieved_at: 2026-04-30T04:32:52.163Z
-last_checked_at: 2026-06-02T22:13:25.486Z
-generated_at: 2026-06-02T22:13:25.486Z
+last_checked_at: 2026-10-07T10:30:38.296Z
+generated_at: 2026-10-07T10:30:38.296Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "request/response body schemas not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:25.486Z
+  checked_at: 2026-10-07T10:30:38.296Z
   matched_actions: 88
   action_count: 88
   confidence: medium
-  summary: "All 88 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 88 action units map one-to-one to documented Rachio endpoints; the base URL and bearer auth are stated verbatim; no in-scope source endpoints are unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -252,35 +252,60 @@ auth:
 - id: delete_program
   label: Delete Program
   kind: action
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_device
   label: Get Device
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_device_current_schedule
   label: Get Device Current Schedule
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_device_events
   label: Get Device Events
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
+    - name: startTime
+      in: query
+      format: ISO 8601
+    - name: endTime
+      in: query
+      format: ISO 8601
 - id: get_device_forecast
   label: Get Device Forecast
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
+    - name: units
+      in: query
+      enum: [metric, imperial]
 - id: get_zone
   label: Get Zone
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_schedulerule
   label: Get Schedule Rule
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_flexschedulerule
   label: Get Flex Schedule Rule
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_webhook_event_types
   label: Get Webhook Event Types
   kind: query
@@ -288,11 +313,15 @@ auth:
 - id: get_notification_webhooks
   label: Get Notification Webhooks For Device
   kind: query
-  params: []
+  params:
+    - name: deviceId
+      in: path
 - id: get_notification_webhook
   label: Get Notification Webhook
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: create_notification_webhook
   label: Create Notification Webhook
   kind: action
@@ -304,7 +333,9 @@ auth:
 - id: delete_notification_webhook
   label: Delete Notification Webhook
   kind: action
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_person_info
   label: Get Person Info
   kind: query
@@ -312,15 +343,21 @@ auth:
 - id: get_person
   label: Get Person
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_property
   label: Get Property
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_properties
   label: List Properties
   kind: query
-  params: []
+  params:
+    - name: userId
+      in: path
 - id: find_property_by_entity
   label: Find Property By Entity
   kind: query
@@ -328,31 +365,45 @@ auth:
 - id: get_base_station
   label: Get Base Station
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_valve
   label: Get Valve
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_base_stations
   label: List Base Stations
   kind: query
-  params: []
+  params:
+    - name: userId
+      in: path
 - id: list_valves
   label: List Valves
   kind: query
-  params: []
+  params:
+    - name: baseStationId
+      in: path
 - id: get_program
   label: Get Program
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_programs
   label: List Programs
   kind: query
-  params: []
+  params:
+    - name: entityId
+      in: path
 - id: get_program_v2
   label: Get Program V2
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_programs_v2
   label: List Programs V2
   kind: query
@@ -380,19 +431,27 @@ auth:
 - id: list_lighting_areas
   label: List Lighting Areas
   kind: query
-  params: []
+  params:
+    - name: user_id
+      in: path
 - id: get_lighting_area
   label: Get Lighting Area
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_lighting_controllers
   label: List Lighting Controllers
   kind: query
-  params: []
+  params:
+    - name: lighting_area_id
+      in: path
 - id: get_lighting_controller
   label: Get Lighting Controller
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_lighting_zones
   label: List Lighting Zones
   kind: query
@@ -400,23 +459,33 @@ auth:
 - id: get_lighting_zone
   label: Get Lighting Zone
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_lighting_zone_groups
   label: List Lighting Zone Groups
   kind: query
-  params: []
+  params:
+    - name: lighting_area_id
+      in: path
 - id: get_lighting_zone_group
   label: Get Lighting Zone Group
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_lighting_scenes
   label: List Lighting Scenes
   kind: query
-  params: []
+  params:
+    - name: lighting_area_id
+      in: path
 - id: get_lighting_scene
   label: Get Lighting Scene
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_lighting_programs
   label: List Lighting Programs
   kind: query
@@ -424,11 +493,15 @@ auth:
 - id: get_lighting_program
   label: Get Lighting Program
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: get_webhook
   label: Get Webhook
   kind: query
-  params: []
+  params:
+    - name: id
+      in: path
 - id: list_webhooks
   label: List Webhooks
   kind: query
@@ -484,18 +557,18 @@ source_domains:
 source_urls:
   - https://rachio.readme.io/reference
 retrieved_at: 2026-04-30T04:32:52.163Z
-last_checked_at: 2026-06-02T22:13:25.486Z
+last_checked_at: 2026-10-07T10:30:38.296Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:25.486Z
+checked_at: 2026-10-07T10:30:38.296Z
 matched_actions: 88
 action_count: 88
 confidence: medium
-summary: "All 88 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 88 action units map one-to-one to documented Rachio endpoints; the base URL and bearer auth are stated verbatim; no in-scope source endpoints are unrepresented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

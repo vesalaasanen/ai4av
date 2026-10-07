@@ -11,7 +11,7 @@ compatible_with:
     - Theatrixx
   models:
     - "AQL RS1"
-  firmware: "\""
+  firmware: ""
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-06-30T05:35:27.810Z
 last_checked_at: 2026-06-30T07:14:27.811Z
 generated_at: 2026-06-30T07:14:27.811Z
-firmware_coverage: "\""
+firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "HTTP TCP port not numerically stated (only `http://<ipaddress>/...` given). Device input/output counts vary by configuration; ranges quoted from source."

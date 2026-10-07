@@ -1,7 +1,7 @@
 ---
 spec_id: admin/somfy-sdn-series
 schema_version: ai4av-public-spec-v1
-revision: 1
+revision: 2
 title: "Somfy SDN Series Control Spec"
 manufacturer: Somfy
 model_family: "Ø30 DC Serie RS485"
@@ -25,14 +25,14 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-06-02T06:13:23.596Z
-last_checked_at: 2026-06-02T22:14:49.105Z
-generated_at: 2026-06-02T22:14:49.105Z
+last_checked_at: 2026-10-01T07:59:14.394Z
+generated_at: 2026-10-01T07:59:14.394Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "physical wiring polarity, terminator resistance, and electrical specs not stated in refined source"
   - "firmware version compatibility ranges not stated"
-  - "flow control not stated explicitly in source"
+  - "numeric codes for these named errors not stated in source."
   - "settable parameters are exposed through SET_* actions; no separate variable model in source"
   - "source documents one unsolicited behavior - some devices can send their address when a local pushbutton is pressed (POST_NODE_ADDR) - but no general event model is defined"
   - "no multi-step macros described in source"
@@ -42,23 +42,24 @@ known_gaps:
   - "CTRL_MOVE message referenced in motor status Cause 32h (Timeout exceeded \"when using CTRL_MOVE\") is not documented in the refined source — opcode not given"
   - "CTRL_NETWORK_LOCK referenced in lock section as an additional control message but not documented in the refined source"
   - "WINK behaviour (Cause 02h in POST_MOTOR_STATUS) suggests a Wink control command exists but it is not documented in the refined source"
+  - "numeric error codes for named NACK errors (DATA_ERROR, LOW_PRIORITY, NODE_IS_LOCKED, IP_NOT_SET) not stated in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:49.105Z
+  checked_at: 2026-10-01T07:59:14.394Z
   matched_actions: 18
   action_count: 18
   confidence: medium
-  summary: "All 18 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 18 Actions map to documented MASTER messages in §6; transport values (4800 baud, 8 data bits, odd parity) are stated verbatim in §4.1. (13 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
-created_at: 2026-06-02
+created_at: 2026-09-26
 ---
 
 # Somfy SDN Series Control Spec
 
 ## Summary
-Somfy Digital Network (SDN) is a half-duplex RS485 binary protocol for controlling Somfy motorized window-covering products (shades, blinds, drapery). A MASTER controller sends commands to one SLAVE, a group, or broadcast. Devices are addressed by 3-byte NodeID and 4-bit NodeType. This spec covers the MASTER-side message set documented in the SDN protocol manual.
+Somfy Digital Network (SDN) is a half-duplex RS485 binary protocol implemented in all Somfy RS485 products (motorized window coverings: shades, blinds, drapery). A MASTER controller sends commands to one SLAVE, a group, or broadcast. Devices are addressed by 3-byte NodeID and 4-bit NodeType. This spec covers the MASTER-side message set documented in the SDN protocol manual (target audience: system integrators/developers; prerequisite: devices already installed with Up/Down limits and rotation direction set).
 
 <!-- UNRESOLVED: physical wiring polarity, terminator resistance, and electrical specs not stated in refined source -->
 <!-- UNRESOLVED: firmware version compatibility ranges not stated -->
@@ -71,10 +72,12 @@ serial:
   baud_rate: 4800
   data_bits: 8
   parity: odd
-  stop_bits: 1
-  flow_control: none  # UNRESOLVED: flow control not stated explicitly in source
+  stop_bits: UNRESOLVED  # source states stop bit's logical level but not its count
+  flow_control: UNRESOLVED  # flow control not stated in source
+  # Additional source-stated line characteristics (no schema key): start bit = logical 0,
+  # stop bit = logical 1, character coding NRZ, least significant bit sent first.
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not establish authentication requirements; no login procedure documented
 ```
 
 ## Traits
@@ -89,6 +92,7 @@ auth:
   label: Get Node Address
   kind: query
   command: "40"   # MSG=40h GET_NODE_ADDR; DATA length 0
+  # Warning from source: when many devices are on the bus, no guarantee replies from all devices will be received.
   params: []
 
 - id: set_group_addr
@@ -125,7 +129,7 @@ auth:
   params:
     - name: label
       type: string
-      description: 16-char ASCII label (pad with spaces if shorter)
+      description: 16-char ASCII label (pad with spaces if shorter); identification only, no effect on product behavior or bus communication
 
 - id: get_node_label
   label: Get Node Label
@@ -140,13 +144,16 @@ auth:
   params:
     - name: function
       type: integer
-      description: 00h=Enable/Unlock, 01h=Disable/Lock
+      description: 00h=Enable/Unlock, 01h=Disable/Lock; others invalid, returns NACK (DATA_ERROR)
     - name: ui_index
       type: integer
-      description: 00h=All, 01h=DCT, 02h=Local stimuli, 03h=Local Radio, 04h=Touch Motion, 05h=LEDs
+      description: 00h=All, 01h=DCT, 02h=Local stimuli, 03h=Local Radio, 04h=Touch Motion, 05h=LEDs; others invalid, returns NACK (DATA_ERROR)
     - name: priority
       type: integer
-      description: Priority 00h-FFh (higher = more privileged)
+      description: Priority 00h-FFh (higher = more privileged). UI_Index=00h requires priority >= highest of all lock levels; other UI_Index values require priority >= that item's lock level, otherwise NACK (LOW_PRIORITY)
+  # Source remarks: disabled item ignores/switches off all related actions/feedback until re-enabled.
+  # Power-failure persistence: DCT / Local Stimuli NOT saved, not restored after power-up; all other items always saved and restored.
+  # Factory default: all UI enabled.
 
 - id: get_local_ui
   label: Get Local UI Status
@@ -164,13 +171,15 @@ auth:
   params:
     - name: function
       type: integer
-      description: 00h=Delete, 01h=Set IP at current pos, 03h=Set IP at specified %, 04h=Divide full range
+      description: 00h=Delete (NACK IP_NOT_SET if IP doesn't exist), 01h=Set IP at current pos, 03h=Set IP at specified %, 04h=Divide full range
     - name: ip_index
       type: integer
       description: Intermediate position index (1-16); ignored when function=04h
     - name: value
       type: integer
-      description: 16-bit value (position % when function=03h; IP count when function=04h)
+      description: 16-bit value 0000h+ (position % when function=03h; IP count when function=04h)
+  # Source remarks: setting an IP outside the limits range is not allowed.
+  # Function 04h sets the first 'x' IPs equally separated from top to bottom (2 IPs => 33%/66%; 3 IPs => 25%/50%/75%); existing IPs are overwritten.
 
 - id: get_motor_ip
   label: Get Intermediate Position
@@ -185,6 +194,7 @@ auth:
   label: Set Motor Rolling Speed
   kind: action
   command: "13"   # MSG=13h SET_MOTOR_ROLLING_SPEED; DATA length 3 (UP_Speed[8], DOWN_Speed[8], Slow_Speed[8])
+  # Source remark: speed adjustment is only available on DC motors. Default speed and speed range differ per motor; see device technical datasheet.
   params:
     - name: up_speed
       type: integer
@@ -209,10 +219,14 @@ auth:
   params:
     - name: function
       type: integer
-      description: 00h=Unlock, 01h=Lock at current position, 03h=Save lock on power cycle, 04h=Do not save lock
+      description: 00h=Unlock, 01h=Lock at current position, 03h=Save lock on power cycle, 04h=Do not save lock on power cycle; others invalid, returns NACK (DATA_ERROR)
     - name: priority
       type: integer
       description: Priority 00h-FFh (higher = more privileged); ignored for save/no-save functions
+  # Source remarks: lock may be re-set or removed by another SET_NETWORK_LOCK or CTRL_NETWORK_LOCK with equal or higher priority.
+  # Function 03h: highest NETWORK_LOCK (if any) saved at power off and restored at power on.
+  # Function 04h: lock not saved; after power-on no lock restored, CTRL_XXX always enabled. Factory default = Do Not Save.
+  # Source_Addr is only saved when function 01h (Lock) is received.
 
 - id: get_network_lock
   label: Get Network Lock Status
@@ -227,7 +241,7 @@ auth:
   params:
     - name: function
       type: integer
-      description: 00h=DOWN limit, 01h=UP limit, 02h=Intermediate Position, 04h=Position in % of full travel
+      description: 00h=DOWN limit, 01h=UP limit, 02h=Intermediate Position, 04h=Position in % of full travel; others invalid
     - name: position
       type: integer
       description: 16-bit value; IP index (0-15) when function=02h, percentage (0-100) when function=04h; ignored otherwise
@@ -236,6 +250,7 @@ auth:
   label: Stop
   kind: action
   command: "02"   # MSG=02h CTRL_STOP; DATA length 1 (Reserved[8])
+  # Source remark: motor is stopped immediately, without speed ramp-down.
   params: []
 
 - id: get_motor_position
@@ -278,7 +293,7 @@ auth:
   fields:
     - name: app_reference
       type: string
-      description: 24-bit firmware part number
+      description: 24-bit firmware part number (e.g. 5063486A02 coded as 4Dh 43h 3Eh)
     - name: app_index_letter
       type: string
       description: 8-bit ASCII firmware major revision (41h-5Ah)
@@ -306,13 +321,13 @@ auth:
     - name: status
       type: enum
       values: [enabled, locked]
-      description: 00h=Enabled/Unlocked, 01h=Disabled/Locked
+      description: 00h=Enabled/Unlocked, 01h=Disabled/Locked; others ignored
     - name: source_addr
       type: string
-      description: 24-bit NodeID of device that sent the lock command
+      description: 24-bit NodeID of device that sent the lock command (reset to 000000h when unlocked)
     - name: priority
       type: integer
-      description: Lock priority (00h-FFh)
+      description: Lock priority (00h-FFh; reset to 00h when unlocked)
 
 - id: post_motor_ip
   label: Post Intermediate Position
@@ -352,17 +367,17 @@ auth:
     - name: status
       type: enum
       values: [unlocked, locked]
-      description: 00h=Unlocked, 01h=Locked
+      description: 00h=Unlocked, 01h=Locked; others ignored
     - name: source_addr
       type: string
-      description: 24-bit NodeID of device that sent the lock command
+      description: 24-bit NodeID of device that sent the lock command (reset to 000000h when unlocked)
     - name: priority
       type: integer
-      description: Lock priority (00h-FFh)
+      description: Lock priority (00h-FFh; reset to 00h when unlocked)
     - name: saved
       type: enum
       values: [not_saved, saved]
-      description: 00h=Not restored on power cycle, 01h=Restored on power cycle
+      description: 00h=Not restored on power cycle, 01h=Restored on power cycle; others ignored
 
 - id: post_motor_position
   label: Post Motor Position
@@ -381,6 +396,9 @@ auth:
     - name: ip
       type: integer
       description: Matching IP index (01h-IP_MAX); FFh if position does not match any IP
+  # Source remarks: position is sent even if the motor is running. Motor may consider itself at an
+  # IP position even a few pulses above/below; tolerance is variable per motor. If position matches
+  # several IPs, the first matching IP in the list is returned.
 
 - id: post_motor_status
   label: Post Motor Status
@@ -394,19 +412,19 @@ auth:
     - name: direction
       type: enum
       values: [down, up, unknown]
-      description: 00h=Going DOWN, 01h=Going UP, FFh=Unknown
+      description: 00h=Going DOWN, 01h=Going UP, FFh=Unknown; if stopped, last movement direction is indicated
     - name: source
       type: enum
       values: [internal, network, local_ui]
-      description: 00h=Internal trigger, 01h=Network message, 02h=Local UI
+      description: 00h=Internal trigger (limit/IP/position reached, over-current, obstacle, thermal), 01h=Network message, 02h=Local UI (DCT, local stimulus, local wireless)
     - name: cause
       type: integer
-      description: 00h=Target reached, 01h=Explicit command, 02h=Wink, 20h=Obstacle, 21h=Over-current, 22h=Thermal, 30h=Run time exceeded, 32h=Timeout, FFh=Reset/PowerUp
+      description: 00h=Target reached (limit/IP/already there), 01h=Explicit command, 02h=Wink, 20h=Obstacle, 21h=Over-current, 22h=Thermal, 30h=Run time exceeded, 32h=Timeout (CTRL_MOVE >2min canceled), FFh=Reset/PowerUp
 
 - id: ack
   label: Acknowledgement
   type: response
-  message_id: "7F"   # MSG=7Fh ACK; DATA length 0
+  message_id: "7F"   # MSG=7Fh ACK; DATA length 0; only sent when ACK bit set in the request (CTRL, GET or SET)
   fields: []
 
 - id: nack
@@ -416,7 +434,9 @@ auth:
   fields:
     - name: error_code
       type: integer
-      description: 01h=Data out of range, 10h=Unknown message, 11h=Message length error, FFh=Busy
+      description: 01h=Data out of range, 10h=Unknown message, 11h=Message length error, FFh=Busy; these values are implemented in all products
+  # Source also references named NACK errors without documented hex codes: DATA_ERROR, LOW_PRIORITY,
+  # NODE_IS_LOCKED, IP_NOT_SET. UNRESOLVED: numeric codes for these named errors not stated in source.
 ```
 
 ## Variables
@@ -443,7 +463,7 @@ auth:
 confirmation_required_for: []
 interlocks:
   - id: network_lock
-    description: A device under NETWORK_LOCK (Lock function 01h) will reject CTRL_XXX movements and SET_MOTOR_LIMITS/SET_TILT_LIMITS unless the requesting command carries equal or higher priority. NACK(NODE_IS_LOCKED) is returned otherwise.
+    description: A device under NETWORK_LOCK (Lock function 01h) rejects all CTRL_NETWORK_LOCK messages without equal or higher priority. CTRL_XXX movements and SET_MOTOR_LIMITS/SET_TILT_LIMITS are rejected unconditionally (NACK(NODE_IS_LOCKED) is returned); the source does not state any priority-bypass for these commands.
   - id: local_ui_lock
     description: Local UI components (DCT, LEDs, Bluetooth, Touch Motion, local stimuli) can be individually disabled via SET_LOCAL_UI with a priority level; further lock changes require equal or higher priority or NACK(LOW_PRIORITY) is returned.
   - id: motor_thermal_overcurrent_protection
@@ -453,9 +473,11 @@ interlocks:
 
 ## Notes
 
-**Frame structure** — every message is wrapped in the SDN frame: `MSG | ACK/LEN | NODE_TYPE | SOURCE@(3 bytes) | DEST@(3 bytes) | DATA(0-21 bytes) | CHECKSUM(2 bytes)`. Minimum frame length is 11 bytes, maximum 32. The `command:` field on each action is the MSG opcode byte only — the implementer must construct the full frame around it.
+**Frame structure** — every message is wrapped in the SDN frame: `MSG | ACK/LEN | NODE_TYPE | SOURCE@(3 bytes) | DEST@(3 bytes) | DATA(0-21 bytes) | CHECKSUM(2 bytes)`. Minimum frame length is 11 bytes, maximum 32. Byte 2 carries ACK (bit 7, set to 1 to request acknowledge), EXT (always 0, reserved) and LEN (frame length, 0-31). Byte 3 carries SOURCE NodeType (always 0h for MASTER) in the high nibble and DEST NodeType (used for NodeType filtering) in the low nibble. The `command:` field on each action is the MSG opcode byte only — the implementer must construct the full frame around it.
 
 **Bit inversion** — to maintain backward compatibility with earlier protocol versions, all data bits must be inverted before transmission. Transmitting byte 58h means putting NOT(58h) = A7h on the bus. This applies to every byte in the frame including MSG and CHECKSUM.
+
+**Serial line characteristics** — asynchronous serial, 4800 baud, 8 data bits, odd parity; start bit logical level 0, stop bit logical level 1, character coding NRZ; least significant bit always sent first. Stop bit count and flow control are not stated in source.
 
 **Checksum** — computed as the sum of the complement of every byte in the frame (bytes 1 through n-2), occupying the final 2 bytes. Basic error detection only; no correction.
 
@@ -465,17 +487,20 @@ interlocks:
 
 **Timings** — Treq ≥ 10 ms before a MASTER may transmit. Tc ≤ 1 ms between consecutive characters of a frame. Tfree = 3 ms typical for end-of-frame detection (no sync byte). Trep (slave reply delay) is randomized between 5 ms and 255 ms.
 
-**Acknowledgements** — ACK is only sent when the requesting MASTER sets the ACK bit (bit 7 of byte 2 in the frame header). For SET_* messages, ACK is sent after parameters are saved; for CTRL_* messages, ACK is sent when execution starts (not when finished). GET_* messages get no ACK because the POST_* response is itself the acknowledgement.
+**Acknowledgements** — ACK is only sent when the requesting MASTER sets the ACK bit (bit 7 of byte 2 in the frame header). For SET_* messages, ACK is sent after parameters are saved; for CTRL_* messages, ACK is sent when execution starts (not when finished). GET_* messages get no ACK because the POST_* response is itself the acknowledgement. Retry strategy recommended on NACK or missing ACK.
 
 **Collision avoidance** — broadcast and group commands should NOT request ACK or feedback, since multiple slaves may reply simultaneously on the RS485 bus and corrupt each other's transmissions.
 
-**Physical layer** — source specifies RS485 (not RS-232). 4800 baud, 8 data bits, odd parity, 1 stop bit.
+**DATA length caveat** — when receiving a message from a device, the actual DATA length can be longer than the documented "DATA length" value; treat the documented value as the minimum. Reserved DATA fields must be present and set to 00h or FFh.
+
+**Physical layer** — source specifies RS485 (not RS-232). 4800 baud, 8 data bits, odd parity. Stop bit count and flow control are not stated in source.
 
 <!-- UNRESOLVED: termination resistor value, bus length limits, recommended cable type, idle-state polarity not stated in refined source -->
 <!-- UNRESOLVED: SET_MOTOR_LIMITS and SET_TILT_LIMITS messages are referenced in the NETWORK_LOCK section but not documented in the refined source — these are MASTER actions that exist but their opcodes/DATA structures are not in the excerpt provided -->
 <!-- UNRESOLVED: CTRL_MOVE message referenced in motor status Cause 32h (Timeout exceeded "when using CTRL_MOVE") is not documented in the refined source — opcode not given -->
 <!-- UNRESOLVED: CTRL_NETWORK_LOCK referenced in lock section as an additional control message but not documented in the refined source -->
 <!-- UNRESOLVED: WINK behaviour (Cause 02h in POST_MOTOR_STATUS) suggests a Wink control command exists but it is not documented in the refined source -->
+<!-- UNRESOLVED: numeric error codes for named NACK errors (DATA_ERROR, LOW_PRIORITY, NODE_IS_LOCKED, IP_NOT_SET) not stated in source -->
 
 ## Provenance
 
@@ -485,18 +510,18 @@ source_domains:
 source_urls:
   - https://service.somfy.com/downloads/bui_v4/sdn-integration-guide--preliminary.pdf
 retrieved_at: 2026-06-02T06:13:23.596Z
-last_checked_at: 2026-06-02T22:14:49.105Z
+last_checked_at: 2026-10-01T07:59:14.394Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:49.105Z
+checked_at: 2026-10-01T07:59:14.394Z
 matched_actions: 18
 action_count: 18
 confidence: medium
-summary: "All 18 spec actions traced to source (dip-safe re-verify). (12 unresolved item(s) noted in Known Gaps.)"
+summary: "All 18 Actions map to documented MASTER messages in §6; transport values (4800 baud, 8 data bits, odd parity) are stated verbatim in §4.1. (13 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -504,7 +529,7 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (12 unresol
 ```yaml
 - "physical wiring polarity, terminator resistance, and electrical specs not stated in refined source"
 - "firmware version compatibility ranges not stated"
-- "flow control not stated explicitly in source"
+- "numeric codes for these named errors not stated in source."
 - "settable parameters are exposed through SET_* actions; no separate variable model in source"
 - "source documents one unsolicited behavior - some devices can send their address when a local pushbutton is pressed (POST_NODE_ADDR) - but no general event model is defined"
 - "no multi-step macros described in source"
@@ -514,6 +539,7 @@ summary: "All 18 spec actions traced to source (dip-safe re-verify). (12 unresol
 - "CTRL_MOVE message referenced in motor status Cause 32h (Timeout exceeded \"when using CTRL_MOVE\") is not documented in the refined source — opcode not given"
 - "CTRL_NETWORK_LOCK referenced in lock section as an additional control message but not documented in the refined source"
 - "WINK behaviour (Cause 02h in POST_MOTOR_STATUS) suggests a Wink control command exists but it is not documented in the refined source"
+- "numeric error codes for named NACK errors (DATA_ERROR, LOW_PRIORITY, NODE_IS_LOCKED, IP_NOT_SET) not stated in source"
 ```
 
 ---

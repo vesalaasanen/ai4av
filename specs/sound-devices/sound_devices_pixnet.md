@@ -21,23 +21,26 @@ source_domains:
 source_urls:
   - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
-last_checked_at: 2026-06-02T22:15:08.144Z
-generated_at: 2026-06-02T22:15:08.144Z
+last_checked_at: 2026-09-30T01:15:03.211Z
+generated_at: 2026-09-30T01:15:03.211Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "serial/RS-232 not mentioned; RS-422 referenced only as OSD setting flag"
-  - "no input/output routing commands found"
+  - "integer time per source; unit (e.g. milliseconds) not documented"
   - "command pattern not fully documented"
   - "no safety warnings or interlock procedures documented"
   - "serial/RS-232 config not documented; RS-422 shown only as OSD status flag"
+  - "authentication method not documented; absence of login procedure is not explicit confirmation of no auth"
+  - "set_auto_dismiss time unit not documented"
+  - "transport states are play/stop/rec only; no documented power-on/off command"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:08.144Z
+  checked_at: 2026-09-30T01:15:03.211Z
   matched_actions: 35
   action_count: 35
   confidence: medium
-  summary: "All 35 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 actions match the PIX-family API's 34 distinct commands; file/reel copy share an endpoint, with exact-model applicability unconfirmed. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -47,7 +50,7 @@ created_at: 2026-04-27
 # Sound Devices PIX Recorder Control Spec
 
 ## Summary
-PIXNET is an HTTP-based control API for Sound Devices PIX video recorders. Controls transport (rec/play/stop), settings, file management, timecode, and event polling via HTTP requests to the unit's IP address on port 80. CORS enabled; no authentication required.
+PIXNET is an HTTP-based control API for Sound Devices PIX video recorders. Controls transport (rec/play/stop), settings, file management, timecode, and event polling via HTTP requests to the unit's IP address on port 80. CORS enabled. Authentication method UNRESOLVED (no login procedure documented in source).
 
 <!-- UNRESOLVED: serial/RS-232 not mentioned; RS-422 referenced only as OSD setting flag -->
 
@@ -58,15 +61,15 @@ protocols:
 addressing:
   base_url: http://[host]  # host = PIX unit IP address, port 80
 auth:
-  type: none  # inferred: no auth/login procedure in source
+  type: UNRESOLVED  # source documents no login procedure but does not explicitly state no auth
 ```
 
 ## Traits
 ```yaml
-- powerable  # power on/off via transport commands
-- routable   # UNRESOLVED: no input/output routing commands found
 - queryable  # transport state, timecode, settings queryable
 - levelable  # input gain adjustable (-250 to +200 tenths of dB)
+# powerable: UNRESOLVED (transport states are play/stop/rec only; no documented power-on/off)
+# routable: UNRESOLVED (no input/output routing commands found)
 ```
 
 ## Actions
@@ -155,7 +158,7 @@ auth:
   params:
     - name: time_ms
       type: integer
-      description: Milliseconds before auto-dismiss (0 = disabled)
+      description: UNRESOLVED: integer time per source; unit (e.g. milliseconds) not documented
     - name: action
       type: enum
       values: [Accept, Reject]
@@ -415,13 +418,13 @@ auth:
   values: [HDMI, SDI]
 - id: RecordCodec
   type: enum
-  values: [DNxHD 220x, DNxHD 220, DNxHD 145, DNxHD 36, ProRes 4444, ProRes 422HQ, ProRes 422, ProRes 422LT, ProRes 422Proxy]
+  values: ["DNxHD 220x 220Mb/s, 10bit", "DNxHD 220 220Mb/s, 8bit", "DNxHD 145 145Mb/s, 8bit", "DNxHD 36 36Mb/s, 8bit", "ProRes 4444 330Mb/s, 12bit", "ProRes 422HQ 220Mb/s, 10bit", "ProRes 422 145Mb/s, 10bit", "ProRes 422LT 100Mb/s, 8bit", "ProRes 422Proxy36Mb/s, 8bit"]
 - id: AudioSampleRate
   type: enum
-  values: [44.1 kHz, 47.952k, 47.952kF, 48k, 48.048k, 48.048kF]
+  values: ["44.1 kHz", "47.952k", "47.952kF", "48k", "48.048k", "48.048kF"]
 - id: HeadphoneSource
   type: enum
-  values: [1,2, 3,4, 5,6, 7,8, 9,10, 11,12, 13,14, 15,16, 17,18, 19,20, 21,22, 23,24, 25,26, 27,28, 29,30, 31,32, All tracks summed - mono, All tracks summed - stereo]
+  values: ["1,2", "3,4", "5,6", "7,8", "9,10", "11,12", "13,14", "15,16", "17,18", "19,20", "21,22", "23,24", "25,26", "27,28", "29,30", "31,32", "All tracks summed - mono", "All tracks summed - stereo"]
 # Full list per Setting Names section
 ```
 
@@ -467,6 +470,9 @@ interlocks: []
 - Media recorded to temp formats (.sda audio, .sdv video) before finalization
 - `/sounddevices/devtbl` lists network PIX units; queried unit has leading `*`
 <!-- UNRESOLVED: serial/RS-232 config not documented; RS-422 shown only as OSD status flag -->
+<!-- UNRESOLVED: authentication method not documented; absence of login procedure is not explicit confirmation of no auth -->
+<!-- UNRESOLVED: set_auto_dismiss time unit not documented -->
+<!-- UNRESOLVED: transport states are play/stop/rec only; no documented power-on/off command -->
 
 ## Provenance
 
@@ -476,28 +482,31 @@ source_domains:
 source_urls:
   - http://cdn.videodevices.com/download/guides/PIXNET_API.pdf
 retrieved_at: 2026-04-30T01:30:16.434Z
-last_checked_at: 2026-06-02T22:15:08.144Z
+last_checked_at: 2026-09-30T01:15:03.211Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:08.144Z
+checked_at: 2026-09-30T01:15:03.211Z
 matched_actions: 35
 action_count: 35
 confidence: medium
-summary: "All 35 spec actions traced to source (dip-safe re-verify). (5 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 actions match the PIX-family API's 34 distinct commands; file/reel copy share an endpoint, with exact-model applicability unconfirmed. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "serial/RS-232 not mentioned; RS-422 referenced only as OSD setting flag"
-- "no input/output routing commands found"
+- "integer time per source; unit (e.g. milliseconds) not documented"
 - "command pattern not fully documented"
 - "no safety warnings or interlock procedures documented"
 - "serial/RS-232 config not documented; RS-422 shown only as OSD status flag"
+- "authentication method not documented; absence of login procedure is not explicit confirmation of no auth"
+- "set_auto_dismiss time unit not documented"
+- "transport states are play/stop/rec only; no documented power-on/off command"
 ```
 
 ---

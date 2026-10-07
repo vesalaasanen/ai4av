@@ -21,9 +21,9 @@ source_domains:
 source_urls:
   - https://justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.lg.com/us/business/commercial-displays/professional-tvs
-retrieved_at: 2026-06-02T22:08:52.985Z
-last_checked_at: 2026-06-02T22:08:52.985Z
-generated_at: 2026-06-02T22:08:52.985Z
+retrieved_at: 2026-10-07T12:36:56.104Z
+last_checked_at: 2026-10-07T12:36:56.104Z
+generated_at: 2026-10-07T12:36:56.104Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -34,11 +34,11 @@ known_gaps:
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:08:52.985Z
-  matched_actions: 21
-  action_count: 21
+  checked_at: 2026-10-07T12:36:56.104Z
+  matched_actions: 28
+  action_count: 28
   confidence: medium
-  summary: "All 21 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 28 action units match source command letters and data shapes; serial transport matches; 26-command RS-232C catalogue fully covered; IR code table treated as key-code data. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -48,7 +48,7 @@ created_at: 2026-04-18
 # LG 43QNED70B6C Series Control Spec
 
 ## Summary
-LG consumer LED LCD TV supporting RS-232C ASCII protocol for external control. Commands transmitted as ASCII strings over serial UART at 9600 baud. Supports power, input selection, picture adjustment, audio control, tiling modes, and queryable status feedback.
+LG consumer LED LCD TV supporting RS-232C ASCII protocol for external control. Commands are transmitted over serial UART at 9600 baud. Supports power, input selection, picture adjustment, audio control, tiling modes, and queryable status feedback.
 
 <!-- UNRESOLVED: TCP/IP control protocol not documented in source; this spec covers RS-232C only -->
 
@@ -63,7 +63,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not specify authentication
 ```
 
 ## Traits
@@ -102,7 +102,7 @@ auth:
   params:
     - name: mode
       type: integer
-      description: "1=4:3, 2=16:9, 3=Horizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full, 9=1:1(PC)"
+      description: "1=4:3, 2=16:9, 3=Horizon, 4=Zoom1, 5=Zoom2, 6=Original, 7=14:9, 8=Full (Europe version only), 9=1:1 (PC)"
   command: "kc {set_id} {mode}"
   feedback: "c {set_id} OK {data}"
 
@@ -252,7 +252,7 @@ auth:
   params:
     - name: mode
       type: integer
-      description: "0=Off, 12=1x2, 13=1x3, 14=1x4, ... 44=4x4. Cannot be 0X or X0 except 00."
+      description: "0=Off, 12=1x2, 13=1x3, 14=1x4, ... 44=4x4. Cannot be 0X or X0 except 00. Source shows the command frame ending [Data][x]; the meaning of [x] is unresolved."
   command: "dd {set_id} {mode}"
   feedback: "d {set_id} OK {data}"
 
@@ -262,7 +262,7 @@ auth:
   params:
     - name: size
       type: integer
-      description: "Horizontal size, range 00-64"
+      description: "Horizontal size, range 00-64. Source shows the command frame ending [Data][x]; the meaning of [x] is unresolved."
   command: "dg {set_id} {size}"
   feedback: "g {set_id} OK {data}"
 
@@ -272,7 +272,7 @@ auth:
   params:
     - name: size
       type: integer
-      description: "Vertical size, range 00-64"
+      description: "Vertical size, range 00-64. Source shows the command frame ending [Data][x]; the meaning of [x] is unresolved."
   command: "dh {set_id} {size}"
   feedback: "h {set_id} OK {data}"
 
@@ -282,9 +282,19 @@ auth:
   params:
     - name: id
       type: integer
-      description: "Tile ID, range 00-10 (Hex)"
+      description: "Tile ID, range 00-10 (Hex). Source shows the command frame ending [Data][x]; the meaning of [x] is unresolved."
   command: "di {set_id} {id}"
   feedback: "i {set_id} OK {data}"
+
+- id: key
+  label: Key
+  kind: action
+  params:
+    - name: key_code
+      type: string
+      description: "Key code : Refer to page A18."
+  command: "[m][c][ ][Set ID][ ][Data][Cr]"
+  feedback: "[c][ ][Set ID][ ][OK][Data][x]"
 ```
 
 ## Feedbacks
@@ -296,6 +306,7 @@ auth:
     - 0  # Power Off
     - 1  # Power On
   query: "ka {set_id} FF"
+  query_command: "[k][a][ ][Set ID][ ][FF][Cr]"
 
 - id: input_state
   label: Input State
@@ -309,6 +320,7 @@ auth:
     - 8   # HDMI (DTV)
     - 9   # HDMI (PC)
   query: "kb {set_id} FF"
+  query_command: "[k][b][ ][Set ID][ ][Data][Cr]"
 
 - id: abnormal_state
   label: Abnormal State
@@ -323,18 +335,21 @@ auth:
     - 8  # Turn the monitor off by off time function
     - 9  # Turn the monitor off by auto off function
   query: "kz {set_id} FF"
+  query_command: "[k][z][ ][Set ID][ ][Data][Cr]"
 
 - id: elapsed_time
   label: Elapsed Time
   type: integer
   description: "Used hours (Hexadecimal, 1 byte)"
   query: "dl {set_id} FF"
+  query_command: "[d][l][ ][Set ID][ ][Data][x]"
 
 - id: temperature_value
   label: Temperature Value
   type: integer
   description: "Inside temperature in Hexadecimal"
   query: "dn {set_id} FF"
+  query_command: "[d][n][ ][Set ID][ ][Data][x]"
 
 - id: lamp_fault
   label: Lamp Fault
@@ -343,6 +358,7 @@ auth:
     - 0  # Lamp Fault
     - 1  # Lamp OK
   query: "dp {set_id} FF"
+  query_command: "[d][p][ ][Set ID][ ][Data][x]"
 
 - id: ack_ok
   label: Acknowledgement OK
@@ -378,15 +394,15 @@ interlocks:
 
 ## Notes
 
-**Command Format:** `[Command1][Command2][ ][Set ID][ ][Data][Cr]` where Cr = ASCII 0x0D carriage return.
+**Command Format:** The general format is `[Command1][Command2][ ][Set ID][ ][Data][Cr]`, where Cr = ASCII 0x0D carriage return. The source's command-specific frames for tile mode, tile size, and tile ID instead show `[Data][x]`; the meaning of `[x]` in those frames is UNRESOLVED.
 
 **Set ID Range:** 1-99. Set ID 0 = broadcast to all devices (no ACK check possible).
 
 **Read Mode:** Transmit `FF` as data to read current status.
 
-**Data Mapping:** Hex values 00-64 map to decimal steps. Volume, Contrast, Brightness, Color, Sharpness: 0=Step0, A=Step10, F=Step15, 10=Step16, 64=Step100. Tint: 0=Step-50, 64=Step+50.
+**Data Mapping:** For volume, contrast, brightness, color, and sharpness, the source gives this mapping: 0=Step0, A=Step10, F=Step15, 10=Step16, 64=Step100. Tint: 0=Step-50, 64=Step+50.
 
-**Tiling Restrictions:** Tile mode data cannot be 0X or X0 except 00 (tile off).
+**Tiling Restrictions:** Tile mode data cannot be 0X or X0 except 00.
 
 <!-- UNRESOLVED: TCP/IP control protocol not covered in source document -->
 <!-- UNRESOLVED: exact port number for IP control not stated (source only covers RS-232C) -->
@@ -401,19 +417,19 @@ source_domains:
 source_urls:
   - https://justaddpower.com/docs/manuals/rs232-lg.pdf
   - https://www.lg.com/us/business/commercial-displays/professional-tvs
-retrieved_at: 2026-06-02T22:08:52.985Z
-last_checked_at: 2026-06-02T22:08:52.985Z
+retrieved_at: 2026-10-07T12:36:56.104Z
+last_checked_at: 2026-10-07T12:36:56.104Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:08:52.985Z
-matched_actions: 21
-action_count: 21
+checked_at: 2026-10-07T12:36:56.104Z
+matched_actions: 28
+action_count: 28
 confidence: medium
-summary: "All 21 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 28 action units match source command letters and data shapes; serial transport matches; 26-command RS-232C catalogue fully covered; IR code table treated as key-code data. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

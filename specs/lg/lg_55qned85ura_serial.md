@@ -22,27 +22,28 @@ source_urls:
   - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
   - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T22:09:14.444Z
-last_checked_at: 2026-06-02T22:09:14.444Z
-generated_at: 2026-06-02T22:09:14.444Z
+retrieved_at: 2026-10-01T08:28:11.625Z
+last_checked_at: 2026-10-01T08:28:11.625Z
+generated_at: 2026-10-01T08:28:11.625Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - "m c"
   - "IR remote section present but not part of serial control protocol"
+  - "exact-model applicability of this serial protocol to 55QNED85URA is not confirmed by source"
   - "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
   - "no unsolicited event notifications described in source; device only responds to commands"
   - "no explicit multi-step macro sequences described in source"
   - "no safety warnings or interlock procedures stated in source"
   - "IR remote codes section present but not applicable to RS-232C control"
   - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
-  - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:14.444Z
+  checked_at: 2026-10-01T08:28:11.625Z
   matched_actions: 27
   action_count: 27
   confidence: medium
-  summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 27 spec actions (21 set + 6 query) match the 26 source commands literally with correct shapes; transport params verified. (8 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -55,6 +56,7 @@ created_at: 2026-04-19
 LG 55QNED85URA is a 55-inch QNED smart TV supporting RS-232C serial control for integration into commercial or automated AV setups. The serial interface operates at 9600 baud with 8-N-1 framing, using ASCII command encoding with carriage-return termination. Supports power, input selection, picture/sound adjustment, tiling modes for video wall applications, and diagnostic queries.
 
 <!-- UNRESOLVED: IR remote section present but not part of serial control protocol -->
+<!-- UNRESOLVED: exact-model applicability of this serial protocol to 55QNED85URA is not confirmed by source -->
 
 ## Transport
 ```yaml
@@ -67,7 +69,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not explicitly establish absence of authentication
 ```
 
 ## Traits
@@ -107,7 +109,7 @@ auth:
     - name: mode
       type: enum
       values: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      description: "1: Normal (4:3), 2: Wide (16:9), 3: Horizon, 4: Zoom1, 5: Zoom2, 6: Original, 7: 14:9, 8: Full, 9: 1:1 (PC)"
+      description: "1: Normal (4:3), 2: Wide (16:9), 3: Horizon, 4: Zoom1, 5: Zoom2, 6: Original, 7: 14:9, 8: Full (Europe version only), 9: 1:1 (PC)"
   command: k c
 
 - id: screen_mute
@@ -263,7 +265,7 @@ auth:
   params:
     - name: mode
       type: enum
-      values: [0, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+      values: [0, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
       description: "00: Tile mode off, 12-44: column x row mode (e.g. 12=1x2, 44=4x4). Cannot be set to 0X or X0 except 00."
   command: d d
 
@@ -397,32 +399,33 @@ source_urls:
   - https://www.manualslib.com/manual/3645548/Lg-Qned-85.html
   - https://www.manualslib.com/manual/3754124/Lg-Qned85-Series.html
   - https://www.justaddpower.com/docs/manuals/rs232-lg.pdf
-retrieved_at: 2026-06-02T22:09:14.444Z
-last_checked_at: 2026-06-02T22:09:14.444Z
+retrieved_at: 2026-10-01T08:28:11.625Z
+last_checked_at: 2026-10-01T08:28:11.625Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:14.444Z
+checked_at: 2026-10-01T08:28:11.625Z
 matched_actions: 27
 action_count: 27
 confidence: medium
-summary: "All 27 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 27 spec actions (21 set + 6 query) match the 26 source commands literally with correct shapes; transport params verified. (8 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- "m c"
 - "IR remote section present but not part of serial control protocol"
+- "exact-model applicability of this serial protocol to 55QNED85URA is not confirmed by source"
 - "no standalone settable parameter commands found; all settable parameters are exposed as Actions above"
 - "no unsolicited event notifications described in source; device only responds to commands"
 - "no explicit multi-step macro sequences described in source"
 - "no safety warnings or interlock procedures stated in source"
 - "IR remote codes section present but not applicable to RS-232C control"
 - "discrete IR power codes (C4, C5) documented but not part of serial protocol"
-- "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 
 ---

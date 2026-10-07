@@ -20,23 +20,23 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T22:23:27.599Z
-last_checked_at: 2026-06-02T22:07:55.458Z
-generated_at: 2026-06-02T22:07:55.458Z
+last_checked_at: 2026-09-29T22:27:02.640Z
+generated_at: 2026-09-29T22:27:02.640Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "source does not list specific 65U78K firmware support; documents \"Hisense Prosumer TV\" generically."
   - "source describes query/response model only, no unsolicited event/notification stream documented."
   - "no explicit safety warnings or interlock procedures in source beyond factory-reset caution."
-  - "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\")."
+  - "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\"); authentication status UNRESOLVED."
   - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:07:55.458Z
-  matched_actions: 125
-  action_count: 125
+  checked_at: 2026-09-29T22:27:02.640Z
+  matched_actions: 141
+  action_count: 141
   confidence: medium
-  summary: "All 125 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 141 IR and serial action units match the generic Prosumer TV catalogue; exact 65U78K applicability remains unconfirmed. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -46,7 +46,7 @@ created_at: 2026-06-02
 # HiSense 65U78K Series Control Spec
 
 ## Summary
-HiSense Prosumer TV (used here for 65U78K Series) exposes two parallel control surfaces: discrete IR (NEC/RC5-style Pronto CCF codes) and wired RS-232 (DB9 female, 9600 8N1, ASCII framing with 8-bit checksum). Wired serial protocol is fixed-length 14-byte frames: `S/Q [CLIENT ID 3B] [COMMAND 4B] [DATA 4B] [CHECKSUM 1B] CR`. CLIENT ID `ALL` is broadcast; MAC-last-3 form is per-TV. Source revision: V3.6 (2017-04-17).
+HiSense Prosumer TV (used here for 65U78K Series) exposes two parallel control surfaces: discrete IR (NEC-style Pronto CCF codes) and wired RS-232 (DB9 female, 9600 8N1, ASCII framing with 8-bit checksum). Wired serial protocol is fixed-length 14-byte frames: `S/Q [CLIENT ID 3B] [COMMAND 4B] [DATA 4B] [CHECKSUM 1B] CR`. CLIENT ID `ALL` is broadcast; MAC-last-3 form is per-TV. Source revision: V3.6 (2017-04-17).
 
 <!-- UNRESOLVED: source does not list specific 65U78K firmware support; documents "Hisense Prosumer TV" generically. -->
 
@@ -63,7 +63,7 @@ serial:
   electrical: RS-232C
   connector: DB9 female chassis mount
 auth:
-  type: none  # inferred: no auth/login procedure in source
+  type: UNRESOLVED  # source does not state authentication status; absence not proven
 ```
 
 ## Traits
@@ -106,6 +106,41 @@ auth:
   label: IR TV Tuner 1
   kind: action
   command: "04FB 748B"
+  params: []
+- id: ir_input_tv_tuner2
+  label: IR TV Tuner 2
+  kind: action
+  command: "04FB 758A"
+  params: []
+- id: ir_input_av1
+  label: IR AV1
+  kind: action
+  command: "04FB 7689"
+  params: []
+- id: ir_input_av2
+  label: IR AV2
+  kind: action
+  command: "04FB 7788"
+  params: []
+- id: ir_input_scart_av3
+  label: IR SCART/AV3
+  kind: action
+  command: "04FB 7887"
+  params: []
+- id: ir_input_component1
+  label: IR Component 1
+  kind: action
+  command: "04FB 7986"
+  params: []
+- id: ir_input_component2
+  label: IR Component 2
+  kind: action
+  command: "04FB 7A85"
+  params: []
+- id: ir_input_component3
+  label: IR Component 3
+  kind: action
+  command: "04FB 7B84"
   params: []
 - id: ir_input_hdmi1
   label: IR HDMI 1
@@ -478,7 +513,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 (hex 0-100 decimal) brightness value"
+      description: "0000-0100 (decimal 0-100) brightness value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -503,7 +538,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 contrast value"
+      description: "0000-0100 (decimal 0-100) contrast value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -528,7 +563,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 color saturation value"
+      description: "0000-0100 (decimal 0-100) color saturation value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -553,7 +588,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 tint value"
+      description: "0000-0100 (decimal 0-100) tint value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -689,7 +724,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 backlight value"
+      description: "0000-0100 (decimal 0-100) backlight value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -752,7 +787,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 volume value"
+      description: "0000-0100 (decimal 0-100) volume value"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -994,7 +1029,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 max volume"
+      description: "0000-0100 (decimal 0-100) max volume"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -1044,7 +1079,7 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000-0100 locked volume level"
+      description: "0000-0100 (decimal 0-100) locked volume level"
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -1219,7 +1254,126 @@ auth:
       description: Client ID
     - name: data
       type: string
-      description: "0000 = last, 0001 = Air, 0002 = AV, 0003 = Component"
+      description: "0000 = last, 0001 = Air, 0002 = AV, 0003 = Component, 0004 = VGA, 0005 = HDMI1, 0006 = HDMI2, 0007 = HDMI3, 0008 = HDMI4"
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+- id: pois_query
+  label: Query Power-On Input Source
+  kind: query
+  command: "Q{CID}POIS????{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+
+# ===== RS-232: TV Speaker Mode (SPKM, ARC variant) =====
+- id: spkm_set
+  label: Set TV Speaker Mode
+  kind: action
+  command: "S{CID}SPKM{data}{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: data
+      type: string
+      description: "0000 = Speaker, 0001 = Off, 0002 = ARC FIRST"
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+- id: spkm_query
+  label: Query TV Speaker Mode
+  kind: query
+  command: "Q{CID}SPKM????{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+
+# ===== RS-232: B2B Function Mode =====
+- id: b2bm_set
+  label: Set B2B Function Mode
+  kind: action
+  command: "S{CID}B2BM{data}{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: data
+      type: string
+      description: "0000 = enable, 0001 = disable"
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+- id: b2bm_query
+  label: Query B2B Function Mode
+  kind: query
+  command: "Q{CID}B2BM????{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+
+# ===== RS-232: USB Behavior =====
+- id: usbm_set
+  label: Set USB Behavior
+  kind: action
+  command: "S{CID}USBM{data}{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: data
+      type: string
+      description: "0000 = Home, 0001 = B2B"
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+- id: usbm_query
+  label: Query USB Behavior
+  kind: query
+  command: "Q{CID}USBM????{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+
+# ===== RS-232: Pixel Shifting =====
+- id: pshf_set
+  label: Set Pixel Shifting
+  kind: action
+  command: "S{CID}PSHF{data}{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
+    - name: data
+      type: string
+      description: "0000 = off, 0001 = on"
+    - name: cs
+      type: string
+      description: 8-bit checksum byte
+- id: pshf_query
+  label: Query Pixel Shifting
+  kind: query
+  command: "Q{CID}PSHF????{cs}\r"
+  params:
+    - name: CID
+      type: string
+      description: Client ID
     - name: cs
       type: string
       description: 8-bit checksum byte
@@ -1350,10 +1504,11 @@ interlocks: []
 - Checksum = low byte of 8-bit sum so total frame (including checksum byte) = 0x00.
 - Each command uses ASCII framing; byte count per field: 1 (S/Q) + 3 (CID) + 4 (CMD) + 4 (DATA) + 1 (CS) + 1 (CR) = 14 bytes.
 - IR carrier: NEC-style 38 kHz (Pronto CCF code `0000 006C` = frequency word 0x006C = 108 = 38000 Hz / 1000 / 0.241246).
-- DB9 pinout: TV female DCE-style with TXD on pin 3, RXD on pin 2.
+- DB9 pinout (TV female DCE-style per source): TXD on pin 2, RXD on pin 3.
 - Source is dated 2017 (V3.6) and targets "Hisense Prosumer TV" generically; specific 65U78K firmware support not stated.
+- Authentication on the RS-232 control surface is UNRESOLVED; the source does not state an authentication mechanism nor confirm its absence.
 
-<!-- UNRESOLVED: firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to "Prosumer TV"). -->
+<!-- UNRESOLVED: firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to "Prosumer TV"); authentication status UNRESOLVED. -->
 
 ## Provenance
 
@@ -1363,18 +1518,18 @@ source_domains:
 source_urls:
   - https://assets.hisense-usa.com/assets/ProductDownloads/18/5342defe83/Hisense-RS-232-and-IR-Protocol-English_2.pdf
 retrieved_at: 2026-06-01T22:23:27.599Z
-last_checked_at: 2026-06-02T22:07:55.458Z
+last_checked_at: 2026-09-29T22:27:02.640Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:07:55.458Z
-matched_actions: 125
-action_count: 125
+checked_at: 2026-09-29T22:27:02.640Z
+matched_actions: 141
+action_count: 141
 confidence: medium
-summary: "All 125 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 141 IR and serial action units match the generic Prosumer TV catalogue; exact 65U78K applicability remains unconfirmed. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
@@ -1383,7 +1538,7 @@ summary: "All 125 spec actions traced to source (dip-safe re-verify). (4 unresol
 - "source does not list specific 65U78K firmware support; documents \"Hisense Prosumer TV\" generically."
 - "source describes query/response model only, no unsolicited event/notification stream documented."
 - "no explicit safety warnings or interlock procedures in source beyond factory-reset caution."
-- "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\")."
+- "firmware version compatibility not stated in source; specific 65U78K model name not in source (applies generically to \"Prosumer TV\"); authentication status UNRESOLVED."
 - "source applicability inferred: the manufacturer protocol document names no model; commands verified against it but not confirmed for this exact model"
 ```
 

@@ -27,11 +27,16 @@ source_urls:
   - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T17:48:06.540Z
-last_checked_at: 2026-06-02T22:15:56.550Z
-generated_at: 2026-06-02T22:15:56.550Z
+last_checked_at: 2026-10-07T12:54:57.464Z
+generated_at: 2026-10-07T12:54:57.464Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - "camera ccu get"
+  - "streaming ip enable get"
+  - history
+  - help
+  - exit
   - "serial RS-232 not supported; only Telnet/TCP"
   - "no unsolicited event notifications documented in source"
   - "no multi-step macro sequences documented in source"
@@ -40,11 +45,11 @@ known_gaps:
   - "HTTP/REST API not documented in source"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:56.550Z
-  matched_actions: 40
-  action_count: 40
+  checked_at: 2026-10-07T12:54:57.464Z
+  matched_actions: 69
+  action_count: 69
   confidence: medium
-  summary: "All 40 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 69 action units match source commands and transport (port 23, admin login) is supported; only about 5 minor source commands are unrepresented. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -54,7 +59,7 @@ created_at: 2026-05-18
 # Vaddio ConferenceSHOT ePTZ Control Spec
 
 ## Summary
-PTZ camera with Telnet serial command API over TCP/IP. Supports pan/tilt/zoom, auto-framing, preset recall/store, CCU color controls, audio channel management, video mute, IP streaming, and system maintenance. Auth via admin account on port 23.
+PTZ camera with Telnet serial command API over TCP/IP. Supports pan/tilt/zoom, auto-framing, preset recall/store, CCU color controls, audio channel management, video mute, IP streaming, and system maintenance. Telnet login uses the admin account.
 
 <!-- UNRESOLVED: serial RS-232 not supported; only Telnet/TCP -->
 
@@ -170,10 +175,6 @@ auth:
       type: integer
       description: Optional zoom speed (1-7)
       required: false
-    - name: no_wait
-      type: flag
-      description: Return prompt immediately
-      required: false
 
 - id: camera_zoom_out
   label: Zoom Out
@@ -263,8 +264,8 @@ auth:
       type: string
       description: CCU parameter name
     - name: value
-      type: integer
-      description: CCU value (integer)
+      type: string
+      description: on or off for auto_white_balance and auto_iris; integer for other CCU parameters
 
 - id: camera_led
   label: Camera LED
@@ -297,10 +298,6 @@ auth:
     - name: channel
       type: string
       description: Audio channel name
-    - name: amount
-      type: integer
-      description: Volume step (optional, default 1)
-      required: false
 
 - id: audio_volume_down
   label: Audio Volume Down
@@ -309,10 +306,6 @@ auth:
     - name: channel
       type: string
       description: Audio channel name
-    - name: amount
-      type: integer
-      description: Volume step (optional, default 1)
-      required: false
 
 - id: audio_mute
   label: Audio Mute
@@ -382,7 +375,7 @@ auth:
   params:
     - name: value
       type: integer
-      description: Sensitivity value (0-100)
+      description: Sensitivity value; range not stated in source
 
 - id: autoframer_responsiveness
   label: Autoframer Responsiveness
@@ -390,7 +383,7 @@ auth:
   params:
     - name: value
       type: integer
-      description: Responsiveness value (0-100)
+      description: Responsiveness value; range not stated in source
 
 - id: autoframer_initial_persistence
   label: Autoframer Initial Persistence
@@ -464,6 +457,32 @@ auth:
     - name: state
       type: string
       enum: [on, off]
+
+- id: autoframer_max_speed
+  label: Autoframer Max Speed
+  kind: action
+  params: []
+
+- id: network_ping
+  label: Network Ping
+  kind: action
+  params:
+    - name: count
+      type: integer
+      description: Optional number of ECHO_REQUEST packets to send; default is five packets; range UNRESOLVED
+      required: false
+    - name: size
+      type: integer
+      description: Optional size of each ECHO_REQUEST packet; default is 56 bytes; range UNRESOLVED
+      required: false
+    - name: string
+      type: string
+      description: Hostname or IP address where the ECHO_REQUEST packets will be sent
+
+- id: camera_optical_zoom
+  label: Camera Optical Zoom
+  kind: action
+  params: []
 ```
 
 ## Feedbacks
@@ -472,99 +491,121 @@ auth:
   label: Pan Position
   type: integer
   description: Current pan pixel column
+  query_command: camera pan get
 
 - id: camera_tilt_position
   label: Tilt Position
   type: integer
   description: Current tilt pixel row
+  query_command: camera tilt get
 
 - id: camera_zoom_position
   label: Zoom Position
   type: number
   description: Current zoom level
+  query_command: camera zoom get
 
 - id: camera_led_state
   label: Camera LED State
   type: enum
   values: [on, off]
+  query_command: camera led get
 
 - id: video_mute_state
   label: Video Mute State
   type: enum
   values: [on, off]
+  query_command: video mute get
 
 - id: camera_standby_state
   label: Camera Standby State
   type: enum
   values: [on, off]
+  query_command: camera standby get
 
 - id: audio_volume_state
   label: Audio Volume
   type: number
   description: Current volume in dB
+  query_command: audio <channel> volume get
 
 - id: audio_mute_state
   label: Audio Mute State
   type: enum
   values: [on, off]
+  query_command: audio <channel> mute get
 
 - id: audio_echo_cancel_state
   label: Audio Echo Cancel State
   type: enum
   values: [on, off]
+  query_command: audio <channel> echo-cancel get
 
 - id: autoframer_enabled_state
   label: Autoframer Enabled State
   type: boolean
+  query_command: autoframer enabled get
 
 - id: autoframer_paused_state
   label: Autoframer Paused State
   type: boolean
+  query_command: autoframer paused get
 
 - id: autoframer_default_wide_state
   label: Autoframer Default Wide State
   type: boolean
+  query_command: autoframer default-wide get
 
 - id: autoframer_buffer_zone_value
   label: Autoframer Buffer Zone
   type: integer
+  query_command: autoframer buffer-zone get
 
 - id: autoframer_shot_margin_value
   label: Autoframer Shot Margin
   type: integer
+  query_command: autoframer shot-margin get
 
 - id: autoframer_sensitivity_value
   label: Autoframer Sensitivity
   type: integer
+  query_command: autoframer sensitivity get
 
 - id: autoframer_responsiveness_value
   label: Autoframer Responsiveness
   type: integer
+  query_command: autoframer responsiveness get
 
 - id: autoframer_initial_persistence_value
   label: Autoframer Initial Persistence
   type: integer
+  query_command: autoframer initial-persistence get
 
 - id: autoframer_persistence_value
   label: Autoframer Persistence
   type: integer
+  query_command: autoframer persistence get
 
 - id: autoframer_max_electronic_zoom_value
   label: Autoframer Max Electronic Zoom
   type: number
+  query_command: autoframer max-electronic-zoom get
 
 - id: autoframer_noise_threshold_value
   label: Autoframer Noise Threshold
   type: integer
+  query_command: autoframer noise-threshold get
 
 - id: autoframer_tri_sync_motion_state
   label: Autoframer Tri-Sync Motion State
   type: enum
   values: [on, off]
+  query_command: autoframer tri-sync-motion get
 
 - id: autoframer_forced_wait_time_value
   label: Autoframer Forced Wait Time
   type: integer
+  query_command: autoframer forced-wait-time get
 
 - id: network_settings
   label: Network Settings
@@ -580,6 +621,7 @@ auth:
       type: string
     - name: hostname
       type: string
+  query_command: network settings get
 
 - id: streaming_settings
   label: Streaming Settings
@@ -599,6 +641,7 @@ auth:
       type: string
     - name: ip_rtsp_url
       type: string
+  query_command: streaming settings get
 
 - id: system_version
   label: System Version
@@ -610,11 +653,13 @@ auth:
       type: string
     - name: audio
       type: string
+  query_command: version
 
 - id: factory_reset_state
   label: Factory Reset State
   type: enum
   values: [on, off]
+  query_command: system factory-reset get
 ```
 
 ## Variables
@@ -680,7 +725,7 @@ interlocks:
 ```
 
 ## Notes
-Telnet session: use `?` to discover available commands and valid parameter ranges. `CTRL-5` clears the serial buffer. Command prompt is `>`. Session management commands: `help`, `history`, `exit`. Login required with admin account. Pan/tilt range varies by zoom level. Zoom position is floating-point, range varies by model. Query out-of-range values to discover valid ranges — firmware updates may add commands or change ranges.
+Telnet session: enable Telnet on the device Security page, connect over the network using port 23, and log in with the admin account. Use `?` to discover available commands and valid parameters. To discover a valid value range, try a value expected to be out of range. `CTRL-5` clears the current serial buffer. Command prompt is `>`. Session management commands: `help`, `history`, `exit`. Pan/tilt range varies by zoom level; pixel position ranges may vary by model. Zoom position is floating-point, with range varying by model. Firmware updates may add commands or change ranges.
 <!-- UNRESOLVED: serial RS-232 config not supported; TCP only -->
 <!-- UNRESOLVED: baud rate, data bits, parity, stop bits not applicable (Telnet only) -->
 <!-- UNRESOLVED: HTTP/REST API not documented in source -->
@@ -700,23 +745,28 @@ source_urls:
   - https://www.legrandav.com/resources/360_product_overviews/conferenceshot-eptz
   - https://www.fullcompass.com/common/files/36364-RoboSHOTHDBTCompleteManual.pdf
 retrieved_at: 2026-05-18T17:48:06.540Z
-last_checked_at: 2026-06-02T22:15:56.550Z
+last_checked_at: 2026-10-07T12:54:57.464Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:56.550Z
-matched_actions: 40
-action_count: 40
+checked_at: 2026-10-07T12:54:57.464Z
+matched_actions: 69
+action_count: 69
 confidence: medium
-summary: "All 40 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 69 action units match source commands and transport (port 23, admin login) is supported; only about 5 minor source commands are unrepresented. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- "camera ccu get"
+- "streaming ip enable get"
+- history
+- help
+- exit
 - "serial RS-232 not supported; only Telnet/TCP"
 - "no unsolicited event notifications documented in source"
 - "no multi-step macro sequences documented in source"

@@ -20,8 +20,8 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-06-02T22:09:34.497Z
-generated_at: 2026-06-02T22:09:34.497Z
+last_checked_at: 2026-09-29T22:43:23.997Z
+generated_at: 2026-09-29T22:43:23.997Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -31,11 +31,11 @@ known_gaps:
   - "DHCP configuration details beyond \"default behavior\" not fully specified"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:09:34.497Z
-  matched_actions: 63
-  action_count: 63
+  checked_at: 2026-09-29T22:43:23.997Z
+  matched_actions: 64
+  action_count: 64
   confidence: medium
-  summary: "All 63 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 64 wire-literal actions match; all 57 source command families (channel variants collapsed) are represented, and transport is supported. (4 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -61,7 +61,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not explicitly state whether authentication is required or absent
 ```
 
 ## Traits
@@ -586,6 +586,13 @@ actions:
       - name: CMD
         type: string
         description: Any command that supports notifications (DIS parameter)
+
+  - id: wait_test
+    label: Wait/Error Test
+    kind: action
+    command: "RQST:CS:WAIT_TEST:?\\r"
+    params: []
+    description: Test-only command; issues three WAIT responses followed by ERROR to validate wait handling
 ```
 
 ## Feedbacks
@@ -957,6 +964,8 @@ interlocks:
 - Notifications must be explicitly enabled per command (EN/DIS); factory defaults listed in source section 10.
 - Calibration distance commands always report in feet regardless of system unit setting.
 - VOL and Z2VOL persistence only when Power On Volume set to "Last Level".
+- Authentication requirements for either transport are not stated in the source and remain UNRESOLVED.
+- WAIT_TEST is a test-only command (source §8.80) intended to validate the WAIT/ERROR response sequence; it is included as an Action.
 - See source section 7 for full persistent vs. non-persistent command retention table.
 <!-- UNRESOLVED: firmware version compatibility range not stated -->
 <!-- UNRESOLVED: DHCP configuration details beyond "default behavior" not fully specified -->
@@ -969,18 +978,18 @@ source_domains:
 source_urls:
   - https://www.marklevinson.com/on/demandware.static/-/Sites-ML-US-NCOM-Library/default/dw3b18792f/glp/support/downloads/No502/Mark-Levinson-No502-Serial-Protocol.pdf
 retrieved_at: 2026-05-02T20:26:18.740Z
-last_checked_at: 2026-06-02T22:09:34.497Z
+last_checked_at: 2026-09-29T22:43:23.997Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:09:34.497Z
-matched_actions: 63
-action_count: 63
+checked_at: 2026-09-29T22:43:23.997Z
+matched_actions: 64
+action_count: 64
 confidence: medium
-summary: "All 63 spec actions traced to source (dip-safe re-verify). (4 unresolved item(s) noted in Known Gaps.)"
+summary: "All 64 wire-literal actions match; all 57 source command families (channel variants collapsed) are represented, and transport is supported. (4 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

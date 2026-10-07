@@ -11,7 +11,7 @@ compatible_with:
     - Rotel
   models:
     - RCX-1500
-  firmware: "\">=1.1.5\""
+  firmware: ">=1.1.5"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-05-22T15:27:30.889Z
 last_checked_at: 2026-06-02T17:23:55.685Z
 generated_at: 2026-06-02T17:23:55.685Z
-firmware_coverage: "\">=1.1.5\""
+firmware_coverage: ">=1.1.5"
 protocol_coverage: []
 known_gaps:
   - "max cable length, electrical interface (true RS-232 vs TTL), and rear-panel DB9/DB25 pinout not stated in source."

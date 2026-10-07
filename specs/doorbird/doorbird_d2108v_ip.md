@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "Doorbird D2108V"
     - "DoorBird Video Door Station D21x"
-  firmware: "\"000108 and above\""
+  firmware: "000108 and above"
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-05-12T20:44:51.798Z
 last_checked_at: 2026-09-04T22:16:55.466Z
 generated_at: 2026-09-04T22:16:55.466Z
-firmware_coverage: "\"000108 and above\""
+firmware_coverage: "000108 and above"
 protocol_coverage: []
 known_gaps:
   - "D2108V-specific quirks not called out; the source covers the D21x family generally. Cloud API and remote relay scheduling behaviour for D2108V specifically are not stated."

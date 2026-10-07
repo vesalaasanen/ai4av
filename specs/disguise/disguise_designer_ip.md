@@ -11,7 +11,7 @@ compatible_with:
     - disguise
   models:
     - Designer
-  firmware: "\"r23.2+\""
+  firmware: r23.2+
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -22,7 +22,7 @@ source_urls:
 retrieved_at: 2026-08-31T10:49:18.809Z
 last_checked_at: 2026-08-31T11:10:14.229Z
 generated_at: 2026-08-31T11:10:14.229Z
-firmware_coverage: "\"r23.2+\""
+firmware_coverage: r23.2+
 protocol_coverage: []
 known_gaps:
   - "source documents only request/response polling; no unsolicited event/notification mechanism described"

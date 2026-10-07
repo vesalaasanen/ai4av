@@ -11,7 +11,7 @@ compatible_with:
     - Cisco
   models:
     - "Cisco TelePresence SX80"
-  firmware: "\"TC7.3\""
+  firmware: TC7.3
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -27,7 +27,7 @@ source_urls:
 retrieved_at: 2026-05-12T22:18:22.523Z
 last_checked_at: 2026-06-25T08:54:47.648Z
 generated_at: 2026-06-25T08:54:47.648Z
-firmware_coverage: "\"TC7.3\""
+firmware_coverage: TC7.3
 protocol_coverage: []
 known_gaps:
   - "source targets SX80 only; C-series / TC73-specific differences not documented. Firmware build range, hardware variants, and exact product SKU mapping not stated."

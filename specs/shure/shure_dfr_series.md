@@ -18,15 +18,17 @@ compatible_with:
 source_domains:
   - content-files.shure.com
 source_urls:
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-retrieved_at: 2026-04-30T04:28:59.697Z
-last_checked_at: 2026-06-02T22:14:23.281Z
-generated_at: 2026-06-02T22:14:23.281Z
+  - https://content-files.shure.com/Pubs2/files/259899.pdf
+retrieved_at: 2026-09-26T14:23:14.963Z
+last_checked_at: 2026-09-26T14:23:14.963Z
+generated_at: 2026-09-26T14:23:14.963Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
-  - "device may support additional models in DFR Series (e.g., DFR8) — not documented in source"
-  - "exact response string format for each query type not fully detailed in source."
+  - "supported preset-number range.'"
+  - "full amount range and formatting beyond documented examples.'"
+  - "source mixer-L encoding contradicts its example. Request family and parameters retained for coverage, but no guessed executable command is provided.'"
+  - "other values, including whether000 disconnects.'"
   - "variables for read/write parameters not explicitly separated from actions in source."
   - "no unsolicited event notifications described in source."
   - "no multi-step macro sequences described in source."
@@ -37,11 +39,11 @@ known_gaps:
   - "error codes/negative acknowledgements not documented"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:14:23.281Z
-  matched_actions: 26
-  action_count: 26
+  checked_at: 2026-09-26T14:23:14.963Z
+  matched_actions: 35
+  action_count: 35
   confidence: medium
-  summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 35 units match DFR22 source; MIX L encoding and contradictory mixer replies are explicitly unresolved, with no guessed setter bytes. (12 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -53,7 +55,7 @@ created_at: 2026-04-21
 ## Summary
 Shure DFR22 is a digital feedback reduction processor. Control via RS-232 serial at 19200 8N1. Protocol uses D0h prefix and D1h suffix. Commands cover preset recall, input/output channel levels, and matrix mixer routing.
 
-<!-- UNRESOLVED: device may support additional models in DFR Series (e.g., DFR8) — not documented in source -->
+<!-- Scope: DFR22 only. No additional DFR family model is inferred. -->
 
 ## Transport
 ```yaml
@@ -66,7 +68,7 @@ serial:
   stop_bits: 1
   flow_control: none
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # authentication is not established by this source
 ```
 
 ## Traits
@@ -84,356 +86,728 @@ traits:
 
 ## Actions
 ```yaml
-# QRY - query all parameters
 - id: query_all
   label: Query All Parameters
-  kind: action
-  params: []
-  description: Returns state of all parameters as if each queried individually. Format: D0h DFR22 <unit> QRY D1h
-
-# PRE - preset control
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+  description: QRY returns each parameter as if individually queried.
+  command: <D0h>DFR22{unit}QRY<D1h>
 - id: preset_set
   label: Set Preset
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: preset
-      type: integer
-      description: Three-digit preset number (e.g., 001)
-  description: Sets current preset. Format: D0h DFR22 <unit> PRE <3-digit preset> D1h
-
+      type: string
+      description: 'Required three-character preset field;001 recalls preset1. UNRESOLVED: supported preset-number range.'
+  description: Recall preset.
+  command: <D0h>DFR22{unit}PRE{preset}<D1h>
 - id: preset_query
   label: Query Preset
-  kind: action
-  params: []
-  description: Queries current preset. Format: D0h DFR22 <unit> PRE D1h
-
-# INP - input channel control
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+  description: Query current preset by omitting value.
+  command: <D0h>DFR22{unit}PRE<D1h>
 - id: input_level_set
   label: Set Input Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002, ALL]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: integer
-      description: Gain value 0-127 (0 = -Infinity, 1-26 = -105 to -42.5dB in 2.5dB steps, 27-127 = -40 to +10dB in 0.5dB steps)
-  description: Sets input channel gain level. Format: D0h DFR22 <unit> INP <channel> L 00<byte> D1h
-
+      description: Gain0–127:0=-Infinity;1–26=-105 to-42.5dB in2.5dB steps;27–127=-40 to+10dB in0.5dB steps. INP/OUT encode ASCII00 then one raw unsigned8-bit value byte.
+  description: Set gain.
+  command: <D0h>DFR22{unit}INP{channel}L00{value}<D1h>
 - id: input_level_inc
   label: Increment Input Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
-      type: integer
-      description: Increment amount (0-127)
-  description: Increases input gain by supplied value. Format: D0h DFR22 <unit> INP <channel> I <3-digit value> D1h
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Increase gain by supplied amount.
+  command: <D0h>DFR22{unit}INP{channel}I{value}<D1h>
 - id: input_level_dec
   label: Decrement Input Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
-      type: integer
-      description: Decrement amount (0-127)
-  description: Decreases input gain by supplied value. Format: D0h DFR22 <unit> INP <channel> D <3-digit value> D1h
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Decrease gain by supplied amount.
+  command: <D0h>DFR22{unit}INP{channel}D{value}<D1h>
 - id: input_mute
   label: Set Input Mute
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002, ALL]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: enum
-      values: [000, 001, 002]
-      description: "000 = mute off, 001 = mute on, 002 = toggle"
-  description: Sets input mute state. Format: D0h DFR22 <unit> INP <channel> M <3-digit value> D1h
-
+      description: 'Three ASCII characters: 000=off,001=on,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set mute.
+  command: <D0h>DFR22{unit}INP{channel}M{value}<D1h>
 - id: input_sensitivity
   label: Set Input Sensitivity
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: enum
-      values: [000, 001, 002]
-      description: "000 = +4 dBu, 001 = -10 dBV, 002 = toggle"
-  description: Sets input sensitivity. Format: D0h DFR22 <unit> INP <channel> S <3-digit value> D1h
-
+      description: 'Three ASCII characters: 000=+4dBu,001=-10dBV,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set sensitivity.
+  command: <D0h>DFR22{unit}INP{channel}S{value}<D1h>
 - id: input_polarity
   label: Set Input Polarity
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: enum
-      values: [000, 001, 002]
-      description: "000 = positive, 001 = negative, 002 = toggle"
-  description: Sets input polarity. Format: D0h DFR22 <unit> INP <channel> P <3-digit value> D1h
-
+      description: 'Three ASCII characters: 000=positive,001=negative,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set polarity.
+  command: <D0h>DFR22{unit}INP{channel}P{value}<D1h>
 - id: input_mute_query
   label: Query Input Mute
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries mute status. Format: D0h DFR22 <unit> INP <channel> M D1h
-
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query mute by omitting value.
+  command: <D0h>DFR22{unit}INP{channel}M<D1h>
 - id: input_sensitivity_query
   label: Query Input Sensitivity
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries sensitivity. Format: D0h DFR22 <unit> INP <channel> S D1h
-
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query sensitivity by omitting value.
+  command: <D0h>DFR22{unit}INP{channel}S<D1h>
 - id: input_polarity_query
   label: Query Input Polarity
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries polarity. Format: D0h DFR22 <unit> INP <channel> P D1h
-
-# OUT - output channel control
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query polarity by omitting value.
+  command: <D0h>DFR22{unit}INP{channel}P<D1h>
 - id: output_level_set
   label: Set Output Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002, ALL]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: integer
-      description: Gain value 0-127
-  description: Sets output channel gain level. Format: D0h DFR22 <unit> OUT <channel> L 00<byte> D1h
-
+      description: Gain0–127:0=-Infinity;1–26=-105 to-42.5dB in2.5dB steps;27–127=-40 to+10dB in0.5dB steps. INP/OUT encode ASCII00 then one raw unsigned8-bit value byte.
+  description: Set gain.
+  command: <D0h>DFR22{unit}OUT{channel}L00{value}<D1h>
 - id: output_level_inc
   label: Increment Output Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
-      type: integer
-      description: Increment amount
-  description: Increases output gain. Format: D0h DFR22 <unit> OUT <channel> I <3-digit value> D1h
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Increase gain by supplied amount.
+  command: <D0h>DFR22{unit}OUT{channel}I{value}<D1h>
 - id: output_level_dec
   label: Decrement Output Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
-      type: integer
-      description: Decrement amount
-  description: Decreases output gain. Format: D0h DFR22 <unit> OUT <channel> D <3-digit value> D1h
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Decrease gain by supplied amount.
+  command: <D0h>DFR22{unit}OUT{channel}D{value}<D1h>
 - id: output_mute
   label: Set Output Mute
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002, ALL]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: enum
-      values: [000, 001, 002]
-  description: Sets output mute state. Format: D0h DFR22 <unit> OUT <channel> M <3-digit value> D1h
-
+      description: 'Three ASCII characters: 000=off,001=on,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set mute.
+  command: <D0h>DFR22{unit}OUT{channel}M{value}<D1h>
 - id: output_clip
   label: Set Output Clip/Pad
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
     - name: value
       type: enum
-      values: [000, 001, 002]
-      description: "000 = no pad, 001 = 18dB pad, 002 = 12dB pad"
-  description: Sets output clipping pad (OUTPUT ONLY). Format: D0h DFR22 <unit> OUT <channel> C <3-digit value> D1h
-
+      description: Three ASCII characters:000=no pad,001=18dB pad,002=12dB pad.
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set output pad.
+  command: <D0h>DFR22{unit}OUT{channel}C{value}<D1h>
 - id: output_mute_query
   label: Query Output Mute
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries output mute state.
-
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query mute by omitting value.
+  command: <D0h>DFR22{unit}OUT{channel}M<D1h>
 - id: output_clip_query
   label: Query Output Clip/Pad
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries output clip/pad state.
-
-# MIX - matrix mixer control
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query clip by omitting value.
+  command: <D0h>DFR22{unit}OUT{channel}C<D1h>
 - id: mix_level_set
   label: Set Mix Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
-      description: Mixer number (output strip)
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002, OUT]
-      description: Channel (input strip); OUT for output fader
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
     - name: value
       type: integer
-      description: Gain value 0-127
-  description: Sets mix point gain level. Format: D0h DFR22 <unit> MIX <mixer><channel> L <3-digit value> D1h
-
+      description: 'Gain0–127 using the documented gain table. UNRESOLVED wire encoding: MIX subcommand text requires00<byte> but MIX example usesL100; do not choose one silently.'
+  description: Set gain.
+  notes: 'UNRESOLVED: source mixer-L encoding contradicts its example. Request family and parameters retained for coverage, but no guessed executable command is provided.'
 - id: mix_level_inc
   label: Increment Mix Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
     - name: value
-      type: integer
-  description: Increases mix point gain.
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Increase gain by supplied amount.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}I{value}<D1h>
 - id: mix_level_dec
   label: Decrement Mix Level
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002]
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
     - name: value
-      type: integer
-  description: Decreases mix point gain.
-
+      type: string
+      description: 'Supplied increment/decrement amount. I example005 increases5 gain-table steps. UNRESOLVED: full amount range and formatting beyond documented examples.'
+  description: Decrease gain by supplied amount.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}D{value}<D1h>
 - id: mix_mute
   label: Set Mix Mute
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002, OUT]
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
     - name: value
       type: enum
-      values: [000, 001, 002]
-  description: Sets mix point mute state.
-
+      description: 'Three ASCII characters: 000=off,001=on,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set mute.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}M{value}<D1h>
 - id: mix_polarity
   label: Set Mix Polarity
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002, OUT]
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
     - name: value
       type: enum
-      values: [000, 001, 002]
-  description: Sets mix point polarity.
-
+      description: 'Three ASCII characters: 000=positive,001=negative,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set polarity.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}P{value}<D1h>
 - id: mix_connect
   label: Connect Mix Route
   kind: action
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
-      description: Mixer number (output strip)
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002]
-      description: Input channel to route (cannot be OUT)
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
     - name: value
-      type: enum
-      values: [000, 001]
-      description: "000 = disconnect, 001 = connect"
-  description: Routes input channel to output mixer. Format: D0h DFR22 <unit> MIX <mixer><channel> C <3-digit value> D1h
-
+      type: string
+      description: 'Required connection value; only001 is explicitly exemplified. UNRESOLVED: other values, including whether000 disconnects.'
+  description: Route selected input to mixer output; no disconnect value is inferred.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}C{value}<D1h>
 - id: mix_connect_query
   label: Query Mix Connection
-  kind: action
+  kind: query
   params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
     - name: mixer
       type: enum
-      values: [001, 002]
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
     - name: channel
       type: enum
-      values: [001, 002]
-  description: Queries mix routing state.
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+  description: Query connect by omitting value.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}C<D1h>
+- id: input_level_query
+  label: Input Level Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query level by omitting value.
+  command: <D0h>DFR22{unit}INP{channel}L<D1h>
+- id: output_level_query
+  label: Output Level Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query level by omitting value.
+  command: <D0h>DFR22{unit}OUT{channel}L<D1h>
+- id: output_sensitivity
+  label: Output Sensitivity
+  kind: action
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+    - name: value
+      type: enum
+      description: 'Three ASCII characters: 000=+4dBu,001=-10dBV,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set sensitivity.
+  command: <D0h>DFR22{unit}OUT{channel}S{value}<D1h>
+- id: output_sensitivity_query
+  label: Output Sensitivity Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query sensitivity by omitting value.
+  command: <D0h>DFR22{unit}OUT{channel}S<D1h>
+- id: output_polarity
+  label: Output Polarity
+  kind: action
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+    - name: value
+      type: enum
+      description: 'Three ASCII characters: 000=positive,001=negative,002=toggle.'
+      values:
+        - '000'
+        - '001'
+        - '002'
+  description: Set polarity.
+  command: <D0h>DFR22{unit}OUT{channel}P{value}<D1h>
+- id: output_polarity_query
+  label: Output Polarity Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: channel
+      type: enum
+      description: Required three-character channel identifier; ALL broadcasts to both inputs/outputs.
+      values:
+        - '001'
+        - '002'
+        - ALL
+  description: Query polarity by omitting value.
+  command: <D0h>DFR22{unit}OUT{channel}P<D1h>
+- id: mix_level_query
+  label: Mix Level Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: mixer
+      type: enum
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
+    - name: channel
+      type: enum
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
+  description: Query level by omitting value.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}L<D1h>
+- id: mix_mute_query
+  label: Mix Mute Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: mixer
+      type: enum
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
+    - name: channel
+      type: enum
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
+  description: Query mute by omitting value.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}M<D1h>
+- id: mix_polarity_query
+  label: Mix Polarity Query
+  kind: query
+  params:
+    - name: unit
+      type: string
+      description: Required configured three-character device ID; source example001. No device-ID numeric range is stated.
+    - name: mixer
+      type: enum
+      description: Required three-character output-strip mixer number.
+      values:
+        - '001'
+        - '002'
+    - name: channel
+      type: enum
+      description: Required input-strip identifier; OUT addresses output fader except connection C.
+      values:
+        - '001'
+        - '002'
+        - OUT
+  description: Query polarity by omitting value.
+  command: <D0h>DFR22{unit}MIX{mixer}{channel}P<D1h>
 ```
 
 ## Feedbacks
 ```yaml
-# Device echoes command strings back as acknowledgement.
-# Query commands return parameter values.
-# Multiple responses when "ALL" used - one per channel.
-# UNRESOLVED: exact response string format for each query type not fully detailed in source.
 - id: command_echo
   type: string
-  description: Device echoes the command string back as acknowledgement
-
+  description: Documented setters return parameter responses; I/D return the resulting L value rather than echoing the increment/decrement request. MIX example reply identifiers are inconsistent and remain UNRESOLVED.
 - id: preset_response
   type: string
   description: Response to preset query - returns current preset number
-
 - id: level_response
   type: integer
   description: Response to level query - returns current gain value 0-127
-
 - id: mute_response
-  type: enum
-  values: [000, 001, 002]
-  description: "000 = mute off, 001 = mute on, 002 = toggle state"
-
+  type: string
+  description: Returned current value; exact response value domain UNRESOLVED.002 is documented as a toggle request, not a persistent state.
 - id: sensitivity_response
-  type: enum
-  values: [000, 001, 002]
-  description: "000 = +4 dBu, 001 = -10 dBV, 002 = toggle"
-
+  type: string
+  description: Returned current value; exact response value domain UNRESOLVED.002 is documented as a toggle request, not a persistent state.
 - id: polarity_response
-  type: enum
-  values: [000, 001, 002]
-  description: "000 = positive, 001 = negative, 002 = toggle"
-
+  type: string
+  description: Returned current value; exact response value domain UNRESOLVED.002 is documented as a toggle request, not a persistent state.
 - id: clip_response
   type: enum
-  values: [000, 001, 002]
-  description: "000 = no pad, 001 = 18dB pad, 002 = 12dB pad"
+  values:
+    - '000'
+    - '001'
+    - '002'
+  description: 000 = no pad, 001 = 18dB pad, 002 = 12dB pad
 ```
 
 ## Variables
@@ -482,33 +856,41 @@ interlocks: []
 <!-- UNRESOLVED: exact response format for QRY command not detailed -->
 <!-- UNRESOLVED: error codes/negative acknowledgements not documented -->
 
+Wire encoding: `<D0h>` and `<D1h>` are single raw prefix/suffix bytes, not printable bracketed text. Other literal protocol fields and identifiers are ASCII; concatenate them without added spaces or a CR terminator. Every request requires its own three-character unit ID. For input/output L setters only, `00{value}` means two ASCII zero characters followed by one raw byte0–127; it does not mean the decimal digits of the gain. I/D amounts are supplied fields; no unsupported numeric limit is asserted. Query forms omit the value entirely; I/D have no query form. ALL produces one response per addressed input/output channel.
+
+The35 operation units cover QRY1, PRE2, INP10, OUT12 and MIX10. Newly represented query forms and output sensitivity/polarity follow the source's explicit shared input/output subcommand table. Existing IDs are retained. Firmware applicability and authentication remain UNRESOLVED.
+
+Source ambiguity: MIX L prose specifies `00<byte>`, while its example sends `MIX001OUTL100`; the example replies for mixer increment/connection also contain INP/OUT where the request uses MIX. The draft does not silently choose an encoding or treat those reply typos as normative schemas. Mute/sensitivity/polarity002 is a toggle request; response value sets are not asserted to include a persistent toggle state. MIX C example001 routes an input;000 disconnect is not documented.
+
 ## Provenance
 
 ```yaml
 source_domains:
   - content-files.shure.com
 source_urls:
-  - https://content-files.shure.com/KnowledgeBaseFiles/dfr22_rs232.pdf
-retrieved_at: 2026-04-30T04:28:59.697Z
-last_checked_at: 2026-06-02T22:14:23.281Z
+  - https://content-files.shure.com/Pubs2/files/259899.pdf
+retrieved_at: 2026-09-26T14:23:14.963Z
+last_checked_at: 2026-09-26T14:23:14.963Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:14:23.281Z
-matched_actions: 26
-action_count: 26
+checked_at: 2026-09-26T14:23:14.963Z
+matched_actions: 35
+action_count: 35
 confidence: medium
-summary: "All 26 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 35 units match DFR22 source; MIX L encoding and contradictory mixer replies are explicitly unresolved, with no guessed setter bytes. (12 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
-- "device may support additional models in DFR Series (e.g., DFR8) — not documented in source"
-- "exact response string format for each query type not fully detailed in source."
+- "supported preset-number range.'"
+- "full amount range and formatting beyond documented examples.'"
+- "source mixer-L encoding contradicts its example. Request family and parameters retained for coverage, but no guessed executable command is provided.'"
+- "other values, including whether000 disconnects.'"
 - "variables for read/write parameters not explicitly separated from actions in source."
 - "no unsolicited event notifications described in source."
 - "no multi-step macro sequences described in source."

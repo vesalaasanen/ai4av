@@ -22,14 +22,18 @@ source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
   - https://github.com/teslamotors/vehicle-command
   - https://github.com/teslamotors/fleet-telemetry
-retrieved_at: 2026-06-02T22:15:44.446Z
-last_checked_at: 2026-06-02T22:15:44.446Z
-generated_at: 2026-06-02T22:15:44.446Z
+retrieved_at: 2026-09-30T01:34:45.748Z
+last_checked_at: 2026-09-30T01:34:45.748Z
+generated_at: 2026-09-30T01:34:45.748Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
+  - vehicle_data
   - "physical vehicle control constraints (voltage, current, power specs) not applicable to cloud API"
   - "конкретные ответы/feedback формат не описан в source"
+  - "source supplies only relative endpoint paths; absolute base URL not documented"
+  - "source documents virtual-key signing but does not specify an auth type"
+  - "virtual key required; commands rejected without valid signature (auth type not documented in source)\""
   - "this source describes only command-sending endpoints; vehicle event push notifications not documented here"
   - "no explicit multi-step macros described in source"
   - "response payload schema not documented in source"
@@ -37,11 +41,11 @@ known_gaps:
   - "websocket/streaming events not covered in this endpoint doc"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:15:44.446Z
+  checked_at: 2026-09-30T01:34:45.748Z
   matched_actions: 66
   action_count: 66
   confidence: medium
-  summary: "All 66 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 66 semantic-id actions match; documented shapes agree, unresolved transport is explicit, and only vehicle_data is unrepresented. (10 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -61,10 +65,10 @@ Tesla Fleet API REST interface for vehicle command control. Accepts commands via
 protocols:
   - http
 addressing:
-  base_url: https://owner-api.teslamotors.com/api/1/vehicles
+  base_url: UNRESOLVED  # UNRESOLVED: source supplies only relative endpoint paths; absolute base URL not documented
 auth:
-  type: oauth2
-  note: "Virtual key required; commands rejected without valid signature"
+  type: UNRESOLVED  # UNRESOLVED: source documents virtual-key signing but does not specify an auth type
+  note: "UNRESOLVED: virtual key required; commands rejected without valid signature (auth type not documented in source)"
 ```
 
 ## Traits
@@ -392,7 +396,7 @@ levelable: true
   params:
     - name: time
       type: integer
-  note: "Deprecated in firmware 2024.26+"
+  note: "Not recommended beginning with firmware 2024.26; add_charge_schedule preferred"
 
 - id: set_scheduled_departure
   label: Set Scheduled Departure
@@ -402,7 +406,7 @@ levelable: true
       type: integer
     - name: end_off_peak_time
       type: integer
-  note: "Deprecated in firmware 2024.26+"
+  note: "Not recommended beginning with firmware 2024.26; add_precondition_schedule preferred"
 
 - id: set_sentry_mode
   label: Set Sentry Mode
@@ -569,13 +573,15 @@ interlocks:
   - adjust_volume: user must be present and mobile access enabled
   - remote_start_drive: keyless driving must be enabled
   - window_control: vehicle must be parked
-  - charge_port_door_open: vehicle must not be in drive or park (except car_wash mode)
+  - charge_port_door_open: source reports `car_wash` (vehicle in car wash mode) and `not allowed` (drive rail engaged or not in park) as error reasons; required precondition not documented
 ```
 
 ## Notes
 All endpoints use `POST /api/1/vehicles/{vin}/command/<endpoint>` pattern. VIN must be known. Virtual key signature required or vehicle rejects command. Vehicle Command Proxy optional for most business vehicles and pre-2021 S/X vehicles.
 
-Certain commands require specific firmware versions: `clear_pin_to_drive_admin` and `speed_limit_clear_pin_admin` require 2023.44+ and 2023.38+ respectively. Guest Mode QR code requires 2024.14+. `set_scheduled_charging` and `set_scheduled_departure` deprecated in favor of `add_charge_schedule` and `add_precondition_schedule` as of 2024.26.
+Certain commands require specific firmware versions: `clear_pin_to_drive_admin` and `speed_limit_clear_pin_admin` require 2023.44+ and 2023.38+ respectively. Guest Mode QR code requires 2024.14+. `set_scheduled_charging` and `set_scheduled_departure` not recommended beginning with firmware 2024.26 in favor of `add_charge_schedule` and `add_precondition_schedule`.
+
+The source does not document the base URL or the auth type used to reach the API; the documented mechanism is virtual-key signing via the Vehicle Command Proxy (auth.type: UNRESOLVED; base_url: UNRESOLVED).
 
 <!-- UNRESOLVED: response payload schema not documented in source -->
 <!-- UNRESOLVED: rate limiting / throttle info not in source -->
@@ -591,26 +597,30 @@ source_urls:
   - https://developer.tesla.com/docs/fleet-api/endpoints/vehicle-commands
   - https://github.com/teslamotors/vehicle-command
   - https://github.com/teslamotors/fleet-telemetry
-retrieved_at: 2026-06-02T22:15:44.446Z
-last_checked_at: 2026-06-02T22:15:44.446Z
+retrieved_at: 2026-09-30T01:34:45.748Z
+last_checked_at: 2026-09-30T01:34:45.748Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:15:44.446Z
+checked_at: 2026-09-30T01:34:45.748Z
 matched_actions: 66
 action_count: 66
 confidence: medium
-summary: "All 66 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 66 semantic-id actions match; documented shapes agree, unresolved transport is explicit, and only vehicle_data is unrepresented. (10 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
+- vehicle_data
 - "physical vehicle control constraints (voltage, current, power specs) not applicable to cloud API"
 - "конкретные ответы/feedback формат не описан в source"
+- "source supplies only relative endpoint paths; absolute base URL not documented"
+- "source documents virtual-key signing but does not specify an auth type"
+- "virtual key required; commands rejected without valid signature (auth type not documented in source)\""
 - "this source describes only command-sending endpoints; vehicle event push notifications not documented here"
 - "no explicit multi-step macros described in source"
 - "response payload schema not documented in source"

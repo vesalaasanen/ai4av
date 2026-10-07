@@ -20,28 +20,27 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-06-02T22:13:13.668Z
-generated_at: 2026-06-02T22:13:13.668Z
+last_checked_at: 2026-10-07T13:04:52.187Z
+generated_at: 2026-10-07T13:04:52.187Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
   - "exact model variants within UltraLux Series not specified"
-  - "SNMP is read-only monitoring only — not a control protocol"
+  - "authentication requirements for RS-232, UDP and SNMP access not specified in source"
   - "no unsolicited notification events described in source"
   - "no multi-step sequences described in source"
   - "source mentions \"hard power\" vs \"soft power\" distinction but no"
-  - "SNMP details not fully represented as a separate transport — SNMP is monitoring-only"
   - "exact Blacklevel Brightness value range for set command — get returns -350 to 350 but set example shows value 50"
   - "firmware version compatibility not stated in source"
   - "command timing / inter-command delay requirements not stated"
   - "RS232 cable pinout not specified beyond \"standard straight-through\""
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:13:13.668Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-10-07T13:04:52.187Z
+  matched_actions: 44
+  action_count: 44
   confidence: medium
-  summary: "All 29 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 44 action units (29 actions, 15 queries) match the 44 RS232 table rows with correct opcodes and checksums; transport values are supported by the source. (9 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -51,10 +50,10 @@ created_at: 2026-05-03
 # Planar UltraLux Series Control Spec
 
 ## Summary
-Planar UltraLux Series large-format LCD display with RS-232 serial and UDP control. Binary hex command protocol (8-byte set commands, 4-byte get commands) with 100h checksum. Also supports read-only SNMP monitoring.
+Planar UltraLux Series large-format LCD display with RS-232 serial and UDP control. Binary hex command protocol (8-byte set commands, 4-byte get commands) with 100h checksum. Read-only SNMP monitoring is also available as a separate monitoring interface.
 
 <!-- UNRESOLVED: exact model variants within UltraLux Series not specified -->
-<!-- UNRESOLVED: SNMP is read-only monitoring only — not a control protocol -->
+<!-- UNRESOLVED: authentication requirements for RS-232, UDP and SNMP access not specified in source -->
 
 ## Transport
 ```yaml
@@ -70,7 +69,7 @@ serial:
 addressing:
   port: 57  # UDP port accepts same RS232 command set
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not state whether authentication is required
 ```
 
 ## Traits
@@ -296,9 +295,9 @@ actions:
     params:
       - name: blacklevel
         type: integer
-        min: 0
-        max: 100
-        description: "Blacklevel brightness value"
+        min: UNRESOLVED
+        max: UNRESOLVED
+        description: "Blacklevel brightness value (set range not specified in source; get returns -350 to 350)"
 
   - id: set_auto_scan_on
     label: Set Auto Scan On
@@ -336,6 +335,7 @@ feedbacks:
     label: Power Status
     type: enum
     command: "04 21 16 C5"
+    query_command: "04 21 16 C5"
     values:
       - "Power: ON"
       - "Power:"
@@ -346,24 +346,28 @@ feedbacks:
     label: Backlight Brightness
     type: integer
     command: "04 21 08 D3"
+    query_command: "04 21 08 D3"
     description: "Returns 'Backlight = value'"
 
   - id: contrast
     label: Contrast
     type: integer
     command: "04 21 09 D2"
+    query_command: "04 21 09 D2"
     description: "Returns 'Contrast = value'"
 
   - id: sharpness
     label: Sharpness
     type: integer
     command: "04 21 0A D1"
+    query_command: "04 21 0A D1"
     description: "Returns 'Sharpness = value' where value is setting + 4"
 
   - id: color_temp
     label: Color Temperature
     type: enum
     command: "04 21 0B D0"
+    query_command: "04 21 0B D0"
     values: [2, 3, 4, 5, 6]
     description: "Returns 'Color Temp = value' where 2=4200K, 3=5000K, 4=6500K, 5=7500K, 6=9300K"
 
@@ -371,24 +375,28 @@ feedbacks:
     label: Red Gain
     type: integer
     command: "04 21 0C CF"
+    query_command: "04 21 0C CF"
     description: "Returns 'Red Color = value'"
 
   - id: green_gain
     label: Green Gain
     type: integer
     command: "04 21 0D CE"
+    query_command: "04 21 0D CE"
     description: "Returns 'Green Color = value'"
 
   - id: blue_gain
     label: Blue Gain
     type: integer
     command: "04 21 0E CD"
+    query_command: "04 21 0E CD"
     description: "Returns 'Blue Color = value'"
 
   - id: input_status
     label: Input Status
     type: enum
     command: "04 21 07 D4"
+    query_command: "04 21 07 D4"
     values: [HDMI, VGA, DPRx]
     description: "Returns current input source. If no source present, returns last source searched"
 
@@ -396,12 +404,14 @@ feedbacks:
     label: Volume
     type: integer
     command: "04 21 0F CC"
+    query_command: "04 21 0F CC"
     description: "Returns 'Volume = value'"
 
   - id: mute_status
     label: Mute Status
     type: enum
     command: "04 21 14 C7"
+    query_command: "04 21 14 C7"
     values: [0, 1]
     description: "Returns 'Mute = value' (0=off, 1=on). May not reflect actual mute if changed by serial commands (known bug)"
 
@@ -409,18 +419,21 @@ feedbacks:
     label: Color Space
     type: enum
     command: "04 21 15 C6"
+    query_command: "04 21 15 C6"
     description: "Returns 'Color Space = value'"
 
   - id: blacklevel_brightness
     label: Blacklevel Brightness
     type: integer
     command: "04 21 17 C4"
+    query_command: "04 21 17 C4"
     description: "Returns 'Brightness = value' ranging from -350 to 350 (different scale than OSD 0-255)"
 
   - id: auto_scan_status
     label: Auto Scan Status
     type: enum
     command: "04 21 18 C3"
+    query_command: "04 21 18 C3"
     values: [0, 1]
     description: "Returns 'Auto Scan = value' where 1=on, 0=off"
 
@@ -428,6 +441,7 @@ feedbacks:
     label: HDMI Full Range
     type: enum
     command: "04 21 1A C1"
+    query_command: "04 21 1A C1"
     values: [0, 1, 2]
     description: "Returns 'HDMI Full Range = value' where 1=full range on, 0=limited range, 2=user-selected settings or VGA input"
 ```
@@ -461,14 +475,15 @@ interlocks: []
 
 **UDP transport:** UDP port 57 accepts the identical RS232 hex command set. The "Enable ASCII command service (UDP port 57)" checkbox must be enabled on the Access Control page of the Remote Monitoring web interface.
 
+**Authentication:** UNRESOLVED — the source does not state whether RS-232, UDP, or SNMP access requires authentication.
+
 **Known bugs documented in source:**
 - Contrast changes not saved when hard power turned off
 - Mute status query may not reflect actual state if mute was changed by serial commands
 - Sharpness get returns value = setting + 4 (offset by 4)
 
-**SNMP monitoring:** Read-only SNMP supported (community string "public", MIB: PLANARDISPLAY-MIB.txt, OID root 1.3.6.1.4.1.19125). SNMP objects are read-only with no traps.
+**SNMP monitoring:** Read-only SNMP supported (community string "public", MIB: PLANARDISPLAY-MIB.txt, OID root 1.3.6.1.4.1.19125). SNMP objects are read-only with no traps. SNMP is a monitoring-only interface, not a control protocol, and is not represented as a transport for control commands.
 
-<!-- UNRESOLVED: SNMP details not fully represented as a separate transport — SNMP is monitoring-only -->
 <!-- UNRESOLVED: exact Blacklevel Brightness value range for set command — get returns -350 to 350 but set example shows value 50 -->
 <!-- UNRESOLVED: firmware version compatibility not stated in source -->
 <!-- UNRESOLVED: command timing / inter-command delay requirements not stated -->
@@ -482,29 +497,28 @@ source_domains:
 source_urls:
   - https://www.planar.com/media/434375/020-1207-00e_ultralux-installation-guide.pdf
 retrieved_at: 2026-05-02T21:44:10.697Z
-last_checked_at: 2026-06-02T22:13:13.668Z
+last_checked_at: 2026-10-07T13:04:52.187Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:13:13.668Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-10-07T13:04:52.187Z
+matched_actions: 44
+action_count: 44
 confidence: medium
-summary: "All 29 spec actions traced to source (dip-safe re-verify). (10 unresolved item(s) noted in Known Gaps.)"
+summary: "All 44 action units (29 actions, 15 queries) match the 44 RS232 table rows with correct opcodes and checksums; transport values are supported by the source. (9 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps
 
 ```yaml
 - "exact model variants within UltraLux Series not specified"
-- "SNMP is read-only monitoring only — not a control protocol"
+- "authentication requirements for RS-232, UDP and SNMP access not specified in source"
 - "no unsolicited notification events described in source"
 - "no multi-step sequences described in source"
 - "source mentions \"hard power\" vs \"soft power\" distinction but no"
-- "SNMP details not fully represented as a separate transport — SNMP is monitoring-only"
 - "exact Blacklevel Brightness value range for set command — get returns -350 to 350 but set example shows value 50"
 - "firmware version compatibility not stated in source"
 - "command timing / inter-command delay requirements not stated"

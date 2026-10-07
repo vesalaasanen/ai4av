@@ -23,8 +23,8 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-29T12:48:05.737Z
-last_checked_at: 2026-06-02T22:16:16.936Z
-generated_at: 2026-06-02T22:16:16.936Z
+last_checked_at: 2026-10-07T13:11:49.679Z
+generated_at: 2026-10-07T13:11:49.679Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -37,11 +37,11 @@ known_gaps:
   - "default IP address may vary by unit; only one default stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:16:16.936Z
-  matched_actions: 29
-  action_count: 29
+  checked_at: 2026-10-07T13:11:49.679Z
+  matched_actions: 60
+  action_count: 60
   confidence: medium
-  summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 60 action units (29 actions, 31 query feedbacks) match source commands; transport values verified; source catalogue essentially fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -56,7 +56,6 @@ Wyrestorm H2X/H2XC modular HDMI/HDBaseT matrix switchers (10x10 and 16x16 config
 ## Transport
 ```yaml
 protocols:
-  - tcp
   - serial
 addressing:
   port: 23
@@ -66,8 +65,11 @@ serial:
   parity: none
   stop_bits: 1
   flow_control: none
+ip:
+  default_address: 192.168.11.143
+  default_port: 23
 auth:
-  type: none  # inferred: no auth procedure in source
+  type: UNRESOLVED  # source does not document an authentication procedure
 ```
 
 ## Traits
@@ -159,6 +161,7 @@ actions:
         values: [2, 4, 8]
         description: "Step size in dB"
     response: "VOLGAIN_STEP {aout} {prm}"
+    notes: "Requires 10x10 FW v1.3+ or 16x16 FW v1.4+"
 
   - id: increase_volume
     label: Increase Volume
@@ -169,6 +172,7 @@ actions:
         type: string
         description: "Audio output (audioout1~audioout16, all)"
     response: "VOLGAIN_INC {aout} {prm}"
+    notes: "Requires 10x10 FW v1.3+ or 16x16 FW v1.4+"
 
   - id: decrease_volume
     label: Decrease Volume
@@ -179,6 +183,7 @@ actions:
         type: string
         description: "Audio output (audioout1~audioout16, all)"
     response: "VOLGAIN_DEC {aout} {prm}"
+    notes: "Requires 10x10 FW v1.3+ or 16x16 FW v1.4+"
 
   - id: set_gain_fixed_variable
     label: Set Audio Output Fixed/Variable
@@ -345,7 +350,7 @@ actions:
         description: "Input (in1~in16, all)"
       - name: edid_code
         type: integer
-        description: "EDID parameter code (see EDID table); 00~15=copy from output, 16~31=fixed presets, 30=Smart EDID, 31=EDID Write"
+        description: "EDID parameter code (see EDID table); 00~15=copy from output, 16~29=fixed presets, 30=Smart EDID, 31=EDID Write"
     response: "EDID {in} {code}"
 
   - id: set_ir_callback
@@ -441,6 +446,7 @@ feedbacks:
     label: Video Input Mapping for Output
     type: string
     command: "GET MP out{N}"
+    query_command: "GET MP out{N}"
     response: "MP in{N} out{N}"
 
   - id: audio_switch_mode
@@ -448,18 +454,21 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET AUDIOSW_M"
+    query_command: "GET AUDIOSW_M"
     response: "AUDIOSW_M {prm}"
 
   - id: audio_mapping
     label: Audio Input Mapping for Output
     type: string
     command: "GET AUDIOMP out{N}"
+    query_command: "GET AUDIOMP out{N}"
     response: "AUDIOMP in{N} out{N}"
 
   - id: output_gain
     label: Audio Output Gain Level
     type: integer
     command: "GET VOLGAIN_DATA {aout}"
+    query_command: "GET VOLGAIN_DATA {aout}"
     response: "VOLGAIN_DATA {aout} {prm}"
 
   - id: mute_state
@@ -467,6 +476,7 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET MUTE {aout}"
+    query_command: "GET MUTE {aout}"
     response: "MUTE {aout} {prm}"
 
   - id: gain_fixed_variable
@@ -474,6 +484,7 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET VOLGAIN_FIX {aout}"
+    query_command: "GET VOLGAIN_FIX {aout}"
     response: "VOLGAIN_FIX {aout} {prm}"
     notes: "Requires 10x10 FW v1.3+ or 16x16 FW v1.4+"
 
@@ -482,6 +493,7 @@ feedbacks:
     type: enum
     values: [cut, ramp]
     command: "GET MUTE_M {aout}"
+    query_command: "GET MUTE_M {aout}"
     response: "MUTE_M {aout} {prm}"
 
   - id: volume_step
@@ -489,12 +501,14 @@ feedbacks:
     type: enum
     values: [2, 4, 8]
     command: "GET VOLGAIN_STEP {aout}"
+    query_command: "GET VOLGAIN_STEP {aout}"
     response: "VOLGAIN_STEP {aout} {prm}"
 
   - id: audio_delay
     label: Audio Output Delay
     type: integer
     command: "GET AUDIO_D {aout}"
+    query_command: "GET AUDIO_D {aout}"
     response: "AUDIO_D {aout} {prm}"
 
   - id: eq_status
@@ -502,12 +516,14 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET EQ_FN {aout}"
+    query_command: "GET EQ_FN {aout}"
     response: "EQ_FN {aout} {prm}"
 
   - id: eq_level
     label: Audio EQ Level
     type: string
     command: "GET AUDIO_EQ {aout} {freq}"
+    query_command: "GET AUDIO_EQ {aout} {freq}"
     response: "AUDIO_EQ {aout} {freq} {gain}"
 
   - id: cec_power_status
@@ -515,12 +531,14 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET CEC_PWR {out}"
+    query_command: "GET CEC_PWR {out}"
     response: "CEC_PWR {out} {prm}"
 
   - id: cec_power_delay
     label: CEC Power Off Delay
     type: integer
     command: "GET AUTOCEC_D {out}"
+    query_command: "GET AUTOCEC_D {out}"
     response: "AUTOCEC_D {out} {prm}"
 
   - id: hdcp_status
@@ -528,18 +546,21 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET HDCP_S {in}"
+    query_command: "GET HDCP_S {in}"
     response: "HDCP_S {in} {prm}"
 
   - id: edid
     label: Input EDID Setting
     type: string
     command: "GET EDID {in|all}"
+    query_command: "GET EDID {in|all}"
     response: "EDID in{N} {code} (one line per input if all)"
 
   - id: edid_dip
     label: EDID Dip Switch Status
     type: integer
     command: "GET EDID_DIP"
+    query_command: "GET EDID_DIP"
     response: "EDID_DIP {prm}"
 
   - id: ir_callback_status
@@ -547,6 +568,7 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET IRBACK_FN"
+    query_command: "GET IRBACK_FN"
     response: "IRBACK_FN {prm}"
 
   - id: long_reach_status
@@ -554,12 +576,14 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET LR_FN hdbtall"
+    query_command: "GET LR_FN hdbtall"
     response: "LR_FN hdbtall {prm}"
 
   - id: ir_syscode
     label: IR System Code
     type: string
     command: "GET IR_SYSCODE"
+    query_command: "GET IR_SYSCODE"
     response: "IR_SYSCODE {prm}"
 
   - id: switching_mode
@@ -567,6 +591,7 @@ feedbacks:
     type: enum
     values: [normal, quick]
     command: "GET SW_M"
+    query_command: "GET SW_M"
     response: "SW_M {prm}"
 
   - id: zone_lock_status
@@ -574,12 +599,14 @@ feedbacks:
     type: enum
     values: [on, off]
     command: "GET ZONE_LOCK {out}"
+    query_command: "GET ZONE_LOCK {out}"
     response: "ZONE_LOCK {out} {prm}"
 
   - id: zone_lockout
     label: Source Zone Lockout Mask
     type: string
     command: "GET ZONE_R {out}"
+    query_command: "GET ZONE_R {out}"
     response: "ZONE_R {out} {prm}"
 
   - id: input_cable_status
@@ -587,25 +614,29 @@ feedbacks:
     type: enum
     values: [connected, "not connected"]
     command: "GET CABLEC_IN in{N}"
+    query_command: "GET CABLEC_IN in{N}"
     response: "CABLEC_IN in{N} {prm}"
 
   - id: output_cable_status
     label: Output Cable Connection Status
     type: enum
     values: [connected, "not connected"]
-    command: "GET CABLEC_IN {hdmiout|hdmiout} {N}"
+    command: "GET CABLEC_IN {hdmiout|hdbtout} {N}"
+    query_command: "GET CABLEC_IN {hdmiout|hdbtout} {N}"
     response: "CABLEC_IN {out} {prm}"
 
   - id: hdbt_input_link
     label: HDBaseT Input Link Quality
     type: string
     command: "GET HDBTL_IN hdbtin{N}"
+    query_command: "GET HDBTL_IN hdbtin{N}"
     response: "HDBTL_IN hdbtin{N} {1~10|no link}"
 
   - id: hdbt_output_link
     label: HDBaseT Output Link Quality
     type: string
     command: "GET HDBTL_OUT hdbtout{N}"
+    query_command: "GET HDBTL_OUT hdbtout{N}"
     response: "HDBTL_OUT hdbtout{N} {1~10|no link}"
 
   - id: card_connection
@@ -613,6 +644,7 @@ feedbacks:
     type: enum
     values: [connected, "not connected"]
     command: "GET CARD_C slot{N}"
+    query_command: "GET CARD_C slot{N}"
     response: "CARD_C slot{N} {prm}"
 
   - id: card_type
@@ -620,6 +652,7 @@ feedbacks:
     type: enum
     values: [hdmi, hdbt]
     command: "GET CARD_T {N}"
+    query_command: "GET CARD_T {N}"
     response: "CARD_T slot{N} {prm}"
 
   - id: card_comms
@@ -627,6 +660,7 @@ feedbacks:
     type: enum
     values: [good, none]
     command: "GET CARD_COM {N}"
+    query_command: "GET CARD_COM {N}"
     response: "CARD_COM slot{N} {prm}"
 
   - id: card_status
@@ -634,6 +668,7 @@ feedbacks:
     type: enum
     values: [good, none]
     command: "GET CARD_S {mainboard|cardN|all}"
+    query_command: "GET CARD_S {mainboard|cardN|all}"
     response: "CARD_S {target} {prm}"
 
   - id: fan_status
@@ -641,6 +676,7 @@ feedbacks:
     type: enum
     values: [working, unworking]
     command: "GET FANS {fan1~fan4|all}"
+    query_command: "GET FANS {fan1~fan4|all}"
     response: "FANS {fan} {prm}"
 ```
 
@@ -692,9 +728,10 @@ interlocks: []
 ## Notes
 - All commands are ASCII, terminated with `<CR><LF>`.
 - Key words are case sensitive.
-- Default IP address: 192.168.11.143; default TCP port: 23.
+- Default IP address: 192.168.11.143; default TCP port: 23. Transport uses serial (RS-232) at 57600/8/N/1 with no flow control; the source documents a default IP address and port for IP commands but does not explicitly enumerate TCP as a supported protocol in a protocol list. Authentication is not documented and remains UNRESOLVED.
 - Some commands are firmware-version gated: 10x10 Main Board FW v1.3+ or 16x16 Main Board FW v1.4+ required for `VOLGAIN_FIX`, `MUTE_M` (set/query mute method), `VOLGAIN_INC`, `VOLGAIN_DEC`, `VOLGAIN_STEP`, `SAVE PRESET_A`, `RESTORE PRESET_A`.
 - Audio gain range changes with firmware: older FW uses -10~10 dB; newer FW uses -80~0 dB in 2 dB increments.
+- Audio routing uses hdmi/spdif/arc inputs and audioout outputs (not video-style in/out prefixes).
 - Remote device control over HDBaseT uses binary command syntax with header `05 55 55 57` followed by card slot, baud rate, parity, command length, and device command bytes.
 - EDID dipswitches must be set to Front Panel/Web UI/API control (0000) for EDID API commands to function.
 
@@ -711,18 +748,18 @@ source_domains:
 source_urls:
   - https://digis.ru/upload/iblock/b37/40421_WyreStorm_MX_xxxx_HDBT_H2X_H2XC_API.pdf
 retrieved_at: 2026-04-29T12:48:05.737Z
-last_checked_at: 2026-06-02T22:16:16.936Z
+last_checked_at: 2026-10-07T13:11:49.679Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:16:16.936Z
-matched_actions: 29
-action_count: 29
+checked_at: 2026-10-07T13:11:49.679Z
+matched_actions: 60
+action_count: 60
 confidence: medium
-summary: "All 29 spec actions traced to source (dip-safe re-verify). (7 unresolved item(s) noted in Known Gaps.)"
+summary: "All 60 action units (29 actions, 31 query feedbacks) match source commands; transport values verified; source catalogue essentially fully represented. (7 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

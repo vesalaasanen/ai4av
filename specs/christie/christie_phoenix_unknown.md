@@ -17,13 +17,11 @@ compatible_with:
   required_options: []
 source_domains:
   - christiedigital.com
-  - christiedigital.cn
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101425-05-christie-lit-tech-ref-phoenix-ext-protocol.pdf
-  - https://www.christiedigital.cn/globalassets/resources/public/020-000965-04-lit-tech-ref-phoenix-ext-protocol-json.pdf
-retrieved_at: 2026-05-14T14:05:45.002Z
-last_checked_at: 2026-06-02T22:05:14.522Z
-generated_at: 2026-06-02T22:05:14.522Z
+retrieved_at: 2026-09-26T14:23:16.456Z
+last_checked_at: 2026-09-26T14:23:16.456Z
+generated_at: 2026-09-26T14:23:16.456Z
 firmware_coverage: "Not stated in source"
 protocol_coverage: []
 known_gaps:
@@ -35,11 +33,11 @@ known_gaps:
   - "max number of layers per wall not stated"
 verification:
   verdict: verified
-  checked_at: 2026-06-02T22:05:14.522Z
+  checked_at: 2026-09-26T14:23:16.456Z
   matched_actions: 24
   action_count: 24
   confidence: medium
-  summary: "All 24 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+  summary: "All 24 actions and queries match the complete Phoenix manual, including parameter order, TCP 11135, authentication, and CR framing. (6 unresolved item(s) noted in Known Gaps.)"
 derived_from:
   - vendor_manual
 license: ODbL-1.0
@@ -318,23 +316,21 @@ interlocks: []
 ```yaml
 source_domains:
   - christiedigital.com
-  - christiedigital.cn
 source_urls:
   - https://www.christiedigital.com/globalassets/resources/public/020-101425-05-christie-lit-tech-ref-phoenix-ext-protocol.pdf
-  - https://www.christiedigital.cn/globalassets/resources/public/020-000965-04-lit-tech-ref-phoenix-ext-protocol-json.pdf
-retrieved_at: 2026-05-14T14:05:45.002Z
-last_checked_at: 2026-06-02T22:05:14.522Z
+retrieved_at: 2026-09-26T14:23:16.456Z
+last_checked_at: 2026-09-26T14:23:16.456Z
 ```
 
 ## Verification Summary
 
 ```yaml
 verdict: verified
-checked_at: 2026-06-02T22:05:14.522Z
+checked_at: 2026-09-26T14:23:16.456Z
 matched_actions: 24
 action_count: 24
 confidence: medium
-summary: "All 24 spec actions traced to source (dip-safe re-verify). (6 unresolved item(s) noted in Known Gaps.)"
+summary: "All 24 actions and queries match the complete Phoenix manual, including parameter order, TCP 11135, authentication, and CR framing. (6 unresolved item(s) noted in Known Gaps.)"
 ```
 
 ## Known Gaps

@@ -12,7 +12,7 @@ compatible_with:
   models:
     - "Blackmagic Smart Videohub"
     - "Blackmagic Videohub (family)"
-  firmware: "\"4.9.1\""
+  firmware: 4.9.1
   hardware_revisions: []
   protocol_versions: []
   required_options: []
@@ -23,7 +23,7 @@ source_urls:
 retrieved_at: 2026-04-30T04:40:47.751Z
 last_checked_at: 2026-06-02T21:54:38.491Z
 generated_at: 2026-06-02T21:54:38.491Z
-firmware_coverage: "\"4.9.1\""
+firmware_coverage: 4.9.1
 protocol_coverage: []
 known_gaps:
   - "specific model variants (e.g., Universal Videohub, Workgroup Videohub) not enumerated in source beyond Smart Videohub example"
